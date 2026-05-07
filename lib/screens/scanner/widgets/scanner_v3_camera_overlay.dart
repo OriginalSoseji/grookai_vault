@@ -3,6 +3,7 @@ import 'dart:ui' as ui;
 import 'package:flutter/material.dart';
 
 import '../../../services/scanner_v3/convergence_state_v1.dart';
+import '../../../services/scanner_v4/scanner_v4_diagnostic_test_runner_v1.dart';
 import 'scanner_actions_bar.dart';
 import 'scanner_confidence_rail.dart';
 import 'scanner_debug_panel.dart';
@@ -25,11 +26,20 @@ class ScannerV3CameraOverlay extends StatelessWidget {
     required this.cameraPreviewSize,
     required this.cameraInputSize,
     required this.cameraInitFallbackReason,
+    required this.diagnosticsEnabled,
+    required this.diagnosticsFrameCount,
+    required this.diagnosticsLastExportPath,
+    required this.autoTestStatus,
     required this.onClose,
     required this.onToggleFlash,
     required this.onToggleDebug,
     required this.onTryAgain,
     required this.onSearchManually,
+    required this.onToggleDiagnostics,
+    required this.onExportDiagnostics,
+    required this.onStartAutoTest,
+    required this.onCancelAutoTest,
+    required this.onExportAutoTestReport,
   });
 
   final ScannerV3LiveLoopState state;
@@ -43,11 +53,20 @@ class ScannerV3CameraOverlay extends StatelessWidget {
   final Size? cameraPreviewSize;
   final Size? cameraInputSize;
   final String? cameraInitFallbackReason;
+  final bool diagnosticsEnabled;
+  final int diagnosticsFrameCount;
+  final String? diagnosticsLastExportPath;
+  final ScannerV4DiagnosticTestStatusV1 autoTestStatus;
   final VoidCallback onClose;
   final VoidCallback onToggleFlash;
   final VoidCallback onToggleDebug;
   final VoidCallback onTryAgain;
   final VoidCallback onSearchManually;
+  final ValueChanged<bool> onToggleDiagnostics;
+  final VoidCallback onExportDiagnostics;
+  final VoidCallback onStartAutoTest;
+  final VoidCallback onCancelAutoTest;
+  final VoidCallback onExportAutoTestReport;
 
   @override
   Widget build(BuildContext context) {
@@ -107,9 +126,18 @@ class ScannerV3CameraOverlay extends StatelessWidget {
             cameraPreviewSize: cameraPreviewSize,
             cameraInputSize: cameraInputSize,
             cameraInitFallbackReason: cameraInitFallbackReason,
+            diagnosticsEnabled: diagnosticsEnabled,
+            diagnosticsFrameCount: diagnosticsFrameCount,
+            diagnosticsLastExportPath: diagnosticsLastExportPath,
+            autoTestStatus: autoTestStatus,
             onToggleDebug: onToggleDebug,
             onTryAgain: onTryAgain,
             onSearchManually: onSearchManually,
+            onToggleDiagnostics: onToggleDiagnostics,
+            onExportDiagnostics: onExportDiagnostics,
+            onStartAutoTest: onStartAutoTest,
+            onCancelAutoTest: onCancelAutoTest,
+            onExportAutoTestReport: onExportAutoTestReport,
           ),
         ),
       ],
@@ -242,9 +270,18 @@ class _ScannerBottomPanel extends StatelessWidget {
     required this.cameraPreviewSize,
     required this.cameraInputSize,
     required this.cameraInitFallbackReason,
+    required this.diagnosticsEnabled,
+    required this.diagnosticsFrameCount,
+    required this.diagnosticsLastExportPath,
+    required this.autoTestStatus,
     required this.onToggleDebug,
     required this.onTryAgain,
     required this.onSearchManually,
+    required this.onToggleDiagnostics,
+    required this.onExportDiagnostics,
+    required this.onStartAutoTest,
+    required this.onCancelAutoTest,
+    required this.onExportAutoTestReport,
   });
 
   final ScannerV3LiveLoopState state;
@@ -256,9 +293,18 @@ class _ScannerBottomPanel extends StatelessWidget {
   final Size? cameraPreviewSize;
   final Size? cameraInputSize;
   final String? cameraInitFallbackReason;
+  final bool diagnosticsEnabled;
+  final int diagnosticsFrameCount;
+  final String? diagnosticsLastExportPath;
+  final ScannerV4DiagnosticTestStatusV1 autoTestStatus;
   final VoidCallback onToggleDebug;
   final VoidCallback onTryAgain;
   final VoidCallback onSearchManually;
+  final ValueChanged<bool> onToggleDiagnostics;
+  final VoidCallback onExportDiagnostics;
+  final VoidCallback onStartAutoTest;
+  final VoidCallback onCancelAutoTest;
+  final VoidCallback onExportAutoTestReport;
 
   @override
   Widget build(BuildContext context) {
@@ -287,7 +333,10 @@ class _ScannerBottomPanel extends StatelessWidget {
               ],
             ),
             child: ConstrainedBox(
-              constraints: const BoxConstraints(minHeight: 140, maxHeight: 260),
+              constraints: BoxConstraints(
+                minHeight: 140,
+                maxHeight: debugExpanded ? 520 : 260,
+              ),
               child: Padding(
                 padding: const EdgeInsets.fromLTRB(16, 15, 16, 14),
                 child: Column(
@@ -344,7 +393,16 @@ class _ScannerBottomPanel extends StatelessWidget {
                       cameraPreviewSize: cameraPreviewSize,
                       cameraInputSize: cameraInputSize,
                       cameraInitFallbackReason: cameraInitFallbackReason,
+                      diagnosticsEnabled: diagnosticsEnabled,
+                      diagnosticsFrameCount: diagnosticsFrameCount,
+                      diagnosticsLastExportPath: diagnosticsLastExportPath,
+                      autoTestStatus: autoTestStatus,
                       onToggle: onToggleDebug,
+                      onToggleDiagnostics: onToggleDiagnostics,
+                      onExportDiagnostics: onExportDiagnostics,
+                      onStartAutoTest: onStartAutoTest,
+                      onCancelAutoTest: onCancelAutoTest,
+                      onExportAutoTestReport: onExportAutoTestReport,
                     ),
                   ],
                 ),

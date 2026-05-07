@@ -63,14 +63,24 @@ class ScannerV3LiveLoopController {
   static const double minCardFillRatio = 0.08;
   static const double maxCardFillRatio = 0.72;
   static const double minNativeDetectorConfidence = 0.45;
-  static const double minFallbackBorderConfidence = 0.35;
-  static const double minFallbackCardFillRatio = 0.14;
-  static const double maxFallbackCardFillRatio = 0.60;
   static const double minArtworkForegroundRatio = 0.015;
   static const double maxArtworkForegroundRatio = 0.88;
   static const double minArtworkLumaStdDev = 0.035;
   static const double minFallbackArtworkForegroundRatio = 0.045;
   static const double minFallbackArtworkLumaStdDev = 0.055;
+  static const double minCardBorderBrightRatio = 0.10;
+  static const double minCardBorderBandCoverage = 0.50;
+  static const double minNativeObjectContentRatio = 0.48;
+  static const double minNativeObjectSeedCoverage = 0.08;
+  static const double minNativeObjectCandidateScore = 0.735;
+  static const double minPokemonFallbackFullLumaStdDev = 0.060;
+  static const double minPokemonFallbackArtworkLumaStdDev = 0.055;
+  static const double minPokemonFallbackArtworkForegroundRatio = 0.045;
+  static const double minPokemonFallbackLayoutScore = 0.58;
+  static const double minPokemonFallbackHorizontalContrast = 0.050;
+  static const double minPokemonFallbackTextPanelBrightRatio = 0.10;
+  static const double minNativePokemonTextPanelBrightRatio = 0.08;
+  static const int minCardPresentFramesBeforeIdentity = 3;
   static const int candidateDistanceThreshold = 26;
   static const int minAcceptedFramesToLock = 3;
   static const double lockScoreGap = 6.0;
@@ -98,6 +108,7 @@ class ScannerV3LiveLoopController {
   int _lastIdentityCropCount = 0;
   int _lastSuccessfulIdentityCropCount = 0;
   int _lastUnifiedIdentityCandidateCount = 0;
+  int _cardPresentConsecutiveFrames = 0;
   List<String> _lastIdentityErrors = const <String>[];
   String _lastIdentitySignalSource = 'waiting';
   final ScannerV3IdentityPipelineV8 _identityPipeline;
@@ -126,15 +137,19 @@ class ScannerV3LiveLoopController {
     _sampledFrameCount += 1;
 
     final stopwatch = Stopwatch()..start();
-    final normalized = _normalizeFrame(
+    final nativeDiagnosticsUsability = _nativeDetectorDiagnosticsUsable(
+      quadDetectorSnapshot,
+    );
+    final normalizedCandidates = _normalizeFrameCandidates(
       image: image,
       sensorRotation: sensorRotation,
       quadPointsNorm: quadPointsNorm,
       quadDetectorSnapshot: quadDetectorSnapshot,
     );
 
-    if (normalized == null) {
+    if (normalizedCandidates.isEmpty) {
       _rejectedFrameCount += 1;
+      _resetCardPresentGate();
       _clearIdentityState();
       _lastIdentitySignalSource = 'normalization_failed';
       return _publishState(
@@ -157,12 +172,25 @@ class ScannerV3LiveLoopController {
         cardPresentReason: quadDetectorSnapshot?.success == true
             ? 'normalized_empty'
             : 'no_quad',
+        identityAllowed: false,
+        identityBlockedReason: 'normalization_failed',
+        nativeDiagnosticsUsable: nativeDiagnosticsUsability.usable,
+        nativeDiagnosticsRejectionReason: nativeDiagnosticsUsability.usable
+            ? null
+            : nativeDiagnosticsUsability.reason,
       );
     }
 
-    final quality = _measureQuality(normalized);
+    final candidateEvaluation = _selectBestFrameCandidate(
+      normalizedCandidates,
+    );
+    final normalized = candidateEvaluation.frame;
+    final quality = candidateEvaluation.quality;
+    final cardPresent = candidateEvaluation.cardPresent;
+
     if (!quality.accepted) {
       _rejectedFrameCount += 1;
+      _resetCardPresentGate();
       _clearIdentityState();
       _lastIdentitySignalSource = 'quality_rejected';
       return _publishState(
@@ -174,12 +202,17 @@ class ScannerV3LiveLoopController {
         detectorElapsedMs: normalized.detectorElapsedMs,
         cardPresent: false,
         cardPresentReason: _cardAbsentReasonForQuality(quality),
+        identityAllowed: false,
+        identityBlockedReason: _cardAbsentReasonForQuality(quality),
+        nativeDiagnosticsUsable: normalized.nativeDiagnosticsUsable,
+        nativeDiagnosticsRejectionReason:
+            normalized.nativeDiagnosticsRejectionReason,
       );
     }
 
-    final cardPresent = _evaluateCardPresent(normalized, quality);
     if (!cardPresent.present) {
       _rejectedFrameCount += 1;
+      _resetCardPresentGate();
       _clearIdentityState();
       _lastIdentitySignalSource = 'card_absent';
       return _publishState(
@@ -191,6 +224,38 @@ class ScannerV3LiveLoopController {
         detectorElapsedMs: normalized.detectorElapsedMs,
         cardPresent: false,
         cardPresentReason: cardPresent.reason,
+        identityAllowed: false,
+        identityBlockedReason: cardPresent.reason,
+        nativeDiagnosticsUsable: normalized.nativeDiagnosticsUsable,
+        nativeDiagnosticsRejectionReason:
+            normalized.nativeDiagnosticsRejectionReason,
+        cardPresentMetrics: cardPresent.metrics,
+      );
+    }
+
+    _cardPresentConsecutiveFrames += 1;
+    if (_cardPresentConsecutiveFrames < minCardPresentFramesBeforeIdentity) {
+      _rejectedFrameCount += 1;
+      _clearIdentityState();
+      _lastIdentitySignalSource = 'card_present_persistence_pending';
+      return _publishState(
+        quality: quality,
+        decisionReason:
+            'identity_blocked:card_present_persistence_pending:'
+            '$_cardPresentConsecutiveFrames/'
+            '$minCardPresentFramesBeforeIdentity',
+        elapsedMs: stopwatch.elapsedMilliseconds,
+        selectedQuadSource: normalized.selectedQuadSource,
+        detectorConfidence: normalized.detectorConfidence,
+        detectorElapsedMs: normalized.detectorElapsedMs,
+        cardPresent: false,
+        cardPresentReason: 'card_present_persistence_pending',
+        identityAllowed: false,
+        identityBlockedReason: 'card_present_persistence_pending',
+        nativeDiagnosticsUsable: normalized.nativeDiagnosticsUsable,
+        nativeDiagnosticsRejectionReason:
+            normalized.nativeDiagnosticsRejectionReason,
+        cardPresentMetrics: cardPresent.metrics,
       );
     }
 
@@ -312,6 +377,12 @@ class ScannerV3LiveLoopController {
       detectorElapsedMs: normalized.detectorElapsedMs,
       cardPresent: true,
       cardPresentReason: 'card_present',
+      identityAllowed: true,
+      identityAllowedReason: 'card_present_persistence_satisfied',
+      nativeDiagnosticsUsable: normalized.nativeDiagnosticsUsable,
+      nativeDiagnosticsRejectionReason:
+          normalized.nativeDiagnosticsRejectionReason,
+      cardPresentMetrics: cardPresent.metrics,
     );
   }
 
@@ -336,6 +407,7 @@ class ScannerV3LiveLoopController {
     _lastIdentityCropCount = 0;
     _lastSuccessfulIdentityCropCount = 0;
     _lastUnifiedIdentityCandidateCount = 0;
+    _cardPresentConsecutiveFrames = 0;
     _lastIdentityErrors = const <String>[];
     _lastIdentitySignalSource = 'waiting';
     _state = ScannerV3LiveLoopState.initial;
@@ -359,44 +431,150 @@ class ScannerV3LiveLoopController {
     _lastIdentityErrors = const <String>[];
   }
 
-  _NormalizedFrame? _normalizeFrame({
+  void _resetCardPresentGate() {
+    _cardPresentConsecutiveFrames = 0;
+  }
+
+  List<_NormalizedFrame> _normalizeFrameCandidates({
     required CameraImage image,
     required int sensorRotation,
     required List<Offset>? quadPointsNorm,
     required ScannerV3QuadDetectorSnapshot? quadDetectorSnapshot,
   }) {
     if (image.format.group != ImageFormatGroup.yuv420 || image.planes.isEmpty) {
-      return null;
+      return const <_NormalizedFrame>[];
     }
 
     final rightAngleRotation = _isRightAngleRotation(sensorRotation);
     final displayWidth = rightAngleRotation ? image.height : image.width;
     final displayHeight = rightAngleRotation ? image.width : image.height;
     if (displayWidth <= 0 || displayHeight <= 0) {
-      return null;
+      return const <_NormalizedFrame>[];
     }
     final displayAspectRatio = displayWidth / displayHeight;
     final displayQuadTargetAspect = targetAspectRatio / displayAspectRatio;
 
-    final hasDetectedQuad =
+    final nativeDiagnosticsUsability = _nativeDetectorDiagnosticsUsable(
+      quadDetectorSnapshot,
+    );
+    final hasNativeQuad =
         quadPointsNorm != null &&
         quadPointsNorm.length == 4 &&
-        _nativeDetectorLooksUsable(quadDetectorSnapshot);
-    final heuristicDisplayQuad = hasDetectedQuad
-        ? null
-        : _detectDisplayCardQuadFromFrame(
-            image: image,
-            sensorRotation: sensorRotation,
-            displayQuadTargetAspect: displayQuadTargetAspect,
-          );
-    final displayQuad =
-        (hasDetectedQuad ? quadPointsNorm : heuristicDisplayQuad) ??
-        _centerDisplayCardQuad(displayQuadTargetAspect);
-    final selectedQuadSource = hasDetectedQuad
-        ? 'native_detector'
-        : heuristicDisplayQuad != null
-        ? 'yuv_fallback'
-        : 'center_fallback';
+        nativeDiagnosticsUsability.usable;
+    final candidates = <_DisplayQuadCandidate>[];
+    if (hasNativeQuad) {
+      candidates.add(
+        _DisplayQuadCandidate(
+          source: 'native_detector',
+          displayQuad: quadPointsNorm,
+          borderConfidence: quadDetectorSnapshot?.confidence ?? 1.0,
+        ),
+      );
+    }
+
+    final pokemonVisualQuad = _detectPokemonDisplayCardQuadFromFrame(
+      image: image,
+      sensorRotation: sensorRotation,
+      displayQuadTargetAspect: displayQuadTargetAspect,
+    );
+    if (pokemonVisualQuad != null) {
+      candidates.add(
+        _DisplayQuadCandidate(
+          source: 'pokemon_visual_region',
+          displayQuad: pokemonVisualQuad,
+          borderConfidence: 0.55,
+        ),
+      );
+    }
+
+    final heuristicDisplayQuad = _detectDisplayCardQuadFromFrame(
+      image: image,
+      sensorRotation: sensorRotation,
+      displayQuadTargetAspect: displayQuadTargetAspect,
+    );
+    if (heuristicDisplayQuad != null) {
+      candidates.add(
+        _DisplayQuadCandidate(
+          source: 'yuv_fallback',
+          displayQuad: heuristicDisplayQuad,
+          borderConfidence: 0.35,
+        ),
+      );
+    }
+
+    candidates.add(
+      _DisplayQuadCandidate(
+        source: 'center_fallback',
+        displayQuad: _centerDisplayCardQuad(displayQuadTargetAspect),
+        borderConfidence: 0.0,
+      ),
+    );
+
+    final normalized = <_NormalizedFrame>[];
+    for (final candidate in candidates) {
+      if (_hasSimilarNormalizedCandidate(normalized, candidate.displayQuad)) {
+        continue;
+      }
+      final frame = _normalizeFrameFromDisplayQuad(
+        image: image,
+        sensorRotation: sensorRotation,
+        displayQuad: candidate.displayQuad,
+        selectedQuadSource: candidate.source,
+        borderConfidence: candidate.borderConfidence,
+        rightAngleRotation: rightAngleRotation,
+        displayAspectRatio: displayAspectRatio,
+        displayQuadTargetAspect: displayQuadTargetAspect,
+        nativeDiagnosticsUsability: nativeDiagnosticsUsability,
+        quadDetectorSnapshot: quadDetectorSnapshot,
+      );
+      if (frame != null) {
+        normalized.add(frame);
+      }
+    }
+    return normalized;
+  }
+
+  bool _hasSimilarNormalizedCandidate(
+    List<_NormalizedFrame> existing,
+    List<Offset> displayQuad,
+  ) {
+    final ordered = _orderQuad(displayQuad);
+    if (ordered == null) return false;
+    final area = _polygonArea(ordered).abs();
+    final center = _quadCenter(ordered);
+    for (final frame in existing) {
+      final otherArea = _polygonArea(frame.orderedDisplayQuad).abs();
+      final otherCenter = _quadCenter(frame.orderedDisplayQuad);
+      final centerDistance = (center - otherCenter).distance;
+      if (centerDistance < 0.035 && (area - otherArea).abs() < 0.035) {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  Offset _quadCenter(List<Offset> points) {
+    var x = 0.0;
+    var y = 0.0;
+    for (final point in points) {
+      x += point.dx;
+      y += point.dy;
+    }
+    return Offset(x / points.length, y / points.length);
+  }
+
+  _NormalizedFrame? _normalizeFrameFromDisplayQuad({
+    required CameraImage image,
+    required int sensorRotation,
+    required List<Offset> displayQuad,
+    required String selectedQuadSource,
+    required double borderConfidence,
+    required bool rightAngleRotation,
+    required double displayAspectRatio,
+    required double displayQuadTargetAspect,
+    required _NativeDiagnosticsUsabilityDecision nativeDiagnosticsUsability,
+    required ScannerV3QuadDetectorSnapshot? quadDetectorSnapshot,
+  }) {
     final orderedDisplayQuad = _orderQuad(displayQuad);
     final imageQuad = orderedDisplayQuad == null
         ? null
@@ -439,11 +617,7 @@ class ScannerV3LiveLoopController {
       width: normalizedWidth,
       height: normalizedHeight,
       cardFillRatio: fillRatio,
-      borderConfidence: hasDetectedQuad
-          ? quadDetectorSnapshot?.confidence ?? 1.0
-          : heuristicDisplayQuad != null
-          ? 0.35
-          : 0.0,
+      borderConfidence: borderConfidence,
       selectedQuadSource: selectedQuadSource,
       appliedRotation: _normalizedRotation(sensorRotation),
       rawImageWidth: image.width,
@@ -457,6 +631,10 @@ class ScannerV3LiveLoopController {
       detectorConfidence: quadDetectorSnapshot?.confidence,
       detectorElapsedMs: quadDetectorSnapshot?.elapsedMs,
       detectorFailureReason: quadDetectorSnapshot?.failureReason,
+      nativeDiagnosticsUsable: nativeDiagnosticsUsability.usable,
+      nativeDiagnosticsRejectionReason: nativeDiagnosticsUsability.usable
+          ? null
+          : nativeDiagnosticsUsability.reason,
       detectorDiagnostics: _detectorDiagnosticsForMetrics(
         quadDetectorSnapshot?.rawResponse,
       ),
@@ -469,12 +647,97 @@ class ScannerV3LiveLoopController {
     );
   }
 
-  bool _nativeDetectorLooksUsable(
+  _FrameCandidateEvaluation _selectBestFrameCandidate(
+    List<_NormalizedFrame> candidates,
+  ) {
+    _FrameCandidateEvaluation? bestPresent;
+    _FrameCandidateEvaluation? bestRejected;
+    for (final frame in candidates) {
+      final quality = _measureQuality(frame);
+      final cardPresent = _evaluateCardPresent(frame, quality);
+      final evaluation = _FrameCandidateEvaluation(
+        frame: frame,
+        quality: quality,
+        cardPresent: cardPresent,
+        score: _frameCandidateScore(frame, quality, cardPresent),
+      );
+      if (cardPresent.present) {
+        if (bestPresent == null || evaluation.score > bestPresent.score) {
+          bestPresent = evaluation;
+        }
+      } else if (bestRejected == null ||
+          evaluation.score > bestRejected.score) {
+        bestRejected = evaluation;
+      }
+    }
+    return bestPresent ?? bestRejected!;
+  }
+
+  double _frameCandidateScore(
+    _NormalizedFrame frame,
+    ScannerV3QualitySnapshot quality,
+    _CardPresentDecision cardPresent,
+  ) {
+    final layout = _pokemonLayoutStats(frame);
+    var score = 0.0;
+    if (cardPresent.present) {
+      score += 1000;
+    }
+    if (quality.accepted) {
+      score += 120;
+    } else {
+      score -= quality.rejectionReasons.length * 35;
+    }
+    score += frame.cardFillRatio * 120;
+    score += layout.score * 140;
+    score += switch (frame.selectedQuadSource) {
+      'native_detector' => 45,
+      'pokemon_visual_region' => 70,
+      'yuv_fallback' => 35,
+      'center_fallback' => 10,
+      _ => 0,
+    };
+    if (cardPresent.reason == 'card_border_evidence_missing' ||
+        cardPresent.reason == 'pokemon_layout_evidence_missing') {
+      score -= 60;
+    }
+    if (frame.selectedQuadSource == 'center_fallback') {
+      score -= 35;
+    }
+    return score;
+  }
+
+  _NativeDiagnosticsUsabilityDecision _nativeDetectorDiagnosticsUsable(
     ScannerV3QuadDetectorSnapshot? quadDetectorSnapshot,
   ) {
-    if (quadDetectorSnapshot?.success != true) return false;
+    if (quadDetectorSnapshot?.called != true) {
+      return const _NativeDiagnosticsUsabilityDecision(
+        usable: false,
+        reason: 'native_not_called',
+      );
+    }
+    if (quadDetectorSnapshot?.success != true) {
+      return _NativeDiagnosticsUsabilityDecision(
+        usable: false,
+        reason: quadDetectorSnapshot?.failureReason == 'native_success_false'
+            ? 'native_success_false'
+            : 'native_success_false',
+      );
+    }
+    if ((quadDetectorSnapshot?.confidence ?? 0) < minNativeDetectorConfidence) {
+      return const _NativeDiagnosticsUsabilityDecision(
+        usable: false,
+        reason: 'low_detector_confidence',
+      );
+    }
     final raw = quadDetectorSnapshot?.rawResponse;
     final diagnostics = raw == null ? null : raw['diagnostics'];
+    if (diagnostics is Map && diagnostics['detector_success'] == false) {
+      return const _NativeDiagnosticsUsabilityDecision(
+        usable: false,
+        reason: 'native_diagnostics_detector_failure',
+      );
+    }
     final pipeline = diagnostics is Map
         ? diagnostics['pipeline']?.toString()
         : null;
@@ -483,9 +746,283 @@ class ScannerV3LiveLoopController {
         : null;
     if (pipeline == 'recovered_center_quad_fallback' ||
         source == 'recovered_center_quad_fallback') {
-      return false;
+      return const _NativeDiagnosticsUsabilityDecision(
+        usable: false,
+        reason: 'native_recovered_center_quad_fallback',
+      );
     }
-    return true;
+    final failureReason = diagnostics is Map
+        ? diagnostics['selected_failure_reason']?.toString()
+        : null;
+    if (failureReason != null && failureReason.isNotEmpty) {
+      return _NativeDiagnosticsUsabilityDecision(
+        usable: false,
+        reason: 'native_diagnostics_failure:$failureReason',
+      );
+    }
+    final edgeSupport = diagnostics is Map
+        ? _asDouble(diagnostics['best_candidate_edge_support'])
+        : null;
+    if (edgeSupport != null && edgeSupport < 0.18) {
+      return const _NativeDiagnosticsUsabilityDecision(
+        usable: false,
+        reason: 'native_edge_support_weak',
+      );
+    }
+    final candidateScore = diagnostics is Map
+        ? _asDouble(diagnostics['best_candidate_score'])
+        : null;
+    if (candidateScore != null && candidateScore < 0.45) {
+      return const _NativeDiagnosticsUsabilityDecision(
+        usable: false,
+        reason: 'native_candidate_score_weak',
+      );
+    }
+    return const _NativeDiagnosticsUsabilityDecision(
+      usable: true,
+      reason: 'native_diagnostics_usable',
+    );
+  }
+
+  double? _asDouble(Object? value) {
+    if (value is num) return value.toDouble();
+    if (value is String) return double.tryParse(value);
+    return null;
+  }
+
+  List<Offset>? _detectPokemonDisplayCardQuadFromFrame({
+    required CameraImage image,
+    required int sensorRotation,
+    required double displayQuadTargetAspect,
+  }) {
+    if (image.format.group != ImageFormatGroup.yuv420 ||
+        image.planes.length < 3) {
+      return null;
+    }
+
+    const gridWidth = 96;
+    const gridHeight = 160;
+    const searchLeft = 0.06;
+    const searchTop = 0.08;
+    const searchRight = 0.94;
+    const searchBottom = 0.92;
+
+    final yPlane = image.planes[0];
+    final uPlane = image.planes[1];
+    final vPlane = image.planes[2];
+    final lumaSamples = <int>[];
+    final chromaSamples = <int>[];
+    final lumaGrid = List<int>.filled(gridWidth * gridHeight, 0);
+    final chromaGrid = List<int>.filled(gridWidth * gridHeight, 0);
+
+    for (var gy = 0; gy < gridHeight; gy += 1) {
+      final displayY = (gy + 0.5) / gridHeight;
+      if (displayY < searchTop || displayY > searchBottom) continue;
+      for (var gx = 0; gx < gridWidth; gx += 1) {
+        final displayX = (gx + 0.5) / gridWidth;
+        if (displayX < searchLeft || displayX > searchRight) continue;
+
+        final imagePoint = _displayNormToImageNorm(
+          Offset(displayX, displayY),
+          sensorRotation,
+        );
+        final imageX = (imagePoint.dx.clamp(0.0, 1.0) * (image.width - 1))
+            .round();
+        final imageY = (imagePoint.dy.clamp(0.0, 1.0) * (image.height - 1))
+            .round();
+        final y = _samplePlane(
+          bytes: yPlane.bytes,
+          x: imageX,
+          y: imageY,
+          rowStride: yPlane.bytesPerRow,
+          pixelStride: 1,
+        );
+        final u = _samplePlane(
+          bytes: uPlane.bytes,
+          x: imageX ~/ 2,
+          y: imageY ~/ 2,
+          rowStride: uPlane.bytesPerRow,
+          pixelStride: uPlane.bytesPerPixel ?? 1,
+        );
+        final v = _samplePlane(
+          bytes: vPlane.bytes,
+          x: imageX ~/ 2,
+          y: imageY ~/ 2,
+          rowStride: vPlane.bytesPerRow,
+          pixelStride: vPlane.bytesPerPixel ?? 1,
+        );
+        final chroma = (u - 128).abs() + (v - 128).abs();
+        final index = (gy * gridWidth) + gx;
+        lumaGrid[index] = y;
+        chromaGrid[index] = chroma;
+        lumaSamples.add(y);
+        chromaSamples.add(chroma);
+      }
+    }
+
+    if (lumaSamples.length < 80 || chromaSamples.length < 80) return null;
+    lumaSamples.sort();
+    chromaSamples.sort();
+    final p62 = lumaSamples[(lumaSamples.length * 0.62).floor()];
+    final p76 = lumaSamples[(lumaSamples.length * 0.76).floor()];
+    final p86 = lumaSamples[(lumaSamples.length * 0.86).floor()];
+    final chromaP58 = chromaSamples[(chromaSamples.length * 0.58).floor()];
+    final chromaP72 = chromaSamples[(chromaSamples.length * 0.72).floor()];
+    final brightThreshold = math.max(86, math.min(168, p62 + 8)).toInt();
+    final veryBrightThreshold = math.max(108, math.min(188, p76 + 8)).toInt();
+    final neutralChromaThreshold = math
+        .max(24, math.min(68, chromaP58 + 18))
+        .toInt();
+    final relaxedChromaThreshold = math
+        .max(34, math.min(86, chromaP72 + 18))
+        .toInt();
+    final mask = List<bool>.filled(gridWidth * gridHeight, false);
+
+    for (var gy = 0; gy < gridHeight; gy += 1) {
+      final displayY = (gy + 0.5) / gridHeight;
+      if (displayY < searchTop || displayY > searchBottom) continue;
+      for (var gx = 0; gx < gridWidth; gx += 1) {
+        final displayX = (gx + 0.5) / gridWidth;
+        if (displayX < searchLeft || displayX > searchRight) continue;
+        final index = (gy * gridWidth) + gx;
+        final luma = lumaGrid[index];
+        final chroma = chromaGrid[index];
+        final lightCardSurface =
+            luma >= brightThreshold && chroma <= relaxedChromaThreshold;
+        final highlightCardSurface =
+            luma >= veryBrightThreshold && chroma <= neutralChromaThreshold;
+        final strongPrintOrBorder =
+            luma >= p86 && chroma <= relaxedChromaThreshold + 8;
+        if (lightCardSurface || highlightCardSurface || strongPrintOrBorder) {
+          mask[index] = true;
+        }
+      }
+    }
+
+    var closed = List<bool>.from(mask);
+    for (var pass = 0; pass < 2; pass += 1) {
+      final next = List<bool>.from(closed);
+      for (var gy = 1; gy < gridHeight - 1; gy += 1) {
+        for (var gx = 1; gx < gridWidth - 1; gx += 1) {
+          final index = (gy * gridWidth) + gx;
+          if (closed[index]) continue;
+          var neighbors = 0;
+          for (var oy = -1; oy <= 1; oy += 1) {
+            for (var ox = -1; ox <= 1; ox += 1) {
+              if (ox == 0 && oy == 0) continue;
+              if (closed[((gy + oy) * gridWidth) + gx + ox]) {
+                neighbors += 1;
+              }
+            }
+          }
+          if (neighbors >= 3) {
+            next[index] = true;
+          }
+        }
+      }
+      closed = next;
+    }
+
+    final visited = List<bool>.filled(gridWidth * gridHeight, false);
+    _GridComponent? best;
+    var bestScore = -double.infinity;
+
+    for (var gy = 0; gy < gridHeight; gy += 1) {
+      for (var gx = 0; gx < gridWidth; gx += 1) {
+        final start = (gy * gridWidth) + gx;
+        if (!closed[start] || visited[start]) continue;
+        final component = _floodFillComponent(
+          mask: closed,
+          visited: visited,
+          gridWidth: gridWidth,
+          gridHeight: gridHeight,
+          startX: gx,
+          startY: gy,
+        );
+        final widthNorm = component.width / gridWidth;
+        final heightNorm = component.height / gridHeight;
+        final areaNorm = widthNorm * heightNorm;
+        if (component.count < 80 || areaNorm < 0.018 || areaNorm > 0.58) {
+          continue;
+        }
+
+        final centerX = ((component.minX + component.maxX + 1) / 2) / gridWidth;
+        final centerY =
+            ((component.minY + component.maxY + 1) / 2) / gridHeight;
+        if (centerX < 0.14 ||
+            centerX > 0.86 ||
+            centerY < 0.14 ||
+            centerY > 0.88) {
+          continue;
+        }
+
+        final candidateAspect = widthNorm / math.max(heightNorm, 0.01);
+        final aspectPenalty =
+            (math.log(candidateAspect / displayQuadTargetAspect).abs()) * 110;
+        final centerPenalty =
+            ((centerX - 0.5).abs() * 30) + ((centerY - 0.52).abs() * 18);
+        final smallPenalty = areaNorm < 0.10 ? (0.10 - areaNorm) * 420 : 0;
+        final oversizedPenalty = areaNorm > 0.42 ? (areaNorm - 0.42) * 260 : 0;
+        final density = component.count / math.max(1, component.area);
+        final score =
+            component.count +
+            (areaNorm * 850) +
+            (density * 85) -
+            aspectPenalty -
+            centerPenalty -
+            smallPenalty -
+            oversizedPenalty;
+        if (score > bestScore) {
+          best = component;
+          bestScore = score;
+        }
+      }
+    }
+
+    if (best == null) return null;
+
+    var left = best.minX / gridWidth;
+    var top = best.minY / gridHeight;
+    var right = (best.maxX + 1) / gridWidth;
+    var bottom = (best.maxY + 1) / gridHeight;
+
+    left -= 0.035;
+    right += 0.035;
+    top -= 0.035;
+    bottom += 0.045;
+
+    final centerX = (left + right) / 2;
+    final centerY = (top + bottom) / 2;
+    var width = math.max(0.28, right - left);
+    var height = math.max(0.24, bottom - top);
+    final aspect = width / math.max(height, 0.01);
+    if (aspect > displayQuadTargetAspect) {
+      height = width / displayQuadTargetAspect;
+    } else {
+      width = height * displayQuadTargetAspect;
+    }
+
+    left = centerX - (width / 2);
+    right = centerX + (width / 2);
+    top = centerY - (height / 2);
+    bottom = centerY + (height / 2);
+
+    final clamped = _clampDisplayRect(
+      left: left,
+      top: top,
+      right: right,
+      bottom: bottom,
+    );
+    final cropWidth = clamped.right - clamped.left;
+    final cropHeight = clamped.bottom - clamped.top;
+    if (cropWidth < 0.26 || cropHeight < 0.22) return null;
+
+    return <Offset>[
+      Offset(clamped.left, clamped.top),
+      Offset(clamped.right, clamped.top),
+      Offset(clamped.right, clamped.bottom),
+      Offset(clamped.left, clamped.bottom),
+    ];
   }
 
   List<Offset>? _detectDisplayCardQuadFromFrame({
@@ -636,16 +1173,16 @@ class ScannerV3LiveLoopController {
           continue;
         }
 
-        final portraitSignal = heightNorm / math.max(widthNorm, 0.01);
-        final portraitPenalty =
-            math.max(0, (portraitSignal - 1.45).abs() - 0.8) * 16;
+        final candidateAspect = widthNorm / math.max(heightNorm, 0.01);
+        final aspectPenalty =
+            (math.log(candidateAspect / displayQuadTargetAspect).abs()) * 28;
         final centerPenalty =
             ((centerX - 0.5).abs() * 18) + ((centerY - 0.58).abs() * 10);
         final oversizedPenalty = areaNorm > 0.16 ? (areaNorm - 0.16) * 900 : 0;
         final score =
             component.count +
             (areaNorm * 120) -
-            portraitPenalty -
+            aspectPenalty -
             centerPenalty -
             oversizedPenalty;
         if (score > bestScore) {
@@ -1022,14 +1559,21 @@ class ScannerV3LiveLoopController {
   }
 
   List<Offset> _centerDisplayCardQuad(double displayQuadTargetAspect) {
-    const width = 0.76;
-    final height = width / displayQuadTargetAspect;
-    const left = (1 - width) / 2;
-    const top = 0.02;
-    final bottom = math.min(0.98, top + height);
+    final maxWidthForFill = math.sqrt(
+      (maxCardFillRatio - 0.01) * displayQuadTargetAspect,
+    );
+    var width = math.min(0.956, maxWidthForFill);
+    var height = width / displayQuadTargetAspect;
+    if (height > 0.963) {
+      height = 0.963;
+      width = height * displayQuadTargetAspect;
+    }
+    final left = (1 - width) / 2;
+    final top = (1 - height) / 2;
+    final bottom = top + height;
     return <Offset>[
-      const Offset(left, top),
-      const Offset(left + width, top),
+      Offset(left, top),
+      Offset(left + width, top),
       Offset(left + width, bottom),
       Offset(left, bottom),
     ];
@@ -1365,12 +1909,30 @@ class ScannerV3LiveLoopController {
       );
     }
 
-    final hasNativeQuad = frame.selectedQuadSource == 'native_detector' &&
-        frame.detectorSuccess;
-    final hasStrongFallback = frame.selectedQuadSource == 'yuv_fallback' &&
-        frame.borderConfidence >= minFallbackBorderConfidence;
-    if (!hasNativeQuad && !hasStrongFallback) {
+    final hasNativeQuad =
+        frame.selectedQuadSource == 'native_detector' && frame.detectorSuccess;
+    final hasScannerFallbackQuad =
+        frame.selectedQuadSource == 'pokemon_visual_region' ||
+        frame.selectedQuadSource == 'yuv_fallback' ||
+        frame.selectedQuadSource == 'center_fallback';
+    if (!hasNativeQuad && !hasScannerFallbackQuad) {
       return const _CardPresentDecision(present: false, reason: 'no_quad');
+    }
+    if (!hasNativeQuad) {
+      return _CardPresentDecision(
+        present: false,
+        reason: hasScannerFallbackQuad
+            ? 'native_success_required_for_card_present'
+            : 'no_native_quad',
+      );
+    }
+    if (hasNativeQuad && !frame.nativeDiagnosticsUsable) {
+      return _CardPresentDecision(
+        present: false,
+        reason:
+            frame.nativeDiagnosticsRejectionReason ??
+            'native_diagnostics_unusable',
+      );
     }
 
     if (hasNativeQuad &&
@@ -1380,23 +1942,15 @@ class ScannerV3LiveLoopController {
         reason: 'low_detector_confidence',
       );
     }
-    if (hasStrongFallback &&
-        (frame.cardFillRatio < minFallbackCardFillRatio ||
-            frame.cardFillRatio > maxFallbackCardFillRatio)) {
-      return const _CardPresentDecision(
-        present: false,
-        reason: 'fill_ratio_invalid',
-      );
-    }
-
     final fullCardStats = _lumaStats(
       frame,
       const _NormRect(left: 0, top: 0, right: 1, bottom: 1),
     );
     if (fullCardStats.stdDev < minArtworkLumaStdDev * 0.55) {
-      return const _CardPresentDecision(
+      return _CardPresentDecision(
         present: false,
         reason: 'normalized_empty',
+        metrics: _CardPresentMetrics(fullLumaStdDev: fullCardStats.stdDev),
       );
     }
 
@@ -1404,26 +1958,81 @@ class ScannerV3LiveLoopController {
       frame,
       const _NormRect(left: 0.08, top: 0.12, right: 0.92, bottom: 0.60),
     );
+    final pokemonLayoutStats = _pokemonLayoutStats(frame);
+    var metrics = _CardPresentMetrics(
+      fullLumaStdDev: fullCardStats.stdDev,
+      artworkLumaStdDev: artworkStats.stdDev,
+      artworkForegroundRatio: artworkStats.foregroundRatio,
+      pokemonLayoutScore: pokemonLayoutStats.score,
+      pokemonHorizontalContrast: pokemonLayoutStats.horizontalContrast,
+      pokemonTextPanelBrightRatio: pokemonLayoutStats.textPanelBrightRatio,
+    );
     if (artworkStats.stdDev < minArtworkLumaStdDev ||
         artworkStats.foregroundRatio < minArtworkForegroundRatio ||
         artworkStats.foregroundRatio > maxArtworkForegroundRatio) {
-      return const _CardPresentDecision(
+      return _CardPresentDecision(
         present: false,
         reason: 'artwork_background_dominant',
+        metrics: metrics,
       );
     }
-    if (hasStrongFallback &&
-        (artworkStats.stdDev < minFallbackArtworkLumaStdDev ||
-            artworkStats.foregroundRatio < minFallbackArtworkForegroundRatio)) {
-      return const _CardPresentDecision(
+    if (artworkStats.stdDev < minFallbackArtworkLumaStdDev &&
+        artworkStats.foregroundRatio < minFallbackArtworkForegroundRatio) {
+      return _CardPresentDecision(
         present: false,
         reason: 'artwork_background_dominant',
+        metrics: metrics,
+      );
+    }
+    final borderStats = _cardBorderStats(frame);
+    metrics = _CardPresentMetrics(
+      fullLumaStdDev: fullCardStats.stdDev,
+      artworkLumaStdDev: artworkStats.stdDev,
+      artworkForegroundRatio: artworkStats.foregroundRatio,
+      borderBrightRatio: borderStats.brightRatio,
+      borderBandCoverage: borderStats.bandCoverage,
+      pokemonLayoutScore: pokemonLayoutStats.score,
+      pokemonHorizontalContrast: pokemonLayoutStats.horizontalContrast,
+      pokemonTextPanelBrightRatio: pokemonLayoutStats.textPanelBrightRatio,
+    );
+    final borderEvidencePresent =
+        borderStats.brightRatio >= minCardBorderBrightRatio &&
+        borderStats.bandCoverage >= minCardBorderBandCoverage;
+    final nativeObjectContentEvidencePresent =
+        _nativeObjectContentEvidenceStrong(frame);
+    final nativePokemonLayoutEvidencePresent =
+        borderEvidencePresent &&
+        pokemonLayoutStats.textPanelBrightRatio >=
+            minNativePokemonTextPanelBrightRatio;
+    final pokemonFallbackEvidencePresent = _pokemonFallbackEvidenceStrong(
+      fullCardStats: fullCardStats,
+      artworkStats: artworkStats,
+      borderStats: borderStats,
+      layoutStats: pokemonLayoutStats,
+    );
+    if (hasScannerFallbackQuad && !pokemonFallbackEvidencePresent) {
+      return _CardPresentDecision(
+        present: false,
+        reason: 'pokemon_layout_evidence_missing',
+        metrics: metrics,
+      );
+    }
+    if (hasNativeQuad &&
+        !nativeObjectContentEvidencePresent &&
+        !nativePokemonLayoutEvidencePresent) {
+      return _CardPresentDecision(
+        present: false,
+        reason: borderEvidencePresent
+            ? 'pokemon_layout_evidence_missing'
+            : 'card_border_evidence_missing',
+        metrics: metrics,
       );
     }
 
-    return const _CardPresentDecision(
+    return _CardPresentDecision(
       present: true,
       reason: 'card_present',
+      metrics: metrics,
     );
   }
 
@@ -1439,6 +2048,224 @@ class ScannerV3LiveLoopController {
       return 'blur_or_brightness_invalid';
     }
     return reasons.isEmpty ? 'card_present_unknown' : reasons.first;
+  }
+
+  bool _pokemonFallbackEvidenceStrong({
+    required _LumaStats fullCardStats,
+    required _LumaStats artworkStats,
+    required _CardBorderStats borderStats,
+    required _PokemonLayoutStats layoutStats,
+  }) {
+    final fullTexture =
+        fullCardStats.stdDev >= minPokemonFallbackFullLumaStdDev;
+    final artworkTexture =
+        artworkStats.stdDev >= minPokemonFallbackArtworkLumaStdDev &&
+        artworkStats.foregroundRatio >=
+            minPokemonFallbackArtworkForegroundRatio &&
+        artworkStats.foregroundRatio <= maxArtworkForegroundRatio;
+    final borderEvidence =
+        borderStats.brightRatio >= minCardBorderBrightRatio * 0.45 &&
+        borderStats.bandCoverage >= 0.25;
+    final layoutEvidence =
+        layoutStats.score >= minPokemonFallbackLayoutScore &&
+        layoutStats.horizontalContrast >=
+            minPokemonFallbackHorizontalContrast &&
+        layoutStats.textPanelBrightRatio >=
+            minPokemonFallbackTextPanelBrightRatio;
+    return fullTexture && artworkTexture && (borderEvidence || layoutEvidence);
+  }
+
+  _PokemonLayoutStats _pokemonLayoutStats(_NormalizedFrame frame) {
+    const titleRect = _NormRect(left: 0.08, top: 0.03, right: 0.92, bottom: 0.12);
+    const artworkRect = _NormRect(
+      left: 0.08,
+      top: 0.16,
+      right: 0.92,
+      bottom: 0.56,
+    );
+    const textRect = _NormRect(left: 0.08, top: 0.58, right: 0.92, bottom: 0.88);
+    const bottomRect = _NormRect(
+      left: 0.08,
+      top: 0.84,
+      right: 0.92,
+      bottom: 0.97,
+    );
+
+    final titleStats = _lumaStats(frame, titleRect);
+    final artworkStats = _lumaStats(frame, artworkRect);
+    final textStats = _lumaStats(frame, textRect);
+    final titleBrightRatio = _brightRatio(frame, titleRect);
+    final textPanelBrightRatio = _brightRatio(frame, textRect);
+    final bottomBrightRatio = _brightRatio(frame, bottomRect);
+    final bandMeans = <double>[];
+    for (var band = 0; band < 8; band += 1) {
+      final top = band / 8;
+      final bottom = (band + 1) / 8;
+      bandMeans.add(
+        _meanBrightnessInRect(
+          frame,
+          _NormRect(left: 0.08, top: top, right: 0.92, bottom: bottom),
+        ),
+      );
+    }
+
+    var minMean = double.infinity;
+    var maxMean = -double.infinity;
+    var meanSum = 0.0;
+    for (final value in bandMeans) {
+      minMean = math.min(minMean, value);
+      maxMean = math.max(maxMean, value);
+      meanSum += value;
+    }
+    final bandMean = meanSum / bandMeans.length;
+    var variance = 0.0;
+    for (final value in bandMeans) {
+      final diff = value - bandMean;
+      variance += diff * diff;
+    }
+    final horizontalContrast = maxMean - minMean;
+    final bandStdDev = math.sqrt(variance / bandMeans.length);
+
+    var score = 0.0;
+    if (artworkStats.stdDev >= minPokemonFallbackArtworkLumaStdDev) {
+      score += 0.18;
+    }
+    if (artworkStats.foregroundRatio >=
+            minPokemonFallbackArtworkForegroundRatio &&
+        artworkStats.foregroundRatio <= maxArtworkForegroundRatio) {
+      score += 0.18;
+    }
+    if (titleBrightRatio >= 0.08 || titleStats.stdDev >= 0.045) {
+      score += 0.12;
+    }
+    if (textPanelBrightRatio >= minPokemonFallbackTextPanelBrightRatio ||
+        textStats.stdDev >= 0.050) {
+      score += 0.18;
+    }
+    if (bottomBrightRatio >= 0.08) {
+      score += 0.10;
+    }
+    if (horizontalContrast >= minPokemonFallbackHorizontalContrast) {
+      score += 0.16;
+    }
+    if (bandStdDev >= 0.030) {
+      score += 0.08;
+    }
+
+    return _PokemonLayoutStats(
+      score: score.clamp(0.0, 1.0).toDouble(),
+      horizontalContrast: horizontalContrast,
+      textPanelBrightRatio: textPanelBrightRatio,
+    );
+  }
+
+  double _meanBrightnessInRect(_NormalizedFrame frame, _NormRect rect) {
+    final step = math.max(1, frame.height ~/ 180);
+    final left = (rect.left * (frame.width - 1)).round().clamp(
+      0,
+      frame.width - 1,
+    );
+    final right = (rect.right * (frame.width - 1)).round().clamp(
+      left + 1,
+      frame.width,
+    );
+    final top = (rect.top * (frame.height - 1)).round().clamp(
+      0,
+      frame.height - 1,
+    );
+    final bottom = (rect.bottom * (frame.height - 1)).round().clamp(
+      top + 1,
+      frame.height,
+    );
+    var sum = 0;
+    var count = 0;
+    for (var y = top; y < bottom; y += step) {
+      for (var x = left; x < right; x += step) {
+        sum += frame.bytes[(y * frame.width) + x];
+        count += 1;
+      }
+    }
+    return count == 0 ? 0 : (sum / count) / 255;
+  }
+
+  bool _nativeObjectContentEvidenceStrong(_NormalizedFrame frame) {
+    final diagnostics = frame.detectorDiagnostics;
+    if (diagnostics == null) return false;
+    final contentRatio = _asDouble(diagnostics['content_vs_outer_area_ratio']);
+    final seedCoverage = _asDouble(diagnostics['best_candidate_seed_coverage']);
+    final candidateScore = _asDouble(diagnostics['best_candidate_score']);
+    return contentRatio != null &&
+        contentRatio >= minNativeObjectContentRatio &&
+        seedCoverage != null &&
+        seedCoverage >= minNativeObjectSeedCoverage &&
+        candidateScore != null &&
+        candidateScore >= minNativeObjectCandidateScore;
+  }
+
+  _CardBorderStats _cardBorderStats(_NormalizedFrame frame) {
+    const bands = <_NormRect>[
+      _NormRect(left: 0.05, top: 0.03, right: 0.95, bottom: 0.11),
+      _NormRect(left: 0.04, top: 0.10, right: 0.13, bottom: 0.90),
+      _NormRect(left: 0.87, top: 0.10, right: 0.96, bottom: 0.90),
+      _NormRect(left: 0.05, top: 0.88, right: 0.95, bottom: 0.97),
+    ];
+    var bright = 0;
+    var total = 0;
+    var brightBands = 0;
+    for (final band in bands) {
+      final ratio = _brightRatio(frame, band);
+      if (ratio >= minCardBorderBrightRatio) {
+        brightBands += 1;
+      }
+      final sampleCount = _sampleCount(frame, band);
+      bright += (ratio * sampleCount).round();
+      total += sampleCount;
+    }
+    return _CardBorderStats(
+      brightRatio: total == 0 ? 0 : bright / total,
+      bandCoverage: brightBands / bands.length,
+    );
+  }
+
+  double _brightRatio(_NormalizedFrame frame, _NormRect rect) {
+    final left = (rect.left * (frame.width - 1)).round().clamp(
+      0,
+      frame.width - 1,
+    );
+    final right = (rect.right * (frame.width - 1)).round().clamp(
+      left + 1,
+      frame.width,
+    );
+    final top = (rect.top * (frame.height - 1)).round().clamp(
+      0,
+      frame.height - 1,
+    );
+    final bottom = (rect.bottom * (frame.height - 1)).round().clamp(
+      top + 1,
+      frame.height,
+    );
+    final step = math.max(1, frame.height ~/ 180);
+    var bright = 0;
+    var count = 0;
+    for (var y = top; y < bottom; y += step) {
+      for (var x = left; x < right; x += step) {
+        if (frame.bytes[(y * frame.width) + x] >= 158) {
+          bright += 1;
+        }
+        count += 1;
+      }
+    }
+    return count == 0 ? 0 : bright / count;
+  }
+
+  int _sampleCount(_NormalizedFrame frame, _NormRect rect) {
+    final width = math.max(1, ((rect.right - rect.left) * frame.width).round());
+    final height = math.max(
+      1,
+      ((rect.bottom - rect.top) * frame.height).round(),
+    );
+    final step = math.max(1, frame.height ~/ 180);
+    return math.max(1, (width ~/ step) * (height ~/ step));
   }
 
   _LumaStats _lumaStats(_NormalizedFrame frame, _NormRect rect) {
@@ -1649,6 +2476,12 @@ class ScannerV3LiveLoopController {
     required int? detectorElapsedMs,
     bool cardPresent = true,
     String? cardPresentReason,
+    bool identityAllowed = true,
+    String? identityAllowedReason,
+    String? identityBlockedReason,
+    bool nativeDiagnosticsUsable = true,
+    String? nativeDiagnosticsRejectionReason,
+    _CardPresentMetrics? cardPresentMetrics,
   }) {
     final rankedHashCandidates = _rankedCandidates();
     final voteSnapshot = _lastVoteSnapshot;
@@ -1731,6 +2564,23 @@ class ScannerV3LiveLoopController {
       identityServiceError: identityServiceError,
       cardPresent: cardPresent,
       cardPresentReason: cardPresentReason,
+      cardPresentConsecutiveFrames: _cardPresentConsecutiveFrames,
+      identityAllowed: identityAllowed,
+      identityAllowedReason: identityAllowedReason,
+      identityBlockedReason: identityBlockedReason,
+      nativeDiagnosticsUsable: nativeDiagnosticsUsable,
+      nativeDiagnosticsRejectionReason: nativeDiagnosticsRejectionReason,
+      cardPresentFullLumaStdDev: cardPresentMetrics?.fullLumaStdDev,
+      cardPresentArtworkLumaStdDev: cardPresentMetrics?.artworkLumaStdDev,
+      cardPresentArtworkForegroundRatio:
+          cardPresentMetrics?.artworkForegroundRatio,
+      cardPresentBorderBrightRatio: cardPresentMetrics?.borderBrightRatio,
+      cardPresentBorderBandCoverage: cardPresentMetrics?.borderBandCoverage,
+      cardPresentPokemonLayoutScore: cardPresentMetrics?.pokemonLayoutScore,
+      cardPresentPokemonHorizontalContrast:
+          cardPresentMetrics?.pokemonHorizontalContrast,
+      cardPresentPokemonTextPanelBrightRatio:
+          cardPresentMetrics?.pokemonTextPanelBrightRatio,
     );
     return _state;
   }
@@ -1826,6 +2676,8 @@ class _NormalizedFrame {
     required this.detectorConfidence,
     required this.detectorElapsedMs,
     required this.detectorFailureReason,
+    required this.nativeDiagnosticsUsable,
+    required this.nativeDiagnosticsRejectionReason,
     required this.detectorDiagnostics,
     required this.detectorDebugMasks,
     required this.quadOrderNormalizationResult,
@@ -1851,6 +2703,8 @@ class _NormalizedFrame {
   final double? detectorConfidence;
   final int? detectorElapsedMs;
   final String? detectorFailureReason;
+  final bool nativeDiagnosticsUsable;
+  final String? nativeDiagnosticsRejectionReason;
   final Map<String, Object?>? detectorDiagnostics;
   final Map<String, ScannerV3ExportImage> detectorDebugMasks;
   final String quadOrderNormalizationResult;
@@ -1858,10 +2712,85 @@ class _NormalizedFrame {
   final List<Offset> imageQuad;
 }
 
+class _DisplayQuadCandidate {
+  const _DisplayQuadCandidate({
+    required this.source,
+    required this.displayQuad,
+    required this.borderConfidence,
+  });
+
+  final String source;
+  final List<Offset> displayQuad;
+  final double borderConfidence;
+}
+
+class _FrameCandidateEvaluation {
+  const _FrameCandidateEvaluation({
+    required this.frame,
+    required this.quality,
+    required this.cardPresent,
+    required this.score,
+  });
+
+  final _NormalizedFrame frame;
+  final ScannerV3QualitySnapshot quality;
+  final _CardPresentDecision cardPresent;
+  final double score;
+}
+
 class _CardPresentDecision {
-  const _CardPresentDecision({required this.present, required this.reason});
+  const _CardPresentDecision({
+    required this.present,
+    required this.reason,
+    this.metrics,
+  });
 
   final bool present;
+  final String reason;
+  final _CardPresentMetrics? metrics;
+}
+
+class _PokemonLayoutStats {
+  const _PokemonLayoutStats({
+    required this.score,
+    required this.horizontalContrast,
+    required this.textPanelBrightRatio,
+  });
+
+  final double score;
+  final double horizontalContrast;
+  final double textPanelBrightRatio;
+}
+
+class _CardPresentMetrics {
+  const _CardPresentMetrics({
+    this.fullLumaStdDev,
+    this.artworkLumaStdDev,
+    this.artworkForegroundRatio,
+    this.borderBrightRatio,
+    this.borderBandCoverage,
+    this.pokemonLayoutScore,
+    this.pokemonHorizontalContrast,
+    this.pokemonTextPanelBrightRatio,
+  });
+
+  final double? fullLumaStdDev;
+  final double? artworkLumaStdDev;
+  final double? artworkForegroundRatio;
+  final double? borderBrightRatio;
+  final double? borderBandCoverage;
+  final double? pokemonLayoutScore;
+  final double? pokemonHorizontalContrast;
+  final double? pokemonTextPanelBrightRatio;
+}
+
+class _NativeDiagnosticsUsabilityDecision {
+  const _NativeDiagnosticsUsabilityDecision({
+    required this.usable,
+    required this.reason,
+  });
+
+  final bool usable;
   final String reason;
 }
 
@@ -1870,6 +2799,16 @@ class _LumaStats {
 
   final double stdDev;
   final double foregroundRatio;
+}
+
+class _CardBorderStats {
+  const _CardBorderStats({
+    required this.brightRatio,
+    required this.bandCoverage,
+  });
+
+  final double brightRatio;
+  final double bandCoverage;
 }
 
 class _LumaSource {
@@ -2044,6 +2983,7 @@ class _GridComponent {
 
   int get width => maxX - minX + 1;
   int get height => maxY - minY + 1;
+  int get area => width * height;
 }
 
 class _TrackedCandidate {

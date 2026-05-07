@@ -6,10 +6,14 @@ class AppShell extends StatefulWidget {
     super.key,
     this.pendingCanonicalLink,
     this.onCanonicalLinkHandled,
+    this.pendingDebugAction,
+    this.onDebugActionHandled,
   });
 
   final PendingCanonicalLinkRequest? pendingCanonicalLink;
   final ValueChanged<int>? onCanonicalLinkHandled;
+  final PendingDebugActionRequest? pendingDebugAction;
+  final ValueChanged<int>? onDebugActionHandled;
 
   @override
   State<AppShell> createState() => _AppShellState();
@@ -61,7 +65,9 @@ class _AppShellState extends State<AppShell> {
   late final List<Widget?> _shellPages;
   _ShellDestination _destination = _ShellDestination.feed;
   int? _lastHandledCanonicalLinkId;
+  int? _lastHandledDebugActionId;
   bool _handlingCanonicalLink = false;
+  bool _handlingDebugAction = false;
 
   @override
   void initState() {
@@ -77,6 +83,7 @@ class _AppShellState extends State<AppShell> {
     _ensureShellPageBuilt(_destination);
     WidgetsBinding.instance.addPostFrameCallback((_) {
       unawaited(_maybeHandlePendingCanonicalLink());
+      unawaited(_maybeHandlePendingDebugAction());
       if (kNativeScannerPhase0Enabled) {
         unawaited(NativeScannerPhase0Bridge.startSession());
       }
@@ -91,6 +98,13 @@ class _AppShellState extends State<AppShell> {
     if (nextId != null && nextId != previousId) {
       WidgetsBinding.instance.addPostFrameCallback((_) {
         unawaited(_maybeHandlePendingCanonicalLink());
+      });
+    }
+    final nextDebugId = widget.pendingDebugAction?.id;
+    final previousDebugId = oldWidget.pendingDebugAction?.id;
+    if (nextDebugId != null && nextDebugId != previousDebugId) {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        unawaited(_maybeHandlePendingDebugAction());
       });
     }
   }
@@ -142,6 +156,38 @@ class _AppShellState extends State<AppShell> {
       _handlingCanonicalLink = false;
       widget.onCanonicalLinkHandled?.call(pendingLink.id);
     }
+  }
+
+  Future<void> _maybeHandlePendingDebugAction() async {
+    if (!kDebugMode) return;
+    final pendingAction = widget.pendingDebugAction;
+    if (!mounted ||
+        pendingAction == null ||
+        _handlingDebugAction ||
+        _lastHandledDebugActionId == pendingAction.id) {
+      return;
+    }
+
+    _handlingDebugAction = true;
+    _lastHandledDebugActionId = pendingAction.id;
+    try {
+      await _openDebugAction(pendingAction.action);
+    } finally {
+      _handlingDebugAction = false;
+      widget.onDebugActionHandled?.call(pendingAction.id);
+    }
+  }
+
+  Future<void> _openDebugAction(String action) async {
+    if (action != _MyAppState._scannerV4AutoTestAction) return;
+    debugPrint('[scanner_v4_auto_test] adb_action_opening_scanner');
+    await _pushPage<void>(
+      const ConditionCameraScreen(
+        title: 'Scan Card',
+        hintText: 'Align card inside the frame',
+        autoStartScannerV4DiagnosticTest: true,
+      ),
+    );
   }
 
   Future<void> _openCanonicalRoute(GrookaiCanonicalRoute route) async {

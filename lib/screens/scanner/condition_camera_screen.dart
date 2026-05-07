@@ -10,18 +10,23 @@ import '../../widgets/scanner/condition_capture_overlay.dart';
 import '../../services/scanner/native_quad_detector.dart';
 import '../../services/scanner_v3/convergence_state_v1.dart';
 import '../../services/scanner_v3/scanner_v3_live_loop_controller.dart';
+import '../../services/scanner_v4/scanner_v4_diagnostic_capture_v1.dart';
+import '../../services/scanner_v4/scanner_v4_diagnostic_test_runner_v1.dart';
+import '../../services/scanner_v4/scanner_v4_debug_action_bus_v1.dart';
 import 'widgets/scanner_v3_camera_overlay.dart';
 
 class ConditionCameraScreen extends StatefulWidget {
   final String title;
   final String? hintText;
   final bool enableScannerV3LiveLoopPrototype;
+  final bool autoStartScannerV4DiagnosticTest;
 
   const ConditionCameraScreen({
     super.key,
     required this.title,
     this.hintText,
     this.enableScannerV3LiveLoopPrototype = false,
+    this.autoStartScannerV4DiagnosticTest = false,
   });
 
   @override
@@ -29,11 +34,14 @@ class ConditionCameraScreen extends StatefulWidget {
 }
 
 class _ConditionCameraScreenState extends State<ConditionCameraScreen> {
+  static const double _minNativeBridgeConfidence = 0.45;
+
   final GlobalKey _previewAreaKey = GlobalKey();
   CameraController? _controller;
   Future<void>? _initFuture;
   bool _takingPicture = false;
   StreamSubscription<AccelerometerEvent>? _accelSub;
+  StreamSubscription<String>? _scannerV4DebugActionSub;
   OverlayMode _overlayMode = OverlayMode.neutral;
   String _liveStatus = 'Align card inside frame';
   DateTime _lastQuadUpdate = DateTime.fromMillisecondsSinceEpoch(0);
@@ -54,6 +62,11 @@ class _ConditionCameraScreenState extends State<ConditionCameraScreen> {
   final bool _scannerV3ArtifactExportEnabled = kDebugMode;
   bool _scannerV3FlashEnabled = false;
   bool _scannerV3DebugExpanded = false;
+  final ScannerV4DiagnosticCaptureV1 _scannerV4DiagnosticCapture =
+      ScannerV4DiagnosticCaptureV1();
+  late final ScannerV4DiagnosticTestRunnerV1 _scannerV4DiagnosticTestRunner;
+  String? _scannerV4DiagnosticsLastExportPath;
+  bool _scannerV4AutoTestStartedFromLaunch = false;
   ResolutionPreset _cameraResolutionPreset = ResolutionPreset.high;
   Size? _cameraPreviewSize;
   Size? _cameraInputSize;
@@ -65,6 +78,21 @@ class _ConditionCameraScreenState extends State<ConditionCameraScreen> {
   @override
   void initState() {
     super.initState();
+    _scannerV4DiagnosticTestRunner = ScannerV4DiagnosticTestRunnerV1(
+      capture: _scannerV4DiagnosticCapture,
+    )..addListener(_handleScannerV4AutoTestChanged);
+    if (kDebugMode) {
+      _scannerV4DebugActionSub =
+          ScannerV4DebugActionBusV1.attachScannerActionListener((action) {
+            if (action != ScannerV4DebugActionBusV1.scannerV4AutoTestAction) {
+              return;
+            }
+            debugPrint(
+              '[scanner_v4_auto_test] adb_action_starting_auto_test_existing_scanner',
+            );
+            _startScannerV4AutoTest();
+          });
+    }
     if (_useScannerV3LiveLoop) {
       _scannerV3LoopController = ScannerV3LiveLoopController(
         exportArtifactsOnLock: _scannerV3ArtifactExportEnabled,
@@ -116,6 +144,7 @@ class _ConditionCameraScreenState extends State<ConditionCameraScreen> {
       }
       _focusApisReady = true;
       _startStream();
+      _maybeAutoStartScannerV4DiagnosticTest();
     });
     if (mounted) {
       setState(() {});
@@ -271,20 +300,6 @@ class _ConditionCameraScreenState extends State<ConditionCameraScreen> {
           });
         }
       }
-      if (kDebugMode) {
-        debugPrint(
-          '[quad] registered=${quadDetection.registered} '
-          'called=${quadDetection.called} '
-          'detected=${points != null} '
-          'confidence=${quadDetection.confidence?.toStringAsFixed(2) ?? "n/a"} '
-          'elapsed_ms=${quadDetection.elapsedMs ?? -1} '
-          'failure=${quadDetection.failureReason ?? 'none'} '
-          'preset=${_resolutionPresetLabel(_cameraResolutionPreset)} '
-          'input=${image.width}x${image.height} '
-          'preview=${_formatSize(_cameraPreviewSize)} '
-          'overlayMode=$_overlayMode canShoot=$_canShoot',
-        );
-      }
       await _processScannerV3LiveLoopFrame(
         image,
         rotation,
@@ -332,43 +347,36 @@ class _ConditionCameraScreenState extends State<ConditionCameraScreen> {
     }
     if (nextState == null || !mounted) return;
 
-    if (kDebugMode) {
-      debugPrint(
-        '[scanner_v3_live_loop] status=${nextState.statusText} '
-        'best=${nextState.currentBestCandidateId ?? 'none'} '
-        'locked=${nextState.lockedCandidateId ?? 'none'} '
-        'confidence=${nextState.confidenceScore.toStringAsFixed(2)} '
-        'accepted=${nextState.acceptedFrameCount} '
-        'rejected=${nextState.rejectedFrameCount} '
-        'quad=${nextState.selectedQuadSource} '
-        'detector_conf=${nextState.detectorConfidence?.toStringAsFixed(2) ?? "n/a"} '
-        'card_present=${nextState.cardPresent} '
-        'card_reason=${nextState.cardPresentReason ?? "n/a"} '
-        'fill=${nextState.quality.cardFillRatio.toStringAsFixed(3)} '
-        'blur=${nextState.quality.blurScore.toStringAsFixed(3)} '
-        'brightness=${nextState.quality.brightnessScore.toStringAsFixed(3)} '
-        'glare=${nextState.quality.glareRatio.toStringAsFixed(3)} '
-        'identity=${nextState.identitySignalSource} '
-        'decision=${nextState.identityDecisionState} '
-        'gap=${nextState.identityScoreGap.toStringAsFixed(2)} '
-        'top1=${nextState.identityTopCandidateScore.toStringAsFixed(2)} '
-        'top2=${nextState.identitySecondCandidateScore.toStringAsFixed(2)} '
-        'frame_gap=${nextState.identityFrameScoreGap.toStringAsFixed(3)} '
-        'crops=${nextState.identityCropSupportCount} '
-        'recent=${nextState.identityRecentFrameSupportCount} '
-        'distance=${nextState.identityTopDistance?.toStringAsFixed(3) ?? "n/a"} '
-        'similarity=${nextState.identityTopSimilarity?.toStringAsFixed(3) ?? "n/a"} '
-        'embed_ms=${nextState.embeddingElapsedMs ?? -1} '
-        'vector_ms=${nextState.vectorSearchElapsedMs ?? -1} '
-        'reason=${nextState.lastDecisionReason} '
-        'elapsed_ms=${nextState.lastSampleElapsedMs}',
-      );
-    }
-
     final state = nextState;
+    _recordScannerV4Diagnostics(state, quadDetection, points);
     setState(() {
       _scannerV3LoopState = state;
     });
+  }
+
+  void _recordScannerV4Diagnostics(
+    ScannerV3LiveLoopState state,
+    _NativeQuadDetection quadDetection,
+    List<Offset>? points,
+  ) {
+    if (!kDebugMode || !_scannerV4DiagnosticCapture.enabled) return;
+    _scannerV4DiagnosticCapture.record(
+      ScannerV4DiagnosticSnapshotV1.fromLivePath(
+        timestamp: DateTime.now(),
+        state: state,
+        nativeRegistered: quadDetection.registered,
+        nativeCalled: quadDetection.called,
+        nativeSuccess: quadDetection.success,
+        nativeConfidence: quadDetection.confidence,
+        nativeElapsedMs: quadDetection.elapsedMs,
+        nativeFailureReason: quadDetection.failureReason,
+        pointsPresent:
+            quadDetection.pointsNorm != null &&
+            quadDetection.pointsNorm!.length == 4,
+        nativeRawResponse: quadDetection.rawResponse,
+        testPhase: _scannerV4DiagnosticTestRunner.currentCapturePhaseId,
+      ),
+    );
   }
 
   Future<_NativeQuadDetection> _detectNativeQuad(
@@ -390,23 +398,46 @@ class _ConditionCameraScreenState extends State<ConditionCameraScreen> {
     }
 
     final points = _extractQuadPoints(rawResponse);
+    final rawSuccess = rawResponse['success'] == true;
+    final confidence = _asDouble(rawResponse['confidence']);
+    final failureReason = _nativeQuadFailureReason(
+      rawSuccess: rawSuccess,
+      pointsPresent: points != null,
+      confidence: confidence,
+      rawResponse: rawResponse,
+    );
     return _NativeQuadDetection(
       registered: true,
       called: true,
-      success: points != null,
+      success: failureReason == null,
       pointsNorm: points,
-      confidence: _asDouble(rawResponse['confidence']),
+      confidence: confidence,
       elapsedMs:
           _asInt(rawResponse['elapsed_ms']) ??
           _asInt(rawResponse['elapsedMs']) ??
           stopwatch.elapsedMilliseconds,
-      failureReason: points == null
-          ? _asString(rawResponse['failure_reason']) ??
-                _asString(rawResponse['failureReason']) ??
-                'no_card_component'
-          : null,
+      failureReason: failureReason,
       rawResponse: rawResponse,
     );
+  }
+
+  String? _nativeQuadFailureReason({
+    required bool rawSuccess,
+    required bool pointsPresent,
+    required double? confidence,
+    required Map<String, dynamic> rawResponse,
+  }) {
+    if (!rawSuccess) return 'native_success_false';
+    if (!pointsPresent) {
+      return _asString(rawResponse['failure_reason']) ??
+          _asString(rawResponse['failureReason']) ??
+          'quad_points_unparseable';
+    }
+    if (confidence == null) return 'native_confidence_missing';
+    if (confidence < _minNativeBridgeConfidence) {
+      return 'native_confidence_below_bridge_floor';
+    }
+    return null;
   }
 
   List<Offset>? _extractQuadPoints(Map<String, dynamic> rawResponse) {
@@ -473,6 +504,10 @@ class _ConditionCameraScreenState extends State<ConditionCameraScreen> {
     _controller = null;
     _streaming = false;
     _accelSub?.cancel();
+    _scannerV4DebugActionSub?.cancel();
+    _scannerV4DiagnosticTestRunner
+      ..removeListener(_handleScannerV4AutoTestChanged)
+      ..dispose();
     unawaited(controller?.dispose());
     super.dispose();
   }
@@ -550,6 +585,94 @@ class _ConditionCameraScreenState extends State<ConditionCameraScreen> {
       _scannerV3LoopState = ScannerV3LiveLoopState.initial;
       _scannerV3DebugExpanded = false;
     });
+  }
+
+  void _toggleScannerV4Diagnostics(bool enabled) {
+    if (!kDebugMode) return;
+    if (_scannerV4DiagnosticTestRunner.isRunning) return;
+    setState(() {
+      if (enabled) {
+        _scannerV4DiagnosticCapture.start();
+        _scannerV4DiagnosticsLastExportPath = null;
+      } else {
+        _scannerV4DiagnosticCapture.stop();
+      }
+    });
+    debugPrint('[scanner_v4_diagnostics] ${enabled ? "enabled" : "disabled"}');
+  }
+
+  void _handleScannerV4AutoTestChanged() {
+    if (!mounted) return;
+    setState(() {});
+  }
+
+  void _startScannerV4AutoTest() {
+    if (!kDebugMode) return;
+    setState(() {
+      _scannerV3DebugExpanded = true;
+      _scannerV4DiagnosticsLastExportPath = null;
+    });
+    _scannerV4DiagnosticTestRunner.start();
+  }
+
+  void _maybeAutoStartScannerV4DiagnosticTest() {
+    if (!kDebugMode ||
+        !widget.autoStartScannerV4DiagnosticTest ||
+        _scannerV4AutoTestStartedFromLaunch ||
+        !_useScannerV3LiveLoop) {
+      return;
+    }
+    _scannerV4AutoTestStartedFromLaunch = true;
+    debugPrint('[scanner_v4_auto_test] adb_action_starting_auto_test');
+    if (mounted) {
+      setState(() {
+        _scannerV3DebugExpanded = false;
+        _scannerV4DiagnosticsLastExportPath = null;
+      });
+    }
+    _scannerV4DiagnosticTestRunner.start();
+  }
+
+  void _cancelScannerV4AutoTest() {
+    if (!kDebugMode) return;
+    _scannerV4DiagnosticTestRunner.cancel();
+  }
+
+  Future<void> _exportScannerV4AutoTestReport() async {
+    if (!kDebugMode) return;
+    final result = await _scannerV4DiagnosticTestRunner.exportLastReport();
+    if (!mounted) return;
+    final messenger = ScaffoldMessenger.maybeOf(context);
+    messenger?.showSnackBar(
+      SnackBar(
+        content: Text(
+          result.path != null
+              ? 'Scanner V4 auto test saved: ${result.path}'
+              : 'Scanner V4 auto test printed to console',
+        ),
+        duration: const Duration(seconds: 4),
+      ),
+    );
+  }
+
+  Future<void> _exportScannerV4Diagnostics() async {
+    if (!kDebugMode) return;
+    final result = await _scannerV4DiagnosticCapture.exportReport();
+    if (!mounted) return;
+    setState(() {
+      _scannerV4DiagnosticsLastExportPath = result.path;
+    });
+    final messenger = ScaffoldMessenger.maybeOf(context);
+    messenger?.showSnackBar(
+      SnackBar(
+        content: Text(
+          result.path != null
+              ? 'Scanner V4 diagnostics saved: ${result.path}'
+              : 'Scanner V4 diagnostics printed to console',
+        ),
+        duration: const Duration(seconds: 4),
+      ),
+    );
   }
 
   void _openManualSearch() {
@@ -662,6 +785,14 @@ class _ConditionCameraScreenState extends State<ConditionCameraScreen> {
                                 cameraInputSize: _cameraInputSize,
                                 cameraInitFallbackReason:
                                     _cameraInitFallbackReason,
+                                diagnosticsEnabled:
+                                    _scannerV4DiagnosticCapture.enabled,
+                                diagnosticsFrameCount:
+                                    _scannerV4DiagnosticCapture.frameCount,
+                                diagnosticsLastExportPath:
+                                    _scannerV4DiagnosticsLastExportPath,
+                                autoTestStatus:
+                                    _scannerV4DiagnosticTestRunner.status,
                                 onClose: () => Navigator.of(context).pop(),
                                 onToggleFlash: () {
                                   unawaited(_toggleScannerV3Flash());
@@ -674,6 +805,16 @@ class _ConditionCameraScreenState extends State<ConditionCameraScreen> {
                                 },
                                 onTryAgain: _resetScannerV3Loop,
                                 onSearchManually: _openManualSearch,
+                                onToggleDiagnostics:
+                                    _toggleScannerV4Diagnostics,
+                                onExportDiagnostics: () {
+                                  unawaited(_exportScannerV4Diagnostics());
+                                },
+                                onStartAutoTest: _startScannerV4AutoTest,
+                                onCancelAutoTest: _cancelScannerV4AutoTest,
+                                onExportAutoTestReport: () {
+                                  unawaited(_exportScannerV4AutoTestReport());
+                                },
                               )
                             else
                               IgnorePointer(
@@ -699,14 +840,7 @@ class _ConditionCameraScreenState extends State<ConditionCameraScreen> {
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 16),
                 child: GestureDetector(
-                  onTap: _canShoot
-                      ? () async {
-                          debugPrint(
-                            '[SHUTTER] tapped taking=$_takingPicture canShoot=$_canShoot init=${_controller?.value.isInitialized}',
-                          );
-                          await _takePicture();
-                        }
-                      : null,
+                  onTap: _canShoot ? _takePicture : null,
                   child: Container(
                     width: 72,
                     height: 72,

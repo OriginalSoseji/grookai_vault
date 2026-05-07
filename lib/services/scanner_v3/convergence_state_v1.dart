@@ -109,6 +109,20 @@ class ScannerV3LiveLoopState {
     required this.identityServiceError,
     required this.cardPresent,
     required this.cardPresentReason,
+    required this.cardPresentConsecutiveFrames,
+    required this.identityAllowed,
+    required this.identityAllowedReason,
+    required this.identityBlockedReason,
+    required this.nativeDiagnosticsUsable,
+    required this.nativeDiagnosticsRejectionReason,
+    required this.cardPresentFullLumaStdDev,
+    required this.cardPresentArtworkLumaStdDev,
+    required this.cardPresentArtworkForegroundRatio,
+    required this.cardPresentBorderBrightRatio,
+    required this.cardPresentBorderBandCoverage,
+    required this.cardPresentPokemonLayoutScore,
+    required this.cardPresentPokemonHorizontalContrast,
+    required this.cardPresentPokemonTextPanelBrightRatio,
   });
 
   static const initial = ScannerV3LiveLoopState(
@@ -146,6 +160,20 @@ class ScannerV3LiveLoopState {
     identityServiceError: null,
     cardPresent: false,
     cardPresentReason: 'waiting_for_frames',
+    cardPresentConsecutiveFrames: 0,
+    identityAllowed: false,
+    identityAllowedReason: null,
+    identityBlockedReason: 'waiting_for_frames',
+    nativeDiagnosticsUsable: false,
+    nativeDiagnosticsRejectionReason: 'waiting_for_frames',
+    cardPresentFullLumaStdDev: null,
+    cardPresentArtworkLumaStdDev: null,
+    cardPresentArtworkForegroundRatio: null,
+    cardPresentBorderBrightRatio: null,
+    cardPresentBorderBandCoverage: null,
+    cardPresentPokemonLayoutScore: null,
+    cardPresentPokemonHorizontalContrast: null,
+    cardPresentPokemonTextPanelBrightRatio: null,
   );
 
   final int frameCount;
@@ -182,6 +210,20 @@ class ScannerV3LiveLoopState {
   final String? identityServiceError;
   final bool cardPresent;
   final String? cardPresentReason;
+  final int cardPresentConsecutiveFrames;
+  final bool identityAllowed;
+  final String? identityAllowedReason;
+  final String? identityBlockedReason;
+  final bool nativeDiagnosticsUsable;
+  final String? nativeDiagnosticsRejectionReason;
+  final double? cardPresentFullLumaStdDev;
+  final double? cardPresentArtworkLumaStdDev;
+  final double? cardPresentArtworkForegroundRatio;
+  final double? cardPresentBorderBrightRatio;
+  final double? cardPresentBorderBandCoverage;
+  final double? cardPresentPokemonLayoutScore;
+  final double? cardPresentPokemonHorizontalContrast;
+  final double? cardPresentPokemonTextPanelBrightRatio;
 
   CandidateState? get bestCandidate {
     if (candidates.isEmpty) return null;
