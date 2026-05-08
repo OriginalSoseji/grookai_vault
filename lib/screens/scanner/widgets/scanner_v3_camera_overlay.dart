@@ -18,6 +18,8 @@ class ScannerV3CameraOverlay extends StatelessWidget {
     required this.state,
     required this.guideRect,
     required this.quadPointsNorm,
+    required this.quadPointSetsNorm,
+    required this.selectedQuadNorm,
     required this.focusTapNorm,
     required this.exportEnabled,
     required this.flashEnabled,
@@ -45,6 +47,8 @@ class ScannerV3CameraOverlay extends StatelessWidget {
   final ScannerV3LiveLoopState state;
   final Rect guideRect;
   final List<Offset>? quadPointsNorm;
+  final List<List<Offset>>? quadPointSetsNorm;
+  final List<Offset>? selectedQuadNorm;
   final Offset? focusTapNorm;
   final bool exportEnabled;
   final bool flashEnabled;
@@ -70,7 +74,11 @@ class ScannerV3CameraOverlay extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final edgeLocked = quadPointsNorm != null && quadPointsNorm!.length == 4;
+    final detectedCardCount =
+        quadPointSetsNorm?.length ?? (quadPointsNorm?.length == 4 ? 1 : 0);
+    final cardSelectionActive =
+        selectedQuadNorm != null && selectedQuadNorm!.length == 4;
+    final edgeLocked = detectedCardCount > 0;
     final tone = ScannerV3UiTone.fromState(state, edgeLocked: edgeLocked);
     final locked = state.identityDecisionState == 'identity_locked';
     final padding = MediaQuery.of(context).padding;
@@ -87,6 +95,9 @@ class ScannerV3CameraOverlay extends StatelessWidget {
           child: ScannerFrameGuide(
             guideRect: guideRect,
             quadPointsNorm: quadPointsNorm,
+            quadPointSetsNorm: quadPointSetsNorm,
+            selectedQuadNorm: selectedQuadNorm,
+            cardSelectionActive: cardSelectionActive,
             focusTapNorm: focusTapNorm,
             accent: tone.accent,
             edgeLocked: edgeLocked,
@@ -104,6 +115,7 @@ class ScannerV3CameraOverlay extends StatelessWidget {
                       tone: tone,
                       guideRect: guideRect,
                       quadPointsNorm: quadPointsNorm,
+                      quadPointSetsNorm: quadPointSetsNorm,
                       safePadding: padding,
                       overlaySize: Size(
                         constraints.maxWidth,
@@ -142,6 +154,8 @@ class ScannerV3CameraOverlay extends StatelessWidget {
             state: state,
             tone: tone,
             edgeLocked: edgeLocked,
+            detectedCardCount: detectedCardCount,
+            cardSelectionActive: cardSelectionActive,
             exportEnabled: exportEnabled,
             debugExpanded: debugExpanded,
             cameraPresetLabel: cameraPresetLabel,
@@ -172,6 +186,7 @@ class _ScannerSpatialStatusChip extends StatelessWidget {
     required this.tone,
     required this.guideRect,
     required this.quadPointsNorm,
+    required this.quadPointSetsNorm,
     required this.safePadding,
     required this.overlaySize,
   });
@@ -179,6 +194,7 @@ class _ScannerSpatialStatusChip extends StatelessWidget {
   final ScannerV3UiTone tone;
   final Rect guideRect;
   final List<Offset>? quadPointsNorm;
+  final List<List<Offset>>? quadPointSetsNorm;
   final EdgeInsets safePadding;
   final Size overlaySize;
 
@@ -215,7 +231,10 @@ class _ScannerSpatialStatusChip extends StatelessWidget {
   }
 
   Rect _targetRect() {
-    final points = quadPointsNorm;
+    final pointSets = quadPointSetsNorm;
+    final points = pointSets != null && pointSets.isNotEmpty
+        ? pointSets.first
+        : quadPointsNorm;
     if (points == null || points.length != 4) return guideRect;
 
     var minX = double.infinity;
@@ -416,6 +435,8 @@ class _ScannerBottomPanel extends StatelessWidget {
     required this.state,
     required this.tone,
     required this.edgeLocked,
+    required this.detectedCardCount,
+    required this.cardSelectionActive,
     required this.exportEnabled,
     required this.debugExpanded,
     required this.cameraPresetLabel,
@@ -439,6 +460,8 @@ class _ScannerBottomPanel extends StatelessWidget {
   final ScannerV3LiveLoopState state;
   final ScannerV3UiTone tone;
   final bool edgeLocked;
+  final int detectedCardCount;
+  final bool cardSelectionActive;
   final bool exportEnabled;
   final bool debugExpanded;
   final String cameraPresetLabel;
@@ -527,6 +550,8 @@ class _ScannerBottomPanel extends StatelessWidget {
                       state: state,
                       tone: tone,
                       edgeLocked: edgeLocked,
+                      detectedCardCount: detectedCardCount,
+                      cardSelectionActive: cardSelectionActive,
                     ),
                     if (tone.showUnknownActions || tone.showRescanAction) ...[
                       const SizedBox(height: 12),
@@ -625,11 +650,15 @@ class _QualityStrip extends StatelessWidget {
     required this.state,
     required this.tone,
     required this.edgeLocked,
+    required this.detectedCardCount,
+    required this.cardSelectionActive,
   });
 
   final ScannerV3LiveLoopState state;
   final ScannerV3UiTone tone;
   final bool edgeLocked;
+  final int detectedCardCount;
+  final bool cardSelectionActive;
 
   @override
   Widget build(BuildContext context) {
@@ -658,7 +687,13 @@ class _QualityStrip extends StatelessWidget {
         Expanded(
           child: _QualityChip(
             icon: edgeLocked ? Icons.crop_free_rounded : Icons.fit_screen,
-            label: edgeLocked ? 'Edges locked' : 'Align edges',
+            label: cardSelectionActive
+                ? 'Card selected'
+                : edgeLocked
+                ? detectedCardCount > 1
+                      ? '$detectedCardCount cards locked'
+                      : '1 card locked'
+                : 'Align edges',
             active: edgeLocked,
           ),
         ),

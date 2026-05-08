@@ -28,6 +28,7 @@ class ScannerV4DiagnosticSnapshotV1 {
     required this.scannerState,
     required this.nativeDiagnosticsUsable,
     required this.nativeDiagnosticsRejectionReason,
+    required this.identityCandidates,
     this.nativeElapsedMs,
     this.identitySignalSource,
     this.lastDecisionReason,
@@ -71,6 +72,7 @@ class ScannerV4DiagnosticSnapshotV1 {
       nativeDiagnosticsUsable: state.nativeDiagnosticsUsable,
       nativeDiagnosticsRejectionReason:
           state.nativeDiagnosticsRejectionReason ?? _unavailable,
+      identityCandidates: _identityCandidatesFromState(state),
       nativeElapsedMs: nativeElapsedMs ?? _unavailable,
       identitySignalSource: state.identitySignalSource,
       lastDecisionReason: state.lastDecisionReason,
@@ -99,6 +101,7 @@ class ScannerV4DiagnosticSnapshotV1 {
   final Object scannerState;
   final bool nativeDiagnosticsUsable;
   final Object nativeDiagnosticsRejectionReason;
+  final List<Map<String, Object?>> identityCandidates;
   final Object? nativeElapsedMs;
   final String? identitySignalSource;
   final String? lastDecisionReason;
@@ -127,6 +130,7 @@ class ScannerV4DiagnosticSnapshotV1 {
       'scanner_state': scannerState,
       'native_diagnostics_usable': nativeDiagnosticsUsable,
       'native_diagnostics_rejection_reason': nativeDiagnosticsRejectionReason,
+      'identity_candidates': identityCandidates,
       'native_elapsed_ms': nativeElapsedMs,
       'identity_signal_source': identitySignalSource ?? _unavailable,
       'last_decision_reason': lastDecisionReason ?? _unavailable,
@@ -153,6 +157,35 @@ class ScannerV4DiagnosticSnapshotV1 {
     return state.cardPresent ? _unavailable : false;
   }
 
+  static List<Map<String, Object?>> _identityCandidatesFromState(
+    ScannerV3LiveLoopState state,
+  ) {
+    return state.candidates
+        .take(5)
+        .map(
+          (candidate) => <String, Object?>{
+            'id': candidate.id,
+            'name': candidate.name,
+            'set_code': candidate.setCode,
+            'number': candidate.number,
+            'gv_id': candidate.gvId,
+            'source': candidate.source,
+            'score': candidate.score,
+            'occurrences': candidate.occurrences,
+            'last_seen_frame': candidate.lastSeenFrame,
+            'vector_distance': candidate.vectorDistance,
+            'top5_occurrences': candidate.topFiveOccurrences,
+            'best_rank': candidate.bestRank,
+            'crop_support_count': candidate.cropContributionCount,
+            'recent_top5_count': candidate.recentTopFiveCount,
+            'similarity': candidate.similarity,
+            'aggregate_score': candidate.aggregateScore,
+            'rerank_score': candidate.rerankScore,
+          },
+        )
+        .toList(growable: false);
+  }
+
   static Map<String, Object?>? _cardPresentMetricsFromState(
     ScannerV3LiveLoopState state,
   ) {
@@ -163,8 +196,7 @@ class ScannerV4DiagnosticSnapshotV1 {
       'border_bright_ratio': state.cardPresentBorderBrightRatio,
       'border_band_coverage': state.cardPresentBorderBandCoverage,
       'pokemon_layout_score': state.cardPresentPokemonLayoutScore,
-      'pokemon_horizontal_contrast':
-          state.cardPresentPokemonHorizontalContrast,
+      'pokemon_horizontal_contrast': state.cardPresentPokemonHorizontalContrast,
       'pokemon_text_panel_bright_ratio':
           state.cardPresentPokemonTextPanelBrightRatio,
     };

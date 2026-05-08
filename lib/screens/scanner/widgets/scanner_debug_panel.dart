@@ -51,10 +51,7 @@ class ScannerDebugPanel extends StatelessWidget {
     final textTheme = Theme.of(context).textTheme;
     final topCandidates = state.candidates
         .take(5)
-        .map(
-          (candidate) =>
-              '${candidate.id}:${candidate.score.toStringAsFixed(1)}',
-        )
+        .map(_formatCandidate)
         .join(' ');
     final expandedBodyMaxHeight = (MediaQuery.sizeOf(context).height * 0.34)
         .clamp(240.0, 320.0)
@@ -192,6 +189,15 @@ class ScannerDebugPanel extends StatelessWidget {
         overflow: TextOverflow.ellipsis,
       ),
     );
+  }
+
+  String _formatCandidate(CandidateState candidate) {
+    final name = candidate.name;
+    final label = name == null || name.isEmpty ? candidate.id : name;
+    final distance = candidate.vectorDistance == null
+        ? ''
+        : '@${candidate.vectorDistance!.toStringAsFixed(3)}';
+    return '$label:${candidate.score.toStringAsFixed(1)}$distance';
   }
 
   Widget _diagnosticsControls(BuildContext context) {

@@ -149,8 +149,24 @@ object QuadDetectorV1Bridge {
                 candidates.add(candidate)
             }
         }
+        candidates.addAll(
+            projectSiblingCardCandidates(
+                candidates = candidates,
+                grid = grid,
+                edgeMask = edgeMask,
+                targetDisplayAspect = targetDisplayAspect,
+            ),
+        )
+        candidates.addAll(
+            scanEdgeCardCandidates(
+                grid = grid,
+                edgeMask = edgeMask,
+                targetDisplayAspect = targetDisplayAspect,
+            ),
+        )
 
-        val best = candidates.maxByOrNull { it.score }
+        val selectedCandidates = selectCardCandidates(candidates)
+        val best = selectedCandidates.firstOrNull()
         if (best == null || best.score < 0.38) {
             return failure(
                 startedAt = startedAt,
@@ -174,18 +190,15 @@ object QuadDetectorV1Bridge {
             )
         }
 
-        val rect = best.rect.toNormRect()
-        val points = listOf(
-            mapOf("x" to rect.left, "y" to rect.top),
-            mapOf("x" to rect.right, "y" to rect.top),
-            mapOf("x" to rect.right, "y" to rect.bottom),
-            mapOf("x" to rect.left, "y" to rect.bottom),
-        )
+        val points = pointsForRect(best.rect.toNormRect())
         val confidence = (0.42 + (best.score * 0.58)).coerceIn(0.0, 0.98)
 
         return mapOf(
             "success" to true,
             "points" to points,
+            "card_candidates" to selectedCandidates.mapIndexed { candidateIndex, candidate ->
+                candidate.toCandidateMap(candidateIndex)
+            },
             "confidence" to confidence,
             "elapsed_ms" to elapsedMillis(startedAt),
             "failure_reason" to null,
@@ -194,7 +207,7 @@ object QuadDetectorV1Bridge {
                 "detector_registered" to true,
                 "detector_called" to true,
                 "detector_success" to true,
-                "selected_candidate_source" to "seed_cluster_outer_boundary_v4",
+                "selected_candidate_source" to best.source,
                 "width" to width,
                 "height" to height,
                 "rotation" to rotation,
@@ -207,6 +220,7 @@ object QuadDetectorV1Bridge {
                 "selected_cluster_size" to best.cluster.count,
                 "cluster_merge_count" to clusters.sumOf { max(0, it.componentCount - 1) },
                 "candidate_score_count" to candidates.size,
+                "selected_card_count" to selectedCandidates.size,
                 "best_candidate_score" to best.score,
                 "best_candidate_aspect" to best.aspect,
                 "best_candidate_area" to best.areaRatio,
@@ -224,6 +238,10 @@ object QuadDetectorV1Bridge {
                     "top" to best.topEdgeSupport,
                     "bottom" to best.bottomEdgeSupport,
                 ),
+                "candidate_summaries" to candidates
+                    .sortedByDescending { it.score }
+                    .take(8)
+                    .map { it.toDiagnosticMap() },
                 "expansion_stop_reasons" to best.expansionStopReasons,
                 "content_vs_outer_area_ratio" to best.contentVsOuterAreaRatio,
                 "chroma_threshold" to grid.chromaThreshold,
@@ -233,6 +251,339 @@ object QuadDetectorV1Bridge {
                 "edge_pixel_count" to edgeMask.count { it },
                 "debug_masks" to debugMasks(seedMask, edgeMask, smoothedSeedMask),
             ),
+        )
+    }
+
+    private fun selectCardCandidates(candidates: List<CandidateScore>): List<CandidateScore> {
+        val selected = mutableListOf<CandidateScore>()
+        val edgeCardCandidates = candidates.filter { it.isFullCardSource }
+        val selectableCandidates = edgeCardCandidates.ifEmpty { candidates }
+        for (candidate in selectableCandidates.sortedByDescending { it.selectionRank }) {
+            if (candidate.score < 0.38) continue
+            if (selected.any { existing -> candidate.rect.iou(existing.rect) > 0.34 }) continue
+            selected.add(candidate)
+            if (selected.size >= 4) break
+        }
+        return selected
+    }
+
+    private fun pointsForRect(rect: NormRect): List<Map<String, Double>> {
+        return listOf(
+            mapOf("x" to rect.left, "y" to rect.top),
+            mapOf("x" to rect.right, "y" to rect.top),
+            mapOf("x" to rect.right, "y" to rect.bottom),
+            mapOf("x" to rect.left, "y" to rect.bottom),
+        )
+    }
+
+    private fun CandidateScore.toCandidateMap(candidateIndex: Int): Map<String, Any?> {
+        val rect = this.rect.toNormRect()
+        return mapOf(
+            "candidate_index" to candidateIndex,
+            "cluster_id" to clusterIndex,
+            "source" to source,
+            "points" to pointsForRect(rect),
+            "rect" to this.rect.toMap(),
+            "confidence" to (0.42 + (score * 0.58)).coerceIn(0.0, 0.98),
+            "score" to score,
+            "aspect" to aspect,
+            "area" to areaRatio,
+            "edge_support" to edgeSupport,
+            "seed_coverage" to seedCoverage,
+                "content_vs_outer_area_ratio" to contentVsOuterAreaRatio,
+                "selection_rank" to selectionRank,
+            )
+    }
+
+    private fun CandidateScore.toDiagnosticMap(): Map<String, Any?> {
+        return mapOf(
+            "cluster_id" to clusterIndex,
+            "source" to source,
+            "score" to score,
+            "rect" to rect.toMap(),
+            "cluster_rect" to cluster.rect.toMap(),
+            "aspect" to aspect,
+            "area" to areaRatio,
+            "edge_support" to edgeSupport,
+            "seed_coverage" to seedCoverage,
+            "content_vs_outer_area_ratio" to contentVsOuterAreaRatio,
+            "selection_rank" to selectionRank,
+            "side_support" to mapOf(
+                "left" to leftEdgeSupport,
+                "right" to rightEdgeSupport,
+                "top" to topEdgeSupport,
+                "bottom" to bottomEdgeSupport,
+            ),
+        )
+    }
+
+    private fun projectSiblingCardCandidates(
+        candidates: List<CandidateScore>,
+        grid: Grid,
+        edgeMask: BooleanArray,
+        targetDisplayAspect: Double,
+    ): List<CandidateScore> {
+        if (candidates.isEmpty()) return emptyList()
+        val projected = mutableListOf<CandidateScore>()
+        val anchors = candidates
+            .filter { it.score >= 0.52 && it.rect.width >= 24 && it.rect.height >= 36 }
+            .sortedByDescending { it.score }
+            .take(4)
+        for (anchor in anchors) {
+            val base = anchor.rect
+            var bestLeft: CandidateScore? = null
+            var bestRight: CandidateScore? = null
+            for (direction in listOf(-1, 1)) {
+                for (gap in 1..10) {
+                    val minX = if (direction < 0) base.minX - base.width - gap else base.maxX + gap + 1
+                    val maxX = minX + base.width - 1
+                    if (minX < (SEARCH_LEFT * GRID_WIDTH).toInt() ||
+                        maxX > (SEARCH_RIGHT * GRID_WIDTH).toInt()
+                    ) {
+                        continue
+                    }
+                    val rect = GridRect(
+                        minX = minX,
+                        minY = base.minY,
+                        maxX = maxX,
+                        maxY = base.maxY,
+                    ).normalized()
+                    if (touchesFrameTooMuch(rect)) continue
+                    if (candidates.any { existing -> rect.iou(existing.rect) > 0.20 }) continue
+                    val candidate = scoreProjectedCardCandidate(
+                        rect = rect,
+                        grid = grid,
+                        edgeMask = edgeMask,
+                        targetDisplayAspect = targetDisplayAspect,
+                        anchor = anchor,
+                        direction = direction,
+                    ) ?: continue
+                    if (direction < 0) {
+                        if (bestLeft == null || candidate.score > bestLeft.score) {
+                            bestLeft = candidate
+                        }
+                    } else if (bestRight == null || candidate.score > bestRight.score) {
+                        bestRight = candidate
+                    }
+                }
+            }
+            bestLeft?.let(projected::add)
+            bestRight?.let(projected::add)
+        }
+        return projected
+    }
+
+    private fun scanEdgeCardCandidates(
+        grid: Grid,
+        edgeMask: BooleanArray,
+        targetDisplayAspect: Double,
+    ): List<CandidateScore> {
+        val scanned = mutableListOf<CandidateScore>()
+        val minSearchX = max(1, (SEARCH_LEFT * GRID_WIDTH).toInt())
+        val maxSearchX = min(GRID_WIDTH - 2, (SEARCH_RIGHT * GRID_WIDTH).toInt())
+        val minSearchY = max(1, (SEARCH_TOP * GRID_HEIGHT).toInt())
+        val maxSearchY = min(GRID_HEIGHT - 2, (SEARCH_BOTTOM * GRID_HEIGHT).toInt())
+
+        for (height in 34..88 step 4) {
+            val width = (targetDisplayAspect * height * GRID_WIDTH / GRID_HEIGHT)
+                .toInt()
+                .coerceAtLeast(18)
+            if (width > maxSearchX - minSearchX + 1) continue
+            if (height > maxSearchY - minSearchY + 1) continue
+
+            var y = minSearchY
+            while (y + height - 1 <= maxSearchY) {
+                var x = minSearchX
+                while (x + width - 1 <= maxSearchX) {
+                    val rect = GridRect(
+                        minX = x,
+                        minY = y,
+                        maxX = x + width - 1,
+                        maxY = y + height - 1,
+                    )
+                    scoreEdgeScannedCandidate(
+                        rect = rect,
+                        grid = grid,
+                        edgeMask = edgeMask,
+                        targetDisplayAspect = targetDisplayAspect,
+                    )?.let(scanned::add)
+                    x += 4
+                }
+                y += 4
+            }
+        }
+
+        val selected = mutableListOf<CandidateScore>()
+        for ((index, candidate) in scanned.sortedByDescending { it.selectionRank }.withIndex()) {
+            if (selected.any { existing -> candidate.rect.iou(existing.rect) > 0.20 }) continue
+            selected.add(candidate.copy(clusterIndex = -3000 - index))
+            if (selected.size >= 2) break
+        }
+        return selected
+    }
+
+    private fun scoreEdgeScannedCandidate(
+        rect: GridRect,
+        grid: Grid,
+        edgeMask: BooleanArray,
+        targetDisplayAspect: Double,
+    ): CandidateScore? {
+        if (touchesFrameTooMuch(rect)) return null
+        val areaRatio = rect.areaRatio
+        if (areaRatio < 0.018 || areaRatio > 0.68) return null
+
+        val aspect = rect.normWidth / max(0.001, rect.normHeight)
+        val aspectScore = aspectScore(aspect, targetDisplayAspect)
+        if (aspectScore < 0.68) return null
+
+        val leftSupport = lineSupportAtVertical(grid, edgeMask, rect.minX, rect.minY, rect.maxY)
+        val rightSupport = lineSupportAtVertical(grid, edgeMask, rect.maxX, rect.minY, rect.maxY)
+        val topSupport = lineSupportAtHorizontal(grid, edgeMask, rect.minX, rect.maxX, rect.minY)
+        val bottomSupport = lineSupportAtHorizontal(grid, edgeMask, rect.minX, rect.maxX, rect.maxY)
+        val edgeSupport = (leftSupport + rightSupport + topSupport + bottomSupport) / 4.0
+        val minSideSupport = min(min(leftSupport, rightSupport), min(topSupport, bottomSupport))
+        if (leftSupport < 0.50 ||
+            rightSupport < 0.50 ||
+            topSupport < 0.35 ||
+            bottomSupport < 0.35
+        ) {
+            return null
+        }
+        if (edgeSupport < 0.30 || minSideSupport < 0.10) return null
+
+        val content = cardContentEvidence(grid, rect)
+        if (content.detailRatio < 0.055 && content.brightRatio < 0.18) return null
+        val score =
+            (edgeSupport * 0.48) +
+                (aspectScore * 0.22) +
+                (content.detailRatio.coerceIn(0.0, 0.34) / 0.34 * 0.18) +
+                (content.brightRatio.coerceIn(0.0, 0.62) / 0.62 * 0.12)
+        if (score < 0.42) return null
+
+        return CandidateScore(
+            clusterIndex = -3000,
+            cluster = Component(
+                count = (content.detailRatio * rect.area).toInt().coerceAtLeast(1),
+                rect = rect,
+                componentCount = 1,
+            ),
+            rect = rect,
+            score = score.coerceIn(0.0, 0.94),
+            aspect = aspect,
+            areaRatio = areaRatio,
+            edgeSupport = edgeSupport,
+            seedCoverage = content.detailRatio,
+            leftEdgeSupport = leftSupport,
+            rightEdgeSupport = rightSupport,
+            topEdgeSupport = topSupport,
+            bottomEdgeSupport = bottomSupport,
+            expansionLeft = 0,
+            expansionRight = 0,
+            expansionTop = 0,
+            expansionBottom = 0,
+            expansionStopReasons = mapOf(
+                "left" to "edge_rect_scan",
+                "right" to "edge_rect_scan",
+                "top" to "edge_rect_scan",
+                "bottom" to "edge_rect_scan",
+            ),
+            contentVsOuterAreaRatio = content.detailRatio,
+            source = "edge_rect_scan_v1",
+        )
+    }
+
+    private fun scoreProjectedCardCandidate(
+        rect: GridRect,
+        grid: Grid,
+        edgeMask: BooleanArray,
+        targetDisplayAspect: Double,
+        anchor: CandidateScore,
+        direction: Int,
+    ): CandidateScore? {
+        val aspect = rect.normWidth / max(0.001, rect.normHeight)
+        val aspectScore = aspectScore(aspect, targetDisplayAspect)
+        if (aspectScore < 0.68) return null
+
+        val leftSupport = lineSupportAtVertical(grid, edgeMask, rect.minX, rect.minY, rect.maxY)
+        val rightSupport = lineSupportAtVertical(grid, edgeMask, rect.maxX, rect.minY, rect.maxY)
+        val topSupport = lineSupportAtHorizontal(grid, edgeMask, rect.minX, rect.maxX, rect.minY)
+        val bottomSupport = lineSupportAtHorizontal(grid, edgeMask, rect.minX, rect.maxX, rect.maxY)
+        val edgeSupport = (leftSupport + rightSupport + topSupport + bottomSupport) / 4.0
+        val minSideSupport = min(min(leftSupport, rightSupport), min(topSupport, bottomSupport))
+        if (edgeSupport < 0.30 || minSideSupport < 0.10) return null
+
+        val content = cardContentEvidence(grid, rect)
+        if (content.detailRatio < 0.055 && content.brightRatio < 0.18) return null
+        val score =
+            (edgeSupport * 0.48) +
+                (aspectScore * 0.22) +
+                (content.detailRatio.coerceIn(0.0, 0.34) / 0.34 * 0.18) +
+                (content.brightRatio.coerceIn(0.0, 0.62) / 0.62 * 0.12)
+        if (score < 0.42) return null
+
+        return CandidateScore(
+            clusterIndex = if (direction < 0) -1000 - anchor.clusterIndex else -2000 - anchor.clusterIndex,
+            cluster = Component(
+                count = (content.detailRatio * rect.area).toInt().coerceAtLeast(1),
+                rect = rect,
+                componentCount = 1,
+            ),
+            rect = rect,
+            score = score.coerceIn(0.0, 0.96),
+            aspect = aspect,
+            areaRatio = rect.areaRatio,
+            edgeSupport = edgeSupport,
+            seedCoverage = content.detailRatio,
+            leftEdgeSupport = leftSupport,
+            rightEdgeSupport = rightSupport,
+            topEdgeSupport = topSupport,
+            bottomEdgeSupport = bottomSupport,
+            expansionLeft = 0,
+            expansionRight = 0,
+            expansionTop = 0,
+            expansionBottom = 0,
+            expansionStopReasons = mapOf(
+                "left" to "sibling_projection",
+                "right" to "sibling_projection",
+                "top" to "sibling_projection",
+                "bottom" to "sibling_projection",
+            ),
+            contentVsOuterAreaRatio = content.detailRatio,
+            source = "sibling_card_projection_v1",
+        )
+    }
+
+    private fun cardContentEvidence(grid: Grid, rect: GridRect): CardContentEvidence {
+        var detail = 0
+        var bright = 0
+        var total = 0
+        val minX = (rect.minX + 2).coerceAtMost(rect.maxX)
+        val maxX = (rect.maxX - 2).coerceAtLeast(rect.minX)
+        val minY = (rect.minY + 2).coerceAtMost(rect.maxY)
+        val maxY = (rect.maxY - 2).coerceAtLeast(rect.minY)
+        for (y in minY..maxY) {
+            for (x in minX..maxX) {
+                val index = gridIndex(x, y)
+                val luma = grid.luma[index]
+                val chroma = grid.chroma[index]
+                val edge = grid.edge[index]
+                if (luma <= 0) continue
+                if (chroma >= max(16, grid.chromaThreshold - 12) ||
+                    edge >= max(16, grid.edgeThreshold - 8) ||
+                    luma <= grid.darkLumaThreshold
+                ) {
+                    detail += 1
+                }
+                if (luma >= max(120, grid.brightLumaThreshold - 52)) {
+                    bright += 1
+                }
+                total += 1
+            }
+        }
+        if (total == 0) return CardContentEvidence(detailRatio = 0.0, brightRatio = 0.0)
+        return CardContentEvidence(
+            detailRatio = detail.toDouble() / total.toDouble(),
+            brightRatio = bright.toDouble() / total.toDouble(),
         )
     }
 
@@ -575,6 +926,7 @@ object QuadDetectorV1Bridge {
                 "bottom" to bottomLine.reason,
             ),
             contentVsOuterAreaRatio = cluster.areaRatio / max(0.001, areaRatio),
+            source = "seed_cluster_outer_boundary_v4",
         )
     }
 
@@ -745,6 +1097,7 @@ object QuadDetectorV1Bridge {
         return mapOf(
             "success" to false,
             "points" to emptyList<Map<String, Double>>(),
+            "card_candidates" to emptyList<Map<String, Any?>>(),
             "confidence" to 0.0,
             "elapsed_ms" to elapsedMillis(startedAt),
             "failure_reason" to reason,
@@ -793,7 +1146,10 @@ object QuadDetectorV1Bridge {
 
     private fun touchesFrameTooMuch(rect: GridRect): Boolean {
         val touchesX = rect.minX <= 1 || rect.maxX >= GRID_WIDTH - 2
-        val touchesY = rect.minY <= 1 || rect.maxY >= GRID_HEIGHT - 2
+        val touchesTop = rect.minY <= (SEARCH_TOP * GRID_HEIGHT).toInt() + 1
+        val touchesBottom = rect.maxY >= (SEARCH_BOTTOM * GRID_HEIGHT).toInt() - 1
+        val touchesY = touchesTop || touchesBottom
+        if (touchesY && rect.normHeight > 0.20) return true
         return (touchesX && rect.normWidth > 0.72) ||
             (touchesY && rect.normHeight > 0.82) ||
             (touchesX && touchesY)
@@ -975,6 +1331,18 @@ object QuadDetectorV1Bridge {
             return minX <= other.minX && minY <= other.minY && maxX >= other.maxX && maxY >= other.maxY
         }
 
+        fun iou(other: GridRect): Double {
+            val left = max(minX, other.minX)
+            val top = max(minY, other.minY)
+            val right = min(maxX, other.maxX)
+            val bottom = min(maxY, other.maxY)
+            if (right < left || bottom < top) return 0.0
+            val intersection = (right - left + 1) * (bottom - top + 1)
+            val unionArea = area + other.area - intersection
+            if (unionArea <= 0) return 0.0
+            return intersection.toDouble() / unionArea.toDouble()
+        }
+
         fun nearFrameBorder(): Boolean {
             return minX <= 2 || minY <= 2 || maxX >= GRID_WIDTH - 3 || maxY >= GRID_HEIGHT - 3
         }
@@ -1003,6 +1371,11 @@ object QuadDetectorV1Bridge {
         val reason: String,
     )
 
+    private data class CardContentEvidence(
+        val detailRatio: Double,
+        val brightRatio: Double,
+    )
+
     private data class CandidateScore(
         val clusterIndex: Int,
         val cluster: Component,
@@ -1022,5 +1395,19 @@ object QuadDetectorV1Bridge {
         val expansionBottom: Int,
         val expansionStopReasons: Map<String, String>,
         val contentVsOuterAreaRatio: Double,
+        val source: String,
     )
+
+    private val CandidateScore.isFullCardSource: Boolean
+        get() = source == "edge_rect_scan_v1" || source == "sibling_card_projection_v1"
+
+    private val CandidateScore.selectionRank: Double
+        get() {
+            val fullCardAreaBonus = if (isFullCardSource) {
+                areaRatio.coerceIn(0.0, 0.16) * 0.75
+            } else {
+                0.0
+            }
+            return score + fullCardAreaBonus
+        }
 }

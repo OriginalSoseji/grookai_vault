@@ -7,6 +7,9 @@ class ScannerFrameGuide extends StatefulWidget {
     super.key,
     required this.guideRect,
     required this.quadPointsNorm,
+    required this.quadPointSetsNorm,
+    required this.selectedQuadNorm,
+    required this.cardSelectionActive,
     required this.focusTapNorm,
     required this.accent,
     required this.edgeLocked,
@@ -15,6 +18,9 @@ class ScannerFrameGuide extends StatefulWidget {
 
   final Rect guideRect;
   final List<Offset>? quadPointsNorm;
+  final List<List<Offset>>? quadPointSetsNorm;
+  final List<Offset>? selectedQuadNorm;
+  final bool cardSelectionActive;
   final Offset? focusTapNorm;
   final Color accent;
   final bool edgeLocked;
@@ -47,6 +53,9 @@ class _ScannerFrameGuideState extends State<ScannerFrameGuide>
           painter: _ScannerFrameGuidePainter(
             guideRect: widget.guideRect,
             quadPointsNorm: widget.quadPointsNorm,
+            quadPointSetsNorm: widget.quadPointSetsNorm,
+            selectedQuadNorm: widget.selectedQuadNorm,
+            cardSelectionActive: widget.cardSelectionActive,
             focusTapNorm: widget.focusTapNorm,
             accent: widget.accent,
             edgeLocked: widget.edgeLocked,
@@ -63,6 +72,9 @@ class _ScannerFrameGuidePainter extends CustomPainter {
   _ScannerFrameGuidePainter({
     required this.guideRect,
     required this.quadPointsNorm,
+    required this.quadPointSetsNorm,
+    required this.selectedQuadNorm,
+    required this.cardSelectionActive,
     required this.focusTapNorm,
     required this.accent,
     required this.edgeLocked,
@@ -72,6 +84,9 @@ class _ScannerFrameGuidePainter extends CustomPainter {
 
   final Rect guideRect;
   final List<Offset>? quadPointsNorm;
+  final List<List<Offset>>? quadPointSetsNorm;
+  final List<Offset>? selectedQuadNorm;
+  final bool cardSelectionActive;
   final Offset? focusTapNorm;
   final Color accent;
   final bool edgeLocked;
@@ -131,8 +146,17 @@ class _ScannerFrameGuidePainter extends CustomPainter {
     );
     _drawCorner(canvas, cornerPaint, guideRect.bottomLeft, corner, true, false);
 
-    final points = quadPointsNorm;
-    if (points != null && points.length == 4) {
+    final pointSets = quadPointSetsNorm != null && quadPointSetsNorm!.isNotEmpty
+        ? quadPointSetsNorm!
+        : quadPointsNorm == null
+        ? const <List<Offset>>[]
+        : <List<Offset>>[quadPointsNorm!];
+    for (var index = 0; index < pointSets.length; index += 1) {
+      final points = pointSets[index];
+      if (points.length != 4) continue;
+      final isPrimary = index == 0;
+      if (cardSelectionActive && !isPrimary) continue;
+
       final quadPath = Path();
       for (var i = 0; i < points.length; i += 1) {
         final point = Offset(
@@ -146,10 +170,27 @@ class _ScannerFrameGuidePainter extends CustomPainter {
         }
       }
       quadPath.close();
+      final isSelected = cardSelectionActive && isPrimary;
+      if (isSelected) {
+        final fillPaint = Paint()
+          ..color = accent.withValues(alpha: 0.10)
+          ..style = PaintingStyle.fill;
+        canvas.drawPath(quadPath, fillPaint);
+      }
       final quadPaint = Paint()
-        ..color = accent.withValues(alpha: locked ? 0.62 : 0.42)
+        ..color = accent.withValues(
+          alpha: isSelected
+              ? 0.94
+              : locked
+              ? 0.72
+              : (isPrimary ? 0.62 : 0.54),
+        )
         ..style = PaintingStyle.stroke
-        ..strokeWidth = locked ? 2.2 : 1.6;
+        ..strokeWidth = isSelected
+            ? 3.2
+            : locked
+            ? 2.6
+            : (isPrimary ? 2.2 : 1.9);
       canvas.drawPath(quadPath, quadPaint);
     }
 
@@ -183,6 +224,9 @@ class _ScannerFrameGuidePainter extends CustomPainter {
   bool shouldRepaint(covariant _ScannerFrameGuidePainter oldDelegate) {
     return oldDelegate.guideRect != guideRect ||
         oldDelegate.quadPointsNorm != quadPointsNorm ||
+        oldDelegate.quadPointSetsNorm != quadPointSetsNorm ||
+        oldDelegate.selectedQuadNorm != selectedQuadNorm ||
+        oldDelegate.cardSelectionActive != cardSelectionActive ||
         oldDelegate.focusTapNorm != focusTapNorm ||
         oldDelegate.accent != accent ||
         oldDelegate.edgeLocked != edgeLocked ||

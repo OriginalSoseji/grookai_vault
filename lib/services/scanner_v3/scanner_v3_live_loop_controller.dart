@@ -126,6 +126,7 @@ class ScannerV3LiveLoopController {
     required CameraImage image,
     required int sensorRotation,
     required List<Offset>? quadPointsNorm,
+    bool selectedCardTarget = false,
     ScannerV3QuadDetectorSnapshot? quadDetectorSnapshot,
   }) async {
     _frameCount += 1;
@@ -144,14 +145,20 @@ class ScannerV3LiveLoopController {
       image: image,
       sensorRotation: sensorRotation,
       quadPointsNorm: quadPointsNorm,
+      selectedCardTarget: selectedCardTarget,
       quadDetectorSnapshot: quadDetectorSnapshot,
     );
 
     if (normalizedCandidates.isEmpty) {
       _rejectedFrameCount += 1;
       _resetCardPresentGate();
-      _clearIdentityState();
       _lastIdentitySignalSource = 'normalization_failed';
+      if (selectedCardTarget) {
+        _decayIdentityStateOnSelectedTargetMiss();
+        _lastIdentitySignalSource = 'selected_target_transient_miss';
+      } else {
+        _clearIdentityState();
+      }
       return _publishState(
         quality: const ScannerV3QualitySnapshot(
           blurScore: 0,
@@ -181,9 +188,7 @@ class ScannerV3LiveLoopController {
       );
     }
 
-    final candidateEvaluation = _selectBestFrameCandidate(
-      normalizedCandidates,
-    );
+    final candidateEvaluation = _selectBestFrameCandidate(normalizedCandidates);
     final normalized = candidateEvaluation.frame;
     final quality = candidateEvaluation.quality;
     final cardPresent = candidateEvaluation.cardPresent;
@@ -191,8 +196,13 @@ class ScannerV3LiveLoopController {
     if (!quality.accepted) {
       _rejectedFrameCount += 1;
       _resetCardPresentGate();
-      _clearIdentityState();
       _lastIdentitySignalSource = 'quality_rejected';
+      if (selectedCardTarget) {
+        _decayIdentityStateOnSelectedTargetMiss();
+        _lastIdentitySignalSource = 'selected_target_transient_miss';
+      } else {
+        _clearIdentityState();
+      }
       return _publishState(
         quality: quality,
         decisionReason: quality.rejectionReasons.join(','),
@@ -213,8 +223,13 @@ class ScannerV3LiveLoopController {
     if (!cardPresent.present) {
       _rejectedFrameCount += 1;
       _resetCardPresentGate();
-      _clearIdentityState();
       _lastIdentitySignalSource = 'card_absent';
+      if (selectedCardTarget) {
+        _decayIdentityStateOnSelectedTargetMiss();
+        _lastIdentitySignalSource = 'selected_target_transient_miss';
+      } else {
+        _clearIdentityState();
+      }
       return _publishState(
         quality: quality,
         decisionReason: 'card_present_false:${cardPresent.reason}',
@@ -234,7 +249,10 @@ class ScannerV3LiveLoopController {
     }
 
     _cardPresentConsecutiveFrames += 1;
-    if (_cardPresentConsecutiveFrames < minCardPresentFramesBeforeIdentity) {
+    final requiredCardPresentFrames = selectedCardTarget
+        ? 1
+        : minCardPresentFramesBeforeIdentity;
+    if (_cardPresentConsecutiveFrames < requiredCardPresentFrames) {
       _rejectedFrameCount += 1;
       _clearIdentityState();
       _lastIdentitySignalSource = 'card_present_persistence_pending';
@@ -243,7 +261,7 @@ class ScannerV3LiveLoopController {
         decisionReason:
             'identity_blocked:card_present_persistence_pending:'
             '$_cardPresentConsecutiveFrames/'
-            '$minCardPresentFramesBeforeIdentity',
+            '$requiredCardPresentFrames',
         elapsedMs: stopwatch.elapsedMilliseconds,
         selectedQuadSource: normalized.selectedQuadSource,
         detectorConfidence: normalized.detectorConfidence,
@@ -431,6 +449,14 @@ class ScannerV3LiveLoopController {
     _lastIdentityErrors = const <String>[];
   }
 
+  void _decayIdentityStateOnSelectedTargetMiss() {
+    _lastVoteSnapshot = _candidateVoteState.decayOnly(
+      frameIndex: _acceptedFrameCount,
+    );
+    _locked = _lastVoteSnapshot.acceptedCandidate != null;
+    _lockedCandidateId = _lastVoteSnapshot.acceptedCandidate;
+  }
+
   void _resetCardPresentGate() {
     _cardPresentConsecutiveFrames = 0;
   }
@@ -439,6 +465,7 @@ class ScannerV3LiveLoopController {
     required CameraImage image,
     required int sensorRotation,
     required List<Offset>? quadPointsNorm,
+    required bool selectedCardTarget,
     required ScannerV3QuadDetectorSnapshot? quadDetectorSnapshot,
   }) {
     if (image.format.group != ImageFormatGroup.yuv420 || image.planes.isEmpty) {
@@ -457,12 +484,24 @@ class ScannerV3LiveLoopController {
     final nativeDiagnosticsUsability = _nativeDetectorDiagnosticsUsable(
       quadDetectorSnapshot,
     );
+    final hasSelectedCardTarget =
+        selectedCardTarget &&
+        quadPointsNorm != null &&
+        quadPointsNorm.length == 4;
     final hasNativeQuad =
         quadPointsNorm != null &&
         quadPointsNorm.length == 4 &&
         nativeDiagnosticsUsability.usable;
     final candidates = <_DisplayQuadCandidate>[];
-    if (hasNativeQuad) {
+    if (hasSelectedCardTarget) {
+      candidates.add(
+        _DisplayQuadCandidate(
+          source: 'selected_card_target',
+          displayQuad: quadPointsNorm,
+          borderConfidence: quadDetectorSnapshot?.confidence ?? 0.70,
+        ),
+      );
+    } else if (hasNativeQuad) {
       candidates.add(
         _DisplayQuadCandidate(
           source: 'native_detector',
@@ -691,6 +730,7 @@ class ScannerV3LiveLoopController {
     score += frame.cardFillRatio * 120;
     score += layout.score * 140;
     score += switch (frame.selectedQuadSource) {
+      'selected_card_target' => 85,
       'native_detector' => 45,
       'pokemon_visual_region' => 70,
       'yuv_fallback' => 35,
@@ -1911,14 +1951,16 @@ class ScannerV3LiveLoopController {
 
     final hasNativeQuad =
         frame.selectedQuadSource == 'native_detector' && frame.detectorSuccess;
+    final hasSelectedCardTarget =
+        frame.selectedQuadSource == 'selected_card_target';
     final hasScannerFallbackQuad =
         frame.selectedQuadSource == 'pokemon_visual_region' ||
         frame.selectedQuadSource == 'yuv_fallback' ||
         frame.selectedQuadSource == 'center_fallback';
-    if (!hasNativeQuad && !hasScannerFallbackQuad) {
+    if (!hasNativeQuad && !hasSelectedCardTarget && !hasScannerFallbackQuad) {
       return const _CardPresentDecision(present: false, reason: 'no_quad');
     }
-    if (!hasNativeQuad) {
+    if (!hasNativeQuad && !hasSelectedCardTarget) {
       return _CardPresentDecision(
         present: false,
         reason: hasScannerFallbackQuad
@@ -2010,6 +2052,18 @@ class ScannerV3LiveLoopController {
       borderStats: borderStats,
       layoutStats: pokemonLayoutStats,
     );
+    if (hasSelectedCardTarget &&
+        !pokemonFallbackEvidencePresent &&
+        !nativeObjectContentEvidencePresent &&
+        !nativePokemonLayoutEvidencePresent) {
+      return _CardPresentDecision(
+        present: false,
+        reason: borderEvidencePresent
+            ? 'pokemon_layout_evidence_missing'
+            : 'card_border_evidence_missing',
+        metrics: metrics,
+      );
+    }
     if (hasScannerFallbackQuad && !pokemonFallbackEvidencePresent) {
       return _CardPresentDecision(
         present: false,
@@ -2076,14 +2130,24 @@ class ScannerV3LiveLoopController {
   }
 
   _PokemonLayoutStats _pokemonLayoutStats(_NormalizedFrame frame) {
-    const titleRect = _NormRect(left: 0.08, top: 0.03, right: 0.92, bottom: 0.12);
+    const titleRect = _NormRect(
+      left: 0.08,
+      top: 0.03,
+      right: 0.92,
+      bottom: 0.12,
+    );
     const artworkRect = _NormRect(
       left: 0.08,
       top: 0.16,
       right: 0.92,
       bottom: 0.56,
     );
-    const textRect = _NormRect(left: 0.08, top: 0.58, right: 0.92, bottom: 0.88);
+    const textRect = _NormRect(
+      left: 0.08,
+      top: 0.58,
+      right: 0.92,
+      bottom: 0.88,
+    );
     const bottomRect = _NormRect(
       left: 0.08,
       top: 0.84,
