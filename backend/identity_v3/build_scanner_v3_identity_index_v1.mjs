@@ -23,6 +23,7 @@ function parseArgs(argv) {
   const args = {
     names: [],
     cardIds: [],
+    setCodes: [],
     baseIndex: process.env.SCANNER_V3_IDENTITY_BASE_INDEX || DEFAULT_BASE_INDEX,
     out: process.env.SCANNER_V3_IDENTITY_INDEX_OUT || DEFAULT_OUT,
     cacheDir: process.env.SCANNER_V3_IDENTITY_REFERENCE_CACHE_DIR || DEFAULT_CACHE_DIR,
@@ -48,6 +49,8 @@ function parseArgs(argv) {
       args.names = parseList(nextValue());
     } else if (name === '--card-ids') {
       args.cardIds = parseList(nextValue());
+    } else if (name === '--set-codes') {
+      args.setCodes = parseList(nextValue());
     } else if (name === '--base-index') {
       args.baseIndex = nextValue() || DEFAULT_BASE_INDEX;
     } else if (name === '--out') {
@@ -73,6 +76,7 @@ function usage() {
     'Usage:',
     '  node backend/identity_v3/build_scanner_v3_identity_index_v1.mjs --card-ids <uuid,...> [--base-index <file>] [--out <file>]',
     '  node backend/identity_v3/build_scanner_v3_identity_index_v1.mjs --names Diggersby,Salandit [--base-index <file>] [--out <file>]',
+    '  node backend/identity_v3/build_scanner_v3_identity_index_v1.mjs --set-codes me01,me02,me02.5,me03 [--base-index <file>] [--out <file>]',
     '',
     'Purpose:',
     '  Builds local Scanner V3 embedding references from existing catalog image_url or representative_image_url rows.',
@@ -92,7 +96,7 @@ async function main() {
     console.log(usage());
     return;
   }
-  if (args.names.length === 0 && args.cardIds.length === 0) {
+  if (args.names.length === 0 && args.cardIds.length === 0 && args.setCodes.length === 0) {
     throw new Error('scanner_v3_identity_index_targets_required');
   }
 
@@ -110,6 +114,7 @@ async function main() {
   const targetPlan = await loadTargetEntries({
     names: args.names,
     cardIds: args.cardIds,
+    setCodes: args.setCodes,
     cacheDir,
     timeoutMs: args.downloadTimeoutMs,
   });
@@ -180,11 +185,12 @@ async function main() {
   }, null, 2));
 }
 
-async function loadTargetEntries({ names, cardIds, cacheDir, timeoutMs }) {
+async function loadTargetEntries({ names, cardIds, setCodes, cacheDir, timeoutMs }) {
   const supabase = createBackendClient();
   const rows = dedupeRowsById([
     ...await queryRowsByIds(supabase, cardIds),
     ...await queryRowsByNames(supabase, names),
+    ...await queryRowsBySetCodes(supabase, setCodes),
   ]);
   const entries = [];
   const skipped = [];
@@ -241,6 +247,7 @@ async function loadTargetEntries({ names, cardIds, cacheDir, timeoutMs }) {
     requested: {
       names,
       card_ids: cardIds,
+      set_codes: setCodes,
     },
     source_policy: {
       allowed_source: 'existing Grookai catalog card_prints image_url or representative_image_url',
@@ -278,6 +285,19 @@ async function queryRowsByNames(supabase, names) {
     .order('set_code', { ascending: true })
     .order('number', { ascending: true });
   if (error) throw new Error(`scanner_v3_identity_target_name_query_failed:${error.message}`);
+  return data ?? [];
+}
+
+async function queryRowsBySetCodes(supabase, setCodes) {
+  if (setCodes.length === 0) return [];
+  const { data, error } = await supabase
+    .from('card_prints')
+    .select(targetSelect())
+    .in('set_code', setCodes)
+    .order('set_code', { ascending: true })
+    .order('number', { ascending: true })
+    .order('name', { ascending: true });
+  if (error) throw new Error(`scanner_v3_identity_target_set_code_query_failed:${error.message}`);
   return data ?? [];
 }
 
@@ -368,6 +388,7 @@ function mergeIndexes({
       reference_view_types: SCANNER_V3_REFERENCE_VIEWS_V1.reference_view_types,
       requested_names: args.names,
       requested_card_ids: args.cardIds,
+      requested_set_codes: args.setCodes,
       source_policy: targetPlan.source_policy,
       target_catalog_row_count: targetPlan.row_count,
       target_entry_count: targetPlan.entry_count,
@@ -400,6 +421,7 @@ function buildReport({
     output_path: outputPath,
     requested_names: args.names,
     requested_card_ids: args.cardIds,
+    requested_set_codes: args.setCodes,
     reference_view_generator: SCANNER_V3_REFERENCE_VIEWS_V1,
     source_policy: targetPlan.source_policy,
     base_reference_count: baseIndex.references.length,

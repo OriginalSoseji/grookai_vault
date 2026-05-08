@@ -10,6 +10,7 @@ class CandidateVoteState {
     this.maxAcceptedDistance = 0.195,
     this.minCropTypesToLock = 2,
     this.minCropTypesToAccept = 2,
+    this.fastLockMinTopFiveFrames = 2,
     this.minTopFiveFramesToLock = 3,
     this.minRecentTopFiveFramesToAccept = 3,
     this.recentFrameWindow = 5,
@@ -23,6 +24,7 @@ class CandidateVoteState {
   final double maxAcceptedDistance;
   final int minCropTypesToLock;
   final int minCropTypesToAccept;
+  final int fastLockMinTopFiveFrames;
   final int minTopFiveFramesToLock;
   final int minRecentTopFiveFramesToAccept;
   final int recentFrameWindow;
@@ -261,6 +263,14 @@ class CandidateVoteState {
     final stableRecent = recentTopFiveCount >= minTopFiveFramesToLock;
     final stableCrops = best.bestCropContributionCount >= minCropTypesToLock;
     final scoreReady = best.score > minScoreThreshold;
+    final fastTemporalReady = _fastTemporalEvidenceReady(
+      best,
+      recentTopFiveCount,
+    );
+    if (fastTemporalReady && gap >= lockScoreGap && stableCrops && scoreReady) {
+      lockedCandidate = best.cardId;
+      return;
+    }
     if (best.topFiveOccurrences >= minTopFiveFramesToLock &&
         gap >= lockScoreGap &&
         stableRecent &&
@@ -338,16 +348,22 @@ class CandidateVoteState {
 
     final failures = <String>[];
     var failureState = IdentityDecisionStateV1.candidateUnstable;
+    final fastTemporalReady = _fastTemporalEvidenceReady(
+      candidate,
+      recentTopFiveCount,
+    );
 
     if (bestCandidateId != null && bestCandidateId != candidate.cardId) {
       failures.add('visual_lock_not_top_vote:$bestCandidateId');
       failureState = IdentityDecisionStateV1.candidateAmbiguous;
     }
-    if (candidate.topFiveOccurrences < minTopFiveFramesToLock) {
+    if (!fastTemporalReady &&
+        candidate.topFiveOccurrences < minTopFiveFramesToLock) {
       failures.add('top5_frames_below_min:${candidate.topFiveOccurrences}');
       failureState = IdentityDecisionStateV1.candidateUnstable;
     }
-    if (recentTopFiveCount < minRecentTopFiveFramesToAccept) {
+    if (!fastTemporalReady &&
+        recentTopFiveCount < minRecentTopFiveFramesToAccept) {
       failures.add('recent_support_below_min:$recentTopFiveCount');
       failureState = IdentityDecisionStateV1.candidateUnstable;
     }
@@ -385,9 +401,29 @@ class CandidateVoteState {
 
     return _IdentityDecision(
       state: IdentityDecisionStateV1.identityLocked,
-      reason: 'confidence_guard_passed',
+      reason: fastTemporalReady
+          ? 'fast_confidence_guard_passed'
+          : 'confidence_guard_passed',
       acceptedCandidate: candidate.cardId,
     );
+  }
+
+  bool _fastTemporalEvidenceReady(
+    CandidateVoteRecord candidate,
+    int recentTopFiveCount,
+  ) {
+    if (candidate.topFiveOccurrences < fastLockMinTopFiveFrames ||
+        recentTopFiveCount < fastLockMinTopFiveFrames) {
+      return false;
+    }
+    if (candidate.bestCropContributionCount < minCropTypesToAccept) {
+      return false;
+    }
+    final bestDistance = candidate.bestDistance;
+    if (bestDistance == null || bestDistance > maxAcceptedDistance) {
+      return false;
+    }
+    return candidate.bestTopOneScoreGap >= identityAcceptFrameScoreGap;
   }
 }
 

@@ -21,9 +21,12 @@ class ScannerV3IdentityPipelineV8 {
            vectorCandidateService ?? ScannerV3VectorCandidateServiceV1();
 
   static const int cropOutputSize = 512;
+  static const double _fastPathMaxAcceptedDistance = 0.195;
+  static const int _fastPathMinCropSupport = 2;
   static const List<String> queryCropTypes = <String>[
-    'artwork',
+    'full_card_trimmed',
     'artwork_zoom_in_10',
+    'artwork',
     'shift_left',
     'shift_right',
     'shift_up',
@@ -44,16 +47,53 @@ class ScannerV3IdentityPipelineV8 {
     required ScannerV3ExportImage artworkRegion,
   }) async {
     final frameWatch = Stopwatch()..start();
-    final crops = _generateQueryCrops(
+    final fastCrops = _generateFastQueryCrops(
       normalizedFullCard: normalizedFullCard,
       artworkRegion: artworkRegion,
     );
 
-    final cropResults = await Future.wait(
-      crops.map(_resolveCrop),
+    final fastCropResults = await Future.wait(
+      fastCrops.map(_resolveCrop),
       eagerError: false,
     );
+    final fastResult = _buildFrameResult(
+      cropResults: fastCropResults,
+      cropTypes: fastCrops.map((crop) => crop.type).toList(growable: false),
+      totalElapsedMs: frameWatch.elapsedMilliseconds,
+      signalSource: 'v8_fast_full_card_vector',
+    );
+    if (_fastFrameResultAccepted(fastResult)) {
+      return fastResult;
+    }
 
+    final fallbackCrops = _generateFallbackQueryCrops(
+      normalizedFullCard: normalizedFullCard,
+      artworkRegion: artworkRegion,
+    );
+    final fallbackCropResults = await Future.wait(
+      fallbackCrops.map(_resolveCrop),
+      eagerError: false,
+    );
+    return _buildFrameResult(
+      cropResults: <_IdentityCropResult>[
+        ...fastCropResults,
+        ...fallbackCropResults,
+      ],
+      cropTypes: <String>[
+        ...fastCrops.map((crop) => crop.type),
+        ...fallbackCrops.map((crop) => crop.type),
+      ],
+      totalElapsedMs: frameWatch.elapsedMilliseconds,
+      signalSource: 'v8_multicrop_vector_rerank',
+    );
+  }
+
+  ScannerV3IdentityFrameResult _buildFrameResult({
+    required List<_IdentityCropResult> cropResults,
+    required List<String> cropTypes,
+    required int totalElapsedMs,
+    required String signalSource,
+  }) {
     final successful = cropResults
         .where((result) => result.error == null)
         .toList(growable: false);
@@ -69,9 +109,9 @@ class ScannerV3IdentityPipelineV8 {
     return ScannerV3IdentityFrameResult(
       candidates: reranked.take(topOutput).toList(growable: false),
       unifiedCandidateCount: unified.length,
-      cropCount: crops.length,
+      cropCount: cropTypes.length,
       successfulCropCount: successful.length,
-      cropTypes: crops.map((crop) => crop.type).toList(growable: false),
+      cropTypes: cropTypes,
       embeddingElapsedMs: _maxMs(
         successful.map((result) => result.embeddingElapsedMs),
       ),
@@ -79,12 +119,23 @@ class ScannerV3IdentityPipelineV8 {
         successful.map((result) => result.vectorSearchElapsedMs),
       ),
       rerankElapsedMs: rerankElapsedMs,
-      totalElapsedMs: frameWatch.elapsedMilliseconds,
+      totalElapsedMs: totalElapsedMs,
       errors: errors,
       signalSource: successful.isEmpty
           ? 'v8_multicrop_identity_no_successful_crops'
-          : 'v8_multicrop_vector_rerank',
+          : signalSource,
     );
+  }
+
+  bool _fastFrameResultAccepted(ScannerV3IdentityFrameResult result) {
+    final candidate = result.candidates.isEmpty
+        ? null
+        : result.candidates.first;
+    if (candidate == null) return false;
+    if ((candidate.cropContributionCount ?? 0) < _fastPathMinCropSupport) {
+      return false;
+    }
+    return candidate.distance <= _fastPathMaxAcceptedDistance;
   }
 
   Future<_IdentityCropResult> _resolveCrop(_IdentityCrop crop) async {
@@ -123,7 +174,29 @@ class ScannerV3IdentityPipelineV8 {
     }
   }
 
-  List<_IdentityCrop> _generateQueryCrops({
+  List<_IdentityCrop> _generateFastQueryCrops({
+    required ScannerV3ExportImage normalizedFullCard,
+    required ScannerV3ExportImage artworkRegion,
+  }) {
+    return <_IdentityCrop>[
+      _IdentityCrop(
+        type: 'full_card_trimmed',
+        image: _normalizedRectCrop(
+          normalizedFullCard,
+          const _RectNorm(left: 0.03, top: 0.02, right: 0.97, bottom: 0.98),
+        ),
+      ),
+      _IdentityCrop(
+        type: 'artwork_zoom_in_10',
+        image: _normalizedRectCrop(
+          artworkRegion,
+          _rectFromCenter(0.50, 0.50, 0.90, 0.90),
+        ),
+      ),
+    ];
+  }
+
+  List<_IdentityCrop> _generateFallbackQueryCrops({
     required ScannerV3ExportImage normalizedFullCard,
     required ScannerV3ExportImage artworkRegion,
   }) {
@@ -133,13 +206,6 @@ class ScannerV3IdentityPipelineV8 {
         image: _normalizedRectCrop(
           artworkRegion,
           const _RectNorm(left: 0, top: 0, right: 1, bottom: 1),
-        ),
-      ),
-      _IdentityCrop(
-        type: 'artwork_zoom_in_10',
-        image: _normalizedRectCrop(
-          artworkRegion,
-          _rectFromCenter(0.50, 0.50, 0.90, 0.90),
         ),
       ),
       _IdentityCrop(
