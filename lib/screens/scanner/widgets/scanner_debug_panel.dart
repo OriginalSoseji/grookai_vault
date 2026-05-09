@@ -14,6 +14,9 @@ class ScannerDebugPanel extends StatelessWidget {
     required this.cameraPreviewSize,
     required this.cameraInputSize,
     required this.cameraInitFallbackReason,
+    required this.cameraStreamFps,
+    required this.scannerAnalysisFps,
+    required this.scannerLiveLoopFps,
     required this.diagnosticsEnabled,
     required this.diagnosticsFrameCount,
     required this.diagnosticsLastExportPath,
@@ -33,6 +36,9 @@ class ScannerDebugPanel extends StatelessWidget {
   final Size? cameraPreviewSize;
   final Size? cameraInputSize;
   final String? cameraInitFallbackReason;
+  final double? cameraStreamFps;
+  final double? scannerAnalysisFps;
+  final double? scannerLiveLoopFps;
   final bool diagnosticsEnabled;
   final int diagnosticsFrameCount;
   final String? diagnosticsLastExportPath;
@@ -142,6 +148,10 @@ class ScannerDebugPanel extends StatelessWidget {
                         _line(
                           'camera',
                           'preset $cameraPresetLabel preview ${_formatSize(cameraPreviewSize)} input ${_formatSize(cameraInputSize)}',
+                        ),
+                        _line(
+                          'camera fps',
+                          'stream ${_formatFps(cameraStreamFps)} analysis ${_formatFps(scannerAnalysisFps)} loop ${_formatFps(scannerLiveLoopFps)}',
                         ),
                         if (cameraInitFallbackReason != null)
                           _line('camera fallback', cameraInitFallbackReason!),
@@ -334,5 +344,10 @@ class ScannerDebugPanel extends StatelessWidget {
   String _formatSize(Size? size) {
     if (size == null) return 'unknown';
     return '${size.width.round()}x${size.height.round()}';
+  }
+
+  String _formatFps(double? value) {
+    if (value == null || !value.isFinite) return 'unknown';
+    return value.toStringAsFixed(1);
   }
 }

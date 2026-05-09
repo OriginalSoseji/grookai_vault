@@ -35,6 +35,9 @@ class ConditionCameraScreen extends StatefulWidget {
 }
 
 class _ConditionCameraScreenState extends State<ConditionCameraScreen> {
+  static const bool _scannerV3CameraQualityProbeEnabled = bool.fromEnvironment(
+    'SCANNER_V3_CAMERA_QUALITY_PROBE',
+  );
   static const double _minNativeBridgeConfidence = 0.45;
   static const Duration _selectedCardRetention = Duration(seconds: 30);
   static const double _selectedCardCenterDeadband = 0.030;
@@ -123,6 +126,12 @@ class _ConditionCameraScreenState extends State<ConditionCameraScreen> {
   Size? _cameraPreviewSize;
   Size? _cameraInputSize;
   String? _cameraInitFallbackReason;
+  final _ScannerCameraFpsCounter _cameraStreamFpsCounter =
+      _ScannerCameraFpsCounter();
+  final _ScannerCameraFpsCounter _scannerV3AnalysisFpsCounter =
+      _ScannerCameraFpsCounter();
+  final _ScannerCameraFpsCounter _scannerV3LiveLoopFpsCounter =
+      _ScannerCameraFpsCounter();
   bool get _canShoot => !_takingPicture && _overlayMode == OverlayMode.ready;
   bool get _useScannerV3LiveLoop =>
       widget.enableScannerV3LiveLoopPrototype || widget.title == 'Scan Card';
@@ -242,11 +251,17 @@ class _ConditionCameraScreenState extends State<ConditionCameraScreen> {
     CameraDescription camera,
   ) async {
     final presets = _useScannerV3LiveLoop
-        ? const <ResolutionPreset>[
-            ResolutionPreset.medium,
-            ResolutionPreset.high,
-            ResolutionPreset.veryHigh,
-          ]
+        ? _scannerV3CameraQualityProbeEnabled
+              ? const <ResolutionPreset>[
+                  ResolutionPreset.veryHigh,
+                  ResolutionPreset.high,
+                  ResolutionPreset.medium,
+                ]
+              : const <ResolutionPreset>[
+                  ResolutionPreset.medium,
+                  ResolutionPreset.high,
+                  ResolutionPreset.veryHigh,
+                ]
         : const <ResolutionPreset>[ResolutionPreset.high];
     Object? firstError;
 
@@ -456,16 +471,18 @@ class _ConditionCameraScreenState extends State<ConditionCameraScreen> {
     }
     _streaming = true;
     _controller!.startImageStream((image) async {
+      final now = DateTime.now();
+      _recordScannerCameraFpsTick(_cameraStreamFpsCounter, now);
       final imageSize = Size(image.width.toDouble(), image.height.toDouble());
       if (_cameraInputSize != imageSize && mounted) {
         setState(() {
           _cameraInputSize = imageSize;
         });
       }
-      final now = DateTime.now();
       if (now.difference(_lastQuadUpdate) < _scannerV3AnalysisInterval) return;
       if (_processingScannerV3FrameTick) return;
       _lastQuadUpdate = now;
+      _recordScannerCameraFpsTick(_scannerV3AnalysisFpsCounter, now);
       _processingScannerV3FrameTick = true;
       try {
         final rotation = _controller?.description.sensorOrientation ?? 0;
@@ -554,6 +571,7 @@ class _ConditionCameraScreenState extends State<ConditionCameraScreen> {
     if (controller == null) return;
     if (_processingScannerV3LiveLoopFrame) return;
     _processingScannerV3LiveLoopFrame = true;
+    _recordScannerCameraFpsTick(_scannerV3LiveLoopFpsCounter, DateTime.now());
 
     ScannerV3LiveLoopState? nextState;
     try {
@@ -637,6 +655,17 @@ class _ConditionCameraScreenState extends State<ConditionCameraScreen> {
       return true;
     }
     return false;
+  }
+
+  void _recordScannerCameraFpsTick(
+    _ScannerCameraFpsCounter counter,
+    DateTime now,
+  ) {
+    if (!kDebugMode) return;
+    final changed = counter.tick(now);
+    if (changed && mounted && _scannerV3DebugExpanded) {
+      setState(() {});
+    }
   }
 
   bool _scannerV3VisibleFrameChanged(
@@ -1102,9 +1131,22 @@ class _ConditionCameraScreenState extends State<ConditionCameraScreen> {
             quadDetection.pointsNorm != null &&
             quadDetection.pointsNorm!.length == 4,
         nativeRawResponse: quadDetection.rawResponse,
+        cameraMetrics: _scannerCameraMetrics(),
         testPhase: _scannerV4DiagnosticTestRunner.currentCapturePhaseId,
       ),
     );
+  }
+
+  Map<String, Object?> _scannerCameraMetrics() {
+    return <String, Object?>{
+      'preset': _resolutionPresetLabel(_cameraResolutionPreset),
+      'preview_size': _formatSize(_cameraPreviewSize),
+      'input_size': _formatSize(_cameraInputSize),
+      'stream_fps': _cameraStreamFpsCounter.fps,
+      'analysis_fps': _scannerV3AnalysisFpsCounter.fps,
+      'live_loop_fps': _scannerV3LiveLoopFpsCounter.fps,
+      'fallback_reason': _cameraInitFallbackReason,
+    };
   }
 
   Future<_NativeQuadDetection> _detectNativeQuad(
@@ -1621,6 +1663,11 @@ class _ConditionCameraScreenState extends State<ConditionCameraScreen> {
                               cameraInputSize: _cameraInputSize,
                               cameraInitFallbackReason:
                                   _cameraInitFallbackReason,
+                              cameraStreamFps: _cameraStreamFpsCounter.fps,
+                              scannerAnalysisFps:
+                                  _scannerV3AnalysisFpsCounter.fps,
+                              scannerLiveLoopFps:
+                                  _scannerV3LiveLoopFpsCounter.fps,
                               diagnosticsEnabled:
                                   _scannerV4DiagnosticCapture.enabled,
                               diagnosticsFrameCount:
@@ -1731,6 +1778,28 @@ String _resolutionPresetLabel(ResolutionPreset preset) {
 String _formatSize(Size? size) {
   if (size == null) return 'unknown';
   return '${size.width.round()}x${size.height.round()}';
+}
+
+class _ScannerCameraFpsCounter {
+  DateTime _windowStartedAt = DateTime.fromMillisecondsSinceEpoch(0);
+  int _frames = 0;
+  double? fps;
+
+  bool tick(DateTime now) {
+    if (_windowStartedAt.millisecondsSinceEpoch == 0) {
+      _windowStartedAt = now;
+      _frames = 0;
+    }
+    _frames += 1;
+
+    final elapsedMs = now.difference(_windowStartedAt).inMilliseconds;
+    if (elapsedMs < 1000) return false;
+
+    fps = (_frames * 1000) / elapsedMs;
+    _windowStartedAt = now;
+    _frames = 0;
+    return true;
+  }
 }
 
 enum _ScannerV3FocusSource { auto, tap }

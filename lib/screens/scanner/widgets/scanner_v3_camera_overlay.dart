@@ -54,6 +54,9 @@ class ScannerV3CameraOverlay extends StatelessWidget {
     required this.cameraPreviewSize,
     required this.cameraInputSize,
     required this.cameraInitFallbackReason,
+    required this.cameraStreamFps,
+    required this.scannerAnalysisFps,
+    required this.scannerLiveLoopFps,
     required this.diagnosticsEnabled,
     required this.diagnosticsFrameCount,
     required this.diagnosticsLastExportPath,
@@ -86,6 +89,9 @@ class ScannerV3CameraOverlay extends StatelessWidget {
   final Size? cameraPreviewSize;
   final Size? cameraInputSize;
   final String? cameraInitFallbackReason;
+  final double? cameraStreamFps;
+  final double? scannerAnalysisFps;
+  final double? scannerLiveLoopFps;
   final bool diagnosticsEnabled;
   final int diagnosticsFrameCount;
   final String? diagnosticsLastExportPath;
@@ -219,6 +225,9 @@ class ScannerV3CameraOverlay extends StatelessWidget {
             cameraPreviewSize: cameraPreviewSize,
             cameraInputSize: cameraInputSize,
             cameraInitFallbackReason: cameraInitFallbackReason,
+            cameraStreamFps: cameraStreamFps,
+            scannerAnalysisFps: scannerAnalysisFps,
+            scannerLiveLoopFps: scannerLiveLoopFps,
             diagnosticsEnabled: diagnosticsEnabled,
             diagnosticsFrameCount: diagnosticsFrameCount,
             diagnosticsLastExportPath: diagnosticsLastExportPath,
@@ -480,6 +489,9 @@ class _ScannerBottomPanel extends StatelessWidget {
     required this.cameraPreviewSize,
     required this.cameraInputSize,
     required this.cameraInitFallbackReason,
+    required this.cameraStreamFps,
+    required this.scannerAnalysisFps,
+    required this.scannerLiveLoopFps,
     required this.diagnosticsEnabled,
     required this.diagnosticsFrameCount,
     required this.diagnosticsLastExportPath,
@@ -507,6 +519,9 @@ class _ScannerBottomPanel extends StatelessWidget {
   final Size? cameraPreviewSize;
   final Size? cameraInputSize;
   final String? cameraInitFallbackReason;
+  final double? cameraStreamFps;
+  final double? scannerAnalysisFps;
+  final double? scannerLiveLoopFps;
   final bool diagnosticsEnabled;
   final int diagnosticsFrameCount;
   final String? diagnosticsLastExportPath;
@@ -652,6 +667,9 @@ class _ScannerBottomPanel extends StatelessWidget {
                               cameraInputSize: cameraInputSize,
                               cameraInitFallbackReason:
                                   cameraInitFallbackReason,
+                              cameraStreamFps: cameraStreamFps,
+                              scannerAnalysisFps: scannerAnalysisFps,
+                              scannerLiveLoopFps: scannerLiveLoopFps,
                               diagnosticsEnabled: diagnosticsEnabled,
                               diagnosticsFrameCount: diagnosticsFrameCount,
                               diagnosticsLastExportPath:

@@ -32,6 +32,7 @@ import 'services/network/smart_feed_service.dart';
 import 'services/public/card_surface_pricing_service.dart';
 import 'services/public/compare_service.dart';
 import 'services/public/public_collector_service.dart';
+import 'services/scanner/scanner_native_camera_guardrail.dart';
 import 'services/scanner/native_scanner_phase0_bridge.dart';
 import 'services/navigation/grookai_web_route_service.dart';
 import 'services/vault/vault_card_service.dart';
@@ -53,7 +54,9 @@ part 'main_vault.dart';
 
 const bool kDebugTouchLog = false;
 bool get kNativeScannerPhase0Enabled =>
-    defaultTargetPlatform == TargetPlatform.iOS;
+    ScannerNativeCameraGuardrail.legacyPhase0AllowedForScanCard(
+      defaultTargetPlatform,
+    );
 const bool kFeedDebugOverlay = true;
 const bool _kCatalogOwnershipDiagnostics = false;
 const bool _kGoogleOAuthDiagnostics = true;

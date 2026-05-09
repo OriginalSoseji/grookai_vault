@@ -34,6 +34,7 @@ class ScannerV4DiagnosticSnapshotV1 {
     this.lastDecisionReason,
     this.cardPresentMetrics,
     this.nativeDiagnostics,
+    this.cameraMetrics,
     this.testPhase,
   });
 
@@ -48,6 +49,7 @@ class ScannerV4DiagnosticSnapshotV1 {
     required String? nativeFailureReason,
     required bool pointsPresent,
     required Map<String, dynamic>? nativeRawResponse,
+    Map<String, Object?>? cameraMetrics,
     String? testPhase,
   }) {
     final identityStarted = _identityStartedFromState(state);
@@ -78,6 +80,7 @@ class ScannerV4DiagnosticSnapshotV1 {
       lastDecisionReason: state.lastDecisionReason,
       cardPresentMetrics: _cardPresentMetricsFromState(state),
       nativeDiagnostics: _diagnosticsFromRawResponse(nativeRawResponse),
+      cameraMetrics: cameraMetrics,
       testPhase: testPhase,
     );
   }
@@ -107,6 +110,7 @@ class ScannerV4DiagnosticSnapshotV1 {
   final String? lastDecisionReason;
   final Map<String, Object?>? cardPresentMetrics;
   final Map<String, Object?>? nativeDiagnostics;
+  final Map<String, Object?>? cameraMetrics;
   final String? testPhase;
 
   Map<String, Object?> toJson() {
@@ -136,6 +140,7 @@ class ScannerV4DiagnosticSnapshotV1 {
       'last_decision_reason': lastDecisionReason ?? _unavailable,
       'card_present_metrics': cardPresentMetrics ?? _unavailable,
       'native_diagnostics': nativeDiagnostics ?? _unavailable,
+      'camera_metrics': cameraMetrics ?? _unavailable,
       'test_phase': testPhase ?? _unavailable,
     };
   }
