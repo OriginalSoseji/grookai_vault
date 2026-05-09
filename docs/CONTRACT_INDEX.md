@@ -80,6 +80,7 @@ If a contract is missing from this index, it is not authoritative.
 | CONDITION_ASSIST_ANALYSIS_WORKER_V1 | Active | Backend Highway | docs/contracts/CONDITION_ASSIST_ANALYSIS_WORKER_V1.md | 2025-12-30 | Append-only analysis worker writes to `condition_snapshot_analyses`; never updates/deletes snapshots; no grades/bands stored |
 | SCANNER_SHUTTER_GATE_CONTRACT_V1 | Active | Scanner & Condition | docs/contracts/SCANNER_SHUTTER_GATE_CONTRACT_V1.md | 2026-02-14 | Single-source shutter gate: derive `_canShoot` from `OverlayMode.ready` and `_takingPicture`; no independent readiness flag |
 | SCANNER_LIVE_BEHAVIOR_CONTRACT_V1 | Active | Scanner & Condition | docs/contracts/SCANNER_LIVE_BEHAVIOR_CONTRACT_V1.md | 2026-05-07 | Controlling contract for the reference-like live scanner behavior build: explicit state machine, card-present truth, readiness feedback, identity gating, and real-device proof requirements |
+| SCANNER_IDENTITY_PERFORMANCE_CONTRACT_V1 | Active | Scanner & Condition | docs/contracts/SCANNER_IDENTITY_PERFORMANCE_CONTRACT_V1.md | 2026-05-08 | Production scanner identity speed contract: clean selected-card identity locks in under 2 seconds through guarded fast-path evidence |
 
 ---
 

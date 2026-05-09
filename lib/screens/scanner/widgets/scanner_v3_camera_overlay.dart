@@ -3,6 +3,7 @@ import 'dart:ui' as ui;
 import 'package:flutter/material.dart';
 
 import '../../../services/scanner_v3/convergence_state_v1.dart';
+import '../../../services/scanner_v4/scanner_live_behavior_v1.dart';
 import '../../../services/scanner_v4/scanner_v4_diagnostic_test_runner_v1.dart';
 import 'scanner_actions_bar.dart';
 import 'scanner_confidence_rail.dart';
@@ -11,6 +12,29 @@ import 'scanner_frame_guide.dart';
 import 'scanner_primary_card_tile.dart';
 import 'scanner_shutter_button.dart';
 import 'scanner_state_label.dart';
+
+class ScannerV3ScanMemoryEntry {
+  const ScannerV3ScanMemoryEntry({
+    required this.candidateId,
+    required this.count,
+    this.name,
+    this.setCode,
+    this.number,
+    this.imageUrl,
+  });
+
+  final String candidateId;
+  final int count;
+  final String? name;
+  final String? setCode;
+  final String? number;
+  final String? imageUrl;
+
+  String get displayName {
+    final trimmed = name?.trim() ?? '';
+    return trimmed.isNotEmpty ? trimmed : 'Card';
+  }
+}
 
 class ScannerV3CameraOverlay extends StatelessWidget {
   const ScannerV3CameraOverlay({
@@ -23,6 +47,8 @@ class ScannerV3CameraOverlay extends StatelessWidget {
     required this.focusTapNorm,
     required this.exportEnabled,
     required this.flashEnabled,
+    required this.identityRevealRequested,
+    required this.scanMemory,
     required this.debugExpanded,
     required this.cameraPresetLabel,
     required this.cameraPreviewSize,
@@ -35,6 +61,7 @@ class ScannerV3CameraOverlay extends StatelessWidget {
     required this.onClose,
     required this.onToggleFlash,
     required this.onToggleDebug,
+    required this.onShutter,
     required this.onTryAgain,
     required this.onSearchManually,
     required this.onToggleDiagnostics,
@@ -52,6 +79,8 @@ class ScannerV3CameraOverlay extends StatelessWidget {
   final Offset? focusTapNorm;
   final bool exportEnabled;
   final bool flashEnabled;
+  final bool identityRevealRequested;
+  final List<ScannerV3ScanMemoryEntry> scanMemory;
   final bool debugExpanded;
   final String cameraPresetLabel;
   final Size? cameraPreviewSize;
@@ -64,6 +93,7 @@ class ScannerV3CameraOverlay extends StatelessWidget {
   final VoidCallback onClose;
   final VoidCallback onToggleFlash;
   final VoidCallback onToggleDebug;
+  final VoidCallback onShutter;
   final VoidCallback onTryAgain;
   final VoidCallback onSearchManually;
   final ValueChanged<bool> onToggleDiagnostics;
@@ -74,19 +104,45 @@ class ScannerV3CameraOverlay extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final detectedCardCount =
+    final rawDetectedCardCount =
         quadPointSetsNorm?.length ?? (quadPointsNorm?.length == 4 ? 1 : 0);
+    final cardRegionVisible =
+        state.cardPresent ||
+        state.identityAllowed ||
+        state.cardPresentReason == 'card_present_persistence_pending' ||
+        state.identityBlockedReason == 'card_present_persistence_pending' ||
+        state.identityDecisionState == 'identity_locked';
+    final detectedCardCount = cardRegionVisible ? rawDetectedCardCount : 0;
+    final visibleQuadPointsNorm = cardRegionVisible ? quadPointsNorm : null;
+    final visibleQuadPointSetsNorm = cardRegionVisible
+        ? quadPointSetsNorm
+        : null;
+    final visibleSelectedQuadNorm = cardRegionVisible ? selectedQuadNorm : null;
     final cardSelectionActive =
-        selectedQuadNorm != null && selectedQuadNorm!.length == 4;
+        visibleSelectedQuadNorm != null && visibleSelectedQuadNorm.length == 4;
     final edgeLocked = detectedCardCount > 0;
-    final tone = ScannerV3UiTone.fromState(state, edgeLocked: edgeLocked);
-    final locked = state.identityDecisionState == 'identity_locked';
+    final tone = ScannerV3UiTone.fromState(
+      state,
+      edgeLocked: edgeLocked,
+      identityRevealRequested: identityRevealRequested,
+    );
+    final locked =
+        identityRevealRequested &&
+        state.identityDecisionState == 'identity_locked';
     final padding = MediaQuery.of(context).padding;
+    final topInset = padding.top > 0 ? padding.top : 18.0;
+    final bottomInset = padding.bottom > 0 ? padding.bottom : 18.0;
+    final bottomPanelMaxHeight = _scannerBottomPanelMaxHeight(
+      context,
+      tone,
+      debugExpanded,
+      scanMemory.isNotEmpty,
+    );
     final shutterBottomOffset = tone.showUnknownActions || tone.showRescanAction
-        ? 236.0
+        ? bottomPanelMaxHeight + 22
         : tone.showPrimaryCandidate
-        ? 214.0
-        : 168.0;
+        ? bottomPanelMaxHeight + 20
+        : bottomPanelMaxHeight + 18;
 
     return Stack(
       fit: StackFit.expand,
@@ -94,9 +150,9 @@ class ScannerV3CameraOverlay extends StatelessWidget {
         IgnorePointer(
           child: ScannerFrameGuide(
             guideRect: guideRect,
-            quadPointsNorm: quadPointsNorm,
-            quadPointSetsNorm: quadPointSetsNorm,
-            selectedQuadNorm: selectedQuadNorm,
+            quadPointsNorm: visibleQuadPointsNorm,
+            quadPointSetsNorm: visibleQuadPointSetsNorm,
+            selectedQuadNorm: visibleSelectedQuadNorm,
             cardSelectionActive: cardSelectionActive,
             focusTapNorm: focusTapNorm,
             accent: tone.accent,
@@ -114,8 +170,8 @@ class ScannerV3CameraOverlay extends StatelessWidget {
                     _ScannerSpatialStatusChip(
                       tone: tone,
                       guideRect: guideRect,
-                      quadPointsNorm: quadPointsNorm,
-                      quadPointSetsNorm: quadPointSetsNorm,
+                      quadPointsNorm: visibleQuadPointsNorm,
+                      quadPointSetsNorm: visibleQuadPointSetsNorm,
                       safePadding: padding,
                       overlaySize: Size(
                         constraints.maxWidth,
@@ -128,11 +184,10 @@ class ScannerV3CameraOverlay extends StatelessWidget {
             ),
           ),
         Positioned(
-          top: padding.top + 10,
-          left: 16,
-          right: 16,
+          top: topInset + 12,
+          left: 18,
+          right: 18,
           child: _ScannerTopControls(
-            tone: tone,
             flashEnabled: flashEnabled,
             onClose: onClose,
             onToggleFlash: onToggleFlash,
@@ -141,23 +196,25 @@ class ScannerV3CameraOverlay extends StatelessWidget {
         Positioned(
           left: 0,
           right: 0,
-          bottom: padding.bottom + shutterBottomOffset,
+          bottom: bottomInset + shutterBottomOffset,
           child: Center(
-            child: ScannerShutterButton(tone: tone, onPressed: onTryAgain),
+            child: ScannerShutterButton(tone: tone, onPressed: onShutter),
           ),
         ),
         Positioned(
-          left: 14,
-          right: 14,
-          bottom: padding.bottom + 14,
+          left: 16,
+          right: 16,
+          bottom: bottomInset + 16,
           child: _ScannerBottomPanel(
             state: state,
             tone: tone,
             edgeLocked: edgeLocked,
             detectedCardCount: detectedCardCount,
             cardSelectionActive: cardSelectionActive,
+            scanMemory: scanMemory,
             exportEnabled: exportEnabled,
             debugExpanded: debugExpanded,
+            maxHeight: bottomPanelMaxHeight,
             cameraPresetLabel: cameraPresetLabel,
             cameraPreviewSize: cameraPreviewSize,
             cameraInputSize: cameraInputSize,
@@ -179,6 +236,28 @@ class ScannerV3CameraOverlay extends StatelessWidget {
       ],
     );
   }
+}
+
+double _scannerBottomPanelMaxHeight(
+  BuildContext context,
+  ScannerV3UiTone tone,
+  bool debugExpanded,
+  bool hasScanMemory,
+) {
+  final screenHeight = MediaQuery.sizeOf(context).height;
+  if (debugExpanded) {
+    return (screenHeight * 0.62).clamp(360.0, 520.0).toDouble();
+  }
+  if (tone.showUnknownActions || tone.showRescanAction) {
+    return (screenHeight * 0.28).clamp(214.0, 260.0).toDouble();
+  }
+  if (tone.showPrimaryCandidate) {
+    return (screenHeight * 0.30).clamp(224.0, 276.0).toDouble();
+  }
+  if (hasScanMemory) {
+    return (screenHeight * 0.20).clamp(132.0, 176.0).toDouble();
+  }
+  return (screenHeight * 0.15).clamp(92.0, 126.0).toDouble();
 }
 
 class _ScannerSpatialStatusChip extends StatelessWidget {
@@ -318,13 +397,11 @@ class _ScannerSpatialStatusChipBody extends StatelessWidget {
 
 class _ScannerTopControls extends StatelessWidget {
   const _ScannerTopControls({
-    required this.tone,
     required this.flashEnabled,
     required this.onClose,
     required this.onToggleFlash,
   });
 
-  final ScannerV3UiTone tone;
   final bool flashEnabled;
   final VoidCallback onClose;
   final VoidCallback onToggleFlash;
@@ -338,9 +415,7 @@ class _ScannerTopControls extends StatelessWidget {
           tooltip: 'Close scanner',
           onPressed: onClose,
         ),
-        Expanded(
-          child: Center(child: _TopStatusPill(tone: tone)),
-        ),
+        const Spacer(),
         _GlassIconButton(
           icon: flashEnabled ? Icons.flash_on_rounded : Icons.flash_off_rounded,
           tooltip: flashEnabled ? 'Flash on' : 'Flash off',
@@ -366,62 +441,22 @@ class _GlassIconButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return ClipOval(
       child: BackdropFilter(
-        filter: ui.ImageFilter.blur(sigmaX: 18, sigmaY: 18),
+        filter: ui.ImageFilter.blur(sigmaX: 20, sigmaY: 20),
         child: DecoratedBox(
           decoration: BoxDecoration(
             shape: BoxShape.circle,
-            color: Colors.black.withValues(alpha: 0.38),
-            border: Border.all(color: Colors.white.withValues(alpha: 0.12)),
+            color: Colors.black.withValues(alpha: 0.26),
+            border: Border.all(color: Colors.white.withValues(alpha: 0.14)),
           ),
-          child: IconButton(
-            tooltip: tooltip,
-            icon: Icon(icon, color: Colors.white, size: 21),
-            onPressed: onPressed,
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-class _TopStatusPill extends StatelessWidget {
-  const _TopStatusPill({required this.tone});
-
-  final ScannerV3UiTone tone;
-
-  @override
-  Widget build(BuildContext context) {
-    final textTheme = Theme.of(context).textTheme;
-    return ClipRRect(
-      borderRadius: BorderRadius.circular(999),
-      child: BackdropFilter(
-        filter: ui.ImageFilter.blur(sigmaX: 18, sigmaY: 18),
-        child: DecoratedBox(
-          decoration: BoxDecoration(
-            color: Colors.black.withValues(alpha: 0.40),
-            border: Border.all(color: Colors.white.withValues(alpha: 0.12)),
-            borderRadius: BorderRadius.circular(999),
-          ),
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
-            child: Row(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Icon(tone.icon, size: 15, color: tone.accent),
-                const SizedBox(width: 8),
-                Flexible(
-                  child: Text(
-                    tone.pill,
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                    style: textTheme.labelMedium?.copyWith(
-                      color: Colors.white,
-                      fontWeight: FontWeight.w700,
-                      letterSpacing: 0,
-                    ),
-                  ),
-                ),
-              ],
+          child: SizedBox(
+            width: 44,
+            height: 44,
+            child: IconButton(
+              tooltip: tooltip,
+              padding: EdgeInsets.zero,
+              constraints: const BoxConstraints.tightFor(width: 44, height: 44),
+              icon: Icon(icon, color: Colors.white, size: 20),
+              onPressed: onPressed,
             ),
           ),
         ),
@@ -437,8 +472,10 @@ class _ScannerBottomPanel extends StatelessWidget {
     required this.edgeLocked,
     required this.detectedCardCount,
     required this.cardSelectionActive,
+    required this.scanMemory,
     required this.exportEnabled,
     required this.debugExpanded,
+    required this.maxHeight,
     required this.cameraPresetLabel,
     required this.cameraPreviewSize,
     required this.cameraInputSize,
@@ -462,8 +499,10 @@ class _ScannerBottomPanel extends StatelessWidget {
   final bool edgeLocked;
   final int detectedCardCount;
   final bool cardSelectionActive;
+  final List<ScannerV3ScanMemoryEntry> scanMemory;
   final bool exportEnabled;
   final bool debugExpanded;
+  final double maxHeight;
   final String cameraPresetLabel;
   final Size? cameraPreviewSize;
   final Size? cameraInputSize;
@@ -485,103 +524,151 @@ class _ScannerBottomPanel extends StatelessWidget {
   Widget build(BuildContext context) {
     final candidate = state.bestCandidate;
     final candidateId = state.lockedCandidateId ?? state.currentBestCandidateId;
+    final showScanMemory = scanMemory.isNotEmpty;
+    final showActions = tone.showUnknownActions || tone.showRescanAction;
+    final compactDock =
+        !debugExpanded &&
+        !tone.showPrimaryCandidate &&
+        !showActions &&
+        !showScanMemory;
+    final panelRadius = compactDock ? 999.0 : 28.0;
+    final panelMaxWidth = compactDock
+        ? 312.0
+        : MediaQuery.sizeOf(context).width;
+    final panelLayoutKey = tone.showPrimaryCandidate
+        ? 'candidate'
+        : showActions
+        ? 'actions'
+        : debugExpanded
+        ? 'debug'
+        : showScanMemory
+        ? 'memory'
+        : compactDock
+        ? 'compact'
+        : 'status';
 
-    return AnimatedScale(
-      scale: tone.locked ? 1.0 : 0.995,
-      duration: const Duration(milliseconds: 180),
-      curve: Curves.easeOutCubic,
-      child: ClipRRect(
-        borderRadius: BorderRadius.circular(24),
-        child: BackdropFilter(
-          filter: ui.ImageFilter.blur(sigmaX: 24, sigmaY: 24),
-          child: DecoratedBox(
-            decoration: BoxDecoration(
-              color: const Color(0xE6111216),
-              borderRadius: BorderRadius.circular(24),
-              border: Border.all(color: Colors.white.withValues(alpha: 0.11)),
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.black.withValues(alpha: 0.36),
-                  blurRadius: 30,
-                  offset: const Offset(0, 16),
-                ),
-              ],
-            ),
-            child: ConstrainedBox(
-              constraints: BoxConstraints(
-                minHeight: 140,
-                maxHeight: debugExpanded ? 520 : 260,
-              ),
-              child: Padding(
-                padding: const EdgeInsets.fromLTRB(16, 15, 16, 14),
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        _StateOrb(tone: tone),
-                        const SizedBox(width: 12),
-                        Expanded(child: ScannerStateLabel(tone: tone)),
-                        const SizedBox(width: 12),
-                        _SignalBadge(label: tone.badge, tone: tone),
-                      ],
+    return GestureDetector(
+      onLongPress: onToggleDebug,
+      child: AnimatedSwitcher(
+        duration: const Duration(milliseconds: 220),
+        switchInCurve: Curves.easeOutCubic,
+        switchOutCurve: Curves.easeInCubic,
+        child: Align(
+          key: ValueKey(panelLayoutKey),
+          alignment: Alignment.bottomCenter,
+          child: ConstrainedBox(
+            constraints: BoxConstraints(maxWidth: panelMaxWidth),
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(panelRadius),
+              child: BackdropFilter(
+                filter: ui.ImageFilter.blur(sigmaX: 30, sigmaY: 30),
+                child: DecoratedBox(
+                  decoration: BoxDecoration(
+                    color: const Color(0xCC101115),
+                    borderRadius: BorderRadius.circular(panelRadius),
+                    border: Border.all(
+                      color: Colors.white.withValues(alpha: 0.10),
                     ),
-                    if (tone.showPrimaryCandidate) ...[
-                      const SizedBox(height: 12),
-                      ScannerPrimaryCardTile(
-                        candidateId: candidateId,
-                        candidateName: candidate?.name,
-                        setCode: candidate?.setCode,
-                        number: candidate?.number,
-                        locked: tone.locked,
-                        accent: tone.accent,
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black.withValues(alpha: 0.42),
+                        blurRadius: compactDock ? 28 : 36,
+                        offset: Offset(0, compactDock ? 12 : 18),
                       ),
                     ],
-                    const SizedBox(height: 14),
-                    ScannerConfidenceRail(
-                      value: tone.progress,
-                      accent: tone.accent,
-                      indeterminate: tone.indeterminateProgress,
+                  ),
+                  child: ConstrainedBox(
+                    constraints: BoxConstraints(
+                      minHeight: compactDock
+                          ? 58
+                          : tone.showPrimaryCandidate
+                          ? 188
+                          : showActions
+                          ? 176
+                          : showScanMemory
+                          ? 124
+                          : 86,
+                      maxHeight: maxHeight,
                     ),
-                    const SizedBox(height: 12),
-                    _QualityStrip(
-                      state: state,
-                      tone: tone,
-                      edgeLocked: edgeLocked,
-                      detectedCardCount: detectedCardCount,
-                      cardSelectionActive: cardSelectionActive,
-                    ),
-                    if (tone.showUnknownActions || tone.showRescanAction) ...[
-                      const SizedBox(height: 12),
-                      ScannerActionsBar(
-                        showUnknownActions: tone.showUnknownActions,
-                        showRescanAction: tone.showRescanAction,
-                        onTryAgain: onTryAgain,
-                        onSearchManually: onSearchManually,
+                    child: Padding(
+                      padding: compactDock
+                          ? const EdgeInsets.fromLTRB(12, 11, 16, 11)
+                          : const EdgeInsets.fromLTRB(16, 14, 16, 14),
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          if (tone.showPrimaryCandidate)
+                            ScannerPrimaryCardTile(
+                              candidateId: candidateId,
+                              candidateName: candidate?.name,
+                              setCode: candidate?.setCode,
+                              number: candidate?.number,
+                              imageUrl: candidate?.imageUrl,
+                              locked: tone.locked,
+                              accent: tone.accent,
+                            )
+                          else
+                            _ScannerDockHeader(
+                              tone: tone,
+                              compact: compactDock,
+                            ),
+                          if (!debugExpanded && tone.indeterminateProgress) ...[
+                            const SizedBox(height: 10),
+                            ScannerConfidenceRail(
+                              value: tone.progress,
+                              accent: tone.accent,
+                              indeterminate: true,
+                            ),
+                          ],
+                          if (showActions) ...[
+                            const SizedBox(height: 12),
+                            ScannerActionsBar(
+                              showUnknownActions: tone.showUnknownActions,
+                              showRescanAction: tone.showRescanAction,
+                              onTryAgain: onTryAgain,
+                              onSearchManually: onSearchManually,
+                            ),
+                          ],
+                          if (showScanMemory) ...[
+                            const SizedBox(height: 12),
+                            _ScanMemoryStrip(entries: scanMemory),
+                          ],
+                          if (debugExpanded) ...[
+                            const SizedBox(height: 12),
+                            _QualityStrip(
+                              state: state,
+                              tone: tone,
+                              edgeLocked: edgeLocked,
+                              detectedCardCount: detectedCardCount,
+                              cardSelectionActive: cardSelectionActive,
+                            ),
+                            ScannerDebugPanel(
+                              state: state,
+                              expanded: debugExpanded,
+                              exportEnabled: exportEnabled,
+                              cameraPresetLabel: cameraPresetLabel,
+                              cameraPreviewSize: cameraPreviewSize,
+                              cameraInputSize: cameraInputSize,
+                              cameraInitFallbackReason:
+                                  cameraInitFallbackReason,
+                              diagnosticsEnabled: diagnosticsEnabled,
+                              diagnosticsFrameCount: diagnosticsFrameCount,
+                              diagnosticsLastExportPath:
+                                  diagnosticsLastExportPath,
+                              autoTestStatus: autoTestStatus,
+                              onToggle: onToggleDebug,
+                              onToggleDiagnostics: onToggleDiagnostics,
+                              onExportDiagnostics: onExportDiagnostics,
+                              onStartAutoTest: onStartAutoTest,
+                              onCancelAutoTest: onCancelAutoTest,
+                              onExportAutoTestReport: onExportAutoTestReport,
+                            ),
+                          ],
+                        ],
                       ),
-                    ],
-                    ScannerDebugPanel(
-                      state: state,
-                      expanded: debugExpanded,
-                      exportEnabled: exportEnabled,
-                      cameraPresetLabel: cameraPresetLabel,
-                      cameraPreviewSize: cameraPreviewSize,
-                      cameraInputSize: cameraInputSize,
-                      cameraInitFallbackReason: cameraInitFallbackReason,
-                      diagnosticsEnabled: diagnosticsEnabled,
-                      diagnosticsFrameCount: diagnosticsFrameCount,
-                      diagnosticsLastExportPath: diagnosticsLastExportPath,
-                      autoTestStatus: autoTestStatus,
-                      onToggle: onToggleDebug,
-                      onToggleDiagnostics: onToggleDiagnostics,
-                      onExportDiagnostics: onExportDiagnostics,
-                      onStartAutoTest: onStartAutoTest,
-                      onCancelAutoTest: onCancelAutoTest,
-                      onExportAutoTestReport: onExportAutoTestReport,
                     ),
-                  ],
+                  ),
                 ),
               ),
             ),
@@ -593,9 +680,10 @@ class _ScannerBottomPanel extends StatelessWidget {
 }
 
 class _StateOrb extends StatelessWidget {
-  const _StateOrb({required this.tone});
+  const _StateOrb({required this.tone, this.compact = false});
 
   final ScannerV3UiTone tone;
+  final bool compact;
 
   @override
   Widget build(BuildContext context) {
@@ -606,39 +694,181 @@ class _StateOrb extends StatelessWidget {
         border: Border.all(color: tone.accent.withValues(alpha: 0.38)),
       ),
       child: SizedBox(
-        width: 44,
-        height: 44,
-        child: Icon(tone.icon, color: tone.accent, size: 22),
+        width: compact ? 34 : 40,
+        height: compact ? 34 : 40,
+        child: Icon(tone.icon, color: tone.accent, size: compact ? 18 : 20),
       ),
     );
   }
 }
 
-class _SignalBadge extends StatelessWidget {
-  const _SignalBadge({required this.label, required this.tone});
+class _ScannerDockHeader extends StatelessWidget {
+  const _ScannerDockHeader({required this.tone, this.compact = false});
 
-  final String label;
   final ScannerV3UiTone tone;
+  final bool compact;
 
   @override
   Widget build(BuildContext context) {
-    return DecoratedBox(
-      decoration: BoxDecoration(
-        color: tone.accent.withValues(alpha: 0.13),
-        borderRadius: BorderRadius.circular(13),
-        border: Border.all(color: tone.accent.withValues(alpha: 0.28)),
-      ),
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 7),
-        child: Text(
-          label,
-          maxLines: 1,
-          overflow: TextOverflow.ellipsis,
-          style: Theme.of(context).textTheme.labelLarge?.copyWith(
-            color: Colors.white,
-            fontWeight: FontWeight.w800,
-            letterSpacing: 0,
+    if (compact) {
+      return Row(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          _StateOrb(tone: tone, compact: true),
+          const SizedBox(width: 11),
+          Expanded(
+            child: Text(
+              tone.title,
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+              style: Theme.of(context).textTheme.titleSmall?.copyWith(
+                color: Colors.white,
+                fontWeight: FontWeight.w800,
+                letterSpacing: 0,
+              ),
+            ),
           ),
+        ],
+      );
+    }
+
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        _StateOrb(tone: tone, compact: compact),
+        SizedBox(width: compact ? 11 : 13),
+        Expanded(child: ScannerStateLabel(tone: tone)),
+      ],
+    );
+  }
+}
+
+class _ScanMemoryStrip extends StatelessWidget {
+  const _ScanMemoryStrip({required this.entries});
+
+  final List<ScannerV3ScanMemoryEntry> entries;
+
+  @override
+  Widget build(BuildContext context) {
+    final visibleEntries = entries.take(8).toList(growable: false);
+    return SizedBox(
+      height: 48,
+      child: ListView.separated(
+        scrollDirection: Axis.horizontal,
+        physics: const BouncingScrollPhysics(),
+        itemCount: visibleEntries.length,
+        separatorBuilder: (context, index) => const SizedBox(width: 8),
+        itemBuilder: (context, index) {
+          final entry = visibleEntries[index];
+          return Tooltip(
+            message: entry.displayName,
+            child: _ScanMemoryThumb(entry: entry),
+          );
+        },
+      ),
+    );
+  }
+}
+
+class _ScanMemoryThumb extends StatelessWidget {
+  const _ScanMemoryThumb({required this.entry});
+
+  final ScannerV3ScanMemoryEntry entry;
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      width: 35,
+      height: 48,
+      child: Stack(
+        clipBehavior: Clip.none,
+        children: [
+          Positioned.fill(
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(7),
+              child: DecoratedBox(
+                decoration: BoxDecoration(
+                  color: Colors.white.withValues(alpha: 0.08),
+                  border: Border.all(
+                    color: Colors.white.withValues(alpha: 0.14),
+                  ),
+                ),
+                child: _ScanMemoryImage(entry: entry),
+              ),
+            ),
+          ),
+          if (entry.count > 1)
+            Positioned(
+              right: -4,
+              top: -4,
+              child: DecoratedBox(
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: Colors.white,
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black.withValues(alpha: 0.32),
+                      blurRadius: 8,
+                      offset: const Offset(0, 2),
+                    ),
+                  ],
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.all(4),
+                  child: Text(
+                    '${entry.count}',
+                    style: Theme.of(context).textTheme.labelSmall?.copyWith(
+                      color: const Color(0xFF101114),
+                      fontWeight: FontWeight.w900,
+                      letterSpacing: 0,
+                    ),
+                  ),
+                ),
+              ),
+            ),
+        ],
+      ),
+    );
+  }
+}
+
+class _ScanMemoryImage extends StatelessWidget {
+  const _ScanMemoryImage({required this.entry});
+
+  final ScannerV3ScanMemoryEntry entry;
+
+  @override
+  Widget build(BuildContext context) {
+    final imageUrl = entry.imageUrl?.trim() ?? '';
+    if (imageUrl.isEmpty) return _fallback(context);
+    return Image.network(
+      imageUrl,
+      fit: BoxFit.cover,
+      width: double.infinity,
+      height: double.infinity,
+      cacheWidth: 96,
+      cacheHeight: 132,
+      filterQuality: FilterQuality.low,
+      gaplessPlayback: true,
+      loadingBuilder: (context, child, loadingProgress) {
+        if (loadingProgress == null) return child;
+        return _fallback(context);
+      },
+      errorBuilder: (context, error, stackTrace) => _fallback(context),
+    );
+  }
+
+  Widget _fallback(BuildContext context) {
+    final initial = entry.displayName.isEmpty
+        ? '?'
+        : entry.displayName[0].toUpperCase();
+    return Center(
+      child: Text(
+        initial,
+        style: Theme.of(context).textTheme.titleMedium?.copyWith(
+          color: Colors.white.withValues(alpha: 0.86),
+          fontWeight: FontWeight.w900,
+          letterSpacing: 0,
         ),
       ),
     );
@@ -662,39 +892,47 @@ class _QualityStrip extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final confirmedFrame =
+        state.cardPresent ||
+        state.identityAllowed ||
+        tone.phase == ScannerLiveBehaviorPhase.ready ||
+        tone.phase == ScannerLiveBehaviorPhase.scanningIdentity ||
+        tone.phase == ScannerLiveBehaviorPhase.recognized;
     final glareOk = state.quality.glareRatio < 0.12;
     final brightnessOk =
         state.quality.brightnessScore > 0.18 &&
         state.quality.brightnessScore < 0.86;
+    final qualityActive = state.quality.accepted && confirmedFrame;
     final qualityText = state.sampledFrameCount == 0
-        ? 'Position card'
-        : state.quality.accepted
-        ? 'Image clear'
-        : tone.hint;
+        ? 'Place'
+        : qualityActive
+        ? 'Clear'
+        : 'Align';
+    final frameText = cardSelectionActive
+        ? 'Selected'
+        : edgeLocked && confirmedFrame
+        ? detectedCardCount > 1
+              ? '$detectedCardCount framed'
+              : 'Framed'
+        : 'Edges';
 
     return Row(
       children: [
         Expanded(
           child: _QualityChip(
-            icon: state.quality.accepted
+            icon: qualityActive
                 ? Icons.check_rounded
                 : Icons.pan_tool_alt_rounded,
             label: qualityText,
-            active: state.quality.accepted,
+            active: qualityActive,
           ),
         ),
         const SizedBox(width: 8),
         Expanded(
           child: _QualityChip(
             icon: edgeLocked ? Icons.crop_free_rounded : Icons.fit_screen,
-            label: cardSelectionActive
-                ? 'Card selected'
-                : edgeLocked
-                ? detectedCardCount > 1
-                      ? '$detectedCardCount cards locked'
-                      : '1 card locked'
-                : 'Align edges',
-            active: edgeLocked,
+            label: frameText,
+            active: edgeLocked && confirmedFrame,
           ),
         ),
         const SizedBox(width: 8),
@@ -703,7 +941,7 @@ class _QualityStrip extends StatelessWidget {
             icon: glareOk && brightnessOk
                 ? Icons.light_mode_rounded
                 : Icons.flare_rounded,
-            label: glareOk && brightnessOk ? 'Light good' : 'Reduce glare',
+            label: glareOk && brightnessOk ? 'Light' : 'Glare',
             active: glareOk && brightnessOk,
           ),
         ),
@@ -729,13 +967,13 @@ class _QualityChip extends StatelessWidget {
     return DecoratedBox(
       decoration: BoxDecoration(
         color: Colors.white.withValues(alpha: active ? 0.08 : 0.045),
-        borderRadius: BorderRadius.circular(12),
+        borderRadius: BorderRadius.circular(10),
         border: Border.all(
           color: Colors.white.withValues(alpha: active ? 0.13 : 0.07),
         ),
       ),
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
+        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 7),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [

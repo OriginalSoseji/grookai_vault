@@ -42,7 +42,7 @@ void main() {
 
     final tone = ScannerV3UiTone.fromState(state, edgeLocked: true);
     expect(tone.badge, isNot('Ready'));
-    expect(tone.spatialStatusVisible, isTrue);
+    expect(tone.spatialStatusVisible, isFalse);
     expect(tone.spatialLabel, 'Align');
   });
 
@@ -181,6 +181,93 @@ void main() {
 
     final tone = ScannerV3UiTone.fromState(state, edgeLocked: true);
     expect(tone.spatialLabel, 'Card found');
+  });
+
+  test('identity lock stays hidden until reveal is requested', () {
+    final state = _state(
+      sampledFrameCount: 10,
+      acceptedFrameCount: 5,
+      selectedQuadSource: 'native_detector',
+      qualityAccepted: true,
+      cardPresent: true,
+      identityAllowed: true,
+      identityDecisionState: IdentityDecisionStateV1.identityLocked,
+      locked: true,
+      lockedCandidateId: 'card-1',
+      candidates: const <CandidateState>[
+        CandidateState(
+          id: 'card-1',
+          score: 2,
+          occurrences: 2,
+          lastSeenFrame: 5,
+        ),
+      ],
+    );
+
+    final hiddenTone = ScannerV3UiTone.fromState(
+      state,
+      edgeLocked: true,
+      identityRevealRequested: false,
+    );
+    final revealedTone = ScannerV3UiTone.fromState(
+      state,
+      edgeLocked: true,
+      identityRevealRequested: true,
+    );
+
+    expect(hiddenTone.spatialLabel, 'Ready');
+    expect(hiddenTone.showPrimaryCandidate, isFalse);
+    expect(hiddenTone.showRescanAction, isFalse);
+    expect(revealedTone.spatialLabel, 'Card found');
+    expect(revealedTone.showPrimaryCandidate, isTrue);
+    expect(revealedTone.showRescanAction, isFalse);
+    expect(revealedTone.locked, isTrue);
+  });
+
+  test('soft preview candidate is hidden before reveal', () {
+    final state = _state(
+      sampledFrameCount: 8,
+      acceptedFrameCount: 3,
+      selectedQuadSource: 'native_detector',
+      qualityAccepted: true,
+      cardPresent: true,
+      cardPresentReason: 'card_present',
+      cardPresentConsecutiveFrames: 3,
+      identityAllowed: true,
+      identityAllowedReason: 'card_present_persistence_satisfied',
+      identitySignalSource: 'v8_identity_candidates',
+      embeddingElapsedMs: 82,
+      vectorSearchElapsedMs: 34,
+      identityDecisionState: IdentityDecisionStateV1.candidateUnstable,
+      identityScoreGap: 0.7,
+      identityTopCandidateScore: 1.4,
+      identityCropSupportCount: 2,
+      identityRecentFrameSupportCount: 2,
+      identityTopDistance: 0.15,
+      candidates: const <CandidateState>[
+        CandidateState(
+          id: 'card-1',
+          score: 2,
+          occurrences: 2,
+          lastSeenFrame: 5,
+        ),
+      ],
+    );
+
+    final hiddenTone = ScannerV3UiTone.fromState(
+      state,
+      edgeLocked: true,
+      identityRevealRequested: false,
+    );
+    final revealedTone = ScannerV3UiTone.fromState(
+      state,
+      edgeLocked: true,
+      identityRevealRequested: true,
+    );
+
+    expect(hiddenTone.showPrimaryCandidate, isFalse);
+    expect(hiddenTone.subtitle, isNot(contains('Possible match')));
+    expect(revealedTone.showPrimaryCandidate, isTrue);
   });
 
   test('identity service unavailable maps to blocked', () {

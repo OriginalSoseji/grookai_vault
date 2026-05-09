@@ -21,12 +21,33 @@ class _ScannerShutterButtonState extends State<ScannerShutterButton>
   late final AnimationController _controller = AnimationController(
     vsync: this,
     duration: const Duration(milliseconds: 1400),
-  )..repeat(reverse: true);
+  );
+
+  @override
+  void initState() {
+    super.initState();
+    _syncPulse();
+  }
+
+  @override
+  void didUpdateWidget(covariant ScannerShutterButton oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (oldWidget.tone.locked != widget.tone.locked) {
+      _syncPulse();
+    }
+  }
 
   @override
   void dispose() {
     _controller.dispose();
     super.dispose();
+  }
+
+  void _syncPulse() {
+    if (_controller.isAnimating) {
+      _controller.stop();
+    }
+    _controller.value = 1.0;
   }
 
   @override
@@ -45,39 +66,38 @@ class _ScannerShutterButtonState extends State<ScannerShutterButton>
           child: AnimatedBuilder(
             animation: _controller,
             builder: (context, child) {
-              final pulse = locked ? 1.0 : 0.88 + _controller.value * 0.12;
-              return Transform.scale(scale: pulse, child: child);
+              return child!;
             },
             child: DecoratedBox(
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
-                color: Colors.black.withValues(alpha: 0.34),
+                color: Colors.black.withValues(alpha: 0.18),
                 border: Border.all(
-                  color: Colors.white.withValues(alpha: 0.32),
-                  width: 1.2,
+                  color: Colors.white.withValues(alpha: 0.42),
+                  width: 2.2,
                 ),
                 boxShadow: [
                   BoxShadow(
-                    color: widget.tone.accent.withValues(alpha: 0.22),
-                    blurRadius: 28,
-                    spreadRadius: 2,
+                    color: widget.tone.accent.withValues(alpha: 0.18),
+                    blurRadius: 32,
+                    spreadRadius: 1,
                   ),
                   BoxShadow(
-                    color: Colors.black.withValues(alpha: 0.38),
-                    blurRadius: 24,
-                    offset: const Offset(0, 10),
+                    color: Colors.black.withValues(alpha: 0.42),
+                    blurRadius: 28,
+                    offset: const Offset(0, 12),
                   ),
                 ],
               ),
               child: SizedBox(
-                width: 72,
-                height: 72,
+                width: 78,
+                height: 78,
                 child: Center(
                   child: AnimatedContainer(
                     duration: const Duration(milliseconds: 180),
                     curve: Curves.easeOutCubic,
-                    width: locked ? 44 : 50,
-                    height: locked ? 44 : 50,
+                    width: locked ? 52 : 58,
+                    height: locked ? 52 : 58,
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
                       color: locked ? widget.tone.accent : Colors.white,
@@ -85,7 +105,7 @@ class _ScannerShutterButtonState extends State<ScannerShutterButton>
                     child: Icon(
                       locked ? Icons.refresh_rounded : Icons.camera_alt_rounded,
                       color: locked ? const Color(0xFF101312) : Colors.black,
-                      size: 22,
+                      size: 23,
                     ),
                   ),
                 ),

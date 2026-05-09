@@ -35,7 +35,24 @@ class _ScannerFrameGuideState extends State<ScannerFrameGuide>
   late final AnimationController _controller = AnimationController(
     vsync: this,
     duration: const Duration(milliseconds: 1200),
-  )..repeat(reverse: true);
+  );
+
+  bool get _shouldAnimate => false;
+
+  @override
+  void initState() {
+    super.initState();
+    _syncAnimation();
+  }
+
+  @override
+  void didUpdateWidget(covariant ScannerFrameGuide oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (oldWidget.edgeLocked != widget.edgeLocked ||
+        oldWidget.locked != widget.locked) {
+      _syncAnimation();
+    }
+  }
 
   @override
   void dispose() {
@@ -43,27 +60,49 @@ class _ScannerFrameGuideState extends State<ScannerFrameGuide>
     super.dispose();
   }
 
+  void _syncAnimation() {
+    if (_shouldAnimate) {
+      if (!_controller.isAnimating) {
+        _controller.repeat(reverse: true);
+      }
+      return;
+    }
+    if (_controller.isAnimating) {
+      _controller.stop();
+    }
+    _controller.value = 1.0;
+  }
+
   @override
   Widget build(BuildContext context) {
+    if (!_shouldAnimate) {
+      return _paint(breath: 1.0, willChange: false);
+    }
     return AnimatedBuilder(
       animation: _controller,
       builder: (context, child) {
         final breath = 0.62 + (_controller.value * 0.38);
-        return CustomPaint(
-          painter: _ScannerFrameGuidePainter(
-            guideRect: widget.guideRect,
-            quadPointsNorm: widget.quadPointsNorm,
-            quadPointSetsNorm: widget.quadPointSetsNorm,
-            selectedQuadNorm: widget.selectedQuadNorm,
-            cardSelectionActive: widget.cardSelectionActive,
-            focusTapNorm: widget.focusTapNorm,
-            accent: widget.accent,
-            edgeLocked: widget.edgeLocked,
-            locked: widget.locked,
-            breath: breath,
-          ),
-        );
+        return _paint(breath: breath, willChange: true);
       },
+    );
+  }
+
+  Widget _paint({required double breath, required bool willChange}) {
+    return CustomPaint(
+      isComplex: true,
+      willChange: willChange,
+      painter: _ScannerFrameGuidePainter(
+        guideRect: widget.guideRect,
+        quadPointsNorm: widget.quadPointsNorm,
+        quadPointSetsNorm: widget.quadPointSetsNorm,
+        selectedQuadNorm: widget.selectedQuadNorm,
+        cardSelectionActive: widget.cardSelectionActive,
+        focusTapNorm: widget.focusTapNorm,
+        accent: widget.accent,
+        edgeLocked: widget.edgeLocked,
+        locked: widget.locked,
+        breath: breath,
+      ),
     );
   }
 }
@@ -95,7 +134,7 @@ class _ScannerFrameGuidePainter extends CustomPainter {
 
   @override
   void paint(Canvas canvas, Size size) {
-    final overlay = Paint()..color = Colors.black.withValues(alpha: 0.34);
+    final overlay = Paint()..color = Colors.black.withValues(alpha: 0.22);
     final fullPath = Path()..addRect(Offset.zero & size);
     final guidePath = Path()
       ..addRRect(RRect.fromRectAndRadius(guideRect, const Radius.circular(24)));
@@ -107,20 +146,20 @@ class _ScannerFrameGuidePainter extends CustomPainter {
     final edgeColor = locked || edgeLocked ? accent : Colors.white;
     final glowPaint = Paint()
       ..color = edgeColor.withValues(
-        alpha: locked ? 0.34 : (0.09 + 0.13 * breath),
+        alpha: locked ? 0.26 : (0.06 + 0.08 * breath),
       )
       ..style = PaintingStyle.stroke
-      ..strokeWidth = locked ? 4 : 3
-      ..maskFilter = ui.MaskFilter.blur(ui.BlurStyle.outer, locked ? 9 : 5);
+      ..strokeWidth = locked ? 3 : 2
+      ..maskFilter = ui.MaskFilter.blur(ui.BlurStyle.outer, locked ? 8 : 4);
     canvas.drawRRect(
       RRect.fromRectAndRadius(guideRect, const Radius.circular(24)),
       glowPaint,
     );
 
     final borderPaint = Paint()
-      ..color = Colors.white.withValues(alpha: 0.18)
+      ..color = Colors.white.withValues(alpha: 0.12)
       ..style = PaintingStyle.stroke
-      ..strokeWidth = 1.2;
+      ..strokeWidth = 1.0;
     canvas.drawRRect(
       RRect.fromRectAndRadius(guideRect, const Radius.circular(24)),
       borderPaint,
@@ -128,12 +167,12 @@ class _ScannerFrameGuidePainter extends CustomPainter {
 
     final cornerPaint = Paint()
       ..color = edgeColor.withValues(
-        alpha: locked || edgeLocked ? 0.94 : 0.42 + (0.28 * breath),
+        alpha: locked || edgeLocked ? 0.82 : 0.34 + (0.20 * breath),
       )
       ..style = PaintingStyle.stroke
-      ..strokeWidth = locked ? 4 : 3
+      ..strokeWidth = locked ? 3.0 : 2.2
       ..strokeCap = StrokeCap.round;
-    final corner = (guideRect.width * 0.13).clamp(26.0, 48.0);
+    final corner = (guideRect.width * 0.09).clamp(22.0, 36.0);
     _drawCorner(canvas, cornerPaint, guideRect.topLeft, corner, true, true);
     _drawCorner(canvas, cornerPaint, guideRect.topRight, corner, false, true);
     _drawCorner(
@@ -180,17 +219,17 @@ class _ScannerFrameGuidePainter extends CustomPainter {
       final quadPaint = Paint()
         ..color = accent.withValues(
           alpha: isSelected
-              ? 0.94
+              ? 0.86
               : locked
-              ? 0.72
-              : (isPrimary ? 0.62 : 0.54),
+              ? 0.64
+              : (isPrimary ? 0.54 : 0.42),
         )
         ..style = PaintingStyle.stroke
         ..strokeWidth = isSelected
-            ? 3.2
-            : locked
             ? 2.6
-            : (isPrimary ? 2.2 : 1.9);
+            : locked
+            ? 2.2
+            : (isPrimary ? 1.8 : 1.5);
       canvas.drawPath(quadPath, quadPaint);
     }
 

@@ -2168,6 +2168,7 @@ class _MyAppState extends State<MyApp> {
           final session = _authSession;
           final shellReady =
               session != null && !_authRecoveryPending && !session.isExpired;
+          final pendingDebugAction = _pendingDebugAction;
           _debugGoogleOAuth(
             'auth gate sessionPresent=${session != null} '
             'sessionExpired=${session?.isExpired ?? false} '
@@ -2177,6 +2178,15 @@ class _MyAppState extends State<MyApp> {
           if (_authRecoveryPending) {
             return const Scaffold(
               body: Center(child: CircularProgressIndicator.adaptive()),
+            );
+          }
+          if (kDebugMode &&
+              !shellReady &&
+              pendingDebugAction?.action == _scannerV4AutoTestAction) {
+            return const ConditionCameraScreen(
+              title: 'Scan Card',
+              hintText: 'Align card inside the frame',
+              autoStartScannerV4DiagnosticTest: true,
             );
           }
           return shellReady

@@ -34,9 +34,9 @@ class ScannerV3UiTone {
   final bool showRescanAction;
   final bool indeterminateProgress;
 
-  bool get locked => pill == 'Locked';
+  bool get locked => phase == ScannerLiveBehaviorPhase.recognized;
 
-  bool get spatialStatusVisible => phase != ScannerLiveBehaviorPhase.searching;
+  bool get spatialStatusVisible => false;
 
   String get spatialLabel {
     switch (phase) {
@@ -62,6 +62,7 @@ class ScannerV3UiTone {
   static ScannerV3UiTone fromState(
     ScannerV3LiveLoopState state, {
     bool edgeLocked = false,
+    bool identityRevealRequested = true,
   }) {
     final confidence = state.confidenceScore.clamp(0.0, 1.0).toDouble();
     final softPreviewReady = _softPreviewReady(state);
@@ -73,11 +74,11 @@ class ScannerV3UiTone {
       case ScannerLiveBehaviorPhase.blocked:
         return const ScannerV3UiTone(
           phase: ScannerLiveBehaviorPhase.blocked,
-          title: 'Scanner identity service unavailable',
+          title: 'Scanner offline',
           pill: 'Offline',
-          subtitle: 'Start the local identity service to show matches',
+          subtitle: 'Identity service unavailable',
           badge: 'Setup',
-          hint: 'Open Diagnostics',
+          hint: 'Service unavailable',
           icon: Icons.cloud_off_rounded,
           accent: Color(0xFFFFC46B),
           progress: 0.0,
@@ -87,10 +88,13 @@ class ScannerV3UiTone {
           indeterminateProgress: false,
         );
       case ScannerLiveBehaviorPhase.recognized:
+        if (!identityRevealRequested) {
+          return _hiddenIdentityReadyTone(confidence);
+        }
         return ScannerV3UiTone(
           phase: ScannerLiveBehaviorPhase.recognized,
           title: 'Card found',
-          pill: 'Locked',
+          pill: 'Matched',
           subtitle: 'Ready to review',
           badge: '${(confidence * 100).round()}%',
           hint: 'Match confirmed',
@@ -99,14 +103,17 @@ class ScannerV3UiTone {
           progress: confidence,
           showPrimaryCandidate: true,
           showUnknownActions: false,
-          showRescanAction: true,
+          showRescanAction: false,
           indeterminateProgress: false,
         );
       case ScannerLiveBehaviorPhase.unknown:
+        if (!identityRevealRequested) {
+          return _hiddenIdentityReadyTone(confidence);
+        }
         return const ScannerV3UiTone(
           phase: ScannerLiveBehaviorPhase.unknown,
-          title: 'No confident match',
-          pill: 'Search available',
+          title: 'No match yet',
+          pill: 'Review',
           subtitle: 'Try again or search manually',
           badge: 'Review',
           hint: 'No final identity shown',
@@ -122,7 +129,7 @@ class ScannerV3UiTone {
         return ScannerV3UiTone(
           phase: ScannerLiveBehaviorPhase.cardPresentPending,
           title: 'Hold steady',
-          pill: 'Hold steady',
+          pill: 'Hold',
           subtitle: 'Keep the card in frame',
           badge: 'Hold',
           hint: 'Stabilizing',
@@ -156,7 +163,7 @@ class ScannerV3UiTone {
           phase: ScannerLiveBehaviorPhase.scanningIdentity,
           title: 'Reading card',
           pill: 'Reading',
-          subtitle: softPreviewReady
+          subtitle: identityRevealRequested && softPreviewReady
               ? 'Possible match forming. Hold steady'
               : 'Keep the card inside the frame',
           badge: confidence == 0 ? 'Scan' : '${(confidence * 100).round()}%',
@@ -164,7 +171,7 @@ class ScannerV3UiTone {
           icon: Icons.center_focus_strong_rounded,
           accent: const Color(0xFFAEC8FF),
           progress: confidence == 0 ? 0.42 : confidence,
-          showPrimaryCandidate: softPreviewReady,
+          showPrimaryCandidate: identityRevealRequested && softPreviewReady,
           showUnknownActions: false,
           showRescanAction: false,
           indeterminateProgress: true,
@@ -174,7 +181,7 @@ class ScannerV3UiTone {
           phase: ScannerLiveBehaviorPhase.ready,
           title: 'Ready',
           pill: 'Ready',
-          subtitle: 'Hold still while reading starts',
+          subtitle: 'Hold steady for capture',
           badge: 'Ready',
           hint: 'Hold steady',
           icon: Icons.check_circle_outline_rounded,
@@ -189,7 +196,7 @@ class ScannerV3UiTone {
         return ScannerV3UiTone(
           phase: ScannerLiveBehaviorPhase.aligning,
           title: 'Align card',
-          pill: 'Live scan',
+          pill: 'Align',
           subtitle: edgeLocked
               ? 'Keep the full card visible'
               : 'Fill the frame with one card',
@@ -207,7 +214,7 @@ class ScannerV3UiTone {
         return ScannerV3UiTone(
           phase: ScannerLiveBehaviorPhase.searching,
           title: 'Find a card',
-          pill: 'Live scan',
+          pill: 'Scan',
           subtitle: 'Place one card in frame',
           badge: 'Scan',
           hint: 'Position card',
@@ -232,6 +239,24 @@ class ScannerV3UiTone {
     final distance = state.identityTopDistance;
     if (distance == null || distance > 0.195) return false;
     return true;
+  }
+
+  static ScannerV3UiTone _hiddenIdentityReadyTone(double confidence) {
+    return ScannerV3UiTone(
+      phase: ScannerLiveBehaviorPhase.ready,
+      title: 'Ready',
+      pill: 'Ready',
+      subtitle: 'Hold steady for capture',
+      badge: 'Ready',
+      hint: 'Hold steady',
+      icon: Icons.camera_alt_rounded,
+      accent: const Color(0xFF7EE7B2),
+      progress: confidence == 0 ? 0.72 : confidence,
+      showPrimaryCandidate: false,
+      showUnknownActions: false,
+      showRescanAction: false,
+      indeterminateProgress: false,
+    );
   }
 
   static String _hintForQuality(ScannerV3LiveLoopState state) {
@@ -277,20 +302,20 @@ class ScannerStateLabel extends StatelessWidget {
             key: ValueKey(tone.title),
             maxLines: 1,
             overflow: TextOverflow.ellipsis,
-            style: textTheme.titleMedium?.copyWith(
+            style: textTheme.titleSmall?.copyWith(
               color: Colors.white,
               fontWeight: FontWeight.w800,
               letterSpacing: 0,
             ),
           ),
         ),
-        const SizedBox(height: 4),
+        const SizedBox(height: 3),
         Text(
           tone.subtitle,
           maxLines: 1,
           overflow: TextOverflow.ellipsis,
           style: textTheme.bodySmall?.copyWith(
-            color: Colors.white.withValues(alpha: 0.72),
+            color: Colors.white.withValues(alpha: 0.60),
             height: 1.2,
             letterSpacing: 0,
           ),

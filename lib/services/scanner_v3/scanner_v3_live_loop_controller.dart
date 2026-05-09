@@ -84,6 +84,7 @@ class ScannerV3LiveLoopController {
   static const int candidateDistanceThreshold = 26;
   static const int minAcceptedFramesToLock = 3;
   static const double lockScoreGap = 6.0;
+  static const double _selectedCardTargetExpansion = 1.14;
 
   final Duration sampleInterval;
   final ScannerV3LockArtifactExportCallback? onLockArtifactExported;
@@ -104,6 +105,14 @@ class ScannerV3LiveLoopController {
   int? _lastVectorSearchElapsedMs;
   int? _lastRerankElapsedMs;
   int? _lastIdentityPipelineElapsedMs;
+  int? _lastIdentityCropGenerationElapsedMs;
+  int? _lastIdentityCropEncodeElapsedMs;
+  int? _lastIdentityBatchRequestElapsedMs;
+  String? _lastIdentityCropTransportFormat;
+  int? _lastIdentityCropOutputSize;
+  DateTime? _identityAllowedStartedAt;
+  String? _identityTimingCandidateId;
+  int? _lastIdentityToLockElapsedMs;
   int _lastVectorCandidateCount = 0;
   int _lastIdentityCropCount = 0;
   int _lastSuccessfulIdentityCropCount = 0;
@@ -190,6 +199,10 @@ class ScannerV3LiveLoopController {
 
     final candidateEvaluation = _selectBestFrameCandidate(normalizedCandidates);
     final normalized = candidateEvaluation.frame;
+    final identityNormalized = _identityFrameForLock(
+      normalizedCandidates,
+      normalized,
+    );
     final quality = candidateEvaluation.quality;
     final cardPresent = candidateEvaluation.cardPresent;
 
@@ -305,14 +318,15 @@ class ScannerV3LiveLoopController {
       identityDecisionReason = 'identity_locked_frozen';
     } else {
       try {
+        _identityAllowedStartedAt ??= now;
         final normalizedFullCardGray = ScannerV3ExportImage(
-          bytes: Uint8List.fromList(normalized.bytes),
-          width: normalized.width,
-          height: normalized.height,
+          bytes: Uint8List.fromList(identityNormalized.bytes),
+          width: identityNormalized.width,
+          height: identityNormalized.height,
         );
         final normalizedFullCardColor = _normalizedColorFrameFromYuv(
           image: image,
-          imageQuad: normalized.imageQuad,
+          imageQuad: identityNormalized.imageQuad,
         );
         final identityFullCard =
             normalizedFullCardColor ?? normalizedFullCardGray;
@@ -330,18 +344,39 @@ class ScannerV3LiveLoopController {
         _lastVectorSearchElapsedMs = identityResult.vectorSearchElapsedMs;
         _lastRerankElapsedMs = identityResult.rerankElapsedMs;
         _lastIdentityPipelineElapsedMs = identityResult.totalElapsedMs;
+        _lastIdentityCropGenerationElapsedMs =
+            identityResult.cropGenerationElapsedMs;
+        _lastIdentityCropEncodeElapsedMs = identityResult.cropEncodeElapsedMs;
+        _lastIdentityBatchRequestElapsedMs =
+            identityResult.batchRequestElapsedMs;
+        _lastIdentityCropTransportFormat = identityResult.cropTransportFormat;
+        _lastIdentityCropOutputSize = identityResult.cropOutputSize;
         _lastVectorCandidateCount = identityResult.candidates.length;
         _lastIdentityCropCount = identityResult.cropCount;
         _lastSuccessfulIdentityCropCount = identityResult.successfulCropCount;
         _lastUnifiedIdentityCandidateCount =
             identityResult.unifiedCandidateCount;
         _lastIdentityErrors = identityResult.errors;
+        final identityTimingCandidateId = identityResult.candidates.isEmpty
+            ? null
+            : identityResult.candidates.first.cardId;
+        if (identityTimingCandidateId != null &&
+            identityTimingCandidateId != _identityTimingCandidateId) {
+          _identityTimingCandidateId = identityTimingCandidateId;
+          _identityAllowedStartedAt = DateTime.now();
+          _lastIdentityToLockElapsedMs = null;
+        }
         _lastVoteSnapshot = _candidateVoteState.update(
           candidates: identityResult.candidates,
           frameIndex: _acceptedFrameCount,
         );
         _locked = _lastVoteSnapshot.acceptedCandidate != null;
         _lockedCandidateId = _lastVoteSnapshot.acceptedCandidate;
+        if (!wasLocked && _locked && _identityAllowedStartedAt != null) {
+          _lastIdentityToLockElapsedMs = DateTime.now()
+              .difference(_identityAllowedStartedAt!)
+              .inMilliseconds;
+        }
         _lastIdentitySignalSource = identityResult.signalSource;
         if (identityResult.candidates.isEmpty) {
           identityDecisionReason = identityResult.errors.isEmpty
@@ -362,6 +397,11 @@ class ScannerV3LiveLoopController {
         _lastVectorSearchElapsedMs = null;
         _lastRerankElapsedMs = null;
         _lastIdentityPipelineElapsedMs = null;
+        _lastIdentityCropGenerationElapsedMs = null;
+        _lastIdentityCropEncodeElapsedMs = null;
+        _lastIdentityBatchRequestElapsedMs = null;
+        _lastIdentityCropTransportFormat = null;
+        _lastIdentityCropOutputSize = null;
         _lastVectorCandidateCount = 0;
         _lastIdentityCropCount = 0;
         _lastSuccessfulIdentityCropCount = 0;
@@ -381,7 +421,7 @@ class ScannerV3LiveLoopController {
       _exportLockArtifactsIfEnabled(
         image: image,
         sensorRotation: sensorRotation,
-        normalized: normalized,
+        normalized: identityNormalized,
         quality: quality,
       );
     }
@@ -404,6 +444,21 @@ class ScannerV3LiveLoopController {
     );
   }
 
+  _NormalizedFrame _identityFrameForLock(
+    List<_NormalizedFrame> candidates,
+    _NormalizedFrame selected,
+  ) {
+    if (selected.selectedQuadSource != 'selected_card_target_expanded') {
+      return selected;
+    }
+    for (final candidate in candidates) {
+      if (candidate.selectedQuadSource == 'selected_card_target') {
+        return candidate;
+      }
+    }
+    return selected;
+  }
+
   void reset() {
     _lastSampleAt = DateTime.fromMillisecondsSinceEpoch(0);
     _frameCount = 0;
@@ -421,6 +476,14 @@ class ScannerV3LiveLoopController {
     _lastVectorSearchElapsedMs = null;
     _lastRerankElapsedMs = null;
     _lastIdentityPipelineElapsedMs = null;
+    _lastIdentityCropGenerationElapsedMs = null;
+    _lastIdentityCropEncodeElapsedMs = null;
+    _lastIdentityBatchRequestElapsedMs = null;
+    _lastIdentityCropTransportFormat = null;
+    _lastIdentityCropOutputSize = null;
+    _identityAllowedStartedAt = null;
+    _identityTimingCandidateId = null;
+    _lastIdentityToLockElapsedMs = null;
     _lastVectorCandidateCount = 0;
     _lastIdentityCropCount = 0;
     _lastSuccessfulIdentityCropCount = 0;
@@ -442,6 +505,14 @@ class ScannerV3LiveLoopController {
     _lastVectorSearchElapsedMs = null;
     _lastRerankElapsedMs = null;
     _lastIdentityPipelineElapsedMs = null;
+    _lastIdentityCropGenerationElapsedMs = null;
+    _lastIdentityCropEncodeElapsedMs = null;
+    _lastIdentityBatchRequestElapsedMs = null;
+    _lastIdentityCropTransportFormat = null;
+    _lastIdentityCropOutputSize = null;
+    _identityAllowedStartedAt = null;
+    _identityTimingCandidateId = null;
+    _lastIdentityToLockElapsedMs = null;
     _lastVectorCandidateCount = 0;
     _lastIdentityCropCount = 0;
     _lastSuccessfulIdentityCropCount = 0;
@@ -459,6 +530,9 @@ class ScannerV3LiveLoopController {
 
   void _resetCardPresentGate() {
     _cardPresentConsecutiveFrames = 0;
+    _identityAllowedStartedAt = null;
+    _identityTimingCandidateId = null;
+    _lastIdentityToLockElapsedMs = null;
   }
 
   List<_NormalizedFrame> _normalizeFrameCandidates({
@@ -501,6 +575,19 @@ class ScannerV3LiveLoopController {
           borderConfidence: quadDetectorSnapshot?.confidence ?? 0.70,
         ),
       );
+      final expandedSelectedTarget = _expandedDisplayQuad(
+        quadPointsNorm,
+        scale: _selectedCardTargetExpansion,
+      );
+      if (expandedSelectedTarget != null) {
+        candidates.add(
+          _DisplayQuadCandidate(
+            source: 'selected_card_target_expanded',
+            displayQuad: expandedSelectedTarget,
+            borderConfidence: quadDetectorSnapshot?.confidence ?? 0.68,
+          ),
+        );
+      }
     } else if (hasNativeQuad) {
       candidates.add(
         _DisplayQuadCandidate(
@@ -600,6 +687,46 @@ class ScannerV3LiveLoopController {
       y += point.dy;
     }
     return Offset(x / points.length, y / points.length);
+  }
+
+  List<Offset>? _expandedDisplayQuad(
+    List<Offset> displayQuad, {
+    required double scale,
+  }) {
+    final ordered = _orderQuad(displayQuad);
+    if (ordered == null || scale <= 1) return null;
+
+    var minX = double.infinity;
+    var minY = double.infinity;
+    var maxX = double.negativeInfinity;
+    var maxY = double.negativeInfinity;
+    for (final point in ordered) {
+      minX = math.min(minX, point.dx);
+      minY = math.min(minY, point.dy);
+      maxX = math.max(maxX, point.dx);
+      maxY = math.max(maxY, point.dy);
+    }
+    if (!minX.isFinite || !minY.isFinite || !maxX.isFinite || !maxY.isFinite) {
+      return null;
+    }
+
+    final center = Offset((minX + maxX) / 2, (minY + maxY) / 2);
+    final width = (maxX - minX) * scale;
+    final height = (maxY - minY) * scale;
+    if (width <= 0 || height <= 0) return null;
+
+    final left = (center.dx - (width / 2)).clamp(0.0, 1.0).toDouble();
+    final top = (center.dy - (height / 2)).clamp(0.0, 1.0).toDouble();
+    final right = (center.dx + (width / 2)).clamp(0.0, 1.0).toDouble();
+    final bottom = (center.dy + (height / 2)).clamp(0.0, 1.0).toDouble();
+    if (right - left <= 0.01 || bottom - top <= 0.01) return null;
+
+    return <Offset>[
+      Offset(left, top),
+      Offset(right, top),
+      Offset(right, bottom),
+      Offset(left, bottom),
+    ];
   }
 
   _NormalizedFrame? _normalizeFrameFromDisplayQuad({
@@ -731,6 +858,7 @@ class ScannerV3LiveLoopController {
     score += layout.score * 140;
     score += switch (frame.selectedQuadSource) {
       'selected_card_target' => 85,
+      'selected_card_target_expanded' => 78,
       'native_detector' => 45,
       'pokemon_visual_region' => 70,
       'yuv_fallback' => 35,
@@ -1398,6 +1526,13 @@ class ScannerV3LiveLoopController {
       'vector_search_elapsed_ms': _lastVectorSearchElapsedMs,
       'rerank_elapsed_ms': _lastRerankElapsedMs,
       'identity_pipeline_elapsed_ms': _lastIdentityPipelineElapsedMs,
+      'identity_crop_generation_elapsed_ms':
+          _lastIdentityCropGenerationElapsedMs,
+      'identity_crop_encode_elapsed_ms': _lastIdentityCropEncodeElapsedMs,
+      'identity_batch_request_elapsed_ms': _lastIdentityBatchRequestElapsedMs,
+      'identity_crop_transport_format': _lastIdentityCropTransportFormat,
+      'identity_crop_output_size': _lastIdentityCropOutputSize,
+      'identity_to_lock_elapsed_ms': _lastIdentityToLockElapsedMs,
       'vector_candidate_count': _lastVectorCandidateCount,
       'identity_crop_count': _lastIdentityCropCount,
       'identity_successful_crop_count': _lastSuccessfulIdentityCropCount,
@@ -1951,8 +2086,9 @@ class ScannerV3LiveLoopController {
 
     final hasNativeQuad =
         frame.selectedQuadSource == 'native_detector' && frame.detectorSuccess;
-    final hasSelectedCardTarget =
-        frame.selectedQuadSource == 'selected_card_target';
+    final hasSelectedCardTarget = frame.selectedQuadSource.startsWith(
+      'selected_card_target',
+    );
     final hasScannerFallbackQuad =
         frame.selectedQuadSource == 'pokemon_visual_region' ||
         frame.selectedQuadSource == 'yuv_fallback' ||

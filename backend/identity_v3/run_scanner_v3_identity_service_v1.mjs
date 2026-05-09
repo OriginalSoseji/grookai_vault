@@ -67,6 +67,7 @@ function usage() {
     '  GET  /health',
     '  POST /scanner-v3/embed',
     '  POST /scanner-v3/candidates',
+    '  POST /scanner-v3/resolve-crops',
     '',
     'The service reads the V7 multiview index cache when available and falls back to the V5 single-view cache.',
   ].join('\n');
@@ -131,6 +132,7 @@ async function handleRequest(request, response, service) {
       endpoints: {
         embed: '/scanner-v3/embed',
         candidates: '/scanner-v3/candidates',
+        resolve_crops: '/scanner-v3/resolve-crops',
       },
     });
     return;
@@ -157,6 +159,82 @@ async function handleRequest(request, response, service) {
       input: payload.input,
       bytes: imageBuffer.length,
       embedding_ms: payload.embedding_ms,
+      elapsed_ms: roundMs(performance.now() - requestStartedAt),
+      remote: request.socket.remoteAddress,
+    }));
+    writeJson(response, 200, payload);
+    return;
+  }
+
+  if (request.method === 'POST' && url.pathname === '/scanner-v3/resolve-crops') {
+    const body = await readJsonBody(request);
+    const crops = Array.isArray(body.crops) ? body.crops : [];
+    if (crops.length === 0) {
+      writeJson(response, 400, {
+        ok: false,
+        error: 'missing_crops',
+      });
+      return;
+    }
+    const startedAt = performance.now();
+    const topK = positiveInt(body.top_k ?? body.topK, service.args.topK);
+    const resolvedCrops = [];
+
+    for (const crop of crops) {
+      const cropStartedAt = performance.now();
+      const cropType = textOrNull(crop?.crop_type ?? crop?.cropType ?? crop?.type);
+      try {
+        const imageBuffer = await imageBufferFromCrop(crop);
+        const embedding = await embedImageBuffer(imageBuffer, {
+          model: service.args.model,
+        });
+        const vectorStartedAt = performance.now();
+        const rawCandidates = rankEmbeddingViewCandidates({
+          queryEmbedding: embedding.embedding,
+          references: service.index.references,
+          topN: Math.max(topK * 4, topK),
+          queryCropType: cropType,
+        });
+        const candidates = dedupeCandidatesByCard(rawCandidates, cropType, topK);
+        resolvedCrops.push({
+          ok: true,
+          crop_type: cropType,
+          candidates,
+          count: candidates.length,
+          embedding_ms: embedding.elapsed_ms,
+          vector_search_ms: roundMs(performance.now() - vectorStartedAt),
+          elapsed_ms: roundMs(performance.now() - cropStartedAt),
+        });
+      } catch (error) {
+        resolvedCrops.push({
+          ok: false,
+          crop_type: cropType,
+          candidates: [],
+          count: 0,
+          embedding_ms: null,
+          vector_search_ms: null,
+          elapsed_ms: roundMs(performance.now() - cropStartedAt),
+          error: error?.message || String(error),
+        });
+      }
+    }
+
+    const payload = {
+      ok: true,
+      crops: resolvedCrops,
+      count: resolvedCrops.length,
+      top_k: topK,
+      model: service.args.model,
+      distance: EMBEDDING_INDEX_V1.distance,
+      reference_count: service.index.references.length,
+      reference_view_count: service.index.reference_view_count,
+      elapsed_ms: roundMs(performance.now() - startedAt),
+      mode: body.mode ?? null,
+    };
+    console.log(JSON.stringify({
+      event: 'resolve_crops_request',
+      crop_count: resolvedCrops.length,
+      successful_crop_count: resolvedCrops.filter((crop) => crop.ok).length,
       elapsed_ms: roundMs(performance.now() - requestStartedAt),
       remote: request.socket.remoteAddress,
     }));
@@ -384,6 +462,40 @@ async function readJsonBody(request) {
 
 function imageBufferFromBody(body) {
   const value = body.image_b64 ?? body.imageBase64 ?? body.image ?? body.input_image_b64;
+  return imageBufferFromValue(value);
+}
+
+async function imageBufferFromCrop(crop) {
+  const rawValue = crop?.raw_b64 ?? crop?.rawBase64 ?? crop?.raw;
+  if (typeof rawValue === 'string' && rawValue.trim().length > 0) {
+    const width = positiveInt(crop?.width, 0);
+    const height = positiveInt(crop?.height, 0);
+    const format = textOrNull(crop?.format)?.toLowerCase() ?? '';
+    const channels = format.includes('rgba')
+      ? 4
+      : format.includes('rgb')
+        ? 3
+        : 1;
+    if (width <= 0 || height <= 0) {
+      throw new Error('raw_crop_dimensions_required');
+    }
+    const rawBuffer = imageBufferFromValue(rawValue);
+    const expectedBytes = width * height * channels;
+    if (rawBuffer.length < expectedBytes) {
+      throw new Error(`raw_crop_too_small:${rawBuffer.length}/${expectedBytes}`);
+    }
+    return sharp(rawBuffer.subarray(0, expectedBytes), {
+      raw: { width, height, channels },
+      failOn: 'none',
+    }).png().toBuffer();
+  }
+
+  return imageBufferFromValue(
+    crop?.image_b64 ?? crop?.imageBase64 ?? crop?.image,
+  );
+}
+
+function imageBufferFromValue(value) {
   if (typeof value !== 'string' || value.trim().length === 0) {
     throw new Error('missing_image_b64');
   }

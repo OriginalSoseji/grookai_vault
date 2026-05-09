@@ -126,6 +126,8 @@ class ScannerLiveBehaviorV1 {
     if (edgeLocked) return true;
     switch (state.selectedQuadSource) {
       case 'native_detector':
+      case 'selected_card_target':
+      case 'selected_card_target_expanded':
       case 'pokemon_visual_region':
       case 'yuv_fallback':
       case 'center_fallback':
