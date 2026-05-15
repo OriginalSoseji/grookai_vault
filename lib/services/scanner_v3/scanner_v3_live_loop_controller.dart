@@ -1,9 +1,9 @@
 import 'dart:async';
 import 'dart:math' as math;
-import 'dart:typed_data';
 import 'dart:ui';
 
 import 'package:camera/camera.dart';
+import 'package:flutter/foundation.dart';
 
 import 'candidate_vote_state_v1.dart';
 import 'convergence_state_v1.dart';
@@ -57,6 +57,7 @@ class ScannerV3LiveLoopController {
   static const int normalizedHeight = 1024;
   static const int normalizedWidth = 733;
   static const double minBlurScore = 0.006;
+  static const double minIdentityLockBlurScore = 0.10;
   static const double minBrightnessScore = 0.12;
   static const double maxBrightnessScore = 0.90;
   static const double maxGlareRatio = 0.18;
@@ -85,6 +86,19 @@ class ScannerV3LiveLoopController {
   static const int minAcceptedFramesToLock = 3;
   static const double lockScoreGap = 6.0;
   static const double _selectedCardTargetExpansion = 1.14;
+  static const double _nativeIdentityHorizontalExpansion = 0.07;
+  static const double _nativeIdentityTopExpansion = 0.20;
+  static const double _nativeIdentityBottomExpansion = 0.05;
+  static const Duration _cardPresentEvidenceRetention = Duration(
+    milliseconds: 2200,
+  );
+  static const int _identityResultCacheLimit = 0;
+  static const int _lockedVisualHashMaxCombinedDistance =
+      candidateDistanceThreshold;
+  // Visual dHash is too coarse for holo/full-art identity reuse. Keep the
+  // cache disabled until identity has a stronger image-level cache key.
+  static const int _identityResultCacheMaxCombinedDistance = 0;
+  static const int _identityResultCacheMaxSingleDistance = 0;
 
   final Duration sampleInterval;
   final ScannerV3LockArtifactExportCallback? onLockArtifactExported;
@@ -99,6 +113,10 @@ class ScannerV3LiveLoopController {
   bool _artifactExported = false;
   bool _exportArtifactsOnLock;
   String? _lockedCandidateId;
+  String? _lockedFullHash;
+  String? _lockedArtworkHash;
+  String? _lastFullHash;
+  String? _lastArtworkHash;
   ScannerV3LiveLoopState _state = ScannerV3LiveLoopState.initial;
   CandidateVoteSnapshot _lastVoteSnapshot = CandidateVoteSnapshot.empty;
   int? _lastEmbeddingElapsedMs;
@@ -118,24 +136,65 @@ class ScannerV3LiveLoopController {
   int _lastSuccessfulIdentityCropCount = 0;
   int _lastUnifiedIdentityCandidateCount = 0;
   int _cardPresentConsecutiveFrames = 0;
+  DateTime? _lastCardPresentEvidenceAt;
   List<String> _lastIdentityErrors = const <String>[];
   String _lastIdentitySignalSource = 'waiting';
   final ScannerV3IdentityPipelineV8 _identityPipeline;
   final CandidateVoteState _candidateVoteState;
   final Map<String, _TrackedCandidate> _candidates =
       <String, _TrackedCandidate>{};
+  final List<_CachedIdentityResult> _identityResultCache =
+      <_CachedIdentityResult>[];
 
   ScannerV3LiveLoopState get state => _state;
 
+  Future<void> warmIdentityService() => _identityPipeline.warmUp();
+
   void setArtifactExportEnabled(bool enabled) {
     _exportArtifactsOnLock = enabled;
+  }
+
+  ScannerV3LiveLoopState? revealBufferedIdentityLock() {
+    if (_locked) return _state;
+    _lastVoteSnapshot = _candidateVoteState.tryLockForReveal(
+      frameIndex: _acceptedFrameCount,
+    );
+    final acceptedCandidate = _lastVoteSnapshot.acceptedCandidate;
+    if (acceptedCandidate == null) return null;
+
+    _locked = true;
+    _lockedCandidateId = acceptedCandidate;
+    _lockedFullHash = _lastFullHash;
+    _lockedArtworkHash = _lastArtworkHash;
+    _lastIdentityToLockElapsedMs = 0;
+    _lastIdentitySignalSource = 'v8_buffered_identity_reveal';
+
+    return _publishState(
+      quality: _state.quality,
+      decisionReason:
+          'identity_accepted:${_lastVoteSnapshot.identityDecisionReason}',
+      elapsedMs: 0,
+      selectedQuadSource: _state.selectedQuadSource,
+      detectorConfidence: _state.detectorConfidence,
+      detectorElapsedMs: _state.detectorElapsedMs,
+      cardPresent: _state.cardPresent,
+      cardPresentReason: _state.cardPresentReason,
+      identityAllowed: true,
+      identityAllowedReason: 'buffered_identity_reveal',
+      nativeDiagnosticsUsable: _state.nativeDiagnosticsUsable,
+      nativeDiagnosticsRejectionReason: _state.nativeDiagnosticsRejectionReason,
+    );
   }
 
   Future<ScannerV3LiveLoopState?> processCameraFrame({
     required CameraImage image,
     required int sensorRotation,
     required List<Offset>? quadPointsNorm,
+    List<List<Offset>>? quadPointSetsNorm,
+    bool guidedSlotTarget = false,
     bool selectedCardTarget = false,
+    bool allowIdentityLock = true,
+    String? fixedSlotOccupancyBlockedReason,
     ScannerV3QuadDetectorSnapshot? quadDetectorSnapshot,
   }) async {
     _frameCount += 1;
@@ -154,19 +213,25 @@ class ScannerV3LiveLoopController {
       image: image,
       sensorRotation: sensorRotation,
       quadPointsNorm: quadPointsNorm,
+      quadPointSetsNorm: quadPointSetsNorm,
+      guidedSlotTarget: guidedSlotTarget,
       selectedCardTarget: selectedCardTarget,
       quadDetectorSnapshot: quadDetectorSnapshot,
     );
 
     if (normalizedCandidates.isEmpty) {
       _rejectedFrameCount += 1;
-      _resetCardPresentGate();
-      _lastIdentitySignalSource = 'normalization_failed';
-      if (selectedCardTarget) {
+      final transientMiss = _handleCardPresentMiss(now);
+      _lastIdentitySignalSource = transientMiss
+          ? 'card_present_transient_miss'
+          : 'normalization_failed';
+      if (selectedCardTarget || transientMiss) {
         _decayIdentityStateOnSelectedTargetMiss();
-        _lastIdentitySignalSource = 'selected_target_transient_miss';
+        if (selectedCardTarget) {
+          _lastIdentitySignalSource = 'selected_target_transient_miss';
+        }
       } else {
-        _clearIdentityState();
+        _clearIdentityStateUnlessLocked();
       }
       return _publishState(
         quality: const ScannerV3QualitySnapshot(
@@ -185,11 +250,15 @@ class ScannerV3LiveLoopController {
         detectorConfidence: quadDetectorSnapshot?.confidence,
         detectorElapsedMs: quadDetectorSnapshot?.elapsedMs,
         cardPresent: false,
-        cardPresentReason: quadDetectorSnapshot?.success == true
+        cardPresentReason: transientMiss
+            ? 'card_present_persistence_pending'
+            : quadDetectorSnapshot?.success == true
             ? 'normalized_empty'
             : 'no_quad',
         identityAllowed: false,
-        identityBlockedReason: 'normalization_failed',
+        identityBlockedReason: transientMiss
+            ? 'card_present_persistence_pending'
+            : 'normalization_failed',
         nativeDiagnosticsUsable: nativeDiagnosticsUsability.usable,
         nativeDiagnosticsRejectionReason: nativeDiagnosticsUsability.usable
             ? null
@@ -197,7 +266,10 @@ class ScannerV3LiveLoopController {
       );
     }
 
-    final candidateEvaluation = _selectBestFrameCandidate(normalizedCandidates);
+    final candidateEvaluation = _selectBestFrameCandidate(
+      normalizedCandidates,
+      allowFallbackWithoutNativeSignal: true,
+    );
     final normalized = candidateEvaluation.frame;
     final identityNormalized = _identityFrameForLock(
       normalizedCandidates,
@@ -208,14 +280,19 @@ class ScannerV3LiveLoopController {
 
     if (!quality.accepted) {
       _rejectedFrameCount += 1;
-      _resetCardPresentGate();
-      _lastIdentitySignalSource = 'quality_rejected';
-      if (selectedCardTarget) {
+      final transientMiss = _handleCardPresentMiss(now);
+      _lastIdentitySignalSource = transientMiss
+          ? 'card_present_transient_miss'
+          : 'quality_rejected';
+      if (selectedCardTarget || transientMiss) {
         _decayIdentityStateOnSelectedTargetMiss();
-        _lastIdentitySignalSource = 'selected_target_transient_miss';
+        if (selectedCardTarget) {
+          _lastIdentitySignalSource = 'selected_target_transient_miss';
+        }
       } else {
-        _clearIdentityState();
+        _clearIdentityStateUnlessLocked();
       }
+      final absentReason = _cardAbsentReasonForQuality(quality);
       return _publishState(
         quality: quality,
         decisionReason: quality.rejectionReasons.join(','),
@@ -224,9 +301,13 @@ class ScannerV3LiveLoopController {
         detectorConfidence: normalized.detectorConfidence,
         detectorElapsedMs: normalized.detectorElapsedMs,
         cardPresent: false,
-        cardPresentReason: _cardAbsentReasonForQuality(quality),
+        cardPresentReason: transientMiss
+            ? 'card_present_persistence_pending'
+            : absentReason,
         identityAllowed: false,
-        identityBlockedReason: _cardAbsentReasonForQuality(quality),
+        identityBlockedReason: transientMiss
+            ? 'card_present_persistence_pending'
+            : absentReason,
         nativeDiagnosticsUsable: normalized.nativeDiagnosticsUsable,
         nativeDiagnosticsRejectionReason:
             normalized.nativeDiagnosticsRejectionReason,
@@ -235,13 +316,17 @@ class ScannerV3LiveLoopController {
 
     if (!cardPresent.present) {
       _rejectedFrameCount += 1;
-      _resetCardPresentGate();
-      _lastIdentitySignalSource = 'card_absent';
-      if (selectedCardTarget) {
+      final transientMiss = _handleCardPresentMiss(now);
+      _lastIdentitySignalSource = transientMiss
+          ? 'card_present_transient_miss'
+          : 'card_absent';
+      if (selectedCardTarget || transientMiss) {
         _decayIdentityStateOnSelectedTargetMiss();
-        _lastIdentitySignalSource = 'selected_target_transient_miss';
+        if (selectedCardTarget) {
+          _lastIdentitySignalSource = 'selected_target_transient_miss';
+        }
       } else {
-        _clearIdentityState();
+        _clearIdentityStateUnlessLocked();
       }
       return _publishState(
         quality: quality,
@@ -251,9 +336,13 @@ class ScannerV3LiveLoopController {
         detectorConfidence: normalized.detectorConfidence,
         detectorElapsedMs: normalized.detectorElapsedMs,
         cardPresent: false,
-        cardPresentReason: cardPresent.reason,
+        cardPresentReason: transientMiss
+            ? 'card_present_persistence_pending'
+            : cardPresent.reason,
         identityAllowed: false,
-        identityBlockedReason: cardPresent.reason,
+        identityBlockedReason: transientMiss
+            ? 'card_present_persistence_pending'
+            : cardPresent.reason,
         nativeDiagnosticsUsable: normalized.nativeDiagnosticsUsable,
         nativeDiagnosticsRejectionReason:
             normalized.nativeDiagnosticsRejectionReason,
@@ -261,13 +350,47 @@ class ScannerV3LiveLoopController {
       );
     }
 
-    _cardPresentConsecutiveFrames += 1;
-    final requiredCardPresentFrames = selectedCardTarget
+    final guidedSlotVisualOccupancyAllowed =
+        guidedSlotTarget &&
+        fixedSlotOccupancyBlockedReason != null &&
+        _guidedSlotVisualCardPresentCanBypassNativeOccupancy(
+          fixedSlotOccupancyBlockedReason,
+        );
+    if (guidedSlotTarget &&
+        fixedSlotOccupancyBlockedReason != null &&
+        !guidedSlotVisualOccupancyAllowed) {
+      _rejectedFrameCount += 1;
+      _resetCardPresentGate();
+      _clearIdentityState();
+      _lastIdentitySignalSource = 'fixed_slot_occupancy_gate';
+      return _publishState(
+        quality: quality,
+        decisionReason: 'card_present_false:$fixedSlotOccupancyBlockedReason',
+        elapsedMs: stopwatch.elapsedMilliseconds,
+        selectedQuadSource: normalized.selectedQuadSource,
+        detectorConfidence: normalized.detectorConfidence,
+        detectorElapsedMs: normalized.detectorElapsedMs,
+        cardPresent: false,
+        cardPresentReason: fixedSlotOccupancyBlockedReason,
+        identityAllowed: false,
+        identityBlockedReason: fixedSlotOccupancyBlockedReason,
+        nativeDiagnosticsUsable: normalized.nativeDiagnosticsUsable,
+        nativeDiagnosticsRejectionReason:
+            normalized.nativeDiagnosticsRejectionReason,
+        cardPresentMetrics: cardPresent.metrics,
+      );
+    }
+
+    _recordCardPresentEvidence(now);
+    final nativeDetectorTarget =
+        normalized.selectedQuadSource == 'native_detector';
+    final requiredCardPresentFrames =
+        selectedCardTarget || guidedSlotTarget || nativeDetectorTarget
         ? 1
         : minCardPresentFramesBeforeIdentity;
     if (_cardPresentConsecutiveFrames < requiredCardPresentFrames) {
       _rejectedFrameCount += 1;
-      _clearIdentityState();
+      _clearIdentityStateUnlessLocked();
       _lastIdentitySignalSource = 'card_present_persistence_pending';
       return _publishState(
         quality: quality,
@@ -308,14 +431,45 @@ class ScannerV3LiveLoopController {
       fullHash: fullHash,
       artworkHash: artworkHash,
     );
+    _lastFullHash = fullHash;
+    _lastArtworkHash = artworkHash;
     _rewardCandidate(candidate, fullHash: fullHash, artworkHash: artworkHash);
     _decayCandidates(exceptId: candidate.id);
+    _clearFrozenIdentityLockIfVisualChanged(
+      fullHash: fullHash,
+      artworkHash: artworkHash,
+      selectedQuadSource: normalized.selectedQuadSource,
+    );
 
     final wasLocked = _locked;
     var identityDecisionReason = 'identity_vector_vote_updated';
+    var identityAllowedForFrame = true;
+    var identityAllowedReason = 'card_present_persistence_satisfied';
+    String? identityBlockedReason;
     if (_locked) {
       _lastIdentitySignalSource = 'v8_identity_locked_frozen';
       identityDecisionReason = 'identity_locked_frozen';
+    } else if (identityNormalized.selectedQuadSource == 'center_fallback') {
+      _lastVoteSnapshot = _candidateVoteState.decayOnly(
+        frameIndex: _acceptedFrameCount,
+      );
+      _lastIdentitySignalSource = 'identity_center_fallback_gate';
+      identityDecisionReason = 'identity_blocked:center_fallback_quad';
+      identityAllowedForFrame = false;
+      identityAllowedReason = 'center_fallback_quad';
+      identityBlockedReason = 'center_fallback_quad';
+    } else if (quality.blurScore < minIdentityLockBlurScore) {
+      _lastVoteSnapshot = _candidateVoteState.decayOnly(
+        frameIndex: _acceptedFrameCount,
+      );
+      _lastIdentitySignalSource = 'identity_blur_gate';
+      identityDecisionReason =
+          'identity_blocked:blur_score_low:'
+          '${quality.blurScore.toStringAsFixed(3)}/'
+          '$minIdentityLockBlurScore';
+      identityAllowedForFrame = false;
+      identityAllowedReason = 'blur_score_low';
+      identityBlockedReason = 'blur_score_low';
     } else {
       try {
         _identityAllowedStartedAt ??= now;
@@ -324,21 +478,41 @@ class ScannerV3LiveLoopController {
           width: identityNormalized.width,
           height: identityNormalized.height,
         );
-        final normalizedFullCardColor = _normalizedColorFrameFromYuv(
+        final colorCropWatch = Stopwatch()..start();
+        final normalizedFullCardColor = _normalizedColorIdentityCropFromYuv(
           image: image,
           imageQuad: identityNormalized.imageQuad,
         );
+        final colorCropElapsedMs = colorCropWatch.elapsedMilliseconds;
         final identityFullCard =
             normalizedFullCardColor ?? normalizedFullCardGray;
+        final artworkCropWatch = Stopwatch()..start();
         final identityArtworkRegion = _cropExportImage(
           identityFullCard,
           const _NormRect(left: 0.08, top: 0.12, right: 0.92, bottom: 0.60),
         );
+        final artworkCropElapsedMs = artworkCropWatch.elapsedMilliseconds;
 
-        final identityResult = await _identityPipeline.resolveFrame(
-          normalizedFullCard: identityFullCard,
-          artworkRegion: identityArtworkRegion,
+        final cachedIdentityResult = _cachedIdentityResult(
+          fullHash: fullHash,
+          artworkHash: artworkHash,
         );
+        final identityResolveWatch = Stopwatch()..start();
+        final identityResult =
+            cachedIdentityResult ??
+            await _identityPipeline.resolveFrame(
+              normalizedFullCard: identityFullCard,
+              artworkRegion: identityArtworkRegion,
+            );
+        final identityResolveElapsedMs =
+            identityResolveWatch.elapsedMilliseconds;
+        if (cachedIdentityResult == null) {
+          _rememberIdentityResult(
+            fullHash: fullHash,
+            artworkHash: artworkHash,
+            result: identityResult,
+          );
+        }
 
         _lastEmbeddingElapsedMs = identityResult.embeddingElapsedMs;
         _lastVectorSearchElapsedMs = identityResult.vectorSearchElapsedMs;
@@ -370,8 +544,32 @@ class ScannerV3LiveLoopController {
           candidates: identityResult.candidates,
           frameIndex: _acceptedFrameCount,
         );
-        _locked = _lastVoteSnapshot.acceptedCandidate != null;
-        _lockedCandidateId = _lastVoteSnapshot.acceptedCandidate;
+        _debugLogIdentityTiming(
+          frameIndex: _frameCount,
+          acceptedFrameIndex: _acceptedFrameCount,
+          colorCropElapsedMs: colorCropElapsedMs,
+          artworkCropElapsedMs: artworkCropElapsedMs,
+          identityResolveElapsedMs: identityResolveElapsedMs,
+          sampleElapsedAtResolveMs: stopwatch.elapsedMilliseconds,
+          cached: cachedIdentityResult != null,
+          result: identityResult,
+        );
+        final acceptedCandidate = _lastVoteSnapshot.acceptedCandidate;
+        final preserveRevealedLock = _locked && _lockedCandidateId != null;
+        final bufferAcceptedIdentity = acceptedCandidate != null;
+        _locked = preserveRevealedLock || bufferAcceptedIdentity;
+        _lockedCandidateId = preserveRevealedLock
+            ? _lockedCandidateId
+            : bufferAcceptedIdentity
+            ? acceptedCandidate
+            : null;
+        if (_locked) {
+          _lockedFullHash = fullHash;
+          _lockedArtworkHash = artworkHash;
+        } else {
+          _lockedFullHash = null;
+          _lockedArtworkHash = null;
+        }
         if (!wasLocked && _locked && _identityAllowedStartedAt != null) {
           _lastIdentityToLockElapsedMs = DateTime.now()
               .difference(_identityAllowedStartedAt!)
@@ -426,6 +624,7 @@ class ScannerV3LiveLoopController {
       );
     }
 
+    _lastCardPresentEvidenceAt = DateTime.now();
     return _publishState(
       quality: quality,
       decisionReason: identityDecisionReason,
@@ -435,8 +634,9 @@ class ScannerV3LiveLoopController {
       detectorElapsedMs: normalized.detectorElapsedMs,
       cardPresent: true,
       cardPresentReason: 'card_present',
-      identityAllowed: true,
-      identityAllowedReason: 'card_present_persistence_satisfied',
+      identityAllowed: identityAllowedForFrame,
+      identityAllowedReason: identityAllowedReason,
+      identityBlockedReason: identityBlockedReason,
       nativeDiagnosticsUsable: normalized.nativeDiagnosticsUsable,
       nativeDiagnosticsRejectionReason:
           normalized.nativeDiagnosticsRejectionReason,
@@ -448,6 +648,38 @@ class ScannerV3LiveLoopController {
     List<_NormalizedFrame> candidates,
     _NormalizedFrame selected,
   ) {
+    if (selected.selectedQuadSource == 'guided_slot') {
+      return selected;
+    }
+    if (selected.selectedQuadSource == 'guided_slot_identity_expanded') {
+      return selected;
+    }
+    if (selected.selectedQuadSource == 'native_detector') {
+      // Native detection is already the card boundary. Expanding it can pull
+      // in table/background pixels and make visually similar cards outrank the
+      // target on full-card crops.
+      return selected;
+    }
+    if (selected.selectedQuadSource == 'selected_card_target' ||
+        selected.selectedQuadSource == 'selected_card_target_expanded') {
+      final expanded = _matchingSelectedTargetIdentityExpandedFrame(
+        candidates,
+        selected,
+      );
+      if (expanded != null) return expanded;
+    }
+    if (selected.selectedQuadSource ==
+        'selected_card_target_identity_expanded') {
+      return selected;
+    }
+    if (selected.selectedQuadSource == 'pokemon_visual_region' ||
+        selected.selectedQuadSource == 'yuv_fallback') {
+      for (final candidate in candidates) {
+        if (candidate.selectedQuadSource == 'center_fallback') {
+          return candidate;
+        }
+      }
+    }
     if (selected.selectedQuadSource != 'selected_card_target_expanded') {
       return selected;
     }
@@ -457,6 +689,27 @@ class ScannerV3LiveLoopController {
       }
     }
     return selected;
+  }
+
+  _NormalizedFrame? _matchingSelectedTargetIdentityExpandedFrame(
+    List<_NormalizedFrame> candidates,
+    _NormalizedFrame selected,
+  ) {
+    final selectedCenter = _quadCenter(selected.orderedDisplayQuad);
+    _NormalizedFrame? best;
+    var bestDistance = double.infinity;
+    for (final candidate in candidates) {
+      if (candidate.selectedQuadSource !=
+          'selected_card_target_identity_expanded') {
+        continue;
+      }
+      final candidateCenter = _quadCenter(candidate.orderedDisplayQuad);
+      final distance = (candidateCenter - selectedCenter).distance;
+      if (distance >= 0.09 || distance >= bestDistance) continue;
+      best = candidate;
+      bestDistance = distance;
+    }
+    return best;
   }
 
   void reset() {
@@ -469,6 +722,8 @@ class ScannerV3LiveLoopController {
     _locked = false;
     _artifactExported = false;
     _lockedCandidateId = null;
+    _lockedFullHash = null;
+    _lockedArtworkHash = null;
     _candidates.clear();
     _candidateVoteState.reset();
     _lastVoteSnapshot = CandidateVoteSnapshot.empty;
@@ -489,17 +744,77 @@ class ScannerV3LiveLoopController {
     _lastSuccessfulIdentityCropCount = 0;
     _lastUnifiedIdentityCandidateCount = 0;
     _cardPresentConsecutiveFrames = 0;
+    _lastCardPresentEvidenceAt = null;
     _lastIdentityErrors = const <String>[];
     _lastIdentitySignalSource = 'waiting';
+    _identityResultCache.clear();
     _state = ScannerV3LiveLoopState.initial;
+  }
+
+  void resetIdentityForCapture() {
+    _lastSampleAt = DateTime.fromMillisecondsSinceEpoch(0);
+    _clearIdentityVoteState();
   }
 
   void _clearIdentityState() {
     _candidates.clear();
+    _identityResultCache.clear();
+    _clearIdentityVoteState();
+  }
+
+  void _clearIdentityStateUnlessLocked() {
+    if (_locked) {
+      _lastIdentitySignalSource = 'v8_identity_locked_frozen';
+      return;
+    }
+    _clearIdentityState();
+  }
+
+  void _clearFrozenIdentityLockIfVisualChanged({
+    required String fullHash,
+    required String artworkHash,
+    required String selectedQuadSource,
+  }) {
+    if (!_locked) return;
+    if (selectedQuadSource != 'native_detector' &&
+        selectedQuadSource != 'selected_card_target' &&
+        selectedQuadSource != 'selected_card_target_expanded' &&
+        selectedQuadSource != 'selected_card_target_identity_expanded') {
+      _lastIdentitySignalSource = 'visual_lock_preserved_on_fallback_frame';
+      return;
+    }
+    final lockedFullHash = _lockedFullHash;
+    final lockedArtworkHash = _lockedArtworkHash;
+    if (lockedFullHash == null || lockedArtworkHash == null) {
+      _lastIdentitySignalSource = 'visual_lock_missing_hash_preserved';
+      return;
+    }
+
+    final fullDistance = _hammingDistance(fullHash, lockedFullHash);
+    final artworkDistance = _hammingDistance(artworkHash, lockedArtworkHash);
+    final combinedDistance = fullDistance + artworkDistance;
+    if (combinedDistance <= _lockedVisualHashMaxCombinedDistance) return;
+
+    _clearIdentityVoteState();
+    _identityResultCache.clear();
+    _lastIdentitySignalSource = 'visual_card_changed_reset';
+  }
+
+  bool _guidedSlotVisualCardPresentCanBypassNativeOccupancy(String reason) {
+    final normalized = reason.toLowerCase();
+    return normalized.contains('native_detection_pending') ||
+        normalized.contains('fixed_slot_card_missing:no_card_component');
+  }
+
+  void _clearIdentityVoteState() {
     _candidateVoteState.reset();
     _lastVoteSnapshot = CandidateVoteSnapshot.empty;
     _locked = false;
     _lockedCandidateId = null;
+    _lockedFullHash = null;
+    _lockedArtworkHash = null;
+    _lastFullHash = null;
+    _lastArtworkHash = null;
     _artifactExported = false;
     _lastEmbeddingElapsedMs = null;
     _lastVectorSearchElapsedMs = null;
@@ -518,18 +833,53 @@ class ScannerV3LiveLoopController {
     _lastSuccessfulIdentityCropCount = 0;
     _lastUnifiedIdentityCandidateCount = 0;
     _lastIdentityErrors = const <String>[];
+    _lastIdentitySignalSource = 'waiting';
   }
 
   void _decayIdentityStateOnSelectedTargetMiss() {
+    if (_locked) {
+      _lastIdentitySignalSource = 'v8_identity_locked_frozen';
+      return;
+    }
     _lastVoteSnapshot = _candidateVoteState.decayOnly(
       frameIndex: _acceptedFrameCount,
     );
     _locked = _lastVoteSnapshot.acceptedCandidate != null;
     _lockedCandidateId = _lastVoteSnapshot.acceptedCandidate;
+    if (!_locked) {
+      _lockedFullHash = null;
+      _lockedArtworkHash = null;
+    }
+  }
+
+  void _recordCardPresentEvidence(DateTime now) {
+    final previousEvidenceAt = _lastCardPresentEvidenceAt;
+    if (previousEvidenceAt == null ||
+        now.difference(previousEvidenceAt) > _cardPresentEvidenceRetention) {
+      _cardPresentConsecutiveFrames = 0;
+    }
+    _lastCardPresentEvidenceAt = now;
+    _cardPresentConsecutiveFrames += 1;
+  }
+
+  bool _handleCardPresentMiss(DateTime now) {
+    if (_hasRecentCardPresentEvidence(now)) {
+      return true;
+    }
+    _resetCardPresentGate();
+    return false;
+  }
+
+  bool _hasRecentCardPresentEvidence(DateTime now) {
+    final evidenceAt = _lastCardPresentEvidenceAt;
+    return evidenceAt != null &&
+        _cardPresentConsecutiveFrames > 0 &&
+        now.difference(evidenceAt) <= _cardPresentEvidenceRetention;
   }
 
   void _resetCardPresentGate() {
     _cardPresentConsecutiveFrames = 0;
+    _lastCardPresentEvidenceAt = null;
     _identityAllowedStartedAt = null;
     _identityTimingCandidateId = null;
     _lastIdentityToLockElapsedMs = null;
@@ -539,6 +889,8 @@ class ScannerV3LiveLoopController {
     required CameraImage image,
     required int sensorRotation,
     required List<Offset>? quadPointsNorm,
+    required List<List<Offset>>? quadPointSetsNorm,
+    required bool guidedSlotTarget,
     required bool selectedCardTarget,
     required ScannerV3QuadDetectorSnapshot? quadDetectorSnapshot,
   }) {
@@ -566,6 +918,18 @@ class ScannerV3LiveLoopController {
         quadPointsNorm != null &&
         quadPointsNorm.length == 4 &&
         nativeDiagnosticsUsability.usable;
+    final hasGuidedSlotTarget =
+        guidedSlotTarget &&
+        quadPointSetsNorm != null &&
+        quadPointSetsNorm.any((quad) => quad.length == 4);
+    final nativeQuadCandidates = <List<Offset>>[
+      if (quadPointSetsNorm != null)
+        for (final quad in quadPointSetsNorm)
+          if (quad.length == 4) quad,
+      if ((quadPointSetsNorm == null || quadPointSetsNorm.isEmpty) &&
+          hasNativeQuad)
+        quadPointsNorm,
+    ];
     final candidates = <_DisplayQuadCandidate>[];
     if (hasSelectedCardTarget) {
       candidates.add(
@@ -588,53 +952,102 @@ class ScannerV3LiveLoopController {
           ),
         );
       }
-    } else if (hasNativeQuad) {
+      final identityExpandedSelectedTarget = _expandedDisplayQuadByMargins(
+        quadPointsNorm,
+        horizontal: _nativeIdentityHorizontalExpansion,
+        top: _nativeIdentityTopExpansion,
+        bottom: _nativeIdentityBottomExpansion,
+      );
+      if (identityExpandedSelectedTarget != null) {
+        candidates.add(
+          _DisplayQuadCandidate(
+            source: 'selected_card_target_identity_expanded',
+            displayQuad: identityExpandedSelectedTarget,
+            borderConfidence: quadDetectorSnapshot?.confidence ?? 0.67,
+          ),
+        );
+      }
+    } else if (hasGuidedSlotTarget) {
+      for (final slotQuad in nativeQuadCandidates) {
+        candidates.add(
+          _DisplayQuadCandidate(
+            source: 'guided_slot',
+            displayQuad: slotQuad,
+            borderConfidence: 0.78,
+          ),
+        );
+      }
+    } else if (nativeDiagnosticsUsability.usable &&
+        nativeQuadCandidates.isNotEmpty) {
+      for (final nativeQuad in nativeQuadCandidates) {
+        candidates.add(
+          _DisplayQuadCandidate(
+            source: 'native_detector',
+            displayQuad: nativeQuad,
+            borderConfidence: quadDetectorSnapshot?.confidence ?? 1.0,
+          ),
+        );
+        final identityExpandedNativeQuad = _expandedDisplayQuadByMargins(
+          nativeQuad,
+          horizontal: _nativeIdentityHorizontalExpansion,
+          top: _nativeIdentityTopExpansion,
+          bottom: _nativeIdentityBottomExpansion,
+        );
+        if (identityExpandedNativeQuad != null) {
+          candidates.add(
+            _DisplayQuadCandidate(
+              source: 'native_detector_identity_expanded',
+              displayQuad: identityExpandedNativeQuad,
+              borderConfidence:
+                  (quadDetectorSnapshot?.confidence ?? 1.0) * 0.94,
+            ),
+          );
+        }
+      }
+    }
+
+    final hasAuthoritativeTarget =
+        hasSelectedCardTarget ||
+        hasGuidedSlotTarget ||
+        (nativeDiagnosticsUsability.usable && nativeQuadCandidates.isNotEmpty);
+    if (!hasAuthoritativeTarget) {
+      final pokemonVisualQuad = _detectPokemonDisplayCardQuadFromFrame(
+        image: image,
+        sensorRotation: sensorRotation,
+        displayQuadTargetAspect: displayQuadTargetAspect,
+      );
+      if (pokemonVisualQuad != null) {
+        candidates.add(
+          _DisplayQuadCandidate(
+            source: 'pokemon_visual_region',
+            displayQuad: pokemonVisualQuad,
+            borderConfidence: 0.55,
+          ),
+        );
+      }
+
+      final heuristicDisplayQuad = _detectDisplayCardQuadFromFrame(
+        image: image,
+        sensorRotation: sensorRotation,
+        displayQuadTargetAspect: displayQuadTargetAspect,
+      );
+      if (heuristicDisplayQuad != null) {
+        candidates.add(
+          _DisplayQuadCandidate(
+            source: 'yuv_fallback',
+            displayQuad: heuristicDisplayQuad,
+            borderConfidence: 0.35,
+          ),
+        );
+      }
       candidates.add(
         _DisplayQuadCandidate(
-          source: 'native_detector',
-          displayQuad: quadPointsNorm,
-          borderConfidence: quadDetectorSnapshot?.confidence ?? 1.0,
+          source: 'center_fallback',
+          displayQuad: _centerDisplayCardQuad(displayQuadTargetAspect),
+          borderConfidence: 0.0,
         ),
       );
     }
-
-    final pokemonVisualQuad = _detectPokemonDisplayCardQuadFromFrame(
-      image: image,
-      sensorRotation: sensorRotation,
-      displayQuadTargetAspect: displayQuadTargetAspect,
-    );
-    if (pokemonVisualQuad != null) {
-      candidates.add(
-        _DisplayQuadCandidate(
-          source: 'pokemon_visual_region',
-          displayQuad: pokemonVisualQuad,
-          borderConfidence: 0.55,
-        ),
-      );
-    }
-
-    final heuristicDisplayQuad = _detectDisplayCardQuadFromFrame(
-      image: image,
-      sensorRotation: sensorRotation,
-      displayQuadTargetAspect: displayQuadTargetAspect,
-    );
-    if (heuristicDisplayQuad != null) {
-      candidates.add(
-        _DisplayQuadCandidate(
-          source: 'yuv_fallback',
-          displayQuad: heuristicDisplayQuad,
-          borderConfidence: 0.35,
-        ),
-      );
-    }
-
-    candidates.add(
-      _DisplayQuadCandidate(
-        source: 'center_fallback',
-        displayQuad: _centerDisplayCardQuad(displayQuadTargetAspect),
-        borderConfidence: 0.0,
-      ),
-    );
 
     final normalized = <_NormalizedFrame>[];
     for (final candidate in candidates) {
@@ -729,6 +1142,51 @@ class ScannerV3LiveLoopController {
     ];
   }
 
+  List<Offset>? _expandedDisplayQuadByMargins(
+    List<Offset> displayQuad, {
+    required double horizontal,
+    required double top,
+    required double bottom,
+  }) {
+    final ordered = _orderQuad(displayQuad);
+    if (ordered == null) return null;
+
+    var minX = double.infinity;
+    var minY = double.infinity;
+    var maxX = double.negativeInfinity;
+    var maxY = double.negativeInfinity;
+    for (final point in ordered) {
+      minX = math.min(minX, point.dx);
+      minY = math.min(minY, point.dy);
+      maxX = math.max(maxX, point.dx);
+      maxY = math.max(maxY, point.dy);
+    }
+    if (!minX.isFinite || !minY.isFinite || !maxX.isFinite || !maxY.isFinite) {
+      return null;
+    }
+
+    final width = maxX - minX;
+    final height = maxY - minY;
+    if (width <= 0 || height <= 0) return null;
+
+    final left = (minX - (width * horizontal)).clamp(0.0, 1.0).toDouble();
+    final right = (maxX + (width * horizontal)).clamp(0.0, 1.0).toDouble();
+    final expandedTop = (minY - (height * top)).clamp(0.0, 1.0).toDouble();
+    final expandedBottom = (maxY + (height * bottom))
+        .clamp(0.0, 1.0)
+        .toDouble();
+    if (right - left <= 0.01 || expandedBottom - expandedTop <= 0.01) {
+      return null;
+    }
+
+    return <Offset>[
+      Offset(left, expandedTop),
+      Offset(right, expandedTop),
+      Offset(right, expandedBottom),
+      Offset(left, expandedBottom),
+    ];
+  }
+
   _NormalizedFrame? _normalizeFrameFromDisplayQuad({
     required CameraImage image,
     required int sensorRotation,
@@ -814,13 +1272,18 @@ class ScannerV3LiveLoopController {
   }
 
   _FrameCandidateEvaluation _selectBestFrameCandidate(
-    List<_NormalizedFrame> candidates,
-  ) {
+    List<_NormalizedFrame> candidates, {
+    required bool allowFallbackWithoutNativeSignal,
+  }) {
     _FrameCandidateEvaluation? bestPresent;
     _FrameCandidateEvaluation? bestRejected;
     for (final frame in candidates) {
       final quality = _measureQuality(frame);
-      final cardPresent = _evaluateCardPresent(frame, quality);
+      final cardPresent = _evaluateCardPresent(
+        frame,
+        quality,
+        allowFallbackWithoutNativeSignal: allowFallbackWithoutNativeSignal,
+      );
       final evaluation = _FrameCandidateEvaluation(
         frame: frame,
         quality: quality,
@@ -858,7 +1321,11 @@ class ScannerV3LiveLoopController {
     score += layout.score * 140;
     score += switch (frame.selectedQuadSource) {
       'selected_card_target' => 85,
+      'selected_card_target_identity_expanded' => 79,
       'selected_card_target_expanded' => 78,
+      'guided_slot' => 82,
+      'guided_slot_identity_expanded' => 76,
+      'native_detector_identity_expanded' => 44,
       'native_detector' => 45,
       'pokemon_visual_region' => 70,
       'yuv_fallback' => 35,
@@ -1661,6 +2128,48 @@ class ScannerV3LiveLoopController {
     );
   }
 
+  ScannerV3ExportImage? _normalizedColorIdentityCropFromYuv({
+    required CameraImage image,
+    required List<Offset> imageQuad,
+  }) {
+    if (image.format.group != ImageFormatGroup.yuv420 ||
+        image.planes.length < 3 ||
+        imageQuad.length != 4) {
+      return null;
+    }
+
+    const outputSize = ScannerV3IdentityPipelineV8.cropOutputSize;
+    final source = _Yuv420Source.fromImage(image);
+    final output = Uint8List(outputSize * outputSize * 4);
+    final topLeft = imageQuad[0];
+    final topRight = imageQuad[1];
+    final bottomRight = imageQuad[2];
+    final bottomLeft = imageQuad[3];
+
+    for (var y = 0; y < outputSize; y += 1) {
+      final v = (y + 0.5) / outputSize;
+      final left = _lerpOffset(topLeft, bottomLeft, v);
+      final right = _lerpOffset(topRight, bottomRight, v);
+      for (var x = 0; x < outputSize; x += 1) {
+        final u = (x + 0.5) / outputSize;
+        final point = _lerpOffset(left, right, u);
+        source.sampleRgba(
+          point.dx,
+          point.dy,
+          output,
+          ((y * outputSize) + x) * 4,
+        );
+      }
+    }
+
+    return ScannerV3ExportImage(
+      bytes: output,
+      width: outputSize,
+      height: outputSize,
+      format: ScannerV3ExportImageFormat.rgba8888,
+    );
+  }
+
   ScannerV3ExportImage _cropNormalizedFrame(
     _NormalizedFrame frame,
     _NormRect rect,
@@ -2068,8 +2577,9 @@ class ScannerV3LiveLoopController {
 
   _CardPresentDecision _evaluateCardPresent(
     _NormalizedFrame frame,
-    ScannerV3QualitySnapshot quality,
-  ) {
+    ScannerV3QualitySnapshot quality, {
+    required bool allowFallbackWithoutNativeSignal,
+  }) {
     if (!quality.accepted) {
       return _CardPresentDecision(
         present: false,
@@ -2089,19 +2599,36 @@ class ScannerV3LiveLoopController {
     final hasSelectedCardTarget = frame.selectedQuadSource.startsWith(
       'selected_card_target',
     );
+    final hasGuidedSlotTarget = frame.selectedQuadSource.startsWith(
+      'guided_slot',
+    );
+    final hasFixedUserTarget = hasSelectedCardTarget || hasGuidedSlotTarget;
     final hasScannerFallbackQuad =
         frame.selectedQuadSource == 'pokemon_visual_region' ||
         frame.selectedQuadSource == 'yuv_fallback' ||
         frame.selectedQuadSource == 'center_fallback';
-    if (!hasNativeQuad && !hasSelectedCardTarget && !hasScannerFallbackQuad) {
+    final hasStandaloneVisualCardSignal =
+        frame.selectedQuadSource == 'pokemon_visual_region' &&
+        frame.borderConfidence >= 0.55;
+    final hasUsableNativeCardSignal =
+        frame.detectorSuccess &&
+        frame.nativeDiagnosticsUsable &&
+        (frame.detectorConfidence ?? 0) >= minNativeDetectorConfidence;
+    if (!hasNativeQuad && !hasFixedUserTarget && !hasScannerFallbackQuad) {
       return const _CardPresentDecision(present: false, reason: 'no_quad');
     }
-    if (!hasNativeQuad && !hasSelectedCardTarget) {
+    if (!hasNativeQuad &&
+        !hasFixedUserTarget &&
+        hasScannerFallbackQuad &&
+        !hasUsableNativeCardSignal &&
+        !hasStandaloneVisualCardSignal &&
+        !allowFallbackWithoutNativeSignal) {
       return _CardPresentDecision(
         present: false,
-        reason: hasScannerFallbackQuad
-            ? 'native_success_required_for_card_present'
-            : 'no_native_quad',
+        reason: frame.detectorSuccess
+            ? frame.nativeDiagnosticsRejectionReason ??
+                  'native_diagnostics_unusable'
+            : 'native_success_required_for_card_present',
       );
     }
     if (hasNativeQuad && !frame.nativeDiagnosticsUsable) {
@@ -2188,7 +2715,7 @@ class ScannerV3LiveLoopController {
       borderStats: borderStats,
       layoutStats: pokemonLayoutStats,
     );
-    if (hasSelectedCardTarget &&
+    if (hasFixedUserTarget &&
         !pokemonFallbackEvidencePresent &&
         !nativeObjectContentEvidencePresent &&
         !nativePokemonLayoutEvidencePresent) {
@@ -2655,6 +3182,62 @@ class ScannerV3LiveLoopController {
     }
   }
 
+  ScannerV3IdentityFrameResult? _cachedIdentityResult({
+    required String fullHash,
+    required String artworkHash,
+  }) {
+    if (_identityResultCacheLimit <= 0) return null;
+    _CachedIdentityResult? best;
+    var bestDistance = 129;
+    for (final entry in _identityResultCache) {
+      final fullDistance = _hammingDistance(fullHash, entry.fullCardHash);
+      final artworkDistance = _hammingDistance(artworkHash, entry.artworkHash);
+      final combinedDistance = fullDistance + artworkDistance;
+      if (fullDistance > _identityResultCacheMaxSingleDistance ||
+          artworkDistance > _identityResultCacheMaxSingleDistance ||
+          combinedDistance > _identityResultCacheMaxCombinedDistance) {
+        continue;
+      }
+      if (combinedDistance < bestDistance) {
+        best = entry;
+        bestDistance = combinedDistance;
+      }
+    }
+    return best?.toFrameResult();
+  }
+
+  void _rememberIdentityResult({
+    required String fullHash,
+    required String artworkHash,
+    required ScannerV3IdentityFrameResult result,
+  }) {
+    if (_identityResultCacheLimit <= 0) return;
+    if (result.candidates.isEmpty || result.successfulCropCount == 0) return;
+
+    _identityResultCache.removeWhere((entry) {
+      final fullDistance = _hammingDistance(fullHash, entry.fullCardHash);
+      final artworkDistance = _hammingDistance(artworkHash, entry.artworkHash);
+      return fullDistance <= _identityResultCacheMaxSingleDistance &&
+          artworkDistance <= _identityResultCacheMaxSingleDistance &&
+          fullDistance + artworkDistance <=
+              _identityResultCacheMaxCombinedDistance;
+    });
+    _identityResultCache.insert(
+      0,
+      _CachedIdentityResult.fromFrameResult(
+        fullCardHash: fullHash,
+        artworkHash: artworkHash,
+        result: result,
+      ),
+    );
+    if (_identityResultCache.length > _identityResultCacheLimit) {
+      _identityResultCache.removeRange(
+        _identityResultCacheLimit,
+        _identityResultCache.length,
+      );
+    }
+  }
+
   bool _hashClusterWouldLock() {
     final ranked = _rankedCandidates();
     if (ranked.isEmpty) return false;
@@ -2707,6 +3290,8 @@ class ScannerV3LiveLoopController {
             number: candidate.number,
             gvId: candidate.gvId,
             imageUrl: candidate.imageUrl,
+            contributingCropTypes: candidate.contributingCropTypes.toList()
+              ..sort(),
           ),
         )
         .toList(growable: false);
@@ -2820,6 +3405,44 @@ class ScannerV3LiveLoopController {
       return 'identity_service_error';
     }
     return null;
+  }
+
+  void _debugLogIdentityTiming({
+    required int frameIndex,
+    required int acceptedFrameIndex,
+    required int colorCropElapsedMs,
+    required int artworkCropElapsedMs,
+    required int identityResolveElapsedMs,
+    required int sampleElapsedAtResolveMs,
+    required bool cached,
+    required ScannerV3IdentityFrameResult result,
+  }) {
+    if (!kDebugMode) return;
+    final top = result.candidates.isEmpty ? null : result.candidates.first;
+    debugPrint(
+      '[scanner_v3_identity_timing] '
+      'frame=$frameIndex '
+      'accepted=$acceptedFrameIndex '
+      'cached=$cached '
+      'color_crop_ms=$colorCropElapsedMs '
+      'artwork_crop_ms=$artworkCropElapsedMs '
+      'resolve_wall_ms=$identityResolveElapsedMs '
+      'pipeline_ms=${result.totalElapsedMs} '
+      'sample_ms=$sampleElapsedAtResolveMs '
+      'crop_gen_ms=${result.cropGenerationElapsedMs} '
+      'crop_encode_ms=${result.cropEncodeElapsedMs ?? -1} '
+      'batch_ms=${result.batchRequestElapsedMs ?? -1} '
+      'embedding_ms=${result.embeddingElapsedMs ?? -1} '
+      'vector_ms=${result.vectorSearchElapsedMs ?? -1} '
+      'rerank_ms=${result.rerankElapsedMs} '
+      'crops=${result.successfulCropCount}/${result.cropCount} '
+      'unified=${result.unifiedCandidateCount} '
+      'source=${result.signalSource} '
+      'top=${top?.cardId ?? "none"} '
+      'dist=${top?.distance.toStringAsFixed(4) ?? "n/a"} '
+      'support=${top?.cropContributionCount ?? 0} '
+      'ref_support=${top?.referenceViewContributionCount ?? 0}',
+    );
   }
 
   String _statusTextForIdentityDecision(String decisionState) {
@@ -3214,6 +3837,66 @@ class _TrackedCandidate {
       fullCardHash: fullCardHash,
       artworkHash: artworkHash,
       lastDistance: lastDistance,
+    );
+  }
+}
+
+class _CachedIdentityResult {
+  const _CachedIdentityResult({
+    required this.fullCardHash,
+    required this.artworkHash,
+    required this.candidates,
+    required this.unifiedCandidateCount,
+    required this.cropCount,
+    required this.successfulCropCount,
+    required this.cropTypes,
+    required this.cropOutputSize,
+  });
+
+  factory _CachedIdentityResult.fromFrameResult({
+    required String fullCardHash,
+    required String artworkHash,
+    required ScannerV3IdentityFrameResult result,
+  }) {
+    return _CachedIdentityResult(
+      fullCardHash: fullCardHash,
+      artworkHash: artworkHash,
+      candidates: List<Candidate>.unmodifiable(result.candidates),
+      unifiedCandidateCount: result.unifiedCandidateCount,
+      cropCount: result.cropCount,
+      successfulCropCount: result.successfulCropCount,
+      cropTypes: List<String>.unmodifiable(result.cropTypes),
+      cropOutputSize: result.cropOutputSize,
+    );
+  }
+
+  final String fullCardHash;
+  final String artworkHash;
+  final List<Candidate> candidates;
+  final int unifiedCandidateCount;
+  final int cropCount;
+  final int successfulCropCount;
+  final List<String> cropTypes;
+  final int cropOutputSize;
+
+  ScannerV3IdentityFrameResult toFrameResult() {
+    return ScannerV3IdentityFrameResult(
+      candidates: candidates,
+      unifiedCandidateCount: unifiedCandidateCount,
+      cropCount: cropCount,
+      successfulCropCount: successfulCropCount,
+      cropTypes: cropTypes,
+      embeddingElapsedMs: 0,
+      vectorSearchElapsedMs: 0,
+      rerankElapsedMs: 0,
+      totalElapsedMs: 0,
+      cropGenerationElapsedMs: 0,
+      cropEncodeElapsedMs: 0,
+      batchRequestElapsedMs: 0,
+      cropTransportFormat: 'recent_identity_cache',
+      cropOutputSize: cropOutputSize,
+      errors: const <String>[],
+      signalSource: 'v8_recent_identity_cache',
     );
   }
 }

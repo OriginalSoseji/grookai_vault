@@ -33,6 +33,7 @@ import 'services/public/card_surface_pricing_service.dart';
 import 'services/public/compare_service.dart';
 import 'services/public/public_collector_service.dart';
 import 'services/scanner/scanner_native_camera_guardrail.dart';
+import 'services/scanner/native_condition_camera_bridge.dart';
 import 'services/scanner/native_scanner_phase0_bridge.dart';
 import 'services/navigation/grookai_web_route_service.dart';
 import 'services/vault/vault_card_service.dart';

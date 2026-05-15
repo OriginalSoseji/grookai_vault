@@ -15,7 +15,7 @@ class ScannerV3IdentityPipelineV8 {
   ScannerV3IdentityPipelineV8({
     ScannerV3ImageEmbeddingServiceV1? embeddingService,
     ScannerV3VectorCandidateServiceV1? vectorCandidateService,
-    this.topPerCrop = 50,
+    this.topPerCrop = 15,
     this.topUnified = 50,
     this.topRerankInput = 10,
     this.topOutput = 5,
@@ -25,19 +25,85 @@ class ScannerV3IdentityPipelineV8 {
            vectorCandidateService ?? ScannerV3VectorCandidateServiceV1(),
        _batchResolveService = _ScannerV3IdentityBatchResolveServiceV1();
 
-  static const int cropOutputSize = 512;
+  static const int cropOutputSize = 224;
   static const double _fastPathMaxAcceptedDistance = 0.195;
   static const int _fastPathMinCropSupport = 2;
-  static const List<String> queryCropTypes = <String>[
+  static const double _stableFastResultMaxDistance = 0.245;
+  static const double _priorityArtworkGrayMaxDistance = 0.205;
+  static const String _priorityArtworkGrayIdentitySignalCropType =
+      'priority_artwork_gray_top';
+  static const String _priorityFullCardIdentitySignalCropType =
+      'priority_full_card_top';
+  static const String _priorityFullCardUpperIdentitySignalCropType =
+      'priority_full_card_upper_top';
+  static const String _priorityCenterTightIdentitySignalCropType =
+      'priority_center_tight_top';
+  static const String _priorityCoreIdentityConsensusCropType =
+      'priority_core_identity_consensus';
+  static const String _priorityIdentitySupportCropType =
+      'priority_identity_support';
+  static const String _visualFullCardAlignmentCropType =
+      'visual_full_card_alignment';
+  static const String _crossViewTitleBandSignalCropType =
+      'cross_view_title_band_match';
+  static const String _fullCardIdentityAnchorCropType =
+      'full_card_identity_anchor';
+  static const String _fullCardCoreCropType = 'full_card_core';
+  static const String _fullCardCoreTightCropType = 'full_card_core_tight';
+  static const String _fullCardInnerCoreCropType = 'full_card_inner_core';
+  static const Set<String> _identityAnchoredCropTypes = <String>{
+    _priorityArtworkGrayIdentitySignalCropType,
+    _priorityCenterTightIdentitySignalCropType,
+    _priorityFullCardUpperIdentitySignalCropType,
+    _priorityIdentitySupportCropType,
+    _visualFullCardAlignmentCropType,
+    'artwork_zoom_in_10_gray',
+    'center_tight',
+    _fullCardIdentityAnchorCropType,
+    'title_band',
     'full_card_trimmed',
+    'full_card_upper',
+    'full_card_middle',
+    'full_card',
+    _fullCardCoreCropType,
+    _fullCardCoreTightCropType,
+    _fullCardInnerCoreCropType,
+    _priorityFullCardIdentitySignalCropType,
+  };
+  static const Set<String> _priorityIdentityCropTypes = <String>{
+    'artwork_zoom_in_10_gray',
+  };
+  static const Set<String> _priorityFullCardCropTypes = <String>{'full_card'};
+  static const Set<String> _priorityCenterTightCropTypes = <String>{
+    'center_tight',
+  };
+  static const Set<String> _coreConsensusCropTypes = <String>{
+    _fullCardCoreCropType,
+    _fullCardCoreTightCropType,
+    _fullCardInnerCoreCropType,
+    _fullCardIdentityAnchorCropType,
+  };
+  static const Set<String> _fallbackPriorityIdentityCropTypes = <String>{
+    'full_card_upper',
+  };
+  static const List<String> queryCropTypes = <String>[
+    'title_band',
+    'full_card_trimmed',
+    'full_card_upper',
+    'full_card_middle',
+    _fullCardCoreCropType,
+    _fullCardCoreTightCropType,
     'artwork_zoom_in_10',
+    'artwork_zoom_in_10_gray',
     'artwork',
     'shift_left',
     'shift_right',
     'shift_up',
     'shift_down',
     'center_tight',
+    _fullCardIdentityAnchorCropType,
     'full_card',
+    _fullCardInnerCoreCropType,
   ];
 
   final ScannerV3ImageEmbeddingServiceV1 _embeddingService;
@@ -48,15 +114,24 @@ class ScannerV3IdentityPipelineV8 {
   final int topRerankInput;
   final int topOutput;
 
+  Future<void> warmUp() => _batchResolveService.warmUp();
+
   Future<ScannerV3IdentityFrameResult> resolveFrame({
     required ScannerV3ExportImage normalizedFullCard,
     required ScannerV3ExportImage artworkRegion,
   }) async {
+    // The detector/guide has already normalized the card slot. Additional
+    // foreground trimming can remove identity-bearing card regions on holo and
+    // full-art frames, which makes visually similar cards outrank the target.
+    final identityFullCard = normalizedFullCard;
+    final identityArtworkRegion = _cropIdentityArtworkRegion(
+      identityFullCard,
+      fallback: artworkRegion,
+    );
     final frameWatch = Stopwatch()..start();
     final fastCropGenerationWatch = Stopwatch()..start();
     final fastCrops = _generateFastQueryCrops(
-      normalizedFullCard: normalizedFullCard,
-      artworkRegion: artworkRegion,
+      untrimmedFullCard: normalizedFullCard,
     );
     final fastCropGenerationElapsedMs =
         fastCropGenerationWatch.elapsedMilliseconds;
@@ -71,16 +146,16 @@ class ScannerV3IdentityPipelineV8 {
       cropEncodeElapsedMs: fastResolvedCrops.cropEncodeElapsedMs,
       batchRequestElapsedMs: fastResolvedCrops.batchRequestElapsedMs,
       cropTransportFormat: fastResolvedCrops.transportFormat,
-      signalSource: 'v8_fast_full_card_vector',
+      signalSource: 'v8_fast_visual_vector',
     );
-    if (_fastFrameResultAccepted(fastResult)) {
+    if (_fastFrameResultUsable(fastResult)) {
       return fastResult;
     }
 
     final fallbackCropGenerationWatch = Stopwatch()..start();
     final fallbackCrops = _generateFallbackQueryCrops(
-      normalizedFullCard: normalizedFullCard,
-      artworkRegion: artworkRegion,
+      normalizedFullCard: identityFullCard,
+      artworkRegion: identityArtworkRegion,
     );
     final fallbackCropGenerationElapsedMs =
         fallbackCropGenerationWatch.elapsedMilliseconds;
@@ -174,6 +249,18 @@ class ScannerV3IdentityPipelineV8 {
     return candidate.distance <= _fastPathMaxAcceptedDistance;
   }
 
+  bool _fastFrameResultUsable(ScannerV3IdentityFrameResult result) {
+    if (_fastFrameResultAccepted(result)) return true;
+    final candidate = result.candidates.isEmpty
+        ? null
+        : result.candidates.first;
+    if (candidate == null) return false;
+    if ((candidate.cropContributionCount ?? 0) < _fastPathMinCropSupport) {
+      return false;
+    }
+    return candidate.distance <= _stableFastResultMaxDistance;
+  }
+
   Future<_ResolvedIdentityCrops> _resolveCrops(
     List<_IdentityCrop> crops,
   ) async {
@@ -254,22 +341,14 @@ class ScannerV3IdentityPipelineV8 {
   }
 
   List<_IdentityCrop> _generateFastQueryCrops({
-    required ScannerV3ExportImage normalizedFullCard,
-    required ScannerV3ExportImage artworkRegion,
+    required ScannerV3ExportImage untrimmedFullCard,
   }) {
     return <_IdentityCrop>[
       _IdentityCrop(
-        type: 'full_card_trimmed',
+        type: 'full_card',
         image: _normalizedRectCrop(
-          normalizedFullCard,
-          const _RectNorm(left: 0.03, top: 0.02, right: 0.97, bottom: 0.98),
-        ),
-      ),
-      _IdentityCrop(
-        type: 'artwork_zoom_in_10',
-        image: _normalizedRectCrop(
-          artworkRegion,
-          _rectFromCenter(0.50, 0.50, 0.90, 0.90),
+          untrimmedFullCard,
+          const _RectNorm(left: 0.00, top: 0.00, right: 1.00, bottom: 1.00),
         ),
       ),
     ];
@@ -279,61 +358,97 @@ class ScannerV3IdentityPipelineV8 {
     required ScannerV3ExportImage normalizedFullCard,
     required ScannerV3ExportImage artworkRegion,
   }) {
+    final grayscaleFullCard = _asGrayscale(normalizedFullCard);
+    final grayscaleArtworkRegion = _asGrayscale(artworkRegion);
     return <_IdentityCrop>[
       _IdentityCrop(
-        type: 'artwork',
+        type: 'title_band',
         image: _normalizedRectCrop(
-          artworkRegion,
-          const _RectNorm(left: 0, top: 0, right: 1, bottom: 1),
+          grayscaleFullCard,
+          const _RectNorm(left: 0.02, top: 0.00, right: 0.98, bottom: 0.16),
         ),
       ),
       _IdentityCrop(
-        type: 'shift_left',
-        image: _normalizedRectCrop(
-          artworkRegion,
-          _rectFromCenter(0.44, 0.50, 0.90, 0.92),
-        ),
-      ),
-      _IdentityCrop(
-        type: 'shift_right',
-        image: _normalizedRectCrop(
-          artworkRegion,
-          _rectFromCenter(0.56, 0.50, 0.90, 0.92),
-        ),
-      ),
-      _IdentityCrop(
-        type: 'shift_up',
-        image: _normalizedRectCrop(
-          artworkRegion,
-          _rectFromCenter(0.50, 0.44, 0.92, 0.90),
-        ),
-      ),
-      _IdentityCrop(
-        type: 'shift_down',
-        image: _normalizedRectCrop(
-          artworkRegion,
-          _rectFromCenter(0.50, 0.56, 0.92, 0.90),
-        ),
-      ),
-      _IdentityCrop(
-        type: 'center_tight',
-        image: _normalizedRectCrop(
-          artworkRegion,
-          _rectFromCenter(0.50, 0.50, 0.72, 0.72),
-        ),
-      ),
-      _IdentityCrop(
-        type: 'full_card',
+        type: _fullCardCoreCropType,
         image: _normalizedRectCrop(
           normalizedFullCard,
-          const _RectNorm(left: 0, top: 0, right: 1, bottom: 1),
+          const _RectNorm(left: 0.04, top: 0.06, right: 0.96, bottom: 0.88),
+        ),
+      ),
+      _IdentityCrop(
+        type: 'artwork_zoom_in_10_gray',
+        image: _normalizedRectCrop(
+          grayscaleArtworkRegion,
+          _rectFromCenter(0.50, 0.50, 0.90, 0.90),
         ),
       ),
     ];
   }
 
+  ScannerV3ExportImage _cropIdentityArtworkRegion(
+    ScannerV3ExportImage source, {
+    required ScannerV3ExportImage fallback,
+  }) {
+    if (source.width < 80 || source.height < 80) return fallback;
+    return _cropExportImage(
+      source,
+      const _RectNorm(left: 0.08, top: 0.12, right: 0.92, bottom: 0.60),
+    );
+  }
+
+  ScannerV3ExportImage _cropExportImage(
+    ScannerV3ExportImage source,
+    _RectNorm rect,
+  ) {
+    final leftNorm = rect.left.clamp(0.0, 1.0);
+    final topNorm = rect.top.clamp(0.0, 1.0);
+    final rightNorm = rect.right.clamp(0.0, 1.0);
+    final bottomNorm = rect.bottom.clamp(0.0, 1.0);
+    final left = math.max(
+      0,
+      math.min(source.width - 1, (leftNorm * source.width).floor()),
+    );
+    final top = math.max(
+      0,
+      math.min(source.height - 1, (topNorm * source.height).floor()),
+    );
+    final right = math.max(
+      left + 1,
+      math.min(source.width, (rightNorm * source.width).ceil()),
+    );
+    final bottom = math.max(
+      top + 1,
+      math.min(source.height, (bottomNorm * source.height).ceil()),
+    );
+    final cropWidth = right - left;
+    final cropHeight = bottom - top;
+    final bytesPerPixel = source.format == ScannerV3ExportImageFormat.rgba8888
+        ? 4
+        : 1;
+    final output = Uint8List(cropWidth * cropHeight * bytesPerPixel);
+
+    for (var y = 0; y < cropHeight; y += 1) {
+      final srcStart = (((top + y) * source.width) + left) * bytesPerPixel;
+      final outStart = y * cropWidth * bytesPerPixel;
+      output.setRange(
+        outStart,
+        outStart + (cropWidth * bytesPerPixel),
+        source.bytes,
+        srcStart,
+      );
+    }
+
+    return ScannerV3ExportImage(
+      bytes: output,
+      width: cropWidth,
+      height: cropHeight,
+      format: source.format,
+    );
+  }
+
   List<Candidate> _unionCandidates(List<_IdentityCropResult> cropResults) {
     final byCard = <String, _CandidateAccumulator>{};
+    final priorityIdentitySignals = _priorityIdentitySignals(cropResults);
 
     for (final cropResult in cropResults) {
       for (final candidate in cropResult.candidates) {
@@ -347,20 +462,43 @@ class ScannerV3IdentityPipelineV8 {
 
     final unified = byCard.values
         .map((accumulator) {
-          final cropCount = accumulator.cropTypes.length;
+          final contributionCropTypes = <String>{...accumulator.cropTypes};
+          final priorityIdentitySignal =
+              priorityIdentitySignals[accumulator.bestCandidate.cardId];
+          if (priorityIdentitySignal != null) {
+            contributionCropTypes.add(priorityIdentitySignal);
+            contributionCropTypes.add(_priorityIdentitySupportCropType);
+          }
+          final cropCount = contributionCropTypes.length;
+          final identityAnchorCount = _identityAnchorCount(
+            contributionCropTypes,
+          );
           final frequencyBonus = math.min(
-            0.12,
-            math.max(0, cropCount - 1) * 0.025,
+            0.08,
+            math.max(0, cropCount - 1) * 0.02,
           );
           final rankConsensusBonus = math.min(
-            0.08,
-            accumulator.rankSignal * 0.015,
+            0.14,
+            accumulator.rankSignal * 0.035,
+          );
+          final identityAnchorBonus = math.min(
+            0.06,
+            identityAnchorCount * 0.015,
+          );
+          final genericOnlyPenalty = identityAnchorCount == 0 ? 0.07 : 0.0;
+          final crossViewTitleBandPenalty = math.min(
+            0.14,
+            accumulator.crossViewTitleBandMatchCount * 0.035,
           );
           final aggregateScore =
-              (accumulator.bestSimilarity + frequencyBonus + rankConsensusBonus)
+              (accumulator.bestSimilarity +
+                      frequencyBonus +
+                      rankConsensusBonus +
+                      identityAnchorBonus -
+                      genericOnlyPenalty -
+                      crossViewTitleBandPenalty)
                   .clamp(0.0, 1.0)
                   .toDouble();
-
           return accumulator.bestCandidate.copyWith(
             distance: accumulator.bestDistance,
             similarityOverride: aggregateScore,
@@ -370,7 +508,7 @@ class ScannerV3IdentityPipelineV8 {
                 accumulator.referenceViewTypes.length,
             bestQueryCropType: accumulator.bestQueryCropType,
             bestReferenceViewType: accumulator.bestReferenceViewType,
-            contributingCropTypes: accumulator.cropTypes.toList(growable: false)
+            contributingCropTypes: contributionCropTypes.toList(growable: false)
               ..sort(),
           );
         })
@@ -400,16 +538,30 @@ class ScannerV3IdentityPipelineV8 {
     final scored = top
         .map((candidate) {
           final aggregate = candidate.aggregateScore ?? candidate.similarity;
+          final identityAnchorScore =
+              (_identityAnchorCount(candidate.contributingCropTypes) / 3)
+                  .clamp(0.0, 1.0)
+                  .toDouble();
+          final priorityIdentityScore =
+              _hasPriorityIdentitySignal(candidate.contributingCropTypes)
+              ? 1.0
+              : 0.0;
           final cropScore =
               ((candidate.cropContributionCount ?? 1) / maxCropCount)
                   .clamp(0.0, 1.0)
                   .toDouble();
           final externalRerankScore = candidate.rerankScore;
-          final finalScore = externalRerankScore == null
-              ? ((aggregate * 0.60) + (cropScore * 0.40))
+          final weightedScore = externalRerankScore == null
+              ? ((aggregate * 0.42) +
+                    (cropScore * 0.18) +
+                    (identityAnchorScore * 0.25) +
+                    (priorityIdentityScore * 0.15))
               : ((aggregate * 0.30) +
-                    (externalRerankScore.clamp(0.0, 1.0) * 0.50) +
-                    (cropScore * 0.20));
+                    (externalRerankScore.clamp(0.0, 1.0) * 0.40) +
+                    (cropScore * 0.10) +
+                    (identityAnchorScore * 0.10) +
+                    (priorityIdentityScore * 0.10));
+          final finalScore = weightedScore;
           return candidate.copyWith(
             rerankScore: finalScore.clamp(0.0, 1.0).toDouble(),
             similarityOverride: finalScore.clamp(0.0, 1.0).toDouble(),
@@ -433,6 +585,245 @@ class ScannerV3IdentityPipelineV8 {
         .entries
         .map((entry) => entry.value.copyWith(rank: entry.key + 1))
         .toList(growable: false);
+  }
+
+  Map<String, String> _priorityIdentitySignals(
+    List<_IdentityCropResult> cropResults,
+  ) {
+    final signalsByCardId = <String, String>{};
+    final coreConsensus = _coreIdentityConsensusSignal(cropResults);
+    if (coreConsensus != null) {
+      signalsByCardId[coreConsensus] = _priorityCoreIdentityConsensusCropType;
+      return signalsByCardId;
+    }
+
+    for (final cropResult in cropResults) {
+      if (!_priorityIdentityCropTypes.contains(cropResult.cropType)) continue;
+      if (cropResult.candidates.isEmpty) continue;
+      final candidates = cropResult.candidates.toList(growable: false)
+        ..sort((a, b) {
+          if (a.rank != b.rank) return a.rank.compareTo(b.rank);
+          if (a.distance != b.distance) {
+            return a.distance.compareTo(b.distance);
+          }
+          return a.cardId.compareTo(b.cardId);
+        });
+      final top = candidates.first;
+      final second = candidates.length > 1 ? candidates[1] : null;
+      final topDistanceAccepted =
+          top.distance <= _priorityArtworkGrayMaxDistance;
+      final supportingCropCount = _candidateCropSupportCount(
+        cropResults,
+        top.cardId,
+      );
+      final hasSeparation =
+          second == null || (second.distance - top.distance) >= 0.008;
+      final hasCrossCropSupport = supportingCropCount >= 3;
+      if (topDistanceAccepted && (hasSeparation || hasCrossCropSupport)) {
+        signalsByCardId[top.cardId] =
+            _priorityArtworkGrayIdentitySignalCropType;
+      }
+    }
+    if (signalsByCardId.isNotEmpty) return signalsByCardId;
+
+    for (final cropResult in cropResults) {
+      if (!_priorityCenterTightCropTypes.contains(cropResult.cropType)) {
+        continue;
+      }
+      if (cropResult.candidates.isEmpty) continue;
+      final candidates = cropResult.candidates.toList(growable: false)
+        ..sort((a, b) {
+          if (a.rank != b.rank) return a.rank.compareTo(b.rank);
+          if (a.distance != b.distance) {
+            return a.distance.compareTo(b.distance);
+          }
+          return a.cardId.compareTo(b.cardId);
+        });
+      final top = candidates.first;
+      final second = candidates.length > 1 ? candidates[1] : null;
+      final topDistanceAccepted = top.distance <= 0.215;
+      final hasSeparation =
+          second == null || (second.distance - top.distance) >= 0.022;
+      if (topDistanceAccepted && hasSeparation) {
+        signalsByCardId[top.cardId] =
+            _priorityCenterTightIdentitySignalCropType;
+      }
+    }
+    if (signalsByCardId.isNotEmpty) return signalsByCardId;
+
+    for (final cropResult in cropResults) {
+      if (!_priorityFullCardCropTypes.contains(cropResult.cropType)) {
+        continue;
+      }
+      if (cropResult.candidates.isEmpty) continue;
+      final candidates = cropResult.candidates.toList(growable: false)
+        ..sort((a, b) {
+          if (a.rank != b.rank) return a.rank.compareTo(b.rank);
+          if (a.distance != b.distance) {
+            return a.distance.compareTo(b.distance);
+          }
+          return a.cardId.compareTo(b.cardId);
+        });
+      final top = candidates.first;
+      final second = candidates.length > 1 ? candidates[1] : null;
+      final isLiteralFullCard = cropResult.cropType == 'full_card';
+      final referenceViewType = top.bestReferenceViewType ?? top.viewType;
+      final topDistanceAccepted =
+          top.distance <= (isLiteralFullCard ? 0.245 : 0.235);
+      final supportingCropCount = _candidateCropSupportCount(
+        cropResults,
+        top.cardId,
+      );
+      final hasSeparation =
+          second == null || (second.distance - top.distance) >= 0.008;
+      final hasCrossCropSupport = supportingCropCount >= 3;
+      if (topDistanceAccepted &&
+          (!isLiteralFullCard || referenceViewType == 'full_card') &&
+          (hasSeparation || (isLiteralFullCard && hasCrossCropSupport))) {
+        signalsByCardId[top.cardId] = _priorityFullCardIdentitySignalCropType;
+      }
+    }
+    if (signalsByCardId.isNotEmpty) return signalsByCardId;
+
+    for (final cropResult in cropResults) {
+      if (!_fallbackPriorityIdentityCropTypes.contains(cropResult.cropType)) {
+        continue;
+      }
+      if (cropResult.candidates.isEmpty) continue;
+      final candidates = cropResult.candidates.toList(growable: false)
+        ..sort((a, b) {
+          if (a.rank != b.rank) return a.rank.compareTo(b.rank);
+          if (a.distance != b.distance) {
+            return a.distance.compareTo(b.distance);
+          }
+          return a.cardId.compareTo(b.cardId);
+        });
+      final top = candidates.first;
+      final second = candidates.length > 1 ? candidates[1] : null;
+      final referenceView = top.bestReferenceViewType ?? top.viewType;
+      final hasSeparation =
+          second == null || (second.distance - top.distance) >= 0.008;
+      if (top.distance <= 0.198 &&
+          referenceView == 'full_card' &&
+          hasSeparation) {
+        signalsByCardId[top.cardId] =
+            _priorityFullCardUpperIdentitySignalCropType;
+      }
+    }
+    return signalsByCardId;
+  }
+
+  static bool _hasPriorityIdentitySignal(Iterable<String> cropTypes) {
+    return cropTypes.contains(_priorityArtworkGrayIdentitySignalCropType) ||
+        cropTypes.contains(_priorityCoreIdentityConsensusCropType) ||
+        cropTypes.contains(_priorityCenterTightIdentitySignalCropType) ||
+        cropTypes.contains(_priorityFullCardIdentitySignalCropType) ||
+        cropTypes.contains(_priorityFullCardUpperIdentitySignalCropType) ||
+        cropTypes.contains(_visualFullCardAlignmentCropType);
+  }
+
+  String? _coreIdentityConsensusSignal(List<_IdentityCropResult> cropResults) {
+    final byCard = <String, _CoreConsensusAccumulator>{};
+    for (final cropResult in cropResults) {
+      if (!_coreConsensusCropTypes.contains(cropResult.cropType)) continue;
+      if (cropResult.candidates.isEmpty) continue;
+      final candidates = cropResult.candidates.toList(growable: false)
+        ..sort((a, b) {
+          if (a.rank != b.rank) return a.rank.compareTo(b.rank);
+          if (a.distance != b.distance) {
+            return a.distance.compareTo(b.distance);
+          }
+          return a.cardId.compareTo(b.cardId);
+        });
+      final top = candidates.first;
+      if (!_coreConsensusDistanceAccepted(cropResult.cropType, top.distance)) {
+        continue;
+      }
+      final accumulator = byCard.putIfAbsent(
+        top.cardId,
+        () => _CoreConsensusAccumulator(top.cardId),
+      );
+      accumulator.add(cropType: cropResult.cropType, distance: top.distance);
+    }
+
+    final eligible = byCard.values
+        .where((candidate) {
+          if (candidate.cropTypes.length < 2) return false;
+          if (!candidate.cropTypes.contains(_fullCardCoreCropType) &&
+              candidate.cropTypes.length < 3) {
+            return false;
+          }
+          if (candidate.bestDistance > 0.285) return false;
+          return candidate.averageDistance <= 0.315;
+        })
+        .toList(growable: false);
+    if (eligible.isEmpty) return null;
+
+    eligible.sort((a, b) {
+      if (a.cropTypes.length != b.cropTypes.length) {
+        return b.cropTypes.length.compareTo(a.cropTypes.length);
+      }
+      if (a.averageDistance != b.averageDistance) {
+        return a.averageDistance.compareTo(b.averageDistance);
+      }
+      if (a.bestDistance != b.bestDistance) {
+        return a.bestDistance.compareTo(b.bestDistance);
+      }
+      return a.cardId.compareTo(b.cardId);
+    });
+
+    final best = eligible.first;
+    if (eligible.length > 1) {
+      final second = eligible[1];
+      if (best.cropTypes.length == second.cropTypes.length &&
+          (second.averageDistance - best.averageDistance).abs() < 0.010) {
+        return null;
+      }
+    }
+    return best.cardId;
+  }
+
+  bool _coreConsensusDistanceAccepted(String cropType, double distance) {
+    if (cropType == _fullCardCoreTightCropType) {
+      return distance <= 0.340;
+    }
+    if (cropType == _fullCardIdentityAnchorCropType) {
+      return distance <= 0.310;
+    }
+    return distance <= 0.300;
+  }
+
+  static bool _isCrossViewTitleBandMatch(
+    String queryCropType,
+    String? referenceViewType,
+  ) {
+    if (referenceViewType != 'title_band') return false;
+    return queryCropType != 'title_band';
+  }
+
+  int _candidateCropSupportCount(
+    List<_IdentityCropResult> cropResults,
+    String cardId,
+  ) {
+    var count = 0;
+    for (final cropResult in cropResults) {
+      if (cropResult.candidates.any(
+        (candidate) => candidate.cardId == cardId,
+      )) {
+        count += 1;
+      }
+    }
+    return count;
+  }
+
+  int _identityAnchorCount(Iterable<String> cropTypes) {
+    var count = 0;
+    for (final cropType in cropTypes) {
+      if (_identityAnchoredCropTypes.contains(cropType)) {
+        count += 1;
+      }
+    }
+    return count;
   }
 
   ScannerV3ExportImage _normalizedRectCrop(
@@ -467,22 +858,57 @@ class ScannerV3IdentityPipelineV8 {
     final output = Uint8List(cropOutputSize * cropOutputSize * bytesPerPixel);
 
     for (var y = 0; y < cropOutputSize; y += 1) {
-      final srcY = (top + (((y + 0.5) / cropOutputSize) * cropHeight))
-          .floor()
-          .clamp(0, source.height - 1);
+      final srcY = top + (((y + 0.5) / cropOutputSize) * cropHeight) - 0.5;
       for (var x = 0; x < cropOutputSize; x += 1) {
-        final srcX = (left + (((x + 0.5) / cropOutputSize) * cropWidth))
-            .floor()
-            .clamp(0, source.width - 1);
-        final srcIndex = ((srcY * source.width) + srcX) * bytesPerPixel;
+        final srcX = left + (((x + 0.5) / cropOutputSize) * cropWidth) - 0.5;
         final outIndex = ((y * cropOutputSize) + x) * bytesPerPixel;
         if (bytesPerPixel == 1) {
-          output[outIndex] = source.bytes[srcIndex];
+          output[outIndex] = _bilinearSampleChannel(
+            source.bytes,
+            source.width,
+            source.height,
+            bytesPerPixel,
+            srcX,
+            srcY,
+            0,
+          );
         } else {
-          output[outIndex] = source.bytes[srcIndex];
-          output[outIndex + 1] = source.bytes[srcIndex + 1];
-          output[outIndex + 2] = source.bytes[srcIndex + 2];
-          output[outIndex + 3] = source.bytes[srcIndex + 3];
+          output[outIndex] = _bilinearSampleChannel(
+            source.bytes,
+            source.width,
+            source.height,
+            bytesPerPixel,
+            srcX,
+            srcY,
+            0,
+          );
+          output[outIndex + 1] = _bilinearSampleChannel(
+            source.bytes,
+            source.width,
+            source.height,
+            bytesPerPixel,
+            srcX,
+            srcY,
+            1,
+          );
+          output[outIndex + 2] = _bilinearSampleChannel(
+            source.bytes,
+            source.width,
+            source.height,
+            bytesPerPixel,
+            srcX,
+            srcY,
+            2,
+          );
+          output[outIndex + 3] = _bilinearSampleChannel(
+            source.bytes,
+            source.width,
+            source.height,
+            bytesPerPixel,
+            srcX,
+            srcY,
+            3,
+          );
         }
       }
     }
@@ -492,6 +918,69 @@ class ScannerV3IdentityPipelineV8 {
       width: cropOutputSize,
       height: cropOutputSize,
       format: source.format,
+    );
+  }
+
+  int _bilinearSampleChannel(
+    Uint8List bytes,
+    int width,
+    int height,
+    int bytesPerPixel,
+    double x,
+    double y,
+    int channel,
+  ) {
+    final clampedX = x.clamp(0.0, (width - 1).toDouble()).toDouble();
+    final clampedY = y.clamp(0.0, (height - 1).toDouble()).toDouble();
+    final x0 = clampedX.floor().clamp(0, width - 1).toInt();
+    final y0 = clampedY.floor().clamp(0, height - 1).toInt();
+    final x1 = math.min(width - 1, x0 + 1);
+    final y1 = math.min(height - 1, y0 + 1);
+    final xWeight = clampedX - x0;
+    final yWeight = clampedY - y0;
+
+    double valueAt(int sampleX, int sampleY) {
+      final index = ((sampleY * width) + sampleX) * bytesPerPixel + channel;
+      return index >= 0 && index < bytes.length ? bytes[index].toDouble() : 0.0;
+    }
+
+    final topValue =
+        (valueAt(x0, y0) * (1.0 - xWeight)) + (valueAt(x1, y0) * xWeight);
+    final bottomValue =
+        (valueAt(x0, y1) * (1.0 - xWeight)) + (valueAt(x1, y1) * xWeight);
+    return ((topValue * (1.0 - yWeight)) + (bottomValue * yWeight))
+        .round()
+        .clamp(0, 255)
+        .toInt();
+  }
+
+  ScannerV3ExportImage _asGrayscale(ScannerV3ExportImage source) {
+    if (source.format == ScannerV3ExportImageFormat.grayscale8) {
+      return source;
+    }
+    final pixelCount = source.width * source.height;
+    final expectedBytes = pixelCount * 4;
+    final sourceBytes = Uint8List.sublistView(
+      source.bytes,
+      0,
+      math.min(source.bytes.length, expectedBytes),
+    );
+    final output = Uint8List(pixelCount);
+    for (var pixel = 0; pixel < pixelCount; pixel += 1) {
+      final sourceIndex = pixel * 4;
+      if (sourceIndex + 2 >= sourceBytes.length) break;
+      final red = sourceBytes[sourceIndex];
+      final green = sourceBytes[sourceIndex + 1];
+      final blue = sourceBytes[sourceIndex + 2];
+      output[pixel] = ((red * 299 + green * 587 + blue * 114) / 1000)
+          .round()
+          .clamp(0, 255);
+    }
+    return ScannerV3ExportImage(
+      bytes: output,
+      width: source.width,
+      height: source.height,
+      format: ScannerV3ExportImageFormat.grayscale8,
     );
   }
 
@@ -613,6 +1102,14 @@ class _ScannerV3IdentityBatchResolveServiceV1 {
         const String.fromEnvironment('SCANNER_V3_RESOLVE_ENDPOINT');
     if (explicit.trim().isNotEmpty) return explicit;
 
+    final baseEndpoint =
+        dotenv.env['SCANNER_V3_IDENTITY_BASE_ENDPOINT'] ??
+        const String.fromEnvironment('SCANNER_V3_IDENTITY_BASE_ENDPOINT');
+    final trimmedBase = baseEndpoint.trim();
+    if (trimmedBase.isNotEmpty) {
+      return '${trimmedBase.replaceFirst(RegExp(r'/+$'), '')}/scanner-v3/resolve-crops';
+    }
+
     final embedEndpoint =
         dotenv.env['SCANNER_V3_EMBEDDING_ENDPOINT'] ??
         const String.fromEnvironment('SCANNER_V3_EMBEDDING_ENDPOINT');
@@ -631,6 +1128,30 @@ class _ScannerV3IdentityBatchResolveServiceV1 {
   final http.Client _client;
 
   bool get configured => endpoint.trim().isNotEmpty;
+
+  Future<void> warmUp() async {
+    final resolvedEndpoint = endpoint.trim();
+    if (resolvedEndpoint.isEmpty) return;
+    final uri = Uri.tryParse(resolvedEndpoint);
+    if (uri == null || !uri.hasScheme || uri.host.isEmpty) return;
+    final healthPath = uri.path.endsWith('/scanner-v3/resolve-crops')
+        ? uri.path.replaceFirst(
+            RegExp(r'/scanner-v3/resolve-crops$'),
+            '/health',
+          )
+        : '/health';
+    final healthUri = uri.replace(path: healthPath, query: null);
+    try {
+      await _client
+          .get(
+            healthUri,
+            headers: const <String, String>{'accept': 'application/json'},
+          )
+          .timeout(const Duration(seconds: 2));
+    } catch (_) {
+      // Warmup is opportunistic; the real resolve path reports service errors.
+    }
+  }
 
   Future<List<_IdentityCropResult>> resolveCrops(
     List<_EncodedIdentityCrop> crops, {
@@ -901,17 +1422,30 @@ class _CandidateAccumulator {
   String? bestQueryCropType;
   String? bestReferenceViewType;
   double rankSignal = 0;
+  int crossViewTitleBandMatchCount = 0;
   final Set<String> cropTypes = <String>{};
   final Set<String> referenceViewTypes = <String>{};
 
   void add(Candidate candidate, String cropType) {
-    cropTypes.add(cropType);
-    for (final type in candidate.contributingCropTypes) {
-      cropTypes.add(type);
-    }
-    final refType = candidate.bestReferenceViewType;
+    final refType = candidate.bestReferenceViewType ?? candidate.viewType;
     if (refType != null && refType.isNotEmpty) {
       referenceViewTypes.add(refType);
+    }
+    final isCrossViewTitleBandMatch =
+        ScannerV3IdentityPipelineV8._isCrossViewTitleBandMatch(
+          cropType,
+          refType,
+        );
+    if (isCrossViewTitleBandMatch) {
+      crossViewTitleBandMatchCount += 1;
+      cropTypes.add(
+        ScannerV3IdentityPipelineV8._crossViewTitleBandSignalCropType,
+      );
+    } else {
+      cropTypes.add(cropType);
+      for (final type in candidate.contributingCropTypes) {
+        cropTypes.add(type);
+      }
     }
     rankSignal += 1 / math.max(1, candidate.rank);
 
@@ -924,6 +1458,26 @@ class _CandidateAccumulator {
       bestReferenceViewType = candidate.bestReferenceViewType;
     }
   }
+}
+
+class _CoreConsensusAccumulator {
+  _CoreConsensusAccumulator(this.cardId);
+
+  final String cardId;
+  final Set<String> cropTypes = <String>{};
+  double totalDistance = 0;
+  double bestDistance = double.infinity;
+
+  void add({required String cropType, required double distance}) {
+    if (!cropTypes.add(cropType)) return;
+    totalDistance += distance;
+    if (distance < bestDistance) {
+      bestDistance = distance;
+    }
+  }
+
+  double get averageDistance =>
+      cropTypes.isEmpty ? double.infinity : totalDistance / cropTypes.length;
 }
 
 class _RectNorm {

@@ -68,6 +68,7 @@ class _AppShellState extends State<AppShell> {
   int? _lastHandledDebugActionId;
   bool _handlingCanonicalLink = false;
   bool _handlingDebugAction = false;
+  bool _scannerPrewarmInFlight = false;
 
   @override
   void initState() {
@@ -87,6 +88,7 @@ class _AppShellState extends State<AppShell> {
       if (kNativeScannerPhase0Enabled) {
         unawaited(NativeScannerPhase0Bridge.startSession());
       }
+      unawaited(_prewarmScanCardSurface(reason: 'shell_ready'));
     });
   }
 
@@ -137,6 +139,43 @@ class _AppShellState extends State<AppShell> {
     return Navigator.of(
       context,
     ).push<T>(MaterialPageRoute<T>(builder: (_) => page));
+  }
+
+  Future<void> _prewarmScanCardSurface({required String reason}) async {
+    if (_scannerPrewarmInFlight) {
+      return;
+    }
+    if (!ScannerNativeCameraGuardrail.nativeConditionCameraRequestedForScanCard(
+      defaultTargetPlatform,
+    )) {
+      return;
+    }
+
+    _scannerPrewarmInFlight = true;
+    try {
+      final initialMetrics = await NativeConditionCameraBridge.prewarmSession();
+      await Future<void>.delayed(const Duration(milliseconds: 650));
+      final metrics = await NativeConditionCameraBridge.getPrewarmMetrics();
+      if (kDebugMode) {
+        debugPrint(
+          '[scanner_prewarm] reason=$reason '
+          'initial=${initialMetrics.status} '
+          'status=${metrics.status} '
+          'first_frame_ms=${metrics.timeToFirstFrameMs ?? -1} '
+          'frames=${metrics.frameCount ?? 0}',
+        );
+      }
+    } on MissingPluginException catch (error) {
+      if (kDebugMode) {
+        debugPrint('[scanner_prewarm] reason=$reason unavailable=$error');
+      }
+    } catch (error) {
+      if (kDebugMode) {
+        debugPrint('[scanner_prewarm] reason=$reason failed=$error');
+      }
+    } finally {
+      _scannerPrewarmInFlight = false;
+    }
   }
 
   Future<void> _maybeHandlePendingCanonicalLink() async {
@@ -461,6 +500,7 @@ class _AppShellState extends State<AppShell> {
       return;
     }
 
+    unawaited(_prewarmScanCardSurface(reason: 'scan_tap'));
     final file = await _pushPage<XFile?>(
       ConditionCameraScreen(
         title: 'Scan Card',
@@ -469,10 +509,14 @@ class _AppShellState extends State<AppShell> {
     );
 
     if (!mounted || file == null) {
+      unawaited(_prewarmScanCardSurface(reason: 'scan_return'));
       return;
     }
 
     await _pushPage<void>(IdentityScanScreen(initialFrontFile: file));
+    if (mounted) {
+      unawaited(_prewarmScanCardSurface(reason: 'identity_return'));
+    }
   }
 
   IconButton _appBarActionButton({

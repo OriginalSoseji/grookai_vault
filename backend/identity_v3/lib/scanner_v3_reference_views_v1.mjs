@@ -12,6 +12,7 @@ export const SCANNER_V3_REFERENCE_VIEWS_V1 = {
     'artwork',
     'artwork_zoom_in_10',
     'center_tight',
+    'title_band',
     'full_card',
     'full_card_upper',
     'full_card_middle',
@@ -60,6 +61,16 @@ export async function generateScannerV3ReferenceViews(entry) {
   }
 
   if (fullBuffer) {
+    views.push({
+      view_type: 'title_band',
+      source: 'reference_full_card',
+      buffer: await scannerV3NormalizedRectCrop(fullBuffer, {
+        left: 0.02,
+        top: 0.00,
+        right: 0.98,
+        bottom: 0.16,
+      }),
+    });
     views.push({
       view_type: 'full_card',
       source: 'reference_full_card',

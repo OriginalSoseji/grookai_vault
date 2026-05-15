@@ -41,6 +41,10 @@ class ScannerV3CameraOverlay extends StatelessWidget {
     super.key,
     required this.state,
     required this.guideRect,
+    required this.cameraViewportRect,
+    required this.guidedSlotQuadsNorm,
+    required this.guidedSlotCount,
+    required this.activeGuidedSlotIndex,
     required this.quadPointsNorm,
     required this.quadPointSetsNorm,
     required this.selectedQuadNorm,
@@ -63,6 +67,7 @@ class ScannerV3CameraOverlay extends StatelessWidget {
     required this.autoTestStatus,
     required this.onClose,
     required this.onToggleFlash,
+    required this.onGuidedSlotCountChanged,
     required this.onToggleDebug,
     required this.onShutter,
     required this.onTryAgain,
@@ -76,6 +81,10 @@ class ScannerV3CameraOverlay extends StatelessWidget {
 
   final ScannerV3LiveLoopState state;
   final Rect guideRect;
+  final Rect cameraViewportRect;
+  final List<List<Offset>> guidedSlotQuadsNorm;
+  final int guidedSlotCount;
+  final int activeGuidedSlotIndex;
   final List<Offset>? quadPointsNorm;
   final List<List<Offset>>? quadPointSetsNorm;
   final List<Offset>? selectedQuadNorm;
@@ -98,6 +107,7 @@ class ScannerV3CameraOverlay extends StatelessWidget {
   final ScannerV4DiagnosticTestStatusV1 autoTestStatus;
   final VoidCallback onClose;
   final VoidCallback onToggleFlash;
+  final ValueChanged<int> onGuidedSlotCountChanged;
   final VoidCallback onToggleDebug;
   final VoidCallback onShutter;
   final VoidCallback onTryAgain;
@@ -126,7 +136,9 @@ class ScannerV3CameraOverlay extends StatelessWidget {
     final visibleSelectedQuadNorm = cardRegionVisible ? selectedQuadNorm : null;
     final cardSelectionActive =
         visibleSelectedQuadNorm != null && visibleSelectedQuadNorm.length == 4;
-    final edgeLocked = detectedCardCount > 0;
+    final edgeLocked = guidedSlotQuadsNorm.isNotEmpty
+        ? cardRegionVisible
+        : detectedCardCount > 0;
     final tone = ScannerV3UiTone.fromState(
       state,
       edgeLocked: edgeLocked,
@@ -138,17 +150,25 @@ class ScannerV3CameraOverlay extends StatelessWidget {
     final padding = MediaQuery.of(context).padding;
     final topInset = padding.top > 0 ? padding.top : 18.0;
     final bottomInset = padding.bottom > 0 ? padding.bottom : 18.0;
+    final currentCandidateId =
+        state.lockedCandidateId ?? state.currentBestCandidateId;
+    final visibleScanMemory =
+        tone.showPrimaryCandidate && currentCandidateId != null
+        ? scanMemory
+              .where((entry) => entry.candidateId != currentCandidateId)
+              .toList(growable: false)
+        : const <ScannerV3ScanMemoryEntry>[];
     final bottomPanelMaxHeight = _scannerBottomPanelMaxHeight(
       context,
       tone,
       debugExpanded,
-      scanMemory.isNotEmpty,
+      visibleScanMemory.isNotEmpty,
     );
     final shutterBottomOffset = tone.showUnknownActions || tone.showRescanAction
         ? bottomPanelMaxHeight + 22
         : tone.showPrimaryCandidate
         ? bottomPanelMaxHeight + 20
-        : bottomPanelMaxHeight + 18;
+        : bottomPanelMaxHeight + 8;
 
     return Stack(
       fit: StackFit.expand,
@@ -156,6 +176,9 @@ class ScannerV3CameraOverlay extends StatelessWidget {
         IgnorePointer(
           child: ScannerFrameGuide(
             guideRect: guideRect,
+            cameraViewportRect: cameraViewportRect,
+            guidedSlotQuadsNorm: guidedSlotQuadsNorm,
+            activeGuidedSlotIndex: activeGuidedSlotIndex,
             quadPointsNorm: visibleQuadPointsNorm,
             quadPointSetsNorm: visibleQuadPointSetsNorm,
             selectedQuadNorm: visibleSelectedQuadNorm,
@@ -176,6 +199,7 @@ class ScannerV3CameraOverlay extends StatelessWidget {
                     _ScannerSpatialStatusChip(
                       tone: tone,
                       guideRect: guideRect,
+                      cameraViewportRect: cameraViewportRect,
                       quadPointsNorm: visibleQuadPointsNorm,
                       quadPointSetsNorm: visibleQuadPointSetsNorm,
                       safePadding: padding,
@@ -195,18 +219,22 @@ class ScannerV3CameraOverlay extends StatelessWidget {
           right: 18,
           child: _ScannerTopControls(
             flashEnabled: flashEnabled,
+            guidedSlotCount: guidedSlotCount,
+            showGuidedSlotModes: guidedSlotQuadsNorm.isNotEmpty,
             onClose: onClose,
             onToggleFlash: onToggleFlash,
+            onGuidedSlotCountChanged: onGuidedSlotCountChanged,
           ),
         ),
-        Positioned(
-          left: 0,
-          right: 0,
-          bottom: bottomInset + shutterBottomOffset,
-          child: Center(
-            child: ScannerShutterButton(tone: tone, onPressed: onShutter),
+        if (!tone.locked)
+          Positioned(
+            left: 0,
+            right: 0,
+            bottom: bottomInset + shutterBottomOffset,
+            child: Center(
+              child: ScannerShutterButton(tone: tone, onPressed: onShutter),
+            ),
           ),
-        ),
         Positioned(
           left: 16,
           right: 16,
@@ -217,7 +245,7 @@ class ScannerV3CameraOverlay extends StatelessWidget {
             edgeLocked: edgeLocked,
             detectedCardCount: detectedCardCount,
             cardSelectionActive: cardSelectionActive,
-            scanMemory: scanMemory,
+            scanMemory: visibleScanMemory,
             exportEnabled: exportEnabled,
             debugExpanded: debugExpanded,
             maxHeight: bottomPanelMaxHeight,
@@ -233,6 +261,7 @@ class ScannerV3CameraOverlay extends StatelessWidget {
             diagnosticsLastExportPath: diagnosticsLastExportPath,
             autoTestStatus: autoTestStatus,
             onToggleDebug: onToggleDebug,
+            onShutter: onShutter,
             onTryAgain: onTryAgain,
             onSearchManually: onSearchManually,
             onToggleDiagnostics: onToggleDiagnostics,
@@ -261,7 +290,10 @@ double _scannerBottomPanelMaxHeight(
     return (screenHeight * 0.28).clamp(214.0, 260.0).toDouble();
   }
   if (tone.showPrimaryCandidate) {
-    return (screenHeight * 0.30).clamp(224.0, 276.0).toDouble();
+    if (hasScanMemory) {
+      return (screenHeight * 0.28).clamp(204.0, 256.0).toDouble();
+    }
+    return (screenHeight * 0.18).clamp(112.0, 148.0).toDouble();
   }
   if (hasScanMemory) {
     return (screenHeight * 0.20).clamp(132.0, 176.0).toDouble();
@@ -273,6 +305,7 @@ class _ScannerSpatialStatusChip extends StatelessWidget {
   const _ScannerSpatialStatusChip({
     required this.tone,
     required this.guideRect,
+    required this.cameraViewportRect,
     required this.quadPointsNorm,
     required this.quadPointSetsNorm,
     required this.safePadding,
@@ -281,6 +314,7 @@ class _ScannerSpatialStatusChip extends StatelessWidget {
 
   final ScannerV3UiTone tone;
   final Rect guideRect;
+  final Rect cameraViewportRect;
   final List<Offset>? quadPointsNorm;
   final List<List<Offset>>? quadPointSetsNorm;
   final EdgeInsets safePadding;
@@ -330,8 +364,8 @@ class _ScannerSpatialStatusChip extends StatelessWidget {
     var maxX = double.negativeInfinity;
     var maxY = double.negativeInfinity;
     for (final point in points) {
-      final x = point.dx * overlaySize.width;
-      final y = point.dy * overlaySize.height;
+      final x = cameraViewportRect.left + (point.dx * cameraViewportRect.width);
+      final y = cameraViewportRect.top + (point.dy * cameraViewportRect.height);
       if (x < minX) minX = x;
       if (y < minY) minY = y;
       if (x > maxX) maxX = x;
@@ -361,7 +395,7 @@ class _ScannerSpatialStatusChipBody extends StatelessWidget {
       child: ClipRRect(
         borderRadius: BorderRadius.circular(999),
         child: BackdropFilter(
-          filter: ui.ImageFilter.blur(sigmaX: 18, sigmaY: 18),
+          filter: ui.ImageFilter.blur(sigmaX: 10, sigmaY: 10),
           child: DecoratedBox(
             decoration: BoxDecoration(
               color: Colors.black.withValues(alpha: 0.52),
@@ -407,13 +441,19 @@ class _ScannerSpatialStatusChipBody extends StatelessWidget {
 class _ScannerTopControls extends StatelessWidget {
   const _ScannerTopControls({
     required this.flashEnabled,
+    required this.guidedSlotCount,
+    required this.showGuidedSlotModes,
     required this.onClose,
     required this.onToggleFlash,
+    required this.onGuidedSlotCountChanged,
   });
 
   final bool flashEnabled;
+  final int guidedSlotCount;
+  final bool showGuidedSlotModes;
   final VoidCallback onClose;
   final VoidCallback onToggleFlash;
+  final ValueChanged<int> onGuidedSlotCountChanged;
 
   @override
   Widget build(BuildContext context) {
@@ -425,12 +465,103 @@ class _ScannerTopControls extends StatelessWidget {
           onPressed: onClose,
         ),
         const Spacer(),
+        if (showGuidedSlotModes) ...[
+          _SlotModeControl(
+            value: guidedSlotCount,
+            onChanged: onGuidedSlotCountChanged,
+          ),
+          const SizedBox(width: 10),
+        ],
         _GlassIconButton(
           icon: flashEnabled ? Icons.flash_on_rounded : Icons.flash_off_rounded,
           tooltip: flashEnabled ? 'Flash on' : 'Flash off',
           onPressed: onToggleFlash,
         ),
       ],
+    );
+  }
+}
+
+class _SlotModeControl extends StatelessWidget {
+  const _SlotModeControl({required this.value, required this.onChanged});
+
+  final int value;
+  final ValueChanged<int> onChanged;
+
+  @override
+  Widget build(BuildContext context) {
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(999),
+      child: BackdropFilter(
+        filter: ui.ImageFilter.blur(sigmaX: 10, sigmaY: 10),
+        child: DecoratedBox(
+          decoration: BoxDecoration(
+            color: Colors.black.withValues(alpha: 0.26),
+            borderRadius: BorderRadius.circular(999),
+            border: Border.all(color: Colors.white.withValues(alpha: 0.14)),
+          ),
+          child: Padding(
+            padding: const EdgeInsets.all(3),
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                for (final count in const <int>[1, 2, 4])
+                  _SlotModeButton(
+                    count: count,
+                    selected: value == count,
+                    onTap: () => onChanged(count),
+                  ),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class _SlotModeButton extends StatelessWidget {
+  const _SlotModeButton({
+    required this.count,
+    required this.selected,
+    required this.onTap,
+  });
+
+  final int count;
+  final bool selected;
+  final VoidCallback onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    return Semantics(
+      button: true,
+      selected: selected,
+      label: '$count card slot mode',
+      child: GestureDetector(
+        behavior: HitTestBehavior.opaque,
+        onTap: onTap,
+        child: AnimatedContainer(
+          duration: const Duration(milliseconds: 140),
+          curve: Curves.easeOutCubic,
+          width: 34,
+          height: 34,
+          alignment: Alignment.center,
+          decoration: BoxDecoration(
+            shape: BoxShape.circle,
+            color: selected
+                ? Colors.white.withValues(alpha: 0.90)
+                : Colors.transparent,
+          ),
+          child: Text(
+            '$count',
+            style: Theme.of(context).textTheme.labelLarge?.copyWith(
+              color: selected ? Colors.black : Colors.white,
+              fontWeight: FontWeight.w800,
+              letterSpacing: 0,
+            ),
+          ),
+        ),
+      ),
     );
   }
 }
@@ -450,7 +581,7 @@ class _GlassIconButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return ClipOval(
       child: BackdropFilter(
-        filter: ui.ImageFilter.blur(sigmaX: 20, sigmaY: 20),
+        filter: ui.ImageFilter.blur(sigmaX: 10, sigmaY: 10),
         child: DecoratedBox(
           decoration: BoxDecoration(
             shape: BoxShape.circle,
@@ -497,6 +628,7 @@ class _ScannerBottomPanel extends StatelessWidget {
     required this.diagnosticsLastExportPath,
     required this.autoTestStatus,
     required this.onToggleDebug,
+    required this.onShutter,
     required this.onTryAgain,
     required this.onSearchManually,
     required this.onToggleDiagnostics,
@@ -527,6 +659,7 @@ class _ScannerBottomPanel extends StatelessWidget {
   final String? diagnosticsLastExportPath;
   final ScannerV4DiagnosticTestStatusV1 autoTestStatus;
   final VoidCallback onToggleDebug;
+  final VoidCallback onShutter;
   final VoidCallback onTryAgain;
   final VoidCallback onSearchManually;
   final ValueChanged<bool> onToggleDiagnostics;
@@ -537,8 +670,8 @@ class _ScannerBottomPanel extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final candidate = state.bestCandidate;
     final candidateId = state.lockedCandidateId ?? state.currentBestCandidateId;
+    final candidate = state.candidateById(candidateId) ?? state.bestCandidate;
     final showScanMemory = scanMemory.isNotEmpty;
     final showActions = tone.showUnknownActions || tone.showRescanAction;
     final compactDock =
@@ -548,7 +681,7 @@ class _ScannerBottomPanel extends StatelessWidget {
         !showScanMemory;
     final panelRadius = compactDock ? 999.0 : 28.0;
     final panelMaxWidth = compactDock
-        ? 312.0
+        ? 244.0
         : MediaQuery.sizeOf(context).width;
     final panelLayoutKey = tone.showPrimaryCandidate
         ? 'candidate'
@@ -565,9 +698,26 @@ class _ScannerBottomPanel extends StatelessWidget {
     return GestureDetector(
       onLongPress: onToggleDebug,
       child: AnimatedSwitcher(
-        duration: const Duration(milliseconds: 220),
+        duration: const Duration(milliseconds: 260),
         switchInCurve: Curves.easeOutCubic,
         switchOutCurve: Curves.easeInCubic,
+        transitionBuilder: (child, animation) {
+          final offsetAnimation =
+              Tween<Offset>(
+                begin: const Offset(0, 0.05),
+                end: Offset.zero,
+              ).animate(
+                CurvedAnimation(
+                  parent: animation,
+                  curve: Curves.easeOutCubic,
+                  reverseCurve: Curves.easeInCubic,
+                ),
+              );
+          return FadeTransition(
+            opacity: animation,
+            child: SlideTransition(position: offsetAnimation, child: child),
+          );
+        },
         child: Align(
           key: ValueKey(panelLayoutKey),
           alignment: Alignment.bottomCenter,
@@ -576,7 +726,10 @@ class _ScannerBottomPanel extends StatelessWidget {
             child: ClipRRect(
               borderRadius: BorderRadius.circular(panelRadius),
               child: BackdropFilter(
-                filter: ui.ImageFilter.blur(sigmaX: 30, sigmaY: 30),
+                filter: ui.ImageFilter.blur(
+                  sigmaX: compactDock ? 8 : 12,
+                  sigmaY: compactDock ? 8 : 12,
+                ),
                 child: DecoratedBox(
                   decoration: BoxDecoration(
                     color: const Color(0xCC101115),
@@ -587,17 +740,19 @@ class _ScannerBottomPanel extends StatelessWidget {
                     boxShadow: [
                       BoxShadow(
                         color: Colors.black.withValues(alpha: 0.42),
-                        blurRadius: compactDock ? 28 : 36,
-                        offset: Offset(0, compactDock ? 12 : 18),
+                        blurRadius: compactDock ? 18 : 24,
+                        offset: Offset(0, compactDock ? 8 : 12),
                       ),
                     ],
                   ),
                   child: ConstrainedBox(
                     constraints: BoxConstraints(
                       minHeight: compactDock
-                          ? 58
+                          ? 54
                           : tone.showPrimaryCandidate
-                          ? 188
+                          ? showScanMemory
+                                ? 172
+                                : 96
                           : showActions
                           ? 176
                           : showScanMemory
@@ -607,7 +762,7 @@ class _ScannerBottomPanel extends StatelessWidget {
                     ),
                     child: Padding(
                       padding: compactDock
-                          ? const EdgeInsets.fromLTRB(12, 11, 16, 11)
+                          ? const EdgeInsets.fromLTRB(12, 10, 14, 10)
                           : const EdgeInsets.fromLTRB(16, 14, 16, 14),
                       child: Column(
                         mainAxisSize: MainAxisSize.min,
@@ -622,13 +777,17 @@ class _ScannerBottomPanel extends StatelessWidget {
                               imageUrl: candidate?.imageUrl,
                               locked: tone.locked,
                               accent: tone.accent,
+                              onScanAgain: tone.locked ? onTryAgain : null,
                             )
                           else
                             _ScannerDockHeader(
                               tone: tone,
                               compact: compactDock,
                             ),
-                          if (!debugExpanded && tone.indeterminateProgress) ...[
+                          if (!compactDock &&
+                              !tone.showPrimaryCandidate &&
+                              !debugExpanded &&
+                              tone.indeterminateProgress) ...[
                             const SizedBox(height: 10),
                             ScannerConfidenceRail(
                               value: tone.progress,

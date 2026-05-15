@@ -38,14 +38,65 @@ object QuadDetectorV1Bridge {
         val startedAt = System.nanoTime()
         val width = (call.argument<Number>("width") ?: 0).toInt()
         val height = (call.argument<Number>("height") ?: 0).toInt()
-        val rotation = normalizedRotation((call.argument<Number>("rotation") ?: 0).toInt())
+        val rotation = (call.argument<Number>("rotation") ?: 0).toInt()
         val yBytes = call.argument<ByteArray>("y")
         val uBytes = call.argument<ByteArray>("u")
         val vBytes = call.argument<ByteArray>("v")
         val yRowStride = (call.argument<Number>("yRowStride") ?: width).toInt()
         val uvRowStride = (call.argument<Number>("uvRowStride") ?: max(1, width / 2)).toInt()
         val uvPixelStride = (call.argument<Number>("uvPixelStride") ?: 1).toInt()
+        return detectQuadYuv420(
+            width = width,
+            height = height,
+            rotation = rotation,
+            yBytes = yBytes,
+            uBytes = uBytes,
+            vBytes = vBytes,
+            yRowStride = yRowStride,
+            uvRowStride = uvRowStride,
+            uvPixelStride = uvPixelStride,
+            startedAt = startedAt,
+        )
+    }
 
+    fun detectQuadYuv420(
+        width: Int,
+        height: Int,
+        rotation: Int,
+        yBytes: ByteArray?,
+        uBytes: ByteArray?,
+        vBytes: ByteArray?,
+        yRowStride: Int,
+        uvRowStride: Int,
+        uvPixelStride: Int,
+    ): Map<String, Any?> {
+        return detectQuadYuv420(
+            width = width,
+            height = height,
+            rotation = rotation,
+            yBytes = yBytes,
+            uBytes = uBytes,
+            vBytes = vBytes,
+            yRowStride = yRowStride,
+            uvRowStride = uvRowStride,
+            uvPixelStride = uvPixelStride,
+            startedAt = System.nanoTime(),
+        )
+    }
+
+    private fun detectQuadYuv420(
+        width: Int,
+        height: Int,
+        rotation: Int,
+        yBytes: ByteArray?,
+        uBytes: ByteArray?,
+        vBytes: ByteArray?,
+        yRowStride: Int,
+        uvRowStride: Int,
+        uvPixelStride: Int,
+        startedAt: Long,
+    ): Map<String, Any?> {
+        val normalizedRotation = normalizedRotation(rotation)
         if (
             width <= 0 ||
             height <= 0 ||
@@ -61,7 +112,7 @@ object QuadDetectorV1Bridge {
                 reason = "invalid_yuv_frame",
                 width = width,
                 height = height,
-                rotation = rotation,
+                rotation = normalizedRotation,
             )
         }
 
@@ -74,17 +125,17 @@ object QuadDetectorV1Bridge {
             yRowStride = yRowStride,
             uvRowStride = uvRowStride,
             uvPixelStride = uvPixelStride,
-            rotation = rotation,
+            rotation = normalizedRotation,
         )
-        val displayWidth = if (rotation == 90 || rotation == 270) height else width
-        val displayHeight = if (rotation == 90 || rotation == 270) width else height
+        val displayWidth = if (normalizedRotation == 90 || normalizedRotation == 270) height else width
+        val displayHeight = if (normalizedRotation == 90 || normalizedRotation == 270) width else height
         if (displayWidth <= 0 || displayHeight <= 0) {
             return failure(
                 startedAt = startedAt,
                 reason = "invalid_display_dimensions",
                 width = width,
                 height = height,
-                rotation = rotation,
+                rotation = normalizedRotation,
             )
         }
         val displayAspect = displayWidth.toDouble() / displayHeight.toDouble()
@@ -97,7 +148,7 @@ object QuadDetectorV1Bridge {
                 reason = "insufficient_samples",
                 width = width,
                 height = height,
-                rotation = rotation,
+                rotation = normalizedRotation,
                 extraDiagnostics = mapOf("sample_count" to grid.sampleCount),
             )
         }
@@ -119,7 +170,7 @@ object QuadDetectorV1Bridge {
                 reason = "no_card_component",
                 width = width,
                 height = height,
-                rotation = rotation,
+                rotation = normalizedRotation,
                 extraDiagnostics = mapOf(
                     "seed_component_count" to 0,
                     "seed_pixel_count" to seedMask.count { it },
@@ -173,7 +224,7 @@ object QuadDetectorV1Bridge {
                 reason = "no_candidate_above_threshold",
                 width = width,
                 height = height,
-                rotation = rotation,
+                rotation = normalizedRotation,
                 extraDiagnostics = mapOf(
                     "seed_component_count" to seedComponents.size,
                     "cluster_count" to clusters.size,
@@ -210,7 +261,7 @@ object QuadDetectorV1Bridge {
                 "selected_candidate_source" to best.source,
                 "width" to width,
                 "height" to height,
-                "rotation" to rotation,
+                "rotation" to normalizedRotation,
                 "grid_width" to GRID_WIDTH,
                 "grid_height" to GRID_HEIGHT,
                 "seed_component_count" to seedComponents.size,

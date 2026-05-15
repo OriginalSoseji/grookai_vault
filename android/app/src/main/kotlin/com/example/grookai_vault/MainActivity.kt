@@ -3,6 +3,7 @@ package com.example.grookai_vault
 import android.content.Intent
 import com.example.grookai_vault.scanner.QuadDetectorV1Bridge
 import com.example.grookai_vault.scanner.ScannerCameraPhase0Bridge
+import com.example.grookai_vault.scanner.ScannerConditionCameraBridge
 import io.flutter.embedding.android.FlutterActivity
 import io.flutter.embedding.engine.FlutterEngine
 
@@ -13,6 +14,7 @@ class MainActivity : FlutterActivity() {
         super.configureFlutterEngine(flutterEngine)
         QuadDetectorV1Bridge.register(flutterEngine)
         ScannerCameraPhase0Bridge.register(this, flutterEngine)
+        ScannerConditionCameraBridge.register(this, flutterEngine)
         debugIntentBridge.register(flutterEngine, intent)
     }
 

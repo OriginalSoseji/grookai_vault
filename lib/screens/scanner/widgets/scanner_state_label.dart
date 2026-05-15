@@ -108,7 +108,21 @@ class ScannerV3UiTone {
         );
       case ScannerLiveBehaviorPhase.unknown:
         if (!identityRevealRequested) {
-          return _hiddenIdentityReadyTone(confidence);
+          return ScannerV3UiTone(
+            phase: ScannerLiveBehaviorPhase.scanningIdentity,
+            title: 'Reading card',
+            pill: 'Reading',
+            subtitle: 'Keep the card inside the frame',
+            badge: confidence == 0 ? 'Scan' : '${(confidence * 100).round()}%',
+            hint: 'Stabilizing',
+            icon: Icons.center_focus_strong_rounded,
+            accent: const Color(0xFFAEC8FF),
+            progress: confidence == 0 ? 0.42 : confidence,
+            showPrimaryCandidate: false,
+            showUnknownActions: false,
+            showRescanAction: false,
+            indeterminateProgress: true,
+          );
         }
         return const ScannerV3UiTone(
           phase: ScannerLiveBehaviorPhase.unknown,

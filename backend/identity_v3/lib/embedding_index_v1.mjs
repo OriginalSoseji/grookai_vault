@@ -3,6 +3,7 @@ import { performance } from 'node:perf_hooks';
 import sharp from 'sharp';
 import {
   RawImage,
+  env as transformersEnv,
   pipeline,
 } from '@huggingface/transformers';
 
@@ -24,6 +25,8 @@ export const EMBEDDING_INDEX_V1 = {
 };
 
 const extractors = new Map();
+
+configureTransformersRuntime();
 
 export async function embedImagePath(imagePath, options = {}) {
   return embedImageBuffer(await readFile(imagePath), options);
@@ -147,8 +150,16 @@ export async function embeddingIndexEntry(entry, options = {}) {
     name: entry.name ?? null,
     set_code: entry.set_code ?? null,
     number: entry.number ?? null,
+    number_plain: entry.number_plain ?? null,
     variant_key: entry.variant_key ?? null,
     image_url: entry.image_url ?? null,
+    image_url_field: entry.image_url_field ?? null,
+    image_source: entry.image_source ?? null,
+    image_status: entry.image_status ?? null,
+    image_note: entry.image_note ?? null,
+    image_kind: entry.image_kind ?? null,
+    image_is_representative: entry.image_is_representative ?? null,
+    print_identity_key: entry.print_identity_key ?? null,
     source_path: entry.art_image_path ?? entry.full_image_path ?? entry.image_path ?? null,
     embedding_model: result.model,
     embedding_source: result.source,
@@ -191,8 +202,16 @@ export async function multiViewEmbeddingIndexEntry(entry, options = {}) {
     name: entry.name ?? null,
     set_code: entry.set_code ?? null,
     number: entry.number ?? null,
+    number_plain: entry.number_plain ?? null,
     variant_key: entry.variant_key ?? null,
     image_url: entry.image_url ?? null,
+    image_url_field: entry.image_url_field ?? null,
+    image_source: entry.image_source ?? null,
+    image_status: entry.image_status ?? null,
+    image_note: entry.image_note ?? null,
+    image_kind: entry.image_kind ?? null,
+    image_is_representative: entry.image_is_representative ?? null,
+    print_identity_key: entry.print_identity_key ?? null,
     source_path: entry.art_image_path ?? entry.full_image_path ?? entry.image_path ?? null,
     views: embeddedViews,
   };
@@ -239,8 +258,16 @@ export function rankEmbeddingCandidates({
         name: reference.name ?? null,
         set_code: reference.set_code ?? null,
         number: reference.number ?? null,
+        number_plain: reference.number_plain ?? null,
         variant_key: reference.variant_key ?? null,
         image_url: reference.image_url ?? null,
+        image_url_field: reference.image_url_field ?? null,
+        image_source: reference.image_source ?? null,
+        image_status: reference.image_status ?? null,
+        image_note: reference.image_note ?? null,
+        image_kind: reference.image_kind ?? null,
+        image_is_representative: reference.image_is_representative ?? null,
+        print_identity_key: reference.print_identity_key ?? null,
         source_path: reference.source_path ?? null,
         distance: round6(distance),
         similarity: round6(1 - distance),
@@ -278,8 +305,16 @@ export function rankEmbeddingViewCandidates({
         name: reference.name ?? null,
         set_code: reference.set_code ?? null,
         number: reference.number ?? null,
+        number_plain: reference.number_plain ?? null,
         variant_key: reference.variant_key ?? null,
         image_url: reference.image_url ?? null,
+        image_url_field: reference.image_url_field ?? null,
+        image_source: reference.image_source ?? null,
+        image_status: reference.image_status ?? null,
+        image_note: reference.image_note ?? null,
+        image_kind: reference.image_kind ?? null,
+        image_is_representative: reference.image_is_representative ?? null,
+        print_identity_key: reference.print_identity_key ?? null,
         source_path: reference.source_path ?? null,
         reference_view_type: view.view_type ?? null,
         query_crop_type: queryCropType,
@@ -385,6 +420,14 @@ async function getImageFeatureExtractor(options = {}) {
   return extractors.get(key);
 }
 
+function configureTransformersRuntime() {
+  const cacheDir = process.env.TRANSFORMERS_CACHE || process.env.HF_HOME;
+  if (!cacheDir) return;
+  transformersEnv.cacheDir = cacheDir;
+  transformersEnv.useFSCache = true;
+  transformersEnv.useBrowserCache = false;
+}
+
 async function extractArtworkRegionBuffer(fullCardBuffer) {
   const image = sharp(fullCardBuffer, { failOn: 'none' }).rotate();
   const metadata = await image.metadata();
@@ -423,9 +466,12 @@ function average(values) {
 }
 
 function maxOrNull(values) {
-  const finite = values.filter((value) => Number.isFinite(value));
-  if (finite.length === 0) return null;
-  return Math.max(...finite);
+  let max = null;
+  for (const value of values) {
+    if (!Number.isFinite(value)) continue;
+    if (max === null || value > max) max = value;
+  }
+  return max;
 }
 
 function roundMs(value) {

@@ -3,6 +3,7 @@ import 'dart:io';
 
 import 'package:flutter/foundation.dart';
 
+import '../scanner_v3/candidate_vote_state_v1.dart';
 import '../scanner_v3/convergence_state_v1.dart';
 
 const _unavailable = 'unavailable';
@@ -146,7 +147,12 @@ class ScannerV4DiagnosticSnapshotV1 {
   }
 
   static Object _identityStartedFromState(ScannerV3LiveLoopState state) {
+    if (state.identityDecisionState == IdentityDecisionStateV1.identityLocked ||
+        state.candidates.isNotEmpty) {
+      return true;
+    }
     switch (state.identitySignalSource) {
+      case 'v8_fast_full_card_vector':
       case 'v8_multicrop_vector_rerank':
       case 'v8_multicrop_identity_no_successful_crops':
       case 'identity_error':

@@ -80,7 +80,7 @@ class ScannerLiveBehaviorV1 {
 
     if (state.identityAllowed && !_hasIdentityWorkStarted(state)) {
       return ScannerLiveBehaviorV1(
-        phase: ScannerLiveBehaviorPhase.ready,
+        phase: ScannerLiveBehaviorPhase.scanningIdentity,
         reason: state.identityAllowedReason ?? 'identity_allowed',
         edgeLocked: edgeLocked,
       );

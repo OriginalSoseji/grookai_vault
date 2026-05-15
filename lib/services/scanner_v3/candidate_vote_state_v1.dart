@@ -13,8 +13,39 @@ class CandidateVoteState {
     this.fastLockMinTopFiveFrames = 2,
     this.minTopFiveFramesToLock = 3,
     this.minRecentTopFiveFramesToAccept = 3,
-    this.recentFrameWindow = 5,
+    this.recentFrameWindow = 45,
   });
+
+  static const double twoCropStrongDistanceGuard = 0.145;
+  static const double singleFrameStrongDistanceGuard = 0.170;
+  static const double singleFrameStrongTopOneGapGuard = 0.080;
+  static const double visualFullCardAlignmentFastDistanceGuard = 0.185;
+  static const double artworkIdentityFastDistanceGuard = 0.205;
+  static const double singleFrameCrossCropDistanceGuard = 0.245;
+  static const double stableArtworkIdentityDistanceGuard = 0.235;
+  static const double stableTwoCropDistanceGuard = 0.285;
+  static const double stableSameNameFamilyDistanceGuard = 0.285;
+  static const double stableArtworkIdentityMinVoteGap = 0.25;
+  static const double stableTwoCropMinVoteGap = 0.75;
+  static const double stableSameNameFamilyMinVoteGap = 0.45;
+  static const double artworkIdentityFastMinVoteGap = 0.75;
+  static const double singleFrameCrossCropMinVoteGap = 0.45;
+  static const int stableArtworkIdentityMinTopFiveFrames = 3;
+  static const int stableArtworkIdentityMaxCropContributionCount = 1;
+  static const int stableSameNameFamilyMinTopFiveFrames = 2;
+  static const int stableTwoCropMinTopFiveFrames = 2;
+  static const int singleFrameCrossCropMinCropContributionCount = 3;
+  static const int shutterRevealMinCropContributionCount = 4;
+  static const String titleBandCropType = 'title_band';
+  static const String artworkGrayCropType = 'artwork_zoom_in_10_gray';
+  static const String priorityArtworkGrayCropType = 'priority_artwork_gray_top';
+  static const String priorityIdentitySupportCropType =
+      'priority_identity_support';
+  static const String sameNameFamilyCropType = 'same_name_family_support';
+  static const String visualFullCardAlignmentCropType =
+      'visual_full_card_alignment';
+  static const String coreIdentityConsensusCropType =
+      'priority_core_identity_consensus';
 
   final double decayFactor;
   final double lockScoreGap;
@@ -51,6 +82,8 @@ class CandidateVoteState {
     final frameScoreGap = topEvidenceScore > secondEvidenceScore
         ? topEvidenceScore - secondEvidenceScore
         : 0.0;
+    final sameNameFamilies = _sameNameFamilies(candidates);
+    final sameNameFamilyLeaders = _sameNameFamilyLeaders(candidates);
 
     for (final candidate in candidates) {
       final record = scores.putIfAbsent(
@@ -63,11 +96,40 @@ class CandidateVoteState {
       final cropConsistencyBoost = (cropCount - 1).clamp(0, 7) * 0.12;
       final rerankSignal = (candidate.rerankScore ?? 0).clamp(0.0, 1.0);
       final evidenceScore = _candidateEvidenceScore(candidate);
+      final nameKey = _nameFamilyKey(candidate.name);
+      final sameNameFamilyCount = nameKey == null
+          ? 0
+          : sameNameFamilies[nameKey] ?? 0;
+      final sameNameFamilyLeader =
+          sameNameFamilyCount >= 2 &&
+          nameKey != null &&
+          sameNameFamilyLeaders[nameKey] == candidate.cardId;
+      final sameNameFamilyBoost = sameNameFamilyCount >= 2
+          ? (0.28 + ((sameNameFamilyCount - 2).clamp(0, 3) * 0.08))
+          : 0.0;
+      final sameNameLeaderBoost = sameNameFamilyLeader ? 0.72 : 0.0;
+      final coreConsensusBoost =
+          candidate.contributingCropTypes.contains(
+            coreIdentityConsensusCropType,
+          )
+          ? 1.05
+          : 0.0;
+      final visualFullCardAlignmentBoost = _visualFullCardAlignmentReward(
+        candidate,
+      );
+      final stableArtworkIdentityBoost = _stableArtworkIdentityReward(
+        candidate,
+      );
       final reward =
           rankSignal +
           (inTopFive ? 0.95 : 0.15) +
           cropConsistencyBoost +
-          (rerankSignal * 0.35);
+          (rerankSignal * 0.35) +
+          sameNameFamilyBoost +
+          sameNameLeaderBoost +
+          coreConsensusBoost +
+          visualFullCardAlignmentBoost +
+          stableArtworkIdentityBoost;
       record
         ..score += reward
         ..occurrences += 1
@@ -77,6 +139,7 @@ class CandidateVoteState {
             : (candidate.rank < record.bestRank!
                   ? candidate.rank
                   : record.bestRank)
+        ..lastRank = candidate.rank
         ..lastDistance = candidate.distance
         ..lastEvidenceScore = evidenceScore;
       record.bestDistance = record.bestDistance == null
@@ -104,6 +167,12 @@ class CandidateVoteState {
               : record.bestTopOneScoreGap;
       }
       record.mergeDisplayMetadata(candidate);
+      record.mergeContributingCropTypes(candidate.contributingCropTypes);
+      if (sameNameFamilyCount >= 2) {
+        record.mergeContributingCropTypes(const <String>[
+          sameNameFamilyCropType,
+        ]);
+      }
       if (cropCount > record.bestCropContributionCount) {
         record.bestCropContributionCount = cropCount;
       }
@@ -231,6 +300,18 @@ class CandidateVoteState {
     updates = 0;
   }
 
+  void clearLock() {
+    lockedCandidate = null;
+  }
+
+  CandidateVoteSnapshot tryLockForReveal({required int frameIndex}) {
+    _tryLock(frameIndex);
+    if (lockedCandidate == null) {
+      _tryShutterRevealLock(frameIndex);
+    }
+    return snapshot(frameIndex: frameIndex);
+  }
+
   void _decayAll() {
     for (final record in scores.values) {
       record.score *= decayFactor;
@@ -252,8 +333,24 @@ class CandidateVoteState {
 
   void _tryLock(int frameIndex) {
     if (lockedCandidate != null) return;
-    final ranked = snapshot(frameIndex: frameIndex).rankedCandidates;
+    final ranked = _rankedRecords();
     if (ranked.isEmpty) return;
+    final coreConsensusCandidate = _coreConsensusFastLockCandidate(
+      ranked,
+      frameIndex,
+    );
+    if (coreConsensusCandidate != null) {
+      lockedCandidate = coreConsensusCandidate.cardId;
+      return;
+    }
+    final stableArtworkCandidate = _stableArtworkIdentityLockCandidate(
+      ranked,
+      frameIndex,
+    );
+    if (stableArtworkCandidate != null) {
+      lockedCandidate = stableArtworkCandidate.cardId;
+      return;
+    }
     final best = ranked.first;
     final secondScore = ranked.length > 1 ? ranked[1].score : 0.0;
     final gap = best.score - secondScore;
@@ -261,12 +358,82 @@ class CandidateVoteState {
         .where((seenFrame) => frameIndex - seenFrame <= recentFrameWindow)
         .length;
     final stableRecent = recentTopFiveCount >= minTopFiveFramesToLock;
-    final stableCrops = best.bestCropContributionCount >= minCropTypesToLock;
+    final stableCrops = _candidateCropSupportReady(
+      best,
+      minimumCropTypes: minCropTypesToLock,
+    );
     final scoreReady = best.score > minScoreThreshold;
     final fastTemporalReady = _fastTemporalEvidenceReady(
       best,
       recentTopFiveCount,
     );
+    final singleFrameStrongReady = _singleFrameStrongEvidenceReady(
+      best,
+      recentTopFiveCount,
+    );
+    final coreConsensusFastReady = _coreConsensusFastEvidenceReady(
+      best,
+      recentTopFiveCount,
+    );
+    final visualFullCardAlignmentFastReady =
+        _visualFullCardAlignmentFastEvidenceReady(best, recentTopFiveCount);
+    final artworkIdentityFastReady = _artworkIdentityFastEvidenceReady(
+      best,
+      recentTopFiveCount,
+      gap,
+    );
+    final stableArtworkIdentityReady = _stableArtworkIdentityEvidenceReady(
+      best,
+      recentTopFiveCount,
+      gap,
+    );
+    final stableSameNameFamilyReady = _stableSameNameFamilyEvidenceReady(
+      best,
+      recentTopFiveCount,
+      gap,
+    );
+    final stableTwoCropReady = _stableTwoCropTemporalEvidenceReady(
+      best,
+      recentTopFiveCount,
+      gap,
+    );
+    final singleFrameCrossCropReady = _singleFrameCrossCropEvidenceReady(
+      best,
+      recentTopFiveCount,
+      gap,
+    );
+    if (singleFrameStrongReady && gap >= lockScoreGap && scoreReady) {
+      lockedCandidate = best.cardId;
+      return;
+    }
+    if (singleFrameCrossCropReady) {
+      lockedCandidate = best.cardId;
+      return;
+    }
+    if (coreConsensusFastReady) {
+      lockedCandidate = best.cardId;
+      return;
+    }
+    if (visualFullCardAlignmentFastReady) {
+      lockedCandidate = best.cardId;
+      return;
+    }
+    if (artworkIdentityFastReady) {
+      lockedCandidate = best.cardId;
+      return;
+    }
+    if (stableArtworkIdentityReady) {
+      lockedCandidate = best.cardId;
+      return;
+    }
+    if (stableSameNameFamilyReady) {
+      lockedCandidate = best.cardId;
+      return;
+    }
+    if (stableTwoCropReady) {
+      lockedCandidate = best.cardId;
+      return;
+    }
     if (fastTemporalReady && gap >= lockScoreGap && stableCrops && scoreReady) {
       lockedCandidate = best.cardId;
       return;
@@ -275,9 +442,83 @@ class CandidateVoteState {
         gap >= lockScoreGap &&
         stableRecent &&
         stableCrops &&
-        scoreReady) {
+        scoreReady &&
+        best.bestDistance != null &&
+        best.bestDistance! <= maxAcceptedDistance) {
       lockedCandidate = best.cardId;
     }
+  }
+
+  void _tryShutterRevealLock(int frameIndex) {
+    if (lockedCandidate != null) return;
+    final ranked = _rankedRecords();
+    if (ranked.isEmpty) return;
+    final best = ranked.first;
+    final secondScore = ranked.length > 1 ? ranked[1].score : 0.0;
+    final gap = best.score - secondScore;
+    final recentTopFiveCount = best.recentTopFiveFrames
+        .where((seenFrame) => frameIndex - seenFrame <= recentFrameWindow)
+        .length;
+    if (_shutterRevealEvidenceReady(best, recentTopFiveCount, gap) ||
+        _stableArtworkIdentityEvidenceReady(best, recentTopFiveCount, gap) ||
+        _stableSameNameFamilyEvidenceReady(best, recentTopFiveCount, gap)) {
+      lockedCandidate = best.cardId;
+    }
+  }
+
+  List<CandidateVoteRecord> _rankedRecords() {
+    return scores.values.toList(growable: false)..sort((a, b) {
+      if (a.score != b.score) return b.score.compareTo(a.score);
+      if (a.topFiveOccurrences != b.topFiveOccurrences) {
+        return b.topFiveOccurrences.compareTo(a.topFiveOccurrences);
+      }
+      return a.cardId.compareTo(b.cardId);
+    });
+  }
+
+  CandidateVoteRecord? _coreConsensusFastLockCandidate(
+    List<CandidateVoteRecord> ranked,
+    int frameIndex,
+  ) {
+    for (final candidate in ranked) {
+      final recentTopFiveCount = _recentTopFiveCount(candidate, frameIndex);
+      if (_coreConsensusFastEvidenceReady(candidate, recentTopFiveCount)) {
+        return candidate;
+      }
+    }
+    return null;
+  }
+
+  CandidateVoteRecord? _stableArtworkIdentityLockCandidate(
+    List<CandidateVoteRecord> ranked,
+    int frameIndex,
+  ) {
+    for (final candidate in ranked) {
+      final recentTopFiveCount = _recentTopFiveCount(candidate, frameIndex);
+      final voteGap = _candidateVoteGap(candidate, ranked);
+      if (_stableArtworkIdentityEvidenceReady(
+        candidate,
+        recentTopFiveCount,
+        voteGap,
+      )) {
+        return candidate;
+      }
+    }
+    return null;
+  }
+
+  double _candidateVoteGap(
+    CandidateVoteRecord candidate,
+    List<CandidateVoteRecord> ranked,
+  ) {
+    var strongestOtherScore = 0.0;
+    for (final other in ranked) {
+      if (other.cardId == candidate.cardId) continue;
+      if (other.score > strongestOtherScore) {
+        strongestOtherScore = other.score;
+      }
+    }
+    return candidate.score - strongestOtherScore;
   }
 
   double _candidateEvidenceScore(Candidate candidate) {
@@ -286,6 +527,38 @@ class CandidateVoteState {
             candidate.similarity)
         .clamp(0.0, 1.0)
         .toDouble();
+  }
+
+  double _visualFullCardAlignmentReward(Candidate candidate) {
+    if (!candidate.contributingCropTypes.contains(
+      visualFullCardAlignmentCropType,
+    )) {
+      return 0.0;
+    }
+    if (candidate.distance <= visualFullCardAlignmentFastDistanceGuard) {
+      return 1.20;
+    }
+    if (candidate.distance <= singleFrameCrossCropDistanceGuard) {
+      return 0.35;
+    }
+    return 0.0;
+  }
+
+  double _stableArtworkIdentityReward(Candidate candidate) {
+    if (!_hasStableSingleSlotArtworkSupport(candidate.contributingCropTypes)) {
+      return 0.0;
+    }
+    final cropCount = candidate.cropContributionCount ?? 1;
+    if (cropCount > stableArtworkIdentityMaxCropContributionCount) {
+      return 0.0;
+    }
+    if (candidate.distance <= stableArtworkIdentityDistanceGuard) {
+      return 0.65;
+    }
+    if (candidate.distance <= singleFrameCrossCropDistanceGuard) {
+      return 0.18;
+    }
+    return 0.0;
   }
 
   int _recentTopFiveCount(CandidateVoteRecord candidate, int? frameIndex) {
@@ -352,22 +625,86 @@ class CandidateVoteState {
       candidate,
       recentTopFiveCount,
     );
+    final stableTwoCropReady = _stableTwoCropTemporalEvidenceReady(
+      candidate,
+      recentTopFiveCount,
+      voteGap,
+    );
+    final singleFrameCrossCropReady = _singleFrameCrossCropEvidenceReady(
+      candidate,
+      recentTopFiveCount,
+      voteGap,
+    );
+    final coreConsensusFastReady = _coreConsensusFastEvidenceReady(
+      candidate,
+      recentTopFiveCount,
+    );
+    final visualFullCardAlignmentFastReady =
+        _visualFullCardAlignmentFastEvidenceReady(
+          candidate,
+          recentTopFiveCount,
+        );
+    final artworkIdentityFastReady = _artworkIdentityFastEvidenceReady(
+      candidate,
+      recentTopFiveCount,
+      voteGap,
+    );
+    final stableArtworkIdentityReady = _stableArtworkIdentityEvidenceReady(
+      candidate,
+      recentTopFiveCount,
+      voteGap,
+    );
+    final stableSameNameFamilyReady = _stableSameNameFamilyEvidenceReady(
+      candidate,
+      recentTopFiveCount,
+      voteGap,
+    );
 
-    if (bestCandidateId != null && bestCandidateId != candidate.cardId) {
+    if (bestCandidateId != null &&
+        bestCandidateId != candidate.cardId &&
+        !coreConsensusFastReady &&
+        !visualFullCardAlignmentFastReady &&
+        !artworkIdentityFastReady &&
+        !stableArtworkIdentityReady &&
+        !stableSameNameFamilyReady) {
       failures.add('visual_lock_not_top_vote:$bestCandidateId');
       failureState = IdentityDecisionStateV1.candidateAmbiguous;
     }
     if (!fastTemporalReady &&
+        !singleFrameCrossCropReady &&
+        !coreConsensusFastReady &&
+        !visualFullCardAlignmentFastReady &&
+        !artworkIdentityFastReady &&
+        !stableArtworkIdentityReady &&
+        !stableSameNameFamilyReady &&
+        !stableTwoCropReady &&
         candidate.topFiveOccurrences < minTopFiveFramesToLock) {
       failures.add('top5_frames_below_min:${candidate.topFiveOccurrences}');
       failureState = IdentityDecisionStateV1.candidateUnstable;
     }
     if (!fastTemporalReady &&
+        !singleFrameCrossCropReady &&
+        !coreConsensusFastReady &&
+        !visualFullCardAlignmentFastReady &&
+        !artworkIdentityFastReady &&
+        !stableArtworkIdentityReady &&
+        !stableSameNameFamilyReady &&
+        !stableTwoCropReady &&
         recentTopFiveCount < minRecentTopFiveFramesToAccept) {
       failures.add('recent_support_below_min:$recentTopFiveCount');
       failureState = IdentityDecisionStateV1.candidateUnstable;
     }
-    if (candidate.bestCropContributionCount < minCropTypesToAccept) {
+    if (!_candidateCropSupportReady(
+          candidate,
+          minimumCropTypes: minCropTypesToAccept,
+        ) &&
+        !singleFrameCrossCropReady &&
+        !coreConsensusFastReady &&
+        !visualFullCardAlignmentFastReady &&
+        !artworkIdentityFastReady &&
+        !stableArtworkIdentityReady &&
+        !stableSameNameFamilyReady &&
+        !stableTwoCropReady) {
       failures.add(
         'crop_support_below_min:${candidate.bestCropContributionCount}',
       );
@@ -377,12 +714,27 @@ class CandidateVoteState {
       failures.add('distance_missing');
       failureState = IdentityDecisionStateV1.candidateUnknown;
     } else if (candidate.bestDistance! > maxAcceptedDistance) {
-      failures.add(
-        'distance_above_threshold:${candidate.bestDistance!.toStringAsFixed(3)}',
-      );
-      failureState = IdentityDecisionStateV1.candidateUnknown;
+      if (!singleFrameCrossCropReady &&
+          !coreConsensusFastReady &&
+          !visualFullCardAlignmentFastReady &&
+          !artworkIdentityFastReady &&
+          !stableArtworkIdentityReady &&
+          !stableSameNameFamilyReady &&
+          !stableTwoCropReady) {
+        failures.add(
+          'distance_above_threshold:${candidate.bestDistance!.toStringAsFixed(3)}',
+        );
+        failureState = IdentityDecisionStateV1.candidateUnknown;
+      }
     }
-    if (voteGap < identityAcceptScoreGap) {
+    if (voteGap < identityAcceptScoreGap &&
+        !singleFrameCrossCropReady &&
+        !coreConsensusFastReady &&
+        !visualFullCardAlignmentFastReady &&
+        !artworkIdentityFastReady &&
+        !stableArtworkIdentityReady &&
+        !stableSameNameFamilyReady &&
+        !stableTwoCropReady) {
       failures.add('vote_gap_below_guard:${voteGap.toStringAsFixed(2)}');
       if (failureState != IdentityDecisionStateV1.candidateUnknown) {
         failureState = IdentityDecisionStateV1.candidateAmbiguous;
@@ -403,6 +755,20 @@ class CandidateVoteState {
       state: IdentityDecisionStateV1.identityLocked,
       reason: fastTemporalReady
           ? 'fast_confidence_guard_passed'
+          : singleFrameCrossCropReady
+          ? 'single_frame_cross_crop_guard_passed'
+          : coreConsensusFastReady
+          ? 'core_identity_consensus_fast_guard_passed'
+          : visualFullCardAlignmentFastReady
+          ? 'visual_full_card_alignment_fast_guard_passed'
+          : artworkIdentityFastReady
+          ? 'artwork_identity_fast_guard_passed'
+          : stableArtworkIdentityReady
+          ? 'stable_artwork_identity_guard_passed'
+          : stableSameNameFamilyReady
+          ? 'stable_same_name_family_guard_passed'
+          : stableTwoCropReady
+          ? 'stable_two_crop_distance_guard_passed'
           : 'confidence_guard_passed',
       acceptedCandidate: candidate.cardId,
     );
@@ -412,18 +778,384 @@ class CandidateVoteState {
     CandidateVoteRecord candidate,
     int recentTopFiveCount,
   ) {
+    if (_singleFrameStrongEvidenceReady(candidate, recentTopFiveCount)) {
+      return true;
+    }
     if (candidate.topFiveOccurrences < fastLockMinTopFiveFrames ||
         recentTopFiveCount < fastLockMinTopFiveFrames) {
       return false;
     }
-    if (candidate.bestCropContributionCount < minCropTypesToAccept) {
+    if (!_candidateCropSupportReady(
+      candidate,
+      minimumCropTypes: minCropTypesToAccept,
+    )) {
       return false;
     }
     final bestDistance = candidate.bestDistance;
     if (bestDistance == null || bestDistance > maxAcceptedDistance) {
       return false;
     }
+    if (bestDistance > twoCropStrongDistanceGuard &&
+        !_candidateHasCloseIdentitySupport(candidate)) {
+      return false;
+    }
     return candidate.bestTopOneScoreGap >= identityAcceptFrameScoreGap;
+  }
+
+  bool _singleFrameStrongEvidenceReady(
+    CandidateVoteRecord candidate,
+    int recentTopFiveCount,
+  ) {
+    if (candidate.topFiveOccurrences < 1 || recentTopFiveCount < 1) {
+      return false;
+    }
+    if (candidate.score <= minScoreThreshold) {
+      return false;
+    }
+    if (!_candidateCropSupportReady(
+      candidate,
+      minimumCropTypes: minCropTypesToAccept,
+    )) {
+      return false;
+    }
+    final bestDistance = candidate.bestDistance;
+    if (bestDistance == null || bestDistance > singleFrameStrongDistanceGuard) {
+      return false;
+    }
+    if (bestDistance > twoCropStrongDistanceGuard &&
+        !_candidateHasCloseIdentitySupport(candidate)) {
+      return false;
+    }
+    return candidate.bestTopOneScoreGap >= singleFrameStrongTopOneGapGuard ||
+        _candidateHasSameNameFamilySupport(candidate);
+  }
+
+  bool _stableTwoCropTemporalEvidenceReady(
+    CandidateVoteRecord candidate,
+    int recentTopFiveCount,
+    double voteGap,
+  ) {
+    if (candidate.topFiveOccurrences < stableTwoCropMinTopFiveFrames ||
+        recentTopFiveCount < stableTwoCropMinTopFiveFrames) {
+      return false;
+    }
+    if (candidate.score <= minScoreThreshold) {
+      return false;
+    }
+    if (candidate.bestCropContributionCount < minCropTypesToAccept) {
+      return false;
+    }
+    final bestDistance = candidate.bestDistance;
+    if (bestDistance == null || bestDistance > stableTwoCropDistanceGuard) {
+      return false;
+    }
+    final hasTitleSupport = _candidateHasTitleSupport(candidate);
+    final hasCoreConsensus = _candidateHasCoreIdentityConsensusSupport(
+      candidate,
+    );
+    if (!hasTitleSupport && !hasCoreConsensus) {
+      return false;
+    }
+    if (!hasTitleSupport && candidate.bestCropContributionCount < 3) {
+      return false;
+    }
+    final minimumVoteGap = hasTitleSupport
+        ? singleFrameCrossCropMinVoteGap
+        : 0.24;
+    if (voteGap < minimumVoteGap) {
+      return false;
+    }
+    return candidate.bestTopOneScoreGap >= identityAcceptFrameScoreGap;
+  }
+
+  bool _singleFrameCrossCropEvidenceReady(
+    CandidateVoteRecord candidate,
+    int recentTopFiveCount,
+    double voteGap,
+  ) {
+    if (candidate.topFiveOccurrences < 1 || recentTopFiveCount < 1) {
+      return false;
+    }
+    if (candidate.score <= minScoreThreshold) {
+      return false;
+    }
+    if (candidate.bestCropContributionCount <
+        singleFrameCrossCropMinCropContributionCount) {
+      return false;
+    }
+    if (_candidateHasArtworkIdentitySupport(candidate) &&
+        candidate.bestCropContributionCount <=
+            singleFrameCrossCropMinCropContributionCount) {
+      return false;
+    }
+    final bestDistance = candidate.bestDistance;
+    if (bestDistance == null ||
+        bestDistance > singleFrameCrossCropDistanceGuard) {
+      return false;
+    }
+    if (voteGap < stableTwoCropMinVoteGap) {
+      return false;
+    }
+    return candidate.bestTopOneScoreGap >= identityAcceptFrameScoreGap;
+  }
+
+  bool _coreConsensusFastEvidenceReady(
+    CandidateVoteRecord candidate,
+    int recentTopFiveCount,
+  ) {
+    if (candidate.topFiveOccurrences < 1 || recentTopFiveCount < 1) {
+      return false;
+    }
+    if (candidate.score <= minScoreThreshold) {
+      return false;
+    }
+    if (!_candidateHasCoreIdentityConsensusSupport(candidate)) {
+      return false;
+    }
+    if (candidate.bestCropContributionCount < 3) {
+      return false;
+    }
+    final bestDistance = candidate.bestDistance;
+    return bestDistance != null &&
+        bestDistance <= singleFrameCrossCropDistanceGuard;
+  }
+
+  bool _visualFullCardAlignmentFastEvidenceReady(
+    CandidateVoteRecord candidate,
+    int recentTopFiveCount,
+  ) {
+    if (candidate.topFiveOccurrences < 1 || recentTopFiveCount < 1) {
+      return false;
+    }
+    if (candidate.score <= minScoreThreshold) {
+      return false;
+    }
+    if (!_candidateHasVisualFullCardAlignmentSupport(candidate)) {
+      return false;
+    }
+    if (candidate.bestCropContributionCount < minCropTypesToAccept) {
+      return false;
+    }
+    final bestDistance = candidate.bestDistance;
+    return bestDistance != null &&
+        bestDistance <= visualFullCardAlignmentFastDistanceGuard;
+  }
+
+  bool _artworkIdentityFastEvidenceReady(
+    CandidateVoteRecord candidate,
+    int recentTopFiveCount,
+    double voteGap,
+  ) {
+    if (candidate.topFiveOccurrences < 1 || recentTopFiveCount < 1) {
+      return false;
+    }
+    if (candidate.score <= minScoreThreshold) {
+      return false;
+    }
+    if (!_candidateHasArtworkIdentitySupport(candidate)) {
+      return false;
+    }
+    final bestDistance = candidate.bestDistance;
+    if (bestDistance == null ||
+        bestDistance > artworkIdentityFastDistanceGuard) {
+      return false;
+    }
+    if (voteGap < artworkIdentityFastMinVoteGap) {
+      return false;
+    }
+    return candidate.bestTopOneScoreGap >= identityAcceptFrameScoreGap;
+  }
+
+  bool _stableArtworkIdentityEvidenceReady(
+    CandidateVoteRecord candidate,
+    int recentTopFiveCount,
+    double voteGap,
+  ) {
+    if (candidate.topFiveOccurrences < stableArtworkIdentityMinTopFiveFrames ||
+        recentTopFiveCount < stableArtworkIdentityMinTopFiveFrames) {
+      return false;
+    }
+    if (candidate.score <= minScoreThreshold) {
+      return false;
+    }
+    if (!_candidateHasStableSingleSlotArtworkSupport(candidate)) {
+      return false;
+    }
+    if (candidate.bestCropContributionCount >
+        stableArtworkIdentityMaxCropContributionCount) {
+      return false;
+    }
+    final bestDistance = candidate.bestDistance;
+    if (bestDistance == null ||
+        bestDistance > stableArtworkIdentityDistanceGuard) {
+      return false;
+    }
+    return voteGap >= stableArtworkIdentityMinVoteGap;
+  }
+
+  bool _stableSameNameFamilyEvidenceReady(
+    CandidateVoteRecord candidate,
+    int recentTopFiveCount,
+    double voteGap,
+  ) {
+    if (candidate.topFiveOccurrences < stableSameNameFamilyMinTopFiveFrames ||
+        recentTopFiveCount < stableSameNameFamilyMinTopFiveFrames) {
+      return false;
+    }
+    if (candidate.score <= minScoreThreshold) {
+      return false;
+    }
+    if (!_candidateHasSameNameFamilySupport(candidate)) {
+      return false;
+    }
+    if (candidate.bestCropContributionCount < minCropTypesToAccept) {
+      return false;
+    }
+    final bestDistance = candidate.bestDistance;
+    if (bestDistance == null ||
+        bestDistance > stableSameNameFamilyDistanceGuard) {
+      return false;
+    }
+    return voteGap >= stableSameNameFamilyMinVoteGap;
+  }
+
+  bool _shutterRevealEvidenceReady(
+    CandidateVoteRecord candidate,
+    int recentTopFiveCount,
+    double voteGap,
+  ) {
+    if (candidate.topFiveOccurrences < minTopFiveFramesToLock ||
+        recentTopFiveCount < minRecentTopFiveFramesToAccept) {
+      return false;
+    }
+    if (candidate.score <= minScoreThreshold) {
+      return false;
+    }
+    if (candidate.bestCropContributionCount <
+        shutterRevealMinCropContributionCount) {
+      return false;
+    }
+    final bestDistance = candidate.bestDistance;
+    if (bestDistance == null || bestDistance > maxAcceptedDistance) {
+      return false;
+    }
+    if (voteGap < identityAcceptScoreGap) {
+      return false;
+    }
+    return candidate.bestTopOneScoreGap >= identityAcceptFrameScoreGap;
+  }
+
+  bool _candidateHasTitleSupport(CandidateVoteRecord candidate) {
+    return candidate.contributingCropTypes.contains(titleBandCropType);
+  }
+
+  bool _candidateHasSameNameFamilySupport(CandidateVoteRecord candidate) {
+    return candidate.contributingCropTypes.contains(sameNameFamilyCropType);
+  }
+
+  bool _candidateHasCoreIdentityConsensusSupport(
+    CandidateVoteRecord candidate,
+  ) {
+    return candidate.contributingCropTypes.contains(
+      coreIdentityConsensusCropType,
+    );
+  }
+
+  bool _candidateHasCloseIdentitySupport(CandidateVoteRecord candidate) {
+    if (_candidateHasTitleSupport(candidate)) return true;
+    if (_candidateHasVisualFullCardAlignmentSupport(candidate)) return true;
+    if (_candidateHasCoreIdentityConsensusSupport(candidate)) return true;
+    if (_candidateHasArtworkIdentitySupport(candidate)) return true;
+    if (!_candidateHasSameNameFamilySupport(candidate)) return false;
+    final bestDistance = candidate.bestDistance;
+    return bestDistance != null &&
+        bestDistance <= singleFrameStrongDistanceGuard;
+  }
+
+  bool _candidateHasVisualFullCardAlignmentSupport(
+    CandidateVoteRecord candidate,
+  ) {
+    return candidate.contributingCropTypes.contains(
+      visualFullCardAlignmentCropType,
+    );
+  }
+
+  bool _candidateHasArtworkIdentitySupport(CandidateVoteRecord candidate) {
+    return candidate.contributingCropTypes.contains(artworkGrayCropType) &&
+        candidate.contributingCropTypes.contains(priorityArtworkGrayCropType) &&
+        candidate.contributingCropTypes.contains(
+          priorityIdentitySupportCropType,
+        );
+  }
+
+  bool _candidateHasStableSingleSlotArtworkSupport(
+    CandidateVoteRecord candidate,
+  ) {
+    return _hasStableSingleSlotArtworkSupport(candidate.contributingCropTypes);
+  }
+
+  bool _hasStableSingleSlotArtworkSupport(Iterable<String> cropTypes) {
+    return cropTypes.length == 1 && cropTypes.contains(artworkGrayCropType);
+  }
+
+  bool _candidateCropSupportReady(
+    CandidateVoteRecord candidate, {
+    required int minimumCropTypes,
+  }) {
+    if (candidate.bestCropContributionCount < minimumCropTypes) {
+      return false;
+    }
+    if (candidate.bestCropContributionCount <= 2 &&
+        !_candidateHasCloseIdentitySupport(candidate)) {
+      return false;
+    }
+    final bestDistance = candidate.bestDistance;
+    if (candidate.bestCropContributionCount <= 2 &&
+        bestDistance != null &&
+        bestDistance > twoCropStrongDistanceGuard &&
+        !_candidateHasCloseIdentitySupport(candidate)) {
+      return false;
+    }
+    return true;
+  }
+
+  Map<String, int> _sameNameFamilies(List<Candidate> candidates) {
+    final counts = <String, int>{};
+    for (final candidate in candidates) {
+      final key = _nameFamilyKey(candidate.name);
+      if (key == null) continue;
+      counts[key] = (counts[key] ?? 0) + 1;
+    }
+    counts.removeWhere((_, count) => count < 2);
+    return counts;
+  }
+
+  Map<String, String> _sameNameFamilyLeaders(List<Candidate> candidates) {
+    final leaders = <String, Candidate>{};
+    for (final candidate in candidates) {
+      final key = _nameFamilyKey(candidate.name);
+      if (key == null) continue;
+      final current = leaders[key];
+      if (current == null || _candidateSortsAhead(candidate, current)) {
+        leaders[key] = candidate;
+      }
+    }
+    return leaders.map((key, candidate) => MapEntry(key, candidate.cardId));
+  }
+
+  bool _candidateSortsAhead(Candidate left, Candidate right) {
+    if (left.rank != right.rank) return left.rank < right.rank;
+    if (left.distance != right.distance) return left.distance < right.distance;
+    return left.cardId.compareTo(right.cardId) < 0;
+  }
+
+  String? _nameFamilyKey(String? name) {
+    final normalized = name
+        ?.toLowerCase()
+        .replaceAll(RegExp(r"[^a-z0-9]+"), ' ')
+        .trim()
+        .replaceAll(RegExp(r'\s+'), ' ');
+    return normalized == null || normalized.isEmpty ? null : normalized;
   }
 }
 
@@ -506,6 +1238,7 @@ class CandidateVoteRecord {
     this.lastSeenFrame = 0,
     this.lastTopFiveFrame = 0,
     this.bestRank,
+    this.lastRank,
     this.lastDistance,
     this.bestDistance,
     this.lastEvidenceScore = 0,
@@ -520,7 +1253,8 @@ class CandidateVoteRecord {
     this.number,
     this.gvId,
     this.imageUrl,
-  });
+    Set<String>? contributingCropTypes,
+  }) : contributingCropTypes = contributingCropTypes ?? <String>{};
 
   final String cardId;
   double score;
@@ -529,6 +1263,7 @@ class CandidateVoteRecord {
   int lastSeenFrame;
   int lastTopFiveFrame;
   int? bestRank;
+  int? lastRank;
   double? lastDistance;
   double? bestDistance;
   double lastEvidenceScore;
@@ -543,6 +1278,7 @@ class CandidateVoteRecord {
   String? number;
   String? gvId;
   String? imageUrl;
+  final Set<String> contributingCropTypes;
   final List<int> recentTopFiveFrames = <int>[];
 
   void recordTopFiveFrame(int frameIndex, int recentFrameWindow) {
@@ -560,6 +1296,13 @@ class CandidateVoteRecord {
     number ??= candidate.number;
     gvId ??= candidate.gvId;
     imageUrl ??= candidate.imageUrl;
+  }
+
+  void mergeContributingCropTypes(Iterable<String> cropTypes) {
+    for (final cropType in cropTypes) {
+      if (cropType.isEmpty) continue;
+      contributingCropTypes.add(cropType);
+    }
   }
 }
 

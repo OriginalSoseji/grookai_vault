@@ -126,9 +126,13 @@ async function handleRequest(request, response, service) {
       started_at: service.startedAt,
       model: service.args.model,
       index_source: service.indexSource,
+      index_version: service.index.version,
+      index_model: service.index.model,
       reference_count: service.index.references.length,
       reference_view_count: service.index.reference_view_count,
+      views_per_reference_avg: service.index.views_per_reference_avg,
       dimensions: service.index.dimensions,
+      memory_usage: process.memoryUsage(),
       endpoints: {
         embed: '/scanner-v3/embed',
         candidates: '/scanner-v3/candidates',
@@ -178,9 +182,7 @@ async function handleRequest(request, response, service) {
     }
     const startedAt = performance.now();
     const topK = positiveInt(body.top_k ?? body.topK, service.args.topK);
-    const resolvedCrops = [];
-
-    for (const crop of crops) {
+    const resolvedCrops = await Promise.all(crops.map(async (crop) => {
       const cropStartedAt = performance.now();
       const cropType = textOrNull(crop?.crop_type ?? crop?.cropType ?? crop?.type);
       try {
@@ -196,7 +198,7 @@ async function handleRequest(request, response, service) {
           queryCropType: cropType,
         });
         const candidates = dedupeCandidatesByCard(rawCandidates, cropType, topK);
-        resolvedCrops.push({
+        return {
           ok: true,
           crop_type: cropType,
           candidates,
@@ -204,9 +206,9 @@ async function handleRequest(request, response, service) {
           embedding_ms: embedding.elapsed_ms,
           vector_search_ms: roundMs(performance.now() - vectorStartedAt),
           elapsed_ms: roundMs(performance.now() - cropStartedAt),
-        });
+        };
       } catch (error) {
-        resolvedCrops.push({
+        return {
           ok: false,
           crop_type: cropType,
           candidates: [],
@@ -215,9 +217,9 @@ async function handleRequest(request, response, service) {
           vector_search_ms: null,
           elapsed_ms: roundMs(performance.now() - cropStartedAt),
           error: error?.message || String(error),
-        });
+        };
       }
-    }
+    }));
 
     const payload = {
       ok: true,

@@ -10,6 +10,7 @@ class ScannerPrimaryCardTile extends StatelessWidget {
     required this.imageUrl,
     required this.locked,
     required this.accent,
+    this.onScanAgain,
   });
 
   final String? candidateId;
@@ -19,6 +20,7 @@ class ScannerPrimaryCardTile extends StatelessWidget {
   final String? imageUrl;
   final bool locked;
   final Color accent;
+  final VoidCallback? onScanAgain;
 
   @override
   Widget build(BuildContext context) {
@@ -36,82 +38,63 @@ class ScannerPrimaryCardTile extends StatelessWidget {
       duration: const Duration(milliseconds: 180),
       switchInCurve: Curves.easeOutCubic,
       switchOutCurve: Curves.easeInCubic,
-      child: DecoratedBox(
+      child: Padding(
         key: ValueKey('$locked:$title'),
-        decoration: BoxDecoration(
-          color: Colors.white.withValues(alpha: 0.055),
-          borderRadius: BorderRadius.circular(8),
-          border: Border.all(color: Colors.white.withValues(alpha: 0.08)),
-        ),
-        child: Padding(
-          padding: const EdgeInsets.all(9),
-          child: Row(
-            children: [
-              Container(
-                width: 48,
-                height: 67,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(7),
-                  color: accent.withValues(alpha: 0.13),
-                  border: Border.all(
-                    color: Colors.white.withValues(alpha: 0.12),
-                  ),
-                ),
-                clipBehavior: Clip.antiAlias,
-                child: _CardThumbnail(
-                  imageUrl: imageUrl,
-                  fallbackIcon: locked
-                      ? Icons.verified_rounded
-                      : Icons.auto_awesome_rounded,
-                  accent: accent,
-                ),
+        padding: const EdgeInsets.symmetric(horizontal: 2, vertical: 2),
+        child: Row(
+          children: [
+            Container(
+              width: 44,
+              height: 62,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(7),
+                color: accent.withValues(alpha: 0.13),
+                border: Border.all(color: Colors.white.withValues(alpha: 0.12)),
               ),
-              const SizedBox(width: 13),
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Text(
-                      title,
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
-                      style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                        color: Colors.white,
-                        fontWeight: FontWeight.w800,
-                        letterSpacing: 0,
-                      ),
-                    ),
-                    const SizedBox(height: 4),
-                    Text(
-                      subtitle,
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
-                      style: Theme.of(context).textTheme.labelMedium?.copyWith(
-                        color: Colors.white.withValues(alpha: 0.62),
-                        fontWeight: FontWeight.w600,
-                        letterSpacing: 0,
-                      ),
-                    ),
-                  ],
-                ),
+              clipBehavior: Clip.antiAlias,
+              child: _CardThumbnail(
+                imageUrl: imageUrl,
+                fallbackIcon: locked
+                    ? Icons.verified_rounded
+                    : Icons.auto_awesome_rounded,
+                accent: accent,
               ),
-              if (locked) ...[
-                const SizedBox(width: 10),
-                DecoratedBox(
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    color: accent.withValues(alpha: 0.14),
-                    border: Border.all(color: accent.withValues(alpha: 0.26)),
+            ),
+            const SizedBox(width: 13),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Text(
+                    title,
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                      color: Colors.white,
+                      fontWeight: FontWeight.w800,
+                      letterSpacing: 0,
+                    ),
                   ),
-                  child: Padding(
-                    padding: const EdgeInsets.all(6),
-                    child: Icon(Icons.check_rounded, color: accent, size: 16),
+                  const SizedBox(height: 4),
+                  Text(
+                    subtitle,
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    style: Theme.of(context).textTheme.labelMedium?.copyWith(
+                      color: Colors.white.withValues(alpha: 0.62),
+                      fontWeight: FontWeight.w600,
+                      letterSpacing: 0,
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
+            ),
+            if (locked) ...[
+              const SizedBox(width: 10),
+              _LockedCardAction(accent: accent, onScanAgain: onScanAgain),
             ],
-          ),
+          ],
         ),
       ),
     );
@@ -122,6 +105,55 @@ class ScannerPrimaryCardTile extends StatelessWidget {
     if (name.isNotEmpty) return name;
     if (candidateId == null || candidateId!.isEmpty) return 'Detecting...';
     return locked ? 'Match locked' : 'Possible match';
+  }
+}
+
+class _LockedCardAction extends StatelessWidget {
+  const _LockedCardAction({required this.accent, required this.onScanAgain});
+
+  final Color accent;
+  final VoidCallback? onScanAgain;
+
+  @override
+  Widget build(BuildContext context) {
+    if (onScanAgain == null) {
+      return DecoratedBox(
+        decoration: BoxDecoration(
+          shape: BoxShape.circle,
+          color: accent.withValues(alpha: 0.14),
+          border: Border.all(color: accent.withValues(alpha: 0.26)),
+        ),
+        child: Padding(
+          padding: const EdgeInsets.all(6),
+          child: Icon(Icons.check_rounded, color: accent, size: 16),
+        ),
+      );
+    }
+
+    return Tooltip(
+      message: 'Scan again',
+      child: Material(
+        color: Colors.transparent,
+        shape: const CircleBorder(),
+        clipBehavior: Clip.antiAlias,
+        child: InkWell(
+          onTap: onScanAgain,
+          customBorder: const CircleBorder(),
+          child: Ink(
+            decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              color: accent.withValues(alpha: 0.16),
+              border: Border.all(color: accent.withValues(alpha: 0.30)),
+            ),
+            child: SizedBox(
+              width: 38,
+              height: 38,
+              child: Icon(Icons.refresh_rounded, color: accent, size: 19),
+            ),
+          ),
+        ),
+      ),
+    );
   }
 }
 

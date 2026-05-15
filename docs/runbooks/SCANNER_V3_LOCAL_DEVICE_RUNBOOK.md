@@ -32,7 +32,8 @@ Expected response includes:
   "service": "scanner_v3_identity_service_v1",
   "endpoints": {
     "embed": "/scanner-v3/embed",
-    "candidates": "/scanner-v3/candidates"
+    "candidates": "/scanner-v3/candidates",
+    "resolve_crops": "/scanner-v3/resolve-crops"
   }
 }
 ```
@@ -52,13 +53,32 @@ Expected device:
 R5CT3291F6E    device
 ```
 
+`adb reverse` is a debug tunnel. If USB or ADB disconnects, a build that uses `http://127.0.0.1:8787` will go offline because `127.0.0.1` becomes the phone itself.
+
+For disconnected local-device testing, use one of these instead:
+
+- Put the phone and PC on the same reachable LAN, then build with `SCANNER_V3_IDENTITY_BASE_ENDPOINT=http://<PC_LAN_IP>:8787`.
+- Use a production/staging HTTPS scanner identity endpoint.
+
+Do not treat temporary public tunnels as the production scanner path.
+
 ## 4. Build APK With Endpoints
+
+Preferred batch identity path:
 
 ```powershell
 flutter build apk --debug `
-  --dart-define=SCANNER_V3_EMBEDDING_ENDPOINT=http://127.0.0.1:8787/scanner-v3/embed `
-  --dart-define=SCANNER_V3_VECTOR_ENDPOINT=http://127.0.0.1:8787/scanner-v3/candidates
+  --dart-define=SCANNER_V3_RESOLVE_ENDPOINT=http://127.0.0.1:8787/scanner-v3/resolve-crops
 ```
+
+Equivalent base endpoint form:
+
+```powershell
+flutter build apk --debug `
+  --dart-define=SCANNER_V3_IDENTITY_BASE_ENDPOINT=http://127.0.0.1:8787
+```
+
+The older `SCANNER_V3_EMBEDDING_ENDPOINT` and `SCANNER_V3_VECTOR_ENDPOINT` pair remains a fallback, but the production scanner path should use batch `resolve-crops` so the app sends the selected-card crops once and receives all candidates in one response.
 
 ## 5. Install
 
@@ -92,7 +112,7 @@ If candidates do not appear:
 1. Confirm the identity service terminal is still running.
 2. Confirm `curl http://localhost:8787/health` returns `ok: true`.
 3. Re-run `adb reverse tcp:8787 tcp:8787` after reconnecting the phone.
-4. Confirm the APK was built with both dart-defines.
+4. Confirm the APK was built with `SCANNER_V3_RESOLVE_ENDPOINT` or `SCANNER_V3_IDENTITY_BASE_ENDPOINT`.
 5. Open Diagnostics and check `service`, `timing`, and `top5`.
 
 If the card is out of the local reference index, the correct behavior is `No confident match` or `Need a clearer angle`, not a wrong final identity.

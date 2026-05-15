@@ -21,6 +21,7 @@ class CandidateState {
     this.number,
     this.gvId,
     this.imageUrl,
+    this.contributingCropTypes = const <String>[],
   });
 
   final String id;
@@ -44,6 +45,7 @@ class CandidateState {
   final String? number;
   final String? gvId;
   final String? imageUrl;
+  final List<String> contributingCropTypes;
 }
 
 class ScannerV3QualitySnapshot {
@@ -228,5 +230,18 @@ class ScannerV3LiveLoopState {
   CandidateState? get bestCandidate {
     if (candidates.isEmpty) return null;
     return candidates.first;
+  }
+
+  CandidateState? candidateById(String? candidateId) {
+    final id = candidateId?.trim() ?? '';
+    if (id.isEmpty) return null;
+    for (final candidate in candidates) {
+      if (candidate.id == id) return candidate;
+    }
+    return null;
+  }
+
+  CandidateState? get displayCandidate {
+    return candidateById(lockedCandidateId) ?? bestCandidate;
   }
 }

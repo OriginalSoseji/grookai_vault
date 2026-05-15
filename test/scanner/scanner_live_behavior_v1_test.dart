@@ -99,7 +99,7 @@ void main() {
     expect(tone.spatialLabel, isNot('Ready'));
   });
 
-  test('identity-allowed before identity work maps to ready', () {
+  test('identity-allowed before identity work keeps reading state', () {
     final state = _state(
       sampledFrameCount: 7,
       acceptedFrameCount: 3,
@@ -119,12 +119,12 @@ void main() {
       edgeLocked: true,
     );
 
-    expect(behavior.phase, ScannerLiveBehaviorPhase.ready);
+    expect(behavior.phase, ScannerLiveBehaviorPhase.scanningIdentity);
     expect(behavior.readyLabelAllowed, isTrue);
 
     final tone = ScannerV3UiTone.fromState(state, edgeLocked: true);
-    expect(tone.badge, 'Ready');
-    expect(tone.spatialLabel, 'Ready');
+    expect(tone.title, 'Reading card');
+    expect(tone.spatialLabel, 'Reading');
   });
 
   test('identity-allowed card maps to scanning identity', () {
@@ -224,6 +224,35 @@ void main() {
     expect(revealedTone.locked, isTrue);
   });
 
+  test('hidden unknown identity does not show ready', () {
+    final state = _state(
+      sampledFrameCount: 8,
+      acceptedFrameCount: 3,
+      selectedQuadSource: 'native_detector',
+      qualityAccepted: true,
+      cardPresent: true,
+      cardPresentReason: 'card_present',
+      cardPresentConsecutiveFrames: 3,
+      identityAllowed: true,
+      identityAllowedReason: 'card_present_persistence_satisfied',
+      identitySignalSource: 'v8_identity_candidates',
+      embeddingElapsedMs: 82,
+      vectorSearchElapsedMs: 34,
+      identityDecisionState: IdentityDecisionStateV1.candidateUnknown,
+    );
+
+    final hiddenTone = ScannerV3UiTone.fromState(
+      state,
+      edgeLocked: true,
+      identityRevealRequested: false,
+    );
+
+    expect(hiddenTone.title, 'Reading card');
+    expect(hiddenTone.badge, isNot('Ready'));
+    expect(hiddenTone.spatialLabel, isNot('Ready'));
+    expect(hiddenTone.showPrimaryCandidate, isFalse);
+  });
+
   test('soft preview candidate is hidden before reveal', () {
     final state = _state(
       sampledFrameCount: 8,
@@ -316,8 +345,8 @@ void main() {
     final readyTone = ScannerV3UiTone.fromState(readyState, edgeLocked: true);
     final lostTone = ScannerV3UiTone.fromState(lostState, edgeLocked: true);
 
-    expect(readyTone.badge, 'Ready');
-    expect(readyTone.spatialLabel, 'Ready');
+    expect(readyTone.badge, isNot('Ready'));
+    expect(readyTone.spatialLabel, 'Reading');
     expect(lostTone.badge, isNot('Ready'));
     expect(lostTone.spatialLabel, isNot('Ready'));
     expect(lostTone.spatialLabel, 'Align');

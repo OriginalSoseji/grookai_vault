@@ -8,7 +8,9 @@ import 'package:flutter/services.dart';
 import 'package:sensors_plus/sensors_plus.dart';
 
 import '../../widgets/scanner/condition_capture_overlay.dart';
+import '../../services/scanner/native_condition_camera_bridge.dart';
 import '../../services/scanner/native_quad_detector.dart';
+import '../../services/scanner/scanner_native_camera_guardrail.dart';
 import '../../services/scanner_v3/convergence_state_v1.dart';
 import '../../services/scanner_v3/scanner_v3_live_loop_controller.dart';
 import '../../services/scanner_v4/scanner_v4_diagnostic_capture_v1.dart';
@@ -40,14 +42,21 @@ class _ConditionCameraScreenState extends State<ConditionCameraScreen> {
   );
   static const double _minNativeBridgeConfidence = 0.45;
   static const Duration _selectedCardRetention = Duration(seconds: 30);
+  static const Duration _selectedCardIdentityFreshness = Duration(
+    milliseconds: 320,
+  );
   static const double _selectedCardCenterDeadband = 0.030;
   static const double _selectedCardSizeDeadband = 0.050;
   static const double _selectedCardSlowSmoothing = 0.04;
   static const double _selectedCardFastSmoothing = 0.12;
   static const double _cardTapHitSlop = 0.025;
+  static const double _cardTapNearestMaxDistance = 0.14;
   static const Duration _cardCandidateRetention = Duration(milliseconds: 900);
+  static const Duration _pendingCardSelectionRetention = Duration(
+    milliseconds: 2200,
+  );
   static const Duration _scannerV3AnalysisInterval = Duration(
-    milliseconds: 360,
+    milliseconds: 220,
   );
   static const Duration _scannerV3AutoFocusCooldown = Duration(
     milliseconds: 1400,
@@ -69,7 +78,9 @@ class _ConditionCameraScreenState extends State<ConditionCameraScreen> {
   static const Duration _scannerV3DisplayPublishForceInterval = Duration(
     milliseconds: 1100,
   );
+  static const Duration _scannerV3RevealGrace = Duration(seconds: 8);
   static const int _scannerV3ScanMemoryLimit = 10;
+  static const List<int> _scannerV3GuidedSlotOptions = <int>[1, 2, 4];
 
   final GlobalKey _previewAreaKey = GlobalKey();
   CameraController? _controller;
@@ -93,6 +104,8 @@ class _ConditionCameraScreenState extends State<ConditionCameraScreen> {
   DateTime _cardCandidateLastSeenAt = DateTime.fromMillisecondsSinceEpoch(0);
   List<Offset>? _selectedCardQuadNorm;
   DateTime _selectedCardLastSeenAt = DateTime.fromMillisecondsSinceEpoch(0);
+  Offset? _pendingCardSelectionTapNorm;
+  DateTime? _pendingCardSelectionTapAt;
   Offset? _lastFocusTapNorm;
   DateTime _lastFocusTapAt = DateTime.fromMillisecondsSinceEpoch(0);
   Rect? _lastAutoFocusBoundsNorm;
@@ -111,9 +124,12 @@ class _ConditionCameraScreenState extends State<ConditionCameraScreen> {
   ScannerV3LiveLoopController? _scannerV3LoopController;
   ScannerV3LiveLoopState _scannerV3LoopState = ScannerV3LiveLoopState.initial;
   bool _scannerV3IdentityRevealRequested = false;
+  DateTime? _scannerV3IdentityRevealRequestedAt;
   String? _scannerV3LastRememberedCandidateId;
   List<ScannerV3ScanMemoryEntry> _scannerV3ScanMemory =
       const <ScannerV3ScanMemoryEntry>[];
+  int _scannerV3GuidedSlotCount = 1;
+  int _scannerV3ActiveGuidedSlotIndex = 0;
   final bool _scannerV3ArtifactExportEnabled = kDebugMode;
   bool _scannerV3FlashEnabled = false;
   bool _scannerV3DebugExpanded = false;
@@ -126,6 +142,10 @@ class _ConditionCameraScreenState extends State<ConditionCameraScreen> {
   Size? _cameraPreviewSize;
   Size? _cameraInputSize;
   String? _cameraInitFallbackReason;
+  int? _lastScannerFrameRotation;
+  bool _nativeConditionCameraReady = false;
+  NativeConditionCameraMetrics? _nativeConditionCameraMetrics;
+  Timer? _nativeConditionCameraMetricsTimer;
   final _ScannerCameraFpsCounter _cameraStreamFpsCounter =
       _ScannerCameraFpsCounter();
   final _ScannerCameraFpsCounter _scannerV3AnalysisFpsCounter =
@@ -135,6 +155,12 @@ class _ConditionCameraScreenState extends State<ConditionCameraScreen> {
   bool get _canShoot => !_takingPicture && _overlayMode == OverlayMode.ready;
   bool get _useScannerV3LiveLoop =>
       widget.enableScannerV3LiveLoopPrototype || widget.title == 'Scan Card';
+  bool get _useNativeConditionCamera =>
+      _useScannerV3LiveLoop &&
+      ScannerNativeCameraGuardrail.nativeConditionCameraRequestedForScanCard(
+        defaultTargetPlatform,
+      );
+  bool get _useScannerV3GuidedSlots => _useScannerV3LiveLoop;
 
   @override
   void initState() {
@@ -175,6 +201,7 @@ class _ConditionCameraScreenState extends State<ConditionCameraScreen> {
           }
         },
       );
+      unawaited(_scannerV3LoopController!.warmIdentityService());
     }
     _initCamera();
   }
@@ -207,6 +234,14 @@ class _ConditionCameraScreenState extends State<ConditionCameraScreen> {
   }
 
   Future<void> _initCamera() async {
+    if (_useNativeConditionCamera) {
+      _initFuture = _initNativeConditionCamera();
+      if (mounted) {
+        setState(() {});
+      }
+      return;
+    }
+
     final cams = await availableCameras();
     CameraDescription? back;
     for (final cam in cams) {
@@ -221,30 +256,106 @@ class _ConditionCameraScreenState extends State<ConditionCameraScreen> {
     if (controller == null) return;
     _controller = controller;
     _initFuture = _configureInitializedCamera(controller).then((_) async {
-      try {
-        await controller.setFocusMode(FocusMode.auto);
-      } catch (e) {
-        if (kDebugMode && !_didLogInitFocusModeError) {
-          debugPrint('[FOCUS] setFocusMode(auto) skipped: $e');
-          _didLogInitFocusModeError = true;
-        }
-      }
-      try {
-        await controller.setExposureMode(ExposureMode.auto);
-      } catch (e) {
-        if (kDebugMode && !_didLogInitExposureModeError) {
-          debugPrint('[FOCUS] setExposureMode(auto) skipped: $e');
-          _didLogInitExposureModeError = true;
-        }
-      }
       _focusApisReady = true;
       _startStream();
       _maybeAutoStartScannerV4DiagnosticTest();
+      unawaited(_warmScannerCameraFocusAndExposure(controller));
     });
     if (mounted) {
       setState(() {});
     }
     _startSensors();
+  }
+
+  Future<void> _warmScannerCameraFocusAndExposure(
+    CameraController controller,
+  ) async {
+    try {
+      await controller.setFocusMode(FocusMode.auto);
+    } catch (e) {
+      if (kDebugMode && !_didLogInitFocusModeError) {
+        debugPrint('[FOCUS] setFocusMode(auto) skipped: $e');
+        _didLogInitFocusModeError = true;
+      }
+    }
+    try {
+      await controller.setExposureMode(ExposureMode.auto);
+    } catch (e) {
+      if (kDebugMode && !_didLogInitExposureModeError) {
+        debugPrint('[FOCUS] setExposureMode(auto) skipped: $e');
+        _didLogInitExposureModeError = true;
+      }
+    }
+    unawaited(
+      _requestCameraFocusPoint(
+        const Offset(0.5, 0.48),
+        force: true,
+        showIndicator: false,
+        source: _ScannerV3FocusSource.auto,
+      ),
+    );
+  }
+
+  Future<void> _initNativeConditionCamera() async {
+    _cameraInitFallbackReason = null;
+    _cameraPreviewSize = null;
+    _cameraInputSize = null;
+    NativeConditionCameraBridge.attachFrameListener(
+      _handleNativeConditionCameraFrame,
+      onDetection: _handleNativeConditionCameraDetection,
+    );
+    _nativeConditionCameraReady = true;
+    unawaited(_consumeNativeConditionCameraPrewarmFrame());
+    _startNativeConditionCameraMetricsPolling();
+    _maybeAutoStartScannerV4DiagnosticTest();
+  }
+
+  Future<void> _consumeNativeConditionCameraPrewarmFrame() async {
+    try {
+      final frame = await NativeConditionCameraBridge.consumePrewarmFrame();
+      if (!mounted || frame == null) return;
+      if (kDebugMode) {
+        debugPrint('[scanner_prewarm] consumed_frame=1');
+      }
+      await _handleNativeConditionCameraFrame(
+        frame.image,
+        frame.sensorRotation,
+        frame.nativeQuadResponse,
+      );
+    } catch (error) {
+      if (kDebugMode) {
+        debugPrint('[scanner_prewarm] consume_frame_failed=$error');
+      }
+    }
+  }
+
+  void _startNativeConditionCameraMetricsPolling() {
+    _nativeConditionCameraMetricsTimer?.cancel();
+    _nativeConditionCameraMetricsTimer = Timer.periodic(
+      const Duration(seconds: 1),
+      (_) {
+        unawaited(_refreshNativeConditionCameraMetrics());
+      },
+    );
+    unawaited(_refreshNativeConditionCameraMetrics());
+  }
+
+  Future<void> _refreshNativeConditionCameraMetrics() async {
+    if (!_useNativeConditionCamera || !mounted) return;
+    try {
+      final metrics = await NativeConditionCameraBridge.getMetrics();
+      if (!mounted) return;
+      setState(() {
+        _nativeConditionCameraMetrics = metrics;
+        _cameraPreviewSize = metrics.previewSize;
+        _cameraInputSize = metrics.analysisSize;
+      });
+    } catch (error) {
+      if (!mounted) return;
+      setState(() {
+        _cameraInitFallbackReason = 'native_metrics_unavailable:$error';
+      });
+    }
   }
 
   Future<CameraController?> _createInitializedCameraController(
@@ -258,9 +369,9 @@ class _ConditionCameraScreenState extends State<ConditionCameraScreen> {
                   ResolutionPreset.medium,
                 ]
               : const <ResolutionPreset>[
-                  ResolutionPreset.medium,
-                  ResolutionPreset.high,
                   ResolutionPreset.veryHigh,
+                  ResolutionPreset.high,
+                  ResolutionPreset.medium,
                 ]
         : const <ResolutionPreset>[ResolutionPreset.high];
     Object? firstError;
@@ -310,7 +421,10 @@ class _ConditionCameraScreenState extends State<ConditionCameraScreen> {
 
   Future<void> _handlePreviewTap(TapDownDetails details) async {
     final controller = _controller;
-    if (controller == null || !controller.value.isInitialized) return;
+    if (!_useNativeConditionCamera &&
+        (controller == null || !controller.value.isInitialized)) {
+      return;
+    }
 
     final context = _previewAreaKey.currentContext;
     final renderObject = context?.findRenderObject();
@@ -319,8 +433,13 @@ class _ConditionCameraScreenState extends State<ConditionCameraScreen> {
     if (size.width <= 0 || size.height <= 0) return;
 
     final local = renderObject.globalToLocal(details.globalPosition);
-    final nx = (local.dx / size.width).clamp(0.0, 1.0).toDouble();
-    final ny = (local.dy / size.height).clamp(0.0, 1.0).toDouble();
+    final cameraViewport = _scannerCameraViewportRect(size);
+    final nx = ((local.dx - cameraViewport.left) / cameraViewport.width)
+        .clamp(0.0, 1.0)
+        .toDouble();
+    final ny = ((local.dy - cameraViewport.top) / cameraViewport.height)
+        .clamp(0.0, 1.0)
+        .toDouble();
     final norm = Offset(nx, ny);
     final selectedCardQuad = _cardQuadAtTap(norm);
     final selectedCardChanged = selectedCardQuad == null
@@ -341,14 +460,23 @@ class _ConditionCameraScreenState extends State<ConditionCameraScreen> {
                 _scannerV3LoopController?.state ??
                 ScannerV3LiveLoopState.initial;
             _scannerV3IdentityRevealRequested = false;
+            _scannerV3IdentityRevealRequestedAt = null;
             _scannerV3LastRememberedCandidateId = null;
           }
           _selectedCardQuadNorm = selectedCardQuad;
           _selectedCardLastSeenAt = tapAt;
+          if (_useScannerV3GuidedSlots) {
+            _scannerV3ActiveGuidedSlotIndex = _scannerV3SlotIndexForQuad(
+              selectedCardQuad,
+            );
+          }
+          _pendingCardSelectionTapNorm = null;
+          _pendingCardSelectionTapAt = null;
           _quadPointSets = _selectedCardFirst(_quadPointSets, selectedCardQuad);
           _quadPoints = selectedCardQuad;
         } else if (_useScannerV3LiveLoop) {
-          _selectedCardQuadNorm = null;
+          _pendingCardSelectionTapNorm = norm;
+          _pendingCardSelectionTapAt = tapAt;
         } else {
           _lastFocusTapNorm = focusNorm;
           _lastFocusTapAt = tapAt;
@@ -357,6 +485,7 @@ class _ConditionCameraScreenState extends State<ConditionCameraScreen> {
     }
     _lastAutoFocusBoundsNorm = selectedBounds;
     if (selectedCardQuad != null || _useScannerV3LiveLoop) {
+      if (_useNativeConditionCamera) return;
       unawaited(
         _requestCameraFocusPoint(
           focusNorm,
@@ -472,106 +601,370 @@ class _ConditionCameraScreenState extends State<ConditionCameraScreen> {
     _streaming = true;
     _controller!.startImageStream((image) async {
       final now = DateTime.now();
+      final rotation = _controller?.description.sensorOrientation ?? 0;
+      await _handleScannerAnalysisFrame(
+        image: image,
+        rotation: rotation,
+        now: now,
+        countStreamFrame: true,
+        nativeQuadResponse: null,
+      );
+    });
+  }
+
+  Future<void> _handleNativeConditionCameraFrame(
+    CameraImage image,
+    int rotation,
+    Map<String, dynamic>? nativeQuadResponse,
+  ) async {
+    final now = DateTime.now();
+    _recordScannerCameraFpsTick(_cameraStreamFpsCounter, now);
+    await _handleScannerAnalysisFrame(
+      image: image,
+      rotation: rotation,
+      now: now,
+      countStreamFrame: false,
+      nativeQuadResponse: nativeQuadResponse,
+    );
+  }
+
+  Future<void> _handleNativeConditionCameraDetection(
+    NativeConditionCameraDetection detection,
+  ) async {
+    if (!mounted) return;
+    final now = DateTime.now();
+    final imageSize = Size(
+      detection.width.toDouble(),
+      detection.height.toDouble(),
+    );
+    if (_cameraInputSize != imageSize && detection.width > 0) {
+      setState(() {
+        _cameraInputSize = imageSize;
+      });
+    }
+    final quadDetection = _nativeQuadDetectionFromRawResponse(
+      detection.nativeQuadResponse,
+      fallbackElapsedMs: null,
+    );
+    _updateScannerV3OverlayFromQuadDetection(
+      quadDetection,
+      now: now,
+      guidedSlotQuadsNorm: _useScannerV3GuidedSlots
+          ? _scannerV3GuidedSlotQuadsNorm()
+          : null,
+    );
+  }
+
+  Future<void> _handleScannerAnalysisFrame({
+    required CameraImage image,
+    required int rotation,
+    required DateTime now,
+    required bool countStreamFrame,
+    Map<String, dynamic>? nativeQuadResponse,
+  }) async {
+    if (countStreamFrame) {
       _recordScannerCameraFpsTick(_cameraStreamFpsCounter, now);
-      final imageSize = Size(image.width.toDouble(), image.height.toDouble());
-      if (_cameraInputSize != imageSize && mounted) {
+    }
+    _lastScannerFrameRotation = rotation;
+    final imageSize = Size(image.width.toDouble(), image.height.toDouble());
+    if (_cameraInputSize != imageSize && mounted) {
+      setState(() {
+        _cameraInputSize = imageSize;
+      });
+    }
+    if (now.difference(_lastQuadUpdate) < _scannerV3AnalysisInterval) return;
+    if (_processingScannerV3FrameTick) return;
+    _lastQuadUpdate = now;
+    _recordScannerCameraFpsTick(_scannerV3AnalysisFpsCounter, now);
+    _processingScannerV3FrameTick = true;
+    try {
+      final frameWatch = Stopwatch()..start();
+      final quadDetection = nativeQuadResponse == null
+          ? await _detectNativeQuad(image, rotation)
+          : _nativeQuadDetectionFromRawResponse(
+              nativeQuadResponse,
+              fallbackElapsedMs: null,
+            );
+      final detectorElapsedMs = frameWatch.elapsedMilliseconds;
+      final guidedSlotQuads = _useScannerV3GuidedSlots
+          ? _scannerV3GuidedSlotQuadsNorm()
+          : null;
+      final guidedIdentityQuads = _scannerV3ActiveGuidedIdentityQuads(
+        guidedSlotQuads,
+      );
+      final rawIdentityPoints = _updateScannerV3OverlayFromQuadDetection(
+        quadDetection,
+        now: now,
+        guidedSlotQuadsNorm: guidedSlotQuads,
+      );
+      final selectedCardIdentityTarget = _selectedCardIdentityTargetActive(now);
+      final identityPoints = guidedIdentityQuads?.first ?? rawIdentityPoints;
+      await _processScannerV3LiveLoopFrame(
+        image,
+        rotation,
+        identityPoints,
+        quadDetection,
+        guidedSlotQuadsNorm: guidedSlotQuads,
+        identityQuadPointSetsNorm: guidedIdentityQuads,
+        selectedCardIdentityTarget: selectedCardIdentityTarget,
+      );
+      if (kDebugMode && _scannerV3LoopState.sampledFrameCount <= 40) {
+        final scannerV3BestCandidate = _scannerV3LoopState.bestCandidate;
+        debugPrint(
+          '[scanner_v3_frame_debug] '
+          'total=${frameWatch.elapsedMilliseconds} '
+          'detector=$detectorElapsedMs '
+          'native=${quadDetection.success ? 1 : 0} '
+          'native_conf=${quadDetection.confidence?.toStringAsFixed(2) ?? "none"} '
+          'native_quads=${quadDetection.cardQuadsNorm?.length ?? 0} '
+          'native_fail=${quadDetection.failureReason ?? "ok"} '
+          'native_diag=${_nativeQuadDebugSummary(quadDetection.rawResponse)} '
+          'state=${_scannerV3LoopState.identityDecisionState} '
+          'reason=${_scannerV3LoopState.lastDecisionReason} '
+          'source=${_scannerV3LoopState.selectedQuadSource} '
+          'card_present=${_scannerV3LoopState.cardPresent} '
+          'card_reason=${_scannerV3LoopState.cardPresentReason} '
+          'best=${scannerV3BestCandidate?.name ?? scannerV3BestCandidate?.id ?? "none"} '
+          'best_gv=${scannerV3BestCandidate?.gvId ?? "none"} '
+          'best_rank=${scannerV3BestCandidate?.bestRank ?? -1} '
+          'best_dist=${scannerV3BestCandidate?.vectorDistance?.toStringAsFixed(3) ?? "none"} '
+          'best_score=${scannerV3BestCandidate?.score.toStringAsFixed(2) ?? "none"} '
+          'gap=${_scannerV3LoopState.identityScoreGap.toStringAsFixed(2)} '
+          'frame_gap=${_scannerV3LoopState.identityFrameScoreGap.toStringAsFixed(3)} '
+          'crops=${_scannerV3LoopState.identityCropSupportCount} '
+          'crop_types=${scannerV3BestCandidate?.contributingCropTypes.join("|") ?? "none"} '
+          'recent=${_scannerV3LoopState.identityRecentFrameSupportCount} '
+          'accepted=${_scannerV3LoopState.acceptedFrameCount} '
+          'sampled=${_scannerV3LoopState.sampledFrameCount}',
+        );
+      }
+    } finally {
+      _processingScannerV3FrameTick = false;
+    }
+  }
+
+  List<Offset>? _updateScannerV3OverlayFromQuadDetection(
+    _NativeQuadDetection quadDetection, {
+    required DateTime now,
+    List<List<Offset>>? guidedSlotQuadsNorm,
+  }) {
+    if (guidedSlotQuadsNorm != null && guidedSlotQuadsNorm.isNotEmpty) {
+      final selected = _selectedCardQuadNorm;
+      final displayPointSets = selected == null
+          ? guidedSlotQuadsNorm
+          : (_selectedCardFirst(guidedSlotQuadsNorm, selected) ??
+                guidedSlotQuadsNorm);
+      final displayPoints = displayPointSets.isNotEmpty
+          ? displayPointSets.first
+          : null;
+      if (displayPoints != null) {
+        _cardCandidateLastSeenAt = now;
+        final shouldPublishVisibleFrame =
+            _scannerV3VisibleFrameChanged(
+              displayPoints,
+              displayPointSets,
+              now,
+            ) ||
+            _overlayMode != OverlayMode.ready;
+        if (mounted && shouldPublishVisibleFrame) {
+          setState(() {
+            _quadPoints = displayPoints;
+            _quadPointSets = displayPointSets;
+            _overlayMode = OverlayMode.ready;
+            _liveStatus = 'Ready';
+            _lastScannerV3OverlayPublishAt = now;
+          });
+        } else {
+          _quadPoints = displayPoints;
+          _quadPointSets = displayPointSets;
+        }
+      }
+      return _selectedCardIdentityTargetActive(now) ? selected : displayPoints;
+    }
+
+    final rawPointSets = quadDetection.success
+        ? quadDetection.cardQuadsNorm
+        : null;
+    final displayPointSets = _trackedCardQuads(rawPointSets, now: now);
+    final displayPoints =
+        displayPointSets != null && displayPointSets.isNotEmpty
+        ? displayPointSets.first
+        : null;
+    final rawIdentityPoints = _selectedCardIdentityTargetActive(now)
+        ? _selectedCardQuadNorm
+        : rawPointSets != null && rawPointSets.isNotEmpty
+        ? rawPointSets.first
+        : quadDetection.success
+        ? quadDetection.pointsNorm
+        : null;
+
+    if (displayPoints != null) {
+      _cardCandidateLastSeenAt = now;
+      _maybeAutoFocusScannerV3(displayPoints, now: now);
+      final shouldPublishVisibleFrame =
+          _scannerV3VisibleFrameChanged(displayPoints, displayPointSets, now) ||
+          _overlayMode != OverlayMode.ready;
+      if (mounted && shouldPublishVisibleFrame) {
         setState(() {
-          _cameraInputSize = imageSize;
+          _quadPoints = displayPoints;
+          _quadPointSets = displayPointSets;
+          _overlayMode = OverlayMode.ready;
+          _liveStatus = 'Ready';
+          _lastScannerV3OverlayPublishAt = now;
         });
       }
-      if (now.difference(_lastQuadUpdate) < _scannerV3AnalysisInterval) return;
-      if (_processingScannerV3FrameTick) return;
-      _lastQuadUpdate = now;
-      _recordScannerCameraFpsTick(_scannerV3AnalysisFpsCounter, now);
-      _processingScannerV3FrameTick = true;
-      try {
-        final rotation = _controller?.description.sensorOrientation ?? 0;
-        final quadDetection = await _detectNativeQuad(image, rotation);
-        final rawPointSets = quadDetection.success
-            ? quadDetection.cardQuadsNorm
-            : null;
-        final displayPointSets = _trackedCardQuads(rawPointSets, now: now);
-        final displayPoints =
-            displayPointSets != null && displayPointSets.isNotEmpty
-            ? displayPointSets.first
-            : null;
-        final rawIdentityPoints =
-            _selectedCardQuadNorm ??
-            (rawPointSets != null && rawPointSets.isNotEmpty
-                ? rawPointSets.first
-                : quadDetection.success
-                ? quadDetection.pointsNorm
-                : null);
+      return rawIdentityPoints;
+    }
 
-        if (displayPoints != null) {
-          _cardCandidateLastSeenAt = now;
-          _maybeAutoFocusScannerV3(displayPoints, now: now);
-          final shouldPublishVisibleFrame =
-              _scannerV3VisibleFrameChanged(
-                displayPoints,
-                displayPointSets,
-                now,
-              ) ||
-              _overlayMode != OverlayMode.ready;
-          if (mounted && shouldPublishVisibleFrame) {
-            setState(() {
-              _quadPoints = displayPoints;
-              _quadPointSets = displayPointSets;
-              _overlayMode = OverlayMode.ready;
-              _liveStatus = 'Ready';
-              _lastScannerV3OverlayPublishAt = now;
-            });
-          }
-        } else {
-          final retainCardCandidates =
-              _quadPoints != null &&
-              now.difference(_cardCandidateLastSeenAt) <=
-                  _cardCandidateRetention;
-          if (retainCardCandidates) {
-            await _processScannerV3LiveLoopFrame(
-              image,
-              rotation,
-              rawIdentityPoints,
-              quadDetection,
-            );
-            return;
-          }
-          if (_quadPoints != null || _overlayMode != OverlayMode.neutral) {
-            setState(() {
-              _quadPoints = null;
-              _quadPointSets = null;
-              _scannerV3DisplayQuadTracks = <_ScannerV3DisplayQuadTrack>[];
-              _selectedCardQuadNorm = null;
-              _lastAutoFocusBoundsNorm = null;
-              _overlayMode = OverlayMode.neutral;
-              _liveStatus = 'Align card inside frame';
-              _lastScannerV3OverlayPublishAt = now;
-            });
-          }
-        }
-        await _processScannerV3LiveLoopFrame(
-          image,
-          rotation,
-          rawIdentityPoints,
-          quadDetection,
-        );
-      } finally {
-        _processingScannerV3FrameTick = false;
+    final retainCardCandidates =
+        _quadPoints != null &&
+        now.difference(_cardCandidateLastSeenAt) <= _cardCandidateRetention;
+    if (retainCardCandidates) {
+      return rawIdentityPoints;
+    }
+    if (_quadPoints != null || _overlayMode != OverlayMode.neutral) {
+      setState(() {
+        _quadPoints = null;
+        _quadPointSets = null;
+        _scannerV3DisplayQuadTracks = <_ScannerV3DisplayQuadTrack>[];
+        _selectedCardQuadNorm = null;
+        _lastAutoFocusBoundsNorm = null;
+        _overlayMode = OverlayMode.neutral;
+        _liveStatus = 'Align card inside frame';
+        _lastScannerV3OverlayPublishAt = now;
+      });
+    }
+    return rawIdentityPoints;
+  }
+
+  List<List<Offset>>? _scannerV3ActiveGuidedIdentityQuads(
+    List<List<Offset>>? guidedSlotQuadsNorm,
+  ) {
+    if (guidedSlotQuadsNorm == null || guidedSlotQuadsNorm.isEmpty) {
+      return null;
+    }
+    final activeSlotIndex = _scannerV3ActiveGuidedSlotIndex.clamp(
+      0,
+      guidedSlotQuadsNorm.length - 1,
+    );
+    final activeSlot = guidedSlotQuadsNorm[activeSlotIndex];
+    if (activeSlot.length != 4) return null;
+    return <List<Offset>>[List<Offset>.from(activeSlot)];
+  }
+
+  String? _scannerV3FixedSlotOccupancyBlockedReason(
+    _NativeQuadDetection quadDetection,
+    List<List<Offset>> guidedSlotQuadsNorm,
+  ) {
+    if (guidedSlotQuadsNorm.isEmpty) return 'fixed_slot_missing';
+    final activeSlotIndex = _scannerV3ActiveGuidedSlotIndex.clamp(
+      0,
+      guidedSlotQuadsNorm.length - 1,
+    );
+    final slotBounds = _quadBounds(guidedSlotQuadsNorm[activeSlotIndex]);
+    if (slotBounds == null) return 'fixed_slot_invalid';
+
+    final rawQuads = <List<Offset>>[
+      if (quadDetection.cardQuadsNorm != null)
+        for (final quad in quadDetection.cardQuadsNorm!)
+          if (quad.length == 4) quad,
+      if ((quadDetection.cardQuadsNorm == null ||
+              quadDetection.cardQuadsNorm!.isEmpty) &&
+          quadDetection.pointsNorm != null &&
+          quadDetection.pointsNorm!.length == 4)
+        quadDetection.pointsNorm!,
+    ];
+    if (rawQuads.isEmpty) {
+      return quadDetection.failureReason == null
+          ? 'fixed_slot_card_missing'
+          : 'fixed_slot_card_missing:${quadDetection.failureReason}';
+    }
+
+    _ScannerV3FixedSlotOccupancy? best;
+    for (final rawQuad in rawQuads) {
+      final rawBounds = _quadBounds(rawQuad);
+      if (rawBounds == null) continue;
+      final rawArea = rawBounds.width * rawBounds.height;
+      final slotArea = slotBounds.width * slotBounds.height;
+      if (rawArea <= 0 || slotArea <= 0) continue;
+      final intersection = _rectIntersectionArea(slotBounds, rawBounds);
+      final cardInSlot = intersection / rawArea;
+      final slotCoverage = intersection / slotArea;
+      final areaRatio = rawArea / slotArea;
+      final centerDistance = (slotBounds.center - rawBounds.center).distance;
+      final slotAspect = slotBounds.width / slotBounds.height;
+      final rawAspect = rawBounds.width / rawBounds.height;
+      final aspectPenalty = math.log(rawAspect / slotAspect).abs();
+      final centerInside = slotBounds.inflate(0.035).contains(rawBounds.center);
+      final score =
+          (slotCoverage * 2.0) +
+          cardInSlot -
+          (centerDistance * 0.90) -
+          (math.max(0.0, 0.36 - areaRatio) * 1.4) -
+          (math.max(0.0, areaRatio - 1.60) * 0.65) -
+          (aspectPenalty * 0.25);
+      final occupancy = _ScannerV3FixedSlotOccupancy(
+        cardInSlot: cardInSlot,
+        slotCoverage: slotCoverage,
+        areaRatio: areaRatio,
+        centerDistance: centerDistance,
+        aspectPenalty: aspectPenalty,
+        centerInside: centerInside,
+        score: score,
+      );
+      if (best == null || occupancy.score > best.score) {
+        best = occupancy;
       }
-    });
+    }
+
+    final occupancy = best;
+    if (occupancy == null) return 'fixed_slot_card_missing';
+    if (occupancy.centerInside &&
+        occupancy.cardInSlot >= 0.58 &&
+        occupancy.slotCoverage >= 0.34 &&
+        occupancy.areaRatio >= 0.36 &&
+        occupancy.areaRatio <= 1.60 &&
+        occupancy.aspectPenalty <= 0.55) {
+      return null;
+    }
+    return 'fixed_slot_card_not_filling_slot:'
+        'slot=${occupancy.slotCoverage.toStringAsFixed(2)};'
+        'card=${occupancy.cardInSlot.toStringAsFixed(2)};'
+        'area=${occupancy.areaRatio.toStringAsFixed(2)};'
+        'center=${occupancy.centerDistance.toStringAsFixed(2)};'
+        'aspect=${occupancy.aspectPenalty.toStringAsFixed(2)}';
   }
 
   Future<void> _processScannerV3LiveLoopFrame(
     CameraImage image,
     int rotation,
     List<Offset>? points,
-    _NativeQuadDetection quadDetection,
-  ) async {
+    _NativeQuadDetection quadDetection, {
+    List<List<Offset>>? guidedSlotQuadsNorm,
+    List<List<Offset>>? identityQuadPointSetsNorm,
+    required bool selectedCardIdentityTarget,
+  }) async {
     final controller = _scannerV3LoopController;
     if (controller == null) return;
     if (_processingScannerV3LiveLoopFrame) return;
     _processingScannerV3LiveLoopFrame = true;
     _recordScannerCameraFpsTick(_scannerV3LiveLoopFpsCounter, DateTime.now());
+    final identityPointSets = <List<Offset>>[
+      if (identityQuadPointSetsNorm != null)
+        ...identityQuadPointSetsNorm
+      else if (guidedSlotQuadsNorm != null)
+        ...guidedSlotQuadsNorm
+      else if (quadDetection.cardQuadsNorm != null)
+        ...quadDetection.cardQuadsNorm!,
+    ];
+    final hasGuidedSlots =
+        guidedSlotQuadsNorm != null && guidedSlotQuadsNorm.isNotEmpty;
+    final fixedSlotOccupancyBlockedReason = hasGuidedSlots
+        ? _scannerV3FixedSlotOccupancyBlockedReason(
+            quadDetection,
+            guidedSlotQuadsNorm,
+          )
+        : null;
 
     ScannerV3LiveLoopState? nextState;
     try {
@@ -579,7 +972,11 @@ class _ConditionCameraScreenState extends State<ConditionCameraScreen> {
         image: image,
         sensorRotation: rotation,
         quadPointsNorm: points,
-        selectedCardTarget: _selectedCardQuadNorm != null,
+        quadPointSetsNorm: identityPointSets.isEmpty ? null : identityPointSets,
+        guidedSlotTarget: hasGuidedSlots,
+        selectedCardTarget: selectedCardIdentityTarget,
+        allowIdentityLock: _scannerV3IdentityRevealRequested,
+        fixedSlotOccupancyBlockedReason: fixedSlotOccupancyBlockedReason,
         quadDetectorSnapshot: ScannerV3QuadDetectorSnapshot(
           registered: quadDetection.registered,
           called: quadDetection.called,
@@ -605,8 +1002,17 @@ class _ConditionCameraScreenState extends State<ConditionCameraScreen> {
     _recordScannerV4Diagnostics(state, quadDetection, points);
     final hasVisibleCard =
         _quadPoints != null || (_quadPointSets?.isNotEmpty ?? false);
+    final revealRequestedAt = _scannerV3IdentityRevealRequestedAt;
+    final revealGraceActive =
+        _scannerV3IdentityRevealRequested &&
+        revealRequestedAt != null &&
+        DateTime.now().difference(revealRequestedAt) <= _scannerV3RevealGrace;
     final clearReveal =
-        !hasVisibleCard && !state.cardPresent && !state.identityAllowed;
+        !state.locked &&
+        !revealGraceActive &&
+        (_useScannerV3GuidedSlots || !hasVisibleCard) &&
+        !state.cardPresent &&
+        !state.identityAllowed;
     final rememberLock = _scannerV3IdentityRevealRequested && state.locked;
     final shouldRebuild =
         _scannerV3DebugExpanded ||
@@ -618,6 +1024,7 @@ class _ConditionCameraScreenState extends State<ConditionCameraScreen> {
         _scannerV3LoopState = state;
         if (clearReveal) {
           _scannerV3IdentityRevealRequested = false;
+          _scannerV3IdentityRevealRequestedAt = null;
           _scannerV3LastRememberedCandidateId = null;
         }
         if (rememberLock) {
@@ -657,6 +1064,15 @@ class _ConditionCameraScreenState extends State<ConditionCameraScreen> {
     return false;
   }
 
+  bool _scannerV3ShouldDisplayRawDetectorOverlay(ScannerV3LiveLoopState state) {
+    if (_useScannerV3GuidedSlots) return false;
+    if (_selectedCardQuadNorm != null) return true;
+    if (_scannerV3IdentityRevealRequested || state.locked) return false;
+    return _scannerV3DebugExpanded &&
+        state.cardPresent &&
+        state.selectedQuadSource == 'native_detector';
+  }
+
   void _recordScannerCameraFpsTick(
     _ScannerCameraFpsCounter counter,
     DateTime now,
@@ -693,17 +1109,24 @@ class _ConditionCameraScreenState extends State<ConditionCameraScreen> {
         _quadVisuallyDifferent(_selectedCardQuadNorm, nextPoints);
   }
 
-  void _maybeAutoFocusScannerV3(List<Offset> quad, {required DateTime now}) {
+  void _maybeAutoFocusScannerV3(
+    List<Offset> quad, {
+    required DateTime now,
+    bool force = false,
+  }) {
     if (!_useScannerV3LiveLoop || !_focusApisReady || _focusRequestInFlight) {
       return;
     }
     final bounds = _quadBounds(quad);
     if (bounds == null) return;
     final previous = _lastAutoFocusBoundsNorm;
-    if (previous != null && !_autoFocusTargetChanged(previous, bounds)) {
+    if (!force &&
+        previous != null &&
+        !_autoFocusTargetChanged(previous, bounds)) {
       return;
     }
-    if (now.difference(_lastAutoFocusAt) < _scannerV3AutoFocusCooldown) {
+    if (!force &&
+        now.difference(_lastAutoFocusAt) < _scannerV3AutoFocusCooldown) {
       return;
     }
 
@@ -711,7 +1134,7 @@ class _ConditionCameraScreenState extends State<ConditionCameraScreen> {
     unawaited(
       _requestCameraFocusPoint(
         bounds.center,
-        force: false,
+        force: force,
         showIndicator: false,
         source: _ScannerV3FocusSource.auto,
       ),
@@ -732,7 +1155,12 @@ class _ConditionCameraScreenState extends State<ConditionCameraScreen> {
   }
 
   List<Offset>? _cardQuadAtTap(Offset tapNorm) {
-    final pointSets = _quadPointSets != null && _quadPointSets!.isNotEmpty
+    final guidedSlotQuads = _useScannerV3GuidedSlots
+        ? _scannerV3GuidedSlotQuadsNorm()
+        : null;
+    final pointSets = guidedSlotQuads != null && guidedSlotQuads.isNotEmpty
+        ? guidedSlotQuads
+        : _quadPointSets != null && _quadPointSets!.isNotEmpty
         ? _quadPointSets!
         : _quadPoints == null
         ? const <List<Offset>>[]
@@ -742,11 +1170,13 @@ class _ConditionCameraScreenState extends State<ConditionCameraScreen> {
     for (final quad in pointSets) {
       if (quad.length != 4) continue;
       final bounds = _quadBounds(quad);
-      if (bounds == null ||
-          !bounds.inflate(_cardTapHitSlop).contains(tapNorm)) {
+      if (bounds == null) {
         continue;
       }
       final distance = (bounds.center - tapNorm).distance;
+      if (!bounds.inflate(_cardTapHitSlop).contains(tapNorm)) {
+        continue;
+      }
       if (distance < bestDistance) {
         bestDistance = distance;
         bestQuad = quad;
@@ -776,6 +1206,13 @@ class _ConditionCameraScreenState extends State<ConditionCameraScreen> {
         (centerDistance <= _selectedCardCenterDeadband * 2.4 && similarSize);
   }
 
+  bool _selectedCardIdentityTargetActive(DateTime now) {
+    final selected = _selectedCardQuadNorm;
+    if (selected == null || selected.length != 4) return false;
+    final age = now.difference(_selectedCardLastSeenAt);
+    return !age.isNegative && age <= _selectedCardIdentityFreshness;
+  }
+
   List<List<Offset>>? _trackedCardQuads(
     List<List<Offset>>? rawPointSets, {
     required DateTime now,
@@ -787,9 +1224,32 @@ class _ConditionCameraScreenState extends State<ConditionCameraScreen> {
     final quads = _deduplicatedDisplayQuads(rawQuads ?? <List<Offset>>[]);
     _updateScannerV3DisplayQuadTracks(quads, now);
     final stableDisplayQuads = _stableScannerV3DisplayQuads();
+    final immediateDisplayQuads = stableDisplayQuads.isEmpty
+        ? quads
+        : stableDisplayQuads;
+    final pendingTap = _pendingCardSelectionTapNorm;
+    final pendingTapAt = _pendingCardSelectionTapAt;
+    if (pendingTap != null &&
+        pendingTapAt != null &&
+        now.difference(pendingTapAt) <= _pendingCardSelectionRetention) {
+      final selectedFromPending = _nearestCardQuadToTap(
+        pendingTap,
+        immediateDisplayQuads,
+      );
+      if (selectedFromPending != null) {
+        _selectedCardQuadNorm = selectedFromPending;
+        _selectedCardLastSeenAt = now;
+        _pendingCardSelectionTapNorm = null;
+        _pendingCardSelectionTapAt = null;
+      }
+    } else if (pendingTapAt != null) {
+      _pendingCardSelectionTapNorm = null;
+      _pendingCardSelectionTapAt = null;
+    }
+
     final selected = _selectedCardQuadNorm;
     if (selected == null || selected.length != 4) {
-      return stableDisplayQuads.isEmpty ? null : stableDisplayQuads;
+      return immediateDisplayQuads.isEmpty ? null : immediateDisplayQuads;
     }
 
     final match = _bestSelectedCardMatch(selected, quads);
@@ -813,7 +1273,26 @@ class _ConditionCameraScreenState extends State<ConditionCameraScreen> {
     }
 
     _selectedCardQuadNorm = null;
-    return stableDisplayQuads.isEmpty ? null : stableDisplayQuads;
+    return immediateDisplayQuads.isEmpty ? null : immediateDisplayQuads;
+  }
+
+  List<Offset>? _nearestCardQuadToTap(
+    Offset tapNorm,
+    List<List<Offset>> quads,
+  ) {
+    List<Offset>? nearestQuad;
+    var nearestDistance = double.infinity;
+    for (final quad in quads) {
+      if (quad.length != 4) continue;
+      final bounds = _quadBounds(quad);
+      if (bounds == null) continue;
+      final distance = (bounds.center - tapNorm).distance;
+      if (distance < nearestDistance) {
+        nearestDistance = distance;
+        nearestQuad = quad;
+      }
+    }
+    return nearestDistance <= _cardTapNearestMaxDistance ? nearestQuad : null;
   }
 
   void _updateScannerV3DisplayQuadTracks(
@@ -861,12 +1340,21 @@ class _ConditionCameraScreenState extends State<ConditionCameraScreen> {
       final bounds = _quadBounds(quad);
       if (bounds == null) continue;
       var duplicate = false;
-      for (final existing in deduped) {
+      for (var index = 0; index < deduped.length; index += 1) {
+        final existing = deduped[index];
         final existingBounds = _quadBounds(existing);
         if (existingBounds == null) continue;
         final iou = _rectIou(bounds, existingBounds);
+        final overlapRatio = _rectMinOverlapRatio(bounds, existingBounds);
+        final areaRatio = _rectAreaRatio(bounds, existingBounds);
         final centerDistance = (bounds.center - existingBounds.center).distance;
-        if (iou >= 0.55 || centerDistance <= 0.035) {
+        if (iou >= 0.30 ||
+            centerDistance <= 0.10 ||
+            (iou >= 0.14 && centerDistance <= 0.30 && areaRatio >= 1.25) ||
+            (overlapRatio >= 0.30 && areaRatio >= 1.25)) {
+          if (_preferDisplayQuadBounds(bounds, existingBounds)) {
+            deduped[index] = quad;
+          }
           duplicate = true;
           break;
         }
@@ -876,6 +1364,24 @@ class _ConditionCameraScreenState extends State<ConditionCameraScreen> {
       }
     }
     return deduped;
+  }
+
+  bool _preferDisplayQuadBounds(Rect candidate, Rect existing) {
+    final candidateArea = candidate.width * candidate.height;
+    final existingArea = existing.width * existing.height;
+    final overlapRatio = _rectMinOverlapRatio(candidate, existing);
+    final areaRatio = _rectAreaRatio(candidate, existing);
+    if (overlapRatio >= 0.72 && areaRatio >= 1.8) {
+      return candidateArea > existingArea;
+    }
+
+    final candidateScore = _displayQuadVisualScore(candidate);
+    final existingScore = _displayQuadVisualScore(existing);
+    if ((candidateScore - existingScore).abs() <= 0.08) {
+      if (candidateArea < existingArea * 0.82) return true;
+      if (existingArea < candidateArea * 0.82) return false;
+    }
+    return candidateScore < existingScore;
   }
 
   _ScannerV3DisplayQuadTrack? _bestDisplayQuadTrack(
@@ -915,14 +1421,52 @@ class _ConditionCameraScreenState extends State<ConditionCameraScreen> {
             final aBounds = _quadBounds(a.quad);
             final bBounds = _quadBounds(b.quad);
             if (aBounds == null || bBounds == null) return 0;
+            final scoreCompare = _displayQuadVisualScore(
+              aBounds,
+            ).compareTo(_displayQuadVisualScore(bBounds));
+            if (scoreCompare != 0) return scoreCompare;
             return aBounds.center.dx.compareTo(bBounds.center.dx);
           });
-    for (final track in visibleTracks) {
+
+    final filteredTracks = visibleTracks
+        .where((track) {
+          final bounds = _quadBounds(track.quad);
+          return bounds != null && _displayQuadVisualScore(bounds) <= 0.42;
+        })
+        .take(3)
+        .toList(growable: false);
+    final displayTracks = filteredTracks.isNotEmpty
+        ? filteredTracks
+        : visibleTracks.take(1).toList(growable: false);
+    displayTracks.sort((a, b) {
+      final aBounds = _quadBounds(a.quad);
+      final bBounds = _quadBounds(b.quad);
+      if (aBounds == null || bBounds == null) return 0;
+      return aBounds.center.dx.compareTo(bBounds.center.dx);
+    });
+
+    for (final track in displayTracks) {
       track.visible = true;
     }
     return <List<Offset>>[
-      for (final track in visibleTracks) List<Offset>.from(track.quad),
+      for (final track in displayTracks) List<Offset>.from(track.quad),
     ];
+  }
+
+  double _displayQuadVisualScore(Rect bounds) {
+    if (bounds.width <= 0 || bounds.height <= 0) return double.infinity;
+    final cameraAspect = _scannerCameraDisplayAspectRatio ?? (2 / 3);
+    final expectedAspect =
+        ScannerV3LiveLoopController.targetAspectRatio / cameraAspect;
+    final aspect = bounds.width / bounds.height;
+    final aspectPenalty = (math.log(aspect / expectedAspect)).abs();
+    final area = bounds.width * bounds.height;
+    final areaPenalty = area < 0.035
+        ? (0.035 - area) * 4
+        : area > 0.26
+        ? (area - 0.26) * 3
+        : 0.0;
+    return aspectPenalty + areaPenalty;
   }
 
   List<List<Offset>> _displayQuadsExcludingSelected(
@@ -1060,6 +1604,31 @@ class _ConditionCameraScreenState extends State<ConditionCameraScreen> {
     return intersection / union;
   }
 
+  double _rectMinOverlapRatio(Rect a, Rect b) {
+    final intersection = _rectIntersectionArea(a, b);
+    if (intersection <= 0) return 0;
+    final minArea = math.min(a.width * a.height, b.width * b.height);
+    if (minArea <= 0) return 0;
+    return intersection / minArea;
+  }
+
+  double _rectAreaRatio(Rect a, Rect b) {
+    final aArea = a.width * a.height;
+    final bArea = b.width * b.height;
+    final minArea = math.min(aArea, bArea);
+    if (minArea <= 0) return double.infinity;
+    return math.max(aArea, bArea) / minArea;
+  }
+
+  double _rectIntersectionArea(Rect a, Rect b) {
+    final left = math.max(a.left, b.left);
+    final top = math.max(a.top, b.top);
+    final right = math.min(a.right, b.right);
+    final bottom = math.min(a.bottom, b.bottom);
+    if (right <= left || bottom <= top) return 0;
+    return (right - left) * (bottom - top);
+  }
+
   bool _quadSetsVisuallyDifferent(
     List<List<Offset>>? previous,
     List<List<Offset>>? next,
@@ -1138,6 +1707,23 @@ class _ConditionCameraScreenState extends State<ConditionCameraScreen> {
   }
 
   Map<String, Object?> _scannerCameraMetrics() {
+    if (_useNativeConditionCamera) {
+      final metrics = _nativeConditionCameraMetrics;
+      return <String, Object?>{
+        'engine': metrics?.engine ?? 'camerax',
+        'status': metrics?.status ?? 'unknown',
+        'error': metrics?.error,
+        'preset': 'native-camerax',
+        'preview_size': _formatSize(metrics?.previewSize),
+        'input_size': _formatSize(metrics?.analysisSize),
+        'stream_fps': metrics?.analysisFps,
+        'native_detection_fps': metrics?.nativeDetectionFps,
+        'frame_bridge_fps': metrics?.frameBridgeFps,
+        'analysis_fps': _scannerV3AnalysisFpsCounter.fps,
+        'live_loop_fps': _scannerV3LiveLoopFpsCounter.fps,
+        'fallback_reason': _cameraInitFallbackReason,
+      };
+    }
     return <String, Object?>{
       'preset': _resolutionPresetLabel(_cameraResolutionPreset),
       'preview_size': _formatSize(_cameraPreviewSize),
@@ -1156,13 +1742,22 @@ class _ConditionCameraScreenState extends State<ConditionCameraScreen> {
     final stopwatch = Stopwatch()..start();
     final rawResponse = await _quadDetector.detect(image, rotation);
     stopwatch.stop();
+    return _nativeQuadDetectionFromRawResponse(
+      rawResponse,
+      fallbackElapsedMs: stopwatch.elapsedMilliseconds,
+    );
+  }
 
+  _NativeQuadDetection _nativeQuadDetectionFromRawResponse(
+    Map<String, dynamic>? rawResponse, {
+    required int? fallbackElapsedMs,
+  }) {
     if (rawResponse == null) {
       return _NativeQuadDetection(
         registered: true,
         called: true,
         success: false,
-        elapsedMs: stopwatch.elapsedMilliseconds,
+        elapsedMs: fallbackElapsedMs,
         failureReason: 'no_native_quad_response',
       );
     }
@@ -1187,7 +1782,7 @@ class _ConditionCameraScreenState extends State<ConditionCameraScreen> {
       elapsedMs:
           _asInt(rawResponse['elapsed_ms']) ??
           _asInt(rawResponse['elapsedMs']) ??
-          stopwatch.elapsedMilliseconds,
+          fallbackElapsedMs,
       failureReason: failureReason,
       rawResponse: rawResponse,
     );
@@ -1199,7 +1794,14 @@ class _ConditionCameraScreenState extends State<ConditionCameraScreen> {
     required double? confidence,
     required Map<String, dynamic> rawResponse,
   }) {
-    if (!rawSuccess) return 'native_success_false';
+    if (!rawSuccess) {
+      return _asString(rawResponse['failure_reason']) ??
+          _asString(rawResponse['failureReason']) ??
+          _asString(
+            _nativeQuadDiagnostic(rawResponse, 'selected_failure_reason'),
+          ) ??
+          'native_success_false';
+    }
     if (!pointsPresent) {
       return _asString(rawResponse['failure_reason']) ??
           _asString(rawResponse['failureReason']) ??
@@ -1210,6 +1812,56 @@ class _ConditionCameraScreenState extends State<ConditionCameraScreen> {
       return 'native_confidence_below_bridge_floor';
     }
     return null;
+  }
+
+  String _nativeQuadDebugSummary(Map<String, dynamic>? rawResponse) {
+    if (rawResponse == null) return 'none';
+    final fields = <String>[];
+    void add(String label, Object? value) {
+      if (value == null) return;
+      final text = value.toString();
+      if (text.isEmpty) return;
+      fields.add('$label=$text');
+    }
+
+    add(
+      'raw_fail',
+      rawResponse['failure_reason'] ?? rawResponse['failureReason'],
+    );
+    add(
+      'sel_fail',
+      _nativeQuadDiagnostic(rawResponse, 'selected_failure_reason'),
+    );
+    add('cand', _nativeQuadDiagnostic(rawResponse, 'candidate_score_count'));
+    add(
+      'best',
+      _formatNativeQuadDiagnosticDouble(
+        _nativeQuadDiagnostic(rawResponse, 'best_candidate_score'),
+      ),
+    );
+    add('seed', _nativeQuadDiagnostic(rawResponse, 'seed_pixel_count'));
+    add('edge', _nativeQuadDiagnostic(rawResponse, 'edge_pixel_count'));
+    add(
+      'source',
+      _nativeQuadDiagnostic(rawResponse, 'selected_candidate_source'),
+    );
+    add(
+      'area',
+      _formatNativeQuadDiagnosticDouble(
+        _nativeQuadDiagnostic(rawResponse, 'best_candidate_area'),
+      ),
+    );
+    return fields.isEmpty ? 'none' : fields.join(',');
+  }
+
+  Object? _nativeQuadDiagnostic(Map<String, dynamic> rawResponse, String key) {
+    final diagnostics = rawResponse['diagnostics'];
+    return diagnostics is Map ? diagnostics[key] : null;
+  }
+
+  String? _formatNativeQuadDiagnosticDouble(Object? value) {
+    final parsed = _asDouble(value);
+    return parsed?.toStringAsFixed(3);
   }
 
   List<Offset>? _extractQuadPoints(Map<String, dynamic> rawResponse) {
@@ -1310,6 +1962,11 @@ class _ConditionCameraScreenState extends State<ConditionCameraScreen> {
     if (_useScannerV3LiveLoop) {
       unawaited(_restoreScannerV3SystemUi());
     }
+    _nativeConditionCameraMetricsTimer?.cancel();
+    if (_useNativeConditionCamera) {
+      NativeConditionCameraBridge.detachFrameListener();
+      unawaited(NativeConditionCameraBridge.stopSession());
+    }
     final controller = _controller;
     _controller = null;
     _streaming = false;
@@ -1366,6 +2023,7 @@ class _ConditionCameraScreenState extends State<ConditionCameraScreen> {
       final now = DateTime.now();
       if (now.difference(_lastAccelUpdate).inMilliseconds < 100) return;
       _lastAccelUpdate = now;
+      if (_useScannerV3LiveLoop) return;
       final mag = math.sqrt(event.x * event.x + event.y * event.y);
       OverlayMode nextMode = OverlayMode.neutral;
       String nextStatus = widget.hintText ?? 'Align card inside frame';
@@ -1394,6 +2052,7 @@ class _ConditionCameraScreenState extends State<ConditionCameraScreen> {
     setState(() {
       _scannerV3LoopState = ScannerV3LiveLoopState.initial;
       _scannerV3IdentityRevealRequested = false;
+      _scannerV3IdentityRevealRequestedAt = null;
       _scannerV3LastRememberedCandidateId = null;
       _scannerV3DebugExpanded = false;
       _quadPoints = null;
@@ -1416,18 +2075,27 @@ class _ConditionCameraScreenState extends State<ConditionCameraScreen> {
     }
     unawaited(HapticFeedback.mediumImpact());
     unawaited(SystemSound.play(SystemSoundType.click));
+    final bufferedLockState = _scannerV3LoopController
+        ?.revealBufferedIdentityLock();
+    final requestedAt = DateTime.now();
     if (!mounted) return;
     setState(() {
       _scannerV3IdentityRevealRequested = true;
-      if (_scannerV3LoopState.locked) {
+      _scannerV3IdentityRevealRequestedAt = requestedAt;
+      _lastQuadUpdate = DateTime.fromMillisecondsSinceEpoch(0);
+      _scannerV3LastRememberedCandidateId = null;
+      if (bufferedLockState != null) {
+        _scannerV3LoopState = bufferedLockState;
+        _rememberScannerV3LockedCard(bufferedLockState);
+      } else if (_scannerV3LoopState.locked) {
         _rememberScannerV3LockedCard(_scannerV3LoopState);
       }
     });
   }
 
   void _rememberScannerV3LockedCard(ScannerV3LiveLoopState state) {
-    final candidate = state.bestCandidate;
-    final candidateId = state.lockedCandidateId ?? candidate?.id;
+    final candidateId = state.lockedCandidateId ?? state.currentBestCandidateId;
+    final candidate = state.candidateById(candidateId) ?? state.bestCandidate;
     if (candidateId == null || candidateId.isEmpty) return;
     if (_scannerV3LastRememberedCandidateId == candidateId) return;
     _scannerV3LastRememberedCandidateId = candidateId;
@@ -1567,6 +2235,222 @@ class _ConditionCameraScreenState extends State<ConditionCameraScreen> {
     }
   }
 
+  void _setScannerV3GuidedSlotCount(int count) {
+    if (!_scannerV3GuidedSlotOptions.contains(count)) return;
+    if (_scannerV3GuidedSlotCount == count) return;
+    _scannerV3LoopController?.reset();
+    if (!mounted) return;
+    setState(() {
+      _scannerV3GuidedSlotCount = count;
+      _scannerV3ActiveGuidedSlotIndex = 0;
+      _scannerV3LoopState =
+          _scannerV3LoopController?.state ?? ScannerV3LiveLoopState.initial;
+      _scannerV3IdentityRevealRequested = false;
+      _scannerV3IdentityRevealRequestedAt = null;
+      _scannerV3LastRememberedCandidateId = null;
+      _selectedCardQuadNorm = null;
+      _pendingCardSelectionTapNorm = null;
+      _pendingCardSelectionTapAt = null;
+      _scannerV3DisplayQuadTracks = <_ScannerV3DisplayQuadTrack>[];
+      final slots = _scannerV3GuidedSlotQuadsNorm();
+      _quadPointSets = slots;
+      _quadPoints = slots.isEmpty ? null : slots.first;
+      _overlayMode = slots.isEmpty ? OverlayMode.neutral : OverlayMode.ready;
+      _liveStatus = slots.isEmpty ? 'Align card inside frame' : 'Ready';
+    });
+  }
+
+  List<List<Offset>> _scannerV3GuidedSlotQuadsNorm() {
+    final aspect = _scannerV3DisplayQuadTargetAspect;
+    switch (_scannerV3GuidedSlotCount) {
+      case 4:
+        return _scannerV3GuidedSlotGrid(
+          columns: 2,
+          rows: 2,
+          aspect: aspect,
+          maxTotalWidth: 0.80,
+          maxTotalHeight: 0.58,
+          gapX: 0.050,
+          gapY: 0.046,
+          centerY: 0.44,
+        );
+      case 2:
+        return _scannerV3GuidedSlotGrid(
+          columns: 2,
+          rows: 1,
+          aspect: aspect,
+          maxTotalWidth: 0.82,
+          maxTotalHeight: 0.38,
+          gapX: 0.050,
+          gapY: 0,
+          centerY: 0.41,
+        );
+      case 1:
+      default:
+        return _scannerV3GuidedSlotGrid(
+          columns: 1,
+          rows: 1,
+          aspect: aspect,
+          maxTotalWidth: 0.52,
+          maxTotalHeight: 0.46,
+          gapX: 0,
+          gapY: 0,
+          centerY: 0.47,
+        );
+    }
+  }
+
+  double get _scannerV3DisplayQuadTargetAspect {
+    final cameraAspect = _scannerCameraDisplayAspectRatio ?? (9 / 16);
+    if (!cameraAspect.isFinite || cameraAspect <= 0) {
+      return 1.25;
+    }
+    return (ScannerV3LiveLoopController.targetAspectRatio / cameraAspect)
+        .clamp(0.42, 2.20)
+        .toDouble();
+  }
+
+  List<List<Offset>> _scannerV3GuidedSlotGrid({
+    required int columns,
+    required int rows,
+    required double aspect,
+    required double maxTotalWidth,
+    required double maxTotalHeight,
+    required double gapX,
+    required double gapY,
+    required double centerY,
+  }) {
+    if (columns <= 0 || rows <= 0 || aspect <= 0) {
+      return const <List<Offset>>[];
+    }
+    var slotWidth = (maxTotalWidth - (gapX * (columns - 1))) / columns;
+    var slotHeight = slotWidth / aspect;
+    final totalHeight = (slotHeight * rows) + (gapY * (rows - 1));
+    if (totalHeight > maxTotalHeight) {
+      slotHeight = (maxTotalHeight - (gapY * (rows - 1))) / rows;
+      slotWidth = slotHeight * aspect;
+    }
+    if ((slotWidth * columns) + (gapX * (columns - 1)) > maxTotalWidth) {
+      slotWidth = (maxTotalWidth - (gapX * (columns - 1))) / columns;
+      slotHeight = slotWidth / aspect;
+    }
+
+    final gridWidth = (slotWidth * columns) + (gapX * (columns - 1));
+    final gridHeight = (slotHeight * rows) + (gapY * (rows - 1));
+    final startX = ((1 - gridWidth) / 2).clamp(0.0, 1.0).toDouble();
+    final startY = (centerY - (gridHeight / 2))
+        .clamp(0.035, math.max(0.035, 0.965 - gridHeight))
+        .toDouble();
+    final slots = <List<Offset>>[];
+    for (var row = 0; row < rows; row += 1) {
+      for (var column = 0; column < columns; column += 1) {
+        final left = startX + (column * (slotWidth + gapX));
+        final top = startY + (row * (slotHeight + gapY));
+        slots.add(
+          _scannerV3RectQuadNorm(
+            Rect.fromLTWH(left, top, slotWidth, slotHeight),
+          ),
+        );
+      }
+    }
+    return slots;
+  }
+
+  List<Offset> _scannerV3RectQuadNorm(Rect rect) {
+    final left = rect.left.clamp(0.0, 1.0).toDouble();
+    final top = rect.top.clamp(0.0, 1.0).toDouble();
+    final right = rect.right.clamp(0.0, 1.0).toDouble();
+    final bottom = rect.bottom.clamp(0.0, 1.0).toDouble();
+    return <Offset>[
+      Offset(left, top),
+      Offset(right, top),
+      Offset(right, bottom),
+      Offset(left, bottom),
+    ];
+  }
+
+  int _scannerV3SlotIndexForQuad(List<Offset> quad) {
+    final slots = _scannerV3GuidedSlotQuadsNorm();
+    var bestIndex = 0;
+    var bestDistance = double.infinity;
+    final bounds = _quadBounds(quad);
+    if (bounds == null) return bestIndex;
+    for (var i = 0; i < slots.length; i += 1) {
+      final slotBounds = _quadBounds(slots[i]);
+      if (slotBounds == null) continue;
+      final distance = (slotBounds.center - bounds.center).distance;
+      if (distance < bestDistance) {
+        bestDistance = distance;
+        bestIndex = i;
+      }
+    }
+    return bestIndex;
+  }
+
+  double? get _scannerCameraDisplayAspectRatio {
+    final sourceSize = _cameraInputSize ?? _cameraPreviewSize;
+    if (sourceSize == null || sourceSize.width <= 0 || sourceSize.height <= 0) {
+      return null;
+    }
+    final rotation =
+        _lastScannerFrameRotation ?? _controller?.description.sensorOrientation;
+    final rightAngle = rotation != null && rotation % 180 != 0;
+    final displayWidth = rightAngle ? sourceSize.height : sourceSize.width;
+    final displayHeight = rightAngle ? sourceSize.width : sourceSize.height;
+    if (displayWidth <= 0 || displayHeight <= 0) return null;
+    return displayWidth / displayHeight;
+  }
+
+  Rect _scannerCameraViewportRect(Size available) {
+    if (available.width <= 0 || available.height <= 0) {
+      return Rect.zero;
+    }
+    final cameraAspect =
+        _scannerCameraDisplayAspectRatio ?? available.width / available.height;
+    if (!cameraAspect.isFinite || cameraAspect <= 0) {
+      return Offset.zero & available;
+    }
+
+    final containerAspect = available.width / available.height;
+    double width;
+    double height;
+    if (containerAspect > cameraAspect) {
+      width = available.width;
+      height = width / cameraAspect;
+    } else {
+      height = available.height;
+      width = height * cameraAspect;
+    }
+
+    return Rect.fromLTWH(
+      (available.width - width) / 2,
+      (available.height - height) / 2,
+      width,
+      height,
+    );
+  }
+
+  Widget _buildScannerCameraSurface({
+    required Size available,
+    required Widget child,
+  }) {
+    final viewport = _scannerCameraViewportRect(available);
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(12),
+      child: ClipRect(
+        child: Stack(
+          fit: StackFit.expand,
+          children: [
+            Positioned.fromRect(
+              rect: viewport,
+              child: RepaintBoundary(child: child),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
@@ -1598,8 +2482,13 @@ class _ConditionCameraScreenState extends State<ConditionCameraScreen> {
                   if (snap.connectionState != ConnectionState.done) {
                     return const Center(child: CircularProgressIndicator());
                   }
-                  if (_controller == null ||
-                      !_controller!.value.isInitialized) {
+                  if (_useNativeConditionCamera &&
+                      !_nativeConditionCameraReady) {
+                    return const Center(child: Text('Camera not available'));
+                  }
+                  if (!_useNativeConditionCamera &&
+                      (_controller == null ||
+                          !_controller!.value.isInitialized)) {
                     return const Center(child: Text('Camera not available'));
                   }
                   return LayoutBuilder(
@@ -1626,6 +2515,26 @@ class _ConditionCameraScreenState extends State<ConditionCameraScreen> {
                         finalGuideWidth,
                         finalGuideHeight,
                       );
+                      final cameraViewportRect = _scannerCameraViewportRect(
+                        available,
+                      );
+                      final guidedSlotQuads = _useScannerV3GuidedSlots
+                          ? _scannerV3GuidedSlotQuadsNorm()
+                          : const <List<Offset>>[];
+                      final showRawDetectorOverlay =
+                          _scannerV3ShouldDisplayRawDetectorOverlay(
+                            _scannerV3LoopState,
+                          );
+                      final scannerOverlayPointSets = showRawDetectorOverlay
+                          ? _quadPointSets
+                          : null;
+                      final scannerOverlayPoints =
+                          scannerOverlayPointSets != null &&
+                              scannerOverlayPointSets.isNotEmpty
+                          ? scannerOverlayPointSets.first
+                          : showRawDetectorOverlay
+                          ? _quadPoints
+                          : null;
                       return Stack(
                         fit: StackFit.expand,
                         children: [
@@ -1635,19 +2544,34 @@ class _ConditionCameraScreenState extends State<ConditionCameraScreen> {
                             onTapDown: (details) {
                               unawaited(_handlePreviewTap(details));
                             },
-                            child: ClipRRect(
-                              borderRadius: BorderRadius.circular(12),
-                              child: RepaintBoundary(
-                                child: CameraPreview(_controller!),
-                              ),
+                            child: _buildScannerCameraSurface(
+                              available: available,
+                              child: _useNativeConditionCamera
+                                  ? const IgnorePointer(
+                                      child: AndroidView(
+                                        viewType: NativeConditionCameraBridge
+                                            .previewViewType,
+                                        creationParams: <String, Object?>{
+                                          'surface': 'condition_camera',
+                                        },
+                                        creationParamsCodec:
+                                            StandardMessageCodec(),
+                                      ),
+                                    )
+                                  : CameraPreview(_controller!),
                             ),
                           ),
                           if (_useScannerV3LiveLoop)
                             ScannerV3CameraOverlay(
                               state: _scannerV3LoopState,
                               guideRect: guideRect,
-                              quadPointsNorm: _quadPoints,
-                              quadPointSetsNorm: _quadPointSets,
+                              cameraViewportRect: cameraViewportRect,
+                              guidedSlotQuadsNorm: guidedSlotQuads,
+                              guidedSlotCount: _scannerV3GuidedSlotCount,
+                              activeGuidedSlotIndex:
+                                  _scannerV3ActiveGuidedSlotIndex,
+                              quadPointsNorm: scannerOverlayPoints,
+                              quadPointSetsNorm: scannerOverlayPointSets,
                               selectedQuadNorm: _selectedCardQuadNorm,
                               focusTapNorm: _lastFocusTapNorm,
                               exportEnabled: _scannerV3ArtifactExportEnabled,
@@ -1656,18 +2580,25 @@ class _ConditionCameraScreenState extends State<ConditionCameraScreen> {
                                   _scannerV3IdentityRevealRequested,
                               scanMemory: _scannerV3ScanMemory,
                               debugExpanded: _scannerV3DebugExpanded,
-                              cameraPresetLabel: _resolutionPresetLabel(
-                                _cameraResolutionPreset,
-                              ),
+                              cameraPresetLabel: _useNativeConditionCamera
+                                  ? 'native-camerax'
+                                  : _resolutionPresetLabel(
+                                      _cameraResolutionPreset,
+                                    ),
                               cameraPreviewSize: _cameraPreviewSize,
                               cameraInputSize: _cameraInputSize,
                               cameraInitFallbackReason:
                                   _cameraInitFallbackReason,
-                              cameraStreamFps: _cameraStreamFpsCounter.fps,
-                              scannerAnalysisFps:
-                                  _scannerV3AnalysisFpsCounter.fps,
-                              scannerLiveLoopFps:
-                                  _scannerV3LiveLoopFpsCounter.fps,
+                              cameraStreamFps: _useNativeConditionCamera
+                                  ? _nativeConditionCameraMetrics
+                                        ?.frameBridgeFps
+                                  : _cameraStreamFpsCounter.fps,
+                              scannerAnalysisFps: _useNativeConditionCamera
+                                  ? _scannerV3AnalysisFpsCounter.fps
+                                  : _scannerV3AnalysisFpsCounter.fps,
+                              scannerLiveLoopFps: _useNativeConditionCamera
+                                  ? _scannerV3LiveLoopFpsCounter.fps
+                                  : _scannerV3LiveLoopFpsCounter.fps,
                               diagnosticsEnabled:
                                   _scannerV4DiagnosticCapture.enabled,
                               diagnosticsFrameCount:
@@ -1680,6 +2611,8 @@ class _ConditionCameraScreenState extends State<ConditionCameraScreen> {
                               onToggleFlash: () {
                                 unawaited(_toggleScannerV3Flash());
                               },
+                              onGuidedSlotCountChanged:
+                                  _setScannerV3GuidedSlotCount,
                               onToggleDebug: () {
                                 setState(() {
                                   _scannerV3DebugExpanded =
@@ -1817,6 +2750,26 @@ class _ScannerV3DisplayQuadTrack {
   int hits = 1;
   int misses = 0;
   bool visible = false;
+}
+
+class _ScannerV3FixedSlotOccupancy {
+  const _ScannerV3FixedSlotOccupancy({
+    required this.cardInSlot,
+    required this.slotCoverage,
+    required this.areaRatio,
+    required this.centerDistance,
+    required this.aspectPenalty,
+    required this.centerInside,
+    required this.score,
+  });
+
+  final double cardInSlot;
+  final double slotCoverage;
+  final double areaRatio;
+  final double centerDistance;
+  final double aspectPenalty;
+  final bool centerInside;
+  final double score;
 }
 
 class _NativeQuadDetection {
