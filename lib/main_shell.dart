@@ -85,10 +85,12 @@ class _AppShellState extends State<AppShell> {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       unawaited(_maybeHandlePendingCanonicalLink());
       unawaited(_maybeHandlePendingDebugAction());
-      if (kNativeScannerPhase0Enabled) {
+      if (!kFixedSlotCaptureScannerV1Enabled && kNativeScannerPhase0Enabled) {
         unawaited(NativeScannerPhase0Bridge.startSession());
       }
-      unawaited(_prewarmScanCardSurface(reason: 'shell_ready'));
+      if (!kFixedSlotCaptureScannerV1Enabled) {
+        unawaited(_prewarmScanCardSurface(reason: 'shell_ready'));
+      }
     });
   }
 
@@ -495,12 +497,12 @@ class _AppShellState extends State<AppShell> {
   }
 
   Future<void> _startScanFlow() async {
-    if (kNativeScannerPhase0Enabled) {
-      await _pushPage<void>(const NativeScannerPhase0Screen());
-      return;
-    }
     if (kFixedSlotCaptureScannerV1Enabled) {
       await _pushPage<void>(const FixedSlotCaptureScreen());
+      return;
+    }
+    if (kNativeScannerPhase0Enabled) {
+      await _pushPage<void>(const NativeScannerPhase0Screen());
       return;
     }
 

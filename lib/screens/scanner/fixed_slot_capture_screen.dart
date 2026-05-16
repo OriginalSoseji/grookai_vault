@@ -34,6 +34,13 @@ class _FixedSlotCaptureScreenState extends State<FixedSlotCaptureScreen>
   @override
   void initState() {
     super.initState();
+    debugPrint(
+      '[fixed_slot_capture_v1] surface_opened '
+      'scanner_surface=fixed_slot_capture_v1 '
+      'identity_mode=still_capture_ann '
+      'ocr=false '
+      'live_identity_loop=false',
+    );
     WidgetsBinding.instance.addObserver(this);
     _identityClient = FixedSlotAnnIdentityClientV1();
     _cameraFuture = _initializeCamera();
@@ -133,6 +140,10 @@ class _FixedSlotCaptureScreenState extends State<FixedSlotCaptureScreen>
     await HapticFeedback.mediumImpact();
     final viewportSize = ui.Size(previewSize.width, previewSize.height);
     final slotRect = FixedSlotCaptureGeometryV1.oneCardSlotRect(viewportSize);
+    debugPrint(
+      '[fixed_slot_capture_v1] capture_started '
+      'scanner_surface=fixed_slot_capture_v1',
+    );
 
     setState(() {
       _capturing = true;
@@ -163,7 +174,14 @@ class _FixedSlotCaptureScreenState extends State<FixedSlotCaptureScreen>
         _status = 'Identifying card';
       });
 
+      debugPrint(
+        '[fixed_slot_capture_v1] ann_request endpoint=${_identityClient.endpoint}',
+      );
       final resolution = await _identityClient.resolve(artifact.annCrops);
+      debugPrint(
+        '[fixed_slot_capture_v1] result_revealed '
+        'matched=${resolution.hasConfidentMatch}',
+      );
       final files = await FixedSlotArtifactWriterV1.writeLatest(
         artifact: artifact,
         resolution: resolution,
@@ -187,6 +205,7 @@ class _FixedSlotCaptureScreenState extends State<FixedSlotCaptureScreen>
       await HapticFeedback.selectionClick();
     } catch (error) {
       if (!mounted) return;
+      debugPrint('[fixed_slot_capture_v1] result_revealed matched=false');
       setState(() {
         _capturing = false;
         _matchedCard = null;

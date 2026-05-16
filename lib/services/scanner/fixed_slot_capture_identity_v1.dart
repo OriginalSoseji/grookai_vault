@@ -1209,6 +1209,11 @@ class FixedSlotArtifactWriterV1 {
     await manifest.writeAsString(
       const JsonEncoder.withIndent('  ').convert(<String, Object?>{
         'timestamp': DateTime.now().toUtc().toIso8601String(),
+        'scanner_surface': 'fixed_slot_capture_v1',
+        'identity_mode': 'still_capture_ann',
+        'ocr': false,
+        'live_identity_loop': false,
+        'endpoint': resolution.endpoint,
         'captured_image_width': artifact.decodedImageWidth,
         'captured_image_height': artifact.decodedImageHeight,
         'preview_viewport': _sizeJson(artifact.previewViewportSize),

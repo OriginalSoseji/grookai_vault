@@ -166,6 +166,11 @@ class _ConditionCameraScreenState extends State<ConditionCameraScreen> {
   void initState() {
     super.initState();
     if (_useScannerV3LiveLoop) {
+      debugPrint(
+        '[scanner_legacy_live] surface_opened '
+        'legacy=true '
+        'production=false',
+      );
       unawaited(_enterScannerV3ImmersiveMode());
       WidgetsBinding.instance.addPostFrameCallback((_) {
         if (!mounted) return;

@@ -61,6 +61,7 @@ bool get kNativeScannerPhase0Enabled =>
     );
 const bool kFixedSlotCaptureScannerV1Enabled = bool.fromEnvironment(
   'FIXED_SLOT_CAPTURE_SCANNER_V1',
+  defaultValue: true,
 );
 const bool kFeedDebugOverlay = true;
 const bool _kCatalogOwnershipDiagnostics = false;
