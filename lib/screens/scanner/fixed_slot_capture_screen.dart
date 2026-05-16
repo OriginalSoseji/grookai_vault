@@ -1,15 +1,13 @@
+import 'dart:async';
+import 'dart:io';
+import 'dart:ui' as ui;
+
+import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-enum FixedSlotCaptureMode {
-  one(1),
-  two(2),
-  four(4);
-
-  const FixedSlotCaptureMode(this.slotCount);
-
-  final int slotCount;
-}
+import 'package:grookai_vault/services/scanner/fixed_slot_capture_identity_v1.dart';
+import 'package:grookai_vault/services/scanner_v3/vector_candidate_service_v1.dart';
 
 class FixedSlotCaptureScreen extends StatefulWidget {
   const FixedSlotCaptureScreen({super.key});
@@ -18,44 +16,209 @@ class FixedSlotCaptureScreen extends StatefulWidget {
   State<FixedSlotCaptureScreen> createState() => _FixedSlotCaptureScreenState();
 }
 
-class _FixedSlotCaptureScreenState extends State<FixedSlotCaptureScreen> {
-  FixedSlotCaptureMode _mode = FixedSlotCaptureMode.one;
-  int _selectedSlot = 0;
-  String _status = 'Slot ready';
-  bool _captureRequested = false;
+class _FixedSlotCaptureScreenState extends State<FixedSlotCaptureScreen>
+    with WidgetsBindingObserver {
+  final GlobalKey _previewKey = GlobalKey();
+  late final FixedSlotAnnIdentityClientV1 _identityClient;
 
-  void _setMode(FixedSlotCaptureMode mode) {
-    if (_mode == mode) return;
-    setState(() {
-      _mode = mode;
-      _selectedSlot = 0;
-      _captureRequested = false;
-      _status = 'Slot ready';
-    });
-    _prewarmIdentityForSelectedSlot();
+  CameraController? _controller;
+  Future<void>? _cameraFuture;
+  bool _capturing = false;
+  String _status = 'Place one card in the frame';
+  String? _failureReason;
+  Candidate? _matchedCard;
+  Uint8List? _normalizedPreviewBytes;
+  Duration? _annElapsed;
+  FixedSlotArtifactFilesV1? _artifactFiles;
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addObserver(this);
+    _identityClient = FixedSlotAnnIdentityClientV1();
+    _cameraFuture = _initializeCamera();
   }
 
-  void _selectSlot(int index) {
-    if (_selectedSlot == index) return;
-    setState(() {
-      _selectedSlot = index;
-      _captureRequested = false;
-      _status = 'Slot ${index + 1} ready';
-    });
-    _prewarmIdentityForSelectedSlot();
+  @override
+  void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
+    unawaited(_controller?.dispose());
+    super.dispose();
   }
 
-  void _prewarmIdentityForSelectedSlot() {
-    // FIXED_SLOT_CAPTURE_SCANNER_V1 placeholder:
-    // future work starts hidden slot-scoped ANN prewarm here.
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    final controller = _controller;
+    if (controller == null || !controller.value.isInitialized) return;
+    if (state == AppLifecycleState.inactive ||
+        state == AppLifecycleState.paused) {
+      unawaited(controller.dispose());
+      _controller = null;
+    } else if (state == AppLifecycleState.resumed) {
+      _cameraFuture = _initializeCamera();
+      if (mounted) setState(() {});
+    }
+  }
+
+  Future<void> _initializeCamera() async {
+    final cameras = await availableCameras();
+    if (cameras.isEmpty) {
+      throw const FixedSlotCaptureException('no_camera_available');
+    }
+
+    final camera = cameras.firstWhere(
+      (candidate) => candidate.lensDirection == CameraLensDirection.back,
+      orElse: () => cameras.first,
+    );
+    final presets = <ResolutionPreset>[
+      ResolutionPreset.max,
+      ResolutionPreset.veryHigh,
+      ResolutionPreset.high,
+    ];
+
+    Object? lastError;
+    for (final preset in presets) {
+      final controller = CameraController(
+        camera,
+        preset,
+        enableAudio: false,
+        imageFormatGroup: ImageFormatGroup.jpeg,
+      );
+      try {
+        await controller.initialize();
+        await _configureStillCamera(controller);
+        _controller = controller;
+        if (mounted) setState(() {});
+        return;
+      } catch (error) {
+        lastError = error;
+        await controller.dispose();
+      }
+    }
+
+    throw FixedSlotCaptureException(
+      'camera_initialization_failed:${lastError ?? 'unknown'}',
+    );
+  }
+
+  Future<void> _configureStillCamera(CameraController controller) async {
+    try {
+      await controller.setFlashMode(FlashMode.off);
+    } catch (_) {}
+    try {
+      await controller.setFocusMode(FocusMode.auto);
+    } catch (_) {}
+    try {
+      await controller.setExposureMode(ExposureMode.auto);
+    } catch (_) {}
   }
 
   Future<void> _captureSelectedSlot() async {
+    final controller = _controller;
+    if (_capturing ||
+        controller == null ||
+        !controller.value.isInitialized ||
+        controller.value.isTakingPicture) {
+      return;
+    }
+
+    final renderBox =
+        _previewKey.currentContext?.findRenderObject() as RenderBox?;
+    final previewSize = renderBox?.size;
+    if (previewSize == null || previewSize.isEmpty) {
+      _setFailure('preview_size_unavailable');
+      return;
+    }
+
     await HapticFeedback.mediumImpact();
+    final viewportSize = ui.Size(previewSize.width, previewSize.height);
+    final slotRect = FixedSlotCaptureGeometryV1.oneCardSlotRect(viewportSize);
+
+    setState(() {
+      _capturing = true;
+      _failureReason = null;
+      _matchedCard = null;
+      _annElapsed = null;
+      _artifactFiles = null;
+      _status = 'Capturing still';
+    });
+
+    try {
+      final picture = await controller.takePicture();
+      final stillBytes = await File(picture.path).readAsBytes();
+      await _deleteTemporaryCapture(picture.path);
+      if (!mounted) return;
+      setState(() {
+        _status = 'Normalizing card';
+      });
+
+      final artifact = await FixedSlotStillProcessorV1.process(
+        stillBytes: stillBytes,
+        previewViewportSize: viewportSize,
+        slotRect: slotRect,
+      );
+      if (!mounted) return;
+      setState(() {
+        _normalizedPreviewBytes = artifact.normalizedPngBytes;
+        _status = 'Identifying card';
+      });
+
+      final resolution = await _identityClient.resolve(artifact.annCrops);
+      final files = await FixedSlotArtifactWriterV1.writeLatest(
+        artifact: artifact,
+        resolution: resolution,
+      );
+      if (!mounted) return;
+
+      setState(() {
+        _annElapsed = resolution.elapsed;
+        _artifactFiles = files;
+        _capturing = false;
+        if (resolution.hasConfidentMatch) {
+          _matchedCard = resolution.candidate;
+          _failureReason = null;
+          _status = 'Match found';
+        } else {
+          _matchedCard = null;
+          _failureReason = resolution.failureReason ?? 'no_confident_match';
+          _status = 'No confident match. Try again.';
+        }
+      });
+      await HapticFeedback.selectionClick();
+    } catch (error) {
+      if (!mounted) return;
+      setState(() {
+        _capturing = false;
+        _matchedCard = null;
+        _failureReason = 'capture_failed:${error.runtimeType}';
+        _status = 'No confident match. Try again.';
+      });
+    }
+  }
+
+  Future<void> _deleteTemporaryCapture(String path) async {
+    try {
+      await File(path).delete();
+    } catch (_) {}
+  }
+
+  void _setFailure(String reason) {
     if (!mounted) return;
     setState(() {
-      _captureRequested = true;
-      _status = 'Still capture pending';
+      _capturing = false;
+      _matchedCard = null;
+      _failureReason = reason;
+      _status = 'No confident match. Try again.';
+    });
+  }
+
+  void _retry() {
+    setState(() {
+      _status = 'Place one card in the frame';
+      _failureReason = null;
+      _matchedCard = null;
+      _annElapsed = null;
+      _artifactFiles = null;
     });
   }
 
@@ -67,14 +230,8 @@ class _FixedSlotCaptureScreenState extends State<FixedSlotCaptureScreen> {
       body: SafeArea(
         child: Stack(
           children: [
-            Positioned.fill(child: _buildPreviewFoundation()),
-            Positioned.fill(
-              child: _FixedSlotOverlay(
-                mode: _mode,
-                selectedSlot: _selectedSlot,
-                onSelectSlot: _selectSlot,
-              ),
-            ),
+            Positioned.fill(child: _buildCameraPreview()),
+            const Positioned.fill(child: _FixedSlotOverlay()),
             Positioned(
               left: 20,
               right: 20,
@@ -93,10 +250,41 @@ class _FixedSlotCaptureScreenState extends State<FixedSlotCaptureScreen> {
     );
   }
 
-  Widget _buildPreviewFoundation() {
-    return DecoratedBox(
-      decoration: const BoxDecoration(color: Color(0xFF101010)),
-      child: CustomPaint(painter: _PreviewGridPainter()),
+  Widget _buildCameraPreview() {
+    return FutureBuilder<void>(
+      future: _cameraFuture,
+      builder: (context, snapshot) {
+        final controller = _controller;
+        if (snapshot.hasError) {
+          return _PreviewFallback(
+            label: 'Camera unavailable',
+            detail: snapshot.error.toString(),
+          );
+        }
+        if (controller == null || !controller.value.isInitialized) {
+          return const _PreviewFallback(label: 'Starting camera');
+        }
+        final previewSize = controller.value.previewSize;
+        if (previewSize == null) {
+          return RepaintBoundary(
+            key: _previewKey,
+            child: CameraPreview(controller),
+          );
+        }
+        return RepaintBoundary(
+          key: _previewKey,
+          child: ClipRect(
+            child: FittedBox(
+              fit: BoxFit.cover,
+              child: SizedBox(
+                width: previewSize.height,
+                height: previewSize.width,
+                child: CameraPreview(controller),
+              ),
+            ),
+          ),
+        );
+      },
     );
   }
 
@@ -119,42 +307,14 @@ class _FixedSlotCaptureScreenState extends State<FixedSlotCaptureScreen> {
             borderRadius: BorderRadius.circular(22),
             border: Border.all(color: Colors.white.withValues(alpha: 0.14)),
           ),
-          child: Padding(
-            padding: const EdgeInsets.all(4),
-            child: SegmentedButton<FixedSlotCaptureMode>(
-              showSelectedIcon: false,
-              style: ButtonStyle(
-                visualDensity: VisualDensity.compact,
-                foregroundColor: WidgetStateProperty.resolveWith((states) {
-                  if (states.contains(WidgetState.selected)) {
-                    return Colors.black;
-                  }
-                  return Colors.white;
-                }),
-                backgroundColor: WidgetStateProperty.resolveWith((states) {
-                  if (states.contains(WidgetState.selected)) {
-                    return Colors.white;
-                  }
-                  return Colors.transparent;
-                }),
-                side: const WidgetStatePropertyAll(BorderSide.none),
+          child: const Padding(
+            padding: EdgeInsets.symmetric(horizontal: 14, vertical: 9),
+            child: Text(
+              'Fixed slot',
+              style: TextStyle(
+                color: Colors.white,
+                fontWeight: FontWeight.w700,
               ),
-              segments: const [
-                ButtonSegment(
-                  value: FixedSlotCaptureMode.one,
-                  label: Text('1'),
-                ),
-                ButtonSegment(
-                  value: FixedSlotCaptureMode.two,
-                  label: Text('2'),
-                ),
-                ButtonSegment(
-                  value: FixedSlotCaptureMode.four,
-                  label: Text('4'),
-                ),
-              ],
-              selected: <FixedSlotCaptureMode>{_mode},
-              onSelectionChanged: (selection) => _setMode(selection.first),
             ),
           ),
         ),
@@ -163,31 +323,30 @@ class _FixedSlotCaptureScreenState extends State<FixedSlotCaptureScreen> {
   }
 
   Widget _buildBottomPanel(ThemeData theme) {
-    final status = _captureRequested ? 'Still capture skeleton' : _status;
+    final matched = _matchedCard;
+    final title = matched?.name ?? _status;
+    final detail = matched == null
+        ? _detailText()
+        : [
+            matched.setCode,
+            matched.number,
+            '${(matched.similarity * 100).toStringAsFixed(1)}%',
+            matched.gvId,
+          ].whereType<String>().where((item) => item.isNotEmpty).join('  ');
+    final canScan =
+        !_capturing && _controller != null && _controller!.value.isInitialized;
+
     return DecoratedBox(
       decoration: BoxDecoration(
-        color: Colors.black.withValues(alpha: 0.72),
+        color: Colors.black.withValues(alpha: 0.76),
         borderRadius: BorderRadius.circular(28),
         border: Border.all(color: Colors.white.withValues(alpha: 0.10)),
       ),
       child: Padding(
-        padding: const EdgeInsets.fromLTRB(18, 14, 18, 14),
+        padding: const EdgeInsets.fromLTRB(16, 14, 16, 14),
         child: Row(
           children: [
-            Container(
-              width: 44,
-              height: 44,
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                border: Border.all(color: Colors.white.withValues(alpha: 0.24)),
-              ),
-              child: Icon(
-                _captureRequested
-                    ? Icons.image_search_rounded
-                    : Icons.center_focus_strong_rounded,
-                color: Colors.white,
-              ),
-            ),
+            _buildThumbnail(),
             const SizedBox(width: 14),
             Expanded(
               child: Column(
@@ -195,18 +354,18 @@ class _FixedSlotCaptureScreenState extends State<FixedSlotCaptureScreen> {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   Text(
-                    status,
+                    title,
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                     style: theme.textTheme.titleMedium?.copyWith(
                       color: Colors.white,
-                      fontWeight: FontWeight.w700,
+                      fontWeight: FontWeight.w800,
                     ),
                   ),
-                  const SizedBox(height: 3),
+                  const SizedBox(height: 4),
                   Text(
-                    'Slot ${_selectedSlot + 1} of ${_mode.slotCount}',
-                    maxLines: 1,
+                    detail,
+                    maxLines: 2,
                     overflow: TextOverflow.ellipsis,
                     style: theme.textTheme.bodySmall?.copyWith(
                       color: Colors.white.withValues(alpha: 0.68),
@@ -215,214 +374,205 @@ class _FixedSlotCaptureScreenState extends State<FixedSlotCaptureScreen> {
                 ],
               ),
             ),
-            const SizedBox(width: 16),
-            SizedBox.square(
-              dimension: 70,
-              child: FilledButton(
-                style: FilledButton.styleFrom(
-                  padding: EdgeInsets.zero,
-                  shape: const CircleBorder(),
-                  backgroundColor: Colors.white,
-                  foregroundColor: Colors.black,
+            const SizedBox(width: 14),
+            if (matched != null || _failureReason != null)
+              IconButton.filled(
+                style: IconButton.styleFrom(
+                  backgroundColor: Colors.white.withValues(alpha: 0.12),
+                  foregroundColor: Colors.white,
                 ),
-                onPressed: _captureSelectedSlot,
-                child: const Icon(Icons.camera_alt_rounded, size: 30),
+                onPressed: _capturing ? null : _retry,
+                icon: const Icon(Icons.refresh_rounded),
+                tooltip: 'Retry',
+              )
+            else
+              SizedBox.square(
+                dimension: 70,
+                child: FilledButton(
+                  style: FilledButton.styleFrom(
+                    padding: EdgeInsets.zero,
+                    shape: const CircleBorder(),
+                    backgroundColor: Colors.white,
+                    foregroundColor: Colors.black,
+                    disabledBackgroundColor: Colors.white30,
+                  ),
+                  onPressed: canScan ? _captureSelectedSlot : null,
+                  child: _capturing
+                      ? const SizedBox.square(
+                          dimension: 24,
+                          child: CircularProgressIndicator(
+                            strokeWidth: 3,
+                            color: Colors.black,
+                          ),
+                        )
+                      : const Icon(Icons.camera_alt_rounded, size: 30),
+                ),
               ),
-            ),
           ],
         ),
       ),
     );
   }
+
+  Widget _buildThumbnail() {
+    final bytes = _normalizedPreviewBytes;
+    if (bytes != null) {
+      return ClipRRect(
+        borderRadius: BorderRadius.circular(10),
+        child: Image.memory(
+          bytes,
+          width: 48,
+          height: 67,
+          fit: BoxFit.cover,
+          gaplessPlayback: true,
+        ),
+      );
+    }
+    return Container(
+      width: 48,
+      height: 48,
+      decoration: BoxDecoration(
+        shape: BoxShape.circle,
+        border: Border.all(color: Colors.white.withValues(alpha: 0.24)),
+      ),
+      child: Icon(
+        _capturing
+            ? Icons.image_search_rounded
+            : Icons.center_focus_strong_rounded,
+        color: Colors.white,
+      ),
+    );
+  }
+
+  String _detailText() {
+    if (_capturing) return 'Still capture is the identity frame';
+    if (_failureReason != null) return 'No confident match. Try again.';
+    if (_annElapsed != null) {
+      return 'Identity ${_annElapsed!.inMilliseconds} ms';
+    }
+    if (_artifactFiles != null) return 'Artifact exported';
+    return 'Tap Scan when the card fills the slot';
+  }
 }
 
 class _FixedSlotOverlay extends StatelessWidget {
-  const _FixedSlotOverlay({
-    required this.mode,
-    required this.selectedSlot,
-    required this.onSelectSlot,
-  });
-
-  final FixedSlotCaptureMode mode;
-  final int selectedSlot;
-  final ValueChanged<int> onSelectSlot;
+  const _FixedSlotOverlay();
 
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(
       builder: (context, constraints) {
-        final size = Size(constraints.maxWidth, constraints.maxHeight);
-        final slots = _slotRects(size, mode);
-        return Stack(
-          children: [
-            for (var index = 0; index < slots.length; index += 1)
-              Positioned.fromRect(
-                rect: slots[index],
-                child: _FixedSlotFrame(
-                  index: index,
-                  selected: index == selectedSlot,
-                  onTap: () => onSelectSlot(index),
-                ),
-              ),
-          ],
-        );
+        final size = ui.Size(constraints.maxWidth, constraints.maxHeight);
+        final slot = FixedSlotCaptureGeometryV1.oneCardSlotRect(size);
+        return CustomPaint(painter: _FixedSlotOverlayPainter(slot: slot));
       },
     );
   }
+}
 
-  List<Rect> _slotRects(Size size, FixedSlotCaptureMode mode) {
-    final width = size.width;
-    final height = size.height;
-    final safeTop = 104.0;
-    final safeBottom = 178.0;
-    final availableHeight = (height - safeTop - safeBottom)
-        .clamp(240.0, height)
-        .toDouble();
-    final centerY = safeTop + availableHeight / 2;
+class _FixedSlotOverlayPainter extends CustomPainter {
+  const _FixedSlotOverlayPainter({required this.slot});
 
-    switch (mode) {
-      case FixedSlotCaptureMode.one:
-        final slotWidth = width * 0.72;
-        final slotHeight = slotWidth * 1.40;
-        return [
-          Rect.fromCenter(
-            center: Offset(width / 2, centerY),
-            width: slotWidth,
-            height: slotHeight.clamp(260.0, availableHeight).toDouble(),
-          ),
-        ];
-      case FixedSlotCaptureMode.two:
-        final slotWidth = width * 0.40;
-        final slotHeight = slotWidth * 1.40;
-        return [
-          Rect.fromCenter(
-            center: Offset(width * 0.28, centerY),
-            width: slotWidth,
-            height: slotHeight.clamp(220.0, availableHeight).toDouble(),
-          ),
-          Rect.fromCenter(
-            center: Offset(width * 0.72, centerY),
-            width: slotWidth,
-            height: slotHeight.clamp(220.0, availableHeight).toDouble(),
-          ),
-        ];
-      case FixedSlotCaptureMode.four:
-        final slotWidth = width * 0.34;
-        final slotHeight = slotWidth * 1.40;
-        final gapY = slotHeight * 0.58;
-        return [
-          Rect.fromCenter(
-            center: Offset(width * 0.30, centerY - gapY / 2),
-            width: slotWidth,
-            height: slotHeight,
-          ),
-          Rect.fromCenter(
-            center: Offset(width * 0.70, centerY - gapY / 2),
-            width: slotWidth,
-            height: slotHeight,
-          ),
-          Rect.fromCenter(
-            center: Offset(width * 0.30, centerY + gapY / 2),
-            width: slotWidth,
-            height: slotHeight,
-          ),
-          Rect.fromCenter(
-            center: Offset(width * 0.70, centerY + gapY / 2),
-            width: slotWidth,
-            height: slotHeight,
-          ),
-        ];
-    }
+  final ui.Rect slot;
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    final scrim = Paint()..color = Colors.black.withValues(alpha: 0.30);
+    final full = Offset.zero & size;
+    final clearPath = Path()
+      ..fillType = PathFillType.evenOdd
+      ..addRect(full)
+      ..addRRect(RRect.fromRectAndRadius(slot, const Radius.circular(24)));
+    canvas.drawPath(clearPath, scrim);
+
+    final framePaint = Paint()
+      ..style = PaintingStyle.stroke
+      ..strokeWidth = 4
+      ..color = Colors.white.withValues(alpha: 0.92);
+    canvas.drawRRect(
+      RRect.fromRectAndRadius(slot.deflate(2), const Radius.circular(24)),
+      framePaint,
+    );
+
+    final cornerPaint = Paint()
+      ..style = PaintingStyle.stroke
+      ..strokeWidth = 7
+      ..strokeCap = StrokeCap.square
+      ..color = const Color(0xFF7BE0A3);
+    const corner = 38.0;
+    final path = Path()
+      ..moveTo(slot.left, slot.top + corner)
+      ..lineTo(slot.left, slot.top)
+      ..lineTo(slot.left + corner, slot.top)
+      ..moveTo(slot.right - corner, slot.top)
+      ..lineTo(slot.right, slot.top)
+      ..lineTo(slot.right, slot.top + corner)
+      ..moveTo(slot.right, slot.bottom - corner)
+      ..lineTo(slot.right, slot.bottom)
+      ..lineTo(slot.right - corner, slot.bottom)
+      ..moveTo(slot.left + corner, slot.bottom)
+      ..lineTo(slot.left, slot.bottom)
+      ..lineTo(slot.left, slot.bottom - corner);
+    canvas.drawPath(path, cornerPaint);
+  }
+
+  @override
+  bool shouldRepaint(covariant _FixedSlotOverlayPainter oldDelegate) {
+    return oldDelegate.slot != slot;
   }
 }
 
-class _FixedSlotFrame extends StatelessWidget {
-  const _FixedSlotFrame({
-    required this.index,
-    required this.selected,
-    required this.onTap,
-  });
+class _PreviewFallback extends StatelessWidget {
+  const _PreviewFallback({required this.label, this.detail});
 
-  final int index;
-  final bool selected;
-  final VoidCallback onTap;
+  final String label;
+  final String? detail;
 
   @override
   Widget build(BuildContext context) {
-    final color = selected ? const Color(0xFF7BE0A3) : Colors.white70;
-    return GestureDetector(
-      behavior: HitTestBehavior.opaque,
-      onTap: onTap,
+    return DecoratedBox(
+      decoration: const BoxDecoration(color: Color(0xFF101010)),
       child: CustomPaint(
-        painter: _FixedSlotFramePainter(color: color, selected: selected),
-        child: Align(
-          alignment: Alignment.topLeft,
-          child: Container(
-            margin: const EdgeInsets.all(14),
-            width: 42,
-            height: 42,
-            decoration: BoxDecoration(
-              color: color.withValues(alpha: selected ? 0.88 : 0.62),
-              shape: BoxShape.circle,
-            ),
-            alignment: Alignment.center,
-            child: Text(
-              '${index + 1}',
-              style: const TextStyle(
-                color: Colors.black,
-                fontWeight: FontWeight.w800,
-                fontSize: 18,
-              ),
+        painter: _PreviewGridPainter(),
+        child: Center(
+          child: Padding(
+            padding: const EdgeInsets.all(32),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                const Icon(
+                  Icons.camera_alt_outlined,
+                  color: Colors.white70,
+                  size: 38,
+                ),
+                const SizedBox(height: 12),
+                Text(
+                  label,
+                  textAlign: TextAlign.center,
+                  style: const TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.w700,
+                  ),
+                ),
+                if (detail != null) ...[
+                  const SizedBox(height: 8),
+                  Text(
+                    detail!,
+                    textAlign: TextAlign.center,
+                    maxLines: 3,
+                    overflow: TextOverflow.ellipsis,
+                    style: TextStyle(
+                      color: Colors.white.withValues(alpha: 0.58),
+                      fontSize: 12,
+                    ),
+                  ),
+                ],
+              ],
             ),
           ),
         ),
       ),
     );
-  }
-}
-
-class _FixedSlotFramePainter extends CustomPainter {
-  const _FixedSlotFramePainter({required this.color, required this.selected});
-
-  final Color color;
-  final bool selected;
-
-  @override
-  void paint(Canvas canvas, Size size) {
-    final rect = Offset.zero & size;
-    final radius = Radius.circular(selected ? 24 : 18);
-    final rrect = RRect.fromRectAndRadius(rect.deflate(2), radius);
-    final paint = Paint()
-      ..style = PaintingStyle.stroke
-      ..strokeWidth = selected ? 4 : 2
-      ..color = color.withValues(alpha: selected ? 0.95 : 0.56);
-    canvas.drawRRect(rrect, paint);
-
-    final cornerPaint = Paint()
-      ..style = PaintingStyle.stroke
-      ..strokeWidth = selected ? 6 : 4
-      ..strokeCap = StrokeCap.square
-      ..color = color;
-    const corner = 34.0;
-    final path = Path()
-      ..moveTo(0, corner)
-      ..lineTo(0, 0)
-      ..lineTo(corner, 0)
-      ..moveTo(size.width - corner, 0)
-      ..lineTo(size.width, 0)
-      ..lineTo(size.width, corner)
-      ..moveTo(size.width, size.height - corner)
-      ..lineTo(size.width, size.height)
-      ..lineTo(size.width - corner, size.height)
-      ..moveTo(corner, size.height)
-      ..lineTo(0, size.height)
-      ..lineTo(0, size.height - corner);
-    canvas.drawPath(path, cornerPaint);
-  }
-
-  @override
-  bool shouldRepaint(covariant _FixedSlotFramePainter oldDelegate) {
-    return oldDelegate.color != color || oldDelegate.selected != selected;
   }
 }
 
