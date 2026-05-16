@@ -26,6 +26,7 @@ import 'screens/sets/public_sets_screen.dart';
 import 'screens/vault/vault_manage_card_screen.dart';
 import 'screens/vault/vault_gvvi_screen.dart';
 import 'screens/scanner/condition_camera_screen.dart';
+import 'screens/scanner/fixed_slot_capture_screen.dart';
 import 'screens/scanner/native_scanner_phase0_screen.dart';
 import 'services/network/card_engagement_service.dart';
 import 'services/network/smart_feed_service.dart';
@@ -58,6 +59,9 @@ bool get kNativeScannerPhase0Enabled =>
     ScannerNativeCameraGuardrail.legacyPhase0AllowedForScanCard(
       defaultTargetPlatform,
     );
+const bool kFixedSlotCaptureScannerV1Enabled = bool.fromEnvironment(
+  'FIXED_SLOT_CAPTURE_SCANNER_V1',
+);
 const bool kFeedDebugOverlay = true;
 const bool _kCatalogOwnershipDiagnostics = false;
 const bool _kGoogleOAuthDiagnostics = true;

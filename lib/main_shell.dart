@@ -499,6 +499,10 @@ class _AppShellState extends State<AppShell> {
       await _pushPage<void>(const NativeScannerPhase0Screen());
       return;
     }
+    if (kFixedSlotCaptureScannerV1Enabled) {
+      await _pushPage<void>(const FixedSlotCaptureScreen());
+      return;
+    }
 
     unawaited(_prewarmScanCardSurface(reason: 'scan_tap'));
     final file = await _pushPage<XFile?>(
