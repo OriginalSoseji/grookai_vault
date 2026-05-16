@@ -164,60 +164,50 @@ class FixedSlotStillProcessorV1 {
         decodedImageSize: imageSize,
       );
 
-      final normalized = await _renderCrop(
+      final initialSlotCrop = await _renderCrop(
         image: image,
         sourceRect: cropRect,
         width: normalizedWidth,
         height: normalizedHeight,
       );
-      final annCrops = <FixedSlotAnnCropV1>[
-        FixedSlotAnnCropV1(
-          cropType: 'full_card',
-          width: annCropSize,
-          height: annCropSize,
-          rawRgbaBytes: (await _renderCrop(
-            image: image,
-            sourceRect: cropRect,
-            width: annCropSize,
-            height: annCropSize,
-          )).rawRgbaBytes,
-        ),
-        FixedSlotAnnCropV1(
-          cropType: 'full_card_upper',
-          width: annCropSize,
-          height: annCropSize,
-          rawRgbaBytes: (await _renderCrop(
-            image: image,
-            sourceRect: _fractionalRect(
-              cropRect,
-              left: 0,
-              top: 0,
-              right: 1,
-              bottom: 0.50,
-            ),
-            width: annCropSize,
-            height: annCropSize,
-          )).rawRgbaBytes,
-        ),
-        FixedSlotAnnCropV1(
-          cropType: 'artwork_zoom_in_10_gray',
-          width: annCropSize,
-          height: annCropSize,
-          rawRgbaBytes: (await _renderCrop(
-            image: image,
-            sourceRect: _fractionalRect(
-              cropRect,
-              left: 0.12,
-              top: 0.19,
-              right: 0.88,
-              bottom: 0.58,
-            ),
-            width: annCropSize,
-            height: annCropSize,
-            grayscale: true,
-          )).rawRgbaBytes,
-        ),
-      ];
+      final edgeRefinement = FixedSlotCardEdgeRefinerV1.detect(
+        rawRgbaBytes: initialSlotCrop.rawRgbaBytes,
+        width: normalizedWidth,
+        height: normalizedHeight,
+      );
+      final edgeRefinedCrop = edgeRefinement == null
+          ? null
+          : await _renderRawRectCrop(
+              sourceRaw: initialSlotCrop.rawRgbaBytes,
+              sourceWidth: normalizedWidth,
+              sourceHeight: normalizedHeight,
+              sourceRect: edgeRefinement.normalizedBounds,
+              width: normalizedWidth,
+              height: normalizedHeight,
+            );
+      final normalized = edgeRefinement == null
+          ? initialSlotCrop
+          : await _warpRawQuadrilateral(
+              sourceRaw: initialSlotCrop.rawRgbaBytes,
+              sourceWidth: normalizedWidth,
+              sourceHeight: normalizedHeight,
+              points: edgeRefinement.perspectivePoints,
+              width: normalizedWidth,
+              height: normalizedHeight,
+            );
+      final normalizedImage = await _rawRgbaToImage(
+        normalized.rawRgbaBytes,
+        normalizedWidth,
+        normalizedHeight,
+      );
+      final annCrops = <FixedSlotAnnCropV1>[];
+      final debugCrops = <FixedSlotAnnCropV1>[];
+      try {
+        annCrops.addAll(await _buildAnnCrops(normalizedImage));
+        debugCrops.addAll(await _buildDebugCrops(normalizedImage));
+      } finally {
+        normalizedImage.dispose();
+      }
 
       return FixedSlotStillArtifactV1(
         fullStillBytes: stillBytes,
@@ -226,28 +216,106 @@ class FixedSlotStillProcessorV1 {
         previewViewportSize: previewViewportSize,
         slotRect: slotRect,
         cropRect: cropRect,
+        refinedCropRect: edgeRefinement == null
+            ? null
+            : _mapNormalizedRectToImage(
+                cropRect,
+                edgeRefinement.normalizedBounds,
+              ),
+        edgeRefinement: edgeRefinement,
+        initialSlotCropPngBytes: initialSlotCrop.pngBytes,
+        edgeRefinedCropPngBytes: edgeRefinedCrop?.pngBytes,
         normalizedPngBytes: normalized.pngBytes,
         normalizedWidth: normalizedWidth,
         normalizedHeight: normalizedHeight,
         annCrops: annCrops,
+        debugCrops: debugCrops,
       );
     } finally {
       image.dispose();
     }
   }
 
-  static ui.Rect _fractionalRect(
-    ui.Rect parent, {
-    required double left,
-    required double top,
-    required double right,
-    required double bottom,
-  }) {
+  static ui.Rect _mapNormalizedRectToImage(
+    ui.Rect imageCropRect,
+    ui.Rect normalizedRect,
+  ) {
     return ui.Rect.fromLTRB(
-      parent.left + parent.width * left,
-      parent.top + parent.height * top,
-      parent.left + parent.width * right,
-      parent.top + parent.height * bottom,
+      imageCropRect.left +
+          imageCropRect.width * (normalizedRect.left / normalizedWidth),
+      imageCropRect.top +
+          imageCropRect.height * (normalizedRect.top / normalizedHeight),
+      imageCropRect.left +
+          imageCropRect.width * (normalizedRect.right / normalizedWidth),
+      imageCropRect.top +
+          imageCropRect.height * (normalizedRect.bottom / normalizedHeight),
+    );
+  }
+
+  static Future<List<FixedSlotAnnCropV1>> _buildAnnCrops(
+    ui.Image normalizedImage,
+  ) async {
+    return <FixedSlotAnnCropV1>[
+      await _buildCrop(
+        image: normalizedImage,
+        cropType: 'full_card_core',
+        rect: const _RectNorm(left: 0.08, top: 0.10, right: 0.92, bottom: 0.82),
+      ),
+      await _buildCrop(
+        image: normalizedImage,
+        cropType: 'full_card_core_identity',
+        rect: const _RectNorm(left: 0.09, top: 0.10, right: 0.91, bottom: 0.80),
+      ),
+      await _buildCrop(
+        image: normalizedImage,
+        cropType: 'artwork_zoom_in_10_gray',
+        rect: const _RectNorm(left: 0.12, top: 0.19, right: 0.88, bottom: 0.58),
+        grayscale: true,
+      ),
+    ];
+  }
+
+  static Future<List<FixedSlotAnnCropV1>> _buildDebugCrops(
+    ui.Image normalizedImage,
+  ) async {
+    return <FixedSlotAnnCropV1>[
+      await _buildCrop(
+        image: normalizedImage,
+        cropType: 'full_card',
+        rect: const _RectNorm(left: 0.00, top: 0.00, right: 1.00, bottom: 1.00),
+      ),
+      await _buildCrop(
+        image: normalizedImage,
+        cropType: 'full_card_upper',
+        rect: const _RectNorm(left: 0.00, top: 0.00, right: 1.00, bottom: 0.50),
+      ),
+    ];
+  }
+
+  static Future<FixedSlotAnnCropV1> _buildCrop({
+    required ui.Image image,
+    required String cropType,
+    required _RectNorm rect,
+    bool grayscale = false,
+  }) async {
+    final rendered = await _renderCrop(
+      image: image,
+      sourceRect: ui.Rect.fromLTRB(
+        image.width * rect.left,
+        image.height * rect.top,
+        image.width * rect.right,
+        image.height * rect.bottom,
+      ),
+      width: annCropSize,
+      height: annCropSize,
+      grayscale: grayscale,
+    );
+    return FixedSlotAnnCropV1(
+      cropType: cropType,
+      width: annCropSize,
+      height: annCropSize,
+      rawRgbaBytes: rendered.rawRgbaBytes,
+      pngBytes: rendered.pngBytes,
     );
   }
 
@@ -291,6 +359,128 @@ class FixedSlotStillProcessorV1 {
     }
   }
 
+  static Future<_RenderedCropV1> _renderRawRectCrop({
+    required Uint8List sourceRaw,
+    required int sourceWidth,
+    required int sourceHeight,
+    required ui.Rect sourceRect,
+    required int width,
+    required int height,
+  }) async {
+    final raw = Uint8List(width * height * 4);
+    for (var y = 0; y < height; y += 1) {
+      final v = (y + 0.5) / height;
+      final sourceY = sourceRect.top + sourceRect.height * v;
+      for (var x = 0; x < width; x += 1) {
+        final u = (x + 0.5) / width;
+        final sourceX = sourceRect.left + sourceRect.width * u;
+        _sampleBilinearRgba(
+          sourceRaw: sourceRaw,
+          sourceWidth: sourceWidth,
+          sourceHeight: sourceHeight,
+          sourceX: sourceX,
+          sourceY: sourceY,
+          targetRaw: raw,
+          targetOffset: ((y * width) + x) * 4,
+        );
+      }
+    }
+    return _RenderedCropV1(
+      rawRgbaBytes: raw,
+      pngBytes: await _rawRgbaToPng(raw, width, height),
+    );
+  }
+
+  static Future<_RenderedCropV1> _warpRawQuadrilateral({
+    required Uint8List sourceRaw,
+    required int sourceWidth,
+    required int sourceHeight,
+    required List<ui.Offset> points,
+    required int width,
+    required int height,
+  }) async {
+    if (points.length != 4) {
+      throw const FixedSlotCaptureException('invalid_perspective_points');
+    }
+    final topLeft = points[0];
+    final topRight = points[1];
+    final bottomRight = points[2];
+    final bottomLeft = points[3];
+    final raw = Uint8List(width * height * 4);
+    for (var y = 0; y < height; y += 1) {
+      final v = (y + 0.5) / height;
+      final inverseV = 1.0 - v;
+      for (var x = 0; x < width; x += 1) {
+        final u = (x + 0.5) / width;
+        final inverseU = 1.0 - u;
+        final sourceX =
+            (topLeft.dx * inverseU * inverseV) +
+            (topRight.dx * u * inverseV) +
+            (bottomRight.dx * u * v) +
+            (bottomLeft.dx * inverseU * v);
+        final sourceY =
+            (topLeft.dy * inverseU * inverseV) +
+            (topRight.dy * u * inverseV) +
+            (bottomRight.dy * u * v) +
+            (bottomLeft.dy * inverseU * v);
+        _sampleBilinearRgba(
+          sourceRaw: sourceRaw,
+          sourceWidth: sourceWidth,
+          sourceHeight: sourceHeight,
+          sourceX: sourceX,
+          sourceY: sourceY,
+          targetRaw: raw,
+          targetOffset: ((y * width) + x) * 4,
+        );
+      }
+    }
+    return _RenderedCropV1(
+      rawRgbaBytes: raw,
+      pngBytes: await _rawRgbaToPng(raw, width, height),
+    );
+  }
+
+  static void _sampleBilinearRgba({
+    required Uint8List sourceRaw,
+    required int sourceWidth,
+    required int sourceHeight,
+    required double sourceX,
+    required double sourceY,
+    required Uint8List targetRaw,
+    required int targetOffset,
+  }) {
+    final clampedX = sourceX.clamp(0.0, sourceWidth - 1.0);
+    final clampedY = sourceY.clamp(0.0, sourceHeight - 1.0);
+    final x0 = clampedX.floor();
+    final y0 = clampedY.floor();
+    final x1 = math.min(sourceWidth - 1, x0 + 1);
+    final y1 = math.min(sourceHeight - 1, y0 + 1);
+    final wx = clampedX - x0;
+    final wy = clampedY - y0;
+    final topWeight = 1.0 - wy;
+    final leftWeight = 1.0 - wx;
+    final offsets = <int>[
+      ((y0 * sourceWidth) + x0) * 4,
+      ((y0 * sourceWidth) + x1) * 4,
+      ((y1 * sourceWidth) + x0) * 4,
+      ((y1 * sourceWidth) + x1) * 4,
+    ];
+    final weights = <double>[
+      leftWeight * topWeight,
+      wx * topWeight,
+      leftWeight * wy,
+      wx * wy,
+    ];
+    for (var channel = 0; channel < 4; channel += 1) {
+      final value =
+          (sourceRaw[offsets[0] + channel] * weights[0]) +
+          (sourceRaw[offsets[1] + channel] * weights[1]) +
+          (sourceRaw[offsets[2] + channel] * weights[2]) +
+          (sourceRaw[offsets[3] + channel] * weights[3]);
+      targetRaw[targetOffset + channel] = value.round().clamp(0, 255).toInt();
+    }
+  }
+
   static Future<Uint8List> _imageToPng(ui.Image image) async {
     final data = await image.toByteData(format: ui.ImageByteFormat.png);
     if (data == null) {
@@ -304,6 +494,19 @@ class FixedSlotStillProcessorV1 {
     int width,
     int height,
   ) async {
+    final image = await _rawRgbaToImage(raw, width, height);
+    try {
+      return _imageToPng(image);
+    } finally {
+      image.dispose();
+    }
+  }
+
+  static Future<ui.Image> _rawRgbaToImage(
+    Uint8List raw,
+    int width,
+    int height,
+  ) async {
     final completer = Completer<ui.Image>();
     ui.decodeImageFromPixels(
       raw,
@@ -312,12 +515,7 @@ class FixedSlotStillProcessorV1 {
       ui.PixelFormat.rgba8888,
       completer.complete,
     );
-    final image = await completer.future;
-    try {
-      return _imageToPng(image);
-    } finally {
-      image.dispose();
-    }
+    return completer.future;
   }
 
   static void _applyGrayscale(Uint8List raw) {
@@ -335,6 +533,226 @@ class FixedSlotStillProcessorV1 {
   }
 }
 
+class FixedSlotCardEdgeRefinerV1 {
+  FixedSlotCardEdgeRefinerV1._();
+
+  static const double _foregroundDistanceThreshold = 45.0;
+  static const double _rowForegroundFraction = 0.12;
+  static const double _columnForegroundFraction = 0.12;
+
+  static FixedSlotEdgeRefinementV1? detect({
+    required Uint8List rawRgbaBytes,
+    required int width,
+    required int height,
+  }) {
+    if (width <= 0 || height <= 0 || rawRgbaBytes.length < width * height * 4) {
+      return null;
+    }
+    final background = _cornerMedianBackground(rawRgbaBytes, width, height);
+    final backgroundLum = _luminance(
+      background[0],
+      background[1],
+      background[2],
+    );
+    final rows = List<int>.filled(height, 0);
+    final columns = List<int>.filled(width, 0);
+    final leftByRow = List<int>.filled(height, -1);
+    final rightByRow = List<int>.filled(height, -1);
+
+    for (var y = 0; y < height; y += 1) {
+      for (var x = 0; x < width; x += 1) {
+        final offset = ((y * width) + x) * 4;
+        final red = rawRgbaBytes[offset];
+        final green = rawRgbaBytes[offset + 1];
+        final blue = rawRgbaBytes[offset + 2];
+        final distance = math.sqrt(
+          math.pow(red - background[0], 2) +
+              math.pow(green - background[1], 2) +
+              math.pow(blue - background[2], 2),
+        );
+        final lum = _luminance(red, green, blue);
+        if (distance <= _foregroundDistanceThreshold ||
+            lum <= backgroundLum + 10) {
+          continue;
+        }
+        rows[y] += 1;
+        columns[x] += 1;
+        if (leftByRow[y] < 0) leftByRow[y] = x;
+        rightByRow[y] = x;
+      }
+    }
+
+    final minimumRowCount = width * _rowForegroundFraction;
+    final minimumColumnCount = height * _columnForegroundFraction;
+    var top = 0;
+    while (top < height && rows[top] < minimumRowCount) {
+      top += 1;
+    }
+    var bottom = height - 1;
+    while (bottom >= 0 && rows[bottom] < minimumRowCount) {
+      bottom -= 1;
+    }
+    var left = 0;
+    while (left < width && columns[left] < minimumColumnCount) {
+      left += 1;
+    }
+    var right = width - 1;
+    while (right >= 0 && columns[right] < minimumColumnCount) {
+      right -= 1;
+    }
+
+    if (top >= bottom || left >= right) return null;
+    final rectWidth = right - left + 1;
+    final rectHeight = bottom - top + 1;
+    if (rectWidth < width * 0.45 || rectHeight < height * 0.45) {
+      return null;
+    }
+    final aspect = rectWidth / rectHeight;
+    if (aspect < 0.55 || aspect > 0.92) return null;
+
+    final bounds = ui.Rect.fromLTRB(
+      left.toDouble(),
+      top.toDouble(),
+      (right + 1).toDouble(),
+      (bottom + 1).toDouble(),
+    );
+    final perspectivePoints = _perspectivePointsFromEdges(
+      bounds: bounds,
+      leftByRow: leftByRow,
+      rightByRow: rightByRow,
+      imageWidth: width,
+      imageHeight: height,
+    );
+    return FixedSlotEdgeRefinementV1(
+      normalizedBounds: bounds,
+      perspectivePoints: perspectivePoints,
+      method: 'corner_background_foreground_projection_v1',
+      backgroundRgb: background,
+      foregroundDistanceThreshold: _foregroundDistanceThreshold,
+    );
+  }
+
+  static List<int> _cornerMedianBackground(
+    Uint8List raw,
+    int width,
+    int height,
+  ) {
+    final sampleSize = math.max(12, (math.min(width, height) * 0.035).floor());
+    final reds = <int>[];
+    final greens = <int>[];
+    final blues = <int>[];
+    for (final corner in <ui.Offset>[
+      ui.Offset.zero,
+      ui.Offset((width - sampleSize).toDouble(), 0),
+      ui.Offset(0, (height - sampleSize).toDouble()),
+      ui.Offset(
+        (width - sampleSize).toDouble(),
+        (height - sampleSize).toDouble(),
+      ),
+    ]) {
+      for (var y = corner.dy.toInt(); y < corner.dy + sampleSize; y += 1) {
+        for (var x = corner.dx.toInt(); x < corner.dx + sampleSize; x += 1) {
+          final offset = ((y * width) + x) * 4;
+          reds.add(raw[offset]);
+          greens.add(raw[offset + 1]);
+          blues.add(raw[offset + 2]);
+        }
+      }
+    }
+    reds.sort();
+    greens.sort();
+    blues.sort();
+    final middle = reds.length ~/ 2;
+    return <int>[reds[middle], greens[middle], blues[middle]];
+  }
+
+  static List<ui.Offset> _perspectivePointsFromEdges({
+    required ui.Rect bounds,
+    required List<int> leftByRow,
+    required List<int> rightByRow,
+    required int imageWidth,
+    required int imageHeight,
+  }) {
+    final top = bounds.top.round();
+    final bottom = math.max(top + 1, bounds.bottom.round() - 1);
+    final height = bottom - top + 1;
+    final topStart = top + (height * 0.06).round();
+    final topEnd = top + (height * 0.24).round();
+    final bottomStart = bottom - (height * 0.24).round();
+    final bottomEnd = bottom - (height * 0.06).round();
+
+    final leftTop = _medianEdge(leftByRow, topStart, topEnd) ?? bounds.left;
+    final rightTop = _medianEdge(rightByRow, topStart, topEnd) ?? bounds.right;
+    final leftBottom =
+        _medianEdge(leftByRow, bottomStart, bottomEnd) ?? bounds.left;
+    final rightBottom =
+        _medianEdge(rightByRow, bottomStart, bottomEnd) ?? bounds.right;
+
+    return <ui.Offset>[
+      ui.Offset(leftTop.clamp(0.0, imageWidth - 1.0).toDouble(), bounds.top),
+      ui.Offset(
+        rightTop.clamp(1.0, imageWidth.toDouble()).toDouble(),
+        bounds.top,
+      ),
+      ui.Offset(
+        rightBottom.clamp(1.0, imageWidth.toDouble()).toDouble(),
+        bounds.bottom,
+      ),
+      ui.Offset(
+        leftBottom.clamp(0.0, imageWidth - 1.0).toDouble(),
+        bounds.bottom,
+      ),
+    ];
+  }
+
+  static double? _medianEdge(List<int> values, int start, int end) {
+    final selected = <int>[];
+    final safeStart = start.clamp(0, values.length - 1);
+    final safeEnd = end.clamp(safeStart, values.length - 1);
+    for (var index = safeStart; index <= safeEnd; index += 1) {
+      final value = values[index];
+      if (value >= 0) selected.add(value);
+    }
+    if (selected.isEmpty) return null;
+    selected.sort();
+    return selected[selected.length ~/ 2].toDouble();
+  }
+
+  static double _luminance(int red, int green, int blue) {
+    return (red * 0.299) + (green * 0.587) + (blue * 0.114);
+  }
+}
+
+class FixedSlotEdgeRefinementV1 {
+  const FixedSlotEdgeRefinementV1({
+    required this.normalizedBounds,
+    required this.perspectivePoints,
+    required this.method,
+    required this.backgroundRgb,
+    required this.foregroundDistanceThreshold,
+  });
+
+  final ui.Rect normalizedBounds;
+  final List<ui.Offset> perspectivePoints;
+  final String method;
+  final List<int> backgroundRgb;
+  final double foregroundDistanceThreshold;
+}
+
+class _RectNorm {
+  const _RectNorm({
+    required this.left,
+    required this.top,
+    required this.right,
+    required this.bottom,
+  });
+
+  final double left;
+  final double top;
+  final double right;
+  final double bottom;
+}
+
 class FixedSlotStillArtifactV1 {
   const FixedSlotStillArtifactV1({
     required this.fullStillBytes,
@@ -343,10 +761,15 @@ class FixedSlotStillArtifactV1 {
     required this.previewViewportSize,
     required this.slotRect,
     required this.cropRect,
+    required this.refinedCropRect,
+    required this.edgeRefinement,
+    required this.initialSlotCropPngBytes,
+    required this.edgeRefinedCropPngBytes,
     required this.normalizedPngBytes,
     required this.normalizedWidth,
     required this.normalizedHeight,
     required this.annCrops,
+    required this.debugCrops,
   });
 
   final Uint8List fullStillBytes;
@@ -355,10 +778,15 @@ class FixedSlotStillArtifactV1 {
   final ui.Size previewViewportSize;
   final ui.Rect slotRect;
   final ui.Rect cropRect;
+  final ui.Rect? refinedCropRect;
+  final FixedSlotEdgeRefinementV1? edgeRefinement;
+  final Uint8List initialSlotCropPngBytes;
+  final Uint8List? edgeRefinedCropPngBytes;
   final Uint8List normalizedPngBytes;
   final int normalizedWidth;
   final int normalizedHeight;
   final List<FixedSlotAnnCropV1> annCrops;
+  final List<FixedSlotAnnCropV1> debugCrops;
 }
 
 class FixedSlotAnnCropV1 {
@@ -367,12 +795,14 @@ class FixedSlotAnnCropV1 {
     required this.width,
     required this.height,
     required this.rawRgbaBytes,
+    required this.pngBytes,
   });
 
   final String cropType;
   final int width;
   final int height;
   final Uint8List rawRgbaBytes;
+  final Uint8List pngBytes;
 
   Map<String, Object?> toRequestJson() {
     return <String, Object?>{
@@ -545,19 +975,33 @@ class FixedSlotAnnIdentityClientV1 {
   static _FixedSlotDecisionV1 _chooseConfidentCandidate(
     Map<String, List<_ResolvedCropCandidateV1>> candidatesByCrop,
   ) {
-    final fullCard = candidatesByCrop['full_card'] ?? const [];
-    if (fullCard.isEmpty) {
+    const anchorCropPriority = <String>[
+      'full_card_core',
+      'full_card_core_identity',
+      'full_card',
+    ];
+    String? anchorCropType;
+    List<_ResolvedCropCandidateV1> anchorCandidates = const [];
+    for (final cropType in anchorCropPriority) {
+      final candidates = candidatesByCrop[cropType] ?? const [];
+      if (candidates.isNotEmpty) {
+        anchorCropType = cropType;
+        anchorCandidates = candidates;
+        break;
+      }
+    }
+    if (anchorCropType == null || anchorCandidates.isEmpty) {
       return const _FixedSlotDecisionV1(
-        failureReason: 'no_full_card_candidates',
+        failureReason: 'no_identity_anchor_candidates',
         evidence: <String, Object?>{},
       );
     }
 
-    final top = fullCard.first;
+    final top = anchorCandidates.first;
     final topId = top.candidate.cardId;
     final supportingCropTypes = <String>[];
     for (final entry in candidatesByCrop.entries) {
-      if (entry.key == 'full_card') continue;
+      if (entry.key == anchorCropType) continue;
       final supported = entry.value
           .take(6)
           .any((item) => item.candidate.cardId == topId);
@@ -581,6 +1025,10 @@ class FixedSlotAnnIdentityClientV1 {
         contributionCount >= 2;
 
     final evidence = <String, Object?>{
+      'anchor_crop_type': anchorCropType,
+      'anchor_rank1_card_id': top.candidate.cardId,
+      'anchor_rank1_name': top.candidate.name,
+      'anchor_rank1_distance': top.candidate.distance,
       'full_card_rank1_card_id': top.candidate.cardId,
       'full_card_rank1_name': top.candidate.name,
       'full_card_rank1_distance': top.candidate.distance,
@@ -727,11 +1175,37 @@ class FixedSlotArtifactWriterV1 {
     await directory.create(recursive: true);
 
     final fullStill = _fileIn(directory, 'latest_full_still.jpg');
+    final initialSlot = _fileIn(directory, 'latest_initial_slot_crop.png');
+    final edgeRefined = _fileIn(directory, 'latest_edge_refined_crop.png');
     final normalized = _fileIn(directory, 'latest_fixed_slot_normalized.png');
     final manifest = _fileIn(directory, 'latest_fixed_slot_manifest.json');
+    final cropFiles = <String, String>{};
 
     await fullStill.writeAsBytes(artifact.fullStillBytes, flush: true);
+    await initialSlot.writeAsBytes(
+      artifact.initialSlotCropPngBytes,
+      flush: true,
+    );
+    if (artifact.edgeRefinedCropPngBytes != null) {
+      await edgeRefined.writeAsBytes(
+        artifact.edgeRefinedCropPngBytes!,
+        flush: true,
+      );
+    } else if (await edgeRefined.exists()) {
+      await edgeRefined.delete();
+    }
     await normalized.writeAsBytes(artifact.normalizedPngBytes, flush: true);
+    for (final crop in <FixedSlotAnnCropV1>[
+      ...artifact.annCrops,
+      ...artifact.debugCrops,
+    ]) {
+      final file = _fileIn(
+        directory,
+        'latest_ann_crop_${_safeFileToken(crop.cropType)}.png',
+      );
+      await file.writeAsBytes(crop.pngBytes, flush: true);
+      cropFiles[crop.cropType] = file.path;
+    }
     await manifest.writeAsString(
       const JsonEncoder.withIndent('  ').convert(<String, Object?>{
         'timestamp': DateTime.now().toUtc().toIso8601String(),
@@ -740,11 +1214,27 @@ class FixedSlotArtifactWriterV1 {
         'preview_viewport': _sizeJson(artifact.previewViewportSize),
         'slot_rect_preview_coordinates': _rectJson(artifact.slotRect),
         'mapped_crop_rect_image_coordinates': _rectJson(artifact.cropRect),
+        'refined_crop_rect_image_coordinates': _rectJsonOrNull(
+          artifact.refinedCropRect,
+        ),
+        'edge_refinement': _edgeRefinementJson(artifact.edgeRefinement),
         'normalized_output_width': artifact.normalizedWidth,
         'normalized_output_height': artifact.normalizedHeight,
         'ann_crop_types': artifact.annCrops
             .map((crop) => crop.cropType)
             .toList(growable: false),
+        'debug_crop_types': artifact.debugCrops
+            .map((crop) => crop.cropType)
+            .toList(growable: false),
+        'debug_files': <String, Object?>{
+          'full_still': fullStill.path,
+          'initial_slot_crop': initialSlot.path,
+          'edge_refined_crop': artifact.edgeRefinedCropPngBytes == null
+              ? null
+              : edgeRefined.path,
+          'final_normalized_card': normalized.path,
+          'ann_crops': cropFiles,
+        },
         'endpoint_used': resolution.endpoint,
         'ann_elapsed_ms': resolution.elapsed.inMicroseconds / 1000,
         'ann_has_confident_match': resolution.hasConfidentMatch,
@@ -806,6 +1296,39 @@ class FixedSlotArtifactWriterV1 {
       'width': rect.width,
       'height': rect.height,
     };
+  }
+
+  static Map<String, double>? _rectJsonOrNull(ui.Rect? rect) {
+    return rect == null ? null : _rectJson(rect);
+  }
+
+  static Map<String, Object?>? _edgeRefinementJson(
+    FixedSlotEdgeRefinementV1? refinement,
+  ) {
+    if (refinement == null) {
+      return <String, Object?>{
+        'applied': false,
+        'method': null,
+        'perspective_applied': false,
+      };
+    }
+    return <String, Object?>{
+      'applied': true,
+      'method': refinement.method,
+      'perspective_applied': true,
+      'normalized_bounds': _rectJson(refinement.normalizedBounds),
+      'perspective_points_normalized_slot_coordinates': refinement
+          .perspectivePoints
+          .map((point) => <String, double>{'x': point.dx, 'y': point.dy})
+          .toList(growable: false),
+      'background_rgb': refinement.backgroundRgb,
+      'foreground_distance_threshold': refinement.foregroundDistanceThreshold,
+    };
+  }
+
+  static String _safeFileToken(String value) {
+    final token = value.replaceAll(RegExp(r'[^A-Za-z0-9_.-]+'), '_');
+    return token.isEmpty ? 'unknown' : token;
   }
 
   static Map<String, Object?>? _candidateJson(Candidate? candidate) {
