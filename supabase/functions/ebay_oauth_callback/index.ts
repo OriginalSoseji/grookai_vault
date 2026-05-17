@@ -113,8 +113,9 @@ export default async function handler(req: Request): Promise<Response> {
 
   const code = bodyCode ?? queryCode;
   const state = bodyState ?? queryState;
+  const authCode: string = String(code ?? "");
 
-  if (!code) {
+  if (!authCode) {
     return json({ ok: false, reason: "missing_code" }, 400);
   }
 
@@ -125,7 +126,6 @@ export default async function handler(req: Request): Promise<Response> {
   const supabaseUrl =
     Deno.env.get("SUPABASE_URL") ?? Deno.env.get("PROJECT_URL") ?? "";
   const anonKey =
-    Deno.env.get("SUPABASE_ANON_KEY") ??
     Deno.env.get("SUPABASE_PUBLISHABLE_KEY") ??
     "";
   if (!supabaseUrl || !anonKey) {
@@ -134,26 +134,27 @@ export default async function handler(req: Request): Promise<Response> {
 
   const authHeader =
     req.headers.get("Authorization") ?? req.headers.get("authorization");
-  if (!authHeader) {
+  const authHeaderValue: string = String(authHeader ?? "");
+  if (!authHeaderValue) {
     return json({ ok: false, reason: "missing_auth_header" }, 401);
   }
 
   const userSupabase = createClient(supabaseUrl, anonKey, {
     global: {
-      headers: { Authorization: authHeader },
+      headers: { Authorization: authHeaderValue },
     },
   });
   const {
     data: userData,
     error: userError,
   } = await userSupabase.auth.getUser();
-  if (userError || !userData?.user?.id) {
+  const userId: string = String(userData?.user?.id ?? "");
+  if (userError || !userId) {
     console.warn("[ebay-oauth] Failed to fetch user:", userError);
     return json({ ok: false, reason: "unauthorized" }, 401);
   }
-  const userId = userData.user.id;
 
-  const tokenResponse = await exchangeCodeForTokens(code);
+  const tokenResponse = await exchangeCodeForTokens(authCode);
   const expiresAt = computeExpiry(tokenResponse.expires_in);
   const marketplaceId =
     Deno.env.get("EBAY_MARKETPLACE_ID") ?? "EBAY_US";
@@ -162,7 +163,7 @@ export default async function handler(req: Request): Promise<Response> {
     tokenResponse.scope?.split(/\s+/).filter((s) => s.length > 0) ?? null;
 
   const serviceRoleKey =
-    Deno.env.get("SUPABASE_SERVICE_ROLE_KEY") ?? anonKey;
+    Deno.env.get("SUPABASE_SECRET_KEY") ?? anonKey;
   const serviceClient = createClient(supabaseUrl, serviceRoleKey, {
     auth: {
       persistSession: false,
@@ -176,7 +177,7 @@ export default async function handler(req: Request): Promise<Response> {
     .eq("marketplace_id", marketplaceId)
     .maybeSingle();
 
-  if (existing.error && existing.error.code !== "PGRST116") {
+  if (existing.error && existing.error?.code !== "PGRST116") {
     console.error("[ebay-oauth] select error:", existing.error);
     return json({ ok: false, reason: "db_select_error" }, 500);
   }
@@ -193,11 +194,12 @@ export default async function handler(req: Request): Promise<Response> {
     updated_at: nowIso,
   };
 
-  if (existing.data?.id) {
+  const existingId = existing.data?.id;
+  if (existingId) {
     const { error: updateError } = await serviceClient
       .from("ebay_accounts")
       .update(payload)
-      .eq("id", existing.data.id);
+      .eq("id", existingId);
     if (updateError) {
       console.error("[ebay-oauth] update error:", updateError);
       return json({ ok: false, reason: "db_update_error" }, 500);

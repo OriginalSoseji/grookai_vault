@@ -2,6 +2,7 @@
 import { serve } from "https://deno.land/std@0.224.0/http/server.ts";
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2.45.4";
 import { json, requireUser } from "../_shared/auth.ts";
+import { getServiceRoleKey } from "../_shared/key_resolver.ts";
 
 type EnqueueBody = {
   snapshot_id?: string;
@@ -45,14 +46,17 @@ serve(async (req) => {
       const auth = await requireUser(req);
       userId = auth.userId;
     } catch (err) {
-      if (err?.code === "missing_bearer_token") return json(401, { error: "missing_bearer_token" });
-      if (err?.code === "invalid_jwt") return json(401, { error: "invalid_jwt" });
-      if (err?.code === "server_misconfigured") return json(500, { error: "server_misconfigured" });
+      const code = (typeof err === "object" && err !== null && "code" in err)
+        ? String((err as { code?: unknown }).code ?? "")
+        : "";
+      if (code === "missing_bearer_token") return json(401, { error: "missing_bearer_token" });
+      if (code === "invalid_jwt") return json(401, { error: "invalid_jwt" });
+      if (code === "server_misconfigured") return json(500, { error: "server_misconfigured" });
       throw err;
     }
 
     const supabaseUrl = Deno.env.get("SUPABASE_URL") ?? "";
-    const serviceRoleKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY") ?? "";
+    const serviceRoleKey = getServiceRoleKey() ?? "";
     if (!supabaseUrl || !serviceRoleKey) {
       return json(500, { error: "server_misconfigured" });
     }

@@ -6,8 +6,7 @@ let hasLoggedSupabaseUrl = false;
 
 // Env authority note:
 // Canonical admin secret name = SUPABASE_SECRET_KEY
-// SUPABASE_SERVICE_ROLE_KEY may remain supported only as a compatibility alias
-// where older runtime surfaces still depend on it.
+// Older service-role aliases may remain only on compatibility surfaces.
 // Do not introduce additional secret-name variants.
 
 /**
