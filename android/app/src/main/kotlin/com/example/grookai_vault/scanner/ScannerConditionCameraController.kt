@@ -2,11 +2,15 @@ package com.example.grookai_vault.scanner
 
 import android.content.Context
 import android.graphics.ImageFormat
+import android.hardware.camera2.CaptureRequest
 import android.os.Handler
 import android.os.Looper
 import android.util.Size
+import androidx.camera.camera2.interop.Camera2Interop
+import androidx.camera.camera2.interop.ExperimentalCamera2Interop
 import androidx.camera.core.Camera
 import androidx.camera.core.CameraSelector
+import androidx.camera.core.FocusMeteringAction
 import androidx.camera.core.ImageAnalysis
 import androidx.camera.core.ImageProxy
 import androidx.camera.core.Preview
@@ -17,6 +21,7 @@ import androidx.lifecycle.LifecycleOwner
 import io.flutter.plugin.common.MethodChannel
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
+import java.util.concurrent.TimeUnit
 
 class ScannerConditionCameraController(
     private val context: Context,
@@ -47,12 +52,21 @@ class ScannerConditionCameraController(
     private var lastNativeDetectionSentAtMs: Long = 0
     private var lastFrameAtMs: Long? = null
     private var lastQuadDetection: Map<String, Any?>? = null
+    private var focusRunnable: Runnable? = null
+    private var focusStatus: String = "idle"
+    private var focusError: String? = null
+    private var focusRequests: Int = 0
+    private var lastFocusAtMs: Long? = null
 
     private companion object {
         val previewTargetSize = Size(1920, 1080)
-        val analysisTargetSize = Size(1280, 720)
+        val analysisTargetSize = Size(1920, 1080)
         const val nativeDetectionIntervalMs = 100L
         const val fullFrameBridgeIntervalMs = 250L
+        const val focusIntervalMs = 1800L
+        const val focusAutoCancelMs = 1700L
+        const val slotFocusX = 0.50f
+        const val slotFocusY = 0.54f
     }
 
     fun start(previewView: PreviewView) {
@@ -77,16 +91,45 @@ class ScannerConditionCameraController(
         )
     }
 
+    @OptIn(ExperimentalCamera2Interop::class)
     private fun bindCamera(provider: ProcessCameraProvider, previewView: PreviewView) {
-        val preview = Preview.Builder()
+        val previewBuilder = Preview.Builder()
             .setTargetResolution(previewTargetSize)
+        Camera2Interop.Extender(previewBuilder)
+            .setCaptureRequestOption(
+                CaptureRequest.CONTROL_AF_MODE,
+                CaptureRequest.CONTROL_AF_MODE_CONTINUOUS_PICTURE,
+            )
+            .setCaptureRequestOption(
+                CaptureRequest.CONTROL_AE_MODE,
+                CaptureRequest.CONTROL_AE_MODE_ON,
+            )
+            .setCaptureRequestOption(
+                CaptureRequest.CONTROL_AWB_MODE,
+                CaptureRequest.CONTROL_AWB_MODE_AUTO,
+            )
+        val preview = previewBuilder
             .build()
             .also { it.setSurfaceProvider(previewView.surfaceProvider) }
 
-        val analysis = ImageAnalysis.Builder()
+        val analysisBuilder = ImageAnalysis.Builder()
             .setTargetResolution(analysisTargetSize)
             .setBackpressureStrategy(ImageAnalysis.STRATEGY_KEEP_ONLY_LATEST)
             .setOutputImageFormat(ImageAnalysis.OUTPUT_IMAGE_FORMAT_YUV_420_888)
+        Camera2Interop.Extender(analysisBuilder)
+            .setCaptureRequestOption(
+                CaptureRequest.CONTROL_AF_MODE,
+                CaptureRequest.CONTROL_AF_MODE_CONTINUOUS_PICTURE,
+            )
+            .setCaptureRequestOption(
+                CaptureRequest.CONTROL_AE_MODE,
+                CaptureRequest.CONTROL_AE_MODE_ON,
+            )
+            .setCaptureRequestOption(
+                CaptureRequest.CONTROL_AWB_MODE,
+                CaptureRequest.CONTROL_AWB_MODE_AUTO,
+            )
+        val analysis = analysisBuilder
             .build()
             .also { imageAnalysis ->
                 imageAnalysis.setAnalyzer(analysisExecutor) { imageProxy ->
@@ -111,6 +154,51 @@ class ScannerConditionCameraController(
         previewWidth = actualPreviewSize.width
         previewHeight = actualPreviewSize.height
         status = "running"
+        startSlotFocusLoop(previewView)
+    }
+
+    private fun startSlotFocusLoop(previewView: PreviewView) {
+        focusRunnable?.let { mainHandler.removeCallbacks(it) }
+        val runnable = object : Runnable {
+            override fun run() {
+                requestSlotFocus(previewView)
+                mainHandler.postDelayed(this, focusIntervalMs)
+            }
+        }
+        focusRunnable = runnable
+        previewView.post { runnable.run() }
+    }
+
+    private fun requestSlotFocus(previewView: PreviewView) {
+        val activeCamera = camera ?: return
+        if (previewView.width <= 0 || previewView.height <= 0) return
+        try {
+            val factory = previewView.meteringPointFactory
+            val point = factory.createPoint(
+                previewView.width * slotFocusX,
+                previewView.height * slotFocusY,
+            )
+            val action = FocusMeteringAction.Builder(
+                point,
+                FocusMeteringAction.FLAG_AF or FocusMeteringAction.FLAG_AE,
+            )
+                .setAutoCancelDuration(focusAutoCancelMs, TimeUnit.MILLISECONDS)
+                .build()
+            focusStatus = "requested"
+            focusError = null
+            focusRequests += 1
+            lastFocusAtMs = System.currentTimeMillis()
+            activeCamera.cameraControl.startFocusAndMetering(action).addListener(
+                {
+                    focusStatus = "active"
+                    focusError = null
+                },
+                ContextCompat.getMainExecutor(context),
+            )
+        } catch (throwable: Throwable) {
+            focusStatus = "error"
+            focusError = throwable.message ?: throwable.javaClass.simpleName
+        }
     }
 
     private fun recordAnalysisFrame(width: Int, height: Int) {
@@ -319,10 +407,18 @@ class ScannerConditionCameraController(
             "native_detection_interval_ms" to nativeDetectionIntervalMs,
             "full_frame_bridge_interval_ms" to fullFrameBridgeIntervalMs,
             "last_frame_at_ms" to lastFrameAtMs,
+            "focus_status" to focusStatus,
+            "focus_error" to focusError,
+            "focus_requests" to focusRequests,
+            "last_focus_at_ms" to lastFocusAtMs,
+            "focus_slot_x" to slotFocusX,
+            "focus_slot_y" to slotFocusY,
         )
     }
 
     fun stop() {
+        focusRunnable?.let { mainHandler.removeCallbacks(it) }
+        focusRunnable = null
         try {
             cameraProvider?.unbindAll()
         } catch (_: Throwable) {

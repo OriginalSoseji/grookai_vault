@@ -12,7 +12,8 @@
     "scanner:identity:v3:full-db:sample": "node identity_v3/build_scanner_v3_full_db_identity_index_v1.mjs --build-index --limit 20",
     "scanner:identity:v3:latency": "node identity_v3/run_scanner_v3_identity_latency_harness_v1.mjs",
     "scanner:identity:v3:ann:build": "node identity_v3/build_scanner_v3_ann_index_v1.mjs",
-    "scanner:identity:v3:ann:serve": "node identity_v3/run_scanner_v3_ann_identity_service_v1.mjs"
+    "scanner:identity:v3:ann:serve": "node identity_v3/run_scanner_v3_ann_identity_service_v1.mjs",
+    "scanner:fixed-slot:regression": "node identity_v3/run_fixed_slot_artifact_regression_v1.mjs"
   },
   "dependencies": {
     "@huggingface/transformers": "^4.2.0",

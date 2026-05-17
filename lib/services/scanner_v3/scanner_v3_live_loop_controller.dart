@@ -51,9 +51,17 @@ class ScannerV3LiveLoopController {
              embeddingService: embeddingService,
              vectorCandidateService: vectorCandidateService,
            ),
-       _candidateVoteState = candidateVoteState ?? CandidateVoteState();
+       _candidateVoteState =
+           candidateVoteState ??
+           CandidateVoteState(
+             strictShutterAuthority: strictShutterAuthorityDefault,
+           );
 
   static const double targetAspectRatio = 0.716;
+  static const bool strictShutterAuthorityDefault = bool.fromEnvironment(
+    'SCANNER_V3_STRICT_SHUTTER_AUTHORITY',
+    defaultValue: true,
+  );
   static const int normalizedHeight = 1024;
   static const int normalizedWidth = 733;
   static const double minBlurScore = 0.006;
@@ -543,6 +551,7 @@ class ScannerV3LiveLoopController {
         _lastVoteSnapshot = _candidateVoteState.update(
           candidates: identityResult.candidates,
           frameIndex: _acceptedFrameCount,
+          allowLock: allowIdentityLock,
         );
         _debugLogIdentityTiming(
           frameIndex: _frameCount,

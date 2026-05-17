@@ -50,7 +50,7 @@ void main() {
   });
 
   test(
-    'shutter reveal accepts strong multi-crop match without title support',
+    'shutter reveal rejects strong visual match without printed identity support',
     () {
       final voteState = CandidateVoteState();
       final candidates = <Candidate>[
@@ -72,11 +72,11 @@ void main() {
       voteState.update(candidates: candidates, frameIndex: 3);
       final reveal = voteState.tryLockForReveal(frameIndex: 3);
 
-      expect(reveal.acceptedCandidate, 'card-1');
-      expect(reveal.lockedCandidate, 'card-1');
+      expect(reveal.acceptedCandidate, isNull);
+      expect(reveal.lockedCandidate, isNull);
       expect(
         reveal.identityDecisionState,
-        IdentityDecisionStateV1.identityLocked,
+        isNot(IdentityDecisionStateV1.identityLocked),
       );
     },
   );
@@ -235,51 +235,88 @@ void main() {
     );
   });
 
-  test('stable core-crop consensus can lock without title support', () {
-    final voteState = CandidateVoteState();
-    final candidates = <Candidate>[
-      _strongCandidate(
-        crops: 3,
-        distance: 0.268,
-        similarityOverride: 0.79,
-        aggregateScore: 0.79,
-        rerankScore: 0.82,
-        titleSupport: false,
-        coreConsensusSupport: true,
-      ),
-      _candidate(
-        cardId: 'card-2',
-        rank: 2,
-        distance: 0.244,
-        similarityOverride: 0.756,
-        aggregateScore: 0.747,
-        rerankScore: 0.747,
-        crops: 2,
-        titleSupport: false,
-      ),
-    ];
+  test(
+    'stable core-crop consensus cannot lock without printed identity support',
+    () {
+      final voteState = CandidateVoteState();
+      final candidates = <Candidate>[
+        _strongCandidate(
+          crops: 3,
+          distance: 0.268,
+          similarityOverride: 0.79,
+          aggregateScore: 0.79,
+          rerankScore: 0.82,
+          titleSupport: false,
+          coreConsensusSupport: true,
+        ),
+        _candidate(
+          cardId: 'card-2',
+          rank: 2,
+          distance: 0.244,
+          similarityOverride: 0.756,
+          aggregateScore: 0.747,
+          rerankScore: 0.747,
+          crops: 2,
+          titleSupport: false,
+        ),
+      ];
 
-    voteState.update(candidates: candidates, frameIndex: 1);
-    final second = voteState.update(candidates: candidates, frameIndex: 2);
+      voteState.update(candidates: candidates, frameIndex: 1);
+      final second = voteState.update(candidates: candidates, frameIndex: 2);
 
-    expect(second.acceptedCandidate, 'card-1');
-    expect(second.lockedCandidate, 'card-1');
-    expect(
-      second.identityDecisionState,
-      IdentityDecisionStateV1.identityLocked,
-    );
-    expect(
-      second.identityDecisionReason,
-      'stable_two_crop_distance_guard_passed',
-    );
-  });
+      expect(second.acceptedCandidate, isNull);
+      expect(second.lockedCandidate, isNull);
+      expect(
+        second.identityDecisionState,
+        isNot(IdentityDecisionStateV1.identityLocked),
+      );
+    },
+  );
 
-  test('core-crop consensus can fast lock without title support', () {
+  test(
+    'core-crop consensus cannot fast lock without printed identity support',
+    () {
+      final voteState = CandidateVoteState();
+      final snapshot = voteState.update(
+        candidates: <Candidate>[
+          _strongCandidate(
+            crops: 3,
+            distance: 0.232,
+            similarityOverride: 0.78,
+            aggregateScore: 0.78,
+            rerankScore: 0.81,
+            titleSupport: false,
+            coreConsensusSupport: true,
+          ),
+          _candidate(
+            cardId: 'card-2',
+            rank: 2,
+            distance: 0.226,
+            similarityOverride: 0.774,
+            aggregateScore: 0.774,
+            rerankScore: 0.803,
+            crops: 2,
+            titleSupport: false,
+          ),
+        ],
+        frameIndex: 1,
+      );
+
+      expect(snapshot.acceptedCandidate, isNull);
+      expect(snapshot.lockedCandidate, isNull);
+      expect(
+        snapshot.identityDecisionState,
+        isNot(IdentityDecisionStateV1.identityLocked),
+      );
+    },
+  );
+
+  test('strict core-crop consensus can fast lock without title-band OCR', () {
     final voteState = CandidateVoteState();
     final snapshot = voteState.update(
       candidates: <Candidate>[
         _strongCandidate(
-          crops: 3,
+          crops: 4,
           distance: 0.232,
           similarityOverride: 0.78,
           aggregateScore: 0.78,
@@ -288,7 +325,7 @@ void main() {
           coreConsensusSupport: true,
         ),
         _candidate(
-          cardId: 'card-2',
+          cardId: 'visual-neighbor',
           rank: 2,
           distance: 0.226,
           similarityOverride: 0.774,
@@ -304,53 +341,87 @@ void main() {
     expect(snapshot.acceptedCandidate, 'card-1');
     expect(snapshot.lockedCandidate, 'card-1');
     expect(
-      snapshot.identityDecisionState,
-      IdentityDecisionStateV1.identityLocked,
-    );
-    expect(
       snapshot.identityDecisionReason,
       'core_identity_consensus_fast_guard_passed',
     );
   });
 
-  test('visual full-card alignment can fast lock without title support', () {
-    final voteState = CandidateVoteState();
-    final snapshot = voteState.update(
-      candidates: <Candidate>[
-        _strongCandidate(
-          crops: 2,
-          distance: 0.158,
-          similarityOverride: 0.832,
-          aggregateScore: 0.832,
-          rerankScore: 0.832,
-          titleSupport: false,
-          visualFullCardAlignmentSupport: true,
-        ),
-        _candidate(
-          cardId: 'visual-neighbor',
-          rank: 2,
-          distance: 0.225,
-          similarityOverride: 0.831,
-          aggregateScore: 0.831,
-          rerankScore: 0.831,
-          crops: 2,
-          titleSupport: false,
-        ),
-      ],
-      frameIndex: 1,
-    );
+  test(
+    'visual full-card alignment cannot fast lock without printed identity support',
+    () {
+      final voteState = CandidateVoteState();
+      final snapshot = voteState.update(
+        candidates: <Candidate>[
+          _strongCandidate(
+            crops: 2,
+            distance: 0.158,
+            similarityOverride: 0.832,
+            aggregateScore: 0.832,
+            rerankScore: 0.832,
+            titleSupport: false,
+            visualFullCardAlignmentSupport: true,
+          ),
+          _candidate(
+            cardId: 'visual-neighbor',
+            rank: 2,
+            distance: 0.225,
+            similarityOverride: 0.831,
+            aggregateScore: 0.831,
+            rerankScore: 0.831,
+            crops: 2,
+            titleSupport: false,
+          ),
+        ],
+        frameIndex: 1,
+      );
 
-    expect(snapshot.acceptedCandidate, 'card-1');
-    expect(snapshot.lockedCandidate, 'card-1');
-    expect(
-      snapshot.identityDecisionState,
-      IdentityDecisionStateV1.identityLocked,
-    );
-    expect(
-      snapshot.identityDecisionReason,
-      'visual_full_card_alignment_fast_guard_passed',
-    );
-  });
+      expect(snapshot.acceptedCandidate, isNull);
+      expect(snapshot.lockedCandidate, isNull);
+      expect(
+        snapshot.identityDecisionState,
+        isNot(IdentityDecisionStateV1.identityLocked),
+      );
+    },
+  );
+
+  test(
+    'full-card exact visual match can lock without title-band ANN support',
+    () {
+      final voteState = CandidateVoteState();
+      final snapshot = voteState.update(
+        candidates: <Candidate>[
+          _strongCandidate(
+            crops: 4,
+            distance: 0.280,
+            similarityOverride: 0.84,
+            aggregateScore: 0.84,
+            rerankScore: 0.86,
+            titleSupport: false,
+            visualFullCardAlignmentSupport: true,
+            fullCardExactVisualMatchSupport: true,
+          ),
+          _candidate(
+            cardId: 'visual-neighbor',
+            rank: 2,
+            distance: 0.264,
+            similarityOverride: 0.836,
+            aggregateScore: 0.836,
+            rerankScore: 0.836,
+            crops: 2,
+            titleSupport: false,
+          ),
+        ],
+        frameIndex: 1,
+      );
+
+      expect(snapshot.acceptedCandidate, 'card-1');
+      expect(snapshot.lockedCandidate, 'card-1');
+      expect(
+        snapshot.identityDecisionReason,
+        'full_card_exact_visual_match_guard_passed',
+      );
+    },
+  );
 
   test('visual full-card alignment still keeps a strict distance guard', () {
     final voteState = CandidateVoteState();
@@ -409,7 +480,7 @@ void main() {
           aggregateScore: 0.772,
           rerankScore: 0.81,
           crops: 5,
-          titleSupport: false,
+          titleSupport: true,
           coreConsensusSupport: true,
         ),
       ],
@@ -424,39 +495,117 @@ void main() {
     );
   });
 
-  test('single-frame cross-crop support can lock without title support', () {
-    final voteState = CandidateVoteState();
-    final candidates = <Candidate>[
-      _strongCandidate(
-        crops: 3,
-        distance: 0.224,
-        similarityOverride: 0.776,
-        aggregateScore: 0.81,
-        rerankScore: 0.84,
-        titleSupport: false,
-      ),
-      _candidate(
-        cardId: 'card-2',
-        rank: 2,
-        distance: 0.222,
-        similarityOverride: 0.778,
-        aggregateScore: 0.73,
-        rerankScore: 0.73,
-        crops: 1,
-        titleSupport: false,
-      ),
-    ];
+  test(
+    'single-frame cross-crop support cannot lock without printed identity support',
+    () {
+      final voteState = CandidateVoteState();
+      final candidates = <Candidate>[
+        _strongCandidate(
+          crops: 3,
+          distance: 0.224,
+          similarityOverride: 0.776,
+          aggregateScore: 0.81,
+          rerankScore: 0.84,
+          titleSupport: false,
+        ),
+        _candidate(
+          cardId: 'card-2',
+          rank: 2,
+          distance: 0.222,
+          similarityOverride: 0.778,
+          aggregateScore: 0.73,
+          rerankScore: 0.73,
+          crops: 1,
+          titleSupport: false,
+        ),
+      ];
 
-    final first = voteState.update(candidates: candidates, frameIndex: 1);
+      final first = voteState.update(candidates: candidates, frameIndex: 1);
 
-    expect(first.acceptedCandidate, 'card-1');
-    expect(first.lockedCandidate, 'card-1');
-    expect(first.identityDecisionState, IdentityDecisionStateV1.identityLocked);
-    expect(
-      first.identityDecisionReason,
-      'single_frame_cross_crop_guard_passed',
-    );
-  });
+      expect(first.acceptedCandidate, isNull);
+      expect(first.lockedCandidate, isNull);
+      expect(
+        first.identityDecisionState,
+        isNot(IdentityDecisionStateV1.identityLocked),
+      );
+    },
+  );
+
+  test(
+    'strong full-card same-name family evidence can lock without title OCR',
+    () {
+      final voteState = CandidateVoteState();
+      final snapshot = voteState.update(
+        candidates: <Candidate>[
+          _candidate(
+            cardId: 'pal-spiritomb',
+            rank: 1,
+            name: 'Spiritomb',
+            distance: 0.140,
+            similarityOverride: 0.860,
+            aggregateScore: 0.860,
+            rerankScore: 0.860,
+            crops: 2,
+            titleSupport: false,
+            cropTypesOverride: const <String>[
+              'full_card',
+              CandidateVoteState.sameNameFamilyCropType,
+            ],
+          ),
+          _candidate(
+            cardId: 'visual-neighbor',
+            rank: 2,
+            name: 'Sigilyph',
+            distance: 0.218,
+            similarityOverride: 0.782,
+            aggregateScore: 0.782,
+            rerankScore: 0.782,
+            crops: 2,
+            titleSupport: false,
+          ),
+        ],
+        frameIndex: 1,
+      );
+
+      expect(snapshot.acceptedCandidate, 'pal-spiritomb');
+      expect(snapshot.lockedCandidate, 'pal-spiritomb');
+      expect(snapshot.identityDecisionReason, 'fast_confidence_guard_passed');
+    },
+  );
+
+  test(
+    'weak full-card same-name family evidence cannot bypass title support',
+    () {
+      final voteState = CandidateVoteState();
+      final snapshot = voteState.update(
+        candidates: <Candidate>[
+          _candidate(
+            cardId: 'weak-family-card',
+            rank: 1,
+            name: 'Spiritomb',
+            distance: 0.181,
+            similarityOverride: 0.819,
+            aggregateScore: 0.819,
+            rerankScore: 0.819,
+            crops: 2,
+            titleSupport: false,
+            cropTypesOverride: const <String>[
+              'full_card',
+              CandidateVoteState.sameNameFamilyCropType,
+            ],
+          ),
+        ],
+        frameIndex: 1,
+      );
+
+      expect(snapshot.acceptedCandidate, isNull);
+      expect(snapshot.lockedCandidate, isNull);
+      expect(
+        snapshot.identityDecisionState,
+        isNot(IdentityDecisionStateV1.identityLocked),
+      );
+    },
+  );
 
   test('single-frame cross-crop guard rejects high-distance neighbors', () {
     final voteState = CandidateVoteState();
@@ -515,44 +664,43 @@ void main() {
     );
   });
 
-  test('priority artwork evidence can fast lock without title support', () {
-    final voteState = CandidateVoteState();
-    final snapshot = voteState.update(
-      candidates: <Candidate>[
-        _strongCandidate(
-          crops: 3,
-          distance: 0.202,
-          similarityOverride: 0.80,
-          aggregateScore: 0.80,
-          rerankScore: 0.84,
-          titleSupport: false,
-          priorityArtworkSupport: true,
-        ),
-        _candidate(
-          cardId: 'artwork-neighbor',
-          rank: 2,
-          distance: 0.228,
-          similarityOverride: 0.76,
-          aggregateScore: 0.76,
-          rerankScore: 0.76,
-          crops: 1,
-          titleSupport: false,
-        ),
-      ],
-      frameIndex: 1,
-    );
+  test(
+    'priority artwork evidence cannot fast lock without printed identity support',
+    () {
+      final voteState = CandidateVoteState();
+      final snapshot = voteState.update(
+        candidates: <Candidate>[
+          _strongCandidate(
+            crops: 3,
+            distance: 0.202,
+            similarityOverride: 0.80,
+            aggregateScore: 0.80,
+            rerankScore: 0.84,
+            titleSupport: false,
+            priorityArtworkSupport: true,
+          ),
+          _candidate(
+            cardId: 'artwork-neighbor',
+            rank: 2,
+            distance: 0.228,
+            similarityOverride: 0.76,
+            aggregateScore: 0.76,
+            rerankScore: 0.76,
+            crops: 1,
+            titleSupport: false,
+          ),
+        ],
+        frameIndex: 1,
+      );
 
-    expect(snapshot.acceptedCandidate, 'card-1');
-    expect(snapshot.lockedCandidate, 'card-1');
-    expect(
-      snapshot.identityDecisionState,
-      IdentityDecisionStateV1.identityLocked,
-    );
-    expect(
-      snapshot.identityDecisionReason,
-      'artwork_identity_fast_guard_passed',
-    );
-  });
+      expect(snapshot.acceptedCandidate, isNull);
+      expect(snapshot.lockedCandidate, isNull);
+      expect(
+        snapshot.identityDecisionState,
+        isNot(IdentityDecisionStateV1.identityLocked),
+      );
+    },
+  );
 
   test('priority artwork evidence keeps a distance ceiling', () {
     final voteState = CandidateVoteState();
@@ -682,11 +830,11 @@ void main() {
         frameIndex: 3,
       );
 
-      expect(third.acceptedCandidate, 'mankey');
-      expect(third.lockedCandidate, 'mankey');
+      expect(third.acceptedCandidate, isNull);
+      expect(third.lockedCandidate, isNull);
       expect(
-        third.identityDecisionReason,
-        'stable_artwork_identity_guard_passed',
+        third.identityDecisionState,
+        isNot(IdentityDecisionStateV1.identityLocked),
       );
     },
   );
@@ -736,6 +884,8 @@ void main() {
         titleSupport: false,
         cropTypesOverride: const <String>[
           'full_card',
+          CandidateVoteState.titleBandCropType,
+          CandidateVoteState.visualIdentityBandCropType,
           CandidateVoteState.sameNameFamilyCropType,
         ],
       ),
@@ -791,6 +941,12 @@ void main() {
         rerankScore: 0.95,
         crops: 2,
         titleSupport: false,
+        cropTypesOverride: const <String>[
+          'full_card',
+          CandidateVoteState.titleBandCropType,
+          CandidateVoteState.visualIdentityBandCropType,
+          CandidateVoteState.sameNameFamilyCropType,
+        ],
       ),
       _candidate(
         cardId: 'vanillite-common',
@@ -815,6 +971,259 @@ void main() {
       IdentityDecisionStateV1.identityLocked,
     );
   });
+
+  test('strict shutter authority buffers strong evidence until reveal', () {
+    final voteState = CandidateVoteState(strictShutterAuthority: true);
+    final candidates = <Candidate>[
+      _candidate(
+        cardId: 'pal-spiritomb',
+        rank: 1,
+        name: 'Spiritomb',
+        distance: 0.140,
+        similarityOverride: 0.860,
+        aggregateScore: 0.860,
+        rerankScore: 0.860,
+        crops: 2,
+        titleSupport: false,
+        cropTypesOverride: const <String>[
+          'full_card',
+          CandidateVoteState.sameNameFamilyCropType,
+        ],
+      ),
+      _candidate(
+        cardId: 'visual-neighbor',
+        rank: 2,
+        name: 'Sigilyph',
+        distance: 0.218,
+        similarityOverride: 0.782,
+        aggregateScore: 0.782,
+        rerankScore: 0.782,
+        crops: 2,
+        titleSupport: false,
+      ),
+    ];
+
+    final background = voteState.update(
+      candidates: candidates,
+      frameIndex: 1,
+      allowLock: false,
+    );
+    final reveal = voteState.tryLockForReveal(frameIndex: 1);
+
+    expect(background.acceptedCandidate, isNull);
+    expect(background.lockedCandidate, isNull);
+    expect(reveal.acceptedCandidate, 'pal-spiritomb');
+    expect(reveal.lockedCandidate, 'pal-spiritomb');
+    expect(
+      reveal.identityDecisionState,
+      IdentityDecisionStateV1.identityLocked,
+    );
+  });
+
+  test(
+    'strict shutter authority rejects noisy fallback consensus as final ID',
+    () {
+      final voteState = CandidateVoteState(strictShutterAuthority: true);
+      final candidates = <Candidate>[
+        _candidate(
+          cardId: 'wrong-core-neighbor',
+          rank: 1,
+          name: 'Deoxys',
+          distance: 0.202,
+          similarityOverride: 0.798,
+          aggregateScore: 0.798,
+          rerankScore: 0.940,
+          crops: 4,
+          titleSupport: false,
+          coreConsensusSupport: true,
+          cropTypesOverride: const <String>[
+            'full_card_core',
+            'full_card_core_identity',
+            CandidateVoteState.coreIdentityConsensusCropType,
+            CandidateVoteState.priorityIdentitySupportCropType,
+          ],
+        ),
+      ];
+
+      voteState.update(candidates: candidates, frameIndex: 1, allowLock: false);
+      final reveal = voteState.tryLockForReveal(frameIndex: 1);
+
+      expect(reveal.acceptedCandidate, isNull);
+      expect(reveal.lockedCandidate, isNull);
+      expect(
+        reveal.identityDecisionState,
+        isNot(IdentityDecisionStateV1.identityLocked),
+      );
+    },
+  );
+
+  test(
+    'strict shutter authority rejects weak full-card same-name family evidence',
+    () {
+      final voteState = CandidateVoteState(strictShutterAuthority: true);
+      final candidates = <Candidate>[
+        _candidate(
+          cardId: 'weak-family-card',
+          rank: 1,
+          name: 'Spiritomb',
+          distance: 0.151,
+          similarityOverride: 0.849,
+          aggregateScore: 0.849,
+          rerankScore: 0.849,
+          crops: 2,
+          titleSupport: false,
+          cropTypesOverride: const <String>[
+            'full_card',
+            CandidateVoteState.sameNameFamilyCropType,
+          ],
+        ),
+      ];
+
+      voteState.update(candidates: candidates, frameIndex: 1, allowLock: false);
+      final reveal = voteState.tryLockForReveal(frameIndex: 1);
+
+      expect(reveal.acceptedCandidate, isNull);
+      expect(reveal.lockedCandidate, isNull);
+      expect(
+        reveal.identityDecisionState,
+        isNot(IdentityDecisionStateV1.identityLocked),
+      );
+    },
+  );
+
+  test(
+    'strict shutter authority accepts stable full-card alignment on reveal',
+    () {
+      final voteState = CandidateVoteState(strictShutterAuthority: true);
+      final candidates = <Candidate>[
+        _candidate(
+          cardId: 'me03-aromatisse',
+          rank: 1,
+          name: 'Aromatisse',
+          distance: 0.274,
+          similarityOverride: 0.726,
+          aggregateScore: 0.726,
+          rerankScore: 0.726,
+          crops: 6,
+          titleSupport: false,
+          cropTypesOverride: const <String>[
+            'full_card',
+            CandidateVoteState.visualFullCardAlignmentCropType,
+            CandidateVoteState.visualIdentityBandCropType,
+            CandidateVoteState.priorityIdentitySupportCropType,
+          ],
+        ),
+        _candidate(
+          cardId: 'visual-neighbor',
+          rank: 2,
+          name: 'Alcremie',
+          distance: 0.269,
+          similarityOverride: 0.731,
+          aggregateScore: 0.731,
+          rerankScore: 0.731,
+          crops: 2,
+          titleSupport: false,
+        ),
+      ];
+
+      for (var frame = 1; frame <= 3; frame += 1) {
+        final background = voteState.update(
+          candidates: candidates,
+          frameIndex: frame,
+          allowLock: false,
+        );
+        expect(background.acceptedCandidate, isNull);
+        expect(background.lockedCandidate, isNull);
+      }
+
+      final reveal = voteState.tryLockForReveal(frameIndex: 3);
+
+      expect(reveal.lockedCandidate, 'me03-aromatisse');
+      expect(
+        reveal.acceptedCandidate,
+        'me03-aromatisse',
+        reason: reveal.identityDecisionReason,
+      );
+      expect(
+        reveal.identityDecisionState,
+        IdentityDecisionStateV1.identityLocked,
+      );
+    },
+  );
+
+  test(
+    'strict shutter authority rejects one-frame full-card alignment evidence',
+    () {
+      final voteState = CandidateVoteState(strictShutterAuthority: true);
+      final candidates = <Candidate>[
+        _candidate(
+          cardId: 'one-frame-card',
+          rank: 1,
+          distance: 0.274,
+          similarityOverride: 0.726,
+          aggregateScore: 0.726,
+          rerankScore: 0.726,
+          crops: 6,
+          titleSupport: false,
+          cropTypesOverride: const <String>[
+            'full_card',
+            CandidateVoteState.visualFullCardAlignmentCropType,
+            CandidateVoteState.visualIdentityBandCropType,
+          ],
+        ),
+      ];
+
+      voteState.update(candidates: candidates, frameIndex: 1, allowLock: false);
+      final reveal = voteState.tryLockForReveal(frameIndex: 1);
+
+      expect(reveal.acceptedCandidate, isNull);
+      expect(reveal.lockedCandidate, isNull);
+      expect(
+        reveal.identityDecisionState,
+        isNot(IdentityDecisionStateV1.identityLocked),
+      );
+    },
+  );
+
+  test(
+    'strict shutter authority rejects high-distance full-card alignment evidence',
+    () {
+      final voteState = CandidateVoteState(strictShutterAuthority: true);
+      final candidates = <Candidate>[
+        _candidate(
+          cardId: 'distant-card',
+          rank: 1,
+          distance: 0.301,
+          similarityOverride: 0.699,
+          aggregateScore: 0.699,
+          rerankScore: 0.699,
+          crops: 6,
+          titleSupport: false,
+          cropTypesOverride: const <String>[
+            'full_card',
+            CandidateVoteState.visualFullCardAlignmentCropType,
+            CandidateVoteState.visualIdentityBandCropType,
+          ],
+        ),
+      ];
+
+      for (var frame = 1; frame <= 3; frame += 1) {
+        voteState.update(
+          candidates: candidates,
+          frameIndex: frame,
+          allowLock: false,
+        );
+      }
+      final reveal = voteState.tryLockForReveal(frameIndex: 3);
+
+      expect(reveal.acceptedCandidate, isNull);
+      expect(reveal.lockedCandidate, isNull);
+      expect(
+        reveal.identityDecisionState,
+        isNot(IdentityDecisionStateV1.identityLocked),
+      );
+    },
+  );
 }
 
 Candidate _strongCandidate({
@@ -826,7 +1235,9 @@ Candidate _strongCandidate({
   bool titleSupport = false,
   bool coreConsensusSupport = false,
   bool visualFullCardAlignmentSupport = false,
+  bool fullCardExactVisualMatchSupport = false,
   bool priorityArtworkSupport = false,
+  bool? identityBandSupport,
 }) {
   return _candidate(
     cardId: 'card-1',
@@ -839,7 +1250,9 @@ Candidate _strongCandidate({
     titleSupport: titleSupport,
     coreConsensusSupport: coreConsensusSupport,
     visualFullCardAlignmentSupport: visualFullCardAlignmentSupport,
+    fullCardExactVisualMatchSupport: fullCardExactVisualMatchSupport,
     priorityArtworkSupport: priorityArtworkSupport,
+    identityBandSupport: identityBandSupport,
   );
 }
 
@@ -855,19 +1268,25 @@ Candidate _candidate({
   required bool titleSupport,
   bool coreConsensusSupport = false,
   bool visualFullCardAlignmentSupport = false,
+  bool fullCardExactVisualMatchSupport = false,
   bool priorityArtworkSupport = false,
+  bool? identityBandSupport,
   List<String>? cropTypesOverride,
 }) {
+  final includeIdentityBand = identityBandSupport ?? titleSupport;
   final contributingCropTypes =
       cropTypesOverride ??
       <String>[
         'full_card_upper',
         CandidateVoteState.artworkGrayCropType,
         if (titleSupport) CandidateVoteState.titleBandCropType,
+        if (includeIdentityBand) CandidateVoteState.visualIdentityBandCropType,
         if (coreConsensusSupport)
           CandidateVoteState.coreIdentityConsensusCropType,
         if (visualFullCardAlignmentSupport)
           CandidateVoteState.visualFullCardAlignmentCropType,
+        if (fullCardExactVisualMatchSupport)
+          CandidateVoteState.fullCardExactVisualMatchCropType,
         if (priorityArtworkSupport)
           CandidateVoteState.priorityArtworkGrayCropType,
         if (priorityArtworkSupport)

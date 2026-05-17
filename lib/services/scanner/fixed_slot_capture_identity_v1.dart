@@ -195,6 +195,11 @@ class FixedSlotStillProcessorV1 {
               width: normalizedWidth,
               height: normalizedHeight,
             );
+      final quality = _measureQuality(
+        normalized.rawRgbaBytes,
+        normalizedWidth,
+        normalizedHeight,
+      );
       final normalizedImage = await _rawRgbaToImage(
         normalized.rawRgbaBytes,
         normalizedWidth,
@@ -203,6 +208,15 @@ class FixedSlotStillProcessorV1 {
       final annCrops = <FixedSlotAnnCropV1>[];
       final debugCrops = <FixedSlotAnnCropV1>[];
       try {
+        annCrops.add(
+          FixedSlotAnnCropV1(
+            cropType: 'fixed_slot_visual_confirmation',
+            width: normalizedWidth,
+            height: normalizedHeight,
+            rawRgbaBytes: normalized.rawRgbaBytes,
+            pngBytes: normalized.pngBytes,
+          ),
+        );
         annCrops.addAll(await _buildAnnCrops(normalizedImage));
         debugCrops.addAll(await _buildDebugCrops(normalizedImage));
       } finally {
@@ -228,6 +242,7 @@ class FixedSlotStillProcessorV1 {
         normalizedPngBytes: normalized.pngBytes,
         normalizedWidth: normalizedWidth,
         normalizedHeight: normalizedHeight,
+        quality: quality,
         annCrops: annCrops,
         debugCrops: debugCrops,
       );
@@ -258,19 +273,13 @@ class FixedSlotStillProcessorV1 {
     return <FixedSlotAnnCropV1>[
       await _buildCrop(
         image: normalizedImage,
-        cropType: 'full_card_core',
-        rect: const _RectNorm(left: 0.08, top: 0.10, right: 0.92, bottom: 0.82),
-      ),
-      await _buildCrop(
-        image: normalizedImage,
         cropType: 'full_card_core_identity',
         rect: const _RectNorm(left: 0.09, top: 0.10, right: 0.91, bottom: 0.80),
       ),
       await _buildCrop(
         image: normalizedImage,
-        cropType: 'artwork_zoom_in_10_gray',
-        rect: const _RectNorm(left: 0.12, top: 0.19, right: 0.88, bottom: 0.58),
-        grayscale: true,
+        cropType: 'full_card',
+        rect: const _RectNorm(left: 0.00, top: 0.00, right: 1.00, bottom: 1.00),
       ),
     ];
   }
@@ -281,13 +290,19 @@ class FixedSlotStillProcessorV1 {
     return <FixedSlotAnnCropV1>[
       await _buildCrop(
         image: normalizedImage,
-        cropType: 'full_card',
-        rect: const _RectNorm(left: 0.00, top: 0.00, right: 1.00, bottom: 1.00),
+        cropType: 'full_card_core',
+        rect: const _RectNorm(left: 0.08, top: 0.10, right: 0.92, bottom: 0.82),
       ),
       await _buildCrop(
         image: normalizedImage,
         cropType: 'full_card_upper',
         rect: const _RectNorm(left: 0.00, top: 0.00, right: 1.00, bottom: 0.50),
+      ),
+      await _buildCrop(
+        image: normalizedImage,
+        cropType: 'artwork_zoom_in_10_gray',
+        rect: const _RectNorm(left: 0.12, top: 0.19, right: 0.88, bottom: 0.58),
+        grayscale: true,
       ),
     ];
   }
@@ -531,11 +546,71 @@ class FixedSlotStillProcessorV1 {
       raw[offset + 3] = 255;
     }
   }
+
+  static FixedSlotCaptureQualityV1 _measureQuality(
+    Uint8List raw,
+    int width,
+    int height,
+  ) {
+    if (width <= 1 || height <= 1 || raw.length < width * height * 4) {
+      return const FixedSlotCaptureQualityV1(
+        meanLuma: 0,
+        contrast: 0,
+        sharpness: 0,
+      );
+    }
+
+    var sum = 0.0;
+    var sumSquares = 0.0;
+    var gradientSum = 0.0;
+    var gradientCount = 0;
+    for (var y = 0; y < height; y += 1) {
+      for (var x = 0; x < width; x += 1) {
+        final offset = ((y * width) + x) * 4;
+        final luma =
+            ((raw[offset] * 0.299) +
+                (raw[offset + 1] * 0.587) +
+                (raw[offset + 2] * 0.114)) /
+            255.0;
+        sum += luma;
+        sumSquares += luma * luma;
+        if (x > 0 && y > 0) {
+          final leftOffset = ((y * width) + x - 1) * 4;
+          final upOffset = (((y - 1) * width) + x) * 4;
+          final leftLuma =
+              ((raw[leftOffset] * 0.299) +
+                  (raw[leftOffset + 1] * 0.587) +
+                  (raw[leftOffset + 2] * 0.114)) /
+              255.0;
+          final upLuma =
+              ((raw[upOffset] * 0.299) +
+                  (raw[upOffset + 1] * 0.587) +
+                  (raw[upOffset + 2] * 0.114)) /
+              255.0;
+          gradientSum += (luma - leftLuma).abs() + (luma - upLuma).abs();
+          gradientCount += 2;
+        }
+      }
+    }
+
+    final pixelCount = width * height;
+    final mean = sum / pixelCount;
+    final variance = math.max(0.0, (sumSquares / pixelCount) - (mean * mean));
+    final contrast = math.sqrt(variance);
+    final sharpness = gradientCount == 0 ? 0.0 : gradientSum / gradientCount;
+    return FixedSlotCaptureQualityV1(
+      meanLuma: mean,
+      contrast: contrast,
+      sharpness: sharpness,
+    );
+  }
 }
 
 class FixedSlotCardEdgeRefinerV1 {
   FixedSlotCardEdgeRefinerV1._();
 
+  static const double _cardAspectRatio =
+      FixedSlotCaptureGeometryV1.cardAspectRatio;
   static const double _foregroundDistanceThreshold = 45.0;
   static const double _rowForegroundFraction = 0.12;
   static const double _columnForegroundFraction = 0.12;
@@ -548,6 +623,15 @@ class FixedSlotCardEdgeRefinerV1 {
     if (width <= 0 || height <= 0 || rawRgbaBytes.length < width * height * 4) {
       return null;
     }
+    final gradientDetection = _detectGradientCardBounds(
+      rawRgbaBytes: rawRgbaBytes,
+      width: width,
+      height: height,
+    );
+    if (gradientDetection != null) {
+      return gradientDetection;
+    }
+
     final background = _cornerMedianBackground(rawRgbaBytes, width, height);
     final backgroundLum = _luminance(
       background[0],
@@ -630,6 +714,254 @@ class FixedSlotCardEdgeRefinerV1 {
       backgroundRgb: background,
       foregroundDistanceThreshold: _foregroundDistanceThreshold,
     );
+  }
+
+  static FixedSlotEdgeRefinementV1? _detectGradientCardBounds({
+    required Uint8List rawRgbaBytes,
+    required int width,
+    required int height,
+  }) {
+    final luminance = List<double>.filled(width * height, 0);
+    for (var y = 0; y < height; y += 1) {
+      for (var x = 0; x < width; x += 1) {
+        final offset = ((y * width) + x) * 4;
+        luminance[(y * width) + x] = _luminance(
+          rawRgbaBytes[offset],
+          rawRgbaBytes[offset + 1],
+          rawRgbaBytes[offset + 2],
+        );
+      }
+    }
+
+    final columnScores = List<double>.filled(width, 0);
+    final rowStart = (height * 0.06).round().clamp(1, height - 2);
+    final rowEnd = (height * 0.88).round().clamp(rowStart + 1, height - 2);
+    for (var x = 1; x < width - 1; x += 1) {
+      var score = 0.0;
+      for (var y = rowStart; y <= rowEnd; y += 1) {
+        score +=
+            (luminance[(y * width) + x + 1] - luminance[(y * width) + x - 1])
+                .abs();
+      }
+      columnScores[x] = score;
+    }
+
+    final rowScores = List<double>.filled(height, 0);
+    final columnStart = (width * 0.10).round().clamp(1, width - 2);
+    final columnEnd = (width * 0.90).round().clamp(columnStart + 1, width - 2);
+    for (var y = 1; y < height - 1; y += 1) {
+      var score = 0.0;
+      for (var x = columnStart; x <= columnEnd; x += 1) {
+        score +=
+            (luminance[((y + 1) * width) + x] -
+                    luminance[((y - 1) * width) + x])
+                .abs();
+      }
+      rowScores[y] = score;
+    }
+
+    final smoothColumns = _smoothScores(columnScores, radius: 4);
+    final smoothRows = _smoothScores(rowScores, radius: 3);
+    final top = _bestScoreIndex(
+      smoothRows,
+      (height * 0.04).round(),
+      (height * 0.25).round(),
+    );
+    if (top == null) {
+      return null;
+    }
+
+    final edgePair = _bestGradientEdgePair(
+      smoothColumns: smoothColumns,
+      smoothRows: smoothRows,
+      top: top,
+      width: width,
+      height: height,
+    );
+    if (edgePair == null) return null;
+    final left = edgePair.left;
+    final right = edgePair.right;
+    final bottom = edgePair.bottom;
+
+    final horizontalPadding = math.max(4.0, width * 0.06);
+    final verticalPadding = math.max(4.0, height * 0.06);
+    final boundedLeft = (left - horizontalPadding)
+        .clamp(0.0, width - 1.0)
+        .toDouble();
+    final boundedTop = (top - verticalPadding)
+        .clamp(0.0, height - 1.0)
+        .toDouble();
+    final boundedRight = (right + horizontalPadding).clamp(
+      boundedLeft + 1.0,
+      width.toDouble(),
+    );
+    final boundedBottom = (bottom + verticalPadding).clamp(
+      boundedTop + 1.0,
+      height.toDouble(),
+    );
+    final rawBounds = ui.Rect.fromLTRB(
+      boundedLeft,
+      boundedTop,
+      boundedRight,
+      boundedBottom,
+    );
+    final bounds = FixedSlotCaptureGeometryV1._fitCardAspect(
+      rawBounds,
+      width.toDouble(),
+      height.toDouble(),
+    );
+    final aspect = bounds.width / bounds.height;
+    if (bounds.width < width * 0.38 ||
+        bounds.height < height * 0.52 ||
+        aspect < 0.54 ||
+        aspect > 0.84) {
+      return null;
+    }
+
+    return FixedSlotEdgeRefinementV1(
+      normalizedBounds: bounds,
+      perspectivePoints: <ui.Offset>[
+        ui.Offset(bounds.left, bounds.top),
+        ui.Offset(bounds.right, bounds.top),
+        ui.Offset(bounds.right, bounds.bottom),
+        ui.Offset(bounds.left, bounds.bottom),
+      ],
+      method: 'luminance_gradient_card_edge_v1',
+      backgroundRgb: _cornerMedianBackground(rawRgbaBytes, width, height),
+      foregroundDistanceThreshold: _foregroundDistanceThreshold,
+    );
+  }
+
+  static List<double> _smoothScores(
+    List<double> values, {
+    required int radius,
+  }) {
+    final smoothed = List<double>.filled(values.length, 0);
+    for (var index = 0; index < values.length; index += 1) {
+      final start = math.max(0, index - radius);
+      final end = math.min(values.length - 1, index + radius);
+      var sum = 0.0;
+      var count = 0;
+      for (var cursor = start; cursor <= end; cursor += 1) {
+        sum += values[cursor];
+        count += 1;
+      }
+      smoothed[index] = count == 0 ? values[index] : sum / count;
+    }
+    return smoothed;
+  }
+
+  static int? _bestScoreIndex(List<double> values, int start, int end) {
+    if (values.isEmpty) return null;
+    final safeStart = start.clamp(0, values.length - 1);
+    final safeEnd = end.clamp(safeStart, values.length - 1);
+    var bestIndex = safeStart;
+    var bestScore = values[safeStart];
+    for (var index = safeStart + 1; index <= safeEnd; index += 1) {
+      final score = values[index];
+      if (score > bestScore) {
+        bestScore = score;
+        bestIndex = index;
+      }
+    }
+    return bestScore > 0 ? bestIndex : null;
+  }
+
+  static _GradientCardBoundsV1? _bestGradientEdgePair({
+    required List<double> smoothColumns,
+    required List<double> smoothRows,
+    required int top,
+    required int width,
+    required int height,
+  }) {
+    final leftCandidates = _topScoreIndexes(
+      smoothColumns,
+      (width * 0.02).round(),
+      (width * 0.50).round(),
+      count: 12,
+    );
+    final rightCandidates = _topScoreIndexes(
+      smoothColumns,
+      (width * 0.35).round(),
+      (width * 0.98).round(),
+      count: 14,
+    );
+    if (leftCandidates.isEmpty || rightCandidates.isEmpty) return null;
+
+    _GradientCardBoundsV1? best;
+    var bestScore = 0.0;
+    for (final left in leftCandidates) {
+      for (final right in rightCandidates) {
+        if (right <= left) continue;
+        final edgeWidth = right - left;
+        if (edgeWidth < width * 0.38 || edgeWidth > width * 0.96) continue;
+
+        final expectedHeight = edgeWidth / _cardAspectRatio;
+        final expectedBottom = (top + expectedHeight).round();
+        if (expectedBottom <= top + 1 || expectedBottom >= height - 2) {
+          continue;
+        }
+
+        final bottomScore = _maxScoreInWindow(
+          smoothRows,
+          expectedBottom - 26,
+          expectedBottom + 26,
+        );
+        final aspect = edgeWidth / (expectedBottom - top);
+        if (aspect < 0.62 || aspect > 0.80) continue;
+
+        final score =
+            smoothColumns[left] +
+            smoothColumns[right] +
+            (smoothRows[top] * 0.65) +
+            (bottomScore * 1.45);
+        if (score > bestScore) {
+          bestScore = score;
+          best = _GradientCardBoundsV1(
+            left: left,
+            right: right,
+            bottom: expectedBottom,
+          );
+        }
+      }
+    }
+
+    return bestScore > 0 ? best : null;
+  }
+
+  static List<int> _topScoreIndexes(
+    List<double> values,
+    int start,
+    int end, {
+    required int count,
+  }) {
+    if (values.isEmpty || count <= 0) return const <int>[];
+    final safeStart = start.clamp(0, values.length - 1);
+    final safeEnd = end.clamp(safeStart, values.length - 1);
+    final rows = <_ScoreIndexV1>[];
+    for (var index = safeStart; index <= safeEnd; index += 1) {
+      rows.add(_ScoreIndexV1(index: index, score: values[index]));
+    }
+    rows.sort((a, b) {
+      final scoreCompare = b.score.compareTo(a.score);
+      return scoreCompare == 0 ? a.index.compareTo(b.index) : scoreCompare;
+    });
+    return rows
+        .take(count)
+        .where((row) => row.score > 0)
+        .map((row) => row.index)
+        .toList(growable: false);
+  }
+
+  static double _maxScoreInWindow(List<double> values, int start, int end) {
+    if (values.isEmpty) return 0;
+    final safeStart = start.clamp(0, values.length - 1);
+    final safeEnd = end.clamp(safeStart, values.length - 1);
+    var best = 0.0;
+    for (var index = safeStart; index <= safeEnd; index += 1) {
+      best = math.max(best, values[index]);
+    }
+    return best;
   }
 
   static List<int> _cornerMedianBackground(
@@ -739,6 +1071,25 @@ class FixedSlotEdgeRefinementV1 {
   final double foregroundDistanceThreshold;
 }
 
+class _GradientCardBoundsV1 {
+  const _GradientCardBoundsV1({
+    required this.left,
+    required this.right,
+    required this.bottom,
+  });
+
+  final int left;
+  final int right;
+  final int bottom;
+}
+
+class _ScoreIndexV1 {
+  const _ScoreIndexV1({required this.index, required this.score});
+
+  final int index;
+  final double score;
+}
+
 class _RectNorm {
   const _RectNorm({
     required this.left,
@@ -768,6 +1119,7 @@ class FixedSlotStillArtifactV1 {
     required this.normalizedPngBytes,
     required this.normalizedWidth,
     required this.normalizedHeight,
+    required this.quality,
     required this.annCrops,
     required this.debugCrops,
   });
@@ -785,8 +1137,30 @@ class FixedSlotStillArtifactV1 {
   final Uint8List normalizedPngBytes;
   final int normalizedWidth;
   final int normalizedHeight;
+  final FixedSlotCaptureQualityV1 quality;
   final List<FixedSlotAnnCropV1> annCrops;
   final List<FixedSlotAnnCropV1> debugCrops;
+}
+
+class FixedSlotCaptureQualityV1 {
+  const FixedSlotCaptureQualityV1({
+    required this.meanLuma,
+    required this.contrast,
+    required this.sharpness,
+  });
+
+  final double meanLuma;
+  final double contrast;
+  final double sharpness;
+
+  Map<String, Object?> toJson() {
+    return <String, Object?>{
+      'mean_luma': meanLuma,
+      'contrast': contrast,
+      'sharpness': sharpness,
+      'metric_version': 'fixed_slot_capture_quality_v1',
+    };
+  }
 }
 
 class FixedSlotAnnCropV1 {
@@ -819,7 +1193,7 @@ class FixedSlotAnnIdentityClientV1 {
   FixedSlotAnnIdentityClientV1({
     String? endpoint,
     http.Client? client,
-    this.topK = 12,
+    this.topK = 200,
     this.timeout = const Duration(seconds: 5),
   }) : endpoint = endpoint ?? resolveConfiguredEndpoint(),
        _client = client ?? http.Client();
@@ -912,7 +1286,7 @@ class FixedSlotAnnIdentityClientV1 {
       }
 
       final cropsByType = _parseResolvedCrops(decoded['crops']);
-      final decision = _chooseConfidentCandidate(cropsByType);
+      final decision = _chooseConfidentCandidate(cropsByType, decoded);
       return FixedSlotAnnResolutionV1(
         endpoint: resolvedEndpoint,
         elapsed: stopwatch.elapsed,
@@ -974,40 +1348,35 @@ class FixedSlotAnnIdentityClientV1 {
 
   static _FixedSlotDecisionV1 _chooseConfidentCandidate(
     Map<String, List<_ResolvedCropCandidateV1>> candidatesByCrop,
+    Map<String, dynamic> decoded,
   ) {
-    const anchorCropPriority = <String>[
-      'full_card_core',
-      'full_card_core_identity',
-      'full_card',
-    ];
-    String? anchorCropType;
-    List<_ResolvedCropCandidateV1> anchorCandidates = const [];
-    for (final cropType in anchorCropPriority) {
-      final candidates = candidatesByCrop[cropType] ?? const [];
-      if (candidates.isNotEmpty) {
-        anchorCropType = cropType;
-        anchorCandidates = candidates;
-        break;
-      }
-    }
-    if (anchorCropType == null || anchorCandidates.isEmpty) {
+    final backendConfirmation = _confirmedBackendVisualCandidate(decoded);
+    if (backendConfirmation != null) return backendConfirmation;
+    final backendFailure = _backendVisualConfirmationFailure(decoded);
+    if (backendFailure != null) return backendFailure;
+
+    final identityCandidates =
+        candidatesByCrop['full_card_core_identity'] ?? const [];
+    final fullCardCandidates = candidatesByCrop['full_card'] ?? const [];
+    if (identityCandidates.isEmpty || fullCardCandidates.isEmpty) {
       return const _FixedSlotDecisionV1(
         failureReason: 'no_identity_anchor_candidates',
         evidence: <String, Object?>{},
       );
     }
 
-    final top = anchorCandidates.first;
-    final topId = top.candidate.cardId;
-    final supportingCropTypes = <String>[];
-    for (final entry in candidatesByCrop.entries) {
-      if (entry.key == anchorCropType) continue;
-      final supported = entry.value
-          .take(6)
-          .any((item) => item.candidate.cardId == topId);
-      if (supported) supportingCropTypes.add(entry.key);
+    final identityTop = identityCandidates.first;
+    final fullCardTop = fullCardCandidates.first;
+    final top = identityTop;
+    final topId = identityTop.candidate.cardId;
+    final exactFullCardAgreement = fullCardTop.candidate.cardId == topId;
+    _ResolvedCropCandidateV1? fullCardExactSupport;
+    for (final candidate in fullCardCandidates) {
+      if (candidate.candidate.cardId == topId) {
+        fullCardExactSupport = candidate;
+        break;
+      }
     }
-
     final alignmentSignal =
         top.raw['visual_full_card_alignment_signal'] == true ||
         top.raw['full_card_exact_visual_match'] == true ||
@@ -1017,23 +1386,46 @@ class FixedSlotAnnIdentityClientV1 {
         top.candidate.contributingCropTypes.contains(
           'full_card_exact_visual_match',
         );
+    final fullCardAlignmentSignal =
+        fullCardTop.raw['visual_full_card_alignment_signal'] == true ||
+        fullCardTop.raw['full_card_exact_visual_match'] == true ||
+        fullCardTop.candidate.contributingCropTypes.contains(
+          'visual_full_card_alignment',
+        ) ||
+        fullCardTop.candidate.contributingCropTypes.contains(
+          'full_card_exact_visual_match',
+        );
+    final fullCardAlignmentDistance = _optionalDouble(
+      fullCardTop.raw['visual_card_alignment_distance'],
+    );
+    final fullCardAlignmentSeparation = _optionalDouble(
+      fullCardTop.raw['visual_card_alignment_separation'],
+    );
     final contributionCount = top.candidate.cropContributionCount ?? 1;
-    final isWildDistance = top.candidate.distance > 0.36;
-    final hasSupport =
-        supportingCropTypes.isNotEmpty ||
-        alignmentSignal ||
-        contributionCount >= 2;
+    final isWildDistance =
+        identityTop.candidate.distance > 0.36 ||
+        fullCardTop.candidate.distance > 0.36;
 
     final evidence = <String, Object?>{
-      'anchor_crop_type': anchorCropType,
-      'anchor_rank1_card_id': top.candidate.cardId,
-      'anchor_rank1_name': top.candidate.name,
-      'anchor_rank1_distance': top.candidate.distance,
-      'full_card_rank1_card_id': top.candidate.cardId,
-      'full_card_rank1_name': top.candidate.name,
-      'full_card_rank1_distance': top.candidate.distance,
-      'supporting_crop_types': supportingCropTypes,
+      'anchor_crop_type': 'full_card_core_identity',
+      'anchor_rank1_card_id': identityTop.candidate.cardId,
+      'anchor_rank1_name': identityTop.candidate.name,
+      'anchor_rank1_distance': identityTop.candidate.distance,
+      'full_card_rank1_card_id': fullCardTop.candidate.cardId,
+      'full_card_rank1_name': fullCardTop.candidate.name,
+      'full_card_rank1_distance': fullCardTop.candidate.distance,
+      'full_card_exact_support_rank': fullCardExactSupport?.candidate.rank,
+      'full_card_exact_support_distance':
+          fullCardExactSupport?.candidate.distance,
+      'supporting_crop_types': exactFullCardAgreement
+          ? const <String>['full_card']
+          : const <String>[],
+      'rank1_exact_agreement': exactFullCardAgreement,
+      'exact_full_card_support': fullCardExactSupport != null,
       'alignment_signal': alignmentSignal,
+      'full_card_alignment_signal': fullCardAlignmentSignal,
+      'full_card_alignment_distance': fullCardAlignmentDistance,
+      'full_card_alignment_separation': fullCardAlignmentSeparation,
       'crop_contribution_count': contributionCount,
     };
 
@@ -1043,14 +1435,98 @@ class FixedSlotAnnIdentityClientV1 {
         evidence: evidence,
       );
     }
-    if (!hasSupport) {
+    if (exactFullCardAgreement) {
+      return _FixedSlotDecisionV1(candidate: top.candidate, evidence: evidence);
+    }
+    if (fullCardAlignmentSignal &&
+        fullCardTop.candidate.distance <= 0.24 &&
+        (fullCardAlignmentDistance == null ||
+            fullCardAlignmentDistance <= 0.24) &&
+        (fullCardAlignmentSeparation == null ||
+            fullCardAlignmentSeparation >= 0.045)) {
       return _FixedSlotDecisionV1(
-        failureReason: 'weak_visual_agreement',
-        evidence: evidence,
+        candidate: fullCardTop.candidate,
+        evidence: <String, Object?>{
+          ...evidence,
+          'accepted_by': 'full_card_exact_visual_match',
+        },
       );
     }
 
-    return _FixedSlotDecisionV1(candidate: top.candidate, evidence: evidence);
+    return _FixedSlotDecisionV1(
+      failureReason: 'identity_full_card_disagreement',
+      evidence: evidence,
+    );
+  }
+
+  static _FixedSlotDecisionV1? _confirmedBackendVisualCandidate(
+    Map<String, dynamic> decoded,
+  ) {
+    final rawConfirmation = decoded['fixed_slot_visual_confirmation'];
+    if (rawConfirmation is! Map) return null;
+    if (rawConfirmation['confirmed'] != true) return null;
+
+    final rawCandidate = rawConfirmation['candidate'];
+    if (rawCandidate is! Map) return null;
+
+    final candidate = _candidateFromRaw(
+      rawCandidate,
+      fallbackRank: 1,
+      queryCropType: 'fixed_slot_visual_confirmation',
+    );
+    if (candidate.cardId == 'unknown' && candidate.gvId == null) return null;
+
+    final rawDecision = rawConfirmation['decision'];
+    final topCandidates = rawConfirmation['top_candidates'];
+    final evidence = <String, Object?>{
+      'backend_confirmation': true,
+      'confirmation_crop_type': 'fixed_slot_visual_confirmation',
+      'confirmation_elapsed_ms': rawConfirmation['elapsed_ms'],
+      'confirmation_candidate_pool_count':
+          rawConfirmation['candidate_pool_count'],
+      'confirmation_scored_count': rawConfirmation['scored_count'],
+      'confirmation_decision': rawDecision is Map
+          ? Map<String, Object?>.from(rawDecision)
+          : rawDecision,
+      'confirmation_top_candidates': topCandidates is List
+          ? topCandidates.take(5).toList(growable: false)
+          : topCandidates,
+    };
+
+    return _FixedSlotDecisionV1(candidate: candidate, evidence: evidence);
+  }
+
+  static _FixedSlotDecisionV1? _backendVisualConfirmationFailure(
+    Map<String, dynamic> decoded,
+  ) {
+    final rawConfirmation = decoded['fixed_slot_visual_confirmation'];
+    if (rawConfirmation is! Map) return null;
+    if (rawConfirmation['enabled'] != true) return null;
+    if (rawConfirmation['confirmed'] == true) return null;
+
+    final rawDecision = rawConfirmation['decision'];
+    final topCandidates = rawConfirmation['top_candidates'];
+    final failureReason = rawConfirmation['failure_reason']?.toString().trim();
+    return _FixedSlotDecisionV1(
+      failureReason: failureReason == null || failureReason.isEmpty
+          ? 'backend_visual_confirmation_failed'
+          : 'backend_visual_confirmation_failed:$failureReason',
+      evidence: <String, Object?>{
+        'backend_confirmation': false,
+        'confirmation_crop_type': 'fixed_slot_visual_confirmation',
+        'confirmation_elapsed_ms': rawConfirmation['elapsed_ms'],
+        'confirmation_candidate_pool_count':
+            rawConfirmation['candidate_pool_count'],
+        'confirmation_scored_count': rawConfirmation['scored_count'],
+        'confirmation_failure_reason': failureReason,
+        'confirmation_decision': rawDecision is Map
+            ? Map<String, Object?>.from(rawDecision)
+            : rawDecision,
+        'confirmation_top_candidates': topCandidates is List
+            ? topCandidates.take(5).toList(growable: false)
+            : topCandidates,
+      },
+    );
   }
 
   static Candidate _candidateFromRaw(
@@ -1225,6 +1701,7 @@ class FixedSlotArtifactWriterV1 {
         'edge_refinement': _edgeRefinementJson(artifact.edgeRefinement),
         'normalized_output_width': artifact.normalizedWidth,
         'normalized_output_height': artifact.normalizedHeight,
+        'normalized_quality': artifact.quality.toJson(),
         'ann_crop_types': artifact.annCrops
             .map((crop) => crop.cropType)
             .toList(growable: false),

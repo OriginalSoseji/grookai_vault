@@ -1,0 +1,21 @@
+[
+  {
+    "id": "talonflame_me03_014_strict_gate_20260516",
+    "label": "Talonflame POR EN 014/088 fixed-slot phone artifact",
+    "artifact_dir": ".tmp/scanner_fixed_slot_device/latest_device_artifacts_after_strict_gate",
+    "expected_gv_id": "GV-PK-ME03-014"
+  },
+  {
+    "id": "vivillon_me03_009_topk200_20260516",
+    "label": "Vivillon POR EN 009/088 fixed-slot phone artifact",
+    "artifact_dir": ".tmp/scanner_fixed_slot_device/five_card_test_1_after_topk200_artifacts",
+    "expected_gv_id": "GV-PK-ME03-009"
+  },
+  {
+    "id": "vivillon_me03_009_wrong_sylveon_regression_20260516",
+    "label": "Vivillon POR EN 009/088 artifact that previously produced Sylveon",
+    "artifact_dir": ".tmp/scanner_fixed_slot_device/five_card_test_1_after_padding_artifacts",
+    "expected_gv_id": "GV-PK-ME03-009",
+    "allow_no_match": true
+  }
+]

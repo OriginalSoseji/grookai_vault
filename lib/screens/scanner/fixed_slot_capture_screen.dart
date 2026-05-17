@@ -155,6 +155,11 @@ class _FixedSlotCaptureScreenState extends State<FixedSlotCaptureScreen>
     });
 
     try {
+      await _prepareStillCapture(
+        controller: controller,
+        slotRect: slotRect,
+        viewportSize: viewportSize,
+      );
       final picture = await controller.takePicture();
       final stillBytes = await File(picture.path).readAsBytes();
       await _deleteTemporaryCapture(picture.path);
@@ -180,7 +185,10 @@ class _FixedSlotCaptureScreenState extends State<FixedSlotCaptureScreen>
       final resolution = await _identityClient.resolve(artifact.annCrops);
       debugPrint(
         '[fixed_slot_capture_v1] result_revealed '
-        'matched=${resolution.hasConfidentMatch}',
+        'matched=${resolution.hasConfidentMatch} '
+        'gv_id=${resolution.candidate?.gvId ?? 'none'} '
+        'name=${resolution.candidate?.name ?? 'none'} '
+        'failure=${resolution.failureReason ?? 'none'}',
       );
       final files = await FixedSlotArtifactWriterV1.writeLatest(
         artifact: artifact,
@@ -213,6 +221,31 @@ class _FixedSlotCaptureScreenState extends State<FixedSlotCaptureScreen>
         _status = 'No confident match. Try again.';
       });
     }
+  }
+
+  Future<void> _prepareStillCapture({
+    required CameraController controller,
+    required ui.Rect slotRect,
+    required ui.Size viewportSize,
+  }) async {
+    if (viewportSize.width <= 0 || viewportSize.height <= 0) return;
+    final focusPoint = Offset(
+      (slotRect.center.dx / viewportSize.width).clamp(0.0, 1.0),
+      (slotRect.center.dy / viewportSize.height).clamp(0.0, 1.0),
+    );
+    try {
+      await controller.setFocusPoint(focusPoint);
+    } catch (_) {}
+    try {
+      await controller.setExposurePoint(focusPoint);
+    } catch (_) {}
+    try {
+      await controller.setFocusMode(FocusMode.auto);
+    } catch (_) {}
+    try {
+      await controller.setExposureMode(ExposureMode.auto);
+    } catch (_) {}
+    await Future<void>.delayed(const Duration(milliseconds: 180));
   }
 
   Future<void> _deleteTemporaryCapture(String path) async {

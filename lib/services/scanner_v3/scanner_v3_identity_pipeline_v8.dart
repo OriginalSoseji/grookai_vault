@@ -29,6 +29,7 @@ class ScannerV3IdentityPipelineV8 {
   static const double _fastPathMaxAcceptedDistance = 0.195;
   static const int _fastPathMinCropSupport = 2;
   static const double _stableFastResultMaxDistance = 0.245;
+  static const double _fullCardExactVisualMatchMaxDistance = 0.305;
   static const double _priorityArtworkGrayMaxDistance = 0.205;
   static const String _priorityArtworkGrayIdentitySignalCropType =
       'priority_artwork_gray_top';
@@ -48,7 +49,14 @@ class ScannerV3IdentityPipelineV8 {
       'cross_view_title_band_match';
   static const String _fullCardIdentityAnchorCropType =
       'full_card_identity_anchor';
+  static const String _visualIdentityBandSupportCropType =
+      'visual_identity_band_match';
+  static const String _fullCardExactVisualMatchCropType =
+      'full_card_exact_visual_match';
+  static const String _sameNameFamilySupportCropType =
+      'same_name_family_support';
   static const String _fullCardCoreCropType = 'full_card_core';
+  static const String _fullCardCoreIdentityCropType = 'full_card_core_identity';
   static const String _fullCardCoreTightCropType = 'full_card_core_tight';
   static const String _fullCardInnerCoreCropType = 'full_card_inner_core';
   static const Set<String> _identityAnchoredCropTypes = <String>{
@@ -61,11 +69,15 @@ class ScannerV3IdentityPipelineV8 {
     'center_tight',
     _fullCardIdentityAnchorCropType,
     'title_band',
+    _visualIdentityBandSupportCropType,
+    _fullCardExactVisualMatchCropType,
+    _sameNameFamilySupportCropType,
     'full_card_trimmed',
     'full_card_upper',
     'full_card_middle',
     'full_card',
     _fullCardCoreCropType,
+    _fullCardCoreIdentityCropType,
     _fullCardCoreTightCropType,
     _fullCardInnerCoreCropType,
     _priorityFullCardIdentitySignalCropType,
@@ -79,6 +91,7 @@ class ScannerV3IdentityPipelineV8 {
   };
   static const Set<String> _coreConsensusCropTypes = <String>{
     _fullCardCoreCropType,
+    _fullCardCoreIdentityCropType,
     _fullCardCoreTightCropType,
     _fullCardInnerCoreCropType,
     _fullCardIdentityAnchorCropType,
@@ -92,6 +105,7 @@ class ScannerV3IdentityPipelineV8 {
     'full_card_upper',
     'full_card_middle',
     _fullCardCoreCropType,
+    _fullCardCoreIdentityCropType,
     _fullCardCoreTightCropType,
     'artwork_zoom_in_10',
     'artwork_zoom_in_10_gray',
@@ -243,8 +257,12 @@ class ScannerV3IdentityPipelineV8 {
         ? null
         : result.candidates.first;
     if (candidate == null) return false;
+    if (!_candidateHasPrintedIdentitySupport(candidate)) return false;
     if ((candidate.cropContributionCount ?? 0) < _fastPathMinCropSupport) {
       return false;
+    }
+    if (_candidateHasFullCardExactVisualMatch(candidate)) {
+      return candidate.distance <= _fullCardExactVisualMatchMaxDistance;
     }
     return candidate.distance <= _fastPathMaxAcceptedDistance;
   }
@@ -255,10 +273,38 @@ class ScannerV3IdentityPipelineV8 {
         ? null
         : result.candidates.first;
     if (candidate == null) return false;
+    if (!_candidateHasPrintedIdentitySupport(candidate)) return false;
     if ((candidate.cropContributionCount ?? 0) < _fastPathMinCropSupport) {
       return false;
     }
+    if (_candidateHasFullCardExactVisualMatch(candidate)) {
+      return candidate.distance <= _fullCardExactVisualMatchMaxDistance;
+    }
     return candidate.distance <= _stableFastResultMaxDistance;
+  }
+
+  bool _candidateHasPrintedIdentitySupport(Candidate candidate) {
+    final cropTypes = candidate.contributingCropTypes;
+    if (cropTypes.contains(_fullCardExactVisualMatchCropType)) return true;
+    if (cropTypes.contains(_priorityCoreIdentityConsensusCropType) &&
+        (candidate.cropContributionCount ?? 0) >= 4 &&
+        candidate.distance <= 0.245) {
+      return true;
+    }
+    if (cropTypes.contains(_sameNameFamilySupportCropType) &&
+        cropTypes.contains('full_card') &&
+        (candidate.cropContributionCount ?? 0) >= _fastPathMinCropSupport &&
+        candidate.distance <= 0.170) {
+      return true;
+    }
+    return cropTypes.contains('title_band') &&
+        cropTypes.contains(_visualIdentityBandSupportCropType);
+  }
+
+  bool _candidateHasFullCardExactVisualMatch(Candidate candidate) {
+    return candidate.contributingCropTypes.contains(
+      _fullCardExactVisualMatchCropType,
+    );
   }
 
   Future<_ResolvedIdentityCrops> _resolveCrops(
@@ -351,6 +397,13 @@ class ScannerV3IdentityPipelineV8 {
           const _RectNorm(left: 0.00, top: 0.00, right: 1.00, bottom: 1.00),
         ),
       ),
+      _IdentityCrop(
+        type: 'title_band',
+        image: _normalizedRectCrop(
+          _asGrayscale(untrimmedFullCard),
+          const _RectNorm(left: 0.02, top: 0.00, right: 0.98, bottom: 0.16),
+        ),
+      ),
     ];
   }
 
@@ -372,7 +425,14 @@ class ScannerV3IdentityPipelineV8 {
         type: _fullCardCoreCropType,
         image: _normalizedRectCrop(
           normalizedFullCard,
-          const _RectNorm(left: 0.04, top: 0.06, right: 0.96, bottom: 0.88),
+          const _RectNorm(left: 0.08, top: 0.10, right: 0.92, bottom: 0.82),
+        ),
+      ),
+      _IdentityCrop(
+        type: _fullCardCoreIdentityCropType,
+        image: _normalizedRectCrop(
+          normalizedFullCard,
+          const _RectNorm(left: 0.09, top: 0.10, right: 0.91, bottom: 0.80),
         ),
       ),
       _IdentityCrop(
@@ -750,6 +810,7 @@ class ScannerV3IdentityPipelineV8 {
         .where((candidate) {
           if (candidate.cropTypes.length < 2) return false;
           if (!candidate.cropTypes.contains(_fullCardCoreCropType) &&
+              !candidate.cropTypes.contains(_fullCardCoreIdentityCropType) &&
               candidate.cropTypes.length < 3) {
             return false;
           }

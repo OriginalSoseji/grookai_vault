@@ -35,6 +35,8 @@ const DEFAULT_VISUAL_ALIGNMENT_SIZE = 48;
 const MAX_BODY_BYTES = 16 * 1024 * 1024;
 const VECTOR_DTYPE = 'float32le';
 const SAME_NAME_FAMILY_SUPPORT_CROP_TYPE = 'same_name_family_support';
+const VISUAL_IDENTITY_BAND_SUPPORT_CROP_TYPE = 'visual_identity_band_match';
+const FULL_CARD_EXACT_VISUAL_MATCH_CROP_TYPE = 'full_card_exact_visual_match';
 const FULL_CARD_EXACT_SCAN_CROP_TYPES = new Set(['full_card']);
 const FULL_CARD_EXACT_SCAN_VIEW_TYPES = ['full_card'];
 const FULL_CARD_FAMILY_SUPPORT_TOP_N = 80;
@@ -45,6 +47,34 @@ const REPRESENTATIVE_REFERENCE_DISTANCE_PENALTY = 0.01;
 const IDENTITY_BAND_FEATURE_WIDTH = 96;
 const IDENTITY_BAND_FEATURE_HEIGHT = 24;
 const IDENTITY_BAND_DISTANCE_WEIGHT = 0.08;
+const IDENTITY_BAND_SUPPORT_MAX_ABSOLUTE_DISTANCE = 0.34;
+const IDENTITY_BAND_SUPPORT_MIN_SEPARATION = 0.006;
+const FULL_CARD_EXACT_VISUAL_MATCH_RERANK_TOP_N = 80;
+const FULL_CARD_EXACT_VISUAL_MATCH_MAX_ALIGNMENT_DISTANCE = 0.30;
+const FULL_CARD_EXACT_VISUAL_MATCH_MIN_SEPARATION = 0.035;
+const FIXED_SLOT_VISUAL_CONFIRMATION_CROP_TYPE = 'fixed_slot_visual_confirmation';
+const FIXED_SLOT_VISUAL_CONFIRMATION_MAX_CANDIDATES = 260;
+const FIXED_SLOT_CANDIDATE_POOL_MAX_PER_CROP = 200;
+const FIXED_SLOT_CANDIDATE_SUPPORT_BONUS = 0.018;
+const FIXED_SLOT_CANDIDATE_SUPPORT_BONUS_MAX = 0.072;
+const FIXED_SLOT_VISUAL_CONFIRMATION_FEATURE_SIZE = 48;
+const FIXED_SLOT_VISUAL_CONFIRMATION_THRESHOLD = 0.78;
+const FIXED_SLOT_VISUAL_CONFIRMATION_MIN_SEPARATION = 0.08;
+const FIXED_SLOT_VISUAL_CONFIRMATION_REGIONS = {
+  title: { left: 0.02, top: 0.00, right: 0.98, bottom: 0.16 },
+  artwork: { left: 0.12, top: 0.18, right: 0.88, bottom: 0.47 },
+  attack: { left: 0.04, top: 0.50, right: 0.96, bottom: 0.67 },
+  full: { left: 0.00, top: 0.00, right: 1.00, bottom: 1.00 },
+  bottom: { left: 0.02, top: 0.90, right: 0.98, bottom: 1.00 },
+};
+const FIXED_SLOT_VISUAL_CONFIRMATION_WEIGHTS = {
+  artwork: 0.40,
+  title: 0.35,
+  attack: 0.15,
+  full: 0.05,
+  bottom: 0.00,
+  ann: 0.05,
+};
 let debugCropRequestSequence = 0;
 
 function parseArgs(argv) {
@@ -178,6 +208,7 @@ async function main() {
     visualStructureFeatureCache: new Map(),
     visualAlignmentFeatureCache: new Map(),
     visualIdentityBandFeatureCache: new Map(),
+    fixedSlotVisualConfirmationFeatureCache: new Map(),
   };
 
   const server = createServer((request, response) => {
@@ -242,6 +273,19 @@ async function handleRequest(request, response, service) {
         structure_cache_entries: service.visualStructureFeatureCache.size,
         alignment_cache_entries: service.visualAlignmentFeatureCache.size,
         identity_band_cache_entries: service.visualIdentityBandFeatureCache.size,
+        fixed_slot_confirmation_cache_entries:
+          service.fixedSlotVisualConfirmationFeatureCache.size,
+      },
+      fixed_slot_visual_confirmation: {
+        enabled: true,
+        crop_type: FIXED_SLOT_VISUAL_CONFIRMATION_CROP_TYPE,
+        max_candidates: FIXED_SLOT_VISUAL_CONFIRMATION_MAX_CANDIDATES,
+        max_per_crop: FIXED_SLOT_CANDIDATE_POOL_MAX_PER_CROP,
+        support_bonus: FIXED_SLOT_CANDIDATE_SUPPORT_BONUS,
+        support_bonus_max: FIXED_SLOT_CANDIDATE_SUPPORT_BONUS_MAX,
+        feature_size: FIXED_SLOT_VISUAL_CONFIRMATION_FEATURE_SIZE,
+        threshold: FIXED_SLOT_VISUAL_CONFIRMATION_THRESHOLD,
+        min_separation: FIXED_SLOT_VISUAL_CONFIRMATION_MIN_SEPARATION,
       },
       ocr: {
         title_ocr_enabled: false,
@@ -276,11 +320,16 @@ async function handleRequest(request, response, service) {
       service,
       topK,
     });
+    const fixedSlotVisualConfirmation = await confirmFixedSlotVisualCandidate({
+      resolvedCrops: expandedCrops,
+      service,
+    });
     const publicCrops = expandedCrops.map(publicResolvedCrop);
 
     const payload = {
       ok: true,
       crops: publicCrops,
+      fixed_slot_visual_confirmation: fixedSlotVisualConfirmation,
       count: publicCrops.length,
       top_k: topK,
       model: service.args.model,
@@ -354,6 +403,26 @@ async function resolveCrop({ crop, service, topK, debugRequestId }) {
       cropType,
       debugRequestId,
     });
+    if (String(cropType ?? '').toLowerCase() === FIXED_SLOT_VISUAL_CONFIRMATION_CROP_TYPE) {
+      return {
+        ok: true,
+        crop_type: cropType,
+        candidates: [],
+        count: 0,
+        embedding_ms: null,
+        vector_search_ms: null,
+        visual_rerank_ms: null,
+        ocr_ms: null,
+        ocr: null,
+        ann: {
+          skipped: true,
+          reason: 'fixed_slot_visual_confirmation_only',
+        },
+        elapsed_ms: roundMs(performance.now() - cropStartedAt),
+        _internal_image_buffer: imageBuffer,
+        _internal_embedding: null,
+      };
+    }
     const embedding = await embedImageBuffer(imageBuffer, { model: service.args.model });
     const vectorStartedAt = performance.now();
     const searchTopK = service.args.visualRerankEnabled
@@ -498,6 +567,433 @@ function publicResolvedCrop(crop) {
     ...publicCrop
   } = crop;
   return publicCrop;
+}
+
+async function confirmFixedSlotVisualCandidate({ resolvedCrops, service }) {
+  const confirmationCrop = resolvedCrops.find((crop) =>
+    crop?.ok &&
+    String(crop.crop_type ?? '').toLowerCase() === FIXED_SLOT_VISUAL_CONFIRMATION_CROP_TYPE &&
+    crop._internal_image_buffer
+  );
+  const fullCardCrop = confirmationCrop ?? resolvedCrops.find((crop) =>
+    crop?.ok && String(crop.crop_type ?? '').toLowerCase() === 'full_card' &&
+    crop._internal_image_buffer
+  );
+  if (!fullCardCrop) {
+    return {
+      enabled: true,
+      confirmed: false,
+      failure_reason: 'missing_full_card_crop',
+      candidate: null,
+    };
+  }
+
+  const candidatePool = fixedSlotCandidatePool(resolvedCrops);
+  if (candidatePool.length === 0) {
+    return {
+      enabled: true,
+      confirmed: false,
+      failure_reason: 'missing_candidate_pool',
+      candidate: null,
+    };
+  }
+
+  const startedAt = performance.now();
+  const queryFeatures = await fixedSlotVisualConfirmationFeaturesFromImageBuffer(
+    fullCardCrop._internal_image_buffer,
+  );
+  const ranked = [];
+  let skippedCount = 0;
+  for (const candidate of candidatePool.slice(0, FIXED_SLOT_VISUAL_CONFIRMATION_MAX_CANDIDATES)) {
+    try {
+      const referenceFeatures = await referenceFixedSlotVisualConfirmationFeatures(
+        candidate,
+        service,
+      );
+      if (!referenceFeatures) {
+        skippedCount += 1;
+        continue;
+      }
+      const distances = {};
+      for (const key of Object.keys(FIXED_SLOT_VISUAL_CONFIRMATION_REGIONS)) {
+        distances[key] = cosineDistance(queryFeatures[key], referenceFeatures[key]);
+      }
+      let visualScore = 0;
+      for (const [key, weight] of Object.entries(FIXED_SLOT_VISUAL_CONFIRMATION_WEIGHTS)) {
+        if (key === 'ann') continue;
+        visualScore += (distances[key] ?? 1) * weight;
+      }
+      const score = round6(
+        visualScore +
+          (Number(candidate.distance ?? candidate.ann_distance ?? 1) *
+            FIXED_SLOT_VISUAL_CONFIRMATION_WEIGHTS.ann) -
+          fixedSlotCandidateSupportBonus(candidate),
+      );
+      ranked.push({
+        ...candidate,
+        fixed_slot_visual_confirmation_score: score,
+        fixed_slot_visual_score: round6(visualScore),
+        fixed_slot_visual_distances: roundObjectValues(distances),
+      });
+    } catch {
+      skippedCount += 1;
+    }
+  }
+
+  ranked.sort((a, b) => {
+    if (a.fixed_slot_visual_confirmation_score !== b.fixed_slot_visual_confirmation_score) {
+      return a.fixed_slot_visual_confirmation_score - b.fixed_slot_visual_confirmation_score;
+    }
+    return Number(a.distance ?? 1) - Number(b.distance ?? 1);
+  });
+
+  const top = ranked[0] ?? null;
+  const second = ranked[1] ?? null;
+  const separation = top && second
+    ? round6(
+      second.fixed_slot_visual_confirmation_score -
+        top.fixed_slot_visual_confirmation_score,
+    )
+    : null;
+  const confirmed = Boolean(
+    top &&
+      top.fixed_slot_visual_confirmation_score <=
+        FIXED_SLOT_VISUAL_CONFIRMATION_THRESHOLD &&
+      (separation === null ||
+        separation >= FIXED_SLOT_VISUAL_CONFIRMATION_MIN_SEPARATION),
+  );
+  const exactFullCardConfirmation = fixedSlotExactFullCardConfirmationCandidate(resolvedCrops);
+  const selected = exactFullCardConfirmation &&
+    (
+      exactFullCardConfirmation.fixed_slot_exact_priority === 'rank1_full_card' ||
+      !confirmed ||
+      !fixedSlotVisualCandidateHasFullCardEvidence(top)
+    )
+    ? exactFullCardConfirmation
+    : confirmed
+      ? top
+      : exactFullCardConfirmation;
+  const candidate = selected
+    ? publicResponseCandidate({
+      ...selected,
+      distance: selected.fixed_slot_visual_confirmation_score ?? selected.distance,
+      similarity: round6(Math.max(
+        0,
+        1 - Number(selected.fixed_slot_visual_confirmation_score ?? selected.distance ?? 1),
+      )),
+      aggregate_score: round6(Math.max(
+        0,
+        1 - Number(selected.fixed_slot_visual_confirmation_score ?? selected.distance ?? 1),
+      )),
+      rerank_score: round6(Math.max(
+        0,
+        1 - Number(selected.fixed_slot_visual_confirmation_score ?? selected.distance ?? 1),
+      )),
+      crop_type: FIXED_SLOT_VISUAL_CONFIRMATION_CROP_TYPE,
+      best_query_crop_type: FIXED_SLOT_VISUAL_CONFIRMATION_CROP_TYPE,
+      contributing_crop_types: [
+        ...new Set([
+          ...(Array.isArray(selected.contributing_crop_types)
+            ? selected.contributing_crop_types
+            : []),
+          FIXED_SLOT_VISUAL_CONFIRMATION_CROP_TYPE,
+        ]),
+      ],
+      fixed_slot_visual_confirmation: true,
+    })
+    : null;
+  const finalConfirmed = Boolean(candidate);
+
+  return {
+    enabled: true,
+    confirmed: finalConfirmed,
+    failure_reason: finalConfirmed
+      ? null
+      : fixedSlotConfirmationFailureReason({ top, second, separation }),
+    candidate,
+    elapsed_ms: roundMs(performance.now() - startedAt),
+    candidate_pool_count: candidatePool.length,
+    scored_count: ranked.length,
+    skipped_count: skippedCount,
+    decision: {
+      threshold: FIXED_SLOT_VISUAL_CONFIRMATION_THRESHOLD,
+      min_separation: FIXED_SLOT_VISUAL_CONFIRMATION_MIN_SEPARATION,
+      top_score: top?.fixed_slot_visual_confirmation_score ?? null,
+      second_score: second?.fixed_slot_visual_confirmation_score ?? null,
+      separation,
+      exact_full_card_confirmation:
+        exactFullCardConfirmation == null
+          ? null
+          : {
+              gv_id: exactFullCardConfirmation.gv_id ?? null,
+              name: exactFullCardConfirmation.name ?? null,
+              distance: exactFullCardConfirmation.distance ?? null,
+              visual_card_alignment_distance:
+                exactFullCardConfirmation.visual_card_alignment_distance ?? null,
+              visual_card_alignment_separation:
+                exactFullCardConfirmation.visual_card_alignment_separation ?? null,
+            },
+    },
+    top_candidates: ranked.slice(0, 8).map((candidate) => publicResponseCandidate(candidate)),
+  };
+}
+
+function fixedSlotExactFullCardConfirmationCandidate(resolvedCrops) {
+  const fullCardCrop = resolvedCrops.find((crop) =>
+    crop?.ok &&
+    String(crop.crop_type ?? '').toLowerCase() === 'full_card' &&
+    Array.isArray(crop.candidates) &&
+    crop.candidates.length > 0
+  );
+  const signaledCandidate = fullCardCrop?.candidates?.find((row) =>
+    textOrNull(row?.gv_id) && fixedSlotFullCardExactSignal(row)
+  );
+  if (signaledCandidate) {
+    return fixedSlotExactFullCardCandidateIfSafe(
+      signaledCandidate,
+      'full_card_exact_visual_match',
+    );
+  }
+
+  const firstCanonicalCandidate = fullCardCrop?.candidates?.find((row) =>
+    textOrNull(row?.gv_id)
+  );
+  if (
+    firstCanonicalCandidate &&
+    Number(firstCanonicalCandidate.rank ?? 999999) <= 1
+  ) {
+    return fixedSlotExactFullCardCandidateIfSafe(
+      firstCanonicalCandidate,
+      'rank1_full_card',
+    );
+  }
+
+  return null;
+}
+
+function fixedSlotExactFullCardCandidateIfSafe(candidate, priority) {
+  const distance = Number(candidate.distance ?? 1);
+  const alignmentDistance = Number(candidate.visual_card_alignment_distance);
+  const alignmentSeparation = Number(candidate.visual_card_alignment_separation);
+  if (!Number.isFinite(distance) || distance > 0.24) return null;
+  if (Number.isFinite(alignmentDistance) && alignmentDistance > 0.24) return null;
+  if (Number.isFinite(alignmentSeparation) && alignmentSeparation < 0.045) return null;
+
+  return {
+    ...candidate,
+    fixed_slot_visual_confirmation_score: round6(distance),
+    fixed_slot_visual_confirmation_source: priority,
+    fixed_slot_exact_priority: priority,
+    contributing_crop_types: [
+      ...new Set([
+        ...(Array.isArray(candidate.contributing_crop_types)
+          ? candidate.contributing_crop_types
+          : []),
+        FULL_CARD_EXACT_VISUAL_MATCH_CROP_TYPE,
+      ]),
+    ],
+  };
+}
+
+function fixedSlotFullCardExactSignal(candidate) {
+  return (
+    candidate?.visual_full_card_alignment_signal === true ||
+    candidate?.full_card_exact_visual_match === true ||
+    (Array.isArray(candidate?.contributing_crop_types) &&
+      (
+        candidate.contributing_crop_types.includes('visual_full_card_alignment') ||
+        candidate.contributing_crop_types.includes(FULL_CARD_EXACT_VISUAL_MATCH_CROP_TYPE)
+      ))
+  );
+}
+
+function fixedSlotVisualCandidateHasFullCardEvidence(candidate) {
+  if (!candidate) return false;
+  if (fixedSlotFullCardExactSignal(candidate)) return true;
+  const alignmentDistance = Number(candidate.visual_card_alignment_distance);
+  return Number.isFinite(alignmentDistance) && alignmentDistance <= 0.24;
+}
+
+function fixedSlotCandidatePool(resolvedCrops) {
+  const byGvId = new Map();
+  for (const crop of resolvedCrops) {
+    const cropType = String(crop?.crop_type ?? '').toLowerCase();
+    if (!crop?.ok || !Array.isArray(crop.candidates)) continue;
+    if (!isFixedSlotCandidatePoolCropType(cropType)) continue;
+    for (const candidate of crop.candidates.slice(0, FIXED_SLOT_CANDIDATE_POOL_MAX_PER_CROP)) {
+      const gvId = textOrNull(candidate.gv_id);
+      const cardId = textOrNull(candidate.card_id);
+      if (!gvId || !cardId) continue;
+      const existing = byGvId.get(gvId);
+      const cropTypes = new Set(existing?.fixed_slot_query_crop_types ?? []);
+      cropTypes.add(cropType);
+      const bestDistanceByCrop = {
+        ...(existing?.fixed_slot_best_distance_by_crop ?? {}),
+      };
+      const bestRankByCrop = {
+        ...(existing?.fixed_slot_best_rank_by_crop ?? {}),
+      };
+      const candidateDistance = Number(candidate.distance ?? 1);
+      const candidateRank = Number(candidate.rank ?? 999999);
+      if (
+        bestDistanceByCrop[cropType] == null ||
+        candidateDistance < Number(bestDistanceByCrop[cropType])
+      ) {
+        bestDistanceByCrop[cropType] = round6(candidateDistance);
+      }
+      if (
+        bestRankByCrop[cropType] == null ||
+        candidateRank < Number(bestRankByCrop[cropType])
+      ) {
+        bestRankByCrop[cropType] = Number.isFinite(candidateRank) ? candidateRank : null;
+      }
+      const base = !existing || candidateDistance < Number(existing.distance ?? 1)
+        ? {
+            ...candidate,
+            source_crop_type: crop.crop_type,
+          }
+        : existing;
+      const supportCount = cropTypes.size;
+      const supportBonus = Math.min(
+        FIXED_SLOT_CANDIDATE_SUPPORT_BONUS_MAX,
+        Math.max(0, supportCount - 1) * FIXED_SLOT_CANDIDATE_SUPPORT_BONUS,
+      );
+      const poolScore = round6(Math.max(0, Number(base.distance ?? 1) - supportBonus));
+      byGvId.set(gvId, {
+        ...base,
+        fixed_slot_query_crop_types: [...cropTypes].sort(),
+        fixed_slot_query_support_count: supportCount,
+        fixed_slot_best_distance_by_crop: bestDistanceByCrop,
+        fixed_slot_best_rank_by_crop: bestRankByCrop,
+        fixed_slot_candidate_support_bonus: round6(supportBonus),
+        fixed_slot_candidate_pool_score: poolScore,
+      });
+    }
+  }
+  return [...byGvId.values()].sort((a, b) => {
+    const scoreA = Number(a.fixed_slot_candidate_pool_score ?? a.distance ?? 1);
+    const scoreB = Number(b.fixed_slot_candidate_pool_score ?? b.distance ?? 1);
+    if (scoreA !== scoreB) return scoreA - scoreB;
+    const supportA = Number(a.fixed_slot_query_support_count ?? 1);
+    const supportB = Number(b.fixed_slot_query_support_count ?? 1);
+    if (supportA !== supportB) return supportB - supportA;
+    return Number(a.distance ?? 1) - Number(b.distance ?? 1);
+  });
+}
+
+function isFixedSlotCandidatePoolCropType(cropType) {
+  if (!cropType || cropType === FIXED_SLOT_VISUAL_CONFIRMATION_CROP_TYPE) return false;
+  return (
+    cropType === 'full_card' ||
+    cropType === 'full_card_core_identity' ||
+    cropType === 'full_card_core' ||
+    cropType === 'full_card_upper' ||
+    cropType === 'full_card_middle' ||
+    cropType === 'title_band' ||
+    cropType === 'artwork_zoom_in_10' ||
+    cropType === 'artwork_zoom_in_10_gray'
+  );
+}
+
+function fixedSlotCandidateSupportBonus(candidate) {
+  const supportCount = Number(candidate?.fixed_slot_query_support_count ?? 1);
+  return Math.min(
+    FIXED_SLOT_CANDIDATE_SUPPORT_BONUS_MAX,
+    Math.max(0, supportCount - 1) * FIXED_SLOT_CANDIDATE_SUPPORT_BONUS,
+  );
+}
+
+function fixedSlotConfirmationFailureReason({ top, second, separation }) {
+  if (!top) return 'no_scored_visual_candidates';
+  if (top.fixed_slot_visual_confirmation_score > FIXED_SLOT_VISUAL_CONFIRMATION_THRESHOLD) {
+    return 'visual_confirmation_score_too_high';
+  }
+  if (
+    second &&
+    separation !== null &&
+    separation < FIXED_SLOT_VISUAL_CONFIRMATION_MIN_SEPARATION
+  ) {
+    return 'visual_confirmation_margin_too_small';
+  }
+  return 'visual_confirmation_unconfirmed';
+}
+
+async function referenceFixedSlotVisualConfirmationFeatures(candidate, service) {
+  const sourcePath = sourcePathForCandidate(candidate, service);
+  if (!sourcePath) return null;
+  const key = [
+    sourcePath,
+    'fixed_slot_visual_confirmation',
+    FIXED_SLOT_VISUAL_CONFIRMATION_FEATURE_SIZE,
+  ].join('|');
+  if (!service.fixedSlotVisualConfirmationFeatureCache.has(key)) {
+    service.fixedSlotVisualConfirmationFeatureCache.set(
+      key,
+      fixedSlotVisualConfirmationFeaturesFromImageBufferOrPath(sourcePath)
+        .catch(() => null),
+    );
+  }
+  return service.fixedSlotVisualConfirmationFeatureCache.get(key);
+}
+
+function sourcePathForCandidate(candidate, service) {
+  const direct = textOrNull(candidate._source_path ?? candidate.source_path);
+  if (direct) return direct;
+  const rows = service.artifact.referenceRowsByCard.get(candidate.card_id) ?? [];
+  const preferred =
+    rows.find((row) => row.view_type === 'full_card' && textOrNull(row.source_path)) ??
+    rows.find((row) => textOrNull(row.source_path));
+  return textOrNull(preferred?.source_path);
+}
+
+async function fixedSlotVisualConfirmationFeaturesFromImageBufferOrPath(input) {
+  const image = Buffer.isBuffer(input)
+    ? sharp(input, { failOn: 'none' }).rotate()
+    : sharp(input, { failOn: 'none' }).rotate();
+  const normalized = await image
+    .resize(224, 224, { fit: 'fill' })
+    .png()
+    .toBuffer();
+  return fixedSlotVisualConfirmationFeaturesFromImageBuffer(normalized);
+}
+
+async function fixedSlotVisualConfirmationFeaturesFromImageBuffer(imageBuffer) {
+  const features = {};
+  for (const [key, rect] of Object.entries(FIXED_SLOT_VISUAL_CONFIRMATION_REGIONS)) {
+    features[key] = await fixedSlotGrayRegionFeature(imageBuffer, rect);
+  }
+  return features;
+}
+
+async function fixedSlotGrayRegionFeature(imageBuffer, rect) {
+  const metadata = await sharp(imageBuffer, { failOn: 'none' }).rotate().metadata();
+  const extract = rectToPixels(rect, metadata.width, metadata.height);
+  const { data } = await sharp(imageBuffer, { failOn: 'none' })
+    .rotate()
+    .extract(extract)
+    .resize(
+      FIXED_SLOT_VISUAL_CONFIRMATION_FEATURE_SIZE,
+      FIXED_SLOT_VISUAL_CONFIRMATION_FEATURE_SIZE,
+      { fit: 'fill' },
+    )
+    .grayscale()
+    .raw()
+    .toBuffer({ resolveWithObject: true });
+  const values = Array.from(data, (value) => value / 255);
+  const mean = values.reduce((sum, value) => sum + value, 0) / values.length;
+  let norm = 0;
+  for (let index = 0; index < values.length; index += 1) {
+    values[index] -= mean;
+    norm += values[index] * values[index];
+  }
+  norm = Math.sqrt(norm) || 1;
+  return values.map((value) => value / norm);
+}
+
+function roundObjectValues(object) {
+  return Object.fromEntries(
+    Object.entries(object).map(([key, value]) => [key, round6(value)]),
+  );
 }
 
 function sameNameExpansionHints(resolvedCrops) {
@@ -768,7 +1264,7 @@ async function applyFullCardIdentityBandSupport({ imageBuffer, cropType, candida
   if (!queryFeature) return candidates;
 
   const bandDistances = new Map();
-  const bestBandDistanceByName = new Map();
+  const bandDistancesByName = new Map();
   await Promise.all(supportedCandidates.map(async (candidate) => {
     const referenceFeature = await referenceVisualIdentityBandFeature(candidate, service);
     if (!referenceFeature) return;
@@ -777,12 +1273,35 @@ async function applyFullCardIdentityBandSupport({ imageBuffer, cropType, candida
     bandDistances.set(candidate.card_id, distance);
     const nameKey = normalizedNameKey(candidate.name);
     if (!nameKey) return;
-    const currentBest = bestBandDistanceByName.get(nameKey);
-    if (currentBest == null || distance < currentBest) {
-      bestBandDistanceByName.set(nameKey, distance);
-    }
+    if (!bandDistancesByName.has(nameKey)) bandDistancesByName.set(nameKey, []);
+    bandDistancesByName.get(nameKey).push({
+      cardId: candidate.card_id,
+      distance,
+    });
   }));
   if (bandDistances.size === 0) return candidates;
+
+  const identityBandSupportIds = new Set();
+  const bestBandDistanceByName = new Map();
+  for (const [nameKey, rows] of bandDistancesByName) {
+    rows.sort((a, b) => {
+      if (a.distance !== b.distance) return a.distance - b.distance;
+      return String(a.cardId).localeCompare(String(b.cardId));
+    });
+    const best = rows[0];
+    if (!best) continue;
+    bestBandDistanceByName.set(nameKey, best.distance);
+    const second = rows[1] ?? null;
+    const separated =
+      second == null ||
+      (Number(second.distance) - Number(best.distance)) >= IDENTITY_BAND_SUPPORT_MIN_SEPARATION;
+    if (
+      Number(best.distance) <= IDENTITY_BAND_SUPPORT_MAX_ABSOLUTE_DISTANCE &&
+      separated
+    ) {
+      identityBandSupportIds.add(best.cardId);
+    }
+  }
 
   return rerankCandidates(candidates.map((candidate) => {
     const bandDistance = bandDistances.get(candidate.card_id);
@@ -797,6 +1316,13 @@ async function applyFullCardIdentityBandSupport({ imageBuffer, cropType, candida
       Number(candidate.distance) + (relativeBandDistance * IDENTITY_BAND_DISTANCE_WEIGHT),
     ));
     const similarity = round6(Math.max(0, Math.min(1, 1 - distance)));
+    const identityBandMatched = identityBandSupportIds.has(candidate.card_id);
+    const contributingCropTypes = new Set([
+      ...(Array.isArray(candidate.contributing_crop_types)
+        ? candidate.contributing_crop_types
+        : []),
+      ...(identityBandMatched ? [VISUAL_IDENTITY_BAND_SUPPORT_CROP_TYPE] : []),
+    ]);
     return {
       ...candidate,
       distance,
@@ -805,6 +1331,8 @@ async function applyFullCardIdentityBandSupport({ imageBuffer, cropType, candida
       rerank_score: similarity,
       visual_identity_band_distance: round6(bandDistance),
       visual_identity_band_relative_distance: round6(relativeBandDistance),
+      visual_identity_band_match: identityBandMatched,
+      contributing_crop_types: [...contributingCropTypes],
     };
   }));
 }
@@ -828,9 +1356,14 @@ async function rerankCandidatesByVisualColor({ imageBuffer, cropType, candidates
     cropType,
     size: service.args.visualAlignmentSize,
   });
+  const minimumHeadCount = Math.max(
+    topK,
+    DEFAULT_TOP_K,
+    isFullCardAlignmentCrop(cropType) ? FULL_CARD_EXACT_VISUAL_MATCH_RERANK_TOP_N : 0,
+  );
   const headCount = Math.min(
     service.args.visualRerankTopN,
-    Math.max(topK, DEFAULT_TOP_K),
+    minimumHeadCount,
     candidates.length,
   );
   const head = candidates.slice(0, headCount);
@@ -948,34 +1481,63 @@ async function rerankCandidatesByVisualColor({ imageBuffer, cropType, candidates
 
 function addStrongAlignmentSignal({ candidates, cropType }) {
   if (!isFullCardAlignmentCrop(cropType) || candidates.length === 0) return candidates;
-  const [top, ...rest] = candidates;
-  const alignmentDistance = Number(top.visual_card_alignment_distance);
-  const secondAlignmentDistance = Number(rest[0]?.visual_card_alignment_distance);
-  if (!Number.isFinite(alignmentDistance) || alignmentDistance > 0.32) {
-    return candidates;
-  }
+  const alignmentRanked = candidates
+    .map((candidate, index) => ({
+      candidate,
+      index,
+      distance: Number(candidate.visual_card_alignment_distance),
+    }))
+    .filter((row) => Number.isFinite(row.distance))
+    .sort((a, b) => {
+      if (a.distance !== b.distance) return a.distance - b.distance;
+      return a.index - b.index;
+    });
+  const bestAlignment = alignmentRanked[0] ?? null;
   if (
-    Number.isFinite(secondAlignmentDistance) &&
-    secondAlignmentDistance - alignmentDistance < 0.012
+    bestAlignment == null ||
+    bestAlignment.distance > FULL_CARD_EXACT_VISUAL_MATCH_MAX_ALIGNMENT_DISTANCE
   ) {
     return candidates;
   }
+  const secondAlignmentDistance = alignmentRanked[1]?.distance ?? null;
+  if (
+    Number.isFinite(secondAlignmentDistance) &&
+    secondAlignmentDistance - bestAlignment.distance < FULL_CARD_EXACT_VISUAL_MATCH_MIN_SEPARATION
+  ) {
+    return candidates;
+  }
+  const promotedCardId = bestAlignment.candidate.card_id;
+  const promoted = {
+    ...bestAlignment.candidate,
+    contributing_crop_types: [
+      ...new Set([
+        ...(Array.isArray(bestAlignment.candidate.contributing_crop_types)
+          ? bestAlignment.candidate.contributing_crop_types
+          : []),
+        'full_card',
+        'priority_full_card_top',
+        'priority_identity_support',
+        'visual_full_card_alignment',
+        VISUAL_IDENTITY_BAND_SUPPORT_CROP_TYPE,
+        FULL_CARD_EXACT_VISUAL_MATCH_CROP_TYPE,
+      ]),
+    ],
+    crop_contribution_count: Math.max(
+      4,
+      Number(bestAlignment.candidate.crop_contribution_count ?? 1),
+    ),
+    visual_full_card_alignment_signal: true,
+    full_card_exact_visual_match: true,
+    visual_card_alignment_second_distance: secondAlignmentDistance == null
+      ? null
+      : round6(secondAlignmentDistance),
+    visual_card_alignment_separation: secondAlignmentDistance == null
+      ? null
+      : round6(secondAlignmentDistance - bestAlignment.distance),
+  };
   return [
-    {
-      ...top,
-      contributing_crop_types: [
-        ...new Set([
-          ...(Array.isArray(top.contributing_crop_types) ? top.contributing_crop_types : []),
-          'full_card',
-          'priority_full_card_top',
-          'priority_identity_support',
-          'visual_full_card_alignment',
-        ]),
-      ],
-      crop_contribution_count: Math.max(3, Number(top.crop_contribution_count ?? 1)),
-      visual_full_card_alignment_signal: true,
-    },
-    ...rest,
+    promoted,
+    ...candidates.filter((candidate) => candidate.card_id !== promotedCardId),
   ];
 }
 
@@ -1450,6 +2012,7 @@ function structureQueryRectForCrop(cropType) {
   if (
     text === 'full_card' ||
     text === 'full_card_core' ||
+    text === 'full_card_core_identity' ||
     text === 'full_card_core_tight' ||
     text === 'full_card_inner_core' ||
     text === 'full_card_identity_anchor'
@@ -1464,7 +2027,7 @@ function structureReferenceRectForCrop(cropType) {
   if (text === 'full_card') {
     return { left: 0.04, top: 0.56, right: 0.96, bottom: 0.98 };
   }
-  if (text === 'full_card_core') {
+  if (text === 'full_card_core' || text === 'full_card_core_identity') {
     return { left: 0.06, top: 0.52, right: 0.94, bottom: 0.88 };
   }
   if (text === 'full_card_core_tight') {
@@ -1723,6 +2286,7 @@ async function loadAnnArtifact(artifactDir) {
   const shards = new Map();
   const cardIds = new Set();
   const referenceRowsByNameAndView = new Map();
+  const referenceRowsByCard = new Map();
   let referenceViewCount = 0;
   let palSv02Count = 0;
   const palCards = new Set();
@@ -1744,6 +2308,8 @@ async function loadAnnArtifact(artifactDir) {
         row.source_path = referenceMetadata.source_path;
       }
       addReferenceRowToNameIndex(referenceRowsByNameAndView, row);
+      if (!referenceRowsByCard.has(row.card_id)) referenceRowsByCard.set(row.card_id, []);
+      referenceRowsByCard.get(row.card_id).push(row);
       referenceViewCount += 1;
       cardIds.add(row.card_id);
       if (isPalSv02(row) && !palCards.has(row.card_id)) {
@@ -1760,6 +2326,7 @@ async function loadAnnArtifact(artifactDir) {
     planes,
     shards,
     referenceRowsByNameAndView,
+    referenceRowsByCard,
     referenceCount: cardIds.size,
     referenceViewCount,
     palSv02Count,
@@ -1955,7 +2522,7 @@ function viewTypesForCrop(cropType, artifact) {
     const deduped = [...new Set(selected)].filter((viewType) => artifact.shards.has(viewType));
     return deduped.length > 0 ? deduped : all;
   }
-  if (text === 'full_card_core') {
+  if (text === 'full_card_core' || text === 'full_card_core_identity') {
     selected.push('full_card_middle', 'full_card_upper', 'center_tight');
     const deduped = [...new Set(selected)].filter((viewType) => artifact.shards.has(viewType));
     return deduped.length > 0 ? deduped : all;

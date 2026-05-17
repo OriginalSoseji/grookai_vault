@@ -4,9 +4,12 @@ import android.Manifest
 import android.content.Context
 import android.content.pm.PackageManager
 import android.graphics.ImageFormat
+import android.hardware.camera2.CaptureRequest
 import android.os.Handler
 import android.os.Looper
 import android.util.Size
+import androidx.camera.camera2.interop.Camera2Interop
+import androidx.camera.camera2.interop.ExperimentalCamera2Interop
 import androidx.camera.core.CameraSelector
 import androidx.camera.core.ImageAnalysis
 import androidx.camera.core.ImageProxy
@@ -35,7 +38,7 @@ class ScannerConditionCameraPrewarmer(
     private val frameLock = Any()
 
     private companion object {
-        val analysisTargetSize = Size(1280, 720)
+        val analysisTargetSize = Size(1920, 1080)
         const val defaultTtlMs = 120_000L
     }
 
@@ -89,14 +92,29 @@ class ScannerConditionCameraPrewarmer(
         return metrics()
     }
 
+    @OptIn(ExperimentalCamera2Interop::class)
     private fun bindAnalysis(
         owner: LifecycleOwner,
         cameraProvider: ProcessCameraProvider,
     ) {
-        val analysisUseCase = ImageAnalysis.Builder()
+        val analysisBuilder = ImageAnalysis.Builder()
             .setTargetResolution(analysisTargetSize)
             .setBackpressureStrategy(ImageAnalysis.STRATEGY_KEEP_ONLY_LATEST)
             .setOutputImageFormat(ImageAnalysis.OUTPUT_IMAGE_FORMAT_YUV_420_888)
+        Camera2Interop.Extender(analysisBuilder)
+            .setCaptureRequestOption(
+                CaptureRequest.CONTROL_AF_MODE,
+                CaptureRequest.CONTROL_AF_MODE_CONTINUOUS_PICTURE,
+            )
+            .setCaptureRequestOption(
+                CaptureRequest.CONTROL_AE_MODE,
+                CaptureRequest.CONTROL_AE_MODE_ON,
+            )
+            .setCaptureRequestOption(
+                CaptureRequest.CONTROL_AWB_MODE,
+                CaptureRequest.CONTROL_AWB_MODE_AUTO,
+            )
+        val analysisUseCase = analysisBuilder
             .build()
         val activeExecutor = executor ?: Executors.newSingleThreadExecutor().also {
             executor = it

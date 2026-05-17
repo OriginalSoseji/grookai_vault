@@ -14,12 +14,17 @@ class CandidateVoteState {
     this.minTopFiveFramesToLock = 3,
     this.minRecentTopFiveFramesToAccept = 3,
     this.recentFrameWindow = 45,
+    this.strictShutterAuthority = false,
   });
 
   static const double twoCropStrongDistanceGuard = 0.145;
   static const double singleFrameStrongDistanceGuard = 0.170;
+  static const double strictShutterSameNameFamilyDistanceGuard = 0.145;
+  static const double strictShutterFullCardExactDistanceGuard = 0.195;
+  static const double strictShutterStableFullCardAlignmentDistanceGuard = 0.285;
   static const double singleFrameStrongTopOneGapGuard = 0.080;
   static const double visualFullCardAlignmentFastDistanceGuard = 0.185;
+  static const double fullCardExactVisualMatchDistanceGuard = 0.305;
   static const double artworkIdentityFastDistanceGuard = 0.205;
   static const double singleFrameCrossCropDistanceGuard = 0.245;
   static const double stableArtworkIdentityDistanceGuard = 0.235;
@@ -32,6 +37,7 @@ class CandidateVoteState {
   static const double singleFrameCrossCropMinVoteGap = 0.45;
   static const int stableArtworkIdentityMinTopFiveFrames = 3;
   static const int stableArtworkIdentityMaxCropContributionCount = 1;
+  static const int strictShutterStableFullCardAlignmentMinTopFiveFrames = 3;
   static const int stableSameNameFamilyMinTopFiveFrames = 2;
   static const int stableTwoCropMinTopFiveFrames = 2;
   static const int singleFrameCrossCropMinCropContributionCount = 3;
@@ -46,6 +52,9 @@ class CandidateVoteState {
       'visual_full_card_alignment';
   static const String coreIdentityConsensusCropType =
       'priority_core_identity_consensus';
+  static const String visualIdentityBandCropType = 'visual_identity_band_match';
+  static const String fullCardExactVisualMatchCropType =
+      'full_card_exact_visual_match';
 
   final double decayFactor;
   final double lockScoreGap;
@@ -59,6 +68,7 @@ class CandidateVoteState {
   final int minTopFiveFramesToLock;
   final int minRecentTopFiveFramesToAccept;
   final int recentFrameWindow;
+  final bool strictShutterAuthority;
 
   final Map<String, CandidateVoteRecord> scores =
       <String, CandidateVoteRecord>{};
@@ -69,6 +79,7 @@ class CandidateVoteState {
   CandidateVoteSnapshot update({
     required List<Candidate> candidates,
     required int frameIndex,
+    bool allowLock = true,
   }) {
     updates += 1;
     _decayAll();
@@ -185,7 +196,13 @@ class CandidateVoteState {
     }
 
     _removeStale(frameIndex);
-    _tryLock(frameIndex);
+    if (allowLock) {
+      if (strictShutterAuthority) {
+        _tryStrictShutterAuthorityLock(frameIndex);
+      } else {
+        _tryLock(frameIndex);
+      }
+    }
     return snapshot(frameIndex: frameIndex);
   }
 
@@ -305,9 +322,13 @@ class CandidateVoteState {
   }
 
   CandidateVoteSnapshot tryLockForReveal({required int frameIndex}) {
-    _tryLock(frameIndex);
-    if (lockedCandidate == null) {
-      _tryShutterRevealLock(frameIndex);
+    if (strictShutterAuthority) {
+      _tryStrictShutterAuthorityLock(frameIndex);
+    } else {
+      _tryLock(frameIndex);
+      if (lockedCandidate == null) {
+        _tryShutterRevealLock(frameIndex);
+      }
     }
     return snapshot(frameIndex: frameIndex);
   }
@@ -335,8 +356,24 @@ class CandidateVoteState {
     if (lockedCandidate != null) return;
     final ranked = _rankedRecords();
     if (ranked.isEmpty) return;
+    final lockableRanked = ranked
+        .where(_candidateHasPrintedIdentitySupport)
+        .toList(growable: false);
+    if (lockableRanked.isEmpty) return;
+    final fullCardExactVisualMatchCandidate =
+        _fullCardExactVisualMatchLockCandidate(lockableRanked, frameIndex);
+    if (fullCardExactVisualMatchCandidate != null) {
+      lockedCandidate = fullCardExactVisualMatchCandidate.cardId;
+      return;
+    }
+    final fullCardSameNameFamilyCandidate =
+        _fullCardSameNameFamilyLockCandidate(lockableRanked, frameIndex);
+    if (fullCardSameNameFamilyCandidate != null) {
+      lockedCandidate = fullCardSameNameFamilyCandidate.cardId;
+      return;
+    }
     final coreConsensusCandidate = _coreConsensusFastLockCandidate(
-      ranked,
+      lockableRanked,
       frameIndex,
     );
     if (coreConsensusCandidate != null) {
@@ -344,15 +381,17 @@ class CandidateVoteState {
       return;
     }
     final stableArtworkCandidate = _stableArtworkIdentityLockCandidate(
-      ranked,
+      lockableRanked,
       frameIndex,
     );
     if (stableArtworkCandidate != null) {
       lockedCandidate = stableArtworkCandidate.cardId;
       return;
     }
-    final best = ranked.first;
-    final secondScore = ranked.length > 1 ? ranked[1].score : 0.0;
+    final best = lockableRanked.first;
+    final secondScore = lockableRanked.length > 1
+        ? lockableRanked[1].score
+        : 0.0;
     final gap = best.score - secondScore;
     final recentTopFiveCount = best.recentTopFiveFrames
         .where((seenFrame) => frameIndex - seenFrame <= recentFrameWindow)
@@ -377,6 +416,8 @@ class CandidateVoteState {
     );
     final visualFullCardAlignmentFastReady =
         _visualFullCardAlignmentFastEvidenceReady(best, recentTopFiveCount);
+    final fullCardExactVisualMatchReady =
+        _fullCardExactVisualMatchEvidenceReady(best, recentTopFiveCount);
     final artworkIdentityFastReady = _artworkIdentityFastEvidenceReady(
       best,
       recentTopFiveCount,
@@ -418,6 +459,10 @@ class CandidateVoteState {
       lockedCandidate = best.cardId;
       return;
     }
+    if (fullCardExactVisualMatchReady) {
+      lockedCandidate = best.cardId;
+      return;
+    }
     if (artworkIdentityFastReady) {
       lockedCandidate = best.cardId;
       return;
@@ -453,8 +498,14 @@ class CandidateVoteState {
     if (lockedCandidate != null) return;
     final ranked = _rankedRecords();
     if (ranked.isEmpty) return;
-    final best = ranked.first;
-    final secondScore = ranked.length > 1 ? ranked[1].score : 0.0;
+    final lockableRanked = ranked
+        .where(_candidateHasPrintedIdentitySupport)
+        .toList(growable: false);
+    if (lockableRanked.isEmpty) return;
+    final best = lockableRanked.first;
+    final secondScore = lockableRanked.length > 1
+        ? lockableRanked[1].score
+        : 0.0;
     final gap = best.score - secondScore;
     final recentTopFiveCount = best.recentTopFiveFrames
         .where((seenFrame) => frameIndex - seenFrame <= recentFrameWindow)
@@ -464,6 +515,15 @@ class CandidateVoteState {
         _stableSameNameFamilyEvidenceReady(best, recentTopFiveCount, gap)) {
       lockedCandidate = best.cardId;
     }
+  }
+
+  void _tryStrictShutterAuthorityLock(int frameIndex) {
+    if (lockedCandidate != null) return;
+    final ranked = _rankedRecords();
+    if (ranked.isEmpty) return;
+    final candidate = _strictShutterAuthorityCandidate(ranked, frameIndex);
+    if (candidate == null) return;
+    lockedCandidate = candidate.cardId;
   }
 
   List<CandidateVoteRecord> _rankedRecords() {
@@ -476,6 +536,32 @@ class CandidateVoteState {
     });
   }
 
+  CandidateVoteRecord? _strictShutterAuthorityCandidate(
+    List<CandidateVoteRecord> ranked,
+    int frameIndex,
+  ) {
+    final candidates = ranked
+        .where((candidate) {
+          final recentTopFiveCount = _recentTopFiveCount(candidate, frameIndex);
+          return _strictShutterAuthorityEvidenceReady(
+            candidate,
+            recentTopFiveCount,
+          );
+        })
+        .toList(growable: false);
+    if (candidates.isEmpty) return null;
+    candidates.sort((a, b) {
+      final distanceCompare = (a.bestDistance ?? double.infinity).compareTo(
+        b.bestDistance ?? double.infinity,
+      );
+      if (distanceCompare != 0) return distanceCompare;
+      final scoreCompare = b.score.compareTo(a.score);
+      if (scoreCompare != 0) return scoreCompare;
+      return a.cardId.compareTo(b.cardId);
+    });
+    return candidates.first;
+  }
+
   CandidateVoteRecord? _coreConsensusFastLockCandidate(
     List<CandidateVoteRecord> ranked,
     int frameIndex,
@@ -483,6 +569,38 @@ class CandidateVoteState {
     for (final candidate in ranked) {
       final recentTopFiveCount = _recentTopFiveCount(candidate, frameIndex);
       if (_coreConsensusFastEvidenceReady(candidate, recentTopFiveCount)) {
+        return candidate;
+      }
+    }
+    return null;
+  }
+
+  CandidateVoteRecord? _fullCardExactVisualMatchLockCandidate(
+    List<CandidateVoteRecord> ranked,
+    int frameIndex,
+  ) {
+    for (final candidate in ranked) {
+      final recentTopFiveCount = _recentTopFiveCount(candidate, frameIndex);
+      if (_fullCardExactVisualMatchEvidenceReady(
+        candidate,
+        recentTopFiveCount,
+      )) {
+        return candidate;
+      }
+    }
+    return null;
+  }
+
+  CandidateVoteRecord? _fullCardSameNameFamilyLockCandidate(
+    List<CandidateVoteRecord> ranked,
+    int frameIndex,
+  ) {
+    for (final candidate in ranked) {
+      final recentTopFiveCount = _recentTopFiveCount(candidate, frameIndex);
+      if (_fullCardSameNameFamilyFastEvidenceReady(
+        candidate,
+        recentTopFiveCount,
+      )) {
         return candidate;
       }
     }
@@ -530,6 +648,12 @@ class CandidateVoteState {
   }
 
   double _visualFullCardAlignmentReward(Candidate candidate) {
+    if (candidate.contributingCropTypes.contains(
+          fullCardExactVisualMatchCropType,
+        ) &&
+        candidate.distance <= fullCardExactVisualMatchDistanceGuard) {
+      return 1.35;
+    }
     if (!candidate.contributingCropTypes.contains(
       visualFullCardAlignmentCropType,
     )) {
@@ -583,6 +707,16 @@ class CandidateVoteState {
     }
 
     final recentTopFiveCount = _recentTopFiveCount(candidate, frameIndex);
+    final stableFullCardAlignmentReady =
+        visualLocked &&
+        _stableFullCardAlignmentEvidenceReady(candidate, recentTopFiveCount);
+    if (!_candidateHasPrintedIdentitySupport(candidate) &&
+        !stableFullCardAlignmentReady) {
+      return const _IdentityDecision(
+        state: IdentityDecisionStateV1.candidateUnknown,
+        reason: 'printed_identity_support_missing',
+      );
+    }
     if (!visualLocked) {
       if (candidate.topFiveOccurrences < minTopFiveFramesToLock ||
           recentTopFiveCount < minRecentTopFiveFramesToAccept) {
@@ -644,6 +778,8 @@ class CandidateVoteState {
           candidate,
           recentTopFiveCount,
         );
+    final fullCardExactVisualMatchReady =
+        _fullCardExactVisualMatchEvidenceReady(candidate, recentTopFiveCount);
     final artworkIdentityFastReady = _artworkIdentityFastEvidenceReady(
       candidate,
       recentTopFiveCount,
@@ -662,8 +798,10 @@ class CandidateVoteState {
 
     if (bestCandidateId != null &&
         bestCandidateId != candidate.cardId &&
+        !fullCardExactVisualMatchReady &&
         !coreConsensusFastReady &&
         !visualFullCardAlignmentFastReady &&
+        !stableFullCardAlignmentReady &&
         !artworkIdentityFastReady &&
         !stableArtworkIdentityReady &&
         !stableSameNameFamilyReady) {
@@ -672,8 +810,10 @@ class CandidateVoteState {
     }
     if (!fastTemporalReady &&
         !singleFrameCrossCropReady &&
+        !fullCardExactVisualMatchReady &&
         !coreConsensusFastReady &&
         !visualFullCardAlignmentFastReady &&
+        !stableFullCardAlignmentReady &&
         !artworkIdentityFastReady &&
         !stableArtworkIdentityReady &&
         !stableSameNameFamilyReady &&
@@ -684,8 +824,10 @@ class CandidateVoteState {
     }
     if (!fastTemporalReady &&
         !singleFrameCrossCropReady &&
+        !fullCardExactVisualMatchReady &&
         !coreConsensusFastReady &&
         !visualFullCardAlignmentFastReady &&
+        !stableFullCardAlignmentReady &&
         !artworkIdentityFastReady &&
         !stableArtworkIdentityReady &&
         !stableSameNameFamilyReady &&
@@ -698,9 +840,12 @@ class CandidateVoteState {
           candidate,
           minimumCropTypes: minCropTypesToAccept,
         ) &&
+        !fastTemporalReady &&
         !singleFrameCrossCropReady &&
+        !fullCardExactVisualMatchReady &&
         !coreConsensusFastReady &&
         !visualFullCardAlignmentFastReady &&
+        !stableFullCardAlignmentReady &&
         !artworkIdentityFastReady &&
         !stableArtworkIdentityReady &&
         !stableSameNameFamilyReady &&
@@ -714,9 +859,12 @@ class CandidateVoteState {
       failures.add('distance_missing');
       failureState = IdentityDecisionStateV1.candidateUnknown;
     } else if (candidate.bestDistance! > maxAcceptedDistance) {
-      if (!singleFrameCrossCropReady &&
+      if (!fastTemporalReady &&
+          !singleFrameCrossCropReady &&
+          !fullCardExactVisualMatchReady &&
           !coreConsensusFastReady &&
           !visualFullCardAlignmentFastReady &&
+          !stableFullCardAlignmentReady &&
           !artworkIdentityFastReady &&
           !stableArtworkIdentityReady &&
           !stableSameNameFamilyReady &&
@@ -728,9 +876,12 @@ class CandidateVoteState {
       }
     }
     if (voteGap < identityAcceptScoreGap &&
+        !fastTemporalReady &&
         !singleFrameCrossCropReady &&
+        !fullCardExactVisualMatchReady &&
         !coreConsensusFastReady &&
         !visualFullCardAlignmentFastReady &&
+        !stableFullCardAlignmentReady &&
         !artworkIdentityFastReady &&
         !stableArtworkIdentityReady &&
         !stableSameNameFamilyReady &&
@@ -757,10 +908,14 @@ class CandidateVoteState {
           ? 'fast_confidence_guard_passed'
           : singleFrameCrossCropReady
           ? 'single_frame_cross_crop_guard_passed'
+          : fullCardExactVisualMatchReady
+          ? 'full_card_exact_visual_match_guard_passed'
           : coreConsensusFastReady
           ? 'core_identity_consensus_fast_guard_passed'
           : visualFullCardAlignmentFastReady
           ? 'visual_full_card_alignment_fast_guard_passed'
+          : stableFullCardAlignmentReady
+          ? 'stable_full_card_alignment_guard_passed'
           : artworkIdentityFastReady
           ? 'artwork_identity_fast_guard_passed'
           : stableArtworkIdentityReady
@@ -792,7 +947,11 @@ class CandidateVoteState {
       return false;
     }
     final bestDistance = candidate.bestDistance;
-    if (bestDistance == null || bestDistance > maxAcceptedDistance) {
+    final distanceGuard =
+        _candidateHasFullCardExactVisualMatchSupport(candidate)
+        ? fullCardExactVisualMatchDistanceGuard
+        : maxAcceptedDistance;
+    if (bestDistance == null || bestDistance > distanceGuard) {
       return false;
     }
     if (bestDistance > twoCropStrongDistanceGuard &&
@@ -912,12 +1071,115 @@ class CandidateVoteState {
     if (!_candidateHasCoreIdentityConsensusSupport(candidate)) {
       return false;
     }
-    if (candidate.bestCropContributionCount < 3) {
+    if (candidate.bestCropContributionCount < 4) {
       return false;
     }
     final bestDistance = candidate.bestDistance;
     return bestDistance != null &&
         bestDistance <= singleFrameCrossCropDistanceGuard;
+  }
+
+  bool _fullCardExactVisualMatchEvidenceReady(
+    CandidateVoteRecord candidate,
+    int recentTopFiveCount,
+  ) {
+    if (candidate.topFiveOccurrences < 1 || recentTopFiveCount < 1) {
+      return false;
+    }
+    if (candidate.score <= minScoreThreshold) {
+      return false;
+    }
+    if (!_candidateHasFullCardExactVisualMatchSupport(candidate)) {
+      return false;
+    }
+    if (candidate.bestCropContributionCount < minCropTypesToAccept) {
+      return false;
+    }
+    final bestDistance = candidate.bestDistance;
+    return bestDistance != null &&
+        bestDistance <= fullCardExactVisualMatchDistanceGuard;
+  }
+
+  bool _fullCardSameNameFamilyFastEvidenceReady(
+    CandidateVoteRecord candidate,
+    int recentTopFiveCount,
+  ) {
+    if (candidate.topFiveOccurrences < 1 || recentTopFiveCount < 1) {
+      return false;
+    }
+    if (candidate.score <= minScoreThreshold) {
+      return false;
+    }
+    if (!_candidateHasStrictFullCardSameNameFamilySupport(candidate)) {
+      return false;
+    }
+    return candidate.bestRank == 1;
+  }
+
+  bool _strictShutterAuthorityEvidenceReady(
+    CandidateVoteRecord candidate,
+    int recentTopFiveCount,
+  ) {
+    if (candidate.topFiveOccurrences < 1 || recentTopFiveCount < 1) {
+      return false;
+    }
+    if (candidate.score <= minScoreThreshold) {
+      return false;
+    }
+    if (candidate.bestRank != 1) {
+      return false;
+    }
+    final bestDistance = candidate.bestDistance;
+    if (bestDistance == null) return false;
+    if (_candidateHasFullCardExactVisualMatchSupport(candidate) &&
+        candidate.contributingCropTypes.contains('full_card') &&
+        candidate.bestCropContributionCount >= minCropTypesToAccept &&
+        bestDistance <= strictShutterFullCardExactDistanceGuard) {
+      return true;
+    }
+    if (_stableFullCardAlignmentEvidenceReady(candidate, recentTopFiveCount)) {
+      return true;
+    }
+    if (_candidateHasSameNameFamilySupport(candidate) &&
+        candidate.contributingCropTypes.contains('full_card') &&
+        candidate.bestCropContributionCount >= minCropTypesToAccept &&
+        bestDistance <= strictShutterSameNameFamilyDistanceGuard) {
+      return true;
+    }
+    return false;
+  }
+
+  bool _stableFullCardAlignmentEvidenceReady(
+    CandidateVoteRecord candidate,
+    int recentTopFiveCount,
+  ) {
+    if (candidate.topFiveOccurrences <
+            strictShutterStableFullCardAlignmentMinTopFiveFrames ||
+        recentTopFiveCount <
+            strictShutterStableFullCardAlignmentMinTopFiveFrames) {
+      return false;
+    }
+    if (candidate.score <= minScoreThreshold) {
+      return false;
+    }
+    if (candidate.bestRank != 1) {
+      return false;
+    }
+    if (!_candidateHasVisualFullCardAlignmentSupport(candidate)) {
+      return false;
+    }
+    if (!candidate.contributingCropTypes.contains(visualIdentityBandCropType)) {
+      return false;
+    }
+    if (!candidate.contributingCropTypes.contains('full_card')) {
+      return false;
+    }
+    if (candidate.bestCropContributionCount < minCropTypesToAccept) {
+      return false;
+    }
+    final bestDistance = candidate.bestDistance;
+    return bestDistance != null &&
+        bestDistance <= strictShutterStableFullCardAlignmentDistanceGuard;
   }
 
   bool _visualFullCardAlignmentFastEvidenceReady(
@@ -1049,6 +1311,24 @@ class CandidateVoteState {
     return candidate.contributingCropTypes.contains(titleBandCropType);
   }
 
+  bool _candidateHasPrintedIdentitySupport(CandidateVoteRecord candidate) {
+    return _candidateHasFullCardExactVisualMatchSupport(candidate) ||
+        _candidateHasStrictCoreIdentityConsensusSupport(candidate) ||
+        _candidateHasStrictFullCardSameNameFamilySupport(candidate) ||
+        (_candidateHasTitleSupport(candidate) &&
+            candidate.contributingCropTypes.contains(
+              visualIdentityBandCropType,
+            ));
+  }
+
+  bool _candidateHasFullCardExactVisualMatchSupport(
+    CandidateVoteRecord candidate,
+  ) {
+    return candidate.contributingCropTypes.contains(
+      fullCardExactVisualMatchCropType,
+    );
+  }
+
   bool _candidateHasSameNameFamilySupport(CandidateVoteRecord candidate) {
     return candidate.contributingCropTypes.contains(sameNameFamilyCropType);
   }
@@ -1061,8 +1341,30 @@ class CandidateVoteState {
     );
   }
 
+  bool _candidateHasStrictCoreIdentityConsensusSupport(
+    CandidateVoteRecord candidate,
+  ) {
+    final bestDistance = candidate.bestDistance;
+    return _candidateHasCoreIdentityConsensusSupport(candidate) &&
+        candidate.bestCropContributionCount >= 4 &&
+        bestDistance != null &&
+        bestDistance <= singleFrameCrossCropDistanceGuard;
+  }
+
+  bool _candidateHasStrictFullCardSameNameFamilySupport(
+    CandidateVoteRecord candidate,
+  ) {
+    final bestDistance = candidate.bestDistance;
+    return _candidateHasSameNameFamilySupport(candidate) &&
+        candidate.contributingCropTypes.contains('full_card') &&
+        candidate.bestCropContributionCount >= minCropTypesToAccept &&
+        bestDistance != null &&
+        bestDistance <= singleFrameStrongDistanceGuard;
+  }
+
   bool _candidateHasCloseIdentitySupport(CandidateVoteRecord candidate) {
     if (_candidateHasTitleSupport(candidate)) return true;
+    if (_candidateHasFullCardExactVisualMatchSupport(candidate)) return true;
     if (_candidateHasVisualFullCardAlignmentSupport(candidate)) return true;
     if (_candidateHasCoreIdentityConsensusSupport(candidate)) return true;
     if (_candidateHasArtworkIdentitySupport(candidate)) return true;
