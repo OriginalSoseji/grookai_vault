@@ -4,12 +4,16 @@ on:
   push:
     paths:
       - 'lib/**'
+      - 'test/**'
       - 'pubspec.yaml'
+      - 'analysis_options.yaml'
       - '.github/workflows/flutter-ci.yml'
   pull_request:
     paths:
       - 'lib/**'
+      - 'test/**'
       - 'pubspec.yaml'
+      - 'analysis_options.yaml'
       - '.github/workflows/flutter-ci.yml'
 jobs:
   test:
@@ -36,4 +40,3 @@ jobs:
 
       - name: Run tests
         run: flutter test --no-pub
-
