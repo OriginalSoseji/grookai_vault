@@ -60,6 +60,10 @@ No card row should be imported until the canonical target set is resolved and pr
 - `missing_set_universe_decision_20260517.md`
 - `missing_set_universe_decision_matrix_20260517.json`
 - `number_normalization_plan.md`
+- `number_normalization_evidence_20260517.md`
+- `number_normalization_evidence_matrix_20260517.json`
+- `number_normalization_dry_run_implementation_plan_20260517.md`
+- `number_normalization_dry_run_implementation_plan_20260517.sql`
 - `missing_cards_backfill_plan.md`
 - `variant_model_plan.md`
 

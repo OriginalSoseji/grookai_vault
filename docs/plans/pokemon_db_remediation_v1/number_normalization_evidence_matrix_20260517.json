@@ -1,0 +1,146 @@
+{
+  "status": "NO_WRITE_EVIDENCE_ONLY",
+  "generated_from": [
+    "docs/plans/pokemon_db_remediation_v1/number_normalization_plan.md",
+    "live_read_only_supabase_evidence_2026-05-17"
+  ],
+  "scope": {
+    "sets_filter": "sets.game = 'pokemon' and coalesce(sets.source->>'domain', '') <> 'tcg_pocket'",
+    "physical_pokemon_card_prints": 22457
+  },
+  "summary": {
+    "null_or_blank_card_prints_number": 997,
+    "null_or_blank_card_prints_number_plain": 997,
+    "source_recoverable_when_both_missing": 997,
+    "hard_stop_set_rows": 374,
+    "non_hard_stop_rows": 623,
+    "numeric_candidate_non_hard": 504,
+    "prefixed_candidate_non_hard": 114,
+    "complex_candidate_non_hard": 5,
+    "missing_number_candidate_conflicts": 0,
+    "direct_vs_number_plain_mismatch_rows": 1554,
+    "source_tail_conflict_rows": 85,
+    "active_identity_printed_number_conflict_rows": 46,
+    "recommended_immediate_writes": 0
+  },
+  "hard_stop_set_rows": [
+    { "set_code": "sv08.5", "set_name": "Prismatic Evolutions", "missing_number_rows": 180 },
+    { "set_code": "sv04.5", "set_name": "Paldean Fates", "missing_number_rows": 108 },
+    { "set_code": "sv06.5", "set_name": "Shrouded Fable", "missing_number_rows": 52 },
+    { "set_code": "swsh10.5", "set_name": "Pokemon GO", "missing_number_rows": 34 }
+  ],
+  "candidate_lanes": [
+    {
+      "lane": "numeric_source_candidate_non_hard_stop",
+      "rows": 504,
+      "future_write_allowed_without_review": false,
+      "required_next_gate": "duplicate_identity_fk_dry_run",
+      "top_sets": [
+        { "set_code": "A3a", "set_name": "Extradimensional Crisis", "rows": 103 },
+        { "set_code": "P-A", "set_name": "Promos-A", "rows": 100 },
+        { "set_code": "me01", "set_name": "Mega Evolution", "rows": 83 },
+        { "set_code": "svp", "set_name": "Scarlet & Violet Black Star Promos", "rows": 73 },
+        { "set_code": "pl2", "set_name": "Rising Rivals", "rows": 34 },
+        { "set_code": "2021swsh", "set_name": "Macdonald's Collection 2021", "rows": 25 },
+        { "set_code": "xy4", "set_name": "Phantom Forces", "rows": 15 },
+        { "set_code": "pl4", "set_name": "Arceus", "rows": 12 },
+        { "set_code": "mep", "set_name": "MEP Black Star Promos", "rows": 10 }
+      ],
+      "notes": [
+        "single source-derived candidate per row",
+        "candidate is numeric after normalization",
+        "still requires duplicate and identity impact proof"
+      ]
+    },
+    {
+      "lane": "prefixed_source_candidate_non_hard_stop",
+      "rows": 114,
+      "future_write_allowed_without_review": false,
+      "required_next_gate": "prefix_policy_review",
+      "top_sets": [
+        { "set_code": "xyp", "set_name": "XY Black Star Promos", "rows": 61 },
+        { "set_code": "bw11", "set_name": "Legendary Treasures", "rows": 20 },
+        { "set_code": "ecard3", "set_name": "Skyridge", "rows": 11 },
+        { "set_code": "pl4", "set_name": "Arceus", "rows": 8 },
+        { "set_code": "col1", "set_name": "Call of Legends", "rows": 6 },
+        { "set_code": "pl2", "set_name": "Rising Rivals", "rows": 3 }
+      ],
+      "notes": [
+        "candidate contains printed prefix such as XY, H, RT, AR, or SL",
+        "number_plain cannot be trusted as printed identity",
+        "manual source review required"
+      ]
+    },
+    {
+      "lane": "complex_source_candidate_non_hard_stop",
+      "rows": 5,
+      "future_write_allowed_without_review": false,
+      "required_next_gate": "manual_suffix_policy_review",
+      "items": [
+        { "set_code": "xy4", "set_name": "Phantom Forces", "card_name": "Aegislash EX", "candidate": "65A" },
+        { "set_code": "cel25", "set_name": "Celebrations", "card_name": "Here Comes Team Rocket!", "candidate": "15A2" },
+        { "set_code": "cel25", "set_name": "Celebrations", "card_name": "Venusaur", "candidate": "15A1" },
+        { "set_code": "cel25", "set_name": "Celebrations", "card_name": "Claydol", "candidate": "15A4" },
+        { "set_code": "cel25", "set_name": "Celebrations", "card_name": "Rocket's Zapdos", "candidate": "15A3" }
+      ]
+    },
+    {
+      "lane": "hard_stop_set_blocked",
+      "rows": 374,
+      "future_write_allowed_without_review": false,
+      "required_next_gate": "set_canonicalization_hard_stop_resolution",
+      "notes": [
+        "do not normalize numbers in unresolved canonicalization hard-stop sets"
+      ]
+    },
+    {
+      "lane": "existing_number_generated_field_risk",
+      "rows": 1554,
+      "future_write_allowed_without_review": false,
+      "required_next_gate": "comparable_number_contract",
+      "notes": [
+        "direct printed number and number_plain normalize differently",
+        "number_plain may collapse prefixes and subset identities"
+      ]
+    },
+    {
+      "lane": "source_tail_conflict_existing_number",
+      "rows": 85,
+      "future_write_allowed_without_review": false,
+      "required_next_gate": "source_conflict_manual_review",
+      "notes": [
+        "source external id tail conflicts with direct printed number",
+        "commonly alternate a-suffix or Classic Collection provenance"
+      ]
+    }
+  ],
+  "raw_payload_field_coverage": [
+    {
+      "source": "tcgdex",
+      "kind": "card",
+      "rows": 22418,
+      "number_carriers": ["payload.card.localId", "payload.card.id"]
+    },
+    {
+      "source": "pokemonapi",
+      "kind": "card",
+      "rows": 7324,
+      "number_carriers": ["payload.number", "payload.id"]
+    },
+    {
+      "source": "justtcg",
+      "kind": "card",
+      "rows": 15239,
+      "number_carriers": ["payload.number", "payload.id"]
+    }
+  ],
+  "stop_conditions": [
+    "canonical set ownership unresolved",
+    "set is in current canonicalization hard-stop scope",
+    "multiple source candidates disagree",
+    "candidate would collide with another card in the same set",
+    "active card_print_identity printed_number disagrees",
+    "source candidate has prefix or suffix without policy approval",
+    "future plan mutates number_plain without a comparable-number contract"
+  ]
+}
