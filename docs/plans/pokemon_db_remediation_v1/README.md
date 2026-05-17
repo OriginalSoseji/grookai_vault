@@ -53,6 +53,7 @@ No card row should be imported until the canonical target set is resolved and pr
 - `set_alias_prewrite_evidence_matrix_20260517.json`
 - `set_alias_route_classification_write_plan_20260517.md`
 - `set_alias_route_classification_write_plan_20260517.sql`
+- `set_alias_route_classification_execution_20260517.md`
 - `missing_sets_plan.md`
 - `number_normalization_plan.md`
 - `missing_cards_backfill_plan.md`

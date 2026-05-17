@@ -770,7 +770,6 @@ function buildMarkdown(matrix, routeLayerEvidence) {
   lines.push('- No migration repair.');
   lines.push('- No `db pull`.');
   lines.push('- No production mutation.');
-  lines.push('');
   return `${lines.join('\n')}\n`;
 }
 

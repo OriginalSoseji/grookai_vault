@@ -142,9 +142,9 @@
           "evidence": "manual-review metadata fields: source"
         },
         "route_search_preservation": {
-          "status": "REVIEW",
-          "severity": "REVIEW",
-          "evidence": "alias classification exists but points to sv3pt5; alias code appears in local route/search/source files (2 file hits); alias code appears in set-code DB surfaces (4 surface hits)"
+          "status": "PASS",
+          "severity": "INFO",
+          "evidence": "alias is already classified to expected canonical code; alias code appears in local route/search/source files (2 file hits); alias code appears in set-code DB surfaces (3 surface hits)"
         }
       },
       "counts": {
@@ -241,12 +241,12 @@
         "route_layer_supported_by_set_code_classification": true,
         "alias_classification": {
           "set_code": "sv3pt5",
-          "is_canon": true,
-          "canonical_set_code": "sv3pt5",
+          "is_canon": false,
+          "canonical_set_code": "sv03.5",
           "pokemonapi_set_id": null,
           "tcgdex_set_id": null,
           "tcgdex_asset_code": null,
-          "notes": "Canonical SV pt5 expansion; promoted after identity audit"
+          "notes": "Canonical SV pt5 expansion; promoted after identity audit\n2026-05-17 route-classification execution: sv3pt5 is a permanent alias of sv03.5; no set/card/metadata/mapping movement."
         },
         "canonical_classification": {
           "set_code": "sv03.5",
@@ -263,12 +263,6 @@
             "column_name": "set_code",
             "code": "sv3pt5",
             "rows": 1082
-          },
-          {
-            "table_name": "set_code_classification",
-            "column_name": "canonical_set_code",
-            "code": "sv3pt5",
-            "rows": 1
           },
           {
             "table_name": "set_code_classification",
@@ -312,7 +306,7 @@
             "table_name": "set_code_classification",
             "column_name": "canonical_set_code",
             "code": "sv03.5",
-            "rows": 1
+            "rows": 2
           },
           {
             "table_name": "set_code_classification",
@@ -6153,9 +6147,9 @@
           "evidence": "manual-review metadata fields: source"
         },
         "route_search_preservation": {
-          "status": "REVIEW",
-          "severity": "REVIEW",
-          "evidence": "alias classification row is absent and would be required in a future write; alias code appears in local route/search/source files (1 file hits); alias code appears in set-code DB surfaces (3 surface hits)"
+          "status": "PASS",
+          "severity": "INFO",
+          "evidence": "alias is already classified to expected canonical code; alias code appears in local route/search/source files (1 file hits); alias code appears in set-code DB surfaces (4 surface hits)"
         }
       },
       "counts": {
@@ -6248,7 +6242,15 @@
       },
       "route_search": {
         "route_layer_supported_by_set_code_classification": true,
-        "alias_classification": null,
+        "alias_classification": {
+          "set_code": "sm35",
+          "is_canon": false,
+          "canonical_set_code": "sm3.5",
+          "pokemonapi_set_id": null,
+          "tcgdex_set_id": null,
+          "tcgdex_asset_code": null,
+          "notes": "2026-05-17 route-classification execution: sm35 is a permanent alias of sm3.5; no set/card/metadata/mapping movement."
+        },
         "canonical_classification": {
           "set_code": "sm3.5",
           "is_canon": true,
@@ -6264,6 +6266,12 @@
             "column_name": "set_code",
             "code": "sm35",
             "rows": 554
+          },
+          {
+            "table_name": "set_code_classification",
+            "column_name": "set_code",
+            "code": "sm35",
+            "rows": 1
           },
           {
             "table_name": "v_pokemonapi_contract_audit",
@@ -6308,6 +6316,12 @@
             "column_name": "set_code",
             "code": "sm3.5",
             "rows": 468
+          },
+          {
+            "table_name": "set_code_classification",
+            "column_name": "canonical_set_code",
+            "code": "sm3.5",
+            "rows": 1
           },
           {
             "table_name": "set_code_classification",

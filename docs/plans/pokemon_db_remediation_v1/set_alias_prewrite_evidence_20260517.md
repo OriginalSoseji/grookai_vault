@@ -25,9 +25,9 @@ The audit fails closed if any hard-stop or review-stop code appears in the input
 | Alias rows with no hidden non-card FK dependencies | 20 |
 | Canonical rows owning card_prints | 20 |
 | Pairs requiring metadata manual review | 20 |
-| Pairs requiring route classification review | 2 |
-| Alias classification rows currently missing | 1 |
-| Alias classification rows currently mismatched | 1 |
+| Pairs requiring route classification review | 0 |
+| Alias classification rows currently missing | 0 |
+| Alias classification rows currently mismatched | 0 |
 
 
 ## Route Layer Evidence
@@ -42,7 +42,7 @@ Finding: route/search preservation can be handled through an alias classificatio
 
 | Name key | Canonical | Alias | Overall | Alias cards | Canonical cards | Hidden FK gate | Metadata gate | Route gate |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| 151 | `sv03.5` | `sv3pt5` | PASS_WITH_REVIEW | 0 | 210 | PASS | REVIEW | REVIEW |
+| 151 | `sv03.5` | `sv3pt5` | PASS_WITH_REVIEW | 0 | 210 | PASS | REVIEW | PASS |
 | black bolt | `sv10.5b` | `zsv10pt5` | PASS_WITH_REVIEW | 0 | 180 | PASS | REVIEW | PASS |
 | champions path | `swsh3.5` | `swsh35` | PASS_WITH_REVIEW | 0 | 83 | PASS | REVIEW | PASS |
 | crown zenith | `swsh12.5` | `swsh12pt5` | PASS_WITH_REVIEW | 0 | 167 | PASS | REVIEW | PASS |
@@ -56,7 +56,7 @@ Finding: route/search preservation can be handled through an alias classificatio
 | phantasmal flames | `me02` | `me2` | PASS_WITH_REVIEW | 0 | 131 | PASS | REVIEW | PASS |
 | scarlet and violet | `sv01` | `sv1` | PASS_WITH_REVIEW | 0 | 283 | PASS | REVIEW | PASS |
 | shining fates | `swsh4.5` | `swsh45` | PASS_WITH_REVIEW | 0 | 75 | PASS | REVIEW | PASS |
-| shining legends | `sm3.5` | `sm35` | PASS_WITH_REVIEW | 0 | 78 | PASS | REVIEW | REVIEW |
+| shining legends | `sm3.5` | `sm35` | PASS_WITH_REVIEW | 0 | 78 | PASS | REVIEW | PASS |
 | stellar crown | `sv07` | `sv7` | PASS_WITH_REVIEW | 0 | 194 | PASS | REVIEW | PASS |
 | surging sparks | `sv08` | `sv8` | PASS_WITH_REVIEW | 0 | 271 | PASS | REVIEW | PASS |
 | temporal forces | `sv05` | `sv5` | PASS_WITH_REVIEW | 0 | 246 | PASS | REVIEW | PASS |
@@ -74,7 +74,7 @@ Finding: route/search preservation can be handled through an alias classificatio
 - Set mappings: canonical justtcg=1, alias justtcg=0.
 - Hidden FK dependencies on alias row: none.
 - Metadata behavior: MANUAL_REVIEW_REQUIRED (source).
-- Route/search preservation: alias classification exists but points to sv3pt5; alias code appears in local route/search/source files (2 file hits); alias code appears in set-code DB surfaces (4 surface hits).
+- Route/search preservation: alias is already classified to expected canonical code; alias code appears in local route/search/source files (2 file hits); alias code appears in set-code DB surfaces (3 surface hits).
 
 ### sv10.5b <- zsv10pt5
 
@@ -214,7 +214,7 @@ Finding: route/search preservation can be handled through an alias classificatio
 - Set mappings: canonical justtcg=1, alias justtcg=0.
 - Hidden FK dependencies on alias row: none.
 - Metadata behavior: MANUAL_REVIEW_REQUIRED (source).
-- Route/search preservation: alias classification row is absent and would be required in a future write; alias code appears in local route/search/source files (1 file hits); alias code appears in set-code DB surfaces (3 surface hits).
+- Route/search preservation: alias is already classified to expected canonical code; alias code appears in local route/search/source files (1 file hits); alias code appears in set-code DB surfaces (4 surface hits).
 
 ### sv07 <- sv7
 
@@ -297,8 +297,7 @@ _None._
 
 ## Route Review Queue
 
-- `sv3pt5` -> `sv03.5`: alias classification exists but points to sv3pt5; alias code appears in local route/search/source files (2 file hits); alias code appears in set-code DB surfaces (4 surface hits).
-- `sm35` -> `sm3.5`: alias classification row is absent and would be required in a future write; alias code appears in local route/search/source files (1 file hits); alias code appears in set-code DB surfaces (3 surface hits).
+_None._
 
 
 ## Future Write-Plan Implications
