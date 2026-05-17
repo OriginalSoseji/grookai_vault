@@ -1,0 +1,93 @@
+{
+  "status": "NO_WRITE_SOURCE_ROUTE_CLASSIFICATION_WRITE_PLAN_ONLY",
+  "generated_from": [
+    "docs/plans/pokemon_db_remediation_v1/source_route_equivalence_evidence_20260517.md",
+    "docs/plans/pokemon_db_remediation_v1/source_route_equivalence_evidence_matrix_20260517.json",
+    "live_read_only_supabase_preflight_2026-05-17",
+    "repo_route_search_review_2026-05-17"
+  ],
+  "summary": {
+    "route_candidates": 2,
+    "exact_equivalence_passes": 2,
+    "matched_identity_count": 110,
+    "recommended_card_inserts": 0,
+    "recommended_set_creates": 0,
+    "recommended_immediate_writes": 0,
+    "public_app_consumption": "PARTIAL_REQUIRES_RESOLVER_REVIEW"
+  },
+  "items": [
+    {
+      "source_route_code": "shiny-vault",
+      "canonical_set_code": "sma",
+      "canonical_set_name": "Hidden Fates Shiny Vault",
+      "future_operation": "guarded_insert_set_code_classification",
+      "future_shape": {
+        "is_canon": false,
+        "canon_source": "source_route",
+        "canonical_set_code": "sma"
+      },
+      "current_classification_row": "absent",
+      "canonical_classification_row": "present_canon_true",
+      "source_card_count": 94,
+      "canonical_card_count": 94,
+      "matched_identity_count": 94,
+      "missing_in_db_count": 0,
+      "extra_in_db_count": 0,
+      "recommended_card_inserts": 0,
+      "recommended_set_creates": 0,
+      "future_write_allowed_now": false,
+      "public_route_risk": [
+        "DB classification can represent route/source alias.",
+        "Direct set-card queries must resolve alias to sma before filtering card_prints.set_code.",
+        "Existing fuzzy set-name search likely finds sma for shiny vault through Hidden Fates Shiny Vault, but that is app behavior, not DB-route proof."
+      ],
+      "stop_gates": [
+        "classification row appears before execution",
+        "sma missing or no longer owns 94 card prints",
+        "source equivalence script no longer reports 94 matched identities",
+        "future write scope includes cards, sets, metadata, mappings, or variants"
+      ]
+    },
+    {
+      "source_route_code": "rm",
+      "canonical_set_code": "ru1",
+      "canonical_set_name": "Pokemon Rumble",
+      "future_operation": "guarded_insert_set_code_classification",
+      "future_shape": {
+        "is_canon": false,
+        "canon_source": "source_route",
+        "canonical_set_code": "ru1"
+      },
+      "current_classification_row": "absent",
+      "canonical_classification_row": "present_canon_true",
+      "source_card_count": 16,
+      "canonical_card_count": 16,
+      "matched_identity_count": 16,
+      "missing_in_db_count": 0,
+      "extra_in_db_count": 0,
+      "recommended_card_inserts": 0,
+      "recommended_set_creates": 0,
+      "future_write_allowed_now": false,
+      "public_route_risk": [
+        "DB classification can represent route/source alias.",
+        "Direct set-card queries must resolve rm to ru1 before filtering card_prints.set_code.",
+        "Current public app alias map does not visibly include rm, so user-facing route/search support needs separate resolver review."
+      ],
+      "stop_gates": [
+        "classification row appears before execution",
+        "ru1 missing or no longer owns 16 card prints",
+        "source equivalence script no longer reports 16 matched identities",
+        "future write scope includes cards, sets, metadata, mappings, or variants"
+      ]
+    }
+  ],
+  "future_write_boundaries": [
+    "route/source classification rows only",
+    "no card movement",
+    "no set creation",
+    "no metadata merge",
+    "no external mapping movement",
+    "no variant writes",
+    "public app resolver verification remains separate"
+  ]
+}

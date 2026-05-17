@@ -8,16 +8,16 @@
       "items": [
         {
           "priority": 1,
-          "item": "source-route write-plan dry-run for Shiny Vault",
-          "scope": "shiny-vault collection to existing sma",
-          "next_artifact": "route/source classification plan only; 94/94 equivalence already proved",
+          "item": "public resolver impact evidence",
+          "scope": "shiny-vault and rm",
+          "next_artifact": "confirm or patch app-side alias resolution before calling route/search user-facing complete",
           "write_allowed_now": false
         },
         {
           "priority": 2,
-          "item": "source-route write-plan dry-run for Rumble",
-          "scope": "PkmnCards Rumble to existing ru1",
-          "next_artifact": "route/source classification plan only; 16/16 equivalence already proved",
+          "item": "future source-route execution checkpoint",
+          "scope": "shiny-vault -> sma and rm -> ru1",
+          "next_artifact": "fresh preflight plus explicit approval for DB route rows only",
           "write_allowed_now": false
         },
         {

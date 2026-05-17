@@ -61,6 +61,9 @@ No card row should be imported until the canonical target set is resolved and pr
 - `missing_set_universe_decision_matrix_20260517.json`
 - `source_route_equivalence_evidence_20260517.md`
 - `source_route_equivalence_evidence_matrix_20260517.json`
+- `source_route_classification_write_plan_20260517.md`
+- `source_route_classification_write_plan_20260517.sql`
+- `source_route_classification_write_plan_matrix_20260517.json`
 - `number_normalization_plan.md`
 - `number_normalization_evidence_20260517.md`
 - `number_normalization_evidence_matrix_20260517.json`
