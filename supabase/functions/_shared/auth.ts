@@ -6,6 +6,8 @@ export type AuthEnv = {
   serviceRoleKey: string;
 };
 
+type AuthSupabaseClient = any;
+
 export function json(status: number, body: unknown): Response {
   return new Response(JSON.stringify(body), {
     status,
@@ -51,10 +53,7 @@ export function extractBearerToken(req: Request): string | null {
 
 export function readAuthEnv(): AuthEnv | null {
   const supabaseUrl = Deno.env.get("SUPABASE_URL") ?? "";
-  const serviceRoleKey =
-    getServiceRoleKey() ??
-    Deno.env.get("SUPABASE_SERVICE_ROLE_KEY") ??
-    "";
+  const serviceRoleKey = getServiceRoleKey() ?? "";
   if (!supabaseUrl || !serviceRoleKey) return null;
   return { supabaseUrl, serviceRoleKey };
 }
@@ -65,7 +64,7 @@ export function readAuthEnv(): AuthEnv | null {
  * configured to evaluate RLS via the provided user token.
  */
 export async function requireUser(req: Request): Promise<{
-  sb: ReturnType<typeof createClient>;
+  sb: AuthSupabaseClient;
   userId: string;
 }> {
   const auth = await requireAuthUser(req);
@@ -73,7 +72,7 @@ export async function requireUser(req: Request): Promise<{
 }
 
 export async function requireAuthUser(req: Request): Promise<{
-  sb: ReturnType<typeof createClient>;
+  sb: AuthSupabaseClient;
   userId: string;
   userEmail: string | null;
 }> {

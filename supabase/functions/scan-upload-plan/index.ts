@@ -1,9 +1,11 @@
 import { serve } from "https://deno.land/std@0.224.0/http/server.ts";
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2.45.4";
+import { getServiceRoleKey } from "../_shared/key_resolver.ts";
 
 type ReqBody = {
   vault_item_id: string;
   slots: string[];
+  debug?: boolean;
 };
 
 const ALLOWED_SLOTS = new Set([
@@ -39,7 +41,7 @@ serve(async (req) => {
     }
 
     const supabaseUrl = Deno.env.get("SUPABASE_URL");
-    const serviceRoleKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY");
+    const serviceRoleKey = getServiceRoleKey();
     if (!supabaseUrl || !serviceRoleKey) {
       return new Response(
         JSON.stringify({ code: 500, message: "Server misconfigured: missing Supabase env vars" }),
@@ -77,7 +79,7 @@ serve(async (req) => {
         apikey_prefix: apikey.slice(0, 8),
         auth_header_keys: keys,
         env_has_supabase_url: !!supabaseUrl,
-        env_has_service_role_key: !!serviceRoleKey,
+        env_has_supabase_secret_key: !!serviceRoleKey,
         supabase_url_prefix: supabaseUrl ? supabaseUrl.slice(0, 24) : null,
       });
     }

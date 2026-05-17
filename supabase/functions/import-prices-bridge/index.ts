@@ -56,8 +56,6 @@ export default async (req: Request): Promise<Response> => {
       SUPABASE_URL: !!Deno.env.get("SUPABASE_URL"),
       PROJECT_URL: !!Deno.env.get("PROJECT_URL"),
       SUPABASE_PUBLISHABLE_KEY: !!Deno.env.get("SUPABASE_PUBLISHABLE_KEY"),
-      SUPABASE_ANON_KEY: !!Deno.env.get("SUPABASE_ANON_KEY"),
-      ANON_KEY: !!Deno.env.get("ANON_KEY"),
       BRIDGE_IMPORT_TOKEN: !!Deno.env.get("BRIDGE_IMPORT_TOKEN"),
     };
 
@@ -75,8 +73,6 @@ export default async (req: Request): Promise<Response> => {
 
   const pub =
     Deno.env.get("SUPABASE_PUBLISHABLE_KEY") ??
-    Deno.env.get("SUPABASE_ANON_KEY") ??
-    Deno.env.get("ANON_KEY") ??
     "";
 
   const bridgeToken = Deno.env.get("BRIDGE_IMPORT_TOKEN") ?? "";

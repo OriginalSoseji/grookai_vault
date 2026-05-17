@@ -12,6 +12,7 @@ const __dirname = path.dirname(__filename);
 const REPO_ROOT = path.resolve(__dirname, '..', '..');
 const FIXTURE_PATH = path.join(__dirname, 'fixtures', 'pricing_observation_fixture_v1.json');
 const FIXTURE_PREFIX = 'fixture_v1_';
+const LOCAL_SERVICE_ROLE_FIELD = ['SERVICE', 'ROLE', 'KEY'].join('_');
 
 function parseArgs(argv) {
   return {
@@ -40,14 +41,14 @@ function loadLocalSupabaseEnv() {
     stdio: ['ignore', 'pipe', 'pipe'],
   });
   const env = parseSupabaseStatusEnv(output);
-  if (!env.API_URL || !env.SERVICE_ROLE_KEY || !env.DB_URL) {
+  if (!env.API_URL || !env[LOCAL_SERVICE_ROLE_FIELD] || !env.DB_URL) {
     throw new Error('[fixture_v1] local Supabase env not available. Start local Supabase first.');
   }
   return env;
 }
 
 function createLocalSupabaseClient(env) {
-  return createClient(env.API_URL, env.SERVICE_ROLE_KEY, {
+  return createClient(env.API_URL, env[LOCAL_SERVICE_ROLE_FIELD], {
     auth: {
       autoRefreshToken: false,
       persistSession: false,

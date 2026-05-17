@@ -1,4 +1,4 @@
-name: Guard: No Legacy Keys
+name: "Guard: No Legacy Keys"
 on:
   pull_request:
   push:
@@ -11,4 +11,3 @@ jobs:
       - name: Run legacy key guard
         shell: pwsh
         run: .\scripts\guard_no_legacy_keys.ps1
-

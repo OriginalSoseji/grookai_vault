@@ -18,13 +18,13 @@ serve(async (req) => {
     if (req.method !== "POST") return json(405, { error: "method_not_allowed" });
 
     const url = Deno.env.get("SUPABASE_URL");
-    const anon = Deno.env.get("SUPABASE_ANON_KEY");
-    if (!url || !anon) return json(500, { error: "missing_env", details: "SUPABASE_URL / SUPABASE_ANON_KEY" });
+    const publishableKey = Deno.env.get("SUPABASE_PUBLISHABLE_KEY");
+    if (!url || !publishableKey) return json(500, { error: "missing_env", details: "SUPABASE_URL / SUPABASE_PUBLISHABLE_KEY" });
 
     const authHeader = req.headers.get("authorization") ?? "";
     if (!authHeader.toLowerCase().startsWith("bearer ")) return json(401, { error: "missing_bearer_token" });
 
-    const sb = createClient(url, anon, { global: { headers: { Authorization: authHeader } } });
+    const sb = createClient(url, publishableKey, { global: { headers: { Authorization: authHeader } } });
 
     const { data: userData, error: userErr } = await sb.auth.getUser();
     if (userErr || !userData?.user) return json(401, { error: "unauthorized" });

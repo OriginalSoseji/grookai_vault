@@ -131,7 +131,7 @@ const handler = async (req: Request): Promise<Response> => {
   }
 
   const supabaseUrl = Deno.env.get("SUPABASE_URL") ?? Deno.env.get("PROJECT_URL") ?? "";
-  const serviceRole = getServiceRoleKey() ?? Deno.env.get("SUPABASE_SERVICE_ROLE_KEY") ?? "";
+  const serviceRole = getServiceRoleKey() ?? "";
 
   if (!supabaseUrl || !serviceRole) {
     console.log(
