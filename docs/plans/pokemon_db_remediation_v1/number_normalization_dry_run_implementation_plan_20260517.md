@@ -29,6 +29,8 @@ Even that lane is not approved yet. This plan defines the dry-run gates that mus
 - `number_normalization_collision_investigation_matrix_20260517.json`
 - `number_normalization_me01_duplicate_ownership_20260517.md`
 - `number_normalization_me01_duplicate_ownership_matrix_20260517.json`
+- `number_normalization_me01_duplicate_resolution_design_20260517.md`
+- `number_normalization_me01_duplicate_resolution_design_20260517.sql`
 - `number_normalization_plan.md`
 - `set_canonicalization_dry_run_20260517.md`
 - `missing_set_universe_decision_20260517.md`
@@ -67,7 +69,7 @@ Collision investigation for the 256 blocked rows found:
 - 75 same-number/different-card ambiguities.
 - 2 candidate rows with user/market references.
 
-The `me01` duplicate ownership pack confirms all 83 `me01` collision rows are duplicate pairs, not number-normalization candidates. The future cleanup shape for `me01` must be duplicate-ownership remediation with user/market reference preservation, not an update to `card_prints.number`.
+The `me01` duplicate ownership pack confirms all 83 `me01` collision rows are duplicate pairs, not number-normalization candidates. The duplicate resolution design keeps `me01` out of number-normalization writes and defines a future duplicate-ownership remediation shape with survivor selection rules, TCGdex mapping preservation, user/market reference preservation, rollback snapshots, and no deletes until FK/reference migration is proven.
 
 Only the 248 clean rows can become a future write-plan candidate after review. The blocked 256 rows must stay out of any bulk write scope until collision ownership is investigated. This lane must still prove:
 

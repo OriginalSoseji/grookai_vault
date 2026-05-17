@@ -48,7 +48,7 @@ Current evidence:
 | Same-card duplicate-review rows | 27 | source authority review |
 | Same-number/different-card ambiguity rows | 75 | comparable-number/subset identity review |
 | Collision candidates with user/market refs | 2 | strict ownership review before any merge/deactivate idea |
-| `me01` duplicate ownership rows | 83 | ownership pack complete; future duplicate-resolution design only |
+| `me01` duplicate ownership rows | 83 | ownership pack and no-write resolution design complete |
 | Prefixed source candidates outside hard stops | 114 | prefix policy review |
 | Complex source candidates outside hard stops | 5 | manual suffix policy review |
 | Hard-stop set rows | 374 | canonicalization hard-stop resolution |
@@ -62,7 +62,7 @@ Future no-write queue:
 | Priority | Item | Scope | Required evidence | Write status |
 | ---: | --- | --- | --- | --- |
 | 1 | Clean Lane A write-plan draft | 248 rows | guard clauses, rollback, post-write checks, still no execution | no-write SQL plan only |
-| 2 | `me01` duplicate resolution design | 83 duplicate pairs; 2 user/market hard stops | no-write transaction shape only after deciding mapping/reference preservation policy | no-write design only |
+| 2 | `me01` duplicate resolution prewrite evidence | 83 duplicate pairs; 2 user/market hard stops | fresh row-level safety gates from live DB before any future write candidate | no-write evidence only |
 | 3 | `svp` duplicate ownership pack | 72 collision rows | separate duplicate imports from same-card review rows | evidence only |
 | 4 | Prefix/subset collision policy | 75 same-number/different-card rows | decide how `number_plain` collisions involving `RC`, `SL`, `SH`, `AR`, LV.X, and similar identities should be compared | policy only |
 | 5 | Prefix policy | 114 prefixed candidates | define whether prefixes stay in `number` and how `number_plain` compares | policy only |

@@ -27,6 +27,8 @@ The audit script already derives number keys from direct number fields first, th
 - `number_normalization_collision_investigation_matrix_20260517.json`
 - `number_normalization_me01_duplicate_ownership_20260517.md`
 - `number_normalization_me01_duplicate_ownership_matrix_20260517.json`
+- `number_normalization_me01_duplicate_resolution_design_20260517.md`
+- `number_normalization_me01_duplicate_resolution_design_20260517.sql`
 - `number_normalization_dry_run_implementation_plan_20260517.md`
 - `number_normalization_dry_run_implementation_plan_20260517.sql`
 
@@ -42,6 +44,8 @@ The collision investigation classified those 256 blocked rows as:
 - 2 candidates with user/market references, both in `me01`.
 
 The `me01` duplicate ownership pack confirms that all 83 `me01` collision rows are one-for-one duplicate ownership pairs: the candidate side is missing-number TCGdex-only, while the incumbent side is numbered and owned by JustTCG/TCGPlayer mappings. Of those, 81 candidate rows have no user/market references, while 2 candidate rows, Mega Camerupt ex and Mega Lucario ex, already carry vault/pricing references and must become hard-stop subcases for any future cleanup design.
+
+The `me01` duplicate resolution design defines a future no-write cleanup shape only: incumbent rows are the canonical survivor candidates, TCGdex mappings must be preserved, the two referenced candidate rows are split into a separate manual lane, rollback snapshots are mandatory, and no deletes are allowed until FK/reference migration is proven.
 
 That means the next implementation planning unit must target only the 248 clean rows or run set-scoped duplicate/source-ownership investigations first; the full 504-row lane is not safe as a bulk write scope, and `me01` is not safe to solve as number normalization.
 

@@ -77,7 +77,7 @@ The remediation chain now has reviewable no-write artifacts for each required ph
 | Alias route classification | Planned, executed only for approved route fixes, verified | `set_alias_route_classification_write_plan_20260517.md`, `set_alias_route_classification_execution_20260517.md` |
 | Alias metadata preservation | Planned only | `set_alias_metadata_preservation_plan_20260517.md` |
 | Missing set universe | Classified only | `missing_set_universe_decision_20260517.md` |
-| Number normalization | Evidence, candidate matrix, collision investigation, `me01` ownership pack, and dry-run plan only | `number_normalization_evidence_20260517.md`, `number_normalization_candidate_evidence_20260517.md`, `number_normalization_collision_investigation_20260517.md`, `number_normalization_me01_duplicate_ownership_20260517.md`, `number_normalization_dry_run_implementation_plan_20260517.md` |
+| Number normalization | Evidence, candidate matrix, collision investigation, `me01` ownership/design pack, and dry-run plan only | `number_normalization_evidence_20260517.md`, `number_normalization_candidate_evidence_20260517.md`, `number_normalization_collision_investigation_20260517.md`, `number_normalization_me01_duplicate_ownership_20260517.md`, `number_normalization_me01_duplicate_resolution_design_20260517.md`, `number_normalization_dry_run_implementation_plan_20260517.md` |
 | Missing card checklist backfill | Evidence and dry-run plan only | `missing_cards_backfill_evidence_20260517.md`, `missing_cards_backfill_dry_run_implementation_plan_20260517.md` |
 | Variant authority | V2 authority plan only | `variant_authority_model_v2_plan_20260517.md` |
 
@@ -170,7 +170,7 @@ No implementation is authorized by this checkpoint. If authorization is granted 
 1. Route/classification follow-ups: none immediate; route review queue is currently clean after `sv3pt5`, `sm35`, `shiny-vault`, and `rm`.
 2. Alias metadata: source-payload diff only before any null-only metadata copy is considered.
 3. Missing set universe: target-set dry-run for TCG Classic decks and source-route proof for Shiny Vault/Rumble before card rows.
-4. Number normalization: the 504 numeric non-hard-stop rows are now split into 248 clean future write-plan candidates and 256 collision-blocked rows; collision investigation classifies the blocked rows as 154 likely duplicate import rows, 27 same-card duplicate-review rows, and 75 same-number/different-card ambiguities. `me01` is now proven as 83 duplicate ownership pairs, including 2 user/market hard stops. Do not treat all 504 as a write scope.
+4. Number normalization: the 504 numeric non-hard-stop rows are now split into 248 clean future write-plan candidates and 256 collision-blocked rows; collision investigation classifies the blocked rows as 154 likely duplicate import rows, 27 same-card duplicate-review rows, and 75 same-number/different-card ambiguities. `me01` is now proven as 83 duplicate ownership pairs, including 2 user/market hard stops, with a no-write duplicate resolution design. Do not treat all 504 as a write scope.
 5. Missing cards: no direct import; start only with established-set candidate dry-runs after set and number blockers clear.
 6. Variants: freeze writes until `VARIANT_AUTHORITY_MODEL_V2` is approved and a read-only source vocabulary inventory exists.
 7. Hard stops: separate evidence investigations only, one group at a time.
