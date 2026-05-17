@@ -284,7 +284,7 @@ create table if not exists public.condition_snapshot_analyses (
 
 Command:
 ```
-$env:SUPABASE_DB_URL='postgresql://postgres:D4tFdTW3JVm4LcA1@db.ycdxbpibncqcchqiihfz.supabase.co:5432/postgres'; @'
+$env:SUPABASE_DB_URL='<REDACTED_SUPABASE_DB_URL>'; @'
 const { Client } = require('pg');
 const conn = process.env.SUPABASE_DB_URL;
 (async () => {
