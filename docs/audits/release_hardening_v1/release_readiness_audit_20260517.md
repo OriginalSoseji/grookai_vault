@@ -2,7 +2,7 @@
 
 ## Classification
 
-RELEASE_CANDIDATE
+NOT_PRODUCTION_READY
 
 ## Scope
 
@@ -52,7 +52,7 @@ Remaining CI risk:
 
 ## Signing Readiness
 
-Status: RELEASE_CANDIDATE
+Status: NOT_PRODUCTION_READY
 
 - Release workflow requires:
   - `ANDROID_KEYSTORE_BASE64`
@@ -66,7 +66,36 @@ Status: RELEASE_CANDIDATE
 
 Remaining signing gate:
 
-- Signing secrets were not available in the local environment, so signed release build execution remains a GitHub-secrets validation step.
+- GitHub repository secrets were checked with `gh secret list --repo OriginalSoseji/grookai_vault` on 2026-05-17.
+- Required release secrets are not currently present in GitHub Actions:
+  - `ANDROID_KEYSTORE_BASE64`
+  - `ANDROID_KEYSTORE_PASSWORD`
+  - `ANDROID_KEY_ALIAS`
+  - `ANDROID_KEY_PASSWORD`
+  - `MOBILE_SUPABASE_URL`
+  - `MOBILE_SUPABASE_PUBLISHABLE_KEY`
+- The release workflow was not present in `gh workflow list` because the release-hardening commits are still local to `scanner-v4-card-present-gate` and have not been published to GitHub.
+- No signed release workflow run, artifact inspection, `.env` artifact scan, or install test could be completed.
+
+## GitHub Release Verification
+
+Status: BLOCKED
+
+Attempted verification on 2026-05-17:
+
+- GitHub CLI authentication: pass.
+- Repository resolved: `OriginalSoseji/grookai_vault`.
+- Required release secrets present: fail.
+- Release workflow available in GitHub Actions: fail.
+- Release workflow run: not run.
+- Signed artifact produced: not available.
+- `.env` artifact package inspection: not run.
+- Release artifact install test: not run.
+
+Blocking causes:
+
+- The hardening branch has no upstream and is not published to GitHub.
+- Production Android signing and mobile runtime config secrets are missing from GitHub Actions.
 
 ## Secret Safety
 
@@ -95,4 +124,4 @@ These are not release pipeline blockers for this lane because no DB remediation 
 
 ## Final Decision
 
-Grookai Vault is RELEASE_CANDIDATE for release integrity after this hardening lane, conditional on production signing secrets being present in GitHub Actions. It is not classified as PRODUCTION_READY until a signed release workflow run completes successfully with production secrets.
+Grookai Vault is NOT_PRODUCTION_READY for end-to-end release execution as of this verification pass. The code hardening lane is implemented locally, but the GitHub release lane cannot produce or validate a signed production artifact until the branch is published and the required GitHub Actions secrets are configured.
