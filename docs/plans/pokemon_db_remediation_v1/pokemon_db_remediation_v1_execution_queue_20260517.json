@@ -42,9 +42,9 @@
       "items": [
         {
           "priority": 1,
-          "item": "clean Lane A prewrite evidence",
-          "scope": "248 collision-free numeric non-hard-stop rows",
-          "next_artifact": "fresh live proof that matrix ids still match, exclusions still hold, and no user/market refs appeared",
+          "item": "Lane A 247+1 split plan",
+          "scope": "247 unreferenced rows plus svp Pikachu with Grey Felt Hat #85 referenced row",
+          "next_artifact": "separate unreferenced bulk candidate from manual referenced-row decision",
           "write_allowed_now": false
         },
         {

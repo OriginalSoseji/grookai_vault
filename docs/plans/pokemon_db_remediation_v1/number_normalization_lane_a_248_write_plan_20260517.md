@@ -40,6 +40,14 @@ The exact candidate matrix is:
 docs/plans/pokemon_db_remediation_v1/number_normalization_lane_a_248_write_plan_matrix_20260517.json
 ```
 
+The pre-execution gate is:
+
+```text
+docs/plans/pokemon_db_remediation_v1/number_normalization_lane_a_248_preexecution_gate_20260517.md
+```
+
+Gate result: the live regenerated matrix exactly matched the committed 248-row matrix, but execution remains blocked because one candidate, `svp` Pikachu with Grey Felt Hat #85, carries user/market references and needs a manual decision before any write.
+
 Set breakdown:
 
 | Set | Name | Rows |
@@ -173,6 +181,7 @@ Stop before execution if:
 - any candidate appears in a hard-stop, review-stop, prefixed, complex, source-conflict, collision, or `me01` lane;
 - any write plan includes `delete`;
 - any write plan includes set, mapping, identity, vault, pricing, missing-card, or variant mutation.
+- any live clean candidate has user/vault/pricing/shared/slab/market references without an explicit manual review decision.
 
 ## No-Write Confirmation
 

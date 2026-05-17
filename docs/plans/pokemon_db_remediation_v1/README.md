@@ -82,6 +82,8 @@ No card row should be imported until the canonical target set is resolved and pr
 - `number_normalization_lane_a_248_write_plan_20260517.md`
 - `number_normalization_lane_a_248_write_plan_20260517.sql`
 - `number_normalization_lane_a_248_write_plan_matrix_20260517.json`
+- `number_normalization_lane_a_248_preexecution_gate_20260517.md`
+- `number_normalization_lane_a_248_preexecution_gate_matrix_20260517.json`
 - `number_normalization_dry_run_implementation_plan_20260517.md`
 - `number_normalization_dry_run_implementation_plan_20260517.sql`
 - `missing_cards_backfill_plan.md`
