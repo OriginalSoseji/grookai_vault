@@ -47,6 +47,12 @@ No card row should be imported until the canonical target set is resolved and pr
 - `set_canonicalization_dry_run_20260517.md`
 - `set_alias_dependency_audit_20260517.md`
 - `set_alias_dependency_matrix_20260517.json`
+- `set_alias_write_plan_dry_run_20260517.md`
+- `set_alias_write_plan_matrix_20260517.json`
+- `set_alias_prewrite_evidence_20260517.md`
+- `set_alias_prewrite_evidence_matrix_20260517.json`
+- `set_alias_route_classification_write_plan_20260517.md`
+- `set_alias_route_classification_write_plan_20260517.sql`
 - `missing_sets_plan.md`
 - `number_normalization_plan.md`
 - `missing_cards_backfill_plan.md`
