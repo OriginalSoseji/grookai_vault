@@ -4,11 +4,13 @@ import 'dart:io';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../../services/identity/identity_scan_service.dart';
 import '../../services/scanner/native_scanner_phase0_bridge.dart';
 import '../../services/scanner/perceptual_image_hash.dart';
 import '../../services/scanner/recent_scan_cache.dart';
+import 'condition_camera_screen.dart';
 
 enum _NativeScannerIdentityStatus {
   idle,
@@ -56,12 +58,16 @@ class _NativeScannerPhase0ScreenState extends State<NativeScannerPhase0Screen> {
   String? _currentFingerprint;
   String? _matchedFingerprint;
   int? _cacheMatchDistance;
+  int? _realScanFastPathDistance;
+  int? _realScanFastPathCandidateCount;
   bool _previewReady = false;
   bool _capturing = false;
   bool _identifying = false;
   bool _readinessRefreshing = false;
-  final bool _autoCaptureEnabled = true;
+  bool _androidCaptureReviewPending = false;
+  bool _androidReviewContinueInFlight = false;
   bool _candidateFromCache = false;
+  bool _candidateFromRealScanFastPath = false;
   bool _autoCaptureInFlight = false;
   bool _hasAutoCaptured = false;
   bool _autoCaptureArmed = true;
@@ -69,10 +75,18 @@ class _NativeScannerPhase0ScreenState extends State<NativeScannerPhase0Screen> {
   final double _exposureBias = 0.25;
 
   bool get _isIos => defaultTargetPlatform == TargetPlatform.iOS;
+  bool get _isAndroid => defaultTargetPlatform == TargetPlatform.android;
+  bool get _isNativeScannerPlatform => _isIos || _isAndroid;
+  bool get _autoCaptureEnabled => false;
+  bool get _hasAndroidCaptureReview =>
+      _isAndroid && _androidCaptureReviewPending && (_capture?.isPass ?? false);
 
   String get _readinessLabel {
     if (!_previewReady) {
       return 'Preparing';
+    }
+    if (_hasAndroidCaptureReview) {
+      return 'Review capture';
     }
     if (_autoCaptureInFlight) {
       return 'Ready — capturing…';
@@ -112,6 +126,9 @@ class _NativeScannerPhase0ScreenState extends State<NativeScannerPhase0Screen> {
   }
 
   String get _shownResultSource {
+    if (_candidateFromRealScanFastPath) {
+      return 'real_scan';
+    }
     if (_identityCandidates.isNotEmpty || _identityDoneAt != null) {
       return 'backend';
     }
@@ -175,7 +192,7 @@ class _NativeScannerPhase0ScreenState extends State<NativeScannerPhase0Screen> {
   }
 
   Future<void> _handlePlatformViewCreated(int viewId) async {
-    if (!_isIos || !mounted) {
+    if (!_isNativeScannerPlatform || !mounted) {
       return;
     }
     setState(() {
@@ -197,6 +214,57 @@ class _NativeScannerPhase0ScreenState extends State<NativeScannerPhase0Screen> {
     }
   }
 
+  Future<void> _openScannerV3LiveLoopPrototype() async {
+    final navigator = Navigator.of(context);
+    _readinessTimer?.cancel();
+    _readinessTimer = null;
+    if (_isNativeScannerPlatform) {
+      try {
+        await NativeScannerPhase0Bridge.stopSession();
+      } catch (error) {
+        if (kDebugMode) {
+          debugPrint(
+            '[scanner_v3_live_loop] stop native session skipped: $error',
+          );
+        }
+      }
+    }
+    if (mounted) {
+      setState(() {
+        _previewReady = false;
+      });
+    }
+
+    try {
+      await navigator.push<void>(
+        MaterialPageRoute(
+          builder: (_) => const ConditionCameraScreen(
+            title: 'Scanner V3 Live Loop',
+            hintText: 'Hold card steady',
+            enableScannerV3LiveLoopPrototype: true,
+          ),
+        ),
+      );
+    } finally {
+      if (_isNativeScannerPlatform && mounted) {
+        try {
+          await NativeScannerPhase0Bridge.startSession();
+          if (!mounted) return;
+          setState(() {
+            _previewReady = true;
+          });
+          _startReadinessPolling();
+          unawaited(_refreshReadiness());
+        } catch (error) {
+          if (!mounted) return;
+          setState(() {
+            _error = error;
+          });
+        }
+      }
+    }
+  }
+
   void _startReadinessPolling() {
     _readinessTimer?.cancel();
     _readinessTimer = Timer.periodic(const Duration(milliseconds: 250), (_) {
@@ -205,7 +273,7 @@ class _NativeScannerPhase0ScreenState extends State<NativeScannerPhase0Screen> {
   }
 
   Future<void> _refreshReadiness() async {
-    if (!_isIos || !_previewReady || _readinessRefreshing) {
+    if (!_isNativeScannerPlatform || !_previewReady || _readinessRefreshing) {
       return;
     }
     _readinessRefreshing = true;
@@ -267,6 +335,11 @@ class _NativeScannerPhase0ScreenState extends State<NativeScannerPhase0Screen> {
       _currentFingerprint = null;
       _matchedFingerprint = null;
       _cacheMatchDistance = null;
+      _realScanFastPathDistance = null;
+      _realScanFastPathCandidateCount = null;
+      _androidCaptureReviewPending = false;
+      _androidReviewContinueInFlight = false;
+      _candidateFromRealScanFastPath = false;
       _error = null;
     });
     try {
@@ -278,12 +351,18 @@ class _NativeScannerPhase0ScreenState extends State<NativeScannerPhase0Screen> {
         _captureReturnedAt = DateTime.now();
         _applyCapture(capture);
       });
-      final fingerprint = await _lookupRecentScanCache(capture);
-      if (!mounted) {
-        return false;
+      if (_isAndroid && capture.isPass) {
+        setState(() {
+          _androidCaptureReviewPending = true;
+          _identityStatus = _NativeScannerIdentityStatus.idle;
+          _identityFailureStage = null;
+          _identityBackendDetail =
+              'Review captured image before identity scan.';
+          _identityDoneAt = null;
+        });
+        return true;
       }
-      unawaited(_startIdentityHandoff(capture, fingerprint));
-      return true;
+      return _continueCaptureToIdentity(capture);
     } catch (error) {
       if (!mounted) {
         return false;
@@ -303,18 +382,47 @@ class _NativeScannerPhase0ScreenState extends State<NativeScannerPhase0Screen> {
 
   void _handleCaptureButtonPressed() {
     if (_capture != null) {
-      setState(() {
-        _resetTimingState();
-        _capture = null;
-        _error = null;
-        _resetIdentityState();
-        _hasAutoCaptured = false;
-        _autoCaptureArmed = true;
-        _autoCaptureInFlight = false;
-      });
+      _resetCapturedImageForRetake();
       return;
     }
     unawaited(_captureStill());
+  }
+
+  void _resetCapturedImageForRetake() {
+    setState(() {
+      _resetTimingState();
+      _capture = null;
+      _error = null;
+      _resetIdentityState();
+      _hasAutoCaptured = false;
+      _autoCaptureArmed = true;
+      _autoCaptureInFlight = false;
+      _androidCaptureReviewPending = false;
+      _androidReviewContinueInFlight = false;
+    });
+  }
+
+  Future<void> _handleAndroidReviewContinuePressed() async {
+    final capture = _capture;
+    if (!_hasAndroidCaptureReview ||
+        capture == null ||
+        _androidReviewContinueInFlight) {
+      return;
+    }
+    setState(() {
+      _androidReviewContinueInFlight = true;
+      _androidCaptureReviewPending = false;
+      _identityStatus = _NativeScannerIdentityStatus.identifying;
+      _identityFailureStage = null;
+      _identityBackendDetail = null;
+    });
+    await _continueCaptureToIdentity(capture);
+    if (!mounted) {
+      return;
+    }
+    setState(() {
+      _androidReviewContinueInFlight = false;
+    });
   }
 
   void _applyCapture(NativeScannerPhase0Capture capture) {
@@ -337,10 +445,13 @@ class _NativeScannerPhase0ScreenState extends State<NativeScannerPhase0Screen> {
     _identitySnapshotId = null;
     _identityCandidates = const [];
     _candidateFromCache = false;
+    _candidateFromRealScanFastPath = false;
     _cachedCard = null;
     _currentFingerprint = null;
     _matchedFingerprint = null;
     _cacheMatchDistance = null;
+    _realScanFastPathDistance = null;
+    _realScanFastPathCandidateCount = null;
   }
 
   Future<String?> _lookupRecentScanCache(
@@ -395,6 +506,171 @@ class _NativeScannerPhase0ScreenState extends State<NativeScannerPhase0Screen> {
     }
   }
 
+  Future<bool> _continueCaptureToIdentity(
+    NativeScannerPhase0Capture capture,
+  ) async {
+    final fingerprint = await _lookupRecentScanCache(capture);
+    if (!mounted) {
+      return false;
+    }
+    final fastPathMatched = await _tryRealScanFastPath(capture, fingerprint);
+    if (!mounted) {
+      return false;
+    }
+    if (fastPathMatched) {
+      return true;
+    }
+    unawaited(_startIdentityHandoff(capture, fingerprint));
+    return true;
+  }
+
+  Future<bool> _tryRealScanFastPath(
+    NativeScannerPhase0Capture capture,
+    String? fingerprint,
+  ) async {
+    if (!_isAndroid || !capture.isPass || fingerprint == null) {
+      return false;
+    }
+    final normalizedFingerprint = fingerprint.trim().toLowerCase();
+    if (!RegExp(r'^[0-9a-f]{16}$').hasMatch(normalizedFingerprint)) {
+      return false;
+    }
+
+    try {
+      final match = await _findRealScanFastPathMatch(normalizedFingerprint);
+      if (match == null || !mounted) {
+        return false;
+      }
+
+      setState(() {
+        _identityDoneAt = DateTime.now();
+        _identityStatus = _NativeScannerIdentityStatus.matchFound;
+        _identityFailureStage = null;
+        _identityBackendDetail = 'real_scan_fast_path';
+        _identityEventId = null;
+        _identitySnapshotId = null;
+        _identityCandidates = [match.candidate];
+        _candidateFromCache = false;
+        _candidateFromRealScanFastPath = true;
+        _cachedCard = null;
+        _matchedFingerprint = normalizedFingerprint;
+        _cacheMatchDistance = match.distance;
+        _realScanFastPathDistance = match.distance;
+        _realScanFastPathCandidateCount = match.candidateCount;
+      });
+      _debugTimingLog(
+        'real_scan_fast_path_match distance=${match.distance} '
+        'candidate_count=${match.candidateCount}',
+      );
+      return true;
+    } catch (error) {
+      if (kDebugMode) {
+        debugPrint('[native_scanner_real_scan_fast_path] fallback: $error');
+      }
+      return false;
+    }
+  }
+
+  Future<_RealScanFastPathMatch?> _findRealScanFastPathMatch(
+    String fingerprint,
+  ) async {
+    const highConfidenceMaxDistance = 4;
+    const candidatePoolLimit = 5000;
+    const algorithmVersion = 'real_scan_v1';
+
+    final rows = await Supabase.instance.client
+        .from('scanner_fingerprint_index')
+        .select('card_print_id,hash_d')
+        .eq('source_type', 'real_scan')
+        .eq('algorithm_version', algorithmVersion)
+        .eq('is_verified', true)
+        .limit(candidatePoolLimit);
+
+    final bestByCardPrintId = <String, _RealScanRankedCandidate>{};
+    for (final row in rows) {
+      final cardPrintId = (row['card_print_id'] ?? '').toString().trim();
+      if (cardPrintId.isEmpty) {
+        continue;
+      }
+      final hashHex = _dbInt64ToUnsignedHex(row['hash_d']);
+      if (hashHex == null) {
+        continue;
+      }
+      final distance = PerceptualImageHash.hammingDistance(
+        fingerprint,
+        hashHex,
+      );
+      if (distance > highConfidenceMaxDistance) {
+        continue;
+      }
+      final existing = bestByCardPrintId[cardPrintId];
+      if (existing == null || distance < existing.distance) {
+        bestByCardPrintId[cardPrintId] = _RealScanRankedCandidate(
+          cardPrintId: cardPrintId,
+          distance: distance,
+        );
+      }
+    }
+
+    final matches = bestByCardPrintId.values.toList()
+      ..sort(
+        (a, b) => a.distance.compareTo(b.distance) == 0
+            ? a.cardPrintId.compareTo(b.cardPrintId)
+            : a.distance.compareTo(b.distance),
+      );
+    if (matches.length != 1) {
+      return null;
+    }
+
+    final best = matches.single;
+    final cardRow = await Supabase.instance.client
+        .from('card_prints')
+        .select('id,name,set_code,number,number_plain,image_url')
+        .eq('id', best.cardPrintId)
+        .maybeSingle();
+    if (cardRow == null) {
+      return null;
+    }
+    final card = Map<String, dynamic>.from(cardRow);
+    final id = (card['id'] ?? '').toString().trim();
+    if (id.isEmpty || id != best.cardPrintId) {
+      return null;
+    }
+
+    return _RealScanFastPathMatch(
+      candidate: <String, dynamic>{
+        'card_print_id': id,
+        'name': (card['name'] ?? '').toString(),
+        'set_code': (card['set_code'] ?? '').toString(),
+        'number': (card['number'] ?? '').toString(),
+        'number_plain': (card['number_plain'] ?? '').toString(),
+        'image_url': (card['image_url'] ?? '').toString(),
+        'source': 'real_scan_fast_path',
+        'lane': 'real_scan',
+        'algorithm_version': algorithmVersion,
+        'distance': best.distance,
+      },
+      distance: best.distance,
+      candidateCount: matches.length,
+    );
+  }
+
+  String? _dbInt64ToUnsignedHex(Object? rawValue) {
+    final raw = rawValue?.toString().trim();
+    if (raw == null || raw.isEmpty) {
+      return null;
+    }
+    if (RegExp(r'^[0-9a-fA-F]{16}$').hasMatch(raw)) {
+      return raw.toLowerCase();
+    }
+    try {
+      final signed = BigInt.parse(raw);
+      return signed.toUnsigned(64).toRadixString(16).padLeft(16, '0');
+    } catch (_) {
+      return null;
+    }
+  }
+
   void _storeRecentScanCache(
     IdentityScanPollResult result,
     String? fingerprint,
@@ -445,10 +721,15 @@ class _NativeScannerPhase0ScreenState extends State<NativeScannerPhase0Screen> {
     _cacheLookupStartedAt = null;
     _cacheLookupDoneAt = null;
     _candidateFromCache = false;
+    _candidateFromRealScanFastPath = false;
+    _androidCaptureReviewPending = false;
+    _androidReviewContinueInFlight = false;
     _cachedCard = null;
     _currentFingerprint = null;
     _matchedFingerprint = null;
     _cacheMatchDistance = null;
+    _realScanFastPathDistance = null;
+    _realScanFastPathCandidateCount = null;
   }
 
   void _resetIdentityState() {
@@ -459,6 +740,9 @@ class _NativeScannerPhase0ScreenState extends State<NativeScannerPhase0Screen> {
     _identityEventId = null;
     _identitySnapshotId = null;
     _identityCandidates = const [];
+    _candidateFromRealScanFastPath = false;
+    _androidCaptureReviewPending = false;
+    _androidReviewContinueInFlight = false;
   }
 
   Future<void> _startIdentityHandoff(
@@ -624,7 +908,17 @@ class _NativeScannerPhase0ScreenState extends State<NativeScannerPhase0Screen> {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     return Scaffold(
-      appBar: AppBar(title: const Text('Scanner Camera')),
+      appBar: AppBar(
+        title: const Text('Scanner Camera'),
+        actions: [
+          if (kDebugMode)
+            IconButton(
+              tooltip: 'Scanner V3 live loop prototype',
+              icon: const Icon(Icons.radar),
+              onPressed: _openScannerV3LiveLoopPrototype,
+            ),
+        ],
+      ),
       body: SafeArea(
         child: ListView(
           padding: const EdgeInsets.all(16),
@@ -638,20 +932,12 @@ class _NativeScannerPhase0ScreenState extends State<NativeScannerPhase0Screen> {
               ),
             ),
             const SizedBox(height: 16),
-            FilledButton(
-              onPressed: _previewReady && !_capturing && !_identifying
-                  ? _handleCaptureButtonPressed
-                  : null,
-              child: Text(
-                _capturing
-                    ? 'Capturing...'
-                    : _capture == null
-                    ? 'Capture now'
-                    : 'Retake',
-              ),
-            ),
+            if (_hasAndroidCaptureReview)
+              _buildAndroidCaptureReview(theme)
+            else
+              _buildCaptureButton(),
             const SizedBox(height: 16),
-            _buildResult(theme),
+            if (!_hasAndroidCaptureReview) _buildResult(theme),
             const SizedBox(height: 16),
             _buildTimingResult(theme),
             const SizedBox(height: 16),
@@ -663,24 +949,106 @@ class _NativeScannerPhase0ScreenState extends State<NativeScannerPhase0Screen> {
   }
 
   Widget _buildPreview(ThemeData theme) {
-    if (!_isIos) {
+    if (!_isNativeScannerPlatform) {
       return _Phase0Panel(
         title: 'Unsupported',
         child: Text(
-          'Native Scanner Phase 0 is iOS-only.',
+          'Native Scanner Phase 0 is not supported on this platform.',
           style: theme.textTheme.bodyMedium,
         ),
       );
     }
 
+    final platformView = _isIos
+        ? UiKitView(
+            viewType: NativeScannerPhase0Bridge.previewViewType,
+            onPlatformViewCreated: _handlePlatformViewCreated,
+          )
+        : AndroidView(
+            viewType: NativeScannerPhase0Bridge.previewViewType,
+            onPlatformViewCreated: _handlePlatformViewCreated,
+          );
+
     return ClipRRect(
       borderRadius: BorderRadius.circular(8),
-      child: AspectRatio(
-        aspectRatio: 3 / 4,
-        child: UiKitView(
-          viewType: NativeScannerPhase0Bridge.previewViewType,
-          onPlatformViewCreated: _handlePlatformViewCreated,
-        ),
+      child: AspectRatio(aspectRatio: 3 / 4, child: platformView),
+    );
+  }
+
+  Widget _buildCaptureButton() {
+    return FilledButton(
+      onPressed:
+          _previewReady &&
+              !_capturing &&
+              !_identifying &&
+              !_androidReviewContinueInFlight
+          ? _handleCaptureButtonPressed
+          : null,
+      child: Text(
+        _capturing
+            ? 'Capturing...'
+            : _capture == null
+            ? 'Capture now'
+            : 'Retake',
+      ),
+    );
+  }
+
+  Widget _buildAndroidCaptureReview(ThemeData theme) {
+    final capture = _capture!;
+    final file = File(capture.imagePath);
+    return _Phase0Panel(
+      title: 'Review Capture',
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          ClipRRect(
+            borderRadius: BorderRadius.circular(8),
+            child: Image.file(
+              file,
+              fit: BoxFit.contain,
+              errorBuilder: (context, error, stackTrace) => Text(
+                'image render failed: $error',
+                style: theme.textTheme.bodySmall?.copyWith(
+                  color: theme.colorScheme.error,
+                ),
+              ),
+            ),
+          ),
+          const SizedBox(height: 12),
+          _MetricRow(label: 'width', value: '${capture.width}'),
+          _MetricRow(label: 'height', value: '${capture.height}'),
+          _MetricRow(label: 'fileSize', value: '${capture.fileSize} bytes'),
+          _MetricRow(label: 'imagePath', value: capture.imagePath),
+          const SizedBox(height: 12),
+          Row(
+            children: [
+              Expanded(
+                child: OutlinedButton(
+                  onPressed: _androidReviewContinueInFlight
+                      ? null
+                      : _resetCapturedImageForRetake,
+                  child: const Text('Retake'),
+                ),
+              ),
+              const SizedBox(width: 12),
+              Expanded(
+                child: FilledButton(
+                  onPressed: _androidReviewContinueInFlight
+                      ? null
+                      : () {
+                          unawaited(_handleAndroidReviewContinuePressed());
+                        },
+                  child: Text(
+                    _androidReviewContinueInFlight
+                        ? 'Continuing...'
+                        : 'Continue to Identity Scan',
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ],
       ),
     );
   }
@@ -811,6 +1179,16 @@ class _NativeScannerPhase0ScreenState extends State<NativeScannerPhase0Screen> {
           _MetricRow(label: 'status', value: _identityStatusText),
           _MetricRow(label: 'source', value: _shownResultSource),
           _MetricRow(label: 'provisional', value: '$_showingCachedCandidate'),
+          if (_candidateFromRealScanFastPath) ...[
+            _MetricRow(
+              label: 'fast dist',
+              value: '${_realScanFastPathDistance ?? 'none'}',
+            ),
+            _MetricRow(
+              label: 'fast count',
+              value: '${_realScanFastPathCandidateCount ?? 'none'}',
+            ),
+          ],
           _MetricRow(label: 'failure', value: _identityFailureStage ?? 'none'),
           _MetricRow(label: 'detail', value: _identityBackendDetail ?? 'none'),
           _MetricRow(label: 'candidates', value: _visibleCandidateCount),
@@ -862,6 +1240,10 @@ class _NativeScannerPhase0ScreenState extends State<NativeScannerPhase0Screen> {
             value: _msLabel(_identityEventCreatedAt, _identityDoneAt),
           ),
           _MetricRow(label: 'source', value: _shownResultSource),
+          _MetricRow(
+            label: 'fast path',
+            value: _candidateFromRealScanFastPath ? 'real_scan' : 'none',
+          ),
           _MetricRow(
             label: 'auto cap',
             value: _msLabel(_autoCaptureStartedAt, _captureReturnedAt),
@@ -916,6 +1298,28 @@ class _NativeScannerPhase0ScreenState extends State<NativeScannerPhase0Screen> {
     final parts = [setCode, number].where((part) => part.isNotEmpty).toList();
     return parts.isEmpty ? 'none' : parts.join(' / ');
   }
+}
+
+class _RealScanRankedCandidate {
+  const _RealScanRankedCandidate({
+    required this.cardPrintId,
+    required this.distance,
+  });
+
+  final String cardPrintId;
+  final int distance;
+}
+
+class _RealScanFastPathMatch {
+  const _RealScanFastPathMatch({
+    required this.candidate,
+    required this.distance,
+    required this.candidateCount,
+  });
+
+  final Map<String, dynamic> candidate;
+  final int distance;
+  final int candidateCount;
 }
 
 class _Phase0Panel extends StatelessWidget {

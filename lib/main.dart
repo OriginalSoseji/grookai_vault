@@ -26,17 +26,21 @@ import 'screens/sets/public_sets_screen.dart';
 import 'screens/vault/vault_manage_card_screen.dart';
 import 'screens/vault/vault_gvvi_screen.dart';
 import 'screens/scanner/condition_camera_screen.dart';
+import 'screens/scanner/fixed_slot_capture_screen.dart';
 import 'screens/scanner/native_scanner_phase0_screen.dart';
 import 'services/network/card_engagement_service.dart';
 import 'services/network/smart_feed_service.dart';
 import 'services/public/card_surface_pricing_service.dart';
 import 'services/public/compare_service.dart';
 import 'services/public/public_collector_service.dart';
+import 'services/scanner/scanner_native_camera_guardrail.dart';
+import 'services/scanner/native_condition_camera_bridge.dart';
 import 'services/scanner/native_scanner_phase0_bridge.dart';
 import 'services/navigation/grookai_web_route_service.dart';
 import 'services/vault/vault_card_service.dart';
 import 'services/vault/vault_gvvi_service.dart';
 import 'services/vault/ownership_resolver_adapter.dart';
+import 'services/scanner_v4/scanner_v4_debug_action_bus_v1.dart';
 import 'screens/scanner/scan_capture_screen.dart';
 import 'screens/identity_scan/identity_scan_screen.dart';
 import 'services/identity/display_identity.dart';
@@ -52,7 +56,13 @@ part 'main_vault.dart';
 
 const bool kDebugTouchLog = false;
 bool get kNativeScannerPhase0Enabled =>
-    defaultTargetPlatform == TargetPlatform.iOS;
+    ScannerNativeCameraGuardrail.legacyPhase0AllowedForScanCard(
+      defaultTargetPlatform,
+    );
+const bool kFixedSlotCaptureScannerV1Enabled = bool.fromEnvironment(
+  'FIXED_SLOT_CAPTURE_SCANNER_V1',
+  defaultValue: true,
+);
 const bool kFeedDebugOverlay = true;
 const bool _kCatalogOwnershipDiagnostics = false;
 const bool _kGoogleOAuthDiagnostics = true;
@@ -1852,8 +1862,7 @@ Future<void> main() async {
 }
 
 bool _isInvalidRefreshTokenRecoveryError(Object error) {
-  return error is AuthApiException &&
-      error.code == 'refresh_token_not_found';
+  return error is AuthApiException && error.code == 'refresh_token_not_found';
 }
 
 Future<void> _clearInvalidPersistedSession() async {
@@ -1886,6 +1895,13 @@ class PendingCanonicalLinkRequest {
   final GrookaiCanonicalRoute route;
 }
 
+class PendingDebugActionRequest {
+  const PendingDebugActionRequest({required this.id, required this.action});
+
+  final int id;
+  final String action;
+}
+
 class MyApp extends StatefulWidget {
   const MyApp({super.key});
 
@@ -1894,11 +1910,18 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
+  static const MethodChannel _debugIntentChannel = MethodChannel(
+    'grookai/debug_intents_v1',
+  );
+  static const String _scannerV4AutoTestAction = 'scanner_v4_auto_test';
+
   final AppLinks _appLinks = AppLinks();
   StreamSubscription<Uri>? _linkSubscription;
   StreamSubscription<AuthState>? _authSubscription;
   PendingCanonicalLinkRequest? _pendingCanonicalLink;
+  PendingDebugActionRequest? _pendingDebugAction;
   int _nextPendingCanonicalLinkId = 0;
+  int _nextPendingDebugActionId = 0;
   bool _authCallbackInFlight = false;
   Session? _authSession;
   bool _authRecoveryPending = false;
@@ -1909,34 +1932,38 @@ class _MyAppState extends State<MyApp> {
     final initialSession = Supabase.instance.client.auth.currentSession;
     _authSession = initialSession;
     _authRecoveryPending = initialSession?.isExpired ?? false;
-    _authSubscription = Supabase.instance.client.auth.onAuthStateChange.listen((
-      event,
-    ) {
-      _debugGoogleOAuth(
-        'auth state event=${event.event.name} '
-        'sessionPresent=${event.session != null}',
-      );
-      if (!mounted) {
-        return;
-      }
-      final nextSession = Supabase.instance.client.auth.currentSession;
-      setState(() {
-        _authSession = nextSession;
-        _authRecoveryPending =
-            event.event == AuthChangeEvent.initialSession &&
-            (nextSession?.isExpired ?? false);
-      });
-    }, onError: (error, stackTrace) {
-      _debugGoogleOAuth('auth state error=$error');
-      if (!mounted) {
-        return;
-      }
-      setState(() {
-        _authSession = Supabase.instance.client.auth.currentSession;
-        _authRecoveryPending = false;
-      });
-    });
+    _authSubscription = Supabase.instance.client.auth.onAuthStateChange.listen(
+      (event) {
+        _debugGoogleOAuth(
+          'auth state event=${event.event.name} '
+          'sessionPresent=${event.session != null}',
+        );
+        if (!mounted) {
+          return;
+        }
+        final nextSession = Supabase.instance.client.auth.currentSession;
+        setState(() {
+          _authSession = nextSession;
+          _authRecoveryPending =
+              event.event == AuthChangeEvent.initialSession &&
+              (nextSession?.isExpired ?? false);
+        });
+      },
+      onError: (error, stackTrace) {
+        _debugGoogleOAuth('auth state error=$error');
+        if (!mounted) {
+          return;
+        }
+        setState(() {
+          _authSession = Supabase.instance.client.auth.currentSession;
+          _authRecoveryPending = false;
+        });
+      },
+    );
     unawaited(_attachCanonicalLinkListeners());
+    if (kDebugMode) {
+      unawaited(_attachDebugIntentBridge());
+    }
   }
 
   @override
@@ -1944,6 +1971,31 @@ class _MyAppState extends State<MyApp> {
     _linkSubscription?.cancel();
     _authSubscription?.cancel();
     super.dispose();
+  }
+
+  Future<void> _attachDebugIntentBridge() async {
+    _debugIntentChannel.setMethodCallHandler(_handleDebugIntentMethodCall);
+    try {
+      final action = await _debugIntentChannel.invokeMethod<String>(
+        'getInitialDebugAction',
+      );
+      _queueDebugAction(action);
+    } catch (error) {
+      debugPrint(
+        '[scanner_v4_auto_test] debug_intent_bridge_unavailable=$error',
+      );
+    }
+  }
+
+  Future<void> _handleDebugIntentMethodCall(MethodCall call) async {
+    if (!kDebugMode) return;
+    switch (call.method) {
+      case 'debugIntentAction':
+        _queueDebugAction(call.arguments?.toString());
+        return;
+      default:
+        return;
+    }
   }
 
   Future<void> _attachCanonicalLinkListeners() async {
@@ -2072,6 +2124,26 @@ class _MyAppState extends State<MyApp> {
     });
   }
 
+  void _queueDebugAction(String? action) {
+    if (!kDebugMode || !mounted) return;
+    final normalized = (action ?? '').trim();
+    if (normalized != _scannerV4AutoTestAction) return;
+    debugPrint(
+      '[scanner_v4_auto_test] debug_action_received '
+      'active_scanner=${ScannerV4DebugActionBusV1.hasActiveScanner}',
+    );
+    if (ScannerV4DebugActionBusV1.hasActiveScanner) {
+      ScannerV4DebugActionBusV1.dispatch(normalized);
+      return;
+    }
+    setState(() {
+      _pendingDebugAction = PendingDebugActionRequest(
+        id: ++_nextPendingDebugActionId,
+        action: normalized,
+      );
+    });
+  }
+
   void _handleCanonicalLinkConsumed(int id) {
     if (!mounted || _pendingCanonicalLink?.id != id) {
       return;
@@ -2079,6 +2151,16 @@ class _MyAppState extends State<MyApp> {
 
     setState(() {
       _pendingCanonicalLink = null;
+    });
+  }
+
+  void _handleDebugActionConsumed(int id) {
+    if (!mounted || _pendingDebugAction?.id != id) {
+      return;
+    }
+
+    setState(() {
+      _pendingDebugAction = null;
     });
   }
 
@@ -2095,6 +2177,7 @@ class _MyAppState extends State<MyApp> {
           final session = _authSession;
           final shellReady =
               session != null && !_authRecoveryPending && !session.isExpired;
+          final pendingDebugAction = _pendingDebugAction;
           _debugGoogleOAuth(
             'auth gate sessionPresent=${session != null} '
             'sessionExpired=${session?.isExpired ?? false} '
@@ -2106,10 +2189,21 @@ class _MyAppState extends State<MyApp> {
               body: Center(child: CircularProgressIndicator.adaptive()),
             );
           }
+          if (kDebugMode &&
+              !shellReady &&
+              pendingDebugAction?.action == _scannerV4AutoTestAction) {
+            return const ConditionCameraScreen(
+              title: 'Scan Card',
+              hintText: 'Align card inside the frame',
+              autoStartScannerV4DiagnosticTest: true,
+            );
+          }
           return shellReady
               ? AppShell(
                   pendingCanonicalLink: _pendingCanonicalLink,
                   onCanonicalLinkHandled: _handleCanonicalLinkConsumed,
+                  pendingDebugAction: _pendingDebugAction,
+                  onDebugActionHandled: _handleDebugActionConsumed,
                 )
               : const LoginPage();
         },

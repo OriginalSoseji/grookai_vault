@@ -1,5 +1,6 @@
 # CHECKPOINT_INDEX
 
+- `FIXED_SLOT_SCANNER_RESET_V1` — `2026-05-15` — L3 scanner architecture reset checkpoint: fixed guide slot becomes production crop authority, still capture becomes final identity frame, detector boxes become advisory, and legacy live-boundary identity is deprecated
 - `CANON_PIPELINE_V1_COMPLETE` — `2026-03-30`
 - `EXTERNAL_SOURCE_INGESTION_MODEL_V1_LOCKED` — `2026-03-31`
 - `EXTERNAL_DISCOVERY_STAGING_BOUNDARY_V1_LOCKED` — `2026-03-31`

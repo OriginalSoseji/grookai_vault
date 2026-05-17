@@ -6,10 +6,14 @@ class AppShell extends StatefulWidget {
     super.key,
     this.pendingCanonicalLink,
     this.onCanonicalLinkHandled,
+    this.pendingDebugAction,
+    this.onDebugActionHandled,
   });
 
   final PendingCanonicalLinkRequest? pendingCanonicalLink;
   final ValueChanged<int>? onCanonicalLinkHandled;
+  final PendingDebugActionRequest? pendingDebugAction;
+  final ValueChanged<int>? onDebugActionHandled;
 
   @override
   State<AppShell> createState() => _AppShellState();
@@ -61,7 +65,10 @@ class _AppShellState extends State<AppShell> {
   late final List<Widget?> _shellPages;
   _ShellDestination _destination = _ShellDestination.feed;
   int? _lastHandledCanonicalLinkId;
+  int? _lastHandledDebugActionId;
   bool _handlingCanonicalLink = false;
+  bool _handlingDebugAction = false;
+  bool _scannerPrewarmInFlight = false;
 
   @override
   void initState() {
@@ -77,8 +84,12 @@ class _AppShellState extends State<AppShell> {
     _ensureShellPageBuilt(_destination);
     WidgetsBinding.instance.addPostFrameCallback((_) {
       unawaited(_maybeHandlePendingCanonicalLink());
-      if (kNativeScannerPhase0Enabled) {
+      unawaited(_maybeHandlePendingDebugAction());
+      if (!kFixedSlotCaptureScannerV1Enabled && kNativeScannerPhase0Enabled) {
         unawaited(NativeScannerPhase0Bridge.startSession());
+      }
+      if (!kFixedSlotCaptureScannerV1Enabled) {
+        unawaited(_prewarmScanCardSurface(reason: 'shell_ready'));
       }
     });
   }
@@ -91,6 +102,13 @@ class _AppShellState extends State<AppShell> {
     if (nextId != null && nextId != previousId) {
       WidgetsBinding.instance.addPostFrameCallback((_) {
         unawaited(_maybeHandlePendingCanonicalLink());
+      });
+    }
+    final nextDebugId = widget.pendingDebugAction?.id;
+    final previousDebugId = oldWidget.pendingDebugAction?.id;
+    if (nextDebugId != null && nextDebugId != previousDebugId) {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        unawaited(_maybeHandlePendingDebugAction());
       });
     }
   }
@@ -125,6 +143,43 @@ class _AppShellState extends State<AppShell> {
     ).push<T>(MaterialPageRoute<T>(builder: (_) => page));
   }
 
+  Future<void> _prewarmScanCardSurface({required String reason}) async {
+    if (_scannerPrewarmInFlight) {
+      return;
+    }
+    if (!ScannerNativeCameraGuardrail.nativeConditionCameraRequestedForScanCard(
+      defaultTargetPlatform,
+    )) {
+      return;
+    }
+
+    _scannerPrewarmInFlight = true;
+    try {
+      final initialMetrics = await NativeConditionCameraBridge.prewarmSession();
+      await Future<void>.delayed(const Duration(milliseconds: 650));
+      final metrics = await NativeConditionCameraBridge.getPrewarmMetrics();
+      if (kDebugMode) {
+        debugPrint(
+          '[scanner_prewarm] reason=$reason '
+          'initial=${initialMetrics.status} '
+          'status=${metrics.status} '
+          'first_frame_ms=${metrics.timeToFirstFrameMs ?? -1} '
+          'frames=${metrics.frameCount ?? 0}',
+        );
+      }
+    } on MissingPluginException catch (error) {
+      if (kDebugMode) {
+        debugPrint('[scanner_prewarm] reason=$reason unavailable=$error');
+      }
+    } catch (error) {
+      if (kDebugMode) {
+        debugPrint('[scanner_prewarm] reason=$reason failed=$error');
+      }
+    } finally {
+      _scannerPrewarmInFlight = false;
+    }
+  }
+
   Future<void> _maybeHandlePendingCanonicalLink() async {
     final pendingLink = widget.pendingCanonicalLink;
     if (!mounted ||
@@ -142,6 +197,38 @@ class _AppShellState extends State<AppShell> {
       _handlingCanonicalLink = false;
       widget.onCanonicalLinkHandled?.call(pendingLink.id);
     }
+  }
+
+  Future<void> _maybeHandlePendingDebugAction() async {
+    if (!kDebugMode) return;
+    final pendingAction = widget.pendingDebugAction;
+    if (!mounted ||
+        pendingAction == null ||
+        _handlingDebugAction ||
+        _lastHandledDebugActionId == pendingAction.id) {
+      return;
+    }
+
+    _handlingDebugAction = true;
+    _lastHandledDebugActionId = pendingAction.id;
+    try {
+      await _openDebugAction(pendingAction.action);
+    } finally {
+      _handlingDebugAction = false;
+      widget.onDebugActionHandled?.call(pendingAction.id);
+    }
+  }
+
+  Future<void> _openDebugAction(String action) async {
+    if (action != _MyAppState._scannerV4AutoTestAction) return;
+    debugPrint('[scanner_v4_auto_test] adb_action_opening_scanner');
+    await _pushPage<void>(
+      const ConditionCameraScreen(
+        title: 'Scan Card',
+        hintText: 'Align card inside the frame',
+        autoStartScannerV4DiagnosticTest: true,
+      ),
+    );
   }
 
   Future<void> _openCanonicalRoute(GrookaiCanonicalRoute route) async {
@@ -410,11 +497,16 @@ class _AppShellState extends State<AppShell> {
   }
 
   Future<void> _startScanFlow() async {
+    if (kFixedSlotCaptureScannerV1Enabled) {
+      await _pushPage<void>(const FixedSlotCaptureScreen());
+      return;
+    }
     if (kNativeScannerPhase0Enabled) {
       await _pushPage<void>(const NativeScannerPhase0Screen());
       return;
     }
 
+    unawaited(_prewarmScanCardSurface(reason: 'scan_tap'));
     final file = await _pushPage<XFile?>(
       ConditionCameraScreen(
         title: 'Scan Card',
@@ -423,10 +515,14 @@ class _AppShellState extends State<AppShell> {
     );
 
     if (!mounted || file == null) {
+      unawaited(_prewarmScanCardSurface(reason: 'scan_return'));
       return;
     }
 
     await _pushPage<void>(IdentityScanScreen(initialFrontFile: file));
+    if (mounted) {
+      unawaited(_prewarmScanCardSurface(reason: 'identity_return'));
+    }
   }
 
   IconButton _appBarActionButton({

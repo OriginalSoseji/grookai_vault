@@ -1,0 +1,23 @@
+[Unit]
+Description=GrookAI Scanner V3 Identity Service
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=grookai-scanner
+Group=grookai-scanner
+WorkingDirectory=/opt/grookai-scanner-identity/app/backend
+EnvironmentFile=/etc/grookai/scanner-v3-identity.env
+ExecStart=/usr/bin/node identity_v3/run_scanner_v3_identity_service_v1.mjs
+Restart=always
+RestartSec=5
+TimeoutStartSec=180
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=full
+ProtectHome=true
+ReadWritePaths=/opt/grookai-scanner-identity
+
+[Install]
+WantedBy=multi-user.target
