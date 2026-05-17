@@ -7,6 +7,8 @@ Status: remediation planning index. Executed DB route-classification changes in 
 - `docs/audits/pokemon_master_set_audit_v1/pokemon_master_set_audit_v1.md`
 - `docs/audits/pokemon_master_set_audit_v1/summary.json`
 - `scripts/audits/pokemon_master_set_audit_v1.mjs`
+- `docs/audits/pokemon_post_lane_a_247_audit_20260517/pokemon_post_lane_a_247_audit_20260517.md`
+- `docs/audits/pokemon_post_lane_a_247_audit_20260517/summary.json`
 
 The source audit was read-only against live Supabase inventory and external English Pokemon TCG checklist sources. PkmnCards is treated as the numbered-card checklist source, while PokemonTCG API and TCGdex are corroborating source and variant-signal inputs.
 
@@ -106,6 +108,7 @@ No card row should be imported until the canonical target set is resolved and pr
 - `pokemon_db_remediation_v1_checkpoint_20260517.md`
 - `pokemon_db_remediation_v1_execution_queue_20260517.md`
 - `pokemon_db_remediation_v1_execution_queue_20260517.json`
+- `pokemon_db_remediation_post_lane_a_247_checkpoint_20260517.md`
 
 ## Review Checklist Before Implementation
 

@@ -961,7 +961,100 @@ async function main() {
   }, null, 2));
 }
 
-main().catch((error) => {
+async function verifyOnly() {
+  const connectionString = process.env.SUPABASE_DB_URL;
+  if (!connectionString) throw new Error('SUPABASE_DB_URL is not set.');
+
+  const execution = JSON.parse(await fs.readFile(EXECUTION_MATRIX_PATH, 'utf8'));
+  const expectedRows = (execution.before_after_rows ?? []).map((row) => ({
+    card_print_id: row.card_print_id,
+    after_number: row.after_number,
+    after_number_plain: row.after_number_plain,
+  }));
+
+  assertCondition(
+    expectedRows.length === EXPECTED_ROW_COUNT,
+    `Execution matrix contains ${expectedRows.length} row(s), expected ${EXPECTED_ROW_COUNT}.`,
+  );
+
+  const client = new pg.Client({
+    connectionString,
+    application_name: 'number_normalization_lane_a_247_execute_v1:verify_only',
+    statement_timeout: 120000,
+  });
+
+  let result;
+  await client.connect();
+  try {
+    await client.query('begin transaction read only');
+    const { rows } = await client.query(
+      `
+        with expected as (
+          select *
+          from jsonb_to_recordset($1::jsonb) as e(
+            card_print_id uuid,
+            after_number text,
+            after_number_plain text
+          )
+        )
+        select
+          count(*)::int as expected_rows,
+          count(cp.id)::int as live_rows,
+          count(*) filter (
+            where cp.number = e.after_number
+              and cp.number_plain = e.after_number_plain
+          )::int as exact_matches,
+          count(*) filter (
+            where cp.id is null
+               or cp.number is distinct from e.after_number
+               or cp.number_plain is distinct from e.after_number_plain
+          )::int as mismatches
+        from expected e
+        left join public.card_prints cp on cp.id = e.card_print_id
+      `,
+      [JSON.stringify(expectedRows)],
+    );
+    result = rows[0];
+    await client.query('rollback');
+  } catch (error) {
+    try {
+      await client.query('rollback');
+    } catch {
+      // Preserve the original error.
+    }
+    throw error;
+  } finally {
+    await client.end();
+  }
+
+  const pass =
+    Number(result.expected_rows) === EXPECTED_ROW_COUNT &&
+    Number(result.live_rows) === EXPECTED_ROW_COUNT &&
+    Number(result.exact_matches) === EXPECTED_ROW_COUNT &&
+    Number(result.mismatches) === 0;
+
+  console.log(JSON.stringify({
+    status: pass ? 'PASS_VERIFY_ONLY_READ_ONLY' : 'FAIL_VERIFY_ONLY_READ_ONLY',
+    expected_rows: Number(result.expected_rows),
+    live_rows: Number(result.live_rows),
+    exact_matches: Number(result.exact_matches),
+    mismatches: Number(result.mismatches),
+    no_write_confirmation: {
+      supabase_writes: false,
+      migrations: false,
+      inserts: false,
+      updates: false,
+      deletes: false,
+      data_changes: false,
+    },
+  }, null, 2));
+
+  if (!pass) process.exitCode = 1;
+}
+
+const entrypoint = process.argv.includes('--verify-only') ? verifyOnly : main;
+
+entrypoint().catch((error) => {
   console.error(error);
   if (error.detail) console.error(JSON.stringify(error.detail, null, 2));
   process.exitCode = 1;

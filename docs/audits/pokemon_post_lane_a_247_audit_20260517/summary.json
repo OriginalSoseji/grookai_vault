@@ -1,0 +1,239 @@
+{
+  "status": "POST_LANE_A_247_READ_ONLY_AUDIT_COMPLETE",
+  "generated_at": "2026-05-17T19:36:19.181Z",
+  "source_commit": "67f3f32",
+  "db_write_under_review": {
+    "committed_candidate_rows": 247,
+    "updated_rows": 247,
+    "post_write_exact_matches": 247,
+    "non_number_column_changes": 0,
+    "grey_felt_hat_changed_rows": 0,
+    "post_write_collision_rows": 0,
+    "user_market_referenced_target_rows": 0,
+    "related_object_hashes_changed": 0
+  },
+  "master_audit_delta": {
+    "missing_checklist_rows_before": 617,
+    "missing_checklist_rows_after": 613,
+    "missing_checklist_rows_delta": -4,
+    "missing_secret_rows_before": 30,
+    "missing_secret_rows_after": 30,
+    "missing_secret_rows_delta": 0,
+    "missing_master_sets_before": 18,
+    "missing_master_sets_after": 18,
+    "duplicate_db_physical_set_name_groups_before": 29,
+    "duplicate_db_physical_set_name_groups_after": 29
+  },
+  "number_normalization_delta": {
+    "missing_number_rows_before": 997,
+    "missing_number_rows_after": 750,
+    "missing_number_rows_delta": -247,
+    "lane_a_numeric_non_hard_stop_before": 504,
+    "lane_a_numeric_non_hard_stop_after": 257,
+    "clean_future_write_plan_candidates_before": 248,
+    "clean_future_write_plan_candidates_after": 1,
+    "collision_blocked_before": 256,
+    "collision_blocked_after": 256,
+    "hard_stop_blocked_before": 374,
+    "hard_stop_blocked_after": 374
+  },
+  "post_write_verification": {
+    "expected_rows": 247,
+    "live_rows": 247,
+    "exact_matches": 247,
+    "mismatches": 0
+  },
+  "remaining_blocked_lanes": {
+    "collision_rows": 256,
+    "me01_duplicate_rows": 83,
+    "grey_felt_hat_manual_rows": 1,
+    "hard_stop_rows": 374,
+    "review_stop_rows": 0,
+    "missing_cards_backfill": "blocked pending set/number/identity decisions",
+    "variants": "blocked pending VARIANT_AUTHORITY_MODEL_V2 approval"
+  },
+  "top_missing_groups_after": [
+    {
+      "name": "Shiny Vault",
+      "db_set_codes": [],
+      "missing_card_count": 94,
+      "missing_secret_count": 0
+    },
+    {
+      "name": "Mega Evolution Promos",
+      "db_set_codes": [
+        "mep"
+      ],
+      "missing_card_count": 39,
+      "missing_secret_count": 16
+    },
+    {
+      "name": "Pokémon Trading Card Game Classic—Blastoise",
+      "db_set_codes": [],
+      "missing_card_count": 34,
+      "missing_secret_count": 0
+    },
+    {
+      "name": "Pokémon Trading Card Game Classic—Charizard",
+      "db_set_codes": [],
+      "missing_card_count": 34,
+      "missing_secret_count": 0
+    },
+    {
+      "name": "Pokémon Trading Card Game Classic—Venusaur",
+      "db_set_codes": [],
+      "missing_card_count": 34,
+      "missing_secret_count": 0
+    },
+    {
+      "name": "Guardians Rising",
+      "db_set_codes": [
+        "sm2"
+      ],
+      "missing_card_count": 25,
+      "missing_secret_count": 1
+    },
+    {
+      "name": "Burning Shadows",
+      "db_set_codes": [
+        "sm3"
+      ],
+      "missing_card_count": 23,
+      "missing_secret_count": 0
+    },
+    {
+      "name": "Legendary Treasures",
+      "db_set_codes": [
+        "bw11"
+      ],
+      "missing_card_count": 20,
+      "missing_secret_count": 0
+    },
+    {
+      "name": "Forbidden Light",
+      "db_set_codes": [
+        "sm6"
+      ],
+      "missing_card_count": 19,
+      "missing_secret_count": 0
+    },
+    {
+      "name": "Ultra Prism",
+      "db_set_codes": [
+        "sm5"
+      ],
+      "missing_card_count": 18,
+      "missing_secret_count": 0
+    },
+    {
+      "name": "Celestial Storm",
+      "db_set_codes": [
+        "sm7"
+      ],
+      "missing_card_count": 17,
+      "missing_secret_count": 0
+    },
+    {
+      "name": "Rumble",
+      "db_set_codes": [],
+      "missing_card_count": 16,
+      "missing_secret_count": 0
+    },
+    {
+      "name": "McDonald’s Match Battle 2023",
+      "db_set_codes": [],
+      "missing_card_count": 15,
+      "missing_secret_count": 0
+    },
+    {
+      "name": "Box Topper",
+      "db_set_codes": [],
+      "missing_card_count": 12,
+      "missing_secret_count": 0
+    },
+    {
+      "name": "Arceus",
+      "db_set_codes": [
+        "pl4"
+      ],
+      "missing_card_count": 12,
+      "missing_secret_count": 0
+    },
+    {
+      "name": "Skyridge",
+      "db_set_codes": [
+        "ecard3"
+      ],
+      "missing_card_count": 11,
+      "missing_secret_count": 0
+    },
+    {
+      "name": "Call of Legends",
+      "db_set_codes": [
+        "col1"
+      ],
+      "missing_card_count": 11,
+      "missing_secret_count": 0
+    },
+    {
+      "name": "Dragon Majesty",
+      "db_set_codes": [
+        "sm7.5",
+        "sm75"
+      ],
+      "missing_card_count": 10,
+      "missing_secret_count": 0
+    },
+    {
+      "name": "Victory Medals",
+      "db_set_codes": [],
+      "missing_card_count": 9,
+      "missing_secret_count": 0
+    },
+    {
+      "name": "World Collection",
+      "db_set_codes": [],
+      "missing_card_count": 9,
+      "missing_secret_count": 0
+    },
+    {
+      "name": "Sun & Moon Energy",
+      "db_set_codes": [],
+      "missing_card_count": 9,
+      "missing_secret_count": 0
+    },
+    {
+      "name": "Sun & Moon Energy (Team Up)",
+      "db_set_codes": [],
+      "missing_card_count": 9,
+      "missing_secret_count": 0
+    },
+    {
+      "name": "Sword & Shield Energy",
+      "db_set_codes": [],
+      "missing_card_count": 9,
+      "missing_secret_count": 0
+    },
+    {
+      "name": "XY Energy (2013 Unnumbered)",
+      "db_set_codes": [],
+      "missing_card_count": 9,
+      "missing_secret_count": 0
+    },
+    {
+      "name": "Black & White Energy (2011 Unnumbered)",
+      "db_set_codes": [],
+      "missing_card_count": 8,
+      "missing_secret_count": 0
+    }
+  ],
+  "no_write_confirmation": {
+    "supabase_writes": false,
+    "migrations": false,
+    "inserts": false,
+    "updates": false,
+    "deletes": false,
+    "data_changes": false,
+    "deploy": false
+  }
+}
