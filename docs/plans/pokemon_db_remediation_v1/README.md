@@ -44,6 +44,9 @@ No card row should be imported until the canonical target set is resolved and pr
 ## Plan Files
 
 - `set_canonicalization_plan.md`
+- `set_canonicalization_dry_run_20260517.md`
+- `set_alias_dependency_audit_20260517.md`
+- `set_alias_dependency_matrix_20260517.json`
 - `missing_sets_plan.md`
 - `number_normalization_plan.md`
 - `missing_cards_backfill_plan.md`
