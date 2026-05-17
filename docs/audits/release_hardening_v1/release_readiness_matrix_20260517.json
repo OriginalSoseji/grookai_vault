@@ -1,0 +1,69 @@
+{
+  "classification": "RELEASE_CANDIDATE",
+  "date": "2026-05-17",
+  "scope": "release_integrity_only",
+  "lanes": {
+    "secret_safety": {
+      "status": "pass",
+      "evidence": [
+        "Flutter assets no longer include .env or .env.local",
+        "npm run release:secret-guard passes",
+        "android/key.properties and keystore files are ignored"
+      ],
+      "remaining_risk": "Guard is static; signed artifact inspection requires signing secrets."
+    },
+    "flutter_integrity": {
+      "status": "pass",
+      "evidence": [
+        "flutter analyze passes",
+        "flutter test --no-pub passes"
+      ],
+      "remaining_risk": "Scanner remains parked; no scanner architecture work was performed."
+    },
+    "web_build": {
+      "status": "pass",
+      "evidence": [
+        "npm --prefix apps/web run build passes without TLS certificate output",
+        "npm run web:build:strict passes and detects TLS certificate failure patterns"
+      ],
+      "remaining_risk": "One non-blocking Next.js img optimization warning remains."
+    },
+    "ci_readiness": {
+      "status": "pass",
+      "evidence": [
+        "shipcheck includes release secret guard, contracts tests, runtime health, web build, Flutter analyze, and Flutter tests",
+        "Flutter CI watches test and analysis option changes"
+      ],
+      "remaining_risk": "Workflow execution with GitHub-hosted secrets was not run locally."
+    },
+    "signing_readiness": {
+      "status": "conditional",
+      "evidence": [
+        "Release workflow validates Android signing secrets",
+        "Android release build no longer uses debug signing",
+        "GitHub Release uploads app-release.aab rather than unsigned APK"
+      ],
+      "remaining_risk": "Production signing secrets must exist in GitHub Actions."
+    },
+    "runtime_deferred_debt": {
+      "status": "known_deferred",
+      "evidence": [
+        "npm run preflight passes with deferred debt",
+        "npm run contracts:runtime-health passes with known blocked/contained paths"
+      ],
+      "remaining_risk": "Deferred DB/runtime debt remains outside this release-hardening lane."
+    }
+  },
+  "explicit_non_actions": {
+    "db_migrations": false,
+    "db_remediation": false,
+    "scanner_architecture_changes": false,
+    "gv_id_gate_relaxation": false,
+    "blocked_lane_implementation": false
+  },
+  "production_ready_conditions": [
+    "GitHub Actions release workflow completes with production signing secrets",
+    "Signed release artifact is inspected successfully",
+    "Deferred runtime debt remains accepted or is separately remediated under its own lane"
+  ]
+}
