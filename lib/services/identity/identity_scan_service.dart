@@ -42,6 +42,135 @@ class IdentityScanPollResult {
   final String? error;
   final List<dynamic> candidates;
   final Map<String, dynamic>? signals;
+
+  bool get isFailed {
+    final normalized = status.trim().toLowerCase();
+    return normalized == 'failed' ||
+        normalized == 'error' ||
+        normalized == 'cancelled';
+  }
+
+  bool get isReady {
+    final normalized = status.trim().toLowerCase();
+    return normalized == 'ready' ||
+        normalized == 'completed' ||
+        normalized == 'complete' ||
+        normalized == 'succeeded' ||
+        normalized == 'success';
+  }
+
+  bool get isPending {
+    final normalized = status.trim().toLowerCase();
+    return !isFailed && !isReady && normalized != 'idle';
+  }
+
+  IdentityScanSignal? get primarySignal {
+    final rawSignal =
+        signals?['primary_signal'] ?? signals?['primarySignal'] ?? signals;
+    if (rawSignal is Map) {
+      return IdentityScanSignal(Map<String, dynamic>.from(rawSignal));
+    }
+    return null;
+  }
+}
+
+class IdentityScanCandidate {
+  const IdentityScanCandidate({
+    this.name,
+    this.setName,
+    this.setCode,
+    this.number,
+  });
+
+  factory IdentityScanCandidate.fromJson(Map<String, dynamic> json) {
+    String? clean(String key) {
+      final value = json[key]?.toString().trim();
+      return value == null || value.isEmpty ? null : value;
+    }
+
+    return IdentityScanCandidate(
+      name: clean('name') ?? clean('card_name'),
+      setName: clean('set_name'),
+      setCode: clean('set_code'),
+      number: clean('number') ?? clean('collector_number'),
+    );
+  }
+
+  final String? name;
+  final String? setName;
+  final String? setCode;
+  final String? number;
+}
+
+class IdentityScanSignal {
+  const IdentityScanSignal(this._json);
+
+  final Map<String, dynamic> _json;
+
+  String? get guidanceReason =>
+      _clean('guidance_reason') ?? _clean('guidanceReason');
+  String? get likelyName =>
+      _clean('likely_name') ?? _clean('likelyName') ?? _clean('name');
+  String? get likelySetName =>
+      _clean('likely_set_name') ??
+      _clean('likelySetName') ??
+      _clean('set_name');
+  String? get exactResultCollectorNumber =>
+      _clean('exact_result_collector_number') ??
+      _clean('exactResultCollectorNumber') ??
+      _clean('collector_number');
+  String? get exactResultCardName =>
+      _clean('exact_result_card_name') ?? _clean('exactResultCardName');
+  String? get exactResultSetName =>
+      _clean('exact_result_set_name') ?? _clean('exactResultSetName');
+  String? get lockedCandidateName =>
+      _clean('locked_candidate_name') ?? _clean('lockedCandidateName');
+
+  bool get hasSuccessfulExactResult =>
+      _truthy('has_successful_exact_result') ||
+      _truthy('hasSuccessfulExactResult') ||
+      _clean('result_kind') == 'exact';
+
+  bool get hasInsufficientEvidenceResult =>
+      _truthy('has_insufficient_evidence_result') ||
+      _truthy('hasInsufficientEvidenceResult') ||
+      _clean('result_kind') == 'insufficient_evidence';
+
+  bool get isLocked => _truthy('is_locked') || _truthy('isLocked');
+  bool get hasPreviewHint =>
+      _truthy('has_preview_hint') ||
+      _truthy('hasPreviewHint') ||
+      likelyName != null;
+
+  double? get scanConfidence01 =>
+      _number('scan_confidence_01') ?? _number('scanConfidence01');
+  double? get confidence01 =>
+      _number('confidence_01') ??
+      _number('confidence01') ??
+      _number('confidence');
+
+  String? _clean(String key) {
+    final value = _json[key]?.toString().trim();
+    return value == null || value.isEmpty ? null : value;
+  }
+
+  bool _truthy(String key) {
+    final value = _json[key];
+    if (value is bool) return value;
+    if (value is num) return value != 0;
+    if (value is String) {
+      final normalized = value.trim().toLowerCase();
+      return normalized == 'true' || normalized == '1' || normalized == 'yes';
+    }
+    return false;
+  }
+
+  double? _number(String key) {
+    final value = _json[key];
+    if (value is num) return value.toDouble();
+    if (value is String) return double.tryParse(value);
+    return null;
+  }
 }
 
 class IdentityScanService {

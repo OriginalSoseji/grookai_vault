@@ -52,10 +52,10 @@ class IdentityScannerOverlay extends StatelessWidget {
                     filter: ImageFilter.blur(sigmaX: 18, sigmaY: 18),
                     child: DecoratedBox(
                       decoration: BoxDecoration(
-                        color: Colors.black.withOpacity(0.28),
+                        color: Colors.black.withValues(alpha: 0.28),
                         borderRadius: BorderRadius.circular(999),
                         border: Border.all(
-                          color: Colors.white.withOpacity(0.12),
+                          color: Colors.white.withValues(alpha: 0.12),
                         ),
                       ),
                       child: Padding(
@@ -104,7 +104,7 @@ class _IdentityScannerOverlayPainter extends CustomPainter {
 
   @override
   void paint(Canvas canvas, Size size) {
-    final scrimPaint = Paint()..color = Colors.black.withOpacity(0.42);
+    final scrimPaint = Paint()..color = Colors.black.withValues(alpha: 0.42);
     final clearPaint = Paint()..blendMode = BlendMode.clear;
     final overlayPath = Path()
       ..addRect(Rect.fromLTWH(0, 0, size.width, size.height));
@@ -121,7 +121,7 @@ class _IdentityScannerOverlayPainter extends CustomPainter {
     canvas.restore();
 
     final borderPaint = Paint()
-      ..color = accentColor.withOpacity(locked ? 0.98 : 0.86)
+      ..color = accentColor.withValues(alpha: locked ? 0.98 : 0.86)
       ..style = PaintingStyle.stroke
       ..strokeWidth = strokeWidth;
     canvas.drawRRect(frameRRect, borderPaint);
@@ -147,7 +147,7 @@ class _IdentityScannerOverlayPainter extends CustomPainter {
 
     if (quadPointsNorm != null && quadPointsNorm!.length == 4) {
       final quadPaint = Paint()
-        ..color = accentColor.withOpacity(0.72)
+        ..color = accentColor.withValues(alpha: 0.72)
         ..strokeWidth = strokeWidth
         ..style = PaintingStyle.stroke;
       final quadPath = Path();
@@ -172,7 +172,7 @@ class _IdentityScannerOverlayPainter extends CustomPainter {
         focusTapNorm!.dy.clamp(0.0, 1.0).toDouble() * size.height,
       );
       final ringPaint = Paint()
-        ..color = Colors.white.withOpacity(0.84)
+        ..color = Colors.white.withValues(alpha: 0.84)
         ..style = PaintingStyle.stroke
         ..strokeWidth = 1.5;
       canvas.drawCircle(tapPoint, 18, ringPaint);

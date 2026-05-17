@@ -101,7 +101,7 @@ void main() {
     );
     expect(pageSource, contains('VaultInstanceSectionMembershipCard'));
     expect(componentSource, contains('Add this exact copy to custom sections'));
-    expect(componentSource, contains('Wall stays automatic'));
+    expect(componentSource, contains('Wall visibility follows copy intent'));
     expect(componentSource, contains('Create section'));
     expect(componentSource, isNot(contains('/section/')));
   });

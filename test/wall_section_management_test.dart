@@ -33,10 +33,11 @@ void main() {
 
   test('create action writes owner-only custom sections and not Wall', () {
     expect(createSource, contains('client.auth.getUser()'));
-    expect(createSource, contains('.from("wall_sections").insert'));
+    expect(createSource, contains('.from("wall_sections")'));
+    expect(createSource, contains('.insert({'));
     expect(createSource, contains('user_id: user.id'));
     expect(createSource, contains('is_active: true'));
-    expect(createSource, contains('is_public: false'));
+    expect(createSource, contains('is_public: true'));
     expect(createSource, isNot(contains('.from("shared_cards").insert')));
     expect(createSource, isNot(contains('create table')));
   });
@@ -76,7 +77,9 @@ void main() {
     expect(accountPageSource, contains('getOwnerWallSections(user.id)'));
     expect(
       accountPageSource,
-      contains('<WallSectionsSettingsCard initialModel={wallSectionsModel} />'),
+      contains(
+        '<WallSectionsSettingsCard initialModel={wallSectionsModel} publicProfileSlug={publicProfileSlug} />',
+      ),
     );
   });
 
