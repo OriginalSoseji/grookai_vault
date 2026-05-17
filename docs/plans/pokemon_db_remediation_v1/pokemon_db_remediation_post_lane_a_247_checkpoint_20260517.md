@@ -74,6 +74,20 @@ The no-write generation/backfill evidence pack audited all 218 missing-`gv_id` L
 
 `mep` is blocked because the 10 missing rows duplicate existing public MEP rows that already own padded `GV-PK-MEP-001` through `GV-PK-MEP-010`. `A3a`, `P-A`, and `fut2020` have collision-free candidate strings but no established same-set public namespace pattern, so they need explicit namespace/source-domain approval before any write-plan candidate exists.
 
+## Namespace / Source Policy
+
+The follow-up policy pass defined the 208 policy-review rows and approves zero for a future write plan.
+
+| Set | Rows | Policy | Future write status |
+| --- | ---: | --- | --- |
+| `A3a` | 103 | source-domain policy blocked | not approved |
+| `P-A` | 100 | source-domain policy blocked | not approved |
+| `fut2020` | 5 | physical special collection review | namespace/number contract required |
+
+Generated IDs for these rows remain evidence only. `A3a` and `P-A` stay out of public card routes under current physical public identity rules. `fut2020` may be eligible later, but only after an explicit `FUT2020` namespace and printed-number token policy decides `1-5` versus `001-005`.
+
+The 10 `mep` rows are isolated in a separate manual collision pack. They are duplicate-resolution candidates, not GV-ID backfill candidates, because existing public owners already use padded `GV-PK-MEP-001` through `GV-PK-MEP-010`.
+
 ## Remaining Blocked Lanes
 
 - 256 collision rows remain blocked.
@@ -86,11 +100,12 @@ The no-write generation/backfill evidence pack audited all 218 missing-`gv_id` L
 ## Next Recommended Queue
 
 1. Resolve the 10-row `mep` duplicate-public-owner lane as duplicate-resolution design only.
-2. Decide namespace/source-domain policy for `A3a`, `P-A`, and `fut2020` before any `gv_id` write plan.
-3. Keep image-only gaps separate from `gv_id` work; 25 McDonald's Collection 2021 rows have public routes but missing `image_url`.
-4. Keep Grey Felt Hat as a manual referenced-row decision.
-5. Continue collision-row ownership packs before any further number writes.
-6. Keep missing-card backfill frozen until set and number blockers clear.
+2. Draft a `fut2020` namespace/printed-number contract if public routes for that physical special collection are desired.
+3. Keep `A3a` and `P-A` blocked unless a separate source-domain inclusion contract is approved.
+4. Keep image-only gaps separate from `gv_id` work; 25 McDonald's Collection 2021 rows have public routes but missing `image_url`.
+5. Keep Grey Felt Hat as a manual referenced-row decision.
+6. Continue collision-row ownership packs before any further number writes.
+7. Keep missing-card backfill frozen until set and number blockers clear.
 
 ## No-Write Confirmation
 

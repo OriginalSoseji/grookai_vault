@@ -99,6 +99,10 @@ No card row should be imported until the canonical target set is resolved and pr
 - `number_normalization_grey_felt_hat_manual_evidence_matrix_20260517.json`
 - `gv_id_generation_backfill_evidence_20260517.md`
 - `gv_id_generation_backfill_evidence_20260517.json`
+- `gv_id_namespace_source_policy_20260517.md`
+- `gv_id_namespace_source_policy_matrix_20260517.json`
+- `gv_id_mep_collision_manual_pack_20260517.md`
+- `gv_id_mep_collision_manual_matrix_20260517.json`
 - `number_normalization_dry_run_implementation_plan_20260517.md`
 - `number_normalization_dry_run_implementation_plan_20260517.sql`
 - `missing_cards_backfill_plan.md`

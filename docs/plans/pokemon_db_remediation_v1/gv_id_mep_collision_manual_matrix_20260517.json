@@ -1,0 +1,527 @@
+{
+  "status": "NO_WRITE_MEP_COLLISION_MANUAL_PACK",
+  "generated_at": "2026-05-17T20:39:38.438Z",
+  "source_matrix": "docs/plans/pokemon_db_remediation_v1/gv_id_generation_backfill_evidence_20260517.json",
+  "scope": {
+    "set_code": "mep",
+    "set_name": "MEP Black Star Promos",
+    "row_count": 10,
+    "no_write": true
+  },
+  "summary": {
+    "blocked_rows": 10,
+    "duplicate_public_owner_rows": 10,
+    "padding_convention_collision_rows": 10,
+    "recommended_gv_id_writes": 0,
+    "recommended_next_mode": "DUPLICATE_RESOLUTION_DESIGN_ONLY"
+  },
+  "rows": [
+    {
+      "card_print_id": "6419894a-137f-4fc7-8db1-fa853872b190",
+      "missing_row_name": "Meganium",
+      "missing_row_number": "1",
+      "missing_row_number_plain": "1",
+      "generated_but_rejected_gv_id": "GV-PK-MEP-1",
+      "blockers": [
+        "DUPLICATE_PUBLIC_OWNER",
+        "PADDING_CONVENTION_COLLISION"
+      ],
+      "semantic_duplicate_public_owner": {
+        "card_print_id": "5f64ad81-93ff-4b77-aa94-06f8522b3f1e",
+        "gv_id": "GV-PK-MEP-001",
+        "name": "Meganium",
+        "number": "001",
+        "number_plain": "001"
+      },
+      "padding_collision_owner": {
+        "card_print_id": "5f64ad81-93ff-4b77-aa94-06f8522b3f1e",
+        "gv_id": "GV-PK-MEP-001",
+        "name": "Meganium",
+        "number": "001",
+        "number_plain": "001",
+        "numeric_token": "001"
+      },
+      "reference_summary": {
+        "vault_items": 0,
+        "pricing_watch": 0,
+        "justtcg_variants": 0,
+        "vault_item_instances": 0
+      },
+      "external_mappings": [
+        {
+          "active": true,
+          "source": "tcgdex",
+          "external_id": "mep-001"
+        }
+      ],
+      "active_identity_rows": [
+        {
+          "id": "f5434864-2d15-4a68-9ecf-68726bee6957",
+          "printed_number": "001",
+          "identity_domain": "pokemon_eng_standard",
+          "identity_key_hash": "999495772a628789786faaa4fb398b6016450e0dac0d3a08764389c8983a3e88",
+          "set_code_identity": "mep",
+          "identity_key_version": "pokemon_eng_standard:v1"
+        }
+      ],
+      "manual_decision_required": "Choose duplicate survivor and preservation path; do not mint a second public gv_id."
+    },
+    {
+      "card_print_id": "b75d4730-3c1a-42ca-9d18-e8ca736ae41f",
+      "missing_row_name": "Inteleon",
+      "missing_row_number": "2",
+      "missing_row_number_plain": "2",
+      "generated_but_rejected_gv_id": "GV-PK-MEP-2",
+      "blockers": [
+        "DUPLICATE_PUBLIC_OWNER",
+        "PADDING_CONVENTION_COLLISION"
+      ],
+      "semantic_duplicate_public_owner": {
+        "card_print_id": "95dca2c2-c3e7-43b4-bc02-227fddc4910d",
+        "gv_id": "GV-PK-MEP-002",
+        "name": "Inteleon",
+        "number": "002",
+        "number_plain": "002"
+      },
+      "padding_collision_owner": {
+        "card_print_id": "95dca2c2-c3e7-43b4-bc02-227fddc4910d",
+        "gv_id": "GV-PK-MEP-002",
+        "name": "Inteleon",
+        "number": "002",
+        "number_plain": "002",
+        "numeric_token": "002"
+      },
+      "reference_summary": {
+        "vault_items": 0,
+        "pricing_watch": 0,
+        "justtcg_variants": 0,
+        "vault_item_instances": 0
+      },
+      "external_mappings": [
+        {
+          "active": true,
+          "source": "tcgdex",
+          "external_id": "mep-002"
+        }
+      ],
+      "active_identity_rows": [
+        {
+          "id": "80cf5e95-d0c4-4776-b89c-b5919f243a5a",
+          "printed_number": "002",
+          "identity_domain": "pokemon_eng_standard",
+          "identity_key_hash": "1b3fee072e8c1738180a3bc70379cc047ea5967b6f8999dfb6db95559500fdb1",
+          "set_code_identity": "mep",
+          "identity_key_version": "pokemon_eng_standard:v1"
+        }
+      ],
+      "manual_decision_required": "Choose duplicate survivor and preservation path; do not mint a second public gv_id."
+    },
+    {
+      "card_print_id": "aa9f207d-c9ea-4607-bbc5-448648bca47f",
+      "missing_row_name": "Alakazam",
+      "missing_row_number": "3",
+      "missing_row_number_plain": "3",
+      "generated_but_rejected_gv_id": "GV-PK-MEP-3",
+      "blockers": [
+        "DUPLICATE_PUBLIC_OWNER",
+        "PADDING_CONVENTION_COLLISION"
+      ],
+      "semantic_duplicate_public_owner": {
+        "card_print_id": "718508f6-7825-43e8-98e1-a57b58dd490f",
+        "gv_id": "GV-PK-MEP-003",
+        "name": "Alakazam",
+        "number": "003",
+        "number_plain": "003"
+      },
+      "padding_collision_owner": {
+        "card_print_id": "718508f6-7825-43e8-98e1-a57b58dd490f",
+        "gv_id": "GV-PK-MEP-003",
+        "name": "Alakazam",
+        "number": "003",
+        "number_plain": "003",
+        "numeric_token": "003"
+      },
+      "reference_summary": {
+        "vault_items": 0,
+        "pricing_watch": 0,
+        "justtcg_variants": 0,
+        "vault_item_instances": 0
+      },
+      "external_mappings": [
+        {
+          "active": true,
+          "source": "tcgdex",
+          "external_id": "mep-003"
+        }
+      ],
+      "active_identity_rows": [
+        {
+          "id": "81f29850-e313-4795-8de3-6f7cb63aa5d8",
+          "printed_number": "003",
+          "identity_domain": "pokemon_eng_standard",
+          "identity_key_hash": "4699a32936ad179a49f89aa96c27687098ccc523c3a717e313626821edc1de1f",
+          "set_code_identity": "mep",
+          "identity_key_version": "pokemon_eng_standard:v1"
+        }
+      ],
+      "manual_decision_required": "Choose duplicate survivor and preservation path; do not mint a second public gv_id."
+    },
+    {
+      "card_print_id": "bf523703-271c-49fe-b8aa-c31c57cb9b32",
+      "missing_row_name": "Lunatone",
+      "missing_row_number": "4",
+      "missing_row_number_plain": "4",
+      "generated_but_rejected_gv_id": "GV-PK-MEP-4",
+      "blockers": [
+        "DUPLICATE_PUBLIC_OWNER",
+        "PADDING_CONVENTION_COLLISION"
+      ],
+      "semantic_duplicate_public_owner": {
+        "card_print_id": "cddc521f-ebbe-4460-85d5-d78278672f95",
+        "gv_id": "GV-PK-MEP-004",
+        "name": "Lunatone",
+        "number": "004",
+        "number_plain": "004"
+      },
+      "padding_collision_owner": {
+        "card_print_id": "cddc521f-ebbe-4460-85d5-d78278672f95",
+        "gv_id": "GV-PK-MEP-004",
+        "name": "Lunatone",
+        "number": "004",
+        "number_plain": "004",
+        "numeric_token": "004"
+      },
+      "reference_summary": {
+        "vault_items": 0,
+        "pricing_watch": 0,
+        "justtcg_variants": 0,
+        "vault_item_instances": 0
+      },
+      "external_mappings": [
+        {
+          "active": true,
+          "source": "tcgdex",
+          "external_id": "mep-004"
+        }
+      ],
+      "active_identity_rows": [
+        {
+          "id": "4e63bb8e-2fc2-4029-a0b2-ccc4658d4b99",
+          "printed_number": "004",
+          "identity_domain": "pokemon_eng_standard",
+          "identity_key_hash": "e5b3ffceb266e8a95b4226156aa97eefff6c6d454fe47e539acd2eb30831408e",
+          "set_code_identity": "mep",
+          "identity_key_version": "pokemon_eng_standard:v1"
+        }
+      ],
+      "manual_decision_required": "Choose duplicate survivor and preservation path; do not mint a second public gv_id."
+    },
+    {
+      "card_print_id": "04e533ae-dd17-478c-ab46-220859079b2c",
+      "missing_row_name": "Drifloon",
+      "missing_row_number": "5",
+      "missing_row_number_plain": "5",
+      "generated_but_rejected_gv_id": "GV-PK-MEP-5",
+      "blockers": [
+        "DUPLICATE_PUBLIC_OWNER",
+        "PADDING_CONVENTION_COLLISION"
+      ],
+      "semantic_duplicate_public_owner": {
+        "card_print_id": "c5b19da0-1f2d-4b86-844f-90284539099d",
+        "gv_id": "GV-PK-MEP-005",
+        "name": "Drifloon",
+        "number": "005",
+        "number_plain": "005"
+      },
+      "padding_collision_owner": {
+        "card_print_id": "c5b19da0-1f2d-4b86-844f-90284539099d",
+        "gv_id": "GV-PK-MEP-005",
+        "name": "Drifloon",
+        "number": "005",
+        "number_plain": "005",
+        "numeric_token": "005"
+      },
+      "reference_summary": {
+        "vault_items": 0,
+        "pricing_watch": 0,
+        "justtcg_variants": 0,
+        "vault_item_instances": 0
+      },
+      "external_mappings": [
+        {
+          "active": true,
+          "source": "tcgdex",
+          "external_id": "mep-005"
+        }
+      ],
+      "active_identity_rows": [
+        {
+          "id": "eacb5a42-8037-4015-822e-a9212e65e060",
+          "printed_number": "005",
+          "identity_domain": "pokemon_eng_standard",
+          "identity_key_hash": "f828960bcf71cc61c806361b277f8e0481f2760dbbf2cddc3ce1fe1bd3731832",
+          "set_code_identity": "mep",
+          "identity_key_version": "pokemon_eng_standard:v1"
+        }
+      ],
+      "manual_decision_required": "Choose duplicate survivor and preservation path; do not mint a second public gv_id."
+    },
+    {
+      "card_print_id": "ac2b6cf7-6873-44e8-96b9-e03a179fae51",
+      "missing_row_name": "Drifblim",
+      "missing_row_number": "6",
+      "missing_row_number_plain": "6",
+      "generated_but_rejected_gv_id": "GV-PK-MEP-6",
+      "blockers": [
+        "DUPLICATE_PUBLIC_OWNER",
+        "PADDING_CONVENTION_COLLISION"
+      ],
+      "semantic_duplicate_public_owner": {
+        "card_print_id": "69572cf4-a580-49cc-90d2-36c053f510a9",
+        "gv_id": "GV-PK-MEP-006",
+        "name": "Drifblim",
+        "number": "006",
+        "number_plain": "006"
+      },
+      "padding_collision_owner": {
+        "card_print_id": "69572cf4-a580-49cc-90d2-36c053f510a9",
+        "gv_id": "GV-PK-MEP-006",
+        "name": "Drifblim",
+        "number": "006",
+        "number_plain": "006",
+        "numeric_token": "006"
+      },
+      "reference_summary": {
+        "vault_items": 0,
+        "pricing_watch": 0,
+        "justtcg_variants": 0,
+        "vault_item_instances": 0
+      },
+      "external_mappings": [
+        {
+          "active": true,
+          "source": "tcgdex",
+          "external_id": "mep-006"
+        }
+      ],
+      "active_identity_rows": [
+        {
+          "id": "b0e9bda3-8681-4027-9064-2bc0b3b04885",
+          "printed_number": "006",
+          "identity_domain": "pokemon_eng_standard",
+          "identity_key_hash": "b2df620afb99e49fd9d64419230c38cc064425ea5ad5ae50f89aa3b42cb1ffeb",
+          "set_code_identity": "mep",
+          "identity_key_version": "pokemon_eng_standard:v1"
+        }
+      ],
+      "manual_decision_required": "Choose duplicate survivor and preservation path; do not mint a second public gv_id."
+    },
+    {
+      "card_print_id": "870f45fe-0680-4a92-b77b-dd03a6018bd3",
+      "missing_row_name": "Psyduck",
+      "missing_row_number": "7",
+      "missing_row_number_plain": "7",
+      "generated_but_rejected_gv_id": "GV-PK-MEP-7",
+      "blockers": [
+        "DUPLICATE_PUBLIC_OWNER",
+        "PADDING_CONVENTION_COLLISION"
+      ],
+      "semantic_duplicate_public_owner": {
+        "card_print_id": "a683bb41-182d-440b-9e6c-d82ebfd38f1d",
+        "gv_id": "GV-PK-MEP-007",
+        "name": "Psyduck",
+        "number": "007",
+        "number_plain": "007"
+      },
+      "padding_collision_owner": {
+        "card_print_id": "a683bb41-182d-440b-9e6c-d82ebfd38f1d",
+        "gv_id": "GV-PK-MEP-007",
+        "name": "Psyduck",
+        "number": "007",
+        "number_plain": "007",
+        "numeric_token": "007"
+      },
+      "reference_summary": {
+        "vault_items": 0,
+        "pricing_watch": 0,
+        "justtcg_variants": 0,
+        "vault_item_instances": 0
+      },
+      "external_mappings": [
+        {
+          "active": true,
+          "source": "tcgdex",
+          "external_id": "mep-007"
+        }
+      ],
+      "active_identity_rows": [
+        {
+          "id": "e82dd461-e1f2-4660-a6df-34c42143fc77",
+          "printed_number": "007",
+          "identity_domain": "pokemon_eng_standard",
+          "identity_key_hash": "5db7a0ab42726c37714cc3229b0abab9c0b9b176050f094393fbb807c1c1f591",
+          "set_code_identity": "mep",
+          "identity_key_version": "pokemon_eng_standard:v1"
+        }
+      ],
+      "manual_decision_required": "Choose duplicate survivor and preservation path; do not mint a second public gv_id."
+    },
+    {
+      "card_print_id": "47f874b2-ea20-4b89-af44-085905bb1f60",
+      "missing_row_name": "Golduck",
+      "missing_row_number": "8",
+      "missing_row_number_plain": "8",
+      "generated_but_rejected_gv_id": "GV-PK-MEP-8",
+      "blockers": [
+        "DUPLICATE_PUBLIC_OWNER",
+        "PADDING_CONVENTION_COLLISION"
+      ],
+      "semantic_duplicate_public_owner": {
+        "card_print_id": "5dd278a1-ccaa-48e6-84c2-7190ee63c9d8",
+        "gv_id": "GV-PK-MEP-008",
+        "name": "Golduck",
+        "number": "008",
+        "number_plain": "008"
+      },
+      "padding_collision_owner": {
+        "card_print_id": "5dd278a1-ccaa-48e6-84c2-7190ee63c9d8",
+        "gv_id": "GV-PK-MEP-008",
+        "name": "Golduck",
+        "number": "008",
+        "number_plain": "008",
+        "numeric_token": "008"
+      },
+      "reference_summary": {
+        "vault_items": 0,
+        "pricing_watch": 0,
+        "justtcg_variants": 0,
+        "vault_item_instances": 0
+      },
+      "external_mappings": [
+        {
+          "active": true,
+          "source": "tcgdex",
+          "external_id": "mep-008"
+        }
+      ],
+      "active_identity_rows": [
+        {
+          "id": "f6f410a8-d478-4c7d-a036-d58cf67bca98",
+          "printed_number": "008",
+          "identity_domain": "pokemon_eng_standard",
+          "identity_key_hash": "f644087dea4781c53c4c7ecd7fac6142f4b838e45ecf9e2c32fe56f4bcef624a",
+          "set_code_identity": "mep",
+          "identity_key_version": "pokemon_eng_standard:v1"
+        }
+      ],
+      "manual_decision_required": "Choose duplicate survivor and preservation path; do not mint a second public gv_id."
+    },
+    {
+      "card_print_id": "a3624761-be25-4841-83e4-c5936ec434fe",
+      "missing_row_name": "Alakazam",
+      "missing_row_number": "9",
+      "missing_row_number_plain": "9",
+      "generated_but_rejected_gv_id": "GV-PK-MEP-9",
+      "blockers": [
+        "DUPLICATE_PUBLIC_OWNER",
+        "PADDING_CONVENTION_COLLISION"
+      ],
+      "semantic_duplicate_public_owner": {
+        "card_print_id": "26726d70-a78d-4210-9ccc-d79abd215099",
+        "gv_id": "GV-PK-MEP-009",
+        "name": "Alakazam",
+        "number": "009",
+        "number_plain": "009"
+      },
+      "padding_collision_owner": {
+        "card_print_id": "26726d70-a78d-4210-9ccc-d79abd215099",
+        "gv_id": "GV-PK-MEP-009",
+        "name": "Alakazam",
+        "number": "009",
+        "number_plain": "009",
+        "numeric_token": "009"
+      },
+      "reference_summary": {
+        "vault_items": 0,
+        "pricing_watch": 0,
+        "justtcg_variants": 0,
+        "vault_item_instances": 0
+      },
+      "external_mappings": [
+        {
+          "active": true,
+          "source": "tcgdex",
+          "external_id": "mep-009"
+        }
+      ],
+      "active_identity_rows": [
+        {
+          "id": "dfcde77b-d381-4201-889e-3e4d853c7977",
+          "printed_number": "009",
+          "identity_domain": "pokemon_eng_standard",
+          "identity_key_hash": "7e5bfa1cb0f4f414fd70fcbca4a054cbcbbbcfc840dc85cc2e14dc6b37d956ac",
+          "set_code_identity": "mep",
+          "identity_key_version": "pokemon_eng_standard:v1"
+        }
+      ],
+      "manual_decision_required": "Choose duplicate survivor and preservation path; do not mint a second public gv_id."
+    },
+    {
+      "card_print_id": "242de512-f2fb-4994-9615-6c1e2c55ac02",
+      "missing_row_name": "Riolu",
+      "missing_row_number": "10",
+      "missing_row_number_plain": "10",
+      "generated_but_rejected_gv_id": "GV-PK-MEP-10",
+      "blockers": [
+        "DUPLICATE_PUBLIC_OWNER",
+        "PADDING_CONVENTION_COLLISION"
+      ],
+      "semantic_duplicate_public_owner": {
+        "card_print_id": "a8259bb9-d94d-4aee-af25-28f0a9656a60",
+        "gv_id": "GV-PK-MEP-010",
+        "name": "Riolu",
+        "number": "010",
+        "number_plain": "010"
+      },
+      "padding_collision_owner": {
+        "card_print_id": "a8259bb9-d94d-4aee-af25-28f0a9656a60",
+        "gv_id": "GV-PK-MEP-010",
+        "name": "Riolu",
+        "number": "010",
+        "number_plain": "010",
+        "numeric_token": "010"
+      },
+      "reference_summary": {
+        "vault_items": 0,
+        "pricing_watch": 0,
+        "justtcg_variants": 0,
+        "vault_item_instances": 0
+      },
+      "external_mappings": [
+        {
+          "active": true,
+          "source": "tcgdex",
+          "external_id": "mep-010"
+        }
+      ],
+      "active_identity_rows": [
+        {
+          "id": "dc0bd6bd-6267-436f-8587-3fd574dd9b9f",
+          "printed_number": "010",
+          "identity_domain": "pokemon_eng_standard",
+          "identity_key_hash": "63344b94ab5bb0d09b1fc60052886c79a8889a81d182a1789d03d7a2561aed76",
+          "set_code_identity": "mep",
+          "identity_key_version": "pokemon_eng_standard:v1"
+        }
+      ],
+      "manual_decision_required": "Choose duplicate survivor and preservation path; do not mint a second public gv_id."
+    }
+  ],
+  "required_future_design": [
+    "Select canonical survivor per printed card.",
+    "Preserve existing public MEP gv_id owners unless proven wrong.",
+    "Move or preserve mappings/references only after FK/reference audit.",
+    "No deletes until duplicate reference migration is proven.",
+    "Do not assign unpadded GV-PK-MEP-1 style IDs while padded GV-PK-MEP-001 public owners exist."
+  ]
+}
