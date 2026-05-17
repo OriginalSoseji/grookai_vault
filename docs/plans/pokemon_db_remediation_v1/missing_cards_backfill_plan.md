@@ -12,11 +12,28 @@ Hard rules for any future implementation:
 - No secret-range insert until printed identity and set ownership are proven.
 - No variant or finish rows during canonical card backfill unless separately authorized.
 
+## 2026-05-17 Evidence And Dry-Run Artifacts
+
+- `missing_cards_backfill_evidence_20260517.md`
+- `missing_cards_backfill_evidence_matrix_20260517.json`
+- `missing_cards_backfill_dry_run_implementation_plan_20260517.md`
+- `missing_cards_backfill_dry_run_implementation_plan_20260517.sql`
+
+Current decision: recommended immediate card inserts remain `0`.
+
+Updated blockers:
+
+- Shiny Vault should route/prove equivalence to existing `sma`; do not insert 94 cards.
+- Rumble should route/prove equivalence to existing `ru1`; do not insert 16 cards unless equivalence fails.
+- TCG Classic decks and McDonald's Match Battle 2023 require target-set dry-runs before any card row plan.
+- Number normalization must run or be intentionally deferred before apparent gaps in affected legacy/promo sets become insert candidates.
+- Secret-range rows require a separate evidence pack.
+
 ## Priority Order From Audit Evidence
 
 | Priority | Group | Missing | Missing secret | DB set codes | Why this priority |
 | ---: | --- | ---: | ---: | --- | --- |
-| 1 | Shiny Vault | 94 | 0 | none | Largest gap and no matched DB set; requires collection policy first. |
+| 1 | Shiny Vault | 94 | 0 | existing `sma` target found | No card insert first; prove source-route/equivalence to existing Hidden Fates Shiny Vault. |
 | 2 | Mega Evolution Promos | 39 | 16 | `mep` | High secret-range risk; existing set has partial rows and extra key signal. |
 | 3 | TCG Classic Venusaur | 34 | 0 | none | Complete missing physical product deck/checklist. |
 | 4 | TCG Classic Charizard | 34 | 0 | none | Complete missing physical product deck/checklist. |
@@ -27,7 +44,7 @@ Hard rules for any future implementation:
 | 9 | Forbidden Light | 19 | 0 | `sm6` | Missing rows plus 7 name mismatches. |
 | 10 | Ultra Prism | 18 | 0 | `sm5` | Missing rows plus 10 name mismatches. |
 | 11 | Celestial Storm | 17 | 0 | `sm7` | Missing rows plus 3 name mismatches. |
-| 12 | Rumble | 16 | 0 | none | Likely alias with existing `ru1`; resolve before any row creation. |
+| 12 | Rumble | 16 | 0 | existing `ru1` target found | No card insert first; prove 16/16 equivalence and source alias/mapping shape. |
 | 13 | McDonald's Match Battle 2023 | 15 | 0 | none | Missing physical promo set; set-universe decision needed. |
 | 14 | Skyridge | 15 | 0 | `ecard3` | Legacy gap plus name mismatches and extra-key signal. |
 | 15 | Arceus | 12 | 0 | `pl4` | Established-set gap plus extra-key signal. |

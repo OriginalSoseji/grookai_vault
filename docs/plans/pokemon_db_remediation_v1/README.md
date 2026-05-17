@@ -65,6 +65,10 @@ No card row should be imported until the canonical target set is resolved and pr
 - `number_normalization_dry_run_implementation_plan_20260517.md`
 - `number_normalization_dry_run_implementation_plan_20260517.sql`
 - `missing_cards_backfill_plan.md`
+- `missing_cards_backfill_evidence_20260517.md`
+- `missing_cards_backfill_evidence_matrix_20260517.json`
+- `missing_cards_backfill_dry_run_implementation_plan_20260517.md`
+- `missing_cards_backfill_dry_run_implementation_plan_20260517.sql`
 - `variant_model_plan.md`
 
 ## Review Checklist Before Implementation
