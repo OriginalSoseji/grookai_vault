@@ -2,6 +2,12 @@
 
 Status: read-only public website verification after the approved Lane A 247 number-normalization execution. No DB writes, migrations, deploys, production env changes, card backfills, variant work, or scanner work were performed by this audit.
 
+## Correction: Set Name Display Rule
+
+Blank or hidden `card_prints.set_code` is not a user-facing defect. Grookai product display intentionally defaults to set name, not set code. Set code is internal routing/debug identity and is not required for normal public display.
+
+The remaining public issue is `gv_id` and public addressability coverage: whether public web views/routes surface normalized cards with card name, set name, card number, image, and a stable public route. The earlier set-level interpretation below is superseded by this rule; the raw findings remain for traceability.
+
 ## Alias Route Checks
 
 | Query | Expected set | Initial | Redirect | Final status | Cards visible | Status |
@@ -67,6 +73,8 @@ Status: read-only public website verification after the approved Lane A 247 numb
 ## Mismatches
 
 Mismatches are present in `grookaivault_public_display_matrix_20260517.json`. No web or DB fix was applied. The card sample mismatches are rows without public `gv_id`; the set-level mismatches are affected set routes whose public set APIs do not expose the executed rows, commonly because `card_prints.set_code` is blank while the authoritative set is available through `sets.code`.
+
+Correction: missing visible set code is not a product display failure when `sets.name` is available. The follow-up `gv_id_public_coverage_audit_20260517.md` supersedes the display interpretation and isolates the remaining public addressability issue to missing `gv_id` coverage and image-only gaps.
 
 ## TLS Note
 
