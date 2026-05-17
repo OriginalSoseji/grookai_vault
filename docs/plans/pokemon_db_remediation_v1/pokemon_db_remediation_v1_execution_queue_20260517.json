@@ -42,34 +42,62 @@
       "items": [
         {
           "priority": 1,
-          "item": "numeric candidate dry-run pack",
-          "scope": "504 non-hard-stop rows",
-          "next_artifact": "duplicate/identity/FK dry-run",
+          "item": "Lane A 247-row post-write regression audit",
+          "scope": "247 executed rows",
+          "next_artifact": "read-only exact-match verification after future imports or source refreshes",
           "write_allowed_now": false
         },
         {
           "priority": 2,
+          "item": "Grey Felt Hat manual decision",
+          "scope": "svp Pikachu with Grey Felt Hat #85",
+          "next_artifact": "decide leave unnormalized, one-row future write, or defer to identity maintenance",
+          "write_allowed_now": false
+        },
+        {
+          "priority": 3,
+          "item": "me01 duplicate resolution prewrite evidence",
+          "scope": "83 duplicate pairs, including 2 user/market hard stops",
+          "next_artifact": "fresh live row-level safety gates before any future write candidate",
+          "write_allowed_now": false
+        },
+        {
+          "priority": 4,
+          "item": "svp duplicate ownership pack",
+          "scope": "72 collision rows",
+          "next_artifact": "set-scoped duplicate/source-ownership evidence",
+          "write_allowed_now": false
+        },
+        {
+          "priority": 5,
+          "item": "prefix/subset collision policy",
+          "scope": "75 same-number/different-card ambiguity rows",
+          "next_artifact": "comparable-number and subset identity policy",
+          "write_allowed_now": false
+        },
+        {
+          "priority": 6,
           "item": "prefix policy",
           "scope": "114 prefixed candidates",
           "next_artifact": "printed-number prefix policy",
           "write_allowed_now": false
         },
         {
-          "priority": 3,
+          "priority": 7,
           "item": "complex suffix review",
           "scope": "5 complex candidates",
           "next_artifact": "manual suffix policy",
           "write_allowed_now": false
         },
         {
-          "priority": 4,
+          "priority": 8,
           "item": "comparable number contract",
           "scope": "1554 mismatch rows",
           "next_artifact": "generated/comparable field contract",
           "write_allowed_now": false
         },
         {
-          "priority": 5,
+          "priority": 9,
           "item": "source-tail conflict review",
           "scope": "85 rows",
           "next_artifact": "source conflict evidence",

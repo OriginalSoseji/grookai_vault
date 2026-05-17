@@ -1,0 +1,19 @@
+{
+  "status": "PASS_READ_ONLY_POSTVERIFY",
+  "generated_at": "2026-05-17T19:36:19.193Z",
+  "post_verify": {
+    "expected_rows": 247,
+    "live_rows": 247,
+    "exact_matches": 247,
+    "mismatches": 0
+  },
+  "no_write_confirmation": {
+    "supabase_writes": false,
+    "migrations": false,
+    "inserts": false,
+    "updates": false,
+    "deletes": false,
+    "data_changes": false,
+    "deploy": false
+  }
+}

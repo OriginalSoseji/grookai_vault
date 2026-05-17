@@ -21,10 +21,47 @@ The audit script already derives number keys from direct number fields first, th
 
 - `number_normalization_evidence_20260517.md`
 - `number_normalization_evidence_matrix_20260517.json`
+- `number_normalization_candidate_evidence_20260517.md`
+- `number_normalization_candidate_evidence_matrix_20260517.json`
+- `number_normalization_collision_investigation_20260517.md`
+- `number_normalization_collision_investigation_matrix_20260517.json`
+- `number_normalization_me01_duplicate_ownership_20260517.md`
+- `number_normalization_me01_duplicate_ownership_matrix_20260517.json`
+- `number_normalization_me01_duplicate_resolution_design_20260517.md`
+- `number_normalization_me01_duplicate_resolution_design_20260517.sql`
+- `number_normalization_lane_a_248_write_plan_20260517.md`
+- `number_normalization_lane_a_248_write_plan_20260517.sql`
+- `number_normalization_lane_a_248_write_plan_matrix_20260517.json`
+- `number_normalization_lane_a_248_preexecution_gate_20260517.md`
+- `number_normalization_lane_a_248_preexecution_gate_matrix_20260517.json`
+- `number_normalization_lane_a_247_write_plan_20260517.md`
+- `number_normalization_lane_a_247_write_plan_20260517.sql`
+- `number_normalization_lane_a_247_write_plan_matrix_20260517.json`
+- `number_normalization_lane_a_247_preexecution_gate_20260517.md`
+- `number_normalization_lane_a_247_preexecution_gate_matrix_20260517.json`
+- `number_normalization_lane_a_247_execution_20260517.md`
+- `number_normalization_lane_a_247_execution_matrix_20260517.json`
+- `number_normalization_grey_felt_hat_manual_evidence_20260517.md`
+- `number_normalization_grey_felt_hat_manual_evidence_matrix_20260517.json`
 - `number_normalization_dry_run_implementation_plan_20260517.md`
 - `number_normalization_dry_run_implementation_plan_20260517.sql`
 
 Live read-only evidence found 997 physical Pokemon `card_prints` rows where both `number` and `number_plain` are missing and recoverable from TCGdex source identifiers. Of those, 374 are blocked by current set-canonicalization hard-stop groups and 623 are outside hard-stop groups. The first possible future dry-run lane is the 504 non-hard-stop rows with one numeric source-derived candidate, but no write is approved yet.
+
+The row-level candidate evidence split those 504 Lane A rows into 248 clean future write-plan candidates and 256 blocked rows. The blockers are existing same-set `number` or `number_plain` collisions, not source-carrier or active-identity conflicts.
+
+The collision investigation classified those 256 blocked rows as:
+
+- 154 likely duplicate import rows.
+- 27 same-card duplicate review rows.
+- 75 same-number/different-card ambiguity rows, often exposing prefix/subset or name-token collapse risk.
+- 2 candidates with user/market references, both in `me01`.
+
+The `me01` duplicate ownership pack confirms that all 83 `me01` collision rows are one-for-one duplicate ownership pairs: the candidate side is missing-number TCGdex-only, while the incumbent side is numbered and owned by JustTCG/TCGPlayer mappings. Of those, 81 candidate rows have no user/market references, while 2 candidate rows, Mega Camerupt ex and Mega Lucario ex, already carry vault/pricing references and must become hard-stop subcases for any future cleanup design.
+
+The `me01` duplicate resolution design defines a future no-write cleanup shape only: incumbent rows are the canonical survivor candidates, TCGdex mappings must be preserved, the two referenced candidate rows are split into a separate manual lane, rollback snapshots are mandatory, and no deletes are allowed until FK/reference migration is proven.
+
+The Lane A 248-row write-plan draft targets only the collision-free rows and preserves the no-write boundary. The pre-execution gate regenerated the 248-row matrix from live DB and found zero committed-vs-live matrix drift, but it blocked execution because one clean candidate, `svp` Pikachu with Grey Felt Hat #85, has user/market references. The follow-up 247-row write-plan draft excludes that row and isolates it in a manual evidence pack. The fresh 247-row pre-execution gate passed with zero drift, zero user/market references, no excluded scopes, and a `card_prints.number`/`card_prints.number_plain` only change boundary. The approved 247-row execution committed successfully: it explicitly updated only `card_prints.number`, verified generated `card_prints.number_plain` matched the approved values, and proved no non-number target columns, mappings, raw imports, set rows, or identity rows changed. The full 504-row lane is not safe as a bulk write scope, and `me01` is not safe to solve as number normalization.
 
 The same evidence found 1,554 rows where direct printed number and `number_plain` normalize differently. This confirms that `number_plain` must not be treated as canonical printed identity by itself.
 
@@ -124,7 +161,7 @@ where s.game = 'pokemon'
 4. Approve normalization rules for slash numbers, prefixed numbers, unnumbered energy cards, and promo prefixes.
 5. Only then design a separate authorized implementation pass.
 
-The 2026-05-17 dry-run implementation plan narrows the first possible candidate lane to numeric, non-hard-stop, source-derived missing-number rows only. Prefixed numbers, complex suffixes, source conflicts, identity conflicts, and hard-stop set rows remain blocked.
+The 2026-05-17 dry-run implementation plan narrows the first possible candidate lane to numeric, non-hard-stop, source-derived missing-number rows only. The candidate evidence narrows that again to the 248 collision-free Lane A rows, and the Lane A write-plan draft defines the guarded future transaction shape. After explicit approval, the 247-row split was executed as a controlled transaction with before snapshots and post-write verification. The collision investigation confirms that the remaining 256 rows are ownership/integrity work, not number-normalization write candidates. Prefixed numbers, complex suffixes, source conflicts, identity conflicts, collision rows, and hard-stop set rows remain blocked.
 
 ## Implementation Stop Conditions
 

@@ -1,12 +1,16 @@
 # Pokemon DB Remediation V1
 
-Status: remediation planning index. Executed DB route-classification changes in this remediation thread are documented separately in `set_alias_route_classification_execution_20260517.md` and `source_route_classification_execution_20260517.md`. No additional Supabase writes, migrations, inserts, updates, deletes, migration repair, `db pull`, or production data mutation are authorized by this plan index.
+Status: remediation planning index. Executed DB route-classification changes in this remediation thread are documented separately in `set_alias_route_classification_execution_20260517.md` and `source_route_classification_execution_20260517.md`. The approved Lane A number-normalization execution is documented in `number_normalization_lane_a_247_execution_20260517.md`. No additional Supabase writes, migrations, inserts, updates, deletes, migration repair, `db pull`, or production data mutation are authorized by this plan index.
 
 ## Source Audit References
 
 - `docs/audits/pokemon_master_set_audit_v1/pokemon_master_set_audit_v1.md`
 - `docs/audits/pokemon_master_set_audit_v1/summary.json`
 - `scripts/audits/pokemon_master_set_audit_v1.mjs`
+- `docs/audits/pokemon_post_lane_a_247_audit_20260517/pokemon_post_lane_a_247_audit_20260517.md`
+- `docs/audits/pokemon_post_lane_a_247_audit_20260517/summary.json`
+- `docs/audits/pokemon_post_lane_a_247_audit_20260517/gv_id_public_coverage_audit_20260517.md`
+- `docs/audits/pokemon_post_lane_a_247_audit_20260517/gv_id_public_coverage_matrix_20260517.json`
 
 The source audit was read-only against live Supabase inventory and external English Pokemon TCG checklist sources. PkmnCards is treated as the numbered-card checklist source, while PokemonTCG API and TCGdex are corroborating source and variant-signal inputs.
 
@@ -71,6 +75,37 @@ No card row should be imported until the canonical target set is resolved and pr
 - `number_normalization_plan.md`
 - `number_normalization_evidence_20260517.md`
 - `number_normalization_evidence_matrix_20260517.json`
+- `number_normalization_candidate_evidence_20260517.md`
+- `number_normalization_candidate_evidence_matrix_20260517.json`
+- `number_normalization_collision_investigation_20260517.md`
+- `number_normalization_collision_investigation_matrix_20260517.json`
+- `number_normalization_me01_duplicate_ownership_20260517.md`
+- `number_normalization_me01_duplicate_ownership_matrix_20260517.json`
+- `number_normalization_me01_duplicate_resolution_design_20260517.md`
+- `number_normalization_me01_duplicate_resolution_design_20260517.sql`
+- `number_normalization_lane_a_248_write_plan_20260517.md`
+- `number_normalization_lane_a_248_write_plan_20260517.sql`
+- `number_normalization_lane_a_248_write_plan_matrix_20260517.json`
+- `number_normalization_lane_a_248_preexecution_gate_20260517.md`
+- `number_normalization_lane_a_248_preexecution_gate_matrix_20260517.json`
+- `number_normalization_lane_a_247_write_plan_20260517.md`
+- `number_normalization_lane_a_247_write_plan_20260517.sql`
+- `number_normalization_lane_a_247_write_plan_matrix_20260517.json`
+- `number_normalization_lane_a_247_preexecution_gate_20260517.md`
+- `number_normalization_lane_a_247_preexecution_gate_matrix_20260517.json`
+- `number_normalization_lane_a_247_execution_20260517.md`
+- `number_normalization_lane_a_247_execution_matrix_20260517.json`
+- `number_normalization_grey_felt_hat_manual_evidence_20260517.md`
+- `number_normalization_grey_felt_hat_manual_evidence_matrix_20260517.json`
+- `gv_id_generation_backfill_evidence_20260517.md`
+- `gv_id_generation_backfill_evidence_20260517.json`
+- `gv_id_namespace_source_policy_20260517.md`
+- `gv_id_namespace_source_policy_matrix_20260517.json`
+- `gv_id_mep_collision_manual_pack_20260517.md`
+- `gv_id_mep_collision_manual_matrix_20260517.json`
+- `gv_id_mep_duplicate_resolution_design_20260517.md`
+- `gv_id_mep_duplicate_resolution_design_20260517.sql`
+- `gv_id_mep_duplicate_resolution_design_matrix_20260517.json`
 - `number_normalization_dry_run_implementation_plan_20260517.md`
 - `number_normalization_dry_run_implementation_plan_20260517.sql`
 - `missing_cards_backfill_plan.md`
@@ -84,6 +119,9 @@ No card row should be imported until the canonical target set is resolved and pr
 - `pokemon_db_remediation_v1_checkpoint_20260517.md`
 - `pokemon_db_remediation_v1_execution_queue_20260517.md`
 - `pokemon_db_remediation_v1_execution_queue_20260517.json`
+- `pokemon_db_remediation_post_lane_a_247_checkpoint_20260517.md`
+- `docs/audits/pokemon_post_lane_a_247_audit_20260517/gv_id_public_coverage_audit_20260517.md`
+- `docs/audits/pokemon_post_lane_a_247_audit_20260517/gv_id_public_coverage_matrix_20260517.json`
 
 ## Review Checklist Before Implementation
 

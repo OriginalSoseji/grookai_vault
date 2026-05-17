@@ -23,6 +23,26 @@ Even that lane is not approved yet. This plan defines the dry-run gates that mus
 
 - `number_normalization_evidence_20260517.md`
 - `number_normalization_evidence_matrix_20260517.json`
+- `number_normalization_candidate_evidence_20260517.md`
+- `number_normalization_candidate_evidence_matrix_20260517.json`
+- `number_normalization_collision_investigation_20260517.md`
+- `number_normalization_collision_investigation_matrix_20260517.json`
+- `number_normalization_me01_duplicate_ownership_20260517.md`
+- `number_normalization_me01_duplicate_ownership_matrix_20260517.json`
+- `number_normalization_me01_duplicate_resolution_design_20260517.md`
+- `number_normalization_me01_duplicate_resolution_design_20260517.sql`
+- `number_normalization_lane_a_248_write_plan_20260517.md`
+- `number_normalization_lane_a_248_write_plan_20260517.sql`
+- `number_normalization_lane_a_248_write_plan_matrix_20260517.json`
+- `number_normalization_lane_a_248_preexecution_gate_20260517.md`
+- `number_normalization_lane_a_248_preexecution_gate_matrix_20260517.json`
+- `number_normalization_lane_a_247_write_plan_20260517.md`
+- `number_normalization_lane_a_247_write_plan_20260517.sql`
+- `number_normalization_lane_a_247_write_plan_matrix_20260517.json`
+- `number_normalization_lane_a_247_preexecution_gate_20260517.md`
+- `number_normalization_lane_a_247_preexecution_gate_matrix_20260517.json`
+- `number_normalization_grey_felt_hat_manual_evidence_20260517.md`
+- `number_normalization_grey_felt_hat_manual_evidence_matrix_20260517.json`
 - `number_normalization_plan.md`
 - `set_canonicalization_dry_run_20260517.md`
 - `missing_set_universe_decision_20260517.md`
@@ -46,7 +66,24 @@ Even that lane is not approved yet. This plan defines the dry-run gates that mus
 
 Evidence count: 504 non-hard-stop rows.
 
-This is the only lane that can become a future write candidate after a stricter dry-run. It must still prove:
+Row-level candidate evidence now splits this lane:
+
+- 248 clean future write-plan candidates.
+- 256 blocked rows with existing same-set number collisions.
+- 0 active identity conflicts.
+- 0 missing required TCGdex source-carrier pair rows.
+- 0 duplicate candidate-number groups.
+
+Collision investigation for the 256 blocked rows found:
+
+- 154 likely duplicate import rows.
+- 27 same-card duplicate-review rows.
+- 75 same-number/different-card ambiguities.
+- 2 candidate rows with user/market references.
+
+The `me01` duplicate ownership pack confirms all 83 `me01` collision rows are duplicate pairs, not number-normalization candidates. The duplicate resolution design keeps `me01` out of number-normalization writes and defines a future duplicate-ownership remediation shape with survivor selection rules, TCGdex mapping preservation, user/market reference preservation, rollback snapshots, and no deletes until FK/reference migration is proven.
+
+Only the 248 clean rows can become a future write-plan candidate after review. The Lane A 248-row write-plan draft defines that future scope and still approves no execution. The pre-execution gate proved zero matrix drift but blocked execution because one `svp` candidate has user/market references. The follow-up 247-row plan excludes that referenced candidate and keeps it in a manual evidence pack. The 247-row pre-execution gate now passes, but execution still requires explicit approval. The blocked 256 rows must stay out of any bulk write scope until collision ownership is investigated. This lane must still prove:
 
 - one source candidate per row;
 - candidate is numeric after normalization;
@@ -156,7 +193,12 @@ If a future write is approved and executed, post-write checks must prove:
 
 Do not write numbers yet.
 
-The next step is a no-write candidate dry-run for Lane A only: numeric, non-hard-stop, missing-number rows. That dry-run should produce row-level candidates and collision checks, then stop for review.
+The Lane A no-write candidate dry-run is complete. The next step is either:
+
+1. explicit approval for the 247-row transaction, followed by immediate execution and post-write verification, or
+2. set-scoped duplicate/source-ownership investigations for the remaining blocked Lane A rows, with `me01` now requiring duplicate-ownership remediation rather than more number evidence.
+
+Do not draft or execute a write plan for all 504 rows.
 
 ## No-Write Confirmation
 

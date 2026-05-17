@@ -41,24 +41,35 @@ Current evidence:
 
 | Lane | Rows | Next gate |
 | --- | ---: | --- |
-| Numeric source candidates outside hard stops | 504 | duplicate/identity/FK dry-run |
+| Numeric source candidates outside hard stops | 504 | row-level candidate evidence complete |
+| Clean numeric Lane A write-plan candidates | 248 | 247-row execution complete; 1 manual referenced row remains excluded |
+| Collision-blocked numeric Lane A rows | 256 | collision investigation complete; set-scoped ownership review next |
+| Likely duplicate import rows | 154 | duplicate-row ownership pack |
+| Same-card duplicate-review rows | 27 | source authority review |
+| Same-number/different-card ambiguity rows | 75 | comparable-number/subset identity review |
+| Collision candidates with user/market refs | 2 | strict ownership review before any merge/deactivate idea |
+| `me01` duplicate ownership rows | 83 | ownership pack and no-write resolution design complete |
 | Prefixed source candidates outside hard stops | 114 | prefix policy review |
 | Complex source candidates outside hard stops | 5 | manual suffix policy review |
 | Hard-stop set rows | 374 | canonicalization hard-stop resolution |
 | Existing number/generated field risk rows | 1,554 | comparable number contract |
 | Source-tail conflicts on existing numbers | 85 | source conflict manual review |
 
-Recommended immediate number writes remain `0`.
+Recommended immediate number writes after the approved Lane A 247 execution are `0`.
 
 Future no-write queue:
 
 | Priority | Item | Scope | Required evidence | Write status |
 | ---: | --- | --- | --- | --- |
-| 1 | Numeric candidate dry-run pack | 504 non-hard-stop rows | prove no duplicate printed identity, FK drift, or active identity conflict | no-write SQL dry-run |
-| 2 | Prefix policy | 114 prefixed candidates | define whether prefixes stay in `number` and how `number_plain` compares | policy only |
-| 3 | Complex suffix review | 5 candidates | manual decision for `65A`, `15A1`, `15A2`, `15A3`, `15A4` semantics | policy only |
-| 4 | Comparable number contract | 1,554 mismatch rows | define generated/comparable fields without overwriting printed identity | contract only |
-| 5 | Source-tail conflict review | 85 rows | reconcile source external id tails against printed number | evidence only |
+| 1 | Lane A 247-row post-write regression audit | 247 executed rows | keep exact-match evidence current after future imports or source refreshes | read-only verification |
+| 2 | Grey Felt Hat manual decision | `svp` Pikachu with Grey Felt Hat #85 | decide leave unnormalized, one-row future write, or defer to identity maintenance | manual evidence only |
+| 3 | `me01` duplicate resolution prewrite evidence | 83 duplicate pairs; 2 user/market hard stops | fresh row-level safety gates from live DB before any future write candidate | no-write evidence only |
+| 4 | `svp` duplicate ownership pack | 72 collision rows | separate duplicate imports from same-card review rows | evidence only |
+| 5 | Prefix/subset collision policy | 75 same-number/different-card rows | decide how `number_plain` collisions involving `RC`, `SL`, `SH`, `AR`, LV.X, and similar identities should be compared | policy only |
+| 6 | Prefix policy | 114 prefixed candidates | define whether prefixes stay in `number` and how `number_plain` compares | policy only |
+| 7 | Complex suffix review | 5 candidates | manual decision for `65A`, `15A1`, `15A2`, `15A3`, `15A4` semantics | policy only |
+| 8 | Comparable number contract | 1,554 mismatch rows | define generated/comparable fields without overwriting printed identity | contract only |
+| 9 | Source-tail conflict review | 85 rows | reconcile source external id tails against printed number | evidence only |
 
 ## Lane 3: Missing Card Backfill Candidates
 
