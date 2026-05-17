@@ -2,6 +2,70 @@
 
 Status: checkpoint only. This document authorizes no Supabase writes, migrations, inserts, updates, deletes, route writes, card backfills, variant writes, or production data mutation.
 
+## Current Repository And Release State
+
+This checkpoint captures the state before any further Pokemon DB work:
+
+| Item | State |
+| --- | --- |
+| Working branch | `scanner-v4-card-present-gate` |
+| Working branch HEAD | `9d32c81` |
+| Verified `origin/main` | `394b39e` |
+| Local `main` checkout | stale at `9b2abf4`; do not treat it as release truth without `git pull` |
+| Latest release commit | `394b39e edge: preserve supabase secret compatibility` |
+| Public deployment | verified through the production site after the route work |
+
+The remaining dirty worktree items at checkpoint time are unrelated to this checkpoint and must not be swept into DB remediation commits:
+
+- `.flutter-plugins-dependencies`
+- `docs/audits/pokemon_master_set_audit_v1/`
+- `scripts/audits/pokemon_master_set_audit_v1.mjs`
+
+## Release And CI Verification
+
+The route/classification work has been merged to `origin/main`, deployed, and checked through the production site.
+
+| Check | Result |
+| --- | --- |
+| Contracts Drift Gate | passed on `main` after `SUPABASE_DB_URL` secret repair |
+| Contracts Runtime Protection | passed on `main` |
+| Guard: No Legacy Keys | passed on `main` at `394b39e` |
+| Prod Edge Probe | passed on `main` at `394b39e` |
+| `npm run preflight` | passed with deferred debt only |
+| Web typecheck/lint | passed; lint retained one existing app warning unrelated to DB remediation |
+
+Production route/search checks passed for:
+
+- `https://grookaivault.com/search?q=shiny-vault` -> visible `sma` cards
+- `https://grookaivault.com/search?q=shiny%20vault` -> visible `sma` cards
+- `https://grookaivault.com/search?q=rm` -> visible `ru1` cards
+- `https://grookaivault.com/search?q=sv3pt5` -> visible `sv03.5` cards
+- `https://grookaivault.com/search?q=sm35` -> visible `sm3.5` cards
+
+## Non-DB Source Changes In Release
+
+The latest release included CI/guard and Edge source compatibility changes only. No Edge function deploy was performed as part of this checkpoint.
+
+Touched Edge function source files and purpose:
+
+| Function | Purpose |
+| --- | --- |
+| `scan-upload-plan` | Creates signed upload URLs for condition scan image slots. |
+| `scan-read` | Creates signed read URLs for condition snapshot images. |
+| `identity_scan_enqueue_v1` | Enqueues identity scans from condition or identity snapshots. |
+| `pricing-live-request` | Checks pricing freshness and queues pricing work. |
+| `ingestion-enqueue-v1` | Enqueues authenticated ingestion jobs. |
+| `import-prices-v3` | Deprecated/historical import-prices pipeline. |
+| `import-prices-bridge` | Deprecated/historical import-prices bridge. |
+| `ebay_oauth_callback` | Disabled/fail-closed eBay account-linking callback. |
+
+Touched shared Edge helpers:
+
+- `_shared/auth.ts`
+- `_shared/key_resolver.ts`
+
+`wall_feed` was probed by CI but not edited.
+
 ## Complete Planning Chain
 
 The remediation chain now has reviewable no-write artifacts for each required phase:
