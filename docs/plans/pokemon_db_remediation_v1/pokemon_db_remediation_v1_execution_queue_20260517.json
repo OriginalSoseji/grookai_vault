@@ -49,9 +49,9 @@
         },
         {
           "priority": 2,
-          "item": "me01 duplicate ownership pack",
-          "scope": "83 collision rows, including 2 with user/market refs",
-          "next_artifact": "set-scoped duplicate/source-ownership evidence",
+          "item": "me01 duplicate resolution design",
+          "scope": "83 duplicate pairs, including 2 user/market hard stops",
+          "next_artifact": "no-write transaction shape only after mapping/reference preservation policy",
           "write_allowed_now": false
         },
         {
