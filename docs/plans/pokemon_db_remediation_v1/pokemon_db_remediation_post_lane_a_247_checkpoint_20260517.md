@@ -58,6 +58,22 @@ The remaining public issue is stable public addressability through `gv_id`, plus
 
 Focused website sample verification using the set-name display rule checked 30 rows. Result: 12 pass, 18 fail. All 18 failures were missing-`gv_id` public-route failures. No sampled row with an existing `gv_id` failed the corrected card-name, set-name, number, image, and search checks.
 
+## GV-ID Generation Evidence
+
+The no-write generation/backfill evidence pack audited all 218 missing-`gv_id` Lane A rows and recommends zero immediate writes.
+
+| Metric | Count |
+| --- | ---: |
+| Missing-gv_id rows audited | 218 |
+| Builder candidate rows | 218 |
+| Internal proposed-gv_id duplicates | 0 |
+| Exact live gv_id collisions | 0 |
+| Blocked duplicate-public-owner rows | 10 |
+| Namespace/source policy review rows | 208 |
+| Recommended immediate writes | 0 |
+
+`mep` is blocked because the 10 missing rows duplicate existing public MEP rows that already own padded `GV-PK-MEP-001` through `GV-PK-MEP-010`. `A3a`, `P-A`, and `fut2020` have collision-free candidate strings but no established same-set public namespace pattern, so they need explicit namespace/source-domain approval before any write-plan candidate exists.
+
 ## Remaining Blocked Lanes
 
 - 256 collision rows remain blocked.
@@ -69,11 +85,12 @@ Focused website sample verification using the set-name display rule checked 30 r
 
 ## Next Recommended Queue
 
-1. Draft a no-write `gv_id` generation/backfill evidence pack for the 218 missing-`gv_id` Lane A rows.
-2. Keep image-only gaps separate from `gv_id` work; 25 McDonald's Collection 2021 rows have public routes but missing `image_url`.
-3. Keep Grey Felt Hat as a manual referenced-row decision.
-4. Continue collision-row ownership packs before any further number writes.
-5. Keep missing-card backfill frozen until set and number blockers clear.
+1. Resolve the 10-row `mep` duplicate-public-owner lane as duplicate-resolution design only.
+2. Decide namespace/source-domain policy for `A3a`, `P-A`, and `fut2020` before any `gv_id` write plan.
+3. Keep image-only gaps separate from `gv_id` work; 25 McDonald's Collection 2021 rows have public routes but missing `image_url`.
+4. Keep Grey Felt Hat as a manual referenced-row decision.
+5. Continue collision-row ownership packs before any further number writes.
+6. Keep missing-card backfill frozen until set and number blockers clear.
 
 ## No-Write Confirmation
 
