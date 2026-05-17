@@ -1,6 +1,6 @@
 {
   "status": "NO_WRITE_SOURCE_ROUTE_EQUIVALENCE_EVIDENCE_ONLY",
-  "generated_at": "2026-05-17T05:21:24.910Z",
+  "generated_at": "2026-05-17T13:40:36.416Z",
   "generated_from": [
     "docs/audits/pokemon_master_set_audit_v1/summary.json",
     "docs/plans/pokemon_db_remediation_v1/missing_set_universe_decision_20260517.md",
@@ -60,8 +60,16 @@
       "candidate_classification_rows": [
         {
           "set_code": "shiny-vault",
-          "row_exists": false,
-          "row": null
+          "row_exists": true,
+          "row": {
+            "set_code": "shiny-vault",
+            "is_canon": false,
+            "canonical_set_code": "sma",
+            "canon_source": "source_route",
+            "pokemonapi_set_id": null,
+            "tcgdex_set_id": null,
+            "notes": "2026-05-17 source-route execution: PkmnCards Shiny Vault is a 94/94 exact checklist match to canonical sma; no set/card/metadata/mapping movement."
+          }
         }
       ],
       "canonical_classification_rows": [
@@ -126,8 +134,16 @@
       "candidate_classification_rows": [
         {
           "set_code": "rm",
-          "row_exists": false,
-          "row": null
+          "row_exists": true,
+          "row": {
+            "set_code": "rm",
+            "is_canon": false,
+            "canonical_set_code": "ru1",
+            "canon_source": "source_route",
+            "pokemonapi_set_id": null,
+            "tcgdex_set_id": null,
+            "notes": "2026-05-17 source-route execution: PkmnCards Rumble/RM is a 16/16 exact checklist match to canonical ru1; no set/card/metadata/mapping movement."
+          }
         }
       ],
       "canonical_classification_rows": [

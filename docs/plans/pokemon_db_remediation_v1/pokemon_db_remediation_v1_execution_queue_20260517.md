@@ -18,7 +18,7 @@ Current route/classification state:
 - `sm35 -> sm3.5` executed and verified.
 - `Shiny Vault -> sma` source-route equivalence proved 94/94 in `source_route_equivalence_evidence_20260517.md`; no card inserts or set creates.
 - `Rumble -> ru1` source-route equivalence proved 16/16 in `source_route_equivalence_evidence_20260517.md`; no card inserts or set creates.
-- `source_route_classification_write_plan_20260517.md` now defines the guarded future DB route insert shape for `shiny-vault -> sma` and `rm -> ru1`.
+- `source_route_classification_execution_20260517.md` records the executed DB source-route inserts for `shiny-vault -> sma` and `rm -> ru1`.
 - `public_route_search_resolver_impact_review_20260517.md` proves the public app does not currently consume `set_code_classification`; route/search completion needs app-side alias resolver coverage or an explicit DB-only acceptance.
 - `public_route_search_resolver_patch_20260517.md` adds app-side route/search alias coverage for `shiny-vault -> sma`, `rm -> ru1`, and the already executed safe route aliases `sv3pt5 -> sv03.5`, `sm35 -> sm3.5`.
 - The 20 alias-candidate route review queue is now clean.
@@ -28,8 +28,8 @@ Future no-write queue:
 
 | Priority | Item | Scope | Required evidence | Write status |
 | ---: | --- | --- | --- | --- |
-| 1 | Future source-route execution checkpoint | `shiny-vault -> sma`, `rm -> ru1` | fresh preflight plus explicit approval for DB route rows only | no write without explicit approval |
-| 2 | Public app route regression audit | approved safe aliases only | verify route/search behavior against running app if needed | no DB write |
+| 1 | Public app route regression audit | approved safe aliases only | verify route/search behavior against running app if local TLS allows DB-backed smoke | no DB write |
+| 2 | Alias route regression audit | all executed route aliases | confirm route classifications still point to canonical targets after future changes | read-only verification |
 | 3 | Alias metadata source-payload diff | 20 route-clean alias candidates | field-level diff for `source`, release dates, logos, symbols, printed totals | no metadata write |
 | 4 | Route regression audit | all known aliases | confirm classifications still route to canonical targets after future changes | read-only verification |
 
@@ -103,7 +103,7 @@ Future no-write queue:
 
 | Priority | Item | Scope | Required evidence | Write status |
 | ---: | --- | --- | --- | --- |
-| 1 | Source-route evidence | Shiny Vault, Rumble | prove existing target equivalence before any card import | no insert |
+| 1 | Source-route verification | Shiny Vault, Rumble | keep evidence proving existing target equivalence after route classification execution | no insert |
 | 2 | Target-set dry-run | TCG Classic decks, McDonald's Match Battle 2023 | prove target set rows before card candidates | no set write |
 | 3 | Number-first gap review | 6 groups / 54 cards | complete number normalization or intentional deferral | no insert |
 | 4 | Established-set card candidate pack | 16 groups / 66 cards | one-row-per-card identity proof, no conflicts, no variants | no-write candidate matrix |

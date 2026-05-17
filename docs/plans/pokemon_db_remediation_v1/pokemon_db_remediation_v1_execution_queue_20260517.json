@@ -8,16 +8,16 @@
       "items": [
         {
           "priority": 1,
-          "item": "future source-route execution checkpoint",
-          "scope": "shiny-vault and rm",
-          "next_artifact": "fresh preflight plus explicit approval for DB route rows only",
+          "item": "public app route regression audit",
+          "scope": "approved safe aliases only",
+          "next_artifact": "verify route/search behavior against running app if local TLS allows DB-backed smoke",
           "write_allowed_now": false
         },
         {
           "priority": 2,
-          "item": "public app route regression audit",
-          "scope": "approved safe aliases only",
-          "next_artifact": "verify route/search behavior against running app if needed",
+          "item": "alias route regression audit",
+          "scope": "all executed route aliases",
+          "next_artifact": "confirm route classifications still point to canonical targets after future changes",
           "write_allowed_now": false
         },
         {
@@ -83,9 +83,9 @@
       "items": [
         {
           "priority": 1,
-          "item": "source-route evidence",
+          "item": "source-route verification",
           "scope": "Shiny Vault and Rumble",
-          "next_artifact": "existing target equivalence proof",
+          "next_artifact": "keep evidence proving existing target equivalence after route classification execution",
           "write_allowed_now": false
         },
         {

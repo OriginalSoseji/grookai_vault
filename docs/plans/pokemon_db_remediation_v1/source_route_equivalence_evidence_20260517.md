@@ -39,7 +39,7 @@ Result: both candidates are exact number/name checklist matches. Recommended imm
 
 | Candidate route code/slug | Classification row exists | Current classification |
 | --- | --- | --- |
-| `shiny-vault` | no | absent |
+| `shiny-vault` | yes | alias -> sma |
 
 | Active external mapping source | Rows | Distinct card prints |
 | --- | ---: | ---: |
@@ -59,7 +59,7 @@ Result: both candidates are exact number/name checklist matches. Recommended imm
 
 | Candidate route code/slug | Classification row exists | Current classification |
 | --- | --- | --- |
-| `rm` | no | absent |
+| `rm` | yes | alias -> ru1 |
 
 | Active external mapping source | Rows | Distinct card prints |
 | --- | ---: | ---: |

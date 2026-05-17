@@ -19,12 +19,14 @@ The remediation chain now has reviewable no-write artifacts for each required ph
 
 ## Actually Written
 
-Only one approved DB mutation has occurred in Pokemon DB Remediation V1:
+Approved DB route-classification mutations in Pokemon DB Remediation V1:
 
 | Scope | Rows | Result |
 | --- | ---: | --- |
 | `set_code_classification.sv3pt5` | 1 | routed/classified to canonical `sv03.5` |
 | `set_code_classification.sm35` | 1 | inserted as alias route/classification to canonical `sm3.5` |
+| `set_code_classification.shiny-vault` | 1 | inserted as source route/classification to canonical `sma` |
+| `set_code_classification.rm` | 1 | inserted as source route/classification to canonical `ru1` |
 
 Boundary of the executed write:
 
@@ -37,7 +39,10 @@ Boundary of the executed write:
 - no variants inserted
 - no migrations
 
-The execution is documented in `set_alias_route_classification_execution_20260517.md`.
+The executions are documented in:
+
+- `set_alias_route_classification_execution_20260517.md`
+- `source_route_classification_execution_20260517.md`
 
 ## Remains No-Write
 
@@ -45,7 +50,7 @@ The following remain planning/evidence only:
 
 - all remaining alias metadata preservation decisions
 - all set-row canonicalization or alias-row structural changes
-- all missing-set target creation or source-route changes
+- all missing-set target creation and any source-route changes beyond `shiny-vault -> sma` and `rm -> ru1`
 - all number normalization writes
 - all missing-card checklist backfill writes
 - all secret-range card decisions
@@ -98,7 +103,7 @@ No write plan should include these without a dedicated source-authority decision
 
 No implementation is authorized by this checkpoint. If authorization is granted later, the queue should remain narrow and evidence-gated:
 
-1. Route/classification follow-ups: none immediate; route review queue is currently clean after `sv3pt5` and `sm35`.
+1. Route/classification follow-ups: none immediate; route review queue is currently clean after `sv3pt5`, `sm35`, `shiny-vault`, and `rm`.
 2. Alias metadata: source-payload diff only before any null-only metadata copy is considered.
 3. Missing set universe: target-set dry-run for TCG Classic decks and source-route proof for Shiny Vault/Rumble before card rows.
 4. Number normalization: dry-run candidate pack for 504 numeric non-hard-stop rows, with duplicate/identity gates.
@@ -108,7 +113,7 @@ No implementation is authorized by this checkpoint. If authorization is granted 
 
 ## Release Impact
 
-The only production-visible DB change is route/search classification for `sv3pt5` and `sm35`. That should improve alias routing without changing canonical cards, set rows, metadata, mappings, vault ownership, pricing, or variants.
+The only production-visible DB changes are route/search classification rows for `sv3pt5`, `sm35`, `shiny-vault`, and `rm`. Those should improve alias/source routing without changing canonical cards, set rows, metadata, mappings, vault ownership, pricing, or variants.
 
 All other remediation work is documentation, evidence, and dry-run planning. It should not change runtime behavior until a future explicitly authorized write plan is executed.
 
