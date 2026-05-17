@@ -13,6 +13,7 @@
 // New pricing work must flow through the eBay-based pipelines instead.
 
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
+import { getPublishableKey } from "../_shared/key_resolver.ts";
 
 console.log("[IMPORT-PRICES-BRIDGE] version=GV-EDGE-2025-11-20");
 
@@ -55,7 +56,7 @@ export default async (req: Request): Promise<Response> => {
     const envSnapshot = {
       SUPABASE_URL: !!Deno.env.get("SUPABASE_URL"),
       PROJECT_URL: !!Deno.env.get("PROJECT_URL"),
-      SUPABASE_PUBLISHABLE_KEY: !!Deno.env.get("SUPABASE_PUBLISHABLE_KEY"),
+      SUPABASE_PUBLISHABLE_KEY: !!getPublishableKey(),
       BRIDGE_IMPORT_TOKEN: !!Deno.env.get("BRIDGE_IMPORT_TOKEN"),
     };
 
@@ -71,9 +72,7 @@ export default async (req: Request): Promise<Response> => {
     Deno.env.get("PROJECT_URL") ??
     "";
 
-  const pub =
-    Deno.env.get("SUPABASE_PUBLISHABLE_KEY") ??
-    "";
+  const pub = getPublishableKey() ?? "";
 
   const bridgeToken = Deno.env.get("BRIDGE_IMPORT_TOKEN") ?? "";
 

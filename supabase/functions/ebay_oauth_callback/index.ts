@@ -1,4 +1,5 @@
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
+import { getPublishableKey, getServiceRoleKey } from "../_shared/key_resolver.ts";
 
 /**
  * DISABLED: eBay OAuth callback
@@ -125,9 +126,7 @@ export default async function handler(req: Request): Promise<Response> {
 
   const supabaseUrl =
     Deno.env.get("SUPABASE_URL") ?? Deno.env.get("PROJECT_URL") ?? "";
-  const anonKey =
-    Deno.env.get("SUPABASE_PUBLISHABLE_KEY") ??
-    "";
+  const anonKey = getPublishableKey() ?? "";
   if (!supabaseUrl || !anonKey) {
     return json({ ok: false, reason: "supabase_env_missing" }, 500);
   }
@@ -162,8 +161,7 @@ export default async function handler(req: Request): Promise<Response> {
   const scopes =
     tokenResponse.scope?.split(/\s+/).filter((s) => s.length > 0) ?? null;
 
-  const serviceRoleKey =
-    Deno.env.get("SUPABASE_SECRET_KEY") ?? anonKey;
+  const serviceRoleKey = getServiceRoleKey() ?? anonKey;
   const serviceClient = createClient(supabaseUrl, serviceRoleKey, {
     auth: {
       persistSession: false,
