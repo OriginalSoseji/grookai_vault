@@ -49,34 +49,48 @@
         },
         {
           "priority": 2,
-          "item": "collision ownership investigation",
-          "scope": "256 numeric non-hard-stop rows with existing same-set number collisions",
-          "next_artifact": "collision evidence pack",
+          "item": "me01 duplicate ownership pack",
+          "scope": "83 collision rows, including 2 with user/market refs",
+          "next_artifact": "set-scoped duplicate/source-ownership evidence",
           "write_allowed_now": false
         },
         {
           "priority": 3,
+          "item": "svp duplicate ownership pack",
+          "scope": "72 collision rows",
+          "next_artifact": "set-scoped duplicate/source-ownership evidence",
+          "write_allowed_now": false
+        },
+        {
+          "priority": 4,
+          "item": "prefix/subset collision policy",
+          "scope": "75 same-number/different-card ambiguity rows",
+          "next_artifact": "comparable-number and subset identity policy",
+          "write_allowed_now": false
+        },
+        {
+          "priority": 5,
           "item": "prefix policy",
           "scope": "114 prefixed candidates",
           "next_artifact": "printed-number prefix policy",
           "write_allowed_now": false
         },
         {
-          "priority": 4,
+          "priority": 6,
           "item": "complex suffix review",
           "scope": "5 complex candidates",
           "next_artifact": "manual suffix policy",
           "write_allowed_now": false
         },
         {
-          "priority": 5,
+          "priority": 7,
           "item": "comparable number contract",
           "scope": "1554 mismatch rows",
           "next_artifact": "generated/comparable field contract",
           "write_allowed_now": false
         },
         {
-          "priority": 6,
+          "priority": 8,
           "item": "source-tail conflict review",
           "scope": "85 rows",
           "next_artifact": "source conflict evidence",

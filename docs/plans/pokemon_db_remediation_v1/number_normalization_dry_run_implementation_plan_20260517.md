@@ -25,6 +25,8 @@ Even that lane is not approved yet. This plan defines the dry-run gates that mus
 - `number_normalization_evidence_matrix_20260517.json`
 - `number_normalization_candidate_evidence_20260517.md`
 - `number_normalization_candidate_evidence_matrix_20260517.json`
+- `number_normalization_collision_investigation_20260517.md`
+- `number_normalization_collision_investigation_matrix_20260517.json`
 - `number_normalization_plan.md`
 - `set_canonicalization_dry_run_20260517.md`
 - `missing_set_universe_decision_20260517.md`
@@ -55,6 +57,13 @@ Row-level candidate evidence now splits this lane:
 - 0 active identity conflicts.
 - 0 missing required TCGdex source-carrier pair rows.
 - 0 duplicate candidate-number groups.
+
+Collision investigation for the 256 blocked rows found:
+
+- 154 likely duplicate import rows.
+- 27 same-card duplicate-review rows.
+- 75 same-number/different-card ambiguities.
+- 2 candidate rows with user/market references.
 
 Only the 248 clean rows can become a future write-plan candidate after review. The blocked 256 rows must stay out of any bulk write scope until collision ownership is investigated. This lane must still prove:
 
@@ -169,7 +178,7 @@ Do not write numbers yet.
 The Lane A no-write candidate dry-run is complete. The next step is either:
 
 1. a no-write future write-plan draft for only the 248 clean Lane A rows, or
-2. a collision investigation pack for the 256 blocked Lane A rows.
+2. set-scoped duplicate/source-ownership investigations for the 256 blocked Lane A rows, starting with the 2 user/market-referenced `me01` candidates or the largest duplicate import groups.
 
 Do not draft or execute a write plan for all 504 rows.
 
