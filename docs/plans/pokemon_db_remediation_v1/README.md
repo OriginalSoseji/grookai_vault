@@ -1,6 +1,6 @@
 # Pokemon DB Remediation V1
 
-Status: planning only. No Supabase writes, migrations, inserts, updates, deletes, migration repair, `db pull`, or production data mutation are authorized by this plan.
+Status: remediation planning index. The only executed DB change in this remediation thread is documented separately in `set_alias_route_classification_execution_20260517.md`. No additional Supabase writes, migrations, inserts, updates, deletes, migration repair, `db pull`, or production data mutation are authorized by this plan index.
 
 ## Source Audit References
 
@@ -57,6 +57,8 @@ No card row should be imported until the canonical target set is resolved and pr
 - `set_alias_metadata_preservation_plan_20260517.md`
 - `set_alias_metadata_preservation_matrix_20260517.json`
 - `missing_sets_plan.md`
+- `missing_set_universe_decision_20260517.md`
+- `missing_set_universe_decision_matrix_20260517.json`
 - `number_normalization_plan.md`
 - `missing_cards_backfill_plan.md`
 - `variant_model_plan.md`
