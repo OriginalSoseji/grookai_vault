@@ -88,6 +88,24 @@ Generated IDs for these rows remain evidence only. `A3a` and `P-A` stay out of p
 
 The 10 `mep` rows are isolated in a separate manual collision pack. They are duplicate-resolution candidates, not GV-ID backfill candidates, because existing public owners already use padded `GV-PK-MEP-001` through `GV-PK-MEP-010`.
 
+## MEP Duplicate Resolution Design
+
+The no-write MEP duplicate-resolution design now proves the current cleanup shape.
+
+| Metric | Count |
+| --- | ---: |
+| Duplicate pairs audited | 10 |
+| Existing public-owner survivor candidates | 10 |
+| Pairs with same normalized name and number | 10 |
+| Duplicate rows with `gv_id` | 0 |
+| Duplicate rows with user/market refs | 0 |
+| Survivor rows with `gv_id` | 10 |
+| Pairs requiring TCGdex mapping preservation | 10 |
+| Manual hard-stop pairs | 0 |
+| Recommended immediate writes | 0 |
+
+The recommended survivor for each pair is the existing padded public owner row. The duplicate/source row must not receive an unpadded public ID; its TCGdex source mapping is preservation evidence for a future prewrite gate only. Live evidence also shows the 20 MEP rows appear in app-facing search/web views by internal row identity, so any future execution must verify search resolves or prefers the padded public-owner rows without loosening `/card/[gv_id]` gate rules.
+
 ## Remaining Blocked Lanes
 
 - 256 collision rows remain blocked.
@@ -99,7 +117,7 @@ The 10 `mep` rows are isolated in a separate manual collision pack. They are dup
 
 ## Next Recommended Queue
 
-1. Resolve the 10-row `mep` duplicate-public-owner lane as duplicate-resolution design only.
+1. Draft the MEP duplicate-resolution prewrite evidence gate only if source-mapping preservation is explicitly desired; do not execute it yet.
 2. Draft a `fut2020` namespace/printed-number contract if public routes for that physical special collection are desired.
 3. Keep `A3a` and `P-A` blocked unless a separate source-domain inclusion contract is approved.
 4. Keep image-only gaps separate from `gv_id` work; 25 McDonald's Collection 2021 rows have public routes but missing `image_url`.

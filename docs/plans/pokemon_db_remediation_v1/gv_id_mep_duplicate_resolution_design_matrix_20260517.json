@@ -1,0 +1,2066 @@
+{
+  "status": "NO_WRITE_MEP_DUPLICATE_RESOLUTION_DESIGN_ONLY",
+  "generated_at": "2026-05-17T20:54:01.464Z",
+  "generated_from": [
+    "docs/plans/pokemon_db_remediation_v1/gv_id_generation_backfill_evidence_20260517.json",
+    "docs/plans/pokemon_db_remediation_v1/gv_id_mep_collision_manual_pack_20260517.md",
+    "docs/plans/pokemon_db_remediation_v1/gv_id_mep_collision_manual_matrix_20260517.json",
+    "live_read_only_supabase_evidence_2026-05-17"
+  ],
+  "scope": {
+    "set_code": "mep",
+    "set_name": "MEP Black Star Promos",
+    "duplicate_rows": 10,
+    "survivor_rows": 10,
+    "no_write": true
+  },
+  "set_summary": {
+    "set_row": {
+      "set_id": "3af96ea1-8897-4bb9-aa7e-cdfb98118bbf",
+      "code": "mep",
+      "name": "MEP Black Star Promos",
+      "printed_set_abbrev": "MEP",
+      "printed_total": 33,
+      "release_date": null,
+      "source": {
+        "tcgdex": {
+          "id": "mep",
+          "raw": {
+            "id": "mep",
+            "name": "MEP Black Star Promos",
+            "cardCount": {
+              "total": 10,
+              "official": 0
+            }
+          },
+          "name": "MEP Black Star Promos",
+          "slug": null,
+          "total": null,
+          "series": null,
+          "symbols": null,
+          "releaseDate": null,
+          "printedTotal": null
+        }
+      }
+    },
+    "card_counts": {
+      "total_card_prints": 20,
+      "rows_with_gv_id": 10,
+      "rows_missing_gv_id": 10,
+      "rows_missing_number": 0,
+      "distinct_direct_numbers": 20,
+      "distinct_number_plain_values": 20
+    },
+    "active_external_mapping_counts": [
+      {
+        "source": "tcgdex",
+        "mapping_rows": 10,
+        "mapped_card_prints": 10
+      }
+    ]
+  },
+  "public_view_inventory": [
+    {
+      "object_name": "card_prints_public",
+      "table_available": true,
+      "columns": [
+        "set_code",
+        "number",
+        "name",
+        "rarity",
+        "image_url"
+      ],
+      "match_basis": null
+    },
+    {
+      "object_name": "v_card_prints_web_v1",
+      "table_available": true,
+      "columns": [
+        "card_print_id",
+        "set_id",
+        "set_code",
+        "name",
+        "number",
+        "number_plain",
+        "rarity",
+        "variant_key",
+        "image_url"
+      ],
+      "match_basis": "card_print_id"
+    },
+    {
+      "object_name": "v_card_search",
+      "table_available": true,
+      "columns": [
+        "id",
+        "name",
+        "set_code",
+        "number",
+        "number_raw",
+        "number_digits",
+        "number_padded",
+        "number_slashed",
+        "rarity",
+        "image_url",
+        "thumb_url",
+        "image_best",
+        "latest_price_cents",
+        "latest_price",
+        "name_lc",
+        "search_rank",
+        "representative_image_url",
+        "image_status",
+        "image_note",
+        "display_image_url",
+        "display_image_kind"
+      ],
+      "match_basis": "id"
+    }
+  ],
+  "public_view_membership": {
+    "card_prints_public": {
+      "table_available": true,
+      "match_basis": null,
+      "matched_keys": [],
+      "matched_count": 0
+    },
+    "v_card_prints_web_v1": {
+      "table_available": true,
+      "match_basis": "card_print_id",
+      "matched_keys": [
+        "04e533ae-dd17-478c-ab46-220859079b2c",
+        "242de512-f2fb-4994-9615-6c1e2c55ac02",
+        "26726d70-a78d-4210-9ccc-d79abd215099",
+        "47f874b2-ea20-4b89-af44-085905bb1f60",
+        "5dd278a1-ccaa-48e6-84c2-7190ee63c9d8",
+        "5f64ad81-93ff-4b77-aa94-06f8522b3f1e",
+        "6419894a-137f-4fc7-8db1-fa853872b190",
+        "69572cf4-a580-49cc-90d2-36c053f510a9",
+        "718508f6-7825-43e8-98e1-a57b58dd490f",
+        "870f45fe-0680-4a92-b77b-dd03a6018bd3",
+        "95dca2c2-c3e7-43b4-bc02-227fddc4910d",
+        "a3624761-be25-4841-83e4-c5936ec434fe",
+        "a683bb41-182d-440b-9e6c-d82ebfd38f1d",
+        "a8259bb9-d94d-4aee-af25-28f0a9656a60",
+        "aa9f207d-c9ea-4607-bbc5-448648bca47f",
+        "ac2b6cf7-6873-44e8-96b9-e03a179fae51",
+        "b75d4730-3c1a-42ca-9d18-e8ca736ae41f",
+        "bf523703-271c-49fe-b8aa-c31c57cb9b32",
+        "c5b19da0-1f2d-4b86-844f-90284539099d",
+        "cddc521f-ebbe-4460-85d5-d78278672f95"
+      ],
+      "matched_count": 20
+    },
+    "v_card_search": {
+      "table_available": true,
+      "match_basis": "id",
+      "matched_keys": [
+        "04e533ae-dd17-478c-ab46-220859079b2c",
+        "242de512-f2fb-4994-9615-6c1e2c55ac02",
+        "26726d70-a78d-4210-9ccc-d79abd215099",
+        "47f874b2-ea20-4b89-af44-085905bb1f60",
+        "5dd278a1-ccaa-48e6-84c2-7190ee63c9d8",
+        "5f64ad81-93ff-4b77-aa94-06f8522b3f1e",
+        "6419894a-137f-4fc7-8db1-fa853872b190",
+        "69572cf4-a580-49cc-90d2-36c053f510a9",
+        "718508f6-7825-43e8-98e1-a57b58dd490f",
+        "870f45fe-0680-4a92-b77b-dd03a6018bd3",
+        "95dca2c2-c3e7-43b4-bc02-227fddc4910d",
+        "a3624761-be25-4841-83e4-c5936ec434fe",
+        "a683bb41-182d-440b-9e6c-d82ebfd38f1d",
+        "a8259bb9-d94d-4aee-af25-28f0a9656a60",
+        "aa9f207d-c9ea-4607-bbc5-448648bca47f",
+        "ac2b6cf7-6873-44e8-96b9-e03a179fae51",
+        "b75d4730-3c1a-42ca-9d18-e8ca736ae41f",
+        "bf523703-271c-49fe-b8aa-c31c57cb9b32",
+        "c5b19da0-1f2d-4b86-844f-90284539099d",
+        "cddc521f-ebbe-4460-85d5-d78278672f95"
+      ],
+      "matched_count": 20
+    }
+  },
+  "summary": {
+    "duplicate_pairs_audited": 10,
+    "existing_public_owner_survivor_candidates": 10,
+    "pairs_with_same_normalized_name_and_number": 10,
+    "duplicate_rows_with_gv_id": 0,
+    "duplicate_rows_with_user_or_market_refs": 0,
+    "duplicate_user_or_market_reference_rows": 0,
+    "survivor_rows_with_gv_id": 10,
+    "survivor_rows_with_user_or_market_refs": 0,
+    "survivor_user_or_market_reference_rows": 0,
+    "pairs_requiring_tcgdex_mapping_preservation": 10,
+    "manual_hard_stop_pairs": 0,
+    "future_gv_id_writes_recommended": 0,
+    "future_deletes_allowed": 0,
+    "design_class_counts": {
+      "PUBLIC_OWNER_SURVIVOR_WITH_SOURCE_PRESERVATION": 10
+    },
+    "mapping_action_counts": {
+      "PRESERVE_BY_FUTURE_MAPPING_REASSIGNMENT_TO_SURVIVOR": 10
+    },
+    "fk_reference_table_counts": {
+      "card_print_identity.card_print_id": 10,
+      "card_print_traits.card_print_id": 10,
+      "card_printings.card_print_id": 20,
+      "external_mappings.card_print_id": 10
+    }
+  },
+  "pairs": [
+    {
+      "printed_identity_key": "meganium|1",
+      "rejected_generated_gv_id": "GV-PK-MEP-1",
+      "existing_public_gv_id": "GV-PK-MEP-001",
+      "duplicate": {
+        "card_print_id": "6419894a-137f-4fc7-8db1-fa853872b190",
+        "card_name": "Meganium",
+        "number": "1",
+        "number_plain": "1",
+        "normalized_name": "meganium",
+        "normalized_number": "1",
+        "gv_id": null,
+        "variant_key": null,
+        "printed_identity_modifier": null,
+        "identity_domain": "pokemon_eng_standard",
+        "print_identity_key": null,
+        "image_url": null,
+        "representative_image_url": null,
+        "image_status": "missing",
+        "source_profile": {
+          "active_mapping_sources": [
+            "tcgdex"
+          ],
+          "all_sources": [
+            "tcgdex"
+          ],
+          "active_mapping_count": 1,
+          "active_tcgdex_ids": [
+            "mep-001"
+          ],
+          "entries": [
+            {
+              "carrier": "external_ids.tcgdex",
+              "source": "tcgdex",
+              "external_id": "mep-001",
+              "active": true
+            },
+            {
+              "carrier": "external_mappings.tcgdex",
+              "external_mapping_id": "62493",
+              "source": "tcgdex",
+              "external_id": "mep-001",
+              "active": true
+            }
+          ]
+        },
+        "identity_rows": [
+          {
+            "card_print_identity_id": "f5434864-2d15-4a68-9ecf-68726bee6957",
+            "card_print_id": "6419894a-137f-4fc7-8db1-fa853872b190",
+            "identity_domain": "pokemon_eng_standard",
+            "set_code_identity": "mep",
+            "printed_number": "001",
+            "identity_key_version": "pokemon_eng_standard:v1",
+            "identity_key_hash": "999495772a628789786faaa4fb398b6016450e0dac0d3a08764389c8983a3e88",
+            "is_active": true
+          }
+        ],
+        "active_identity_count": 1,
+        "active_identity_printed_numbers": [
+          "001"
+        ],
+        "fk_references": [
+          {
+            "card_print_id": "6419894a-137f-4fc7-8db1-fa853872b190",
+            "table_name": "card_print_identity",
+            "column_name": "card_print_id",
+            "reference_rows": 1,
+            "user_or_market_ref": false
+          },
+          {
+            "card_print_id": "6419894a-137f-4fc7-8db1-fa853872b190",
+            "table_name": "card_print_traits",
+            "column_name": "card_print_id",
+            "reference_rows": 1,
+            "user_or_market_ref": false
+          },
+          {
+            "card_print_id": "6419894a-137f-4fc7-8db1-fa853872b190",
+            "table_name": "card_printings",
+            "column_name": "card_print_id",
+            "reference_rows": 1,
+            "user_or_market_ref": false
+          },
+          {
+            "card_print_id": "6419894a-137f-4fc7-8db1-fa853872b190",
+            "table_name": "external_mappings",
+            "column_name": "card_print_id",
+            "reference_rows": 1,
+            "user_or_market_ref": false
+          }
+        ],
+        "total_fk_reference_rows": 4,
+        "user_or_market_reference_rows": 0,
+        "user_or_market_reference_tables": [],
+        "public_view_membership": {
+          "card_prints_public": {
+            "table_available": true,
+            "match_basis": null,
+            "present": false
+          },
+          "v_card_prints_web_v1": {
+            "table_available": true,
+            "match_basis": "card_print_id",
+            "present": true
+          },
+          "v_card_search": {
+            "table_available": true,
+            "match_basis": "id",
+            "present": true
+          }
+        }
+      },
+      "survivor": {
+        "card_print_id": "5f64ad81-93ff-4b77-aa94-06f8522b3f1e",
+        "card_name": "Meganium",
+        "number": "001",
+        "number_plain": "001",
+        "normalized_name": "meganium",
+        "normalized_number": "1",
+        "gv_id": "GV-PK-MEP-001",
+        "variant_key": null,
+        "printed_identity_modifier": null,
+        "identity_domain": "pokemon_eng_standard",
+        "print_identity_key": "mep:001:meganium",
+        "image_url": null,
+        "representative_image_url": null,
+        "image_status": "missing",
+        "source_profile": {
+          "active_mapping_sources": [],
+          "all_sources": [],
+          "active_mapping_count": 0,
+          "active_tcgdex_ids": [],
+          "entries": []
+        },
+        "identity_rows": [],
+        "active_identity_count": 0,
+        "active_identity_printed_numbers": [],
+        "fk_references": [
+          {
+            "card_print_id": "5f64ad81-93ff-4b77-aa94-06f8522b3f1e",
+            "table_name": "card_printings",
+            "column_name": "card_print_id",
+            "reference_rows": 1,
+            "user_or_market_ref": false
+          }
+        ],
+        "total_fk_reference_rows": 1,
+        "user_or_market_reference_rows": 0,
+        "user_or_market_reference_tables": [],
+        "public_view_membership": {
+          "card_prints_public": {
+            "table_available": true,
+            "match_basis": null,
+            "present": false
+          },
+          "v_card_prints_web_v1": {
+            "table_available": true,
+            "match_basis": "card_print_id",
+            "present": true
+          },
+          "v_card_search": {
+            "table_available": true,
+            "match_basis": "id",
+            "present": true
+          }
+        }
+      },
+      "gates": {
+        "same_normalized_name": true,
+        "same_normalized_printed_number": true,
+        "duplicate_has_no_gv_id": true,
+        "survivor_has_padded_public_gv_id": true,
+        "duplicate_has_no_user_or_market_refs": true,
+        "survivor_has_public_route_identity": true
+      },
+      "blockers": [],
+      "design_class": "PUBLIC_OWNER_SURVIVOR_WITH_SOURCE_PRESERVATION",
+      "canonical_survivor_recommendation": "existing_public_owner",
+      "duplicate_row_recommendation": "preserve_as_non_public_duplicate_until_supported_alias_or_quarantine_state_exists",
+      "mapping_preservation_action": "PRESERVE_BY_FUTURE_MAPPING_REASSIGNMENT_TO_SURVIVOR",
+      "future_gv_id_write_allowed": false,
+      "future_delete_allowed": false
+    },
+    {
+      "printed_identity_key": "inteleon|2",
+      "rejected_generated_gv_id": "GV-PK-MEP-2",
+      "existing_public_gv_id": "GV-PK-MEP-002",
+      "duplicate": {
+        "card_print_id": "b75d4730-3c1a-42ca-9d18-e8ca736ae41f",
+        "card_name": "Inteleon",
+        "number": "2",
+        "number_plain": "2",
+        "normalized_name": "inteleon",
+        "normalized_number": "2",
+        "gv_id": null,
+        "variant_key": null,
+        "printed_identity_modifier": null,
+        "identity_domain": "pokemon_eng_standard",
+        "print_identity_key": null,
+        "image_url": null,
+        "representative_image_url": null,
+        "image_status": "missing",
+        "source_profile": {
+          "active_mapping_sources": [
+            "tcgdex"
+          ],
+          "all_sources": [
+            "tcgdex"
+          ],
+          "active_mapping_count": 1,
+          "active_tcgdex_ids": [
+            "mep-002"
+          ],
+          "entries": [
+            {
+              "carrier": "external_ids.tcgdex",
+              "source": "tcgdex",
+              "external_id": "mep-002",
+              "active": true
+            },
+            {
+              "carrier": "external_mappings.tcgdex",
+              "external_mapping_id": "62490",
+              "source": "tcgdex",
+              "external_id": "mep-002",
+              "active": true
+            }
+          ]
+        },
+        "identity_rows": [
+          {
+            "card_print_identity_id": "80cf5e95-d0c4-4776-b89c-b5919f243a5a",
+            "card_print_id": "b75d4730-3c1a-42ca-9d18-e8ca736ae41f",
+            "identity_domain": "pokemon_eng_standard",
+            "set_code_identity": "mep",
+            "printed_number": "002",
+            "identity_key_version": "pokemon_eng_standard:v1",
+            "identity_key_hash": "1b3fee072e8c1738180a3bc70379cc047ea5967b6f8999dfb6db95559500fdb1",
+            "is_active": true
+          }
+        ],
+        "active_identity_count": 1,
+        "active_identity_printed_numbers": [
+          "002"
+        ],
+        "fk_references": [
+          {
+            "card_print_id": "b75d4730-3c1a-42ca-9d18-e8ca736ae41f",
+            "table_name": "card_print_identity",
+            "column_name": "card_print_id",
+            "reference_rows": 1,
+            "user_or_market_ref": false
+          },
+          {
+            "card_print_id": "b75d4730-3c1a-42ca-9d18-e8ca736ae41f",
+            "table_name": "card_print_traits",
+            "column_name": "card_print_id",
+            "reference_rows": 1,
+            "user_or_market_ref": false
+          },
+          {
+            "card_print_id": "b75d4730-3c1a-42ca-9d18-e8ca736ae41f",
+            "table_name": "card_printings",
+            "column_name": "card_print_id",
+            "reference_rows": 1,
+            "user_or_market_ref": false
+          },
+          {
+            "card_print_id": "b75d4730-3c1a-42ca-9d18-e8ca736ae41f",
+            "table_name": "external_mappings",
+            "column_name": "card_print_id",
+            "reference_rows": 1,
+            "user_or_market_ref": false
+          }
+        ],
+        "total_fk_reference_rows": 4,
+        "user_or_market_reference_rows": 0,
+        "user_or_market_reference_tables": [],
+        "public_view_membership": {
+          "card_prints_public": {
+            "table_available": true,
+            "match_basis": null,
+            "present": false
+          },
+          "v_card_prints_web_v1": {
+            "table_available": true,
+            "match_basis": "card_print_id",
+            "present": true
+          },
+          "v_card_search": {
+            "table_available": true,
+            "match_basis": "id",
+            "present": true
+          }
+        }
+      },
+      "survivor": {
+        "card_print_id": "95dca2c2-c3e7-43b4-bc02-227fddc4910d",
+        "card_name": "Inteleon",
+        "number": "002",
+        "number_plain": "002",
+        "normalized_name": "inteleon",
+        "normalized_number": "2",
+        "gv_id": "GV-PK-MEP-002",
+        "variant_key": null,
+        "printed_identity_modifier": null,
+        "identity_domain": "pokemon_eng_standard",
+        "print_identity_key": "mep:002:inteleon",
+        "image_url": null,
+        "representative_image_url": null,
+        "image_status": "missing",
+        "source_profile": {
+          "active_mapping_sources": [],
+          "all_sources": [],
+          "active_mapping_count": 0,
+          "active_tcgdex_ids": [],
+          "entries": []
+        },
+        "identity_rows": [],
+        "active_identity_count": 0,
+        "active_identity_printed_numbers": [],
+        "fk_references": [
+          {
+            "card_print_id": "95dca2c2-c3e7-43b4-bc02-227fddc4910d",
+            "table_name": "card_printings",
+            "column_name": "card_print_id",
+            "reference_rows": 1,
+            "user_or_market_ref": false
+          }
+        ],
+        "total_fk_reference_rows": 1,
+        "user_or_market_reference_rows": 0,
+        "user_or_market_reference_tables": [],
+        "public_view_membership": {
+          "card_prints_public": {
+            "table_available": true,
+            "match_basis": null,
+            "present": false
+          },
+          "v_card_prints_web_v1": {
+            "table_available": true,
+            "match_basis": "card_print_id",
+            "present": true
+          },
+          "v_card_search": {
+            "table_available": true,
+            "match_basis": "id",
+            "present": true
+          }
+        }
+      },
+      "gates": {
+        "same_normalized_name": true,
+        "same_normalized_printed_number": true,
+        "duplicate_has_no_gv_id": true,
+        "survivor_has_padded_public_gv_id": true,
+        "duplicate_has_no_user_or_market_refs": true,
+        "survivor_has_public_route_identity": true
+      },
+      "blockers": [],
+      "design_class": "PUBLIC_OWNER_SURVIVOR_WITH_SOURCE_PRESERVATION",
+      "canonical_survivor_recommendation": "existing_public_owner",
+      "duplicate_row_recommendation": "preserve_as_non_public_duplicate_until_supported_alias_or_quarantine_state_exists",
+      "mapping_preservation_action": "PRESERVE_BY_FUTURE_MAPPING_REASSIGNMENT_TO_SURVIVOR",
+      "future_gv_id_write_allowed": false,
+      "future_delete_allowed": false
+    },
+    {
+      "printed_identity_key": "alakazam|3",
+      "rejected_generated_gv_id": "GV-PK-MEP-3",
+      "existing_public_gv_id": "GV-PK-MEP-003",
+      "duplicate": {
+        "card_print_id": "aa9f207d-c9ea-4607-bbc5-448648bca47f",
+        "card_name": "Alakazam",
+        "number": "3",
+        "number_plain": "3",
+        "normalized_name": "alakazam",
+        "normalized_number": "3",
+        "gv_id": null,
+        "variant_key": null,
+        "printed_identity_modifier": null,
+        "identity_domain": "pokemon_eng_standard",
+        "print_identity_key": null,
+        "image_url": null,
+        "representative_image_url": null,
+        "image_status": "missing",
+        "source_profile": {
+          "active_mapping_sources": [
+            "tcgdex"
+          ],
+          "all_sources": [
+            "tcgdex"
+          ],
+          "active_mapping_count": 1,
+          "active_tcgdex_ids": [
+            "mep-003"
+          ],
+          "entries": [
+            {
+              "carrier": "external_ids.tcgdex",
+              "source": "tcgdex",
+              "external_id": "mep-003",
+              "active": true
+            },
+            {
+              "carrier": "external_mappings.tcgdex",
+              "external_mapping_id": "62491",
+              "source": "tcgdex",
+              "external_id": "mep-003",
+              "active": true
+            }
+          ]
+        },
+        "identity_rows": [
+          {
+            "card_print_identity_id": "81f29850-e313-4795-8de3-6f7cb63aa5d8",
+            "card_print_id": "aa9f207d-c9ea-4607-bbc5-448648bca47f",
+            "identity_domain": "pokemon_eng_standard",
+            "set_code_identity": "mep",
+            "printed_number": "003",
+            "identity_key_version": "pokemon_eng_standard:v1",
+            "identity_key_hash": "4699a32936ad179a49f89aa96c27687098ccc523c3a717e313626821edc1de1f",
+            "is_active": true
+          }
+        ],
+        "active_identity_count": 1,
+        "active_identity_printed_numbers": [
+          "003"
+        ],
+        "fk_references": [
+          {
+            "card_print_id": "aa9f207d-c9ea-4607-bbc5-448648bca47f",
+            "table_name": "card_print_identity",
+            "column_name": "card_print_id",
+            "reference_rows": 1,
+            "user_or_market_ref": false
+          },
+          {
+            "card_print_id": "aa9f207d-c9ea-4607-bbc5-448648bca47f",
+            "table_name": "card_print_traits",
+            "column_name": "card_print_id",
+            "reference_rows": 1,
+            "user_or_market_ref": false
+          },
+          {
+            "card_print_id": "aa9f207d-c9ea-4607-bbc5-448648bca47f",
+            "table_name": "card_printings",
+            "column_name": "card_print_id",
+            "reference_rows": 1,
+            "user_or_market_ref": false
+          },
+          {
+            "card_print_id": "aa9f207d-c9ea-4607-bbc5-448648bca47f",
+            "table_name": "external_mappings",
+            "column_name": "card_print_id",
+            "reference_rows": 1,
+            "user_or_market_ref": false
+          }
+        ],
+        "total_fk_reference_rows": 4,
+        "user_or_market_reference_rows": 0,
+        "user_or_market_reference_tables": [],
+        "public_view_membership": {
+          "card_prints_public": {
+            "table_available": true,
+            "match_basis": null,
+            "present": false
+          },
+          "v_card_prints_web_v1": {
+            "table_available": true,
+            "match_basis": "card_print_id",
+            "present": true
+          },
+          "v_card_search": {
+            "table_available": true,
+            "match_basis": "id",
+            "present": true
+          }
+        }
+      },
+      "survivor": {
+        "card_print_id": "718508f6-7825-43e8-98e1-a57b58dd490f",
+        "card_name": "Alakazam",
+        "number": "003",
+        "number_plain": "003",
+        "normalized_name": "alakazam",
+        "normalized_number": "3",
+        "gv_id": "GV-PK-MEP-003",
+        "variant_key": null,
+        "printed_identity_modifier": null,
+        "identity_domain": "pokemon_eng_standard",
+        "print_identity_key": "mep:003:alakazam",
+        "image_url": null,
+        "representative_image_url": null,
+        "image_status": "missing",
+        "source_profile": {
+          "active_mapping_sources": [],
+          "all_sources": [],
+          "active_mapping_count": 0,
+          "active_tcgdex_ids": [],
+          "entries": []
+        },
+        "identity_rows": [],
+        "active_identity_count": 0,
+        "active_identity_printed_numbers": [],
+        "fk_references": [
+          {
+            "card_print_id": "718508f6-7825-43e8-98e1-a57b58dd490f",
+            "table_name": "card_printings",
+            "column_name": "card_print_id",
+            "reference_rows": 1,
+            "user_or_market_ref": false
+          }
+        ],
+        "total_fk_reference_rows": 1,
+        "user_or_market_reference_rows": 0,
+        "user_or_market_reference_tables": [],
+        "public_view_membership": {
+          "card_prints_public": {
+            "table_available": true,
+            "match_basis": null,
+            "present": false
+          },
+          "v_card_prints_web_v1": {
+            "table_available": true,
+            "match_basis": "card_print_id",
+            "present": true
+          },
+          "v_card_search": {
+            "table_available": true,
+            "match_basis": "id",
+            "present": true
+          }
+        }
+      },
+      "gates": {
+        "same_normalized_name": true,
+        "same_normalized_printed_number": true,
+        "duplicate_has_no_gv_id": true,
+        "survivor_has_padded_public_gv_id": true,
+        "duplicate_has_no_user_or_market_refs": true,
+        "survivor_has_public_route_identity": true
+      },
+      "blockers": [],
+      "design_class": "PUBLIC_OWNER_SURVIVOR_WITH_SOURCE_PRESERVATION",
+      "canonical_survivor_recommendation": "existing_public_owner",
+      "duplicate_row_recommendation": "preserve_as_non_public_duplicate_until_supported_alias_or_quarantine_state_exists",
+      "mapping_preservation_action": "PRESERVE_BY_FUTURE_MAPPING_REASSIGNMENT_TO_SURVIVOR",
+      "future_gv_id_write_allowed": false,
+      "future_delete_allowed": false
+    },
+    {
+      "printed_identity_key": "lunatone|4",
+      "rejected_generated_gv_id": "GV-PK-MEP-4",
+      "existing_public_gv_id": "GV-PK-MEP-004",
+      "duplicate": {
+        "card_print_id": "bf523703-271c-49fe-b8aa-c31c57cb9b32",
+        "card_name": "Lunatone",
+        "number": "4",
+        "number_plain": "4",
+        "normalized_name": "lunatone",
+        "normalized_number": "4",
+        "gv_id": null,
+        "variant_key": null,
+        "printed_identity_modifier": null,
+        "identity_domain": "pokemon_eng_standard",
+        "print_identity_key": null,
+        "image_url": null,
+        "representative_image_url": null,
+        "image_status": "missing",
+        "source_profile": {
+          "active_mapping_sources": [
+            "tcgdex"
+          ],
+          "all_sources": [
+            "tcgdex"
+          ],
+          "active_mapping_count": 1,
+          "active_tcgdex_ids": [
+            "mep-004"
+          ],
+          "entries": [
+            {
+              "carrier": "external_ids.tcgdex",
+              "source": "tcgdex",
+              "external_id": "mep-004",
+              "active": true
+            },
+            {
+              "carrier": "external_mappings.tcgdex",
+              "external_mapping_id": "62495",
+              "source": "tcgdex",
+              "external_id": "mep-004",
+              "active": true
+            }
+          ]
+        },
+        "identity_rows": [
+          {
+            "card_print_identity_id": "4e63bb8e-2fc2-4029-a0b2-ccc4658d4b99",
+            "card_print_id": "bf523703-271c-49fe-b8aa-c31c57cb9b32",
+            "identity_domain": "pokemon_eng_standard",
+            "set_code_identity": "mep",
+            "printed_number": "004",
+            "identity_key_version": "pokemon_eng_standard:v1",
+            "identity_key_hash": "e5b3ffceb266e8a95b4226156aa97eefff6c6d454fe47e539acd2eb30831408e",
+            "is_active": true
+          }
+        ],
+        "active_identity_count": 1,
+        "active_identity_printed_numbers": [
+          "004"
+        ],
+        "fk_references": [
+          {
+            "card_print_id": "bf523703-271c-49fe-b8aa-c31c57cb9b32",
+            "table_name": "card_print_identity",
+            "column_name": "card_print_id",
+            "reference_rows": 1,
+            "user_or_market_ref": false
+          },
+          {
+            "card_print_id": "bf523703-271c-49fe-b8aa-c31c57cb9b32",
+            "table_name": "card_print_traits",
+            "column_name": "card_print_id",
+            "reference_rows": 1,
+            "user_or_market_ref": false
+          },
+          {
+            "card_print_id": "bf523703-271c-49fe-b8aa-c31c57cb9b32",
+            "table_name": "card_printings",
+            "column_name": "card_print_id",
+            "reference_rows": 1,
+            "user_or_market_ref": false
+          },
+          {
+            "card_print_id": "bf523703-271c-49fe-b8aa-c31c57cb9b32",
+            "table_name": "external_mappings",
+            "column_name": "card_print_id",
+            "reference_rows": 1,
+            "user_or_market_ref": false
+          }
+        ],
+        "total_fk_reference_rows": 4,
+        "user_or_market_reference_rows": 0,
+        "user_or_market_reference_tables": [],
+        "public_view_membership": {
+          "card_prints_public": {
+            "table_available": true,
+            "match_basis": null,
+            "present": false
+          },
+          "v_card_prints_web_v1": {
+            "table_available": true,
+            "match_basis": "card_print_id",
+            "present": true
+          },
+          "v_card_search": {
+            "table_available": true,
+            "match_basis": "id",
+            "present": true
+          }
+        }
+      },
+      "survivor": {
+        "card_print_id": "cddc521f-ebbe-4460-85d5-d78278672f95",
+        "card_name": "Lunatone",
+        "number": "004",
+        "number_plain": "004",
+        "normalized_name": "lunatone",
+        "normalized_number": "4",
+        "gv_id": "GV-PK-MEP-004",
+        "variant_key": null,
+        "printed_identity_modifier": null,
+        "identity_domain": "pokemon_eng_standard",
+        "print_identity_key": "mep:004:lunatone",
+        "image_url": null,
+        "representative_image_url": null,
+        "image_status": "missing",
+        "source_profile": {
+          "active_mapping_sources": [],
+          "all_sources": [],
+          "active_mapping_count": 0,
+          "active_tcgdex_ids": [],
+          "entries": []
+        },
+        "identity_rows": [],
+        "active_identity_count": 0,
+        "active_identity_printed_numbers": [],
+        "fk_references": [
+          {
+            "card_print_id": "cddc521f-ebbe-4460-85d5-d78278672f95",
+            "table_name": "card_printings",
+            "column_name": "card_print_id",
+            "reference_rows": 1,
+            "user_or_market_ref": false
+          }
+        ],
+        "total_fk_reference_rows": 1,
+        "user_or_market_reference_rows": 0,
+        "user_or_market_reference_tables": [],
+        "public_view_membership": {
+          "card_prints_public": {
+            "table_available": true,
+            "match_basis": null,
+            "present": false
+          },
+          "v_card_prints_web_v1": {
+            "table_available": true,
+            "match_basis": "card_print_id",
+            "present": true
+          },
+          "v_card_search": {
+            "table_available": true,
+            "match_basis": "id",
+            "present": true
+          }
+        }
+      },
+      "gates": {
+        "same_normalized_name": true,
+        "same_normalized_printed_number": true,
+        "duplicate_has_no_gv_id": true,
+        "survivor_has_padded_public_gv_id": true,
+        "duplicate_has_no_user_or_market_refs": true,
+        "survivor_has_public_route_identity": true
+      },
+      "blockers": [],
+      "design_class": "PUBLIC_OWNER_SURVIVOR_WITH_SOURCE_PRESERVATION",
+      "canonical_survivor_recommendation": "existing_public_owner",
+      "duplicate_row_recommendation": "preserve_as_non_public_duplicate_until_supported_alias_or_quarantine_state_exists",
+      "mapping_preservation_action": "PRESERVE_BY_FUTURE_MAPPING_REASSIGNMENT_TO_SURVIVOR",
+      "future_gv_id_write_allowed": false,
+      "future_delete_allowed": false
+    },
+    {
+      "printed_identity_key": "drifloon|5",
+      "rejected_generated_gv_id": "GV-PK-MEP-5",
+      "existing_public_gv_id": "GV-PK-MEP-005",
+      "duplicate": {
+        "card_print_id": "04e533ae-dd17-478c-ab46-220859079b2c",
+        "card_name": "Drifloon",
+        "number": "5",
+        "number_plain": "5",
+        "normalized_name": "drifloon",
+        "normalized_number": "5",
+        "gv_id": null,
+        "variant_key": null,
+        "printed_identity_modifier": null,
+        "identity_domain": "pokemon_eng_standard",
+        "print_identity_key": null,
+        "image_url": null,
+        "representative_image_url": null,
+        "image_status": "missing",
+        "source_profile": {
+          "active_mapping_sources": [
+            "tcgdex"
+          ],
+          "all_sources": [
+            "tcgdex"
+          ],
+          "active_mapping_count": 1,
+          "active_tcgdex_ids": [
+            "mep-005"
+          ],
+          "entries": [
+            {
+              "carrier": "external_ids.tcgdex",
+              "source": "tcgdex",
+              "external_id": "mep-005",
+              "active": true
+            },
+            {
+              "carrier": "external_mappings.tcgdex",
+              "external_mapping_id": "62492",
+              "source": "tcgdex",
+              "external_id": "mep-005",
+              "active": true
+            }
+          ]
+        },
+        "identity_rows": [
+          {
+            "card_print_identity_id": "eacb5a42-8037-4015-822e-a9212e65e060",
+            "card_print_id": "04e533ae-dd17-478c-ab46-220859079b2c",
+            "identity_domain": "pokemon_eng_standard",
+            "set_code_identity": "mep",
+            "printed_number": "005",
+            "identity_key_version": "pokemon_eng_standard:v1",
+            "identity_key_hash": "f828960bcf71cc61c806361b277f8e0481f2760dbbf2cddc3ce1fe1bd3731832",
+            "is_active": true
+          }
+        ],
+        "active_identity_count": 1,
+        "active_identity_printed_numbers": [
+          "005"
+        ],
+        "fk_references": [
+          {
+            "card_print_id": "04e533ae-dd17-478c-ab46-220859079b2c",
+            "table_name": "card_print_identity",
+            "column_name": "card_print_id",
+            "reference_rows": 1,
+            "user_or_market_ref": false
+          },
+          {
+            "card_print_id": "04e533ae-dd17-478c-ab46-220859079b2c",
+            "table_name": "card_print_traits",
+            "column_name": "card_print_id",
+            "reference_rows": 1,
+            "user_or_market_ref": false
+          },
+          {
+            "card_print_id": "04e533ae-dd17-478c-ab46-220859079b2c",
+            "table_name": "card_printings",
+            "column_name": "card_print_id",
+            "reference_rows": 1,
+            "user_or_market_ref": false
+          },
+          {
+            "card_print_id": "04e533ae-dd17-478c-ab46-220859079b2c",
+            "table_name": "external_mappings",
+            "column_name": "card_print_id",
+            "reference_rows": 1,
+            "user_or_market_ref": false
+          }
+        ],
+        "total_fk_reference_rows": 4,
+        "user_or_market_reference_rows": 0,
+        "user_or_market_reference_tables": [],
+        "public_view_membership": {
+          "card_prints_public": {
+            "table_available": true,
+            "match_basis": null,
+            "present": false
+          },
+          "v_card_prints_web_v1": {
+            "table_available": true,
+            "match_basis": "card_print_id",
+            "present": true
+          },
+          "v_card_search": {
+            "table_available": true,
+            "match_basis": "id",
+            "present": true
+          }
+        }
+      },
+      "survivor": {
+        "card_print_id": "c5b19da0-1f2d-4b86-844f-90284539099d",
+        "card_name": "Drifloon",
+        "number": "005",
+        "number_plain": "005",
+        "normalized_name": "drifloon",
+        "normalized_number": "5",
+        "gv_id": "GV-PK-MEP-005",
+        "variant_key": null,
+        "printed_identity_modifier": null,
+        "identity_domain": "pokemon_eng_standard",
+        "print_identity_key": "mep:005:drifloon",
+        "image_url": null,
+        "representative_image_url": null,
+        "image_status": "missing",
+        "source_profile": {
+          "active_mapping_sources": [],
+          "all_sources": [],
+          "active_mapping_count": 0,
+          "active_tcgdex_ids": [],
+          "entries": []
+        },
+        "identity_rows": [],
+        "active_identity_count": 0,
+        "active_identity_printed_numbers": [],
+        "fk_references": [
+          {
+            "card_print_id": "c5b19da0-1f2d-4b86-844f-90284539099d",
+            "table_name": "card_printings",
+            "column_name": "card_print_id",
+            "reference_rows": 1,
+            "user_or_market_ref": false
+          }
+        ],
+        "total_fk_reference_rows": 1,
+        "user_or_market_reference_rows": 0,
+        "user_or_market_reference_tables": [],
+        "public_view_membership": {
+          "card_prints_public": {
+            "table_available": true,
+            "match_basis": null,
+            "present": false
+          },
+          "v_card_prints_web_v1": {
+            "table_available": true,
+            "match_basis": "card_print_id",
+            "present": true
+          },
+          "v_card_search": {
+            "table_available": true,
+            "match_basis": "id",
+            "present": true
+          }
+        }
+      },
+      "gates": {
+        "same_normalized_name": true,
+        "same_normalized_printed_number": true,
+        "duplicate_has_no_gv_id": true,
+        "survivor_has_padded_public_gv_id": true,
+        "duplicate_has_no_user_or_market_refs": true,
+        "survivor_has_public_route_identity": true
+      },
+      "blockers": [],
+      "design_class": "PUBLIC_OWNER_SURVIVOR_WITH_SOURCE_PRESERVATION",
+      "canonical_survivor_recommendation": "existing_public_owner",
+      "duplicate_row_recommendation": "preserve_as_non_public_duplicate_until_supported_alias_or_quarantine_state_exists",
+      "mapping_preservation_action": "PRESERVE_BY_FUTURE_MAPPING_REASSIGNMENT_TO_SURVIVOR",
+      "future_gv_id_write_allowed": false,
+      "future_delete_allowed": false
+    },
+    {
+      "printed_identity_key": "drifblim|6",
+      "rejected_generated_gv_id": "GV-PK-MEP-6",
+      "existing_public_gv_id": "GV-PK-MEP-006",
+      "duplicate": {
+        "card_print_id": "ac2b6cf7-6873-44e8-96b9-e03a179fae51",
+        "card_name": "Drifblim",
+        "number": "6",
+        "number_plain": "6",
+        "normalized_name": "drifblim",
+        "normalized_number": "6",
+        "gv_id": null,
+        "variant_key": null,
+        "printed_identity_modifier": null,
+        "identity_domain": "pokemon_eng_standard",
+        "print_identity_key": null,
+        "image_url": null,
+        "representative_image_url": null,
+        "image_status": "missing",
+        "source_profile": {
+          "active_mapping_sources": [
+            "tcgdex"
+          ],
+          "all_sources": [
+            "tcgdex"
+          ],
+          "active_mapping_count": 1,
+          "active_tcgdex_ids": [
+            "mep-006"
+          ],
+          "entries": [
+            {
+              "carrier": "external_ids.tcgdex",
+              "source": "tcgdex",
+              "external_id": "mep-006",
+              "active": true
+            },
+            {
+              "carrier": "external_mappings.tcgdex",
+              "external_mapping_id": "62494",
+              "source": "tcgdex",
+              "external_id": "mep-006",
+              "active": true
+            }
+          ]
+        },
+        "identity_rows": [
+          {
+            "card_print_identity_id": "b0e9bda3-8681-4027-9064-2bc0b3b04885",
+            "card_print_id": "ac2b6cf7-6873-44e8-96b9-e03a179fae51",
+            "identity_domain": "pokemon_eng_standard",
+            "set_code_identity": "mep",
+            "printed_number": "006",
+            "identity_key_version": "pokemon_eng_standard:v1",
+            "identity_key_hash": "b2df620afb99e49fd9d64419230c38cc064425ea5ad5ae50f89aa3b42cb1ffeb",
+            "is_active": true
+          }
+        ],
+        "active_identity_count": 1,
+        "active_identity_printed_numbers": [
+          "006"
+        ],
+        "fk_references": [
+          {
+            "card_print_id": "ac2b6cf7-6873-44e8-96b9-e03a179fae51",
+            "table_name": "card_print_identity",
+            "column_name": "card_print_id",
+            "reference_rows": 1,
+            "user_or_market_ref": false
+          },
+          {
+            "card_print_id": "ac2b6cf7-6873-44e8-96b9-e03a179fae51",
+            "table_name": "card_print_traits",
+            "column_name": "card_print_id",
+            "reference_rows": 1,
+            "user_or_market_ref": false
+          },
+          {
+            "card_print_id": "ac2b6cf7-6873-44e8-96b9-e03a179fae51",
+            "table_name": "card_printings",
+            "column_name": "card_print_id",
+            "reference_rows": 1,
+            "user_or_market_ref": false
+          },
+          {
+            "card_print_id": "ac2b6cf7-6873-44e8-96b9-e03a179fae51",
+            "table_name": "external_mappings",
+            "column_name": "card_print_id",
+            "reference_rows": 1,
+            "user_or_market_ref": false
+          }
+        ],
+        "total_fk_reference_rows": 4,
+        "user_or_market_reference_rows": 0,
+        "user_or_market_reference_tables": [],
+        "public_view_membership": {
+          "card_prints_public": {
+            "table_available": true,
+            "match_basis": null,
+            "present": false
+          },
+          "v_card_prints_web_v1": {
+            "table_available": true,
+            "match_basis": "card_print_id",
+            "present": true
+          },
+          "v_card_search": {
+            "table_available": true,
+            "match_basis": "id",
+            "present": true
+          }
+        }
+      },
+      "survivor": {
+        "card_print_id": "69572cf4-a580-49cc-90d2-36c053f510a9",
+        "card_name": "Drifblim",
+        "number": "006",
+        "number_plain": "006",
+        "normalized_name": "drifblim",
+        "normalized_number": "6",
+        "gv_id": "GV-PK-MEP-006",
+        "variant_key": null,
+        "printed_identity_modifier": null,
+        "identity_domain": "pokemon_eng_standard",
+        "print_identity_key": "mep:006:drifblim",
+        "image_url": null,
+        "representative_image_url": null,
+        "image_status": "missing",
+        "source_profile": {
+          "active_mapping_sources": [],
+          "all_sources": [],
+          "active_mapping_count": 0,
+          "active_tcgdex_ids": [],
+          "entries": []
+        },
+        "identity_rows": [],
+        "active_identity_count": 0,
+        "active_identity_printed_numbers": [],
+        "fk_references": [
+          {
+            "card_print_id": "69572cf4-a580-49cc-90d2-36c053f510a9",
+            "table_name": "card_printings",
+            "column_name": "card_print_id",
+            "reference_rows": 1,
+            "user_or_market_ref": false
+          }
+        ],
+        "total_fk_reference_rows": 1,
+        "user_or_market_reference_rows": 0,
+        "user_or_market_reference_tables": [],
+        "public_view_membership": {
+          "card_prints_public": {
+            "table_available": true,
+            "match_basis": null,
+            "present": false
+          },
+          "v_card_prints_web_v1": {
+            "table_available": true,
+            "match_basis": "card_print_id",
+            "present": true
+          },
+          "v_card_search": {
+            "table_available": true,
+            "match_basis": "id",
+            "present": true
+          }
+        }
+      },
+      "gates": {
+        "same_normalized_name": true,
+        "same_normalized_printed_number": true,
+        "duplicate_has_no_gv_id": true,
+        "survivor_has_padded_public_gv_id": true,
+        "duplicate_has_no_user_or_market_refs": true,
+        "survivor_has_public_route_identity": true
+      },
+      "blockers": [],
+      "design_class": "PUBLIC_OWNER_SURVIVOR_WITH_SOURCE_PRESERVATION",
+      "canonical_survivor_recommendation": "existing_public_owner",
+      "duplicate_row_recommendation": "preserve_as_non_public_duplicate_until_supported_alias_or_quarantine_state_exists",
+      "mapping_preservation_action": "PRESERVE_BY_FUTURE_MAPPING_REASSIGNMENT_TO_SURVIVOR",
+      "future_gv_id_write_allowed": false,
+      "future_delete_allowed": false
+    },
+    {
+      "printed_identity_key": "psyduck|7",
+      "rejected_generated_gv_id": "GV-PK-MEP-7",
+      "existing_public_gv_id": "GV-PK-MEP-007",
+      "duplicate": {
+        "card_print_id": "870f45fe-0680-4a92-b77b-dd03a6018bd3",
+        "card_name": "Psyduck",
+        "number": "7",
+        "number_plain": "7",
+        "normalized_name": "psyduck",
+        "normalized_number": "7",
+        "gv_id": null,
+        "variant_key": null,
+        "printed_identity_modifier": null,
+        "identity_domain": "pokemon_eng_standard",
+        "print_identity_key": null,
+        "image_url": null,
+        "representative_image_url": null,
+        "image_status": "missing",
+        "source_profile": {
+          "active_mapping_sources": [
+            "tcgdex"
+          ],
+          "all_sources": [
+            "tcgdex"
+          ],
+          "active_mapping_count": 1,
+          "active_tcgdex_ids": [
+            "mep-007"
+          ],
+          "entries": [
+            {
+              "carrier": "external_ids.tcgdex",
+              "source": "tcgdex",
+              "external_id": "mep-007",
+              "active": true
+            },
+            {
+              "carrier": "external_mappings.tcgdex",
+              "external_mapping_id": "62496",
+              "source": "tcgdex",
+              "external_id": "mep-007",
+              "active": true
+            }
+          ]
+        },
+        "identity_rows": [
+          {
+            "card_print_identity_id": "e82dd461-e1f2-4660-a6df-34c42143fc77",
+            "card_print_id": "870f45fe-0680-4a92-b77b-dd03a6018bd3",
+            "identity_domain": "pokemon_eng_standard",
+            "set_code_identity": "mep",
+            "printed_number": "007",
+            "identity_key_version": "pokemon_eng_standard:v1",
+            "identity_key_hash": "5db7a0ab42726c37714cc3229b0abab9c0b9b176050f094393fbb807c1c1f591",
+            "is_active": true
+          }
+        ],
+        "active_identity_count": 1,
+        "active_identity_printed_numbers": [
+          "007"
+        ],
+        "fk_references": [
+          {
+            "card_print_id": "870f45fe-0680-4a92-b77b-dd03a6018bd3",
+            "table_name": "card_print_identity",
+            "column_name": "card_print_id",
+            "reference_rows": 1,
+            "user_or_market_ref": false
+          },
+          {
+            "card_print_id": "870f45fe-0680-4a92-b77b-dd03a6018bd3",
+            "table_name": "card_print_traits",
+            "column_name": "card_print_id",
+            "reference_rows": 1,
+            "user_or_market_ref": false
+          },
+          {
+            "card_print_id": "870f45fe-0680-4a92-b77b-dd03a6018bd3",
+            "table_name": "card_printings",
+            "column_name": "card_print_id",
+            "reference_rows": 1,
+            "user_or_market_ref": false
+          },
+          {
+            "card_print_id": "870f45fe-0680-4a92-b77b-dd03a6018bd3",
+            "table_name": "external_mappings",
+            "column_name": "card_print_id",
+            "reference_rows": 1,
+            "user_or_market_ref": false
+          }
+        ],
+        "total_fk_reference_rows": 4,
+        "user_or_market_reference_rows": 0,
+        "user_or_market_reference_tables": [],
+        "public_view_membership": {
+          "card_prints_public": {
+            "table_available": true,
+            "match_basis": null,
+            "present": false
+          },
+          "v_card_prints_web_v1": {
+            "table_available": true,
+            "match_basis": "card_print_id",
+            "present": true
+          },
+          "v_card_search": {
+            "table_available": true,
+            "match_basis": "id",
+            "present": true
+          }
+        }
+      },
+      "survivor": {
+        "card_print_id": "a683bb41-182d-440b-9e6c-d82ebfd38f1d",
+        "card_name": "Psyduck",
+        "number": "007",
+        "number_plain": "007",
+        "normalized_name": "psyduck",
+        "normalized_number": "7",
+        "gv_id": "GV-PK-MEP-007",
+        "variant_key": null,
+        "printed_identity_modifier": null,
+        "identity_domain": "pokemon_eng_standard",
+        "print_identity_key": "mep:007:psyduck",
+        "image_url": null,
+        "representative_image_url": null,
+        "image_status": "missing",
+        "source_profile": {
+          "active_mapping_sources": [],
+          "all_sources": [],
+          "active_mapping_count": 0,
+          "active_tcgdex_ids": [],
+          "entries": []
+        },
+        "identity_rows": [],
+        "active_identity_count": 0,
+        "active_identity_printed_numbers": [],
+        "fk_references": [
+          {
+            "card_print_id": "a683bb41-182d-440b-9e6c-d82ebfd38f1d",
+            "table_name": "card_printings",
+            "column_name": "card_print_id",
+            "reference_rows": 1,
+            "user_or_market_ref": false
+          }
+        ],
+        "total_fk_reference_rows": 1,
+        "user_or_market_reference_rows": 0,
+        "user_or_market_reference_tables": [],
+        "public_view_membership": {
+          "card_prints_public": {
+            "table_available": true,
+            "match_basis": null,
+            "present": false
+          },
+          "v_card_prints_web_v1": {
+            "table_available": true,
+            "match_basis": "card_print_id",
+            "present": true
+          },
+          "v_card_search": {
+            "table_available": true,
+            "match_basis": "id",
+            "present": true
+          }
+        }
+      },
+      "gates": {
+        "same_normalized_name": true,
+        "same_normalized_printed_number": true,
+        "duplicate_has_no_gv_id": true,
+        "survivor_has_padded_public_gv_id": true,
+        "duplicate_has_no_user_or_market_refs": true,
+        "survivor_has_public_route_identity": true
+      },
+      "blockers": [],
+      "design_class": "PUBLIC_OWNER_SURVIVOR_WITH_SOURCE_PRESERVATION",
+      "canonical_survivor_recommendation": "existing_public_owner",
+      "duplicate_row_recommendation": "preserve_as_non_public_duplicate_until_supported_alias_or_quarantine_state_exists",
+      "mapping_preservation_action": "PRESERVE_BY_FUTURE_MAPPING_REASSIGNMENT_TO_SURVIVOR",
+      "future_gv_id_write_allowed": false,
+      "future_delete_allowed": false
+    },
+    {
+      "printed_identity_key": "golduck|8",
+      "rejected_generated_gv_id": "GV-PK-MEP-8",
+      "existing_public_gv_id": "GV-PK-MEP-008",
+      "duplicate": {
+        "card_print_id": "47f874b2-ea20-4b89-af44-085905bb1f60",
+        "card_name": "Golduck",
+        "number": "8",
+        "number_plain": "8",
+        "normalized_name": "golduck",
+        "normalized_number": "8",
+        "gv_id": null,
+        "variant_key": null,
+        "printed_identity_modifier": null,
+        "identity_domain": "pokemon_eng_standard",
+        "print_identity_key": null,
+        "image_url": null,
+        "representative_image_url": null,
+        "image_status": "missing",
+        "source_profile": {
+          "active_mapping_sources": [
+            "tcgdex"
+          ],
+          "all_sources": [
+            "tcgdex"
+          ],
+          "active_mapping_count": 1,
+          "active_tcgdex_ids": [
+            "mep-008"
+          ],
+          "entries": [
+            {
+              "carrier": "external_ids.tcgdex",
+              "source": "tcgdex",
+              "external_id": "mep-008",
+              "active": true
+            },
+            {
+              "carrier": "external_mappings.tcgdex",
+              "external_mapping_id": "62497",
+              "source": "tcgdex",
+              "external_id": "mep-008",
+              "active": true
+            }
+          ]
+        },
+        "identity_rows": [
+          {
+            "card_print_identity_id": "f6f410a8-d478-4c7d-a036-d58cf67bca98",
+            "card_print_id": "47f874b2-ea20-4b89-af44-085905bb1f60",
+            "identity_domain": "pokemon_eng_standard",
+            "set_code_identity": "mep",
+            "printed_number": "008",
+            "identity_key_version": "pokemon_eng_standard:v1",
+            "identity_key_hash": "f644087dea4781c53c4c7ecd7fac6142f4b838e45ecf9e2c32fe56f4bcef624a",
+            "is_active": true
+          }
+        ],
+        "active_identity_count": 1,
+        "active_identity_printed_numbers": [
+          "008"
+        ],
+        "fk_references": [
+          {
+            "card_print_id": "47f874b2-ea20-4b89-af44-085905bb1f60",
+            "table_name": "card_print_identity",
+            "column_name": "card_print_id",
+            "reference_rows": 1,
+            "user_or_market_ref": false
+          },
+          {
+            "card_print_id": "47f874b2-ea20-4b89-af44-085905bb1f60",
+            "table_name": "card_print_traits",
+            "column_name": "card_print_id",
+            "reference_rows": 1,
+            "user_or_market_ref": false
+          },
+          {
+            "card_print_id": "47f874b2-ea20-4b89-af44-085905bb1f60",
+            "table_name": "card_printings",
+            "column_name": "card_print_id",
+            "reference_rows": 1,
+            "user_or_market_ref": false
+          },
+          {
+            "card_print_id": "47f874b2-ea20-4b89-af44-085905bb1f60",
+            "table_name": "external_mappings",
+            "column_name": "card_print_id",
+            "reference_rows": 1,
+            "user_or_market_ref": false
+          }
+        ],
+        "total_fk_reference_rows": 4,
+        "user_or_market_reference_rows": 0,
+        "user_or_market_reference_tables": [],
+        "public_view_membership": {
+          "card_prints_public": {
+            "table_available": true,
+            "match_basis": null,
+            "present": false
+          },
+          "v_card_prints_web_v1": {
+            "table_available": true,
+            "match_basis": "card_print_id",
+            "present": true
+          },
+          "v_card_search": {
+            "table_available": true,
+            "match_basis": "id",
+            "present": true
+          }
+        }
+      },
+      "survivor": {
+        "card_print_id": "5dd278a1-ccaa-48e6-84c2-7190ee63c9d8",
+        "card_name": "Golduck",
+        "number": "008",
+        "number_plain": "008",
+        "normalized_name": "golduck",
+        "normalized_number": "8",
+        "gv_id": "GV-PK-MEP-008",
+        "variant_key": null,
+        "printed_identity_modifier": null,
+        "identity_domain": "pokemon_eng_standard",
+        "print_identity_key": "mep:008:golduck",
+        "image_url": null,
+        "representative_image_url": null,
+        "image_status": "missing",
+        "source_profile": {
+          "active_mapping_sources": [],
+          "all_sources": [],
+          "active_mapping_count": 0,
+          "active_tcgdex_ids": [],
+          "entries": []
+        },
+        "identity_rows": [],
+        "active_identity_count": 0,
+        "active_identity_printed_numbers": [],
+        "fk_references": [
+          {
+            "card_print_id": "5dd278a1-ccaa-48e6-84c2-7190ee63c9d8",
+            "table_name": "card_printings",
+            "column_name": "card_print_id",
+            "reference_rows": 1,
+            "user_or_market_ref": false
+          }
+        ],
+        "total_fk_reference_rows": 1,
+        "user_or_market_reference_rows": 0,
+        "user_or_market_reference_tables": [],
+        "public_view_membership": {
+          "card_prints_public": {
+            "table_available": true,
+            "match_basis": null,
+            "present": false
+          },
+          "v_card_prints_web_v1": {
+            "table_available": true,
+            "match_basis": "card_print_id",
+            "present": true
+          },
+          "v_card_search": {
+            "table_available": true,
+            "match_basis": "id",
+            "present": true
+          }
+        }
+      },
+      "gates": {
+        "same_normalized_name": true,
+        "same_normalized_printed_number": true,
+        "duplicate_has_no_gv_id": true,
+        "survivor_has_padded_public_gv_id": true,
+        "duplicate_has_no_user_or_market_refs": true,
+        "survivor_has_public_route_identity": true
+      },
+      "blockers": [],
+      "design_class": "PUBLIC_OWNER_SURVIVOR_WITH_SOURCE_PRESERVATION",
+      "canonical_survivor_recommendation": "existing_public_owner",
+      "duplicate_row_recommendation": "preserve_as_non_public_duplicate_until_supported_alias_or_quarantine_state_exists",
+      "mapping_preservation_action": "PRESERVE_BY_FUTURE_MAPPING_REASSIGNMENT_TO_SURVIVOR",
+      "future_gv_id_write_allowed": false,
+      "future_delete_allowed": false
+    },
+    {
+      "printed_identity_key": "alakazam|9",
+      "rejected_generated_gv_id": "GV-PK-MEP-9",
+      "existing_public_gv_id": "GV-PK-MEP-009",
+      "duplicate": {
+        "card_print_id": "a3624761-be25-4841-83e4-c5936ec434fe",
+        "card_name": "Alakazam",
+        "number": "9",
+        "number_plain": "9",
+        "normalized_name": "alakazam",
+        "normalized_number": "9",
+        "gv_id": null,
+        "variant_key": null,
+        "printed_identity_modifier": null,
+        "identity_domain": "pokemon_eng_standard",
+        "print_identity_key": null,
+        "image_url": null,
+        "representative_image_url": null,
+        "image_status": "missing",
+        "source_profile": {
+          "active_mapping_sources": [
+            "tcgdex"
+          ],
+          "all_sources": [
+            "tcgdex"
+          ],
+          "active_mapping_count": 1,
+          "active_tcgdex_ids": [
+            "mep-009"
+          ],
+          "entries": [
+            {
+              "carrier": "external_ids.tcgdex",
+              "source": "tcgdex",
+              "external_id": "mep-009",
+              "active": true
+            },
+            {
+              "carrier": "external_mappings.tcgdex",
+              "external_mapping_id": "62498",
+              "source": "tcgdex",
+              "external_id": "mep-009",
+              "active": true
+            }
+          ]
+        },
+        "identity_rows": [
+          {
+            "card_print_identity_id": "dfcde77b-d381-4201-889e-3e4d853c7977",
+            "card_print_id": "a3624761-be25-4841-83e4-c5936ec434fe",
+            "identity_domain": "pokemon_eng_standard",
+            "set_code_identity": "mep",
+            "printed_number": "009",
+            "identity_key_version": "pokemon_eng_standard:v1",
+            "identity_key_hash": "7e5bfa1cb0f4f414fd70fcbca4a054cbcbbbcfc840dc85cc2e14dc6b37d956ac",
+            "is_active": true
+          }
+        ],
+        "active_identity_count": 1,
+        "active_identity_printed_numbers": [
+          "009"
+        ],
+        "fk_references": [
+          {
+            "card_print_id": "a3624761-be25-4841-83e4-c5936ec434fe",
+            "table_name": "card_print_identity",
+            "column_name": "card_print_id",
+            "reference_rows": 1,
+            "user_or_market_ref": false
+          },
+          {
+            "card_print_id": "a3624761-be25-4841-83e4-c5936ec434fe",
+            "table_name": "card_print_traits",
+            "column_name": "card_print_id",
+            "reference_rows": 1,
+            "user_or_market_ref": false
+          },
+          {
+            "card_print_id": "a3624761-be25-4841-83e4-c5936ec434fe",
+            "table_name": "card_printings",
+            "column_name": "card_print_id",
+            "reference_rows": 1,
+            "user_or_market_ref": false
+          },
+          {
+            "card_print_id": "a3624761-be25-4841-83e4-c5936ec434fe",
+            "table_name": "external_mappings",
+            "column_name": "card_print_id",
+            "reference_rows": 1,
+            "user_or_market_ref": false
+          }
+        ],
+        "total_fk_reference_rows": 4,
+        "user_or_market_reference_rows": 0,
+        "user_or_market_reference_tables": [],
+        "public_view_membership": {
+          "card_prints_public": {
+            "table_available": true,
+            "match_basis": null,
+            "present": false
+          },
+          "v_card_prints_web_v1": {
+            "table_available": true,
+            "match_basis": "card_print_id",
+            "present": true
+          },
+          "v_card_search": {
+            "table_available": true,
+            "match_basis": "id",
+            "present": true
+          }
+        }
+      },
+      "survivor": {
+        "card_print_id": "26726d70-a78d-4210-9ccc-d79abd215099",
+        "card_name": "Alakazam",
+        "number": "009",
+        "number_plain": "009",
+        "normalized_name": "alakazam",
+        "normalized_number": "9",
+        "gv_id": "GV-PK-MEP-009",
+        "variant_key": null,
+        "printed_identity_modifier": null,
+        "identity_domain": "pokemon_eng_standard",
+        "print_identity_key": "mep:009:alakazam",
+        "image_url": null,
+        "representative_image_url": null,
+        "image_status": "missing",
+        "source_profile": {
+          "active_mapping_sources": [],
+          "all_sources": [],
+          "active_mapping_count": 0,
+          "active_tcgdex_ids": [],
+          "entries": []
+        },
+        "identity_rows": [],
+        "active_identity_count": 0,
+        "active_identity_printed_numbers": [],
+        "fk_references": [
+          {
+            "card_print_id": "26726d70-a78d-4210-9ccc-d79abd215099",
+            "table_name": "card_printings",
+            "column_name": "card_print_id",
+            "reference_rows": 1,
+            "user_or_market_ref": false
+          }
+        ],
+        "total_fk_reference_rows": 1,
+        "user_or_market_reference_rows": 0,
+        "user_or_market_reference_tables": [],
+        "public_view_membership": {
+          "card_prints_public": {
+            "table_available": true,
+            "match_basis": null,
+            "present": false
+          },
+          "v_card_prints_web_v1": {
+            "table_available": true,
+            "match_basis": "card_print_id",
+            "present": true
+          },
+          "v_card_search": {
+            "table_available": true,
+            "match_basis": "id",
+            "present": true
+          }
+        }
+      },
+      "gates": {
+        "same_normalized_name": true,
+        "same_normalized_printed_number": true,
+        "duplicate_has_no_gv_id": true,
+        "survivor_has_padded_public_gv_id": true,
+        "duplicate_has_no_user_or_market_refs": true,
+        "survivor_has_public_route_identity": true
+      },
+      "blockers": [],
+      "design_class": "PUBLIC_OWNER_SURVIVOR_WITH_SOURCE_PRESERVATION",
+      "canonical_survivor_recommendation": "existing_public_owner",
+      "duplicate_row_recommendation": "preserve_as_non_public_duplicate_until_supported_alias_or_quarantine_state_exists",
+      "mapping_preservation_action": "PRESERVE_BY_FUTURE_MAPPING_REASSIGNMENT_TO_SURVIVOR",
+      "future_gv_id_write_allowed": false,
+      "future_delete_allowed": false
+    },
+    {
+      "printed_identity_key": "riolu|10",
+      "rejected_generated_gv_id": "GV-PK-MEP-10",
+      "existing_public_gv_id": "GV-PK-MEP-010",
+      "duplicate": {
+        "card_print_id": "242de512-f2fb-4994-9615-6c1e2c55ac02",
+        "card_name": "Riolu",
+        "number": "10",
+        "number_plain": "10",
+        "normalized_name": "riolu",
+        "normalized_number": "10",
+        "gv_id": null,
+        "variant_key": null,
+        "printed_identity_modifier": null,
+        "identity_domain": "pokemon_eng_standard",
+        "print_identity_key": null,
+        "image_url": null,
+        "representative_image_url": null,
+        "image_status": "missing",
+        "source_profile": {
+          "active_mapping_sources": [
+            "tcgdex"
+          ],
+          "all_sources": [
+            "tcgdex"
+          ],
+          "active_mapping_count": 1,
+          "active_tcgdex_ids": [
+            "mep-010"
+          ],
+          "entries": [
+            {
+              "carrier": "external_ids.tcgdex",
+              "source": "tcgdex",
+              "external_id": "mep-010",
+              "active": true
+            },
+            {
+              "carrier": "external_mappings.tcgdex",
+              "external_mapping_id": "62499",
+              "source": "tcgdex",
+              "external_id": "mep-010",
+              "active": true
+            }
+          ]
+        },
+        "identity_rows": [
+          {
+            "card_print_identity_id": "dc0bd6bd-6267-436f-8587-3fd574dd9b9f",
+            "card_print_id": "242de512-f2fb-4994-9615-6c1e2c55ac02",
+            "identity_domain": "pokemon_eng_standard",
+            "set_code_identity": "mep",
+            "printed_number": "010",
+            "identity_key_version": "pokemon_eng_standard:v1",
+            "identity_key_hash": "63344b94ab5bb0d09b1fc60052886c79a8889a81d182a1789d03d7a2561aed76",
+            "is_active": true
+          }
+        ],
+        "active_identity_count": 1,
+        "active_identity_printed_numbers": [
+          "010"
+        ],
+        "fk_references": [
+          {
+            "card_print_id": "242de512-f2fb-4994-9615-6c1e2c55ac02",
+            "table_name": "card_print_identity",
+            "column_name": "card_print_id",
+            "reference_rows": 1,
+            "user_or_market_ref": false
+          },
+          {
+            "card_print_id": "242de512-f2fb-4994-9615-6c1e2c55ac02",
+            "table_name": "card_print_traits",
+            "column_name": "card_print_id",
+            "reference_rows": 1,
+            "user_or_market_ref": false
+          },
+          {
+            "card_print_id": "242de512-f2fb-4994-9615-6c1e2c55ac02",
+            "table_name": "card_printings",
+            "column_name": "card_print_id",
+            "reference_rows": 1,
+            "user_or_market_ref": false
+          },
+          {
+            "card_print_id": "242de512-f2fb-4994-9615-6c1e2c55ac02",
+            "table_name": "external_mappings",
+            "column_name": "card_print_id",
+            "reference_rows": 1,
+            "user_or_market_ref": false
+          }
+        ],
+        "total_fk_reference_rows": 4,
+        "user_or_market_reference_rows": 0,
+        "user_or_market_reference_tables": [],
+        "public_view_membership": {
+          "card_prints_public": {
+            "table_available": true,
+            "match_basis": null,
+            "present": false
+          },
+          "v_card_prints_web_v1": {
+            "table_available": true,
+            "match_basis": "card_print_id",
+            "present": true
+          },
+          "v_card_search": {
+            "table_available": true,
+            "match_basis": "id",
+            "present": true
+          }
+        }
+      },
+      "survivor": {
+        "card_print_id": "a8259bb9-d94d-4aee-af25-28f0a9656a60",
+        "card_name": "Riolu",
+        "number": "010",
+        "number_plain": "010",
+        "normalized_name": "riolu",
+        "normalized_number": "10",
+        "gv_id": "GV-PK-MEP-010",
+        "variant_key": null,
+        "printed_identity_modifier": null,
+        "identity_domain": "pokemon_eng_standard",
+        "print_identity_key": "mep:010:riolu",
+        "image_url": null,
+        "representative_image_url": null,
+        "image_status": "missing",
+        "source_profile": {
+          "active_mapping_sources": [],
+          "all_sources": [],
+          "active_mapping_count": 0,
+          "active_tcgdex_ids": [],
+          "entries": []
+        },
+        "identity_rows": [],
+        "active_identity_count": 0,
+        "active_identity_printed_numbers": [],
+        "fk_references": [
+          {
+            "card_print_id": "a8259bb9-d94d-4aee-af25-28f0a9656a60",
+            "table_name": "card_printings",
+            "column_name": "card_print_id",
+            "reference_rows": 1,
+            "user_or_market_ref": false
+          }
+        ],
+        "total_fk_reference_rows": 1,
+        "user_or_market_reference_rows": 0,
+        "user_or_market_reference_tables": [],
+        "public_view_membership": {
+          "card_prints_public": {
+            "table_available": true,
+            "match_basis": null,
+            "present": false
+          },
+          "v_card_prints_web_v1": {
+            "table_available": true,
+            "match_basis": "card_print_id",
+            "present": true
+          },
+          "v_card_search": {
+            "table_available": true,
+            "match_basis": "id",
+            "present": true
+          }
+        }
+      },
+      "gates": {
+        "same_normalized_name": true,
+        "same_normalized_printed_number": true,
+        "duplicate_has_no_gv_id": true,
+        "survivor_has_padded_public_gv_id": true,
+        "duplicate_has_no_user_or_market_refs": true,
+        "survivor_has_public_route_identity": true
+      },
+      "blockers": [],
+      "design_class": "PUBLIC_OWNER_SURVIVOR_WITH_SOURCE_PRESERVATION",
+      "canonical_survivor_recommendation": "existing_public_owner",
+      "duplicate_row_recommendation": "preserve_as_non_public_duplicate_until_supported_alias_or_quarantine_state_exists",
+      "mapping_preservation_action": "PRESERVE_BY_FUTURE_MAPPING_REASSIGNMENT_TO_SURVIVOR",
+      "future_gv_id_write_allowed": false,
+      "future_delete_allowed": false
+    }
+  ],
+  "future_write_boundary": {
+    "eligible_for_immediate_execution": false,
+    "recommended_immediate_writes": 0,
+    "allowed_future_operation_if_separately_authorized": "source mapping preservation only after fresh prewrite gate",
+    "explicitly_out_of_scope": [
+      "card_prints.gv_id writes",
+      "card_print deletes",
+      "set changes",
+      "number changes",
+      "public route gate loosening",
+      "missing-card backfill",
+      "variant changes",
+      "image work"
+    ]
+  }
+}
