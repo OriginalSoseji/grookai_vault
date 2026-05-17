@@ -70,6 +70,8 @@ No card row should be imported until the canonical target set is resolved and pr
 - `missing_cards_backfill_dry_run_implementation_plan_20260517.md`
 - `missing_cards_backfill_dry_run_implementation_plan_20260517.sql`
 - `variant_model_plan.md`
+- `variant_authority_model_v2_plan_20260517.md`
+- `variant_authority_model_v2_matrix_20260517.json`
 
 ## Review Checklist Before Implementation
 

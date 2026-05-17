@@ -1,0 +1,129 @@
+{
+  "status": "NO_WRITE_VARIANT_AUTHORITY_PLANNING_ONLY",
+  "generated_from": [
+    "docs/plans/pokemon_db_remediation_v1/variant_model_plan.md",
+    "docs/audits/pokemon_master_set_audit_v1/summary.json",
+    "docs/plans/pokemon_db_remediation_v1/number_normalization_evidence_20260517.md",
+    "docs/plans/pokemon_db_remediation_v1/missing_cards_backfill_evidence_20260517.md"
+  ],
+  "summary": {
+    "db_variant_slots": 2901,
+    "tcgdex_variant_signals": 21066,
+    "pokemon_tcg_tcgplayer_variant_signals": 32449,
+    "recommended_immediate_writes": 0,
+    "contract_required": "VARIANT_AUTHORITY_MODEL_V2"
+  },
+  "authority_lanes": [
+    {
+      "lane": "canonical_card_identity",
+      "definition": "The numbered printed card in one canonical English physical set.",
+      "canonical_storage_role": "parent identity only",
+      "source_examples": ["PkmnCards checklist row", "card_prints set and printed number", "active identity/domain hash"],
+      "future_write_allowed_without_review": false,
+      "required_gate": "canonical set and printed identity proven",
+      "notes": [
+        "Must not multiply because a source exposes finishes or price buckets.",
+        "Missing-card backfill may only create this identity after separate approval."
+      ]
+    },
+    {
+      "lane": "finish_printing_variant",
+      "definition": "A physical finish or edition treatment of the same canonical card identity.",
+      "canonical_storage_role": "child variant authority row",
+      "source_examples": ["normal", "holofoil", "reverse holofoil", "first edition", "unlimited"],
+      "future_write_allowed_without_review": false,
+      "required_gate": "approved normalized finish vocabulary",
+      "notes": [
+        "Should not become separate checklist cards.",
+        "Requires source agreement or reviewable source conflict evidence."
+      ]
+    },
+    {
+      "lane": "stamped_canonical_variant",
+      "definition": "A collector-recognized stamped or event/product marked version of a canonical card identity.",
+      "canonical_storage_role": "child stamped variant authority row",
+      "source_examples": ["prerelease stamp", "staff stamp", "league stamp", "winner stamp", "product stamp"],
+      "future_write_allowed_without_review": false,
+      "required_gate": "stamp evidence beyond price-only keys",
+      "notes": [
+        "Needs stronger provenance than generic finish signals.",
+        "May require product or checklist policy review."
+      ]
+    },
+    {
+      "lane": "market_product_variant",
+      "definition": "A marketplace, price, SKU, or product-feed distinction that may not be a collector-print variant.",
+      "canonical_storage_role": "source evidence or market-only classification",
+      "source_examples": ["tcgplayer.prices keys", "PokemonTCG API price buckets", "market SKU labels"],
+      "future_write_allowed_without_review": false,
+      "required_gate": "market-only versus collector-variant classification",
+      "notes": [
+        "Must not become collector variant authority by default.",
+        "Can remain useful pricing evidence after classification."
+      ]
+    },
+    {
+      "lane": "source_specific_variant",
+      "definition": "A source-local term or payload signal that has not been mapped to normalized authority vocabulary.",
+      "canonical_storage_role": "raw source evidence row",
+      "source_examples": ["TCGdex variants", "JustTCG product terms", "source-specific payload keys"],
+      "future_write_allowed_without_review": false,
+      "required_gate": "source term vocabulary review",
+      "notes": [
+        "Preserve raw strings and payload references.",
+        "Translate only through an approved authority vocabulary."
+      ]
+    }
+  ],
+  "do_not_backfill_yet": [
+    "reverse/holo/normal/first-edition/unlimited rows from source JSON alone",
+    "TCGPlayer price keys as collector variants",
+    "PokemonTCG API price buckets as canonical variants",
+    "TCGdex variant signals in unresolved hard-stop set groups",
+    "variants for cards with null or disputed printed numbers",
+    "variants for unresolved alias/canonicalization groups",
+    "stamped variants without product or checklist evidence",
+    "variant rows during missing card checklist backfill"
+  ],
+  "future_schema_responsibilities": [
+    {
+      "responsibility": "canonical variant authority",
+      "purpose": "Store approved variant rows keyed to canonical card_print identity.",
+      "write_prerequisite": "canonical set, printed number, and active identity proven"
+    },
+    {
+      "responsibility": "source evidence preservation",
+      "purpose": "Store raw source terms, source ids, and payload references without mutating canonical authority.",
+      "write_prerequisite": "read-only source vocabulary inventory reviewed"
+    },
+    {
+      "responsibility": "normalized vocabulary",
+      "purpose": "Map finish, edition, stamp, product, and market-only terms to approved meanings.",
+      "write_prerequisite": "VARIANT_AUTHORITY_MODEL_V2 contract approved"
+    },
+    {
+      "responsibility": "conflict quarantine",
+      "purpose": "Capture source disagreement without collapsing conflicting terms into a canonical row.",
+      "write_prerequisite": "conflict lane and review process approved"
+    }
+  ],
+  "hard_stop_gates": [
+    "set canonicalization hard stops excluded or resolved",
+    "canonical target set exists and owns the card identity",
+    "printed number identity proven",
+    "active identity/domain conflicts are zero for candidate scope",
+    "candidate is not part of simultaneous missing-card backfill",
+    "source terms map to approved vocabulary",
+    "market-only signals classified as market-only",
+    "stamped variants have non-price evidence",
+    "source disagreement remains reviewable",
+    "post-write verification proves canonical card counts unchanged"
+  ],
+  "next_no_write_queue": [
+    "freeze variant writes",
+    "build read-only source vocabulary inventory",
+    "classify collector, stamped, market-only, product-only, and unknown lanes",
+    "draft VARIANT_AUTHORITY_MODEL_V2 contract",
+    "produce future dry-run implementation plan only after contract approval"
+  ]
+}

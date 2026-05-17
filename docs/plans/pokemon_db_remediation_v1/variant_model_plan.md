@@ -58,3 +58,10 @@ Backfill should create, at most, a canonical card identity candidate in a future
 4. Draft `VARIANT_AUTHORITY_MODEL_V2` as a separate contract.
 5. Review source vocabulary conflicts and market-only keys.
 6. Only after contract approval, design a separate implementation plan for variant authority backfill.
+
+## 2026-05-17 V2 Planning Artifacts
+
+- `variant_authority_model_v2_plan_20260517.md`
+- `variant_authority_model_v2_matrix_20260517.json`
+
+These artifacts define the future authority lanes, no-backfill boundaries, schema responsibilities, and hard stop gates. Recommended immediate variant writes remain `0`.
