@@ -1,0 +1,89 @@
+{
+  "status": "NO_WRITE_PUBLIC_APP_IMPACT_REVIEW",
+  "review_date": "2026-05-17",
+  "db_writes_executed": false,
+  "migration_changes": false,
+  "classification_table_consumed_by_public_app": false,
+  "route_scope": [
+    "shiny-vault -> sma",
+    "rm -> ru1"
+  ],
+  "runtime_paths": [
+    {
+      "path": "apps/web/src/components/PublicSearchForm.tsx",
+      "behavior": "submits through buildPublicSearchDestination before /search or /explore navigation",
+      "classification_aware": false
+    },
+    {
+      "path": "apps/web/src/lib/publicSearchRouting.ts",
+      "behavior": "uses static exact aliases, static phrases, regex set-code detection, and SET_INTENT_ALIAS_MAP keys",
+      "classification_aware": false
+    },
+    {
+      "path": "apps/web/src/lib/publicSearchResolver.ts",
+      "behavior": "uses SET_INTENT_ALIAS_MAP plus getPublicSets; does not query set_code_classification",
+      "classification_aware": false
+    },
+    {
+      "path": "apps/web/src/lib/publicSets.ts",
+      "behavior": "builds public sets from sets and card_prints.set_code; direct code lookup does not resolve aliases",
+      "classification_aware": false
+    },
+    {
+      "path": "apps/web/src/lib/resolver/normalizeQuery.ts",
+      "behavior": "derives expectedSetCodes from STRUCTURED_CARD_SET_ALIAS_MAP and regex rules",
+      "classification_aware": false
+    },
+    {
+      "path": "apps/web/src/lib/explore/getExploreRows.ts",
+      "behavior": "compares expected set codes and exact set filter directly to card_prints.set_code",
+      "classification_aware": false
+    },
+    {
+      "path": "apps/web/src/app/sets/[set_code]/page.tsx",
+      "behavior": "passes route param directly into getPublicSetByCode and getPublicSetCards",
+      "classification_aware": false
+    },
+    {
+      "path": "apps/web/src/app/api/public-set-cards/route.ts",
+      "behavior": "passes set_code query param directly into getPublicSetCards",
+      "classification_aware": false
+    }
+  ],
+  "aliases": [
+    {
+      "alias": "shiny-vault",
+      "canonical_set_code": "sma",
+      "canonical_set_name": "Hidden Fates Shiny Vault",
+      "source_route_equivalence": "94/94 exact number/name checklist match",
+      "db_classification_plan_status": "planned_not_executed",
+      "public_search_form_destination": "explore",
+      "direct_search_resolution": "partial_if_manual_search_route_uses_fuzzy_set_name",
+      "ranked_expected_set_code_resolution": "missing_static_alias",
+      "sets_page_query_resolution": "partial_by_text_tokens",
+      "direct_set_route_resolution": "not_found",
+      "public_set_cards_api_resolution": "empty",
+      "product_complete_after_db_route_write_only": false,
+      "recommended_followup": "add app-side alias resolver coverage before calling user-facing complete",
+      "write_allowed_now": false
+    },
+    {
+      "alias": "rm",
+      "canonical_set_code": "ru1",
+      "canonical_set_name": "Pokemon Rumble",
+      "source_route_equivalence": "16/16 exact number/name checklist match",
+      "db_classification_plan_status": "planned_not_executed",
+      "public_search_form_destination": "explore",
+      "direct_search_resolution": "not_deterministic",
+      "ranked_expected_set_code_resolution": "missing_static_alias",
+      "sets_page_query_resolution": "not_deterministic",
+      "direct_set_route_resolution": "not_found",
+      "public_set_cards_api_resolution": "empty",
+      "product_complete_after_db_route_write_only": false,
+      "recommended_followup": "add app-side alias resolver coverage before calling user-facing complete",
+      "write_allowed_now": false
+    }
+  ],
+  "recommended_next_step": "public_set_route_alias_resolver_patch_or_write_plan",
+  "recommended_immediate_db_writes": 0
+}

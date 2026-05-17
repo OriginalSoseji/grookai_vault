@@ -8,9 +8,9 @@
       "items": [
         {
           "priority": 1,
-          "item": "public resolver impact evidence",
+          "item": "public app alias resolver patch plan",
           "scope": "shiny-vault and rm",
-          "next_artifact": "confirm or patch app-side alias resolution before calling route/search user-facing complete",
+          "next_artifact": "centralize source-route alias resolution for public search, set pages, and set-card APIs",
           "write_allowed_now": false
         },
         {
