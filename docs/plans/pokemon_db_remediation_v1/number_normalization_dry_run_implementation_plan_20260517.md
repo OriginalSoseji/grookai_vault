@@ -36,6 +36,11 @@ Even that lane is not approved yet. This plan defines the dry-run gates that mus
 - `number_normalization_lane_a_248_write_plan_matrix_20260517.json`
 - `number_normalization_lane_a_248_preexecution_gate_20260517.md`
 - `number_normalization_lane_a_248_preexecution_gate_matrix_20260517.json`
+- `number_normalization_lane_a_247_write_plan_20260517.md`
+- `number_normalization_lane_a_247_write_plan_20260517.sql`
+- `number_normalization_lane_a_247_write_plan_matrix_20260517.json`
+- `number_normalization_grey_felt_hat_manual_evidence_20260517.md`
+- `number_normalization_grey_felt_hat_manual_evidence_matrix_20260517.json`
 - `number_normalization_plan.md`
 - `set_canonicalization_dry_run_20260517.md`
 - `missing_set_universe_decision_20260517.md`
@@ -76,7 +81,7 @@ Collision investigation for the 256 blocked rows found:
 
 The `me01` duplicate ownership pack confirms all 83 `me01` collision rows are duplicate pairs, not number-normalization candidates. The duplicate resolution design keeps `me01` out of number-normalization writes and defines a future duplicate-ownership remediation shape with survivor selection rules, TCGdex mapping preservation, user/market reference preservation, rollback snapshots, and no deletes until FK/reference migration is proven.
 
-Only the 248 clean rows can become a future write-plan candidate after review. The Lane A 248-row write-plan draft defines that future scope and still approves no execution. The pre-execution gate proved zero matrix drift but blocked execution because one `svp` candidate has user/market references. The blocked 256 rows must stay out of any bulk write scope until collision ownership is investigated. This lane must still prove:
+Only the 248 clean rows can become a future write-plan candidate after review. The Lane A 248-row write-plan draft defines that future scope and still approves no execution. The pre-execution gate proved zero matrix drift but blocked execution because one `svp` candidate has user/market references. The follow-up 247-row plan excludes that referenced candidate and keeps it in a manual evidence pack. The blocked 256 rows must stay out of any bulk write scope until collision ownership is investigated. This lane must still prove:
 
 - one source candidate per row;
 - candidate is numeric after normalization;
@@ -188,7 +193,7 @@ Do not write numbers yet.
 
 The Lane A no-write candidate dry-run is complete. The next step is either:
 
-1. a no-write 247+1 split plan that separates the 247 unreferenced clean candidates from the referenced `svp` candidate, or
+1. fresh pre-execution evidence for the 247-row unreferenced write-plan draft, or
 2. set-scoped duplicate/source-ownership investigations for the remaining blocked Lane A rows, with `me01` now requiring duplicate-ownership remediation rather than more number evidence.
 
 Do not draft or execute a write plan for all 504 rows.

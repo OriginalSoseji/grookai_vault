@@ -48,6 +48,11 @@ At least one live clean candidate has user/market references. Stop before execut
 | --- | --- | --- | --- | --- |
 | `50386954-ded6-4909-8d17-6b391aeb53e4` | `svp` | Pikachu with Grey Felt Hat | 85 | pricing_watch.card_print_id=1, shared_cards.card_id=1, slab_certs.card_print_id=1, vault_item_instances.card_print_id=2, vault_items.card_id=3, justtcg_variants.card_print_id=5, justtcg_variant_prices_latest.card_print_id=5, justtcg_variant_price_snapshots.card_print_id=5 |
 
+Follow-up artifacts:
+
+- `number_normalization_lane_a_247_write_plan_20260517.md` excludes this referenced row from the bulk lane.
+- `number_normalization_grey_felt_hat_manual_evidence_20260517.md` preserves the manual review evidence for this row.
+
 ## Eventual Write Boundary
 
 If explicitly authorized later after this gate passes, the write boundary remains:

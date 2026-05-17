@@ -1,0 +1,90 @@
+{
+  "status": "NO_WRITE_GREY_FELT_HAT_MANUAL_EVIDENCE_ONLY",
+  "generated_at": "2026-05-17T17:54:23.880Z",
+  "generated_from": [
+    "docs/plans/pokemon_db_remediation_v1/number_normalization_lane_a_248_write_plan_matrix_20260517.json",
+    "docs/plans/pokemon_db_remediation_v1/number_normalization_lane_a_248_preexecution_gate_matrix_20260517.json"
+  ],
+  "summary": {
+    "candidate_rows": 1,
+    "referenced_candidate_rows": 1,
+    "committed_vs_live_drift_count_from_gate": 0,
+    "recommended_immediate_writes": 0
+  },
+  "candidate": {
+    "card_print_id": "50386954-ded6-4909-8d17-6b391aeb53e4",
+    "set_id": "082139da-c6d1-4b08-ba00-2b5219bb74d6",
+    "set_code": "svp",
+    "set_name": "Scarlet & Violet Black Star Promos",
+    "card_name": "Pikachu with Grey Felt Hat",
+    "approved_number": "85",
+    "approved_number_plain": "85",
+    "source_carriers": [
+      "external_ids.tcgdex",
+      "external_mappings.tcgdex"
+    ],
+    "source_external_ids": [
+      "svp-085"
+    ],
+    "current_print_identity_key": "svp:085:pikachu-with-grey-felt-hat",
+    "current_gv_id": "GV-PK-PR-SV-085",
+    "references": [
+      {
+        "table_name": "pricing_watch",
+        "column_name": "card_print_id",
+        "reference_rows": 1
+      },
+      {
+        "table_name": "shared_cards",
+        "column_name": "card_id",
+        "reference_rows": 1
+      },
+      {
+        "table_name": "slab_certs",
+        "column_name": "card_print_id",
+        "reference_rows": 1
+      },
+      {
+        "table_name": "vault_item_instances",
+        "column_name": "card_print_id",
+        "reference_rows": 2
+      },
+      {
+        "table_name": "vault_items",
+        "column_name": "card_id",
+        "reference_rows": 3
+      },
+      {
+        "table_name": "justtcg_variants",
+        "column_name": "card_print_id",
+        "reference_rows": 5
+      },
+      {
+        "table_name": "justtcg_variant_prices_latest",
+        "column_name": "card_print_id",
+        "reference_rows": 5
+      },
+      {
+        "table_name": "justtcg_variant_price_snapshots",
+        "column_name": "card_print_id",
+        "reference_rows": 5
+      }
+    ],
+    "evidence_status": "MANUAL_REVIEW_REQUIRED_REFERENCED_ROW",
+    "exclusion_from_247_reason": "referenced by user, vault, pricing, slab, shared-card, and JustTCG market tables",
+    "allowed_future_write_boundary_if_separately_authorized": [
+      "update only card_prints.number and card_prints.number_plain for this card_print_id",
+      "snapshot before-values first",
+      "do not touch mappings, raw imports, sets, identity rows, vault rows, pricing rows, slab rows, shared-card rows, or variants",
+      "post-verify all existing references still point at the same card_print_id"
+    ]
+  },
+  "no_write_confirmation": {
+    "supabase_writes": false,
+    "migrations": false,
+    "inserts": false,
+    "updates": false,
+    "deletes": false,
+    "data_changes": false
+  }
+}
