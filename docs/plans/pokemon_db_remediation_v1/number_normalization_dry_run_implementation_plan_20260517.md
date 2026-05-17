@@ -23,6 +23,8 @@ Even that lane is not approved yet. This plan defines the dry-run gates that mus
 
 - `number_normalization_evidence_20260517.md`
 - `number_normalization_evidence_matrix_20260517.json`
+- `number_normalization_candidate_evidence_20260517.md`
+- `number_normalization_candidate_evidence_matrix_20260517.json`
 - `number_normalization_plan.md`
 - `set_canonicalization_dry_run_20260517.md`
 - `missing_set_universe_decision_20260517.md`
@@ -46,7 +48,15 @@ Even that lane is not approved yet. This plan defines the dry-run gates that mus
 
 Evidence count: 504 non-hard-stop rows.
 
-This is the only lane that can become a future write candidate after a stricter dry-run. It must still prove:
+Row-level candidate evidence now splits this lane:
+
+- 248 clean future write-plan candidates.
+- 256 blocked rows with existing same-set number collisions.
+- 0 active identity conflicts.
+- 0 missing required TCGdex source-carrier pair rows.
+- 0 duplicate candidate-number groups.
+
+Only the 248 clean rows can become a future write-plan candidate after review. The blocked 256 rows must stay out of any bulk write scope until collision ownership is investigated. This lane must still prove:
 
 - one source candidate per row;
 - candidate is numeric after normalization;
@@ -156,7 +166,12 @@ If a future write is approved and executed, post-write checks must prove:
 
 Do not write numbers yet.
 
-The next step is a no-write candidate dry-run for Lane A only: numeric, non-hard-stop, missing-number rows. That dry-run should produce row-level candidates and collision checks, then stop for review.
+The Lane A no-write candidate dry-run is complete. The next step is either:
+
+1. a no-write future write-plan draft for only the 248 clean Lane A rows, or
+2. a collision investigation pack for the 256 blocked Lane A rows.
+
+Do not draft or execute a write plan for all 504 rows.
 
 ## No-Write Confirmation
 

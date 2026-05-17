@@ -21,10 +21,14 @@ The audit script already derives number keys from direct number fields first, th
 
 - `number_normalization_evidence_20260517.md`
 - `number_normalization_evidence_matrix_20260517.json`
+- `number_normalization_candidate_evidence_20260517.md`
+- `number_normalization_candidate_evidence_matrix_20260517.json`
 - `number_normalization_dry_run_implementation_plan_20260517.md`
 - `number_normalization_dry_run_implementation_plan_20260517.sql`
 
 Live read-only evidence found 997 physical Pokemon `card_prints` rows where both `number` and `number_plain` are missing and recoverable from TCGdex source identifiers. Of those, 374 are blocked by current set-canonicalization hard-stop groups and 623 are outside hard-stop groups. The first possible future dry-run lane is the 504 non-hard-stop rows with one numeric source-derived candidate, but no write is approved yet.
+
+The row-level candidate evidence split those 504 Lane A rows into 248 clean future write-plan candidates and 256 blocked rows. The blockers are existing same-set `number` or `number_plain` collisions, not source-carrier or active-identity conflicts. That means the next implementation planning unit must target only the 248 clean rows or investigate collision sets first; the full 504-row lane is not safe as a bulk write scope.
 
 The same evidence found 1,554 rows where direct printed number and `number_plain` normalize differently. This confirms that `number_plain` must not be treated as canonical printed identity by itself.
 
@@ -124,7 +128,7 @@ where s.game = 'pokemon'
 4. Approve normalization rules for slash numbers, prefixed numbers, unnumbered energy cards, and promo prefixes.
 5. Only then design a separate authorized implementation pass.
 
-The 2026-05-17 dry-run implementation plan narrows the first possible candidate lane to numeric, non-hard-stop, source-derived missing-number rows only. Prefixed numbers, complex suffixes, source conflicts, identity conflicts, and hard-stop set rows remain blocked.
+The 2026-05-17 dry-run implementation plan narrows the first possible candidate lane to numeric, non-hard-stop, source-derived missing-number rows only. The candidate evidence narrows that again to the 248 collision-free Lane A rows. Prefixed numbers, complex suffixes, source conflicts, identity conflicts, collision rows, and hard-stop set rows remain blocked.
 
 ## Implementation Stop Conditions
 

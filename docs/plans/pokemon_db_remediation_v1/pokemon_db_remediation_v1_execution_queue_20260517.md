@@ -41,7 +41,9 @@ Current evidence:
 
 | Lane | Rows | Next gate |
 | --- | ---: | --- |
-| Numeric source candidates outside hard stops | 504 | duplicate/identity/FK dry-run |
+| Numeric source candidates outside hard stops | 504 | row-level candidate evidence complete |
+| Clean numeric Lane A write-plan candidates | 248 | no-write future write-plan draft only |
+| Collision-blocked numeric Lane A rows | 256 | collision ownership investigation |
 | Prefixed source candidates outside hard stops | 114 | prefix policy review |
 | Complex source candidates outside hard stops | 5 | manual suffix policy review |
 | Hard-stop set rows | 374 | canonicalization hard-stop resolution |
@@ -54,11 +56,12 @@ Future no-write queue:
 
 | Priority | Item | Scope | Required evidence | Write status |
 | ---: | --- | --- | --- | --- |
-| 1 | Numeric candidate dry-run pack | 504 non-hard-stop rows | prove no duplicate printed identity, FK drift, or active identity conflict | no-write SQL dry-run |
-| 2 | Prefix policy | 114 prefixed candidates | define whether prefixes stay in `number` and how `number_plain` compares | policy only |
-| 3 | Complex suffix review | 5 candidates | manual decision for `65A`, `15A1`, `15A2`, `15A3`, `15A4` semantics | policy only |
-| 4 | Comparable number contract | 1,554 mismatch rows | define generated/comparable fields without overwriting printed identity | contract only |
-| 5 | Source-tail conflict review | 85 rows | reconcile source external id tails against printed number | evidence only |
+| 1 | Clean Lane A write-plan draft | 248 rows | guard clauses, rollback, post-write checks, still no execution | no-write SQL plan only |
+| 2 | Collision ownership investigation | 256 rows | prove whether collisions are duplicate imports, alternate identities, or source mapping drift | evidence only |
+| 3 | Prefix policy | 114 prefixed candidates | define whether prefixes stay in `number` and how `number_plain` compares | policy only |
+| 4 | Complex suffix review | 5 candidates | manual decision for `65A`, `15A1`, `15A2`, `15A3`, `15A4` semantics | policy only |
+| 5 | Comparable number contract | 1,554 mismatch rows | define generated/comparable fields without overwriting printed identity | contract only |
+| 6 | Source-tail conflict review | 85 rows | reconcile source external id tails against printed number | evidence only |
 
 ## Lane 3: Missing Card Backfill Candidates
 

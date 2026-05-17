@@ -42,34 +42,41 @@
       "items": [
         {
           "priority": 1,
-          "item": "numeric candidate dry-run pack",
-          "scope": "504 non-hard-stop rows",
-          "next_artifact": "duplicate/identity/FK dry-run",
+          "item": "clean Lane A write-plan draft",
+          "scope": "248 collision-free numeric non-hard-stop rows",
+          "next_artifact": "guarded no-write SQL plan with rollback and post-write checks",
           "write_allowed_now": false
         },
         {
           "priority": 2,
+          "item": "collision ownership investigation",
+          "scope": "256 numeric non-hard-stop rows with existing same-set number collisions",
+          "next_artifact": "collision evidence pack",
+          "write_allowed_now": false
+        },
+        {
+          "priority": 3,
           "item": "prefix policy",
           "scope": "114 prefixed candidates",
           "next_artifact": "printed-number prefix policy",
           "write_allowed_now": false
         },
         {
-          "priority": 3,
+          "priority": 4,
           "item": "complex suffix review",
           "scope": "5 complex candidates",
           "next_artifact": "manual suffix policy",
           "write_allowed_now": false
         },
         {
-          "priority": 4,
+          "priority": 5,
           "item": "comparable number contract",
           "scope": "1554 mismatch rows",
           "next_artifact": "generated/comparable field contract",
           "write_allowed_now": false
         },
         {
-          "priority": 5,
+          "priority": 6,
           "item": "source-tail conflict review",
           "scope": "85 rows",
           "next_artifact": "source conflict evidence",
