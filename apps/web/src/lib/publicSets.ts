@@ -8,6 +8,7 @@ import {
   normalizePublicSetFilter,
   normalizeSetSearchQuery,
   normalizeSetQuery,
+  resolvePublicSetRouteCode,
   tokenizeSetWords,
   type PublicSetCard,
   type PublicSetDetail,
@@ -215,7 +216,7 @@ export const getPublicSets = cache(async (): Promise<PublicSetSummary[]> => {
 });
 
 export async function getPublicSetByCode(setCode: string): Promise<PublicSetSummary | null> {
-  const normalizedCode = setCode.trim().toLowerCase();
+  const normalizedCode = resolvePublicSetRouteCode(setCode);
   if (!normalizedCode) {
     return null;
   }
@@ -225,7 +226,7 @@ export async function getPublicSetByCode(setCode: string): Promise<PublicSetSumm
 }
 
 export async function getPublicSetCards(setCode: string, offset = 0, limit = 36): Promise<PublicSetCard[]> {
-  const normalizedCode = setCode.trim().toLowerCase();
+  const normalizedCode = resolvePublicSetRouteCode(setCode);
   if (!normalizedCode || limit <= 0) {
     return [];
   }

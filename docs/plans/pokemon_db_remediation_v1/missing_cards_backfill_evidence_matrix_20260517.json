@@ -1,0 +1,1019 @@
+{
+  "status": "NO_WRITE_BACKFILL_PLANNING_ONLY",
+  "generated_from": [
+    "docs/audits/pokemon_master_set_audit_v1/summary.json",
+    "docs/plans/pokemon_db_remediation_v1/missing_set_universe_decision_matrix_20260517.json",
+    "docs/plans/pokemon_db_remediation_v1/number_normalization_evidence_matrix_20260517.json"
+  ],
+  "audit_totals": {
+    "missing_groups": 52,
+    "missing_card_count": 617,
+    "missing_secret_count": 30,
+    "recommended_immediate_inserts": 0
+  },
+  "lane_summary": {
+    "source_route_or_existing_target_no_insert": {
+      "groups": 2,
+      "missing_card_count": 110,
+      "missing_secret_count": 0
+    },
+    "secret_range_high_risk": {
+      "groups": 1,
+      "missing_card_count": 39,
+      "missing_secret_count": 16
+    },
+    "target_set_needed_before_card_backfill": {
+      "groups": 4,
+      "missing_card_count": 117,
+      "missing_secret_count": 0
+    },
+    "secret_range_review_first": {
+      "groups": 1,
+      "missing_card_count": 25,
+      "missing_secret_count": 1
+    },
+    "established_set_backfill_candidate_after_preflight": {
+      "groups": 16,
+      "missing_card_count": 66,
+      "missing_secret_count": 0
+    },
+    "number_normalization_first": {
+      "groups": 6,
+      "missing_card_count": 54,
+      "missing_secret_count": 5
+    },
+    "name_mismatch_or_identity_review_first": {
+      "groups": 9,
+      "missing_card_count": 90,
+      "missing_secret_count": 0
+    },
+    "special_policy_blocked": {
+      "groups": 12,
+      "missing_card_count": 106,
+      "missing_secret_count": 8
+    },
+    "canonical_alias_blocked": {
+      "groups": 1,
+      "missing_card_count": 10,
+      "missing_secret_count": 0
+    }
+  },
+  "items": [
+    {
+      "master_set_name": "Shiny Vault",
+      "master_set_abbrev": null,
+      "series": "Collections",
+      "master_url": "https://pkmncards.com/collection/shiny-vault/",
+      "missing_card_count": 94,
+      "missing_secret_count": 0,
+      "db_set_codes": [],
+      "extra_card_number_count": 0,
+      "name_mismatch_count": 0,
+      "printed_total": null,
+      "pokemonapi_set_id": null,
+      "tcgdex_set_id": null,
+      "lane": "source_route_or_existing_target_no_insert",
+      "recommended_next_action": "prove collection source route to existing sma; no card insert",
+      "future_insert_allowed_without_review": false
+    },
+    {
+      "master_set_name": "Mega Evolution Promos",
+      "master_set_abbrev": "MEP",
+      "series": "Mega Evolution",
+      "master_url": "https://pkmncards.com/set/mega-evolution-promos/",
+      "missing_card_count": 39,
+      "missing_secret_count": 16,
+      "db_set_codes": [
+        "mep"
+      ],
+      "extra_card_number_count": 1,
+      "name_mismatch_count": 0,
+      "printed_total": 33,
+      "pokemonapi_set_id": null,
+      "tcgdex_set_id": null,
+      "lane": "secret_range_high_risk",
+      "recommended_next_action": "secret-range evidence pack and number normalization before any insert",
+      "future_insert_allowed_without_review": false
+    },
+    {
+      "master_set_name": "Pokémon Trading Card Game Classic—Blastoise",
+      "master_set_abbrev": "CLB",
+      "series": "Misc.",
+      "master_url": "https://pkmncards.com/set/pokemon-trading-card-game-classic-blastoise/",
+      "missing_card_count": 34,
+      "missing_secret_count": 0,
+      "db_set_codes": [],
+      "extra_card_number_count": 0,
+      "name_mismatch_count": 0,
+      "printed_total": null,
+      "pokemonapi_set_id": null,
+      "tcgdex_set_id": null,
+      "lane": "target_set_needed_before_card_backfill",
+      "recommended_next_action": "create reviewed target-set dry-run before any card candidate",
+      "future_insert_allowed_without_review": false
+    },
+    {
+      "master_set_name": "Pokémon Trading Card Game Classic—Charizard",
+      "master_set_abbrev": "CLC",
+      "series": "Misc.",
+      "master_url": "https://pkmncards.com/set/pokemon-trading-card-game-classic-charizard/",
+      "missing_card_count": 34,
+      "missing_secret_count": 0,
+      "db_set_codes": [],
+      "extra_card_number_count": 0,
+      "name_mismatch_count": 0,
+      "printed_total": null,
+      "pokemonapi_set_id": null,
+      "tcgdex_set_id": null,
+      "lane": "target_set_needed_before_card_backfill",
+      "recommended_next_action": "create reviewed target-set dry-run before any card candidate",
+      "future_insert_allowed_without_review": false
+    },
+    {
+      "master_set_name": "Pokémon Trading Card Game Classic—Venusaur",
+      "master_set_abbrev": "CLV",
+      "series": "Misc.",
+      "master_url": "https://pkmncards.com/set/pokemon-trading-card-game-classic-venusaur/",
+      "missing_card_count": 34,
+      "missing_secret_count": 0,
+      "db_set_codes": [],
+      "extra_card_number_count": 0,
+      "name_mismatch_count": 0,
+      "printed_total": null,
+      "pokemonapi_set_id": null,
+      "tcgdex_set_id": null,
+      "lane": "target_set_needed_before_card_backfill",
+      "recommended_next_action": "create reviewed target-set dry-run before any card candidate",
+      "future_insert_allowed_without_review": false
+    },
+    {
+      "master_set_name": "Guardians Rising",
+      "master_set_abbrev": "GRI",
+      "series": "Sun & Moon",
+      "master_url": "https://pkmncards.com/set/guardians-rising/",
+      "missing_card_count": 25,
+      "missing_secret_count": 1,
+      "db_set_codes": [
+        "sm2"
+      ],
+      "extra_card_number_count": 0,
+      "name_mismatch_count": 0,
+      "printed_total": 145,
+      "pokemonapi_set_id": "sm2",
+      "tcgdex_set_id": "sm2",
+      "lane": "secret_range_review_first",
+      "recommended_next_action": "secret-range ownership review before any insert",
+      "future_insert_allowed_without_review": false
+    },
+    {
+      "master_set_name": "Burning Shadows",
+      "master_set_abbrev": "BUS",
+      "series": "Sun & Moon",
+      "master_url": "https://pkmncards.com/set/burning-shadows/",
+      "missing_card_count": 23,
+      "missing_secret_count": 0,
+      "db_set_codes": [
+        "sm3"
+      ],
+      "extra_card_number_count": 0,
+      "name_mismatch_count": 0,
+      "printed_total": 147,
+      "pokemonapi_set_id": "sm3",
+      "tcgdex_set_id": "sm3",
+      "lane": "established_set_backfill_candidate_after_preflight",
+      "recommended_next_action": "eligible only for future row-level dry-run after all global blockers are clear",
+      "future_insert_allowed_without_review": false
+    },
+    {
+      "master_set_name": "Legendary Treasures",
+      "master_set_abbrev": "LTR",
+      "series": "Black & White",
+      "master_url": "https://pkmncards.com/set/legendary-treasures/",
+      "missing_card_count": 20,
+      "missing_secret_count": 0,
+      "db_set_codes": [
+        "bw11"
+      ],
+      "extra_card_number_count": 1,
+      "name_mismatch_count": 0,
+      "printed_total": 113,
+      "pokemonapi_set_id": "bw11",
+      "tcgdex_set_id": "bw11",
+      "lane": "number_normalization_first",
+      "recommended_next_action": "run number normalization dry-run and rerun master audit before any insert",
+      "future_insert_allowed_without_review": false
+    },
+    {
+      "master_set_name": "Forbidden Light",
+      "master_set_abbrev": "FLI",
+      "series": "Sun & Moon",
+      "master_url": "https://pkmncards.com/set/forbidden-light/",
+      "missing_card_count": 19,
+      "missing_secret_count": 0,
+      "db_set_codes": [
+        "sm6"
+      ],
+      "extra_card_number_count": 0,
+      "name_mismatch_count": 7,
+      "printed_total": 131,
+      "pokemonapi_set_id": "sm6",
+      "tcgdex_set_id": "sm6",
+      "lane": "name_mismatch_or_identity_review_first",
+      "recommended_next_action": "resolve name mismatch and existing identity coverage before any insert",
+      "future_insert_allowed_without_review": false
+    },
+    {
+      "master_set_name": "Ultra Prism",
+      "master_set_abbrev": "UPR",
+      "series": "Sun & Moon",
+      "master_url": "https://pkmncards.com/set/ultra-prism/",
+      "missing_card_count": 18,
+      "missing_secret_count": 0,
+      "db_set_codes": [
+        "sm5"
+      ],
+      "extra_card_number_count": 0,
+      "name_mismatch_count": 10,
+      "printed_total": 156,
+      "pokemonapi_set_id": "sm5",
+      "tcgdex_set_id": "sm5",
+      "lane": "name_mismatch_or_identity_review_first",
+      "recommended_next_action": "resolve name mismatch and existing identity coverage before any insert",
+      "future_insert_allowed_without_review": false
+    },
+    {
+      "master_set_name": "Celestial Storm",
+      "master_set_abbrev": "CES",
+      "series": "Sun & Moon",
+      "master_url": "https://pkmncards.com/set/celestial-storm/",
+      "missing_card_count": 17,
+      "missing_secret_count": 0,
+      "db_set_codes": [
+        "sm7"
+      ],
+      "extra_card_number_count": 0,
+      "name_mismatch_count": 3,
+      "printed_total": 168,
+      "pokemonapi_set_id": "sm7",
+      "tcgdex_set_id": "sm7",
+      "lane": "name_mismatch_or_identity_review_first",
+      "recommended_next_action": "resolve name mismatch and existing identity coverage before any insert",
+      "future_insert_allowed_without_review": false
+    },
+    {
+      "master_set_name": "Rumble",
+      "master_set_abbrev": "RM",
+      "series": "Platinum",
+      "master_url": "https://pkmncards.com/set/rumble/",
+      "missing_card_count": 16,
+      "missing_secret_count": 0,
+      "db_set_codes": [],
+      "extra_card_number_count": 0,
+      "name_mismatch_count": 0,
+      "printed_total": null,
+      "pokemonapi_set_id": null,
+      "tcgdex_set_id": null,
+      "lane": "source_route_or_existing_target_no_insert",
+      "recommended_next_action": "prove RM checklist equivalence to existing ru1; no card insert unless equivalence fails",
+      "future_insert_allowed_without_review": false
+    },
+    {
+      "master_set_name": "McDonald’s Match Battle 2023",
+      "master_set_abbrev": "M23",
+      "series": "Scarlet & Violet",
+      "master_url": "https://pkmncards.com/set/mcdonalds-match-battle-2023/",
+      "missing_card_count": 15,
+      "missing_secret_count": 0,
+      "db_set_codes": [],
+      "extra_card_number_count": 0,
+      "name_mismatch_count": 0,
+      "printed_total": null,
+      "pokemonapi_set_id": null,
+      "tcgdex_set_id": null,
+      "lane": "target_set_needed_before_card_backfill",
+      "recommended_next_action": "create reviewed target-set dry-run before any card candidate",
+      "future_insert_allowed_without_review": false
+    },
+    {
+      "master_set_name": "Skyridge",
+      "master_set_abbrev": "SK",
+      "series": "E-Card",
+      "master_url": "https://pkmncards.com/set/skyridge/",
+      "missing_card_count": 15,
+      "missing_secret_count": 0,
+      "db_set_codes": [
+        "ecard3"
+      ],
+      "extra_card_number_count": 1,
+      "name_mismatch_count": 9,
+      "printed_total": 144,
+      "pokemonapi_set_id": "ecard3",
+      "tcgdex_set_id": "ecard3",
+      "lane": "name_mismatch_or_identity_review_first",
+      "recommended_next_action": "resolve name mismatch and existing identity coverage before any insert",
+      "future_insert_allowed_without_review": false
+    },
+    {
+      "master_set_name": "Arceus",
+      "master_set_abbrev": "AR",
+      "series": "Platinum",
+      "master_url": "https://pkmncards.com/set/arceus/",
+      "missing_card_count": 12,
+      "missing_secret_count": 0,
+      "db_set_codes": [
+        "pl4"
+      ],
+      "extra_card_number_count": 1,
+      "name_mismatch_count": 0,
+      "printed_total": 99,
+      "pokemonapi_set_id": "pl4",
+      "tcgdex_set_id": "pl4",
+      "lane": "number_normalization_first",
+      "recommended_next_action": "run number normalization dry-run and rerun master audit before any insert",
+      "future_insert_allowed_without_review": false
+    },
+    {
+      "master_set_name": "Box Topper",
+      "master_set_abbrev": null,
+      "series": "Other",
+      "master_url": "https://pkmncards.com/set/box-topper/",
+      "missing_card_count": 12,
+      "missing_secret_count": 0,
+      "db_set_codes": [],
+      "extra_card_number_count": 0,
+      "name_mismatch_count": 0,
+      "printed_total": null,
+      "pokemonapi_set_id": null,
+      "tcgdex_set_id": null,
+      "lane": "special_policy_blocked",
+      "recommended_next_action": "settle special collection or energy policy before card candidate",
+      "future_insert_allowed_without_review": false
+    },
+    {
+      "master_set_name": "Call of Legends",
+      "master_set_abbrev": "CL",
+      "series": "HeartGold & SoulSilver",
+      "master_url": "https://pkmncards.com/set/call-of-legends/",
+      "missing_card_count": 11,
+      "missing_secret_count": 0,
+      "db_set_codes": [
+        "col1"
+      ],
+      "extra_card_number_count": 1,
+      "name_mismatch_count": 0,
+      "printed_total": 95,
+      "pokemonapi_set_id": "col1",
+      "tcgdex_set_id": "col1",
+      "lane": "number_normalization_first",
+      "recommended_next_action": "run number normalization dry-run and rerun master audit before any insert",
+      "future_insert_allowed_without_review": false
+    },
+    {
+      "master_set_name": "Dragon Majesty",
+      "master_set_abbrev": "DRM",
+      "series": "Sun & Moon",
+      "master_url": "https://pkmncards.com/set/dragon-majesty/",
+      "missing_card_count": 10,
+      "missing_secret_count": 0,
+      "db_set_codes": [
+        "sm7.5",
+        "sm75"
+      ],
+      "extra_card_number_count": 0,
+      "name_mismatch_count": 2,
+      "printed_total": 70,
+      "pokemonapi_set_id": "sm75",
+      "tcgdex_set_id": "sm7.5",
+      "lane": "canonical_alias_blocked",
+      "recommended_next_action": "resolve canonical target set and name mismatches before any insert",
+      "future_insert_allowed_without_review": false
+    },
+    {
+      "master_set_name": "Sun & Moon Energy",
+      "master_set_abbrev": null,
+      "series": "Sun & Moon",
+      "master_url": "https://pkmncards.com/set/sun-moon-energy/",
+      "missing_card_count": 9,
+      "missing_secret_count": 0,
+      "db_set_codes": [],
+      "extra_card_number_count": 0,
+      "name_mismatch_count": 0,
+      "printed_total": null,
+      "pokemonapi_set_id": null,
+      "tcgdex_set_id": null,
+      "lane": "special_policy_blocked",
+      "recommended_next_action": "settle special collection or energy policy before card candidate",
+      "future_insert_allowed_without_review": false
+    },
+    {
+      "master_set_name": "Sun & Moon Energy (Team Up)",
+      "master_set_abbrev": null,
+      "series": "Sun & Moon",
+      "master_url": "https://pkmncards.com/set/sun-moon-energy-team-up/",
+      "missing_card_count": 9,
+      "missing_secret_count": 0,
+      "db_set_codes": [],
+      "extra_card_number_count": 0,
+      "name_mismatch_count": 0,
+      "printed_total": null,
+      "pokemonapi_set_id": null,
+      "tcgdex_set_id": null,
+      "lane": "special_policy_blocked",
+      "recommended_next_action": "settle special collection or energy policy before card candidate",
+      "future_insert_allowed_without_review": false
+    },
+    {
+      "master_set_name": "Sword & Shield Energy",
+      "master_set_abbrev": null,
+      "series": "Sword & Shield",
+      "master_url": "https://pkmncards.com/set/sword-shield-energy/",
+      "missing_card_count": 9,
+      "missing_secret_count": 0,
+      "db_set_codes": [],
+      "extra_card_number_count": 0,
+      "name_mismatch_count": 0,
+      "printed_total": null,
+      "pokemonapi_set_id": null,
+      "tcgdex_set_id": null,
+      "lane": "special_policy_blocked",
+      "recommended_next_action": "settle special collection or energy policy before card candidate",
+      "future_insert_allowed_without_review": false
+    },
+    {
+      "master_set_name": "Victory Medals",
+      "master_set_abbrev": null,
+      "series": "Other",
+      "master_url": "https://pkmncards.com/set/victory-medals/",
+      "missing_card_count": 9,
+      "missing_secret_count": 0,
+      "db_set_codes": [],
+      "extra_card_number_count": 0,
+      "name_mismatch_count": 0,
+      "printed_total": null,
+      "pokemonapi_set_id": null,
+      "tcgdex_set_id": null,
+      "lane": "special_policy_blocked",
+      "recommended_next_action": "settle special collection or energy policy before card candidate",
+      "future_insert_allowed_without_review": false
+    },
+    {
+      "master_set_name": "World Collection",
+      "master_set_abbrev": null,
+      "series": "Other",
+      "master_url": "https://pkmncards.com/set/world-collection/",
+      "missing_card_count": 9,
+      "missing_secret_count": 0,
+      "db_set_codes": [],
+      "extra_card_number_count": 0,
+      "name_mismatch_count": 0,
+      "printed_total": null,
+      "pokemonapi_set_id": null,
+      "tcgdex_set_id": null,
+      "lane": "special_policy_blocked",
+      "recommended_next_action": "settle special collection or energy policy before card candidate",
+      "future_insert_allowed_without_review": false
+    },
+    {
+      "master_set_name": "XY Energy (2013 Unnumbered)",
+      "master_set_abbrev": null,
+      "series": "XY",
+      "master_url": "https://pkmncards.com/set/xy-energy-2013-unnumbered/",
+      "missing_card_count": 9,
+      "missing_secret_count": 0,
+      "db_set_codes": [],
+      "extra_card_number_count": 0,
+      "name_mismatch_count": 0,
+      "printed_total": null,
+      "pokemonapi_set_id": null,
+      "tcgdex_set_id": null,
+      "lane": "special_policy_blocked",
+      "recommended_next_action": "settle special collection or energy policy before card candidate",
+      "future_insert_allowed_without_review": false
+    },
+    {
+      "master_set_name": "Black & White Energy (2011 Unnumbered)",
+      "master_set_abbrev": null,
+      "series": "Black & White",
+      "master_url": "https://pkmncards.com/set/black-white-energy-2011-unnumbered/",
+      "missing_card_count": 8,
+      "missing_secret_count": 0,
+      "db_set_codes": [],
+      "extra_card_number_count": 0,
+      "name_mismatch_count": 0,
+      "printed_total": null,
+      "pokemonapi_set_id": null,
+      "tcgdex_set_id": null,
+      "lane": "special_policy_blocked",
+      "recommended_next_action": "settle special collection or energy policy before card candidate",
+      "future_insert_allowed_without_review": false
+    },
+    {
+      "master_set_name": "Crimson Invasion",
+      "master_set_abbrev": "CIN",
+      "series": "Sun & Moon",
+      "master_url": "https://pkmncards.com/set/crimson-invasion/",
+      "missing_card_count": 8,
+      "missing_secret_count": 0,
+      "db_set_codes": [
+        "sm4"
+      ],
+      "extra_card_number_count": 0,
+      "name_mismatch_count": 0,
+      "printed_total": 111,
+      "pokemonapi_set_id": "sm4",
+      "tcgdex_set_id": "sm4",
+      "lane": "established_set_backfill_candidate_after_preflight",
+      "recommended_next_action": "eligible only for future row-level dry-run after all global blockers are clear",
+      "future_insert_allowed_without_review": false
+    },
+    {
+      "master_set_name": "HS Energy (2010 Unnumbered)",
+      "master_set_abbrev": null,
+      "series": "HeartGold & SoulSilver",
+      "master_url": "https://pkmncards.com/set/hs-energy-2010-unnumbered/",
+      "missing_card_count": 8,
+      "missing_secret_count": 0,
+      "db_set_codes": [],
+      "extra_card_number_count": 0,
+      "name_mismatch_count": 0,
+      "printed_total": null,
+      "pokemonapi_set_id": null,
+      "tcgdex_set_id": null,
+      "lane": "special_policy_blocked",
+      "recommended_next_action": "settle special collection or energy policy before card candidate",
+      "future_insert_allowed_without_review": false
+    },
+    {
+      "master_set_name": "Mega Evolution Energy",
+      "master_set_abbrev": "MEE",
+      "series": "Mega Evolution",
+      "master_url": "https://pkmncards.com/set/mee/",
+      "missing_card_count": 8,
+      "missing_secret_count": 0,
+      "db_set_codes": [],
+      "extra_card_number_count": 0,
+      "name_mismatch_count": 0,
+      "printed_total": 8,
+      "pokemonapi_set_id": null,
+      "tcgdex_set_id": "mee",
+      "lane": "special_policy_blocked",
+      "recommended_next_action": "settle special collection or energy policy before card candidate",
+      "future_insert_allowed_without_review": false
+    },
+    {
+      "master_set_name": "Scarlet & Violet Energy",
+      "master_set_abbrev": "SVE",
+      "series": "Scarlet & Violet",
+      "master_url": "https://pkmncards.com/set/scarlet-violet-energy/",
+      "missing_card_count": 8,
+      "missing_secret_count": 8,
+      "db_set_codes": [
+        "sve"
+      ],
+      "extra_card_number_count": 0,
+      "name_mismatch_count": 16,
+      "printed_total": 8,
+      "pokemonapi_set_id": "sve",
+      "tcgdex_set_id": "sve",
+      "lane": "special_policy_blocked",
+      "recommended_next_action": "settle special collection or energy policy before card candidate",
+      "future_insert_allowed_without_review": false
+    },
+    {
+      "master_set_name": "Scarlet & Violet Promos",
+      "master_set_abbrev": "SVP",
+      "series": "Scarlet & Violet",
+      "master_url": "https://pkmncards.com/set/scarlet-violet-promos/",
+      "missing_card_count": 8,
+      "missing_secret_count": 5,
+      "db_set_codes": [
+        "svp"
+      ],
+      "extra_card_number_count": 3,
+      "name_mismatch_count": 0,
+      "printed_total": 215,
+      "pokemonapi_set_id": "svp",
+      "tcgdex_set_id": null,
+      "lane": "number_normalization_first",
+      "recommended_next_action": "run number normalization dry-run and rerun master audit before any insert",
+      "future_insert_allowed_without_review": false
+    },
+    {
+      "master_set_name": "Sword & Shield Energy (Brilliant Stars)",
+      "master_set_abbrev": null,
+      "series": "Sword & Shield",
+      "master_url": "https://pkmncards.com/set/sword-shield-energy-brilliant-stars/",
+      "missing_card_count": 8,
+      "missing_secret_count": 0,
+      "db_set_codes": [],
+      "extra_card_number_count": 0,
+      "name_mismatch_count": 0,
+      "printed_total": null,
+      "pokemonapi_set_id": null,
+      "tcgdex_set_id": null,
+      "lane": "special_policy_blocked",
+      "recommended_next_action": "settle special collection or energy policy before card candidate",
+      "future_insert_allowed_without_review": false
+    },
+    {
+      "master_set_name": "Sun & Moon",
+      "master_set_abbrev": "SUM",
+      "series": "Sun & Moon",
+      "master_url": "https://pkmncards.com/set/sun-moon/",
+      "missing_card_count": 7,
+      "missing_secret_count": 0,
+      "db_set_codes": [
+        "sm1"
+      ],
+      "extra_card_number_count": 9,
+      "name_mismatch_count": 0,
+      "printed_total": 149,
+      "pokemonapi_set_id": "sm1",
+      "tcgdex_set_id": "sm1",
+      "lane": "established_set_backfill_candidate_after_preflight",
+      "recommended_next_action": "eligible only for future row-level dry-run after all global blockers are clear",
+      "future_insert_allowed_without_review": false
+    },
+    {
+      "master_set_name": "Rising Rivals",
+      "master_set_abbrev": "RR",
+      "series": "Platinum",
+      "master_url": "https://pkmncards.com/set/rising-rivals/",
+      "missing_card_count": 6,
+      "missing_secret_count": 0,
+      "db_set_codes": [
+        "pl2"
+      ],
+      "extra_card_number_count": 1,
+      "name_mismatch_count": 2,
+      "printed_total": 111,
+      "pokemonapi_set_id": "pl2",
+      "tcgdex_set_id": "pl2",
+      "lane": "name_mismatch_or_identity_review_first",
+      "recommended_next_action": "resolve name mismatch and existing identity coverage before any insert",
+      "future_insert_allowed_without_review": false
+    },
+    {
+      "master_set_name": "Lost Thunder",
+      "master_set_abbrev": "LOT",
+      "series": "Sun & Moon",
+      "master_url": "https://pkmncards.com/set/lost-thunder/",
+      "missing_card_count": 5,
+      "missing_secret_count": 0,
+      "db_set_codes": [
+        "sm8"
+      ],
+      "extra_card_number_count": 0,
+      "name_mismatch_count": 11,
+      "printed_total": 214,
+      "pokemonapi_set_id": "sm8",
+      "tcgdex_set_id": "sm8",
+      "lane": "name_mismatch_or_identity_review_first",
+      "recommended_next_action": "resolve name mismatch and existing identity coverage before any insert",
+      "future_insert_allowed_without_review": false
+    },
+    {
+      "master_set_name": "Shining Legends",
+      "master_set_abbrev": "SLG",
+      "series": "Sun & Moon",
+      "master_url": "https://pkmncards.com/set/shining-legends/",
+      "missing_card_count": 5,
+      "missing_secret_count": 0,
+      "db_set_codes": [
+        "sm3.5",
+        "sm35"
+      ],
+      "extra_card_number_count": 0,
+      "name_mismatch_count": 0,
+      "printed_total": 73,
+      "pokemonapi_set_id": "sm35",
+      "tcgdex_set_id": "sm3.5",
+      "lane": "established_set_backfill_candidate_after_preflight",
+      "recommended_next_action": "eligible only for future row-level dry-run after all global blockers are clear",
+      "future_insert_allowed_without_review": false
+    },
+    {
+      "master_set_name": "Unbroken Bonds",
+      "master_set_abbrev": "UNB",
+      "series": "Sun & Moon",
+      "master_url": "https://pkmncards.com/set/unbroken-bonds/",
+      "missing_card_count": 4,
+      "missing_secret_count": 0,
+      "db_set_codes": [
+        "sm10"
+      ],
+      "extra_card_number_count": 0,
+      "name_mismatch_count": 1,
+      "printed_total": 214,
+      "pokemonapi_set_id": "sm10",
+      "tcgdex_set_id": "sm10",
+      "lane": "name_mismatch_or_identity_review_first",
+      "recommended_next_action": "resolve name mismatch and existing identity coverage before any insert",
+      "future_insert_allowed_without_review": false
+    },
+    {
+      "master_set_name": "Fates Collide",
+      "master_set_abbrev": "FCO",
+      "series": "XY",
+      "master_url": "https://pkmncards.com/set/fates-collide/",
+      "missing_card_count": 3,
+      "missing_secret_count": 0,
+      "db_set_codes": [
+        "xy10"
+      ],
+      "extra_card_number_count": 0,
+      "name_mismatch_count": 0,
+      "printed_total": 124,
+      "pokemonapi_set_id": "xy10",
+      "tcgdex_set_id": "xy10",
+      "lane": "established_set_backfill_candidate_after_preflight",
+      "recommended_next_action": "eligible only for future row-level dry-run after all global blockers are clear",
+      "future_insert_allowed_without_review": false
+    },
+    {
+      "master_set_name": "Platinum",
+      "master_set_abbrev": "PL",
+      "series": "Platinum",
+      "master_url": "https://pkmncards.com/set/platinum/",
+      "missing_card_count": 3,
+      "missing_secret_count": 0,
+      "db_set_codes": [
+        "pl1"
+      ],
+      "extra_card_number_count": 1,
+      "name_mismatch_count": 0,
+      "printed_total": 127,
+      "pokemonapi_set_id": "pl1",
+      "tcgdex_set_id": "pl1",
+      "lane": "established_set_backfill_candidate_after_preflight",
+      "recommended_next_action": "eligible only for future row-level dry-run after all global blockers are clear",
+      "future_insert_allowed_without_review": false
+    },
+    {
+      "master_set_name": "Stormfront",
+      "master_set_abbrev": "SF",
+      "series": "Diamond & Pearl",
+      "master_url": "https://pkmncards.com/set/stormfront/",
+      "missing_card_count": 3,
+      "missing_secret_count": 0,
+      "db_set_codes": [
+        "dp7"
+      ],
+      "extra_card_number_count": 1,
+      "name_mismatch_count": 0,
+      "printed_total": 100,
+      "pokemonapi_set_id": "dp7",
+      "tcgdex_set_id": "dp7",
+      "lane": "established_set_backfill_candidate_after_preflight",
+      "recommended_next_action": "eligible only for future row-level dry-run after all global blockers are clear",
+      "future_insert_allowed_without_review": false
+    },
+    {
+      "master_set_name": "Sun & Moon Promos",
+      "master_set_abbrev": "SMP",
+      "series": "Sun & Moon",
+      "master_url": "https://pkmncards.com/set/sun-moon-promos/",
+      "missing_card_count": 3,
+      "missing_secret_count": 0,
+      "db_set_codes": [
+        "smp"
+      ],
+      "extra_card_number_count": 0,
+      "name_mismatch_count": 0,
+      "printed_total": 248,
+      "pokemonapi_set_id": "smp",
+      "tcgdex_set_id": "smp",
+      "lane": "established_set_backfill_candidate_after_preflight",
+      "recommended_next_action": "eligible only for future row-level dry-run after all global blockers are clear",
+      "future_insert_allowed_without_review": false
+    },
+    {
+      "master_set_name": "Sword & Shield Promos",
+      "master_set_abbrev": null,
+      "series": "Sword & Shield",
+      "master_url": "https://pkmncards.com/set/sword-shield-promos/",
+      "missing_card_count": 3,
+      "missing_secret_count": 0,
+      "db_set_codes": [
+        "swshp"
+      ],
+      "extra_card_number_count": 2,
+      "name_mismatch_count": 1,
+      "printed_total": 307,
+      "pokemonapi_set_id": "swshp",
+      "tcgdex_set_id": "swshp",
+      "lane": "name_mismatch_or_identity_review_first",
+      "recommended_next_action": "resolve name mismatch and existing identity coverage before any insert",
+      "future_insert_allowed_without_review": false
+    },
+    {
+      "master_set_name": "Team Up",
+      "master_set_abbrev": "TEU",
+      "series": "Sun & Moon",
+      "master_url": "https://pkmncards.com/set/team-up/",
+      "missing_card_count": 3,
+      "missing_secret_count": 0,
+      "db_set_codes": [
+        "sm9"
+      ],
+      "extra_card_number_count": 0,
+      "name_mismatch_count": 6,
+      "printed_total": 181,
+      "pokemonapi_set_id": "sm9",
+      "tcgdex_set_id": "sm9",
+      "lane": "name_mismatch_or_identity_review_first",
+      "recommended_next_action": "resolve name mismatch and existing identity coverage before any insert",
+      "future_insert_allowed_without_review": false
+    },
+    {
+      "master_set_name": "Unified Minds",
+      "master_set_abbrev": "UNM",
+      "series": "Sun & Moon",
+      "master_url": "https://pkmncards.com/set/unified-minds/",
+      "missing_card_count": 3,
+      "missing_secret_count": 0,
+      "db_set_codes": [
+        "sm11"
+      ],
+      "extra_card_number_count": 0,
+      "name_mismatch_count": 0,
+      "printed_total": 236,
+      "pokemonapi_set_id": "sm11",
+      "tcgdex_set_id": "sm11",
+      "lane": "established_set_backfill_candidate_after_preflight",
+      "recommended_next_action": "eligible only for future row-level dry-run after all global blockers are clear",
+      "future_insert_allowed_without_review": false
+    },
+    {
+      "master_set_name": "Supreme Victors",
+      "master_set_abbrev": "SV",
+      "series": "Platinum",
+      "master_url": "https://pkmncards.com/set/supreme-victors/",
+      "missing_card_count": 2,
+      "missing_secret_count": 0,
+      "db_set_codes": [
+        "pl3"
+      ],
+      "extra_card_number_count": 1,
+      "name_mismatch_count": 0,
+      "printed_total": 147,
+      "pokemonapi_set_id": "pl3",
+      "tcgdex_set_id": "pl3",
+      "lane": "established_set_backfill_candidate_after_preflight",
+      "recommended_next_action": "eligible only for future row-level dry-run after all global blockers are clear",
+      "future_insert_allowed_without_review": false
+    },
+    {
+      "master_set_name": "XY Promos",
+      "master_set_abbrev": "XYP",
+      "series": "XY",
+      "master_url": "https://pkmncards.com/set/xy-promos/",
+      "missing_card_count": 2,
+      "missing_secret_count": 0,
+      "db_set_codes": [
+        "xyp"
+      ],
+      "extra_card_number_count": 1,
+      "name_mismatch_count": 0,
+      "printed_total": 211,
+      "pokemonapi_set_id": "xyp",
+      "tcgdex_set_id": "xyp",
+      "lane": "number_normalization_first",
+      "recommended_next_action": "run number normalization dry-run and rerun master audit before any insert",
+      "future_insert_allowed_without_review": false
+    },
+    {
+      "master_set_name": "Ancient Origins",
+      "master_set_abbrev": "AOR",
+      "series": "XY",
+      "master_url": "https://pkmncards.com/set/ancient-origins/",
+      "missing_card_count": 1,
+      "missing_secret_count": 0,
+      "db_set_codes": [
+        "xy7"
+      ],
+      "extra_card_number_count": 0,
+      "name_mismatch_count": 0,
+      "printed_total": 98,
+      "pokemonapi_set_id": "xy7",
+      "tcgdex_set_id": "xy7",
+      "lane": "established_set_backfill_candidate_after_preflight",
+      "recommended_next_action": "eligible only for future row-level dry-run after all global blockers are clear",
+      "future_insert_allowed_without_review": false
+    },
+    {
+      "master_set_name": "BREAKpoint",
+      "master_set_abbrev": "BKP",
+      "series": "XY",
+      "master_url": "https://pkmncards.com/set/breakpoint/",
+      "missing_card_count": 1,
+      "missing_secret_count": 0,
+      "db_set_codes": [
+        "xy9"
+      ],
+      "extra_card_number_count": 1,
+      "name_mismatch_count": 0,
+      "printed_total": 122,
+      "pokemonapi_set_id": "xy9",
+      "tcgdex_set_id": "xy9",
+      "lane": "established_set_backfill_candidate_after_preflight",
+      "recommended_next_action": "eligible only for future row-level dry-run after all global blockers are clear",
+      "future_insert_allowed_without_review": false
+    },
+    {
+      "master_set_name": "BREAKthrough",
+      "master_set_abbrev": "BKT",
+      "series": "XY",
+      "master_url": "https://pkmncards.com/set/breakthrough/",
+      "missing_card_count": 1,
+      "missing_secret_count": 0,
+      "db_set_codes": [
+        "xy8"
+      ],
+      "extra_card_number_count": 0,
+      "name_mismatch_count": 0,
+      "printed_total": 162,
+      "pokemonapi_set_id": "xy8",
+      "tcgdex_set_id": "xy8",
+      "lane": "established_set_backfill_candidate_after_preflight",
+      "recommended_next_action": "eligible only for future row-level dry-run after all global blockers are clear",
+      "future_insert_allowed_without_review": false
+    },
+    {
+      "master_set_name": "Cosmic Eclipse",
+      "master_set_abbrev": "CEC",
+      "series": "Sun & Moon",
+      "master_url": "https://pkmncards.com/set/cosmic-eclipse/",
+      "missing_card_count": 1,
+      "missing_secret_count": 0,
+      "db_set_codes": [
+        "sm12"
+      ],
+      "extra_card_number_count": 0,
+      "name_mismatch_count": 0,
+      "printed_total": 236,
+      "pokemonapi_set_id": "sm12",
+      "tcgdex_set_id": "sm12",
+      "lane": "established_set_backfill_candidate_after_preflight",
+      "recommended_next_action": "eligible only for future row-level dry-run after all global blockers are clear",
+      "future_insert_allowed_without_review": false
+    },
+    {
+      "master_set_name": "Flashfire",
+      "master_set_abbrev": "FLF",
+      "series": "XY",
+      "master_url": "https://pkmncards.com/set/flashfire/",
+      "missing_card_count": 1,
+      "missing_secret_count": 0,
+      "db_set_codes": [
+        "xy2"
+      ],
+      "extra_card_number_count": 0,
+      "name_mismatch_count": 0,
+      "printed_total": 106,
+      "pokemonapi_set_id": "xy2",
+      "tcgdex_set_id": "xy2",
+      "lane": "established_set_backfill_candidate_after_preflight",
+      "recommended_next_action": "eligible only for future row-level dry-run after all global blockers are clear",
+      "future_insert_allowed_without_review": false
+    },
+    {
+      "master_set_name": "Generations",
+      "master_set_abbrev": "GEN",
+      "series": "XY",
+      "master_url": "https://pkmncards.com/set/generations/",
+      "missing_card_count": 1,
+      "missing_secret_count": 0,
+      "db_set_codes": [
+        "g1"
+      ],
+      "extra_card_number_count": 0,
+      "name_mismatch_count": 0,
+      "printed_total": 83,
+      "pokemonapi_set_id": "g1",
+      "tcgdex_set_id": "g1",
+      "lane": "established_set_backfill_candidate_after_preflight",
+      "recommended_next_action": "eligible only for future row-level dry-run after all global blockers are clear",
+      "future_insert_allowed_without_review": false
+    },
+    {
+      "master_set_name": "Phantom Forces",
+      "master_set_abbrev": "PHF",
+      "series": "XY",
+      "master_url": "https://pkmncards.com/set/phantom-forces/",
+      "missing_card_count": 1,
+      "missing_secret_count": 0,
+      "db_set_codes": [
+        "xy4"
+      ],
+      "extra_card_number_count": 1,
+      "name_mismatch_count": 0,
+      "printed_total": 119,
+      "pokemonapi_set_id": "xy4",
+      "tcgdex_set_id": "xy4",
+      "lane": "number_normalization_first",
+      "recommended_next_action": "run number normalization dry-run and rerun master audit before any insert",
+      "future_insert_allowed_without_review": false
+    }
+  ]
+}

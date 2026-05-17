@@ -7,6 +7,7 @@ import {
   suppressPromotedProvisionalRows,
 } from "@/lib/provisional/getPromotionTransitionState";
 import { resolveQueryWithMeta } from "@/lib/resolver/resolveQuery";
+import { resolvePublicSetRouteCode } from "@/lib/publicSets.shared";
 
 export const revalidate = 120;
 
@@ -46,7 +47,7 @@ function normalizeOptionalText(value: unknown) {
 export async function GET(request: NextRequest) {
   const rawQuery = request.nextUrl.searchParams.get("q") ?? "";
   const query = rawQuery.trim();
-  const exactSetCode = normalizeSetCode(request.nextUrl.searchParams.get("set"));
+  const exactSetCode = resolvePublicSetRouteCode(normalizeSetCode(request.nextUrl.searchParams.get("set")));
   const exactReleaseYear = parseReleaseYear(request.nextUrl.searchParams.get("year"));
   const exactIllustrator = normalizeIllustrator(request.nextUrl.searchParams.get("illustrator"));
   const identityFilter = normalizeIdentityFilterKey(request.nextUrl.searchParams.get("identity"));

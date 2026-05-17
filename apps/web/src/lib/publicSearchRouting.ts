@@ -21,6 +21,9 @@ const EXACT_SET_ALIASES = new Set([
   "sit",
   "silver tempest",
   "svi",
+  ...Object.keys(SET_INTENT_ALIAS_MAP)
+    .map((value) => value.trim().toLowerCase())
+    .filter(Boolean),
 ]);
 
 const SET_PHRASES = [
@@ -178,6 +181,10 @@ export function shouldUseResolverRoute(raw: string): boolean {
   }
 
   if (tokens.length === 1 && (EXACT_SET_ALIASES.has(normalized) || isLikelySetCodeToken(tokens[0]))) {
+    return true;
+  }
+
+  if (EXACT_SET_ALIASES.has(normalized)) {
     return true;
   }
 
