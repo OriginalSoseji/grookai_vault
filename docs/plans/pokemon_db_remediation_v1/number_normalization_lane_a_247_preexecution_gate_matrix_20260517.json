@@ -1,6 +1,6 @@
 {
   "status": "PASS_247_EXACT_MATCH_NO_WRITE",
-  "generated_at": "2026-05-17T18:06:04.915Z",
+  "generated_at": "2026-05-17T18:12:13.447Z",
   "committed_matrix_path": "docs/plans/pokemon_db_remediation_v1/number_normalization_lane_a_247_write_plan_matrix_20260517.json",
   "source": "live Supabase read-only transaction",
   "summary": {

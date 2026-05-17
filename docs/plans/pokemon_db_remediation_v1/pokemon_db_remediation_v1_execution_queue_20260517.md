@@ -42,7 +42,7 @@ Current evidence:
 | Lane | Rows | Next gate |
 | --- | ---: | --- |
 | Numeric source candidates outside hard stops | 504 | row-level candidate evidence complete |
-| Clean numeric Lane A write-plan candidates | 248 | 247-row pre-execution gate passed; 1 manual referenced row remains excluded |
+| Clean numeric Lane A write-plan candidates | 248 | 247-row execution complete; 1 manual referenced row remains excluded |
 | Collision-blocked numeric Lane A rows | 256 | collision investigation complete; set-scoped ownership review next |
 | Likely duplicate import rows | 154 | duplicate-row ownership pack |
 | Same-card duplicate-review rows | 27 | source authority review |
@@ -55,13 +55,13 @@ Current evidence:
 | Existing number/generated field risk rows | 1,554 | comparable number contract |
 | Source-tail conflicts on existing numbers | 85 | source conflict manual review |
 
-Recommended immediate number writes remain `0`.
+Recommended immediate number writes after the approved Lane A 247 execution are `0`.
 
 Future no-write queue:
 
 | Priority | Item | Scope | Required evidence | Write status |
 | ---: | --- | --- | --- | --- |
-| 1 | Lane A 247-row execution decision | 247 unreferenced rows | explicit approval, immediate controlled transaction, snapshot, exact 247 post-write verification | not authorized yet |
+| 1 | Lane A 247-row post-write regression audit | 247 executed rows | keep exact-match evidence current after future imports or source refreshes | read-only verification |
 | 2 | Grey Felt Hat manual decision | `svp` Pikachu with Grey Felt Hat #85 | decide leave unnormalized, one-row future write, or defer to identity maintenance | manual evidence only |
 | 3 | `me01` duplicate resolution prewrite evidence | 83 duplicate pairs; 2 user/market hard stops | fresh row-level safety gates from live DB before any future write candidate | no-write evidence only |
 | 4 | `svp` duplicate ownership pack | 72 collision rows | separate duplicate imports from same-card review rows | evidence only |

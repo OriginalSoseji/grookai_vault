@@ -1,6 +1,6 @@
 # Pokemon DB Remediation V1
 
-Status: remediation planning index. Executed DB route-classification changes in this remediation thread are documented separately in `set_alias_route_classification_execution_20260517.md` and `source_route_classification_execution_20260517.md`. No additional Supabase writes, migrations, inserts, updates, deletes, migration repair, `db pull`, or production data mutation are authorized by this plan index.
+Status: remediation planning index. Executed DB route-classification changes in this remediation thread are documented separately in `set_alias_route_classification_execution_20260517.md` and `source_route_classification_execution_20260517.md`. The approved Lane A number-normalization execution is documented in `number_normalization_lane_a_247_execution_20260517.md`. No additional Supabase writes, migrations, inserts, updates, deletes, migration repair, `db pull`, or production data mutation are authorized by this plan index.
 
 ## Source Audit References
 
@@ -89,6 +89,8 @@ No card row should be imported until the canonical target set is resolved and pr
 - `number_normalization_lane_a_247_write_plan_matrix_20260517.json`
 - `number_normalization_lane_a_247_preexecution_gate_20260517.md`
 - `number_normalization_lane_a_247_preexecution_gate_matrix_20260517.json`
+- `number_normalization_lane_a_247_execution_20260517.md`
+- `number_normalization_lane_a_247_execution_matrix_20260517.json`
 - `number_normalization_grey_felt_hat_manual_evidence_20260517.md`
 - `number_normalization_grey_felt_hat_manual_evidence_matrix_20260517.json`
 - `number_normalization_dry_run_implementation_plan_20260517.md`

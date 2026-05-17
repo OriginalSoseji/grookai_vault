@@ -77,7 +77,7 @@ The remediation chain now has reviewable no-write artifacts for each required ph
 | Alias route classification | Planned, executed only for approved route fixes, verified | `set_alias_route_classification_write_plan_20260517.md`, `set_alias_route_classification_execution_20260517.md` |
 | Alias metadata preservation | Planned only | `set_alias_metadata_preservation_plan_20260517.md` |
 | Missing set universe | Classified only | `missing_set_universe_decision_20260517.md` |
-| Number normalization | Evidence, candidate matrix, collision investigation, `me01` ownership/design pack, Lane A write-plan drafts, pre-execution gates, Grey Felt Hat manual pack, and dry-run plan only | `number_normalization_evidence_20260517.md`, `number_normalization_candidate_evidence_20260517.md`, `number_normalization_collision_investigation_20260517.md`, `number_normalization_me01_duplicate_ownership_20260517.md`, `number_normalization_me01_duplicate_resolution_design_20260517.md`, `number_normalization_lane_a_248_write_plan_20260517.md`, `number_normalization_lane_a_248_preexecution_gate_20260517.md`, `number_normalization_lane_a_247_write_plan_20260517.md`, `number_normalization_lane_a_247_preexecution_gate_20260517.md`, `number_normalization_grey_felt_hat_manual_evidence_20260517.md`, `number_normalization_dry_run_implementation_plan_20260517.md` |
+| Number normalization | Evidence, candidate matrix, collision investigation, `me01` ownership/design pack, Lane A write-plan drafts, pre-execution gates, Grey Felt Hat manual pack, dry-run plan, and approved 247-row execution complete | `number_normalization_evidence_20260517.md`, `number_normalization_candidate_evidence_20260517.md`, `number_normalization_collision_investigation_20260517.md`, `number_normalization_me01_duplicate_ownership_20260517.md`, `number_normalization_me01_duplicate_resolution_design_20260517.md`, `number_normalization_lane_a_248_write_plan_20260517.md`, `number_normalization_lane_a_248_preexecution_gate_20260517.md`, `number_normalization_lane_a_247_write_plan_20260517.md`, `number_normalization_lane_a_247_preexecution_gate_20260517.md`, `number_normalization_lane_a_247_execution_20260517.md`, `number_normalization_grey_felt_hat_manual_evidence_20260517.md`, `number_normalization_dry_run_implementation_plan_20260517.md` |
 | Missing card checklist backfill | Evidence and dry-run plan only | `missing_cards_backfill_evidence_20260517.md`, `missing_cards_backfill_dry_run_implementation_plan_20260517.md` |
 | Variant authority | V2 authority plan only | `variant_authority_model_v2_plan_20260517.md` |
 
@@ -91,6 +91,7 @@ Approved DB route-classification mutations in Pokemon DB Remediation V1:
 | `set_code_classification.sm35` | 1 | inserted as alias route/classification to canonical `sm3.5` |
 | `set_code_classification.shiny-vault` | 1 | inserted as source route/classification to canonical `sma` |
 | `set_code_classification.rm` | 1 | inserted as source route/classification to canonical `ru1` |
+| `card_prints` Lane A number normalization | 247 | populated `number`; generated `number_plain` verified to approved values |
 
 Boundary of the executed write:
 
@@ -102,11 +103,23 @@ Boundary of the executed write:
 - no missing cards inserted
 - no variants inserted
 - no migrations
+- no schema changes
+
+Additional boundary of the Lane A 247 number-normalization execution:
+
+- explicit update column: `card_prints.number`
+- generated column verified: `card_prints.number_plain`
+- no non-number target columns changed
+- no Grey Felt Hat row changed
+- no user/market referenced target rows
+- no post-write set-number collisions
+- no external mapping, raw import, set, or identity row hash changed
 
 The executions are documented in:
 
 - `set_alias_route_classification_execution_20260517.md`
 - `source_route_classification_execution_20260517.md`
+- `number_normalization_lane_a_247_execution_20260517.md`
 
 ## Remains No-Write
 
@@ -115,7 +128,7 @@ The following remain planning/evidence only:
 - all remaining alias metadata preservation decisions
 - all set-row canonicalization or alias-row structural changes
 - all missing-set target creation and any source-route changes beyond `shiny-vault -> sma` and `rm -> ru1`
-- all number normalization writes
+- all number normalization writes beyond the approved Lane A 247 execution
 - all missing-card checklist backfill writes
 - all secret-range card decisions
 - all variant authority/schema/backfill work
@@ -170,14 +183,14 @@ No implementation is authorized by this checkpoint. If authorization is granted 
 1. Route/classification follow-ups: none immediate; route review queue is currently clean after `sv3pt5`, `sm35`, `shiny-vault`, and `rm`.
 2. Alias metadata: source-payload diff only before any null-only metadata copy is considered.
 3. Missing set universe: target-set dry-run for TCG Classic decks and source-route proof for Shiny Vault/Rumble before card rows.
-4. Number normalization: the 504 numeric non-hard-stop rows are now split into 248 clean future write-plan candidates and 256 collision-blocked rows; the 248-row Lane A write-plan draft is complete but unexecuted. The pre-execution gate found zero committed-vs-live matrix drift but blocked execution because `svp` Pikachu with Grey Felt Hat #85 has user/market references. The lane is now split into a 247-row unreferenced write-plan draft and a separate Grey Felt Hat manual evidence pack. The fresh 247-row pre-execution gate passed with zero drift, zero user/market references, no excluded scopes, and a `number`/`number_plain` only explicit write boundary. Collision investigation classifies the blocked rows as 154 likely duplicate import rows, 27 same-card duplicate-review rows, and 75 same-number/different-card ambiguities. `me01` is now proven as 83 duplicate ownership pairs, including 2 user/market hard stops, with a no-write duplicate resolution design. Do not treat all 504 as a write scope.
+4. Number normalization: the 504 numeric non-hard-stop rows are now split into 247 executed Lane A rows, 1 manual referenced Grey Felt Hat row, and 256 collision-blocked rows. The approved 247-row transaction committed successfully after a fresh zero-drift pre-execution gate; it explicitly updated only `number`, verified generated `number_plain`, and proved no mappings/raw/set/identity rows changed. Collision investigation classifies the blocked rows as 154 likely duplicate import rows, 27 same-card duplicate-review rows, and 75 same-number/different-card ambiguities. `me01` is now proven as 83 duplicate ownership pairs, including 2 user/market hard stops, with a no-write duplicate resolution design. Do not treat all 504 as a write scope.
 5. Missing cards: no direct import; start only with established-set candidate dry-runs after set and number blockers clear.
 6. Variants: freeze writes until `VARIANT_AUTHORITY_MODEL_V2` is approved and a read-only source vocabulary inventory exists.
 7. Hard stops: separate evidence investigations only, one group at a time.
 
 ## Release Impact
 
-The only production-visible DB changes are route/search classification rows for `sv3pt5`, `sm35`, `shiny-vault`, and `rm`. Those should improve alias/source routing without changing canonical cards, set rows, metadata, mappings, vault ownership, pricing, or variants.
+The production-visible DB changes are route/search classification rows for `sv3pt5`, `sm35`, `shiny-vault`, and `rm`, plus the approved Lane A 247 card-number normalization. The route rows improve alias/source routing without changing canonical cards, set rows, metadata, mappings, vault ownership, pricing, or variants. The number-normalization execution fills printed numbers for unreferenced collision-free rows and leaves mappings, raw imports, set rows, identity rows, vault ownership, pricing, and variants unchanged.
 
 All other remediation work is documentation, evidence, and dry-run planning. It should not change runtime behavior until a future explicitly authorized write plan is executed.
 

@@ -42,9 +42,9 @@
       "items": [
         {
           "priority": 1,
-          "item": "Lane A 247-row execution decision",
-          "scope": "247 unreferenced rows",
-          "next_artifact": "explicit approval, immediate controlled transaction, snapshot, exact 247 post-write verification",
+          "item": "Lane A 247-row post-write regression audit",
+          "scope": "247 executed rows",
+          "next_artifact": "read-only exact-match verification after future imports or source refreshes",
           "write_allowed_now": false
         },
         {
