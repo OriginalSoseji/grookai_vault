@@ -42,9 +42,9 @@
       "items": [
         {
           "priority": 1,
-          "item": "Lane A 247-row pre-execution gate",
+          "item": "Lane A 247-row execution decision",
           "scope": "247 unreferenced rows",
-          "next_artifact": "regenerate live matrix, prove exact match, prove zero user/market refs, stop on any drift",
+          "next_artifact": "explicit approval, immediate controlled transaction, snapshot, exact 247 post-write verification",
           "write_allowed_now": false
         },
         {

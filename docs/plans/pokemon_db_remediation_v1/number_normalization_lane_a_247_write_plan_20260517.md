@@ -31,6 +31,14 @@ The exact 247-row candidate matrix is:
 docs/plans/pokemon_db_remediation_v1/number_normalization_lane_a_247_write_plan_matrix_20260517.json
 ```
 
+The fresh 247-row pre-execution gate is:
+
+```text
+docs/plans/pokemon_db_remediation_v1/number_normalization_lane_a_247_preexecution_gate_20260517.md
+```
+
+Gate result: passed with zero committed-vs-live drift, zero user/market references, no hard-stop or review-stop rows, no collision rows, no `me01` rows, no Grey Felt Hat row, and a `card_prints.number`/`card_prints.number_plain` only explicit write boundary.
+
 Set breakdown:
 
 | Set | Name | Rows | Range |
@@ -73,7 +81,6 @@ Future execution, if explicitly authorized later, may update only:
 
 - `card_prints.number`
 - `card_prints.number_plain`
-- `card_prints.updated_at`
 
 Only the 247 approved ids from the matrix may be targeted.
 
@@ -126,7 +133,7 @@ A future executable transaction must snapshot before-values for all 247 rows:
 - `card_prints.gv_id`
 - `card_prints.updated_at`
 
-Rollback restores only those fields for the same 247 ids.
+Rollback restores only `number` and `number_plain` for the same 247 ids. `print_identity_key`, `gv_id`, and `updated_at` are included in the snapshot for proof that the future write did not intentionally mutate them.
 
 Rollback must not delete rows, move cards, move mappings, mutate sets, mutate identity rows, mutate vault/pricing/shared/slab rows, mutate raw imports, or mutate variants.
 

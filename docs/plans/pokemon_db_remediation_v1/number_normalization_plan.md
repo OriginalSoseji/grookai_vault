@@ -37,6 +37,8 @@ The audit script already derives number keys from direct number fields first, th
 - `number_normalization_lane_a_247_write_plan_20260517.md`
 - `number_normalization_lane_a_247_write_plan_20260517.sql`
 - `number_normalization_lane_a_247_write_plan_matrix_20260517.json`
+- `number_normalization_lane_a_247_preexecution_gate_20260517.md`
+- `number_normalization_lane_a_247_preexecution_gate_matrix_20260517.json`
 - `number_normalization_grey_felt_hat_manual_evidence_20260517.md`
 - `number_normalization_grey_felt_hat_manual_evidence_matrix_20260517.json`
 - `number_normalization_dry_run_implementation_plan_20260517.md`
@@ -57,7 +59,7 @@ The `me01` duplicate ownership pack confirms that all 83 `me01` collision rows a
 
 The `me01` duplicate resolution design defines a future no-write cleanup shape only: incumbent rows are the canonical survivor candidates, TCGdex mappings must be preserved, the two referenced candidate rows are split into a separate manual lane, rollback snapshots are mandatory, and no deletes are allowed until FK/reference migration is proven.
 
-The Lane A 248-row write-plan draft targets only the collision-free rows and preserves the no-write boundary. The pre-execution gate regenerated the 248-row matrix from live DB and found zero committed-vs-live matrix drift, but it blocked execution because one clean candidate, `svp` Pikachu with Grey Felt Hat #85, has user/market references. The follow-up 247-row write-plan draft excludes that row and isolates it in a manual evidence pack. The full 504-row lane is not safe as a bulk write scope, and `me01` is not safe to solve as number normalization.
+The Lane A 248-row write-plan draft targets only the collision-free rows and preserves the no-write boundary. The pre-execution gate regenerated the 248-row matrix from live DB and found zero committed-vs-live matrix drift, but it blocked execution because one clean candidate, `svp` Pikachu with Grey Felt Hat #85, has user/market references. The follow-up 247-row write-plan draft excludes that row and isolates it in a manual evidence pack. The fresh 247-row pre-execution gate passed with zero drift, zero user/market references, no excluded scopes, and a `card_prints.number`/`card_prints.number_plain` only write boundary. The full 504-row lane is not safe as a bulk write scope, and `me01` is not safe to solve as number normalization.
 
 The same evidence found 1,554 rows where direct printed number and `number_plain` normalize differently. This confirms that `number_plain` must not be treated as canonical printed identity by itself.
 
@@ -157,7 +159,7 @@ where s.game = 'pokemon'
 4. Approve normalization rules for slash numbers, prefixed numbers, unnumbered energy cards, and promo prefixes.
 5. Only then design a separate authorized implementation pass.
 
-The 2026-05-17 dry-run implementation plan narrows the first possible candidate lane to numeric, non-hard-stop, source-derived missing-number rows only. The candidate evidence narrows that again to the 248 collision-free Lane A rows, and the Lane A write-plan draft defines the guarded future transaction shape without authorizing execution. The pre-execution gate blocked immediate execution and the lane is now split into a 247-row unreferenced plan plus a manual Grey Felt Hat evidence pack. The collision investigation confirms that the remaining 256 rows are ownership/integrity work, not number-normalization write candidates. Prefixed numbers, complex suffixes, source conflicts, identity conflicts, collision rows, and hard-stop set rows remain blocked.
+The 2026-05-17 dry-run implementation plan narrows the first possible candidate lane to numeric, non-hard-stop, source-derived missing-number rows only. The candidate evidence narrows that again to the 248 collision-free Lane A rows, and the Lane A write-plan draft defines the guarded future transaction shape without authorizing execution. The 247-row split now has a passing pre-execution gate, but execution still requires explicit approval and a controlled transaction. The collision investigation confirms that the remaining 256 rows are ownership/integrity work, not number-normalization write candidates. Prefixed numbers, complex suffixes, source conflicts, identity conflicts, collision rows, and hard-stop set rows remain blocked.
 
 ## Implementation Stop Conditions
 

@@ -155,8 +155,7 @@ rollback;
 -- update public.card_prints cp
 -- set
 --   number = a.approved_number,
---   number_plain = a.approved_number_plain,
---   updated_at = now()
+--   number_plain = a.approved_number_plain
 -- from tmp_number_normalization_lane_a_247_approved_v1 a
 -- where cp.id = a.card_print_id
 --   and (cp.number is null or btrim(cp.number) = '')
