@@ -42,9 +42,9 @@
       "items": [
         {
           "priority": 1,
-          "item": "clean Lane A write-plan draft",
+          "item": "clean Lane A prewrite evidence",
           "scope": "248 collision-free numeric non-hard-stop rows",
-          "next_artifact": "guarded no-write SQL plan with rollback and post-write checks",
+          "next_artifact": "fresh live proof that matrix ids still match, exclusions still hold, and no user/market refs appeared",
           "write_allowed_now": false
         },
         {

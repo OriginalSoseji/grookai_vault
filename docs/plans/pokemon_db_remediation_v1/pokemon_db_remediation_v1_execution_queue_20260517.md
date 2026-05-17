@@ -42,7 +42,7 @@ Current evidence:
 | Lane | Rows | Next gate |
 | --- | ---: | --- |
 | Numeric source candidates outside hard stops | 504 | row-level candidate evidence complete |
-| Clean numeric Lane A write-plan candidates | 248 | no-write future write-plan draft only |
+| Clean numeric Lane A write-plan candidates | 248 | write-plan draft complete; fresh prewrite evidence before execution |
 | Collision-blocked numeric Lane A rows | 256 | collision investigation complete; set-scoped ownership review next |
 | Likely duplicate import rows | 154 | duplicate-row ownership pack |
 | Same-card duplicate-review rows | 27 | source authority review |
@@ -61,7 +61,7 @@ Future no-write queue:
 
 | Priority | Item | Scope | Required evidence | Write status |
 | ---: | --- | --- | --- | --- |
-| 1 | Clean Lane A write-plan draft | 248 rows | guard clauses, rollback, post-write checks, still no execution | no-write SQL plan only |
+| 1 | Clean Lane A prewrite evidence | 248 rows | fresh live proof that matrix ids still match, exclusions still hold, and no user/market refs appeared | no-write evidence only |
 | 2 | `me01` duplicate resolution prewrite evidence | 83 duplicate pairs; 2 user/market hard stops | fresh row-level safety gates from live DB before any future write candidate | no-write evidence only |
 | 3 | `svp` duplicate ownership pack | 72 collision rows | separate duplicate imports from same-card review rows | evidence only |
 | 4 | Prefix/subset collision policy | 75 same-number/different-card rows | decide how `number_plain` collisions involving `RC`, `SL`, `SH`, `AR`, LV.X, and similar identities should be compared | policy only |
