@@ -1,5 +1,6 @@
 import { serve } from "https://deno.land/std@0.224.0/http/server.ts";
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2.45.4";
+import { getPublishableKey } from "../_shared/key_resolver.ts";
 
 type ReqBody = { snapshot_id: string };
 
@@ -18,7 +19,7 @@ serve(async (req) => {
     if (req.method !== "POST") return json(405, { error: "method_not_allowed" });
 
     const url = Deno.env.get("SUPABASE_URL");
-    const publishableKey = Deno.env.get("SUPABASE_PUBLISHABLE_KEY");
+    const publishableKey = getPublishableKey();
     if (!url || !publishableKey) return json(500, { error: "missing_env", details: "SUPABASE_URL / SUPABASE_PUBLISHABLE_KEY" });
 
     const authHeader = req.headers.get("authorization") ?? "";
