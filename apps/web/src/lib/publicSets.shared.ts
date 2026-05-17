@@ -1,7 +1,29 @@
 import { SET_SHORTHANDS } from "@/lib/resolver/shorthand";
 
+export const PUBLIC_SET_ROUTE_ALIAS_MAP: Record<string, string> = {
+  "shiny vault": "sma",
+  "shiny-vault": "sma",
+  rm: "ru1",
+  sv3pt5: "sv03.5",
+  sm35: "sm3.5",
+};
+
+export function normalizePublicSetRouteCode(value?: string | null) {
+  return (value ?? "").trim().toLowerCase().replace(/\s+/g, " ");
+}
+
+export function resolvePublicSetRouteCode(value?: string | null) {
+  const normalized = normalizePublicSetRouteCode(value);
+  return PUBLIC_SET_ROUTE_ALIAS_MAP[normalized] ?? normalized;
+}
+
 export const SET_INTENT_ALIAS_MAP: Record<string, string[]> = {
   ...SET_SHORTHANDS,
+  "shiny vault": ["sma"],
+  "shiny-vault": ["sma"],
+  rm: ["ru1"],
+  sv3pt5: ["sv03.5"],
+  sm35: ["sm3.5"],
   "ascended heroes": ["me02.5"],
   "pokemon 151": ["sv03.5"],
   "151": ["sv03.5"],

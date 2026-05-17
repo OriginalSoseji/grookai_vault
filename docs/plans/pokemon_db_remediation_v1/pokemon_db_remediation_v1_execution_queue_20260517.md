@@ -20,6 +20,7 @@ Current route/classification state:
 - `Rumble -> ru1` source-route equivalence proved 16/16 in `source_route_equivalence_evidence_20260517.md`; no card inserts or set creates.
 - `source_route_classification_write_plan_20260517.md` now defines the guarded future DB route insert shape for `shiny-vault -> sma` and `rm -> ru1`.
 - `public_route_search_resolver_impact_review_20260517.md` proves the public app does not currently consume `set_code_classification`; route/search completion needs app-side alias resolver coverage or an explicit DB-only acceptance.
+- `public_route_search_resolver_patch_20260517.md` adds app-side route/search alias coverage for `shiny-vault -> sma`, `rm -> ru1`, and the already executed safe route aliases `sv3pt5 -> sv03.5`, `sm35 -> sm3.5`.
 - The 20 alias-candidate route review queue is now clean.
 - Recommended immediate route writes: `0`.
 
@@ -27,8 +28,8 @@ Future no-write queue:
 
 | Priority | Item | Scope | Required evidence | Write status |
 | ---: | --- | --- | --- | --- |
-| 1 | Public app alias resolver patch plan | `shiny-vault`, `rm` | centralize source-route alias resolution for public search, set pages, and set-card APIs | no DB write |
-| 2 | Future source-route execution checkpoint | `shiny-vault -> sma`, `rm -> ru1` | fresh preflight plus explicit approval for DB route rows only | no write without explicit approval |
+| 1 | Future source-route execution checkpoint | `shiny-vault -> sma`, `rm -> ru1` | fresh preflight plus explicit approval for DB route rows only | no write without explicit approval |
+| 2 | Public app route regression audit | approved safe aliases only | verify route/search behavior against running app if needed | no DB write |
 | 3 | Alias metadata source-payload diff | 20 route-clean alias candidates | field-level diff for `source`, release dates, logos, symbols, printed totals | no metadata write |
 | 4 | Route regression audit | all known aliases | confirm classifications still route to canonical targets after future changes | read-only verification |
 

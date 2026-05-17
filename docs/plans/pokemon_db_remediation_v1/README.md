@@ -66,6 +66,7 @@ No card row should be imported until the canonical target set is resolved and pr
 - `source_route_classification_write_plan_matrix_20260517.json`
 - `public_route_search_resolver_impact_review_20260517.md`
 - `public_route_search_resolver_impact_matrix_20260517.json`
+- `public_route_search_resolver_patch_20260517.md`
 - `number_normalization_plan.md`
 - `number_normalization_evidence_20260517.md`
 - `number_normalization_evidence_matrix_20260517.json`

@@ -8,16 +8,16 @@
       "items": [
         {
           "priority": 1,
-          "item": "public app alias resolver patch plan",
+          "item": "future source-route execution checkpoint",
           "scope": "shiny-vault and rm",
-          "next_artifact": "centralize source-route alias resolution for public search, set pages, and set-card APIs",
+          "next_artifact": "fresh preflight plus explicit approval for DB route rows only",
           "write_allowed_now": false
         },
         {
           "priority": 2,
-          "item": "future source-route execution checkpoint",
-          "scope": "shiny-vault -> sma and rm -> ru1",
-          "next_artifact": "fresh preflight plus explicit approval for DB route rows only",
+          "item": "public app route regression audit",
+          "scope": "approved safe aliases only",
+          "next_artifact": "verify route/search behavior against running app if needed",
           "write_allowed_now": false
         },
         {
