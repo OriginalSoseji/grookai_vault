@@ -73,6 +73,8 @@ No card row should be imported until the canonical target set is resolved and pr
 - `variant_authority_model_v2_plan_20260517.md`
 - `variant_authority_model_v2_matrix_20260517.json`
 - `pokemon_db_remediation_v1_checkpoint_20260517.md`
+- `pokemon_db_remediation_v1_execution_queue_20260517.md`
+- `pokemon_db_remediation_v1_execution_queue_20260517.json`
 
 ## Review Checklist Before Implementation
 

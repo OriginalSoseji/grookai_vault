@@ -1,0 +1,206 @@
+{
+  "status": "NO_WRITE_EXECUTION_QUEUE_ONLY",
+  "recommended_immediate_writes": 0,
+  "lanes": [
+    {
+      "lane": "safe_route_classification_followups",
+      "recommended_immediate_writes": 0,
+      "items": [
+        {
+          "priority": 1,
+          "item": "source route proof for Shiny Vault",
+          "scope": "shiny-vault collection to existing sma",
+          "next_artifact": "read-only equivalence evidence",
+          "write_allowed_now": false
+        },
+        {
+          "priority": 2,
+          "item": "source route proof for Rumble",
+          "scope": "PkmnCards Rumble to existing ru1",
+          "next_artifact": "read-only equivalence evidence",
+          "write_allowed_now": false
+        },
+        {
+          "priority": 3,
+          "item": "alias metadata source-payload diff",
+          "scope": "20 route-clean alias candidates",
+          "next_artifact": "field-level diff report",
+          "write_allowed_now": false
+        },
+        {
+          "priority": 4,
+          "item": "route regression audit",
+          "scope": "all known aliases",
+          "next_artifact": "read-only verification",
+          "write_allowed_now": false
+        }
+      ]
+    },
+    {
+      "lane": "number_normalization_dry_run_candidates",
+      "recommended_immediate_writes": 0,
+      "items": [
+        {
+          "priority": 1,
+          "item": "numeric candidate dry-run pack",
+          "scope": "504 non-hard-stop rows",
+          "next_artifact": "duplicate/identity/FK dry-run",
+          "write_allowed_now": false
+        },
+        {
+          "priority": 2,
+          "item": "prefix policy",
+          "scope": "114 prefixed candidates",
+          "next_artifact": "printed-number prefix policy",
+          "write_allowed_now": false
+        },
+        {
+          "priority": 3,
+          "item": "complex suffix review",
+          "scope": "5 complex candidates",
+          "next_artifact": "manual suffix policy",
+          "write_allowed_now": false
+        },
+        {
+          "priority": 4,
+          "item": "comparable number contract",
+          "scope": "1554 mismatch rows",
+          "next_artifact": "generated/comparable field contract",
+          "write_allowed_now": false
+        },
+        {
+          "priority": 5,
+          "item": "source-tail conflict review",
+          "scope": "85 rows",
+          "next_artifact": "source conflict evidence",
+          "write_allowed_now": false
+        }
+      ]
+    },
+    {
+      "lane": "missing_card_backfill_candidates",
+      "recommended_immediate_writes": 0,
+      "items": [
+        {
+          "priority": 1,
+          "item": "source-route evidence",
+          "scope": "Shiny Vault and Rumble",
+          "next_artifact": "existing target equivalence proof",
+          "write_allowed_now": false
+        },
+        {
+          "priority": 2,
+          "item": "target-set dry-run",
+          "scope": "TCG Classic decks and McDonald's Match Battle 2023",
+          "next_artifact": "target set creation dry-run only",
+          "write_allowed_now": false
+        },
+        {
+          "priority": 3,
+          "item": "number-first gap review",
+          "scope": "6 groups / 54 cards",
+          "next_artifact": "number normalization dependency decision",
+          "write_allowed_now": false
+        },
+        {
+          "priority": 4,
+          "item": "established-set card candidate pack",
+          "scope": "16 groups / 66 cards",
+          "next_artifact": "one-row-per-card no-write candidate matrix",
+          "write_allowed_now": false
+        },
+        {
+          "priority": 5,
+          "item": "secret-range evidence packs",
+          "scope": "Mega Evolution Promos, Guardians Rising, Scarlet & Violet scoped groups",
+          "next_artifact": "card-by-card secret identity proof",
+          "write_allowed_now": false
+        }
+      ]
+    },
+    {
+      "lane": "variant_work",
+      "recommended_immediate_writes": 0,
+      "items": [
+        {
+          "priority": 1,
+          "item": "freeze variant writes",
+          "scope": "all Pokemon DB remediation",
+          "next_artifact": "policy gate",
+          "write_allowed_now": false
+        },
+        {
+          "priority": 2,
+          "item": "source vocabulary inventory",
+          "scope": "TCGdex, PokemonTCG/TCGPlayer, JustTCG, DB JSON",
+          "next_artifact": "read-only vocabulary matrix",
+          "write_allowed_now": false
+        },
+        {
+          "priority": 3,
+          "item": "authority contract",
+          "scope": "VARIANT_AUTHORITY_MODEL_V2",
+          "next_artifact": "approved contract",
+          "write_allowed_now": false
+        },
+        {
+          "priority": 4,
+          "item": "variant evidence matrix by set",
+          "scope": "post-canonicalization scope",
+          "next_artifact": "source signal comparison",
+          "write_allowed_now": false
+        },
+        {
+          "priority": 5,
+          "item": "future dry-run plan",
+          "scope": "approved contract only",
+          "next_artifact": "candidate write plan, still no execution",
+          "write_allowed_now": false
+        }
+      ]
+    },
+    {
+      "lane": "hard_stop_investigations",
+      "recommended_immediate_writes": 0,
+      "items": [
+        {
+          "priority": 1,
+          "item": "Prismatic Evolutions hard-stop evidence",
+          "scope": "sv08.5 / sv8pt5",
+          "next_artifact": "per-card identity diff",
+          "write_allowed_now": false
+        },
+        {
+          "priority": 2,
+          "item": "Paldean Fates hard-stop evidence",
+          "scope": "sv04.5 / sv4pt5",
+          "next_artifact": "per-card identity diff",
+          "write_allowed_now": false
+        },
+        {
+          "priority": 3,
+          "item": "Shrouded Fable hard-stop evidence",
+          "scope": "sv06.5 / sv6pt5",
+          "next_artifact": "per-card identity diff",
+          "write_allowed_now": false
+        },
+        {
+          "priority": 4,
+          "item": "Pokemon GO hard-stop evidence",
+          "scope": "pgo / swsh10.5",
+          "next_artifact": "per-card source ownership diff",
+          "write_allowed_now": false
+        }
+      ]
+    }
+  ],
+  "release_gate": [
+    "confirm branch and HEAD",
+    "confirm migration ledger alignment",
+    "run npm run preflight",
+    "regenerate relevant read-only evidence matrix",
+    "verify hard-stop and review-stop pairs are absent from write scope",
+    "execute only a guarded transaction reviewed for the exact scope",
+    "commit post-write execution checkpoint with verification evidence"
+  ]
+}
