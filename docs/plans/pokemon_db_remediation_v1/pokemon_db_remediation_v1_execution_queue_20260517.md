@@ -16,6 +16,8 @@ Current route/classification state:
 
 - `sv3pt5 -> sv03.5` executed and verified.
 - `sm35 -> sm3.5` executed and verified.
+- `Shiny Vault -> sma` source-route equivalence proved 94/94 in `source_route_equivalence_evidence_20260517.md`; no card inserts or set creates.
+- `Rumble -> ru1` source-route equivalence proved 16/16 in `source_route_equivalence_evidence_20260517.md`; no card inserts or set creates.
 - The 20 alias-candidate route review queue is now clean.
 - Recommended immediate route writes: `0`.
 
@@ -23,8 +25,8 @@ Future no-write queue:
 
 | Priority | Item | Scope | Required evidence | Write status |
 | ---: | --- | --- | --- | --- |
-| 1 | Source-route proof for Shiny Vault | `shiny-vault` collection to existing `sma` | prove PkmnCards collection exactly matches `sma` card ownership | no-write evidence only |
-| 2 | Source-route proof for Rumble | PkmnCards Rumble to existing `ru1` | prove PkmnCards collection exactly matches `ru1` card ownership | no-write evidence only |
+| 1 | Source-route write-plan dry-run for Shiny Vault | `shiny-vault` collection to existing `sma` | route/source classification plan only; 94/94 equivalence already proved | no write without explicit approval |
+| 2 | Source-route write-plan dry-run for Rumble | PkmnCards `RM` alias to existing `ru1` | route/source classification plan only; 16/16 equivalence already proved | no write without explicit approval |
 | 3 | Alias metadata source-payload diff | 20 route-clean alias candidates | field-level diff for `source`, release dates, logos, symbols, printed totals | no metadata write |
 | 4 | Route regression audit | all known aliases | confirm classifications still route to canonical targets after future changes | read-only verification |
 

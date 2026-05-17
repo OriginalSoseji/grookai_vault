@@ -1,0 +1,157 @@
+{
+  "status": "NO_WRITE_SOURCE_ROUTE_EQUIVALENCE_EVIDENCE_ONLY",
+  "generated_at": "2026-05-17T05:21:24.910Z",
+  "generated_from": [
+    "docs/audits/pokemon_master_set_audit_v1/summary.json",
+    "docs/plans/pokemon_db_remediation_v1/missing_set_universe_decision_20260517.md",
+    "docs/plans/pokemon_db_remediation_v1/missing_cards_backfill_evidence_matrix_20260517.json",
+    "live_read_only_supabase_evidence_2026-05-17"
+  ],
+  "summary": {
+    "candidates_audited": 2,
+    "exact_equivalence_passes": 2,
+    "blocked_review_required": 0,
+    "source_cards_audited": 110,
+    "db_cards_audited": 110,
+    "matched_identity_count": 110,
+    "missing_in_db_count": 0,
+    "extra_in_db_count": 0,
+    "recommended_card_inserts": 0,
+    "recommended_set_creates": 0,
+    "recommended_immediate_writes": 0
+  },
+  "items": [
+    {
+      "source_name": "Shiny Vault",
+      "source_slug": "shiny-vault",
+      "source_url": "https://pkmncards.com/collection/shiny-vault/",
+      "source_route_candidates": [
+        "shiny-vault"
+      ],
+      "db_set_code": "sma",
+      "db_set_name": "Hidden Fates Shiny Vault",
+      "expected_db_name": "Hidden Fates Shiny Vault",
+      "equivalence_status": "PASS_EXACT_EQUIVALENCE",
+      "recommended_next_action": "source collection route to existing sma; no card insert and no new set",
+      "future_write_allowed_now": false,
+      "recommended_card_inserts": 0,
+      "recommended_set_creates": 0,
+      "source_card_count": 94,
+      "db_card_count": 94,
+      "matched_identity_count": 94,
+      "missing_in_db_count": 0,
+      "extra_in_db_count": 0,
+      "source_distinct_number_count": 94,
+      "db_distinct_number_count": 94,
+      "source_number_range": "SV1-SV94",
+      "db_number_range": "SV1-SV94",
+      "source_duplicate_identity_keys": [],
+      "db_duplicate_identity_keys": [],
+      "missing_in_db": [],
+      "extra_in_db": [],
+      "set_row": {
+        "code": "sma",
+        "name": "Hidden Fates Shiny Vault",
+        "printed_total": 94,
+        "printed_set_abbrev": "HIF",
+        "set_role": null,
+        "identity_model": "standard"
+      },
+      "candidate_classification_rows": [
+        {
+          "set_code": "shiny-vault",
+          "row_exists": false,
+          "row": null
+        }
+      ],
+      "canonical_classification_rows": [
+        {
+          "set_code": "sma",
+          "is_canon": true,
+          "canonical_set_code": "sma",
+          "canon_source": "tcgdex",
+          "pokemonapi_set_id": null,
+          "tcgdex_set_id": "sma",
+          "notes": null
+        }
+      ],
+      "active_external_mapping_counts": [
+        {
+          "source": "tcgdex",
+          "rows": 94,
+          "distinct_card_prints": 94
+        }
+      ],
+      "notes": [
+        "Compared PkmnCards number/name identity keys to live DB card_prints in a read-only transaction.",
+        "Exact checklist equivalence means this is source-route or alias-mapping work, not card insertion."
+      ]
+    },
+    {
+      "source_name": "Rumble",
+      "source_slug": "rumble",
+      "source_url": "https://pkmncards.com/set/rumble/",
+      "source_route_candidates": [
+        "rm"
+      ],
+      "db_set_code": "ru1",
+      "db_set_name": "Pokémon Rumble",
+      "expected_db_name": "Pokemon Rumble",
+      "equivalence_status": "PASS_EXACT_EQUIVALENCE",
+      "recommended_next_action": "set/source alias route from RM to existing ru1; no card insert and no new set",
+      "future_write_allowed_now": false,
+      "recommended_card_inserts": 0,
+      "recommended_set_creates": 0,
+      "source_card_count": 16,
+      "db_card_count": 16,
+      "matched_identity_count": 16,
+      "missing_in_db_count": 0,
+      "extra_in_db_count": 0,
+      "source_distinct_number_count": 16,
+      "db_distinct_number_count": 16,
+      "source_number_range": "1-16",
+      "db_number_range": "1-16",
+      "source_duplicate_identity_keys": [],
+      "db_duplicate_identity_keys": [],
+      "missing_in_db": [],
+      "extra_in_db": [],
+      "set_row": {
+        "code": "ru1",
+        "name": "Pokémon Rumble",
+        "printed_total": 16,
+        "printed_set_abbrev": "RU",
+        "set_role": null,
+        "identity_model": "standard"
+      },
+      "candidate_classification_rows": [
+        {
+          "set_code": "rm",
+          "row_exists": false,
+          "row": null
+        }
+      ],
+      "canonical_classification_rows": [
+        {
+          "set_code": "ru1",
+          "is_canon": true,
+          "canonical_set_code": null,
+          "canon_source": "tcgdex",
+          "pokemonapi_set_id": null,
+          "tcgdex_set_id": "ru1",
+          "notes": "tcgdex_canonize_set_v1 mode=complete card_raws=16/16"
+        }
+      ],
+      "active_external_mapping_counts": [
+        {
+          "source": "tcgdex",
+          "rows": 16,
+          "distinct_card_prints": 16
+        }
+      ],
+      "notes": [
+        "Compared PkmnCards number/name identity keys to live DB card_prints in a read-only transaction.",
+        "Exact checklist equivalence means this is source-route or alias-mapping work, not card insertion."
+      ]
+    }
+  ]
+}

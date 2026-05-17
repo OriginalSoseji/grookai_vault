@@ -13,6 +13,7 @@ This pass decides what each missing universe item is before any future implement
 - `docs/audits/pokemon_master_set_audit_v1/pokemon_master_set_audit_v1.md`
 - `docs/audits/pokemon_master_set_audit_v1/summary.json`
 - `docs/plans/pokemon_db_remediation_v1/missing_sets_plan.md`
+- `docs/plans/pokemon_db_remediation_v1/source_route_equivalence_evidence_20260517.md`
 - Live read-only Supabase evidence gathered on 2026-05-17 inside `begin transaction read only`.
 
 Read-only DB evidence changed two important audit interpretations:
@@ -21,6 +22,12 @@ Read-only DB evidence changed two important audit interpretations:
 - `Rumble (RM)` has an existing DB target row: `ru1` / `Pokemon Rumble`, with 16 `card_prints`, 16 distinct numbers, and a canonical `set_code_classification` row.
 
 Those two should not become new set-create work.
+
+Later source-route equivalence evidence proved:
+
+- `Shiny Vault` is a 94/94 exact number/name checklist match to existing `sma`.
+- `Rumble (RM)` is a 16/16 exact number/name checklist match to existing `ru1`.
+- Both are future route/source mapping planning candidates only. They are not card-insert or set-create candidates.
 
 ## Classification Summary
 
@@ -46,7 +53,7 @@ Those two should not become new set-create work.
 | Miscellaneous | 0 | External-only/no app support yet | Zero parsed checklist cards. Do not create a DB set from this source bucket. |
 | Victory Medals | 9 | Promo/subset/special collection needing policy decision | Prize/promo collection. Needs product policy and numbering policy before support. |
 | World Collection | 9 | Promo/subset/special collection needing policy decision | Special product collection. Needs English-language and source-identity policy before support. |
-| Rumble (RM) | 16 | Needs further evidence | Existing DB row `ru1` appears to own the set. Prove 16/16 checklist equivalence, then plan source alias/mapping only. |
+| Rumble (RM) | 16 | Needs further evidence, now resolved by source-route evidence | Existing DB row `ru1` owns the checklist by 16/16 exact equivalence. Plan source alias/mapping only; do not create a set or insert cards. |
 | McDonald's Match Battle 2023 (M23) | 15 | Canonical physical set needed | Real English physical promo set. Existing McDonald's rows stop at 2022 in live evidence; future target-set dry-run needed. |
 | Sun & Moon Energy | 9 | Promo/subset/special collection needing policy decision | Energy-only unnumbered collection. Do not create until energy-collection policy exists. |
 | Sun & Moon Energy (Team Up) | 9 | Promo/subset/special collection needing policy decision | Energy-only unnumbered Team Up-era collection. Needs parent/subset policy. |

@@ -18,13 +18,15 @@ Hard rules for any future implementation:
 - `missing_cards_backfill_evidence_matrix_20260517.json`
 - `missing_cards_backfill_dry_run_implementation_plan_20260517.md`
 - `missing_cards_backfill_dry_run_implementation_plan_20260517.sql`
+- `source_route_equivalence_evidence_20260517.md`
+- `source_route_equivalence_evidence_matrix_20260517.json`
 
 Current decision: recommended immediate card inserts remain `0`.
 
 Updated blockers:
 
-- Shiny Vault should route/prove equivalence to existing `sma`; do not insert 94 cards.
-- Rumble should route/prove equivalence to existing `ru1`; do not insert 16 cards unless equivalence fails.
+- Shiny Vault now has 94/94 source-route equivalence proved against existing `sma`; do not insert 94 cards.
+- Rumble now has 16/16 source-route equivalence proved against existing `ru1`; do not insert 16 cards.
 - TCG Classic decks and McDonald's Match Battle 2023 require target-set dry-runs before any card row plan.
 - Number normalization must run or be intentionally deferred before apparent gaps in affected legacy/promo sets become insert candidates.
 - Secret-range rows require a separate evidence pack.

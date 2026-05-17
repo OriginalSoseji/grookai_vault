@@ -8,16 +8,16 @@
       "items": [
         {
           "priority": 1,
-          "item": "source route proof for Shiny Vault",
+          "item": "source-route write-plan dry-run for Shiny Vault",
           "scope": "shiny-vault collection to existing sma",
-          "next_artifact": "read-only equivalence evidence",
+          "next_artifact": "route/source classification plan only; 94/94 equivalence already proved",
           "write_allowed_now": false
         },
         {
           "priority": 2,
-          "item": "source route proof for Rumble",
+          "item": "source-route write-plan dry-run for Rumble",
           "scope": "PkmnCards Rumble to existing ru1",
-          "next_artifact": "read-only equivalence evidence",
+          "next_artifact": "route/source classification plan only; 16/16 equivalence already proved",
           "write_allowed_now": false
         },
         {
