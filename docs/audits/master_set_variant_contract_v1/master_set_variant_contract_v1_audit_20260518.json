@@ -1,0 +1,3867 @@
+{
+  "contract": "MASTER_SET_VARIANT_CONTRACT_V1",
+  "generated_at": "2026-05-18T16:35:42.969Z",
+  "mode": "read-only audit",
+  "inventory": {
+    "card_prints": 25404,
+    "card_prints_with_variant_key": 2355,
+    "card_prints_with_printed_identity_modifier": 194,
+    "card_prints_with_variants_jsonb": 662,
+    "card_printings": 55742,
+    "provisional_card_printings": 0,
+    "finish_keys": 5,
+    "external_printing_mappings": 167,
+    "premium_parallel_eligibility_rows": 167
+  },
+  "finish_keys": [
+    {
+      "key": "normal",
+      "label": "Normal",
+      "sort_order": 10,
+      "is_active": true,
+      "meta": {}
+    },
+    {
+      "key": "reverse",
+      "label": "Reverse Holo",
+      "sort_order": 20,
+      "is_active": true,
+      "meta": {}
+    },
+    {
+      "key": "holo",
+      "label": "Holo",
+      "sort_order": 30,
+      "is_active": true,
+      "meta": {}
+    },
+    {
+      "key": "pokeball",
+      "label": "Poké Ball",
+      "sort_order": 40,
+      "is_active": true,
+      "meta": {}
+    },
+    {
+      "key": "masterball",
+      "label": "Master Ball",
+      "sort_order": 50,
+      "is_active": true,
+      "meta": {}
+    }
+  ],
+  "card_printings_by_finish": [
+    {
+      "finish_key": "normal",
+      "label": "Normal",
+      "row_count": 19920,
+      "provisional_count": 0
+    },
+    {
+      "finish_key": "reverse",
+      "label": "Reverse Holo",
+      "row_count": 18630,
+      "provisional_count": 0
+    },
+    {
+      "finish_key": "holo",
+      "label": "Holo",
+      "row_count": 16895,
+      "provisional_count": 0
+    },
+    {
+      "finish_key": "pokeball",
+      "label": "Poké Ball",
+      "row_count": 230,
+      "provisional_count": 0
+    },
+    {
+      "finish_key": "masterball",
+      "label": "Master Ball",
+      "row_count": 67,
+      "provisional_count": 0
+    }
+  ],
+  "variant_key_top": [
+    {
+      "variant_key": "base",
+      "row_count": 1532
+    },
+    {
+      "variant_key": "play_pokemon_stamp",
+      "row_count": 420
+    },
+    {
+      "variant_key": "prerelease_stamp",
+      "row_count": 72
+    },
+    {
+      "variant_key": "staff_prerelease_stamp",
+      "row_count": 63
+    },
+    {
+      "variant_key": "TG",
+      "row_count": 60
+    },
+    {
+      "variant_key": "rc",
+      "row_count": 37
+    },
+    {
+      "variant_key": "cc",
+      "row_count": 25
+    },
+    {
+      "variant_key": "alt",
+      "row_count": 14
+    },
+    {
+      "variant_key": "a",
+      "row_count": 11
+    },
+    {
+      "variant_key": "e_league_stamp",
+      "row_count": 6
+    },
+    {
+      "variant_key": "e_league_winner_stamp",
+      "row_count": 6
+    },
+    {
+      "variant_key": "illustration_rare",
+      "row_count": 6
+    },
+    {
+      "variant_key": "shiny_rare",
+      "row_count": 6
+    },
+    {
+      "variant_key": "b",
+      "row_count": 5
+    },
+    {
+      "variant_key": "stellar_crown_stamp",
+      "row_count": 4
+    },
+    {
+      "variant_key": "twilight_masquerade_stamp",
+      "row_count": 4
+    },
+    {
+      "variant_key": "detective_pikachu_stamp",
+      "row_count": 3
+    },
+    {
+      "variant_key": "prismatic_evolutions_stamp",
+      "row_count": 3
+    },
+    {
+      "variant_key": "black_bolt_stamp",
+      "row_count": 2
+    },
+    {
+      "variant_key": "destined_rivals_stamp",
+      "row_count": 2
+    },
+    {
+      "variant_key": "mega_evolution_stamp",
+      "row_count": 2
+    },
+    {
+      "variant_key": "staff_stamp",
+      "row_count": 2
+    },
+    {
+      "variant_key": "white_flare_stamp",
+      "row_count": 2
+    },
+    {
+      "variant_key": "XYa",
+      "row_count": 2
+    },
+    {
+      "variant_key": "!",
+      "row_count": 1
+    },
+    {
+      "variant_key": "?",
+      "row_count": 1
+    },
+    {
+      "variant_key": "2006_world_championships_staff_stamp",
+      "row_count": 1
+    },
+    {
+      "variant_key": "A",
+      "row_count": 1
+    },
+    {
+      "variant_key": "B",
+      "row_count": 1
+    },
+    {
+      "variant_key": "battle_road_autumn_2011_1st_place_stamp",
+      "row_count": 1
+    },
+    {
+      "variant_key": "battle_road_autumn_2011_2nd_place_stamp",
+      "row_count": 1
+    },
+    {
+      "variant_key": "battle_road_autumn_2011_3rd_place_stamp",
+      "row_count": 1
+    },
+    {
+      "variant_key": "battle_road_autumn_2012_1st_place_stamp",
+      "row_count": 1
+    },
+    {
+      "variant_key": "battle_road_autumn_2012_2nd_place_stamp",
+      "row_count": 1
+    },
+    {
+      "variant_key": "battle_road_autumn_2012_3rd_place_stamp",
+      "row_count": 1
+    },
+    {
+      "variant_key": "battle_road_spring_2012_1st_place_stamp",
+      "row_count": 1
+    },
+    {
+      "variant_key": "battle_road_spring_2012_2nd_place_stamp",
+      "row_count": 1
+    },
+    {
+      "variant_key": "battle_road_spring_2012_3rd_place_stamp",
+      "row_count": 1
+    },
+    {
+      "variant_key": "battle_road_spring_2013_1st_place_stamp",
+      "row_count": 1
+    },
+    {
+      "variant_key": "battle_road_spring_2013_2nd_place_stamp",
+      "row_count": 1
+    },
+    {
+      "variant_key": "battle_road_spring_2013_3rd_place_stamp",
+      "row_count": 1
+    },
+    {
+      "variant_key": "brilliant_stars_stamp",
+      "row_count": 1
+    },
+    {
+      "variant_key": "C",
+      "row_count": 1
+    },
+    {
+      "variant_key": "D",
+      "row_count": 1
+    },
+    {
+      "variant_key": "E",
+      "row_count": 1
+    },
+    {
+      "variant_key": "F",
+      "row_count": 1
+    },
+    {
+      "variant_key": "G",
+      "row_count": 1
+    },
+    {
+      "variant_key": "generations_geodude_stamp",
+      "row_count": 1
+    },
+    {
+      "variant_key": "H",
+      "row_count": 1
+    },
+    {
+      "variant_key": "I",
+      "row_count": 1
+    },
+    {
+      "variant_key": "J",
+      "row_count": 1
+    },
+    {
+      "variant_key": "K",
+      "row_count": 1
+    },
+    {
+      "variant_key": "L",
+      "row_count": 1
+    },
+    {
+      "variant_key": "M",
+      "row_count": 1
+    },
+    {
+      "variant_key": "N",
+      "row_count": 1
+    },
+    {
+      "variant_key": "O",
+      "row_count": 1
+    },
+    {
+      "variant_key": "obsidian_flames_stamp",
+      "row_count": 1
+    },
+    {
+      "variant_key": "origins_game_fair_2008_staff_stamp",
+      "row_count": 1
+    },
+    {
+      "variant_key": "P",
+      "row_count": 1
+    },
+    {
+      "variant_key": "paldea_evolved_stamp",
+      "row_count": 1
+    },
+    {
+      "variant_key": "paradox_rift_stamp",
+      "row_count": 1
+    },
+    {
+      "variant_key": "phantasmal_flames_stamp",
+      "row_count": 1
+    },
+    {
+      "variant_key": "pokemon_together_stamp",
+      "row_count": 1
+    },
+    {
+      "variant_key": "prismatic_evolution_stamp",
+      "row_count": 1
+    },
+    {
+      "variant_key": "prize_pack_series_1_stamp",
+      "row_count": 1
+    },
+    {
+      "variant_key": "prize_pack_series_2_stamp",
+      "row_count": 1
+    },
+    {
+      "variant_key": "Q",
+      "row_count": 1
+    },
+    {
+      "variant_key": "R",
+      "row_count": 1
+    },
+    {
+      "variant_key": "S",
+      "row_count": 1
+    },
+    {
+      "variant_key": "scarlet_and_violet_stamp",
+      "row_count": 1
+    },
+    {
+      "variant_key": "sdcc_2007_staff_stamp",
+      "row_count": 1
+    },
+    {
+      "variant_key": "SH",
+      "row_count": 1
+    },
+    {
+      "variant_key": "shrouded_fable_stamp",
+      "row_count": 1
+    },
+    {
+      "variant_key": "sm_promos_detective_pikachu_sm170_stamp",
+      "row_count": 1
+    },
+    {
+      "variant_key": "sm_promos_detective_pikachu_sm190_stamp",
+      "row_count": 1
+    },
+    {
+      "variant_key": "T",
+      "row_count": 1
+    },
+    {
+      "variant_key": "temporal_forces_stamp",
+      "row_count": 1
+    },
+    {
+      "variant_key": "U",
+      "row_count": 1
+    },
+    {
+      "variant_key": "V",
+      "row_count": 1
+    },
+    {
+      "variant_key": "W",
+      "row_count": 1
+    },
+    {
+      "variant_key": "world_championships_2018_staff_stamp",
+      "row_count": 1
+    },
+    {
+      "variant_key": "worlds_07_stamp",
+      "row_count": 1
+    },
+    {
+      "variant_key": "worlds_11_staff_stamp",
+      "row_count": 1
+    },
+    {
+      "variant_key": "worlds_11_top_16_stamp",
+      "row_count": 1
+    },
+    {
+      "variant_key": "worlds_12_stamp",
+      "row_count": 1
+    },
+    {
+      "variant_key": "worlds_12_top_32_stamp",
+      "row_count": 1
+    },
+    {
+      "variant_key": "X",
+      "row_count": 1
+    },
+    {
+      "variant_key": "XY",
+      "row_count": 1
+    },
+    {
+      "variant_key": "Y",
+      "row_count": 1
+    },
+    {
+      "variant_key": "Z",
+      "row_count": 1
+    }
+  ],
+  "printed_identity_modifier_top": [
+    {
+      "printed_identity_modifier": "delta_species",
+      "row_count": 194
+    }
+  ],
+  "variants_json_keys": [
+    {
+      "key": "firstEdition",
+      "row_count": 662
+    },
+    {
+      "key": "holo",
+      "row_count": 662
+    },
+    {
+      "key": "reverse",
+      "row_count": 662
+    },
+    {
+      "key": "normal",
+      "row_count": 547
+    },
+    {
+      "key": "wPromo",
+      "row_count": 547
+    },
+    {
+      "key": "error",
+      "row_count": 115
+    },
+    {
+      "key": "shadowless",
+      "row_count": 115
+    },
+    {
+      "key": "stamped",
+      "row_count": 115
+    }
+  ],
+  "duplicate_looking_summary": {
+    "group_count": 383,
+    "affected_rows": 832
+  },
+  "duplicate_looking_groups_sample": [
+    {
+      "set_code": "bwp",
+      "number": "29",
+      "normalized_name": "victory cup",
+      "display_name": "Victory Cup",
+      "row_count": 4,
+      "with_variant_key": 4,
+      "with_printed_identity_modifier": 0,
+      "with_variants_jsonb": 0,
+      "with_child_printings": 0
+    },
+    {
+      "set_code": "bwp",
+      "number": "30",
+      "normalized_name": "victory cup",
+      "display_name": "Victory Cup",
+      "row_count": 4,
+      "with_variant_key": 4,
+      "with_printed_identity_modifier": 0,
+      "with_variants_jsonb": 0,
+      "with_child_printings": 0
+    },
+    {
+      "set_code": "bwp",
+      "number": "31",
+      "normalized_name": "victory cup",
+      "display_name": "Victory Cup",
+      "row_count": 4,
+      "with_variant_key": 4,
+      "with_printed_identity_modifier": 0,
+      "with_variants_jsonb": 0,
+      "with_child_printings": 0
+    },
+    {
+      "set_code": "bw1",
+      "number": "25",
+      "normalized_name": "darmanitan",
+      "display_name": "Darmanitan",
+      "row_count": 3,
+      "with_variant_key": 2,
+      "with_printed_identity_modifier": 0,
+      "with_variants_jsonb": 0,
+      "with_child_printings": 1
+    },
+    {
+      "set_code": "bw3",
+      "number": "43",
+      "normalized_name": "victini",
+      "display_name": "Victini",
+      "row_count": 3,
+      "with_variant_key": 2,
+      "with_printed_identity_modifier": 0,
+      "with_variants_jsonb": 0,
+      "with_child_printings": 1
+    },
+    {
+      "set_code": "bw4",
+      "number": "12",
+      "normalized_name": "arcanine",
+      "display_name": "Arcanine",
+      "row_count": 3,
+      "with_variant_key": 2,
+      "with_printed_identity_modifier": 0,
+      "with_variants_jsonb": 0,
+      "with_child_printings": 1
+    },
+    {
+      "set_code": "dp1",
+      "number": "52",
+      "normalized_name": "luxio",
+      "display_name": "Luxio",
+      "row_count": 3,
+      "with_variant_key": 2,
+      "with_printed_identity_modifier": 0,
+      "with_variants_jsonb": 0,
+      "with_child_printings": 1
+    },
+    {
+      "set_code": "dp2",
+      "number": "48",
+      "normalized_name": "gabite",
+      "display_name": "Gabite",
+      "row_count": 3,
+      "with_variant_key": 2,
+      "with_printed_identity_modifier": 0,
+      "with_variants_jsonb": 0,
+      "with_child_printings": 1
+    },
+    {
+      "set_code": "dp7",
+      "number": "46",
+      "normalized_name": "piloswine",
+      "display_name": "Piloswine",
+      "row_count": 3,
+      "with_variant_key": 2,
+      "with_printed_identity_modifier": 0,
+      "with_variants_jsonb": 0,
+      "with_child_printings": 1
+    },
+    {
+      "set_code": "ex3",
+      "number": "19",
+      "normalized_name": "salamence",
+      "display_name": "Salamence",
+      "row_count": 3,
+      "with_variant_key": 2,
+      "with_printed_identity_modifier": 0,
+      "with_variants_jsonb": 0,
+      "with_child_printings": 1
+    },
+    {
+      "set_code": "hgss1",
+      "number": "28",
+      "normalized_name": "pichu",
+      "display_name": "Pichu",
+      "row_count": 3,
+      "with_variant_key": 2,
+      "with_printed_identity_modifier": 0,
+      "with_variants_jsonb": 0,
+      "with_child_printings": 1
+    },
+    {
+      "set_code": "pl1",
+      "number": "53",
+      "normalized_name": "lucario",
+      "display_name": "Lucario",
+      "row_count": 3,
+      "with_variant_key": 2,
+      "with_printed_identity_modifier": 0,
+      "with_variants_jsonb": 0,
+      "with_child_printings": 1
+    },
+    {
+      "set_code": "pl2",
+      "number": "52",
+      "normalized_name": "tropius",
+      "display_name": "Tropius",
+      "row_count": 3,
+      "with_variant_key": 2,
+      "with_printed_identity_modifier": 0,
+      "with_variants_jsonb": 0,
+      "with_child_printings": 1
+    },
+    {
+      "set_code": "pl3",
+      "number": "70",
+      "normalized_name": "milotic",
+      "display_name": "Milotic",
+      "row_count": 3,
+      "with_variant_key": 2,
+      "with_printed_identity_modifier": 0,
+      "with_variants_jsonb": 0,
+      "with_child_printings": 1
+    },
+    {
+      "set_code": "smp",
+      "number": "SM10",
+      "normalized_name": "shiinotic",
+      "display_name": "Shiinotic",
+      "row_count": 3,
+      "with_variant_key": 2,
+      "with_printed_identity_modifier": 0,
+      "with_variants_jsonb": 0,
+      "with_child_printings": 1
+    },
+    {
+      "set_code": "smp",
+      "number": "SM11",
+      "normalized_name": "bruxish",
+      "display_name": "Bruxish",
+      "row_count": 3,
+      "with_variant_key": 2,
+      "with_printed_identity_modifier": 0,
+      "with_variants_jsonb": 0,
+      "with_child_printings": 1
+    },
+    {
+      "set_code": "smp",
+      "number": "SM115",
+      "normalized_name": "pheromosa",
+      "display_name": "Pheromosa",
+      "row_count": 3,
+      "with_variant_key": 2,
+      "with_printed_identity_modifier": 0,
+      "with_variants_jsonb": 0,
+      "with_child_printings": 1
+    },
+    {
+      "set_code": "smp",
+      "number": "SM116",
+      "normalized_name": "xurkitree",
+      "display_name": "Xurkitree",
+      "row_count": 3,
+      "with_variant_key": 2,
+      "with_printed_identity_modifier": 0,
+      "with_variants_jsonb": 0,
+      "with_child_printings": 1
+    },
+    {
+      "set_code": "smp",
+      "number": "SM117",
+      "normalized_name": "malamar",
+      "display_name": "Malamar",
+      "row_count": 3,
+      "with_variant_key": 2,
+      "with_printed_identity_modifier": 0,
+      "with_variants_jsonb": 0,
+      "with_child_printings": 1
+    },
+    {
+      "set_code": "smp",
+      "number": "SM118",
+      "normalized_name": "lycanroc",
+      "display_name": "Lycanroc",
+      "row_count": 3,
+      "with_variant_key": 2,
+      "with_printed_identity_modifier": 0,
+      "with_variants_jsonb": 0,
+      "with_child_printings": 1
+    },
+    {
+      "set_code": "smp",
+      "number": "SM12",
+      "normalized_name": "passimian",
+      "display_name": "Passimian",
+      "row_count": 3,
+      "with_variant_key": 2,
+      "with_printed_identity_modifier": 0,
+      "with_variants_jsonb": 0,
+      "with_child_printings": 1
+    },
+    {
+      "set_code": "smp",
+      "number": "SM129",
+      "normalized_name": "kyogre",
+      "display_name": "Kyogre",
+      "row_count": 3,
+      "with_variant_key": 2,
+      "with_printed_identity_modifier": 0,
+      "with_variants_jsonb": 0,
+      "with_child_printings": 1
+    },
+    {
+      "set_code": "smp",
+      "number": "SM13",
+      "normalized_name": "oranguru",
+      "display_name": "Oranguru",
+      "row_count": 3,
+      "with_variant_key": 2,
+      "with_printed_identity_modifier": 0,
+      "with_variants_jsonb": 0,
+      "with_child_printings": 1
+    },
+    {
+      "set_code": "smp",
+      "number": "SM130",
+      "normalized_name": "manectric",
+      "display_name": "Manectric",
+      "row_count": 3,
+      "with_variant_key": 2,
+      "with_printed_identity_modifier": 0,
+      "with_variants_jsonb": 0,
+      "with_child_printings": 1
+    },
+    {
+      "set_code": "smp",
+      "number": "SM131",
+      "normalized_name": "celesteela",
+      "display_name": "Celesteela",
+      "row_count": 3,
+      "with_variant_key": 2,
+      "with_printed_identity_modifier": 0,
+      "with_variants_jsonb": 0,
+      "with_child_printings": 1
+    },
+    {
+      "set_code": "smp",
+      "number": "SM132",
+      "normalized_name": "delcatty",
+      "display_name": "Delcatty",
+      "row_count": 3,
+      "with_variant_key": 2,
+      "with_printed_identity_modifier": 0,
+      "with_variants_jsonb": 0,
+      "with_child_printings": 1
+    },
+    {
+      "set_code": "smp",
+      "number": "SM149",
+      "normalized_name": "suicune",
+      "display_name": "Suicune",
+      "row_count": 3,
+      "with_variant_key": 2,
+      "with_printed_identity_modifier": 0,
+      "with_variants_jsonb": 0,
+      "with_child_printings": 1
+    },
+    {
+      "set_code": "smp",
+      "number": "SM150",
+      "normalized_name": "raikou",
+      "display_name": "Raikou",
+      "row_count": 3,
+      "with_variant_key": 2,
+      "with_printed_identity_modifier": 0,
+      "with_variants_jsonb": 0,
+      "with_child_printings": 1
+    },
+    {
+      "set_code": "smp",
+      "number": "SM151",
+      "normalized_name": "giratina",
+      "display_name": "Giratina",
+      "row_count": 3,
+      "with_variant_key": 2,
+      "with_printed_identity_modifier": 0,
+      "with_variants_jsonb": 0,
+      "with_child_printings": 1
+    },
+    {
+      "set_code": "smp",
+      "number": "SM152",
+      "normalized_name": "tapu lele",
+      "display_name": "Tapu Lele",
+      "row_count": 3,
+      "with_variant_key": 2,
+      "with_printed_identity_modifier": 0,
+      "with_variants_jsonb": 0,
+      "with_child_printings": 1
+    },
+    {
+      "set_code": "smp",
+      "number": "SM159",
+      "normalized_name": "zapdos",
+      "display_name": "Zapdos",
+      "row_count": 3,
+      "with_variant_key": 2,
+      "with_printed_identity_modifier": 0,
+      "with_variants_jsonb": 0,
+      "with_child_printings": 1
+    },
+    {
+      "set_code": "smp",
+      "number": "SM160",
+      "normalized_name": "nidoqueen",
+      "display_name": "Nidoqueen",
+      "row_count": 3,
+      "with_variant_key": 2,
+      "with_printed_identity_modifier": 0,
+      "with_variants_jsonb": 0,
+      "with_child_printings": 1
+    },
+    {
+      "set_code": "smp",
+      "number": "SM179",
+      "normalized_name": "volcanion",
+      "display_name": "Volcanion",
+      "row_count": 3,
+      "with_variant_key": 2,
+      "with_printed_identity_modifier": 0,
+      "with_variants_jsonb": 0,
+      "with_child_printings": 1
+    },
+    {
+      "set_code": "smp",
+      "number": "SM18",
+      "normalized_name": "alolan sandslash",
+      "display_name": "Alolan Sandslash",
+      "row_count": 3,
+      "with_variant_key": 2,
+      "with_printed_identity_modifier": 0,
+      "with_variants_jsonb": 0,
+      "with_child_printings": 1
+    },
+    {
+      "set_code": "smp",
+      "number": "SM180",
+      "normalized_name": "stakataka",
+      "display_name": "Stakataka",
+      "row_count": 3,
+      "with_variant_key": 2,
+      "with_printed_identity_modifier": 0,
+      "with_variants_jsonb": 0,
+      "with_child_printings": 1
+    },
+    {
+      "set_code": "smp",
+      "number": "SM181",
+      "normalized_name": "melmetal",
+      "display_name": "Melmetal",
+      "row_count": 3,
+      "with_variant_key": 2,
+      "with_printed_identity_modifier": 0,
+      "with_variants_jsonb": 0,
+      "with_child_printings": 1
+    },
+    {
+      "set_code": "smp",
+      "number": "SM182",
+      "normalized_name": "persian",
+      "display_name": "Persian",
+      "row_count": 3,
+      "with_variant_key": 2,
+      "with_printed_identity_modifier": 0,
+      "with_variants_jsonb": 0,
+      "with_child_printings": 1
+    },
+    {
+      "set_code": "smp",
+      "number": "SM19",
+      "normalized_name": "oricorio",
+      "display_name": "Oricorio",
+      "row_count": 3,
+      "with_variant_key": 2,
+      "with_printed_identity_modifier": 0,
+      "with_variants_jsonb": 0,
+      "with_child_printings": 1
+    },
+    {
+      "set_code": "smp",
+      "number": "SM20",
+      "normalized_name": "mudsdale",
+      "display_name": "Mudsdale",
+      "row_count": 3,
+      "with_variant_key": 2,
+      "with_printed_identity_modifier": 0,
+      "with_variants_jsonb": 0,
+      "with_child_printings": 1
+    },
+    {
+      "set_code": "smp",
+      "number": "SM202",
+      "normalized_name": "amoonguss",
+      "display_name": "Amoonguss",
+      "row_count": 3,
+      "with_variant_key": 2,
+      "with_printed_identity_modifier": 0,
+      "with_variants_jsonb": 0,
+      "with_child_printings": 1
+    },
+    {
+      "set_code": "smp",
+      "number": "SM203",
+      "normalized_name": "tapu fini",
+      "display_name": "Tapu Fini",
+      "row_count": 3,
+      "with_variant_key": 2,
+      "with_printed_identity_modifier": 0,
+      "with_variants_jsonb": 0,
+      "with_child_printings": 1
+    },
+    {
+      "set_code": "smp",
+      "number": "SM204",
+      "normalized_name": "necrozma",
+      "display_name": "Necrozma",
+      "row_count": 3,
+      "with_variant_key": 2,
+      "with_printed_identity_modifier": 0,
+      "with_variants_jsonb": 0,
+      "with_child_printings": 1
+    },
+    {
+      "set_code": "smp",
+      "number": "SM205",
+      "normalized_name": "terrakion",
+      "display_name": "Terrakion",
+      "row_count": 3,
+      "with_variant_key": 2,
+      "with_printed_identity_modifier": 0,
+      "with_variants_jsonb": 0,
+      "with_child_printings": 1
+    },
+    {
+      "set_code": "smp",
+      "number": "SM21",
+      "normalized_name": "drampa",
+      "display_name": "Drampa",
+      "row_count": 3,
+      "with_variant_key": 2,
+      "with_printed_identity_modifier": 0,
+      "with_variants_jsonb": 0,
+      "with_child_printings": 1
+    },
+    {
+      "set_code": "smp",
+      "number": "SM218",
+      "normalized_name": "buzzwole",
+      "display_name": "Buzzwole",
+      "row_count": 3,
+      "with_variant_key": 2,
+      "with_printed_identity_modifier": 0,
+      "with_variants_jsonb": 0,
+      "with_child_printings": 1
+    },
+    {
+      "set_code": "smp",
+      "number": "SM219",
+      "normalized_name": "entei",
+      "display_name": "Entei",
+      "row_count": 3,
+      "with_variant_key": 2,
+      "with_printed_identity_modifier": 0,
+      "with_variants_jsonb": 0,
+      "with_child_printings": 1
+    },
+    {
+      "set_code": "smp",
+      "number": "SM220",
+      "normalized_name": "phione",
+      "display_name": "Phione",
+      "row_count": 3,
+      "with_variant_key": 2,
+      "with_printed_identity_modifier": 0,
+      "with_variants_jsonb": 0,
+      "with_child_printings": 1
+    },
+    {
+      "set_code": "smp",
+      "number": "SM221",
+      "normalized_name": "blacephalon",
+      "display_name": "Blacephalon",
+      "row_count": 3,
+      "with_variant_key": 2,
+      "with_printed_identity_modifier": 0,
+      "with_variants_jsonb": 0,
+      "with_child_printings": 1
+    },
+    {
+      "set_code": "smp",
+      "number": "SM46",
+      "normalized_name": "seviper",
+      "display_name": "Seviper",
+      "row_count": 3,
+      "with_variant_key": 2,
+      "with_printed_identity_modifier": 0,
+      "with_variants_jsonb": 0,
+      "with_child_printings": 1
+    },
+    {
+      "set_code": "smp",
+      "number": "SM47",
+      "normalized_name": "crabominable",
+      "display_name": "Crabominable",
+      "row_count": 3,
+      "with_variant_key": 2,
+      "with_printed_identity_modifier": 0,
+      "with_variants_jsonb": 0,
+      "with_child_printings": 1
+    },
+    {
+      "set_code": "smp",
+      "number": "SM48",
+      "normalized_name": "zygarde",
+      "display_name": "Zygarde",
+      "row_count": 3,
+      "with_variant_key": 2,
+      "with_printed_identity_modifier": 0,
+      "with_variants_jsonb": 0,
+      "with_child_printings": 1
+    },
+    {
+      "set_code": "smp",
+      "number": "SM49",
+      "normalized_name": "bewear",
+      "display_name": "Bewear",
+      "row_count": 3,
+      "with_variant_key": 2,
+      "with_printed_identity_modifier": 0,
+      "with_variants_jsonb": 0,
+      "with_child_printings": 1
+    },
+    {
+      "set_code": "smp",
+      "number": "SM72",
+      "normalized_name": "alolan raichu",
+      "display_name": "Alolan Raichu",
+      "row_count": 3,
+      "with_variant_key": 2,
+      "with_printed_identity_modifier": 0,
+      "with_variants_jsonb": 0,
+      "with_child_printings": 1
+    },
+    {
+      "set_code": "smp",
+      "number": "SM73",
+      "normalized_name": "salazzle",
+      "display_name": "Salazzle",
+      "row_count": 3,
+      "with_variant_key": 2,
+      "with_printed_identity_modifier": 0,
+      "with_variants_jsonb": 0,
+      "with_child_printings": 1
+    },
+    {
+      "set_code": "smp",
+      "number": "SM74",
+      "normalized_name": "regirock",
+      "display_name": "Regirock",
+      "row_count": 3,
+      "with_variant_key": 2,
+      "with_printed_identity_modifier": 0,
+      "with_variants_jsonb": 0,
+      "with_child_printings": 1
+    },
+    {
+      "set_code": "smp",
+      "number": "SM75",
+      "normalized_name": "registeel",
+      "display_name": "Registeel",
+      "row_count": 3,
+      "with_variant_key": 2,
+      "with_printed_identity_modifier": 0,
+      "with_variants_jsonb": 0,
+      "with_child_printings": 1
+    },
+    {
+      "set_code": "smp",
+      "number": "SM94",
+      "normalized_name": "wash rotom",
+      "display_name": "Wash Rotom",
+      "row_count": 3,
+      "with_variant_key": 2,
+      "with_printed_identity_modifier": 0,
+      "with_variants_jsonb": 0,
+      "with_child_printings": 1
+    },
+    {
+      "set_code": "smp",
+      "number": "SM95",
+      "normalized_name": "lucario",
+      "display_name": "Lucario",
+      "row_count": 3,
+      "with_variant_key": 2,
+      "with_printed_identity_modifier": 0,
+      "with_variants_jsonb": 0,
+      "with_child_printings": 1
+    },
+    {
+      "set_code": "smp",
+      "number": "SM96",
+      "normalized_name": "heatran",
+      "display_name": "Heatran",
+      "row_count": 3,
+      "with_variant_key": 2,
+      "with_printed_identity_modifier": 0,
+      "with_variants_jsonb": 0,
+      "with_child_printings": 1
+    },
+    {
+      "set_code": "smp",
+      "number": "SM97",
+      "normalized_name": "gumshoos",
+      "display_name": "Gumshoos",
+      "row_count": 3,
+      "with_variant_key": 2,
+      "with_printed_identity_modifier": 0,
+      "with_variants_jsonb": 0,
+      "with_child_printings": 1
+    },
+    {
+      "set_code": "sv01",
+      "number": "114",
+      "normalized_name": "lucario",
+      "display_name": "Lucario",
+      "row_count": 3,
+      "with_variant_key": 2,
+      "with_printed_identity_modifier": 0,
+      "with_variants_jsonb": 0,
+      "with_child_printings": 1
+    },
+    {
+      "set_code": "sv10.5b",
+      "number": "034",
+      "normalized_name": "zekrom ex",
+      "display_name": "Zekrom ex",
+      "row_count": 3,
+      "with_variant_key": 2,
+      "with_printed_identity_modifier": 0,
+      "with_variants_jsonb": 0,
+      "with_child_printings": 1
+    },
+    {
+      "set_code": "sv10.5w",
+      "number": "020",
+      "normalized_name": "reshiram ex",
+      "display_name": "Reshiram ex",
+      "row_count": 3,
+      "with_variant_key": 2,
+      "with_printed_identity_modifier": 0,
+      "with_variants_jsonb": 0,
+      "with_child_printings": 1
+    },
+    {
+      "set_code": "bw2",
+      "number": "53",
+      "normalized_name": "gigalith",
+      "display_name": "Gigalith",
+      "row_count": 2,
+      "with_variant_key": 1,
+      "with_printed_identity_modifier": 0,
+      "with_variants_jsonb": 0,
+      "with_child_printings": 1
+    },
+    {
+      "set_code": "bwp",
+      "number": "28",
+      "normalized_name": "tropical beach",
+      "display_name": "Tropical Beach",
+      "row_count": 2,
+      "with_variant_key": 2,
+      "with_printed_identity_modifier": 0,
+      "with_variants_jsonb": 0,
+      "with_child_printings": 0
+    },
+    {
+      "set_code": "bwp",
+      "number": "40",
+      "normalized_name": "volcarona",
+      "display_name": "Volcarona",
+      "row_count": 2,
+      "with_variant_key": 2,
+      "with_printed_identity_modifier": 0,
+      "with_variants_jsonb": 0,
+      "with_child_printings": 0
+    },
+    {
+      "set_code": "bwp",
+      "number": "48",
+      "normalized_name": "altaria",
+      "display_name": "Altaria",
+      "row_count": 2,
+      "with_variant_key": 2,
+      "with_printed_identity_modifier": 0,
+      "with_variants_jsonb": 0,
+      "with_child_printings": 0
+    },
+    {
+      "set_code": "bwp",
+      "number": "50",
+      "normalized_name": "tropical beach",
+      "display_name": "Tropical Beach",
+      "row_count": 2,
+      "with_variant_key": 2,
+      "with_printed_identity_modifier": 0,
+      "with_variants_jsonb": 0,
+      "with_child_printings": 0
+    },
+    {
+      "set_code": "bwp",
+      "number": "51",
+      "normalized_name": "crobat",
+      "display_name": "Crobat",
+      "row_count": 2,
+      "with_variant_key": 2,
+      "with_printed_identity_modifier": 0,
+      "with_variants_jsonb": 0,
+      "with_child_printings": 0
+    },
+    {
+      "set_code": "bwp",
+      "number": "53",
+      "normalized_name": "flygon",
+      "display_name": "Flygon",
+      "row_count": 2,
+      "with_variant_key": 2,
+      "with_printed_identity_modifier": 0,
+      "with_variants_jsonb": 0,
+      "with_child_printings": 0
+    },
+    {
+      "set_code": "bwp",
+      "number": "75",
+      "normalized_name": "metagross",
+      "display_name": "Metagross",
+      "row_count": 2,
+      "with_variant_key": 2,
+      "with_printed_identity_modifier": 0,
+      "with_variants_jsonb": 0,
+      "with_child_printings": 0
+    },
+    {
+      "set_code": "bwp",
+      "number": "84",
+      "normalized_name": "porygon-z",
+      "display_name": "Porygon-Z",
+      "row_count": 2,
+      "with_variant_key": 2,
+      "with_printed_identity_modifier": 0,
+      "with_variants_jsonb": 0,
+      "with_child_printings": 0
+    },
+    {
+      "set_code": "dp3",
+      "number": "106",
+      "normalized_name": "shellos east sea",
+      "display_name": "Shellos East Sea",
+      "row_count": 2,
+      "with_variant_key": 1,
+      "with_printed_identity_modifier": 0,
+      "with_variants_jsonb": 0,
+      "with_child_printings": 1
+    },
+    {
+      "set_code": "dp3",
+      "number": "107",
+      "normalized_name": "shellos west sea",
+      "display_name": "Shellos West Sea",
+      "row_count": 2,
+      "with_variant_key": 1,
+      "with_printed_identity_modifier": 0,
+      "with_variants_jsonb": 0,
+      "with_child_printings": 1
+    },
+    {
+      "set_code": "dp5",
+      "number": "42",
+      "normalized_name": "mothim",
+      "display_name": "Mothim",
+      "row_count": 2,
+      "with_variant_key": 1,
+      "with_printed_identity_modifier": 0,
+      "with_variants_jsonb": 0,
+      "with_child_printings": 1
+    },
+    {
+      "set_code": "ex12",
+      "number": "45",
+      "normalized_name": "tentacruel",
+      "display_name": "Tentacruel",
+      "row_count": 2,
+      "with_variant_key": 1,
+      "with_printed_identity_modifier": 0,
+      "with_variants_jsonb": 0,
+      "with_child_printings": 1
+    },
+    {
+      "set_code": "ex3",
+      "number": "32",
+      "normalized_name": "gyarados",
+      "display_name": "Gyarados",
+      "row_count": 2,
+      "with_variant_key": 1,
+      "with_printed_identity_modifier": 0,
+      "with_variants_jsonb": 0,
+      "with_child_printings": 1
+    },
+    {
+      "set_code": "ex5",
+      "number": "50",
+      "normalized_name": "swalot",
+      "display_name": "Swalot",
+      "row_count": 2,
+      "with_variant_key": 1,
+      "with_printed_identity_modifier": 0,
+      "with_variants_jsonb": 0,
+      "with_child_printings": 1
+    },
+    {
+      "set_code": "ex7",
+      "number": "37",
+      "normalized_name": "dark houndoom",
+      "display_name": "Dark Houndoom",
+      "row_count": 2,
+      "with_variant_key": 1,
+      "with_printed_identity_modifier": 0,
+      "with_variants_jsonb": 0,
+      "with_child_printings": 1
+    },
+    {
+      "set_code": "ex8",
+      "number": "38",
+      "normalized_name": "manectric",
+      "display_name": "Manectric",
+      "row_count": 2,
+      "with_variant_key": 1,
+      "with_printed_identity_modifier": 0,
+      "with_variants_jsonb": 0,
+      "with_child_printings": 1
+    },
+    {
+      "set_code": "ex9",
+      "number": "29",
+      "normalized_name": "grumpig",
+      "display_name": "Grumpig",
+      "row_count": 2,
+      "with_variant_key": 1,
+      "with_printed_identity_modifier": 0,
+      "with_variants_jsonb": 0,
+      "with_child_printings": 1
+    },
+    {
+      "set_code": "hgss3",
+      "number": "17",
+      "normalized_name": "leafeon",
+      "display_name": "Leafeon",
+      "row_count": 2,
+      "with_variant_key": 1,
+      "with_printed_identity_modifier": 0,
+      "with_variants_jsonb": 0,
+      "with_child_printings": 1
+    },
+    {
+      "set_code": "me01",
+      "number": "003",
+      "normalized_name": "mega venusaur ex",
+      "display_name": "Mega Venusaur ex",
+      "row_count": 2,
+      "with_variant_key": 1,
+      "with_printed_identity_modifier": 0,
+      "with_variants_jsonb": 0,
+      "with_child_printings": 1
+    },
+    {
+      "set_code": "me01",
+      "number": "074",
+      "normalized_name": "lunatone",
+      "display_name": "Lunatone",
+      "row_count": 2,
+      "with_variant_key": 1,
+      "with_printed_identity_modifier": 0,
+      "with_variants_jsonb": 0,
+      "with_child_printings": 1
+    },
+    {
+      "set_code": "me01",
+      "number": "086",
+      "normalized_name": "mega absol ex",
+      "display_name": "Mega Absol ex",
+      "row_count": 2,
+      "with_variant_key": 1,
+      "with_printed_identity_modifier": 0,
+      "with_variants_jsonb": 0,
+      "with_child_printings": 1
+    },
+    {
+      "set_code": "me01",
+      "number": "100",
+      "normalized_name": "mega latias ex",
+      "display_name": "Mega Latias ex",
+      "row_count": 2,
+      "with_variant_key": 1,
+      "with_printed_identity_modifier": 0,
+      "with_variants_jsonb": 0,
+      "with_child_printings": 1
+    },
+    {
+      "set_code": "me01",
+      "number": "101",
+      "normalized_name": "latios",
+      "display_name": "Latios",
+      "row_count": 2,
+      "with_variant_key": 1,
+      "with_printed_identity_modifier": 0,
+      "with_variants_jsonb": 0,
+      "with_child_printings": 1
+    },
+    {
+      "set_code": "me01",
+      "number": "104",
+      "normalized_name": "mega kangaskhan ex",
+      "display_name": "Mega Kangaskhan ex",
+      "row_count": 2,
+      "with_variant_key": 1,
+      "with_printed_identity_modifier": 0,
+      "with_variants_jsonb": 0,
+      "with_child_printings": 1
+    },
+    {
+      "set_code": "me01",
+      "number": "114",
+      "normalized_name": "boss's orders",
+      "display_name": "Boss's Orders",
+      "row_count": 2,
+      "with_variant_key": 1,
+      "with_printed_identity_modifier": 0,
+      "with_variants_jsonb": 0,
+      "with_child_printings": 1
+    },
+    {
+      "set_code": "me01",
+      "number": "116",
+      "normalized_name": "fighting gong",
+      "display_name": "Fighting Gong",
+      "row_count": 2,
+      "with_variant_key": 1,
+      "with_printed_identity_modifier": 0,
+      "with_variants_jsonb": 0,
+      "with_child_printings": 1
+    },
+    {
+      "set_code": "me01",
+      "number": "117",
+      "normalized_name": "forest of vitality",
+      "display_name": "Forest of Vitality",
+      "row_count": 2,
+      "with_variant_key": 1,
+      "with_printed_identity_modifier": 0,
+      "with_variants_jsonb": 0,
+      "with_child_printings": 1
+    },
+    {
+      "set_code": "me01",
+      "number": "118",
+      "normalized_name": "iron defender",
+      "display_name": "Iron Defender",
+      "row_count": 2,
+      "with_variant_key": 1,
+      "with_printed_identity_modifier": 0,
+      "with_variants_jsonb": 0,
+      "with_child_printings": 1
+    },
+    {
+      "set_code": "me01",
+      "number": "119",
+      "normalized_name": "lillie's determination",
+      "display_name": "Lillie's Determination",
+      "row_count": 2,
+      "with_variant_key": 1,
+      "with_printed_identity_modifier": 0,
+      "with_variants_jsonb": 0,
+      "with_child_printings": 1
+    },
+    {
+      "set_code": "me01",
+      "number": "121",
+      "normalized_name": "mega signal",
+      "display_name": "Mega Signal",
+      "row_count": 2,
+      "with_variant_key": 1,
+      "with_printed_identity_modifier": 0,
+      "with_variants_jsonb": 0,
+      "with_child_printings": 1
+    },
+    {
+      "set_code": "me01",
+      "number": "122",
+      "normalized_name": "mystery garden",
+      "display_name": "Mystery Garden",
+      "row_count": 2,
+      "with_variant_key": 1,
+      "with_printed_identity_modifier": 0,
+      "with_variants_jsonb": 0,
+      "with_child_printings": 1
+    },
+    {
+      "set_code": "me01",
+      "number": "124",
+      "normalized_name": "premium power pro",
+      "display_name": "Premium Power Pro",
+      "row_count": 2,
+      "with_variant_key": 1,
+      "with_printed_identity_modifier": 0,
+      "with_variants_jsonb": 0,
+      "with_child_printings": 1
+    },
+    {
+      "set_code": "me01",
+      "number": "127",
+      "normalized_name": "risky ruins",
+      "display_name": "Risky Ruins",
+      "row_count": 2,
+      "with_variant_key": 1,
+      "with_printed_identity_modifier": 0,
+      "with_variants_jsonb": 0,
+      "with_child_printings": 1
+    },
+    {
+      "set_code": "me01",
+      "number": "128",
+      "normalized_name": "strange timepiece",
+      "display_name": "Strange Timepiece",
+      "row_count": 2,
+      "with_variant_key": 1,
+      "with_printed_identity_modifier": 0,
+      "with_variants_jsonb": 0,
+      "with_child_printings": 1
+    },
+    {
+      "set_code": "me01",
+      "number": "129",
+      "normalized_name": "surfing beach",
+      "display_name": "Surfing Beach",
+      "row_count": 2,
+      "with_variant_key": 1,
+      "with_printed_identity_modifier": 0,
+      "with_variants_jsonb": 0,
+      "with_child_printings": 1
+    },
+    {
+      "set_code": "me01",
+      "number": "132",
+      "normalized_name": "wally's compassion",
+      "display_name": "Wally's Compassion",
+      "row_count": 2,
+      "with_variant_key": 1,
+      "with_printed_identity_modifier": 0,
+      "with_variants_jsonb": 0,
+      "with_child_printings": 1
+    }
+  ],
+  "duplicate_looking_rows_sample": [
+    {
+      "gv_id": "GV-PK-BLW-25",
+      "name": "Darmanitan",
+      "set_code": "bw1",
+      "set_name": "Black & White",
+      "number": "25",
+      "rarity": "Rare",
+      "variant_key": "",
+      "printed_identity_modifier": null,
+      "variants": null,
+      "finish_keys": [
+        "holo",
+        "normal",
+        "reverse"
+      ]
+    },
+    {
+      "gv_id": "GV-PK-BLW-25-PRERELEASE-STAMP",
+      "name": "Darmanitan",
+      "set_code": "bw1",
+      "set_name": "Black & White",
+      "number": "25",
+      "rarity": "Promo",
+      "variant_key": "prerelease_stamp",
+      "printed_identity_modifier": null,
+      "variants": null,
+      "finish_keys": []
+    },
+    {
+      "gv_id": "GV-PK-BLW-25-STAFF-PRERELEASE-STAMP",
+      "name": "Darmanitan",
+      "set_code": "bw1",
+      "set_name": "Black & White",
+      "number": "25",
+      "rarity": "Promo",
+      "variant_key": "staff_prerelease_stamp",
+      "printed_identity_modifier": null,
+      "variants": null,
+      "finish_keys": []
+    },
+    {
+      "gv_id": "GV-PK-NVI-43",
+      "name": "Victini",
+      "set_code": "bw3",
+      "set_name": "Noble Victories",
+      "number": "43",
+      "rarity": "Rare",
+      "variant_key": "",
+      "printed_identity_modifier": null,
+      "variants": null,
+      "finish_keys": [
+        "holo",
+        "normal",
+        "reverse"
+      ]
+    },
+    {
+      "gv_id": "GV-PK-NVI-43-PRERELEASE-STAMP",
+      "name": "Victini",
+      "set_code": "bw3",
+      "set_name": "Noble Victories",
+      "number": "43",
+      "rarity": "Promo",
+      "variant_key": "prerelease_stamp",
+      "printed_identity_modifier": null,
+      "variants": null,
+      "finish_keys": []
+    },
+    {
+      "gv_id": "GV-PK-NVI-43-STAFF-PRERELEASE-STAMP",
+      "name": "Victini",
+      "set_code": "bw3",
+      "set_name": "Noble Victories",
+      "number": "43",
+      "rarity": "Promo",
+      "variant_key": "staff_prerelease_stamp",
+      "printed_identity_modifier": null,
+      "variants": null,
+      "finish_keys": []
+    },
+    {
+      "gv_id": "GV-PK-NXD-12",
+      "name": "Arcanine",
+      "set_code": "bw4",
+      "set_name": "Next Destinies",
+      "number": "12",
+      "rarity": "Rare",
+      "variant_key": "",
+      "printed_identity_modifier": null,
+      "variants": null,
+      "finish_keys": [
+        "holo",
+        "normal",
+        "reverse"
+      ]
+    },
+    {
+      "gv_id": "GV-PK-NXD-12-PRERELEASE-STAMP",
+      "name": "Arcanine",
+      "set_code": "bw4",
+      "set_name": "Next Destinies",
+      "number": "12",
+      "rarity": "Promo",
+      "variant_key": "prerelease_stamp",
+      "printed_identity_modifier": null,
+      "variants": null,
+      "finish_keys": []
+    },
+    {
+      "gv_id": "GV-PK-NXD-12-STAFF-PRERELEASE-STAMP",
+      "name": "Arcanine",
+      "set_code": "bw4",
+      "set_name": "Next Destinies",
+      "number": "12",
+      "rarity": "Promo",
+      "variant_key": "staff_prerelease_stamp",
+      "printed_identity_modifier": null,
+      "variants": null,
+      "finish_keys": []
+    },
+    {
+      "gv_id": "GV-PK-PR-BLW-29-BATTLE-ROAD-AUTUMN-2011-3RD-PLACE-STAMP",
+      "name": "Victory Cup",
+      "set_code": "bwp",
+      "set_name": "BW Black Star Promos",
+      "number": "29",
+      "rarity": "Promo",
+      "variant_key": "battle_road_autumn_2011_3rd_place_stamp",
+      "printed_identity_modifier": null,
+      "variants": null,
+      "finish_keys": []
+    },
+    {
+      "gv_id": "GV-PK-PR-BLW-29-BATTLE-ROAD-AUTUMN-2012-3RD-PLACE-STAMP",
+      "name": "Victory Cup",
+      "set_code": "bwp",
+      "set_name": "BW Black Star Promos",
+      "number": "29",
+      "rarity": "Promo",
+      "variant_key": "battle_road_autumn_2012_3rd_place_stamp",
+      "printed_identity_modifier": null,
+      "variants": null,
+      "finish_keys": []
+    },
+    {
+      "gv_id": "GV-PK-PR-BLW-29-BATTLE-ROAD-SPRING-2012-3RD-PLACE-STAMP",
+      "name": "Victory Cup",
+      "set_code": "bwp",
+      "set_name": "BW Black Star Promos",
+      "number": "29",
+      "rarity": "Promo",
+      "variant_key": "battle_road_spring_2012_3rd_place_stamp",
+      "printed_identity_modifier": null,
+      "variants": null,
+      "finish_keys": []
+    },
+    {
+      "gv_id": "GV-PK-PR-BLW-29-BATTLE-ROAD-SPRING-2013-3RD-PLACE-STAMP",
+      "name": "Victory Cup",
+      "set_code": "bwp",
+      "set_name": "BW Black Star Promos",
+      "number": "29",
+      "rarity": "Promo",
+      "variant_key": "battle_road_spring_2013_3rd_place_stamp",
+      "printed_identity_modifier": null,
+      "variants": null,
+      "finish_keys": []
+    },
+    {
+      "gv_id": "GV-PK-PR-BLW-30-BATTLE-ROAD-AUTUMN-2011-2ND-PLACE-STAMP",
+      "name": "Victory Cup",
+      "set_code": "bwp",
+      "set_name": "BW Black Star Promos",
+      "number": "30",
+      "rarity": "Promo",
+      "variant_key": "battle_road_autumn_2011_2nd_place_stamp",
+      "printed_identity_modifier": null,
+      "variants": null,
+      "finish_keys": []
+    },
+    {
+      "gv_id": "GV-PK-PR-BLW-30-BATTLE-ROAD-AUTUMN-2012-2ND-PLACE-STAMP",
+      "name": "Victory Cup",
+      "set_code": "bwp",
+      "set_name": "BW Black Star Promos",
+      "number": "30",
+      "rarity": "Promo",
+      "variant_key": "battle_road_autumn_2012_2nd_place_stamp",
+      "printed_identity_modifier": null,
+      "variants": null,
+      "finish_keys": []
+    },
+    {
+      "gv_id": "GV-PK-PR-BLW-30-BATTLE-ROAD-SPRING-2012-2ND-PLACE-STAMP",
+      "name": "Victory Cup",
+      "set_code": "bwp",
+      "set_name": "BW Black Star Promos",
+      "number": "30",
+      "rarity": "Promo",
+      "variant_key": "battle_road_spring_2012_2nd_place_stamp",
+      "printed_identity_modifier": null,
+      "variants": null,
+      "finish_keys": []
+    },
+    {
+      "gv_id": "GV-PK-PR-BLW-30-BATTLE-ROAD-SPRING-2013-2ND-PLACE-STAMP",
+      "name": "Victory Cup",
+      "set_code": "bwp",
+      "set_name": "BW Black Star Promos",
+      "number": "30",
+      "rarity": "Promo",
+      "variant_key": "battle_road_spring_2013_2nd_place_stamp",
+      "printed_identity_modifier": null,
+      "variants": null,
+      "finish_keys": []
+    },
+    {
+      "gv_id": "GV-PK-PR-BLW-31-BATTLE-ROAD-AUTUMN-2011-1ST-PLACE-STAMP",
+      "name": "Victory Cup",
+      "set_code": "bwp",
+      "set_name": "BW Black Star Promos",
+      "number": "31",
+      "rarity": "Promo",
+      "variant_key": "battle_road_autumn_2011_1st_place_stamp",
+      "printed_identity_modifier": null,
+      "variants": null,
+      "finish_keys": []
+    },
+    {
+      "gv_id": "GV-PK-PR-BLW-31-BATTLE-ROAD-AUTUMN-2012-1ST-PLACE-STAMP",
+      "name": "Victory Cup",
+      "set_code": "bwp",
+      "set_name": "BW Black Star Promos",
+      "number": "31",
+      "rarity": "Promo",
+      "variant_key": "battle_road_autumn_2012_1st_place_stamp",
+      "printed_identity_modifier": null,
+      "variants": null,
+      "finish_keys": []
+    },
+    {
+      "gv_id": "GV-PK-PR-BLW-31-BATTLE-ROAD-SPRING-2012-1ST-PLACE-STAMP",
+      "name": "Victory Cup",
+      "set_code": "bwp",
+      "set_name": "BW Black Star Promos",
+      "number": "31",
+      "rarity": "Promo",
+      "variant_key": "battle_road_spring_2012_1st_place_stamp",
+      "printed_identity_modifier": null,
+      "variants": null,
+      "finish_keys": []
+    },
+    {
+      "gv_id": "GV-PK-PR-BLW-31-BATTLE-ROAD-SPRING-2013-1ST-PLACE-STAMP",
+      "name": "Victory Cup",
+      "set_code": "bwp",
+      "set_name": "BW Black Star Promos",
+      "number": "31",
+      "rarity": "Promo",
+      "variant_key": "battle_road_spring_2013_1st_place_stamp",
+      "printed_identity_modifier": null,
+      "variants": null,
+      "finish_keys": []
+    },
+    {
+      "gv_id": "GV-PK-DP-52",
+      "name": "Luxio",
+      "set_code": "dp1",
+      "set_name": "Diamond & Pearl",
+      "number": "52",
+      "rarity": "Uncommon",
+      "variant_key": "",
+      "printed_identity_modifier": null,
+      "variants": null,
+      "finish_keys": [
+        "normal",
+        "reverse"
+      ]
+    },
+    {
+      "gv_id": "GV-PK-DP-52-PRERELEASE-STAMP",
+      "name": "Luxio",
+      "set_code": "dp1",
+      "set_name": "Diamond & Pearl",
+      "number": "52",
+      "rarity": "Promo",
+      "variant_key": "prerelease_stamp",
+      "printed_identity_modifier": null,
+      "variants": null,
+      "finish_keys": []
+    },
+    {
+      "gv_id": "GV-PK-DP-52-STAFF-PRERELEASE-STAMP",
+      "name": "Luxio",
+      "set_code": "dp1",
+      "set_name": "Diamond & Pearl",
+      "number": "52",
+      "rarity": "Promo",
+      "variant_key": "staff_prerelease_stamp",
+      "printed_identity_modifier": null,
+      "variants": null,
+      "finish_keys": []
+    },
+    {
+      "gv_id": "GV-PK-MT-48",
+      "name": "Gabite",
+      "set_code": "dp2",
+      "set_name": "Mysterious Treasures",
+      "number": "48",
+      "rarity": "Uncommon",
+      "variant_key": "",
+      "printed_identity_modifier": null,
+      "variants": null,
+      "finish_keys": [
+        "normal",
+        "reverse"
+      ]
+    },
+    {
+      "gv_id": "GV-PK-MT-48-PRERELEASE-STAMP",
+      "name": "Gabite",
+      "set_code": "dp2",
+      "set_name": "Mysterious Treasures",
+      "number": "48",
+      "rarity": "Promo",
+      "variant_key": "prerelease_stamp",
+      "printed_identity_modifier": null,
+      "variants": null,
+      "finish_keys": []
+    },
+    {
+      "gv_id": "GV-PK-MT-48-STAFF-PRERELEASE-STAMP",
+      "name": "Gabite",
+      "set_code": "dp2",
+      "set_name": "Mysterious Treasures",
+      "number": "48",
+      "rarity": "Promo",
+      "variant_key": "staff_prerelease_stamp",
+      "printed_identity_modifier": null,
+      "variants": null,
+      "finish_keys": []
+    },
+    {
+      "gv_id": "GV-PK-SF-46",
+      "name": "Piloswine",
+      "set_code": "dp7",
+      "set_name": "Stormfront",
+      "number": "46",
+      "rarity": "Uncommon",
+      "variant_key": "",
+      "printed_identity_modifier": null,
+      "variants": null,
+      "finish_keys": [
+        "normal",
+        "reverse"
+      ]
+    },
+    {
+      "gv_id": "GV-PK-SF-46-PRERELEASE-STAMP",
+      "name": "Piloswine",
+      "set_code": "dp7",
+      "set_name": "Stormfront",
+      "number": "46",
+      "rarity": "Promo",
+      "variant_key": "prerelease_stamp",
+      "printed_identity_modifier": null,
+      "variants": null,
+      "finish_keys": []
+    },
+    {
+      "gv_id": "GV-PK-SF-46-STAFF-PRERELEASE-STAMP",
+      "name": "Piloswine",
+      "set_code": "dp7",
+      "set_name": "Stormfront",
+      "number": "46",
+      "rarity": "Promo",
+      "variant_key": "staff_prerelease_stamp",
+      "printed_identity_modifier": null,
+      "variants": null,
+      "finish_keys": []
+    },
+    {
+      "gv_id": "GV-PK-DR-19",
+      "name": "Salamence",
+      "set_code": "ex3",
+      "set_name": "Dragon",
+      "number": "19",
+      "rarity": "Rare",
+      "variant_key": "",
+      "printed_identity_modifier": null,
+      "variants": null,
+      "finish_keys": [
+        "holo",
+        "normal",
+        "reverse"
+      ]
+    },
+    {
+      "gv_id": "GV-PK-DR-19-E-LEAGUE-STAMP",
+      "name": "Salamence",
+      "set_code": "ex3",
+      "set_name": "Dragon",
+      "number": "19",
+      "rarity": "Promo",
+      "variant_key": "e_league_stamp",
+      "printed_identity_modifier": null,
+      "variants": null,
+      "finish_keys": []
+    },
+    {
+      "gv_id": "GV-PK-DR-19-E-LEAGUE-WINNER-STAMP",
+      "name": "Salamence",
+      "set_code": "ex3",
+      "set_name": "Dragon",
+      "number": "19",
+      "rarity": "Promo",
+      "variant_key": "e_league_winner_stamp",
+      "printed_identity_modifier": null,
+      "variants": null,
+      "finish_keys": []
+    },
+    {
+      "gv_id": "GV-PK-HS-28",
+      "name": "Pichu",
+      "set_code": "hgss1",
+      "set_name": "HeartGold & SoulSilver",
+      "number": "28",
+      "rarity": "Rare",
+      "variant_key": "",
+      "printed_identity_modifier": null,
+      "variants": null,
+      "finish_keys": [
+        "normal",
+        "reverse"
+      ]
+    },
+    {
+      "gv_id": "GV-PK-HS-28-PRERELEASE-STAMP",
+      "name": "Pichu",
+      "set_code": "hgss1",
+      "set_name": "HeartGold & SoulSilver",
+      "number": "28",
+      "rarity": "Promo",
+      "variant_key": "prerelease_stamp",
+      "printed_identity_modifier": null,
+      "variants": null,
+      "finish_keys": []
+    },
+    {
+      "gv_id": "GV-PK-HS-28-STAFF-PRERELEASE-STAMP",
+      "name": "Pichu",
+      "set_code": "hgss1",
+      "set_name": "HeartGold & SoulSilver",
+      "number": "28",
+      "rarity": "Promo",
+      "variant_key": "staff_prerelease_stamp",
+      "printed_identity_modifier": null,
+      "variants": null,
+      "finish_keys": []
+    },
+    {
+      "gv_id": "GV-PK-PL-53",
+      "name": "Lucario",
+      "set_code": "pl1",
+      "set_name": "Platinum",
+      "number": "53",
+      "rarity": "Uncommon",
+      "variant_key": "",
+      "printed_identity_modifier": null,
+      "variants": null,
+      "finish_keys": [
+        "normal",
+        "reverse"
+      ]
+    },
+    {
+      "gv_id": "GV-PK-PL-53-PRERELEASE-STAMP",
+      "name": "Lucario",
+      "set_code": "pl1",
+      "set_name": "Platinum",
+      "number": "53",
+      "rarity": "Promo",
+      "variant_key": "prerelease_stamp",
+      "printed_identity_modifier": null,
+      "variants": null,
+      "finish_keys": []
+    },
+    {
+      "gv_id": "GV-PK-PL-53-STAFF-PRERELEASE-STAMP",
+      "name": "Lucario",
+      "set_code": "pl1",
+      "set_name": "Platinum",
+      "number": "53",
+      "rarity": "Promo",
+      "variant_key": "staff_prerelease_stamp",
+      "printed_identity_modifier": null,
+      "variants": null,
+      "finish_keys": []
+    },
+    {
+      "gv_id": "GV-PK-RR-52",
+      "name": "Tropius",
+      "set_code": "pl2",
+      "set_name": "Rising Rivals",
+      "number": "52",
+      "rarity": "Uncommon",
+      "variant_key": "",
+      "printed_identity_modifier": null,
+      "variants": null,
+      "finish_keys": [
+        "normal",
+        "reverse"
+      ]
+    },
+    {
+      "gv_id": "GV-PK-RR-52-PRERELEASE-STAMP",
+      "name": "Tropius",
+      "set_code": "pl2",
+      "set_name": "Rising Rivals",
+      "number": "52",
+      "rarity": "Promo",
+      "variant_key": "prerelease_stamp",
+      "printed_identity_modifier": null,
+      "variants": null,
+      "finish_keys": []
+    },
+    {
+      "gv_id": "GV-PK-RR-52-STAFF-PRERELEASE-STAMP",
+      "name": "Tropius",
+      "set_code": "pl2",
+      "set_name": "Rising Rivals",
+      "number": "52",
+      "rarity": "Promo",
+      "variant_key": "staff_prerelease_stamp",
+      "printed_identity_modifier": null,
+      "variants": null,
+      "finish_keys": []
+    },
+    {
+      "gv_id": "GV-PK-SV-70",
+      "name": "Milotic",
+      "set_code": "pl3",
+      "set_name": "Supreme Victors",
+      "number": "70",
+      "rarity": "Uncommon",
+      "variant_key": "",
+      "printed_identity_modifier": null,
+      "variants": null,
+      "finish_keys": [
+        "normal",
+        "reverse"
+      ]
+    },
+    {
+      "gv_id": "GV-PK-SV-70-PRERELEASE-STAMP",
+      "name": "Milotic",
+      "set_code": "pl3",
+      "set_name": "Supreme Victors",
+      "number": "70",
+      "rarity": "Promo",
+      "variant_key": "prerelease_stamp",
+      "printed_identity_modifier": null,
+      "variants": null,
+      "finish_keys": []
+    },
+    {
+      "gv_id": "GV-PK-SV-70-STAFF-PRERELEASE-STAMP",
+      "name": "Milotic",
+      "set_code": "pl3",
+      "set_name": "Supreme Victors",
+      "number": "70",
+      "rarity": "Promo",
+      "variant_key": "staff_prerelease_stamp",
+      "printed_identity_modifier": null,
+      "variants": null,
+      "finish_keys": []
+    },
+    {
+      "gv_id": "GV-PK-SM-SM10",
+      "name": "Shiinotic",
+      "set_code": "smp",
+      "set_name": "SM Black Star Promos",
+      "number": "SM10",
+      "rarity": "Promo",
+      "variant_key": "",
+      "printed_identity_modifier": null,
+      "variants": null,
+      "finish_keys": [
+        "holo",
+        "normal",
+        "reverse"
+      ]
+    },
+    {
+      "gv_id": "GV-PK-SM-SM10-PRERELEASE-STAMP",
+      "name": "Shiinotic",
+      "set_code": "smp",
+      "set_name": "SM Black Star Promos",
+      "number": "SM10",
+      "rarity": "Promo",
+      "variant_key": "prerelease_stamp",
+      "printed_identity_modifier": null,
+      "variants": null,
+      "finish_keys": []
+    },
+    {
+      "gv_id": "GV-PK-SM-SM10-STAFF-PRERELEASE-STAMP",
+      "name": "Shiinotic",
+      "set_code": "smp",
+      "set_name": "SM Black Star Promos",
+      "number": "SM10",
+      "rarity": "Promo",
+      "variant_key": "staff_prerelease_stamp",
+      "printed_identity_modifier": null,
+      "variants": null,
+      "finish_keys": []
+    },
+    {
+      "gv_id": "GV-PK-SM-SM11",
+      "name": "Bruxish",
+      "set_code": "smp",
+      "set_name": "SM Black Star Promos",
+      "number": "SM11",
+      "rarity": "Promo",
+      "variant_key": "",
+      "printed_identity_modifier": null,
+      "variants": null,
+      "finish_keys": [
+        "holo",
+        "normal",
+        "reverse"
+      ]
+    },
+    {
+      "gv_id": "GV-PK-SM-SM11-PRERELEASE-STAMP",
+      "name": "Bruxish",
+      "set_code": "smp",
+      "set_name": "SM Black Star Promos",
+      "number": "SM11",
+      "rarity": "Promo",
+      "variant_key": "prerelease_stamp",
+      "printed_identity_modifier": null,
+      "variants": null,
+      "finish_keys": []
+    },
+    {
+      "gv_id": "GV-PK-SM-SM11-STAFF-PRERELEASE-STAMP",
+      "name": "Bruxish",
+      "set_code": "smp",
+      "set_name": "SM Black Star Promos",
+      "number": "SM11",
+      "rarity": "Promo",
+      "variant_key": "staff_prerelease_stamp",
+      "printed_identity_modifier": null,
+      "variants": null,
+      "finish_keys": []
+    },
+    {
+      "gv_id": "GV-PK-SM-SM115",
+      "name": "Pheromosa",
+      "set_code": "smp",
+      "set_name": "SM Black Star Promos",
+      "number": "SM115",
+      "rarity": "Promo",
+      "variant_key": "",
+      "printed_identity_modifier": null,
+      "variants": null,
+      "finish_keys": [
+        "holo",
+        "normal",
+        "reverse"
+      ]
+    },
+    {
+      "gv_id": "GV-PK-SM-SM115-PRERELEASE-STAMP",
+      "name": "Pheromosa",
+      "set_code": "smp",
+      "set_name": "SM Black Star Promos",
+      "number": "SM115",
+      "rarity": "Promo",
+      "variant_key": "prerelease_stamp",
+      "printed_identity_modifier": null,
+      "variants": null,
+      "finish_keys": []
+    },
+    {
+      "gv_id": "GV-PK-SM-SM115-STAFF-PRERELEASE-STAMP",
+      "name": "Pheromosa",
+      "set_code": "smp",
+      "set_name": "SM Black Star Promos",
+      "number": "SM115",
+      "rarity": "Promo",
+      "variant_key": "staff_prerelease_stamp",
+      "printed_identity_modifier": null,
+      "variants": null,
+      "finish_keys": []
+    },
+    {
+      "gv_id": "GV-PK-SM-SM116",
+      "name": "Xurkitree",
+      "set_code": "smp",
+      "set_name": "SM Black Star Promos",
+      "number": "SM116",
+      "rarity": "Promo",
+      "variant_key": "",
+      "printed_identity_modifier": null,
+      "variants": null,
+      "finish_keys": [
+        "holo",
+        "normal",
+        "reverse"
+      ]
+    },
+    {
+      "gv_id": "GV-PK-SM-SM116-PRERELEASE-STAMP",
+      "name": "Xurkitree",
+      "set_code": "smp",
+      "set_name": "SM Black Star Promos",
+      "number": "SM116",
+      "rarity": "Promo",
+      "variant_key": "prerelease_stamp",
+      "printed_identity_modifier": null,
+      "variants": null,
+      "finish_keys": []
+    },
+    {
+      "gv_id": "GV-PK-SM-SM116-STAFF-PRERELEASE-STAMP",
+      "name": "Xurkitree",
+      "set_code": "smp",
+      "set_name": "SM Black Star Promos",
+      "number": "SM116",
+      "rarity": "Promo",
+      "variant_key": "staff_prerelease_stamp",
+      "printed_identity_modifier": null,
+      "variants": null,
+      "finish_keys": []
+    },
+    {
+      "gv_id": "GV-PK-SM-SM117",
+      "name": "Malamar",
+      "set_code": "smp",
+      "set_name": "SM Black Star Promos",
+      "number": "SM117",
+      "rarity": "Promo",
+      "variant_key": "",
+      "printed_identity_modifier": null,
+      "variants": null,
+      "finish_keys": [
+        "holo",
+        "normal",
+        "reverse"
+      ]
+    },
+    {
+      "gv_id": "GV-PK-SM-SM117-PRERELEASE-STAMP",
+      "name": "Malamar",
+      "set_code": "smp",
+      "set_name": "SM Black Star Promos",
+      "number": "SM117",
+      "rarity": "Promo",
+      "variant_key": "prerelease_stamp",
+      "printed_identity_modifier": null,
+      "variants": null,
+      "finish_keys": []
+    },
+    {
+      "gv_id": "GV-PK-SM-SM117-STAFF-PRERELEASE-STAMP",
+      "name": "Malamar",
+      "set_code": "smp",
+      "set_name": "SM Black Star Promos",
+      "number": "SM117",
+      "rarity": "Promo",
+      "variant_key": "staff_prerelease_stamp",
+      "printed_identity_modifier": null,
+      "variants": null,
+      "finish_keys": []
+    },
+    {
+      "gv_id": "GV-PK-SM-SM118",
+      "name": "Lycanroc",
+      "set_code": "smp",
+      "set_name": "SM Black Star Promos",
+      "number": "SM118",
+      "rarity": "Promo",
+      "variant_key": "",
+      "printed_identity_modifier": null,
+      "variants": null,
+      "finish_keys": [
+        "holo",
+        "normal",
+        "reverse"
+      ]
+    },
+    {
+      "gv_id": "GV-PK-SM-SM118-PRERELEASE-STAMP",
+      "name": "Lycanroc",
+      "set_code": "smp",
+      "set_name": "SM Black Star Promos",
+      "number": "SM118",
+      "rarity": "Promo",
+      "variant_key": "prerelease_stamp",
+      "printed_identity_modifier": null,
+      "variants": null,
+      "finish_keys": []
+    },
+    {
+      "gv_id": "GV-PK-SM-SM118-STAFF-PRERELEASE-STAMP",
+      "name": "Lycanroc",
+      "set_code": "smp",
+      "set_name": "SM Black Star Promos",
+      "number": "SM118",
+      "rarity": "Promo",
+      "variant_key": "staff_prerelease_stamp",
+      "printed_identity_modifier": null,
+      "variants": null,
+      "finish_keys": []
+    }
+  ],
+  "high_risk_sets": [
+    {
+      "set_code": "sv03.5",
+      "set_name": "151",
+      "total_rows": 210,
+      "masterball_signals": 0,
+      "pokeball_signals": 3,
+      "reverse_signals": 0,
+      "child_parallel_rows": 153,
+      "likely_151_rows": 210
+    },
+    {
+      "set_code": "swsh10",
+      "set_name": "Astral Radiance",
+      "total_rows": 246,
+      "masterball_signals": 0,
+      "pokeball_signals": 30,
+      "reverse_signals": 0,
+      "child_parallel_rows": 128,
+      "likely_151_rows": 0
+    },
+    {
+      "set_code": "sv05",
+      "set_name": "Temporal Forces",
+      "total_rows": 246,
+      "masterball_signals": 0,
+      "pokeball_signals": 27,
+      "reverse_signals": 0,
+      "child_parallel_rows": 140,
+      "likely_151_rows": 0
+    },
+    {
+      "set_code": "me01",
+      "set_name": "Mega Evolution",
+      "total_rows": 217,
+      "masterball_signals": 0,
+      "pokeball_signals": 27,
+      "reverse_signals": 0,
+      "child_parallel_rows": 122,
+      "likely_151_rows": 0
+    },
+    {
+      "set_code": "sv04",
+      "set_name": "Paradox Rift",
+      "total_rows": 292,
+      "masterball_signals": 0,
+      "pokeball_signals": 25,
+      "reverse_signals": 0,
+      "child_parallel_rows": 137,
+      "likely_151_rows": 0
+    },
+    {
+      "set_code": "sv06",
+      "set_name": "Twilight Masquerade",
+      "total_rows": 255,
+      "masterball_signals": 0,
+      "pokeball_signals": 25,
+      "reverse_signals": 0,
+      "child_parallel_rows": 147,
+      "likely_151_rows": 0
+    },
+    {
+      "set_code": "sv01",
+      "set_name": "Scarlet & Violet",
+      "total_rows": 283,
+      "masterball_signals": 0,
+      "pokeball_signals": 24,
+      "reverse_signals": 0,
+      "child_parallel_rows": 168,
+      "likely_151_rows": 0
+    },
+    {
+      "set_code": "sv10",
+      "set_name": "Destined Rivals",
+      "total_rows": 269,
+      "masterball_signals": 0,
+      "pokeball_signals": 23,
+      "reverse_signals": 0,
+      "child_parallel_rows": 169,
+      "likely_151_rows": 0
+    },
+    {
+      "set_code": "swsh11",
+      "set_name": "Lost Origin",
+      "total_rows": 252,
+      "masterball_signals": 0,
+      "pokeball_signals": 23,
+      "reverse_signals": 0,
+      "child_parallel_rows": 149,
+      "likely_151_rows": 0
+    },
+    {
+      "set_code": "swsh9",
+      "set_name": "Brilliant Stars",
+      "total_rows": 211,
+      "masterball_signals": 0,
+      "pokeball_signals": 23,
+      "reverse_signals": 0,
+      "child_parallel_rows": 124,
+      "likely_151_rows": 0
+    },
+    {
+      "set_code": "swsh8",
+      "set_name": "Fusion Strike",
+      "total_rows": 304,
+      "masterball_signals": 0,
+      "pokeball_signals": 20,
+      "reverse_signals": 0,
+      "child_parallel_rows": 230,
+      "likely_151_rows": 0
+    },
+    {
+      "set_code": "sv08",
+      "set_name": "Surging Sparks",
+      "total_rows": 271,
+      "masterball_signals": 0,
+      "pokeball_signals": 19,
+      "reverse_signals": 0,
+      "child_parallel_rows": 165,
+      "likely_151_rows": 0
+    },
+    {
+      "set_code": "sv02",
+      "set_name": "Paldea Evolved",
+      "total_rows": 295,
+      "masterball_signals": 0,
+      "pokeball_signals": 15,
+      "reverse_signals": 0,
+      "child_parallel_rows": 177,
+      "likely_151_rows": 0
+    },
+    {
+      "set_code": "swsh12",
+      "set_name": "Silver Tempest",
+      "total_rows": 230,
+      "masterball_signals": 0,
+      "pokeball_signals": 15,
+      "reverse_signals": 0,
+      "child_parallel_rows": 142,
+      "likely_151_rows": 0
+    },
+    {
+      "set_code": "sv07",
+      "set_name": "Stellar Crown",
+      "total_rows": 194,
+      "masterball_signals": 0,
+      "pokeball_signals": 15,
+      "reverse_signals": 0,
+      "child_parallel_rows": 125,
+      "likely_151_rows": 0
+    },
+    {
+      "set_code": "sv6pt5",
+      "set_name": "Shrouded Fable",
+      "total_rows": 112,
+      "masterball_signals": 0,
+      "pokeball_signals": 12,
+      "reverse_signals": 0,
+      "child_parallel_rows": 55,
+      "likely_151_rows": 0
+    },
+    {
+      "set_code": "swsh6",
+      "set_name": "Chilling Reign",
+      "total_rows": 244,
+      "masterball_signals": 0,
+      "pokeball_signals": 11,
+      "reverse_signals": 0,
+      "child_parallel_rows": 135,
+      "likely_151_rows": 0
+    },
+    {
+      "set_code": "sve",
+      "set_name": "Scarlet & Violet Energies",
+      "total_rows": 27,
+      "masterball_signals": 0,
+      "pokeball_signals": 11,
+      "reverse_signals": 0,
+      "child_parallel_rows": 0,
+      "likely_151_rows": 0
+    },
+    {
+      "set_code": "swsh7",
+      "set_name": "Evolving Skies",
+      "total_rows": 247,
+      "masterball_signals": 0,
+      "pokeball_signals": 10,
+      "reverse_signals": 0,
+      "child_parallel_rows": 133,
+      "likely_151_rows": 0
+    },
+    {
+      "set_code": "sv8pt5",
+      "set_name": "Prismatic Evolutions",
+      "total_rows": 194,
+      "masterball_signals": 0,
+      "pokeball_signals": 10,
+      "reverse_signals": 0,
+      "child_parallel_rows": 180,
+      "likely_151_rows": 0
+    },
+    {
+      "set_code": "sv09",
+      "set_name": "Journey Together",
+      "total_rows": 198,
+      "masterball_signals": 0,
+      "pokeball_signals": 8,
+      "reverse_signals": 0,
+      "child_parallel_rows": 143,
+      "likely_151_rows": 0
+    },
+    {
+      "set_code": "swsh5",
+      "set_name": "Battle Styles",
+      "total_rows": 191,
+      "masterball_signals": 0,
+      "pokeball_signals": 8,
+      "reverse_signals": 0,
+      "child_parallel_rows": 123,
+      "likely_151_rows": 0
+    },
+    {
+      "set_code": "swsh12.5",
+      "set_name": "Crown Zenith Galarian Gallery",
+      "total_rows": 237,
+      "masterball_signals": 0,
+      "pokeball_signals": 7,
+      "reverse_signals": 0,
+      "child_parallel_rows": 112,
+      "likely_151_rows": 0
+    },
+    {
+      "set_code": "sv03",
+      "set_name": "Obsidian Flames",
+      "total_rows": 237,
+      "masterball_signals": 0,
+      "pokeball_signals": 6,
+      "reverse_signals": 0,
+      "child_parallel_rows": 176,
+      "likely_151_rows": 0
+    },
+    {
+      "set_code": "sv10.5b",
+      "set_name": "Black Bolt",
+      "total_rows": 180,
+      "masterball_signals": 0,
+      "pokeball_signals": 6,
+      "reverse_signals": 0,
+      "child_parallel_rows": 172,
+      "likely_151_rows": 0
+    },
+    {
+      "set_code": "svp",
+      "set_name": "Scarlet & Violet Black Star Promos",
+      "total_rows": 222,
+      "masterball_signals": 0,
+      "pokeball_signals": 4,
+      "reverse_signals": 0,
+      "child_parallel_rows": 195,
+      "likely_151_rows": 0
+    },
+    {
+      "set_code": "sv4pt5",
+      "set_name": "Paldean Fates",
+      "total_rows": 248,
+      "masterball_signals": 0,
+      "pokeball_signals": 3,
+      "reverse_signals": 0,
+      "child_parallel_rows": 81,
+      "likely_151_rows": 0
+    },
+    {
+      "set_code": "swsh3.5",
+      "set_name": "Champion's Path",
+      "total_rows": 83,
+      "masterball_signals": 0,
+      "pokeball_signals": 3,
+      "reverse_signals": 0,
+      "child_parallel_rows": 54,
+      "likely_151_rows": 0
+    },
+    {
+      "set_code": "swshp",
+      "set_name": "SWSH Black Star Promos",
+      "total_rows": 306,
+      "masterball_signals": 0,
+      "pokeball_signals": 2,
+      "reverse_signals": 0,
+      "child_parallel_rows": 121,
+      "likely_151_rows": 0
+    },
+    {
+      "set_code": "swsh1",
+      "set_name": "Sword & Shield",
+      "total_rows": 218,
+      "masterball_signals": 0,
+      "pokeball_signals": 2,
+      "reverse_signals": 0,
+      "child_parallel_rows": 164,
+      "likely_151_rows": 0
+    },
+    {
+      "set_code": "sv10.5w",
+      "set_name": "White Flare",
+      "total_rows": 177,
+      "masterball_signals": 0,
+      "pokeball_signals": 2,
+      "reverse_signals": 0,
+      "child_parallel_rows": 173,
+      "likely_151_rows": 0
+    },
+    {
+      "set_code": "pgo",
+      "set_name": "Pokémon GO",
+      "total_rows": 90,
+      "masterball_signals": 0,
+      "pokeball_signals": 2,
+      "reverse_signals": 0,
+      "child_parallel_rows": 57,
+      "likely_151_rows": 0
+    }
+  ],
+  "pokemon_151_sample": [
+    {
+      "gv_id": "GV-PK-MEW-001",
+      "name": "Bulbasaur",
+      "set_code": "sv03.5",
+      "set_name": "151",
+      "number": "001",
+      "rarity": "Common",
+      "variant_key": "",
+      "printed_identity_modifier": null,
+      "variants": null,
+      "finish_keys": [
+        "normal",
+        "reverse"
+      ]
+    },
+    {
+      "gv_id": "GV-PK-MEW-002",
+      "name": "Ivysaur",
+      "set_code": "sv03.5",
+      "set_name": "151",
+      "number": "002",
+      "rarity": "Uncommon",
+      "variant_key": "",
+      "printed_identity_modifier": null,
+      "variants": null,
+      "finish_keys": [
+        "normal",
+        "reverse"
+      ]
+    },
+    {
+      "gv_id": "GV-PK-MEW-003",
+      "name": "Venusaur ex",
+      "set_code": "sv03.5",
+      "set_name": "151",
+      "number": "003",
+      "rarity": "Double rare",
+      "variant_key": "",
+      "printed_identity_modifier": null,
+      "variants": null,
+      "finish_keys": [
+        "holo"
+      ]
+    },
+    {
+      "gv_id": "GV-PK-MEW-004",
+      "name": "Charmander",
+      "set_code": "sv03.5",
+      "set_name": "151",
+      "number": "004",
+      "rarity": "Common",
+      "variant_key": "",
+      "printed_identity_modifier": null,
+      "variants": null,
+      "finish_keys": [
+        "normal",
+        "reverse"
+      ]
+    },
+    {
+      "gv_id": "GV-PK-MEW-005",
+      "name": "Charmeleon",
+      "set_code": "sv03.5",
+      "set_name": "151",
+      "number": "005",
+      "rarity": "Uncommon",
+      "variant_key": "",
+      "printed_identity_modifier": null,
+      "variants": null,
+      "finish_keys": [
+        "normal",
+        "reverse"
+      ]
+    },
+    {
+      "gv_id": "GV-PK-MEW-006",
+      "name": "Charizard ex",
+      "set_code": "sv03.5",
+      "set_name": "151",
+      "number": "006",
+      "rarity": "Double rare",
+      "variant_key": "",
+      "printed_identity_modifier": null,
+      "variants": null,
+      "finish_keys": [
+        "holo"
+      ]
+    },
+    {
+      "gv_id": "GV-PK-MEW-007",
+      "name": "Squirtle",
+      "set_code": "sv03.5",
+      "set_name": "151",
+      "number": "007",
+      "rarity": "Common",
+      "variant_key": "",
+      "printed_identity_modifier": null,
+      "variants": null,
+      "finish_keys": [
+        "normal",
+        "reverse"
+      ]
+    },
+    {
+      "gv_id": "GV-PK-MEW-008",
+      "name": "Wartortle",
+      "set_code": "sv03.5",
+      "set_name": "151",
+      "number": "008",
+      "rarity": "Uncommon",
+      "variant_key": "",
+      "printed_identity_modifier": null,
+      "variants": null,
+      "finish_keys": [
+        "normal",
+        "reverse"
+      ]
+    },
+    {
+      "gv_id": "GV-PK-MEW-009",
+      "name": "Blastoise ex",
+      "set_code": "sv03.5",
+      "set_name": "151",
+      "number": "009",
+      "rarity": "Double rare",
+      "variant_key": "",
+      "printed_identity_modifier": null,
+      "variants": null,
+      "finish_keys": [
+        "holo"
+      ]
+    },
+    {
+      "gv_id": "GV-PK-MEW-010",
+      "name": "Caterpie",
+      "set_code": "sv03.5",
+      "set_name": "151",
+      "number": "010",
+      "rarity": "Common",
+      "variant_key": "",
+      "printed_identity_modifier": null,
+      "variants": null,
+      "finish_keys": [
+        "normal",
+        "reverse"
+      ]
+    },
+    {
+      "gv_id": "GV-PK-MEW-011",
+      "name": "Metapod",
+      "set_code": "sv03.5",
+      "set_name": "151",
+      "number": "011",
+      "rarity": "Common",
+      "variant_key": "",
+      "printed_identity_modifier": null,
+      "variants": null,
+      "finish_keys": [
+        "normal",
+        "reverse"
+      ]
+    },
+    {
+      "gv_id": "GV-PK-MEW-012",
+      "name": "Butterfree",
+      "set_code": "sv03.5",
+      "set_name": "151",
+      "number": "012",
+      "rarity": "Uncommon",
+      "variant_key": "",
+      "printed_identity_modifier": null,
+      "variants": null,
+      "finish_keys": [
+        "normal",
+        "reverse"
+      ]
+    },
+    {
+      "gv_id": "GV-PK-MEW-013",
+      "name": "Weedle",
+      "set_code": "sv03.5",
+      "set_name": "151",
+      "number": "013",
+      "rarity": "Common",
+      "variant_key": "",
+      "printed_identity_modifier": null,
+      "variants": null,
+      "finish_keys": [
+        "normal",
+        "reverse"
+      ]
+    },
+    {
+      "gv_id": "GV-PK-MEW-014",
+      "name": "Kakuna",
+      "set_code": "sv03.5",
+      "set_name": "151",
+      "number": "014",
+      "rarity": "Common",
+      "variant_key": "",
+      "printed_identity_modifier": null,
+      "variants": null,
+      "finish_keys": [
+        "normal",
+        "reverse"
+      ]
+    },
+    {
+      "gv_id": "GV-PK-MEW-015",
+      "name": "Beedrill",
+      "set_code": "sv03.5",
+      "set_name": "151",
+      "number": "015",
+      "rarity": "Rare",
+      "variant_key": "",
+      "printed_identity_modifier": null,
+      "variants": null,
+      "finish_keys": [
+        "holo",
+        "reverse"
+      ]
+    },
+    {
+      "gv_id": "GV-PK-MEW-016",
+      "name": "Pidgey",
+      "set_code": "sv03.5",
+      "set_name": "151",
+      "number": "016",
+      "rarity": "Common",
+      "variant_key": "",
+      "printed_identity_modifier": null,
+      "variants": null,
+      "finish_keys": [
+        "normal",
+        "reverse"
+      ]
+    },
+    {
+      "gv_id": "GV-PK-MEW-017",
+      "name": "Pidgeotto",
+      "set_code": "sv03.5",
+      "set_name": "151",
+      "number": "017",
+      "rarity": "Common",
+      "variant_key": "",
+      "printed_identity_modifier": null,
+      "variants": null,
+      "finish_keys": [
+        "normal",
+        "reverse"
+      ]
+    },
+    {
+      "gv_id": "GV-PK-MEW-018",
+      "name": "Pidgeot",
+      "set_code": "sv03.5",
+      "set_name": "151",
+      "number": "018",
+      "rarity": "Uncommon",
+      "variant_key": "",
+      "printed_identity_modifier": null,
+      "variants": null,
+      "finish_keys": [
+        "normal",
+        "reverse"
+      ]
+    },
+    {
+      "gv_id": "GV-PK-MEW-019",
+      "name": "Rattata",
+      "set_code": "sv03.5",
+      "set_name": "151",
+      "number": "019",
+      "rarity": "Common",
+      "variant_key": "",
+      "printed_identity_modifier": null,
+      "variants": null,
+      "finish_keys": [
+        "normal",
+        "reverse"
+      ]
+    },
+    {
+      "gv_id": "GV-PK-MEW-020",
+      "name": "Raticate",
+      "set_code": "sv03.5",
+      "set_name": "151",
+      "number": "020",
+      "rarity": "Uncommon",
+      "variant_key": "",
+      "printed_identity_modifier": null,
+      "variants": null,
+      "finish_keys": [
+        "normal",
+        "reverse"
+      ]
+    },
+    {
+      "gv_id": "GV-PK-MEW-021",
+      "name": "Spearow",
+      "set_code": "sv03.5",
+      "set_name": "151",
+      "number": "021",
+      "rarity": "Common",
+      "variant_key": "",
+      "printed_identity_modifier": null,
+      "variants": null,
+      "finish_keys": [
+        "normal",
+        "reverse"
+      ]
+    },
+    {
+      "gv_id": "GV-PK-MEW-022",
+      "name": "Fearow",
+      "set_code": "sv03.5",
+      "set_name": "151",
+      "number": "022",
+      "rarity": "Uncommon",
+      "variant_key": "",
+      "printed_identity_modifier": null,
+      "variants": null,
+      "finish_keys": [
+        "normal",
+        "reverse"
+      ]
+    },
+    {
+      "gv_id": "GV-PK-MEW-023",
+      "name": "Ekans",
+      "set_code": "sv03.5",
+      "set_name": "151",
+      "number": "023",
+      "rarity": "Common",
+      "variant_key": "",
+      "printed_identity_modifier": null,
+      "variants": null,
+      "finish_keys": [
+        "normal",
+        "reverse"
+      ]
+    },
+    {
+      "gv_id": "GV-PK-MEW-024",
+      "name": "Arbok ex",
+      "set_code": "sv03.5",
+      "set_name": "151",
+      "number": "024",
+      "rarity": "Double rare",
+      "variant_key": "",
+      "printed_identity_modifier": null,
+      "variants": null,
+      "finish_keys": [
+        "holo"
+      ]
+    },
+    {
+      "gv_id": "GV-PK-MEW-025",
+      "name": "Pikachu",
+      "set_code": "sv03.5",
+      "set_name": "151",
+      "number": "025",
+      "rarity": "Common",
+      "variant_key": "",
+      "printed_identity_modifier": null,
+      "variants": null,
+      "finish_keys": [
+        "normal",
+        "reverse"
+      ]
+    },
+    {
+      "gv_id": "GV-PK-MEW-025-POKEMON-TOGETHER-STAMP",
+      "name": "Pikachu",
+      "set_code": "sv03.5",
+      "set_name": "151",
+      "number": "025",
+      "rarity": null,
+      "variant_key": "pokemon_together_stamp",
+      "printed_identity_modifier": null,
+      "variants": null,
+      "finish_keys": []
+    },
+    {
+      "gv_id": "GV-PK-MEW-026",
+      "name": "Raichu",
+      "set_code": "sv03.5",
+      "set_name": "151",
+      "number": "026",
+      "rarity": "Rare",
+      "variant_key": "",
+      "printed_identity_modifier": null,
+      "variants": null,
+      "finish_keys": [
+        "holo",
+        "reverse"
+      ]
+    },
+    {
+      "gv_id": "GV-PK-MEW-027",
+      "name": "Sandshrew",
+      "set_code": "sv03.5",
+      "set_name": "151",
+      "number": "027",
+      "rarity": "Common",
+      "variant_key": "",
+      "printed_identity_modifier": null,
+      "variants": null,
+      "finish_keys": [
+        "normal",
+        "reverse"
+      ]
+    },
+    {
+      "gv_id": "GV-PK-MEW-028",
+      "name": "Sandslash",
+      "set_code": "sv03.5",
+      "set_name": "151",
+      "number": "028",
+      "rarity": "Uncommon",
+      "variant_key": "",
+      "printed_identity_modifier": null,
+      "variants": null,
+      "finish_keys": [
+        "normal",
+        "reverse"
+      ]
+    },
+    {
+      "gv_id": "GV-PK-MEW-029",
+      "name": "Nidoran♀",
+      "set_code": "sv03.5",
+      "set_name": "151",
+      "number": "029",
+      "rarity": "Common",
+      "variant_key": "",
+      "printed_identity_modifier": null,
+      "variants": null,
+      "finish_keys": [
+        "normal",
+        "reverse"
+      ]
+    },
+    {
+      "gv_id": "GV-PK-MEW-030",
+      "name": "Nidorina",
+      "set_code": "sv03.5",
+      "set_name": "151",
+      "number": "030",
+      "rarity": "Uncommon",
+      "variant_key": "",
+      "printed_identity_modifier": null,
+      "variants": null,
+      "finish_keys": [
+        "normal",
+        "reverse"
+      ]
+    },
+    {
+      "gv_id": "GV-PK-MEW-031",
+      "name": "Nidoqueen",
+      "set_code": "sv03.5",
+      "set_name": "151",
+      "number": "031",
+      "rarity": "Uncommon",
+      "variant_key": "",
+      "printed_identity_modifier": null,
+      "variants": null,
+      "finish_keys": [
+        "normal",
+        "reverse"
+      ]
+    },
+    {
+      "gv_id": "GV-PK-MEW-032",
+      "name": "Nidoran♂",
+      "set_code": "sv03.5",
+      "set_name": "151",
+      "number": "032",
+      "rarity": "Common",
+      "variant_key": "",
+      "printed_identity_modifier": null,
+      "variants": null,
+      "finish_keys": [
+        "normal",
+        "reverse"
+      ]
+    },
+    {
+      "gv_id": "GV-PK-MEW-033",
+      "name": "Nidorino",
+      "set_code": "sv03.5",
+      "set_name": "151",
+      "number": "033",
+      "rarity": "Uncommon",
+      "variant_key": "",
+      "printed_identity_modifier": null,
+      "variants": null,
+      "finish_keys": [
+        "normal",
+        "reverse"
+      ]
+    },
+    {
+      "gv_id": "GV-PK-MEW-034",
+      "name": "Nidoking",
+      "set_code": "sv03.5",
+      "set_name": "151",
+      "number": "034",
+      "rarity": "Rare",
+      "variant_key": "",
+      "printed_identity_modifier": null,
+      "variants": null,
+      "finish_keys": [
+        "holo",
+        "reverse"
+      ]
+    },
+    {
+      "gv_id": "GV-PK-MEW-035",
+      "name": "Clefairy",
+      "set_code": "sv03.5",
+      "set_name": "151",
+      "number": "035",
+      "rarity": "Common",
+      "variant_key": "",
+      "printed_identity_modifier": null,
+      "variants": null,
+      "finish_keys": [
+        "normal",
+        "reverse"
+      ]
+    },
+    {
+      "gv_id": "GV-PK-MEW-036",
+      "name": "Clefable",
+      "set_code": "sv03.5",
+      "set_name": "151",
+      "number": "036",
+      "rarity": "Uncommon",
+      "variant_key": "",
+      "printed_identity_modifier": null,
+      "variants": null,
+      "finish_keys": [
+        "normal",
+        "reverse"
+      ]
+    },
+    {
+      "gv_id": "GV-PK-MEW-037",
+      "name": "Vulpix",
+      "set_code": "sv03.5",
+      "set_name": "151",
+      "number": "037",
+      "rarity": "Common",
+      "variant_key": "",
+      "printed_identity_modifier": null,
+      "variants": null,
+      "finish_keys": [
+        "normal",
+        "reverse"
+      ]
+    },
+    {
+      "gv_id": "GV-PK-MEW-038",
+      "name": "Ninetales ex",
+      "set_code": "sv03.5",
+      "set_name": "151",
+      "number": "038",
+      "rarity": "Double rare",
+      "variant_key": "",
+      "printed_identity_modifier": null,
+      "variants": null,
+      "finish_keys": [
+        "holo"
+      ]
+    },
+    {
+      "gv_id": "GV-PK-MEW-039",
+      "name": "Jigglypuff",
+      "set_code": "sv03.5",
+      "set_name": "151",
+      "number": "039",
+      "rarity": "Common",
+      "variant_key": "",
+      "printed_identity_modifier": null,
+      "variants": null,
+      "finish_keys": [
+        "normal",
+        "reverse"
+      ]
+    },
+    {
+      "gv_id": "GV-PK-MEW-040",
+      "name": "Wigglytuff ex",
+      "set_code": "sv03.5",
+      "set_name": "151",
+      "number": "040",
+      "rarity": "Double rare",
+      "variant_key": "",
+      "printed_identity_modifier": null,
+      "variants": null,
+      "finish_keys": [
+        "holo"
+      ]
+    },
+    {
+      "gv_id": "GV-PK-MEW-041",
+      "name": "Zubat",
+      "set_code": "sv03.5",
+      "set_name": "151",
+      "number": "041",
+      "rarity": "Common",
+      "variant_key": "",
+      "printed_identity_modifier": null,
+      "variants": null,
+      "finish_keys": [
+        "normal",
+        "reverse"
+      ]
+    },
+    {
+      "gv_id": "GV-PK-MEW-042",
+      "name": "Golbat",
+      "set_code": "sv03.5",
+      "set_name": "151",
+      "number": "042",
+      "rarity": "Uncommon",
+      "variant_key": "",
+      "printed_identity_modifier": null,
+      "variants": null,
+      "finish_keys": [
+        "normal",
+        "reverse"
+      ]
+    },
+    {
+      "gv_id": "GV-PK-MEW-043",
+      "name": "Oddish",
+      "set_code": "sv03.5",
+      "set_name": "151",
+      "number": "043",
+      "rarity": "Common",
+      "variant_key": "",
+      "printed_identity_modifier": null,
+      "variants": null,
+      "finish_keys": [
+        "normal",
+        "reverse"
+      ]
+    },
+    {
+      "gv_id": "GV-PK-MEW-044",
+      "name": "Gloom",
+      "set_code": "sv03.5",
+      "set_name": "151",
+      "number": "044",
+      "rarity": "Uncommon",
+      "variant_key": "",
+      "printed_identity_modifier": null,
+      "variants": null,
+      "finish_keys": [
+        "normal",
+        "reverse"
+      ]
+    },
+    {
+      "gv_id": "GV-PK-MEW-045",
+      "name": "Vileplume",
+      "set_code": "sv03.5",
+      "set_name": "151",
+      "number": "045",
+      "rarity": "Rare",
+      "variant_key": "",
+      "printed_identity_modifier": null,
+      "variants": null,
+      "finish_keys": [
+        "holo",
+        "reverse"
+      ]
+    },
+    {
+      "gv_id": "GV-PK-MEW-046",
+      "name": "Paras",
+      "set_code": "sv03.5",
+      "set_name": "151",
+      "number": "046",
+      "rarity": "Common",
+      "variant_key": "",
+      "printed_identity_modifier": null,
+      "variants": null,
+      "finish_keys": [
+        "normal",
+        "reverse"
+      ]
+    },
+    {
+      "gv_id": "GV-PK-MEW-047",
+      "name": "Parasect",
+      "set_code": "sv03.5",
+      "set_name": "151",
+      "number": "047",
+      "rarity": "Uncommon",
+      "variant_key": "",
+      "printed_identity_modifier": null,
+      "variants": null,
+      "finish_keys": [
+        "normal",
+        "reverse"
+      ]
+    },
+    {
+      "gv_id": "GV-PK-MEW-048",
+      "name": "Venonat",
+      "set_code": "sv03.5",
+      "set_name": "151",
+      "number": "048",
+      "rarity": "Common",
+      "variant_key": "",
+      "printed_identity_modifier": null,
+      "variants": null,
+      "finish_keys": [
+        "normal",
+        "reverse"
+      ]
+    },
+    {
+      "gv_id": "GV-PK-MEW-049",
+      "name": "Venomoth",
+      "set_code": "sv03.5",
+      "set_name": "151",
+      "number": "049",
+      "rarity": "Uncommon",
+      "variant_key": "",
+      "printed_identity_modifier": null,
+      "variants": null,
+      "finish_keys": [
+        "normal",
+        "reverse"
+      ]
+    },
+    {
+      "gv_id": "GV-PK-MEW-050",
+      "name": "Diglett",
+      "set_code": "sv03.5",
+      "set_name": "151",
+      "number": "050",
+      "rarity": "Common",
+      "variant_key": "",
+      "printed_identity_modifier": null,
+      "variants": null,
+      "finish_keys": [
+        "normal",
+        "reverse"
+      ]
+    },
+    {
+      "gv_id": "GV-PK-MEW-051",
+      "name": "Dugtrio",
+      "set_code": "sv03.5",
+      "set_name": "151",
+      "number": "051",
+      "rarity": "Uncommon",
+      "variant_key": "",
+      "printed_identity_modifier": null,
+      "variants": null,
+      "finish_keys": [
+        "normal",
+        "reverse"
+      ]
+    },
+    {
+      "gv_id": "GV-PK-MEW-052",
+      "name": "Meowth",
+      "set_code": "sv03.5",
+      "set_name": "151",
+      "number": "052",
+      "rarity": "Common",
+      "variant_key": "",
+      "printed_identity_modifier": null,
+      "variants": null,
+      "finish_keys": [
+        "normal",
+        "reverse"
+      ]
+    },
+    {
+      "gv_id": "GV-PK-MEW-053",
+      "name": "Persian",
+      "set_code": "sv03.5",
+      "set_name": "151",
+      "number": "053",
+      "rarity": "Uncommon",
+      "variant_key": "",
+      "printed_identity_modifier": null,
+      "variants": null,
+      "finish_keys": [
+        "normal",
+        "reverse"
+      ]
+    },
+    {
+      "gv_id": "GV-PK-MEW-054",
+      "name": "Psyduck",
+      "set_code": "sv03.5",
+      "set_name": "151",
+      "number": "054",
+      "rarity": "Common",
+      "variant_key": "",
+      "printed_identity_modifier": null,
+      "variants": null,
+      "finish_keys": [
+        "normal",
+        "reverse"
+      ]
+    },
+    {
+      "gv_id": "GV-PK-MEW-055",
+      "name": "Golduck",
+      "set_code": "sv03.5",
+      "set_name": "151",
+      "number": "055",
+      "rarity": "Uncommon",
+      "variant_key": "",
+      "printed_identity_modifier": null,
+      "variants": null,
+      "finish_keys": [
+        "normal",
+        "reverse"
+      ]
+    },
+    {
+      "gv_id": "GV-PK-MEW-056",
+      "name": "Mankey",
+      "set_code": "sv03.5",
+      "set_name": "151",
+      "number": "056",
+      "rarity": "Common",
+      "variant_key": "",
+      "printed_identity_modifier": null,
+      "variants": null,
+      "finish_keys": [
+        "normal",
+        "reverse"
+      ]
+    },
+    {
+      "gv_id": "GV-PK-MEW-057",
+      "name": "Primeape",
+      "set_code": "sv03.5",
+      "set_name": "151",
+      "number": "057",
+      "rarity": "Uncommon",
+      "variant_key": "",
+      "printed_identity_modifier": null,
+      "variants": null,
+      "finish_keys": [
+        "normal",
+        "reverse"
+      ]
+    },
+    {
+      "gv_id": "GV-PK-MEW-058",
+      "name": "Growlithe",
+      "set_code": "sv03.5",
+      "set_name": "151",
+      "number": "058",
+      "rarity": "Common",
+      "variant_key": "",
+      "printed_identity_modifier": null,
+      "variants": null,
+      "finish_keys": [
+        "normal",
+        "reverse"
+      ]
+    },
+    {
+      "gv_id": "GV-PK-MEW-059",
+      "name": "Arcanine",
+      "set_code": "sv03.5",
+      "set_name": "151",
+      "number": "059",
+      "rarity": "Uncommon",
+      "variant_key": "",
+      "printed_identity_modifier": null,
+      "variants": null,
+      "finish_keys": [
+        "normal",
+        "reverse"
+      ]
+    },
+    {
+      "gv_id": "GV-PK-MEW-060",
+      "name": "Poliwag",
+      "set_code": "sv03.5",
+      "set_name": "151",
+      "number": "060",
+      "rarity": "Common",
+      "variant_key": "",
+      "printed_identity_modifier": null,
+      "variants": null,
+      "finish_keys": [
+        "normal",
+        "reverse"
+      ]
+    },
+    {
+      "gv_id": "GV-PK-MEW-061",
+      "name": "Poliwhirl",
+      "set_code": "sv03.5",
+      "set_name": "151",
+      "number": "061",
+      "rarity": "Common",
+      "variant_key": "",
+      "printed_identity_modifier": null,
+      "variants": null,
+      "finish_keys": [
+        "normal",
+        "reverse"
+      ]
+    },
+    {
+      "gv_id": "GV-PK-MEW-062",
+      "name": "Poliwrath",
+      "set_code": "sv03.5",
+      "set_name": "151",
+      "number": "062",
+      "rarity": "Uncommon",
+      "variant_key": "",
+      "printed_identity_modifier": null,
+      "variants": null,
+      "finish_keys": [
+        "normal",
+        "reverse"
+      ]
+    },
+    {
+      "gv_id": "GV-PK-MEW-063",
+      "name": "Abra",
+      "set_code": "sv03.5",
+      "set_name": "151",
+      "number": "063",
+      "rarity": "Common",
+      "variant_key": "",
+      "printed_identity_modifier": null,
+      "variants": null,
+      "finish_keys": [
+        "normal",
+        "reverse"
+      ]
+    },
+    {
+      "gv_id": "GV-PK-MEW-064",
+      "name": "Kadabra",
+      "set_code": "sv03.5",
+      "set_name": "151",
+      "number": "064",
+      "rarity": "Uncommon",
+      "variant_key": "",
+      "printed_identity_modifier": null,
+      "variants": null,
+      "finish_keys": [
+        "normal",
+        "reverse"
+      ]
+    },
+    {
+      "gv_id": "GV-PK-MEW-065",
+      "name": "Alakazam ex",
+      "set_code": "sv03.5",
+      "set_name": "151",
+      "number": "065",
+      "rarity": "Double rare",
+      "variant_key": "",
+      "printed_identity_modifier": null,
+      "variants": null,
+      "finish_keys": [
+        "holo"
+      ]
+    },
+    {
+      "gv_id": "GV-PK-MEW-066",
+      "name": "Machop",
+      "set_code": "sv03.5",
+      "set_name": "151",
+      "number": "066",
+      "rarity": "Common",
+      "variant_key": "",
+      "printed_identity_modifier": null,
+      "variants": null,
+      "finish_keys": [
+        "normal",
+        "reverse"
+      ]
+    },
+    {
+      "gv_id": "GV-PK-MEW-067",
+      "name": "Machoke",
+      "set_code": "sv03.5",
+      "set_name": "151",
+      "number": "067",
+      "rarity": "Uncommon",
+      "variant_key": "",
+      "printed_identity_modifier": null,
+      "variants": null,
+      "finish_keys": [
+        "normal",
+        "reverse"
+      ]
+    },
+    {
+      "gv_id": "GV-PK-MEW-068",
+      "name": "Machamp",
+      "set_code": "sv03.5",
+      "set_name": "151",
+      "number": "068",
+      "rarity": "Rare",
+      "variant_key": "",
+      "printed_identity_modifier": null,
+      "variants": null,
+      "finish_keys": [
+        "holo",
+        "reverse"
+      ]
+    },
+    {
+      "gv_id": "GV-PK-MEW-069",
+      "name": "Bellsprout",
+      "set_code": "sv03.5",
+      "set_name": "151",
+      "number": "069",
+      "rarity": "Common",
+      "variant_key": "",
+      "printed_identity_modifier": null,
+      "variants": null,
+      "finish_keys": [
+        "normal",
+        "reverse"
+      ]
+    },
+    {
+      "gv_id": "GV-PK-MEW-070",
+      "name": "Weepinbell",
+      "set_code": "sv03.5",
+      "set_name": "151",
+      "number": "070",
+      "rarity": "Common",
+      "variant_key": "",
+      "printed_identity_modifier": null,
+      "variants": null,
+      "finish_keys": [
+        "normal",
+        "reverse"
+      ]
+    },
+    {
+      "gv_id": "GV-PK-MEW-071",
+      "name": "Victreebel",
+      "set_code": "sv03.5",
+      "set_name": "151",
+      "number": "071",
+      "rarity": "Uncommon",
+      "variant_key": "",
+      "printed_identity_modifier": null,
+      "variants": null,
+      "finish_keys": [
+        "normal",
+        "reverse"
+      ]
+    },
+    {
+      "gv_id": "GV-PK-MEW-072",
+      "name": "Tentacool",
+      "set_code": "sv03.5",
+      "set_name": "151",
+      "number": "072",
+      "rarity": "Common",
+      "variant_key": "",
+      "printed_identity_modifier": null,
+      "variants": null,
+      "finish_keys": [
+        "normal",
+        "reverse"
+      ]
+    },
+    {
+      "gv_id": "GV-PK-MEW-073",
+      "name": "Tentacruel",
+      "set_code": "sv03.5",
+      "set_name": "151",
+      "number": "073",
+      "rarity": "Uncommon",
+      "variant_key": "",
+      "printed_identity_modifier": null,
+      "variants": null,
+      "finish_keys": [
+        "normal",
+        "reverse"
+      ]
+    },
+    {
+      "gv_id": "GV-PK-MEW-074",
+      "name": "Geodude",
+      "set_code": "sv03.5",
+      "set_name": "151",
+      "number": "074",
+      "rarity": "Common",
+      "variant_key": "",
+      "printed_identity_modifier": null,
+      "variants": null,
+      "finish_keys": [
+        "normal",
+        "reverse"
+      ]
+    }
+  ],
+  "source_finish_evidence": {
+    "tcgdex_cards": {
+      "tcgdex_cards": 18962,
+      "with_rarity": 0,
+      "rarity_reverse_signals": 0,
+      "rarity_masterball_signals": 0,
+      "rarity_pokeball_signals": 0
+    },
+    "raw_imports": {
+      "raw_rows": 30110,
+      "reverse_holo_payload_rows": 0,
+      "masterball_payload_rows": 9,
+      "pokeball_payload_rows": 0,
+      "holofoil_payload_rows": 19425
+    }
+  }
+}
