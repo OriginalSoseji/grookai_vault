@@ -5,6 +5,7 @@ import Link from "next/link";
 import { usePathname, useSearchParams } from "next/navigation";
 import CardImageTruthBadge from "@/components/cards/CardImageTruthBadge";
 import PokemonCardGridTile from "@/components/cards/PokemonCardGridTile";
+import VariantBadge from "@/components/cards/VariantBadge";
 import { POKEMON_CARD_BROWSE_GRID_CLASSNAME } from "@/components/cards/pokemonCardGridLayout";
 import CompareCardButton from "@/components/compare/CompareCardButton";
 import CompareTray from "@/components/compare/CompareTray";
@@ -14,6 +15,7 @@ import {
   resolveDisplayIdentity,
   resolveDisplayIdentitySubtitleForContext,
 } from "@/lib/cards/resolveDisplayIdentity";
+import { getVariantLabels } from "@/lib/cards/variantPresentation";
 import { buildPathWithCompareCards, normalizeCompareCardsParam } from "@/lib/compareCards";
 import type { PublicSetCard } from "@/lib/publicSets.shared";
 
@@ -99,6 +101,7 @@ export default function PublicSetCardGrid({
             identitySubtitle: displayIdentity.suffix,
             visibleSetLabel: setLabel,
           });
+          const variantLabels = getVariantLabels(card, 2);
 
           return (
             <PokemonCardGridTile
@@ -125,6 +128,15 @@ export default function PublicSetCardGrid({
                 </Link>
               }
               subtitle={<span className="block truncate">{setLabel}</span>}
+              badges={
+                variantLabels.length > 0 ? (
+                  <>
+                    {variantLabels.map((label) => (
+                      <VariantBadge key={`${card.gv_id}-${label}`} label={label} />
+                    ))}
+                  </>
+                ) : undefined
+              }
               meta={<span>{card.number ? `#${card.number}` : "—"}</span>}
               footer={
                 <div className="flex items-center justify-between gap-3">

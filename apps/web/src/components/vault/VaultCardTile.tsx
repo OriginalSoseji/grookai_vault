@@ -2,10 +2,12 @@
 
 import Link from "next/link";
 import PokemonCardGridTile from "@/components/cards/PokemonCardGridTile";
+import VariantBadge from "@/components/cards/VariantBadge";
 import {
   resolveDisplayIdentity,
   resolveDisplayIdentitySubtitleForContext,
 } from "@/lib/cards/resolveDisplayIdentity";
+import { getVariantLabels } from "@/lib/cards/variantPresentation";
 import {
   formatVaultCopyDate,
   formatVaultCopyIdentityLabel,
@@ -149,6 +151,7 @@ export function VaultCardTile({
     identitySubtitle: displayIdentity.suffix,
     visibleSetLabel: setLabel,
   });
+  const variantLabels = getVariantLabels(item, 2);
   const tileDensity = density === "compact" ? "compact" : density === "large" ? "large" : "default";
   const secondaryContext = formatVaultSecondaryContext(item);
   const intentMixSummary = formatIntentMixSummary(item);
@@ -315,7 +318,14 @@ export function VaultCardTile({
       subtitle={
         <span className="line-clamp-1 block">{setLabel}</span>
       }
-      badges={<VaultPrimaryStateBadge item={item} />}
+      badges={
+        <>
+          <VaultPrimaryStateBadge item={item} />
+          {variantLabels.map((label) => (
+            <VariantBadge key={`${item.gv_id}-${label}`} label={label} />
+          ))}
+        </>
+      }
       meta={secondaryContext ? <span className="line-clamp-1 text-sm text-slate-600">{secondaryContext}</span> : undefined}
       summary={closedSummary}
       details={details}
