@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 
 class ConditionCaptureOverlay extends StatelessWidget {
@@ -57,14 +55,16 @@ class ConditionCaptureOverlay extends StatelessWidget {
                     vertical: 8,
                   ),
                   decoration: BoxDecoration(
-                    color: theme.colorScheme.surface.withOpacity(0.72),
+                    color: theme.colorScheme.surface.withValues(alpha: 0.72),
                     borderRadius: BorderRadius.circular(999),
                     border: Border.all(
-                      color: theme.colorScheme.onSurface.withOpacity(0.15),
+                      color: theme.colorScheme.onSurface.withValues(
+                        alpha: 0.15,
+                      ),
                     ),
                     boxShadow: [
                       BoxShadow(
-                        color: theme.colorScheme.shadow.withOpacity(0.08),
+                        color: theme.colorScheme.shadow.withValues(alpha: 0.08),
                         blurRadius: 10,
                         offset: const Offset(0, 4),
                       ),
@@ -108,7 +108,8 @@ class _OverlayPainter extends CustomPainter {
 
   @override
   void paint(Canvas canvas, Size size) {
-    final scrimPaint = Paint()..color = colorScheme.onSurface.withOpacity(0.4);
+    final scrimPaint = Paint()
+      ..color = colorScheme.onSurface.withValues(alpha: 0.4);
     final clearPaint = Paint()..blendMode = BlendMode.clear;
     final overlay = Path()
       ..addRect(Rect.fromLTWH(0, 0, size.width, size.height));
@@ -125,9 +126,11 @@ class _OverlayPainter extends CustomPainter {
 
     final borderColor = switch (mode) {
       OverlayMode.ready => colorScheme.primary,
-      OverlayMode.warn => colorScheme.error.withOpacity(0.9),
+      OverlayMode.warn => colorScheme.error.withValues(alpha: 0.9),
       _ =>
-        isReady ? colorScheme.primary : colorScheme.onSurface.withOpacity(0.8),
+        isReady
+            ? colorScheme.primary
+            : colorScheme.onSurface.withValues(alpha: 0.8),
     };
     final borderPaint = Paint()
       ..color = borderColor
@@ -138,7 +141,7 @@ class _OverlayPainter extends CustomPainter {
     final tickPaint = Paint()
       ..color = isReady
           ? colorScheme.primary
-          : colorScheme.onSurface.withOpacity(0.9)
+          : colorScheme.onSurface.withValues(alpha: 0.9)
       ..strokeWidth = 3
       ..style = PaintingStyle.stroke
       ..strokeCap = StrokeCap.round;
@@ -159,11 +162,11 @@ class _OverlayPainter extends CustomPainter {
 
     final center = guideRect.center;
     final centerPaint = Paint()
-      ..color = colorScheme.primary.withOpacity(0.9)
+      ..color = colorScheme.primary.withValues(alpha: 0.9)
       ..style = PaintingStyle.fill;
     canvas.drawCircle(center, 3, centerPaint);
     final crossPaint = Paint()
-      ..color = colorScheme.onSurface.withOpacity(0.8)
+      ..color = colorScheme.onSurface.withValues(alpha: 0.8)
       ..strokeWidth = 1.6;
     canvas.drawLine(
       center + const Offset(-6, 0),
@@ -178,7 +181,7 @@ class _OverlayPainter extends CustomPainter {
 
     if (quadPointsNorm != null && quadPointsNorm!.length == 4) {
       final quadPaint = Paint()
-        ..color = colorScheme.primary.withOpacity(0.8)
+        ..color = colorScheme.primary.withValues(alpha: 0.8)
         ..strokeWidth = 2
         ..style = PaintingStyle.stroke;
       final path = Path();
@@ -204,14 +207,14 @@ class _OverlayPainter extends CustomPainter {
       );
 
       final ringPaint = Paint()
-        ..color = Colors.white.withOpacity(0.85)
+        ..color = Colors.white.withValues(alpha: 0.85)
         ..style = PaintingStyle.stroke
         ..strokeWidth = 1.8;
       final dotPaint = Paint()
-        ..color = Colors.white.withOpacity(0.9)
+        ..color = Colors.white.withValues(alpha: 0.9)
         ..style = PaintingStyle.fill;
       final tickPaint = Paint()
-        ..color = Colors.white.withOpacity(0.85)
+        ..color = Colors.white.withValues(alpha: 0.85)
         ..strokeWidth = 1.8
         ..style = PaintingStyle.stroke
         ..strokeCap = StrokeCap.round;

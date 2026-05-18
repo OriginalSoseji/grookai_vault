@@ -1849,7 +1849,7 @@ Future<void> main() async {
   final key = supabasePublishableKey;
   if (url.isEmpty || key.isEmpty) {
     throw Exception(
-      'Missing SUPABASE_URL or SUPABASE_PUBLISHABLE_KEY. Update your .env.local file.',
+      'Missing SUPABASE_URL or SUPABASE_PUBLISHABLE_KEY. Pass release values with --dart-define or use local dotenv only for development.',
     );
   }
 
@@ -1907,6 +1907,24 @@ class MyApp extends StatefulWidget {
 
   @override
   State<MyApp> createState() => _MyAppState();
+}
+
+class GrookaiAppFrame extends StatelessWidget {
+  const GrookaiAppFrame({super.key, required this.home});
+
+  final Widget home;
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Grookai Vault',
+      theme: ThemeData(
+        colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xFF0F172A)),
+        useMaterial3: true,
+      ),
+      home: home,
+    );
+  }
 }
 
 class _MyAppState extends State<MyApp> {

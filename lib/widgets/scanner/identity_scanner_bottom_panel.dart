@@ -39,7 +39,7 @@ class IdentityScannerBottomPanel extends StatelessWidget {
           decoration: BoxDecoration(
             color: const Color(0xCC111316),
             borderRadius: BorderRadius.circular(28),
-            border: Border.all(color: Colors.white.withOpacity(0.08)),
+            border: Border.all(color: Colors.white.withValues(alpha: 0.08)),
             boxShadow: const [
               BoxShadow(
                 color: Color(0x33000000),
@@ -78,7 +78,7 @@ class IdentityScannerBottomPanel extends StatelessWidget {
                             child: Text(
                               eyebrow,
                               style: theme.textTheme.labelMedium?.copyWith(
-                                color: Colors.white.withOpacity(0.72),
+                                color: Colors.white.withValues(alpha: 0.72),
                                 fontWeight: FontWeight.w600,
                                 letterSpacing: 0.25,
                               ),
@@ -113,7 +113,7 @@ class IdentityScannerBottomPanel extends StatelessWidget {
                         Text(
                           subtitle!,
                           style: theme.textTheme.bodyMedium?.copyWith(
-                            color: Colors.white.withOpacity(0.82),
+                            color: Colors.white.withValues(alpha: 0.82),
                             height: 1.28,
                           ),
                         ),
@@ -124,7 +124,7 @@ class IdentityScannerBottomPanel extends StatelessWidget {
                         Text(
                           supportingText!,
                           style: theme.textTheme.bodySmall?.copyWith(
-                            color: Colors.white.withOpacity(0.64),
+                            color: Colors.white.withValues(alpha: 0.64),
                             height: 1.3,
                           ),
                         ),
@@ -172,12 +172,14 @@ class _ScannerThumbnail extends StatelessWidget {
       child: Container(
         width: 58,
         height: 80,
-        color: Colors.white.withOpacity(0.06),
+        color: Colors.white.withValues(alpha: 0.06),
         child: Image.network(
           imageUrl,
           fit: BoxFit.cover,
-          errorBuilder: (_, __, ___) =>
-              Icon(Icons.style_rounded, color: Colors.white.withOpacity(0.72)),
+          errorBuilder: (context, error, stackTrace) => Icon(
+            Icons.style_rounded,
+            color: Colors.white.withValues(alpha: 0.72),
+          ),
         ),
       ),
     );

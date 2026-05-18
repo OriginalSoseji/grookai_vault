@@ -49,6 +49,9 @@ Thumbs.db
 # Keep pubspec.lock committed for Flutter apps
 **/GeneratedPluginRegistrant.*.dart
 android/local.properties
+android/key.properties
+android/*.jks
+android/*.keystore
 # ---------- Supabase ----------
 # Track schema/functions when you add them, but ignore local temp/env
 supabase/.temp/

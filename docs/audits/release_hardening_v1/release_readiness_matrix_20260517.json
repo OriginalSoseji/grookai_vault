@@ -1,0 +1,84 @@
+{
+  "classification": "NOT_PRODUCTION_READY",
+  "date": "2026-05-17",
+  "scope": "release_integrity_only",
+  "lanes": {
+    "secret_safety": {
+      "status": "pass",
+      "evidence": [
+        "Flutter assets no longer include .env or .env.local",
+        "npm run release:secret-guard passes",
+        "android/key.properties and keystore files are ignored"
+      ],
+      "remaining_risk": "Guard is static; signed artifact inspection requires signing secrets."
+    },
+    "flutter_integrity": {
+      "status": "pass",
+      "evidence": [
+        "flutter analyze passes",
+        "flutter test --no-pub passes"
+      ],
+      "remaining_risk": "Scanner remains parked; no scanner architecture work was performed."
+    },
+    "web_build": {
+      "status": "pass",
+      "evidence": [
+        "npm --prefix apps/web run build passes without TLS certificate output",
+        "npm run web:build:strict passes and detects TLS certificate failure patterns"
+      ],
+      "remaining_risk": "One non-blocking Next.js img optimization warning remains."
+    },
+    "ci_readiness": {
+      "status": "pass",
+      "evidence": [
+        "shipcheck includes release secret guard, contracts tests, runtime health, web build, Flutter analyze, and Flutter tests",
+        "Flutter CI watches test and analysis option changes"
+      ],
+      "remaining_risk": "Workflow execution with GitHub-hosted secrets was not run locally."
+    },
+    "signing_readiness": {
+      "status": "blocked",
+      "evidence": [
+        "Release workflow validates Android signing secrets",
+        "Android release build no longer uses debug signing",
+        "GitHub Release uploads app-release.aab rather than unsigned APK",
+        "gh secret list on 2026-05-17 shows required Android signing and mobile config secrets are missing"
+      ],
+      "remaining_risk": "Production signing secrets must exist in GitHub Actions before any release artifact can be trusted."
+    },
+    "github_release_verification": {
+      "status": "blocked",
+      "evidence": [
+        "gh auth status passes for OriginalSoseji",
+        "Repository remote resolves to OriginalSoseji/grookai_vault",
+        "release-hardening commits are local to scanner-v4-card-present-gate and the branch has no upstream",
+        "gh workflow list does not show the Release (Android) workflow",
+        "Required secrets are absent: ANDROID_KEYSTORE_BASE64, ANDROID_KEYSTORE_PASSWORD, ANDROID_KEY_ALIAS, ANDROID_KEY_PASSWORD, MOBILE_SUPABASE_URL, MOBILE_SUPABASE_PUBLISHABLE_KEY"
+      ],
+      "remaining_risk": "Release workflow could not be run; signed artifact inspection and install testing are not possible until the branch is published and secrets are configured."
+    },
+    "runtime_deferred_debt": {
+      "status": "known_deferred",
+      "evidence": [
+        "npm run preflight passes with deferred debt",
+        "npm run contracts:runtime-health passes with known blocked/contained paths"
+      ],
+      "remaining_risk": "Deferred DB/runtime debt remains outside this release-hardening lane."
+    }
+  },
+  "explicit_non_actions": {
+    "db_migrations": false,
+    "db_remediation": false,
+    "scanner_architecture_changes": false,
+    "gv_id_gate_relaxation": false,
+    "blocked_lane_implementation": false
+  },
+  "production_ready_conditions": [
+    "Publish the release-hardening commits to GitHub",
+    "Configure required GitHub Actions release secrets",
+    "GitHub Actions release workflow completes with production signing secrets",
+    "Signed release artifact is inspected successfully",
+    "Release artifact installs and opens on Android test device or emulator",
+    "Deferred runtime debt remains accepted or is separately remediated under its own lane"
+  ]
+}

@@ -52,41 +52,60 @@ void main() {
     'supabase/migrations/20260422133000_wall_sections_data_model_v1.sql',
   ).readAsStringSync();
 
-  test('public profile uses Wall and Sections read model instead of legacy split', () {
-    expect(profilePageSource, contains('getPublicCollectorWallSectionsBySlug'));
-    expect(profilePageSource, contains('sections={sectionViews}'));
-    expect(profilePageSource, contains('searchParams?: { section?: string | string[] }'));
-    expect(profilePageSource, contains('redirect(getPublicSectionShareHref(profile.slug, sectionParam))'));
-    expect(profilePageSource, isNot(contains('getSharedCardsBySlug')));
-    expect(profilePageSource, isNot(contains('getInPlayCardsBySlug')));
-    expect(contentSource, contains('getPublicSectionShareHref(slug, section.id)'));
-    expect(contentSource, isNot(contains('{ value: "collection"')));
-    expect(contentSource, isNot(contains('label: "Visible"')));
-    expect(contentSource, isNot(contains('Visible cards')));
-  });
+  test(
+    'public profile uses Wall and Sections read model instead of legacy split',
+    () {
+      expect(profilePageSource, contains('getPublicCollectorWallViewBySlug'));
+      expect(profilePageSource, contains('sections={sectionViews}'));
+      expect(profilePageSource, isNot(contains('getSharedCardsBySlug')));
+      expect(profilePageSource, isNot(contains('getInPlayCardsBySlug')));
+      expect(
+        contentSource,
+        contains('getPublicSectionShareHref(slug, section.id)'),
+      );
+      expect(contentSource, isNot(contains('{ value: "collection"')));
+      expect(contentSource, isNot(contains('label: "Visible"')));
+      expect(contentSource, isNot(contains('Visible cards')));
+    },
+  );
 
   test('public helpers read only the new Wall and selected Section views', () {
     expect(wallCardsSource, contains('.from("v_wall_cards_v1")'));
     expect(sectionsSource, contains('.from("v_wall_sections_v1")'));
     expect(sectionCardsSource, contains('.from("v_section_cards_v1")'));
-    expect(sectionCardsSource, contains('.eq("section_id", normalizedSectionId)'));
+    expect(
+      sectionCardsSource,
+      contains('.eq("section_id", normalizedSectionId)'),
+    );
     expect(sectionCardsSource, contains('.eq("owner_slug", normalizedSlug)'));
     expect(sectionShareModelSource, contains('.from("v_wall_sections_v1")'));
-    expect(sectionShareModelSource, contains('.eq("owner_slug", profile.slug)'));
+    expect(
+      sectionShareModelSource,
+      contains('.eq("owner_slug", profile.slug)'),
+    );
     expect(sectionShareModelSource, contains('.eq("id", normalizedSectionId)'));
-    expect(sectionShareModelSource, contains('getPublicSectionCardsBySlug(profile.slug, section.id)'));
+    expect(
+      sectionShareModelSource,
+      contains('getPublicSectionCardsBySlug(profile.slug, section.id)'),
+    );
     expect(wallCardsSource, isNot(contains('.from("shared_cards")')));
     expect(sectionCardsSource, isNot(contains('.from("shared_cards")')));
   });
 
-  test('canonical section route is path based with query compatibility only', () {
-    expect(wallSectionTypesSource, contains('getPublicSectionShareHref'));
-    expect(wallSectionTypesSource, contains('/section/'));
-    expect(sectionPageSource, contains('getPublicSectionBySlugAndId'));
-    expect(sectionPageSource, contains('notFound()'));
-    expect(sectionPageSource, contains('redirect(sectionPath)'));
-    expect(collectionCompatibilityPageSource, contains(r'redirect(`/u/${profile.slug}`)'));
-  });
+  test(
+    'canonical section route is path based with query compatibility only',
+    () {
+      expect(wallSectionTypesSource, contains('getPublicSectionShareHref'));
+      expect(wallSectionTypesSource, contains('/section/'));
+      expect(sectionPageSource, contains('getPublicSectionBySlugAndId'));
+      expect(sectionPageSource, contains('notFound()'));
+      expect(sectionPageSource, contains('redirect(sectionPath)'));
+      expect(
+        collectionCompatibilityPageSource,
+        contains(r'redirect(`/u/${profile.slug}`)'),
+      );
+    },
+  );
 
   test('Wall is always first and custom sections follow in order', () {
     expect(orchestrationSource, contains('PUBLIC_WALL_SECTION_ID'));
@@ -100,18 +119,36 @@ void main() {
     expect(migrationSource, contains('and ws.is_public = true'));
     expect(sectionsSource, contains('.from("v_wall_sections_v1")'));
     expect(sectionShareModelSource, contains('!profile.vault_sharing_enabled'));
-    expect(sectionShareModelSource, contains('Section share routes must expose only the selected public section'));
-    expect(sectionShareModelSource, contains('Do not leak unrelated or private sections through share rendering'));
+    expect(
+      sectionShareModelSource,
+      contains(
+        'Section share routes expose active custom sections automatically.',
+      ),
+    );
+    expect(
+      sectionShareModelSource,
+      contains(
+        'Do not leak inactive or unrelated sections through share rendering.',
+      ),
+    );
   });
 
   test('section route renders only selected section cards', () {
-    expect(sectionPageSource, contains('PublicSectionShareContent'));
-    expect(sectionPageSource, contains('cards={model.cards}'));
+    expect(sectionPageSource, contains('getPublicSectionBySlugAndId'));
+    expect(
+      sectionPageSource,
+      contains('cards: section.id === model.section.id ? model.cards : []'),
+    );
     expect(sectionContentSource, contains('PublicCollectionGrid'));
     expect(sectionContentSource, contains('PUBLIC_SECTION_SHARE_COPY.empty'));
-    expect(sectionPageSource, isNot(contains('getPublicCollectorWallSectionsBySlug')));
-    expect(sectionPageSource, isNot(contains('getPublicWallSectionsBySlug')));
-    expect(sectionShareModelSource, isNot(contains('getPublicCollectorWallSectionsBySlug')));
+    expect(
+      sectionPageSource,
+      isNot(contains('getPublicCollectorWallSectionsBySlug')),
+    );
+    expect(
+      sectionShareModelSource,
+      isNot(contains('getPublicCollectorWallSectionsBySlug')),
+    );
   });
 
   test('card rendering keeps display image precedence and exact-copy keys', () {
@@ -122,19 +159,33 @@ void main() {
     expect(gridSource, contains('key={cardKey}'));
   });
 
-  test('public copy remains short and old labels do not reappear on web section surfaces', () {
-    expect(wallSectionTypesSource, contains('Public section share language must remain short, calm, and collector-friendly'));
-    expect(wallSectionTypesSource, contains('Back to wall'));
-    expect(wallSectionTypesSource, contains('Copy link'));
-    expect(sectionPageSource, isNot(contains('Visible')));
-    expect(sectionContentSource, isNot(contains('Visible')));
-    expect(sectionContentSource, isNot(contains('Visible cards')));
-    expect(sectionContentSource, isNot(contains('title="Collection"')));
-  });
+  test(
+    'public copy remains short and old labels do not reappear on web section surfaces',
+    () {
+      expect(
+        wallSectionTypesSource,
+        contains(
+          'Public section share language must remain short, calm, and collector-friendly',
+        ),
+      );
+      expect(wallSectionTypesSource, contains('Back to wall'));
+      expect(wallSectionTypesSource, contains('Copy link'));
+      expect(sectionPageSource, isNot(contains('Visible')));
+      expect(sectionContentSource, isNot(contains('Visible')));
+      expect(sectionContentSource, isNot(contains('Visible cards')));
+      expect(sectionContentSource, isNot(contains('title="Collection"')));
+    },
+  );
 
   test('owner and app surfaces can reach canonical section links', () {
-    expect(revalidateSource, contains(r'revalidatePath(`/u/${slug}/section/${section.id}`)'));
+    expect(
+      revalidateSource,
+      contains(r'revalidatePath(`/u/${slug}/section/${section.id}`)'),
+    );
     expect(webRouteServiceSource, contains('collectorSection'));
-    expect(webRouteServiceSource, contains("segments[2].toLowerCase() == 'section'"));
+    expect(
+      webRouteServiceSource,
+      contains("segments[2].toLowerCase() == 'section'"),
+    );
   });
 }

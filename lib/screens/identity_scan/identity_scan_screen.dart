@@ -224,8 +224,9 @@ class _IdentityScanScreenState extends State<IdentityScanScreen> {
 
   Map<String, dynamic>? get _selectedCandidate {
     if (_candidates.isEmpty) return null;
-    if (_selectedIndex < 0 || _selectedIndex >= _candidates.length)
+    if (_selectedIndex < 0 || _selectedIndex >= _candidates.length) {
       return _candidates.first as Map<String, dynamic>?;
+    }
     final c = _candidates[_selectedIndex];
     return c is Map<String, dynamic> ? c : null;
   }
@@ -444,7 +445,8 @@ class _IdentityScanScreenState extends State<IdentityScanScreen> {
                   shrinkWrap: true,
                   physics: const NeverScrollableScrollPhysics(),
                   itemCount: _candidates.length,
-                  separatorBuilder: (_, __) => const Divider(height: 1),
+                  separatorBuilder: (context, index) =>
+                      const Divider(height: 1),
                   itemBuilder: (context, index) {
                     final c = _candidates[index] as Map;
                     final name = (c['name'] ?? '').toString();
@@ -461,7 +463,7 @@ class _IdentityScanScreenState extends State<IdentityScanScreen> {
                                 width: 44,
                                 height: 60,
                                 fit: BoxFit.cover,
-                                errorBuilder: (_, __, ___) =>
+                                errorBuilder: (context, error, stackTrace) =>
                                     const Icon(Icons.style),
                               ),
                             )
