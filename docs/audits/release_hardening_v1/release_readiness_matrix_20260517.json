@@ -1,30 +1,38 @@
 {
-  "classification": "NOT_PRODUCTION_READY",
+  "classification": "RELEASE_CANDIDATE",
   "date": "2026-05-17",
+  "last_verified_utc": "2026-05-18",
   "scope": "release_integrity_only",
+  "main_sha_pushed": "b5f458ac81174408f7af292db18744a4a5f60aa2",
+  "release_tag": "v0.1.8",
+  "release_workflow_run_id": "26011620654",
   "lanes": {
     "secret_safety": {
       "status": "pass",
       "evidence": [
         "Flutter assets no longer include .env or .env.local",
         "npm run release:secret-guard passes",
-        "android/key.properties and keystore files are ignored"
+        "android/key.properties and keystore files are ignored",
+        "Downloaded app-release.aab had 0 .env* filename hits",
+        "Downloaded app-release.aab had 0 secret-like filename hits"
       ],
-      "remaining_risk": "Guard is static; signed artifact inspection requires signing secrets."
+      "remaining_risk": "Static filename/content guard and artifact filename scan are in place; continue rotating real secrets outside repo."
     },
     "flutter_integrity": {
       "status": "pass",
       "evidence": [
-        "flutter analyze passes",
-        "flutter test --no-pub passes"
+        "GitHub Actions release run 26011620654 passed Flutter analyze",
+        "GitHub Actions release run 26011620654 passed Flutter tests"
       ],
       "remaining_risk": "Scanner remains parked; no scanner architecture work was performed."
     },
     "web_build": {
       "status": "pass",
       "evidence": [
-        "npm --prefix apps/web run build passes without TLS certificate output",
-        "npm run web:build:strict passes and detects TLS certificate failure patterns"
+        "GitHub Actions release run 26011620654 passed web typecheck",
+        "GitHub Actions release run 26011620654 passed web lint",
+        "GitHub Actions release run 26011620654 passed strict web production build",
+        "Strict build detects TLS certificate failure patterns"
       ],
       "remaining_risk": "One non-blocking Next.js img optimization warning remains."
     },
@@ -32,30 +40,41 @@
       "status": "pass",
       "evidence": [
         "shipcheck includes release secret guard, contracts tests, runtime health, web build, Flutter analyze, and Flutter tests",
-        "Flutter CI watches test and analysis option changes"
+        "Release workflow is enabled in GitHub Actions",
+        "Release workflow run 26011620654 completed successfully"
       ],
-      "remaining_risk": "Workflow execution with GitHub-hosted secrets was not run locally."
+      "remaining_risk": "GitHub Actions Node 20 action deprecation warning should be tracked before GitHub enforcement dates."
     },
     "signing_readiness": {
-      "status": "blocked",
+      "status": "pass",
       "evidence": [
         "Release workflow validates Android signing secrets",
         "Android release build no longer uses debug signing",
         "GitHub Release uploads app-release.aab rather than unsigned APK",
-        "gh secret list on 2026-05-17 shows required Android signing and mobile config secrets are missing"
+        "jarsigner -verify reports jar verified for downloaded app-release.aab"
       ],
-      "remaining_risk": "Production signing secrets must exist in GitHub Actions before any release artifact can be trusted."
+      "remaining_risk": "AAB signer certificate is self-signed upload-key material, so jarsigner -strict reports PKIX warnings."
     },
     "github_release_verification": {
-      "status": "blocked",
+      "status": "pass",
       "evidence": [
-        "gh auth status passes for OriginalSoseji",
-        "Repository remote resolves to OriginalSoseji/grookai_vault",
-        "release-hardening commits are local to scanner-v4-card-present-gate and the branch has no upstream",
-        "gh workflow list does not show the Release (Android) workflow",
-        "Required secrets are absent: ANDROID_KEYSTORE_BASE64, ANDROID_KEYSTORE_PASSWORD, ANDROID_KEY_ALIAS, ANDROID_KEY_PASSWORD, MOBILE_SUPABASE_URL, MOBILE_SUPABASE_PUBLISHABLE_KEY"
+        "Required GitHub Actions secrets are present",
+        "Release tag v0.1.8 completed successfully",
+        "Published app-release.aab asset digest sha256:e9da5d2025607623ef6c4d322ab224156c90f0d0632c3783723b6749d04cede2",
+        "Downloaded artifact size was 48098958 bytes"
       ],
-      "remaining_risk": "Release workflow could not be run; signed artifact inspection and install testing are not possible until the branch is published and secrets are configured."
+      "remaining_risk": "None for release workflow execution; Android UI smoke remains partial."
+    },
+    "android_smoke": {
+      "status": "partial",
+      "evidence": [
+        "AAB-derived APK set installed on attached SM-S908U API 36",
+        "Package com.example.grookai_vault installed",
+        "Launcher activity com.example.grookai_vault/.MainActivity resolved",
+        "App process launched and appeared in focused app/window dumps",
+        "No FATAL EXCEPTION or AndroidRuntime crash was observed in sampled launch logs"
+      ],
+      "remaining_risk": "Device stayed dozing/locked with black screenshots, so auth flow, search, public routes, scanner parked state, and debug banner absence were not visually verified."
     },
     "runtime_deferred_debt": {
       "status": "known_deferred",
@@ -66,19 +85,43 @@
       "remaining_risk": "Deferred DB/runtime debt remains outside this release-hardening lane."
     }
   },
+  "secrets_configured": {
+    "ANDROID_KEYSTORE_BASE64": true,
+    "ANDROID_KEYSTORE_PASSWORD": true,
+    "ANDROID_KEY_ALIAS": true,
+    "ANDROID_KEY_PASSWORD": true,
+    "MOBILE_SUPABASE_URL": true,
+    "MOBILE_SUPABASE_PUBLISHABLE_KEY": true,
+    "SUPABASE_DB_URL": true,
+    "SUPABASE_SECRET_KEY": true
+  },
+  "artifact_verification": {
+    "artifact_name": "app-release.aab",
+    "artifact_size_bytes": 48098958,
+    "github_digest": "sha256:e9da5d2025607623ef6c4d322ab224156c90f0d0632c3783723b6749d04cede2",
+    "jarsigner_verify": "pass",
+    "env_file_hits": 0,
+    "secret_like_filename_hits": 0,
+    "expected_bundle_config_present": true,
+    "expected_android_manifest_present": true,
+    "expected_classes_dex_present": true
+  },
   "explicit_non_actions": {
     "db_migrations": false,
+    "db_writes": false,
     "db_remediation": false,
+    "edge_function_deploys": false,
     "scanner_architecture_changes": false,
     "gv_id_gate_relaxation": false,
-    "blocked_lane_implementation": false
+    "blocked_lane_implementation": false,
+    "secret_exposure": false
   },
   "production_ready_conditions": [
-    "Publish the release-hardening commits to GitHub",
-    "Configure required GitHub Actions release secrets",
-    "GitHub Actions release workflow completes with production signing secrets",
-    "Signed release artifact is inspected successfully",
-    "Release artifact installs and opens on Android test device or emulator",
-    "Deferred runtime debt remains accepted or is separately remediated under its own lane"
+    "Complete manual Android UI smoke on unlocked device or emulator",
+    "Verify auth flow is reachable",
+    "Verify search works",
+    "Verify public card pages/routes work",
+    "Verify scanner remains parked/non-blocking",
+    "Verify no debug/dev banners appear in UI"
   ]
 }
