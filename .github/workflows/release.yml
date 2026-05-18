@@ -17,6 +17,7 @@ jobs:
       MOBILE_SUPABASE_PUBLISHABLE_KEY: ${{ secrets.MOBILE_SUPABASE_PUBLISHABLE_KEY }}
       SUPABASE_URL: ${{ secrets.MOBILE_SUPABASE_URL }}
       SUPABASE_PUBLISHABLE_KEY: ${{ secrets.MOBILE_SUPABASE_PUBLISHABLE_KEY }}
+      SUPABASE_SECRET_KEY: ${{ secrets.SUPABASE_SECRET_KEY }}
       SUPABASE_DB_URL: ${{ secrets.SUPABASE_DB_URL }}
 
     steps:
@@ -63,6 +64,7 @@ jobs:
             ANDROID_KEY_PASSWORD
             MOBILE_SUPABASE_URL
             MOBILE_SUPABASE_PUBLISHABLE_KEY
+            SUPABASE_SECRET_KEY
             SUPABASE_DB_URL
           )
           for name in "${required[@]}"; do
