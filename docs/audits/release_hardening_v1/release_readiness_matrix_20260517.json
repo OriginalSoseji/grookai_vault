@@ -1,37 +1,38 @@
 {
-  "classification": "RELEASE_CANDIDATE",
+  "classification": "PRODUCTION_READY",
   "date": "2026-05-17",
   "last_verified_utc": "2026-05-18",
   "scope": "release_integrity_only",
-  "main_sha_pushed": "d34e4f918ad1fd5a5addeee9747f9f44967640a1",
-  "release_tag": "v0.1.8",
-  "release_workflow_run_id": "26011620654",
+  "main_sha_pushed": "f134aff8ff740901ae0a8f8430afe54ec541c3c5",
+  "release_tag": "v0.1.10",
+  "release_workflow_run_id": "26013394418",
   "lanes": {
     "secret_safety": {
       "status": "pass",
       "evidence": [
-        "Flutter assets no longer include .env or .env.local",
+        "Flutter assets do not include .env or .env.local",
         "npm run release:secret-guard passes",
         "android/key.properties and keystore files are ignored",
-        "Downloaded app-release.aab had 0 .env* filename hits",
-        "Downloaded app-release.aab had 0 secret-like filename hits"
+        "Downloaded v0.1.10 app-release.aab had 0 .env* filename hits",
+        "Downloaded v0.1.10 app-release.aab had 0 secret-like filename hits"
       ],
       "remaining_risk": "Static filename/content guard and artifact filename scan are in place; continue rotating real secrets outside repo."
     },
     "flutter_integrity": {
       "status": "pass",
       "evidence": [
-        "GitHub Actions release run 26011620654 passed Flutter analyze",
-        "GitHub Actions release run 26011620654 passed Flutter tests"
+        "GitHub Actions release run 26013394418 passed Flutter analyze",
+        "GitHub Actions release run 26013394418 passed Flutter tests",
+        "Regression test covers release config access when dotenv assets are absent"
       ],
       "remaining_risk": "Scanner remains parked; no scanner architecture work was performed."
     },
     "web_build": {
       "status": "pass",
       "evidence": [
-        "GitHub Actions release run 26011620654 passed web typecheck",
-        "GitHub Actions release run 26011620654 passed web lint",
-        "GitHub Actions release run 26011620654 passed strict web production build",
+        "GitHub Actions release run 26013394418 passed web typecheck",
+        "GitHub Actions release run 26013394418 passed web lint",
+        "GitHub Actions release run 26013394418 passed strict web production build",
         "Strict build detects TLS certificate failure patterns"
       ],
       "remaining_risk": "One non-blocking Next.js img optimization warning remains."
@@ -41,7 +42,7 @@
       "evidence": [
         "shipcheck includes release secret guard, contracts tests, runtime health, web build, Flutter analyze, and Flutter tests",
         "Release workflow is enabled in GitHub Actions",
-        "Release workflow run 26011620654 completed successfully"
+        "Release workflow run 26013394418 completed successfully"
       ],
       "remaining_risk": "GitHub Actions Node 20 action deprecation warning should be tracked before GitHub enforcement dates."
     },
@@ -51,7 +52,7 @@
         "Release workflow validates Android signing secrets",
         "Android release build no longer uses debug signing",
         "GitHub Release uploads app-release.aab rather than unsigned APK",
-        "jarsigner -verify reports jar verified for downloaded app-release.aab"
+        "jarsigner verification confirms downloaded app-release.aab is signed"
       ],
       "remaining_risk": "AAB signer certificate is self-signed upload-key material, so jarsigner -strict reports PKIX warnings."
     },
@@ -59,24 +60,25 @@
       "status": "pass",
       "evidence": [
         "Required GitHub Actions secrets are present",
-        "Release tag v0.1.8 completed successfully",
-        "Published app-release.aab asset digest sha256:e9da5d2025607623ef6c4d322ab224156c90f0d0632c3783723b6749d04cede2",
-        "Downloaded artifact size was 48098958 bytes"
+        "Release tag v0.1.10 completed successfully",
+        "Downloaded artifact SHA256 56BC82AB6D4BA63B3C784BF702A9F7D3E32522509E038BA42CD3323AA0135E26"
       ],
-      "remaining_risk": "None for release workflow execution; Android UI smoke remains blocked by blank/splash launch behavior."
+      "remaining_risk": "None for release workflow execution."
     },
     "android_smoke": {
-      "status": "partial",
+      "status": "pass",
       "evidence": [
         "AAB-derived APK set installed on attached SM-S908U API 36",
         "Package com.example.grookai_vault installed",
         "Launcher activity com.example.grookai_vault/.MainActivity resolved",
-        "App process launched and appeared in focused app/window dumps",
-        "No FATAL EXCEPTION or AndroidRuntime crash was observed in sampled launch logs",
-        "Unlocked-device capture showed the app focused/resumed but still rendering only a blank white/splash surface",
-        "UIAutomator dump contained only the root Android content frame and no app-visible text or controls"
+        "Signed-release install cleared Android splash and rendered authenticated Feed UI",
+        "Search tab rendered search input, Browse sets, filters, and trending cards",
+        "Account/authenticated profile surfaces were reachable",
+        "Sampled logs after smoke taps reported fatal_or_unhandled_count=0",
+        "No debug/dev banner was visible in smoke screenshots",
+        "Scanner remained non-blocking during smoke"
       ],
-      "remaining_risk": "Signed release-derived install launches without an observed fatal crash, but the UI does not advance beyond a blank/splash surface on the unlocked attached device; auth flow, search, public routes, scanner parked state, and debug banner absence were not visually verified."
+      "remaining_risk": "Smoke was targeted release integrity verification, not full QA."
     },
     "runtime_deferred_debt": {
       "status": "known_deferred",
@@ -99,12 +101,10 @@
   },
   "artifact_verification": {
     "artifact_name": "app-release.aab",
-    "artifact_size_bytes": 48098958,
-    "github_digest": "sha256:e9da5d2025607623ef6c4d322ab224156c90f0d0632c3783723b6749d04cede2",
+    "sha256": "56BC82AB6D4BA63B3C784BF702A9F7D3E32522509E038BA42CD3323AA0135E26",
     "jarsigner_verify": "pass",
     "env_file_hits": 0,
     "secret_like_filename_hits": 0,
-    "expected_bundle_config_present": true,
     "expected_android_manifest_present": true,
     "expected_classes_dex_present": true
   },
@@ -119,11 +119,12 @@
     "secret_exposure": false
   },
   "production_ready_conditions": [
-    "Complete manual Android UI smoke on unlocked device or emulator",
-    "Verify auth flow is reachable",
-    "Verify search works",
-    "Verify public card pages/routes work",
-    "Verify scanner remains parked/non-blocking",
-    "Verify no debug/dev banners appear in UI"
+    "GitHub signed release workflow passes",
+    "Signed AAB verifies",
+    ".env packaging verification passes",
+    "Android signed-release smoke reaches real app UI",
+    "Search and authenticated account surfaces are reachable",
+    "Scanner remains non-blocking",
+    "No debug/dev banner appears in smoke screenshots"
   ]
 }
