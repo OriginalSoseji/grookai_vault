@@ -119,8 +119,8 @@ export default function AddToVaultCardAction({
   const [selectedPrinting, setSelectedPrinting] = useState<CardPrinting | null>(() =>
     getDefaultPrinting(printings, initialPrintingId),
   );
+  const selectedChildPrintingId = selectedPrinting?.is_display_fallback ? null : selectedPrinting?.id ?? null;
   const statusMessage = getStatusMessage(state);
-  const hasChildPrintingSelection = Boolean(selectedPrinting && selectedPrinting.is_display_fallback !== true);
   const toneClasses =
     statusMessage?.tone === "success"
       ? "border-emerald-200 bg-emerald-50 text-emerald-900"
@@ -161,16 +161,6 @@ export default function AddToVaultCardAction({
         />
       ) : null}
 
-      {hasChildPrintingSelection ? (
-        <div className="rounded-[12px] border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-950">
-          <p className="font-semibold">Finish-specific vault add is not enabled yet.</p>
-          <p className="mt-1">
-            Selected finish: {selectedPrinting?.finish_name ?? "Printing"}. This action is blocked until vault writes support
-            `card_printing_id`.
-          </p>
-        </div>
-      ) : null}
-
       <div className="flex flex-wrap items-center gap-3">
         {effectiveIsAuthenticated ? (
           <form
@@ -183,10 +173,9 @@ export default function AddToVaultCardAction({
               });
             }}
           >
-            {selectedPrinting?.id ? <input type="hidden" name="card_printing_id" value={selectedPrinting.id} /> : null}
+            {selectedChildPrintingId ? <input type="hidden" name="card_printing_id" value={selectedChildPrintingId} /> : null}
             <VaultSubmitButton
               label="Add to Vault"
-              disabled={hasChildPrintingSelection}
               successActive={successPulse !== null}
               successLabel={successPulse === "incremented" ? "Updated" : "Added"}
             />

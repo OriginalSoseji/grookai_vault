@@ -29,6 +29,7 @@ type PublicSetCardGridProps = {
 function getDefaultPrintingId(card: PublicSetCard) {
   const printings = card.printings ?? [];
   return (
+    printings.find((printing) => (printing.owned_count ?? 0) > 0)?.id ??
     printings.find((printing) => printing.finish_key === "normal")?.id ??
     printings.find((printing) => printing.finish_key === "holo")?.id ??
     printings[0]?.id ??
@@ -179,6 +180,7 @@ export default function PublicSetCardGrid({
                           }`}
                         >
                           {label}
+                          {(printing.owned_count ?? 0) > 0 ? ` ${printing.owned_count}x` : ""}
                         </button>
                       );
                     })}

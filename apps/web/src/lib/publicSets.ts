@@ -30,6 +30,7 @@ type SetCodeRow = {
 };
 
 type PublicSetCardRow = {
+  id: string | null;
   gv_id: string | null;
   name: string | null;
   number: string | null;
@@ -279,6 +280,7 @@ export async function getPublicSetCards(setCode: string, offset = 0, limit = 36)
   const { data, error } = await supabase
     .from("card_prints")
     .select(`
+      id,
       gv_id,
       name,
       number,
@@ -319,6 +321,7 @@ export async function getPublicSetCards(setCode: string, offset = 0, limit = 36)
       const imageFields = await resolveCardImageFieldsV1(row);
 
       return {
+        id: row.id ?? undefined,
         gv_id: row.gv_id,
         name: row.name ?? "Unknown",
         number: row.number ?? "",

@@ -3,8 +3,10 @@ import "server-only";
 import { createServerAdminClient } from "@/lib/supabase/admin";
 import { resolveCardImageFieldsV1 } from "@/lib/canon/resolveCardImageFieldsV1";
 import { getCardPrintDisplayDiscriminator } from "@/lib/cards/displayDiscriminator";
+import { getCardPrintingFinishLabel } from "@/lib/cards/displayDiscriminator";
 import { resolveDisplayImageUrl } from "@/lib/publicCardImage";
 import { getOwnedCountsByCardPrintIds } from "@/lib/vault/getOwnedCountsByCardPrintIds";
+import { getOwnedPrintingCountsByCardPrintIds } from "@/lib/vault/getOwnedPrintingCountsByCardPrintIds";
 
 type DexCardPrintViewRow = {
   species_id: string | null;
@@ -46,6 +48,17 @@ export type GrookaiDexCardPrintRow = {
   countsForCompletion: boolean;
   ownedCount: number;
   isOwned: boolean;
+  ownedFinishLabels: string[];
+};
+
+type CardPrintingRow = {
+  id: string | null;
+  card_print_id: string | null;
+  finish_key: string | null;
+  finish_keys:
+    | { label: string | null; sort_order: number | null }
+    | { label: string | null; sort_order: number | null }[]
+    | null;
 };
 
 export type GrookaiDexSpeciesDetail = {
@@ -112,7 +125,36 @@ export async function getGrookaiDexSpeciesDetail(
       .map((row) => [clean(row.id), clean(row.printed_identity_modifier)] as const)
       .filter((entry): entry is readonly [string, string | null] => Boolean(entry[0])),
   );
-  const ownedCounts = userId ? await getOwnedCountsByCardPrintIds(userId, cardPrintIds) : new Map<string, number>();
+  const [ownedCounts, ownedPrintingCounts]: [Map<string, number>, Map<string, Map<string, number>>] = userId
+    ? await Promise.all([
+        getOwnedCountsByCardPrintIds(userId, cardPrintIds),
+        getOwnedPrintingCountsByCardPrintIds(userId, cardPrintIds),
+      ])
+    : [new Map<string, number>(), new Map()];
+  const { data: printingRows, error: printingError } = await admin
+    .from("card_printings")
+    .select("id,card_print_id,finish_key,finish_keys(label,sort_order)")
+    .in("card_print_id", cardPrintIds);
+
+  if (printingError) {
+    throw new Error(`[grookai-dex:species-detail-printings] ${printingError.message}`);
+  }
+
+  const finishLabelByPrintingId = new Map<string, string>();
+  for (const row of (printingRows ?? []) as CardPrintingRow[]) {
+    const printingId = clean(row.id);
+    if (!printingId) {
+      continue;
+    }
+    const finishRecord = Array.isArray(row.finish_keys) ? row.finish_keys[0] : row.finish_keys;
+    const label = getCardPrintingFinishLabel({
+      finishKey: row.finish_key,
+      finishLabel: finishRecord?.label,
+    });
+    if (label) {
+      finishLabelByPrintingId.set(printingId, label);
+    }
+  }
   const resolvedCards = await Promise.all(
     rows.map(async (row) => {
       const cardPrintId = clean(row.card_print_id)!;
@@ -125,6 +167,13 @@ export async function getGrookaiDexSpeciesDetail(
           representative_image_url: row.representative_image_url,
         }) ?? null;
       const ownedCount = ownedCounts.get(cardPrintId) ?? 0;
+      const ownedFinishLabels = Array.from(ownedPrintingCounts.get(cardPrintId)?.entries() ?? [])
+        .filter(([, count]) => count > 0)
+        .map(([printingId, count]) => {
+          const label = finishLabelByPrintingId.get(printingId);
+          return label ? `${label}${count > 1 ? ` ${count}x` : ""}` : null;
+        })
+        .filter((label): label is string => Boolean(label));
 
       return {
         cardPrintId,
@@ -143,6 +192,7 @@ export async function getGrookaiDexSpeciesDetail(
         countsForCompletion: row.counts_for_completion === true,
         ownedCount,
         isOwned: ownedCount > 0,
+        ownedFinishLabels,
       };
     }),
   );

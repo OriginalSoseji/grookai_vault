@@ -15,6 +15,7 @@ type AddCardToVaultParams = {
   name: string;
   setName?: string;
   imageUrl?: string;
+  cardPrintingId?: string;
 };
 
 type VaultInstanceCreateRow = {
@@ -89,6 +90,7 @@ export async function addCardToVault({
   name,
   setName,
   imageUrl,
+  cardPrintingId,
 }: AddCardToVaultParams): Promise<AddCardToVaultResult> {
   const normalizedUserId = userId.trim();
   await assertAuthenticatedVaultUser(client, normalizedUserId);
@@ -97,6 +99,7 @@ export async function addCardToVault({
   if (!normalizedCardPrintId) {
     throw new Error("GVVI create failed: missing cardPrintId.");
   }
+  const normalizedCardPrintingId = cardPrintingId?.trim() || null;
 
   return executeOwnerWriteV1({
     execution_name: "add_card_to_vault",
@@ -106,6 +109,21 @@ export async function addCardToVault({
       const normalizedSetName = setName?.trim() || "";
       const normalizedImageUrl = imageUrl ?? null;
       const adminClient = createServerAdminClient();
+      if (normalizedCardPrintingId) {
+        const { data: printingRow, error: printingError } = await adminClient
+          .from("card_printings")
+          .select("id,card_print_id")
+          .eq("id", normalizedCardPrintingId)
+          .maybeSingle();
+
+        if (printingError) {
+          throw new Error(formatVaultWriteError("card_printings.validate-selected", printingError));
+        }
+
+        if (!printingRow || printingRow.card_print_id !== normalizedCardPrintId) {
+          throw new Error("GVVI create failed: selected card_printing_id does not belong to this card_print_id.");
+        }
+      }
       const { anchor, insertedAnchorId } = await resolveActiveVaultAnchor({
         client,
         userId: normalizedUserId,
@@ -128,6 +146,9 @@ export async function addCardToVault({
         p_set_name: normalizedSetName || null,
         p_photo_url: normalizedImageUrl,
       };
+      const rpcArgsWithPrinting = normalizedCardPrintingId
+        ? { ...rpcArgs, p_card_printing_id: normalizedCardPrintingId }
+        : rpcArgs;
 
       console.info("vault.addCardToVault.begin", {
         userId: normalizedUserId,
@@ -139,7 +160,7 @@ export async function addCardToVault({
 
       const { data: instance, error: instanceError } = await adminClient.rpc(
         "admin_vault_instance_create_v1",
-        rpcArgs,
+        rpcArgsWithPrinting,
       );
 
       if (instanceError) {
@@ -168,11 +189,13 @@ export async function addCardToVault({
 
       context.setMetadata("created_instance_id", createdRow.id);
       context.setMetadata("created_card_print_id", normalizedCardPrintId);
+      context.setMetadata("created_card_printing_id", normalizedCardPrintingId);
 
       console.info("[vault:add]", {
         user_id: normalizedUserId,
         gv_id: gvId,
         card_print_id: normalizedCardPrintId,
+        card_printing_id: normalizedCardPrintingId,
         gv_vi_id: createdRow.gv_vi_id,
         action: "instance_create",
       });

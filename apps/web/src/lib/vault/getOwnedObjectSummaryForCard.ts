@@ -1,5 +1,6 @@
 import "server-only";
 
+import { getCardPrintingFinishLabel } from "@/lib/cards/displayDiscriminator";
 import { createServerAdminClient } from "@/lib/supabase/admin";
 
 export type OwnedObjectSummaryLine = {
@@ -23,6 +24,8 @@ export type OwnedRawObjectSummaryItem = {
   instanceId: string;
   gvviId: string | null;
   conditionLabel: string | null;
+  cardPrintingId: string | null;
+  finishLabel: string | null;
   createdAt: string | null;
 };
 
@@ -40,7 +43,17 @@ type RawInstanceRow = {
   id: string;
   gv_vi_id: string | null;
   condition_label: string | null;
+  card_printing_id: string | null;
   created_at: string | null;
+};
+
+type CardPrintingFinishRow = {
+  id: string | null;
+  finish_key: string | null;
+  finish_keys:
+    | { label: string | null; sort_order: number | null }
+    | { label: string | null; sort_order: number | null }[]
+    | null;
 };
 
 type SlabCertRow = {
@@ -93,7 +106,7 @@ export async function getOwnedObjectSummaryForCard(userId: string, cardPrintId: 
   const [{ data: rawRows, error: rawError }, { data: slabCertRows, error: slabCertError }] = await Promise.all([
     adminClient
       .from("vault_item_instances")
-      .select("id,gv_vi_id,condition_label,created_at")
+      .select("id,gv_vi_id,condition_label,card_printing_id,created_at")
       .eq("user_id", normalizedUserId)
       .eq("card_print_id", normalizedCardPrintId)
       .is("slab_cert_id", null)
@@ -112,10 +125,44 @@ export async function getOwnedObjectSummaryForCard(userId: string, cardPrintId: 
   }
 
   const normalizedRawRows = (rawRows ?? []) as RawInstanceRow[];
+  const rawCardPrintingIds = Array.from(
+    new Set(
+      normalizedRawRows
+        .map((row) => normalizeOptionalText(row.card_printing_id))
+        .filter((value): value is string => Boolean(value)),
+    ),
+  );
+  const finishLabelByPrintingId = new Map<string, string>();
+  if (rawCardPrintingIds.length > 0) {
+    const { data: printingRows, error: printingError } = await adminClient
+      .from("card_printings")
+      .select("id,finish_key,finish_keys(label,sort_order)")
+      .in("id", rawCardPrintingIds);
+
+    if (printingError) {
+      throw new Error(`[card:ownership] raw finish summary query failed: ${printingError.message}`);
+    }
+
+    for (const row of (printingRows ?? []) as CardPrintingFinishRow[]) {
+      const id = normalizeOptionalText(row.id);
+      const finishRecord = Array.isArray(row.finish_keys) ? row.finish_keys[0] : row.finish_keys;
+      const label = getCardPrintingFinishLabel({
+        finishKey: row.finish_key,
+        finishLabel: finishRecord?.label,
+      });
+      if (id && label) {
+        finishLabelByPrintingId.set(id, label);
+      }
+    }
+  }
   const rawItems: OwnedRawObjectSummaryItem[] = normalizedRawRows.map((row) => ({
     instanceId: row.id,
     gvviId: normalizeOptionalText(row.gv_vi_id),
     conditionLabel: normalizeOptionalText(row.condition_label),
+    cardPrintingId: normalizeOptionalText(row.card_printing_id),
+    finishLabel: normalizeOptionalText(row.card_printing_id)
+      ? finishLabelByPrintingId.get(normalizeOptionalText(row.card_printing_id)!) ?? null
+      : null,
     createdAt: row.created_at ?? null,
   }));
   const rawCount = rawItems.length;

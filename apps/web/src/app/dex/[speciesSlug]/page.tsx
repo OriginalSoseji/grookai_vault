@@ -132,6 +132,15 @@ export default async function GrookaiDexSpeciesPage({
                   {card.printLabel}
                 </p>
               ) : null}
+              {card.ownedFinishLabels.length > 0 ? (
+                <div className="flex flex-wrap gap-1">
+                  {card.ownedFinishLabels.map((label) => (
+                    <span key={`${card.cardPrintId}-${label}`} className="rounded-md border border-emerald-200 bg-emerald-50 px-2 py-1 text-xs font-medium text-emerald-800">
+                      {label}
+                    </span>
+                  ))}
+                </div>
+              ) : null}
               <p className="text-xs text-slate-500">
                 {[card.setName ?? card.setCode, card.number, card.rarity].filter(Boolean).join(" · ")}
               </p>

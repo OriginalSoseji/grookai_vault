@@ -17,6 +17,7 @@ const MAX_COLLAPSED_PRINTINGS = 5;
 
 function getDefaultPrintingId(printings: CardPrinting[]) {
   return (
+    printings.find((printing) => (printing.owned_count ?? 0) > 0)?.id ??
     printings.find((printing) => printing.finish_key === "normal")?.id ??
     printings.find((printing) => printing.finish_key === "holo")?.id ??
     printings[0]?.id ??
@@ -103,7 +104,7 @@ export default function PrintingSelector({
         {visiblePrintings.map((printing) => (
           <PrintingChip
             key={printing.id}
-            label={printing.finish_name ?? "Printing"}
+            label={`${printing.finish_name ?? "Printing"}${(printing.owned_count ?? 0) > 0 ? ` ${printing.owned_count}x` : ""}`}
             active={printing.id === selectedPrinting.id}
             onClick={() => {
               setInternalSelectedPrintingId(printing.id);
