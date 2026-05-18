@@ -24,7 +24,7 @@ Status: RELEASE_CANDIDATE
 
 Remaining mobile gate:
 
-- Android UI smoke is incomplete. The AAB-derived APK set installed and launched a foreground process on attached device `SM-S908U` API 36 with no fatal crash observed, but the device remained dozing/locked with black screenshots. Auth flow, search, public routes, scanner parked state, and debug banner absence were not visually verified.
+- Android UI smoke is blocked. The AAB-derived APK set installed and launched a foreground process on attached device `SM-S908U` API 36 with no fatal crash observed, but after the device was unlocked the app remained on a blank white/splash surface. Auth flow, search, public routes, scanner parked state, and debug banner absence were not visually verified.
 
 ## Web Readiness
 
@@ -106,6 +106,8 @@ Status: PARTIAL
 - Launcher activity resolved: `com.example.grookai_vault/.MainActivity`.
 - App process launched and was visible in focused app/window dumps.
 - No `FATAL EXCEPTION` / `AndroidRuntime` crash was observed in the sampled launch logs.
+- Follow-up unlocked-device capture showed the app focused/resumed, but still rendering only a blank white/splash surface.
+- UIAutomator dump contained only the root Android content frame and no app-visible text or controls.
 
 Not verified:
 
@@ -115,7 +117,7 @@ Not verified:
 - Scanner remains parked/non-blocking from UI.
 - No debug/dev banners from UI.
 
-Reason: the attached device stayed dozing/locked and screenshots remained black during unattended smoke.
+Reason: the signed release-derived install launches without an observed fatal crash, but the UI does not advance beyond a blank/splash surface on the unlocked attached device.
 
 ## Remaining Deferred Debt
 
@@ -132,8 +134,8 @@ These are not release pipeline blockers for this lane because no DB remediation 
 
 - DB deferred debt remains governed by existing runtime and drift gates.
 - Scanner remains parked; this lane only restored compile/test integrity and did not reopen scanner architecture.
-- Manual Android UI smoke remains incomplete and must pass before promoting beyond `RELEASE_CANDIDATE`.
+- Manual Android UI smoke remains blocked by blank/splash launch behavior and must pass before promoting beyond `RELEASE_CANDIDATE`.
 
 ## Final Decision
 
-Grookai Vault is RELEASE_CANDIDATE for release integrity as of this verification pass. The GitHub Actions signed release pipeline is proven end to end and the signed AAB is verified clean of `.env*` and secret-like packaged files. It is not classified `PRODUCTION_READY` because Android UI smoke could not verify auth, search, public routes, scanner parked state, or absence of debug/dev banners on the attached device.
+Grookai Vault is RELEASE_CANDIDATE for release integrity as of this verification pass. The GitHub Actions signed release pipeline is proven end to end and the signed AAB is verified clean of `.env*` and secret-like packaged files. It is not classified `PRODUCTION_READY` because Android UI smoke is blocked by blank/splash launch behavior and could not verify auth, search, public routes, scanner parked state, or absence of debug/dev banners on the attached device.

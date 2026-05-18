@@ -3,7 +3,7 @@
   "date": "2026-05-17",
   "last_verified_utc": "2026-05-18",
   "scope": "release_integrity_only",
-  "main_sha_pushed": "b5f458ac81174408f7af292db18744a4a5f60aa2",
+  "main_sha_pushed": "d34e4f918ad1fd5a5addeee9747f9f44967640a1",
   "release_tag": "v0.1.8",
   "release_workflow_run_id": "26011620654",
   "lanes": {
@@ -63,7 +63,7 @@
         "Published app-release.aab asset digest sha256:e9da5d2025607623ef6c4d322ab224156c90f0d0632c3783723b6749d04cede2",
         "Downloaded artifact size was 48098958 bytes"
       ],
-      "remaining_risk": "None for release workflow execution; Android UI smoke remains partial."
+      "remaining_risk": "None for release workflow execution; Android UI smoke remains blocked by blank/splash launch behavior."
     },
     "android_smoke": {
       "status": "partial",
@@ -72,9 +72,11 @@
         "Package com.example.grookai_vault installed",
         "Launcher activity com.example.grookai_vault/.MainActivity resolved",
         "App process launched and appeared in focused app/window dumps",
-        "No FATAL EXCEPTION or AndroidRuntime crash was observed in sampled launch logs"
+        "No FATAL EXCEPTION or AndroidRuntime crash was observed in sampled launch logs",
+        "Unlocked-device capture showed the app focused/resumed but still rendering only a blank white/splash surface",
+        "UIAutomator dump contained only the root Android content frame and no app-visible text or controls"
       ],
-      "remaining_risk": "Device stayed dozing/locked with black screenshots, so auth flow, search, public routes, scanner parked state, and debug banner absence were not visually verified."
+      "remaining_risk": "Signed release-derived install launches without an observed fatal crash, but the UI does not advance beyond a blank/splash surface on the unlocked attached device; auth flow, search, public routes, scanner parked state, and debug banner absence were not visually verified."
     },
     "runtime_deferred_debt": {
       "status": "known_deferred",
