@@ -25,10 +25,17 @@ Result: PASS
 - Child printing finish chips were visible on set tiles:
   - `Master Ball`
   - `Poké Ball`
+- Interactive local production smoke rerun at `http://127.0.0.1:3074`:
+  - Clicking `Poké Ball` changed its `aria-pressed` state to `true`.
+  - Clicking `Master Ball` changed its `aria-pressed` state to `true`.
+  - The selected display label changed between `Selected: Poké Ball` and `Selected: Master Ball`.
+  - Both card tile links carried `printing=` context after selection.
+  - Exeggutor remained visibly labeled, with no duplicate-looking unlabeled tile state observed.
 
 Screenshot:
 
 - `browser_smoke_set_sv8pt5_finishes_20260518.png`
+- `browser_smoke_set_sv8pt5_interactive_finishes_20260518.png`
 
 ### `/dex/pikachu`
 

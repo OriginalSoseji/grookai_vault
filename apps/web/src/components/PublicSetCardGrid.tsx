@@ -26,6 +26,16 @@ type PublicSetCardGridProps = {
   chunkSize?: number;
 };
 
+function getDefaultPrintingId(card: PublicSetCard) {
+  const printings = card.printings ?? [];
+  return (
+    printings.find((printing) => printing.finish_key === "normal")?.id ??
+    printings.find((printing) => printing.finish_key === "holo")?.id ??
+    printings[0]?.id ??
+    null
+  );
+}
+
 export default function PublicSetCardGrid({
   setCode,
   initialCards,
@@ -35,13 +45,19 @@ export default function PublicSetCardGrid({
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const [cards, setCards] = useState(initialCards);
+  const [selectedPrintingByGvId, setSelectedPrintingByGvId] = useState<Record<string, string>>({});
   const [isLoading, setIsLoading] = useState(false);
   const [loadError, setLoadError] = useState<string | null>(null);
   const compareCards = normalizeCompareCardsParam(searchParams.get("cards"));
   const canLoadMore = cards.length < totalCount;
 
-  function buildCardHref(gvId: string) {
-    return buildPathWithCompareCards(`/card/${gvId}`, "", compareCards);
+  function buildCardHref(gvId: string, printingId?: string | null) {
+    const params = new URLSearchParams();
+    if (printingId) {
+      params.set("printing", printingId);
+    }
+
+    return buildPathWithCompareCards(`/card/${gvId}`, params.toString(), compareCards);
   }
 
   async function handleLoadMore() {
@@ -102,23 +118,20 @@ export default function PublicSetCardGrid({
             visibleSetLabel: setLabel,
           });
           const variantLabels = getVariantLabels(card, 2);
-          const finishLabels = (card.printings ?? [])
-            .map((printing) => printing.finish_name)
-            .filter((label): label is string => Boolean(label));
+          const selectedPrintingId = selectedPrintingByGvId[card.gv_id] ?? getDefaultPrintingId(card);
+          const selectedPrinting = (card.printings ?? []).find((printing) => printing.id === selectedPrintingId) ?? null;
+          const selectedImageUrl = selectedPrinting?.display_image_url ?? selectedPrinting?.image_url ?? null;
+          const finishLabels = (card.printings ?? []).map((printing) => printing.finish_name).filter((label): label is string => Boolean(label));
           const badgeLabels = [...variantLabels];
-          for (const finishLabel of finishLabels) {
-            if (!badgeLabels.includes(finishLabel)) {
-              badgeLabels.push(finishLabel);
-            }
-          }
+          const selectedFinishLabel = selectedPrinting?.finish_name ?? null;
 
           return (
             <PokemonCardGridTile
               key={card.gv_id}
               utility={<CompareCardButton gvId={card.gv_id} variant="compact" />}
-              imageSrc={card.display_image_url ?? card.image_url}
+              imageSrc={selectedImageUrl ?? card.display_image_url ?? card.image_url}
               imageAlt={getCardImageAltText(displayIdentity.display_name, card)}
-              imageHref={buildCardHref(card.gv_id)}
+              imageHref={buildCardHref(card.gv_id, selectedPrinting?.id)}
               imageLoading={index < 12 ? "eager" : "lazy"}
               imageOverlay={
                 imagePresentation.compactBadgeLabel ? (
@@ -129,7 +142,10 @@ export default function PublicSetCardGrid({
                 ) : null
               }
               title={
-                <Link href={buildCardHref(card.gv_id)} className="block transition hover:text-slate-700">
+                <Link
+                  href={buildCardHref(card.gv_id, selectedPrinting?.id)}
+                  className="block transition hover:text-slate-700"
+                >
                   <span className="block truncate">{displayIdentity.base_name}</span>
                   {identitySubtitle ? (
                     <span className="block truncate text-xs font-medium text-slate-500">{identitySubtitle}</span>
@@ -138,15 +154,44 @@ export default function PublicSetCardGrid({
               }
               subtitle={<span className="block truncate">{setLabel}</span>}
               badges={
-                badgeLabels.length > 0 ? (
+                badgeLabels.length > 0 || finishLabels.length > 0 ? (
                   <>
                     {badgeLabels.map((label) => (
                       <VariantBadge key={`${card.gv_id}-${label}`} label={label} />
                     ))}
+                    {(card.printings ?? []).map((printing) => {
+                      const label = printing.finish_name;
+                      if (!printing.id || !label) {
+                        return null;
+                      }
+
+                      const isActive = printing.id === selectedPrinting?.id;
+                      return (
+                        <button
+                          key={`${card.gv_id}-${printing.id}`}
+                          type="button"
+                          aria-pressed={isActive}
+                          onClick={() => setSelectedPrintingByGvId((current) => ({ ...current, [card.gv_id]: printing.id! }))}
+                          className={`inline-flex rounded-full border px-2.5 py-1 text-[11px] font-medium uppercase tracking-[0.12em] transition ${
+                            isActive
+                              ? "border-slate-900 bg-slate-900 text-white"
+                              : "border-slate-200 bg-slate-50 text-slate-600 hover:border-slate-300 hover:bg-white"
+                          }`}
+                        >
+                          {label}
+                        </button>
+                      );
+                    })}
                   </>
                 ) : undefined
               }
-              meta={<span>{card.number ? `#${card.number}` : "—"}</span>}
+              meta={
+                <span>
+                  {[card.number ? `#${card.number}` : "—", selectedFinishLabel ? `Selected: ${selectedFinishLabel}` : null]
+                    .filter(Boolean)
+                    .join(" • ")}
+                </span>
+              }
               footer={
                 <div className="flex items-center justify-between gap-3">
                   <span>GV-ID: {card.gv_id}</span>

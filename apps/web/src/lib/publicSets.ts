@@ -46,6 +46,7 @@ type PublicSetCardRow = {
   image_note: string | null;
   card_printings?:
     | {
+        id: string | null;
         finish_key: string | null;
         finish_keys:
           | { label: string | null; sort_order: number | null }
@@ -101,8 +102,11 @@ function mapPublicSetCardPrintings(rows?: PublicSetCardRow["card_printings"]) {
       });
 
       return {
+        id: printing.id?.trim() || undefined,
         finish_key: printing.finish_key?.trim() || undefined,
         finish_name: finishName ?? undefined,
+        image_url: undefined,
+        display_image_url: undefined,
         finish_sort_order: typeof finishRecord?.sort_order === "number" ? finishRecord.sort_order : Number.MAX_SAFE_INTEGER,
       };
     })
@@ -290,6 +294,7 @@ export async function getPublicSetCards(setCode: string, offset = 0, limit = 36)
       image_status,
       image_note,
       card_printings(
+        id,
         finish_key,
         finish_keys(label,sort_order)
       ),

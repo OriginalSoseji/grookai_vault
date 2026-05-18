@@ -125,7 +125,7 @@ export default async function CardPage({
   searchParams,
 }: {
   params: { gv_id: string };
-  searchParams?: { cards?: string };
+  searchParams?: { cards?: string; printing?: string };
 }) {
   const [card, adjacentCards] = await Promise.all([
     getPublicCardByGvId(params.gv_id),
@@ -152,6 +152,16 @@ export default async function CardPage({
     _formData: FormData,
   ): Promise<AddToVaultActionResult> {
     "use server";
+    const selectedPrintingId = typeof _formData.get("card_printing_id") === "string" ? String(_formData.get("card_printing_id")).trim() : "";
+    if (selectedPrintingId) {
+      return {
+        ok: false,
+        status: "error",
+        message: "Finish-specific vault add is blocked until card_printing_id is supported by vault writes.",
+        submissionKey: Date.now(),
+      };
+    }
+
     const actionClient = createServerComponentClient();
     const { data: { user } } = await actionClient.auth.getUser();
     const submissionKey = Date.now();
@@ -554,6 +564,8 @@ export default async function CardPage({
                 loginHref={loginHref}
                 currentPath={currentCardPath}
                 gvId={resolvedCard.gv_id}
+                printings={resolvedCard.display_printings}
+                initialPrintingId={searchParams?.printing ?? null}
               />
 
               <div className="flex flex-wrap items-center gap-3">
@@ -565,8 +577,6 @@ export default async function CardPage({
           </aside>
         </div>
       </section>
-
-      <PrintingSelector printings={resolvedCard.display_printings} />
 
       {networkOffers.length > 0 ? (
         <section className="space-y-4 rounded-[20px] border border-slate-200 bg-white p-6 shadow-sm">

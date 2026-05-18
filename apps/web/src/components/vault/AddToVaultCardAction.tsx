@@ -4,9 +4,11 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { useFormState } from "react-dom";
+import PrintingSelector from "@/components/cards/PrintingSelector";
 import VaultSubmitButton from "@/components/VaultSubmitButton";
 import { useClientViewer } from "@/lib/auth/useClientViewer";
 import { sendTelemetryEvent } from "@/lib/telemetry/client";
+import type { CardPrinting } from "@/types/cards";
 
 export type AddToVaultActionResult =
   | {
@@ -33,7 +35,25 @@ type AddToVaultCardActionProps = {
   loginHref: string;
   currentPath: string;
   gvId: string;
+  printings?: CardPrinting[];
+  initialPrintingId?: string | null;
 };
+
+function getDefaultPrinting(printings: CardPrinting[], initialPrintingId?: string | null) {
+  if (initialPrintingId) {
+    const initialPrinting = printings.find((printing) => printing.id === initialPrintingId);
+    if (initialPrinting) {
+      return initialPrinting;
+    }
+  }
+
+  return (
+    printings.find((printing) => printing.finish_key === "normal") ??
+    printings.find((printing) => printing.finish_key === "holo") ??
+    printings[0] ??
+    null
+  );
+}
 
 function getStatusMessage(result: AddToVaultActionResult | null) {
   if (!result) {
@@ -88,13 +108,19 @@ export default function AddToVaultCardAction({
   loginHref,
   currentPath,
   gvId,
+  printings = [],
+  initialPrintingId,
 }: AddToVaultCardActionProps) {
   const router = useRouter();
   const viewer = useClientViewer(null);
   const [state, formAction] = useFormState(action, null);
   const refreshedSubmissionKeyRef = useRef<number | null>(null);
   const [successPulse, setSuccessPulse] = useState<"added" | "incremented" | null>(null);
+  const [selectedPrinting, setSelectedPrinting] = useState<CardPrinting | null>(() =>
+    getDefaultPrinting(printings, initialPrintingId),
+  );
   const statusMessage = getStatusMessage(state);
+  const hasChildPrintingSelection = Boolean(selectedPrinting && selectedPrinting.is_display_fallback !== true);
   const toneClasses =
     statusMessage?.tone === "success"
       ? "border-emerald-200 bg-emerald-50 text-emerald-900"
@@ -124,6 +150,27 @@ export default function AddToVaultCardAction({
 
   return (
     <div className="space-y-4">
+      {printings.length > 0 ? (
+        <PrintingSelector
+          printings={printings}
+          selectedPrintingId={selectedPrinting?.id}
+          onSelectedPrintingChange={setSelectedPrinting}
+          title="Finish"
+          description="Choose the printed finish before taking card actions."
+          compact
+        />
+      ) : null}
+
+      {hasChildPrintingSelection ? (
+        <div className="rounded-[12px] border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-950">
+          <p className="font-semibold">Finish-specific vault add is not enabled yet.</p>
+          <p className="mt-1">
+            Selected finish: {selectedPrinting?.finish_name ?? "Printing"}. This action is blocked until vault writes support
+            `card_printing_id`.
+          </p>
+        </div>
+      ) : null}
+
       <div className="flex flex-wrap items-center gap-3">
         {effectiveIsAuthenticated ? (
           <form
@@ -136,8 +183,10 @@ export default function AddToVaultCardAction({
               });
             }}
           >
+            {selectedPrinting?.id ? <input type="hidden" name="card_printing_id" value={selectedPrinting.id} /> : null}
             <VaultSubmitButton
               label="Add to Vault"
+              disabled={hasChildPrintingSelection}
               successActive={successPulse !== null}
               successLabel={successPulse === "incremented" ? "Updated" : "Added"}
             />

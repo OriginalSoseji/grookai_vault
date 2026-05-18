@@ -93,8 +93,11 @@ export type PublicSetCard = {
   display_image_url?: string;
   display_image_kind?: "exact" | "representative" | "missing";
   printings?: Array<{
+    id?: string;
     finish_key?: string;
     finish_name?: string;
+    image_url?: string;
+    display_image_url?: string;
   }>;
 };
 
