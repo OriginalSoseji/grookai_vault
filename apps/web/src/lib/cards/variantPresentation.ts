@@ -1,3 +1,8 @@
+import {
+  getPrintedIdentityModifierDisplayLabel,
+  getVariantDisplayLabel,
+} from "@/lib/cards/displayDiscriminator";
+
 export type VariantFlags = Partial<{
   firstEdition: boolean;
   shadowless: boolean;
@@ -12,6 +17,9 @@ type VariantPresentationInput = {
   number?: string | null;
   setCode?: string | null;
   variantKey?: string | null;
+  variant_key?: string | null;
+  printedIdentityModifier?: string | null;
+  printed_identity_modifier?: string | null;
   variants?: VariantFlags;
 };
 
@@ -19,15 +27,6 @@ const NUMBER_LANE_PREFIXES = new Set(["TG", "GG", "RC", "SV"]);
 
 function readFlag(value: unknown) {
   return value === true;
-}
-
-function normalizeVariantKey(value?: string | null) {
-  const normalized = (value ?? "").trim();
-  if (!normalized || normalized.toLowerCase() === "base") {
-    return null;
-  }
-
-  return normalized;
 }
 
 function getNumberLane(number?: string | null) {
@@ -50,7 +49,8 @@ export function getVariantLabels(input: VariantPresentationInput, limit = 2) {
   };
 
   push(getNumberLane(input.number));
-  push(normalizeVariantKey(input.variantKey));
+  push(getVariantDisplayLabel(input.variantKey ?? input.variant_key));
+  push(getPrintedIdentityModifierDisplayLabel(input.printedIdentityModifier ?? input.printed_identity_modifier));
 
   const variants = input.variants ?? null;
   if (variants) {
