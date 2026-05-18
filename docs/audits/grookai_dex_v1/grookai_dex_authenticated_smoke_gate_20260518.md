@@ -10,7 +10,8 @@ The remaining preview/staging enablement gate is authenticated browser smoke. Th
 
 ## Automated Evidence Completed
 
-- `GROOKAI_DEX_V1_ENABLED` remains off by default.
+- Production enablement follow-up turns Grookai Dex on by default.
+- Emergency rollback uses `GROOKAI_DEX_V1_DISABLED=true` or `NEXT_PUBLIC_GROOKAI_DEX_V1_DISABLED=true`.
 - Flag off:
   - `/dex` returns 404.
   - `/dex/pikachu` returns 404.

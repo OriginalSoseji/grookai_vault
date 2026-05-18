@@ -25,5 +25,6 @@ Sample user: 03e80d15-a2bb-4d3c-abd1-2de03e55787b
 
 ## Flag State
 
-- Public flag is not enabled by this checkpoint.
-- Routes remain guarded by `GROOKAI_DEX_V1_ENABLED` / `NEXT_PUBLIC_GROOKAI_DEX_V1_ENABLED`.
+- This checkpoint was created before production enablement.
+- Routes are now enabled by default for production.
+- Emergency rollback uses `GROOKAI_DEX_V1_DISABLED=true` or `NEXT_PUBLIC_GROOKAI_DEX_V1_DISABLED=true`.

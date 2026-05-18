@@ -227,9 +227,9 @@ Acceptable V1 patterns:
 
 The species detail page may batch fetch one species worth of mapped prints and one ownership count map.
 
-## Feature Flag
+## Production Enablement
 
-Grookai Dex V1 should ship behind a feature flag until:
+Grookai Dex V1 shipped behind a feature flag until:
 
 - species catalogue is seeded
 - mapping audit passes
@@ -237,16 +237,16 @@ Grookai Dex V1 should ship behind a feature flag until:
 - web build passes
 - owner-scoped progress checks pass
 
-Suggested flag:
+After production enablement, Dex is on by default. Emergency rollback may use:
 
 ```text
-NEXT_PUBLIC_GROOKAI_DEX_V1_ENABLED
+GROOKAI_DEX_V1_DISABLED=true
 ```
 
-Server-only protection may use:
+Public/client-side rollback may use:
 
 ```text
-GROOKAI_DEX_V1_ENABLED
+NEXT_PUBLIC_GROOKAI_DEX_V1_DISABLED=true
 ```
 
 ## Required Audit Commands
