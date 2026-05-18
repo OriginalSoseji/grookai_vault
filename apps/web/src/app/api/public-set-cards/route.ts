@@ -1,7 +1,10 @@
 import { NextResponse } from "next/server";
 import { getPublicSetCards } from "@/lib/publicSets";
+import { applyOwnedPrintingCountsToSetCards } from "@/lib/publicSetsOwnership";
+import { createServerComponentClient } from "@/lib/supabase/server";
 
-export const revalidate = 300;
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
 
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
@@ -18,11 +21,17 @@ export async function GET(request: Request) {
   const limit = Number.isFinite(limitInput) && limitInput > 0 ? Math.min(limitInput, 48) : 36;
 
   try {
-    const items = await getPublicSetCards(setCode, offset, limit);
-    return NextResponse.json(
-      { items },
-      { headers: { "Cache-Control": "public, s-maxage=300, stale-while-revalidate=600" } },
+    const supabase = createServerComponentClient();
+    const {
+      data: { user },
+    } = await supabase.auth.getUser();
+    const items = await applyOwnedPrintingCountsToSetCards(
+      await getPublicSetCards(setCode, offset, limit),
+      user?.id ?? null,
     );
+    const json = NextResponse.json({ items });
+    json.headers.set("Cache-Control", user ? "private, no-store" : "public, s-maxage=300, stale-while-revalidate=600");
+    return json;
   } catch {
     return NextResponse.json({ items: [], error: "Failed to load more cards." }, { status: 500 });
   }

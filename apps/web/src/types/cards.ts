@@ -3,8 +3,11 @@ export type CardPrinting = {
   finish_key?: string;
   finish_name?: string;
   finish_sort_order?: number;
+  image_url?: string;
+  display_image_url?: string;
   display_finish?: string | null;
   is_display_fallback?: boolean;
+  owned_count?: number;
 };
 
 export type ActiveCardPrintIdentity = {

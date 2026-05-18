@@ -4,9 +4,11 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { useFormState } from "react-dom";
+import PrintingSelector from "@/components/cards/PrintingSelector";
 import VaultSubmitButton from "@/components/VaultSubmitButton";
 import { useClientViewer } from "@/lib/auth/useClientViewer";
 import { sendTelemetryEvent } from "@/lib/telemetry/client";
+import type { CardPrinting } from "@/types/cards";
 
 export type AddToVaultActionResult =
   | {
@@ -33,7 +35,25 @@ type AddToVaultCardActionProps = {
   loginHref: string;
   currentPath: string;
   gvId: string;
+  printings?: CardPrinting[];
+  initialPrintingId?: string | null;
 };
+
+function getDefaultPrinting(printings: CardPrinting[], initialPrintingId?: string | null) {
+  if (initialPrintingId) {
+    const initialPrinting = printings.find((printing) => printing.id === initialPrintingId);
+    if (initialPrinting) {
+      return initialPrinting;
+    }
+  }
+
+  return (
+    printings.find((printing) => printing.finish_key === "normal") ??
+    printings.find((printing) => printing.finish_key === "holo") ??
+    printings[0] ??
+    null
+  );
+}
 
 function getStatusMessage(result: AddToVaultActionResult | null) {
   if (!result) {
@@ -88,12 +108,18 @@ export default function AddToVaultCardAction({
   loginHref,
   currentPath,
   gvId,
+  printings = [],
+  initialPrintingId,
 }: AddToVaultCardActionProps) {
   const router = useRouter();
   const viewer = useClientViewer(null);
   const [state, formAction] = useFormState(action, null);
   const refreshedSubmissionKeyRef = useRef<number | null>(null);
   const [successPulse, setSuccessPulse] = useState<"added" | "incremented" | null>(null);
+  const [selectedPrinting, setSelectedPrinting] = useState<CardPrinting | null>(() =>
+    getDefaultPrinting(printings, initialPrintingId),
+  );
+  const selectedChildPrintingId = selectedPrinting?.is_display_fallback ? null : selectedPrinting?.id ?? null;
   const statusMessage = getStatusMessage(state);
   const toneClasses =
     statusMessage?.tone === "success"
@@ -124,6 +150,17 @@ export default function AddToVaultCardAction({
 
   return (
     <div className="space-y-4">
+      {printings.length > 0 ? (
+        <PrintingSelector
+          printings={printings}
+          selectedPrintingId={selectedPrinting?.id}
+          onSelectedPrintingChange={setSelectedPrinting}
+          title="Finish"
+          description="Choose the printed finish before taking card actions."
+          compact
+        />
+      ) : null}
+
       <div className="flex flex-wrap items-center gap-3">
         {effectiveIsAuthenticated ? (
           <form
@@ -136,6 +173,7 @@ export default function AddToVaultCardAction({
               });
             }}
           >
+            {selectedChildPrintingId ? <input type="hidden" name="card_printing_id" value={selectedChildPrintingId} /> : null}
             <VaultSubmitButton
               label="Add to Vault"
               successActive={successPulse !== null}

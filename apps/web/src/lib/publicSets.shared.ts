@@ -77,6 +77,7 @@ type PublicSetSearchCandidate = {
 };
 
 export type PublicSetCard = {
+  id?: string;
   gv_id: string;
   name: string;
   number: string;
@@ -92,6 +93,14 @@ export type PublicSetCard = {
   image_source?: string;
   display_image_url?: string;
   display_image_kind?: "exact" | "representative" | "missing";
+  printings?: Array<{
+    id?: string;
+    finish_key?: string;
+    finish_name?: string;
+    image_url?: string;
+    display_image_url?: string;
+    owned_count?: number;
+  }>;
 };
 
 export type PublicSetDetail = PublicSetSummary & {

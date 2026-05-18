@@ -46,6 +46,7 @@ import { createSlabInstance } from "@/lib/slabs/createSlabInstance";
 import { createServerComponentClient } from "@/lib/supabase/server";
 import { trackServerEvent } from "@/lib/telemetry/trackServerEvent";
 import { addCardToVault, type AddCardToVaultResult } from "@/lib/vault/addCardToVault";
+import { getOwnedPrintingCountsByCardPrintIds } from "@/lib/vault/getOwnedPrintingCountsByCardPrintIds";
 import { getVaultInstanceHref } from "@/lib/vault/getVaultInstanceHref";
 import { getOwnedObjectSummaryForCard, type OwnedObjectSummary } from "@/lib/vault/getOwnedObjectSummaryForCard";
 
@@ -77,7 +78,8 @@ function buildCardHref(gvId: string, compareCardsParam?: string) {
   return query ? `/card/${encodeURIComponent(gvId)}?${query}` : `/card/${encodeURIComponent(gvId)}`;
 }
 
-export const revalidate = 120;
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
 export const dynamicParams = true;
 
 export async function generateMetadata({ params }: { params: { gv_id: string } }): Promise<Metadata> {
@@ -125,7 +127,7 @@ export default async function CardPage({
   searchParams,
 }: {
   params: { gv_id: string };
-  searchParams?: { cards?: string };
+  searchParams?: { cards?: string; printing?: string };
 }) {
   const [card, adjacentCards] = await Promise.all([
     getPublicCardByGvId(params.gv_id),
@@ -152,6 +154,9 @@ export default async function CardPage({
     _formData: FormData,
   ): Promise<AddToVaultActionResult> {
     "use server";
+    const selectedPrintingId =
+      typeof _formData.get("card_printing_id") === "string" ? String(_formData.get("card_printing_id")).trim() : "";
+
     const actionClient = createServerComponentClient();
     const { data: { user } } = await actionClient.auth.getUser();
     const submissionKey = Date.now();
@@ -168,6 +173,7 @@ export default async function CardPage({
         name: resolvedCard.name,
         setName: resolvedCard.set_name,
         imageUrl: resolvedCard.image_url,
+        cardPrintingId: selectedPrintingId || undefined,
       });
     } catch (error) {
       const detail =
@@ -196,7 +202,7 @@ export default async function CardPage({
       userId: user.id,
       path: currentCardPath,
       gvId: resolvedCard.gv_id,
-      metadata: { gv_vi_id: result.gvvi_id, quantity_delta: 1 },
+      metadata: { gv_vi_id: result.gvvi_id, quantity_delta: 1, card_printing_id: selectedPrintingId || null },
     });
     return { ok: true, status: "added", gvvi_id: result.gvvi_id, submissionKey };
   }
@@ -273,7 +279,10 @@ export default async function CardPage({
     };
   }
 
-  const user = null as { id: string } | null;
+  const supabase = createServerComponentClient();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
   let vaultCount = 0;
   let ownedObjectSummary: OwnedObjectSummary = {
     totalCount: 0,
@@ -365,6 +374,13 @@ export default async function CardPage({
     : undefined;
   const releaseDateLabel = formatReleaseDate(resolvedCard.release_date);
   const variantLabels = getVariantLabels(resolvedCard, 3);
+  const ownedPrintingCounts =
+    user && resolvedCard.id ? await getOwnedPrintingCountsByCardPrintIds(user.id, [resolvedCard.id]) : new Map();
+  const ownedPrintingCountsForCard = resolvedCard.id ? ownedPrintingCounts.get(resolvedCard.id) : null;
+  const displayPrintingsWithOwnedCounts = (resolvedCard.display_printings ?? []).map((printing) => ({
+    ...printing,
+    owned_count: printing.is_display_fallback ? 0 : ownedPrintingCountsForCard?.get(printing.id) ?? 0,
+  }));
   const detailItems: DetailItem[] = [
     resolvedCard.supertype ? { label: "Type", value: resolvedCard.supertype } : null,
     resolvedCard.card_category ? { label: "Category", value: resolvedCard.card_category } : null,
@@ -554,6 +570,8 @@ export default async function CardPage({
                 loginHref={loginHref}
                 currentPath={currentCardPath}
                 gvId={resolvedCard.gv_id}
+                printings={displayPrintingsWithOwnedCounts}
+                initialPrintingId={searchParams?.printing ?? null}
               />
 
               <div className="flex flex-wrap items-center gap-3">
@@ -565,8 +583,6 @@ export default async function CardPage({
           </aside>
         </div>
       </section>
-
-      <PrintingSelector printings={resolvedCard.display_printings} />
 
       {networkOffers.length > 0 ? (
         <section className="space-y-4 rounded-[20px] border border-slate-200 bg-white p-6 shadow-sm">
@@ -840,7 +856,9 @@ export default async function CardPage({
                 >
                   <div className="space-y-1">
                     <p className="font-medium text-slate-900">
-                      {rawItem.conditionLabel ? `${rawItem.conditionLabel} • Raw copy` : "Raw copy"}
+                      {[rawItem.conditionLabel, rawItem.finishLabel, "Raw copy"]
+                        .filter((value): value is string => Boolean(value))
+                        .join(" • ")}
                     </p>
                     <div className="flex flex-wrap items-center gap-2 text-xs text-slate-500">
                       <span>Tracked on your active vault entry.</span>

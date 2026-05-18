@@ -1,0 +1,43 @@
+{
+  "metadata": {
+    "contract": "GROOKAI_DEX_V1",
+    "purpose": "Curated display names, aliases, and mapping exceptions for Grookai Dex V1.",
+    "updatedAt": "2026-05-18"
+  },
+  "displayNameOverrides": {
+    "nidoran-f": "Nidoran Female",
+    "nidoran-m": "Nidoran Male",
+    "farfetchd": "Farfetch'd",
+    "sirfetchd": "Sirfetch'd",
+    "mr-mime": "Mr. Mime",
+    "mime-jr": "Mime Jr.",
+    "ho-oh": "Ho-Oh",
+    "porygon-z": "Porygon-Z",
+    "type-null": "Type: Null",
+    "jangmo-o": "Jangmo-o",
+    "hakamo-o": "Hakamo-o",
+    "kommo-o": "Kommo-o",
+    "wo-chien": "Wo-Chien",
+    "chien-pao": "Chien-Pao",
+    "ting-lu": "Ting-Lu",
+    "chi-yu": "Chi-Yu"
+  },
+  "aliases": {
+    "nidoran-f": ["nidoran female", "nidoran f", "nidoran♀"],
+    "nidoran-m": ["nidoran male", "nidoran m", "nidoran♂"],
+    "farfetchd": ["farfetch'd", "farfetchd"],
+    "sirfetchd": ["sirfetch'd", "sirfetchd"],
+    "mr-mime": ["mr mime", "mr. mime"],
+    "mime-jr": ["mime jr", "mime jr."],
+    "ho-oh": ["ho oh", "ho-oh"],
+    "porygon-z": ["porygon z", "porygon-z"],
+    "type-null": ["type null", "type: null"],
+    "flabebe": ["flabebe"],
+    "jangmo-o": ["jangmo o", "jangmo-o"],
+    "hakamo-o": ["hakamo o", "hakamo-o"],
+    "kommo-o": ["kommo o", "kommo-o"]
+  },
+  "nonCompletionRoles": ["cameo"],
+  "blockedSupertypes": ["Trainer", "Energy"],
+  "blockedNameTokens": ["energy", "stadium", "supporter", "tool", "fossil"]
+}

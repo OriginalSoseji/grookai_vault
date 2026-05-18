@@ -1,6 +1,7 @@
 import { cache } from "react";
 import { createClient } from "@supabase/supabase-js";
 import { resolveCardImageFieldsV1 } from "@/lib/canon/resolveCardImageFieldsV1";
+import { getCardPrintingFinishLabel } from "@/lib/cards/displayDiscriminator";
 import { getCompatiblePublicGvIdCandidates, pickResolvedPublicGvIdRow } from "@/lib/gvIdAlias";
 import { getPublicPricingByCardIds } from "@/lib/pricing/getPublicPricingByCardIds";
 import type { VariantFlags } from "@/lib/cards/variantPresentation";
@@ -147,7 +148,11 @@ function mapCardPrintings(rows?: PublicCardRow["card_printings"]): CardPrinting[
       return {
         id: printing.id ?? "",
         finish_key: printing.finish_key?.trim() || undefined,
-        finish_name: finishRecord?.label?.trim() || printing.finish_key?.trim() || undefined,
+        finish_name:
+          getCardPrintingFinishLabel({
+            finishKey: printing.finish_key,
+            finishLabel: finishRecord?.label,
+          }) ?? undefined,
         finish_sort_order: typeof finishRecord?.sort_order === "number" ? finishRecord.sort_order : undefined,
       } satisfies CardPrinting;
     })
@@ -176,7 +181,7 @@ function buildFallbackDisplayPrinting(row: Pick<PublicCardRow, "id" | "gv_id">):
 
   return {
     id: `canonical:${fallbackId}`,
-    finish_name: "Base",
+    finish_name: "Standard Print",
     display_finish: null,
     is_display_fallback: true,
   };

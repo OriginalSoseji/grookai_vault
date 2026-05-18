@@ -3,10 +3,28 @@ import type { ReactNode } from "react";
 import { Suspense } from "react";
 import { AppChrome } from "@/components/layout/AppChrome";
 import { PageContainer } from "@/components/layout/PageContainer";
+import { isGrookaiDexEnabled } from "@/lib/grookaiDex/featureFlag";
 import "./globals.css";
 import { Analytics } from "@vercel/analytics/react";
 
-function ChromeFallback() {
+function ChromeFallback({ dexEnabled }: { dexEnabled: boolean }) {
+  const desktopNavItems = [
+    { href: "/explore", label: "Explore" },
+    { href: "/sets", label: "Sets" },
+    ...(dexEnabled ? [{ href: "/dex", label: "Dex" }] : []),
+    { href: "/network", label: "Network" },
+    { href: "/compare", label: "Compare" },
+    { href: "/vault", label: "Vault" },
+  ];
+  const mobileNavItems = [
+    { href: "/vault", label: "Vault" },
+    { href: "/explore", label: "Discover" },
+    ...(dexEnabled ? [{ href: "/dex", label: "Dex" }] : []),
+    { href: "/network", label: "Network" },
+    { href: "/wall", label: "Showcase" },
+    { href: "/account", label: "Profile" },
+  ];
+
   return (
     <>
       <header className="sticky top-0 z-50 border-b border-slate-200 bg-white/95 backdrop-blur">
@@ -29,21 +47,11 @@ function ChromeFallback() {
               Grookai Vault
             </Link>
             <nav className="flex flex-wrap items-center gap-2 text-sm">
-              <Link href="/explore" className="rounded-full px-3 py-2 text-slate-600">
-                Explore
-              </Link>
-              <Link href="/sets" className="rounded-full px-3 py-2 text-slate-600">
-                Sets
-              </Link>
-              <Link href="/network" className="rounded-full px-3 py-2 text-slate-600">
-                Network
-              </Link>
-              <Link href="/compare" className="rounded-full px-3 py-2 text-slate-600">
-                Compare
-              </Link>
-              <Link href="/vault" className="rounded-full px-3 py-2 text-slate-600">
-                Vault
-              </Link>
+              {desktopNavItems.map((item) => (
+                <Link key={item.href} href={item.href} className="rounded-full px-3 py-2 text-slate-600">
+                  {item.label}
+                </Link>
+              ))}
               <Link
                 href="/login"
                 className="rounded-full border border-slate-200 bg-white px-4 py-2 text-slate-700"
@@ -59,13 +67,7 @@ function ChromeFallback() {
         className="fixed inset-x-0 bottom-0 z-50 border-t border-slate-200/80 bg-white/92 px-3 pb-[calc(0.55rem+env(safe-area-inset-bottom))] pt-2 backdrop-blur md:hidden"
       >
         <div className="mx-auto flex max-w-2xl items-center gap-1.5 rounded-[1.2rem] border border-slate-200 bg-white p-1.5 shadow-[0_-6px_20px_rgba(15,23,42,0.06)]">
-          {[
-            { href: "/vault", label: "Vault" },
-            { href: "/explore", label: "Discover" },
-            { href: "/network", label: "Network" },
-            { href: "/wall", label: "Showcase" },
-            { href: "/account", label: "Profile" },
-          ].map((item) => (
+          {mobileNavItems.map((item) => (
             <Link
               key={item.href}
               href={item.href}
@@ -81,11 +83,13 @@ function ChromeFallback() {
 }
 
 export default function RootLayout({ children }: { children: ReactNode }) {
+  const dexEnabled = isGrookaiDexEnabled();
+
   return (
     <html lang="en">
       <body>
-        <Suspense fallback={<ChromeFallback />}>
-          <AppChrome />
+        <Suspense fallback={<ChromeFallback dexEnabled={dexEnabled} />}>
+          <AppChrome dexEnabled={dexEnabled} />
         </Suspense>
         <main className="w-full py-7 pb-[calc(5.1rem+env(safe-area-inset-bottom))] md:py-12 md:pb-12">
           <PageContainer>{children}</PageContainer>

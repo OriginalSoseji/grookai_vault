@@ -19,7 +19,7 @@ const DEFAULT_SHELL_AUTH_STATE: ShellAuthState = {
   networkUnreadCount: 0,
 };
 
-export function AppChrome() {
+export function AppChrome({ dexEnabled }: { dexEnabled: boolean }) {
   const [authState, setAuthState] = useState<ShellAuthState>(DEFAULT_SHELL_AUTH_STATE);
 
   useEffect(() => {
@@ -80,8 +80,9 @@ export function AppChrome() {
         isAuthenticated={authState.isAuthenticated}
         profileHref={authState.profileHref}
         networkUnreadCount={authState.networkUnreadCount}
+        dexEnabled={dexEnabled}
       />
-      <MobileBottomNav wallHref={authState.wallHref} />
+      <MobileBottomNav wallHref={authState.wallHref} dexEnabled={dexEnabled} />
     </>
   );
 }

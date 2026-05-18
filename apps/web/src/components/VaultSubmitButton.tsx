@@ -7,6 +7,7 @@ type VaultSubmitButtonProps = {
   pendingLabel?: string;
   successActive?: boolean;
   successLabel?: string;
+  disabled?: boolean;
 };
 
 export default function VaultSubmitButton({
@@ -14,6 +15,7 @@ export default function VaultSubmitButton({
   pendingLabel = "Adding...",
   successActive = false,
   successLabel = "Added",
+  disabled = false,
 }: VaultSubmitButtonProps) {
   const { pending } = useFormStatus();
   const isSuccess = successActive && !pending;
@@ -21,7 +23,7 @@ export default function VaultSubmitButton({
   return (
     <button
       type="submit"
-      disabled={pending}
+      disabled={pending || disabled}
       className={`inline-flex min-w-[140px] items-center justify-center gap-2 rounded-full px-5 py-2.5 text-sm font-medium text-white transition-all duration-200 disabled:cursor-not-allowed disabled:opacity-60 ${
         isSuccess
           ? "bg-emerald-600 shadow-[0_10px_24px_rgba(5,150,105,0.18)] hover:bg-emerald-600"

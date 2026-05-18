@@ -2,8 +2,11 @@ import { notFound } from "next/navigation";
 import TrackPageEvent from "@/components/telemetry/TrackPageEvent";
 import PublicSetCardGrid from "@/components/PublicSetCardGrid";
 import { getPublicSetByCode, getPublicSetCards } from "@/lib/publicSets";
+import { applyOwnedPrintingCountsToSetCards } from "@/lib/publicSetsOwnership";
+import { createServerComponentClient } from "@/lib/supabase/server";
 
-export const revalidate = 300;
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
 const INITIAL_CARD_CHUNK = 36;
 
 export default async function SetPage({
@@ -11,6 +14,10 @@ export default async function SetPage({
 }: {
   params: { set_code: string };
 }) {
+  const supabase = createServerComponentClient();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
   const [setDetail, initialCards] = await Promise.all([
     getPublicSetByCode(params.set_code),
     getPublicSetCards(params.set_code, 0, INITIAL_CARD_CHUNK),
@@ -40,7 +47,7 @@ export default async function SetPage({
       <section className="space-y-4">
         <PublicSetCardGrid
           setCode={setDetail.code}
-          initialCards={initialCards}
+          initialCards={await applyOwnedPrintingCountsToSetCards(initialCards, user?.id ?? null)}
           totalCount={setDetail.card_count}
           chunkSize={INITIAL_CARD_CHUNK}
         />

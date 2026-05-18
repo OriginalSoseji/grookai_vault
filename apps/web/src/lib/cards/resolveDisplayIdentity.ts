@@ -1,3 +1,8 @@
+import {
+  getPrintedIdentityModifierDisplayLabel,
+  getVariantDisplayLabel,
+} from "@/lib/cards/displayDiscriminator";
+
 export type CardPrint = {
   name: string;
   variant_key: string | null;
@@ -27,22 +32,6 @@ const NEVER_SUPPRESS_DUPLICATE_MEANING_SUBTITLES = new Set([
   "staff",
 ]);
 
-const VARIANT_KEY_MAP: Record<string, string> = {
-  pokemon_together_stamp: "Pokémon Together Stamp",
-  prerelease: "Prerelease",
-  staff: "Staff",
-  alt: "Alternate Art",
-  tg: "Trainer Gallery",
-  rc: "Radiant Collection",
-  cc: "Classic Collection",
-};
-
-const PRINTED_IDENTITY_MODIFIER_MAP: Record<string, string> = {
-  delta_species: "δ Delta Species",
-};
-
-const NON_MEANINGFUL_VARIANT_KEYS = new Set(["", "base", "default", "normal", "standard", "none"]);
-
 function normalizeToken(value?: string | null) {
   return (value ?? "").trim().toLowerCase().replace(/[\s-]+/g, "_");
 }
@@ -61,63 +50,12 @@ function isLetterOrSymbolIdentity(value?: string | null) {
   return /^[\p{L}\p{N}★☆]$/u.test(normalized);
 }
 
-function toTitleCaseToken(token: string) {
-  const normalized = token.trim().toLowerCase();
-  if (!normalized) {
-    return "";
-  }
-
-  if (normalized === "pokemon") {
-    return "Pokémon";
-  }
-
-  if (normalized.length <= 2 && /^[a-z0-9]+$/.test(normalized)) {
-    return normalized.toUpperCase();
-  }
-
-  return `${normalized[0]?.toUpperCase() ?? ""}${normalized.slice(1)}`;
-}
-
 export function formatVariantKey(value?: string | null) {
-  const normalized = normalizeToken(value);
-  if (NON_MEANINGFUL_VARIANT_KEYS.has(normalized)) {
-    return null;
-  }
-
-  const mapped = VARIANT_KEY_MAP[normalized];
-  if (mapped) {
-    return mapped;
-  }
-
-  const humanized = normalized
-    .split("_")
-    .filter(Boolean)
-    .map(toTitleCaseToken)
-    .join(" ")
-    .trim();
-
-  return humanized || null;
+  return getVariantDisplayLabel(value);
 }
 
 export function formatPrintedIdentityModifier(value?: string | null) {
-  const normalized = normalizeToken(value);
-  if (!normalized) {
-    return null;
-  }
-
-  const mapped = PRINTED_IDENTITY_MODIFIER_MAP[normalized];
-  if (mapped) {
-    return mapped;
-  }
-
-  const humanized = normalized
-    .split("_")
-    .filter(Boolean)
-    .map(toTitleCaseToken)
-    .join(" ")
-    .trim();
-
-  return humanized || null;
+  return getPrintedIdentityModifierDisplayLabel(value);
 }
 
 export function resolveDisplayIdentity(card: Partial<CardPrint> & { name?: string | null }): ResolvedDisplayIdentity {
