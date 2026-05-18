@@ -2,109 +2,111 @@
 
 ## Classification
 
-NOT_PRODUCTION_READY
+PRODUCTION_READY
 
 ## Scope
 
-This audit covers release integrity only: secret safety, Flutter compile/test integrity, Android signing posture, web build reliability, and CI gate coverage.
+This audit covers release integrity only: secret safety, Flutter compile/test integrity, Android signing posture, web build reliability, GitHub Actions release gates, signed artifact inspection, and Android smoke evidence.
 
-Out of scope: DB remediation, migrations, card backfills, scanner architecture, GV-ID gate changes, and blocked runtime lanes.
+Out of scope: DB remediation, migrations, card backfills, scanner architecture, GV-ID gate changes, Edge function deploys, production data writes, and blocked runtime lanes.
 
 ## Mobile Readiness
 
-Status: RELEASE_CANDIDATE
+Status: PASS
 
-- `.env` and `.env.local` are no longer declared as Flutter assets.
-- Mobile config now supports release-safe `--dart-define` values for `SUPABASE_URL` and `SUPABASE_PUBLISHABLE_KEY`.
-- `flutter analyze` passes with no issues.
-- `flutter test --no-pub` passes.
-- Android release signing no longer falls back to debug signing.
-- Production Android release builds require explicit signing material.
-
-Remaining mobile gate:
-
-- Signed release artifact build was not executed locally because production signing secrets are not present in the workspace.
+- `.env` and `.env.local` are not declared as Flutter assets.
+- Mobile config supports release-safe `--dart-define` values for `SUPABASE_URL` and `SUPABASE_PUBLISHABLE_KEY`.
+- Release config no longer reads `flutter_dotenv` when no dotenv asset is bundled.
+- GitHub Actions release run `26013394418` for tag `v0.1.10` passed Flutter analyze and tests.
+- Android release signing does not fall back to debug signing in the production workflow.
+- Release run `26013394418` produced and published `app-release.aab`.
+- Android UI smoke on `SM-S908U` API 36 passed: the signed AAB-derived install clears splash, renders real app UI, reaches Search, reaches Account/authenticated profile surfaces, and shows no fatal Flutter or Android runtime crash in sampled logs.
 
 ## Web Readiness
 
-Status: RELEASE_CANDIDATE
+Status: PASS
 
-- `npm --prefix apps/web run typecheck` passes.
-- `npm --prefix apps/web run lint` passes with one non-blocking `<img>` LCP warning.
-- `npm --prefix apps/web run build` now runs with Node system CA trust and no TLS degradation output.
-- `npm run web:build:strict` fails if TLS certificate failures appear in build logs.
+- GitHub Actions release run `26013394418` passed web typecheck.
+- GitHub Actions release run `26013394418` passed web lint.
+- GitHub Actions release run `26013394418` passed strict web production build.
+- Strict build guards fail on TLS certificate degradation patterns.
 
 Remaining web risk:
 
-- `apps/web/src/components/warehouse/WarehouseSubmissionForm.tsx` still has one Next.js image optimization warning.
+- One non-blocking Next.js image optimization warning remains in `apps/web/src/components/warehouse/WarehouseSubmissionForm.tsx`.
 
 ## CI Readiness
 
-Status: RELEASE_CANDIDATE
+Status: PASS
 
-- `npm run shipcheck` now includes secret packaging guard, preflight, contracts tests, runtime health, web typecheck, web lint, strict web build, Flutter analyze, and Flutter tests.
-- Flutter CI now triggers on `test/**` and `analysis_options.yaml`, not only `lib/**`.
+- `npm run shipcheck` includes secret packaging guard, preflight, contracts tests, runtime health, web typecheck, web lint, strict web build, Flutter analyze, and Flutter tests.
 - Release workflow blocks on all release-relevant checks before creating a GitHub release.
+- Release workflow is enabled in GitHub Actions.
+- Tag `v0.1.10` completed successfully in GitHub Actions.
 
 Remaining CI risk:
 
-- Production signing depends on GitHub Actions secrets being configured correctly.
+- GitHub Actions reports a Node 20 action deprecation warning to track before GitHub enforcement dates.
 
 ## Signing Readiness
 
-Status: NOT_PRODUCTION_READY
+Status: PASS
 
-- Release workflow requires:
+- GitHub Actions secrets present for release signing/config:
   - `ANDROID_KEYSTORE_BASE64`
   - `ANDROID_KEYSTORE_PASSWORD`
   - `ANDROID_KEY_ALIAS`
   - `ANDROID_KEY_PASSWORD`
   - `MOBILE_SUPABASE_URL`
   - `MOBILE_SUPABASE_PUBLISHABLE_KEY`
-- Unsigned APK output is no longer treated as the production release artifact.
-- GitHub Release uploads the signed Android App Bundle path.
-
-Remaining signing gate:
-
-- GitHub repository secrets were checked with `gh secret list --repo OriginalSoseji/grookai_vault` on 2026-05-17.
-- Required release secrets are not currently present in GitHub Actions:
-  - `ANDROID_KEYSTORE_BASE64`
-  - `ANDROID_KEYSTORE_PASSWORD`
-  - `ANDROID_KEY_ALIAS`
-  - `ANDROID_KEY_PASSWORD`
-  - `MOBILE_SUPABASE_URL`
-  - `MOBILE_SUPABASE_PUBLISHABLE_KEY`
-- The release workflow was not present in `gh workflow list` because the release-hardening commits are still local to `scanner-v4-card-present-gate` and have not been published to GitHub.
-- No signed release workflow run, artifact inspection, `.env` artifact scan, or install test could be completed.
+  - `SUPABASE_DB_URL`
+  - `SUPABASE_SECRET_KEY`
+- Release workflow validates required secrets before build.
+- Unsigned APK output is not treated as a production release artifact.
+- GitHub Release uploads signed Android App Bundle `app-release.aab`.
+- `jarsigner -verify` reports the downloaded AAB as signed; `jarsigner -strict` PKIX warnings are expected for self-signed upload-key material.
 
 ## GitHub Release Verification
 
-Status: BLOCKED
+Status: PASS
 
-Attempted verification on 2026-05-17:
+Verification evidence on 2026-05-18 UTC:
 
-- GitHub CLI authentication: pass.
-- Repository resolved: `OriginalSoseji/grookai_vault`.
-- Required release secrets present: fail.
-- Release workflow available in GitHub Actions: fail.
-- Release workflow run: not run.
-- Signed artifact produced: not available.
-- `.env` artifact package inspection: not run.
-- Release artifact install test: not run.
-
-Blocking causes:
-
-- The hardening branch has no upstream and is not published to GitHub.
-- Production Android signing and mobile runtime config secrets are missing from GitHub Actions.
+- Branch merged to `main`.
+- `main` pushed at `f134aff8ff740901ae0a8f8430afe54ec541c3c5`.
+- Release workflow run: `26013394418`.
+- Release tag: `v0.1.10`.
+- Workflow status: success.
+- Published asset: `app-release.aab`.
+- Downloaded artifact SHA256: `56BC82AB6D4BA63B3C784BF702A9F7D3E32522509E038BA42CD3323AA0135E26`.
 
 ## Secret Safety
 
-Status: RELEASE_CANDIDATE
+Status: PASS
 
-- Flutter assets no longer include `.env` or `.env.local`.
+- Flutter assets do not include `.env` or `.env.local`.
 - `android/key.properties`, `android/*.jks`, and `android/*.keystore` are ignored.
 - `npm run release:secret-guard` statically fails if env files or secret-like files are reintroduced into release packaging paths.
 - Web public assets are scanned for secret-like filenames.
+- Downloaded `app-release.aab` inspection found:
+  - `env_file_hits`: `0`
+  - `secret_like_filename_hits`: `0`
+  - expected `base/manifest/AndroidManifest.xml`: present
+  - expected `base/dex/classes.dex`: present
+
+## Android Smoke
+
+Status: PASS
+
+- AAB-derived APK set from tag `v0.1.10` installed on attached Android device `SM-S908U`, API 36.
+- Package installed: `com.example.grookai_vault`.
+- Launcher activity resolved: `com.example.grookai_vault/.MainActivity`.
+- App process launched, drew the first real `MainActivity` window, and removed the Android splash surface.
+- Screenshot evidence showed the authenticated Feed UI with bottom navigation and no debug/dev banner.
+- UIAutomator evidence showed Search controls including search input, Browse sets, filters, and trending cards.
+- UIAutomator evidence showed Account/authenticated profile surfaces reachable.
+- Sampled logs after Feed/Search/Account/Scan-tab taps reported `fatal_or_unhandled_count=0`.
+- Scanner remained non-blocking during smoke; no scanner architecture changes were made.
 
 ## Remaining Deferred Debt
 
@@ -120,8 +122,9 @@ These are not release pipeline blockers for this lane because no DB remediation 
 ## Non-Release Blockers
 
 - DB deferred debt remains governed by existing runtime and drift gates.
-- Scanner remains parked; this lane only restored compile/test integrity.
+- Scanner remains parked; this lane only restored compile/test/release integrity and did not reopen scanner architecture.
+- GitHub Actions Node 20 action deprecation warning remains a CI maintenance follow-up.
 
 ## Final Decision
 
-Grookai Vault is NOT_PRODUCTION_READY for end-to-end release execution as of this verification pass. The code hardening lane is implemented locally, but the GitHub release lane cannot produce or validate a signed production artifact until the branch is published and the required GitHub Actions secrets are configured.
+Grookai Vault is PRODUCTION_READY for this release-integrity lane as of this verification pass. The GitHub Actions signed release pipeline is proven end to end, the signed AAB is verified clean of `.env*` and secret-like packaged files, and the Android signed-release smoke now reaches real app UI without fatal startup errors. Remaining DB/runtime debt is deferred non-release debt governed by existing gates.

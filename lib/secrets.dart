@@ -1,30 +1,39 @@
 // lib/secrets.dart
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 
-String _pickConfig(String dartDefineValue, String envValue) {
+String _dotenvValue(String key) {
+  if (!dotenv.isInitialized) {
+    return '';
+  }
+
+  return dotenv.env[key] ?? '';
+}
+
+String _pickConfig(String dartDefineValue, String dotenvValue) {
   final normalizedDefine = dartDefineValue.trim();
   if (normalizedDefine.isNotEmpty) {
     return normalizedDefine;
   }
 
-  return envValue.trim();
+  return dotenvValue.trim();
 }
 
 String get supabaseUrl => _pickConfig(
   const String.fromEnvironment('SUPABASE_URL'),
-  dotenv.env['SUPABASE_URL'] ?? '',
+  _dotenvValue('SUPABASE_URL'),
 );
 String get supabasePublishableKey => _pickConfig(
   const String.fromEnvironment('SUPABASE_PUBLISHABLE_KEY'),
-  dotenv.env['SUPABASE_PUBLISHABLE_KEY'] ?? '',
+  _dotenvValue('SUPABASE_PUBLISHABLE_KEY'),
 );
 String get grookaiWebBaseUrl {
   final configured = _pickConfig(
     const String.fromEnvironment('GROOKAI_WEB_BASE_URL'),
-    dotenv.env['GROOKAI_WEB_BASE_URL'] ??
-        dotenv.env['NEXT_PUBLIC_SITE_URL'] ??
-        dotenv.env['SITE_URL'] ??
-        '',
+    _dotenvValue('GROOKAI_WEB_BASE_URL').isNotEmpty
+        ? _dotenvValue('GROOKAI_WEB_BASE_URL')
+        : _dotenvValue('NEXT_PUBLIC_SITE_URL').isNotEmpty
+        ? _dotenvValue('NEXT_PUBLIC_SITE_URL')
+        : _dotenvValue('SITE_URL'),
   );
   return configured.isNotEmpty ? configured : 'https://grookaivault.com';
 }
