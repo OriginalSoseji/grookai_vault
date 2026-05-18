@@ -1,0 +1,128 @@
+{
+  "contract": "GROOKAI_DEX_V1",
+  "generated_at": "2026-05-18T16:21:59.319Z",
+  "base_ports": [
+    3021,
+    3022
+  ],
+  "scenarios": [
+    {
+      "flag_enabled": false,
+      "results": [
+        {
+          "path": "/dex",
+          "status": 404,
+          "duration_ms": 82,
+          "body_length": 9627,
+          "has_grookai_dex": false,
+          "has_pikachu": false,
+          "has_charizard": false,
+          "has_expected_counter_text": false,
+          "has_owned_tab": false,
+          "has_missing_tab": false,
+          "has_find_card_action": false,
+          "has_variant_label": false,
+          "leaks_known_user_checkpoint": false
+        },
+        {
+          "path": "/dex/pikachu",
+          "status": 404,
+          "duration_ms": 90,
+          "body_length": 10198,
+          "has_grookai_dex": false,
+          "has_pikachu": false,
+          "has_charizard": false,
+          "has_expected_counter_text": false,
+          "has_owned_tab": false,
+          "has_missing_tab": false,
+          "has_find_card_action": false,
+          "has_variant_label": false,
+          "leaks_known_user_checkpoint": false
+        }
+      ],
+      "server_output_tail": "  ▲ Next.js 14.2.35\n  - Local:        http://localhost:3021\n\n ✓ Starting...\n ✓ Ready in 246ms\n"
+    },
+    {
+      "flag_enabled": true,
+      "results": [
+        {
+          "path": "/dex",
+          "status": 200,
+          "duration_ms": 1096,
+          "body_length": 132204,
+          "has_grookai_dex": true,
+          "has_pikachu": true,
+          "has_charizard": true,
+          "has_expected_counter_text": true,
+          "has_owned_tab": true,
+          "has_missing_tab": false,
+          "has_find_card_action": false,
+          "has_variant_label": false,
+          "leaks_known_user_checkpoint": false
+        },
+        {
+          "path": "/dex/pikachu",
+          "status": 200,
+          "duration_ms": 926,
+          "body_length": 465970,
+          "has_grookai_dex": true,
+          "has_pikachu": true,
+          "has_charizard": false,
+          "has_expected_counter_text": true,
+          "has_owned_tab": true,
+          "has_missing_tab": true,
+          "has_find_card_action": true,
+          "has_variant_label": true,
+          "leaks_known_user_checkpoint": false
+        },
+        {
+          "path": "/dex/pikachu?view=owned",
+          "status": 200,
+          "duration_ms": 537,
+          "body_length": 25126,
+          "has_grookai_dex": true,
+          "has_pikachu": true,
+          "has_charizard": false,
+          "has_expected_counter_text": true,
+          "has_owned_tab": true,
+          "has_missing_tab": true,
+          "has_find_card_action": false,
+          "has_variant_label": false,
+          "leaks_known_user_checkpoint": false
+        },
+        {
+          "path": "/dex/pikachu?view=missing",
+          "status": 200,
+          "duration_ms": 439,
+          "body_length": 466014,
+          "has_grookai_dex": true,
+          "has_pikachu": true,
+          "has_charizard": false,
+          "has_expected_counter_text": true,
+          "has_owned_tab": true,
+          "has_missing_tab": true,
+          "has_find_card_action": true,
+          "has_variant_label": true,
+          "leaks_known_user_checkpoint": false
+        },
+        {
+          "path": "/dex/charizard",
+          "status": 200,
+          "duration_ms": 242,
+          "body_length": 293714,
+          "has_grookai_dex": true,
+          "has_pikachu": true,
+          "has_charizard": true,
+          "has_expected_counter_text": true,
+          "has_owned_tab": true,
+          "has_missing_tab": true,
+          "has_find_card_action": true,
+          "has_variant_label": true,
+          "leaks_known_user_checkpoint": false
+        }
+      ],
+      "server_output_tail": "  ▲ Next.js 14.2.35\n  - Local:        http://localhost:3022\n\n ✓ Starting...\n ✓ Ready in 251ms\n"
+    }
+  ],
+  "failures": []
+}

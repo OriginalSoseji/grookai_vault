@@ -1,0 +1,45 @@
+{
+  "contract": "GROOKAI_DEX_V1",
+  "generated_at": "2026-05-18T12:34:46.678Z",
+  "sample_user_id": "03e80d15-a2bb-4d3c-abd1-2de03e55787b",
+  "counts": {
+    "species_count": 1025,
+    "mapping_count": 21763,
+    "completion_mapping_count": 21706,
+    "species_view_count": 1025,
+    "card_print_view_count": 21763
+  },
+  "species_samples": [
+    {
+      "slug": "charizard",
+      "display_name": "Charizard",
+      "total_print_count": 133
+    },
+    {
+      "slug": "pikachu",
+      "display_name": "Pikachu",
+      "total_print_count": 223
+    }
+  ],
+  "user_progress_samples": [
+    {
+      "slug": "charizard",
+      "total_print_count": 133,
+      "owned_print_count": 4,
+      "owned_copy_count": 6,
+      "missing_print_count": 129
+    },
+    {
+      "slug": "pikachu",
+      "total_print_count": 223,
+      "owned_print_count": 42,
+      "owned_copy_count": 88,
+      "missing_print_count": 181
+    }
+  ],
+  "status": "CHECKPOINT_CREATED",
+  "notes": [
+    "Feature flag remains off by default.",
+    "No scanner, pricing, or DB remediation changes are part of this checkpoint."
+  ]
+}

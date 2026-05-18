@@ -13,6 +13,7 @@ type SiteHeaderProps = {
   isAuthenticated: boolean;
   profileHref: string | null;
   networkUnreadCount: number;
+  dexEnabled: boolean;
 };
 
 function NetworkLabel({ unreadCount }: { unreadCount: number }) {
@@ -28,7 +29,7 @@ function NetworkLabel({ unreadCount }: { unreadCount: number }) {
   );
 }
 
-export function SiteHeader({ isAuthenticated, profileHref, networkUnreadCount }: SiteHeaderProps) {
+export function SiteHeader({ isAuthenticated, profileHref, networkUnreadCount, dexEnabled }: SiteHeaderProps) {
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const compareCards = normalizeCompareCardsParam(searchParams.get("cards"));
@@ -42,6 +43,8 @@ export function SiteHeader({ isAuthenticated, profileHref, networkUnreadCount }:
     pathname.startsWith("/explore/") ||
     pathname === "/sets" ||
     pathname.startsWith("/sets/") ||
+    pathname === "/dex" ||
+    pathname.startsWith("/dex/") ||
     pathname === "/card" ||
     pathname.startsWith("/card/") ||
     pathname === "/compare" ||
@@ -58,6 +61,7 @@ export function SiteHeader({ isAuthenticated, profileHref, networkUnreadCount }:
   const primaryNav = [
     { href: buildPathWithCompareCards("/explore", "", compareCards), label: "Explore", matchHref: "/explore" },
     { href: buildPathWithCompareCards("/sets", "", compareCards), label: "Sets", matchHref: "/sets" },
+    ...(dexEnabled ? [{ href: "/dex", label: "Dex", matchHref: "/dex" }] : []),
     { href: "/network", label: "Network", matchHref: "/network" },
     { href: buildCompareHref(compareCards), label: compareCount > 0 ? `Compare (${compareCount})` : "Compare", matchHref: "/compare" },
     { href: "/vault", label: "Vault" },
@@ -69,8 +73,10 @@ export function SiteHeader({ isAuthenticated, profileHref, networkUnreadCount }:
         ? "Profile"
         : pathname === "/network" || pathname.startsWith("/network/")
           ? "Network"
-        : pathname === "/wall" || pathname.startsWith("/wall/") || pathname.startsWith("/u/")
-          ? "Showcase"
+          : pathname === "/wall" || pathname.startsWith("/wall/") || pathname.startsWith("/u/")
+            ? "Showcase"
+          : pathname === "/dex" || pathname.startsWith("/dex/")
+            ? "Dex"
           : showTopSearch || pathname === "/sets" || pathname.startsWith("/sets/") || pathname === "/compare" || pathname.startsWith("/compare/")
             ? "Discover"
             : "Grookai Vault";

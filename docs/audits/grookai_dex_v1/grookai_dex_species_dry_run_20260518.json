@@ -1,0 +1,70 @@
+{
+  "contract": "GROOKAI_DEX_V1",
+  "generated_at": "2026-05-18T09:54:22.655Z",
+  "mode": "apply",
+  "status": "PASS",
+  "apply_allowed": true,
+  "summary": {
+    "species_count": 1025,
+    "rows_written": 1025,
+    "expected_species_count": 1025,
+    "source": "pokeapi",
+    "source_url": "https://pokeapi.co/api/v2/pokemon-species?limit=2000&offset=0",
+    "first_national_dex_number": 1,
+    "last_national_dex_number": 1025
+  },
+  "warnings": [],
+  "errors": [],
+  "sample": [
+    {
+      "nationalDexNumber": 1,
+      "slug": "bulbasaur",
+      "canonicalName": "bulbasaur",
+      "displayName": "Bulbasaur",
+      "searchTokens": [
+        "bulbasaur",
+        "bulbasaur"
+      ]
+    },
+    {
+      "nationalDexNumber": 675,
+      "slug": "pangoro",
+      "canonicalName": "pangoro",
+      "displayName": "Pangoro",
+      "searchTokens": [
+        "pangoro",
+        "pangoro"
+      ]
+    },
+    {
+      "nationalDexNumber": 676,
+      "slug": "furfrou",
+      "canonicalName": "furfrou",
+      "displayName": "Furfrou",
+      "searchTokens": [
+        "furfrou",
+        "furfrou"
+      ]
+    },
+    {
+      "nationalDexNumber": 677,
+      "slug": "espurr",
+      "canonicalName": "espurr",
+      "displayName": "Espurr",
+      "searchTokens": [
+        "espurr",
+        "espurr"
+      ]
+    },
+    {
+      "nationalDexNumber": 678,
+      "slug": "meowstic",
+      "canonicalName": "meowstic",
+      "displayName": "Meowstic",
+      "searchTokens": [
+        "meowstic",
+        "meowstic"
+      ]
+    }
+  ]
+}

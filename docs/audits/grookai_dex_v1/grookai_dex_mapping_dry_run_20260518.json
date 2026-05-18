@@ -1,0 +1,1227 @@
+{
+  "contract": "GROOKAI_DEX_V1",
+  "generated_at": "2026-05-18T10:14:49.858Z",
+  "mode": "apply",
+  "status": "PASS",
+  "apply_allowed": true,
+  "summary": {
+    "species_count": 1025,
+    "rows_written": 21763,
+    "card_prints_scanned": 25404,
+    "mapping_rows_proposed": 21763,
+    "distinct_mapped_card_prints": 21606,
+    "completion_mapping_rows": 21706,
+    "unmapped_card_prints": 3798,
+    "non_completion_candidates": 57,
+    "multi_subject_card_prints": 148
+  },
+  "status_counts": {
+    "mapped": 21549,
+    "unmapped": 3798,
+    "non_completion_candidate": 57
+  },
+  "reason_counts": {
+    "name_token_match": 21549,
+    "blocked_trait_no_subject_match": 3275,
+    "no_subject_match": 523,
+    "blocked_trait_subject_match": 57
+  },
+  "sample_denominators": [
+    {
+      "species_slug": "pikachu",
+      "total_print_count": 223
+    },
+    {
+      "species_slug": "charizard",
+      "total_print_count": 133
+    },
+    {
+      "species_slug": "eevee",
+      "total_print_count": 123
+    },
+    {
+      "species_slug": "mew",
+      "total_print_count": 72
+    },
+    {
+      "species_slug": "nidoran-m",
+      "total_print_count": 21
+    },
+    {
+      "species_slug": "nidoran-f",
+      "total_print_count": 21
+    },
+    {
+      "species_slug": "mr-mime",
+      "total_print_count": 44
+    },
+    {
+      "species_slug": "ho-oh",
+      "total_print_count": 49
+    },
+    {
+      "species_slug": "type-null",
+      "total_print_count": 6
+    }
+  ],
+  "warnings": [],
+  "errors": [],
+  "samples": {
+    "mapped": [
+      {
+        "card_print_id": "0003593d-5fc1-4f51-a5fa-4211e946c257",
+        "gv_id": "GV-PK-MEG-091",
+        "name": "Shroodle",
+        "status": "mapped",
+        "reason": "name_token_match",
+        "mapping_count": 1
+      },
+      {
+        "card_print_id": "0008eb85-aa11-4afd-926d-16b81f6eb258",
+        "gv_id": "GV-PK-PR-SV-067",
+        "name": "Roaring Moon ex",
+        "status": "mapped",
+        "reason": "name_token_match",
+        "mapping_count": 1
+      },
+      {
+        "card_print_id": "00121e16-72ac-47b4-8e8e-8f23a4176f76",
+        "gv_id": "GV-PK-BLK-101",
+        "name": "Panpour",
+        "status": "mapped",
+        "reason": "name_token_match",
+        "mapping_count": 1
+      },
+      {
+        "card_print_id": "0012ad37-0f0a-4b16-9a25-4f57cfd5c689",
+        "gv_id": "GV-PK-SM-SM125",
+        "name": "Naganadel-GX",
+        "status": "mapped",
+        "reason": "name_token_match",
+        "mapping_count": 1
+      },
+      {
+        "card_print_id": "001cad3b-66e9-493d-ba11-1fc6569adc5c",
+        "gv_id": "GV-PK-PR-XY-XY83",
+        "name": "Arceus",
+        "status": "mapped",
+        "reason": "name_token_match",
+        "mapping_count": 1
+      },
+      {
+        "card_print_id": "0025b44b-8a49-438d-a133-be2cffbbabfa",
+        "gv_id": "GV-PK-DAA-38",
+        "name": "Feebas",
+        "status": "mapped",
+        "reason": "name_token_match",
+        "mapping_count": 1
+      },
+      {
+        "card_print_id": "00305e35-ee32-4573-800a-0e3191952954",
+        "gv_id": "GV-PK-CRZ-063",
+        "name": "Dusclops",
+        "status": "mapped",
+        "reason": "name_token_match",
+        "mapping_count": 1
+      },
+      {
+        "card_print_id": "00327988-ee3d-4a46-a95c-078b8ae7d287",
+        "gv_id": "GV-PK-PAR-142",
+        "name": "Porygon",
+        "status": "mapped",
+        "reason": "name_token_match",
+        "mapping_count": 1
+      },
+      {
+        "card_print_id": "00349213-10d1-4124-b351-c7bd60aa526c",
+        "gv_id": "GV-PK-ASC-156",
+        "name": "Noibat",
+        "status": "mapped",
+        "reason": "name_token_match",
+        "mapping_count": 1
+      },
+      {
+        "card_print_id": "0044270b-f9ab-49eb-bd7c-7821cf30d556",
+        "gv_id": "GV-PK-GE-9",
+        "name": "Swampert",
+        "status": "mapped",
+        "reason": "name_token_match",
+        "mapping_count": 1
+      },
+      {
+        "card_print_id": "0045e934-8a90-4f6e-b163-028f448b54a6",
+        "gv_id": "GV-PK-PRE-051",
+        "name": "Lucario ex",
+        "status": "mapped",
+        "reason": "name_token_match",
+        "mapping_count": 1
+      },
+      {
+        "card_print_id": "0049af52-deee-4a6e-9354-5a73a5d3f721",
+        "gv_id": "GV-PK-MEW-186",
+        "name": "Ninetales ex",
+        "status": "mapped",
+        "reason": "name_token_match",
+        "mapping_count": 1
+      },
+      {
+        "card_print_id": "004a0cc7-3e4b-434e-bcef-530325b43539",
+        "gv_id": "GV-PK-MCD-2017-5",
+        "name": "Pikachu",
+        "status": "mapped",
+        "reason": "name_token_match",
+        "mapping_count": 1
+      },
+      {
+        "card_print_id": "004abde4-3fb7-42d0-953d-5e6bcf29ae44",
+        "gv_id": "GV-PK-HS-49",
+        "name": "Quilava",
+        "status": "mapped",
+        "reason": "name_token_match",
+        "mapping_count": 1
+      },
+      {
+        "card_print_id": "004adc25-5f75-454e-928f-fce279225792",
+        "gv_id": "GV-PK-HS-23",
+        "name": "Hypno",
+        "status": "mapped",
+        "reason": "name_token_match",
+        "mapping_count": 1
+      },
+      {
+        "card_print_id": "004b141d-f97a-44ba-8898-148351709b7e",
+        "gv_id": null,
+        "name": "Swirlix",
+        "status": "mapped",
+        "reason": "name_token_match",
+        "mapping_count": 1
+      },
+      {
+        "card_print_id": "004be467-cc13-49ac-9106-778819636ea7",
+        "gv_id": "GV-PK-SM-SM162",
+        "name": "Pikachu",
+        "status": "mapped",
+        "reason": "name_token_match",
+        "mapping_count": 1
+      },
+      {
+        "card_print_id": "0050aa11-5ecb-4de6-a49b-37f829e33f6e",
+        "gv_id": "GV-PK-SUM-94",
+        "name": "Dratini",
+        "status": "mapped",
+        "reason": "name_token_match",
+        "mapping_count": 1
+      },
+      {
+        "card_print_id": "0056485c-4bed-4687-a1f0-09f314ac655b",
+        "gv_id": "GV-PK-OBF-134",
+        "name": "Houndoom ex",
+        "status": "mapped",
+        "reason": "name_token_match",
+        "mapping_count": 1
+      },
+      {
+        "card_print_id": "005a89ec-4b02-4791-b6d9-648138a47800",
+        "gv_id": "GV-PK-FFI-78",
+        "name": "Lickitung",
+        "status": "mapped",
+        "reason": "name_token_match",
+        "mapping_count": 1
+      },
+      {
+        "card_print_id": "005ac0bf-ee75-4e90-a48c-219965d2d01a",
+        "gv_id": "GV-PK-MEW-113",
+        "name": "Chansey",
+        "status": "mapped",
+        "reason": "name_token_match",
+        "mapping_count": 1
+      },
+      {
+        "card_print_id": "00644022-da97-42c4-ba76-0fcfa54d775a",
+        "gv_id": "GV-PK-DRX-18",
+        "name": "Vulpix",
+        "status": "mapped",
+        "reason": "name_token_match",
+        "mapping_count": 1
+      },
+      {
+        "card_print_id": "0064a55f-1039-4f8f-9285-81b7caf28e80",
+        "gv_id": "GV-PK-PFL-099",
+        "name": "Yamper",
+        "status": "mapped",
+        "reason": "name_token_match",
+        "mapping_count": 1
+      },
+      {
+        "card_print_id": "006816f5-5c8e-4af4-8c3c-e61d66b57d60",
+        "gv_id": "GV-PK-RG-61",
+        "name": "Diglett",
+        "status": "mapped",
+        "reason": "name_token_match",
+        "mapping_count": 1
+      },
+      {
+        "card_print_id": "006963ee-b15a-412a-b721-07ade4b65027",
+        "gv_id": "GV-PK-PRE-149",
+        "name": "Vaporeon ex",
+        "status": "mapped",
+        "reason": "name_token_match",
+        "mapping_count": 1
+      }
+    ],
+    "unmapped": [
+      {
+        "card_print_id": "000a7ecc-38ed-4006-8cac-4a888521b644",
+        "gv_id": "GV-PK-LOT-182",
+        "name": "Lusamine ◇",
+        "status": "unmapped",
+        "reason": "blocked_trait_no_subject_match",
+        "mapping_count": 0
+      },
+      {
+        "card_print_id": "000e3e79-58b0-4bea-8c4d-ecaa1c9d311e",
+        "gv_id": "GV-PK-MA-85",
+        "name": "Warp Point",
+        "status": "unmapped",
+        "reason": "blocked_trait_no_subject_match",
+        "mapping_count": 0
+      },
+      {
+        "card_print_id": "00338ef9-fa71-40e7-8820-ae22c0372b56",
+        "gv_id": "GV-PK-RR-92",
+        "name": "Lucian's Assignment",
+        "status": "unmapped",
+        "reason": "blocked_trait_no_subject_match",
+        "mapping_count": 0
+      },
+      {
+        "card_print_id": "006c7cc2-2bbf-4a0a-bc16-40845178f25e",
+        "gv_id": "GV-PK-PAR-174",
+        "name": "Shauntal",
+        "status": "unmapped",
+        "reason": "blocked_trait_no_subject_match",
+        "mapping_count": 0
+      },
+      {
+        "card_print_id": "0072ea3e-b135-4818-b0c3-f62cb3cdadfd",
+        "gv_id": "GV-PK-UF-83",
+        "name": "Energy Root",
+        "status": "unmapped",
+        "reason": "blocked_trait_no_subject_match",
+        "mapping_count": 0
+      },
+      {
+        "card_print_id": "008ac5b7-e336-4662-a824-e284e0b038d5",
+        "gv_id": "GV-PK-PRE-105",
+        "name": "Crispin",
+        "status": "unmapped",
+        "reason": "no_subject_match",
+        "mapping_count": 0
+      },
+      {
+        "card_print_id": "00a19d36-df7b-4718-9ed3-af75a949fcef",
+        "gv_id": "GV-PK-PLB-101",
+        "name": "Iris",
+        "status": "unmapped",
+        "reason": "blocked_trait_no_subject_match",
+        "mapping_count": 0
+      },
+      {
+        "card_print_id": "00b129b2-3123-4887-af8e-ac8c867b30ed",
+        "gv_id": "GV-PK-BUS-121",
+        "name": "Po Town",
+        "status": "unmapped",
+        "reason": "blocked_trait_no_subject_match",
+        "mapping_count": 0
+      },
+      {
+        "card_print_id": "00c432b2-3c3a-42ef-8101-734fddee2f44",
+        "gv_id": "GV-PK-N2-75",
+        "name": "Energy Ark",
+        "status": "unmapped",
+        "reason": "blocked_trait_no_subject_match",
+        "mapping_count": 0
+      },
+      {
+        "card_print_id": "00cb61c1-646b-4d0a-b7af-47a374ad67ac",
+        "gv_id": "GV-PK-BLK-080",
+        "name": "Antique Cover Fossil",
+        "status": "unmapped",
+        "reason": "blocked_trait_no_subject_match",
+        "mapping_count": 0
+      },
+      {
+        "card_print_id": "00d972d5-28e3-482f-815f-6051ec4c24c5",
+        "gv_id": "GV-PK-BCR-129",
+        "name": "Great Ball",
+        "status": "unmapped",
+        "reason": "blocked_trait_no_subject_match",
+        "mapping_count": 0
+      },
+      {
+        "card_print_id": "00fbf6b1-13a0-4908-9233-c9e855752ade",
+        "gv_id": "GV-PK-UPR-149",
+        "name": "Gardenia",
+        "status": "unmapped",
+        "reason": "blocked_trait_no_subject_match",
+        "mapping_count": 0
+      },
+      {
+        "card_print_id": "010138b6-dd54-4bcc-aebc-b4ae484dfccd",
+        "gv_id": "GV-PK-TWM-159-PLAY-POKEMON-STAMP",
+        "name": "Ogre's Mask",
+        "status": "unmapped",
+        "reason": "no_subject_match",
+        "mapping_count": 0
+      },
+      {
+        "card_print_id": "010d597a-dff6-455a-a2f0-fa616d0ecf53",
+        "gv_id": "GV-PK-TEF-142",
+        "name": "Bianca's Devotion",
+        "status": "unmapped",
+        "reason": "blocked_trait_no_subject_match",
+        "mapping_count": 0
+      },
+      {
+        "card_print_id": "011357ea-d5a0-4b49-be9b-d7a690816698",
+        "gv_id": "GV-PK-SLG-58",
+        "name": "Damage Mover",
+        "status": "unmapped",
+        "reason": "blocked_trait_no_subject_match",
+        "mapping_count": 0
+      },
+      {
+        "card_print_id": "01249d6c-1b30-4bfd-974c-8fb2c5528214",
+        "gv_id": "GV-PK-PGO-88",
+        "name": "Lure Module",
+        "status": "unmapped",
+        "reason": "no_subject_match",
+        "mapping_count": 0
+      },
+      {
+        "card_print_id": "012d9ef6-75d0-43d1-b4dc-d4dfe131f45f",
+        "gv_id": "GV-PK-PAL-248",
+        "name": "Boss's Orders",
+        "status": "unmapped",
+        "reason": "no_subject_match",
+        "mapping_count": 0
+      },
+      {
+        "card_print_id": "013322d7-6968-4eea-a4ae-5577fed9f1e7",
+        "gv_id": "GV-PK-LC-100",
+        "name": "Full Heal Energy",
+        "status": "unmapped",
+        "reason": "blocked_trait_no_subject_match",
+        "mapping_count": 0
+      },
+      {
+        "card_print_id": "013925cf-1c39-44ed-a571-d8d8f449b1a6",
+        "gv_id": "GV-PK-CRE-197",
+        "name": "Peony",
+        "status": "unmapped",
+        "reason": "blocked_trait_no_subject_match",
+        "mapping_count": 0
+      },
+      {
+        "card_print_id": "01429eb6-b078-4e3f-b7e1-511ba2cd9973",
+        "gv_id": "GV-PK-B2-123",
+        "name": "Switch",
+        "status": "unmapped",
+        "reason": "no_subject_match",
+        "mapping_count": 0
+      },
+      {
+        "card_print_id": "014a2b33-1de0-457c-a93d-3f2aa7e48c81",
+        "gv_id": "GV-PK-MEG-132-PLAY-POKEMON-STAMP",
+        "name": "Wally's Compassion",
+        "status": "unmapped",
+        "reason": "no_subject_match",
+        "mapping_count": 0
+      },
+      {
+        "card_print_id": "01665622-e40d-400b-9fe2-ccb389f15306",
+        "gv_id": "GV-PK-GRI-122",
+        "name": "Energy Loto",
+        "status": "unmapped",
+        "reason": "blocked_trait_no_subject_match",
+        "mapping_count": 0
+      },
+      {
+        "card_print_id": "016e6ca2-1d57-4af6-a8e2-1c11b73d703a",
+        "gv_id": "GV-PK-FLF-96",
+        "name": "Sacred Ash",
+        "status": "unmapped",
+        "reason": "blocked_trait_no_subject_match",
+        "mapping_count": 0
+      },
+      {
+        "card_print_id": "01c5d9e4-5cc3-4fe0-916a-a2d3df7c8c97",
+        "gv_id": "GV-PK-COL-90",
+        "name": "Water Energy",
+        "status": "unmapped",
+        "reason": "blocked_trait_no_subject_match",
+        "mapping_count": 0
+      },
+      {
+        "card_print_id": "02045ee2-1c21-4c40-8620-ddf4833f3e6b",
+        "gv_id": "GV-PK-BUS-168",
+        "name": "Darkness Energy",
+        "status": "unmapped",
+        "reason": "blocked_trait_no_subject_match",
+        "mapping_count": 0
+      }
+    ],
+    "mappings": [
+      {
+        "card_print_id": "0003593d-5fc1-4f51-a5fa-4211e946c257",
+        "species_slug": "shroodle",
+        "species_national_dex_number": 944,
+        "role": "primary",
+        "counts_for_completion": true,
+        "source": "grookai_dex_name_rule_v1",
+        "confidence": 0.82,
+        "evidence": {
+          "card_name": "Shroodle",
+          "matched_token": "shroodle",
+          "supertype": "Pokemon",
+          "card_category": "Basic"
+        }
+      },
+      {
+        "card_print_id": "0008eb85-aa11-4afd-926d-16b81f6eb258",
+        "species_slug": "roaring-moon",
+        "species_national_dex_number": 1005,
+        "role": "primary",
+        "counts_for_completion": true,
+        "source": "grookai_dex_name_rule_v1",
+        "confidence": 0.82,
+        "evidence": {
+          "card_name": "Roaring Moon ex",
+          "matched_token": "roaring moon",
+          "supertype": "Pokemon",
+          "card_category": "Basic"
+        }
+      },
+      {
+        "card_print_id": "00121e16-72ac-47b4-8e8e-8f23a4176f76",
+        "species_slug": "panpour",
+        "species_national_dex_number": 515,
+        "role": "primary",
+        "counts_for_completion": true,
+        "source": "grookai_dex_name_rule_v1",
+        "confidence": 0.82,
+        "evidence": {
+          "card_name": "Panpour",
+          "matched_token": "panpour",
+          "supertype": "Pokemon",
+          "card_category": "Basic"
+        }
+      },
+      {
+        "card_print_id": "0012ad37-0f0a-4b16-9a25-4f57cfd5c689",
+        "species_slug": "naganadel",
+        "species_national_dex_number": 804,
+        "role": "primary",
+        "counts_for_completion": true,
+        "source": "grookai_dex_name_rule_v1",
+        "confidence": 0.82,
+        "evidence": {
+          "card_name": "Naganadel-GX",
+          "matched_token": "naganadel",
+          "supertype": "Pokémon",
+          "card_category": "Stage 1"
+        }
+      },
+      {
+        "card_print_id": "001cad3b-66e9-493d-ba11-1fc6569adc5c",
+        "species_slug": "arceus",
+        "species_national_dex_number": 493,
+        "role": "primary",
+        "counts_for_completion": true,
+        "source": "grookai_dex_name_rule_v1",
+        "confidence": 0.82,
+        "evidence": {
+          "card_name": "Arceus",
+          "matched_token": "arceus",
+          "supertype": "Pokemon",
+          "card_category": "Basic"
+        }
+      },
+      {
+        "card_print_id": "0025b44b-8a49-438d-a133-be2cffbbabfa",
+        "species_slug": "feebas",
+        "species_national_dex_number": 349,
+        "role": "primary",
+        "counts_for_completion": true,
+        "source": "grookai_dex_name_rule_v1",
+        "confidence": 0.82,
+        "evidence": {
+          "card_name": "Feebas",
+          "matched_token": "feebas",
+          "supertype": "Pokémon",
+          "card_category": "Basic"
+        }
+      },
+      {
+        "card_print_id": "00305e35-ee32-4573-800a-0e3191952954",
+        "species_slug": "dusclops",
+        "species_national_dex_number": 356,
+        "role": "primary",
+        "counts_for_completion": true,
+        "source": "grookai_dex_name_rule_v1",
+        "confidence": 0.82,
+        "evidence": {
+          "card_name": "Dusclops",
+          "matched_token": "dusclops",
+          "supertype": "Pokemon",
+          "card_category": "Stage1"
+        }
+      },
+      {
+        "card_print_id": "00327988-ee3d-4a46-a95c-078b8ae7d287",
+        "species_slug": "porygon",
+        "species_national_dex_number": 137,
+        "role": "primary",
+        "counts_for_completion": true,
+        "source": "grookai_dex_name_rule_v1",
+        "confidence": 0.82,
+        "evidence": {
+          "card_name": "Porygon",
+          "matched_token": "porygon",
+          "supertype": "Pokemon",
+          "card_category": "Basic"
+        }
+      },
+      {
+        "card_print_id": "00349213-10d1-4124-b351-c7bd60aa526c",
+        "species_slug": "noibat",
+        "species_national_dex_number": 714,
+        "role": "primary",
+        "counts_for_completion": true,
+        "source": "grookai_dex_name_rule_v1",
+        "confidence": 0.82,
+        "evidence": {
+          "card_name": "Noibat",
+          "matched_token": "noibat",
+          "supertype": "Pokemon",
+          "card_category": "Basic"
+        }
+      },
+      {
+        "card_print_id": "0044270b-f9ab-49eb-bd7c-7821cf30d556",
+        "species_slug": "swampert",
+        "species_national_dex_number": 260,
+        "role": "primary",
+        "counts_for_completion": true,
+        "source": "grookai_dex_name_rule_v1",
+        "confidence": 0.82,
+        "evidence": {
+          "card_name": "Swampert",
+          "matched_token": "swampert",
+          "supertype": "Pokemon",
+          "card_category": "Stage2"
+        }
+      },
+      {
+        "card_print_id": "0045e934-8a90-4f6e-b163-028f448b54a6",
+        "species_slug": "lucario",
+        "species_national_dex_number": 448,
+        "role": "primary",
+        "counts_for_completion": true,
+        "source": "grookai_dex_name_rule_v1",
+        "confidence": 0.82,
+        "evidence": {
+          "card_name": "Lucario ex",
+          "matched_token": "lucario",
+          "supertype": null,
+          "card_category": null
+        }
+      },
+      {
+        "card_print_id": "0049af52-deee-4a6e-9354-5a73a5d3f721",
+        "species_slug": "ninetales",
+        "species_national_dex_number": 38,
+        "role": "primary",
+        "counts_for_completion": true,
+        "source": "grookai_dex_name_rule_v1",
+        "confidence": 0.82,
+        "evidence": {
+          "card_name": "Ninetales ex",
+          "matched_token": "ninetales",
+          "supertype": "Pokemon",
+          "card_category": "Stage1"
+        }
+      },
+      {
+        "card_print_id": "004a0cc7-3e4b-434e-bcef-530325b43539",
+        "species_slug": "pikachu",
+        "species_national_dex_number": 25,
+        "role": "primary",
+        "counts_for_completion": true,
+        "source": "grookai_dex_name_rule_v1",
+        "confidence": 0.82,
+        "evidence": {
+          "card_name": "Pikachu",
+          "matched_token": "pikachu",
+          "supertype": "Pokémon",
+          "card_category": "Basic"
+        }
+      },
+      {
+        "card_print_id": "004abde4-3fb7-42d0-953d-5e6bcf29ae44",
+        "species_slug": "quilava",
+        "species_national_dex_number": 156,
+        "role": "primary",
+        "counts_for_completion": true,
+        "source": "grookai_dex_name_rule_v1",
+        "confidence": 0.82,
+        "evidence": {
+          "card_name": "Quilava",
+          "matched_token": "quilava",
+          "supertype": "Pokemon",
+          "card_category": "Stage1"
+        }
+      },
+      {
+        "card_print_id": "004adc25-5f75-454e-928f-fce279225792",
+        "species_slug": "hypno",
+        "species_national_dex_number": 97,
+        "role": "primary",
+        "counts_for_completion": true,
+        "source": "grookai_dex_name_rule_v1",
+        "confidence": 0.82,
+        "evidence": {
+          "card_name": "Hypno",
+          "matched_token": "hypno",
+          "supertype": "Pokemon",
+          "card_category": "Stage1"
+        }
+      },
+      {
+        "card_print_id": "004b141d-f97a-44ba-8898-148351709b7e",
+        "species_slug": "swirlix",
+        "species_national_dex_number": 684,
+        "role": "primary",
+        "counts_for_completion": true,
+        "source": "grookai_dex_name_rule_v1",
+        "confidence": 0.82,
+        "evidence": {
+          "card_name": "Swirlix",
+          "matched_token": "swirlix",
+          "supertype": "Pokemon",
+          "card_category": "Basic"
+        }
+      },
+      {
+        "card_print_id": "004be467-cc13-49ac-9106-778819636ea7",
+        "species_slug": "pikachu",
+        "species_national_dex_number": 25,
+        "role": "primary",
+        "counts_for_completion": true,
+        "source": "grookai_dex_name_rule_v1",
+        "confidence": 0.82,
+        "evidence": {
+          "card_name": "Pikachu",
+          "matched_token": "pikachu",
+          "supertype": "Pokémon",
+          "card_category": "Basic"
+        }
+      },
+      {
+        "card_print_id": "0050aa11-5ecb-4de6-a49b-37f829e33f6e",
+        "species_slug": "dratini",
+        "species_national_dex_number": 147,
+        "role": "primary",
+        "counts_for_completion": true,
+        "source": "grookai_dex_name_rule_v1",
+        "confidence": 0.82,
+        "evidence": {
+          "card_name": "Dratini",
+          "matched_token": "dratini",
+          "supertype": "Pokémon",
+          "card_category": "Basic"
+        }
+      },
+      {
+        "card_print_id": "0056485c-4bed-4687-a1f0-09f314ac655b",
+        "species_slug": "houndoom",
+        "species_national_dex_number": 229,
+        "role": "primary",
+        "counts_for_completion": true,
+        "source": "grookai_dex_name_rule_v1",
+        "confidence": 0.82,
+        "evidence": {
+          "card_name": "Houndoom ex",
+          "matched_token": "houndoom",
+          "supertype": "Pokemon",
+          "card_category": "Stage1"
+        }
+      },
+      {
+        "card_print_id": "005a89ec-4b02-4791-b6d9-648138a47800",
+        "species_slug": "lickitung",
+        "species_national_dex_number": 108,
+        "role": "primary",
+        "counts_for_completion": true,
+        "source": "grookai_dex_name_rule_v1",
+        "confidence": 0.82,
+        "evidence": {
+          "card_name": "Lickitung",
+          "matched_token": "lickitung",
+          "supertype": "Pokemon",
+          "card_category": "Basic"
+        }
+      },
+      {
+        "card_print_id": "005ac0bf-ee75-4e90-a48c-219965d2d01a",
+        "species_slug": "chansey",
+        "species_national_dex_number": 113,
+        "role": "primary",
+        "counts_for_completion": true,
+        "source": "grookai_dex_name_rule_v1",
+        "confidence": 0.82,
+        "evidence": {
+          "card_name": "Chansey",
+          "matched_token": "chansey",
+          "supertype": "Pokemon",
+          "card_category": "Basic"
+        }
+      },
+      {
+        "card_print_id": "00644022-da97-42c4-ba76-0fcfa54d775a",
+        "species_slug": "vulpix",
+        "species_national_dex_number": 37,
+        "role": "primary",
+        "counts_for_completion": true,
+        "source": "grookai_dex_name_rule_v1",
+        "confidence": 0.82,
+        "evidence": {
+          "card_name": "Vulpix",
+          "matched_token": "vulpix",
+          "supertype": "Pokemon",
+          "card_category": "Basic"
+        }
+      },
+      {
+        "card_print_id": "0064a55f-1039-4f8f-9285-81b7caf28e80",
+        "species_slug": "yamper",
+        "species_national_dex_number": 835,
+        "role": "primary",
+        "counts_for_completion": true,
+        "source": "grookai_dex_name_rule_v1",
+        "confidence": 0.82,
+        "evidence": {
+          "card_name": "Yamper",
+          "matched_token": "yamper",
+          "supertype": "Pokemon",
+          "card_category": "Basic"
+        }
+      },
+      {
+        "card_print_id": "006816f5-5c8e-4af4-8c3c-e61d66b57d60",
+        "species_slug": "diglett",
+        "species_national_dex_number": 50,
+        "role": "primary",
+        "counts_for_completion": true,
+        "source": "grookai_dex_name_rule_v1",
+        "confidence": 0.82,
+        "evidence": {
+          "card_name": "Diglett",
+          "matched_token": "diglett",
+          "supertype": "Pokemon",
+          "card_category": "Basic"
+        }
+      },
+      {
+        "card_print_id": "006963ee-b15a-412a-b721-07ade4b65027",
+        "species_slug": "vaporeon",
+        "species_national_dex_number": 134,
+        "role": "primary",
+        "counts_for_completion": true,
+        "source": "grookai_dex_name_rule_v1",
+        "confidence": 0.82,
+        "evidence": {
+          "card_name": "Vaporeon ex",
+          "matched_token": "vaporeon",
+          "supertype": null,
+          "card_category": null
+        }
+      },
+      {
+        "card_print_id": "006ee906-bf8c-46dd-9e14-ac623ba3c596",
+        "species_slug": "shedinja",
+        "species_national_dex_number": 292,
+        "role": "primary",
+        "counts_for_completion": true,
+        "source": "grookai_dex_name_rule_v1",
+        "confidence": 0.82,
+        "evidence": {
+          "card_name": "Shedinja",
+          "matched_token": "shedinja",
+          "supertype": "Pokemon",
+          "card_category": "Stage1"
+        }
+      },
+      {
+        "card_print_id": "007524de-cbc1-4b87-8d4a-c96751fd18ea",
+        "species_slug": "porygon",
+        "species_national_dex_number": 137,
+        "role": "primary",
+        "counts_for_completion": true,
+        "source": "grookai_dex_name_rule_v1",
+        "confidence": 0.82,
+        "evidence": {
+          "card_name": "Porygon",
+          "matched_token": "porygon",
+          "supertype": "Pokemon",
+          "card_category": "Basic"
+        }
+      },
+      {
+        "card_print_id": "00789a03-443d-43fe-b907-48d21ea917e7",
+        "species_slug": "numel",
+        "species_national_dex_number": 322,
+        "role": "primary",
+        "counts_for_completion": true,
+        "source": "grookai_dex_name_rule_v1",
+        "confidence": 0.82,
+        "evidence": {
+          "card_name": "Numel",
+          "matched_token": "numel",
+          "supertype": "Pokemon",
+          "card_category": "Basic"
+        }
+      },
+      {
+        "card_print_id": "00791114-49f3-4948-ac15-54e2cddd9248",
+        "species_slug": "mamoswine",
+        "species_national_dex_number": 473,
+        "role": "primary",
+        "counts_for_completion": true,
+        "source": "grookai_dex_name_rule_v1",
+        "confidence": 0.82,
+        "evidence": {
+          "card_name": "Mamoswine",
+          "matched_token": "mamoswine",
+          "supertype": "Pokemon",
+          "card_category": "Stage2"
+        }
+      },
+      {
+        "card_print_id": "007c91d0-6e49-4654-b88e-da105cd4bac9",
+        "species_slug": "helioptile",
+        "species_national_dex_number": 694,
+        "role": "primary",
+        "counts_for_completion": true,
+        "source": "grookai_dex_name_rule_v1",
+        "confidence": 0.82,
+        "evidence": {
+          "card_name": "Helioptile",
+          "matched_token": "helioptile",
+          "supertype": "Pokemon",
+          "card_category": "Basic"
+        }
+      },
+      {
+        "card_print_id": "007dbcb8-3405-4da2-99a2-97f03d716be6",
+        "species_slug": "quaxwell",
+        "species_national_dex_number": 913,
+        "role": "primary",
+        "counts_for_completion": true,
+        "source": "grookai_dex_name_rule_v1",
+        "confidence": 0.82,
+        "evidence": {
+          "card_name": "Quaxwell",
+          "matched_token": "quaxwell",
+          "supertype": null,
+          "card_category": null
+        }
+      },
+      {
+        "card_print_id": "007edfcd-4ff6-48c0-8776-216f0b0f0e3c",
+        "species_slug": "centiskorch",
+        "species_national_dex_number": 851,
+        "role": "primary",
+        "counts_for_completion": true,
+        "source": "grookai_dex_name_rule_v1",
+        "confidence": 0.82,
+        "evidence": {
+          "card_name": "Centiskorch",
+          "matched_token": "centiskorch",
+          "supertype": "Pokemon",
+          "card_category": "Stage1"
+        }
+      },
+      {
+        "card_print_id": "007ef1d0-c05f-4744-be04-1718a1a98d09",
+        "species_slug": "illumise",
+        "species_national_dex_number": 314,
+        "role": "primary",
+        "counts_for_completion": true,
+        "source": "grookai_dex_name_rule_v1",
+        "confidence": 0.82,
+        "evidence": {
+          "card_name": "Illumise",
+          "matched_token": "illumise",
+          "supertype": "Pokémon",
+          "card_category": "Basic"
+        }
+      },
+      {
+        "card_print_id": "007fc461-23f1-4922-9f08-118433b3a3e8",
+        "species_slug": "golduck",
+        "species_national_dex_number": 55,
+        "role": "primary",
+        "counts_for_completion": true,
+        "source": "grookai_dex_name_rule_v1",
+        "confidence": 0.82,
+        "evidence": {
+          "card_name": "Golduck",
+          "matched_token": "golduck",
+          "supertype": null,
+          "card_category": null
+        }
+      },
+      {
+        "card_print_id": "00812c38-7aa9-4633-8e21-0ed3cf54047c",
+        "species_slug": "cetoddle",
+        "species_national_dex_number": 974,
+        "role": "primary",
+        "counts_for_completion": true,
+        "source": "grookai_dex_name_rule_v1",
+        "confidence": 0.82,
+        "evidence": {
+          "card_name": "Cetoddle",
+          "matched_token": "cetoddle",
+          "supertype": "Pokemon",
+          "card_category": "Basic"
+        }
+      },
+      {
+        "card_print_id": "0081a66a-dca1-47e9-ac46-85ebcf6eac4c",
+        "species_slug": "pikachu",
+        "species_national_dex_number": 25,
+        "role": "primary",
+        "counts_for_completion": true,
+        "source": "grookai_dex_name_rule_v1",
+        "confidence": 0.82,
+        "evidence": {
+          "card_name": "Pikachu",
+          "matched_token": "pikachu",
+          "supertype": "Pokémon",
+          "card_category": "Basic"
+        }
+      },
+      {
+        "card_print_id": "008263bd-3523-465f-a550-8bb8a23cb5da",
+        "species_slug": "anorith",
+        "species_national_dex_number": 347,
+        "role": "primary",
+        "counts_for_completion": true,
+        "source": "grookai_dex_name_rule_v1",
+        "confidence": 0.82,
+        "evidence": {
+          "card_name": "Anorith",
+          "matched_token": "anorith",
+          "supertype": "Pokemon",
+          "card_category": "Stage1"
+        }
+      },
+      {
+        "card_print_id": "008874ad-05fc-4c14-bb26-d9aa00aa191d",
+        "species_slug": "dragalge",
+        "species_national_dex_number": 691,
+        "role": "primary",
+        "counts_for_completion": true,
+        "source": "grookai_dex_name_rule_v1",
+        "confidence": 0.82,
+        "evidence": {
+          "card_name": "Dragalge",
+          "matched_token": "dragalge",
+          "supertype": "Pokémon",
+          "card_category": "Stage 1"
+        }
+      },
+      {
+        "card_print_id": "008b9982-2c2c-46a4-a871-209d2703cc2f",
+        "species_slug": "noibat",
+        "species_national_dex_number": 714,
+        "role": "primary",
+        "counts_for_completion": true,
+        "source": "grookai_dex_name_rule_v1",
+        "confidence": 0.82,
+        "evidence": {
+          "card_name": "Noibat",
+          "matched_token": "noibat",
+          "supertype": null,
+          "card_category": null
+        }
+      },
+      {
+        "card_print_id": "008cc223-0e7e-48f8-90f9-f80fc17312d2",
+        "species_slug": "togepi",
+        "species_national_dex_number": 175,
+        "role": "primary",
+        "counts_for_completion": true,
+        "source": "grookai_dex_name_rule_v1",
+        "confidence": 0.82,
+        "evidence": {
+          "card_name": "Togepi",
+          "matched_token": "togepi",
+          "supertype": "Pokemon",
+          "card_category": "Basic"
+        }
+      },
+      {
+        "card_print_id": "008fbe54-ffa6-4fda-9bb4-e975a02c3055",
+        "species_slug": "pachirisu",
+        "species_national_dex_number": 417,
+        "role": "primary",
+        "counts_for_completion": true,
+        "source": "grookai_dex_name_rule_v1",
+        "confidence": 0.82,
+        "evidence": {
+          "card_name": "Pachirisu",
+          "matched_token": "pachirisu",
+          "supertype": "Pokemon",
+          "card_category": "Basic"
+        }
+      },
+      {
+        "card_print_id": "0092a0e2-b3df-43ea-ba67-70733b88af82",
+        "species_slug": "dracozolt",
+        "species_national_dex_number": 880,
+        "role": "primary",
+        "counts_for_completion": true,
+        "source": "grookai_dex_name_rule_v1",
+        "confidence": 0.82,
+        "evidence": {
+          "card_name": "Dracozolt V",
+          "matched_token": "dracozolt",
+          "supertype": "Pokemon",
+          "card_category": "Basic"
+        }
+      },
+      {
+        "card_print_id": "0093603c-d7ac-41c1-b601-3506c9099842",
+        "species_slug": "blissey",
+        "species_national_dex_number": 242,
+        "role": "primary",
+        "counts_for_completion": true,
+        "source": "grookai_dex_name_rule_v1",
+        "confidence": 0.82,
+        "evidence": {
+          "card_name": "Blissey",
+          "matched_token": "blissey",
+          "supertype": null,
+          "card_category": null
+        }
+      },
+      {
+        "card_print_id": "00951a25-9790-4d54-89a0-52d89fd5ee32",
+        "species_slug": "moltres",
+        "species_national_dex_number": 146,
+        "role": "primary",
+        "counts_for_completion": true,
+        "source": "grookai_dex_name_rule_v1",
+        "confidence": 0.82,
+        "evidence": {
+          "card_name": "Moltres",
+          "matched_token": "moltres",
+          "supertype": "Pokemon",
+          "card_category": "Basic"
+        }
+      },
+      {
+        "card_print_id": "0095d85b-4a0b-4873-b715-12e26944ef27",
+        "species_slug": "passimian",
+        "species_national_dex_number": 766,
+        "role": "primary",
+        "counts_for_completion": true,
+        "source": "grookai_dex_name_rule_v1",
+        "confidence": 0.82,
+        "evidence": {
+          "card_name": "Passimian",
+          "matched_token": "passimian",
+          "supertype": "Pokémon",
+          "card_category": "Basic"
+        }
+      },
+      {
+        "card_print_id": "00968551-28e6-442a-b512-4fe244e1959d",
+        "species_slug": "helioptile",
+        "species_national_dex_number": 694,
+        "role": "primary",
+        "counts_for_completion": true,
+        "source": "grookai_dex_name_rule_v1",
+        "confidence": 0.82,
+        "evidence": {
+          "card_name": "Helioptile",
+          "matched_token": "helioptile",
+          "supertype": "Pokemon",
+          "card_category": "Basic"
+        }
+      },
+      {
+        "card_print_id": "0099ab76-6155-4e5a-864a-5d2acde4302e",
+        "species_slug": "totodile",
+        "species_national_dex_number": 158,
+        "role": "primary",
+        "counts_for_completion": true,
+        "source": "grookai_dex_name_rule_v1",
+        "confidence": 0.82,
+        "evidence": {
+          "card_name": "Totodile",
+          "matched_token": "totodile",
+          "supertype": "Pokemon",
+          "card_category": "Basic"
+        }
+      },
+      {
+        "card_print_id": "009b0d24-d48e-4946-a392-1bae3406e208",
+        "species_slug": "charizard",
+        "species_national_dex_number": 6,
+        "role": "primary",
+        "counts_for_completion": true,
+        "source": "grookai_dex_name_rule_v1",
+        "confidence": 0.82,
+        "evidence": {
+          "card_name": "Charizard G",
+          "matched_token": "charizard",
+          "supertype": "Pokemon",
+          "card_category": "Basic"
+        }
+      },
+      {
+        "card_print_id": "009b8273-5f0b-452b-9821-f8a49ad0408d",
+        "species_slug": "caterpie",
+        "species_national_dex_number": 10,
+        "role": "primary",
+        "counts_for_completion": true,
+        "source": "grookai_dex_name_rule_v1",
+        "confidence": 0.82,
+        "evidence": {
+          "card_name": "Caterpie",
+          "matched_token": "caterpie",
+          "supertype": "Pokemon",
+          "card_category": "Basic"
+        }
+      },
+      {
+        "card_print_id": "009c2ba2-ada0-45d0-9463-4db89dfa9e0b",
+        "species_slug": "tynamo",
+        "species_national_dex_number": 602,
+        "role": "primary",
+        "counts_for_completion": true,
+        "source": "grookai_dex_name_rule_v1",
+        "confidence": 0.82,
+        "evidence": {
+          "card_name": "Tynamo",
+          "matched_token": "tynamo",
+          "supertype": "Pokemon",
+          "card_category": "Basic"
+        }
+      }
+    ]
+  }
+}
