@@ -2,6 +2,7 @@ import "server-only";
 
 import { cache } from "react";
 import { resolveCardImageFieldsV1 } from "@/lib/canon/resolveCardImageFieldsV1";
+import { getCardPrintingFinishLabel } from "@/lib/cards/displayDiscriminator";
 import { createPublicServerClient } from "@/lib/supabase/publicServer";
 import {
   matchesPublicSetSearch,
@@ -43,6 +44,15 @@ type PublicSetCardRow = {
   representative_image_url: string | null;
   image_status: string | null;
   image_note: string | null;
+  card_printings?:
+    | {
+        finish_key: string | null;
+        finish_keys:
+          | { label: string | null; sort_order: number | null }
+          | { label: string | null; sort_order: number | null }[]
+          | null;
+      }[]
+    | null;
   sets:
     | {
         identity_model: string | null;
@@ -56,6 +66,8 @@ type PublicSetCardRow = {
 function createServerSupabase() {
   return createPublicServerClient();
 }
+
+type PublicSetCardPrinting = NonNullable<PublicSetCardRow["card_printings"]>[number];
 
 function normalizeSetCode(value?: string | null) {
   return (value ?? "").trim().toLowerCase();
@@ -77,6 +89,34 @@ function getReleaseYear(releaseDate?: string | null) {
 
 function getSetSortDate(row: Pick<SetRow, "release_date" | "created_at">) {
   return row.release_date ?? row.created_at ?? undefined;
+}
+
+function mapPublicSetCardPrintings(rows?: PublicSetCardRow["card_printings"]) {
+  const mapped = (rows ?? [])
+    .map((printing: PublicSetCardPrinting) => {
+      const finishRecord = Array.isArray(printing.finish_keys) ? printing.finish_keys[0] : printing.finish_keys;
+      const finishName = getCardPrintingFinishLabel({
+        finishKey: printing.finish_key,
+        finishLabel: finishRecord?.label,
+      });
+
+      return {
+        finish_key: printing.finish_key?.trim() || undefined,
+        finish_name: finishName ?? undefined,
+        finish_sort_order: typeof finishRecord?.sort_order === "number" ? finishRecord.sort_order : Number.MAX_SAFE_INTEGER,
+      };
+    })
+    .filter((printing) => Boolean(printing.finish_name));
+
+  mapped.sort((left, right) => {
+    if (left.finish_sort_order !== right.finish_sort_order) {
+      return left.finish_sort_order - right.finish_sort_order;
+    }
+
+    return (left.finish_name ?? "").localeCompare(right.finish_name ?? "");
+  });
+
+  return mapped.map(({ finish_sort_order: _finishSortOrder, ...printing }) => printing);
 }
 
 function parseSetSortTimestamp(setInfo: Pick<PublicSetSummary, "sort_date">) {
@@ -234,7 +274,27 @@ export async function getPublicSetCards(setCode: string, offset = 0, limit = 36)
   const supabase = createServerSupabase();
   const { data, error } = await supabase
     .from("card_prints")
-    .select("gv_id,name,number,set_code,variant_key,printed_identity_modifier,rarity,image_url,image_alt_url,image_source,image_path,representative_image_url,image_status,image_note,sets(identity_model)")
+    .select(`
+      gv_id,
+      name,
+      number,
+      set_code,
+      variant_key,
+      printed_identity_modifier,
+      rarity,
+      image_url,
+      image_alt_url,
+      image_source,
+      image_path,
+      representative_image_url,
+      image_status,
+      image_note,
+      card_printings(
+        finish_key,
+        finish_keys(label,sort_order)
+      ),
+      sets(identity_model)
+    `)
     .eq("set_code", normalizedCode)
     .not("gv_id", "is", null)
     .order("number_plain", { ascending: true, nullsFirst: false })
@@ -269,6 +329,7 @@ export async function getPublicSetCards(setCode: string, offset = 0, limit = 36)
         image_source: imageFields.image_source ?? undefined,
         display_image_url: imageFields.display_image_url ?? undefined,
         display_image_kind: imageFields.display_image_kind,
+        printings: mapPublicSetCardPrintings(row.card_printings),
       };
     }),
   );

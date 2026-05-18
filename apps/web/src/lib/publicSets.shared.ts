@@ -92,6 +92,10 @@ export type PublicSetCard = {
   image_source?: string;
   display_image_url?: string;
   display_image_kind?: "exact" | "representative" | "missing";
+  printings?: Array<{
+    finish_key?: string;
+    finish_name?: string;
+  }>;
 };
 
 export type PublicSetDetail = PublicSetSummary & {

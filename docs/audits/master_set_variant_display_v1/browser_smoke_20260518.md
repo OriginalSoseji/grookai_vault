@@ -16,6 +16,20 @@ Mode: local production `next start` smoke with Grookai Dex enabled only for loca
 
 ## Checks
 
+### `/sets/sv8pt5`
+
+Result: PASS
+
+- Set page rendered with `Prismatic Evolutions` heading.
+- Parent grid rendered `Exeggutor`.
+- Child printing finish chips were visible on set tiles:
+  - `Master Ball`
+  - `Poké Ball`
+
+Screenshot:
+
+- `browser_smoke_set_sv8pt5_finishes_20260518.png`
+
 ### `/dex/pikachu`
 
 Result: PASS
@@ -78,6 +92,6 @@ Screenshot:
 
 ## Result
 
-PASS: actual browser-rendered UI shows the required display discriminators for Dex duplicate-looking rows, missing-card actions, child premium parallel finishes, and prerelease/staff parent variants.
+PASS: actual browser-rendered UI shows the required display discriminators for set page tiles, Dex duplicate-looking rows, missing-card actions, child premium parallel finishes, and prerelease/staff parent variants.
 
 No DB writes, migrations, scanner changes, denominator changes, or public Dex enablement were performed.

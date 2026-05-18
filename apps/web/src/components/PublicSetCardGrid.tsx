@@ -102,6 +102,15 @@ export default function PublicSetCardGrid({
             visibleSetLabel: setLabel,
           });
           const variantLabels = getVariantLabels(card, 2);
+          const finishLabels = (card.printings ?? [])
+            .map((printing) => printing.finish_name)
+            .filter((label): label is string => Boolean(label));
+          const badgeLabels = [...variantLabels];
+          for (const finishLabel of finishLabels) {
+            if (!badgeLabels.includes(finishLabel)) {
+              badgeLabels.push(finishLabel);
+            }
+          }
 
           return (
             <PokemonCardGridTile
@@ -129,9 +138,9 @@ export default function PublicSetCardGrid({
               }
               subtitle={<span className="block truncate">{setLabel}</span>}
               badges={
-                variantLabels.length > 0 ? (
+                badgeLabels.length > 0 ? (
                   <>
-                    {variantLabels.map((label) => (
+                    {badgeLabels.map((label) => (
                       <VariantBadge key={`${card.gv_id}-${label}`} label={label} />
                     ))}
                   </>
