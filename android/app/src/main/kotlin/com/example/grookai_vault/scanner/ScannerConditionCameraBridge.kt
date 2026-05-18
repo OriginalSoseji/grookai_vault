@@ -1,8 +1,6 @@
 package com.example.grookai_vault.scanner
 
 import android.app.Activity
-import androidx.camera.lifecycle.ProcessCameraProvider
-import androidx.core.content.ContextCompat
 import io.flutter.embedding.engine.FlutterEngine
 import io.flutter.plugin.common.MethodChannel
 import androidx.lifecycle.LifecycleOwner
@@ -35,8 +33,6 @@ object ScannerConditionCameraBridge {
                 ),
             )
 
-        prewarmCameraProvider(activity)
-
         channel.setMethodCallHandler { call, result ->
             when (call.method) {
                 "getMetrics" -> result.success(
@@ -67,17 +63,6 @@ object ScannerConditionCameraBridge {
                 }
                 else -> result.notImplemented()
             }
-        }
-    }
-
-    private fun prewarmCameraProvider(activity: Activity) {
-        try {
-            val providerFuture = ProcessCameraProvider.getInstance(activity.applicationContext)
-            providerFuture.addListener(
-                { providerFuture.get() },
-                ContextCompat.getMainExecutor(activity),
-            )
-        } catch (_: Throwable) {
         }
     }
 
