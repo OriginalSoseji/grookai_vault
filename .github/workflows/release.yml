@@ -15,6 +15,7 @@ jobs:
       ANDROID_KEY_PASSWORD: ${{ secrets.ANDROID_KEY_PASSWORD }}
       MOBILE_SUPABASE_URL: ${{ secrets.MOBILE_SUPABASE_URL }}
       MOBILE_SUPABASE_PUBLISHABLE_KEY: ${{ secrets.MOBILE_SUPABASE_PUBLISHABLE_KEY }}
+      SUPABASE_DB_URL: ${{ secrets.SUPABASE_DB_URL }}
 
     steps:
       - name: Checkout
@@ -29,7 +30,7 @@ jobs:
       - name: Setup Flutter
         uses: subosito/flutter-action@v2
         with:
-          flutter-version: "stable"
+          channel: "stable"
           cache: true
 
       - name: Setup Node
@@ -57,6 +58,7 @@ jobs:
             ANDROID_KEY_PASSWORD
             MOBILE_SUPABASE_URL
             MOBILE_SUPABASE_PUBLISHABLE_KEY
+            SUPABASE_DB_URL
           )
           for name in "${required[@]}"; do
             if [ -z "${!name:-}" ]; then
