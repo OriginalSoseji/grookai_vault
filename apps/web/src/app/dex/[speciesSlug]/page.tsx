@@ -64,6 +64,9 @@ export default async function GrookaiDexSpeciesPage({
           <p className="text-sm text-slate-600">
             {detail.ownedPrintCount} / {detail.totalPrintCount} card prints owned
             {detail.ownedCopyCount > detail.ownedPrintCount ? `, ${detail.ownedCopyCount} total copies` : ""}
+            {detail.variantOptionCount > detail.totalPrintCount
+              ? ` • ${detail.variantOptionCount} master set options`
+              : ""}
           </p>
         </div>
         <div className="w-full max-w-xs">
@@ -89,6 +92,12 @@ export default async function GrookaiDexSpeciesPage({
         <div className="rounded-lg border border-slate-200 bg-white p-4">
           <p className="text-2xl font-semibold text-slate-950">{missingCards.length}</p>
           <p className="text-sm text-slate-500">Missing prints</p>
+        </div>
+        <div className="rounded-lg border border-slate-200 bg-white p-4 sm:col-span-3">
+          <p className="text-2xl font-semibold text-slate-950">
+            {detail.ownedVariantOptionCount}/{detail.variantOptionCount}
+          </p>
+          <p className="text-sm text-slate-500">Master set options owned</p>
         </div>
       </section>
 
@@ -132,13 +141,24 @@ export default async function GrookaiDexSpeciesPage({
                   {card.printLabel}
                 </p>
               ) : null}
-              {card.ownedFinishLabels.length > 0 ? (
-                <div className="flex flex-wrap gap-1">
-                  {card.ownedFinishLabels.map((label) => (
-                    <span key={`${card.cardPrintId}-${label}`} className="rounded-md border border-emerald-200 bg-emerald-50 px-2 py-1 text-xs font-medium text-emerald-800">
-                      {label}
-                    </span>
-                  ))}
+              {card.printings.length > 0 ? (
+                <div className="flex flex-wrap gap-1.5">
+                  {card.printings.map((printing) => {
+                    const isOwned = printing.ownedCount > 0;
+                    return (
+                      <span
+                        key={`${card.cardPrintId}-${printing.id}`}
+                        className={`rounded-md border px-2 py-1 text-[11px] font-medium ${
+                          isOwned
+                            ? "border-emerald-200 bg-emerald-50 text-emerald-800"
+                            : "border-slate-200 bg-slate-50 text-slate-600"
+                        }`}
+                      >
+                        {printing.finishName}
+                        {isOwned ? ` ${printing.ownedCount}x` : ""}
+                      </span>
+                    );
+                  })}
                 </div>
               ) : null}
               <p className="text-xs text-slate-500">

@@ -48,7 +48,14 @@ export type GrookaiDexCardPrintRow = {
   countsForCompletion: boolean;
   ownedCount: number;
   isOwned: boolean;
-  ownedFinishLabels: string[];
+  printings: GrookaiDexCardPrintingOption[];
+};
+
+export type GrookaiDexCardPrintingOption = {
+  id: string;
+  finishKey: string | null;
+  finishName: string;
+  ownedCount: number;
 };
 
 type CardPrintingRow = {
@@ -70,6 +77,9 @@ export type GrookaiDexSpeciesDetail = {
   ownedPrintCount: number;
   ownedCopyCount: number;
   completionPercent: number;
+  variantOptionCount: number;
+  ownedVariantOptionCount: number;
+  missingVariantOptionCount: number;
   cards: GrookaiDexCardPrintRow[];
 };
 
@@ -140,10 +150,11 @@ export async function getGrookaiDexSpeciesDetail(
     throw new Error(`[grookai-dex:species-detail-printings] ${printingError.message}`);
   }
 
-  const finishLabelByPrintingId = new Map<string, string>();
+  const printingOptionsByCardPrintId = new Map<string, Array<GrookaiDexCardPrintingOption & { sortOrder: number }>>();
   for (const row of (printingRows ?? []) as CardPrintingRow[]) {
     const printingId = clean(row.id);
-    if (!printingId) {
+    const cardPrintId = clean(row.card_print_id);
+    if (!printingId || !cardPrintId) {
       continue;
     }
     const finishRecord = Array.isArray(row.finish_keys) ? row.finish_keys[0] : row.finish_keys;
@@ -152,8 +163,26 @@ export async function getGrookaiDexSpeciesDetail(
       finishLabel: finishRecord?.label,
     });
     if (label) {
-      finishLabelByPrintingId.set(printingId, label);
+      const options = printingOptionsByCardPrintId.get(cardPrintId) ?? [];
+      options.push({
+        id: printingId,
+        finishKey: clean(row.finish_key),
+        finishName: label,
+        ownedCount: ownedPrintingCounts.get(cardPrintId)?.get(printingId) ?? 0,
+        sortOrder: typeof finishRecord?.sort_order === "number" ? finishRecord.sort_order : Number.MAX_SAFE_INTEGER,
+      });
+      printingOptionsByCardPrintId.set(cardPrintId, options);
     }
+  }
+  for (const [cardPrintId, options] of printingOptionsByCardPrintId.entries()) {
+    options.sort((left, right) => {
+      if (left.sortOrder !== right.sortOrder) {
+        return left.sortOrder - right.sortOrder;
+      }
+
+      return left.finishName.localeCompare(right.finishName);
+    });
+    printingOptionsByCardPrintId.set(cardPrintId, options);
   }
   const resolvedCards = await Promise.all(
     rows.map(async (row) => {
@@ -167,13 +196,7 @@ export async function getGrookaiDexSpeciesDetail(
           representative_image_url: row.representative_image_url,
         }) ?? null;
       const ownedCount = ownedCounts.get(cardPrintId) ?? 0;
-      const ownedFinishLabels = Array.from(ownedPrintingCounts.get(cardPrintId)?.entries() ?? [])
-        .filter(([, count]) => count > 0)
-        .map(([printingId, count]) => {
-          const label = finishLabelByPrintingId.get(printingId);
-          return label ? `${label}${count > 1 ? ` ${count}x` : ""}` : null;
-        })
-        .filter((label): label is string => Boolean(label));
+      const printings = (printingOptionsByCardPrintId.get(cardPrintId) ?? []).map(({ sortOrder: _sortOrder, ...printing }) => printing);
 
       return {
         cardPrintId,
@@ -192,7 +215,7 @@ export async function getGrookaiDexSpeciesDetail(
         countsForCompletion: row.counts_for_completion === true,
         ownedCount,
         isOwned: ownedCount > 0,
-        ownedFinishLabels,
+        printings,
       };
     }),
   );
@@ -225,6 +248,17 @@ export async function getGrookaiDexSpeciesDetail(
   const ownedPrintCount = completionCards.filter((row) => row.isOwned).length;
   const ownedCopyCount = completionCards.reduce((sum, row) => sum + row.ownedCount, 0);
   const totalPrintCount = completionCards.length;
+  const variantOptionCount = completionCards.reduce(
+    (sum, row) => sum + Math.max(1, row.printings.length),
+    0,
+  );
+  const ownedVariantOptionCount = completionCards.reduce((sum, row) => {
+    if (row.printings.length === 0) {
+      return sum + (row.isOwned ? 1 : 0);
+    }
+
+    return sum + row.printings.filter((printing) => printing.ownedCount > 0).length;
+  }, 0);
 
   return {
     speciesId: clean(rows[0]?.species_id) ?? "",
@@ -235,6 +269,9 @@ export async function getGrookaiDexSpeciesDetail(
     ownedPrintCount,
     ownedCopyCount,
     completionPercent: totalPrintCount > 0 ? Math.round((ownedPrintCount / totalPrintCount) * 100) : 0,
+    variantOptionCount,
+    ownedVariantOptionCount,
+    missingVariantOptionCount: Math.max(0, variantOptionCount - ownedVariantOptionCount),
     cards,
   };
 }
