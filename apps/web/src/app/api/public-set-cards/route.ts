@@ -30,7 +30,7 @@ export async function GET(request: Request) {
       user?.id ?? null,
     );
     const json = NextResponse.json({ items });
-    json.headers.set("Cache-Control", user ? "private, no-store" : "public, s-maxage=300, stale-while-revalidate=600");
+    json.headers.set("Cache-Control", "no-store");
     return json;
   } catch {
     return NextResponse.json({ items: [], error: "Failed to load more cards." }, { status: 500 });
