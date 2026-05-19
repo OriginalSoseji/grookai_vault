@@ -1,0 +1,122 @@
+{
+  "audit": "PRINTING_IDENTITY_UI_V1",
+  "date": "2026-05-18",
+  "status": "AUDIT_COMPLETE_CONTRACT_DRAFTED",
+  "scope": {
+    "db_writes": false,
+    "migrations": false,
+    "scanner_changes": false,
+    "species_dex_denominator_changes": false,
+    "pricing_changes": false,
+    "public_child_routes": false
+  },
+  "surfaces": [
+    {
+      "surface": "/sets/[setCode]",
+      "status": "PARTIALLY_READY",
+      "ready": [
+        "Parent tile count remains parent-print based",
+        "Finish chips are selectable",
+        "Active chip state updates",
+        "Selected printing context is carried to /card/[gv_id] as query context"
+      ],
+      "gaps": [
+        "Child printing image fields are not projected",
+        "printing_gv_id is not projected",
+        "Raw card_printing_id is used as internal query context only"
+      ],
+      "files": [
+        "apps/web/src/components/PublicSetCardGrid.tsx",
+        "apps/web/src/lib/publicSets.ts",
+        "apps/web/src/lib/publicSets.shared.ts"
+      ]
+    },
+    {
+      "surface": "/card/[gv_id]",
+      "status": "MOSTLY_READY",
+      "ready": [
+        "Parent gv_id route remains canonical",
+        "Finish selector is present",
+        "Add-to-vault carries selected card_printing_id",
+        "Server add-to-vault path validates child printing belongs to parent",
+        "Owned raw copy summary can display finish labels"
+      ],
+      "gaps": [
+        "printing_gv_id is not projected",
+        "Child printing image fields are not projected",
+        "PrintingSelector deduplicates by finish label"
+      ],
+      "files": [
+        "apps/web/src/app/card/[gv_id]/page.tsx",
+        "apps/web/src/lib/getPublicCardByGvId.ts",
+        "apps/web/src/components/cards/PrintingSelector.tsx",
+        "apps/web/src/components/vault/AddToVaultCardAction.tsx",
+        "apps/web/src/lib/vault/addCardToVault.ts",
+        "apps/web/src/lib/vault/getOwnedObjectSummaryForCard.ts"
+      ]
+    },
+    {
+      "surface": "/dex/[speciesSlug]",
+      "status": "PARTIALLY_READY",
+      "ready": [
+        "Species Dex completion remains parent-print based",
+        "Owned/missing tabs remain parent-print based",
+        "Owned finish labels can display for signed-in users"
+      ],
+      "gaps": [
+        "No full master-set option selector in Dex",
+        "Missing child option actions do not route with selected finish context",
+        "printing_gv_id is not projected"
+      ],
+      "files": [
+        "apps/web/src/app/dex/[speciesSlug]/page.tsx",
+        "apps/web/src/lib/grookaiDex/getGrookaiDexSpeciesDetail.ts",
+        "apps/web/src/lib/vault/getOwnedPrintingCountsByCardPrintIds.ts"
+      ]
+    },
+    {
+      "surface": "/vault",
+      "status": "GAP",
+      "ready": [
+        "Canonical ownership source is vault_item_instances",
+        "Grouped counts remain parent-compatible"
+      ],
+      "gaps": [
+        "Active instance read does not select card_printing_id",
+        "Grouped copy items do not include finish labels",
+        "Grouped vault display hides finish mix for child-owned copies"
+      ],
+      "files": [
+        "apps/web/src/lib/vault/getCanonicalVaultCollectorRows.ts",
+        "apps/web/src/components/vault/VaultCardTile.tsx"
+      ]
+    },
+    {
+      "surface": "/vault/card/[cardId] and exact copy reads",
+      "status": "GAP",
+      "ready": [
+        "Parent card print and copy metadata resolve"
+      ],
+      "gaps": [
+        "Exact copy read does not select card_printing_id",
+        "Exact copy page cannot display finish label",
+        "No exact-copy read projection for future printing_gv_id"
+      ],
+      "files": [
+        "apps/web/src/app/vault/card/[cardId]/page.tsx",
+        "apps/web/src/lib/vault/getVaultInstanceByGvvi.ts"
+      ]
+    }
+  ],
+  "contract": "docs/contracts/PRINTING_IDENTITY_UI_V1.md",
+  "recommended_next_lane": "PRINTING_IDENTITY_VAULT_DISPLAY_V1",
+  "classification": "CONTRACT_READY_IMPLEMENTATION_NEEDED",
+  "confirmations": {
+    "no_db_writes": true,
+    "no_migration": true,
+    "no_scanner_changes": true,
+    "no_species_dex_denominator_change": true,
+    "no_pricing_changes": true,
+    "no_public_child_route_enablement": true
+  }
+}
