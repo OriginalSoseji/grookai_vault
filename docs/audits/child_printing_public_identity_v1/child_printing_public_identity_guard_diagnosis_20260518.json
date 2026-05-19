@@ -1,0 +1,78 @@
+{
+  "contract": "CHILD_PRINTING_PUBLIC_IDENTITY_V1",
+  "generated_at": "2026-05-18",
+  "status": "TOOLING_ONLY_FAILURE_IDENTIFIED_APPLY_STILL_BLOCKED",
+  "instrumentation": {
+    "file": "scripts/migration_preflight_strict.ps1",
+    "added": [
+      "elapsed markers per section",
+      "external command step start markers",
+      "stdout read completion markers",
+      "stderr read completion markers",
+      "exit code and elapsed duration markers"
+    ]
+  },
+  "manual_internal_commands": {
+    "supabase_migration_list_linked": {
+      "command": "supabase migration list --linked",
+      "status": "PASS",
+      "elapsed_approx": "00:00:02.8",
+      "ledger_status": "only expected local-only migration 20260518180000_child_printing_public_identity_v1.sql"
+    },
+    "supabase_db_diff_linked": {
+      "command": "supabase db diff --linked",
+      "status": "FAIL_TOOLING_ENVIRONMENT",
+      "elapsed_approx": "00:00:01.7",
+      "exit_code": 1,
+      "failure": "Docker shadow database port bind failure on 54331",
+      "stderr_excerpt": "Bind for 0.0.0.0:54331 failed: port is already allocated"
+    },
+    "instrumented_guard": {
+      "command": "pwsh -NoProfile -File .\\scripts\\migration_preflight_strict.ps1 -Phase AuditLinkedSchema",
+      "status": "FAIL_TOOLING_ENVIRONMENT",
+      "step_1": "supabase migration list --linked completed successfully",
+      "step_2": "supabase db diff --linked exited 1 after about 1.418 seconds due to shadow port conflict"
+    }
+  },
+  "port_diagnosis": {
+    "shadow_port": 54331,
+    "tcp_owners": [
+      "wslrelay",
+      "com.docker.backend"
+    ],
+    "docker_container_on_shadow_port": {
+      "id": "7a2046653163",
+      "name": "cranky_merkle",
+      "ports": "0.0.0.0:54331->5432/tcp"
+    }
+  },
+  "classification": {
+    "guard_failure_type": "tooling_only_local_environment",
+    "reason": [
+      "linked ledger is readable",
+      "failure happens before schema diff can run",
+      "failure is caused by local Docker port allocation",
+      "no migration SQL step is executed",
+      "no production database write occurred"
+    ]
+  },
+  "apply_decision": {
+    "status": "DO_NOT_APPLY_YET",
+    "reason": "The failure is tooling-only, but the required gate has not passed after cleanup.",
+    "required_next_gates": [
+      "clear stale container or shadow-port conflict",
+      "rerun strict AuditLinkedSchema guard",
+      "run supabase db reset --local",
+      "regenerate candidates with drift count 0",
+      "run remote read-only precheck"
+    ]
+  },
+  "confirmations": {
+    "no_parent_gv_id_changes": true,
+    "no_species_dex_denominator_changes": true,
+    "no_scanner_changes": true,
+    "no_public_child_route_enablement": true,
+    "no_migration_applied": true,
+    "blocked_candidates_remained_blocked": true
+  }
+}

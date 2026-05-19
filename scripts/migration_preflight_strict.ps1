@@ -23,11 +23,24 @@ param(
 Set-StrictMode -Version Latest
 $ErrorActionPreference = "Stop"
 
+$script:PreflightStartedAt = Get-Date
+$script:StepIndex = 0
+
+function Format-Elapsed([TimeSpan]$elapsed) {
+  return "{0:hh\:mm\:ss\.fff}" -f $elapsed
+}
+
+function Write-TimerMarker([string]$message) {
+  $elapsed = (Get-Date) - $script:PreflightStartedAt
+  Write-Host "[strict-preflight][$(Format-Elapsed $elapsed)] $message"
+}
+
 function Write-Section([string]$title) {
   Write-Host ""
   Write-Host "============================================================"
   Write-Host $title
   Write-Host "============================================================"
+  Write-TimerMarker "section: $title"
 }
 
 function Fail([string]$message) {
@@ -52,6 +65,10 @@ function Invoke-ExternalCommand {
   )
 
   $argumentPreview = $Arguments -join " "
+  $script:StepIndex += 1
+  $stepNumber = $script:StepIndex
+  $stepStartedAt = Get-Date
+  Write-TimerMarker "step ${stepNumber} start: ${FileName} ${argumentPreview}"
   $psi = New-Object System.Diagnostics.ProcessStartInfo
   $psi.FileName = $FileName
   $psi.UseShellExecute = $false
@@ -75,8 +92,12 @@ function Invoke-ExternalCommand {
   }
 
   $stdOut = $process.StandardOutput.ReadToEnd()
+  Write-TimerMarker "step ${stepNumber} stdout read complete"
   $stdErr = $process.StandardError.ReadToEnd()
+  Write-TimerMarker "step ${stepNumber} stderr read complete"
   $process.WaitForExit()
+  $stepElapsed = (Get-Date) - $stepStartedAt
+  Write-TimerMarker "step ${stepNumber} exit=$($process.ExitCode) elapsed=$(Format-Elapsed $stepElapsed)"
 
   return [pscustomobject]@{
     Command  = "$FileName $argumentPreview"
