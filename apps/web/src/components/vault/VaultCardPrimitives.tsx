@@ -82,6 +82,8 @@ export function formatVaultCopyIdentityLabel(item: {
   grade: string | null;
   cert_number: string | null;
   condition_label: string | null;
+  finish_label?: string | null;
+  card_printing_id?: string | null;
 }) {
   if (item.is_graded) {
     const slabSummary = formatVaultObjectLevelSlabSummary(item);
@@ -89,7 +91,7 @@ export function formatVaultCopyIdentityLabel(item: {
     return `${slabSummary || "Graded slab"}${certSuffix}`;
   }
 
-  return `${item.condition_label || "Unknown"} • Raw`;
+  return `${item.condition_label || "Unknown"} • ${item.finish_label || "Finish not selected"} • Raw`;
 }
 
 export function formatVaultCopyDate(value: string | null) {

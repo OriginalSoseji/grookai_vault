@@ -215,6 +215,12 @@ export default async function VaultInstancePage({
                 <p className="mt-2 text-sm font-medium text-slate-950">{detail.isGraded ? "SLAB" : detail.conditionLabel ?? "Unknown"}</p>
               </div>
               <div className="rounded-[1rem] border border-slate-200 bg-white px-4 py-3">
+                <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500">Finish</p>
+                <p className="mt-2 text-sm font-medium text-slate-950">
+                  {detail.isGraded ? "—" : detail.finishLabel ?? "Finish not selected"}
+                </p>
+              </div>
+              <div className="rounded-[1rem] border border-slate-200 bg-white px-4 py-3">
                 <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500">Format</p>
                 <p className="mt-2 text-sm font-medium text-slate-950">{detail.isGraded ? "Graded slab" : "Raw copy"}</p>
               </div>
