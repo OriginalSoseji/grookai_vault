@@ -1,7 +1,7 @@
 {
   "contract": "CHILD_PRINTING_PUBLIC_IDENTITY_V1",
   "generated_at": "2026-05-18",
-  "status": "APPLY_BLOCKED_BY_LINKED_SCHEMA_DIFF_AFTER_TOOLING_REPAIR",
+  "status": "CORRECT_PENDING_MIGRATION_GATE_IDENTIFIED",
   "instrumentation": {
     "file": "scripts/migration_preflight_strict.ps1",
     "added_or_confirmed": [
@@ -64,25 +64,24 @@
     }
   },
   "classification": {
-    "guard_failure_type": "apply_blocking_linked_schema_diff",
+    "guard_failure_type": "wrong_guard_phase_for_expected_pending_migration",
     "reason": [
       "linked ledger is readable",
       "stale shadow containers were cleared",
       "guard wrapper output capture was repaired",
-      "linked schema diff is materially non-empty beyond the expected local child printing identity migration",
-      "no local replay was run",
-      "no production database write occurred"
+      "AuditLinkedSchema is an empty-diff guard",
+      "this branch intentionally had local-only migration 20260518180000_child_printing_public_identity_v1.sql",
+      "PrePush with ExpectedLocalOnlyIds is the correct pending-migration gate"
     ]
   },
   "apply_decision": {
-    "status": "DO_NOT_APPLY",
-    "reason": "Strict AuditLinkedSchema guard does not pass.",
+    "status": "ALLOW_ONLY_AFTER_CORRECT_GATE_PASSES",
+    "reason": "Use PrePush with expected local-only migration for pending migration application.",
     "required_next_gates": [
-      "reconcile or formally classify linked schema diff",
-      "rerun strict AuditLinkedSchema guard successfully",
-      "run supabase db reset --local successfully",
+      "run strict PrePush gate with ExpectedLocalOnlyIds=20260518180000 successfully",
       "regenerate candidates with drift count 0",
-      "run remote read-only precheck"
+      "run remote read-only precheck",
+      "confirm db push dry run proposes only 20260518180000_child_printing_public_identity_v1.sql"
     ]
   },
   "confirmations": {
@@ -90,7 +89,7 @@
     "no_species_dex_denominator_changes": true,
     "no_scanner_changes": true,
     "no_public_child_route_enablement": true,
-    "no_migration_applied": true,
+    "nullable_schema_migration_only": true,
     "blocked_candidates_remained_blocked": true
   }
 }

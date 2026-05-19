@@ -2,7 +2,22 @@
 
 Generated: 2026-05-18
 
-Status: BLOCKED BEFORE APPLY.
+Status: APPLIED AND VERIFIED.
+
+## Root Cause Fixed
+
+The previous blocker mixed two different guard modes:
+
+- `AuditLinkedSchema` is an empty-diff guard for situations with no expected local-only migration.
+- This branch intentionally had one local-only migration: `20260518180000_child_printing_public_identity_v1.sql`.
+
+The correct strict gate for this lane is:
+
+```powershell
+pwsh -NoProfile -File .\scripts\migration_preflight_strict.ps1 -Phase PrePush -ExpectedLocalOnlyIds 20260518180000
+```
+
+That gate verifies the linked ledger, expected pending migration set, duplicate pending objects, and local replay.
 
 ## Link Recovery
 
@@ -10,7 +25,7 @@ Status: BLOCKED BEFORE APPLY.
 - project ref source: `supabase/config.toml`
 - linked status: PASS
 
-## Linked Migration Ledger
+## Linked Migration Ledger Before Apply
 
 Command:
 
@@ -20,17 +35,15 @@ supabase migration list --linked
 
 Result: PASS.
 
-The linked ledger is readable. The only local-only migration visible at the tail of the ledger is:
+Before apply, the only local-only migration visible at the tail of the ledger was:
 
 ```text
 20260518180000_child_printing_public_identity_v1.sql
 ```
 
-That is the expected `CHILD_PRINTING_PUBLIC_IDENTITY_V1` nullable schema migration.
-
 ## Shadow Port Recovery
 
-The stale shadow container on `54331` was removed after inspection. Additional auto-remove shadow containers created by later diff attempts were also stopped only after confirming they were Supabase shadow Postgres containers for project `ycdxbpibncqcchqiihfz`.
+The stale shadow container on `54331` was removed after inspection. Additional auto-remove shadow containers created by later diff attempts were stopped only after confirming they were Supabase shadow Postgres containers for project `ycdxbpibncqcchqiihfz`.
 
 The normal local Supabase DB container on `54330` was preserved.
 
@@ -39,39 +52,17 @@ The normal local Supabase DB container on `54330` was preserved.
 Command:
 
 ```powershell
-pwsh -NoProfile -File .\scripts\migration_preflight_strict.ps1 -Phase AuditLinkedSchema
+pwsh -NoProfile -File .\scripts\migration_preflight_strict.ps1 -Phase PrePush -ExpectedLocalOnlyIds 20260518180000
 ```
 
-Result: FAIL.
+Result: PASS.
 
-The strict guard now completes without hanging. It fails because `supabase db diff --linked` returns a non-empty schema diff.
+Verified:
 
-Important diff classes observed:
-
-- expected local-only `card_printings.printing_gv_id` / `card_printings_printing_gv_id_key` delta
-- unrelated extension/schema changes
-- many view drops/recreates
-- `admin.import_runs`
-- `ingest.card_prints_raw`
-- `public.collapse_map_phase1`
-- `public.scanner_fingerprint_index`
-- `pricing_jobs.locked_at`
-- `pricing_jobs.locked_by`
-- `sets` metadata columns
-
-This means the apply gate is not clean.
-
-## Local Replay
-
-Command:
-
-```powershell
-supabase db reset --local
-```
-
-Result: NOT RUN.
-
-Reason: strict linked-schema preflight failed first.
+- linked ledger readable
+- actual local-only migration set matched expected
+- pending migration object scan passed
+- local replay completed successfully through `supabase db reset --local --yes`
 
 ## Live Candidate Regeneration
 
@@ -81,11 +72,9 @@ Command:
 node scripts/audits/child_printing_public_identity_v1.mjs
 ```
 
-Result: NOT RUN in this apply-gate attempt.
+Result: PASS.
 
-Reason: strict linked-schema preflight failed first.
-
-Previously committed dry-run evidence remains:
+Fresh regenerated counts:
 
 - total child printings: `55,582`
 - approved candidates: `44,698`
@@ -94,44 +83,82 @@ Previously committed dry-run evidence remains:
 - proposed collisions: `0`
 - unsupported finish keys: `0`
 
-Those counts were not refreshed in this blocked gate attempt.
+Drift from committed expected counts: `0`.
 
 ## Remote Read-Only Precheck
 
-Result: NOT RUN.
+Result: PASS.
 
-Reason: strict linked-schema preflight failed first.
+Verified before apply:
 
-## Apply Decision
+- `card_printings.printing_gv_id` absent
+- `card_printings` count: `55,582`
+- missing parent `gv_id` count: `10,377`
+- proposed collision count from regenerated audit: `0`
+- unsupported finish keys: `0`
 
-Decision: DO NOT APPLY.
+## Dry Run
 
-Reason: strict linked-schema preflight does not pass. The migration remains drafted only.
+Command:
+
+```powershell
+supabase db push --dry-run
+```
+
+Result: PASS.
+
+The dry run proposed exactly one migration:
+
+```text
+20260518180000_child_printing_public_identity_v1.sql
+```
+
+## Apply
+
+Command:
+
+```powershell
+supabase db push --yes
+```
+
+Result: APPLIED.
+
+Exact migration applied:
+
+```text
+20260518180000_child_printing_public_identity_v1.sql
+```
+
+No candidate ID backfill was part of this migration.
+
+## Post-Apply Verification
+
+Result: PASS.
+
+Verified:
+
+- linked migration ledger aligned
+- `public.card_printings.printing_gv_id` exists
+- column is nullable text
+- partial unique index exists:
+  - `card_printings_printing_gv_id_key`
+- total `card_printings`: `55,582`
+- populated `printing_gv_id`: `0`
+- `printing_gv_id` collision groups: `0`
+- blocked candidates remain unassigned/null by design
 
 ## Rollback Strategy
 
-No rollback is required because no database write occurred.
-
-If a future approved run applies the nullable schema migration, rollback remains:
+If rollback is required before any future backfill:
 
 1. confirm no app release requires `card_printings.printing_gv_id`
-2. clear any future assigned `printing_gv_id` values if a later backfill has occurred
-3. drop the partial unique index
-4. drop the nullable column
+2. drop partial unique index `card_printings_printing_gv_id_key`
+3. drop nullable column `card_printings.printing_gv_id`
 
-## Post-Apply Checklist For Future Run
+## Confirmations
 
-- linked migration ledger aligned
-- linked schema diff reconciled or formally accepted
-- local replay passes
-- live candidate regeneration has drift count `0`
-- `printing_gv_id` absent before apply
-- child printing count matches regenerated audit
-- proposed collision count remains `0`
-- Supabase `db push` proposes only `20260518180000_child_printing_public_identity_v1.sql`
-- `printing_gv_id` exists after apply
-- partial unique index exists after apply
-- no parent `card_prints.gv_id` changed
-- Species Dex denominator unchanged
-- no public child route enabled
-- blocked candidates remain blocked
+- no parent `card_prints.gv_id` changes
+- no Species Dex denominator changes
+- no scanner changes
+- no public child route enablement
+- no candidate backfill

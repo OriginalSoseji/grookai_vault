@@ -1,13 +1,18 @@
 {
   "contract": "CHILD_PRINTING_PUBLIC_IDENTITY_V1",
   "generated_at": "2026-05-18",
-  "status": "BLOCKED_BEFORE_APPLY",
+  "status": "APPLIED_AND_VERIFIED",
+  "root_cause_fixed": {
+    "issue": "AuditLinkedSchema was used for a branch with an expected local-only migration.",
+    "correct_gate": "PrePush with ExpectedLocalOnlyIds=20260518180000",
+    "notes": "AuditLinkedSchema is an empty-diff guard. PrePush is the correct strict gate for pending migration application."
+  },
   "link_recovery": {
     "project_ref": "ycdxbpibncqcchqiihfz",
     "source": "supabase/config.toml",
     "linked": true
   },
-  "migration_ledger": {
+  "migration_ledger_before_apply": {
     "status": "PASS",
     "expected_local_only_migration": "20260518180000_child_printing_public_identity_v1.sql",
     "unexpected_local_only_migrations": [],
@@ -19,35 +24,17 @@
     "normal_local_db_preserved": true
   },
   "strict_migration_preflight": {
-    "command": "pwsh -NoProfile -File .\\scripts\\migration_preflight_strict.ps1 -Phase AuditLinkedSchema",
-    "status": "FAIL_NON_EMPTY_SCHEMA_DIFF",
-    "wrapper_timeout_resolved": true,
-    "diff_command_exit_code": 0,
-    "stop_reason": "supabase db diff --linked returned non-empty stdout",
-    "expected_child_identity_delta_seen": true,
-    "unexpected_unrelated_drift_seen": true,
-    "unrelated_drift_classes": [
-      "extension/schema changes",
-      "many view drops/recreates",
-      "admin.import_runs",
-      "ingest.card_prints_raw",
-      "public.collapse_map_phase1",
-      "public.scanner_fingerprint_index",
-      "pricing_jobs.locked_at",
-      "pricing_jobs.locked_by",
-      "sets metadata columns"
-    ]
-  },
-  "local_replay": {
-    "command": "supabase db reset --local",
-    "status": "NOT_RUN",
-    "reason": "strict linked-schema preflight failed first"
+    "command": "pwsh -NoProfile -File .\\scripts\\migration_preflight_strict.ps1 -Phase PrePush -ExpectedLocalOnlyIds 20260518180000",
+    "status": "PASS",
+    "linked_ledger": "PASS",
+    "expected_pending_set": "PASS",
+    "pending_migration_object_scan": "PASS",
+    "local_replay": "PASS"
   },
   "candidate_regeneration": {
     "command": "node scripts/audits/child_printing_public_identity_v1.mjs",
-    "status": "NOT_RUN",
-    "reason": "strict linked-schema preflight failed first",
-    "last_committed_counts": {
+    "status": "PASS",
+    "counts": {
       "total_child_printings": 55582,
       "approved_candidates": 44698,
       "blocked_parent_missing_gv_id": 10377,
@@ -55,23 +42,51 @@
       "collision_count": 0,
       "unsupported_finish_keys": 0
     },
-    "drift_count": null
+    "drift_count": 0
   },
   "remote_read_only_precheck": {
-    "status": "NOT_RUN",
-    "reason": "strict linked-schema preflight failed first"
+    "status": "PASS",
+    "printing_gv_id_absent_before_apply": true,
+    "child_printings_count": 55582,
+    "missing_parent_gv_id": 10377,
+    "proposed_collision_count": 0,
+    "unsupported_finish_key_count": 0
+  },
+  "dry_run": {
+    "command": "supabase db push --dry-run",
+    "status": "PASS",
+    "migrations": [
+      "20260518180000_child_printing_public_identity_v1.sql"
+    ]
   },
   "apply": {
-    "status": "NOT_APPLIED",
-    "migration_applied": null,
-    "recommendation": "Do not apply until linked schema diff is reconciled or formally classified, strict migration preflight passes, local replay passes, live candidate regeneration has zero drift, and remote read-only precheck passes."
+    "command": "supabase db push --yes",
+    "status": "APPLIED",
+    "migration_applied": "20260518180000_child_printing_public_identity_v1.sql",
+    "candidate_backfill_applied": false
+  },
+  "post_apply_verification": {
+    "status": "PASS",
+    "ledger_aligned": true,
+    "printing_gv_id_column": {
+      "exists": true,
+      "is_nullable": true,
+      "data_type": "text"
+    },
+    "partial_unique_index": {
+      "exists": true,
+      "name": "card_printings_printing_gv_id_key"
+    },
+    "card_printings_total": 55582,
+    "printing_gv_id_populated": 0,
+    "printing_gv_id_collision_groups": 0,
+    "blocked_candidates_remained_null": true
   },
   "confirmations": {
     "no_parent_gv_id_changes": true,
     "no_species_dex_denominator_changes": true,
     "no_scanner_changes": true,
     "no_public_child_route_enablement": true,
-    "no_unrelated_migrations": true,
-    "blocked_candidates_remained_blocked": true
+    "no_candidate_backfill": true
   }
 }

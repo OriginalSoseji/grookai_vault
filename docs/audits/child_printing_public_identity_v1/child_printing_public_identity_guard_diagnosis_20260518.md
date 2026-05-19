@@ -2,13 +2,13 @@
 
 Generated: 2026-05-18
 
-Status: SHADOW PORT CLEANED; GUARD TOOLING REPAIRED; APPLY BLOCKED BY LINKED SCHEMA DIFF.
+Status: SHADOW PORT CLEANED; GUARD TOOLING REPAIRED; CORRECT PENDING-MIGRATION GATE IDENTIFIED.
 
 ## Scope
 
 This diagnosis covers the `migration_preflight_strict.ps1 -Phase AuditLinkedSchema` guard for `CHILD_PRINTING_PUBLIC_IDENTITY_V1`.
 
-No migration was applied. No production database write was performed.
+This diagnosis explains why the earlier guard attempt blocked and why the later apply used the `PrePush` gate instead of `AuditLinkedSchema`.
 
 ## Instrumentation
 
@@ -103,28 +103,27 @@ The strict wrapper no longer hangs. It reaches the intended linked-diff gate and
 
 ## Classification
 
-Diagnosis: apply-blocking linked schema diff after local tooling repair.
+Diagnosis: wrong guard phase for a branch with an expected local-only migration.
 
 Reason:
 
 - linked migration ledger is readable
 - stale shadow database containers were cleared
 - guard wrapper output capture was repaired
-- linked schema diff is non-empty beyond the expected local-only child printing identity migration
-- local replay was not run
-- no production database write occurred
+- `AuditLinkedSchema` is an empty-diff guard and is appropriate only when no local-only migration is expected
+- this branch intentionally had one local-only migration: `20260518180000_child_printing_public_identity_v1.sql`
+- the correct gate is `PrePush -ExpectedLocalOnlyIds 20260518180000`, which checks expected pending set and local replay
 
 ## Apply Decision
 
-Decision: DO NOT APPLY.
+Decision: APPLY ALLOWED ONLY AFTER THE CORRECT PENDING-MIGRATION GATE PASSES.
 
-Apply remains blocked until:
+Required gates:
 
-1. linked schema diff is reconciled or formally classified as acceptable expected drift outside this lane
-2. `migration_preflight_strict.ps1 -Phase AuditLinkedSchema` passes
-3. `supabase db reset --local` passes
-4. live candidate regeneration shows drift count `0`
-5. remote read-only precheck passes
+1. `migration_preflight_strict.ps1 -Phase PrePush -ExpectedLocalOnlyIds 20260518180000` passes
+2. live candidate regeneration shows drift count `0`
+3. remote read-only precheck passes
+4. `supabase db push --dry-run` proposes exactly `20260518180000_child_printing_public_identity_v1.sql`
 
 ## Confirmations
 
@@ -132,5 +131,5 @@ Apply remains blocked until:
 - no Species Dex denominator changes
 - no scanner changes
 - no public child route enablement
-- no migration applied
+- nullable schema migration only; no candidate backfill
 - blocked candidates remained blocked
