@@ -1,0 +1,60 @@
+{
+  "lane": "PRINTING_IDENTITY_CARD_DETAIL_REFINEMENT_20260518",
+  "date": "2026-05-18",
+  "status": "IMPLEMENTED",
+  "scope": {
+    "ui_wording": true,
+    "selected_state_emphasis": true,
+    "image_fallback_affordance": true,
+    "db_writes": false,
+    "migrations": false,
+    "scanner_changes": false,
+    "pricing_changes": false,
+    "species_dex_denominator_changes": false,
+    "public_child_routes_enabled": false
+  },
+  "wording": {
+    "section_title": "Variant / Finish",
+    "helper_copy": "Choose the exact version before adding it to your vault.",
+    "selected_label": "Selected version"
+  },
+  "selected_state": {
+    "owned_copy_label_examples": [
+      "Owned: 1",
+      "Not in vault"
+    ],
+    "raw_uuid_display": false
+  },
+  "image_fallback": {
+    "notice": "Using base image",
+    "suggestion_affordance": "disabled",
+    "direct_upload_added": false,
+    "promotion_pipeline_added": false
+  },
+  "smoke": {
+    "local_built_page_http_smoke": "BLOCKED_BY_EXISTING_RUNTIME_TLS_UNABLE_TO_VERIFY_LEAF_SIGNATURE",
+    "local_server_stopped": true,
+    "production_child_route_policy": "PASS_CARD_NOT_FOUND_SURFACE",
+    "authenticated_browser_smoke": "MANUAL_REQUIRED_NO_CALLABLE_BROWSER_RUNTIME"
+  },
+  "verification": {
+    "web_typecheck": "PASS",
+    "web_lint": "PASS_WITH_EXISTING_WAREHOUSE_IMG_WARNING",
+    "web_build": "PASS",
+    "contracts_test": "PASS",
+    "contracts_runtime_health": "PASS",
+    "git_diff_check": "PASS"
+  },
+  "route_policy": {
+    "parent_card_route_canonical": true,
+    "child_printing_route_enabled": false
+  },
+  "confirmations": {
+    "no_db_writes": true,
+    "no_migrations": true,
+    "no_scanner_changes": true,
+    "no_pricing_changes": true,
+    "no_species_dex_denominator_change": true,
+    "no_public_child_route_enablement": true
+  }
+}

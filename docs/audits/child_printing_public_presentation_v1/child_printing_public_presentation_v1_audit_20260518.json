@@ -1,0 +1,52 @@
+{
+  "contract": "CHILD_PRINTING_PUBLIC_PRESENTATION_V1",
+  "date": "2026-05-18",
+  "status": "CONTRACT_DRAFTED_NO_IMPLEMENTATION",
+  "scope": {
+    "db_writes": false,
+    "migrations": false,
+    "scanner_changes": false,
+    "pricing_changes": false,
+    "species_dex_denominator_changes": false,
+    "public_child_routes_enabled": false
+  },
+  "identity_layers": {
+    "parent_card": "card_prints.gv_id",
+    "owned_copy": "vault_item_instances.gv_vi_id",
+    "child_printing": "card_printings.printing_gv_id"
+  },
+  "route_policy": {
+    "canonical_parent_route": "/card/<parent_gv_id>",
+    "canonical_copy_route": "/gvvi/<gv_vi_id>",
+    "child_printing_route": "/card/<printing_gv_id>",
+    "child_printing_route_status": "DISABLED"
+  },
+  "allowed_v1_public_display": [
+    "finish labels",
+    "catalog-level child printing options",
+    "optional secondary printing_gv_id metadata after UX review"
+  ],
+  "blocked_v1_public_display": [
+    "raw card_printing_id UUIDs",
+    "private ownership state on public catalog pages",
+    "direct /card/<printing_gv_id> resolution"
+  ],
+  "browser_smoke": {
+    "status": "BLOCKED_IN_CODEX_SESSION",
+    "reason": "No callable Chrome/browser automation runtime exposed after tool discovery",
+    "required_follow_up": [
+      "logged-in production vault tile smoke",
+      "exact copy Finish field smoke",
+      "legacy Finish not selected smoke",
+      "child printing route still-not-found smoke"
+    ]
+  },
+  "confirmations": {
+    "no_db_writes": true,
+    "no_migration_applied": true,
+    "no_parent_gv_id_changes": true,
+    "no_species_dex_denominator_change": true,
+    "no_scanner_changes": true,
+    "no_public_child_route_enablement": true
+  }
+}
