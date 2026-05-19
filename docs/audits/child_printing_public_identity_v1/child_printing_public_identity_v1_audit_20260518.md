@@ -1,6 +1,6 @@
 # Child Printing Public Identity V1 Audit
 
-Generated: 2026-05-19T03:34:30.806Z
+Generated: 2026-05-19T03:51:55.792Z
 
 Mode: read-only dry-run. No database writes were performed.
 
@@ -80,6 +80,6 @@ Mode: read-only dry-run. No database writes were performed.
 
 ## Notes
 
-- The current remote schema does not yet have `card_printings.printing_gv_id`.
+- The current remote schema already has `card_printings.printing_gv_id`.
 - Pricing child references are not present in the current pricing mapping table schema.
 - Parent-level variants are intentionally blocked for manual review so this lane does not collapse parent variant identity into child finish identity.

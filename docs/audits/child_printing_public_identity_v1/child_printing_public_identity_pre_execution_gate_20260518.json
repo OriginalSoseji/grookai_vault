@@ -1,0 +1,63 @@
+{
+  "contract": "CHILD_PRINTING_PUBLIC_IDENTITY_V1",
+  "generated_at": "2026-05-19T03:51:55.792Z",
+  "status": "PASS_NO_WRITE_EXECUTED",
+  "scope": {
+    "candidate_source": "docs/audits/child_printing_public_identity_v1/child_printing_public_identity_candidates_20260518.json",
+    "backfill_plan": "docs/audits/child_printing_public_identity_v1/child_printing_public_identity_backfill_no_write_plan_20260518.md",
+    "target_table": "public.card_printings",
+    "target_column": "printing_gv_id"
+  },
+  "live_schema_precheck": {
+    "printing_gv_id_column_exists": true,
+    "printing_gv_id_is_nullable": true,
+    "printing_gv_id_data_type": "text",
+    "partial_unique_index_present": true,
+    "total_card_printings": 55582,
+    "populated_printing_gv_id_rows": 0,
+    "null_printing_gv_id_rows": 55582,
+    "duplicate_printing_gv_id_groups": 0,
+    "parent_gv_id_collision_count": 0
+  },
+  "live_candidate_regeneration": {
+    "total_candidates": 55582,
+    "approved_candidates": 44698,
+    "blocked_candidates": 10884,
+    "blocked_by_reason": {
+      "BLOCKED_PARENT_MISSING_GV_ID": 10377,
+      "BLOCKED_PARENT_VARIANT_BOUNDARY": 507
+    },
+    "proposed_collision_groups": 0,
+    "unsupported_finish_keys": 0,
+    "approved_finish_distribution": {
+      "normal": 16320,
+      "holo": 13075,
+      "reverse": 15006,
+      "pokeball": 230,
+      "masterball": 67
+    }
+  },
+  "drift_against_no_write_plan": {
+    "total_candidate_drift": 0,
+    "approved_candidate_drift": 0,
+    "blocked_candidate_drift": 0,
+    "missing_parent_gv_id_blocked_drift": 0,
+    "parent_variant_boundary_blocked_drift": 0,
+    "collision_drift": 0,
+    "unsupported_finish_key_drift": 0
+  },
+  "decision": {
+    "pre_execution_gate": "PASS",
+    "apply_authorized_by_this_document": false,
+    "required_next_step": "separately approved apply task with transaction dry-run and exact 44698 updated-row verification"
+  },
+  "non_actions": {
+    "db_writes": false,
+    "backfill_executed": false,
+    "migration_applied": false,
+    "parent_gv_id_changes": false,
+    "species_dex_denominator_changes": false,
+    "scanner_changes": false,
+    "public_child_routes_enabled": false
+  }
+}
