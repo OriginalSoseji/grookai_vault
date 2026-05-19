@@ -157,7 +157,7 @@ export function resolveIdentityResolutionV1({
       result.explanation = 'Identity resolution routes this candidate to an existing parent row as a finish-only child printing.';
       result.action_payload = {
         action_type: 'ATTACH_PRINTING',
-        approved_action_type: matchedCardPrintingId ? 'ENRICH_CANON_IMAGE' : 'CREATE_CARD_PRINTING',
+        approved_action_type: matchedCardPrintingId ? 'ENRICH_CARD_PRINTING_IMAGE' : 'CREATE_CARD_PRINTING',
         target_table: matchedCardPrintingId ? 'card_printings' : 'card_printings',
         matched_card_print_id: matchedCardPrintId,
         matched_card_printing_id: matchedCardPrintingId,
@@ -269,7 +269,11 @@ export function validateIdentityResolutionForApprovedActionV1(identityResolution
     };
   }
 
-  if (normalizedActionType === 'CREATE_CARD_PRINTING' || normalizedActionType === 'ENRICH_CANON_IMAGE') {
+  if (
+    normalizedActionType === 'CREATE_CARD_PRINTING' ||
+    normalizedActionType === 'ENRICH_CANON_IMAGE' ||
+    normalizedActionType === 'ENRICH_CARD_PRINTING_IMAGE'
+  ) {
     if (normalizedResolution === IDENTITY_RESOLUTION_STATES.ATTACH_PRINTING) {
       return { ok: true };
     }

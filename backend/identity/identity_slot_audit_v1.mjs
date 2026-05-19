@@ -306,7 +306,7 @@ function buildAuditPackage({
       identityAuditStatus = IDENTITY_AUDIT_STATUSES.PRINTING_ONLY;
       reasonCode = matchedCardPrinting?.id ? 'EXISTING_CHILD_PRINTING' : 'FINISH_ONLY_DISTINCTION';
       routing = {
-        proposed_action_type: matchedCardPrinting?.id ? 'ENRICH_CANON_IMAGE' : 'CREATE_CARD_PRINTING',
+        proposed_action_type: matchedCardPrinting?.id ? 'ENRICH_CARD_PRINTING_IMAGE' : 'CREATE_CARD_PRINTING',
         matched_card_print_id: printingParentId,
         matched_card_printing_id: normalizeTextOrNull(matchedCardPrinting?.id),
         variant_key: normalizeVariantKeyOrNull(matchingRows[0]?.variant_key),

@@ -41,6 +41,7 @@ const EXCLUDED_IDENTITY_AUDIT_STATUSES = new Set([
 
 const EXCLUDED_PROPOSED_ACTION_TYPES = new Set([
   "ENRICH_CANON_IMAGE",
+  "ENRICH_CARD_PRINTING_IMAGE",
   "CREATE_CARD_PRINTING",
   "BLOCKED_NO_PROMOTION",
 ]);
@@ -313,7 +314,7 @@ export async function getPublicProvisionalCards(input?: {
     .is("promoted_card_print_id", null)
     .filter("reference_hints_payload->>bridge_source", "eq", "external_discovery_bridge_v1")
     .or("identity_audit_status.is.null,identity_audit_status.not.in.(ALIAS,SLOT_CONFLICT,AMBIGUOUS,PRINTING_ONLY)")
-    .or("proposed_action_type.is.null,proposed_action_type.not.in.(ENRICH_CANON_IMAGE,CREATE_CARD_PRINTING,BLOCKED_NO_PROMOTION)")
+    .or("proposed_action_type.is.null,proposed_action_type.not.in.(ENRICH_CANON_IMAGE,ENRICH_CARD_PRINTING_IMAGE,CREATE_CARD_PRINTING,BLOCKED_NO_PROMOTION)")
     .order("created_at", { ascending: false })
     .limit(queryLimit);
 
@@ -365,7 +366,7 @@ export async function getPublicProvisionalCardById(candidateId: string): Promise
     .is("promoted_card_print_id", null)
     .filter("reference_hints_payload->>bridge_source", "eq", "external_discovery_bridge_v1")
     .or("identity_audit_status.is.null,identity_audit_status.not.in.(ALIAS,SLOT_CONFLICT,AMBIGUOUS,PRINTING_ONLY)")
-    .or("proposed_action_type.is.null,proposed_action_type.not.in.(ENRICH_CANON_IMAGE,CREATE_CARD_PRINTING,BLOCKED_NO_PROMOTION)")
+    .or("proposed_action_type.is.null,proposed_action_type.not.in.(ENRICH_CANON_IMAGE,ENRICH_CARD_PRINTING_IMAGE,CREATE_CARD_PRINTING,BLOCKED_NO_PROMOTION)")
     .maybeSingle();
 
   if (error) {

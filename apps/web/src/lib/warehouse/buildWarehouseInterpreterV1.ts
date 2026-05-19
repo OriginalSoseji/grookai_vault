@@ -72,6 +72,7 @@ export type WarehouseInterpreterReasonCode =
   | "PRINTED_IDENTITY_DELTA_DETECTED"
   | "CANONICAL_MATCH_WITH_NEW_CHILD_PRINTING"
   | "CANONICAL_MATCH_IMAGE_MISSING_OR_WEAK"
+  | "CHILD_PRINTING_IMAGE_MISSING_OR_WEAK"
   | "EXISTING_CANON_ALREADY_COVERS_SUBMISSION"
   | "NO_CLASSIFICATION_DECISION"
   | "MISSING_CANON_MATCH_CONTEXT"
@@ -101,7 +102,13 @@ export type WarehouseInterpreterPackage = {
     variant_key: string | null;
     finish_key: string | null;
   };
-  proposed_action: "CREATE_CARD_PRINT" | "CREATE_CARD_PRINTING" | "ENRICH_CANON_IMAGE" | "NO_OP" | null;
+  proposed_action:
+    | "CREATE_CARD_PRINT"
+    | "CREATE_CARD_PRINTING"
+    | "ENRICH_CANON_IMAGE"
+    | "ENRICH_CARD_PRINTING_IMAGE"
+    | "NO_OP"
+    | null;
   missing_fields: string[];
   evidence_gaps: string[];
   next_actions: string[];
@@ -119,6 +126,7 @@ export type WarehouseInterpreterCandidateSummary = {
     | "CREATE_CARD_PRINT"
     | "CREATE_CARD_PRINTING"
     | "ENRICH_CANON_IMAGE"
+    | "ENRICH_CARD_PRINTING_IMAGE"
     | "BLOCKED_NO_PROMOTION"
     | "REVIEW_REQUIRED";
   current_review_hold_reason: string | null;
@@ -128,6 +136,7 @@ const EXECUTOR_ACTIONS = new Set([
   "CREATE_CARD_PRINT",
   "CREATE_CARD_PRINTING",
   "ENRICH_CANON_IMAGE",
+  "ENRICH_CARD_PRINTING_IMAGE",
 ]);
 
 const NOTE_MODIFIER_PATTERNS = [
@@ -419,7 +428,8 @@ export function buildWarehouseInterpreterSeed(
 
   if (stageAction && EXECUTOR_ACTIONS.has(stageAction)) {
     return {
-      interpreter_decision: stageAction === "CREATE_CARD_PRINTING" ? "CHILD" : "ROW",
+      interpreter_decision:
+        stageAction === "CREATE_CARD_PRINTING" || stageAction === "ENRICH_CARD_PRINTING_IMAGE" ? "CHILD" : "ROW",
       interpreter_reason_code: existingReason ?? "FOUNDER_STAGED_ACTION",
       interpreter_explanation:
         existingExplanation ??
@@ -436,7 +446,9 @@ export function buildWarehouseInterpreterSeed(
       interpreter_decision:
         classificationAction === "CREATE_CARD_PRINTING"
           ? "CHILD"
-          : classificationAction === "CREATE_CARD_PRINT" || classificationAction === "ENRICH_CANON_IMAGE"
+          : classificationAction === "ENRICH_CARD_PRINTING_IMAGE"
+            ? "CHILD"
+            : classificationAction === "CREATE_CARD_PRINT" || classificationAction === "ENRICH_CANON_IMAGE"
             ? "ROW"
             : classificationDecision === "CHILD"
               ? "CHILD"
@@ -454,6 +466,7 @@ export function buildWarehouseInterpreterSeed(
         classificationAction === "CREATE_CARD_PRINT" ||
         classificationAction === "CREATE_CARD_PRINTING" ||
         classificationAction === "ENRICH_CANON_IMAGE" ||
+        classificationAction === "ENRICH_CARD_PRINTING_IMAGE" ||
         classificationAction === "BLOCKED_NO_PROMOTION" ||
         classificationAction === "REVIEW_REQUIRED"
           ? (classificationAction as WarehouseInterpreterCandidateSummary["proposed_action_type"])
@@ -480,6 +493,7 @@ export function buildWarehouseInterpreterSeed(
       input.candidate.proposed_action_type === "CREATE_CARD_PRINT" ||
       input.candidate.proposed_action_type === "CREATE_CARD_PRINTING" ||
       input.candidate.proposed_action_type === "ENRICH_CANON_IMAGE" ||
+      input.candidate.proposed_action_type === "ENRICH_CARD_PRINTING_IMAGE" ||
       input.candidate.proposed_action_type === "BLOCKED_NO_PROMOTION" ||
       input.candidate.proposed_action_type === "REVIEW_REQUIRED"
         ? input.candidate.proposed_action_type
@@ -602,6 +616,16 @@ export function buildWarehouseInterpreterV1(
     );
   }
 
+  if (writePlanReady && reviewActionType === "ENRICH_CARD_PRINTING_IMAGE") {
+    return buildReadyPackage(
+      input,
+      "IMAGE_REPAIR_ONLY",
+      "CHILD_PRINTING_IMAGE_MISSING_OR_WEAK",
+      "ENRICH_CARD_PRINTING_IMAGE",
+      canonContext.matched_card_print_id && canonContext.matched_card_printing_id ? "HIGH" : "MEDIUM",
+    );
+  }
+
   if (writePlanReady && reviewActionType === "CREATE_CARD_PRINTING") {
     return buildReadyPackage(
       input,
@@ -628,7 +652,8 @@ export function buildWarehouseInterpreterV1(
     hasStructuredPrintedModifier &&
     !input.currentStagingRow &&
     input.candidate.state !== "PROMOTED" &&
-    reviewActionType !== "ENRICH_CANON_IMAGE"
+    reviewActionType !== "ENRICH_CANON_IMAGE" &&
+    reviewActionType !== "ENRICH_CARD_PRINTING_IMAGE"
   ) {
     const modifierSummary = printedModifierLabel ?? "printed modifier";
     const baseIdentitySummary = uniqueText([
@@ -670,7 +695,8 @@ export function buildWarehouseInterpreterV1(
     !input.currentStagingRow &&
     input.candidate.state !== "PROMOTED" &&
     !canonContext.finish_key &&
-    reviewActionType !== "ENRICH_CANON_IMAGE"
+    reviewActionType !== "ENRICH_CANON_IMAGE" &&
+    reviewActionType !== "ENRICH_CARD_PRINTING_IMAGE"
   ) {
     return {
       version: "V1",
@@ -823,12 +849,15 @@ export function mapWarehouseInterpreterToCandidateSummary(
       };
     case "IMAGE_REPAIR_ONLY":
       return {
-        interpreter_decision: "ROW",
+        interpreter_decision: interpreterPackage.proposed_action === "ENRICH_CARD_PRINTING_IMAGE" ? "CHILD" : "ROW",
         interpreter_reason_code: interpreterPackage.reason_code,
         interpreter_explanation: interpreterPackage.founder_explanation,
         interpreter_resolved_finish_key: finishKey,
         needs_promotion_review: false,
-        proposed_action_type: "ENRICH_CANON_IMAGE",
+        proposed_action_type:
+          interpreterPackage.proposed_action === "ENRICH_CARD_PRINTING_IMAGE"
+            ? "ENRICH_CARD_PRINTING_IMAGE"
+            : "ENRICH_CANON_IMAGE",
         current_review_hold_reason: null,
       };
     case "DUPLICATE_EXISTING":

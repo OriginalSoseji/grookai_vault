@@ -115,6 +115,12 @@ type CanonCardPrintingRow = {
   provenance_source: string | null;
   provenance_ref: string | null;
   created_by: string | null;
+  image_source?: string | null;
+  image_path?: string | null;
+  image_url?: string | null;
+  image_alt_url?: string | null;
+  image_status?: string | null;
+  image_note?: string | null;
 };
 
 type FinishKeyRow = {
@@ -212,6 +218,7 @@ const ALLOWED_ACTION_TYPES = new Set([
   "CREATE_CARD_PRINT",
   "CREATE_CARD_PRINTING",
   "ENRICH_CANON_IMAGE",
+  "ENRICH_CARD_PRINTING_IMAGE",
 ]);
 
 function asRecord(value: unknown): JsonRecord | null {
@@ -303,6 +310,8 @@ function formatActionTypeLabel(actionType: string | null) {
       return "Create Child Printing";
     case "ENRICH_CANON_IMAGE":
       return "Repair Canon Image";
+    case "ENRICH_CARD_PRINTING_IMAGE":
+      return "Repair Child Printing Image";
     default:
       return "Unresolved Promotion";
   }
@@ -316,6 +325,8 @@ function formatCandidateTypeLabel(actionType: string | null) {
       return "Child Printing";
     case "ENRICH_CANON_IMAGE":
       return "Image Repair";
+    case "ENRICH_CARD_PRINTING_IMAGE":
+      return "Child Image Repair";
     default:
       return "Unresolved";
   }
@@ -583,7 +594,7 @@ async function fetchCardPrintingById(admin: AdminClient, cardPrintingId: string 
 
   const { data, error } = await admin
     .from("card_printings")
-    .select("id,card_print_id,finish_key,is_provisional,provenance_source,provenance_ref,created_by")
+    .select("id,card_print_id,finish_key,is_provisional,provenance_source,provenance_ref,created_by,image_source,image_path,image_url,image_alt_url,image_status,image_note")
     .eq("id", normalizedCardPrintingId)
     .maybeSingle();
 
@@ -619,7 +630,7 @@ async function fetchExistingCardPrints(
 async function fetchExistingCardPrinting(admin: AdminClient, cardPrintId: string, finishKey: string) {
   const { data, error } = await admin
     .from("card_printings")
-    .select("id,card_print_id,finish_key,is_provisional,provenance_source,provenance_ref,created_by")
+    .select("id,card_print_id,finish_key,is_provisional,provenance_source,provenance_ref,created_by,image_source,image_path,image_url,image_alt_url,image_status,image_note")
     .eq("card_print_id", cardPrintId)
     .eq("finish_key", finishKey)
     .maybeSingle();
@@ -1633,6 +1644,164 @@ export async function buildFounderPromotionReview(
       const parentCanonImageUrl = await resolveCanonImageUrlV1(parentCardPrint);
       previewImageUrl = parentCanonImageUrl ?? frontEvidenceUrl ?? null;
       imageOriginLabel = parentCanonImageUrl ? "Existing canon image" : frontEvidenceUrl ? "Warehouse front evidence" : null;
+    }
+  } else if (actionType === "ENRICH_CARD_PRINTING_IMAGE") {
+    const targetCardPrint = parentCardPrint;
+    const targetChildPrinting = matchedCardPrinting;
+    const targetDisplay = describeCardPrint(targetCardPrint, setRow);
+    const currentPrimaryImage = normalizeTextOrNull(targetChildPrinting?.image_url);
+    const currentAltImage = normalizeTextOrNull(targetChildPrinting?.image_alt_url);
+    const targetChildDisplay = targetChildPrinting
+      ? describeCardPrinting(targetChildPrinting, targetCardPrint, setRow, finishLabel)
+      : null;
+
+    if (!targetCardPrint || !targetChildPrinting || targetChildPrinting.card_print_id !== targetCardPrint.id) {
+      decisionSummary = "Promotion is unresolved because no lawful child printing image target exists in the staged payload.";
+      writePlanSummary = "Child image repair requires a resolved parent card_print and card_printing target.";
+      rows = [
+        buildPlanRow("card_prints", targetCardPrint ? "REUSE" : "UNRESOLVED", "Parent card print", targetCardPrint ? "Existing canonical parent row would be reused." : "No resolved parent card_print target was found.", targetCardPrint?.id ?? null),
+        buildPlanRow("card_printings", "UNRESOLVED", "Card printing", "No resolved child card_printing target was found for image repair.", targetChildPrinting?.id ?? null),
+        buildPlanRow("image_fields", "UNRESOLVED", "Image fields", "No lawful child printing image target exists for the image update.", targetChildPrinting?.id ?? null),
+        ...baseRows,
+      ];
+      rawPlan = {
+        action_type: actionType,
+        unresolved_reason: "child_image_target_missing_from_payload",
+      };
+      unresolvedReasonCode = "image_target_missing_from_payload";
+      unresolvedMissingFields = ["Resolved child card_printing target"];
+      unresolvedNextActions = [
+        "Resolve the exact child printing before staging image repair.",
+        "Run classification again after the image target can be resolved.",
+      ];
+      comparisonSummary = "The candidate appears to be a finish-specific image repair, but the child printing target is not resolved yet.";
+      delta = ["No parent or child image field should be touched until the child printing target is resolved."];
+      previewImageUrl = frontEvidenceUrl ?? previewImageFromCanon ?? null;
+      imageOriginLabel = frontEvidenceUrl ? "Warehouse front evidence" : previewImageFromCanon ? "Existing canon image" : null;
+    } else if (desiredImageUrl && (currentPrimaryImage === desiredImageUrl || currentAltImage === desiredImageUrl)) {
+      resultPreviewType = "NO_OP";
+      decisionSummary = "Child printing already contains the same image URL this candidate would attach. Promotion would succeed as NO_OP.";
+      writePlanSummary = "Executor would reuse the existing child image and write no new image field.";
+      rows = [
+        buildPlanRow("card_prints", "REUSE", "Parent card print", "Existing canonical parent row would be reused.", targetCardPrint.id, [{ label: "target_card_print_id", value: targetCardPrint.id }]),
+        buildPlanRow("card_printings", "REUSE", "Card printing", "Existing child printing target would be reused.", targetChildPrinting.id, [{ label: "target_card_printing_id", value: targetChildPrinting.id }, { label: "finish_key", value: finishKey }]),
+        buildPlanRow("image_fields", "NONE", "Image fields", "The staged image already matches a child printing image field.", targetChildPrinting.id, [{ label: "desired_image_url", value: desiredImageUrl }]),
+        ...baseRows,
+      ];
+      rawPlan = {
+        action_type: actionType,
+        plan: "child_printing_image_existing_noop",
+        result_type_preview: resultPreviewType,
+        target_card_print_id: targetCardPrint.id,
+        target_card_printing_id: targetChildPrinting.id,
+        desired_image_url: desiredImageUrl,
+      };
+      comparisonSummary = "The child printing already has the staged image.";
+      existing = [targetDisplay, targetChildDisplay].filter(Boolean) as string[];
+      introduced = ["No new image change would be written."];
+      delta = ["Parent image fields stay unchanged."];
+      previewImageUrl = desiredImageUrl ?? frontEvidenceUrl ?? previewImageFromCanon ?? null;
+      imageOriginLabel = desiredImageUrl ? "Existing child image" : frontEvidenceUrl ? "Warehouse front evidence" : null;
+    } else if (!desiredImageUrl) {
+      decisionSummary = "Promotion is unresolved because the staged payload does not yet expose a public image URL for child image attachment.";
+      writePlanSummary = "Child image repair is blocked until the staged payload contains a public image URL the executor can apply.";
+      rows = [
+        buildPlanRow("card_prints", "REUSE", "Parent card print", "Existing canonical parent row would be reused.", targetCardPrint.id, [{ label: "target_card_print_id", value: targetCardPrint.id }]),
+        buildPlanRow("card_printings", "REUSE", "Card printing", "Existing child printing target would be reused.", targetChildPrinting.id, [{ label: "target_card_printing_id", value: targetChildPrinting.id }, { label: "finish_key", value: finishKey }]),
+        buildPlanRow("image_fields", "UNRESOLVED", "Image fields", "Executor has no public image URL in the staged payload, so child image repair would fail closed.", targetChildPrinting.id),
+        ...baseRows,
+      ];
+      rawPlan = {
+        action_type: actionType,
+        unresolved_reason: "image_url_missing_from_payload",
+        target_card_printing_id: targetChildPrinting.id,
+      };
+      unresolvedReasonCode = "image_url_missing_from_payload";
+      unresolvedMissingFields = ["Public image URL"];
+      unresolvedNextActions = ["Provide a lawful public image URL the executor can attach to the child printing."];
+      comparisonSummary = "The child printing exists, but the staged payload does not yet expose a lawful image URL the executor can write.";
+      existing = [targetDisplay, targetChildDisplay].filter(Boolean) as string[];
+      delta = ["Parent image fields stay unchanged, but child image repair cannot proceed until the staged payload exposes a public image URL."];
+      previewImageUrl = frontEvidenceUrl ?? previewImageFromCanon ?? null;
+      imageOriginLabel = frontEvidenceUrl ? "Warehouse front evidence" : previewImageFromCanon ? "Existing canon image" : null;
+    } else if (!isUsablePublicImageUrl(currentPrimaryImage)) {
+      resultPreviewType = "CANON_IMAGE_ENRICHED";
+      decisionSummary = "Promotion would repair the primary image on the resolved child printing.";
+      writePlanSummary = "Executor would update card_printings.image_url and leave parent card_prints image fields untouched.";
+      rows = [
+        buildPlanRow("card_prints", "REUSE", "Parent card print", "Existing canonical parent row would be reused.", targetCardPrint.id, [{ label: "target_card_print_id", value: targetCardPrint.id }]),
+        buildPlanRow("card_printings", "REUSE", "Card printing", "Existing child printing target would be reused.", targetChildPrinting.id, [{ label: "target_card_printing_id", value: targetChildPrinting.id }, { label: "finish_key", value: finishKey }]),
+        buildPlanRow("image_fields", "UPDATE", "Image fields", "Primary child-printing image would be updated from staged evidence.", targetChildPrinting.id, [
+          { label: "target_table", value: "card_printings" },
+          { label: "field", value: "image_url" },
+          { label: "desired_image_url", value: desiredImageUrl },
+        ]),
+        ...baseRows,
+      ];
+      rawPlan = {
+        action_type: actionType,
+        plan: "update_card_printing_image_url",
+        result_type_preview: resultPreviewType,
+        target_card_print_id: targetCardPrint.id,
+        target_card_printing_id: targetChildPrinting.id,
+        desired_image_url: desiredImageUrl,
+      };
+      comparisonSummary = "The child printing already exists. Promotion would repair only the child printing primary image field.";
+      existing = [targetDisplay, targetChildDisplay].filter(Boolean) as string[];
+      introduced = ["A new primary child-printing image would be attached from staged evidence."];
+      delta = ["Parent card_print image fields stay unchanged; only card_printings image fields change."];
+      previewImageUrl = desiredImageUrl ?? frontEvidenceUrl ?? previewImageFromCanon ?? null;
+      imageOriginLabel = desiredImageUrl ? "Planned child image" : frontEvidenceUrl ? "Warehouse front evidence" : null;
+    } else if (!isUsablePublicImageUrl(currentAltImage)) {
+      resultPreviewType = "CANON_IMAGE_ENRICHED";
+      decisionSummary = "Promotion would attach a secondary image on the resolved child printing.";
+      writePlanSummary = "Executor would update card_printings.image_alt_url and leave parent card_prints image fields untouched.";
+      rows = [
+        buildPlanRow("card_prints", "REUSE", "Parent card print", "Existing canonical parent row would be reused.", targetCardPrint.id, [{ label: "target_card_print_id", value: targetCardPrint.id }]),
+        buildPlanRow("card_printings", "REUSE", "Card printing", "Existing child printing target would be reused.", targetChildPrinting.id, [{ label: "target_card_printing_id", value: targetChildPrinting.id }, { label: "finish_key", value: finishKey }]),
+        buildPlanRow("image_fields", "UPDATE", "Image fields", "Secondary child-printing image would be updated from staged evidence.", targetChildPrinting.id, [
+          { label: "target_table", value: "card_printings" },
+          { label: "field", value: "image_alt_url" },
+          { label: "desired_image_url", value: desiredImageUrl },
+        ]),
+        ...baseRows,
+      ];
+      rawPlan = {
+        action_type: actionType,
+        plan: "update_card_printing_image_alt_url",
+        result_type_preview: resultPreviewType,
+        target_card_print_id: targetCardPrint.id,
+        target_card_printing_id: targetChildPrinting.id,
+        desired_image_url: desiredImageUrl,
+      };
+      comparisonSummary = "The child printing already exists. Promotion would repair only the child printing secondary image field.";
+      existing = [targetDisplay, targetChildDisplay].filter(Boolean) as string[];
+      introduced = ["A secondary child-printing image would be attached from staged evidence."];
+      delta = ["Parent card_print image fields stay unchanged; only card_printings image fields change."];
+      previewImageUrl = desiredImageUrl ?? frontEvidenceUrl ?? previewImageFromCanon ?? null;
+      imageOriginLabel = desiredImageUrl ? "Planned child image" : frontEvidenceUrl ? "Warehouse front evidence" : null;
+    } else {
+      decisionSummary = "Promotion is unresolved because the resolved child printing already has distinct primary and alternate images.";
+      writePlanSummary = "Child image repair would fail closed because executor will not replace distinct existing child images in V1.";
+      rows = [
+        buildPlanRow("card_prints", "REUSE", "Parent card print", "Existing canonical parent row would be reused.", targetCardPrint.id, [{ label: "target_card_print_id", value: targetCardPrint.id }]),
+        buildPlanRow("card_printings", "REUSE", "Card printing", "Existing child printing target would be reused.", targetChildPrinting.id, [{ label: "target_card_printing_id", value: targetChildPrinting.id }, { label: "finish_key", value: finishKey }]),
+        buildPlanRow("image_fields", "UNRESOLVED", "Image fields", "Child printing already has distinct image fields, so executor will fail closed.", targetChildPrinting.id),
+        ...baseRows,
+      ];
+      rawPlan = {
+        action_type: actionType,
+        unresolved_reason: "child_image_target_already_has_distinct_images",
+        target_card_printing_id: targetChildPrinting.id,
+      };
+      unresolvedReasonCode = "image_target_already_has_distinct_images";
+      unresolvedMissingFields = ["Lawful child image delta"];
+      unresolvedNextActions = ["Review whether this candidate should remain a child image repair."];
+      comparisonSummary = "The child printing already has two distinct image fields, so V1 will not overwrite either one.";
+      existing = [targetDisplay, targetChildDisplay].filter(Boolean) as string[];
+      delta = ["Parent image fields stay unchanged and child image repair is blocked to prevent unintended overwrite."];
+      previewImageUrl = previewImageFromCanon ?? frontEvidenceUrl ?? null;
+      imageOriginLabel = previewImageFromCanon ? "Existing canon image" : frontEvidenceUrl ? "Warehouse front evidence" : null;
     }
   } else {
     const targetCardPrint = parentCardPrint;

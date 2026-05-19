@@ -143,9 +143,14 @@ export default async function CardPage({
     permanentRedirect(buildCardHref(card.gv_id, compareCardsParam));
   }
   const currentCardPath = buildCardHref(resolvedCard.gv_id, compareCardsParam);
+  const selectedRoutePrinting = searchParams?.printing
+    ? resolvedCard.display_printings?.find((printing) => !printing.is_display_fallback && printing.id === searchParams.printing)
+    : null;
   const resolvedCardImagePresentation = resolveCardImagePresentation(resolvedCard);
+  const selectedRoutePrintingImageUrl =
+    selectedRoutePrinting?.display_image_url ?? selectedRoutePrinting?.image_url ?? null;
   const resolvedCardImageSrc =
-    normalizeCardImageUrl(resolvedCard.display_image_url ?? resolvedCard.image_url) ?? undefined;
+    normalizeCardImageUrl(selectedRoutePrintingImageUrl ?? resolvedCard.display_image_url ?? resolvedCard.image_url) ?? undefined;
   const resolvedCardImageFallback =
     resolvedCard.display_image_kind === "exact" ? buildTcgDexImageUrl(resolvedCard.tcgdex_external_id) : null;
 

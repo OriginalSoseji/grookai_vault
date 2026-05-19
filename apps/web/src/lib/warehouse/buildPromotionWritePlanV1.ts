@@ -17,6 +17,7 @@ type PromotionWritePlanCandidate = {
   tcgplayer_id: string | null;
   current_staging_id?: string | null;
   current_staging_payload?: JsonRecord | null;
+  proposed_action_type?: string | null;
 };
 
 type MetadataExtractionInput =
@@ -50,6 +51,12 @@ type CanonCardPrintingRow = {
   provenance_source: string | null;
   provenance_ref: string | null;
   created_by: string | null;
+  image_source?: string | null;
+  image_path?: string | null;
+  image_url?: string | null;
+  image_alt_url?: string | null;
+  image_status?: string | null;
+  image_note?: string | null;
 };
 
 type CanonSetRow = {
@@ -328,9 +335,28 @@ async function fetchCardPrintById(admin: AdminClient, cardPrintId: string | null
 async function fetchExistingCardPrinting(admin: AdminClient, cardPrintId: string, finishKey: string) {
   const { data, error } = await admin
     .from("card_printings")
-    .select("id,card_print_id,finish_key,is_provisional,provenance_source,provenance_ref,created_by")
+    .select("id,card_print_id,finish_key,is_provisional,provenance_source,provenance_ref,created_by,image_source,image_path,image_url,image_alt_url,image_status,image_note")
     .eq("card_print_id", cardPrintId)
     .eq("finish_key", finishKey)
+    .maybeSingle();
+
+  if (error) {
+    throw new Error(`Promotion write plan card_printing lookup failed: ${error.message}`);
+  }
+
+  return (data as CanonCardPrintingRow | null) ?? null;
+}
+
+async function fetchCardPrintingById(admin: AdminClient, cardPrintingId: string | null) {
+  const normalizedId = normalizeTextOrNull(cardPrintingId);
+  if (!normalizedId) {
+    return null;
+  }
+
+  const { data, error } = await admin
+    .from("card_printings")
+    .select("id,card_print_id,finish_key,is_provisional,provenance_source,provenance_ref,created_by,image_source,image_path,image_url,image_alt_url,image_status,image_note")
+    .eq("id", normalizedId)
     .maybeSingle();
 
   if (error) {
@@ -682,6 +708,101 @@ export async function buildPromotionWritePlanV1({
   }
 
   if (interpreterPackage.decision === "IMAGE_REPAIR_ONLY") {
+    if (interpreterPackage.proposed_action === "ENRICH_CARD_PRINTING_IMAGE") {
+      if (!exactMatch) {
+        return buildBlockedPlan("Resolved parent card_print target is required before child image repair can be planned.", [
+          "Resolved parent card_print target",
+        ], buildPreview(beforeBase, beforeBase));
+      }
+
+      const matchedCardPrintingId = normalizeTextOrNull(interpreterPackage.canon_context.matched_card_printing_id);
+      const childPrinting = await fetchCardPrintingById(admin, matchedCardPrintingId);
+      if (!childPrinting || childPrinting.card_print_id !== exactMatch.id) {
+        return buildBlockedPlan("Resolved child card_printing target is required before child image repair can be planned.", [
+          "Resolved card_printing target",
+        ], buildPreview(beforeBase, beforeBase));
+      }
+
+      const desiredImageUrl = extractStagedPublicImageUrl(candidate);
+      const currentPrimaryImage = normalizeTextOrNull(childPrinting.image_url);
+      const currentAltImage = normalizeTextOrNull(childPrinting.image_alt_url);
+      const hasUsablePrimary = isUsablePublicImageUrl(currentPrimaryImage);
+      const hasUsableAlt = isUsablePublicImageUrl(currentAltImage);
+
+      if (!desiredImageUrl) {
+        return buildBlockedPlan("Child image repair cannot be planned until a public staged image URL exists.", [
+          "Public image URL required before promotion",
+        ], buildPreview(beforeBase, beforeBase));
+      }
+
+      const imagePayload = !hasUsablePrimary
+        ? { target_table: "card_printings", image_url: desiredImageUrl }
+        : !hasUsableAlt
+          ? { target_table: "card_printings", image_alt_url: desiredImageUrl }
+          : null;
+
+      if (!imagePayload) {
+        return buildBlockedPlan("Resolved child printing already has distinct primary and alternate images.", [
+          "Lawful child image delta required before promotion",
+        ], buildPreview(beforeBase, beforeBase));
+      }
+
+      const afterChildPrinting = {
+        ...childPrinting,
+        ...imagePayload,
+        image_status: "exact",
+        image_note: `warehouse_candidate:${candidate.id}`,
+      };
+      const afterState = buildCanonState({
+        cardPrint: exactMatch,
+        cardPrinting: afterChildPrinting,
+        externalMapping: existingExternalMapping,
+        imageFields: imagePayload,
+      });
+
+      return {
+        status: "READY",
+        reason: "Promotion would update the resolved child printing image and leave parent image fields untouched.",
+        actions: {
+          card_prints: {
+            action: "REUSE",
+            target_id: exactMatch.id,
+            payload: null,
+            reason: "Existing canonical parent row would be reused.",
+          },
+          card_printings: {
+            action: "REUSE",
+            target_id: childPrinting.id,
+            payload: null,
+            reason: "Existing child printing would receive the finish-specific image.",
+          },
+          external_mappings: buildEmptyAction("Promotion Executor V1 does not write external_mappings."),
+          image_fields: {
+            action: "UPDATE",
+            target_id: childPrinting.id,
+            payload: imagePayload,
+            reason: !hasUsablePrimary
+              ? "Primary child-printing image would be updated from the staged payload."
+              : "Secondary child-printing image would be updated from the staged payload.",
+          },
+        },
+        preview: buildPreview(
+          buildCanonState({
+            cardPrint: exactMatch,
+            cardPrinting: childPrinting,
+            externalMapping: existingExternalMapping,
+            imageFields: {
+              target_table: "card_printings",
+              image_url: currentPrimaryImage,
+              image_alt_url: currentAltImage,
+            },
+          }),
+          afterState,
+        ),
+        missing_requirements: [],
+      };
+    }
+
     if (!exactMatch) {
       return buildBlockedPlan("Resolved canon image target is required before image repair can be planned.", [
         "Resolved card_print target",

@@ -26,6 +26,7 @@ const STAGEABLE_ACTION_TYPES = new Set([
   'CREATE_CARD_PRINT',
   'CREATE_CARD_PRINTING',
   'ENRICH_CANON_IMAGE',
+  'ENRICH_CARD_PRINTING_IMAGE',
 ]);
 const POKEMON_GAME = 'pokemon';
 
@@ -460,13 +461,13 @@ function validateIdentityAuditForAction(identityAuditPackage, approvedActionType
     };
   }
 
-  if (approvedActionType === 'CREATE_CARD_PRINTING') {
+  if (approvedActionType === 'CREATE_CARD_PRINTING' || approvedActionType === 'ENRICH_CARD_PRINTING_IMAGE') {
     if (status === 'PRINTING_ONLY') {
       return { ok: true, status };
     }
     return {
       ok: false,
-      reason: `identity_audit_disallows_create_card_printing:${status}`,
+      reason: `identity_audit_disallows_child_printing_action:${status}`,
       missing: ['Identity audit status PRINTING_ONLY'],
     };
   }
@@ -596,6 +597,13 @@ function inferApprovedActionType(writePlan) {
   if (!writePlan || writePlan.status !== 'READY') return null;
   if (writePlan.actions?.card_prints?.action === 'CREATE') return 'CREATE_CARD_PRINT';
   if (writePlan.actions?.card_printings?.action === 'CREATE') return 'CREATE_CARD_PRINTING';
+  if (
+    writePlan.actions?.card_printings?.action === 'REUSE' &&
+    writePlan.actions?.image_fields?.action === 'UPDATE' &&
+    writePlan.actions?.image_fields?.payload?.target_table === 'card_printings'
+  ) {
+    return 'ENRICH_CARD_PRINTING_IMAGE';
+  }
   if (writePlan.actions?.image_fields?.action === 'UPDATE') return 'ENRICH_CANON_IMAGE';
   return null;
 }
@@ -867,6 +875,34 @@ async function fetchCardPrintingByCardPrintAndFinish(client, cardPrintId, finish
       limit 1
     `,
     [normalizedCardPrintId, normalizedFinishKey],
+  );
+  return rows[0] ?? null;
+}
+
+async function fetchCardPrintingById(client, cardPrintingId) {
+  const normalizedCardPrintingId = normalizeTextOrNull(cardPrintingId);
+  if (!normalizedCardPrintingId) return null;
+  const { rows } = await client.query(
+    `
+      select
+        id,
+        card_print_id,
+        finish_key,
+        is_provisional,
+        provenance_source,
+        provenance_ref,
+        created_by,
+        image_source,
+        image_path,
+        image_url,
+        image_alt_url,
+        image_status,
+        image_note
+      from public.card_printings
+      where id = $1
+      limit 1
+    `,
+    [normalizedCardPrintingId],
   );
   return rows[0] ?? null;
 }
@@ -1154,6 +1190,97 @@ async function buildPromotionWritePlanSnapshot(client, {
           image_fields: {
             image_url: normalizeTextOrNull(parent.image_url),
             image_alt_url: normalizeTextOrNull(parent.image_alt_url),
+          },
+        },
+      },
+      missing_requirements: [],
+    };
+  }
+
+  if (proposedAction === 'ENRICH_CARD_PRINTING_IMAGE') {
+    const matchedCardPrintId = normalizeTextOrNull(interpreterPackage?.canon_context?.matched_card_print_id);
+    const matchedCardPrintingId = normalizeTextOrNull(interpreterPackage?.canon_context?.matched_card_printing_id);
+    if (!matchedCardPrintId || !matchedCardPrintingId) {
+      return buildBlockedWritePlan('Child image enrichment requires resolved parent and child printing targets.', [
+        !matchedCardPrintId ? 'Resolved parent card_print target' : null,
+        !matchedCardPrintingId ? 'Resolved card_printing target' : null,
+      ]);
+    }
+
+    const [parent, child] = await Promise.all([
+      fetchCardPrintById(client, matchedCardPrintId),
+      fetchCardPrintingById(client, matchedCardPrintingId),
+    ]);
+    if (!parent) {
+      return buildBlockedWritePlan('Resolved parent card_print target could not be found.', ['Resolved parent card_print target']);
+    }
+    if (!child || child.card_print_id !== parent.id) {
+      return buildBlockedWritePlan('Resolved card_printing target could not be found under the resolved parent.', [
+        'Resolved child card_printing target',
+      ]);
+    }
+
+    const normalizedFrontStoragePath = normalizeTextOrNull(
+      normalizationPackage?.outputs?.normalized_front_storage_path,
+    );
+    if (!normalizedFrontStoragePath) {
+      return buildBlockedWritePlan('Normalized front asset is required before child image enrichment can be staged.', [
+        'Normalized front asset',
+      ]);
+    }
+
+    return {
+      status: 'READY',
+      reason: 'Promotion would attach the normalized promotion asset to the resolved child printing only.',
+      actions: {
+        card_prints: {
+          action: 'REUSE',
+          target_id: parent.id,
+          payload: null,
+          reason: 'Existing canonical parent row would be reused and its image fields would not be overwritten.',
+        },
+        card_printings: {
+          action: 'REUSE',
+          target_id: child.id,
+          payload: null,
+          reason: 'Existing child printing would receive the finish-specific image.',
+        },
+        external_mappings: buildEmptyAction('Promotion Executor V1 does not write external_mappings.'),
+        image_fields: {
+          action: 'UPDATE',
+          target_id: child.id,
+          payload: {
+            target_table: 'card_printings',
+            normalized_front_storage_path: normalizedFrontStoragePath,
+          },
+          reason: 'The normalized promotion asset is frozen for child-printing image enrichment.',
+        },
+      },
+      preview: {
+        before: {
+          card_prints: parent,
+          card_printings: child,
+          external_mappings: null,
+          image_fields: {
+            target_table: 'card_printings',
+            image_source: normalizeTextOrNull(child.image_source),
+            image_path: normalizeTextOrNull(child.image_path),
+            image_url: normalizeTextOrNull(child.image_url),
+            image_alt_url: normalizeTextOrNull(child.image_alt_url),
+            image_status: normalizeTextOrNull(child.image_status),
+            image_note: normalizeTextOrNull(child.image_note),
+          },
+        },
+        after: {
+          card_prints: parent,
+          card_printings: child,
+          external_mappings: null,
+          image_fields: {
+            target_table: 'card_printings',
+            image_source: 'identity',
+            image_path: normalizedFrontStoragePath,
+            image_status: 'exact',
+            image_note: `warehouse_candidate:${candidate.id}`,
           },
         },
       },
