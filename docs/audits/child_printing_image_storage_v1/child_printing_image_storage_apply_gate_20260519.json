@@ -1,0 +1,62 @@
+{
+  "lane": "CHILD_PRINTING_IMAGE_STORAGE_V1",
+  "date": "2026-05-19",
+  "decision": "BLOCKED_BEFORE_STRICT_GATE",
+  "preflight": {
+    "branch": "scanner-v4-card-present-gate",
+    "head": "d00d2737",
+    "lane_commit_present": true,
+    "npm_preflight": "PASS_WITH_DEFERRED_DEBT",
+    "git_diff_check": "PASS"
+  },
+  "migration_ledger": {
+    "linked_ledger_worked": true,
+    "expected_local_only": [
+      "20260519163000"
+    ],
+    "unexpected_remote_only": [
+      "20260518180000",
+      "20260519151000"
+    ],
+    "clean_for_apply": false
+  },
+  "migration_audit": {
+    "file": "supabase/migrations/20260519163000_child_printing_image_storage_v1.sql",
+    "nullable_fields_only": true,
+    "destructive_operations": false,
+    "parent_card_prints_image_update": false,
+    "candidate_promotion": false,
+    "automatic_image_copying": false,
+    "public_route_changes": false,
+    "pricing_changes": false,
+    "scanner_dependency": false,
+    "species_dex_denominator_change": false,
+    "warehouse_constraints_additive": true,
+    "existing_actions_remain_valid": true
+  },
+  "gates": {
+    "strict_preflight": "NOT_RUN_LEDGER_BLOCKED",
+    "remote_read_only_precheck": "NOT_RUN_LEDGER_BLOCKED",
+    "supabase_dry_run": "NOT_RUN_LEDGER_BLOCKED",
+    "apply": "NOT_APPLIED_LEDGER_BLOCKED",
+    "post_apply_verification": "NOT_RUN_NOT_APPLIED"
+  },
+  "excluded_unrelated_dirty_files": [
+    ".flutter-plugins-dependencies",
+    ".gitignore",
+    "backend/pricing/justtcg_domain_ingest_worker_v1.mjs",
+    "docs/audits/pokemon_master_set_audit_v1/",
+    "docs/ops/PRICING_HIGHWAY_REPAIR_PLAN_V1.md",
+    "scripts/audits/pokemon_master_set_audit_v1.mjs"
+  ],
+  "safety_confirmation": {
+    "db_write_performed": false,
+    "migration_applied": false,
+    "parent_image_overwrite": false,
+    "warehouse_candidate_promotion": false,
+    "pricing_changes": false,
+    "scanner_changes": false,
+    "species_dex_denominator_changes": false,
+    "public_child_route_enablement": false
+  }
+}
