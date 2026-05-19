@@ -1,24 +1,29 @@
 {
   "lane": "CHILD_PRINTING_IMAGE_STORAGE_V1",
   "date": "2026-05-19",
-  "decision": "BLOCKED_BEFORE_STRICT_GATE",
+  "decision": "APPLIED_AND_VERIFIED",
+  "restored_local_migrations": [
+    "20260518180000_child_printing_public_identity_v1.sql",
+    "20260519151000_warehouse_image_reference_context_v1.sql"
+  ],
   "preflight": {
     "branch": "scanner-v4-card-present-gate",
-    "head": "d00d2737",
-    "lane_commit_present": true,
+    "starting_lane_head": "d00d2737",
+    "prior_gate_doc_commit": "15e1484f",
     "npm_preflight": "PASS_WITH_DEFERRED_DEBT",
     "git_diff_check": "PASS"
   },
   "migration_ledger": {
     "linked_ledger_worked": true,
-    "expected_local_only": [
-      "20260519163000"
-    ],
-    "unexpected_remote_only": [
+    "restored_remote_only_ids": [
       "20260518180000",
       "20260519151000"
     ],
-    "clean_for_apply": false
+    "expected_local_only_before_apply": [
+      "20260519163000"
+    ],
+    "unexpected_remote_only_after_restore": [],
+    "aligned_after_apply": true
   },
   "migration_audit": {
     "file": "supabase/migrations/20260519163000_child_printing_image_storage_v1.sql",
@@ -35,11 +40,52 @@
     "existing_actions_remain_valid": true
   },
   "gates": {
-    "strict_preflight": "NOT_RUN_LEDGER_BLOCKED",
-    "remote_read_only_precheck": "NOT_RUN_LEDGER_BLOCKED",
-    "supabase_dry_run": "NOT_RUN_LEDGER_BLOCKED",
-    "apply": "NOT_APPLIED_LEDGER_BLOCKED",
-    "post_apply_verification": "NOT_RUN_NOT_APPLIED"
+    "strict_preflight": {
+      "status": "PASS",
+      "command": "pwsh -NoProfile -File .\\scripts\\migration_preflight_strict.ps1 -Phase PrePush -ExpectedLocalOnlyIds 20260519163000",
+      "tooling_fix_required": true,
+      "tooling_fix": "Read stdout and stderr asynchronously in migration_preflight_strict.ps1 to avoid deadlock during supabase db reset.",
+      "expected_pending_set_matched": true,
+      "pending_object_scan": "PASS",
+      "local_replay": "PASS"
+    },
+    "remote_read_only_precheck": {
+      "status": "PASS",
+      "card_printings_exists": true,
+      "target_child_image_columns_absent_before_apply": true,
+      "printing_gv_id_populated_count_before_apply": 44698,
+      "warehouse_constraints_pre_apply_missing_enrich_card_printing_image": true,
+      "partial_child_image_storage_schema": false
+    },
+    "supabase_dry_run": {
+      "status": "PASS",
+      "migrations_listed": [
+        "20260519163000_child_printing_image_storage_v1.sql"
+      ]
+    },
+    "apply": {
+      "status": "APPLIED",
+      "command": "supabase db push --yes",
+      "migrations_applied": [
+        "20260519163000_child_printing_image_storage_v1.sql"
+      ]
+    },
+    "post_apply_verification": {
+      "status": "PASS",
+      "ledger_aligned": true,
+      "child_image_columns_nullable": true,
+      "warehouse_action_enrich_card_printing_image_allowed": true,
+      "printing_gv_id_populated_count_after_apply": 44698,
+      "populated_child_image_count_after_apply": 0
+    }
+  },
+  "app_verification": {
+    "web_typecheck": "PASS",
+    "web_lint": "PASS_WITH_EXISTING_IMG_WARNING",
+    "web_build": "PASS_WITH_EXISTING_IMG_WARNING",
+    "contracts_test": "PASS_74_TESTS",
+    "contracts_runtime_health": "PASS",
+    "git_diff_check": "PASS"
   },
   "excluded_unrelated_dirty_files": [
     ".flutter-plugins-dependencies",
@@ -50,13 +96,14 @@
     "scripts/audits/pokemon_master_set_audit_v1.mjs"
   ],
   "safety_confirmation": {
-    "db_write_performed": false,
-    "migration_applied": false,
     "parent_image_overwrite": false,
     "warehouse_candidate_promotion": false,
     "pricing_changes": false,
     "scanner_changes": false,
     "species_dex_denominator_changes": false,
-    "public_child_route_enablement": false
+    "public_child_route_enablement": false,
+    "migration_repair_used": false,
+    "include_all_used": false,
+    "dashboard_sql_used": false
   }
 }

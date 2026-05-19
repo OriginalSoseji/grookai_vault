@@ -74,15 +74,17 @@ function Invoke-ExternalCommand {
     Fail "Failed to launch ${FileName}: $($_.Exception.Message)"
   }
 
-  $stdOut = $process.StandardOutput.ReadToEnd()
-  $stdErr = $process.StandardError.ReadToEnd()
+  $stdOutTask = $process.StandardOutput.ReadToEndAsync()
+  $stdErrTask = $process.StandardError.ReadToEndAsync()
   $process.WaitForExit()
+  $stdOutTask.Wait()
+  $stdErrTask.Wait()
 
   return [pscustomobject]@{
     Command  = "$FileName $argumentPreview"
     ExitCode = $process.ExitCode
-    StdOut   = $stdOut
-    StdErr   = $stdErr
+    StdOut   = $stdOutTask.Result
+    StdErr   = $stdErrTask.Result
   }
 }
 

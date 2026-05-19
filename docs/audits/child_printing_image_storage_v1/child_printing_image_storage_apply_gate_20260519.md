@@ -4,17 +4,38 @@ Date: 2026-05-19
 
 ## Decision
 
-Status: BLOCKED_BEFORE_STRICT_GATE
+Status: APPLIED_AND_VERIFIED
 
-The apply gate stopped during linked migration ledger preflight. The remote ledger contains unexpected remote-only migrations in addition to the expected local-only migration for this lane.
+The missing local migration files were restored from Git history, the linked
+migration ledger became clean except for the expected local-only migration, and
+the image storage migration was applied through the normal Supabase migration
+path.
 
-No migration was applied.
+Applied migration:
+
+- `20260519163000_child_printing_image_storage_v1.sql`
+
+No migration repair, dashboard SQL, or `--include-all` path was used.
+
+## Restored Local Migrations
+
+The prior blocker was incomplete local migration history. These files were
+restored into `supabase/migrations` before continuing:
+
+- `20260518180000_child_printing_public_identity_v1.sql`
+- `20260519151000_warehouse_image_reference_context_v1.sql`
+
+After restore, `supabase migration list --linked` showed:
+
+- `20260518180000`: local and remote
+- `20260519151000`: local and remote
+- `20260519163000`: local-only expected pending migration
 
 ## Preflight Result
 
 - Branch: `scanner-v4-card-present-gate`
-- HEAD: `d00d2737`
-- Latest lane commit present: yes
+- Starting lane HEAD: `d00d2737`
+- Prior gate doc commit: `15e1484f`
 - Preflight command: `npm run preflight`
 - Preflight result: `PASS_WITH_DEFERRED_DEBT`
 - Diff whitespace check: passed
@@ -27,24 +48,6 @@ Known unrelated dirty files excluded from this gate:
 - `docs/audits/pokemon_master_set_audit_v1/`
 - `docs/ops/PRICING_HIGHWAY_REPAIR_PLAN_V1.md`
 - `scripts/audits/pokemon_master_set_audit_v1.mjs`
-
-## Migration Ledger Result
-
-Expected local-only migration:
-
-- `20260519163000_child_printing_image_storage_v1.sql`
-
-Unexpected remote-only migrations:
-
-- `20260518180000`
-- `20260519151000`
-
-Because the linked ledger is not clean, the gate stopped before:
-
-- strict migration preflight
-- remote read-only precheck
-- Supabase dry-run
-- Supabase apply
 
 ## Migration Audit
 
@@ -71,25 +74,94 @@ Findings:
   - `BLOCKED_NO_PROMOTION`
   - `REVIEW_REQUIRED`
 
-## Blocker
+## Strict Gate
 
-The migration ledger has remote-only migrations that are not present in this worktree. Applying the local migration from this state would risk operating from an incomplete local migration history.
+Result: PASS
 
-## Required Next Action
+The strict guard initially exposed a tooling deadlock in its command runner:
+`supabase db reset --local --yes` emits enough output to deadlock when stdout is
+read to completion before stderr. The guard runner was fixed to read both
+streams asynchronously.
 
-Recover the local migration ledger before applying:
+Strict gate command:
 
-1. Identify what remote migrations `20260518180000` and `20260519151000` represent.
-2. Restore their local migration files or switch to the branch/worktree that contains them.
-3. Re-run:
-   - `supabase migration list --linked`
-   - `pwsh -NoProfile -File .\scripts\migration_preflight_strict.ps1 -Phase PrePush -ExpectedLocalOnlyIds 20260519163000`
-4. Continue only if the only local-only migration is `20260519163000`.
+```powershell
+pwsh -NoProfile -File .\scripts\migration_preflight_strict.ps1 -Phase PrePush -ExpectedLocalOnlyIds 20260519163000
+```
+
+Strict gate proof:
+
+- expected local-only migration set matched: `20260519163000`
+- pending migration object scan passed
+- local replay/reset passed
+- restored migrations replayed successfully
+- pending image storage migration replayed successfully
+
+## Remote Read-Only Precheck
+
+Result: PASS
+
+Before apply:
+
+- `public.card_printings` existed.
+- Target child image columns were absent.
+- `card_printings.printing_gv_id` populated count was `44,698`.
+- Warehouse constraints did not yet include `ENRICH_CARD_PRINTING_IMAGE`.
+- No partial child image storage schema was present.
+
+## Dry Run
+
+Result: PASS
+
+Command:
+
+```powershell
+supabase db push --dry-run
+```
+
+Dry-run output listed exactly one migration:
+
+- `20260519163000_child_printing_image_storage_v1.sql`
+
+## Apply Result
+
+Result: APPLIED
+
+Command:
+
+```powershell
+supabase db push --yes
+```
+
+Applied exactly:
+
+- `20260519163000_child_printing_image_storage_v1.sql`
+
+## Post-Apply Verification
+
+Result: PASS
+
+Remote verification:
+
+- migration ledger aligned through `20260519163000`
+- child image columns exist on `public.card_printings`
+- all six child image columns are nullable text fields
+- `ENRICH_CARD_PRINTING_IMAGE` is allowed by warehouse action constraints
+- `card_printings.printing_gv_id` populated count remained `44,698`
+- child image populated count is `0`
+- no image data was seeded by the migration
+
+App verification:
+
+- `npm --prefix apps/web run typecheck`: pass
+- `npm --prefix apps/web run lint`: pass with existing `<img>` warning in `WarehouseSubmissionForm.tsx`
+- `npm --prefix apps/web run build`: pass with same existing warning
+- `npm run contracts:test`: pass, 74 tests
+- `npm run contracts:runtime-health`: pass
+- `git diff --check`: pass
 
 ## Safety Confirmation
 
-- No DB write was performed.
-- No migration was applied.
 - No parent image overwrite occurred.
 - No warehouse candidate was promoted.
 - No pricing change was made.
