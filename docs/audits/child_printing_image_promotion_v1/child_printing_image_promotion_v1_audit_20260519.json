@@ -1,0 +1,56 @@
+{
+  "audit": "CHILD_PRINTING_IMAGE_PROMOTION_V1",
+  "date": "2026-05-19",
+  "status": "AUDIT_CONTRACT_ONLY",
+  "db_writes": false,
+  "migration_applied": false,
+  "live_counts": {
+    "card_printings": 55582,
+    "active_owned_child_printing_instances": 5,
+    "missing_image_ready_or_image_related_candidates": 5
+  },
+  "current_card_printings_columns": [
+    "id",
+    "card_print_id",
+    "finish_key",
+    "created_at",
+    "is_provisional",
+    "provenance_source",
+    "provenance_ref",
+    "created_by",
+    "printing_gv_id"
+  ],
+  "missing_child_image_columns": [
+    "image_source",
+    "image_path",
+    "image_url",
+    "image_alt_url",
+    "image_status",
+    "image_note"
+  ],
+  "recommended_action_type": "ENRICH_CARD_PRINTING_IMAGE",
+  "two_step_rule": {
+    "when_child_printing_missing": [
+      "CREATE_CARD_PRINTING",
+      "ENRICH_CARD_PRINTING_IMAGE"
+    ],
+    "compound_action_allowed": false
+  },
+  "sample_candidate": {
+    "id": "5b20c5f5-836f-4c48-ae5e-0d3cdb1191c6",
+    "card_gv_id": "GV-PK-ME03-095-SHINY-RARE",
+    "state": "REVIEW_READY",
+    "decision": "CHILD",
+    "finish_key": "reverse",
+    "proposed_action_type": "CREATE_CARD_PRINTING",
+    "child_image_promotion_status": "BLOCKED_UNTIL_CHILD_IMAGE_SCHEMA"
+  },
+  "non_changes": {
+    "parent_gv_id_changes": false,
+    "printing_gv_id_changes": false,
+    "species_dex_denominator_changes": false,
+    "scanner_changes": false,
+    "pricing_changes": false,
+    "public_child_routes": false
+  }
+}
