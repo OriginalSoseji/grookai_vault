@@ -1,5 +1,6 @@
 export type CardPrinting = {
   id: string;
+  printing_gv_id?: string;
   finish_key?: string;
   finish_name?: string;
   finish_sort_order?: number;

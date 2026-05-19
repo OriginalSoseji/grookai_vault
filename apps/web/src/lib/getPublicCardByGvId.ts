@@ -1,6 +1,10 @@
 import { cache } from "react";
 import { createClient } from "@supabase/supabase-js";
 import { resolveCardImageFieldsV1 } from "@/lib/canon/resolveCardImageFieldsV1";
+import {
+  getCardPrintingsSelectColumns,
+  hasChildPrintingPublicIdentityColumn,
+} from "@/lib/cards/childPrintingPublicIdentity";
 import { getCardPrintingFinishLabel } from "@/lib/cards/displayDiscriminator";
 import { getCompatiblePublicGvIdCandidates, pickResolvedPublicGvIdRow } from "@/lib/gvIdAlias";
 import { getPublicPricingByCardIds } from "@/lib/pricing/getPublicPricingByCardIds";
@@ -40,6 +44,7 @@ type PublicCardRow = {
   card_printings?:
     | {
         id: string | null;
+        printing_gv_id?: string | null;
         finish_key: string | null;
         finish_keys:
           | { label: string | null; sort_order: number | null }
@@ -147,6 +152,7 @@ function mapCardPrintings(rows?: PublicCardRow["card_printings"]): CardPrinting[
 
       return {
         id: printing.id ?? "",
+        printing_gv_id: printing.printing_gv_id?.trim() || undefined,
         finish_key: printing.finish_key?.trim() || undefined,
         finish_name:
           getCardPrintingFinishLabel({
@@ -447,6 +453,8 @@ async function getRelatedPrintsByName(
 
 export async function getPublicCardByGvId(gv_id: string): Promise<CardDetail | null> {
   const supabase = createServerSupabase();
+  const includePrintingPublicIdentity = await hasChildPrintingPublicIdentityColumn(supabase);
+  const printingSelect = getCardPrintingsSelectColumns(includePrintingPublicIdentity);
   const { data, error } = await supabase
     .from("card_prints")
     .select(
@@ -456,6 +464,7 @@ export async function getPublicCardByGvId(gv_id: string): Promise<CardDetail | n
         name,
         number,
         number_plain,
+        identity_domain,
         rarity,
         image_url,
         image_alt_url,
@@ -478,9 +487,7 @@ export async function getPublicCardByGvId(gv_id: string): Promise<CardDetail | n
           card_category
         ),
         card_printings(
-          id,
-          finish_key,
-          finish_keys(label,sort_order)
+          ${printingSelect}
         ),
         sets(name,printed_total,printed_set_abbrev,release_date,identity_model)
       `,
@@ -492,7 +499,7 @@ export async function getPublicCardByGvId(gv_id: string): Promise<CardDetail | n
     return null;
   }
 
-  const row = pickResolvedPublicGvIdRow(data as PublicCardRow[], gv_id);
+  const row = pickResolvedPublicGvIdRow(data as unknown as PublicCardRow[], gv_id);
   if (!row) {
     return null;
   }

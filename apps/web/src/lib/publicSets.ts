@@ -1,6 +1,10 @@
 import "server-only";
 
 import { cache } from "react";
+import {
+  getCardPrintingsSelectColumns,
+  hasChildPrintingPublicIdentityColumn,
+} from "@/lib/cards/childPrintingPublicIdentity";
 import { resolveCardImageFieldsV1 } from "@/lib/canon/resolveCardImageFieldsV1";
 import { getCardPrintingFinishLabel } from "@/lib/cards/displayDiscriminator";
 import { createPublicServerClient } from "@/lib/supabase/publicServer";
@@ -48,6 +52,7 @@ type PublicSetCardRow = {
   card_printings?:
     | {
         id: string | null;
+        printing_gv_id?: string | null;
         finish_key: string | null;
         finish_keys:
           | { label: string | null; sort_order: number | null }
@@ -104,6 +109,7 @@ function mapPublicSetCardPrintings(rows?: PublicSetCardRow["card_printings"]) {
 
       return {
         id: printing.id?.trim() || undefined,
+        printing_gv_id: printing.printing_gv_id?.trim() || undefined,
         finish_key: printing.finish_key?.trim() || undefined,
         finish_name: finishName ?? undefined,
         image_url: undefined,
@@ -277,6 +283,8 @@ export async function getPublicSetCards(setCode: string, offset = 0, limit = 36)
   }
 
   const supabase = createServerSupabase();
+  const includePrintingPublicIdentity = await hasChildPrintingPublicIdentityColumn(supabase);
+  const printingSelect = getCardPrintingsSelectColumns(includePrintingPublicIdentity);
   const { data, error } = await supabase
     .from("card_prints")
     .select(`
@@ -296,9 +304,7 @@ export async function getPublicSetCards(setCode: string, offset = 0, limit = 36)
       image_status,
       image_note,
       card_printings(
-        id,
-        finish_key,
-        finish_keys(label,sort_order)
+        ${printingSelect}
       ),
       sets(identity_model)
     `)
