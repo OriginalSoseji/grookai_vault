@@ -2,27 +2,47 @@
 
 Generated: 2026-05-18
 
-Status: TOOLING-ONLY FAILURE IDENTIFIED; APPLY STILL BLOCKED UNTIL GUARD RERUN PASSES.
+Status: SHADOW PORT CLEANED; GUARD TOOLING REPAIRED; APPLY BLOCKED BY LINKED SCHEMA DIFF.
 
 ## Scope
 
-This diagnosis covers the previous `migration_preflight_strict.ps1 -Phase AuditLinkedSchema` timeout/failure for `CHILD_PRINTING_PUBLIC_IDENTITY_V1`.
+This diagnosis covers the `migration_preflight_strict.ps1 -Phase AuditLinkedSchema` guard for `CHILD_PRINTING_PUBLIC_IDENTITY_V1`.
 
-No migration was applied. No database write was performed.
+No migration was applied. No production database write was performed.
 
-## Instrumentation Added
+## Instrumentation
 
 `scripts/migration_preflight_strict.ps1` now emits:
 
 - elapsed-time markers per section
-- step start markers for external commands
-- stdout read completion markers
-- stderr read completion markers
-- exit code and elapsed time per external command
+- external command start markers
+- stdout/stderr read completion markers
+- exit code and elapsed duration per command
+- bounded stdout/stderr transcript printing
+- temp-file based stdout/stderr capture to avoid redirected pipe deadlocks on large `supabase db diff` output
 
-This makes future guard failures diagnosable without guessing which internal command stalled or failed.
+## Shadow Container Cleanup
 
-## Manual Command Results
+The original stale shadow database container was stopped:
+
+```text
+7a2046653163 cranky_merkle
+```
+
+Later `supabase db diff --linked` attempts created additional auto-remove shadow containers on port `54331`. Each removed container was first verified as a Supabase shadow Postgres container for project `ycdxbpibncqcchqiihfz`, with:
+
+- image `public.ecr.aws/supabase/postgres:17.4.1.074`
+- label `com.supabase.cli.project=ycdxbpibncqcchqiihfz`
+- host port `54331`
+- `AutoRemove=true`
+
+The normal local Supabase database container was not removed:
+
+```text
+supabase_db_ycdxbpibncqcchqiihfz 54330->5432
+```
+
+## Manual Internal Command Results
 
 ### Linked Migration Ledger
 
@@ -33,8 +53,6 @@ supabase migration list --linked
 ```
 
 Result: PASS.
-
-Elapsed: approximately `00:00:02.8`.
 
 Ledger status:
 
@@ -50,53 +68,20 @@ Command:
 supabase db diff --linked
 ```
 
-Result: FAIL, tooling/environment.
+Result: FAIL, linked schema diff is non-empty.
 
-Elapsed: approximately `00:00:01.7`.
-
-Error:
+After the stale shadow port blocker was cleared, the command completed and emitted a large schema diff. The diff includes the expected local-only child printing identity delta:
 
 ```text
-failed to start docker container
-Bind for 0.0.0.0:54331 failed: port is already allocated
+drop index if exists "public"."card_printings_printing_gv_id_key"
+alter table "public"."card_printings" drop column "printing_gv_id"
 ```
 
-Supabase CLI recommends:
+It also includes unrelated drift classes outside this lane, including extension/schema changes, many view drops/recreates, `admin.import_runs`, `ingest.card_prints_raw`, `public.collapse_map_phase1`, `public.scanner_fingerprint_index`, `pricing_jobs.locked_at`, `pricing_jobs.locked_by`, and `sets` metadata columns.
 
-```powershell
-supabase stop --project-id ycdxbpibncqcchqiihfz
-```
+This is not safe to classify as tooling-only drift.
 
-or configuring a different shadow database port in `supabase/config.toml`.
-
-## Port Diagnosis
-
-Command:
-
-```powershell
-Get-NetTCPConnection -LocalPort 54331
-```
-
-Result:
-
-- port `54331` is listening through Docker/WSL relay processes
-- observed owners include `wslrelay` and `com.docker.backend`
-
-Command:
-
-```powershell
-docker ps --format "table {{.ID}}\t{{.Names}}\t{{.Ports}}"
-```
-
-Relevant result:
-
-```text
-7a2046653163   cranky_merkle   0.0.0.0:54331->5432/tcp
-```
-
-The local Supabase project also has expected containers on nearby ports, including `supabase_db_ycdxbpibncqcchqiihfz` on `54330`.
-
-## Instrumented Guard Result
+## Strict Guard Result
 
 Command:
 
@@ -104,63 +89,42 @@ Command:
 pwsh -NoProfile -File .\scripts\migration_preflight_strict.ps1 -Phase AuditLinkedSchema
 ```
 
-Result: FAIL, tooling/environment.
+Result: FAIL, linked schema diff.
 
 Observed markers:
 
 - `step 1`: `supabase migration list --linked` completed successfully
-- `step 2`: `supabase db diff --linked` started at approximately `00:00:02.240`
+- `step 2`: `supabase db diff --linked` completed in approximately `00:00:47`
 - `step 2`: stdout and stderr reads completed
-- `step 2`: exited with code `1` after approximately `00:00:01.418`
+- `step 2`: exited with code `0`
+- guard failed closed because schema diff stdout was non-empty
 
-The earlier timeout is therefore not an unbounded migration replay failure. The current reproducible failure is a local Docker/Supabase shadow database port conflict.
+The strict wrapper no longer hangs. It reaches the intended linked-diff gate and blocks apply.
 
 ## Classification
 
-Diagnosis: tooling-only local environment failure.
+Diagnosis: apply-blocking linked schema diff after local tooling repair.
 
 Reason:
 
 - linked migration ledger is readable
-- failure occurs before schema diff can start
-- failure is caused by Docker port allocation on local shadow DB port `54331`
-- no SQL migration step is executed
-- no local replay is reached
-- no production database write is attempted
+- stale shadow database containers were cleared
+- guard wrapper output capture was repaired
+- linked schema diff is non-empty beyond the expected local-only child printing identity migration
+- local replay was not run
+- no production database write occurred
 
 ## Apply Decision
 
-Decision: DO NOT APPLY YET.
+Decision: DO NOT APPLY.
 
-Even though the failure is tooling-only, the required gate has not passed. Apply remains blocked until:
+Apply remains blocked until:
 
-1. stale container or shadow-port conflict is cleared
+1. linked schema diff is reconciled or formally classified as acceptable expected drift outside this lane
 2. `migration_preflight_strict.ps1 -Phase AuditLinkedSchema` passes
 3. `supabase db reset --local` passes
 4. live candidate regeneration shows drift count `0`
 5. remote read-only precheck passes
-
-## Safe Recovery Options For Next Run
-
-Preferred:
-
-```powershell
-supabase stop --project-id ycdxbpibncqcchqiihfz
-```
-
-Then rerun:
-
-```powershell
-pwsh -NoProfile -File .\scripts\migration_preflight_strict.ps1 -Phase AuditLinkedSchema
-```
-
-Alternative if the stale container is unrelated and verified safe to remove:
-
-```powershell
-docker stop 7a2046653163
-```
-
-Do not apply the migration until the full gate passes after cleanup.
 
 ## Confirmations
 

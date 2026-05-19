@@ -8,12 +8,11 @@ Status: BLOCKED BEFORE APPLY.
 
 - project ref discovered: `ycdxbpibncqcchqiihfz`
 - project ref source: `supabase/config.toml`
-- command: `supabase link --project-ref ycdxbpibncqcchqiihfz`
-- result: linked successfully
+- linked status: PASS
 
 ## Linked Migration Ledger
 
-Ledger command:
+Command:
 
 ```powershell
 supabase migration list --linked
@@ -29,17 +28,11 @@ The linked ledger is readable. The only local-only migration visible at the tail
 
 That is the expected `CHILD_PRINTING_PUBLIC_IDENTITY_V1` nullable schema migration.
 
-## Repo Preflight
+## Shadow Port Recovery
 
-Command:
+The stale shadow container on `54331` was removed after inspection. Additional auto-remove shadow containers created by later diff attempts were also stopped only after confirming they were Supabase shadow Postgres containers for project `ycdxbpibncqcchqiihfz`.
 
-```powershell
-npm run preflight
-```
-
-Result: PASS_WITH_DEFERRED_DEBT.
-
-The preflight reported no critical failures and known deferred debt only.
+The normal local Supabase DB container on `54330` was preserved.
 
 ## Strict Migration Preflight
 
@@ -49,9 +42,24 @@ Command:
 pwsh -NoProfile -File .\scripts\migration_preflight_strict.ps1 -Phase AuditLinkedSchema
 ```
 
-Result: BLOCKED.
+Result: FAIL.
 
-The command did not complete within the configured 4-minute command timeout. Per the lane rules, the apply path stops here. No local replay, remote candidate regeneration, remote read-only precheck, or migration apply was run after this timeout.
+The strict guard now completes without hanging. It fails because `supabase db diff --linked` returns a non-empty schema diff.
+
+Important diff classes observed:
+
+- expected local-only `card_printings.printing_gv_id` / `card_printings_printing_gv_id_key` delta
+- unrelated extension/schema changes
+- many view drops/recreates
+- `admin.import_runs`
+- `ingest.card_prints_raw`
+- `public.collapse_map_phase1`
+- `public.scanner_fingerprint_index`
+- `pricing_jobs.locked_at`
+- `pricing_jobs.locked_by`
+- `sets` metadata columns
+
+This means the apply gate is not clean.
 
 ## Local Replay
 
@@ -63,7 +71,7 @@ supabase db reset --local
 
 Result: NOT RUN.
 
-Reason: strict migration preflight timed out first.
+Reason: strict linked-schema preflight failed first.
 
 ## Live Candidate Regeneration
 
@@ -75,7 +83,7 @@ node scripts/audits/child_printing_public_identity_v1.mjs
 
 Result: NOT RUN in this apply-gate attempt.
 
-Reason: strict migration preflight timed out first.
+Reason: strict linked-schema preflight failed first.
 
 Previously committed dry-run evidence remains:
 
@@ -92,13 +100,13 @@ Those counts were not refreshed in this blocked gate attempt.
 
 Result: NOT RUN.
 
-Reason: strict migration preflight timed out first.
+Reason: strict linked-schema preflight failed first.
 
 ## Apply Decision
 
 Decision: DO NOT APPLY.
 
-Reason: strict linked-schema preflight did not complete. The migration remains drafted only.
+Reason: strict linked-schema preflight does not pass. The migration remains drafted only.
 
 ## Rollback Strategy
 
@@ -114,6 +122,7 @@ If a future approved run applies the nullable schema migration, rollback remains
 ## Post-Apply Checklist For Future Run
 
 - linked migration ledger aligned
+- linked schema diff reconciled or formally accepted
 - local replay passes
 - live candidate regeneration has drift count `0`
 - `printing_gv_id` absent before apply

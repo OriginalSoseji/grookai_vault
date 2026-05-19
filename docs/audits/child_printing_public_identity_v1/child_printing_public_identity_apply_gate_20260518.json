@@ -13,25 +13,40 @@
     "unexpected_local_only_migrations": [],
     "unexpected_remote_only_migrations": []
   },
-  "repo_preflight": {
-    "command": "npm run preflight",
-    "status": "PASS_WITH_DEFERRED_DEBT"
+  "shadow_port_recovery": {
+    "status": "PASS",
+    "stale_shadow_container_removed": "7a2046653163",
+    "normal_local_db_preserved": true
   },
   "strict_migration_preflight": {
     "command": "pwsh -NoProfile -File .\\scripts\\migration_preflight_strict.ps1 -Phase AuditLinkedSchema",
-    "status": "TIMEOUT",
-    "timeout_ms": 240000,
-    "stop_reason": "Strict linked-schema preflight did not complete before timeout. Apply gate stopped per lane rules."
+    "status": "FAIL_NON_EMPTY_SCHEMA_DIFF",
+    "wrapper_timeout_resolved": true,
+    "diff_command_exit_code": 0,
+    "stop_reason": "supabase db diff --linked returned non-empty stdout",
+    "expected_child_identity_delta_seen": true,
+    "unexpected_unrelated_drift_seen": true,
+    "unrelated_drift_classes": [
+      "extension/schema changes",
+      "many view drops/recreates",
+      "admin.import_runs",
+      "ingest.card_prints_raw",
+      "public.collapse_map_phase1",
+      "public.scanner_fingerprint_index",
+      "pricing_jobs.locked_at",
+      "pricing_jobs.locked_by",
+      "sets metadata columns"
+    ]
   },
   "local_replay": {
     "command": "supabase db reset --local",
     "status": "NOT_RUN",
-    "reason": "strict migration preflight timed out first"
+    "reason": "strict linked-schema preflight failed first"
   },
   "candidate_regeneration": {
     "command": "node scripts/audits/child_printing_public_identity_v1.mjs",
     "status": "NOT_RUN",
-    "reason": "strict migration preflight timed out first",
+    "reason": "strict linked-schema preflight failed first",
     "last_committed_counts": {
       "total_child_printings": 55582,
       "approved_candidates": 44698,
@@ -44,12 +59,12 @@
   },
   "remote_read_only_precheck": {
     "status": "NOT_RUN",
-    "reason": "strict migration preflight timed out first"
+    "reason": "strict linked-schema preflight failed first"
   },
   "apply": {
     "status": "NOT_APPLIED",
     "migration_applied": null,
-    "recommendation": "Do not apply until strict migration preflight completes, local replay passes, live candidate regeneration has zero drift, and remote read-only precheck passes."
+    "recommendation": "Do not apply until linked schema diff is reconciled or formally classified, strict migration preflight passes, local replay passes, live candidate regeneration has zero drift, and remote read-only precheck passes."
   },
   "confirmations": {
     "no_parent_gv_id_changes": true,
