@@ -1,0 +1,58 @@
+{
+  "contract": "CHILD_PRINTING_PUBLIC_IDENTITY_V1",
+  "generated_at": "2026-05-19T03:42:40.280Z",
+  "status": "NO_WRITE_BACKFILL_APPLY_PLAN_ONLY",
+  "source_files": {
+    "candidates": "docs/audits/child_printing_public_identity_v1/child_printing_public_identity_candidates_20260518.json",
+    "audit": "docs/audits/child_printing_public_identity_v1/child_printing_public_identity_v1_audit_20260518.json",
+    "schema_migration": "supabase/migrations/20260518180000_child_printing_public_identity_v1.sql"
+  },
+  "backfill_scope": {
+    "approved_candidate_count": 44698,
+    "blocked_candidate_count": 10884,
+    "total_candidate_count": 55582,
+    "missing_parent_gv_id_blocked": 10377,
+    "parent_variant_boundary_blocked": 507,
+    "collision_count": 0,
+    "unsupported_finish_keys": 0,
+    "owned_child_printings": 0
+  },
+  "approved_finish_distribution": {
+    "holo": 13075,
+    "normal": 16320,
+    "reverse": 15006,
+    "pokeball": 230,
+    "masterball": 67
+  },
+  "high_risk_set_approved_counts": {
+    "sv03.5": 360,
+    "sv8pt5": 447,
+    "sv8": 0,
+    "me01": 329,
+    "smp": 736
+  },
+  "no_write_rules": [
+    "Do not update public.card_printings in this plan task.",
+    "Do not backfill blocked candidates.",
+    "Do not change parent card_prints.gv_id values.",
+    "Do not change Species Dex denominator logic.",
+    "Do not enable public child printing routes.",
+    "Do not touch scanner."
+  ],
+  "required_future_apply_gates": [
+    "regenerate candidates and confirm drift count 0",
+    "remote read-only precheck confirms printing_gv_id populated count is still 0 or operator approves idempotent resume",
+    "remote read-only precheck confirms 44698 approved candidates still map to same parent card_print_id and parent gv_id",
+    "dry-run update transaction returns exactly 44698 candidate matches and 0 blocked matches",
+    "apply transaction returns exactly 44698 updated rows",
+    "post-apply collision count remains 0"
+  ],
+  "future_apply_expected_result": {
+    "card_printings_updated": 44698,
+    "blocked_rows_updated": 0,
+    "parent_gv_ids_changed": 0,
+    "species_dex_denominator_changed": false,
+    "scanner_changed": false,
+    "public_routes_enabled": false
+  }
+}
