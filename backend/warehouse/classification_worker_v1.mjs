@@ -677,6 +677,35 @@ async function fetchCardPrintsByIds(client, ids) {
   return rows;
 }
 
+async function resolveCardPrintByGvId(client, gvId) {
+  const normalized = normalizeTextOrNull(gvId);
+  if (!normalized) {
+    return { path: null, rows: [] };
+  }
+
+  const sql = `
+    select
+      id,
+      name,
+      set_code,
+      number,
+      number_plain,
+      variant_key,
+      rarity,
+      coalesce(image_url, image_alt_url) as image_url,
+      tcgplayer_id,
+      print_identity_key
+    from public.card_prints
+    where gv_id = $1
+    limit 2
+  `;
+  const { rows } = await client.query(sql, [normalized]);
+  return {
+    path: rows.length > 0 ? 'public.card_prints.gv_id_exact' : null,
+    rows,
+  };
+}
+
 async function fetchCardPrintingByParentAndFinish(client, cardPrintId, finishKey) {
   if (!cardPrintId || !finishKey) return null;
   const sql = `
@@ -1137,11 +1166,15 @@ async function buildPackages(client, artifact) {
     identity_scan_event_result_ids: latestScanResults.map((row) => row.id),
   };
 
+  const exactReferenceGvId = await resolveCardPrintByGvId(
+    client,
+    candidate?.reference_hints_payload?.card_gv_id,
+  );
   const normalizationStatus = chooseNormalizationStatus(sourceSummary, unresolvedFields, blockingReasons);
   const sourceStrength = chooseSourceStrength(
     sourceSummary,
     bestScanHint?.confidence ?? null,
-    !!exactConditionMatch || exactTcgplayer.rows.length === 1,
+    !!exactConditionMatch || exactTcgplayer.rows.length === 1 || exactReferenceGvId.rows.length === 1,
   );
 
   const normalizedPackage = {
@@ -1185,6 +1218,11 @@ async function buildPackages(client, artifact) {
     resolverPath = 'public.condition_snapshots.card_print_id';
     candidateCount = 1;
     resolverConfidence = 1;
+  } else if (exactReferenceGvId.rows.length === 1) {
+    matchedCardPrint = exactReferenceGvId.rows[0];
+    resolverPath = exactReferenceGvId.path;
+    candidateCount = 1;
+    resolverConfidence = 1;
   } else if (exactTcgplayer.rows.length === 1) {
     matchedCardPrint = exactTcgplayer.rows[0];
     resolverPath = exactTcgplayer.path;
@@ -1203,10 +1241,14 @@ async function buildPackages(client, artifact) {
   } else {
     candidateCount = Math.max(
       exactTcgplayer.rows.length,
+      exactReferenceGvId.rows.length,
       scanResolverCandidates.length,
       searchResolution.rows.length,
     );
-    if (exactTcgplayer.rows.length > 1) {
+    if (exactReferenceGvId.rows.length > 1) {
+      pushUnique(ambiguityNotes, 'multiple_reference_gv_id_matches');
+      resolverPath = exactReferenceGvId.path;
+    } else if (exactTcgplayer.rows.length > 1) {
       pushUnique(ambiguityNotes, 'multiple_tcgplayer_reference_matches');
       resolverPath = exactTcgplayer.path;
     } else if (scanResolverCandidates.length > 1) {
@@ -1216,6 +1258,18 @@ async function buildPackages(client, artifact) {
       pushUnique(ambiguityNotes, 'multiple_search_card_prints_v1_matches');
       resolverPath = searchResolution.path;
     }
+  }
+
+  if (matchedCardPrint) {
+    visibleIdentityHints.card_name = visibleIdentityHints.card_name ?? normalizeTextOrNull(matchedCardPrint.name);
+    visibleIdentityHints.printed_number = visibleIdentityHints.printed_number ?? normalizeTextOrNull(matchedCardPrint.number);
+    visibleIdentityHints.printed_number_plain =
+      visibleIdentityHints.printed_number_plain ??
+      normalizeTextOrNull(matchedCardPrint.number_plain) ??
+      normalizeNumberPlain(matchedCardPrint.number);
+    visibleIdentityHints.set_hint = visibleIdentityHints.set_hint ?? normalizeTextOrNull(matchedCardPrint.set_code);
+    visibleIdentityHints.rarity_hint = visibleIdentityHints.rarity_hint ?? normalizeTextOrNull(matchedCardPrint.rarity);
+    visibleIdentityHints.variant_key = visibleIdentityHints.variant_key ?? normalizeTextOrNull(matchedCardPrint.variant_key);
   }
 
   const finishInterpretationInput = {

@@ -21,6 +21,7 @@ type PromotionReviewInput = {
     current_staging_id: string | null;
     notes: string;
     tcgplayer_id: string | null;
+    reference_hints_payload?: JsonRecord | null;
     submission_intent: string;
     intake_channel: string;
     submission_type: string;

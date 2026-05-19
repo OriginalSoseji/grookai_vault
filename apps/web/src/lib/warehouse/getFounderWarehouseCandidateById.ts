@@ -32,6 +32,7 @@ type FounderWarehouseCandidateRow = {
   submission_type: string;
   notes: string;
   tcgplayer_id: string | null;
+  reference_hints_payload: JsonRecord | null;
   submission_intent: string;
   state: string;
   current_review_hold_reason: string | null;
@@ -333,7 +334,7 @@ export async function getFounderWarehouseCandidateById(
   const { data: candidateData, error: candidateError } = await admin
     .from("canon_warehouse_candidates")
     .select(
-      "id,submitted_by_user_id,intake_channel,submission_type,notes,tcgplayer_id,submission_intent,state,current_review_hold_reason,current_staging_id,interpreter_decision,interpreter_reason_code,interpreter_explanation,interpreter_resolved_finish_key,needs_promotion_review,proposed_action_type,founder_approved_by_user_id,founder_approved_at,founder_approval_notes,rejected_by_user_id,rejected_at,rejection_notes,archived_by_user_id,archived_at,archive_notes,promotion_result_type,promoted_card_print_id,promoted_card_printing_id,promoted_image_target_type,promoted_image_target_id,promoted_by_user_id,promoted_at,created_at,updated_at",
+      "id,submitted_by_user_id,intake_channel,submission_type,notes,tcgplayer_id,reference_hints_payload,submission_intent,state,current_review_hold_reason,current_staging_id,interpreter_decision,interpreter_reason_code,interpreter_explanation,interpreter_resolved_finish_key,needs_promotion_review,proposed_action_type,founder_approved_by_user_id,founder_approved_at,founder_approval_notes,rejected_by_user_id,rejected_at,rejection_notes,archived_by_user_id,archived_at,archive_notes,promotion_result_type,promoted_card_print_id,promoted_card_printing_id,promoted_image_target_type,promoted_image_target_id,promoted_by_user_id,promoted_at,created_at,updated_at",
     )
     .eq("id", normalizedCandidateId)
     .maybeSingle();
