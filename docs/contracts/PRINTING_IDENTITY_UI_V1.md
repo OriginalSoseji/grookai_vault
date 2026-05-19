@@ -111,12 +111,15 @@ Set tiles must not inflate set count by child printing count.
 Card detail should:
 
 - resolve only parent `card_prints.gv_id`
-- show finish selector above or near card actions when multiple display printings exist
+- show a `Variant / Finish` selector above or near card actions when multiple display printings exist
 - default to owned finish when known, otherwise normal/holo priority, otherwise first available finish
 - pass selected `card_printing_id` to add-to-vault actions
 - validate that selected `card_printing_id` belongs to the current parent `card_print_id`
 - show owned raw copies with finish labels when available
 - show a safe fallback label such as `Finish not selected` when ownership predates finish selection
+- make the selected version and selected-version ownership state clear using collector-readable labels
+- show a base-image fallback notice when the selected child printing has no reviewed image
+- keep image suggestions review-only; do not upload or promote images directly from the card page
 
 Card detail must not expose raw UUIDs as collector-facing identity labels.
 

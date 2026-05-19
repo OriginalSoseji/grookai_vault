@@ -155,9 +155,10 @@ export default function AddToVaultCardAction({
           printings={printings}
           selectedPrintingId={selectedPrinting?.id}
           onSelectedPrintingChange={setSelectedPrinting}
-          title="Finish"
-          description="Choose the printed finish before taking card actions."
+          title="Variant / Finish"
+          description="Choose the exact version before adding it to your vault."
           compact
+          showImageFallbackNotice
         />
       ) : null}
 

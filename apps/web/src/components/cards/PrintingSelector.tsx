@@ -11,6 +11,7 @@ type PrintingSelectorProps = {
   title?: string;
   description?: string;
   compact?: boolean;
+  showImageFallbackNotice?: boolean;
 };
 
 const MAX_COLLAPSED_PRINTINGS = 5;
@@ -29,9 +30,10 @@ export default function PrintingSelector({
   printings = [],
   selectedPrintingId,
   onSelectedPrintingChange,
-  title = "Printings",
+  title = "Variant / Finish",
   description,
   compact = false,
+  showImageFallbackNotice = false,
 }: PrintingSelectorProps) {
   const displayablePrintings = useMemo(() => {
     const byLabel = new Map<string, CardPrinting>();
@@ -87,6 +89,13 @@ export default function PrintingSelector({
   const visiblePrintings = expanded
     ? displayablePrintings
     : displayablePrintings.slice(0, MAX_COLLAPSED_PRINTINGS);
+  const selectedOwnedCount = selectedPrinting.owned_count ?? 0;
+  const selectedOwnershipLabel = selectedOwnedCount > 0 ? `Owned: ${selectedOwnedCount}` : "Not in vault";
+  const selectedUsesBaseImage =
+    showImageFallbackNotice &&
+    !selectedPrinting.is_display_fallback &&
+    !selectedPrinting.display_image_url &&
+    !selectedPrinting.image_url;
 
   return (
     <section className={`space-y-4 rounded-[16px] border border-slate-200 bg-white shadow-sm ${compact ? "p-4" : "p-6"}`}>
@@ -96,7 +105,7 @@ export default function PrintingSelector({
           {description ??
           (selectedPrintingFallbackOnly
             ? "No child printings are cataloged for this card. Showing the canonical base display."
-            : "Available finishes for this card.")}
+            : "Choose the exact version before adding it to your vault.")}
         </p>
       </div>
 
@@ -124,9 +133,38 @@ export default function PrintingSelector({
         ) : null}
       </div>
 
-      <div className="rounded-[14px] border border-slate-100 bg-slate-50 px-4 py-3">
-        <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500">Selected Printing</p>
-        <p className="mt-1 text-sm font-medium text-slate-900">{selectedPrinting.finish_name ?? "Printing"}</p>
+      <div className="rounded-[14px] border border-slate-200 bg-slate-50 px-4 py-3">
+        <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
+          <div>
+            <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500">Selected version</p>
+            <p className="mt-1 text-base font-semibold text-slate-950">{selectedPrinting.finish_name ?? "Printing"}</p>
+          </div>
+          <span
+            className={`inline-flex w-fit rounded-full border px-3 py-1 text-xs font-semibold ${
+              selectedOwnedCount > 0
+                ? "border-emerald-200 bg-emerald-50 text-emerald-800"
+                : "border-slate-200 bg-white text-slate-600"
+            }`}
+          >
+            {selectedOwnershipLabel}
+          </span>
+        </div>
+        {selectedUsesBaseImage ? (
+          <div className="mt-3 rounded-[12px] border border-amber-200 bg-amber-50 px-3 py-2 text-sm text-amber-950">
+            <p className="font-medium">Using base image</p>
+            <div className="mt-1 flex flex-wrap items-center gap-2 text-xs">
+              <span>This selected version does not have a reviewed image yet.</span>
+              <button
+                type="button"
+                disabled
+                className="inline-flex cursor-not-allowed rounded-full border border-amber-300 bg-amber-100 px-2.5 py-1 font-semibold text-amber-900 opacity-70"
+                aria-disabled="true"
+              >
+                Suggest image
+              </button>
+            </div>
+          </div>
+        ) : null}
       </div>
     </section>
   );
