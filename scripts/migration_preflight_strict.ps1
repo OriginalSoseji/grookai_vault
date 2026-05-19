@@ -23,11 +23,24 @@ param(
 Set-StrictMode -Version Latest
 $ErrorActionPreference = "Stop"
 
+$script:PreflightStartedAt = Get-Date
+$script:StepIndex = 0
+
+function Format-Elapsed([TimeSpan]$elapsed) {
+  return "{0:hh\:mm\:ss\.fff}" -f $elapsed
+}
+
+function Write-TimerMarker([string]$message) {
+  $elapsed = (Get-Date) - $script:PreflightStartedAt
+  Write-Host "[strict-preflight][$(Format-Elapsed $elapsed)] $message"
+}
+
 function Write-Section([string]$title) {
   Write-Host ""
   Write-Host "============================================================"
   Write-Host $title
   Write-Host "============================================================"
+  Write-TimerMarker "section: $title"
 }
 
 function Fail([string]$message) {
@@ -52,35 +65,31 @@ function Invoke-ExternalCommand {
   )
 
   $argumentPreview = $Arguments -join " "
-  $psi = New-Object System.Diagnostics.ProcessStartInfo
-  $psi.FileName = $FileName
-  $psi.UseShellExecute = $false
-  $psi.RedirectStandardOutput = $true
-  $psi.RedirectStandardError = $true
-  $psi.CreateNoWindow = $true
-  $psi.Arguments = (($Arguments | ForEach-Object {
-        if ($_ -match '[\s"]') {
-          '"' + ($_ -replace '"', '\"') + '"'
-        } else {
-          $_
-        }
-      }) -join ' ')
+  $script:StepIndex += 1
+  $stepNumber = $script:StepIndex
+  $stepStartedAt = Get-Date
+  Write-TimerMarker "step ${stepNumber} start: ${FileName} ${argumentPreview}"
 
+  $stdoutPath = Join-Path ([System.IO.Path]::GetTempPath()) ("grookai-strict-preflight-{0}-stdout.log" -f ([guid]::NewGuid().ToString("N")))
+  $stderrPath = Join-Path ([System.IO.Path]::GetTempPath()) ("grookai-strict-preflight-{0}-stderr.log" -f ([guid]::NewGuid().ToString("N")))
   try {
-    $process = New-Object System.Diagnostics.Process
-    $process.StartInfo = $psi
-    [void]$process.Start()
+    & $FileName @Arguments 1> $stdoutPath 2> $stderrPath
+    $exitCode = $LASTEXITCODE
   } catch {
     Fail "Failed to launch ${FileName}: $($_.Exception.Message)"
   }
 
-  $stdOut = $process.StandardOutput.ReadToEnd()
-  $stdErr = $process.StandardError.ReadToEnd()
-  $process.WaitForExit()
+  $stdOut = if (Test-Path $stdoutPath) { Get-Content -LiteralPath $stdoutPath -Raw } else { "" }
+  Write-TimerMarker "step ${stepNumber} stdout read complete"
+  $stdErr = if (Test-Path $stderrPath) { Get-Content -LiteralPath $stderrPath -Raw } else { "" }
+  Write-TimerMarker "step ${stepNumber} stderr read complete"
+  Remove-Item -LiteralPath $stdoutPath, $stderrPath -Force -ErrorAction SilentlyContinue
+  $stepElapsed = (Get-Date) - $stepStartedAt
+  Write-TimerMarker "step ${stepNumber} exit=$exitCode elapsed=$(Format-Elapsed $stepElapsed)"
 
   return [pscustomobject]@{
     Command  = "$FileName $argumentPreview"
-    ExitCode = $process.ExitCode
+    ExitCode = $exitCode
     StdOut   = $stdOut
     StdErr   = $stdErr
   }
@@ -97,19 +106,38 @@ function Invoke-SupabaseCommand {
   return Invoke-ExternalCommand -FileName "cmd.exe" -Arguments (@("/c", "supabase") + $Arguments)
 }
 
+function Write-BoundedText {
+  param(
+    [Parameter(Mandatory = $true)]
+    [string]$Text,
+
+    [int]$MaxChars = 12000
+  )
+
+  $trimmed = $Text.TrimEnd()
+  if ($trimmed.Length -le $MaxChars) {
+    Write-Host $trimmed
+    return
+  }
+
+  Write-Host $trimmed.Substring(0, $MaxChars)
+  Write-Host ""
+  Write-Host "[strict-preflight] transcript truncated after $MaxChars chars from $($trimmed.Length) total chars"
+}
+
 function Write-CommandTranscript($result) {
   if (-not [string]::IsNullOrWhiteSpace($result.StdOut)) {
     Write-Host "[stdout]"
-    Write-Host $result.StdOut.TrimEnd()
+    Write-BoundedText -Text $result.StdOut
   }
 
   if (-not [string]::IsNullOrWhiteSpace($result.StdErr)) {
     if ($result.ExitCode -eq 0) {
       Write-Host "[stderr/info]"
-      Write-Host $result.StdErr.TrimEnd()
+      Write-BoundedText -Text $result.StdErr
     } else {
       Write-Host "[stderr/error]"
-      Write-Host $result.StdErr.TrimEnd()
+      Write-BoundedText -Text $result.StdErr
     }
   }
 }

@@ -1,0 +1,15 @@
+{
+  "contract": "CHILD_PRINTING_PUBLIC_IDENTITY_V1",
+  "generated_at": "2026-05-19T03:59:11.400Z",
+  "status": "NOT_APPLIED",
+  "exact_candidate_count": 55582,
+  "approved_candidate_count": 44698,
+  "blocked_by_reason": {
+    "BLOCKED_PARENT_MISSING_GV_ID": 10377,
+    "BLOCKED_PARENT_VARIANT_BOUNDARY": 507
+  },
+  "proposed_id_collision_count": 0,
+  "migration_required": false,
+  "migration_draft": "supabase/migrations/20260518180000_child_printing_public_identity_v1.sql",
+  "future_update_requires_manual_approval": true
+}

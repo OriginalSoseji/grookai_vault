@@ -1,0 +1,95 @@
+{
+  "contract": "CHILD_PRINTING_PUBLIC_IDENTITY_V1",
+  "generated_at": "2026-05-18",
+  "status": "CORRECT_PENDING_MIGRATION_GATE_IDENTIFIED",
+  "instrumentation": {
+    "file": "scripts/migration_preflight_strict.ps1",
+    "added_or_confirmed": [
+      "elapsed markers per section",
+      "external command step start markers",
+      "stdout read completion markers",
+      "stderr read completion markers",
+      "exit code and elapsed duration markers",
+      "bounded transcript printing",
+      "temp-file based stdout/stderr capture"
+    ]
+  },
+  "shadow_container_cleanup": {
+    "original_removed": {
+      "id": "7a2046653163",
+      "name": "cranky_merkle",
+      "port": 54331
+    },
+    "normal_local_db_preserved": {
+      "name": "supabase_db_ycdxbpibncqcchqiihfz",
+      "port": 54330
+    },
+    "verified_shadow_container_criteria": [
+      "public.ecr.aws/supabase/postgres:17.4.1.074",
+      "com.supabase.cli.project=ycdxbpibncqcchqiihfz",
+      "54331->5432",
+      "AutoRemove=true"
+    ]
+  },
+  "manual_internal_commands": {
+    "supabase_migration_list_linked": {
+      "command": "supabase migration list --linked",
+      "status": "PASS",
+      "ledger_status": "only expected local-only migration 20260518180000_child_printing_public_identity_v1.sql"
+    },
+    "supabase_db_diff_linked": {
+      "command": "supabase db diff --linked",
+      "status": "FAIL_NON_EMPTY_SCHEMA_DIFF",
+      "exit_code": 0,
+      "expected_child_identity_delta_seen": true,
+      "unexpected_unrelated_drift_seen": true,
+      "unrelated_drift_classes": [
+        "extension/schema changes",
+        "many view drops/recreates",
+        "admin.import_runs",
+        "ingest.card_prints_raw",
+        "public.collapse_map_phase1",
+        "public.scanner_fingerprint_index",
+        "pricing_jobs.locked_at",
+        "pricing_jobs.locked_by",
+        "sets metadata columns"
+      ]
+    },
+    "instrumented_guard": {
+      "command": "pwsh -NoProfile -File .\\scripts\\migration_preflight_strict.ps1 -Phase AuditLinkedSchema",
+      "status": "FAIL_NON_EMPTY_SCHEMA_DIFF",
+      "step_1": "supabase migration list --linked completed successfully",
+      "step_2": "supabase db diff --linked completed in about 47 seconds and exited 0",
+      "failure_reason": "schema diff stdout was non-empty"
+    }
+  },
+  "classification": {
+    "guard_failure_type": "wrong_guard_phase_for_expected_pending_migration",
+    "reason": [
+      "linked ledger is readable",
+      "stale shadow containers were cleared",
+      "guard wrapper output capture was repaired",
+      "AuditLinkedSchema is an empty-diff guard",
+      "this branch intentionally had local-only migration 20260518180000_child_printing_public_identity_v1.sql",
+      "PrePush with ExpectedLocalOnlyIds is the correct pending-migration gate"
+    ]
+  },
+  "apply_decision": {
+    "status": "ALLOW_ONLY_AFTER_CORRECT_GATE_PASSES",
+    "reason": "Use PrePush with expected local-only migration for pending migration application.",
+    "required_next_gates": [
+      "run strict PrePush gate with ExpectedLocalOnlyIds=20260518180000 successfully",
+      "regenerate candidates with drift count 0",
+      "run remote read-only precheck",
+      "confirm db push dry run proposes only 20260518180000_child_printing_public_identity_v1.sql"
+    ]
+  },
+  "confirmations": {
+    "no_parent_gv_id_changes": true,
+    "no_species_dex_denominator_changes": true,
+    "no_scanner_changes": true,
+    "no_public_child_route_enablement": true,
+    "nullable_schema_migration_only": true,
+    "blocked_candidates_remained_blocked": true
+  }
+}

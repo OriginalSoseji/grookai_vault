@@ -2,6 +2,10 @@ import "server-only";
 
 import { createServerAdminClient } from "@/lib/supabase/admin";
 import { resolveCardImageFieldsV1 } from "@/lib/canon/resolveCardImageFieldsV1";
+import {
+  getCardPrintingsSelectColumns,
+  hasChildPrintingPublicIdentityColumn,
+} from "@/lib/cards/childPrintingPublicIdentity";
 import { getCardPrintDisplayDiscriminator } from "@/lib/cards/displayDiscriminator";
 import { getCardPrintingFinishLabel } from "@/lib/cards/displayDiscriminator";
 import { resolveDisplayImageUrl } from "@/lib/publicCardImage";
@@ -53,6 +57,7 @@ export type GrookaiDexCardPrintRow = {
 
 export type GrookaiDexCardPrintingOption = {
   id: string;
+  printingGvId: string | null;
   finishKey: string | null;
   finishName: string;
   ownedCount: number;
@@ -61,6 +66,7 @@ export type GrookaiDexCardPrintingOption = {
 type CardPrintingRow = {
   id: string | null;
   card_print_id: string | null;
+  printing_gv_id?: string | null;
   finish_key: string | null;
   finish_keys:
     | { label: string | null; sort_order: number | null }
@@ -141,9 +147,11 @@ export async function getGrookaiDexSpeciesDetail(
         getOwnedPrintingCountsByCardPrintIds(userId, cardPrintIds),
       ])
     : [new Map<string, number>(), new Map()];
+  const includePrintingPublicIdentity = await hasChildPrintingPublicIdentityColumn(admin);
+  const printingSelect = getCardPrintingsSelectColumns(includePrintingPublicIdentity);
   const { data: printingRows, error: printingError } = await admin
     .from("card_printings")
-    .select("id,card_print_id,finish_key,finish_keys(label,sort_order)")
+    .select(printingSelect)
     .in("card_print_id", cardPrintIds);
 
   if (printingError) {
@@ -151,7 +159,7 @@ export async function getGrookaiDexSpeciesDetail(
   }
 
   const printingOptionsByCardPrintId = new Map<string, Array<GrookaiDexCardPrintingOption & { sortOrder: number }>>();
-  for (const row of (printingRows ?? []) as CardPrintingRow[]) {
+  for (const row of (printingRows ?? []) as unknown as CardPrintingRow[]) {
     const printingId = clean(row.id);
     const cardPrintId = clean(row.card_print_id);
     if (!printingId || !cardPrintId) {
@@ -166,6 +174,7 @@ export async function getGrookaiDexSpeciesDetail(
       const options = printingOptionsByCardPrintId.get(cardPrintId) ?? [];
       options.push({
         id: printingId,
+        printingGvId: clean(row.printing_gv_id),
         finishKey: clean(row.finish_key),
         finishName: label,
         ownedCount: ownedPrintingCounts.get(cardPrintId)?.get(printingId) ?? 0,

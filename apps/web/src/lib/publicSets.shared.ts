@@ -95,6 +95,7 @@ export type PublicSetCard = {
   display_image_kind?: "exact" | "representative" | "missing";
   printings?: Array<{
     id?: string;
+    printing_gv_id?: string;
     finish_key?: string;
     finish_name?: string;
     image_url?: string;
