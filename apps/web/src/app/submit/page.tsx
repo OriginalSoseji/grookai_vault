@@ -76,6 +76,7 @@ function buildInitialSubmissionValues(searchParams?: {
   const printing = cleanParam(searchParams?.printing);
   const finish = cleanParam(searchParams?.finish);
   const reason = cleanParam(searchParams?.reason);
+  const returnTo = cleanParam(searchParams?.returnTo);
 
   if (intent !== "MISSING_IMAGE" || !card) {
     return undefined;
@@ -95,6 +96,14 @@ function buildInitialSubmissionValues(searchParams?: {
   return {
     submissionIntent: "MISSING_IMAGE" as const,
     notes: notes.join("\n"),
+    lockedSubmissionIntent: true,
+    referenceContext: {
+      cardGvId: card,
+      printingReference: printing,
+      finishLabel: finish,
+      reason,
+      returnTo,
+    },
   };
 }
 

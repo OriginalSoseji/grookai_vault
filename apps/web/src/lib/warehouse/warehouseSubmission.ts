@@ -29,6 +29,7 @@ export type WarehouseSubmissionValidationInput = {
   tcgplayerId: string;
   frontImageFile: File | null;
   backImageFile: File | null;
+  hasKnownCardImageContext?: boolean;
 };
 
 export function normalizeWarehouseSubmissionText(value?: string | null) {
@@ -90,8 +91,8 @@ export function validateWarehouseSubmissionInput(
     errors.backImage = backImageError;
   }
 
-  if (input.submissionIntent === "MISSING_IMAGE" && !normalizedTcgplayerId) {
-    errors.tcgplayerId = "Missing image submissions currently require a TCGPlayer ID.";
+  if (input.submissionIntent === "MISSING_IMAGE" && !normalizedTcgplayerId && !input.hasKnownCardImageContext) {
+    errors.tcgplayerId = "Add a TCGPlayer ID or submit from a known Grookai card page.";
   }
 
   return errors;

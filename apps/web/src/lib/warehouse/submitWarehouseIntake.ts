@@ -14,6 +14,13 @@ type WarehouseIntakePayload = {
   tcgplayer_id?: string | null;
   submission_intent: WarehouseSubmissionIntent;
   intake_channel: "UPLOAD";
+  reference_context?: {
+    card_gv_id?: string | null;
+    printing_reference?: string | null;
+    finish_label?: string | null;
+    reason?: string | null;
+    return_to?: string | null;
+  } | null;
   evidence: {
     images: Array<{
       type: WarehouseEvidenceImageType;

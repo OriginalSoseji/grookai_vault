@@ -21,6 +21,14 @@ type WarehouseSubmissionFormProps = {
     submissionIntent?: WarehouseSubmissionIntent | null;
     notes?: string | null;
     tcgplayerId?: string | null;
+    lockedSubmissionIntent?: boolean;
+    referenceContext?: {
+      cardGvId?: string | null;
+      printingReference?: string | null;
+      finishLabel?: string | null;
+      reason?: string | null;
+      returnTo?: string | null;
+    } | null;
   };
 };
 
@@ -179,6 +187,10 @@ export function WarehouseSubmissionForm({ userId, initialValues }: WarehouseSubm
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [status, setStatus] = useState<SubmissionStatus>(null);
   const [candidateId, setCandidateId] = useState<string | null>(null);
+  const lockedSubmissionIntent = initialValues?.lockedSubmissionIntent === true;
+  const referenceContext = initialValues?.referenceContext ?? null;
+  const hasKnownCardImageContext =
+    submissionIntent === "MISSING_IMAGE" && Boolean(referenceContext?.cardGvId?.trim());
 
   const frontPreviewUrl = useObjectPreview(frontImageFile);
   const backPreviewUrl = useObjectPreview(backImageFile);
@@ -191,14 +203,19 @@ export function WarehouseSubmissionForm({ userId, initialValues }: WarehouseSubm
         tcgplayerId,
         frontImageFile,
         backImageFile,
+        hasKnownCardImageContext,
       }),
-    [backImageFile, frontImageFile, notes, submissionIntent, tcgplayerId],
+    [backImageFile, frontImageFile, hasKnownCardImageContext, notes, submissionIntent, tcgplayerId],
   );
 
   const hasValidationErrors = Object.keys(validationErrors).length > 0;
   const shouldShowError = (field: keyof typeof validationErrors) => submitAttempted || Boolean(touched[field]);
 
   function clearStatusForEdit() {
+    if (candidateId) {
+      return;
+    }
+
     setStatus(null);
     setCandidateId(null);
   }
@@ -298,6 +315,15 @@ export function WarehouseSubmissionForm({ userId, initialValues }: WarehouseSubm
             ...(uploadedBack ? [{ type: "back" as const, storage_path: uploadedBack.storagePath }] : []),
           ],
         },
+        reference_context: referenceContext
+          ? {
+              card_gv_id: referenceContext.cardGvId ?? null,
+              printing_reference: referenceContext.printingReference ?? null,
+              finish_label: referenceContext.finishLabel ?? null,
+              reason: referenceContext.reason ?? null,
+              return_to: referenceContext.returnTo ?? null,
+            }
+          : null,
       });
 
       setCandidateId(result.candidateId);
@@ -305,7 +331,7 @@ export function WarehouseSubmissionForm({ userId, initialValues }: WarehouseSubm
         tone: "success",
         body: "Submission received. It is now in warehouse review.",
       });
-      resetForm();
+      setSubmitAttempted(false);
     } catch (error) {
       await removeWarehouseEvidenceImages(uploadedPaths);
       setStatus({
@@ -336,6 +362,7 @@ export function WarehouseSubmissionForm({ userId, initialValues }: WarehouseSubm
             name="submission_intent"
             value="MISSING_CARD"
             checked={submissionIntent === "MISSING_CARD"}
+            disabled={lockedSubmissionIntent || isSubmitting}
             onChange={() => {
               setSubmissionIntent("MISSING_CARD");
               setTouched((current) => ({ ...current, submissionIntent: true }));
@@ -367,6 +394,7 @@ export function WarehouseSubmissionForm({ userId, initialValues }: WarehouseSubm
             name="submission_intent"
             value="MISSING_IMAGE"
             checked={submissionIntent === "MISSING_IMAGE"}
+            disabled={lockedSubmissionIntent || isSubmitting}
             onChange={() => {
               setSubmissionIntent("MISSING_IMAGE");
               setTouched((current) => ({ ...current, submissionIntent: true }));
@@ -380,11 +408,20 @@ export function WarehouseSubmissionForm({ userId, initialValues }: WarehouseSubm
               This card exists, but the image is missing or incorrect.
             </p>
             <p className="text-sm leading-6 text-slate-600">
-              Missing image submissions currently require a TCGPlayer ID so the backend has reference context.
+              Use this when the card exists, but a reviewed image or finish-specific image is missing.
             </p>
           </div>
         </label>
       </div>
+
+      {lockedSubmissionIntent && hasKnownCardImageContext ? (
+        <div className="rounded-[1.25rem] border border-emerald-200 bg-emerald-50 px-4 py-3 text-sm text-emerald-900">
+          <p className="font-medium">Linked to known Grookai card</p>
+          <p className="mt-1">
+            This submission will stay classified as a missing image for {referenceContext?.cardGvId}.
+          </p>
+        </div>
+      ) : null}
 
       <FieldError
         message={shouldShowError("submissionIntent") ? validationErrors.submissionIntent : undefined}
@@ -433,7 +470,9 @@ export function WarehouseSubmissionForm({ userId, initialValues }: WarehouseSubm
             />
             {submissionIntent === "MISSING_IMAGE" ? (
               <p className="text-sm text-slate-600">
-                Missing image submissions currently require a TCGPlayer ID.
+                {hasKnownCardImageContext
+                  ? "Optional because this image suggestion is already linked to a known Grookai card."
+                  : "Required unless this is launched from a known Grookai card page."}
               </p>
             ) : null}
             <FieldError
@@ -539,6 +578,7 @@ export function WarehouseSubmissionForm({ userId, initialValues }: WarehouseSubm
                 onClick={() => {
                   setCandidateId(null);
                   setStatus(null);
+                  resetForm();
                 }}
                 className="inline-flex min-h-[44px] items-center justify-center rounded-full border border-slate-300 bg-white px-4 py-2.5 font-medium text-slate-700 transition hover:border-slate-400 hover:bg-slate-50"
               >
@@ -548,6 +588,7 @@ export function WarehouseSubmissionForm({ userId, initialValues }: WarehouseSubm
           </div>
         ) : null}
 
+        {!candidateId ? (
         <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
           <p className="text-sm text-slate-500">
             Front image required. Max {Math.floor(WAREHOUSE_SUBMISSION_IMAGE_MAX_BYTES / (1024 * 1024))}
@@ -562,6 +603,7 @@ export function WarehouseSubmissionForm({ userId, initialValues }: WarehouseSubm
             {isSubmitting ? "Submitting..." : "Submit to warehouse"}
           </button>
         </div>
+        ) : null}
       </div>
     </form>
   );

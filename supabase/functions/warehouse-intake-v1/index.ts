@@ -11,6 +11,13 @@ type IntakePayload = {
   tcgplayer_id?: string | null;
   submission_intent?: SubmissionIntent;
   intake_channel?: IntakeChannel;
+  reference_context?: {
+    card_gv_id?: string | null;
+    printing_reference?: string | null;
+    finish_label?: string | null;
+    reason?: string | null;
+    return_to?: string | null;
+  } | null;
   evidence?: {
     identity_snapshot_id?: string | null;
     condition_snapshot_id?: string | null;
@@ -35,6 +42,26 @@ function cleanOptionalString(value: unknown): string | null {
   if (typeof value !== "string") return null;
   const trimmed = value.trim();
   return trimmed.length > 0 ? trimmed : null;
+}
+
+function buildReferenceHintsPayload(value: unknown): Record<string, string> {
+  if (!value || typeof value !== "object") return {};
+
+  const record = value as Record<string, unknown>;
+  const cardGvId = cleanOptionalString(record.card_gv_id);
+  const printingReference = cleanOptionalString(record.printing_reference);
+  const finishLabel = cleanOptionalString(record.finish_label);
+  const reason = cleanOptionalString(record.reason);
+  const returnTo = cleanOptionalString(record.return_to);
+  const payload: Record<string, string> = {};
+
+  if (cardGvId) payload.card_gv_id = cardGvId.slice(0, 96);
+  if (printingReference) payload.printing_reference = printingReference.slice(0, 128);
+  if (finishLabel) payload.finish_label = finishLabel.slice(0, 96);
+  if (reason) payload.reason = reason.slice(0, 128);
+  if (returnTo?.startsWith("/")) payload.return_to = returnTo.slice(0, 256);
+
+  return payload;
 }
 
 function parseImages(value: unknown): Array<{ type: ImageSlot; storage_path: string }> {
@@ -95,6 +122,7 @@ function parsePayload(body: IntakePayload) {
   }
 
   const evidence = body.evidence ?? {};
+  const referenceHintsPayload = buildReferenceHintsPayload(body.reference_context);
   const identitySnapshotId = cleanOptionalString(evidence.identity_snapshot_id);
   const conditionSnapshotId = cleanOptionalString(evidence.condition_snapshot_id);
   const identityScanEventId = cleanOptionalString(evidence.identity_scan_event_id);
@@ -126,7 +154,7 @@ function parsePayload(body: IntakePayload) {
     throw Object.assign(new Error("evidence_required"), { code: "evidence_required" });
   }
 
-  if (submissionIntent === "MISSING_IMAGE" && !tcgplayerId && !identitySnapshotId) {
+  if (submissionIntent === "MISSING_IMAGE" && !tcgplayerId && !identitySnapshotId && !referenceHintsPayload.card_gv_id) {
     throw Object.assign(new Error("missing_image_requires_reference"), {
       code: "missing_image_requires_reference",
     });
@@ -141,6 +169,7 @@ function parsePayload(body: IntakePayload) {
     conditionSnapshotId,
     identityScanEventId,
     images,
+    referenceHintsPayload,
   };
 }
 
@@ -179,6 +208,7 @@ serve(async (req) => {
       p_condition_snapshot_id: parsed.conditionSnapshotId,
       p_identity_scan_event_id: parsed.identityScanEventId,
       p_images: parsed.images.length ? parsed.images : null,
+      p_reference_hints_payload: parsed.referenceHintsPayload,
     });
 
     if (error || !data) {
