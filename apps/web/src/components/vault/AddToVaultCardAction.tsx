@@ -106,22 +106,30 @@ function buildImageSuggestionPath(args: {
   gvId: string;
   currentPath: string;
   printing: CardPrinting;
+  finishKey?: string;
+  finishName?: string;
+  reason?: string;
 }) {
   const params = new URLSearchParams();
   params.set("intent", "MISSING_IMAGE");
   params.set("card", args.gvId);
 
   const publicPrintingReference =
-    args.printing.printing_gv_id?.trim() || args.printing.finish_key?.trim() || args.printing.finish_name?.trim();
+    args.printing.printing_gv_id?.trim() ||
+    args.finishKey?.trim() ||
+    args.printing.finish_key?.trim() ||
+    args.finishName?.trim() ||
+    args.printing.finish_name?.trim();
   if (publicPrintingReference) {
     params.set("printing", publicPrintingReference);
   }
 
-  if (args.printing.finish_name?.trim()) {
-    params.set("finish", args.printing.finish_name.trim());
+  const finishName = args.finishName?.trim() || args.printing.finish_name?.trim();
+  if (finishName) {
+    params.set("finish", finishName);
   }
 
-  params.set("reason", "child_printing_uses_parent_image");
+  params.set("reason", args.reason?.trim() || "child_printing_uses_parent_image");
   params.set("returnTo", args.currentPath);
 
   return `/submit?${params.toString()}`;
@@ -145,6 +153,7 @@ export default function AddToVaultCardAction({
     getDefaultPrinting(printings, initialPrintingId),
   );
   const selectedChildPrintingId = selectedPrinting?.is_display_fallback ? null : selectedPrinting?.id ?? null;
+  const onlyFallbackPrinting = printings.length === 1 && printings[0]?.is_display_fallback === true;
   const statusMessage = getStatusMessage(state);
   const toneClasses =
     statusMessage?.tone === "success"
@@ -153,14 +162,32 @@ export default function AddToVaultCardAction({
   const effectiveIsAuthenticated = isAuthenticated || viewer.isAuthenticated;
 
   function getImageSuggestionHref(printing: CardPrinting) {
-    if (printing.is_display_fallback) {
+    const submitPath = buildImageSuggestionPath({
+      gvId,
+      currentPath,
+      printing,
+    });
+
+    if (effectiveIsAuthenticated) {
+      return submitPath;
+    }
+
+    return `/login?next=${encodeURIComponent(submitPath)}`;
+  }
+
+  function getSuggestionHrefForFinish(finishKey: string, finishName: string) {
+    const fallbackPrinting = selectedPrinting ?? printings[0];
+    if (!fallbackPrinting) {
       return null;
     }
 
     const submitPath = buildImageSuggestionPath({
       gvId,
       currentPath,
-      printing,
+      printing: fallbackPrinting,
+      finishKey,
+      finishName,
+      reason: "missing_child_printing_image",
     });
 
     if (effectiveIsAuthenticated) {
@@ -203,6 +230,16 @@ export default function AddToVaultCardAction({
           compact
           showImageFallbackNotice
           getImageSuggestionHref={getImageSuggestionHref}
+          imageSuggestionLinks={
+            onlyFallbackPrinting
+              ? [
+                  {
+                    label: "Suggest Reverse Holo image",
+                    href: getSuggestionHrefForFinish("reverse", "Reverse Holo") ?? "#",
+                  },
+                ].filter((link) => link.href !== "#")
+              : []
+          }
         />
       ) : null}
 

@@ -87,6 +87,8 @@ function buildInitialSubmissionValues(searchParams?: {
     printing ? `Selected printing reference: ${printing}` : null,
     reason === "child_printing_uses_parent_image"
       ? "Reason: selected version is currently using the base card image."
+      : reason === "missing_child_printing_image"
+      ? "Reason: selected finish/version is missing from the reviewed image catalog."
       : "Reason: this card image is missing or incorrect.",
   ].filter((value): value is string => Boolean(value));
 

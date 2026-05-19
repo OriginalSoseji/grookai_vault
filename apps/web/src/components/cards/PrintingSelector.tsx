@@ -14,6 +14,7 @@ type PrintingSelectorProps = {
   compact?: boolean;
   showImageFallbackNotice?: boolean;
   getImageSuggestionHref?: (printing: CardPrinting) => string | null;
+  imageSuggestionLinks?: Array<{ label: string; href: string }>;
 };
 
 const MAX_COLLAPSED_PRINTINGS = 5;
@@ -37,6 +38,7 @@ export default function PrintingSelector({
   compact = false,
   showImageFallbackNotice = false,
   getImageSuggestionHref,
+  imageSuggestionLinks = [],
 }: PrintingSelectorProps) {
   const displayablePrintings = useMemo(() => {
     const byLabel = new Map<string, CardPrinting>();
@@ -96,9 +98,7 @@ export default function PrintingSelector({
   const selectedOwnershipLabel = selectedOwnedCount > 0 ? `Owned: ${selectedOwnedCount}` : "Not in vault";
   const selectedUsesBaseImage =
     showImageFallbackNotice &&
-    !selectedPrinting.is_display_fallback &&
-    !selectedPrinting.display_image_url &&
-    !selectedPrinting.image_url;
+    (selectedPrinting.is_display_fallback || (!selectedPrinting.display_image_url && !selectedPrinting.image_url));
   const imageSuggestionHref = selectedUsesBaseImage ? getImageSuggestionHref?.(selectedPrinting) ?? null : null;
 
   return (
@@ -157,7 +157,11 @@ export default function PrintingSelector({
           <div className="mt-3 rounded-[12px] border border-amber-200 bg-amber-50 px-3 py-2 text-sm text-amber-950">
             <p className="font-medium">Using base image</p>
             <div className="mt-1 flex flex-wrap items-center gap-2 text-xs">
-              <span>This selected version does not have a reviewed image yet.</span>
+              <span>
+                {selectedPrinting.is_display_fallback
+                  ? "No finish-specific versions are cataloged for this card yet."
+                  : "This selected version does not have a reviewed image yet."}
+              </span>
               {imageSuggestionHref ? (
                 <Link
                   href={imageSuggestionHref}
@@ -175,6 +179,15 @@ export default function PrintingSelector({
                   Suggest image
                 </button>
               )}
+              {imageSuggestionLinks.map((link) => (
+                <Link
+                  key={`${link.href}-${link.label}`}
+                  href={link.href}
+                  className="inline-flex rounded-full border border-amber-300 bg-white px-2.5 py-1 font-semibold text-amber-950 transition hover:border-amber-400 hover:bg-amber-100"
+                >
+                  {link.label}
+                </Link>
+              ))}
             </div>
           </div>
         ) : null}
