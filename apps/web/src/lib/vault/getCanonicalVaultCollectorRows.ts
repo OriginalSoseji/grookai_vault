@@ -17,6 +17,7 @@
 import "server-only";
 
 import { resolveCardImageFieldsV1 } from "@/lib/canon/resolveCardImageFieldsV1";
+import { getCardPrintingFinishLabel } from "@/lib/cards/displayDiscriminator";
 import { createServerAdminClient } from "@/lib/supabase/admin";
 import { normalizeVaultIntent, type VaultIntent } from "@/lib/network/intent";
 import {
@@ -41,6 +42,8 @@ export type CanonicalVaultCollectorSlabItem = {
 export type CanonicalVaultCollectorCopyItem = {
   instance_id: string;
   gv_vi_id: string | null;
+  card_printing_id: string | null;
+  finish_label: string | null;
   intent: VaultIntent;
   condition_label: string | null;
   is_graded: boolean;
@@ -100,6 +103,7 @@ export type CanonicalVaultCollectorRow = {
 type ActiveInstanceRow = {
   id: string;
   card_print_id: string | null;
+  card_printing_id: string | null;
   slab_cert_id: string | null;
   gv_vi_id: string | null;
   created_at: string | null;
@@ -151,6 +155,21 @@ type SlabCertMetadataRow = {
   grader: string | null;
   cert_number: string | null;
   grade: number | string | null;
+};
+
+type CardPrintingFinishRow = {
+  id: string | null;
+  finish_key: string | null;
+  finish_keys:
+    | {
+        label: string | null;
+        sort_order: number | null;
+      }
+    | {
+        label: string | null;
+        sort_order: number | null;
+      }[]
+    | null;
 };
 
 type CardPrintMetadataRow = {
@@ -248,10 +267,14 @@ function compareBuckets(left: BucketMetadataRow, right: BucketMetadataRow) {
 function buildCopyItem(
   row: ActiveInstanceRow,
   slabCert: SlabCertMetadataRow | null,
+  finishLabelByPrintingId: Map<string, string>,
 ): CanonicalVaultCollectorCopyItem {
+  const cardPrintingId = normalizeOptionalText(row.card_printing_id);
   return {
     instance_id: row.id,
     gv_vi_id: normalizeOptionalText(row.gv_vi_id),
+    card_printing_id: cardPrintingId,
+    finish_label: cardPrintingId ? finishLabelByPrintingId.get(cardPrintingId) ?? null : null,
     intent: normalizeVaultIntent(row.intent) ?? "hold",
     condition_label: normalizeOptionalText(row.condition_label),
     is_graded: Boolean(row.slab_cert_id),
@@ -271,7 +294,7 @@ async function fetchActiveInstances(userId: string) {
   const { data, error } = await adminClient
     .from("vault_item_instances")
     .select(
-      "id,card_print_id,slab_cert_id,gv_vi_id,created_at,legacy_vault_item_id,condition_label,photo_url,image_url,grade_company,grade_value,grade_label,intent,notes,image_display_mode",
+      "id,card_print_id,card_printing_id,slab_cert_id,gv_vi_id,created_at,legacy_vault_item_id,condition_label,photo_url,image_url,grade_company,grade_value,grade_label,intent,notes,image_display_mode",
     )
     .eq("user_id", userId)
     .is("archived_at", null)
@@ -314,9 +337,46 @@ async function fetchSlabCertMetadataById(slabCertIds: string[]) {
   return rowsById;
 }
 
+async function fetchFinishLabelsByPrintingId(cardPrintingIds: string[]) {
+  const adminClient = createServerAdminClient();
+  const labelsById = new Map<string, string>();
+
+  for (const ids of chunkArray(cardPrintingIds, 200)) {
+    const { data, error } = await adminClient
+      .from("card_printings")
+      .select("id,finish_key,finish_keys(label,sort_order)")
+      .in("id", ids);
+
+    if (error) {
+      throw new Error(
+        `[vault:read-model] card printing finish query failed: ${error.message}${error.code ? ` | code=${error.code}` : ""}`,
+      );
+    }
+
+    for (const row of (data ?? []) as CardPrintingFinishRow[]) {
+      const id = normalizeOptionalText(row.id);
+      if (!id) {
+        continue;
+      }
+
+      const finishRecord = Array.isArray(row.finish_keys) ? row.finish_keys[0] : row.finish_keys;
+      const label = getCardPrintingFinishLabel({
+        finishKey: row.finish_key,
+        finishLabel: finishRecord?.label,
+      });
+      if (label) {
+        labelsById.set(id, label);
+      }
+    }
+  }
+
+  return labelsById;
+}
+
 function aggregateInstances(
   rows: ActiveInstanceRow[],
   slabCertMetadataById: Map<string, SlabCertMetadataRow>,
+  finishLabelByPrintingId: Map<string, string>,
 ) {
   const aggregates = new Map<string, CardAggregate>();
 
@@ -400,7 +460,7 @@ function aggregateInstances(
       );
     }
 
-    const copyItem = buildCopyItem(row, slabCert);
+    const copyItem = buildCopyItem(row, slabCert, finishLabelByPrintingId);
     current.copyItems.push(copyItem);
 
     if (slabCertId) {
@@ -687,13 +747,21 @@ export async function getCanonicalVaultCollectorRows(userId: string): Promise<Ca
   }
 
   const activeInstances = await fetchActiveInstances(normalizedUserId);
+  const cardPrintingIds = normalizeIds(
+    activeInstances
+      .map((row) => normalizeOptionalText(row.card_printing_id))
+      .filter((value): value is string => Boolean(value)),
+  );
   const slabCertIds = normalizeIds(
     activeInstances
       .map((row) => normalizeOptionalText(row.slab_cert_id))
       .filter((value): value is string => Boolean(value)),
   );
-  const slabCertMetadataById = await fetchSlabCertMetadataById(slabCertIds);
-  const aggregatesByCardId = aggregateInstances(activeInstances, slabCertMetadataById);
+  const [slabCertMetadataById, finishLabelByPrintingId] = await Promise.all([
+    fetchSlabCertMetadataById(slabCertIds),
+    fetchFinishLabelsByPrintingId(cardPrintingIds),
+  ]);
+  const aggregatesByCardId = aggregateInstances(activeInstances, slabCertMetadataById, finishLabelByPrintingId);
   const cardPrintIds = normalizeIds(Array.from(aggregatesByCardId.keys()));
 
   if (cardPrintIds.length === 0) {

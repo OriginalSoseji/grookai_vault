@@ -1,6 +1,7 @@
 import "server-only";
 
 import { resolveCardImageFieldsV1 } from "@/lib/canon/resolveCardImageFieldsV1";
+import { getCardPrintingFinishLabel } from "@/lib/cards/displayDiscriminator";
 import { normalizeVaultIntent, type VaultIntent } from "@/lib/network/intent";
 import { getPublicPricingByCardIds } from "@/lib/pricing/getPublicPricingByCardIds";
 import { resolveVaultInstanceMediaUrl } from "@/lib/vault/resolveVaultInstanceMediaUrl";
@@ -22,6 +23,7 @@ type VaultInstanceRow = {
   user_id: string | null;
   gv_vi_id: string | null;
   card_print_id: string | null;
+  card_printing_id: string | null;
   slab_cert_id: string | null;
   legacy_vault_item_id: string | null;
   condition_label: string | null;
@@ -69,6 +71,21 @@ type CardPrintRow = {
       }
     | {
         name: string | null;
+      }[]
+    | null;
+};
+
+type CardPrintingFinishRow = {
+  id: string | null;
+  finish_key: string | null;
+  finish_keys:
+    | {
+        label: string | null;
+        sort_order: number | null;
+      }
+    | {
+        label: string | null;
+        sort_order: number | null;
       }[]
     | null;
 };
@@ -137,6 +154,8 @@ export type VaultInstanceDetail = {
   instanceId: string;
   gvviId: string;
   cardPrintId: string;
+  cardPrintingId: string | null;
+  finishLabel: string | null;
   gvId: string;
   cardName: string;
   setCode: string;
@@ -182,7 +201,7 @@ export async function getVaultInstanceByGvvi(userId: string, gvviId: string): Pr
   const { data: instanceData, error: instanceError } = await admin
     .from("vault_item_instances")
     .select(
-      "id,user_id,gv_vi_id,card_print_id,slab_cert_id,legacy_vault_item_id,condition_label,intent,notes,created_at,archived_at,grade_company,grade_value,grade_label,photo_url,image_url,image_back_url,image_display_mode,pricing_mode,asking_price_amount,asking_price_currency,asking_price_note",
+      "id,user_id,gv_vi_id,card_print_id,card_printing_id,slab_cert_id,legacy_vault_item_id,condition_label,intent,notes,created_at,archived_at,grade_company,grade_value,grade_label,photo_url,image_url,image_back_url,image_display_mode,pricing_mode,asking_price_amount,asking_price_currency,asking_price_note",
     )
     .eq("gv_vi_id", normalizedGvviId)
     .is("archived_at", null)
@@ -225,11 +244,12 @@ export async function getVaultInstanceByGvvi(userId: string, gvviId: string): Pr
   }
 
   const card = cardData as CardPrintRow;
+  const cardPrintingId = normalizeOptionalText(instance.card_printing_id);
   const legacyVaultItemId = normalizeOptionalText(instance.legacy_vault_item_id);
   const frontImagePath = normalizeOptionalText(instance.image_url);
   const backImagePath = normalizeOptionalText(instance.image_back_url);
 
-  const [cardImageFields, frontImageUrl, backImageUrl, outcomeResult, pricingByCardId] = await Promise.all([
+  const [cardImageFields, frontImageUrl, backImageUrl, outcomeResult, pricingByCardId, printingResult] = await Promise.all([
     resolveCardImageFieldsV1(card),
     resolveVaultInstanceMediaUrl(frontImagePath),
     resolveVaultInstanceMediaUrl(backImagePath),
@@ -241,18 +261,39 @@ export async function getVaultInstanceByGvvi(userId: string, gvviId: string): Pr
       .or(`source_instance_id.eq.${instance.id},result_instance_id.eq.${instance.id}`)
       .order("created_at", { ascending: false }),
     getPublicPricingByCardIds(admin, [resolvedCardPrintId]),
+    cardPrintingId
+      ? admin
+          .from("card_printings")
+          .select("id,finish_key,finish_keys(label,sort_order)")
+          .eq("id", cardPrintingId)
+          .eq("card_print_id", resolvedCardPrintId)
+          .maybeSingle()
+      : Promise.resolve({ data: null, error: null }),
   ]);
 
   const outcomeRows = ((outcomeResult.data ?? []) as OutcomeRow[]).filter(
     (row): row is OutcomeRow & { outcome_type: "sale" | "trade" } =>
       row.outcome_type === "sale" || row.outcome_type === "trade",
   );
+  if (printingResult.error) {
+    throw new Error(`[vault:gvvi] card printing finish query failed: ${printingResult.error.message}`);
+  }
   const pricingRecord = !instance.slab_cert_id ? pricingByCardId.get(resolvedCardPrintId) : undefined;
+  const printingRow = (printingResult.data ?? null) as CardPrintingFinishRow | null;
+  const finishRecord = Array.isArray(printingRow?.finish_keys) ? printingRow?.finish_keys[0] : printingRow?.finish_keys;
+  const finishLabel = cardPrintingId
+    ? getCardPrintingFinishLabel({
+        finishKey: printingRow?.finish_key ?? null,
+        finishLabel: finishRecord?.label,
+      }) ?? null
+    : null;
 
   return {
     instanceId: instance.id,
     gvviId: normalizedGvviId,
     cardPrintId: resolvedCardPrintId,
+    cardPrintingId,
+    finishLabel,
     gvId: normalizeOptionalText(card.gv_id) ?? "",
     cardName: normalizeOptionalText(card.name) ?? "Unknown card",
     setCode: normalizeOptionalText(card.set_code) ?? "Unknown set",

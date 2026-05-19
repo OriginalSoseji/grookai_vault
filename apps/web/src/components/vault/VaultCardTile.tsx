@@ -37,6 +37,8 @@ type VaultCardSlabItemData = {
 export type VaultCardInstanceData = {
   instance_id: string;
   gv_vi_id: string | null;
+  card_printing_id?: string | null;
+  finish_label?: string | null;
   intent: VaultIntent;
   condition_label: string | null;
   is_graded: boolean;

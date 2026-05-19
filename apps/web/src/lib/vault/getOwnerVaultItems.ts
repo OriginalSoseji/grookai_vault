@@ -110,6 +110,8 @@ function normalizeVaultItems(
         copy_items: row.copy_items.map((copyItem) => ({
           instance_id: copyItem.instance_id,
           gv_vi_id: copyItem.gv_vi_id,
+          card_printing_id: copyItem.card_printing_id,
+          finish_label: copyItem.finish_label,
           intent: normalizeVaultIntent(copyItem.intent) ?? "hold",
           condition_label: copyItem.condition_label,
           is_graded: copyItem.is_graded,
