@@ -1,0 +1,84 @@
+{
+  "contract": "CHILD_PRINTING_PUBLIC_IDENTITY_V1",
+  "generated_at": "2026-05-19T04:02:31.194Z",
+  "status": "COMMITTED_AND_VERIFIED",
+  "candidates": {
+    "total": 55582,
+    "approved_count": 44698,
+    "blocked_count": 10884,
+    "blocked_by_reason": {
+      "BLOCKED_PARENT_MISSING_GV_ID": 10377,
+      "BLOCKED_PARENT_VARIANT_BOUNDARY": 507
+    },
+    "approved_finish_distribution": {
+      "holo": 13075,
+      "normal": 16320,
+      "reverse": 15006,
+      "pokeball": 230,
+      "masterball": 67
+    },
+    "duplicate_proposed_id_count": 0
+  },
+  "pre_write": {
+    "remote_counts": {
+      "total_card_printings": 55582,
+      "populated_printing_gv_id": 0,
+      "null_printing_gv_id": 55582,
+      "collision_groups": 0,
+      "parent_collision_count": 0,
+      "suffix_counts": {}
+    },
+    "species_denominators": {
+      "charizard": 133,
+      "pikachu": 223
+    },
+    "parent_gv_id_checksum": "f3f26d71e5df4aedbc77902f5f95c770fde0d2c15804c53b8ed986d013a80856",
+    "target_candidate_checksum": "dcb053f58cf4654804b121a98d5a4f0fedc79d2805dabb75bb6d935e3fd4cf74",
+    "blocked_rows_null": 10884
+  },
+  "transaction": {
+    "assertions": {
+      "temp_count": 44698,
+      "non_approved_temp_rows": 0,
+      "null_proposed_ids": 0,
+      "duplicate_proposed_ids": 0,
+      "target_rows_already_populated": 0,
+      "proposed_id_existing_conflicts": 0,
+      "proposed_id_parent_conflicts": 0,
+      "missing_or_mismatched_target_rows": 0
+    },
+    "updated_rows": 44698,
+    "status": "COMMITTED"
+  },
+  "post_write": {
+    "remote_counts": {
+      "total_card_printings": 55582,
+      "populated_printing_gv_id": 44698,
+      "null_printing_gv_id": 10884,
+      "collision_groups": 0,
+      "parent_collision_count": 0,
+      "suffix_counts": {
+        "HOLO": 13075,
+        "MB": 67,
+        "PB": 230,
+        "RH": 15006,
+        "STD": 16320
+      }
+    },
+    "species_denominators": {
+      "charizard": 133,
+      "pikachu": 223
+    },
+    "parent_gv_id_checksum": "f3f26d71e5df4aedbc77902f5f95c770fde0d2c15804c53b8ed986d013a80856",
+    "parent_gv_id_checksum_unchanged": true,
+    "blocked_rows_still_null": 10884,
+    "blocked_rows_populated": 0
+  },
+  "confirmations": {
+    "parent_gv_id_changes": false,
+    "species_dex_denominator_changes": false,
+    "scanner_changes": false,
+    "public_child_route_enablement": false,
+    "unrelated_db_remediation": false
+  }
+}
