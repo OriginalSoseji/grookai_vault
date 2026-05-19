@@ -102,6 +102,31 @@ function getStatusMessage(result: AddToVaultActionResult | null) {
   }
 }
 
+function buildImageSuggestionPath(args: {
+  gvId: string;
+  currentPath: string;
+  printing: CardPrinting;
+}) {
+  const params = new URLSearchParams();
+  params.set("intent", "MISSING_IMAGE");
+  params.set("card", args.gvId);
+
+  const publicPrintingReference =
+    args.printing.printing_gv_id?.trim() || args.printing.finish_key?.trim() || args.printing.finish_name?.trim();
+  if (publicPrintingReference) {
+    params.set("printing", publicPrintingReference);
+  }
+
+  if (args.printing.finish_name?.trim()) {
+    params.set("finish", args.printing.finish_name.trim());
+  }
+
+  params.set("reason", "child_printing_uses_parent_image");
+  params.set("returnTo", args.currentPath);
+
+  return `/submit?${params.toString()}`;
+}
+
 export default function AddToVaultCardAction({
   action,
   isAuthenticated,
@@ -126,6 +151,24 @@ export default function AddToVaultCardAction({
       ? "border-emerald-200 bg-emerald-50 text-emerald-900"
       : "border-rose-200 bg-rose-50 text-rose-800";
   const effectiveIsAuthenticated = isAuthenticated || viewer.isAuthenticated;
+
+  function getImageSuggestionHref(printing: CardPrinting) {
+    if (printing.is_display_fallback) {
+      return null;
+    }
+
+    const submitPath = buildImageSuggestionPath({
+      gvId,
+      currentPath,
+      printing,
+    });
+
+    if (effectiveIsAuthenticated) {
+      return submitPath;
+    }
+
+    return `/login?next=${encodeURIComponent(submitPath)}`;
+  }
 
   useEffect(() => {
     if (!state?.ok || (state.status !== "added" && state.status !== "incremented")) {
@@ -159,6 +202,7 @@ export default function AddToVaultCardAction({
           description="Choose the exact version before adding it to your vault."
           compact
           showImageFallbackNotice
+          getImageSuggestionHref={getImageSuggestionHref}
         />
       ) : null}
 

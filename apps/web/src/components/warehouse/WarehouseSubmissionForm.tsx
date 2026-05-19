@@ -17,6 +17,11 @@ import {
 
 type WarehouseSubmissionFormProps = {
   userId: string;
+  initialValues?: {
+    submissionIntent?: WarehouseSubmissionIntent | null;
+    notes?: string | null;
+    tcgplayerId?: string | null;
+  };
 };
 
 type SubmissionStatus =
@@ -159,12 +164,14 @@ function EvidencePicker({
   );
 }
 
-export function WarehouseSubmissionForm({ userId }: WarehouseSubmissionFormProps) {
+export function WarehouseSubmissionForm({ userId, initialValues }: WarehouseSubmissionFormProps) {
   const frontInputRef = useRef<HTMLInputElement | null>(null);
   const backInputRef = useRef<HTMLInputElement | null>(null);
-  const [submissionIntent, setSubmissionIntent] = useState<WarehouseSubmissionIntent | "">("");
-  const [notes, setNotes] = useState("");
-  const [tcgplayerId, setTcgplayerId] = useState("");
+  const [submissionIntent, setSubmissionIntent] = useState<WarehouseSubmissionIntent | "">(
+    initialValues?.submissionIntent ?? "",
+  );
+  const [notes, setNotes] = useState(initialValues?.notes ?? "");
+  const [tcgplayerId, setTcgplayerId] = useState(initialValues?.tcgplayerId ?? "");
   const [frontImageFile, setFrontImageFile] = useState<File | null>(null);
   const [backImageFile, setBackImageFile] = useState<File | null>(null);
   const [touched, setTouched] = useState<TouchedFields>({});

@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
 import PrintingChip from "@/components/cards/PrintingChip";
 import type { CardPrinting } from "@/types/cards";
@@ -12,6 +13,7 @@ type PrintingSelectorProps = {
   description?: string;
   compact?: boolean;
   showImageFallbackNotice?: boolean;
+  getImageSuggestionHref?: (printing: CardPrinting) => string | null;
 };
 
 const MAX_COLLAPSED_PRINTINGS = 5;
@@ -34,6 +36,7 @@ export default function PrintingSelector({
   description,
   compact = false,
   showImageFallbackNotice = false,
+  getImageSuggestionHref,
 }: PrintingSelectorProps) {
   const displayablePrintings = useMemo(() => {
     const byLabel = new Map<string, CardPrinting>();
@@ -96,6 +99,7 @@ export default function PrintingSelector({
     !selectedPrinting.is_display_fallback &&
     !selectedPrinting.display_image_url &&
     !selectedPrinting.image_url;
+  const imageSuggestionHref = selectedUsesBaseImage ? getImageSuggestionHref?.(selectedPrinting) ?? null : null;
 
   return (
     <section className={`space-y-4 rounded-[16px] border border-slate-200 bg-white shadow-sm ${compact ? "p-4" : "p-6"}`}>
@@ -154,14 +158,23 @@ export default function PrintingSelector({
             <p className="font-medium">Using base image</p>
             <div className="mt-1 flex flex-wrap items-center gap-2 text-xs">
               <span>This selected version does not have a reviewed image yet.</span>
-              <button
-                type="button"
-                disabled
-                className="inline-flex cursor-not-allowed rounded-full border border-amber-300 bg-amber-100 px-2.5 py-1 font-semibold text-amber-900 opacity-70"
-                aria-disabled="true"
-              >
-                Suggest image
-              </button>
+              {imageSuggestionHref ? (
+                <Link
+                  href={imageSuggestionHref}
+                  className="inline-flex rounded-full border border-amber-300 bg-amber-100 px-2.5 py-1 font-semibold text-amber-950 transition hover:border-amber-400 hover:bg-amber-200"
+                >
+                  Suggest image
+                </Link>
+              ) : (
+                <button
+                  type="button"
+                  disabled
+                  className="inline-flex cursor-not-allowed rounded-full border border-amber-300 bg-amber-100 px-2.5 py-1 font-semibold text-amber-900 opacity-70"
+                  aria-disabled="true"
+                >
+                  Suggest image
+                </button>
+              )}
             </div>
           </div>
         ) : null}

@@ -16,8 +16,100 @@ export const metadata: Metadata = {
   },
 };
 
-export default async function SubmitPage() {
-  const { user } = await requireServerUser("/submit");
+function cleanParam(value?: string | string[] | null) {
+  if (Array.isArray(value)) {
+    return cleanParam(value[0]);
+  }
+
+  if (typeof value !== "string") {
+    return null;
+  }
+
+  const normalized = value.trim();
+  return normalized.length > 0 ? normalized : null;
+}
+
+function appendParam(params: URLSearchParams, key: string, value?: string | string[] | null) {
+  if (Array.isArray(value)) {
+    for (const item of value) {
+      appendParam(params, key, item);
+    }
+    return;
+  }
+
+  const normalized = cleanParam(value);
+  if (normalized) {
+    params.append(key, normalized);
+  }
+}
+
+function buildSubmitLoginNext(searchParams?: {
+  intent?: string | string[];
+  card?: string | string[];
+  printing?: string | string[];
+  finish?: string | string[];
+  reason?: string | string[];
+  returnTo?: string | string[];
+}) {
+  const params = new URLSearchParams();
+  appendParam(params, "intent", searchParams?.intent);
+  appendParam(params, "card", searchParams?.card);
+  appendParam(params, "printing", searchParams?.printing);
+  appendParam(params, "finish", searchParams?.finish);
+  appendParam(params, "reason", searchParams?.reason);
+  appendParam(params, "returnTo", searchParams?.returnTo);
+
+  const query = params.toString();
+  return query ? `/submit?${query}` : "/submit";
+}
+
+function buildInitialSubmissionValues(searchParams?: {
+  intent?: string | string[];
+  card?: string | string[];
+  printing?: string | string[];
+  finish?: string | string[];
+  reason?: string | string[];
+  returnTo?: string | string[];
+}) {
+  const intent = cleanParam(searchParams?.intent)?.toUpperCase() === "MISSING_IMAGE" ? "MISSING_IMAGE" : null;
+  const card = cleanParam(searchParams?.card);
+  const printing = cleanParam(searchParams?.printing);
+  const finish = cleanParam(searchParams?.finish);
+  const reason = cleanParam(searchParams?.reason);
+
+  if (intent !== "MISSING_IMAGE" || !card) {
+    return undefined;
+  }
+
+  const notes = [
+    `Image suggestion for ${card}`,
+    finish ? `Selected version: ${finish}` : null,
+    printing ? `Selected printing reference: ${printing}` : null,
+    reason === "child_printing_uses_parent_image"
+      ? "Reason: selected version is currently using the base card image."
+      : "Reason: this card image is missing or incorrect.",
+  ].filter((value): value is string => Boolean(value));
+
+  return {
+    submissionIntent: "MISSING_IMAGE" as const,
+    notes: notes.join("\n"),
+  };
+}
+
+export default async function SubmitPage({
+  searchParams,
+}: {
+  searchParams?: {
+    intent?: string | string[];
+    card?: string | string[];
+    printing?: string | string[];
+    finish?: string | string[];
+    reason?: string | string[];
+    returnTo?: string | string[];
+  };
+}) {
+  const { user } = await requireServerUser(buildSubmitLoginNext(searchParams));
+  const initialValues = buildInitialSubmissionValues(searchParams);
 
   return (
     <div className="space-y-8 py-6 md:py-8">
@@ -47,7 +139,7 @@ export default async function SubmitPage() {
           title="Submission form"
           description="This is a collector submission route. It does not expose founder review, staging, or canon mutation."
         />
-        <WarehouseSubmissionForm userId={user.id} />
+        <WarehouseSubmissionForm userId={user.id} initialValues={initialValues} />
       </PageSection>
     </div>
   );
