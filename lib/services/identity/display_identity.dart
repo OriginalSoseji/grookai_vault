@@ -116,6 +116,16 @@ String? formatFinishLabel({String? finishKey, String? finishLabel}) {
   return normalizedLabel.isEmpty ? null : normalizedLabel;
 }
 
+String? formatSearchContextLabel(String? value) {
+  final normalized = (value ?? '').trim();
+  if (normalized.startsWith('Cameo:') ||
+      normalized.startsWith('Cameo trainer:')) {
+    return normalized;
+  }
+
+  return null;
+}
+
 ResolvedDisplayIdentity resolveDisplayIdentityFromFields({
   required String? name,
   String? variantKey,
@@ -132,6 +142,7 @@ ResolvedDisplayIdentity resolveDisplayIdentityFromFields({
   final baseName = (name ?? '').trim().isEmpty ? 'Unknown card' : name!.trim();
 
   var suffix = formatVariantKey(variantKey);
+  suffix ??= formatSearchContextLabel(displayDiscriminator);
   if (suffix == null && searchObjectType == 'child_printing') {
     suffix = (displayDiscriminator ?? '').trim();
     if (suffix.isEmpty) {

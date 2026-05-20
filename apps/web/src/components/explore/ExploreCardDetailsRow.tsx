@@ -13,6 +13,7 @@ import {
   resolveDisplayIdentitySubtitleForContext,
 } from "@/lib/cards/resolveDisplayIdentity";
 import { getVariantLabels } from "@/lib/cards/variantPresentation";
+import { getSearchContextLabel } from "@/components/explore/searchContextLabel";
 
 type ExploreCardDetailsRowProps = {
   card: ExploreResultCard;
@@ -29,10 +30,7 @@ export default function ExploreCardDetailsRow({ card, href, canViewPricing, sign
     visibleSetLabel: setLabel,
   });
   const variantLabels = getVariantLabels(card, 3);
-  const searchDiscriminator =
-    card.search_object_type === "child_printing"
-      ? card.display_discriminator ?? card.finish_label
-      : undefined;
+  const searchDiscriminator = getSearchContextLabel(card);
   const imagePresentation = resolveCardImagePresentation(card);
 
   return (

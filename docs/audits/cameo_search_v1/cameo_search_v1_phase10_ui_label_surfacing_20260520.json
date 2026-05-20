@@ -1,0 +1,43 @@
+{
+  "generated_at": "2026-05-20T16:40:00.000Z",
+  "mode": "UI_LABEL_SURFACING_ONLY",
+  "scope": {
+    "web_search_results": true,
+    "mobile_search_results": true,
+    "ranking_changes": false,
+    "db_changes": false,
+    "resolver_changes": false,
+    "species_dex_changes": false,
+    "scanner_changes": false,
+    "pricing_changes": false,
+    "identity_changes": false
+  },
+  "labels": [
+    "Cameo: <subject>",
+    "Cameo trainer: <subject>"
+  ],
+  "web": {
+    "helper": "apps/web/src/components/explore/searchContextLabel.ts",
+    "surfaces": [
+      "ExploreCardGridItem",
+      "ExploreCardListItem",
+      "ExploreCardDetailsRow"
+    ]
+  },
+  "mobile": {
+    "helper": "lib/services/identity/display_identity.dart",
+    "behavior": "display_discriminator values beginning with Cameo: or Cameo trainer: are treated as search context suffixes"
+  },
+  "verification": {
+    "web_typecheck": "pass",
+    "web_lint": "pass_existing_warning",
+    "web_build": "pass",
+    "contracts_test": "pass",
+    "contracts_runtime_health": "pass",
+    "dart_format": "pass",
+    "flutter_targeted_analyze": "pass",
+    "preflight": "pass_with_deferred_debt",
+    "git_diff_check": "pass",
+    "browser_smoke": "not_run_browser_tool_unavailable"
+  }
+}

@@ -13,6 +13,7 @@ import {
 } from "@/lib/cards/resolveDisplayIdentity";
 import { getVariantLabels } from "@/lib/cards/variantPresentation";
 import type { ExploreResultCard } from "@/components/explore/exploreResultTypes";
+import { getSearchContextLabel } from "@/components/explore/searchContextLabel";
 
 type ExploreCardGridItemProps = {
   card: ExploreResultCard;
@@ -29,10 +30,7 @@ export default function ExploreCardGridItem({ card, href, mode, canViewPricing }
     visibleSetLabel: setLabel,
   });
   const variantLabels = getVariantLabels(card, 2);
-  const searchDiscriminator =
-    card.search_object_type === "child_printing"
-      ? card.display_discriminator ?? card.finish_label
-      : undefined;
+  const searchDiscriminator = getSearchContextLabel(card);
   const imagePresentation = resolveCardImagePresentation(card);
   const isLarge = mode === "thumb-lg";
   const density = isLarge ? "large" : "default";
