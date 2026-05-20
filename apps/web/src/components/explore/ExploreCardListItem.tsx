@@ -29,6 +29,10 @@ export default function ExploreCardListItem({ card, href, canViewPricing, signIn
     visibleSetLabel: setLabel,
   });
   const variantLabels = getVariantLabels(card, 2);
+  const searchDiscriminator =
+    card.search_object_type === "child_printing"
+      ? card.display_discriminator ?? card.finish_label
+      : undefined;
   const imagePresentation = resolveCardImagePresentation(card);
 
   return (
@@ -50,6 +54,9 @@ export default function ExploreCardListItem({ card, href, canViewPricing, signIn
                 {identitySubtitle ? (
                   <span className="block truncate text-sm font-medium text-slate-500">{identitySubtitle}</span>
                 ) : null}
+                {searchDiscriminator ? (
+                  <span className="block truncate text-sm font-semibold text-slate-700">{searchDiscriminator}</span>
+                ) : null}
                 <p className="text-sm text-slate-600">{setLabel}</p>
                 <PromotionTransitionNote state={card.promotion_transition} />
               </div>
@@ -59,14 +66,19 @@ export default function ExploreCardListItem({ card, href, canViewPricing, signIn
                   emphasis={imagePresentation.isCollisionRepresentative ? "strong" : "default"}
                 />
               ) : null}
-              {variantLabels.length > 0 ? (
+              {variantLabels.length > 0 || searchDiscriminator ? (
                 <div className="flex flex-wrap gap-1.5">
                   {variantLabels.map((label) => (
                     <VariantBadge key={`${card.gv_id}-${label}`} label={label} />
                   ))}
+                  {searchDiscriminator ? (
+                    <VariantBadge key={`${card.gv_id}-${searchDiscriminator}`} label={searchDiscriminator} />
+                  ) : null}
                 </div>
               ) : null}
-              <p className="text-xs font-medium tracking-[0.08em] text-slate-500">{card.gv_id}</p>
+              <p className="text-xs font-medium tracking-[0.08em] text-slate-500">
+                {card.printing_gv_id ?? card.gv_id}
+              </p>
             </div>
             <div className="hidden shrink-0 text-right md:block">
               {canViewPricing ? (

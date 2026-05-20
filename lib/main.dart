@@ -656,6 +656,11 @@ class _CatalogCardTile extends StatelessWidget {
     if (card.displayNumber.isNotEmpty) {
       subtitleParts.add('#${card.displayNumber}');
     }
+    final selectedFinish =
+        (card.displayDiscriminator ?? card.finishLabel ?? '').trim();
+    if (selectedFinish.isNotEmpty) {
+      subtitleParts.add(selectedFinish);
+    }
     if (!compact && (card.rarity ?? '').isNotEmpty) {
       subtitleParts.add(card.rarity!);
     }

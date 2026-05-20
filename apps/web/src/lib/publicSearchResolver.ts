@@ -19,7 +19,7 @@ const CARD_SELECT = "id,gv_id,name,number,set_code,printed_set_abbrev";
 const STRUCTURED_QUERY_LIMIT = 80;
 
 type ResolverResult =
-  | { kind: "card"; gv_id: string }
+  | { kind: "card"; gv_id: string; printing_gv_id?: string }
   | { kind: "set"; set_code: string }
   | { kind: "sets"; query: string }
   | { kind: "explore"; query: string };
@@ -591,6 +591,49 @@ async function resolveAliasOrNickname() {
   return null;
 }
 
+async function resolveExactChildPrintingGvId(
+  supabase: ReturnType<typeof createServerSupabase>,
+  gvId: string,
+) {
+  const { data, error } = await supabase
+    .from("card_printings")
+    .select("printing_gv_id,card_prints(gv_id)")
+    .eq("printing_gv_id", gvId)
+    .limit(2);
+
+  if (error) {
+    if (
+      error.message.includes("printing_gv_id") ||
+      error.message.includes("relationship") ||
+      error.message.includes("card_printings")
+    ) {
+      return null;
+    }
+
+    throw new Error(error.message);
+  }
+
+  const rows = (data ?? []) as Array<{
+    printing_gv_id?: string | null;
+    card_prints?: { gv_id?: string | null } | Array<{ gv_id?: string | null }> | null;
+  }>;
+  if (rows.length !== 1) {
+    return null;
+  }
+
+  const parent = Array.isArray(rows[0].card_prints) ? rows[0].card_prints[0] : rows[0].card_prints;
+  const parentGvId = parent?.gv_id;
+  const printingGvId = rows[0].printing_gv_id;
+  if (!parentGvId || !printingGvId) {
+    return null;
+  }
+
+  return {
+    gv_id: parentGvId,
+    printing_gv_id: printingGvId,
+  };
+}
+
 export async function resolvePublicSearchPacketWithTiming(
   packet: NormalizedQueryPacket,
 ): Promise<{
@@ -645,6 +688,15 @@ export async function resolvePublicSearchPacketWithTiming(
   if (parsedQuery.normalizedGvId) {
     const directGvId = parsedQuery.normalizedGvId;
     const timedLookup = await measureStage(async () => {
+      const childPrintingMatch = await resolveExactChildPrintingGvId(supabase, directGvId);
+      if (childPrintingMatch) {
+        return {
+          kind: "card",
+          gv_id: childPrintingMatch.gv_id,
+          printing_gv_id: childPrintingMatch.printing_gv_id,
+        } satisfies ResolverResult;
+      }
+
       const { data, error } = await supabase
         .from("card_prints")
         .select("gv_id")

@@ -303,8 +303,21 @@ export default function ExplorePageClient({
     router.replace(nextUrl, { scroll: false });
   };
 
-  const buildCardHref = (gvId: string) =>
-    buildPathWithCompareCards(`/card/${gvId}`, "", compareCards);
+  const buildCardHref = (row: Pick<ExploreRow, "gv_id" | "selected_printing_gv_id" | "printing_gv_id" | "route_query">) => {
+    const selectedPrintingGvId = row.selected_printing_gv_id ?? row.printing_gv_id;
+    const params = new URLSearchParams();
+    if (selectedPrintingGvId) {
+      params.set("printing", selectedPrintingGvId);
+    } else if (row.route_query) {
+      const routeParams = new URLSearchParams(row.route_query);
+      const printing = routeParams.get("printing");
+      if (printing) {
+        params.set("printing", printing);
+      }
+    }
+
+    return buildPathWithCompareCards(`/card/${row.gv_id}`, params.toString(), compareCards);
+  };
   const currentPath = searchParams.toString()
     ? `${pathname}?${searchParams.toString()}`
     : pathname;
@@ -313,6 +326,8 @@ export default function ExplorePageClient({
     shouldServerFilterByIdentity || !isIdentityFilterActive(identityFilter)
       ? rows
       : rows.filter((row) => matchesIdentityFilter(row, identityFilter));
+  const getResultKey = (row: ExploreRow) =>
+    row.search_card_printing_id ?? row.printing_gv_id ?? row.id;
   const identityFilterCounts = buildIdentityFilterCounts(rows);
   const visibleIdentityFilters = IDENTITY_FILTER_OPTIONS.filter(
     (option) =>
@@ -472,9 +487,9 @@ export default function ExplorePageClient({
             <ul className="space-y-3">
               {displayRows.map((row) => (
                 <ExploreCardListItem
-                  key={row.id}
+                  key={getResultKey(row)}
                   card={row}
-                  href={buildCardHref(row.gv_id)}
+                  href={buildCardHref(row)}
                   canViewPricing={effectiveCanViewPricing}
                   signInHref={pricingSignInHref}
                 />
@@ -487,9 +502,9 @@ export default function ExplorePageClient({
                 <ul className="space-y-3">
                   {displayRows.map((row) => (
                     <ExploreCardListItem
-                      key={row.id}
+                      key={getResultKey(row)}
                       card={row}
-                      href={buildCardHref(row.gv_id)}
+                      href={buildCardHref(row)}
                       canViewPricing={effectiveCanViewPricing}
                       signInHref={pricingSignInHref}
                     />
@@ -530,9 +545,9 @@ export default function ExplorePageClient({
                     <tbody>
                       {displayRows.map((row) => (
                         <ExploreCardDetailsRow
-                          key={row.id}
+                          key={getResultKey(row)}
                           card={row}
-                          href={buildCardHref(row.gv_id)}
+                          href={buildCardHref(row)}
                           canViewPricing={effectiveCanViewPricing}
                           signInHref={pricingSignInHref}
                         />
@@ -549,9 +564,9 @@ export default function ExplorePageClient({
             <div className={POKEMON_CARD_BROWSE_LARGE_GRID_CLASSNAME}>
               {displayRows.map((row) => (
                 <ExploreCardGridItem
-                  key={row.id}
+                  key={getResultKey(row)}
                   card={row}
-                  href={buildCardHref(row.gv_id)}
+                  href={buildCardHref(row)}
                   mode="thumb-lg"
                   canViewPricing={effectiveCanViewPricing}
                 />
@@ -564,9 +579,9 @@ export default function ExplorePageClient({
             <div className={POKEMON_CARD_BROWSE_GRID_CLASSNAME}>
               {displayRows.map((row) => (
                 <ExploreCardGridItem
-                  key={row.id}
+                  key={getResultKey(row)}
                   card={row}
-                  href={buildCardHref(row.gv_id)}
+                  href={buildCardHref(row)}
                   mode="thumb"
                   canViewPricing={effectiveCanViewPricing}
                 />

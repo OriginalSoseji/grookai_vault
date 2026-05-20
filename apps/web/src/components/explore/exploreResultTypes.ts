@@ -13,4 +13,12 @@ export type ExploreResultCard = CardSummary & {
   set_identity_model?: string;
   variants?: VariantFlags;
   promotion_transition?: PromotionTransitionState;
+  search_object_type?: "parent_print" | "child_printing";
+  search_card_printing_id?: string;
+  printing_gv_id?: string;
+  selected_printing_gv_id?: string;
+  finish_key?: string;
+  finish_label?: string;
+  display_discriminator?: string;
+  route_query?: string;
 };

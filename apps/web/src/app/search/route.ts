@@ -76,6 +76,9 @@ export async function GET(request: NextRequest) {
     if (result.kind === "card") {
       if (resolved.meta.resolverState === "DIRECT_MATCH") {
         const nextUrl = new URL(`/card/${encodeURIComponent(result.gv_id)}`, request.url);
+        if (result.printing_gv_id) {
+          nextUrl.searchParams.set("printing", result.printing_gv_id);
+        }
         applyCompareCardsParam(request, nextUrl);
         return NextResponse.redirect(nextUrl);
       }
