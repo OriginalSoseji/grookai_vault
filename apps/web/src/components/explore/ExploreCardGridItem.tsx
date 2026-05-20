@@ -20,9 +20,10 @@ type ExploreCardGridItemProps = {
   href: string;
   mode: "thumb" | "thumb-lg";
   canViewPricing: boolean;
+  matchReason?: string;
 };
 
-export default function ExploreCardGridItem({ card, href, mode, canViewPricing }: ExploreCardGridItemProps) {
+export default function ExploreCardGridItem({ card, href, mode, canViewPricing, matchReason }: ExploreCardGridItemProps) {
   const displayIdentity = resolveDisplayIdentity(card);
   const setLabel = card.set_name ?? "Unknown set";
   const identitySubtitle = resolveDisplayIdentitySubtitleForContext({
@@ -59,6 +60,9 @@ export default function ExploreCardGridItem({ card, href, mode, canViewPricing }
           ) : null}
           {searchDiscriminator ? (
             <span className="block truncate text-xs font-semibold text-slate-700">{searchDiscriminator}</span>
+          ) : null}
+          {matchReason ? (
+            <span className="gv-hi-search-context block truncate text-[11px] font-medium text-slate-500">{matchReason}</span>
           ) : null}
         </Link>
       }

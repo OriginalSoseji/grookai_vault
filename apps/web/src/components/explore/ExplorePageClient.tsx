@@ -1,6 +1,6 @@
 "use client";
 
-import type { ReactNode } from "react";
+import { Fragment, type ReactNode } from "react";
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
@@ -23,6 +23,7 @@ import ExploreCardGridItem from "@/components/explore/ExploreCardGridItem";
 import ExploreCardListItem from "@/components/explore/ExploreCardListItem";
 import PublicProvisionalSearchSection from "@/components/provisional/PublicProvisionalSearchSection";
 import type { ExploreResultCard } from "@/components/explore/exploreResultTypes";
+import { getSearchContextLabel } from "@/components/explore/searchContextLabel";
 import ExploreViewModeToggle from "@/components/explore/ExploreViewModeToggle";
 import {
   buildPathWithCompareCards,
@@ -38,6 +39,104 @@ import type { PublicProvisionalCard } from "@/lib/provisional/publicProvisionalT
 
 type ExploreRow = ExploreResultCard;
 type SortMode = "relevance" | "newest" | "oldest";
+type SearchResultIntent = "exact_version" | "identity" | "cameo" | "related";
+
+const INITIAL_VISIBLE_RESULT_COUNT = 48;
+
+const SEARCH_RESULT_INTENT_COPY: Record<
+  SearchResultIntent,
+  { label: string; description: string }
+> = {
+  exact_version: {
+    label: "Exact version matches",
+    description: "Specific finishes, variants, stamps, and printing IDs.",
+  },
+  identity: {
+    label: "Card identity matches",
+    description: "Primary card matches ranked by the resolver.",
+  },
+  cameo: {
+    label: "Cameo matches",
+    description: "Supplemental appearance context, kept secondary to identity.",
+  },
+  related: {
+    label: "Related results",
+    description: "Additional ranked results that may still match the query.",
+  },
+};
+
+function isCameoLabel(value?: string | null) {
+  const normalized = value?.trim().toLowerCase() ?? "";
+  return (
+    normalized.startsWith("cameo:") ||
+    normalized.startsWith("cameo trainer:")
+  );
+}
+
+function classifySearchResultIntent(row: ExploreRow): SearchResultIntent {
+  const searchContext = getSearchContextLabel(row);
+
+  if (isCameoLabel(searchContext)) {
+    return "cameo";
+  }
+
+  if (
+    row.search_object_type === "child_printing" ||
+    row.printing_gv_id ||
+    row.selected_printing_gv_id
+  ) {
+    return "exact_version";
+  }
+
+  if (row.gv_id || row.name) {
+    return "identity";
+  }
+
+  return "related";
+}
+
+function buildContiguousSearchResultGroups(rows: ExploreRow[]) {
+  const groups: Array<{ intent: SearchResultIntent; rows: ExploreRow[] }> = [];
+
+  for (const row of rows) {
+    const intent = classifySearchResultIntent(row);
+    const currentGroup = groups[groups.length - 1];
+
+    if (currentGroup?.intent === intent) {
+      currentGroup.rows.push(row);
+    } else {
+      groups.push({ intent, rows: [row] });
+    }
+  }
+
+  return groups;
+}
+
+function getSearchResultMatchReason(row: ExploreRow) {
+  const searchContext = getSearchContextLabel(row);
+
+  if (isCameoLabel(searchContext)) {
+    return `Matched ${searchContext}`;
+  }
+
+  if (row.search_object_type === "child_printing") {
+    return `Matched selected version: ${searchContext ?? row.finish_label ?? "variant"}`;
+  }
+
+  if (row.display_discriminator) {
+    return `Matched ${row.display_discriminator}`;
+  }
+
+  if (row.set_name && row.number) {
+    return `Matched identity in ${row.set_name} #${row.number}`;
+  }
+
+  if (row.set_name) {
+    return `Matched identity in ${row.set_name}`;
+  }
+
+  return "Matched card identity";
+}
 
 function parseViewMode(value: string | null): ExploreViewMode {
   return normalizeExploreViewMode(value);
@@ -159,6 +258,9 @@ export default function ExplorePageClient({
   const [resolverMeta, setResolverMeta] = useState<ResolverMeta | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [visibleResultCount, setVisibleResultCount] = useState(
+    INITIAL_VISIBLE_RESULT_COUNT,
+  );
   const effectiveCanViewPricing = canViewPricing || viewer.isAuthenticated;
 
   useEffect(() => {
@@ -264,6 +366,17 @@ export default function ExplorePageClient({
     shouldServerFilterByIdentity,
   ]);
 
+  useEffect(() => {
+    setVisibleResultCount(INITIAL_VISIBLE_RESULT_COUNT);
+  }, [
+    normalizedQuery,
+    sortMode,
+    exactSetCode,
+    exactReleaseYear,
+    exactIllustrator,
+    identityFilter,
+  ]);
+
   const commitViewMode = (nextViewMode: ExploreViewMode) => {
     const params = new URLSearchParams(searchParams.toString());
     params.set("view", nextViewMode);
@@ -326,6 +439,9 @@ export default function ExplorePageClient({
     shouldServerFilterByIdentity || !isIdentityFilterActive(identityFilter)
       ? rows
       : rows.filter((row) => matchesIdentityFilter(row, identityFilter));
+  const visibleRows = displayRows.slice(0, visibleResultCount);
+  const visibleResultGroups = buildContiguousSearchResultGroups(visibleRows);
+  const hasMoreResults = visibleRows.length < displayRows.length;
   const getResultKey = (row: ExploreRow) =>
     row.search_card_printing_id ?? row.printing_gv_id ?? row.id;
   const identityFilterCounts = buildIdentityFilterCounts(rows);
@@ -338,15 +454,109 @@ export default function ExplorePageClient({
   const resolverSummary = normalizedQuery
     ? getResolverSummary(resolverMeta)
     : null;
+  const resultCountLabel =
+    displayRows.length > 0
+      ? visibleRows.length < displayRows.length
+        ? `Showing ${visibleRows.length} of ${displayRows.length} results`
+        : `${displayRows.length} result${displayRows.length === 1 ? "" : "s"}`
+      : "Results";
   const emptyState = (
-    <div className="rounded-3xl border border-slate-200 bg-white px-4 py-6 text-sm text-slate-600 shadow-sm">
-      {resolverMeta?.resolverState === "NO_MATCH" && normalizedQuery
-        ? `No matching cards found for "${normalizedQuery}". Try adding a set code, collector number, or promo code.`
-        : isIdentityFilterActive(identityFilter)
-          ? `No ${getIdentityFilterLabel(identityFilter).toLowerCase()} cards found for this search.`
-          : "No results yet."}
+    <div className="rounded-[20px] border border-slate-200 bg-white px-5 py-7 text-sm text-slate-600 shadow-sm">
+      <p className="gv-hi-card-identity text-base font-semibold text-slate-950">
+        {resolverMeta?.resolverState === "NO_MATCH" && normalizedQuery
+          ? "No card match yet"
+          : isIdentityFilterActive(identityFilter)
+            ? `No ${getIdentityFilterLabel(identityFilter).toLowerCase()} cards found`
+            : "No results yet"}
+      </p>
+      <p className="mt-2 max-w-xl leading-6">
+        {resolverMeta?.resolverState === "NO_MATCH" && normalizedQuery
+          ? `Nothing matched "${normalizedQuery}". Try a card name plus set code, collector number, finish, or cameo subject.`
+          : "Try a card name, set code, collector number, finish, trainer, or cameo subject."}
+      </p>
+      <div className="mt-4 flex flex-wrap gap-2">
+        {["pikachu masterball", "sv8pt5 exeggutor pokeball", "GV-PK-ME03-033-RH", "cameo charizard"].map((suggestion) => (
+          <Link
+            key={suggestion}
+            href={buildPathWithCompareCards(
+              "/explore",
+              `q=${encodeURIComponent(suggestion)}`,
+              compareCards,
+            )}
+            className="rounded-full border border-slate-200 bg-slate-50 px-3 py-1.5 text-xs font-medium text-slate-700 transition hover:border-slate-300 hover:bg-white"
+          >
+            {suggestion}
+          </Link>
+        ))}
+      </div>
     </div>
   );
+  const loadingState = (
+    <div className="rounded-[20px] border border-slate-200 bg-white p-4 shadow-sm">
+      <div className="flex items-center justify-between gap-3">
+        <div>
+          <p className="text-sm font-semibold text-slate-950">Searching cards</p>
+          <p className="mt-1 text-xs text-slate-500">
+            Ranking identity, finish, ownership context, and cameo signals.
+          </p>
+        </div>
+        <span className="h-2 w-2 animate-pulse rounded-full bg-slate-900" />
+      </div>
+      <div className="mt-4 grid gap-3 md:grid-cols-3">
+        {[0, 1, 2].map((index) => (
+          <div key={index} className="rounded-[16px] border border-slate-100 bg-slate-50 p-3">
+            <div className="h-28 rounded-xl bg-slate-200/70" />
+            <div className="mt-3 h-3 w-2/3 rounded-full bg-slate-200" />
+            <div className="mt-2 h-2.5 w-1/2 rounded-full bg-slate-200/80" />
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+  const renderGroupHeader = (
+    group: { intent: SearchResultIntent; rows: ExploreRow[] },
+    options: { table?: boolean } = {},
+  ) => {
+    const copy = SEARCH_RESULT_INTENT_COPY[group.intent];
+    const content = (
+      <div className="flex flex-wrap items-center justify-between gap-2 border-b border-slate-100 pb-2">
+        <div>
+          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">
+            {copy.label}
+          </p>
+          <p className="mt-1 text-xs text-slate-500">{copy.description}</p>
+        </div>
+        <span className="rounded-full border border-slate-200 bg-white px-2.5 py-1 text-xs font-medium text-slate-600">
+          {group.rows.length}
+        </span>
+      </div>
+    );
+
+    if (options.table) {
+      return (
+        <tr>
+          <td colSpan={7} className="bg-white px-4 pb-2 pt-5">
+            {content}
+          </td>
+        </tr>
+      );
+    }
+
+    return content;
+  };
+  const showMoreControl = hasMoreResults ? (
+    <div className="flex justify-center pt-2">
+      <button
+        type="button"
+        onClick={() =>
+          setVisibleResultCount((current) => current + INITIAL_VISIBLE_RESULT_COUNT)
+        }
+        className="rounded-full border border-slate-300 bg-white px-4 py-2 text-sm font-semibold text-slate-800 shadow-sm transition hover:border-slate-400 hover:bg-slate-50"
+      >
+        Show more results
+      </button>
+    </div>
+  ) : null;
 
   return (
     <div
@@ -415,9 +625,12 @@ export default function ExplorePageClient({
         <div className="space-y-4">
           <div className="flex flex-wrap items-center justify-between gap-3 rounded-[16px] border border-slate-200 bg-white px-4 py-3 shadow-sm">
             <p className="text-sm text-slate-600">
-              {displayRows.length > 0
-                ? `${displayRows.length} result${displayRows.length === 1 ? "" : "s"}`
-                : "Results"}
+              {resultCountLabel}
+              {loading && displayRows.length > 0 ? (
+                <span className="ml-2 rounded-full bg-slate-100 px-2 py-0.5 text-xs text-slate-500">
+                  Refreshing
+                </span>
+              ) : null}
             </p>
             <div className="flex flex-wrap items-center gap-3">
               <label className="flex items-center gap-2 text-sm text-slate-600">
@@ -483,36 +696,54 @@ export default function ExplorePageClient({
             </div>
           ) : null}
 
-          {viewMode === "list" ? (
-            <ul className="space-y-3">
-              {displayRows.map((row) => (
-                <ExploreCardListItem
-                  key={getResultKey(row)}
-                  card={row}
-                  href={buildCardHref(row)}
-                  canViewPricing={effectiveCanViewPricing}
-                  signInHref={pricingSignInHref}
-                />
+          {loading && displayRows.length === 0 ? (
+            loadingState
+          ) : viewMode === "list" ? (
+            <div className="space-y-5">
+              {visibleResultGroups.map((group, groupIndex) => (
+                <section key={`${group.intent}-${groupIndex}`} className="space-y-3">
+                  {renderGroupHeader(group)}
+                  <ul className="space-y-3">
+                    {group.rows.map((row) => (
+                      <ExploreCardListItem
+                        key={getResultKey(row)}
+                        card={row}
+                        href={buildCardHref(row)}
+                        canViewPricing={effectiveCanViewPricing}
+                        signInHref={pricingSignInHref}
+                        matchReason={getSearchResultMatchReason(row)}
+                      />
+                    ))}
+                  </ul>
+                </section>
               ))}
-              {displayRows.length === 0 && !loading && <li>{emptyState}</li>}
-            </ul>
+              {displayRows.length === 0 && !loading ? emptyState : null}
+              {showMoreControl}
+            </div>
           ) : viewMode === "details" ? (
             <div className="space-y-3">
               <div className="md:hidden">
-                <ul className="space-y-3">
-                  {displayRows.map((row) => (
-                    <ExploreCardListItem
-                      key={getResultKey(row)}
-                      card={row}
-                      href={buildCardHref(row)}
-                      canViewPricing={effectiveCanViewPricing}
-                      signInHref={pricingSignInHref}
-                    />
+                <div className="space-y-5">
+                  {visibleResultGroups.map((group, groupIndex) => (
+                    <section key={`${group.intent}-${groupIndex}`} className="space-y-3">
+                      {renderGroupHeader(group)}
+                      <ul className="space-y-3">
+                        {group.rows.map((row) => (
+                          <ExploreCardListItem
+                            key={getResultKey(row)}
+                            card={row}
+                            href={buildCardHref(row)}
+                            canViewPricing={effectiveCanViewPricing}
+                            signInHref={pricingSignInHref}
+                            matchReason={getSearchResultMatchReason(row)}
+                          />
+                        ))}
+                      </ul>
+                    </section>
                   ))}
-                  {displayRows.length === 0 && !loading && (
-                    <li>{emptyState}</li>
-                  )}
-                </ul>
+                  {displayRows.length === 0 && !loading ? emptyState : null}
+                  {showMoreControl}
+                </div>
               </div>
               <div className="hidden overflow-hidden rounded-[18px] border border-slate-200 bg-white shadow-sm md:block">
                 <div className="overflow-x-auto">
@@ -543,14 +774,20 @@ export default function ExplorePageClient({
                       </tr>
                     </thead>
                     <tbody>
-                      {displayRows.map((row) => (
-                        <ExploreCardDetailsRow
-                          key={getResultKey(row)}
-                          card={row}
-                          href={buildCardHref(row)}
-                          canViewPricing={effectiveCanViewPricing}
-                          signInHref={pricingSignInHref}
-                        />
+                      {visibleResultGroups.map((group, groupIndex) => (
+                        <Fragment key={`${group.intent}-${groupIndex}`}>
+                          {renderGroupHeader(group, { table: true })}
+                          {group.rows.map((row) => (
+                            <ExploreCardDetailsRow
+                              key={getResultKey(row)}
+                              card={row}
+                              href={buildCardHref(row)}
+                              canViewPricing={effectiveCanViewPricing}
+                              signInHref={pricingSignInHref}
+                              matchReason={getSearchResultMatchReason(row)}
+                            />
+                          ))}
+                        </Fragment>
                       ))}
                     </tbody>
                   </table>
@@ -559,36 +796,51 @@ export default function ExplorePageClient({
                   <div className="p-4">{emptyState}</div>
                 ) : null}
               </div>
+              <div className="hidden md:block">{showMoreControl}</div>
             </div>
           ) : viewMode === "thumb-lg" ? (
-            <div className={POKEMON_CARD_BROWSE_LARGE_GRID_CLASSNAME}>
-              {displayRows.map((row) => (
-                <ExploreCardGridItem
-                  key={getResultKey(row)}
-                  card={row}
-                  href={buildCardHref(row)}
-                  mode="thumb-lg"
-                  canViewPricing={effectiveCanViewPricing}
-                />
+            <div className="space-y-5">
+              {visibleResultGroups.map((group, groupIndex) => (
+                <section key={`${group.intent}-${groupIndex}`} className="space-y-3">
+                  {renderGroupHeader(group)}
+                  <div className={POKEMON_CARD_BROWSE_LARGE_GRID_CLASSNAME}>
+                    {group.rows.map((row) => (
+                      <ExploreCardGridItem
+                        key={getResultKey(row)}
+                        card={row}
+                        href={buildCardHref(row)}
+                        mode="thumb-lg"
+                        canViewPricing={effectiveCanViewPricing}
+                        matchReason={getSearchResultMatchReason(row)}
+                      />
+                    ))}
+                  </div>
+                </section>
               ))}
-              {displayRows.length === 0 && !loading ? (
-                <div className="sm:col-span-2 xl:col-span-3">{emptyState}</div>
-              ) : null}
+              {displayRows.length === 0 && !loading ? emptyState : null}
+              {showMoreControl}
             </div>
           ) : (
-            <div className={POKEMON_CARD_BROWSE_GRID_CLASSNAME}>
-              {displayRows.map((row) => (
-                <ExploreCardGridItem
-                  key={getResultKey(row)}
-                  card={row}
-                  href={buildCardHref(row)}
-                  mode="thumb"
-                  canViewPricing={effectiveCanViewPricing}
-                />
+            <div className="space-y-5">
+              {visibleResultGroups.map((group, groupIndex) => (
+                <section key={`${group.intent}-${groupIndex}`} className="space-y-3">
+                  {renderGroupHeader(group)}
+                  <div className={POKEMON_CARD_BROWSE_GRID_CLASSNAME}>
+                    {group.rows.map((row) => (
+                      <ExploreCardGridItem
+                        key={getResultKey(row)}
+                        card={row}
+                        href={buildCardHref(row)}
+                        mode="thumb"
+                        canViewPricing={effectiveCanViewPricing}
+                        matchReason={getSearchResultMatchReason(row)}
+                      />
+                    ))}
+                  </div>
+                </section>
               ))}
-              {displayRows.length === 0 && !loading ? (
-                <div className="sm:col-span-2 xl:col-span-4">{emptyState}</div>
-              ) : null}
+              {displayRows.length === 0 && !loading ? emptyState : null}
+              {showMoreControl}
             </div>
           )}
 

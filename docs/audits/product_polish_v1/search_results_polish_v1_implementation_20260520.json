@@ -1,0 +1,36 @@
+{
+  "lane": "SEARCH_RESULTS_POLISH_V1",
+  "date": "2026-05-20",
+  "scope": "display_only",
+  "changes": {
+    "group_results_by_match_intent": true,
+    "show_match_reason": true,
+    "improve_empty_state": true,
+    "improve_loading_state": true,
+    "client_show_more": true
+  },
+  "ranking": {
+    "resolver_changed": false,
+    "rpc_changed": false,
+    "ranking_logic_changed": false,
+    "grouping_strategy": "contiguous_visible_result_sections_preserving_resolver_order"
+  },
+  "non_goals_confirmed": {
+    "db_writes": false,
+    "migrations": false,
+    "scanner_changes": false,
+    "pricing_changes": false,
+    "species_dex_denominator_changes": false,
+    "public_child_routes_enabled": false
+  },
+  "verification": {
+    "web_typecheck": "PASS",
+    "web_lint": "PASS_WITH_EXISTING_WAREHOUSE_IMG_WARNING",
+    "web_build": "PASS_WITH_EXISTING_WAREHOUSE_IMG_WARNING",
+    "contracts_test": "PASS_74_TESTS",
+    "contracts_runtime_health": "PASS",
+    "preflight": "PASS_WITH_DEFERRED_DEBT_NO_CRITICAL_FAILURES",
+    "git_diff_check": "PASS",
+    "browser_smoke": "NOT_RUN_BROWSER_NODE_CONTROL_TOOL_UNAVAILABLE"
+  }
+}

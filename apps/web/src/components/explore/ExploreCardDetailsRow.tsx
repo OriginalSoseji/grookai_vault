@@ -20,9 +20,10 @@ type ExploreCardDetailsRowProps = {
   href: string;
   canViewPricing: boolean;
   signInHref?: string;
+  matchReason?: string;
 };
 
-export default function ExploreCardDetailsRow({ card, href, canViewPricing, signInHref }: ExploreCardDetailsRowProps) {
+export default function ExploreCardDetailsRow({ card, href, canViewPricing, signInHref, matchReason }: ExploreCardDetailsRowProps) {
   const displayIdentity = resolveDisplayIdentity(card);
   const setLabel = card.set_name ?? "Unknown set";
   const identitySubtitle = resolveDisplayIdentitySubtitleForContext({
@@ -51,6 +52,9 @@ export default function ExploreCardDetailsRow({ card, href, canViewPricing, sign
               ) : null}
               {searchDiscriminator ? (
                 <span className="block truncate text-xs font-semibold text-slate-700">{searchDiscriminator}</span>
+              ) : null}
+              {matchReason ? (
+                <span className="gv-hi-search-context block truncate text-[11px] font-medium text-slate-500">{matchReason}</span>
               ) : null}
             </Link>
             <p className="truncate text-[11px] tracking-[0.08em] text-slate-500">{card.printing_gv_id ?? card.gv_id}</p>

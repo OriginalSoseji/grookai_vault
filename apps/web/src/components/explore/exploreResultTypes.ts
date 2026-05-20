@@ -21,4 +21,5 @@ export type ExploreResultCard = CardSummary & {
   finish_label?: string;
   display_discriminator?: string;
   route_query?: string;
+  search_rank_score?: number;
 };
