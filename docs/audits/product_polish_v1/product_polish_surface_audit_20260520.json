@@ -1,0 +1,232 @@
+{
+  "audit_id": "PRODUCT_POLISH_AUDIT_V1",
+  "date": "2026-05-20",
+  "scope": [
+    "Search / Explore",
+    "Card detail",
+    "Set page",
+    "Dex list/detail",
+    "Vault unauthenticated state",
+    "Empty/loading/fallback states",
+    "Mobile production surfaces"
+  ],
+  "write_scope": {
+    "app_code_changed": false,
+    "db_writes": false,
+    "migrations": false,
+    "scanner_changes": false,
+    "pricing_changes": false,
+    "species_dex_denominator_changes": false,
+    "public_route_policy_changes": false
+  },
+  "screenshots": [
+    "docs/audits/product_polish_v1/screenshots_20260520/01_explore_charizard_cameo_desktop.png",
+    "docs/audits/product_polish_v1/screenshots_20260520/02_card_detail_pikachu_svp101_desktop.png",
+    "docs/audits/product_polish_v1/screenshots_20260520/03_set_sv8pt5_desktop.png",
+    "docs/audits/product_polish_v1/screenshots_20260520/04_dex_list_desktop.png",
+    "docs/audits/product_polish_v1/screenshots_20260520/05_dex_pikachu_desktop.png",
+    "docs/audits/product_polish_v1/screenshots_20260520/06_vault_desktop.png",
+    "docs/audits/product_polish_v1/screenshots_20260520/07_empty_search_desktop.png",
+    "docs/audits/product_polish_v1/screenshots_20260520/08_explore_charizard_cameo_mobile.png",
+    "docs/audits/product_polish_v1/screenshots_20260520/09_card_detail_mobile.png",
+    "docs/audits/product_polish_v1/screenshots_20260520/10_dex_pikachu_mobile.png"
+  ],
+  "classification_summary": {
+    "hierarchy": 7,
+    "visual-system": 5,
+    "interaction": 5,
+    "trust/data clarity": 3,
+    "perceived-speed": 1
+  },
+  "findings": [
+    {
+      "id": "PPV1-001",
+      "surface": "Search / Explore",
+      "classification": "visual-system",
+      "severity": "P1",
+      "evidence": "01_explore_charizard_cameo_desktop.png",
+      "issue": "Dark-mode active controls have weak contrast.",
+      "recommended_lane": "DESIGN_SYSTEM_TIGHTENING_V1"
+    },
+    {
+      "id": "PPV1-002",
+      "surface": "Card detail",
+      "classification": "visual-system",
+      "severity": "P0",
+      "evidence": "02_card_detail_pikachu_svp101_desktop.png",
+      "issue": "Card identity panel mixes a light surface with dark-mode text treatment, making title and metadata nearly unreadable.",
+      "recommended_lane": "DESIGN_SYSTEM_TIGHTENING_V1"
+    },
+    {
+      "id": "PPV1-003",
+      "surface": "Card detail mobile",
+      "classification": "hierarchy",
+      "severity": "P0",
+      "evidence": "09_card_detail_mobile.png",
+      "issue": "The card image is horizontally clipped and pushes identity, finish, and ownership below the first viewport.",
+      "recommended_lane": "CARD_DETAIL_POLISH_V1"
+    },
+    {
+      "id": "PPV1-004",
+      "surface": "Global mobile chrome",
+      "classification": "interaction",
+      "severity": "P0",
+      "evidence": "08_explore_charizard_cameo_mobile.png",
+      "issue": "Top navigation actions overflow on mobile.",
+      "recommended_lane": "MOBILE_PARITY_POLISH_V1"
+    },
+    {
+      "id": "PPV1-005",
+      "surface": "Global mobile chrome",
+      "classification": "interaction",
+      "severity": "P1",
+      "evidence": "09_card_detail_mobile.png",
+      "issue": "Bottom navigation overlaps content or lacks enough safe-area spacing.",
+      "recommended_lane": "MOBILE_PARITY_POLISH_V1"
+    },
+    {
+      "id": "PPV1-006",
+      "surface": "Search / Explore",
+      "classification": "hierarchy",
+      "severity": "P1",
+      "evidence": "01_explore_charizard_cameo_desktop.png",
+      "issue": "Repeated price and sign-in copy competes with card identity and match context.",
+      "recommended_lane": "INTERACTION_HIERARCHY_V1"
+    },
+    {
+      "id": "PPV1-007",
+      "surface": "Search / Explore",
+      "classification": "hierarchy",
+      "severity": "P2",
+      "evidence": "01_explore_charizard_cameo_desktop.png",
+      "issue": "Cameo context is duplicated and slightly too loud for secondary search context.",
+      "recommended_lane": "SEARCH_RESULTS_POLISH_V1"
+    },
+    {
+      "id": "PPV1-008",
+      "surface": "Search / Explore",
+      "classification": "trust/data clarity",
+      "severity": "P2",
+      "evidence": "01_explore_charizard_cameo_desktop.png",
+      "issue": "The refined-match explanatory block is useful but low-contrast and not clearly connected to grouping.",
+      "recommended_lane": "SEARCH_RESULTS_POLISH_V1"
+    },
+    {
+      "id": "PPV1-009",
+      "surface": "Set page",
+      "classification": "interaction",
+      "severity": "P1",
+      "evidence": "03_set_sv8pt5_desktop.png",
+      "issue": "The page states Showing 36 of 194 cards without a visible load-more or pagination affordance in the captured viewport.",
+      "recommended_lane": "SET_AND_DEX_POLISH_V1"
+    },
+    {
+      "id": "PPV1-010",
+      "surface": "Set page",
+      "classification": "visual-system",
+      "severity": "P2",
+      "evidence": "03_set_sv8pt5_desktop.png",
+      "issue": "Finish chip density and active-state contrast need system-level treatment.",
+      "recommended_lane": "DESIGN_SYSTEM_TIGHTENING_V1"
+    },
+    {
+      "id": "PPV1-011",
+      "surface": "Set page",
+      "classification": "hierarchy",
+      "severity": "P2",
+      "evidence": "03_set_sv8pt5_desktop.png",
+      "issue": "Repeated Compare buttons compete with card identity and finish selection in dense grids.",
+      "recommended_lane": "INTERACTION_HIERARCHY_V1"
+    },
+    {
+      "id": "PPV1-012",
+      "surface": "Dex list",
+      "classification": "hierarchy",
+      "severity": "P2",
+      "evidence": "04_dex_list_desktop.png",
+      "issue": "Dex list is clear but administrative; it needs a more collectible presentation layer.",
+      "recommended_lane": "SET_AND_DEX_POLISH_V1"
+    },
+    {
+      "id": "PPV1-013",
+      "surface": "Dex detail",
+      "classification": "hierarchy",
+      "severity": "P2",
+      "evidence": "05_dex_pikachu_desktop.png",
+      "issue": "Progress and row counters compete with card identity and primary row action.",
+      "recommended_lane": "SET_AND_DEX_POLISH_V1"
+    },
+    {
+      "id": "PPV1-014",
+      "surface": "Dex detail mobile",
+      "classification": "interaction",
+      "severity": "P1",
+      "evidence": "10_dex_pikachu_mobile.png",
+      "issue": "Mobile Dex detail layout is clipped horizontally and bottom navigation covers content.",
+      "recommended_lane": "MOBILE_PARITY_POLISH_V1"
+    },
+    {
+      "id": "PPV1-015",
+      "surface": "Empty search",
+      "classification": "interaction",
+      "severity": "P2",
+      "evidence": "07_empty_search_desktop.png",
+      "issue": "Empty search lacks quick recovery actions or sample searches.",
+      "recommended_lane": "SEARCH_RESULTS_POLISH_V1"
+    },
+    {
+      "id": "PPV1-016",
+      "surface": "Empty/loading/fallback states",
+      "classification": "perceived-speed",
+      "severity": "P2",
+      "evidence": "07_empty_search_desktop.png",
+      "issue": "Loading and skeleton states were not proven in this pass.",
+      "recommended_lane": "DESIGN_SYSTEM_TIGHTENING_V1"
+    },
+    {
+      "id": "PPV1-017",
+      "surface": "Card detail",
+      "classification": "hierarchy",
+      "severity": "P1",
+      "evidence": "02_card_detail_pikachu_svp101_desktop.png",
+      "issue": "Price appears visually ahead of the collector ownership flow.",
+      "recommended_lane": "INTERACTION_HIERARCHY_V1"
+    },
+    {
+      "id": "PPV1-018",
+      "surface": "Card detail",
+      "classification": "trust/data clarity",
+      "severity": "P2",
+      "evidence": "02_card_detail_pikachu_svp101_desktop.png",
+      "issue": "Using base image is useful but too loud as a diagnostic.",
+      "recommended_lane": "CARD_DETAIL_POLISH_V1"
+    },
+    {
+      "id": "PPV1-019",
+      "surface": "Vault",
+      "classification": "trust/data clarity",
+      "severity": "P2",
+      "evidence": "06_vault_desktop.png",
+      "issue": "Authenticated Vault could not be fully audited from this production session; unauthenticated contrast still needs inspection.",
+      "recommended_lane": "MOBILE_PARITY_POLISH_V1"
+    },
+    {
+      "id": "PPV1-020",
+      "surface": "Global dark mode",
+      "classification": "visual-system",
+      "severity": "P0",
+      "evidence": "all dark-mode screenshots",
+      "issue": "Dark mode needs tokenized surfaces rather than broad overrides.",
+      "recommended_lane": "DESIGN_SYSTEM_TIGHTENING_V1"
+    }
+  ],
+  "recommended_order": [
+    "DESIGN_SYSTEM_TIGHTENING_V1",
+    "INTERACTION_HIERARCHY_V1",
+    "MOBILE_PARITY_POLISH_V1",
+    "CARD_DETAIL_POLISH_V1",
+    "SEARCH_RESULTS_POLISH_V1",
+    "SET_AND_DEX_POLISH_V1"
+  ],
+  "status": "AUDIT_COMPLETE_IMPLEMENTATION_NOT_STARTED"
+}
