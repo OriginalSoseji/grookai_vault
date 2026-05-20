@@ -1,0 +1,559 @@
+{
+  "generated_at": "2026-05-20T15:28:41.342Z",
+  "mode": "READ_ONLY_DRY_RUN",
+  "source_counts": {
+    "active_cameos": 1360,
+    "distinct_parent_gv_ids": 845,
+    "current_search_documents": 67123,
+    "cameo_enriched_parent_documents": 845,
+    "blocked_rows_present": 0
+  },
+  "public_view": {
+    "columns": [
+      {
+        "column_name": "gv_id",
+        "data_type": "text"
+      },
+      {
+        "column_name": "card_name",
+        "data_type": "text"
+      },
+      {
+        "column_name": "set_code",
+        "data_type": "text"
+      },
+      {
+        "column_name": "set_name",
+        "data_type": "text"
+      },
+      {
+        "column_name": "number",
+        "data_type": "text"
+      },
+      {
+        "column_name": "number_plain",
+        "data_type": "text"
+      },
+      {
+        "column_name": "cameo_subject_type",
+        "data_type": "text"
+      },
+      {
+        "column_name": "cameo_subject_name",
+        "data_type": "text"
+      },
+      {
+        "column_name": "pokemon_ndex",
+        "data_type": "text"
+      },
+      {
+        "column_name": "notes_raw",
+        "data_type": "text"
+      },
+      {
+        "column_name": "cameo_qualifiers",
+        "data_type": "ARRAY"
+      },
+      {
+        "column_name": "source_name",
+        "data_type": "text"
+      }
+    ],
+    "raw_uuid_columns": []
+  },
+  "dex_denominator_snapshot": [
+    {
+      "slug": "charizard",
+      "total_print_count": 133
+    },
+    {
+      "slug": "pikachu",
+      "total_print_count": 223
+    }
+  ],
+  "proposed_integration": {
+    "search_document_extension": "append cameo tokens to parent-print search_text only",
+    "result_label_rule": "when cameo tokens are the reason for a match, display_discriminator becomes Cameo: <subject> or Cameo trainer: <subject>",
+    "ranking_rule": "primary identity exact/name/public-id scoring remains higher than cameo-only scoring",
+    "route_rule": "cameo matches route to parent /card/<parent_gv_id>; no cameo route and no child route are introduced"
+  },
+  "sql_hash": "274ecac8fcfd030ab98866736f6c84afa8f5abe7706230538cd0dad7c75054bf",
+  "probes": [
+    {
+      "query": "pikachu",
+      "expectation": "identity_should_rank_above_cameo",
+      "result_count": 812,
+      "top_result": {
+        "search_document_id": "child:GV-PK-AR-71-RH",
+        "object_type": "child_printing",
+        "parent_gv_id": "GV-PK-AR-71",
+        "printing_gv_id": "GV-PK-AR-71-RH",
+        "display_name": "Pikachu",
+        "display_discriminator": "Reverse Holo",
+        "route_path": "/card/GV-PK-AR-71",
+        "route_query": "printing=GV-PK-AR-71-RH",
+        "matched_fields": [
+          "name",
+          "identity_search_text"
+        ],
+        "match_source": "identity",
+        "rank_score": 3150
+      },
+      "cameo_result_count": 42,
+      "identity_result_count": 770,
+      "checks": {
+        "cameo_appears": true,
+        "cameo_labels_ok": true,
+        "identity_beats_cameo_for_plain_identity_query": true,
+        "exact_parent_identity_dominant": true,
+        "no_raw_uuid_in_results": true,
+        "no_child_public_route": true
+      },
+      "sample_results": [
+        {
+          "search_document_id": "child:GV-PK-AR-71-RH",
+          "object_type": "child_printing",
+          "parent_gv_id": "GV-PK-AR-71",
+          "printing_gv_id": "GV-PK-AR-71-RH",
+          "display_name": "Pikachu",
+          "display_discriminator": "Reverse Holo",
+          "route_path": "/card/GV-PK-AR-71",
+          "route_query": "printing=GV-PK-AR-71-RH",
+          "matched_fields": [
+            "name",
+            "identity_search_text"
+          ],
+          "match_source": "identity",
+          "rank_score": 3150
+        },
+        {
+          "search_document_id": "child:GV-PK-AR-71-STD",
+          "object_type": "child_printing",
+          "parent_gv_id": "GV-PK-AR-71",
+          "printing_gv_id": "GV-PK-AR-71-STD",
+          "display_name": "Pikachu",
+          "display_discriminator": "Normal",
+          "route_path": "/card/GV-PK-AR-71",
+          "route_query": "printing=GV-PK-AR-71-STD",
+          "matched_fields": [
+            "name",
+            "identity_search_text"
+          ],
+          "match_source": "identity",
+          "rank_score": 3150
+        },
+        {
+          "search_document_id": "child:GV-PK-ASC-055-HOLO",
+          "object_type": "child_printing",
+          "parent_gv_id": "GV-PK-ASC-055",
+          "printing_gv_id": "GV-PK-ASC-055-HOLO",
+          "display_name": "Pikachu",
+          "display_discriminator": "Holo",
+          "route_path": "/card/GV-PK-ASC-055",
+          "route_query": "printing=GV-PK-ASC-055-HOLO",
+          "matched_fields": [
+            "name",
+            "identity_search_text"
+          ],
+          "match_source": "identity",
+          "rank_score": 3150
+        },
+        {
+          "search_document_id": "child:GV-PK-ASC-055-PB",
+          "object_type": "child_printing",
+          "parent_gv_id": "GV-PK-ASC-055",
+          "printing_gv_id": "GV-PK-ASC-055-PB",
+          "display_name": "Pikachu",
+          "display_discriminator": "Poké Ball",
+          "route_path": "/card/GV-PK-ASC-055",
+          "route_query": "printing=GV-PK-ASC-055-PB",
+          "matched_fields": [
+            "name",
+            "identity_search_text"
+          ],
+          "match_source": "identity",
+          "rank_score": 3150
+        },
+        {
+          "search_document_id": "child:GV-PK-ASC-055-RH",
+          "object_type": "child_printing",
+          "parent_gv_id": "GV-PK-ASC-055",
+          "printing_gv_id": "GV-PK-ASC-055-RH",
+          "display_name": "Pikachu",
+          "display_discriminator": "Reverse Holo",
+          "route_path": "/card/GV-PK-ASC-055",
+          "route_query": "printing=GV-PK-ASC-055-RH",
+          "matched_fields": [
+            "name",
+            "identity_search_text"
+          ],
+          "match_source": "identity",
+          "rank_score": 3150
+        }
+      ]
+    },
+    {
+      "query": "pikachu cameo",
+      "expectation": "cameo_results_should_appear_with_label",
+      "result_count": 42,
+      "top_result": {
+        "search_document_id": "parent:GV-PK-N1-83",
+        "object_type": "parent_print",
+        "parent_gv_id": "GV-PK-N1-83",
+        "printing_gv_id": null,
+        "display_name": "Arcade Game",
+        "display_discriminator": "Cameo: Pikachu · picture",
+        "route_path": "/card/GV-PK-N1-83",
+        "route_query": null,
+        "matched_fields": [
+          "cameo_token"
+        ],
+        "match_source": "cameo",
+        "rank_score": 180
+      },
+      "cameo_result_count": 42,
+      "identity_result_count": 0,
+      "checks": {
+        "cameo_appears": true,
+        "cameo_labels_ok": true,
+        "identity_beats_cameo_for_plain_identity_query": true,
+        "exact_parent_identity_dominant": true,
+        "no_raw_uuid_in_results": true,
+        "no_child_public_route": true
+      },
+      "sample_results": [
+        {
+          "search_document_id": "parent:GV-PK-N1-83",
+          "object_type": "parent_print",
+          "parent_gv_id": "GV-PK-N1-83",
+          "printing_gv_id": null,
+          "display_name": "Arcade Game",
+          "display_discriminator": "Cameo: Pikachu · picture",
+          "route_path": "/card/GV-PK-N1-83",
+          "route_query": null,
+          "matched_fields": [
+            "cameo_token"
+          ],
+          "match_source": "cameo",
+          "rank_score": 180
+        },
+        {
+          "search_document_id": "parent:GV-PK-N1-92",
+          "object_type": "parent_print",
+          "parent_gv_id": "GV-PK-N1-92",
+          "printing_gv_id": null,
+          "display_name": "Card-Flip Game",
+          "display_discriminator": "Cameo: Pikachu",
+          "route_path": "/card/GV-PK-N1-92",
+          "route_query": null,
+          "matched_fields": [
+            "cameo_token"
+          ],
+          "match_source": "cameo",
+          "rank_score": 180
+        },
+        {
+          "search_document_id": "parent:GV-PK-PR-BLW-BW95",
+          "object_type": "parent_print",
+          "parent_gv_id": "GV-PK-PR-BLW-BW95",
+          "printing_gv_id": null,
+          "display_name": "Champions Festival",
+          "display_discriminator": "Cameo: Pikachu",
+          "route_path": "/card/GV-PK-PR-BLW-BW95",
+          "route_query": null,
+          "matched_fields": [
+            "cameo_token"
+          ],
+          "match_source": "cameo",
+          "rank_score": 180
+        },
+        {
+          "search_document_id": "parent:GV-PK-PR-SW-SWSH296",
+          "object_type": "parent_print",
+          "parent_gv_id": "GV-PK-PR-SW-SWSH296",
+          "printing_gv_id": null,
+          "display_name": "Champions Festival",
+          "display_discriminator": "Cameo: Pikachu",
+          "route_path": "/card/GV-PK-PR-SW-SWSH296",
+          "route_query": null,
+          "matched_fields": [
+            "cameo_token"
+          ],
+          "match_source": "cameo",
+          "rank_score": 180
+        },
+        {
+          "search_document_id": "parent:GV-PK-SM-SM231",
+          "object_type": "parent_print",
+          "parent_gv_id": "GV-PK-SM-SM231",
+          "printing_gv_id": null,
+          "display_name": "Champions Festival",
+          "display_discriminator": "Cameo: Pikachu",
+          "route_path": "/card/GV-PK-SM-SM231",
+          "route_query": null,
+          "matched_fields": [
+            "cameo_token"
+          ],
+          "match_source": "cameo",
+          "rank_score": 180
+        }
+      ]
+    },
+    {
+      "query": "aerodactyl cameo",
+      "expectation": "pokemon_cameo_results_should_appear_with_label",
+      "result_count": 7,
+      "top_result": {
+        "search_document_id": "parent:GV-PK-DEX-97",
+        "object_type": "parent_print",
+        "parent_gv_id": "GV-PK-DEX-97",
+        "printing_gv_id": null,
+        "display_name": "Old Amber Aerodactyl",
+        "display_discriminator": "Cameo: Aerodactyl",
+        "route_path": "/card/GV-PK-DEX-97",
+        "route_query": null,
+        "matched_fields": [
+          "cameo_token"
+        ],
+        "match_source": "cameo",
+        "rank_score": 300
+      },
+      "cameo_result_count": 7,
+      "identity_result_count": 0,
+      "checks": {
+        "cameo_appears": true,
+        "cameo_labels_ok": true,
+        "identity_beats_cameo_for_plain_identity_query": true,
+        "exact_parent_identity_dominant": true,
+        "no_raw_uuid_in_results": true,
+        "no_child_public_route": true
+      },
+      "sample_results": [
+        {
+          "search_document_id": "parent:GV-PK-DEX-97",
+          "object_type": "parent_print",
+          "parent_gv_id": "GV-PK-DEX-97",
+          "printing_gv_id": null,
+          "display_name": "Old Amber Aerodactyl",
+          "display_discriminator": "Cameo: Aerodactyl",
+          "route_path": "/card/GV-PK-DEX-97",
+          "route_query": null,
+          "matched_fields": [
+            "cameo_token"
+          ],
+          "match_source": "cameo",
+          "rank_score": 300
+        },
+        {
+          "search_document_id": "parent:GV-PK-FCO-106",
+          "object_type": "parent_print",
+          "parent_gv_id": "GV-PK-FCO-106",
+          "printing_gv_id": null,
+          "display_name": "Old Amber Aerodactyl",
+          "display_discriminator": "Cameo: Aerodactyl",
+          "route_path": "/card/GV-PK-FCO-106",
+          "route_query": null,
+          "matched_fields": [
+            "cameo_token"
+          ],
+          "match_source": "cameo",
+          "rank_score": 300
+        },
+        {
+          "search_document_id": "parent:GV-PK-SK-47",
+          "object_type": "parent_print",
+          "parent_gv_id": "GV-PK-SK-47",
+          "printing_gv_id": null,
+          "display_name": "Buried Fossil",
+          "display_discriminator": "Cameo: Aerodactyl",
+          "route_path": "/card/GV-PK-SK-47",
+          "route_query": null,
+          "matched_fields": [
+            "cameo_token"
+          ],
+          "match_source": "cameo",
+          "rank_score": 180
+        },
+        {
+          "search_document_id": "parent:GV-PK-FO-62",
+          "object_type": "parent_print",
+          "parent_gv_id": "GV-PK-FO-62",
+          "printing_gv_id": null,
+          "display_name": "Mysterious Fossil",
+          "display_discriminator": "Cameo: Aerodactyl",
+          "route_path": "/card/GV-PK-FO-62",
+          "route_query": null,
+          "matched_fields": [
+            "cameo_token"
+          ],
+          "match_source": "cameo",
+          "rank_score": 180
+        },
+        {
+          "search_document_id": "parent:GV-PK-LM-79",
+          "object_type": "parent_print",
+          "parent_gv_id": "GV-PK-LM-79",
+          "printing_gv_id": null,
+          "display_name": "Mysterious Fossil",
+          "display_discriminator": "Cameo: Aerodactyl",
+          "route_path": "/card/GV-PK-LM-79",
+          "route_query": null,
+          "matched_fields": [
+            "cameo_token"
+          ],
+          "match_source": "cameo",
+          "rank_score": 180
+        }
+      ]
+    },
+    {
+      "query": "acerola cameo",
+      "expectation": "trainer_cameo_results_should_appear_with_label",
+      "result_count": 1,
+      "top_result": {
+        "search_document_id": "parent:GV-PK-CEC-245",
+        "object_type": "parent_print",
+        "parent_gv_id": "GV-PK-CEC-245",
+        "printing_gv_id": null,
+        "display_name": "Mimikyu",
+        "display_discriminator": "Cameo trainer: Acerola",
+        "route_path": "/card/GV-PK-CEC-245",
+        "route_query": null,
+        "matched_fields": [
+          "cameo_token"
+        ],
+        "match_source": "cameo",
+        "rank_score": 180
+      },
+      "cameo_result_count": 1,
+      "identity_result_count": 0,
+      "checks": {
+        "cameo_appears": true,
+        "cameo_labels_ok": true,
+        "identity_beats_cameo_for_plain_identity_query": true,
+        "exact_parent_identity_dominant": true,
+        "no_raw_uuid_in_results": true,
+        "no_child_public_route": true
+      },
+      "sample_results": [
+        {
+          "search_document_id": "parent:GV-PK-CEC-245",
+          "object_type": "parent_print",
+          "parent_gv_id": "GV-PK-CEC-245",
+          "printing_gv_id": null,
+          "display_name": "Mimikyu",
+          "display_discriminator": "Cameo trainer: Acerola",
+          "route_path": "/card/GV-PK-CEC-245",
+          "route_query": null,
+          "matched_fields": [
+            "cameo_token"
+          ],
+          "match_source": "cameo",
+          "rank_score": 180
+        }
+      ]
+    },
+    {
+      "query": "GV-PK-CRE-30",
+      "expectation": "exact_parent_identity_should_remain_dominant",
+      "result_count": 3,
+      "top_result": {
+        "search_document_id": "parent:GV-PK-CRE-30",
+        "object_type": "parent_print",
+        "parent_gv_id": "GV-PK-CRE-30",
+        "printing_gv_id": null,
+        "display_name": "Sneasel",
+        "display_discriminator": null,
+        "route_path": "/card/GV-PK-CRE-30",
+        "route_query": null,
+        "matched_fields": [
+          "public_id",
+          "parent_gv_id",
+          "identity_search_text"
+        ],
+        "match_source": "identity",
+        "rank_score": 19540
+      },
+      "cameo_result_count": 0,
+      "identity_result_count": 3,
+      "checks": {
+        "cameo_appears": true,
+        "cameo_labels_ok": true,
+        "identity_beats_cameo_for_plain_identity_query": true,
+        "exact_parent_identity_dominant": true,
+        "no_raw_uuid_in_results": true,
+        "no_child_public_route": true
+      },
+      "sample_results": [
+        {
+          "search_document_id": "parent:GV-PK-CRE-30",
+          "object_type": "parent_print",
+          "parent_gv_id": "GV-PK-CRE-30",
+          "printing_gv_id": null,
+          "display_name": "Sneasel",
+          "display_discriminator": null,
+          "route_path": "/card/GV-PK-CRE-30",
+          "route_query": null,
+          "matched_fields": [
+            "public_id",
+            "parent_gv_id",
+            "identity_search_text"
+          ],
+          "match_source": "identity",
+          "rank_score": 19540
+        },
+        {
+          "search_document_id": "child:GV-PK-CRE-30-RH",
+          "object_type": "child_printing",
+          "parent_gv_id": "GV-PK-CRE-30",
+          "printing_gv_id": "GV-PK-CRE-30-RH",
+          "display_name": "Sneasel",
+          "display_discriminator": "Reverse Holo",
+          "route_path": "/card/GV-PK-CRE-30",
+          "route_query": "printing=GV-PK-CRE-30-RH",
+          "matched_fields": [
+            "parent_gv_id",
+            "identity_search_text"
+          ],
+          "match_source": "identity",
+          "rank_score": 9550
+        },
+        {
+          "search_document_id": "child:GV-PK-CRE-30-STD",
+          "object_type": "child_printing",
+          "parent_gv_id": "GV-PK-CRE-30",
+          "printing_gv_id": "GV-PK-CRE-30-STD",
+          "display_name": "Sneasel",
+          "display_discriminator": "Normal",
+          "route_path": "/card/GV-PK-CRE-30",
+          "route_query": "printing=GV-PK-CRE-30-STD",
+          "matched_fields": [
+            "parent_gv_id",
+            "identity_search_text"
+          ],
+          "match_source": "identity",
+          "rank_score": 9550
+        }
+      ]
+    }
+  ],
+  "checks": {
+    "active_cameo_rows_expected": true,
+    "blocked_rows_absent": true,
+    "public_view_has_no_uuid_columns": true,
+    "probe_checks_pass": true,
+    "species_dex_snapshot_read_only": true
+  },
+  "confirmations": {
+    "db_writes": false,
+    "migration_created": false,
+    "migration_applied": false,
+    "resolver_changes": false,
+    "app_changes": false,
+    "search_ui_changes": false,
+    "species_dex_changes": false,
+    "scanner_changes": false,
+    "pricing_changes": false
+  },
+  "ready_for_future_migration": true
+}
