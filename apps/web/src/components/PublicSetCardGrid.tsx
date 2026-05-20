@@ -149,7 +149,7 @@ export default function PublicSetCardGrid({
                 >
                   <span className="block truncate">{displayIdentity.base_name}</span>
                   {identitySubtitle ? (
-                    <span className="block truncate text-xs font-medium text-slate-500">{identitySubtitle}</span>
+                    <span className="gv-hi-metadata block truncate text-xs font-medium">{identitySubtitle}</span>
                   ) : null}
                 </Link>
               }
@@ -175,7 +175,7 @@ export default function PublicSetCardGrid({
                           onClick={() => setSelectedPrintingByGvId((current) => ({ ...current, [card.gv_id]: printing.id! }))}
                           className={`inline-flex rounded-full border px-2.5 py-1 text-[11px] font-medium uppercase tracking-[0.12em] transition ${
                             isActive
-                              ? "border-slate-900 bg-slate-900 text-white"
+                              ? "border-slate-900 bg-slate-900 text-white shadow-sm ring-2 ring-slate-950/10"
                               : "border-slate-200 bg-slate-50 text-slate-600 hover:border-slate-300 hover:bg-white"
                           }`}
                         >
@@ -188,15 +188,16 @@ export default function PublicSetCardGrid({
                 ) : undefined
               }
               meta={
-                <span>
-                  {[card.number ? `#${card.number}` : "—", selectedFinishLabel ? `Selected: ${selectedFinishLabel}` : null]
-                    .filter(Boolean)
-                    .join(" • ")}
-                </span>
+                <div className="space-y-1">
+                  <span className="block">{card.number ? `#${card.number}` : "—"}</span>
+                  {selectedFinishLabel ? (
+                    <span className="block text-xs font-semibold text-slate-800">Selected: {selectedFinishLabel}</span>
+                  ) : null}
+                </div>
               }
               footer={
                 <div className="flex items-center justify-between gap-3">
-                  <span>GV-ID: {card.gv_id}</span>
+                  <span className="gv-hi-diagnostics">GV-ID: {card.gv_id}</span>
                   <ShareCardButton gvId={card.gv_id} />
                 </div>
               }

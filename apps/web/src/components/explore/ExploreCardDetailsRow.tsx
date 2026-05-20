@@ -14,6 +14,7 @@ import {
 } from "@/lib/cards/resolveDisplayIdentity";
 import { getVariantLabels } from "@/lib/cards/variantPresentation";
 import { getSearchContextLabel } from "@/components/explore/searchContextLabel";
+import { getSearchContextBadgeTone, getSearchContextClassName } from "@/components/explore/searchContextPresentation";
 
 type ExploreCardDetailsRowProps = {
   card: ExploreResultCard;
@@ -45,15 +46,15 @@ export default function ExploreCardDetailsRow({ card, href, canViewPricing, sign
           />
           <div className="min-w-0">
             <Link href={href} className="block text-sm font-semibold text-slate-900 hover:underline">
-              <span className="block truncate">{displayIdentity.base_name}</span>
+              <span className="gv-hi-card-identity block truncate">{displayIdentity.base_name}</span>
               {identitySubtitle ? (
-                <span className="block truncate text-xs font-medium text-slate-500">{identitySubtitle}</span>
+                <span className="gv-hi-metadata block truncate text-xs font-medium">{identitySubtitle}</span>
               ) : null}
               {searchDiscriminator ? (
-                <span className="block truncate text-xs font-semibold text-slate-700">{searchDiscriminator}</span>
+                <span className={getSearchContextClassName(searchDiscriminator)}>{searchDiscriminator}</span>
               ) : null}
             </Link>
-            <p className="truncate text-[11px] tracking-[0.08em] text-slate-500">{card.printing_gv_id ?? card.gv_id}</p>
+            <p className="gv-hi-diagnostics truncate text-[11px] tracking-[0.08em]">{card.printing_gv_id ?? card.gv_id}</p>
             <PromotionTransitionNote state={card.promotion_transition} className="mt-1" />
             {imagePresentation.compactBadgeLabel ? (
               <div className="mt-1">
@@ -75,7 +76,13 @@ export default function ExploreCardDetailsRow({ card, href, canViewPricing, sign
             {variantLabels.map((label) => (
               <VariantBadge key={`${card.gv_id}-${label}`} label={label} />
             ))}
-            {searchDiscriminator ? <VariantBadge key={`${card.gv_id}-${searchDiscriminator}`} label={searchDiscriminator} /> : null}
+            {searchDiscriminator ? (
+              <VariantBadge
+                key={`${card.gv_id}-${searchDiscriminator}`}
+                label={searchDiscriminator}
+                tone={getSearchContextBadgeTone(searchDiscriminator)}
+              />
+            ) : null}
           </div>
         ) : (
           <span className="text-sm text-slate-400">—</span>
@@ -83,9 +90,9 @@ export default function ExploreCardDetailsRow({ card, href, canViewPricing, sign
       </td>
       <td className="px-4 py-3">
         {canViewPricing ? (
-          <VisiblePrice value={card.raw_price} size="dense" />
+          <VisiblePrice value={card.raw_price} size="dense" className="gv-hi-price" />
         ) : (
-          <LockedPrice href={signInHref} size="dense" />
+          <LockedPrice href={signInHref} size="dense" className="gv-hi-price" />
         )}
       </td>
       <td className="px-4 py-3 text-right">

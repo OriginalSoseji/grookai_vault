@@ -14,6 +14,7 @@ import {
 } from "@/lib/cards/resolveDisplayIdentity";
 import { getVariantLabels } from "@/lib/cards/variantPresentation";
 import { getSearchContextLabel } from "@/components/explore/searchContextLabel";
+import { getSearchContextBadgeTone, getSearchContextClassName } from "@/components/explore/searchContextPresentation";
 
 type ExploreCardListItemProps = {
   card: ExploreResultCard;
@@ -46,14 +47,14 @@ export default function ExploreCardListItem({ card, href, canViewPricing, signIn
           <div className="flex min-w-0 flex-1 items-start justify-between gap-4 pt-1">
             <div className="min-w-0 space-y-2">
               <div className="space-y-1">
-                <span className="block truncate text-lg font-medium text-slate-950 hover:underline">
+                <span className="gv-hi-card-identity block truncate text-lg hover:underline">
                   {displayIdentity.base_name}
                 </span>
                 {identitySubtitle ? (
-                  <span className="block truncate text-sm font-medium text-slate-500">{identitySubtitle}</span>
+                  <span className="gv-hi-metadata block truncate text-sm font-medium">{identitySubtitle}</span>
                 ) : null}
                 {searchDiscriminator ? (
-                  <span className="block truncate text-sm font-semibold text-slate-700">{searchDiscriminator}</span>
+                  <span className={getSearchContextClassName(searchDiscriminator)}>{searchDiscriminator}</span>
                 ) : null}
                 <p className="text-sm text-slate-600">{setLabel}</p>
                 <PromotionTransitionNote state={card.promotion_transition} />
@@ -70,19 +71,23 @@ export default function ExploreCardListItem({ card, href, canViewPricing, signIn
                     <VariantBadge key={`${card.gv_id}-${label}`} label={label} />
                   ))}
                   {searchDiscriminator ? (
-                    <VariantBadge key={`${card.gv_id}-${searchDiscriminator}`} label={searchDiscriminator} />
+                    <VariantBadge
+                      key={`${card.gv_id}-${searchDiscriminator}`}
+                      label={searchDiscriminator}
+                      tone={getSearchContextBadgeTone(searchDiscriminator)}
+                    />
                   ) : null}
                 </div>
               ) : null}
-              <p className="text-xs font-medium tracking-[0.08em] text-slate-500">
+              <p className="gv-hi-diagnostics text-xs font-medium tracking-[0.08em]">
                 {card.printing_gv_id ?? card.gv_id}
               </p>
             </div>
             <div className="hidden shrink-0 text-right md:block">
               {canViewPricing ? (
-                <VisiblePrice value={card.raw_price} size="list" />
+                <VisiblePrice value={card.raw_price} size="list" className="gv-hi-price" />
               ) : (
-                <LockedPrice href={signInHref} size="list" />
+                <LockedPrice href={signInHref} size="list" className="gv-hi-price" />
               )}
             </div>
           </div>
@@ -91,9 +96,9 @@ export default function ExploreCardListItem({ card, href, canViewPricing, signIn
           <CompareCardButton gvId={card.gv_id} variant="compact" />
           <div className="md:hidden">
             {canViewPricing ? (
-              <VisiblePrice value={card.raw_price} size="dense" />
+              <VisiblePrice value={card.raw_price} size="dense" className="gv-hi-price" />
             ) : (
-              <LockedPrice href={signInHref} size="dense" />
+              <LockedPrice href={signInHref} size="dense" className="gv-hi-price" />
             )}
           </div>
         </div>

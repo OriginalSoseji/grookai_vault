@@ -14,6 +14,7 @@ import {
 import { getVariantLabels } from "@/lib/cards/variantPresentation";
 import type { ExploreResultCard } from "@/components/explore/exploreResultTypes";
 import { getSearchContextLabel } from "@/components/explore/searchContextLabel";
+import { getSearchContextBadgeTone, getSearchContextClassName } from "@/components/explore/searchContextPresentation";
 
 type ExploreCardGridItemProps = {
   card: ExploreResultCard;
@@ -53,12 +54,12 @@ export default function ExploreCardGridItem({ card, href, mode, canViewPricing }
       }
       title={
         <Link href={href} className="block transition hover:text-slate-700">
-          <span className="block truncate">{displayIdentity.base_name}</span>
+          <span className="gv-hi-card-identity block truncate">{displayIdentity.base_name}</span>
           {identitySubtitle ? (
-            <span className="block truncate text-xs font-medium text-slate-500">{identitySubtitle}</span>
+            <span className="gv-hi-metadata block truncate text-xs font-medium">{identitySubtitle}</span>
           ) : null}
           {searchDiscriminator ? (
-            <span className="block truncate text-xs font-semibold text-slate-700">{searchDiscriminator}</span>
+            <span className={getSearchContextClassName(searchDiscriminator)}>{searchDiscriminator}</span>
           ) : null}
         </Link>
       }
@@ -73,12 +74,18 @@ export default function ExploreCardGridItem({ card, href, mode, canViewPricing }
           {variantLabels.map((label) => (
             <VariantBadge key={`${card.gv_id}-${label}`} label={label} />
           ))}
-          {searchDiscriminator ? <VariantBadge key={`${card.gv_id}-${searchDiscriminator}`} label={searchDiscriminator} /> : null}
+          {searchDiscriminator ? (
+            <VariantBadge
+              key={`${card.gv_id}-${searchDiscriminator}`}
+              label={searchDiscriminator}
+              tone={getSearchContextBadgeTone(searchDiscriminator)}
+            />
+          ) : null}
         </>
       }
       meta={<span>{metaLine}</span>}
-      summary={canViewPricing ? <VisiblePrice value={card.raw_price} size="grid" /> : <LockedPrice size="grid" />}
-      footer={<span>{card.printing_gv_id ? `Printing ID: ${card.printing_gv_id}` : `GV-ID: ${card.gv_id}`}</span>}
+      summary={canViewPricing ? <VisiblePrice value={card.raw_price} size="grid" className="gv-hi-price" /> : <LockedPrice size="grid" className="gv-hi-price" />}
+      footer={<span className="gv-hi-diagnostics">{card.printing_gv_id ? `Printing ID: ${card.printing_gv_id}` : `GV-ID: ${card.gv_id}`}</span>}
       imageClassName={isLarge ? "max-w-[280px]" : undefined}
     />
   );

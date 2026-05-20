@@ -190,16 +190,16 @@ export default function PokemonCardGridTile({
 
         <div className={BODY_STACK_BY_DENSITY[density]}>
           <div className="space-y-1.5">
-            <div className={`${TITLE_TEXT_BY_DENSITY[density]} font-semibold tracking-tight text-slate-950`}>{title}</div>
-            {subtitle ? <div className={`${SUBTITLE_TEXT_BY_DENSITY[density]} text-slate-600`}>{subtitle}</div> : null}
+            <div className={`${TITLE_TEXT_BY_DENSITY[density]} gv-hi-card-identity tracking-tight`}>{title}</div>
+            {subtitle ? <div className={`${SUBTITLE_TEXT_BY_DENSITY[density]} gv-hi-metadata`}>{subtitle}</div> : null}
           </div>
 
           {badges ? <div className="flex flex-wrap gap-1.5">{badges}</div> : null}
-          {meta ? <div className={`${META_TEXT_BY_DENSITY[density]} text-slate-500`}>{meta}</div> : null}
+          {meta ? <div className={`${META_TEXT_BY_DENSITY[density]} gv-hi-metadata`}>{meta}</div> : null}
           {summary ? <div className="space-y-2.5">{summary}</div> : null}
           {details ? <div className="pt-1">{details}</div> : null}
           {footer ? (
-            <div className={`border-t border-slate-100 text-slate-400 ${FOOTER_TEXT_BY_DENSITY[density]}`}>{footer}</div>
+            <div className={`gv-hi-diagnostics border-t border-slate-100 ${FOOTER_TEXT_BY_DENSITY[density]}`}>{footer}</div>
           ) : null}
         </div>
       </div>

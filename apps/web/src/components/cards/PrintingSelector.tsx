@@ -137,16 +137,16 @@ export default function PrintingSelector({
         ) : null}
       </div>
 
-      <div className="rounded-[14px] border border-slate-200 bg-slate-50 px-4 py-3">
+      <div className="gv-hi-selected-version rounded-[14px] border px-4 py-3">
         <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
           <div>
             <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500">Selected version</p>
-            <p className="mt-1 text-base font-semibold text-slate-950">{selectedPrinting.finish_name ?? "Printing"}</p>
+            <p className="gv-hi-card-identity mt-1 text-lg tracking-tight">{selectedPrinting.finish_name ?? "Printing"}</p>
           </div>
           <span
             className={`inline-flex w-fit rounded-full border px-3 py-1 text-xs font-semibold ${
               selectedOwnedCount > 0
-                ? "border-emerald-200 bg-emerald-50 text-emerald-800"
+                ? "gv-hi-ownership"
                 : "border-slate-200 bg-white text-slate-600"
             }`}
           >

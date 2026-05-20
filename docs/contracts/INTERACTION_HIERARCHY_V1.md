@@ -1,5 +1,9 @@
 # INTERACTION_HIERARCHY_V1
 
+Status: Active
+
+Date: 2026-05-20
+
 ## Purpose
 
 Define what visually matters most across Grookai Vault so future polish does not accidentally make secondary metadata louder than collector identity and ownership.
@@ -85,6 +89,21 @@ Rarity, artist, release date, source, and diagnostics should support inspection 
 
 Diagnostics include image fallback, source state, deferred debt, and review status. They should be visible only when useful and visually quiet by default.
 
+## Implementation Surface
+
+The V1 implementation may use shared semantic presentation hooks as long as they do not change data behavior:
+
+- `gv-hi-card-identity`
+- `gv-hi-selected-version`
+- `gv-hi-ownership`
+- `gv-hi-action`
+- `gv-hi-price`
+- `gv-hi-search-context`
+- `gv-hi-metadata`
+- `gv-hi-diagnostics`
+
+These hooks are presentation-only. They must not affect ranking, routes, pricing, ownership semantics, Species Dex denominators, scanner behavior, or database writes.
+
 ## Verification Questions
 
 Before shipping UI polish, each changed surface should answer:
@@ -95,4 +114,3 @@ Before shipping UI polish, each changed surface should answer:
 - Are cameo labels visibly secondary?
 - Are actions stable and obvious?
 - Does mobile preserve the same priority order?
-

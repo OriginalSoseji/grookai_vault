@@ -1,0 +1,58 @@
+{
+  "lane": "INTERACTION_HIERARCHY_V1",
+  "date": "2026-05-20",
+  "status": "IMPLEMENTED_PENDING_VERIFICATION",
+  "priority_order": [
+    "card_identity",
+    "selected_finish_variant",
+    "ownership",
+    "interaction_action",
+    "price",
+    "cameo_search_context",
+    "metadata",
+    "diagnostics"
+  ],
+  "surfaces": [
+    "shared_card_grid_tile",
+    "explore_grid_results",
+    "explore_list_results",
+    "explore_details_results",
+    "set_card_tiles",
+    "card_detail",
+    "variant_finish_selector",
+    "vault_card_tiles"
+  ],
+  "behavior_changes": {
+    "ranking": false,
+    "resolver": false,
+    "pricing": false,
+    "routes": false,
+    "species_dex_denominator": false,
+    "scanner": false,
+    "db_writes": false,
+    "migrations": false
+  },
+  "implementation": {
+    "semantic_classes_added": [
+      "gv-hi-card-identity",
+      "gv-hi-selected-version",
+      "gv-hi-ownership",
+      "gv-hi-action",
+      "gv-hi-price",
+      "gv-hi-search-context",
+      "gv-hi-metadata",
+      "gv-hi-diagnostics"
+    ],
+    "cameo_context_treatment": "secondary_search_context",
+    "child_finish_context_treatment": "selected_version_signal",
+    "diagnostic_id_treatment": "quiet_metadata"
+  },
+  "verification": {
+    "typecheck": "pass",
+    "lint": "pass_existing_warehouse_img_warning",
+    "build": "pass_existing_warehouse_img_warning",
+    "contracts_test": "pass_74",
+    "runtime_health": "pass",
+    "diff_check": "pass"
+  }
+}

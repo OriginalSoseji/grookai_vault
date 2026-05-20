@@ -174,7 +174,7 @@ export function VaultCardTile({
   const closedSummary = (
     <div className="space-y-3">
       <div className="flex flex-wrap items-start justify-between gap-3">
-        {cardValue ? <p className="text-base font-semibold tracking-tight text-slate-950">{cardValue}</p> : null}
+        {cardValue ? <p className="gv-hi-price text-sm font-semibold tracking-tight">{cardValue}</p> : null}
         {messageSignal ? (
           <VaultStatPill tone={item.unread_message_count > 0 ? "attention" : "default"}>{messageSignal}</VaultStatPill>
         ) : null}
@@ -311,9 +311,9 @@ export function VaultCardTile({
         .join(" ")}
       title={
         <Link href={`/card/${item.gv_id}`} className="block transition hover:text-slate-700">
-          <span className="block line-clamp-2">{displayIdentity.base_name}</span>
+          <span className="gv-hi-card-identity block line-clamp-2">{displayIdentity.base_name}</span>
           {identitySubtitle ? (
-            <span className="block truncate text-xs font-medium text-slate-500">{identitySubtitle}</span>
+            <span className="gv-hi-metadata block truncate text-xs font-medium">{identitySubtitle}</span>
           ) : null}
         </Link>
       }
@@ -328,7 +328,7 @@ export function VaultCardTile({
           ))}
         </>
       }
-      meta={secondaryContext ? <span className="line-clamp-1 text-sm text-slate-600">{secondaryContext}</span> : undefined}
+      meta={secondaryContext ? <span className="gv-hi-metadata line-clamp-1 text-sm">{secondaryContext}</span> : undefined}
       summary={closedSummary}
       details={details}
       footer={

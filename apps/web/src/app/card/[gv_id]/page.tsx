@@ -492,17 +492,17 @@ export default async function CardPage({
                   {resolvedCard.supertype}
                 </span>
               ) : null}
-              <span className="inline-flex rounded-full border border-emerald-200 bg-emerald-50 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-emerald-700">
+              <span className="gv-hi-ownership inline-flex rounded-full border px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em]">
                 {ownershipLabel}
               </span>
             </div>
 
             <div className="space-y-3">
-              <h1 className="text-4xl font-semibold tracking-tight text-slate-950 sm:text-5xl">
+              <h1 className="gv-hi-card-identity text-4xl tracking-tight sm:text-5xl">
                 {resolvedDisplayIdentity.base_name}
               </h1>
               {identitySubtitle ? (
-                <p className="text-sm font-medium text-slate-500 sm:text-base">{identitySubtitle}</p>
+                <p className="gv-hi-metadata text-sm font-medium sm:text-base">{identitySubtitle}</p>
               ) : null}
               {(setName || setCodeLabel) ? (
                 <div className="flex flex-wrap items-center gap-3 text-lg text-slate-700">
@@ -538,8 +538,8 @@ export default async function CardPage({
               </div>
             ) : null}
 
-            <div className="flex flex-wrap items-center gap-3 text-sm text-slate-500">
-              <span className="font-mono text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-400">
+            <div className="gv-hi-diagnostics flex flex-wrap items-center gap-3 text-sm">
+              <span className="font-mono text-[11px] font-semibold uppercase tracking-[0.18em]">
                 {resolvedCard.gv_id}
               </span>
               <CopyButton text={resolvedCard.gv_id} />
@@ -559,7 +559,7 @@ export default async function CardPage({
 
               <div className="rounded-[18px] border border-slate-200 bg-white px-4 py-4">
                 <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500">Vault</p>
-                <p className="mt-2 text-sm leading-6 text-slate-700">{ownershipLabel}.</p>
+                <p className="gv-hi-card-identity mt-2 text-sm leading-6">{ownershipLabel}.</p>
                 {vaultCount > 0 && (ownedObjectSummary.rawCount > 0 || ownedObjectSummary.slabCount > 0) ? (
                   <p className="mt-2 text-xs text-slate-500">
                     {[ownedObjectSummary.rawCount > 0 ? `${ownedObjectSummary.rawCount} raw` : null, ownedObjectSummary.slabCount > 0 ? `${ownedObjectSummary.slabCount} slab` : null]
