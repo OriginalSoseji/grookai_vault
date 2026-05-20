@@ -218,3 +218,32 @@ docs/audits/cameo_search_v1/
 ```
 
 No schema, application, search resolver, or database write work is approved in this phase.
+
+## Promotion Design Rule
+
+Future promotion may only use Phase 3 rows classified as:
+
+```text
+APPROVED_MATCH
+```
+
+All other rows remain blocked until a later governed lane resolves them.
+
+Blocked classes include:
+
+- `BLOCKED_SET_ALIAS_MISSING`
+- `BLOCKED_CARD_NOT_FOUND`
+- `BLOCKED_AMBIGUOUS_CARD`
+- `NEEDS_MANUAL_REVIEW`
+- source rows blocked in Phase 1 before card matching
+
+Japanese promo families and language-scope rows are explicitly blocked from promotion until a separate language-scope review exists. Do not map Japanese promo families to English promo sets by assumption.
+
+Promotion must remain additive:
+
+- insert cameo relationship rows only
+- never modify `card_prints`
+- never modify `card_printings`
+- never modify `pokemon_species`
+- never modify Species Dex completion logic
+- never modify pricing, scanner, or public route behavior

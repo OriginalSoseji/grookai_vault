@@ -1,0 +1,62 @@
+{
+  "contract": "CAMEO_SEARCH_V1",
+  "phase": "Phase 4 - Promotion Design",
+  "generated_at": "2026-05-20T00:00:00.000Z",
+  "status": "DESIGN_ONLY",
+  "source_evidence": {
+    "phase1_source_audit": "docs/audits/cameo_search_v1/cameo_search_v1_source_audit_20260520.json",
+    "phase2_match_dry_run": "docs/audits/cameo_search_v1/cameo_search_v1_match_dry_run_20260520.json",
+    "phase3_alias_replay": "docs/audits/cameo_search_v1/cameo_search_v1_phase3_alias_replay_dry_run_20260520.json",
+    "source_alias_file": "data/cameo_search_v1/source_set_aliases_v1.json"
+  },
+  "phase3_counts": {
+    "source_rows": 3875,
+    "match_ready_rows": 2393,
+    "approved_match": 1360,
+    "needs_manual_review": 546,
+    "blocked_set_alias_missing": 396,
+    "blocked_card_not_found": 44,
+    "blocked_ambiguous_card": 47
+  },
+  "eligible_for_future_promotion": {
+    "classification": "APPROVED_MATCH",
+    "candidate_count": 1360
+  },
+  "blocked_from_future_promotion_without_new_review": [
+    "NEEDS_MANUAL_REVIEW",
+    "BLOCKED_SET_ALIAS_MISSING",
+    "BLOCKED_CARD_NOT_FOUND",
+    "BLOCKED_AMBIGUOUS_CARD",
+    "Phase 1 non-match-ready rows",
+    "Japanese promo-family rows",
+    "language-scope rows"
+  ],
+  "recommended_table": "public.card_print_cameos",
+  "write_boundary": {
+    "allowed_future_operation": "insert into public.card_print_cameos only",
+    "disallowed_tables": [
+      "public.card_prints",
+      "public.card_printings",
+      "public.pokemon_species",
+      "public.card_print_species",
+      "pricing tables",
+      "scanner tables",
+      "warehouse tables"
+    ]
+  },
+  "apply_status": {
+    "migration_created": false,
+    "db_writes_performed": false,
+    "search_integration_performed": false,
+    "app_changes_performed": false
+  },
+  "required_pre_apply_gates": [
+    "fresh Phase 3 replay",
+    "approved count stability or refreshed audit",
+    "target card_print_id existence check",
+    "parent gv_id non-null check",
+    "source row hash uniqueness check",
+    "no pre-existing source row hash check",
+    "blocked rows inserted equals zero proof"
+  ]
+}
