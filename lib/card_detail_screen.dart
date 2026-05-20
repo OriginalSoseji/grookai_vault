@@ -42,6 +42,8 @@ class CardDetailScreen extends StatefulWidget {
   final String? exactCopyGvviId;
   final String? exactCopyOwnerUserId;
   final String? entrySurface;
+  final String? selectedPrintingGvId;
+  final String? selectedFinishLabel;
 
   const CardDetailScreen({
     super.key,
@@ -62,6 +64,8 @@ class CardDetailScreen extends StatefulWidget {
     this.exactCopyGvviId,
     this.exactCopyOwnerUserId,
     this.entrySurface,
+    this.selectedPrintingGvId,
+    this.selectedFinishLabel,
   });
 
   @override
@@ -432,6 +436,11 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
       printedIdentityModifier: _cleanText(
         _cardContextData?['printed_identity_modifier'],
       ),
+      finishLabel: _cleanText(widget.selectedFinishLabel),
+      displayDiscriminator: _cleanText(widget.selectedFinishLabel),
+      searchObjectType: _cleanText(widget.selectedPrintingGvId).isNotEmpty
+          ? 'child_printing'
+          : null,
       setIdentityModel: _cleanText(setRecord?['identity_model']),
       setCode: _resolvedSetCode,
       number: _resolvedCollectorNumber,

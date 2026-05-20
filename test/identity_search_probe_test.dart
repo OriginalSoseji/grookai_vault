@@ -76,19 +76,76 @@ void main() {
       resolveDisplayName(pikachuStamp),
       'Pikachu · Pokémon Together Stamp',
     );
-    expect(matchesIdentityFilter(pikachuStamp, kIdentityFilterPokemonTogetherStamp), isTrue);
+    expect(
+      matchesIdentityFilter(pikachuStamp, kIdentityFilterPokemonTogetherStamp),
+      isTrue,
+    );
     expect(getIdentitySearchTokens(pikachuStamp), contains('stamp'));
 
     expect(resolveDisplayName(umbreonAlt), 'Umbreon VMAX · Alternate Art');
-    expect(matchesIdentityFilter(umbreonAlt, kIdentityFilterAlternateArt), isTrue);
+    expect(
+      matchesIdentityFilter(umbreonAlt, kIdentityFilterAlternateArt),
+      isTrue,
+    );
     expect(getIdentitySearchTokens(umbreonAlt), contains('alt art'));
 
     expect(resolveDisplayName(umbreonCc), 'Umbreon ★ · Classic Collection');
-    expect(matchesIdentityFilter(umbreonCc, kIdentityFilterClassicCollection), isTrue);
+    expect(
+      matchesIdentityFilter(umbreonCc, kIdentityFilterClassicCollection),
+      isTrue,
+    );
     expect(getIdentitySearchTokens(umbreonCc), contains('classic collection'));
 
     expect(getIdentitySearchTokens(unownA), contains('a'));
     expect(resolveDisplayName(zapdos), 'Zapdos');
     expect(getCardIdentityFilterKeys(zapdos), isEmpty);
   });
+
+  test('child printing search contract displays selected finish context', () {
+    final espurrReverse = CardPrint.fromJson(<String, dynamic>{
+      'id': 'card-print-me03-033',
+      'gv_id': 'GV-PK-ME03-033',
+      'name': 'Espurr',
+      'set_code': 'me03',
+      'set_name': 'Mega Evolution',
+      'number': '033',
+      'search_object_type': 'child_printing',
+      'search_card_printing_id': 'GV-PK-ME03-033-RH',
+      'printing_gv_id': 'GV-PK-ME03-033-RH',
+      'selected_printing_gv_id': 'GV-PK-ME03-033-RH',
+      'finish_key': 'reverse',
+      'finish_label': 'Reverse Holo',
+      'display_discriminator': 'Reverse Holo',
+      'route_query': 'printing=GV-PK-ME03-033-RH',
+    });
+
+    expect(resolveDisplayName(espurrReverse), 'Espurr · Reverse Holo');
+    expect(espurrReverse.printingGvId, 'GV-PK-ME03-033-RH');
+    expect(espurrReverse.selectedPrintingGvId, 'GV-PK-ME03-033-RH');
+    expect(espurrReverse.routeQuery, 'printing=GV-PK-ME03-033-RH');
+  });
+
+  test(
+    'parent variant label remains higher priority than child finish label',
+    () {
+      final stampedPikachu = CardPrint.fromJson(<String, dynamic>{
+        'id': 'card-print-pikachu-stamp',
+        'gv_id': 'GV-PK-ME03-025-POKEMON-TOGETHER-STAMP',
+        'name': 'Pikachu',
+        'set_code': 'me03',
+        'number': '025',
+        'variant_key': 'pokemon_together_stamp',
+        'search_object_type': 'child_printing',
+        'printing_gv_id': 'GV-PK-ME03-025-POKEMON-TOGETHER-STAMP-RH',
+        'finish_key': 'reverse',
+        'finish_label': 'Reverse Holo',
+        'display_discriminator': 'Reverse Holo',
+      });
+
+      expect(
+        resolveDisplayName(stampedPikachu),
+        'Pikachu · Pokémon Together Stamp',
+      );
+    },
+  );
 }

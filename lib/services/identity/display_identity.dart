@@ -26,6 +26,14 @@ const Map<String, String> _printedIdentityModifierMap = <String, String>{
   'delta_species': 'δ Delta Species',
 };
 
+const Map<String, String> _finishKeyMap = <String, String>{
+  'normal': 'Normal',
+  'holo': 'Holo',
+  'reverse': 'Reverse Holo',
+  'pokeball': 'Poké Ball',
+  'masterball': 'Master Ball',
+};
+
 const Set<String> _nonMeaningfulVariantKeys = <String>{
   '',
   'base',
@@ -98,10 +106,24 @@ String? formatPrintedIdentityModifier(String? value) {
   return humanized.isEmpty ? null : humanized;
 }
 
+String? formatFinishLabel({String? finishKey, String? finishLabel}) {
+  final mapped = _finishKeyMap[_normalizeToken(finishKey)];
+  if (mapped != null) {
+    return mapped;
+  }
+
+  final normalizedLabel = (finishLabel ?? '').trim();
+  return normalizedLabel.isEmpty ? null : normalizedLabel;
+}
+
 ResolvedDisplayIdentity resolveDisplayIdentityFromFields({
   required String? name,
   String? variantKey,
   String? printedIdentityModifier,
+  String? finishKey,
+  String? finishLabel,
+  String? displayDiscriminator,
+  String? searchObjectType,
   String? setIdentityModel,
   String? setCode,
   String? number,
@@ -110,6 +132,15 @@ ResolvedDisplayIdentity resolveDisplayIdentityFromFields({
   final baseName = (name ?? '').trim().isEmpty ? 'Unknown card' : name!.trim();
 
   var suffix = formatVariantKey(variantKey);
+  if (suffix == null && searchObjectType == 'child_printing') {
+    suffix = (displayDiscriminator ?? '').trim();
+    if (suffix.isEmpty) {
+      suffix = formatFinishLabel(
+        finishKey: finishKey,
+        finishLabel: finishLabel,
+      );
+    }
+  }
   suffix ??= formatPrintedIdentityModifier(printedIdentityModifier);
 
   if (suffix == null &&
@@ -129,6 +160,10 @@ ResolvedDisplayIdentity resolveCardPrintDisplayIdentity(CardPrint card) {
     name: card.name,
     variantKey: card.variantKey,
     printedIdentityModifier: card.printedIdentityModifier,
+    finishKey: card.finishKey,
+    finishLabel: card.finishLabel,
+    displayDiscriminator: card.displayDiscriminator,
+    searchObjectType: card.searchObjectType,
     setIdentityModel: card.setIdentityModel,
     setCode: card.setCode,
     number: card.number,
