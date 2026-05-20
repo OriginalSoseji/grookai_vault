@@ -28,6 +28,7 @@ import {
   rowMatchesNameFamily,
 } from "@/lib/resolver/nameFamily";
 import { createServerComponentClient } from "@/lib/supabase/server";
+import { getCardPrintingFinishLabel } from "@/lib/cards/displayDiscriminator";
 import type { ExploreResultCard } from "@/components/explore/exploreResultTypes";
 import type { VariantFlags } from "@/lib/cards/variantPresentation";
 
@@ -85,6 +86,8 @@ const TRAIT_INTENT_MATCH_BONUS = 110;
 const TRAIT_INTENT_PARTIAL_BONUS = 60;
 const TRAIT_INTENT_MISS_PENALTY = -80;
 const NAME_FAMILY_MATCH_BONUS = 140;
+const CLEAN_SINGLE_NAME_MATCH_BONUS = 360;
+const DECORATED_NAME_FALLBACK_PENALTY = -220;
 const NO_TEXT_TOKEN_MATCH_PENALTY = -1600;
 const FAMILY_DIVERSITY_PROMOTION_LIMIT = 4;
 
@@ -122,6 +125,21 @@ type PrintIdentitySearchRpcRow = {
   route_query: string | null;
   matched_fields: string[] | null;
   rank_score: number | null;
+};
+
+type DirectChildPrintingLookupRow = {
+  printing_gv_id: string | null;
+  finish_key: string | null;
+  card_prints:
+    | {
+        gv_id: string | null;
+        name: string | null;
+      }
+    | Array<{
+        gv_id: string | null;
+        name: string | null;
+      }>
+    | null;
 };
 
 type CardPrintLookupRow = {
@@ -1185,6 +1203,20 @@ function scoreRowDetail(row: ExploreRow, query: ResolverQuery): RowScoreDetail {
     addScoreComponent(components, "name_family_match", NAME_FAMILY_MATCH_BONUS);
   }
 
+  if (
+    query.significantTextTokens.length === 1 &&
+    normalizedName === query.significantTextTokens[0]
+  ) {
+    addScoreComponent(components, "clean_single_name_match", CLEAN_SINGLE_NAME_MATCH_BONUS);
+  } else if (
+    query.significantTextTokens.length === 1 &&
+    matchesNameFamily &&
+    !queryContainsNameDecoratorTokens(query.tokens) &&
+    tokenizeNormalizedQuery(row.name).length > 1
+  ) {
+    addScoreComponent(components, "decorated_name_fallback", DECORATED_NAME_FALLBACK_PENALTY);
+  }
+
   for (const setToken of query.setTokens) {
     const setSimilarity = bestTokenSimilarity(setToken, setTokens);
     if (setSimilarity >= 1) {
@@ -1709,9 +1741,55 @@ async function fetchPrintIdentitySearchRows(query: ResolverQuery) {
     throw new Error(error.message);
   }
 
-  return ((data ?? []) as PrintIdentitySearchRpcRow[]).filter((row) =>
+  const rows = ((data ?? []) as PrintIdentitySearchRpcRow[]).filter((row) =>
     Boolean(row.parent_gv_id),
   );
+
+  if (rows.length > 0 || !query.directGvId) {
+    return rows;
+  }
+
+  const { data: directChildRows, error: directChildError } = await supabase
+    .from("card_printings")
+    .select("printing_gv_id,finish_key,card_prints(gv_id,name)")
+    .eq("printing_gv_id", query.directGvId)
+    .limit(1);
+
+  if (directChildError) {
+    if (process.env.NODE_ENV !== "production") {
+      console.warn("[print-identity-search] direct child printing fallback failed closed", {
+        message: directChildError.message,
+      });
+    }
+    return rows;
+  }
+
+  const directChild = ((directChildRows ?? []) as DirectChildPrintingLookupRow[])[0];
+  const parent = Array.isArray(directChild?.card_prints)
+    ? directChild.card_prints[0]
+    : directChild?.card_prints;
+  const parentGvId = parent?.gv_id?.trim();
+  const printingGvId = directChild?.printing_gv_id?.trim();
+  if (!parentGvId || !printingGvId) {
+    return rows;
+  }
+
+  const finishLabel = getCardPrintingFinishLabel({
+    finishKey: directChild.finish_key,
+  });
+
+  return [
+    {
+      search_document_id: `child:${printingGvId}`,
+      object_type: "child_printing",
+      parent_gv_id: parentGvId,
+      printing_gv_id: printingGvId,
+      display_discriminator: finishLabel,
+      route_query: `printing=${printingGvId}`,
+      matched_fields: ["printing_gv_id", "direct_child_printing_fallback"],
+      rank_score: 20050,
+    },
+  ];
 }
 
 function rowMatchesScopedTextTokens(
