@@ -1,0 +1,98 @@
+{
+  "contract": "CAMEO_SEARCH_V1",
+  "version": "2026-05-20",
+  "purpose": "Source-owned aliases for no-write cameo card-match dry runs. These aliases do not mutate canonical sets and must not be used as fuzzy matching authority.",
+  "rules": [
+    "Map only a source workbook set label to an explicit existing Grookai set code.",
+    "Do not map Japanese promo families to English promo sets unless a separate audit proves equivalence.",
+    "Do not resolve ambiguous source labels by guesswork.",
+    "Keep card-not-found and ambiguous-card rows blocked."
+  ],
+  "aliases": [
+    {
+      "source_set_name": "Expedition",
+      "target_set_code": "ecard1",
+      "reason": "Source short label for Expedition Base Set."
+    },
+    {
+      "source_set_name": "Undaunted",
+      "target_set_code": "hgss3",
+      "reason": "Source short label for HS-Undaunted."
+    },
+    {
+      "source_set_name": "Unleashed",
+      "target_set_code": "hgss2",
+      "reason": "Source short label for HS-Unleashed."
+    },
+    {
+      "source_set_name": "Triumphant",
+      "target_set_code": "hgss4",
+      "reason": "Source short label for HS-Triumphant."
+    },
+    {
+      "source_set_name": "DP Promos",
+      "target_set_code": "dpp",
+      "reason": "Source short label for DP Black Star Promos."
+    },
+    {
+      "source_set_name": "HGSS Promos",
+      "target_set_code": "hsp",
+      "reason": "Source short label for HGSS Black Star Promos."
+    },
+    {
+      "source_set_name": "Nintendo Promos",
+      "target_set_code": "np",
+      "reason": "Source short label for Nintendo Black Star Promos."
+    },
+    {
+      "source_set_name": "BW Promos",
+      "target_set_code": "bwp",
+      "reason": "Source short label for BW Black Star Promos."
+    },
+    {
+      "source_set_name": "MEP Promos",
+      "target_set_code": "mep",
+      "reason": "Source short label for MEP Black Star Promos."
+    },
+    {
+      "source_set_name": "SVP Promos",
+      "target_set_code": "svp",
+      "reason": "Source compact spelling for Scarlet & Violet Black Star Promos."
+    },
+    {
+      "source_set_name": "Twlight Masquerade",
+      "target_set_code": "sv06",
+      "reason": "Source typo for Twilight Masquerade."
+    }
+  ],
+  "intentionally_unmapped": [
+    {
+      "source_set_name": "SM-P Promos",
+      "reason": "Japanese promo family; do not map to English SM Black Star Promos without a language-scope audit."
+    },
+    {
+      "source_set_name": "XY-P Promos",
+      "reason": "Japanese promo family; do not map to English XY Black Star Promos without a language-scope audit."
+    },
+    {
+      "source_set_name": "SV-P Promos",
+      "reason": "Japanese promo family; do not map to English Scarlet & Violet Black Star Promos without a language-scope audit."
+    },
+    {
+      "source_set_name": "S-P Promos",
+      "reason": "Japanese promo family; do not map to English SWSH Black Star Promos without a language-scope audit."
+    },
+    {
+      "source_set_name": "BW-P Promos",
+      "reason": "Japanese promo family; do not map to English BW Black Star Promos without a language-scope audit."
+    },
+    {
+      "source_set_name": "DPt-P Promos",
+      "reason": "Japanese promo family; no approved Grookai target code in this phase."
+    },
+    {
+      "source_set_name": "PCG-P Promos",
+      "reason": "Japanese promo family; no approved Grookai target code in this phase."
+    }
+  ]
+}

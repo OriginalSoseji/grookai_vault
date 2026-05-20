@@ -15,8 +15,10 @@ for (const envPath of ['.env.local', '.env']) {
 }
 
 const OUT_DIR = path.join(ROOT, 'docs', 'audits', 'cameo_search_v1');
-const JSON_PATH = path.join(OUT_DIR, 'cameo_search_v1_match_dry_run_20260520.json');
-const MD_PATH = path.join(OUT_DIR, 'cameo_search_v1_match_dry_run_20260520.md');
+const BASELINE_JSON_PATH = path.join(OUT_DIR, 'cameo_search_v1_match_dry_run_20260520.json');
+const JSON_PATH = path.join(OUT_DIR, 'cameo_search_v1_phase3_alias_replay_dry_run_20260520.json');
+const MD_PATH = path.join(OUT_DIR, 'cameo_search_v1_phase3_alias_replay_dry_run_20260520.md');
+const SOURCE_SET_ALIAS_PATH = path.join(ROOT, 'data', 'cameo_search_v1', 'source_set_aliases_v1.json');
 
 const WORKBOOK_ID = '18nIkOgqQrHZTz0TrH_gL1e1nL1RcHiCmPF5finAjToY';
 const SOURCE_URL = `https://docs.google.com/spreadsheets/d/${WORKBOOK_ID}/htmlview`;
@@ -291,8 +293,34 @@ function addAlias(index, alias, set, source) {
   }
 }
 
-function buildSetIndex(sets) {
+async function loadSourceSetAliases() {
+  const raw = await fs.readFile(SOURCE_SET_ALIAS_PATH, 'utf8');
+  const parsed = JSON.parse(raw);
+  const aliases = Array.isArray(parsed.aliases) ? parsed.aliases : [];
+  return {
+    path: path.relative(ROOT, SOURCE_SET_ALIAS_PATH),
+    hash: sha256(raw),
+    aliases,
+    intentionally_unmapped: Array.isArray(parsed.intentionally_unmapped) ? parsed.intentionally_unmapped : [],
+  };
+}
+
+async function loadBaselineSummary() {
+  try {
+    const raw = await fs.readFile(BASELINE_JSON_PATH, 'utf8');
+    const parsed = JSON.parse(raw);
+    return {
+      path: path.relative(ROOT, BASELINE_JSON_PATH),
+      summary: parsed.summary ?? null,
+    };
+  } catch {
+    return null;
+  }
+}
+
+function buildSetIndex(sets, sourceAliasFile) {
   const index = new Map();
+  const setByCode = new Map(sets.map((set) => [normalizeText(set.code), set]));
   for (const set of sets) {
     for (const value of [set.name, set.code, set.printed_set_abbrev]) {
       addAlias(index, value, set, 'db_field');
@@ -314,6 +342,13 @@ function buildSetIndex(sets) {
         addAlias(index, sourceAlias, entry.set, 'curated_source_alias');
       }
     }
+  }
+  for (const alias of sourceAliasFile.aliases) {
+    const sourceSetName = cleanText(alias.source_set_name);
+    const targetSetCode = normalizeText(alias.target_set_code);
+    const targetSet = setByCode.get(targetSetCode);
+    if (!sourceSetName || !targetSet) continue;
+    addAlias(index, sourceSetName, targetSet, 'source_owned_alias_file');
   }
   return index;
 }
@@ -410,13 +445,20 @@ function topEntries(map, limit = 30) {
 
 function buildMarkdown(report) {
   const lines = [];
-  lines.push('# CAMEO_SEARCH_V1 Phase 2 Card Match Dry Run');
+  lines.push('# CAMEO_SEARCH_V1 Phase 3 Set Alias Replay Dry Run');
   lines.push('');
   lines.push(`Date: ${report.generated_at.slice(0, 10)}`);
   lines.push('');
   lines.push('## Scope');
   lines.push('');
-  lines.push('No-write deterministic card matching for only the source rows classified as `SOURCE_ROW_READY_FOR_CARD_MATCH_DRY_RUN` in Phase 1.');
+  lines.push('No-write deterministic card matching replay for only the source rows classified as `SOURCE_ROW_READY_FOR_CARD_MATCH_DRY_RUN` in Phase 1, with source-owned set aliases loaded from the Phase 3 alias file.');
+  lines.push('');
+  lines.push('## Alias File');
+  lines.push('');
+  lines.push(`- Path: \`${report.alias_file.path}\``);
+  lines.push(`- Hash: \`${report.alias_file.hash}\``);
+  lines.push(`- Active aliases: ${report.alias_file.active_aliases}`);
+  lines.push(`- Intentionally unmapped aliases: ${report.alias_file.intentionally_unmapped_count}`);
   lines.push('');
   lines.push('## Summary');
   lines.push('');
@@ -427,6 +469,12 @@ function buildMarkdown(report) {
   lines.push(`- Set alias missing: ${report.summary.classification_counts.BLOCKED_SET_ALIAS_MISSING ?? 0}`);
   lines.push(`- Card not found: ${report.summary.classification_counts.BLOCKED_CARD_NOT_FOUND ?? 0}`);
   lines.push(`- Manual review: ${report.summary.classification_counts.NEEDS_MANUAL_REVIEW ?? 0}`);
+  if (report.baseline_comparison) {
+    lines.push(`- Approved lift vs Phase 2: ${report.baseline_comparison.approved_match_delta}`);
+    lines.push(`- Set-alias-missing reduction vs Phase 2: ${report.baseline_comparison.blocked_set_alias_missing_delta}`);
+    lines.push(`- Card-not-found delta vs Phase 2: ${report.baseline_comparison.blocked_card_not_found_after - report.baseline_comparison.blocked_card_not_found_before}`);
+    lines.push(`- Ambiguous-card delta vs Phase 2: ${report.baseline_comparison.blocked_ambiguous_card_after - report.baseline_comparison.blocked_ambiguous_card_before}`);
+  }
   lines.push('');
   lines.push('## Classification Counts');
   lines.push('');
@@ -466,6 +514,8 @@ function buildMarkdown(report) {
     ? 'Cameo search remains viable, but promotion should only include approved matches after a reviewed schema/write plan. Missing set aliases and card-not-found rows need a separate alias/remediation plan.'
     : 'Cameo search is not ready for promotion because no deterministic approved matches were produced.');
   lines.push('');
+  lines.push('Rows that became `BLOCKED_CARD_NOT_FOUND` or `BLOCKED_AMBIGUOUS_CARD` after alias resolution remain blocked. The alias file only resolves set labels; it does not loosen card-name or number matching.');
+  lines.push('');
   lines.push('## Confirmations');
   lines.push('');
   lines.push('- No DB writes.');
@@ -481,6 +531,8 @@ async function main() {
   await fs.mkdir(OUT_DIR, { recursive: true });
   const { workbook_hash, rows: sourceRows } = await fetchSourceRows();
   const matchReadyRows = sourceRows.filter((row) => row.source_match_risk.length === 1 && row.source_match_risk[0] === 'SOURCE_ROW_READY_FOR_CARD_MATCH_DRY_RUN');
+  const sourceAliasFile = await loadSourceSetAliases();
+  const baselineSummary = await loadBaselineSummary();
 
   const connectionString = process.env.SUPABASE_DB_URL;
   if (!connectionString) throw new Error('SUPABASE_DB_URL is not set.');
@@ -522,7 +574,7 @@ async function main() {
     `);
     await client.query('commit');
 
-    const setIndex = buildSetIndex(sets);
+    const setIndex = buildSetIndex(sets, sourceAliasFile);
     const cardsBySetId = new Map();
     for (const card of cards) {
       if (!cardsBySetId.has(card.set_id)) cardsBySetId.set(card.set_id, []);
@@ -548,6 +600,14 @@ async function main() {
       source_url: SOURCE_URL,
       workbook_hash,
       db_read_mode: 'transaction read only',
+      alias_file: {
+        path: sourceAliasFile.path,
+        hash: sourceAliasFile.hash,
+        active_aliases: sourceAliasFile.aliases.length,
+        intentionally_unmapped_count: sourceAliasFile.intentionally_unmapped.length,
+        aliases: sourceAliasFile.aliases,
+        intentionally_unmapped: sourceAliasFile.intentionally_unmapped,
+      },
       summary: {
         source_rows: sourceRows.length,
         match_ready_rows: matchReadyRows.length,
@@ -565,6 +625,19 @@ async function main() {
         manual_review: results.filter((row) => row.classification === 'NEEDS_MANUAL_REVIEW').slice(0, 25),
       },
       results,
+      baseline_comparison: baselineSummary?.summary ? {
+        baseline_path: baselineSummary.path,
+        approved_match_before: baselineSummary.summary.classification_counts?.APPROVED_MATCH ?? 0,
+        approved_match_after: classificationCounts.APPROVED_MATCH ?? 0,
+        approved_match_delta: (classificationCounts.APPROVED_MATCH ?? 0) - (baselineSummary.summary.classification_counts?.APPROVED_MATCH ?? 0),
+        blocked_set_alias_missing_before: baselineSummary.summary.classification_counts?.BLOCKED_SET_ALIAS_MISSING ?? 0,
+        blocked_set_alias_missing_after: classificationCounts.BLOCKED_SET_ALIAS_MISSING ?? 0,
+        blocked_set_alias_missing_delta: (baselineSummary.summary.classification_counts?.BLOCKED_SET_ALIAS_MISSING ?? 0) - (classificationCounts.BLOCKED_SET_ALIAS_MISSING ?? 0),
+        blocked_card_not_found_before: baselineSummary.summary.classification_counts?.BLOCKED_CARD_NOT_FOUND ?? 0,
+        blocked_card_not_found_after: classificationCounts.BLOCKED_CARD_NOT_FOUND ?? 0,
+        blocked_ambiguous_card_before: baselineSummary.summary.classification_counts?.BLOCKED_AMBIGUOUS_CARD ?? 0,
+        blocked_ambiguous_card_after: classificationCounts.BLOCKED_AMBIGUOUS_CARD ?? 0,
+      } : null,
       confirmations: {
         db_writes: false,
         migrations: false,
@@ -581,6 +654,7 @@ async function main() {
       md_path: path.relative(ROOT, MD_PATH),
       match_ready_rows: matchReadyRows.length,
       classification_counts: classificationCounts,
+      alias_file: sourceAliasFile.path,
     }, null, 2));
   } catch (error) {
     try {
