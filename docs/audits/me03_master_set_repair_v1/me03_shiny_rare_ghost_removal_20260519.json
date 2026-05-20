@@ -1,0 +1,77 @@
+{
+  "audit": "ME03_SHINY_RARE_GHOST_REMOVAL_GATE",
+  "generated_at": "2026-05-19",
+  "mode": "read_only_gate",
+  "result": "BLOCKED_DO_NOT_DELETE",
+  "target_gv_ids": [
+    "GV-PK-ME03-089-SHINY-RARE",
+    "GV-PK-ME03-090-SHINY-RARE",
+    "GV-PK-ME03-092-SHINY-RARE",
+    "GV-PK-ME03-093-SHINY-RARE",
+    "GV-PK-ME03-094-SHINY-RARE",
+    "GV-PK-ME03-095-SHINY-RARE"
+  ],
+  "target_rows_found": 6,
+  "blocking_references": [
+    {
+      "surface": "canon_warehouse_candidates.promoted_card_print_id",
+      "ref_count": 6
+    },
+    {
+      "surface": "card_print_species.card_print_id",
+      "ref_count": 6
+    },
+    {
+      "surface": "external_mappings.card_print_id",
+      "ref_count": 6
+    }
+  ],
+  "zero_reference_surfaces": [
+    "ai_decision_logs.card_print_id",
+    "card_comments.card_print_id",
+    "card_embeddings.card_print_id",
+    "card_feed_events.card_print_id",
+    "card_fingerprint_index.card_print_id",
+    "card_interaction_outcomes.card_print_id",
+    "card_interactions.card_print_id",
+    "card_price_observations.card_print_id",
+    "card_price_rollups.card_print_id",
+    "card_price_ticks.card_print_id",
+    "card_prices.card_print_id",
+    "card_print_file_paths.card_print_id",
+    "card_print_identity.card_print_id",
+    "card_print_price_curves.card_print_id",
+    "card_print_traits.card_print_id",
+    "card_printings.card_print_id",
+    "card_signals.card_print_id",
+    "ebay_active_price_snapshots.card_print_id",
+    "ebay_active_prices_latest.card_print_id",
+    "external_discovery_candidates.card_print_id",
+    "identity_scan_selections.selected_card_print_id",
+    "justtcg_identity_overrides.card_print_id",
+    "justtcg_variant_price_snapshots.card_print_id",
+    "justtcg_variant_prices_latest.card_print_id",
+    "justtcg_variants.card_print_id",
+    "listings.card_print_id",
+    "market_prices.card_id",
+    "price_observations.print_id",
+    "prices.card_id",
+    "pricing_jobs.card_print_id",
+    "pricing_observations.card_print_id",
+    "pricing_watch.card_print_id",
+    "scanner_fingerprint_index.card_print_id",
+    "shared_cards.card_id",
+    "slab_certs.card_print_id",
+    "slab_provenance_events.card_print_id",
+    "user_card_intents.card_print_id",
+    "user_card_photos.card_print_id",
+    "vault_item_instances.card_print_id",
+    "vault_items.card_id",
+    "wishlist_items.card_id"
+  ],
+  "write_result": {
+    "backup_table_created": false,
+    "deleted_rows": 0
+  }
+}
+

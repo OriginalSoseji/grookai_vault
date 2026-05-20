@@ -1,0 +1,55 @@
+{
+  "audit": "ME03_MASTER_SET_REPAIR_EXECUTION",
+  "generated_at": "2026-05-19",
+  "result": "BLOCKED_NO_WRITES",
+  "lanes": {
+    "ghost_removal": {
+      "result": "BLOCKED_DO_NOT_DELETE",
+      "target_rows": 6,
+      "deleted_rows": 0,
+      "backup_table_created": false,
+      "blocking_references": {
+        "canon_warehouse_candidates.promoted_card_print_id": 6,
+        "card_print_species.card_print_id": 6,
+        "external_mappings.card_print_id": 6
+      }
+    },
+    "reverse_holo_creation": {
+      "result": "CANDIDATES_CLEAN_WRITE_DEFERRED",
+      "candidate_rows": 79,
+      "inserted_rows": 0,
+      "checks": {
+        "existing_reverse_rows": 0,
+        "proposed_id_collisions": 0,
+        "missing_parent_gv_id": 0,
+        "ghost_target_candidates": 0,
+        "duplicate_candidate_printing_gv_ids": 0
+      }
+    }
+  },
+  "current_counts": {
+    "me03_parent_rows": 130,
+    "me03_reverse_child_printings": 0,
+    "deleted_rows_this_run": 0,
+    "inserted_rows_this_run": 0
+  },
+  "expected_final_counts_not_reached": {
+    "me03_parent_rows": 124,
+    "me03_reverse_child_printings": 79,
+    "me03_master_set_total": 203
+  },
+  "recommended_next_lane": "ME03_SHINY_RARE_REFERENCE_RESOLUTION_V1",
+  "verification": {
+    "git_diff_check": "PASS",
+    "npm_run_preflight": "PASS_WITH_DEFERRED_DEBT"
+  },
+  "confirmations": {
+    "no_referenced_rows_deleted": true,
+    "no_db_writes": true,
+    "no_migrations": true,
+    "no_scanner_changes": true,
+    "no_pricing_changes": true,
+    "no_species_dex_denominator_changes": true,
+    "no_public_child_route_enablement": true
+  }
+}
