@@ -458,16 +458,16 @@ export default async function CardPage({
         {setLogoPath ? (
           <div
             aria-hidden="true"
-            className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgba(255,255,255,0.97)_0%,rgba(255,255,255,0.94)_42%,rgba(255,255,255,0.98)_100%)]"
+            className="gv-card-identity-wash pointer-events-none absolute inset-0"
           />
         ) : null}
         <div className="relative z-10 grid gap-6 p-5 sm:p-6 xl:grid-cols-[minmax(280px,360px)_minmax(0,1fr)_300px] xl:gap-8 xl:p-8">
-          <div className="rounded-[24px] border border-slate-200 bg-gradient-to-b from-slate-50 to-white p-4 shadow-sm">
+          <div className="gv-card-detail-image-shell rounded-[24px] border border-slate-200 bg-gradient-to-b from-slate-50 to-white p-4 shadow-sm">
             <CardZoomModal
               src={resolvedCardImageSrc}
               fallbackSrc={resolvedCardImageFallback ?? undefined}
               alt={getCardImageAltText(resolvedDisplayIdentity.display_name, resolvedCard)}
-              imageClassName="w-full cursor-zoom-in object-contain"
+              imageClassName="aspect-[3/4] max-h-[430px] w-full cursor-zoom-in object-contain sm:max-h-[560px]"
               fallbackClassName="flex aspect-[3/4] items-center justify-center rounded-[18px] bg-slate-100 px-4 text-center text-sm text-slate-500"
             />
             {resolvedCardImagePresentation.compactBadgeLabel ? (

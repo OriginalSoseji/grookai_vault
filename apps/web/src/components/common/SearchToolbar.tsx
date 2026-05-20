@@ -141,7 +141,7 @@ export function SearchToolbarButton({
         "inline-flex items-center justify-center rounded-full text-sm font-medium transition",
         size === "hero" ? "px-5 py-2.5" : "h-11 px-5",
         tone === "primary"
-          ? "bg-slate-950 text-white hover:bg-slate-800"
+          ? "bg-slate-950 text-white shadow-sm hover:bg-slate-800"
           : "border border-slate-300 bg-white text-slate-800 hover:border-slate-400 hover:bg-slate-50",
         className,
       )}

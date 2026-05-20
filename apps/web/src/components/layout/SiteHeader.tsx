@@ -87,7 +87,7 @@ export function SiteHeader({ isAuthenticated, profileHref, networkUnreadCount, d
       <PageContainer className={showTopSearch ? "space-y-2.5 py-2.5 md:space-y-4 md:py-4" : "py-2.5 md:py-4"}>
         <div className="md:hidden">
           <div className="flex min-h-[46px] items-center justify-between gap-3">
-            <Link href="/" className="flex min-w-0 items-center gap-2 text-[15px] font-semibold text-slate-950">
+            <Link href="/" className="flex min-w-0 flex-1 items-center gap-2 text-[15px] font-semibold text-slate-950">
               <Image
                 src="/grookai-emblem-square.svg"
                 alt="Grookai Vault logo"
@@ -98,11 +98,13 @@ export function SiteHeader({ isAuthenticated, profileHref, networkUnreadCount, d
               <span className="truncate">Grookai Vault</span>
             </Link>
 
-            <div className="flex shrink-0 items-center gap-2">
-              <ThemeToggle />
+            <div className="flex shrink-0 items-center justify-end gap-1.5 pl-2">
+              <span className="gv-mobile-secondary-action">
+                <ThemeToggle />
+              </span>
               <Link
                 href="/network"
-                className={`rounded-full px-2.5 py-1 text-[11px] font-medium transition ${
+                className={`hidden shrink-0 rounded-full px-2.5 py-1 text-[11px] font-medium transition ${
                   pathname === "/network" || pathname.startsWith("/network/")
                     ? "bg-emerald-100 text-emerald-950 ring-1 ring-emerald-200"
                     : "border border-slate-200 bg-white text-slate-600 hover:border-slate-300 hover:bg-slate-50 hover:text-slate-950"
@@ -112,7 +114,7 @@ export function SiteHeader({ isAuthenticated, profileHref, networkUnreadCount, d
               </Link>
               <Link
                 href={buildCompareHref(compareCards)}
-                className={`rounded-full px-2.5 py-1 text-[11px] font-medium transition ${
+                className={`shrink-0 rounded-full px-2.5 py-1 text-[11px] font-medium transition ${compareCount > 0 ? "inline-flex" : "hidden"} ${
                   pathname === "/compare" || pathname.startsWith("/compare/")
                     ? "bg-amber-100 text-amber-950 ring-1 ring-amber-200"
                     : "border border-slate-200 bg-white text-slate-600 hover:border-slate-300 hover:bg-slate-50 hover:text-slate-950"
@@ -123,7 +125,7 @@ export function SiteHeader({ isAuthenticated, profileHref, networkUnreadCount, d
               {!isAuthenticated ? (
                 <Link
                   href={accountHref}
-                  className="rounded-full border border-slate-200 bg-white px-2.5 py-1 text-[11px] font-medium text-slate-700 transition hover:border-slate-300 hover:bg-slate-50"
+                  className="shrink-0 rounded-full border border-slate-200 bg-white px-2.5 py-1 text-[11px] font-medium text-slate-700 transition hover:border-slate-300 hover:bg-slate-50"
                 >
                   {accountLabel}
                 </Link>

@@ -155,7 +155,7 @@ export function MobileBottomNav({ wallHref, dexEnabled }: MobileBottomNavProps) 
   return (
     <nav
       aria-label="Mobile navigation"
-      className="fixed inset-x-0 bottom-0 z-50 border-t border-slate-200/80 bg-white/92 px-3 pb-[calc(0.55rem+env(safe-area-inset-bottom))] pt-2 backdrop-blur md:hidden"
+      className="fixed inset-x-0 bottom-0 z-50 border-t border-slate-200/80 bg-white/92 px-3 pb-[calc(0.7rem+env(safe-area-inset-bottom))] pt-2 backdrop-blur md:hidden"
     >
       <div className="mx-auto flex max-w-2xl items-center gap-1.5 rounded-[1.2rem] border border-slate-200 bg-white p-1.5 shadow-[0_-6px_20px_rgba(15,23,42,0.06)]">
         {items.map((item) => (

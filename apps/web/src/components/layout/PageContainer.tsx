@@ -13,6 +13,7 @@ export function PageContainer({ children, className }: PageContainerProps) {
     <div
       className={classes}
       style={{
+        boxSizing: "border-box",
         maxWidth: 1280,
         paddingLeft: spacing.xl,
         paddingRight: spacing.xl,

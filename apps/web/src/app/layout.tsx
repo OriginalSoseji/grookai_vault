@@ -110,7 +110,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         <Suspense fallback={<ChromeFallback dexEnabled={dexEnabled} />}>
           <AppChrome dexEnabled={dexEnabled} />
         </Suspense>
-        <main className="w-full py-7 pb-[calc(5.1rem+env(safe-area-inset-bottom))] md:py-12 md:pb-12">
+        <main className="gv-mobile-safe-content w-full min-w-0 overflow-x-clip py-7 md:py-12 md:pb-12">
           <PageContainer>{children}</PageContainer>
         </main>
         <footer className="border-t border-slate-200 bg-white pb-[calc(5.1rem+env(safe-area-inset-bottom))] md:pb-0">

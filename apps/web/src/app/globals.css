@@ -12,6 +12,7 @@ html {
 
 body {
   min-height: 100vh;
+  overflow-x: clip;
 }
 
 html.gv-dark {
@@ -45,10 +46,6 @@ html.gv-dark :where(.bg-slate-50) {
 
 html.gv-dark :where(.bg-slate-100) {
   background-color: rgb(30 41 59 / 0.92) !important;
-}
-
-html.gv-dark :where(.bg-slate-900, .bg-slate-950) {
-  background-color: #f8fafc !important;
 }
 
 html.gv-dark :where(.text-slate-950, .text-slate-900) {
@@ -95,6 +92,97 @@ html.gv-dark .gv-theme-toggle {
   background-color: rgb(15 23 42 / 0.92) !important;
   border-color: rgb(51 65 85 / 0.95) !important;
   color: #e2e8f0 !important;
+}
+
+html.gv-dark :where(input, textarea, select) {
+  color: #e2e8f0;
+}
+
+html.gv-dark :where(input::placeholder, textarea::placeholder) {
+  color: #64748b;
+}
+
+html.gv-dark :where(button:disabled, [aria-disabled="true"]) {
+  color: #94a3b8;
+}
+
+html.gv-dark :where(.bg-amber-50) {
+  background-color: rgb(120 53 15 / 0.22) !important;
+}
+
+html.gv-dark :where(.bg-amber-100) {
+  background-color: rgb(146 64 14 / 0.28) !important;
+}
+
+html.gv-dark :where(.text-amber-950, .text-amber-900, .text-amber-800, .text-amber-700) {
+  color: #fcd34d !important;
+}
+
+html.gv-dark :where(.border-amber-200, .border-amber-300) {
+  border-color: rgb(217 119 6 / 0.44) !important;
+}
+
+html.gv-dark :where(.bg-emerald-50, .bg-emerald-100) {
+  background-color: rgb(6 78 59 / 0.28) !important;
+}
+
+html.gv-dark :where(.text-emerald-950, .text-emerald-900, .text-emerald-800, .text-emerald-700) {
+  color: #6ee7b7 !important;
+}
+
+html.gv-dark :where(.border-emerald-200) {
+  border-color: rgb(16 185 129 / 0.38) !important;
+}
+
+html.gv-dark :where(.bg-sky-50, .bg-sky-100) {
+  background-color: rgb(12 74 110 / 0.28) !important;
+}
+
+html.gv-dark :where(.text-sky-900, .text-sky-800, .text-sky-700) {
+  color: #7dd3fc !important;
+}
+
+html.gv-dark :where(.border-sky-200) {
+  border-color: rgb(14 165 233 / 0.38) !important;
+}
+
+.gv-card-identity-wash {
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.97) 0%,
+    rgba(255, 255, 255, 0.94) 42%,
+    rgba(255, 255, 255, 0.98) 100%
+  );
+}
+
+html.gv-dark .gv-card-identity-wash {
+  background: linear-gradient(
+    180deg,
+    rgba(15, 23, 42, 0.97) 0%,
+    rgba(15, 23, 42, 0.94) 44%,
+    rgba(2, 6, 23, 0.98) 100%
+  );
+}
+
+.gv-mobile-safe-content {
+  padding-bottom: calc(6.5rem + env(safe-area-inset-bottom));
+}
+
+.gv-card-detail-image-shell {
+  max-width: min(100%, 360px);
+  margin-inline: auto;
+}
+
+@media (max-width: 639px) {
+  .gv-card-detail-image-shell {
+    max-width: min(100%, 260px);
+  }
+}
+
+@media (max-width: 429px) {
+  .gv-mobile-secondary-action {
+    display: none !important;
+  }
 }
 
 ::selection {

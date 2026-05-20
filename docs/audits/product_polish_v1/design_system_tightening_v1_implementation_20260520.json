@@ -1,0 +1,44 @@
+{
+  "lane": "DESIGN_SYSTEM_TIGHTENING_V1",
+  "date": "2026-05-20",
+  "status": "IMPLEMENTED_WITH_PREVIEW_SMOKE_REQUIRED",
+  "scope": {
+    "dark_mode_tokens": true,
+    "mobile_containment": true,
+    "card_detail_image_bounds": true,
+    "search_button_state": true,
+    "layout_redesign": false,
+    "data_changes": false,
+    "migrations": false
+  },
+  "changed_surfaces": [
+    "global dark mode",
+    "mobile header",
+    "mobile bottom nav",
+    "page container",
+    "card detail image shell",
+    "search toolbar",
+    "printing chips/status surfaces"
+  ],
+  "verification": {
+    "typecheck": "PASS",
+    "lint": "PASS_WITH_EXISTING_WARNING",
+    "build": "PASS",
+    "diff_check": "PASS"
+  },
+  "browser_smoke": {
+    "local_server_note": "next start must be run from apps/web directly; npm --prefix from repo root caused false chunk-load errors",
+    "explore_mobile_shell": "PARTIAL",
+    "card_detail_content": "BLOCKED_BY_LOCAL_DATA_CONTEXT",
+    "preview_or_production_smoke_required": true
+  },
+  "confirmations": {
+    "db_writes": false,
+    "migrations": false,
+    "scanner_changes": false,
+    "pricing_changes": false,
+    "species_dex_denominator_changes": false,
+    "parent_gv_id_changes": false,
+    "public_child_route_enablement": false
+  }
+}
