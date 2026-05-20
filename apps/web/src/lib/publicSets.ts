@@ -1,11 +1,9 @@
 import "server-only";
 
 import { cache } from "react";
-import {
-  getCardPrintingsSelectColumns,
-  hasChildPrintingPublicIdentityColumn,
-} from "@/lib/cards/childPrintingPublicIdentity";
+import { hasChildPrintingPublicIdentityColumn } from "@/lib/cards/childPrintingPublicIdentity";
 import { resolveCardImageFieldsV1 } from "@/lib/canon/resolveCardImageFieldsV1";
+import { hasChildPrintingImageStorageColumns } from "@/lib/cards/childPrintingImageStorage";
 import { getCardPrintingFinishLabel } from "@/lib/cards/displayDiscriminator";
 import { createPublicServerClient } from "@/lib/supabase/publicServer";
 import {
@@ -54,6 +52,12 @@ type PublicSetCardRow = {
         id: string | null;
         printing_gv_id?: string | null;
         finish_key: string | null;
+        image_url?: string | null;
+        image_alt_url?: string | null;
+        image_source?: string | null;
+        image_path?: string | null;
+        image_status?: string | null;
+        image_note?: string | null;
         finish_keys:
           | { label: string | null; sort_order: number | null }
           | { label: string | null; sort_order: number | null }[]
@@ -75,6 +79,18 @@ function createServerSupabase() {
 }
 
 type PublicSetCardPrinting = NonNullable<PublicSetCardRow["card_printings"]>[number];
+
+function getCardPrintingsSelectColumns(includePublicIdentity: boolean, includeImageColumns: boolean) {
+  const columns = ["id", "finish_key"];
+  if (includePublicIdentity) {
+    columns.push("printing_gv_id");
+  }
+  if (includeImageColumns) {
+    columns.push("image_source", "image_path", "image_url", "image_alt_url", "image_status", "image_note");
+  }
+  columns.push("finish_keys(label,sort_order)");
+  return columns.join(",\n");
+}
 
 function normalizeSetCode(value?: string | null) {
   return (value ?? "").trim().toLowerCase();
@@ -98,25 +114,29 @@ function getSetSortDate(row: Pick<SetRow, "release_date" | "created_at">) {
   return row.release_date ?? row.created_at ?? undefined;
 }
 
-function mapPublicSetCardPrintings(rows?: PublicSetCardRow["card_printings"]) {
-  const mapped = (rows ?? [])
-    .map((printing: PublicSetCardPrinting) => {
+async function mapPublicSetCardPrintings(rows?: PublicSetCardRow["card_printings"]) {
+  const mapped = (
+    await Promise.all(
+      (rows ?? []).map(async (printing: PublicSetCardPrinting) => {
       const finishRecord = Array.isArray(printing.finish_keys) ? printing.finish_keys[0] : printing.finish_keys;
       const finishName = getCardPrintingFinishLabel({
         finishKey: printing.finish_key,
         finishLabel: finishRecord?.label,
       });
+      const imageFields = await resolveCardImageFieldsV1(printing);
 
       return {
         id: printing.id?.trim() || undefined,
         printing_gv_id: printing.printing_gv_id?.trim() || undefined,
         finish_key: printing.finish_key?.trim() || undefined,
         finish_name: finishName ?? undefined,
-        image_url: undefined,
-        display_image_url: undefined,
+        image_url: imageFields.image_url ?? undefined,
+        display_image_url: imageFields.display_image_url ?? undefined,
         finish_sort_order: typeof finishRecord?.sort_order === "number" ? finishRecord.sort_order : Number.MAX_SAFE_INTEGER,
       };
-    })
+    }),
+    )
+  )
     .filter((printing) => Boolean(printing.finish_name));
 
   mapped.sort((left, right) => {
@@ -283,8 +303,14 @@ export async function getPublicSetCards(setCode: string, offset = 0, limit = 36)
   }
 
   const supabase = createServerSupabase();
-  const includePrintingPublicIdentity = await hasChildPrintingPublicIdentityColumn(supabase);
-  const printingSelect = getCardPrintingsSelectColumns(includePrintingPublicIdentity);
+  const [includePrintingPublicIdentity, includeChildPrintingImageFields] = await Promise.all([
+    hasChildPrintingPublicIdentityColumn(supabase),
+    hasChildPrintingImageStorageColumns(supabase),
+  ]);
+  const cardPrintingsSelect = getCardPrintingsSelectColumns(
+    includePrintingPublicIdentity,
+    includeChildPrintingImageFields,
+  );
   const { data, error } = await supabase
     .from("card_prints")
     .select(`
@@ -304,7 +330,7 @@ export async function getPublicSetCards(setCode: string, offset = 0, limit = 36)
       image_status,
       image_note,
       card_printings(
-        ${printingSelect}
+        ${cardPrintingsSelect}
       ),
       sets(identity_model)
     `)
@@ -318,7 +344,7 @@ export async function getPublicSetCards(setCode: string, offset = 0, limit = 36)
     throw new Error(error.message);
   }
 
-  const rows = ((data ?? []) as PublicSetCardRow[])
+  const rows = ((data ?? []) as unknown as PublicSetCardRow[])
     .filter((row): row is PublicSetCardRow & { gv_id: string } => Boolean(row.gv_id));
 
   return Promise.all(
@@ -343,7 +369,7 @@ export async function getPublicSetCards(setCode: string, offset = 0, limit = 36)
         image_source: imageFields.image_source ?? undefined,
         display_image_url: imageFields.display_image_url ?? undefined,
         display_image_kind: imageFields.display_image_kind,
-        printings: mapPublicSetCardPrintings(row.card_printings),
+        printings: await mapPublicSetCardPrintings(row.card_printings),
       };
     }),
   );

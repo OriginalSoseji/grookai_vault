@@ -1,0 +1,27 @@
+{
+  "audit": "ME03_REVERSE_HOLO_CREATION_GATE",
+  "generated_at": "2026-05-19",
+  "mode": "read_only_gate",
+  "result": "CANDIDATES_CLEAN_WRITE_DEFERRED",
+  "candidate_count": 79,
+  "checks": {
+    "distinct_numbers": 79,
+    "existing_reverse_rows": 0,
+    "proposed_id_collisions": 0,
+    "missing_parent_gv_id": 0,
+    "ghost_target_candidates": 0,
+    "duplicate_candidate_printing_gv_ids": 0
+  },
+  "finish_key": "reverse",
+  "printing_gv_id_format": "<parent_gv_id>-RH",
+  "espurr_candidate": {
+    "parent_gv_id": "GV-PK-ME03-033",
+    "proposed_printing_gv_id": "GV-PK-ME03-033-RH",
+    "created": false
+  },
+  "write_result": {
+    "inserted_rows": 0,
+    "reason": "Ghost-row deletion gate failed; applying reverse rows alone would not satisfy final ME03 parent/object count requirements."
+  }
+}
+

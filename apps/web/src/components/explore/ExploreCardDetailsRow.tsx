@@ -13,6 +13,7 @@ import {
   resolveDisplayIdentitySubtitleForContext,
 } from "@/lib/cards/resolveDisplayIdentity";
 import { getVariantLabels } from "@/lib/cards/variantPresentation";
+import { getSearchContextLabel } from "@/components/explore/searchContextLabel";
 
 type ExploreCardDetailsRowProps = {
   card: ExploreResultCard;
@@ -29,6 +30,7 @@ export default function ExploreCardDetailsRow({ card, href, canViewPricing, sign
     visibleSetLabel: setLabel,
   });
   const variantLabels = getVariantLabels(card, 3);
+  const searchDiscriminator = getSearchContextLabel(card);
   const imagePresentation = resolveCardImagePresentation(card);
 
   return (
@@ -47,8 +49,11 @@ export default function ExploreCardDetailsRow({ card, href, canViewPricing, sign
               {identitySubtitle ? (
                 <span className="block truncate text-xs font-medium text-slate-500">{identitySubtitle}</span>
               ) : null}
+              {searchDiscriminator ? (
+                <span className="block truncate text-xs font-semibold text-slate-700">{searchDiscriminator}</span>
+              ) : null}
             </Link>
-            <p className="truncate text-[11px] tracking-[0.08em] text-slate-500">{card.gv_id}</p>
+            <p className="truncate text-[11px] tracking-[0.08em] text-slate-500">{card.printing_gv_id ?? card.gv_id}</p>
             <PromotionTransitionNote state={card.promotion_transition} className="mt-1" />
             {imagePresentation.compactBadgeLabel ? (
               <div className="mt-1">
@@ -65,11 +70,12 @@ export default function ExploreCardDetailsRow({ card, href, canViewPricing, sign
       <td className="px-4 py-3 text-sm text-slate-700">{card.number ? `#${card.number}` : "—"}</td>
       <td className="px-4 py-3 text-sm text-slate-700">{card.rarity ?? "—"}</td>
       <td className="px-4 py-3">
-        {variantLabels.length > 0 ? (
+        {variantLabels.length > 0 || searchDiscriminator ? (
           <div className="flex flex-wrap gap-1.5">
             {variantLabels.map((label) => (
               <VariantBadge key={`${card.gv_id}-${label}`} label={label} />
             ))}
+            {searchDiscriminator ? <VariantBadge key={`${card.gv_id}-${searchDiscriminator}`} label={searchDiscriminator} /> : null}
           </div>
         ) : (
           <span className="text-sm text-slate-400">—</span>

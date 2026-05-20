@@ -13,6 +13,7 @@ import {
 } from "@/lib/cards/resolveDisplayIdentity";
 import { getVariantLabels } from "@/lib/cards/variantPresentation";
 import type { ExploreResultCard } from "@/components/explore/exploreResultTypes";
+import { getSearchContextLabel } from "@/components/explore/searchContextLabel";
 
 type ExploreCardGridItemProps = {
   card: ExploreResultCard;
@@ -29,6 +30,7 @@ export default function ExploreCardGridItem({ card, href, mode, canViewPricing }
     visibleSetLabel: setLabel,
   });
   const variantLabels = getVariantLabels(card, 2);
+  const searchDiscriminator = getSearchContextLabel(card);
   const imagePresentation = resolveCardImagePresentation(card);
   const isLarge = mode === "thumb-lg";
   const density = isLarge ? "large" : "default";
@@ -55,6 +57,9 @@ export default function ExploreCardGridItem({ card, href, mode, canViewPricing }
           {identitySubtitle ? (
             <span className="block truncate text-xs font-medium text-slate-500">{identitySubtitle}</span>
           ) : null}
+          {searchDiscriminator ? (
+            <span className="block truncate text-xs font-semibold text-slate-700">{searchDiscriminator}</span>
+          ) : null}
         </Link>
       }
       subtitle={
@@ -68,11 +73,12 @@ export default function ExploreCardGridItem({ card, href, mode, canViewPricing }
           {variantLabels.map((label) => (
             <VariantBadge key={`${card.gv_id}-${label}`} label={label} />
           ))}
+          {searchDiscriminator ? <VariantBadge key={`${card.gv_id}-${searchDiscriminator}`} label={searchDiscriminator} /> : null}
         </>
       }
       meta={<span>{metaLine}</span>}
       summary={canViewPricing ? <VisiblePrice value={card.raw_price} size="grid" /> : <LockedPrice size="grid" />}
-      footer={<span>GV-ID: {card.gv_id}</span>}
+      footer={<span>{card.printing_gv_id ? `Printing ID: ${card.printing_gv_id}` : `GV-ID: ${card.gv_id}`}</span>}
       imageClassName={isLarge ? "max-w-[280px]" : undefined}
     />
   );

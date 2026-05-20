@@ -656,6 +656,11 @@ class _CatalogCardTile extends StatelessWidget {
     if (card.displayNumber.isNotEmpty) {
       subtitleParts.add('#${card.displayNumber}');
     }
+    final selectedFinish = (card.displayDiscriminator ?? card.finishLabel ?? '')
+        .trim();
+    if (selectedFinish.isNotEmpty) {
+      subtitleParts.add(selectedFinish);
+    }
     if (!compact && (card.rarity ?? '').isNotEmpty) {
       subtitleParts.add(card.rarity!);
     }
@@ -3390,6 +3395,18 @@ class HomePageState extends State<HomePage> {
           number: card.displayNumber,
           rarity: (card.rarity ?? '').isEmpty ? null : card.rarity,
           imageUrl: card.displayImage,
+          selectedPrintingGvId:
+              (card.selectedPrintingGvId ?? card.printingGvId ?? '')
+                  .trim()
+                  .isEmpty
+              ? null
+              : (card.selectedPrintingGvId ?? card.printingGvId),
+          selectedFinishLabel:
+              (card.displayDiscriminator ?? card.finishLabel ?? '')
+                  .trim()
+                  .isEmpty
+              ? null
+              : (card.displayDiscriminator ?? card.finishLabel),
         ),
       ),
     );

@@ -1,0 +1,67 @@
+{
+  "lane": "CHILD_PRINTING_IMAGE_PROMOTION_V1",
+  "date": "2026-05-19",
+  "candidate_id": "5b20c5f5-836f-4c48-ae5e-0d3cdb1191c6",
+  "decision": "BLOCKED_NO_WRITE",
+  "requested_target": {
+    "parent_gv_id": "GV-PK-ME03-033",
+    "finish_key": "reverse",
+    "finish_label": "Reverse Holo"
+  },
+  "preflight": {
+    "branch": "scanner-v4-card-present-gate",
+    "migration_ledger_aligned": true,
+    "npm_preflight": "PASS_WITH_DEFERRED_DEBT",
+    "git_diff_check": "PASS"
+  },
+  "candidate_verification": {
+    "state": "REVIEW_READY",
+    "submission_intent": "MISSING_IMAGE",
+    "interpreter_decision": "CHILD",
+    "interpreter_resolved_finish_key": "reverse",
+    "identity_resolution": "ATTACH_PRINTING",
+    "proposed_action_type": "CREATE_CARD_PRINTING",
+    "reference_card_gv_id": "GV-PK-ME03-095-SHINY-RARE",
+    "front_evidence_image_present": true,
+    "current_staging_id": null,
+    "founder_approved_at": null,
+    "promoted_at": null
+  },
+  "target_resolution": {
+    "requested_parent": {
+      "gv_id": "GV-PK-ME03-033",
+      "name": "Espurr",
+      "number": "033",
+      "child_printing_count": 0,
+      "reverse_child_printing_found": false
+    },
+    "candidate_referenced_parent": {
+      "gv_id": "GV-PK-ME03-095-SHINY-RARE",
+      "name": "Espurr",
+      "number": "095",
+      "child_printing_count": 0,
+      "reverse_child_printing_found": false
+    }
+  },
+  "blockers": [
+    "Candidate reference does not match requested parent GV-PK-ME03-033.",
+    "Candidate proposed_action_type is CREATE_CARD_PRINTING, not ENRICH_CARD_PRINTING_IMAGE.",
+    "No resolved Reverse Holo child printing row exists for the requested parent."
+  ],
+  "execution": {
+    "db_write_performed": false,
+    "card_printing_image_updated": false,
+    "updated_card_printing_id": null,
+    "updated_image_field": null,
+    "candidate_promoted": false
+  },
+  "safety_confirmation": {
+    "parent_image_overwrite": false,
+    "warehouse_candidate_promotion": false,
+    "pricing_changes": false,
+    "scanner_changes": false,
+    "species_dex_denominator_changes": false,
+    "public_child_route_enablement": false,
+    "unrelated_candidate_mutation": false
+  }
+}

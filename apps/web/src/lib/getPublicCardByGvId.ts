@@ -1,10 +1,8 @@
 import { cache } from "react";
 import { createClient } from "@supabase/supabase-js";
 import { resolveCardImageFieldsV1 } from "@/lib/canon/resolveCardImageFieldsV1";
-import {
-  getCardPrintingsSelectColumns,
-  hasChildPrintingPublicIdentityColumn,
-} from "@/lib/cards/childPrintingPublicIdentity";
+import { hasChildPrintingPublicIdentityColumn } from "@/lib/cards/childPrintingPublicIdentity";
+import { hasChildPrintingImageStorageColumns } from "@/lib/cards/childPrintingImageStorage";
 import { getCardPrintingFinishLabel } from "@/lib/cards/displayDiscriminator";
 import { getCompatiblePublicGvIdCandidates, pickResolvedPublicGvIdRow } from "@/lib/gvIdAlias";
 import { getPublicPricingByCardIds } from "@/lib/pricing/getPublicPricingByCardIds";
@@ -46,6 +44,12 @@ type PublicCardRow = {
         id: string | null;
         printing_gv_id?: string | null;
         finish_key: string | null;
+        image_url?: string | null;
+        image_alt_url?: string | null;
+        image_source?: string | null;
+        image_path?: string | null;
+        image_status?: string | null;
+        image_note?: string | null;
         finish_keys:
           | { label: string | null; sort_order: number | null }
           | { label: string | null; sort_order: number | null }[]
@@ -113,6 +117,18 @@ type ActiveIdentityRow = {
   identity_key_version: string | null;
 };
 
+function getCardPrintingsSelectColumns(includePublicIdentity: boolean, includeImageColumns: boolean) {
+  const columns = ["id", "card_print_id", "finish_key"];
+  if (includePublicIdentity) {
+    columns.push("printing_gv_id");
+  }
+  if (includeImageColumns) {
+    columns.push("image_source", "image_path", "image_url", "image_alt_url", "image_status", "image_note");
+  }
+  columns.push("finish_keys(label,sort_order)");
+  return columns.join(",\n");
+}
+
 // LOCK: Canonical card route is card_prints-only.
 // LOCK: Non-canonical entities must never resolve through /card/[gv_id].
 export function assertCanonicalCardRouteRow(
@@ -145,10 +161,12 @@ function getReleaseYear(releaseDate?: string | null) {
   return Number.isFinite(parsedYear) ? parsedYear : undefined;
 }
 
-function mapCardPrintings(rows?: PublicCardRow["card_printings"]): CardPrinting[] | undefined {
-  const mapped = (rows ?? [])
-    .map((printing) => {
+async function mapCardPrintings(rows?: PublicCardRow["card_printings"]): Promise<CardPrinting[] | undefined> {
+  const mapped = (
+    await Promise.all(
+      (rows ?? []).map(async (printing) => {
       const finishRecord = Array.isArray(printing.finish_keys) ? printing.finish_keys[0] : printing.finish_keys;
+      const imageFields = await resolveCardImageFieldsV1(printing);
 
       return {
         id: printing.id ?? "",
@@ -159,9 +177,14 @@ function mapCardPrintings(rows?: PublicCardRow["card_printings"]): CardPrinting[
             finishKey: printing.finish_key,
             finishLabel: finishRecord?.label,
           }) ?? undefined,
+        image_url: imageFields.image_url ?? undefined,
+        display_image_url: imageFields.display_image_url ?? undefined,
+        is_display_fallback: imageFields.display_image_kind !== "exact",
         finish_sort_order: typeof finishRecord?.sort_order === "number" ? finishRecord.sort_order : undefined,
       } satisfies CardPrinting;
-    })
+    }),
+    )
+  )
     .filter((printing) => Boolean(printing.id) && Boolean(printing.finish_name));
 
   if (mapped.length === 0) {
@@ -453,8 +476,14 @@ async function getRelatedPrintsByName(
 
 export async function getPublicCardByGvId(gv_id: string): Promise<CardDetail | null> {
   const supabase = createServerSupabase();
-  const includePrintingPublicIdentity = await hasChildPrintingPublicIdentityColumn(supabase);
-  const printingSelect = getCardPrintingsSelectColumns(includePrintingPublicIdentity);
+  const [includePrintingPublicIdentity, includeChildPrintingImageFields] = await Promise.all([
+    hasChildPrintingPublicIdentityColumn(supabase),
+    hasChildPrintingImageStorageColumns(supabase),
+  ]);
+  const cardPrintingsSelect = getCardPrintingsSelectColumns(
+    includePrintingPublicIdentity,
+    includeChildPrintingImageFields,
+  );
   const { data, error } = await supabase
     .from("card_prints")
     .select(
@@ -487,7 +516,7 @@ export async function getPublicCardByGvId(gv_id: string): Promise<CardDetail | n
           card_category
         ),
         card_printings(
-          ${printingSelect}
+          ${cardPrintingsSelect}
         ),
         sets(name,printed_total,printed_set_abbrev,release_date,identity_model)
       `,
@@ -518,7 +547,7 @@ export async function getPublicCardByGvId(gv_id: string): Promise<CardDetail | n
   const pricingByCardId = row.id ? await getPublicPricingByCardIds(supabase, [row.id]) : new Map();
   const priceRow = row.id ? pricingByCardId.get(row.id) : undefined;
   const traitRecord = mapTraitRecord(row.card_print_traits);
-  const printings = mapCardPrintings(row.card_printings);
+  const printings = await mapCardPrintings(row.card_printings);
   const setName = setRecord?.name ?? fallbackSet.name;
   const printedTotal =
     typeof setRecord?.printed_total === "number" ? setRecord.printed_total : fallbackSet.printedTotal;

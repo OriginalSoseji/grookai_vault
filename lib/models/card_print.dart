@@ -72,6 +72,14 @@ class CardPrint {
     this.displayImageUrl,
     this.displayImageKind,
     this.externalIds,
+    this.searchObjectType,
+    this.searchCardPrintingId,
+    this.printingGvId,
+    this.selectedPrintingGvId,
+    this.finishKey,
+    this.finishLabel,
+    this.displayDiscriminator,
+    this.routeQuery,
   });
 
   final String id;
@@ -94,6 +102,14 @@ class CardPrint {
   final String? displayImageUrl;
   final String? displayImageKind;
   final Map<String, String?>? externalIds;
+  final String? searchObjectType;
+  final String? searchCardPrintingId;
+  final String? printingGvId;
+  final String? selectedPrintingGvId;
+  final String? finishKey;
+  final String? finishLabel;
+  final String? displayDiscriminator;
+  final String? routeQuery;
 
   String get displaySet => (setName ?? '').isNotEmpty ? setName! : setCode;
   String get displayNumber =>
@@ -141,6 +157,14 @@ class CardPrint {
       ),
       displayImageKind: json['display_image_kind']?.toString(),
       externalIds: externalIds,
+      searchObjectType: json['search_object_type']?.toString(),
+      searchCardPrintingId: json['search_card_printing_id']?.toString(),
+      printingGvId: json['printing_gv_id']?.toString(),
+      selectedPrintingGvId: json['selected_printing_gv_id']?.toString(),
+      finishKey: json['finish_key']?.toString(),
+      finishLabel: json['finish_label']?.toString(),
+      displayDiscriminator: json['display_discriminator']?.toString(),
+      routeQuery: json['route_query']?.toString(),
     );
   }
 }

@@ -1352,7 +1352,7 @@ async function buildPackages(client, artifact) {
     interpreterDecision = 'CHILD';
     interpreterReasonCode = normalizeTextOrNull(identityAuditPackage?.reason_code) ?? 'PRINTING_ONLY';
     interpreterExplanation = identityAuditPackage?.explanation ?? 'Identity slot audit resolved a finish-only child path.';
-    proposedActionType = matchedCardPrinting ? 'ENRICH_CANON_IMAGE' : 'CREATE_CARD_PRINTING';
+    proposedActionType = matchedCardPrinting ? 'ENRICH_CARD_PRINTING_IMAGE' : 'CREATE_CARD_PRINTING';
     needsPromotionReview = false;
     interpreterResolvedFinishKey =
       normalizeTextOrNull(identityAuditPackage?.routing?.finish_key) ??
@@ -1397,7 +1397,7 @@ async function buildPackages(client, artifact) {
     interpreterExplanation = matchedCardPrinting
       ? `Matched existing child printing ${matchedCardPrinting.id} under ${matchedCardPrint.id} for finish ${finishInterpretation.resolvedFinishKey}.`
       : finishInterpretation.explanation;
-    proposedActionType = matchedCardPrinting ? 'ENRICH_CANON_IMAGE' : 'CREATE_CARD_PRINTING';
+    proposedActionType = matchedCardPrinting ? 'ENRICH_CARD_PRINTING_IMAGE' : 'CREATE_CARD_PRINTING';
     needsPromotionReview = false;
     interpreterResolvedFinishKey = finishInterpretation.resolvedFinishKey;
     classificationBasis = 'resolver_match';
@@ -1445,7 +1445,11 @@ async function buildPackages(client, artifact) {
   if (finishInterpretation.decision === VERSION_FINISH_DECISIONS.BLOCKED) {
     if (!sourceBackedIdentity.is_complete) {
       pushUnique(ambiguityNotes, finishInterpretation.reasonCode);
-      if (classificationStatus === 'CLASSIFIED_READY' && proposedActionType !== 'ENRICH_CANON_IMAGE') {
+      if (
+        classificationStatus === 'CLASSIFIED_READY' &&
+        proposedActionType !== 'ENRICH_CANON_IMAGE' &&
+        proposedActionType !== 'ENRICH_CARD_PRINTING_IMAGE'
+      ) {
         pushUnique(ambiguityNotes, 'finish_interpretation_blocked');
       } else if (classificationStatus !== 'CLASSIFIED_READY') {
         interpreterReasonCode = finishInterpretation.reasonCode;

@@ -28,6 +28,7 @@ import {
   rowMatchesNameFamily,
 } from "@/lib/resolver/nameFamily";
 import { createServerComponentClient } from "@/lib/supabase/server";
+import { getCardPrintingFinishLabel } from "@/lib/cards/displayDiscriminator";
 import type { ExploreResultCard } from "@/components/explore/exploreResultTypes";
 import type { VariantFlags } from "@/lib/cards/variantPresentation";
 
@@ -53,6 +54,8 @@ const VARIANT_QUERY_CUE_TOKENS = new Set([
   "holo",
   "reverse",
   "full",
+  "masterball",
+  "pokeball",
 ]);
 const PROMO_SET_CODE_PATTERN =
   /^(?:swshp|svp|smp|basep|bwp|xyp|dpp|pr-[a-z0-9]+)$/i;
@@ -83,6 +86,8 @@ const TRAIT_INTENT_MATCH_BONUS = 110;
 const TRAIT_INTENT_PARTIAL_BONUS = 60;
 const TRAIT_INTENT_MISS_PENALTY = -80;
 const NAME_FAMILY_MATCH_BONUS = 140;
+const CLEAN_SINGLE_NAME_MATCH_BONUS = 360;
+const DECORATED_NAME_FALLBACK_PENALTY = -220;
 const NO_TEXT_TOKEN_MATCH_PENALTY = -1600;
 const FAMILY_DIVERSITY_PROMOTION_LIMIT = 4;
 
@@ -93,6 +98,8 @@ type VariantCue =
   | "promo"
   | "full_art"
   | "holo"
+  | "masterball"
+  | "pokeball"
   | "reverse";
 
 type CollectorNumberExpectation = {
@@ -107,6 +114,32 @@ type ExploreRow = ExploreResultCard & {
 
 type SearchRpcRow = {
   id: string;
+};
+
+type PrintIdentitySearchRpcRow = {
+  search_document_id: string | null;
+  object_type: "parent_print" | "child_printing" | string | null;
+  parent_gv_id: string | null;
+  printing_gv_id: string | null;
+  display_discriminator: string | null;
+  route_query: string | null;
+  matched_fields: string[] | null;
+  rank_score: number | null;
+};
+
+type DirectChildPrintingLookupRow = {
+  printing_gv_id: string | null;
+  finish_key: string | null;
+  card_prints:
+    | {
+        gv_id: string | null;
+        name: string | null;
+      }
+    | Array<{
+        gv_id: string | null;
+        name: string | null;
+      }>
+    | null;
 };
 
 type CardPrintLookupRow = {
@@ -129,6 +162,16 @@ type CardPrintLookupRow = {
   variant_key?: string | null;
   printed_identity_modifier?: string | null;
   variants?: VariantFlags;
+  search_object_type?: "parent_print" | "child_printing";
+  search_document_id?: string | null;
+  search_card_printing_id?: string | null;
+  printing_gv_id?: string | null;
+  selected_printing_gv_id?: string | null;
+  finish_key?: string | null;
+  finish_label?: string | null;
+  display_discriminator?: string | null;
+  route_query?: string | null;
+  search_rank_score?: number | null;
 };
 
 type TcgdexSetRow = {
@@ -168,6 +211,10 @@ type IntentLookupRow = {
   variants?: VariantFlags;
   set_code?: string | null;
   set_name?: string | null;
+  finish_key?: string | null;
+  finish_label?: string | null;
+  display_discriminator?: string | null;
+  printing_gv_id?: string | null;
 };
 
 type ResolverQuery = {
@@ -375,6 +422,10 @@ function mapVariantTokensToCues(
       cues.add("promo");
     } else if (token === "holo") {
       cues.add("holo");
+    } else if (token === "masterball") {
+      cues.add("masterball");
+    } else if (token === "pokeball") {
+      cues.add("pokeball");
     } else if (token === "rainbow") {
       cues.add("rainbow");
     } else if (token === "gold") {
@@ -467,6 +518,35 @@ function buildResolverQuery(packet: NormalizedQueryPacket): ResolverQuery {
     variantCues,
     hasStrongDisambiguator: packet.hasStrongDisambiguator,
     directGvId: packet.normalizedGvId,
+  };
+}
+
+function normalizeSearchObjectType(value?: string | null): "parent_print" | "child_printing" | undefined {
+  return value === "parent_print" || value === "child_printing" ? value : undefined;
+}
+
+function applyPrintIdentityContext(
+  row: CardPrintLookupRow,
+  doc?: PrintIdentitySearchRpcRow,
+): CardPrintLookupRow {
+  if (!doc) {
+    return row;
+  }
+
+  const searchObjectType = normalizeSearchObjectType(doc.object_type);
+  const displayDiscriminator = doc.display_discriminator?.trim() || null;
+
+  return {
+    ...row,
+    search_object_type: searchObjectType,
+    search_document_id: doc.search_document_id,
+    search_card_printing_id: doc.printing_gv_id,
+    printing_gv_id: doc.printing_gv_id,
+    selected_printing_gv_id: doc.printing_gv_id,
+    finish_label: displayDiscriminator,
+    display_discriminator: displayDiscriminator,
+    route_query: doc.route_query,
+    search_rank_score: doc.rank_score,
   };
 }
 
@@ -645,6 +725,14 @@ async function buildExploreRows(
         printed_identity_modifier:
           row.printed_identity_modifier?.trim() || undefined,
         variants: row.variants ?? undefined,
+        search_object_type: row.search_object_type,
+        search_card_printing_id: row.search_card_printing_id ?? undefined,
+        printing_gv_id: row.printing_gv_id ?? undefined,
+        selected_printing_gv_id: row.selected_printing_gv_id ?? undefined,
+        finish_key: row.finish_key ?? undefined,
+        finish_label: row.finish_label ?? undefined,
+        display_discriminator: row.display_discriminator ?? undefined,
+        route_query: row.route_query ?? undefined,
       };
     }),
   );
@@ -652,7 +740,9 @@ async function buildExploreRows(
 
 function getRowVariantCueSet(row: ExploreRow) {
   const combined = normalizeTextForMatch(
-    [row.rarity, row.variant_key].filter(Boolean).join(" "),
+    [row.rarity, row.variant_key, row.finish_key, row.finish_label, row.display_discriminator]
+      .filter(Boolean)
+      .join(" "),
   );
   const cues = new Set<VariantCue>();
 
@@ -680,9 +770,20 @@ function getRowVariantCueSet(row: ExploreRow) {
     row.variants?.holo ||
     row.variants?.reverse ||
     row.variants?.reverseHolo ||
-    combined.includes("holo")
+    combined.includes("holo") ||
+    combined.includes("master ball") ||
+    combined.includes("poke ball") ||
+    combined.includes("pokeball")
   ) {
     cues.add("holo");
+  }
+
+  if (combined.includes("master ball") || combined.includes("masterball")) {
+    cues.add("masterball");
+  }
+
+  if (combined.includes("poke ball") || combined.includes("pokeball")) {
+    cues.add("pokeball");
   }
 
   if (
@@ -807,6 +908,8 @@ function buildRowTraitSearchText(row: IntentLookupRow) {
       row.variant_key,
       row.printed_identity_modifier,
       row.set_name,
+      "finish_label" in row ? row.finish_label : undefined,
+      "display_discriminator" in row ? row.display_discriminator : undefined,
       buildIdentitySearchText(row),
     ]
       .filter(Boolean)
@@ -927,6 +1030,11 @@ function scoreRowDetail(row: ExploreRow, query: ResolverQuery): RowScoreDetail {
     .join(" ");
   const nameTokens = tokenizeNormalizedQuery(row.name);
   const identityTokens = tokenizeNormalizedQuery(buildIdentitySearchText(row));
+  const finishTokens = tokenizeNormalizedQuery(
+    [row.finish_key, row.finish_label, row.display_discriminator, row.printing_gv_id]
+      .filter(Boolean)
+      .join(" "),
+  );
   const matchesNameFamily = rowMatchesNameFamily(row.name, query.textTokens);
   const setTokens = uniqueValues([
     ...tokenizeNormalizedQuery(row.set_name),
@@ -935,7 +1043,7 @@ function scoreRowDetail(row: ExploreRow, query: ResolverQuery): RowScoreDetail {
     ...tokenizeNormalizedQuery(row.tcgdex_set_id),
   ]);
   const gvTokens = uniqueValues(
-    row.gv_id.toLowerCase().match(/[a-z0-9]+/g) ?? [],
+    [row.gv_id, row.printing_gv_id].join(" ").toLowerCase().match(/[a-z0-9]+/g) ?? [],
   );
   const rowVariantCues = getRowVariantCueSet(row);
   const components: Record<string, number> = {};
@@ -987,6 +1095,7 @@ function scoreRowDetail(row: ExploreRow, query: ResolverQuery): RowScoreDetail {
     const bestSimilarity = Math.max(
       nameSimilarity,
       identitySimilarity,
+      bestTokenSimilarity(token, finishTokens),
       setSimilarity,
       gvSimilarity,
     );
@@ -1092,6 +1201,20 @@ function scoreRowDetail(row: ExploreRow, query: ResolverQuery): RowScoreDetail {
     normalizedName !== query.normalized.toLowerCase()
   ) {
     addScoreComponent(components, "name_family_match", NAME_FAMILY_MATCH_BONUS);
+  }
+
+  if (
+    query.significantTextTokens.length === 1 &&
+    normalizedName === query.significantTextTokens[0]
+  ) {
+    addScoreComponent(components, "clean_single_name_match", CLEAN_SINGLE_NAME_MATCH_BONUS);
+  } else if (
+    query.significantTextTokens.length === 1 &&
+    matchesNameFamily &&
+    !queryContainsNameDecoratorTokens(query.tokens) &&
+    tokenizeNormalizedQuery(row.name).length > 1
+  ) {
+    addScoreComponent(components, "decorated_name_fallback", DECORATED_NAME_FALLBACK_PENALTY);
   }
 
   for (const setToken of query.setTokens) {
@@ -1306,6 +1429,12 @@ function scoreRowDetail(row: ExploreRow, query: ResolverQuery): RowScoreDetail {
         break;
       case "holo":
         addScoreComponent(components, "variant_holo", 220);
+        break;
+      case "masterball":
+        addScoreComponent(components, "variant_masterball", 520);
+        break;
+      case "pokeball":
+        addScoreComponent(components, "variant_pokeball", 520);
         break;
       case "reverse":
         addScoreComponent(components, "variant_reverse", 420);
@@ -1580,6 +1709,87 @@ async function fetchRpcIds(query: ResolverQuery) {
         .filter(Boolean),
     ),
   );
+}
+
+async function fetchPrintIdentitySearchRows(query: ResolverQuery) {
+  const supabase = createServerComponentClient();
+  const primaryNumberToken = query.numberTokens[0] ?? query.numberDigitTokens[0] ?? null;
+  const exactSetCode =
+    query.expectedSetCodes.length === 1 ? query.expectedSetCodes[0] : null;
+
+  const { data, error } = await supabase.rpc("search_print_identity_v1", {
+    q: query.normalized || null,
+    set_code_in: exactSetCode,
+    number_in: primaryNumberToken,
+    object_type_in: null,
+    limit_in: SEARCH_LIMIT,
+    offset_in: 0,
+  });
+
+  if (error) {
+    if (
+      error.message.includes("search_print_identity_v1") ||
+      error.message.includes("Could not find the function") ||
+      error.message.includes("function public.search_print_identity_v1")
+    ) {
+      if (process.env.NODE_ENV !== "production") {
+        console.warn("[print-identity-search] V1 RPC unavailable; falling back to legacy resolver.");
+      }
+      return [] as PrintIdentitySearchRpcRow[];
+    }
+
+    throw new Error(error.message);
+  }
+
+  const rows = ((data ?? []) as PrintIdentitySearchRpcRow[]).filter((row) =>
+    Boolean(row.parent_gv_id),
+  );
+
+  if (rows.length > 0 || !query.directGvId) {
+    return rows;
+  }
+
+  const { data: directChildRows, error: directChildError } = await supabase
+    .from("card_printings")
+    .select("printing_gv_id,finish_key,card_prints(gv_id,name)")
+    .eq("printing_gv_id", query.directGvId)
+    .limit(1);
+
+  if (directChildError) {
+    if (process.env.NODE_ENV !== "production") {
+      console.warn("[print-identity-search] direct child printing fallback failed closed", {
+        message: directChildError.message,
+      });
+    }
+    return rows;
+  }
+
+  const directChild = ((directChildRows ?? []) as DirectChildPrintingLookupRow[])[0];
+  const parent = Array.isArray(directChild?.card_prints)
+    ? directChild.card_prints[0]
+    : directChild?.card_prints;
+  const parentGvId = parent?.gv_id?.trim();
+  const printingGvId = directChild?.printing_gv_id?.trim();
+  if (!parentGvId || !printingGvId) {
+    return rows;
+  }
+
+  const finishLabel = getCardPrintingFinishLabel({
+    finishKey: directChild.finish_key,
+  });
+
+  return [
+    {
+      search_document_id: `child:${printingGvId}`,
+      object_type: "child_printing",
+      parent_gv_id: parentGvId,
+      printing_gv_id: printingGvId,
+      display_discriminator: finishLabel,
+      route_query: `printing=${printingGvId}`,
+      matched_fields: ["printing_gv_id", "direct_child_printing_fallback"],
+      rank_score: 20050,
+    },
+  ];
 }
 
 function rowMatchesScopedTextTokens(
@@ -2081,6 +2291,7 @@ async function fetchSetAwareTcgdexCardIds(query: ResolverQuery) {
 
 async function fetchExactCardRows(
   ids: string[],
+  printIdentityRows: PrintIdentitySearchRpcRow[],
   tcgdexCardIds: string[],
   directGvId: string | null,
   expectedSetCodes: string[],
@@ -2092,9 +2303,15 @@ async function fetchExactCardRows(
   const normalizedExpectedSetCodes =
     normalizeExpectedSetCodes(expectedSetCodes);
   const hasExpectedSetScope = normalizedExpectedSetCodes.length > 0;
+  const printIdentityParentGvIds = uniqueValues(
+    printIdentityRows
+      .map((row) => row.parent_gv_id ?? "")
+      .filter(Boolean),
+  );
 
   const [
     lookupById,
+    lookupByPrintIdentityGvId,
     lookupByTcgdex,
     directLookup,
     expectedSetRows,
@@ -2109,6 +2326,18 @@ async function fetchExactCardRows(
             .in("set_code", normalizedExpectedSetCodes)
             .in("id", ids)
         : supabase.from("card_prints").select(selectClause).in("id", ids)
+      : Promise.resolve({ data: [] as CardPrintLookupRow[], error: null }),
+    printIdentityParentGvIds.length > 0
+      ? hasExpectedSetScope
+        ? supabase
+            .from("card_prints")
+            .select(selectClause)
+            .in("set_code", normalizedExpectedSetCodes)
+            .in("gv_id", printIdentityParentGvIds)
+        : supabase
+            .from("card_prints")
+            .select(selectClause)
+            .in("gv_id", printIdentityParentGvIds)
       : Promise.resolve({ data: [] as CardPrintLookupRow[], error: null }),
     tcgdexCardIds.length > 0
       ? hasExpectedSetScope
@@ -2155,6 +2384,7 @@ async function fetchExactCardRows(
 
   const lookupError =
     lookupById.error ??
+    lookupByPrintIdentityGvId.error ??
     lookupByTcgdex.error ??
     directLookup.error ??
     expectedSetRows.error;
@@ -2162,16 +2392,40 @@ async function fetchExactCardRows(
     throw new Error(lookupError.message);
   }
 
-  const deduped = new Map<string, CardPrintLookupRow>();
+  const parentRowsById = new Map<string, CardPrintLookupRow>();
   for (const row of [
     ...((directLookup.data ?? []) as CardPrintLookupRow[]),
     ...((lookupById.data ?? []) as CardPrintLookupRow[]),
+    ...((lookupByPrintIdentityGvId.data ?? []) as CardPrintLookupRow[]),
     ...((lookupByTcgdex.data ?? []) as CardPrintLookupRow[]),
     ...((expectedSetRows.data ?? []) as CardPrintLookupRow[]),
     ...((intentScopedRows.data ?? []) as CardPrintLookupRow[]),
     ...((nameFamilyRows.data ?? []) as CardPrintLookupRow[]),
   ]) {
-    deduped.set(row.id, row);
+    parentRowsById.set(row.id, row);
+  }
+
+  const deduped = new Map<string, CardPrintLookupRow>();
+  for (const doc of printIdentityRows) {
+    if (!doc.parent_gv_id) {
+      continue;
+    }
+
+    const parentRow = [...parentRowsById.values()].find((row) => row.gv_id === doc.parent_gv_id);
+    if (!parentRow) {
+      continue;
+    }
+
+    const key = doc.printing_gv_id
+      ? `${doc.parent_gv_id}:${doc.printing_gv_id}`
+      : doc.parent_gv_id;
+    deduped.set(key, applyPrintIdentityContext(parentRow, doc));
+  }
+
+  for (const row of parentRowsById.values()) {
+    if (!deduped.has(row.id)) {
+      deduped.set(row.id, row);
+    }
   }
 
   return [...deduped.values()];
@@ -2430,16 +2684,21 @@ export async function getExploreRowsPacketWithTiming(
 
   if (query.normalized) {
     const timedCandidates = await measureStage(async () =>
-      Promise.all([fetchRpcIds(query), fetchSetAwareTcgdexCardIds(query)]),
+      Promise.all([
+        fetchRpcIds(query),
+        fetchPrintIdentitySearchRows(query),
+        fetchSetAwareTcgdexCardIds(query),
+      ]),
     );
     Object.assign(fetchCandidatesStage, timedCandidates.timing);
 
-    const [rpcIds, resolvedSetAwareResults] = timedCandidates.value;
+    const [rpcIds, printIdentityRows, resolvedSetAwareResults] = timedCandidates.value;
     setAwareResults = resolvedSetAwareResults;
 
     const timedExactRows = await measureStage(() =>
       fetchExactCardRows(
         rpcIds,
+        printIdentityRows,
         resolvedSetAwareResults.tcgdexCardIds,
         query.directGvId,
         query.expectedSetCodes,

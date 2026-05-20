@@ -1,0 +1,79 @@
+{
+  "audit_date": "2026-05-19",
+  "classification": "NOT_SEARCH_READY_FOR_PRINT_IDENTITY",
+  "live_counts": {
+    "card_prints_total": 25398,
+    "card_prints_gv_id_populated": 21839,
+    "card_prints_print_identity_key_populated": 2726,
+    "card_prints_variant_key_populated": 25280,
+    "card_prints_printed_identity_modifier_populated": 194,
+    "card_prints_printed_set_abbrev_populated": 968,
+    "card_prints_external_ids_populated": 16959,
+    "card_printings_total": 55661,
+    "card_printings_printing_gv_id_populated": 44777,
+    "card_printings_finish_key_populated": 55661
+  },
+  "finish_distribution": {
+    "normal": 19919,
+    "reverse": 18629,
+    "holo": 16816,
+    "pokeball": 230,
+    "masterball": 67
+  },
+  "current_surface_gaps": [
+    {
+      "surface": "public.search_card_prints_v1",
+      "gap": "Parent name/set/number only; no child printing identity or modern print identity fields."
+    },
+    {
+      "surface": "public.v_card_search",
+      "gap": "Legacy parent-card projection omits gv_id, print_identity_key, variant labels, child printings, finish labels, and printing_gv_id."
+    },
+    {
+      "surface": "apps/web/src/lib/publicSearchResolver.ts",
+      "gap": "Direct resolver targets parent card_prints only and cannot resolve exact child printing IDs to parent route context."
+    },
+    {
+      "surface": "apps/web/src/lib/explore/getExploreRows.ts",
+      "gap": "Ranked candidate generation starts from the legacy parent-only RPC and cannot reliably rank child printing queries."
+    },
+    {
+      "surface": "apps/web/src/lib/cards/identitySearch.ts",
+      "gap": "Identity filters omit finish-specific child identities such as reverse, holo, pokeball, and masterball."
+    },
+    {
+      "surface": "lib/models/card_print.dart",
+      "gap": "Mobile fallback search path can disagree with web and does not model child printing result context."
+    }
+  ],
+  "sample_failures": [
+    {
+      "query": "GV-PK-ME03-033-RH",
+      "expected": "Resolve exact child printing ID to parent route with selected printing context.",
+      "legacy_rpc_matches": 0
+    },
+    {
+      "query": "espurr reverse holo",
+      "expected": "Find Espurr parent with Reverse Holo child printing context.",
+      "legacy_rpc_matches": 0
+    },
+    {
+      "query": "master ball pikachu",
+      "expected": "Find Pikachu Master Ball child printing candidates.",
+      "legacy_rpc_matches": 0
+    }
+  ],
+  "recommended_lane": "PRINT_IDENTITY_SEARCH_V1",
+  "recommended_first_build": [
+    "Create PRINT_IDENTITY_SEARCH_V1 contract.",
+    "Generate no-write search document preview.",
+    "Draft v_print_identity_search_documents_v1 and search_print_identity_v1.",
+    "Wire website API to new RPC.",
+    "Update mobile to consume unified result contract."
+  ],
+  "route_policy": {
+    "parent_route": "/card/<parent_gv_id>",
+    "child_context_route": "/card/<parent_gv_id>?printing=<printing_gv_id>",
+    "public_child_route_enabled": false
+  }
+}

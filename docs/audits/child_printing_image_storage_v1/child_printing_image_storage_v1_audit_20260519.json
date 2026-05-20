@@ -1,0 +1,36 @@
+{
+  "lane": "CHILD_PRINTING_IMAGE_STORAGE_V1",
+  "date": "2026-05-19",
+  "schema": {
+    "migration": "supabase/migrations/20260519163000_child_printing_image_storage_v1.sql",
+    "applied": false,
+    "card_printings_nullable_image_fields": [
+      "image_source",
+      "image_path",
+      "image_url",
+      "image_alt_url",
+      "image_status",
+      "image_note"
+    ]
+  },
+  "warehouse_action": {
+    "name": "ENRICH_CARD_PRINTING_IMAGE",
+    "requires_founder_approval": true,
+    "requires_identity_audit_status": "PRINTING_ONLY",
+    "requires_identity_resolution": "ATTACH_PRINTING",
+    "writes_parent_card_print_images": false,
+    "write_table": "card_printings"
+  },
+  "ui": {
+    "child_image_preferred_when_selected": true,
+    "fallback_label_preserved": "Using base image",
+    "public_child_routes_enabled": false
+  },
+  "guardrails": {
+    "db_writes_performed": false,
+    "parent_gv_id_changed": false,
+    "species_dex_denominator_changed": false,
+    "scanner_changed": false,
+    "pricing_changed": false
+  }
+}

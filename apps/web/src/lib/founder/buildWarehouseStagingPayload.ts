@@ -6,6 +6,7 @@ const STAGING_ACTION_TYPES = new Set([
   "CREATE_CARD_PRINT",
   "CREATE_CARD_PRINTING",
   "ENRICH_CANON_IMAGE",
+  "ENRICH_CARD_PRINTING_IMAGE",
 ]);
 
 function normalizeText(value: string | null | undefined) {

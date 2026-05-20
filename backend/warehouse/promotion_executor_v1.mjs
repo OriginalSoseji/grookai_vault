@@ -18,6 +18,7 @@ const ALLOWED_ACTION_TYPES = new Set([
   'CREATE_CARD_PRINT',
   'CREATE_CARD_PRINTING',
   'ENRICH_CANON_IMAGE',
+  'ENRICH_CARD_PRINTING_IMAGE',
 ]);
 const RETRYABLE_EXECUTION_STATUSES = new Set(['PENDING', 'FAILED']);
 const STAGING_PAYLOAD_VERSION = 'warehouse_staging_v1';
@@ -29,6 +30,7 @@ const PROMOTION_RESULT_TYPES = {
 };
 const PROMOTED_IMAGE_TARGET_TYPES = {
   CARD_PRINT: 'CARD_PRINT',
+  CARD_PRINTING: 'CARD_PRINTING',
 };
 
 class ExecutorError extends Error {
@@ -313,15 +315,20 @@ function extractMatchedCardPrintId(payload) {
   const resolverSummary = getResolverSummary(payload);
   const normalizedPackage = getNormalizedPackage(payload);
   const normalizedExtracted = asRecord(normalizedPackage?.raw_metadata_documentation)?.extracted_fields;
+  const interpreterContext = asRecord(getLatestInterpreterPackage(payload)?.canon_context);
   const candidateId =
     normalizeTextOrNull(resolverSummary?.matched_card_print_id) ||
+    normalizeTextOrNull(interpreterContext?.matched_card_print_id) ||
     normalizeTextOrNull(normalizedExtracted?.matched_card_print_id);
   return isUuid(candidateId) ? candidateId : null;
 }
 
 function extractMatchedCardPrintingId(payload) {
   const resolverSummary = getResolverSummary(payload);
-  const candidateId = normalizeTextOrNull(resolverSummary?.matched_card_printing_id);
+  const interpreterContext = asRecord(getLatestInterpreterPackage(payload)?.canon_context);
+  const candidateId =
+    normalizeTextOrNull(resolverSummary?.matched_card_printing_id) ||
+    normalizeTextOrNull(interpreterContext?.matched_card_printing_id);
   return isUuid(candidateId) ? candidateId : null;
 }
 
@@ -539,7 +546,16 @@ async function fetchCardPrintById(client, cardPrintId) {
 
 async function fetchCardPrintingById(client, cardPrintingId) {
   const sql = `
-    select id, card_print_id, finish_key
+    select
+      id,
+      card_print_id,
+      finish_key,
+      image_source,
+      image_path,
+      image_url,
+      image_alt_url,
+      image_status,
+      image_note
     from public.card_printings
     where id = $1
     limit 1
@@ -969,13 +985,13 @@ function validateApprovedIdentityAuditForExecution(approvedActionType, payload) 
     };
   }
 
-  if (approvedActionType === 'CREATE_CARD_PRINTING') {
+  if (approvedActionType === 'CREATE_CARD_PRINTING' || approvedActionType === 'ENRICH_CARD_PRINTING_IMAGE') {
     if (status === 'PRINTING_ONLY') {
       return { ok: true, status };
     }
     return {
       ok: false,
-      reason: `identity_audit_disallows_create_card_printing:${status}`,
+      reason: `identity_audit_disallows_child_printing_action:${status}`,
       missing: ['Identity audit status PRINTING_ONLY'],
     };
   }
@@ -1107,6 +1123,8 @@ async function buildExecutionPlan(client, stage, candidate) {
       return buildCreateCardPrintingPlan(client, stage, candidate, payload, baseSummary);
     case 'ENRICH_CANON_IMAGE':
       return buildEnrichCanonImagePlan(client, stage, candidate, payload, baseSummary);
+    case 'ENRICH_CARD_PRINTING_IMAGE':
+      return buildEnrichCardPrintingImagePlan(client, stage, candidate, payload, baseSummary);
     default:
       throw new ExecutorError('invalid_approved_action_type', stage.approved_action_type);
   }
@@ -1560,6 +1578,203 @@ async function buildEnrichCanonImagePlan(client, stage, candidate, payload, base
   throw new ExecutorError('image_target_already_has_distinct_images', targetCardPrintId);
 }
 
+async function buildEnrichCardPrintingImagePlan(client, stage, candidate, payload, baseSummary) {
+  const targetCardPrintId = extractMatchedCardPrintId(payload);
+  const targetCardPrintingId = extractMatchedCardPrintingId(payload);
+  if (!targetCardPrintId || !targetCardPrintingId) {
+    throw new ExecutorError('child_image_target_missing_from_payload');
+  }
+
+  const [targetCardPrint, targetCardPrinting] = await Promise.all([
+    fetchCardPrintById(client, targetCardPrintId),
+    fetchCardPrintingById(client, targetCardPrintingId),
+  ]);
+  if (!targetCardPrint) {
+    throw new ExecutorError('child_image_parent_not_found', targetCardPrintId);
+  }
+  if (!targetCardPrinting || targetCardPrinting.card_print_id !== targetCardPrint.id) {
+    throw new ExecutorError('child_image_target_not_found', targetCardPrintingId);
+  }
+
+  const desiredImagePath = extractNormalizedFrontImagePath(payload);
+  const desiredImageUrl = extractPublicImageUrl(payload);
+  const currentImagePath = normalizeTextOrNull(targetCardPrinting.image_path);
+  const currentImageUrl = normalizeTextOrNull(targetCardPrinting.image_url);
+  const currentImageAltUrl = normalizeTextOrNull(targetCardPrinting.image_alt_url);
+  const currentImageSource = normalizeLowerOrNull(targetCardPrinting.image_source);
+  const hasUsablePrimary = isUsablePublicImageUrl(currentImageUrl);
+  const hasUsableAlt = isUsablePublicImageUrl(currentImageAltUrl);
+
+  const resultLinkage = {
+    promoted_card_print_id: null,
+    promoted_card_printing_id: targetCardPrintingId,
+    promoted_image_target_type: PROMOTED_IMAGE_TARGET_TYPES.CARD_PRINTING,
+    promoted_image_target_id: targetCardPrintingId,
+  };
+
+  if (desiredImagePath && currentImageSource === 'identity' && currentImagePath === desiredImagePath) {
+    return {
+      ok: true,
+      action_type: stage.approved_action_type,
+      result_type: PROMOTION_RESULT_TYPES.NO_OP,
+      mutation: {
+        type: 'child_printing_image_existing_noop',
+        target_card_printing_id: targetCardPrintingId,
+      },
+      result_linkage: resultLinkage,
+      summary: {
+        ...baseSummary,
+        plan: 'child_printing_image_existing_noop',
+        target_card_print_id: targetCardPrintId,
+        target_card_printing_id: targetCardPrintingId,
+        desired_image_path: desiredImagePath,
+      },
+      payload,
+      candidate,
+      stage,
+    };
+  }
+
+  if (desiredImageUrl && (currentImageUrl === desiredImageUrl || currentImageAltUrl === desiredImageUrl)) {
+    return {
+      ok: true,
+      action_type: stage.approved_action_type,
+      result_type: PROMOTION_RESULT_TYPES.NO_OP,
+      mutation: {
+        type: 'child_printing_image_existing_noop',
+        target_card_printing_id: targetCardPrintingId,
+      },
+      result_linkage: resultLinkage,
+      summary: {
+        ...baseSummary,
+        plan: 'child_printing_image_existing_noop',
+        target_card_print_id: targetCardPrintId,
+        target_card_printing_id: targetCardPrintingId,
+        desired_image_url: desiredImageUrl,
+      },
+      payload,
+      candidate,
+      stage,
+    };
+  }
+
+  if (desiredImagePath) {
+    if (currentImagePath && currentImagePath !== desiredImagePath) {
+      throw new ExecutorError('card_printing_identity_image_path_conflict', targetCardPrintingId, {
+        current_image_path: currentImagePath,
+        desired_image_path: desiredImagePath,
+      });
+    }
+
+    if (!currentImagePath && !hasUsablePrimary && !hasUsableAlt) {
+      return {
+        ok: true,
+        action_type: stage.approved_action_type,
+        result_type: PROMOTION_RESULT_TYPES.CANON_IMAGE_ENRICHED,
+        mutation: {
+          type: 'update_card_printing_identity_image',
+          card_printing_id: targetCardPrintingId,
+          image_source: 'identity',
+          image_path: desiredImagePath,
+          image_status: 'exact',
+          image_note: `warehouse_candidate:${candidate.id}`,
+        },
+        result_linkage: resultLinkage,
+        summary: {
+          ...baseSummary,
+          plan: 'update_card_printing_identity_image',
+          target_card_print_id: targetCardPrintId,
+          target_card_printing_id: targetCardPrintingId,
+          desired_image_path: desiredImagePath,
+        },
+        payload,
+        candidate,
+        stage,
+      };
+    }
+  }
+
+  if (!desiredImageUrl) {
+    if (hasUsablePrimary || hasUsableAlt) {
+      return {
+        ok: true,
+        action_type: stage.approved_action_type,
+        result_type: PROMOTION_RESULT_TYPES.NO_OP,
+        mutation: {
+          type: 'child_printing_image_already_present_noop',
+          target_card_printing_id: targetCardPrintingId,
+        },
+        result_linkage: resultLinkage,
+        summary: {
+          ...baseSummary,
+          plan: 'child_printing_image_already_present_noop',
+          target_card_print_id: targetCardPrintId,
+          target_card_printing_id: targetCardPrintingId,
+        },
+        payload,
+        candidate,
+        stage,
+      };
+    }
+
+    throw new ExecutorError(desiredImagePath ? 'child_identity_image_path_not_attachable' : 'child_image_url_missing_from_payload');
+  }
+
+  if (!desiredImagePath && !hasUsablePrimary) {
+    return {
+      ok: true,
+      action_type: stage.approved_action_type,
+      result_type: PROMOTION_RESULT_TYPES.CANON_IMAGE_ENRICHED,
+      mutation: {
+        type: 'update_card_printing_image_url',
+        card_printing_id: targetCardPrintingId,
+        image_url: desiredImageUrl,
+        image_status: 'exact',
+        image_note: `warehouse_candidate:${candidate.id}`,
+      },
+      result_linkage: resultLinkage,
+      summary: {
+        ...baseSummary,
+        plan: 'update_card_printing_image_url',
+        target_card_print_id: targetCardPrintId,
+        target_card_printing_id: targetCardPrintingId,
+        desired_image_url: desiredImageUrl,
+      },
+      payload,
+      candidate,
+      stage,
+    };
+  }
+
+  if (!desiredImagePath && !hasUsableAlt) {
+    return {
+      ok: true,
+      action_type: stage.approved_action_type,
+      result_type: PROMOTION_RESULT_TYPES.CANON_IMAGE_ENRICHED,
+      mutation: {
+        type: 'update_card_printing_image_alt_url',
+        card_printing_id: targetCardPrintingId,
+        image_alt_url: desiredImageUrl,
+        image_status: 'exact',
+        image_note: `warehouse_candidate:${candidate.id}`,
+      },
+      result_linkage: resultLinkage,
+      summary: {
+        ...baseSummary,
+        plan: 'update_card_printing_image_alt_url',
+        target_card_print_id: targetCardPrintId,
+        target_card_printing_id: targetCardPrintingId,
+        desired_image_url: desiredImageUrl,
+      },
+      payload,
+      candidate,
+      stage,
+    };
+  }
+
+  throw new ExecutorError('child_image_target_already_has_distinct_images', targetCardPrintingId);
+}
+
 async function claimStageForExecution(pool, stageId, allowedStatuses = ['PENDING']) {
   const connection = await pool.connect();
   const claimedAt = new Date().toISOString();
@@ -1647,6 +1862,8 @@ async function applyMutation(connection, plan) {
     case 'card_printing_existing_noop':
     case 'canon_image_existing_noop':
     case 'canon_image_already_present_noop':
+    case 'child_printing_image_existing_noop':
+    case 'child_printing_image_already_present_noop':
       return {
         result_type: plan.result_type,
         promoted_card_print_id: plan.result_linkage.promoted_card_print_id,
@@ -1862,6 +2079,100 @@ async function applyMutation(connection, plan) {
         promoted_card_printing_id: null,
         promoted_image_target_type: PROMOTED_IMAGE_TARGET_TYPES.CARD_PRINT,
         promoted_image_target_id: plan.mutation.card_print_id,
+      };
+    }
+    case 'update_card_printing_identity_image': {
+      const updateResult = await connection.query(
+        `
+          update public.card_printings
+          set
+            image_source = $2,
+            image_path = $3,
+            image_status = $4,
+            image_note = $5
+          where id = $1
+            and image_path is null
+            and (image_url is null or btrim(image_url) = '')
+            and (image_alt_url is null or btrim(image_alt_url) = '')
+          returning id
+        `,
+        [
+          plan.mutation.card_printing_id,
+          plan.mutation.image_source,
+          plan.mutation.image_path,
+          plan.mutation.image_status,
+          plan.mutation.image_note,
+        ],
+      );
+      if (!updateResult.rows[0]?.id) {
+        throw new ExecutorError('card_printing_identity_image_update_conflict', plan.mutation.card_printing_id);
+      }
+      return {
+        result_type: plan.result_type,
+        promoted_card_print_id: null,
+        promoted_card_printing_id: plan.mutation.card_printing_id,
+        promoted_image_target_type: PROMOTED_IMAGE_TARGET_TYPES.CARD_PRINTING,
+        promoted_image_target_id: plan.mutation.card_printing_id,
+      };
+    }
+    case 'update_card_printing_image_url': {
+      const updateResult = await connection.query(
+        `
+          update public.card_printings
+          set
+            image_url = $2,
+            image_status = $3,
+            image_note = $4
+          where id = $1
+            and (image_url is null or btrim(image_url) = '' or image_url = $2)
+          returning id
+        `,
+        [
+          plan.mutation.card_printing_id,
+          plan.mutation.image_url,
+          plan.mutation.image_status,
+          plan.mutation.image_note,
+        ],
+      );
+      if (!updateResult.rows[0]?.id) {
+        throw new ExecutorError('card_printing_image_update_conflict', plan.mutation.card_printing_id);
+      }
+      return {
+        result_type: plan.result_type,
+        promoted_card_print_id: null,
+        promoted_card_printing_id: plan.mutation.card_printing_id,
+        promoted_image_target_type: PROMOTED_IMAGE_TARGET_TYPES.CARD_PRINTING,
+        promoted_image_target_id: plan.mutation.card_printing_id,
+      };
+    }
+    case 'update_card_printing_image_alt_url': {
+      const updateResult = await connection.query(
+        `
+          update public.card_printings
+          set
+            image_alt_url = $2,
+            image_status = $3,
+            image_note = $4
+          where id = $1
+            and (image_alt_url is null or btrim(image_alt_url) = '' or image_alt_url = $2)
+          returning id
+        `,
+        [
+          plan.mutation.card_printing_id,
+          plan.mutation.image_alt_url,
+          plan.mutation.image_status,
+          plan.mutation.image_note,
+        ],
+      );
+      if (!updateResult.rows[0]?.id) {
+        throw new ExecutorError('card_printing_image_alt_update_conflict', plan.mutation.card_printing_id);
+      }
+      return {
+        result_type: plan.result_type,
+        promoted_card_print_id: null,
+        promoted_card_printing_id: plan.mutation.card_printing_id,
+        promoted_image_target_type: PROMOTED_IMAGE_TARGET_TYPES.CARD_PRINTING,
+        promoted_image_target_id: plan.mutation.card_printing_id,
       };
     }
     default:

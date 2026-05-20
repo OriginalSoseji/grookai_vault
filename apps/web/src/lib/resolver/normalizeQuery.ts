@@ -49,6 +49,8 @@ export type NormalizedVariantToken =
   | "full art"
   | "gold"
   | "holo"
+  | "masterball"
+  | "pokeball"
   | "promo"
   | "rainbow"
   | "reverse";
@@ -453,6 +455,8 @@ function detectVariantTokens(normalizedQuery: string, normalizedTokens: string[]
 
   const phraseMap: Array<{ phrases: string[]; token: NormalizedVariantToken }> = [
     { phrases: ["reverse holo", "rev holo", "reverse-holo", "reverseholo", "revholo"], token: "reverse" },
+    { phrases: ["master ball", "masterball", "master-ball"], token: "masterball" },
+    { phrases: ["poke ball", "pokeball", "poke-ball", "poké ball"], token: "pokeball" },
     { phrases: ["alt art", "alternate art", "alt-art"], token: "alt art" },
     { phrases: ["full art", "fullart", "full-art"], token: "full art" },
     { phrases: ["black star promo", "black star", "black-star promo", "black-star"], token: "promo" },
@@ -477,6 +481,8 @@ function detectVariantTokens(normalizedQuery: string, normalizedTokens: string[]
     { token: "holo", normalized: "holo" },
     { token: "rainbow", normalized: "rainbow" },
     { token: "gold", normalized: "gold" },
+    { token: "masterball", normalized: "masterball" },
+    { token: "pokeball", normalized: "pokeball" },
     { token: "reverse", normalized: "reverse" },
   ];
 
