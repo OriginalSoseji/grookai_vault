@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-05-20T15:08:14.578Z",
-  "mode": "DRY_RUN_ONLY",
+  "generated_at": "2026-05-20T15:08:32.889Z",
+  "mode": "APPLY",
   "inputs": {
     "phase3_evidence_path": "docs\\audits\\cameo_search_v1\\cameo_search_v1_phase3_alias_replay_dry_run_20260520.json",
     "phase3_evidence_hash": "7a1e4fb220fba0a192a9351caa6359f96d7649358b2647b1cabd8d23613e4001"
@@ -16,7 +16,7 @@
   },
   "db_precheck": {
     "read_mode": "transaction read only",
-    "card_print_cameos_exists": false,
+    "card_print_cameos_exists": true,
     "distinct_target_card_print_ids": 845,
     "target_card_prints_found": 845,
     "target_card_prints_missing": 0,
@@ -33,8 +33,80 @@
     "no_language_scope_blocked_rows": true
   },
   "ready_for_future_apply": true,
-  "apply_result": null,
-  "post_apply": null,
+  "apply_result": {
+    "committed": true,
+    "inserted_rows": 1360,
+    "post_guards": {
+      "inserted_rows_exact": true,
+      "active_rows_exact": true,
+      "total_rows_exact": true,
+      "approved_rows_exact": true,
+      "distinct_source_hashes_exact": true,
+      "blocked_rows_absent": true,
+      "public_view_has_no_uuid_columns": true
+    }
+  },
+  "post_apply": {
+    "source_rows": {
+      "total_rows": 1360,
+      "active_rows": 1360,
+      "approved_rows": 1360,
+      "distinct_source_hashes": 1360
+    },
+    "blocked_rows_inserted": 0,
+    "public_view_rows": 1360,
+    "public_view_columns": [
+      {
+        "column_name": "gv_id",
+        "data_type": "text"
+      },
+      {
+        "column_name": "card_name",
+        "data_type": "text"
+      },
+      {
+        "column_name": "set_code",
+        "data_type": "text"
+      },
+      {
+        "column_name": "set_name",
+        "data_type": "text"
+      },
+      {
+        "column_name": "number",
+        "data_type": "text"
+      },
+      {
+        "column_name": "number_plain",
+        "data_type": "text"
+      },
+      {
+        "column_name": "cameo_subject_type",
+        "data_type": "text"
+      },
+      {
+        "column_name": "cameo_subject_name",
+        "data_type": "text"
+      },
+      {
+        "column_name": "pokemon_ndex",
+        "data_type": "text"
+      },
+      {
+        "column_name": "notes_raw",
+        "data_type": "text"
+      },
+      {
+        "column_name": "cameo_qualifiers",
+        "data_type": "ARRAY"
+      },
+      {
+        "column_name": "source_name",
+        "data_type": "text"
+      }
+    ],
+    "public_view_raw_uuid_columns": []
+  },
   "write_boundary": {
     "future_allowed_operation": "insert into public.card_print_cameos only",
     "disallowed_tables": [
@@ -32244,7 +32316,7 @@
     }
   ],
   "confirmations": {
-    "db_writes": false,
+    "db_writes": true,
     "migrations_applied": false,
     "search_resolver_changes": false,
     "app_changes": false

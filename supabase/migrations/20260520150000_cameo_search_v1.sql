@@ -86,7 +86,6 @@ with check (true);
 
 create or replace view public.v_card_print_cameos_public_v1 as
 select
-  cpc.card_print_id,
   cp.gv_id,
   cp.name as card_name,
   cp.set_code,
