@@ -4,8 +4,22 @@ import { Suspense } from "react";
 import { AppChrome } from "@/components/layout/AppChrome";
 import { PageContainer } from "@/components/layout/PageContainer";
 import { isGrookaiDexEnabled } from "@/lib/grookaiDex/featureFlag";
+import { ThemeToggle } from "@/components/layout/ThemeToggle";
 import "./globals.css";
 import { Analytics } from "@vercel/analytics/react";
+
+const themeBootstrapScript = `
+(() => {
+  try {
+    const stored = window.localStorage.getItem("grookai-theme");
+    const prefersDark = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
+    const theme = stored === "dark" || stored === "light" ? stored : prefersDark ? "dark" : "light";
+    document.documentElement.classList.toggle("gv-dark", theme === "dark");
+    document.documentElement.dataset.theme = theme;
+    document.documentElement.style.colorScheme = theme;
+  } catch {}
+})();
+`;
 
 function ChromeFallback({ dexEnabled }: { dexEnabled: boolean }) {
   const desktopNavItems = [
@@ -40,6 +54,7 @@ function ChromeFallback({ dexEnabled }: { dexEnabled: boolean }) {
               >
                 Login
               </Link>
+              <ThemeToggle />
             </div>
           </div>
           <div className="hidden min-h-[64px] items-center justify-between gap-4 md:flex">
@@ -58,6 +73,7 @@ function ChromeFallback({ dexEnabled }: { dexEnabled: boolean }) {
               >
                 Login
               </Link>
+              <ThemeToggle />
             </nav>
           </div>
         </PageContainer>
@@ -86,7 +102,10 @@ export default function RootLayout({ children }: { children: ReactNode }) {
   const dexEnabled = isGrookaiDexEnabled();
 
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: themeBootstrapScript }} />
+      </head>
       <body>
         <Suspense fallback={<ChromeFallback dexEnabled={dexEnabled} />}>
           <AppChrome dexEnabled={dexEnabled} />

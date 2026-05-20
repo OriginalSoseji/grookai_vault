@@ -14,6 +14,89 @@ body {
   min-height: 100vh;
 }
 
+html.gv-dark {
+  color-scheme: dark;
+}
+
+html.gv-dark body {
+  background: #020617;
+  color: #e2e8f0;
+}
+
+html.gv-dark ::selection {
+  background: rgba(148, 163, 184, 0.3);
+}
+
+html.gv-dark :where(.bg-white) {
+  background-color: rgb(15 23 42 / 0.96) !important;
+}
+
+html.gv-dark :where(.bg-white\/95) {
+  background-color: rgb(15 23 42 / 0.9) !important;
+}
+
+html.gv-dark :where(.bg-white\/92) {
+  background-color: rgb(15 23 42 / 0.88) !important;
+}
+
+html.gv-dark :where(.bg-slate-50) {
+  background-color: #020617 !important;
+}
+
+html.gv-dark :where(.bg-slate-100) {
+  background-color: rgb(30 41 59 / 0.92) !important;
+}
+
+html.gv-dark :where(.bg-slate-900, .bg-slate-950) {
+  background-color: #f8fafc !important;
+}
+
+html.gv-dark :where(.text-slate-950, .text-slate-900) {
+  color: #f8fafc !important;
+}
+
+html.gv-dark :where(.text-slate-800, .text-slate-700) {
+  color: #cbd5e1 !important;
+}
+
+html.gv-dark :where(.text-slate-600, .text-slate-500) {
+  color: #94a3b8 !important;
+}
+
+html.gv-dark :where(.text-slate-400) {
+  color: #64748b !important;
+}
+
+html.gv-dark :where(.border-slate-200, .border-slate-200\/80) {
+  border-color: rgb(51 65 85 / 0.86) !important;
+}
+
+html.gv-dark :where(.border-slate-300) {
+  border-color: rgb(71 85 105 / 0.92) !important;
+}
+
+html.gv-dark :where(.ring-slate-200) {
+  --tw-ring-color: rgb(51 65 85 / 0.95) !important;
+}
+
+html.gv-dark :where(.hover\:bg-slate-50:hover, .hover\:bg-slate-100:hover) {
+  background-color: rgb(30 41 59 / 0.92) !important;
+}
+
+html.gv-dark :where(.hover\:text-slate-950:hover, .hover\:text-slate-900:hover) {
+  color: #f8fafc !important;
+}
+
+html.gv-dark :where(.shadow-sm) {
+  box-shadow: 0 1px 2px rgb(0 0 0 / 0.45) !important;
+}
+
+html.gv-dark .gv-theme-toggle {
+  background-color: rgb(15 23 42 / 0.92) !important;
+  border-color: rgb(51 65 85 / 0.95) !important;
+  color: #e2e8f0 !important;
+}
+
 ::selection {
   background: rgba(15, 23, 42, 0.12);
 }

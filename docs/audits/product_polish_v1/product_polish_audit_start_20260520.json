@@ -1,0 +1,39 @@
+{
+  "contract": "PRODUCT_POLISH_AUDIT_V1",
+  "date": "2026-05-20",
+  "status": "STARTED",
+  "lane_order": [
+    "PRODUCT_POLISH_AUDIT_V1",
+    "DESIGN_SYSTEM_TIGHTENING_V1",
+    "INTERACTION_HIERARCHY_V1",
+    "SEARCH_RESULTS_POLISH_V1",
+    "CARD_DETAIL_POLISH_V1",
+    "SET_AND_DEX_POLISH_V1",
+    "MOBILE_PARITY_POLISH_V1"
+  ],
+  "interaction_hierarchy": [
+    "card_identity",
+    "selected_finish_variant",
+    "ownership_state",
+    "interaction_action",
+    "price",
+    "cameo_search_context",
+    "metadata",
+    "secondary_diagnostics"
+  ],
+  "immediate_tweak": {
+    "name": "dark_mode_option",
+    "scope": "global theme toggle and common surface dark styling",
+    "storage": "localStorage: grookai-theme",
+    "system_preference": true,
+    "pre_hydration_script": true
+  },
+  "confirmations": {
+    "db_writes": false,
+    "migrations": false,
+    "scanner_changes": false,
+    "pricing_changes": false,
+    "species_dex_denominator_changes": false,
+    "cameo_identity_changes": false
+  }
+}

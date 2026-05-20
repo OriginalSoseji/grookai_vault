@@ -7,6 +7,7 @@ import { Suspense } from "react";
 import { MobileGlobalSearch } from "@/components/layout/MobileGlobalSearch";
 import PersistentSearchBar, { PersistentSearchBarFallback } from "@/components/PersistentSearchBar";
 import { PageContainer } from "@/components/layout/PageContainer";
+import { ThemeToggle } from "@/components/layout/ThemeToggle";
 import { buildCompareHref, buildPathWithCompareCards, normalizeCompareCardsParam } from "@/lib/compareCards";
 
 type SiteHeaderProps = {
@@ -98,6 +99,7 @@ export function SiteHeader({ isAuthenticated, profileHref, networkUnreadCount, d
             </Link>
 
             <div className="flex shrink-0 items-center gap-2">
+              <ThemeToggle />
               <Link
                 href="/network"
                 className={`rounded-full px-2.5 py-1 text-[11px] font-medium transition ${
@@ -185,6 +187,7 @@ export function SiteHeader({ isAuthenticated, profileHref, networkUnreadCount, d
                   Profile
                 </Link>
               ) : null}
+              <ThemeToggle />
               <Link
                 href={accountHref}
                 className="rounded-full border border-slate-200 bg-white px-4 py-2 text-slate-700 transition-all duration-100 hover:border-slate-300 hover:bg-slate-50"
