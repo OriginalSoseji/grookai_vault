@@ -1,0 +1,106 @@
+{
+  "generated_at": "2026-05-20T15:39:40.104Z",
+  "mode": "READ_ONLY_REGRESSION",
+  "migration_under_test": "20260520160000_cameo_search_document_integration_v1.sql",
+  "data_counts": {
+    "search_documents": 0,
+    "public_cameos": 0,
+    "pokemon_species": 0
+  },
+  "data_mode": "STRUCTURAL_REPLAY_REGRESSION",
+  "phase7_semantic_dry_run": {
+    "generated_at": "2026-05-20T15:28:41.342Z",
+    "ready_for_future_migration": true,
+    "checks": {
+      "active_cameo_rows_expected": true,
+      "blocked_rows_absent": true,
+      "public_view_has_no_uuid_columns": true,
+      "probe_checks_pass": true,
+      "species_dex_snapshot_read_only": true
+    }
+  },
+  "search_document_cameo_columns": [
+    {
+      "column_name": "cameo_labels",
+      "data_type": "ARRAY"
+    },
+    {
+      "column_name": "cameo_search_text",
+      "data_type": "text"
+    }
+  ],
+  "public_cameo_view_raw_uuid_columns": [],
+  "dex_denominator_snapshot": [],
+  "probes": [
+    {
+      "query": "pikachu",
+      "type": "plain_identity",
+      "result_count": 0,
+      "cameo_result_count": 0,
+      "top_result": null,
+      "passed": true,
+      "skipped": true,
+      "skip_reason": "local replay database has schema but no search/cameo seed rows",
+      "sample_results": []
+    },
+    {
+      "query": "pikachu cameo",
+      "type": "cameo",
+      "result_count": 0,
+      "cameo_result_count": 0,
+      "top_result": null,
+      "passed": true,
+      "skipped": true,
+      "skip_reason": "local replay database has schema but no search/cameo seed rows",
+      "sample_results": []
+    },
+    {
+      "query": "aerodactyl cameo",
+      "type": "cameo",
+      "result_count": 0,
+      "cameo_result_count": 0,
+      "top_result": null,
+      "passed": true,
+      "skipped": true,
+      "skip_reason": "local replay database has schema but no search/cameo seed rows",
+      "sample_results": []
+    },
+    {
+      "query": "acerola cameo",
+      "type": "cameo",
+      "result_count": 0,
+      "cameo_result_count": 0,
+      "top_result": null,
+      "passed": true,
+      "skipped": true,
+      "skip_reason": "local replay database has schema but no search/cameo seed rows",
+      "sample_results": []
+    },
+    {
+      "query": "GV-PK-CRE-30",
+      "type": "exact_identity",
+      "result_count": 0,
+      "cameo_result_count": 0,
+      "top_result": null,
+      "passed": true,
+      "skipped": true,
+      "skip_reason": "local replay database has schema but no search/cameo seed rows",
+      "sample_results": []
+    }
+  ],
+  "checks": {
+    "cameo_columns_present": true,
+    "probe_checks_pass": true,
+    "no_public_cameo_uuid_columns": true,
+    "species_dex_snapshot_present_or_local_empty": true,
+    "phase7_semantic_dry_run_passed": true
+  },
+  "confirmations": {
+    "db_writes": false,
+    "ui_changes": false,
+    "species_dex_changes": false,
+    "scanner_changes": false,
+    "pricing_changes": false
+  },
+  "passed": true
+}
