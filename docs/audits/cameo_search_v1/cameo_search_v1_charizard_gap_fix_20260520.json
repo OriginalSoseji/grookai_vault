@@ -1,0 +1,86 @@
+{
+  "contract": "CAMEO_SEARCH_V1",
+  "audit": "cameo_search_v1_charizard_gap_fix_20260520",
+  "date": "2026-05-20",
+  "problem": {
+    "query": "charizard cameo",
+    "production_cameo_labeled_unique_cards_before": 5,
+    "cause": "Only five unique Charizard-family cameo card targets were active. One English promo row was blocked by a missing source-owned set alias; remaining rows require language-scope or manual review."
+  },
+  "alias_added": {
+    "source_set_name": "SV Promos",
+    "target_set_code": "svp",
+    "reason": "Source short label for Scarlet & Violet Black Star Promos."
+  },
+  "db_write": {
+    "performed": true,
+    "table": "public.card_print_cameos",
+    "inserted_rows": 1,
+    "source_row_hash": "6ea75feac4f605c45c841aac2eff21fca8d0081ce96e63c41d29d152bb288e2a",
+    "target": {
+      "gv_id": "GV-PK-PR-SV-101",
+      "name": "Pikachu",
+      "set_code": "svp",
+      "number": "101"
+    },
+    "cameo": {
+      "cameo_subject_type": "pokemon",
+      "cameo_subject_name": "Charizard",
+      "pokemon_ndex": "6",
+      "match_status": "APPROVED_MATCH",
+      "match_confidence": "deterministic",
+      "active": true
+    }
+  },
+  "production_verification": {
+    "query": "charizard cameo",
+    "rows": 60,
+    "cameo_labeled_rows": 6,
+    "cameo_results": [
+      {
+        "name": "Charizard Spirit Link",
+        "gv_id": "GV-PK-EVO-75",
+        "label": "Cameo: Mega Charizard X"
+      },
+      {
+        "name": "Mew",
+        "gv_id": "GV-PK-SI-1",
+        "label": "Cameo: Charizard"
+      },
+      {
+        "name": "Lucky Stadium",
+        "gv_id": "GV-PK-PR-41",
+        "label": "Cameo: Charizard"
+      },
+      {
+        "name": "Special Delivery Bidoof",
+        "gv_id": "GV-PK-PR-SW-SWSH177",
+        "label": "Cameo: Charizard"
+      },
+      {
+        "name": "Team Rocket's Meowth",
+        "gv_id": "GV-PK-PR-18",
+        "label": "Cameo: Charizard · silhouette"
+      },
+      {
+        "name": "Pikachu",
+        "gv_id": "GV-PK-PR-SV-101",
+        "label": "Cameo: Charizard"
+      }
+    ]
+  },
+  "remaining_blocked_scope": [
+    "XY-P Promos Japanese promo-family rows",
+    "Start Deck 100 CoroCiao Version",
+    "Phantasmal Flames manual-review rows",
+    "151 Charmander manual-review row"
+  ],
+  "confirmations": {
+    "migrations_run": false,
+    "card_identity_changed": false,
+    "search_resolver_changed": false,
+    "species_dex_changed": false,
+    "scanner_changed": false,
+    "pricing_changed": false
+  }
+}

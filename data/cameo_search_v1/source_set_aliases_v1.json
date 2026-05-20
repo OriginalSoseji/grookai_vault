@@ -60,6 +60,11 @@
       "reason": "Source compact spelling for Scarlet & Violet Black Star Promos."
     },
     {
+      "source_set_name": "SV Promos",
+      "target_set_code": "svp",
+      "reason": "Source short label for Scarlet & Violet Black Star Promos."
+    },
+    {
       "source_set_name": "Twlight Masquerade",
       "target_set_code": "sv06",
       "reason": "Source typo for Twilight Masquerade."
