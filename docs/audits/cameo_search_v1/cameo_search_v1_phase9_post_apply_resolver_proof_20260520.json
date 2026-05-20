@@ -1,36 +1,83 @@
 {
-  "generated_at": "2026-05-20T15:43:41.339Z",
-  "mode": "READ_ONLY_REGRESSION",
-  "migration_under_test": "20260520160000_cameo_search_document_integration_v1.sql",
-  "data_counts": {
-    "search_documents": 67123,
-    "public_cameos": 1360,
-    "pokemon_species": 1025
+  "generated_at": "2026-05-20T15:44:54.403Z",
+  "mode": "POST_APPLY_LIVE_PROOF",
+  "migration": {
+    "version": "20260520160000",
+    "file": "supabase/migrations/20260520160000_cameo_search_document_integration_v1.sql",
+    "applied": true
   },
-  "data_mode": "SEEDED_REGRESSION",
-  "phase7_semantic_dry_run": {
-    "generated_at": "2026-05-20T15:28:41.342Z",
-    "ready_for_future_migration": true,
-    "checks": {
-      "active_cameo_rows_expected": true,
-      "blocked_rows_absent": true,
-      "public_view_has_no_uuid_columns": true,
-      "probe_checks_pass": true,
-      "species_dex_snapshot_read_only": true
-    }
+  "counts": {
+    "active_cameos": 1360,
+    "distinct_parent_gv_ids": 845,
+    "blocked_rows_present": 0,
+    "search_documents": 67123
   },
-  "search_document_cameo_columns": [
-    {
-      "column_name": "cameo_labels",
-      "data_type": "ARRAY"
-    },
-    {
-      "column_name": "cameo_search_text",
-      "data_type": "text"
-    }
-  ],
-  "public_cameo_view_raw_uuid_columns": [],
-  "dex_denominator_snapshot": [
+  "search_document": {
+    "cameo_columns": [
+      {
+        "column_name": "cameo_labels",
+        "data_type": "ARRAY"
+      },
+      {
+        "column_name": "cameo_search_text",
+        "data_type": "text"
+      }
+    ]
+  },
+  "public_safety": {
+    "public_cameo_columns": [
+      {
+        "column_name": "gv_id",
+        "data_type": "text"
+      },
+      {
+        "column_name": "card_name",
+        "data_type": "text"
+      },
+      {
+        "column_name": "set_code",
+        "data_type": "text"
+      },
+      {
+        "column_name": "set_name",
+        "data_type": "text"
+      },
+      {
+        "column_name": "number",
+        "data_type": "text"
+      },
+      {
+        "column_name": "number_plain",
+        "data_type": "text"
+      },
+      {
+        "column_name": "cameo_subject_type",
+        "data_type": "text"
+      },
+      {
+        "column_name": "cameo_subject_name",
+        "data_type": "text"
+      },
+      {
+        "column_name": "pokemon_ndex",
+        "data_type": "text"
+      },
+      {
+        "column_name": "notes_raw",
+        "data_type": "text"
+      },
+      {
+        "column_name": "cameo_qualifiers",
+        "data_type": "ARRAY"
+      },
+      {
+        "column_name": "source_name",
+        "data_type": "text"
+      }
+    ],
+    "public_cameo_uuid_columns": []
+  },
+  "species_dex_snapshot": [
     {
       "slug": "charizard",
       "total_print_count": 133
@@ -43,9 +90,10 @@
   "probes": [
     {
       "query": "pikachu",
-      "type": "plain_identity",
-      "result_count": 25,
+      "type": "identity_plain",
+      "result_count": 50,
       "cameo_result_count": 0,
+      "identity_result_count": 50,
       "top_result": {
         "search_document_id": "child:GV-PK-AR-71-RH",
         "object_type": "child_printing",
@@ -61,9 +109,14 @@
         ],
         "rank_score": 3150
       },
+      "checks": {
+        "no_raw_uuid": true,
+        "cameo_routes_parent_only": true,
+        "identity_outranks_cameo_for_plain_query": true,
+        "exact_identity_safe": true,
+        "cameo_labels_present": true
+      },
       "passed": true,
-      "skipped": false,
-      "skip_reason": null,
       "sample_results": [
         {
           "search_document_id": "child:GV-PK-AR-71-RH",
@@ -145,8 +198,9 @@
     {
       "query": "pikachu cameo",
       "type": "cameo",
-      "result_count": 25,
-      "cameo_result_count": 25,
+      "result_count": 50,
+      "cameo_result_count": 42,
+      "identity_result_count": 8,
       "top_result": {
         "search_document_id": "parent:GV-PK-N1-83",
         "object_type": "parent_print",
@@ -161,9 +215,14 @@
         ],
         "rank_score": 420
       },
+      "checks": {
+        "no_raw_uuid": true,
+        "cameo_routes_parent_only": true,
+        "identity_outranks_cameo_for_plain_query": true,
+        "exact_identity_safe": true,
+        "cameo_labels_present": true
+      },
       "passed": true,
-      "skipped": false,
-      "skip_reason": null,
       "sample_results": [
         {
           "search_document_id": "parent:GV-PK-N1-83",
@@ -242,6 +301,7 @@
       "type": "cameo",
       "result_count": 8,
       "cameo_result_count": 7,
+      "identity_result_count": 1,
       "top_result": {
         "search_document_id": "parent:GV-PK-SK-47",
         "object_type": "parent_print",
@@ -256,9 +316,14 @@
         ],
         "rank_score": 420
       },
+      "checks": {
+        "no_raw_uuid": true,
+        "cameo_routes_parent_only": true,
+        "identity_outranks_cameo_for_plain_query": true,
+        "exact_identity_safe": true,
+        "cameo_labels_present": true
+      },
       "passed": true,
-      "skipped": false,
-      "skip_reason": null,
       "sample_results": [
         {
           "search_document_id": "parent:GV-PK-SK-47",
@@ -337,6 +402,7 @@
       "type": "cameo",
       "result_count": 1,
       "cameo_result_count": 1,
+      "identity_result_count": 0,
       "top_result": {
         "search_document_id": "parent:GV-PK-CEC-245",
         "object_type": "parent_print",
@@ -351,9 +417,14 @@
         ],
         "rank_score": 420
       },
+      "checks": {
+        "no_raw_uuid": true,
+        "cameo_routes_parent_only": true,
+        "identity_outranks_cameo_for_plain_query": true,
+        "exact_identity_safe": true,
+        "cameo_labels_present": true
+      },
       "passed": true,
-      "skipped": false,
-      "skip_reason": null,
       "sample_results": [
         {
           "search_document_id": "parent:GV-PK-CEC-245",
@@ -373,9 +444,10 @@
     },
     {
       "query": "GV-PK-CRE-30",
-      "type": "exact_identity",
+      "type": "identity_exact",
       "result_count": 3,
       "cameo_result_count": 0,
+      "identity_result_count": 3,
       "top_result": {
         "search_document_id": "parent:GV-PK-CRE-30",
         "object_type": "parent_print",
@@ -392,9 +464,14 @@
         ],
         "rank_score": 19540
       },
+      "checks": {
+        "no_raw_uuid": true,
+        "cameo_routes_parent_only": true,
+        "identity_outranks_cameo_for_plain_query": true,
+        "exact_identity_safe": true,
+        "cameo_labels_present": true
+      },
       "passed": true,
-      "skipped": false,
-      "skip_reason": null,
       "sample_results": [
         {
           "search_document_id": "parent:GV-PK-CRE-30",
@@ -446,15 +523,17 @@
     }
   ],
   "checks": {
+    "migration_applied": true,
+    "active_cameos_expected": true,
+    "blocked_rows_absent": true,
     "cameo_columns_present": true,
-    "probe_checks_pass": true,
-    "no_public_cameo_uuid_columns": true,
-    "species_dex_snapshot_present_or_local_empty": true,
-    "phase7_semantic_dry_run_passed": true
+    "public_cameo_view_no_uuid_columns": true,
+    "resolver_probes_pass": true,
+    "species_dex_unchanged": true
   },
   "confirmations": {
-    "db_writes": false,
     "ui_changes": false,
+    "app_resolver_wiring_changes": false,
     "species_dex_changes": false,
     "scanner_changes": false,
     "pricing_changes": false

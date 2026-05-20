@@ -8,11 +8,11 @@ Regression checks for the DB search RPC after the cameo search document integrat
 
 ## Results
 
-- `pikachu`: SKIPPED; top=none; label=none
-- `pikachu cameo`: SKIPPED; top=none; label=none
-- `aerodactyl cameo`: SKIPPED; top=none; label=none
-- `acerola cameo`: SKIPPED; top=none; label=none
-- `GV-PK-CRE-30`: SKIPPED; top=none; label=none
+- `pikachu`: PASS; top=Pikachu; label=Reverse Holo
+- `pikachu cameo`: PASS; top=Arcade Game; label=Cameo: Pikachu · picture
+- `aerodactyl cameo`: PASS; top=Buried Fossil; label=Cameo: Aerodactyl
+- `acerola cameo`: PASS; top=Mimikyu; label=Cameo trainer: Acerola
+- `GV-PK-CRE-30`: PASS; top=Sneasel; label=none
 
 ## Checks
 
