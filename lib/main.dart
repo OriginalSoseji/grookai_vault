@@ -32,6 +32,7 @@ import 'screens/scanner/native_scanner_phase0_screen.dart';
 import 'services/network/card_engagement_service.dart';
 import 'services/network/local_community_feed_service.dart';
 import 'services/network/smart_feed_service.dart';
+import 'services/diagnostics/app_boot_timing.dart';
 import 'services/public/card_surface_pricing_service.dart';
 import 'services/public/compare_service.dart';
 import 'services/public/public_collector_service.dart';
@@ -68,6 +69,7 @@ const bool kFixedSlotCaptureScannerV1Enabled = bool.fromEnvironment(
 const bool kFeedDebugOverlay = true;
 const bool _kCatalogOwnershipDiagnostics = false;
 const bool _kGoogleOAuthDiagnostics = true;
+const Duration _kBootWarmupMinimumDuration = Duration(milliseconds: 520);
 const Duration _kMicroPressDownDuration = Duration(milliseconds: 96);
 const Duration _kMicroReleaseDuration = Duration(milliseconds: 172);
 const Duration _kActionFeedbackDuration = Duration(milliseconds: 320);
@@ -1840,6 +1842,7 @@ class _ActionSheetMetadataText extends StatelessWidget {
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  AppBootTiming.mark('main_start');
   PlatformDispatcher.instance.onError = (error, stackTrace) {
     if (_isInvalidRefreshTokenRecoveryError(error)) {
       debugPrint(
@@ -1850,7 +1853,9 @@ Future<void> main() async {
     }
     return false;
   };
+  AppBootTiming.mark('platform_error_handler_ready');
   await _loadEnv();
+  AppBootTiming.mark('env_loaded');
 
   final url = supabaseUrl;
   final key = supabasePublishableKey;
@@ -1860,11 +1865,14 @@ Future<void> main() async {
     );
   }
 
+  AppBootTiming.mark('supabase_initialize_start');
   await Supabase.initialize(
     url: url,
     anonKey: key,
     authOptions: const FlutterAuthClientOptions(detectSessionInUri: false),
   );
+  AppBootTiming.mark('supabase_initialize_complete');
+  AppBootTiming.mark('runApp');
   runApp(const MyApp());
 }
 
@@ -1934,6 +1942,45 @@ class GrookaiAppFrame extends StatelessWidget {
   }
 }
 
+class _GrookaiBootWarmupScreen extends StatelessWidget {
+  const _GrookaiBootWarmupScreen();
+
+  static const String _logoAsset =
+      'ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-1024x1024@1x.png';
+
+  @override
+  Widget build(BuildContext context) {
+    AppBootTiming.markOnce('boot_warmup_build');
+    return const ColoredBox(
+      color: Color(0xFF000000),
+      child: Center(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            SizedBox(
+              width: 104,
+              height: 104,
+              child: Image(image: AssetImage(_logoAsset)),
+            ),
+            SizedBox(height: 22),
+            Text(
+              'Grookai Vault',
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 22,
+                fontWeight: FontWeight.w800,
+                letterSpacing: 0,
+                decoration: TextDecoration.none,
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
 class _MyAppState extends State<MyApp> {
   static const MethodChannel _debugIntentChannel = MethodChannel(
     'grookai/debug_intents_v1',
@@ -1950,15 +1997,22 @@ class _MyAppState extends State<MyApp> {
   bool _authCallbackInFlight = false;
   Session? _authSession;
   bool _authRecoveryPending = false;
+  bool _bootWarmupVisible = true;
 
   @override
   void initState() {
     super.initState();
+    AppBootTiming.mark('my_app_init_state_start');
     final initialSession = Supabase.instance.client.auth.currentSession;
     _authSession = initialSession;
     _authRecoveryPending = initialSession?.isExpired ?? false;
+    AppBootTiming.mark(
+      'auth_session_read present=${initialSession != null} '
+      'expired=${initialSession?.isExpired ?? false}',
+    );
     _authSubscription = Supabase.instance.client.auth.onAuthStateChange.listen(
       (event) {
+        AppBootTiming.markOnce('auth_event_${event.event.name}');
         _debugGoogleOAuth(
           'auth state event=${event.event.name} '
           'sessionPresent=${event.session != null}',
@@ -1985,10 +2039,15 @@ class _MyAppState extends State<MyApp> {
         });
       },
     );
-    unawaited(_attachCanonicalLinkListeners());
-    if (kDebugMode) {
-      unawaited(_attachDebugIntentBridge());
-    }
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      AppBootTiming.markOnce('root_first_post_frame');
+      unawaited(_completeBootWarmup());
+      unawaited(_attachCanonicalLinkListeners());
+      if (kDebugMode) {
+        unawaited(_attachDebugIntentBridge());
+      }
+    });
+    AppBootTiming.mark('my_app_init_state_complete');
   }
 
   @override
@@ -1999,6 +2058,7 @@ class _MyAppState extends State<MyApp> {
   }
 
   Future<void> _attachDebugIntentBridge() async {
+    AppBootTiming.mark('debug_intent_bridge_start');
     _debugIntentChannel.setMethodCallHandler(_handleDebugIntentMethodCall);
     try {
       final action = await _debugIntentChannel.invokeMethod<String>(
@@ -2010,6 +2070,7 @@ class _MyAppState extends State<MyApp> {
         '[scanner_v4_auto_test] debug_intent_bridge_unavailable=$error',
       );
     }
+    AppBootTiming.mark('debug_intent_bridge_complete');
   }
 
   Future<void> _handleDebugIntentMethodCall(MethodCall call) async {
@@ -2024,6 +2085,7 @@ class _MyAppState extends State<MyApp> {
   }
 
   Future<void> _attachCanonicalLinkListeners() async {
+    AppBootTiming.mark('canonical_link_listeners_start');
     try {
       final initialUri = await _appLinks.getInitialLink();
       _debugGoogleOAuth('initial uri=${_describeUri(initialUri)}');
@@ -2039,6 +2101,19 @@ class _MyAppState extends State<MyApp> {
         // Ignore transient link stream failures and keep the app usable.
       },
     );
+    AppBootTiming.mark('canonical_link_listeners_ready');
+  }
+
+  Future<void> _completeBootWarmup() async {
+    AppBootTiming.mark('boot_warmup_hold_start');
+    await Future<void>.delayed(_kBootWarmupMinimumDuration);
+    if (!mounted) {
+      return;
+    }
+    setState(() {
+      _bootWarmupVisible = false;
+    });
+    AppBootTiming.mark('boot_warmup_complete');
   }
 
   Future<void> _handleIncomingLink(Uri? uri) async {
@@ -2209,7 +2284,12 @@ class _MyAppState extends State<MyApp> {
             'recoveryPending=$_authRecoveryPending '
             'pendingCanonicalLink=${_pendingCanonicalLink != null}',
           );
+          if (_bootWarmupVisible) {
+            AppBootTiming.markOnce('first_route_warmup');
+            return const _GrookaiBootWarmupScreen();
+          }
           if (_authRecoveryPending) {
+            AppBootTiming.markOnce('first_route_auth_recovery');
             return const Scaffold(
               body: Center(child: CircularProgressIndicator.adaptive()),
             );
@@ -2224,13 +2304,19 @@ class _MyAppState extends State<MyApp> {
             );
           }
           return shellReady
-              ? AppShell(
-                  pendingCanonicalLink: _pendingCanonicalLink,
-                  onCanonicalLinkHandled: _handleCanonicalLinkConsumed,
-                  pendingDebugAction: _pendingDebugAction,
-                  onDebugActionHandled: _handleDebugActionConsumed,
-                )
-              : const LoginPage();
+              ? () {
+                  AppBootTiming.markOnce('first_route_shell');
+                  return AppShell(
+                    pendingCanonicalLink: _pendingCanonicalLink,
+                    onCanonicalLinkHandled: _handleCanonicalLinkConsumed,
+                    pendingDebugAction: _pendingDebugAction,
+                    onDebugActionHandled: _handleDebugActionConsumed,
+                  );
+                }()
+              : () {
+                  AppBootTiming.markOnce('first_route_login');
+                  return const LoginPage();
+                }();
         },
       ),
     );

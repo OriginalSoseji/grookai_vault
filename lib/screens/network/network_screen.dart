@@ -7,6 +7,7 @@ import '../../card_detail_screen.dart';
 import '../../models/provisional_card.dart';
 import '../../services/identity/display_identity.dart';
 import '../../models/ownership_state.dart';
+import '../../services/diagnostics/app_boot_timing.dart';
 import '../../services/network/network_stream_service.dart';
 import '../../services/provisional/provisional_service.dart';
 import '../../services/vault/ownership_resolver_adapter.dart';
@@ -67,6 +68,7 @@ class NetworkScreenState extends State<NetworkScreen> {
   @override
   void initState() {
     super.initState();
+    AppBootTiming.mark('network_screen_init_state');
     _scrollController.addListener(_handleScroll);
     _loadRows(resetSession: true);
   }
@@ -101,6 +103,9 @@ class NetworkScreenState extends State<NetworkScreen> {
     bool resetSession = false,
     bool append = false,
   }) async {
+    if (!append) {
+      AppBootTiming.markOnce('network_feed_initial_load_start');
+    }
     final loadVersion = ++_loadVersion;
     final pageSize = append ? _networkNextPageSize : _networkInitialPageSize;
     setState(() {
@@ -129,6 +134,9 @@ class NetworkScreenState extends State<NetworkScreen> {
               const <PublicProvisionalCard>[],
             );
       final results = await Future.wait([pageFuture, provisionalFuture]);
+      if (!append) {
+        AppBootTiming.markOnce('network_feed_initial_rpc_complete');
+      }
       final page = results[0] as NetworkStreamPage;
       final provisionalCards = results[1] as List<PublicProvisionalCard>;
 
@@ -185,6 +193,9 @@ class NetworkScreenState extends State<NetworkScreen> {
           _loading = false;
         }
       });
+      if (!append) {
+        AppBootTiming.markOnce('network_feed_initial_render_ready');
+      }
 
       if (!append && deferredOwnershipIds.isNotEmpty) {
         // NETWORK_FIRST_PAINT_AND_FRESHNESS_V1

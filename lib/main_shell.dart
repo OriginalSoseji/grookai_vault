@@ -74,6 +74,7 @@ class _AppShellState extends State<AppShell> {
   @override
   void initState() {
     super.initState();
+    AppBootTiming.mark('app_shell_init_state_start');
     // PERFORMANCE_P1_SHELL_LAZY_TABS
     // Defers heavy tab construction until first visit while preserving tab
     // retention after a surface has been opened once.
@@ -83,7 +84,9 @@ class _AppShellState extends State<AppShell> {
       growable: false,
     );
     _ensureShellPageBuilt(_destination);
+    AppBootTiming.mark('app_shell_initial_page_built');
     WidgetsBinding.instance.addPostFrameCallback((_) {
+      AppBootTiming.markOnce('app_shell_first_post_frame');
       unawaited(_maybeHandlePendingCanonicalLink());
       unawaited(_maybeHandlePendingDebugAction());
       if (!kFixedSlotCaptureScannerV1Enabled && kNativeScannerPhase0Enabled) {
@@ -93,6 +96,7 @@ class _AppShellState extends State<AppShell> {
         unawaited(_prewarmScanCardSurface(reason: 'shell_ready'));
       }
     });
+    AppBootTiming.mark('app_shell_init_state_complete');
   }
 
   @override
