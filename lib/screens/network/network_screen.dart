@@ -1,6 +1,8 @@
 import 'dart:async';
+import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../../card_detail_screen.dart';
@@ -42,6 +44,7 @@ class NetworkScreen extends StatefulWidget {
 
 class NetworkScreenState extends State<NetworkScreen> {
   static const bool _kNetworkOwnershipDiagnostics = false;
+  static const String _networkFeedCachePrefix = 'grookai_network_feed_cache_v1';
 
   final SupabaseClient _client = Supabase.instance.client;
   final ScrollController _scrollController = ScrollController();
@@ -57,6 +60,7 @@ class NetworkScreenState extends State<NetworkScreen> {
   bool _loadingMore = false;
   bool _hasMore = true;
   String? _error;
+  bool _showingCachedRows = false;
   NetworkStreamEmptyState _emptyState = NetworkStreamEmptyState.none;
   List<NetworkStreamRow> _rows = const <NetworkStreamRow>[];
   List<PublicProvisionalCard> _provisionalCards =
@@ -70,6 +74,7 @@ class NetworkScreenState extends State<NetworkScreen> {
     super.initState();
     AppBootTiming.mark('network_screen_init_state');
     _scrollController.addListener(_handleScroll);
+    unawaited(_restoreCachedRows());
     _loadRows(resetSession: true);
   }
 
@@ -139,6 +144,9 @@ class NetworkScreenState extends State<NetworkScreen> {
       }
       final page = results[0] as NetworkStreamPage;
       final provisionalCards = results[1] as List<PublicProvisionalCard>;
+      if (!append) {
+        unawaited(_cacheRows(page.rows));
+      }
 
       if (!mounted || loadVersion != _loadVersion) {
         return;
@@ -174,6 +182,7 @@ class NetworkScreenState extends State<NetworkScreen> {
 
       setState(() {
         _rows = append ? [..._rows, ...page.rows] : page.rows;
+        _showingCachedRows = false;
         if (!append) {
           _provisionalCards = provisionalCards;
         }
@@ -222,13 +231,79 @@ class NetworkScreenState extends State<NetworkScreen> {
           _error = error is Error
               ? error.toString()
               : 'Unable to load the collector network.';
-          _provisionalCards = const <PublicProvisionalCard>[];
+          if (_rows.isEmpty) {
+            _provisionalCards = const <PublicProvisionalCard>[];
+          }
           _emptyState = NetworkStreamEmptyState.none;
           _hasMore = false;
           _loading = false;
         }
       });
     }
+  }
+
+  Future<void> _restoreCachedRows() async {
+    try {
+      final prefs = await SharedPreferences.getInstance();
+      final encoded = prefs.getString(_cacheKey);
+      if (encoded == null || encoded.trim().isEmpty) {
+        return;
+      }
+
+      final decoded = jsonDecode(encoded);
+      if (decoded is! Map<String, dynamic>) {
+        return;
+      }
+
+      final rowsJson = decoded['rows'];
+      if (rowsJson is! List) {
+        return;
+      }
+
+      final cachedRows = rowsJson
+          .whereType<Map>()
+          .map((row) => _networkStreamRowFromCache(row.cast<String, dynamic>()))
+          .whereType<NetworkStreamRow>()
+          .toList(growable: false);
+      if (cachedRows.isEmpty || !mounted || _rows.isNotEmpty) {
+        return;
+      }
+
+      setState(() {
+        _rows = cachedRows;
+        _showingCachedRows = true;
+        _emptyState = NetworkStreamEmptyState.none;
+      });
+      AppBootTiming.markOnce('network_feed_cache_restored');
+    } catch (error) {
+      debugPrint('[NETWORK_FEED_CACHE_V1] restore_failed=$error');
+    }
+  }
+
+  Future<void> _cacheRows(List<NetworkStreamRow> rows) async {
+    if (rows.isEmpty) {
+      return;
+    }
+    try {
+      final prefs = await SharedPreferences.getInstance();
+      final payload = <String, dynamic>{
+        'cachedAt': DateTime.now().toIso8601String(),
+        'feedMode': _feedMode.name,
+        'intent': _intent,
+        'rows': rows
+            .take(_networkInitialPageSize)
+            .map(_networkStreamRowToCache)
+            .toList(growable: false),
+      };
+      await prefs.setString(_cacheKey, jsonEncode(payload));
+    } catch (error) {
+      debugPrint('[NETWORK_FEED_CACHE_V1] write_failed=$error');
+    }
+  }
+
+  String get _cacheKey {
+    final intentKey = (_intent ?? 'all').trim().toLowerCase();
+    return '$_networkFeedCachePrefix:${_feedMode.name}:$intentKey';
   }
 
   Future<void> _primeDeferredOwnership({
@@ -285,7 +360,11 @@ class NetworkScreenState extends State<NetworkScreen> {
 
     setState(() {
       _intent = intent;
+      _rows = const <NetworkStreamRow>[];
+      _showingCachedRows = false;
+      _ownershipStatesByCardPrintId = const <String, OwnershipState>{};
     });
+    await _restoreCachedRows();
     await _loadRows(resetSession: true);
   }
 
@@ -297,8 +376,12 @@ class NetworkScreenState extends State<NetworkScreen> {
     setState(() {
       _feedMode = mode;
       _error = null;
+      _rows = const <NetworkStreamRow>[];
+      _showingCachedRows = false;
+      _ownershipStatesByCardPrintId = const <String, OwnershipState>{};
       _emptyState = NetworkStreamEmptyState.none;
     });
+    await _restoreCachedRows();
     await _loadRows(resetSession: true);
   }
 
@@ -421,6 +504,7 @@ class NetworkScreenState extends State<NetworkScreen> {
                     rows: _rows,
                     ownershipStatesByCardPrintId: _ownershipStatesByCardPrintId,
                     loading: _loading,
+                    showingCachedRows: _showingCachedRows,
                     error: _error,
                     emptyState: _emptyState,
                     onRetry: () => _loadRows(resetSession: true),
@@ -455,12 +539,154 @@ class NetworkScreenState extends State<NetworkScreen> {
   }
 }
 
+Map<String, dynamic> _networkStreamRowToCache(NetworkStreamRow row) {
+  return <String, dynamic>{
+    'sourceType': row.sourceType.name,
+    'vaultItemId': row.vaultItemId,
+    'ownerUserId': row.ownerUserId,
+    'ownerSlug': row.ownerSlug,
+    'ownerDisplayName': row.ownerDisplayName,
+    'cardPrintId': row.cardPrintId,
+    'intent': row.intent,
+    'quantity': row.quantity,
+    'inPlayCount': row.inPlayCount,
+    'tradeCount': row.tradeCount,
+    'sellCount': row.sellCount,
+    'showcaseCount': row.showcaseCount,
+    'rawCount': row.rawCount,
+    'slabCount': row.slabCount,
+    'conditionLabel': row.conditionLabel,
+    'isGraded': row.isGraded,
+    'gradeCompany': row.gradeCompany,
+    'gradeValue': row.gradeValue,
+    'gradeLabel': row.gradeLabel,
+    'createdAt': row.createdAt,
+    'gvId': row.gvId,
+    'name': row.name,
+    'setCode': row.setCode,
+    'setName': row.setName,
+    'number': row.number,
+    'variantKey': row.variantKey,
+    'printedIdentityModifier': row.printedIdentityModifier,
+    'setIdentityModel': row.setIdentityModel,
+    'sourceLabel': row.sourceLabel,
+    'rarity': row.rarity,
+    'imageUrl': row.imageUrl,
+    'listingCount': row.listingCount,
+    'rankingScore': row.rankingScore,
+    'inPlayCopies': row.inPlayCopies
+        .map(
+          (copy) => <String, dynamic>{
+            'instanceId': copy.instanceId,
+            'vaultItemId': copy.vaultItemId,
+            'intent': copy.intent,
+            'gvviId': copy.gvviId,
+            'conditionLabel': copy.conditionLabel,
+            'isGraded': copy.isGraded,
+            'gradeCompany': copy.gradeCompany,
+            'gradeValue': copy.gradeValue,
+            'gradeLabel': copy.gradeLabel,
+            'certNumber': copy.certNumber,
+            'createdAt': copy.createdAt,
+          },
+        )
+        .toList(growable: false),
+  };
+}
+
+NetworkStreamRow? _networkStreamRowFromCache(Map<String, dynamic> json) {
+  String stringValue(String key, {String fallback = ''}) {
+    return (json[key] ?? fallback).toString();
+  }
+
+  int intValue(String key) {
+    final value = json[key];
+    if (value is int) {
+      return value;
+    }
+    return int.tryParse((value ?? '').toString()) ?? 0;
+  }
+
+  bool boolValue(String key) => json[key] == true;
+
+  final sourceTypeName = stringValue('sourceType');
+  final sourceType = NetworkStreamSourceType.values
+      .where((value) => value.name == sourceTypeName)
+      .firstOrNull;
+  if (sourceType == null) {
+    return null;
+  }
+
+  final copiesJson = json['inPlayCopies'];
+  final copies = copiesJson is List
+      ? copiesJson
+            .whereType<Map>()
+            .map((copy) => copy.cast<String, dynamic>())
+            .map(
+              (copy) => NetworkStreamCopy(
+                instanceId: (copy['instanceId'] ?? '').toString(),
+                vaultItemId: (copy['vaultItemId'] ?? '').toString(),
+                intent: (copy['intent'] ?? '').toString(),
+                gvviId: (copy['gvviId'] as String?)?.trim(),
+                conditionLabel: (copy['conditionLabel'] as String?)?.trim(),
+                isGraded: copy['isGraded'] == true,
+                gradeCompany: (copy['gradeCompany'] as String?)?.trim(),
+                gradeValue: (copy['gradeValue'] as String?)?.trim(),
+                gradeLabel: (copy['gradeLabel'] as String?)?.trim(),
+                certNumber: (copy['certNumber'] as String?)?.trim(),
+                createdAt: (copy['createdAt'] as String?)?.trim(),
+              ),
+            )
+            .toList(growable: false)
+      : const <NetworkStreamCopy>[];
+
+  return NetworkStreamRow(
+    sourceType: sourceType,
+    vaultItemId: stringValue('vaultItemId'),
+    ownerUserId: stringValue('ownerUserId'),
+    ownerSlug: stringValue('ownerSlug'),
+    ownerDisplayName: stringValue('ownerDisplayName'),
+    cardPrintId: stringValue('cardPrintId'),
+    quantity: intValue('quantity'),
+    inPlayCount: intValue('inPlayCount'),
+    tradeCount: intValue('tradeCount'),
+    sellCount: intValue('sellCount'),
+    showcaseCount: intValue('showcaseCount'),
+    rawCount: intValue('rawCount'),
+    slabCount: intValue('slabCount'),
+    gvId: stringValue('gvId'),
+    name: stringValue('name', fallback: 'Card'),
+    setCode: stringValue('setCode'),
+    setName: stringValue('setName'),
+    number: stringValue('number', fallback: '—'),
+    variantKey: json['variantKey'] as String?,
+    printedIdentityModifier: json['printedIdentityModifier'] as String?,
+    setIdentityModel: json['setIdentityModel'] as String?,
+    sourceLabel: json['sourceLabel'] as String?,
+    rarity: json['rarity'] as String?,
+    intent: json['intent'] as String?,
+    conditionLabel: json['conditionLabel'] as String?,
+    isGraded: boolValue('isGraded'),
+    gradeCompany: json['gradeCompany'] as String?,
+    gradeValue: json['gradeValue'] as String?,
+    gradeLabel: json['gradeLabel'] as String?,
+    createdAt: json['createdAt'] as String?,
+    imageUrl: json['imageUrl'] as String?,
+    inPlayCopies: copies,
+    listingCount: json['listingCount'] is int
+        ? json['listingCount'] as int
+        : null,
+    rankingScore: intValue('rankingScore'),
+  );
+}
+
 class _NetworkContentSliver extends StatelessWidget {
   const _NetworkContentSliver({
     required this.feedMode,
     required this.rows,
     required this.ownershipStatesByCardPrintId,
     required this.loading,
+    required this.showingCachedRows,
     required this.error,
     required this.emptyState,
     required this.onRetry,
@@ -470,22 +696,18 @@ class _NetworkContentSliver extends StatelessWidget {
   final List<NetworkStreamRow> rows;
   final Map<String, OwnershipState> ownershipStatesByCardPrintId;
   final bool loading;
+  final bool showingCachedRows;
   final String? error;
   final NetworkStreamEmptyState emptyState;
   final Future<void> Function() onRetry;
 
   @override
   Widget build(BuildContext context) {
-    if (loading) {
-      return const SliverToBoxAdapter(
-        child: Padding(
-          padding: EdgeInsets.symmetric(vertical: 28),
-          child: Center(child: CircularProgressIndicator()),
-        ),
-      );
+    if (loading && rows.isEmpty) {
+      return const SliverToBoxAdapter(child: _NetworkFeedSkeleton());
     }
 
-    if (error != null) {
+    if (error != null && rows.isEmpty) {
       return SliverPadding(
         padding: const EdgeInsets.symmetric(horizontal: 12),
         sliver: SliverToBoxAdapter(
@@ -543,9 +765,206 @@ class _NetworkContentSliver extends StatelessWidget {
       );
     }
 
-    return _NetworkStreamResultsSliver(
-      rows: rows,
-      ownershipStatesByCardPrintId: ownershipStatesByCardPrintId,
+    return SliverMainAxisGroup(
+      slivers: [
+        if (error != null && rows.isNotEmpty)
+          SliverToBoxAdapter(child: _NetworkRefreshErrorBanner(error: error!)),
+        if (loading && rows.isNotEmpty)
+          SliverToBoxAdapter(
+            child: _NetworkRefreshingBanner(fromCache: showingCachedRows),
+          ),
+        _NetworkStreamResultsSliver(
+          rows: rows,
+          ownershipStatesByCardPrintId: ownershipStatesByCardPrintId,
+        ),
+      ],
+    );
+  }
+}
+
+class _NetworkRefreshErrorBanner extends StatelessWidget {
+  const _NetworkRefreshErrorBanner({required this.error});
+
+  final String error;
+
+  @override
+  Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(12, 8, 12, 10),
+      child: DecoratedBox(
+        decoration: BoxDecoration(
+          color: colorScheme.errorContainer.withValues(alpha: 0.34),
+          borderRadius: BorderRadius.circular(14),
+          border: Border.all(color: colorScheme.error.withValues(alpha: 0.16)),
+        ),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 9),
+          child: Row(
+            children: [
+              Icon(
+                Icons.sync_problem_rounded,
+                size: 17,
+                color: colorScheme.error,
+              ),
+              const SizedBox(width: 9),
+              Expanded(
+                child: Text(
+                  'Showing recent cards. Refresh failed.',
+                  style: Theme.of(context).textTheme.labelMedium?.copyWith(
+                    color: colorScheme.onErrorContainer.withValues(alpha: 0.84),
+                    fontWeight: FontWeight.w700,
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class _NetworkRefreshingBanner extends StatelessWidget {
+  const _NetworkRefreshingBanner({required this.fromCache});
+
+  final bool fromCache;
+
+  @override
+  Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(12, 8, 12, 10),
+      child: DecoratedBox(
+        decoration: BoxDecoration(
+          color: colorScheme.surfaceContainerHighest.withValues(alpha: 0.64),
+          borderRadius: BorderRadius.circular(14),
+          border: Border.all(color: colorScheme.outline.withValues(alpha: 0.1)),
+        ),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 9),
+          child: Row(
+            children: [
+              SizedBox(
+                width: 14,
+                height: 14,
+                child: CircularProgressIndicator(
+                  strokeWidth: 2,
+                  color: colorScheme.primary,
+                ),
+              ),
+              const SizedBox(width: 10),
+              Expanded(
+                child: Text(
+                  fromCache
+                      ? 'Showing recent cards while refreshing'
+                      : 'Refreshing feed',
+                  style: Theme.of(context).textTheme.labelMedium?.copyWith(
+                    color: colorScheme.onSurface.withValues(alpha: 0.68),
+                    fontWeight: FontWeight.w700,
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class _NetworkFeedSkeleton extends StatelessWidget {
+  const _NetworkFeedSkeleton();
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(2, 8, 2, 0),
+      child: Column(
+        children: List.generate(
+          4,
+          (index) => Padding(
+            padding: EdgeInsets.only(bottom: index == 3 ? 0 : 6),
+            child: const _NetworkSkeletonCard(),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class _NetworkSkeletonCard extends StatelessWidget {
+  const _NetworkSkeletonCard();
+
+  @override
+  Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
+    final fill = colorScheme.surfaceContainerHighest.withValues(alpha: 0.72);
+    final line = colorScheme.onSurface.withValues(alpha: 0.08);
+
+    Widget block({required double width, required double height}) {
+      return DecoratedBox(
+        decoration: BoxDecoration(
+          color: line,
+          borderRadius: BorderRadius.circular(999),
+        ),
+        child: SizedBox(width: width, height: height),
+      );
+    }
+
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 10),
+      child: DecoratedBox(
+        decoration: BoxDecoration(
+          color: fill,
+          borderRadius: BorderRadius.circular(24),
+          border: Border.all(
+            color: colorScheme.outline.withValues(alpha: 0.08),
+          ),
+        ),
+        child: Padding(
+          padding: const EdgeInsets.all(12),
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              DecoratedBox(
+                decoration: BoxDecoration(
+                  color: line,
+                  borderRadius: BorderRadius.circular(16),
+                ),
+                child: const SizedBox(width: 96, height: 132),
+              ),
+              const SizedBox(width: 14),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    block(width: 118, height: 14),
+                    const SizedBox(height: 10),
+                    block(width: 190, height: 20),
+                    const SizedBox(height: 8),
+                    block(width: 150, height: 12),
+                    const SizedBox(height: 22),
+                    block(width: double.infinity, height: 1),
+                    const SizedBox(height: 18),
+                    Row(
+                      children: [
+                        Expanded(
+                          child: block(width: double.infinity, height: 34),
+                        ),
+                        const SizedBox(width: 10),
+                        Expanded(
+                          child: block(width: double.infinity, height: 34),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
     );
   }
 }
