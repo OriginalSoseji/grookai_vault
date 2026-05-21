@@ -1,0 +1,60 @@
+{
+  "audit_id": "LOCAL_COMMUNITY_FEED_V1_PHASE1_POST_APPLY_20260521",
+  "date": "2026-05-21",
+  "status": "APPLIED_AND_PARTIALLY_VERIFIED",
+  "applied_migration": "20260520233000_local_community_feed_infra_v1.sql",
+  "apply_result": {
+    "command": "supabase db push --yes",
+    "exact_migration_applied": true,
+    "migration_repair_used": false,
+    "include_all_used": false
+  },
+  "objects_verified": {
+    "tables": [
+      "collector_local_blocks",
+      "collector_local_discovery_settings",
+      "collector_local_mutes"
+    ],
+    "functions": [
+      "local_community_collectors_are_blocked_v1"
+    ]
+  },
+  "schema_safety": {
+    "exact_coordinate_columns_added": false,
+    "coarse_location_fields_only": true,
+    "existing_public_views_changed": false
+  },
+  "rls_and_grants": {
+    "rls_enabled": true,
+    "anon_table_grants": false,
+    "authenticated_owner_grants": true,
+    "owner_policies_present": true
+  },
+  "dry_run_after_apply": {
+    "eligible_local_collectors": 0,
+    "eligible_feed_rows": 0,
+    "forbidden_projection_fields": [],
+    "anonymous_local_feed_allowed": false
+  },
+  "ledger_note": {
+    "migration_list_after_apply_passed": false,
+    "failure": "CLI direct-DB auth failed for cli_login_postgres after apply; schema verified through linked SQL checks.",
+    "schema_migrations_row_verified": true,
+    "schema_migrations_version": "20260520233000",
+    "schema_migrations_name": "local_community_feed_infra_v1",
+    "follow_up": "Rerun supabase migration list --linked after CLI DB password state refresh."
+  },
+  "seed_test": {
+    "performed": false,
+    "reason": "Seed requires explicit collector slug or user id because local discovery is opt-in.",
+    "script": "scripts/audits/local_community_feed_v1_seed_test_collector.mjs"
+  },
+  "no_drift_confirmation": {
+    "ui_integration": false,
+    "scanner_changes": false,
+    "pricing_changes": false,
+    "species_dex_changes": false,
+    "identity_changes": false,
+    "public_route_changes": false
+  }
+}

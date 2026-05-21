@@ -1,0 +1,66 @@
+{
+  "audit_id": "LOCAL_COMMUNITY_FEED_V1_PHASE1_APPLY_GATE_20260520",
+  "date": "2026-05-20",
+  "status": "DRAFT_ONLY_NOT_APPLIED",
+  "migration": "supabase/migrations/20260520233000_local_community_feed_infra_v1.sql",
+  "objects": {
+    "tables": [
+      "collector_local_discovery_settings",
+      "collector_local_blocks",
+      "collector_local_mutes"
+    ],
+    "functions": [
+      "local_community_collectors_are_blocked_v1"
+    ]
+  },
+  "safety_properties": {
+    "additive_only": true,
+    "existing_table_writes": false,
+    "existing_public_view_changes": false,
+    "exact_latitude_longitude_columns": false,
+    "anonymous_table_grants": false,
+    "authenticated_owner_rls": true,
+    "local_discovery_separate_opt_in": true,
+    "block_mute_included": true
+  },
+  "required_preapply_commands": [
+    "supabase migration list --linked",
+    "pwsh -NoProfile -File .\\scripts\\migration_preflight_strict.ps1 -Phase PrePush -ExpectedLocalOnlyIds 20260520233000",
+    "supabase db reset --local",
+    "node scripts/audits/local_community_feed_v1_dry_run.mjs"
+  ],
+  "remote_read_only_precheck_result": {
+    "ran_at": "2026-05-20",
+    "target_tables_absent": true,
+    "target_function_absent": true,
+    "partial_objects_detected": false,
+    "migration_ledger_expected_local_only": "20260520233000"
+  },
+  "strict_gate_result": {
+    "ran_at": "2026-05-20",
+    "command": "pwsh -NoProfile -File .\\scripts\\migration_preflight_strict.ps1 -Phase PrePush -ExpectedLocalOnlyIds 20260520233000",
+    "passed": true,
+    "expected_pending_set_matched": true,
+    "duplicate_pending_objects_found": false,
+    "local_replay_passed": true,
+    "remote_apply_performed": false
+  },
+  "stop_conditions": [
+    "unexpected migration ledger drift",
+    "local replay failure",
+    "exact coordinate fields introduced",
+    "anon grants on local discovery tables",
+    "existing public views modified",
+    "precise location projection found in wall/network samples"
+  ],
+  "no_write_confirmation": {
+    "migration_applied": false,
+    "linked_remote_db_writes": false,
+    "local_replay_only": true,
+    "ui_integration": false,
+    "scanner_changes": false,
+    "pricing_changes": false,
+    "species_dex_changes": false,
+    "identity_changes": false
+  }
+}

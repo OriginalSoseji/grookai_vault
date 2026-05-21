@@ -1,0 +1,42 @@
+{
+  "audit_id": "LOCAL_COMMUNITY_FEED_V1_PHASE1_DRY_RUN_20260520",
+  "status": "NO_WRITE_DRY_RUN",
+  "generated_at": "2026-05-21T12:12:22.575Z",
+  "future_tables": {
+    "note": "Object presence is verified by the apply-gate SQL precheck, not by Supabase REST dry-run probes.",
+    "expected_pending_objects": [
+      "collector_local_discovery_settings",
+      "collector_local_blocks",
+      "collector_local_mutes",
+      "local_community_collectors_are_blocked_v1"
+    ]
+  },
+  "source_counts": {
+    "public_profiles": 26,
+    "public_profiles_enabled": 26,
+    "public_profiles_vault_sharing": 26,
+    "v_wall_cards_v1": 26,
+    "v_card_stream_v1": 23,
+    "collector_follows": 5,
+    "card_feed_events": 214
+  },
+  "source_count_errors": {},
+  "forbiddenProjectionFields": [],
+  "dry_run": {
+    "eligible_local_collectors": 0,
+    "eligible_feed_rows": 0,
+    "blocked_reason": "Phase 1 migration is draft-only/not populated; no collector can be local-feed eligible yet.",
+    "anonymous_local_feed_allowed": false,
+    "precise_location_projected": false,
+    "existing_global_views_modified": false
+  },
+  "gates": {
+    "no_db_writes": true,
+    "no_migrations_applied": true,
+    "local_opt_in_required": true,
+    "authenticated_only_required": true,
+    "no_precise_location_fields_in_current_wall_or_stream_samples": true,
+    "block_mute_tables_required_before_release": true,
+    "existing_public_views_left_unchanged": true
+  }
+}

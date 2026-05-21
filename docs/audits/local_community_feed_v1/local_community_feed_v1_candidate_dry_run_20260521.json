@@ -1,0 +1,7 @@
+{
+  "audit_id": "LOCAL_COMMUNITY_FEED_V1_CANDIDATE_DRY_RUN_20260521",
+  "status": "BLOCKED_VIEWER_REQUIRED",
+  "reason": "Provide --viewer-slug=<slug> or --viewer-user-id=<uuid>. Refusing to choose a nearby-feed viewer automatically.",
+  "candidates": [],
+  "no_write_confirmation": true
+}
