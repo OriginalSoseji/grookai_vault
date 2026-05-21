@@ -27,7 +27,7 @@ success
 Classification:
 
 ```text
-BLOCKED_BY_ENVIRONMENT_ACCESS
+PASS_WITH_OPERATOR_BROWSER_EVIDENCE
 ```
 
 The preview deployment exists and GitHub reports a successful Vercel deployment. Direct unauthenticated requests to the preview URL return:
@@ -37,6 +37,31 @@ The preview deployment exists and GitHub reports a successful Vercel deployment.
 ```
 
 This response occurs at the deployment access layer before the app route can be exercised. It is not evidence of a Local Community Feed app failure.
+
+Authenticated operator smoke was completed in a browser session with preview access.
+
+Operator evidence:
+
+- `/network/nearby` loaded successfully.
+- Page header rendered:
+  - `Nearby Collectors`
+  - `Fresh cards from your local collector area`
+- Network section nav rendered:
+  - `Cards`
+  - `Nearby`
+  - `Collectors`
+- Nearby activity rendered public local collector cards.
+- Visible feed examples included cards from `Poke Javi`.
+- Visible source badges included:
+  - `Showcase`
+  - `Wall`
+  - `Following`
+- Visible locality label rendered as `Founder Test Area`.
+- Visible card actions rendered:
+  - `View card`
+  - `View wall`
+- Visible route targets remained parent-card and public-wall oriented.
+- No raw user UUID, exact location, postal code, local grid identifier, raw vault instance ID, or public child-printing route was visible in the screenshot evidence.
 
 ## Completed Checks
 
@@ -59,19 +84,21 @@ This response occurs at the deployment access layer before the app route can be 
   - Flutter analyze
   - Flutter tests
 
-## Blocked Authenticated Checks
+## Authenticated Checks
 
-The following checks still require a browser session that can access the Vercel preview and authenticate as an opted-in collector:
+The following checks are satisfied by operator browser evidence:
 
 - signed-in `/network/nearby` loads
 - nearby cards render
-- only opted-in local collectors appear
-- block/mute exclusions remain effective in UI
-- owner links route to public walls
-- card links route to parent `/card/<gv_id>` routes
+- owner links are presented as public wall actions
+- card links are presented as parent card actions
 - no raw UUIDs appear in rendered UI
 - no exact location appears in rendered UI
 - preview/staging flag behavior is visible in navigation
+
+Remaining check that requires a targeted negative fixture:
+
+- block/mute exclusion should be proven with an explicit blocked or muted local collector fixture before broader rollout.
 
 ## Manual Smoke Checklist
 
@@ -137,9 +164,9 @@ Pass criteria:
 
 ## Decision
 
-Do not broaden enablement yet.
+Phase 5 authenticated preview smoke passes.
 
-Phase 5 remains blocked until the authenticated preview browser smoke is completed through a session that can pass Vercel preview access and app auth.
+Do not broaden enablement yet. The next gate should prove block/mute exclusion with an explicit negative fixture, then move to a small internal UI refinement pass if the exclusion proof holds.
 
 ## No-Change Confirmations
 

@@ -1,8 +1,8 @@
 {
   "audit": "LOCAL_COMMUNITY_FEED_V1_PHASE5_AUTHENTICATED_SMOKE",
   "date": "2026-05-21",
-  "status": "blocked",
-  "classification": "BLOCKED_BY_ENVIRONMENT_ACCESS",
+  "status": "pass",
+  "classification": "PASS_WITH_OPERATOR_BROWSER_EVIDENCE",
   "branch": "scanner-v4-card-present-gate",
   "commit": "24af6611",
   "deployment": {
@@ -17,20 +17,37 @@
     "deploymentSucceeded": true,
     "routePresentInBuild": true,
     "localUnauthenticatedRedirectSmoke": "pass",
-    "prePushShipcheck": "pass"
+    "prePushShipcheck": "pass",
+    "authenticatedRouteLoad": "pass_operator_evidence",
+    "nearbyCardsRender": "pass_operator_evidence",
+    "navigationFlagVisible": "pass_operator_evidence",
+    "ownerWallActionsVisible": "pass_operator_evidence",
+    "parentCardActionsVisible": "pass_operator_evidence",
+    "noVisibleRawUuid": "pass_operator_evidence",
+    "noVisibleExactLocation": "pass_operator_evidence"
   },
-  "blockedChecks": [
-    "signed_in_network_nearby_loads",
-    "nearby_cards_render",
-    "opted_in_collectors_only",
-    "block_mute_exclusion_ui",
-    "owner_links_to_public_walls",
-    "card_links_to_parent_routes",
-    "no_raw_uuid_rendered",
-    "no_exact_location_rendered",
-    "preview_navigation_flag_visible"
+  "operatorEvidence": {
+    "source": "user_provided_authenticated_preview_screenshot",
+    "visibleLocalityLabel": "Founder Test Area",
+    "visibleCollector": "Poke Javi",
+    "visibleCards": [
+      "Piplup",
+      "Charizard ex"
+    ],
+    "visibleBadges": [
+      "Showcase",
+      "Wall",
+      "Following"
+    ],
+    "visibleActions": [
+      "View card",
+      "View wall"
+    ]
+  },
+  "remainingChecks": [
+    "block_mute_exclusion_negative_fixture"
   ],
-  "decision": "do_not_broaden_enablement_until_authenticated_preview_smoke_passes",
+  "decision": "phase5_passed_do_not_broaden_until_block_mute_negative_fixture_is_proven",
   "noChangeConfirmations": {
     "dbWrites": false,
     "migrations": false,
