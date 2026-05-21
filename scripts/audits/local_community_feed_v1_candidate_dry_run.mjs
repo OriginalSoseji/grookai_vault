@@ -6,8 +6,6 @@ import { createClient } from '@supabase/supabase-js';
 
 const ROOT = process.cwd();
 const OUT_DIR = path.join(ROOT, 'docs', 'audits', 'local_community_feed_v1');
-const JSON_PATH = path.join(OUT_DIR, 'local_community_feed_v1_candidate_dry_run_20260521.json');
-const MD_PATH = path.join(OUT_DIR, 'local_community_feed_v1_candidate_dry_run_20260521.md');
 
 function loadLocalEnv() {
   for (const fileName of ['.env.local', '.env']) {
@@ -30,6 +28,15 @@ function argValue(name) {
   const prefix = `--${name}=`;
   const match = process.argv.find((arg) => arg.startsWith(prefix));
   return match ? match.slice(prefix.length).trim() : null;
+}
+
+function outputPaths() {
+  const label = clean(argValue('label')).toLowerCase().replace(/[^a-z0-9]+/g, '_').replace(/^_+|_+$/g, '');
+  const suffix = label ? `_${label}` : '';
+  return {
+    json: path.join(OUT_DIR, `local_community_feed_v1_candidate_dry_run_20260521${suffix}.json`),
+    markdown: path.join(OUT_DIR, `local_community_feed_v1_candidate_dry_run_20260521${suffix}.md`),
+  };
 }
 
 function clean(value) {
@@ -98,6 +105,7 @@ function sourceKey(row, sourceType) {
 
 async function main() {
   const client = createSupabaseClient();
+  const paths = outputPaths();
   await fs.mkdir(OUT_DIR, { recursive: true });
 
   const viewerResult = await resolveViewer(client);
@@ -109,9 +117,9 @@ async function main() {
       candidates: [],
       no_write_confirmation: true,
     };
-    await fs.writeFile(JSON_PATH, `${JSON.stringify(result, null, 2)}\n`);
-    await fs.writeFile(MD_PATH, `# LOCAL_COMMUNITY_FEED_V1 Candidate Dry Run\n\nStatus: ${result.status}\n\n${result.reason}\n\nNo DB writes.\n`);
-    console.log(JSON.stringify({ status: result.status, reason: result.reason, json: JSON_PATH, markdown: MD_PATH }, null, 2));
+    await fs.writeFile(paths.json, `${JSON.stringify(result, null, 2)}\n`);
+    await fs.writeFile(paths.markdown, `# LOCAL_COMMUNITY_FEED_V1 Candidate Dry Run\n\nStatus: ${result.status}\n\n${result.reason}\n\nNo DB writes.\n`);
+    console.log(JSON.stringify({ status: result.status, reason: result.reason, json: paths.json, markdown: paths.markdown }, null, 2));
     return;
   }
 
@@ -261,9 +269,9 @@ async function main() {
     '- No raw user IDs emitted in candidate rows.',
   ];
 
-  await fs.writeFile(JSON_PATH, `${JSON.stringify(result, null, 2)}\n`);
-  await fs.writeFile(MD_PATH, `${lines.join('\n')}\n`);
-  console.log(JSON.stringify({ status: result.status, candidateCount: candidates.length, json: JSON_PATH, markdown: MD_PATH }, null, 2));
+  await fs.writeFile(paths.json, `${JSON.stringify(result, null, 2)}\n`);
+  await fs.writeFile(paths.markdown, `${lines.join('\n')}\n`);
+  console.log(JSON.stringify({ status: result.status, candidateCount: candidates.length, json: paths.json, markdown: paths.markdown }, null, 2));
 }
 
 main().catch((error) => {

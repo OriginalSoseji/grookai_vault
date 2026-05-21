@@ -13,7 +13,7 @@ Status: NO_WRITE_CANDIDATE_DRY_RUN
 - Local settings: 2
 - Wall rows inspected: 26
 - Stream rows inspected: 23
-- Candidate rows: 4
+- Candidate rows: 0
 
 ## Exclusions
 
@@ -21,7 +21,7 @@ Status: NO_WRITE_CANDIDATE_DRY_RUN
 - missing_owner_setting: 18
 - locality_mismatch: 0
 - blocked: 0
-- muted: 0
+- muted: 4
 - duplicate_source: 14
 
 ## Safety

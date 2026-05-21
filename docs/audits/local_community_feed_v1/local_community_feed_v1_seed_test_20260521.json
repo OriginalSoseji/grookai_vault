@@ -1,0 +1,32 @@
+{
+  "audit_id": "LOCAL_COMMUNITY_FEED_V1_SEED_TEST_20260521",
+  "status": "APPLIED_ONE_OPT_IN_ROW",
+  "apply": true,
+  "collector": {
+    "slug": "pokejavi",
+    "display_name_present": true,
+    "public_profile_enabled": true,
+    "vault_sharing_enabled": true
+  },
+  "before_matching_settings_rows": 1,
+  "after_enabled_settings_rows": 1,
+  "locality": {
+    "area_label": "Founder Test Area",
+    "region_code": "CO",
+    "country_code": "US",
+    "geohash_prefix_length": 3,
+    "radius_miles": 25,
+    "exact_coordinates_written": false
+  },
+  "no_write_confirmation": {
+    "db_write_performed": true,
+    "writes_limited_to": [
+      "collector_local_discovery_settings"
+    ],
+    "scanner_changes": false,
+    "pricing_changes": false,
+    "species_dex_changes": false,
+    "identity_changes": false,
+    "public_route_changes": false
+  }
+}

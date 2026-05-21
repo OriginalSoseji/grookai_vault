@@ -137,9 +137,9 @@ async function main() {
     before_matching_settings_rows: before,
     after_enabled_settings_rows: after,
     locality: {
-      area_label,
-      region_code,
-      country_code,
+      area_label: areaLabel,
+      region_code: regionCode,
+      country_code: countryCode,
       geohash_prefix_length: geohashPrefix.length,
       radius_miles: radiusMiles,
       exact_coordinates_written: false,
