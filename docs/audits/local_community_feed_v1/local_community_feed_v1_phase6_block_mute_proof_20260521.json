@@ -1,0 +1,33 @@
+{
+  "audit_id": "LOCAL_COMMUNITY_FEED_V1_PHASE6_BLOCK_MUTE_PROOF_20260521",
+  "status": "PASS",
+  "viewer_slug": "imnotcesar",
+  "target_owner_slug": "pokejavi",
+  "baseline": {
+    "row_count": 4,
+    "target_owner_visible": true,
+    "target_owner_rows": 4
+  },
+  "block_fixture": {
+    "helper_returned_blocked": true,
+    "row_count": 0,
+    "target_owner_visible": false,
+    "target_owner_rows": 0
+  },
+  "mute_fixture": {
+    "row_count": 0,
+    "target_owner_visible": false,
+    "target_owner_rows": 0
+  },
+  "rollback_verification": {
+    "block_fixture_rows": 0,
+    "active_mute_rows": 0
+  },
+  "no_persistent_write_confirmation": true,
+  "viewer": {
+    "slug": "imnotcesar"
+  },
+  "target_owner": {
+    "slug": "pokejavi"
+  }
+}
