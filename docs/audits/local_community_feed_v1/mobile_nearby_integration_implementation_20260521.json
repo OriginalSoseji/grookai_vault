@@ -1,0 +1,42 @@
+{
+  "lane": "LOCAL_COMMUNITY_FEED_MOBILE_V1",
+  "date": "2026-05-21",
+  "status": "implemented_pending_verification",
+  "entry_point": "drawer_only",
+  "feature_flag": {
+    "name": "LOCAL_COMMUNITY_FEED_V1_ENABLED",
+    "default": false
+  },
+  "data_source": {
+    "type": "rpc",
+    "name": "local_community_feed_v1",
+    "params": ["p_limit"]
+  },
+  "created_files": [
+    "lib/services/network/local_community_feed_service.dart",
+    "lib/screens/network/network_nearby_screen.dart",
+    "test/local_community_feed_mobile_test.dart"
+  ],
+  "modified_files": ["lib/main.dart", "lib/main_shell.dart"],
+  "guardrails": {
+    "client_side_location_logic": false,
+    "network_stream_service_modified": false,
+    "bottom_nav_modified": false,
+    "scanner_modified": false,
+    "pricing_modified": false,
+    "species_dex_modified": false,
+    "identity_modified": false,
+    "db_changes": false
+  },
+  "verification": {
+    "status": "pass",
+    "commands": {
+      "dart_format": "pass",
+      "flutter_analyze": "pass",
+      "flutter_test_targeted": "pass",
+      "flutter_test": "pass",
+      "npm_run_preflight": "pass_with_deferred_debt",
+      "git_diff_check": "pass"
+    }
+  }
+}
