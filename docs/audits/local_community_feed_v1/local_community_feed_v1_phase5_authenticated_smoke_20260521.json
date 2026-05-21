@@ -1,0 +1,43 @@
+{
+  "audit": "LOCAL_COMMUNITY_FEED_V1_PHASE5_AUTHENTICATED_SMOKE",
+  "date": "2026-05-21",
+  "status": "blocked",
+  "classification": "BLOCKED_BY_ENVIRONMENT_ACCESS",
+  "branch": "scanner-v4-card-present-gate",
+  "commit": "24af6611",
+  "deployment": {
+    "provider": "vercel",
+    "environment": "Preview",
+    "url": "https://grookai-vault-4hdju69a2-sosejis-projects.vercel.app",
+    "githubDeploymentState": "success",
+    "directUnauthenticatedStatus": 401
+  },
+  "completedChecks": {
+    "branchPushed": true,
+    "deploymentSucceeded": true,
+    "routePresentInBuild": true,
+    "localUnauthenticatedRedirectSmoke": "pass",
+    "prePushShipcheck": "pass"
+  },
+  "blockedChecks": [
+    "signed_in_network_nearby_loads",
+    "nearby_cards_render",
+    "opted_in_collectors_only",
+    "block_mute_exclusion_ui",
+    "owner_links_to_public_walls",
+    "card_links_to_parent_routes",
+    "no_raw_uuid_rendered",
+    "no_exact_location_rendered",
+    "preview_navigation_flag_visible"
+  ],
+  "decision": "do_not_broaden_enablement_until_authenticated_preview_smoke_passes",
+  "noChangeConfirmations": {
+    "dbWrites": false,
+    "migrations": false,
+    "scanner": false,
+    "pricing": false,
+    "speciesDexDenominator": false,
+    "publicChildRoutes": false,
+    "productionEnablement": false
+  }
+}
