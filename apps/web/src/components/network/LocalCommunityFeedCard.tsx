@@ -5,9 +5,11 @@ import { getVaultIntentLabel, normalizeDiscoverableVaultIntent } from "@/lib/net
 
 type LocalCommunityFeedCardProps = {
   row: LocalCommunityFeedRow;
+  sourceLabels?: string[];
+  activityCount?: number;
 };
 
-function getSourceLabel(row: LocalCommunityFeedRow) {
+export function getLocalCommunityFeedSourceLabel(row: LocalCommunityFeedRow) {
   if (row.sourceType === "wall_card") {
     return "Wall";
   }
@@ -28,9 +30,16 @@ function getFreshnessLabel(createdAt: string | null) {
   });
 }
 
-export default function LocalCommunityFeedCard({ row }: LocalCommunityFeedCardProps) {
+export default function LocalCommunityFeedCard({
+  row,
+  sourceLabels,
+  activityCount = 1,
+}: LocalCommunityFeedCardProps) {
   const ownerHref = `/u/${row.ownerSlug}`;
-  const sourceLabel = getSourceLabel(row);
+  const labels = sourceLabels && sourceLabels.length > 0 ? sourceLabels : [getLocalCommunityFeedSourceLabel(row)];
+  const primarySourceLabel = labels[0] ?? "Network";
+  const secondarySourceLabels = labels.slice(1);
+  const hasMultipleSources = activityCount > 1 || secondarySourceLabels.length > 0;
 
   return (
     <article className="overflow-hidden rounded-[1.75rem] border border-slate-200 bg-white shadow-sm transition hover:border-slate-300 hover:shadow-md">
@@ -40,8 +49,13 @@ export default function LocalCommunityFeedCard({ row }: LocalCommunityFeedCardPr
             src={row.imageUrl ?? undefined}
             alt={row.cardName}
             imageClassName="aspect-[3/4] w-[136px] rounded-[1rem] border border-slate-200 bg-slate-50 object-contain p-2"
-            fallbackClassName="flex aspect-[3/4] w-[136px] items-center justify-center rounded-[1rem] border border-slate-200 bg-slate-100 px-3 text-center text-xs text-slate-500"
-            fallbackLabel={row.cardName}
+            fallbackClassName="flex aspect-[3/4] w-[136px] flex-col items-center justify-center gap-2 rounded-[1rem] border border-slate-200 bg-slate-100 px-3 text-center text-xs text-slate-500"
+            fallbackLabel={
+              <>
+                <span className="text-sm font-semibold text-slate-700">{row.cardName}</span>
+                <span>Image not available yet</span>
+              </>
+            }
           />
         </Link>
 
@@ -51,8 +65,16 @@ export default function LocalCommunityFeedCard({ row }: LocalCommunityFeedCardPr
               {row.localityLabel}
             </span>
             <span className="inline-flex rounded-full border border-emerald-200 bg-emerald-50 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-emerald-700">
-              {sourceLabel}
+              {primarySourceLabel}
             </span>
+            {secondarySourceLabels.map((label) => (
+              <span
+                key={label}
+                className="inline-flex rounded-full border border-emerald-200 bg-white px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-emerald-700"
+              >
+                {label}
+              </span>
+            ))}
             {row.relationshipContext === "following" ? (
               <span className="inline-flex rounded-full border border-sky-200 bg-sky-50 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-sky-700">
                 Following
@@ -77,6 +99,11 @@ export default function LocalCommunityFeedCard({ row }: LocalCommunityFeedCardPr
                 {row.ownerDisplayName}
               </Link>
             </p>
+            {hasMultipleSources ? (
+              <p className="text-sm text-slate-500">
+                Appears in {labels.join(", ")} for this collector.
+              </p>
+            ) : null}
           </div>
 
           <div className="flex flex-col gap-3 border-t border-slate-100 pt-4 text-xs text-slate-500 sm:flex-row sm:items-center sm:justify-between">

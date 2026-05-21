@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import type { ReactNode } from "react";
 import { useEffect, useState } from "react";
 
 type PublicCardImageProps = {
@@ -9,7 +10,7 @@ type PublicCardImageProps = {
   alt: string;
   imageClassName: string;
   fallbackClassName: string;
-  fallbackLabel?: string;
+  fallbackLabel?: ReactNode;
   loading?: "eager" | "lazy";
   sizes?: string;
 };

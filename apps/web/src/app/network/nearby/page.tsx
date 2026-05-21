@@ -3,14 +3,46 @@ import { notFound } from "next/navigation";
 import PageIntro from "@/components/layout/PageIntro";
 import PageSection from "@/components/layout/PageSection";
 import SectionHeader from "@/components/layout/SectionHeader";
-import LocalCommunityFeedCard from "@/components/network/LocalCommunityFeedCard";
+import LocalCommunityFeedCard, { getLocalCommunityFeedSourceLabel } from "@/components/network/LocalCommunityFeedCard";
 import NetworkSectionNav from "@/components/network/NetworkSectionNav";
 import { PublicCollectionEmptyState } from "@/components/public/PublicCollectionEmptyState";
 import { requireServerUser } from "@/lib/auth/requireServerUser";
-import { getLocalCommunityFeedRows } from "@/lib/network/getLocalCommunityFeedRows";
+import { getLocalCommunityFeedRows, type LocalCommunityFeedRow } from "@/lib/network/getLocalCommunityFeedRows";
 import { isLocalCommunityFeedEnabled } from "@/lib/network/localCommunityFeatureFlag";
 
 export const revalidate = 0;
+
+type NearbyDisplayRow = {
+  row: LocalCommunityFeedRow;
+  sourceLabels: string[];
+  activityCount: number;
+};
+
+function getDisplayRows(rows: LocalCommunityFeedRow[]): NearbyDisplayRow[] {
+  const groups = new Map<string, NearbyDisplayRow>();
+
+  for (const row of rows) {
+    const key = [row.ownerSlug, row.gvId, row.routeTarget].join("|");
+    const sourceLabel = getLocalCommunityFeedSourceLabel(row);
+    const existing = groups.get(key);
+
+    if (!existing) {
+      groups.set(key, {
+        row,
+        sourceLabels: [sourceLabel],
+        activityCount: 1,
+      });
+      continue;
+    }
+
+    existing.activityCount += 1;
+    if (!existing.sourceLabels.includes(sourceLabel)) {
+      existing.sourceLabels.push(sourceLabel);
+    }
+  }
+
+  return Array.from(groups.values());
+}
 
 export default async function NearbyNetworkPage() {
   const enabled = isLocalCommunityFeedEnabled();
@@ -20,15 +52,26 @@ export default async function NearbyNetworkPage() {
 
   await requireServerUser("/network/nearby");
   const feed = await getLocalCommunityFeedRows({ enabled, limit: 40 });
+  const displayRows = feed.status === "ready" ? getDisplayRows(feed.rows) : [];
 
   return (
     <div className="space-y-8 py-8">
       <PageSection surface="card" spacing="compact" className="px-5 py-5 sm:px-6">
-        <PageIntro
-          eyebrow="Nearby Collectors"
-          title="Fresh cards from your local collector area"
-          description="See public Wall, Trade, Sell, and Showcase cards from collectors who opted into local discovery."
-        />
+        <div className="space-y-4">
+          <div className="flex flex-wrap items-center gap-2">
+            <span className="inline-flex rounded-full border border-slate-200 bg-slate-50 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-600">
+              Internal preview
+            </span>
+            <span className="inline-flex rounded-full border border-emerald-200 bg-emerald-50 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-emerald-700">
+              Opt-in only
+            </span>
+          </div>
+          <PageIntro
+            eyebrow="Nearby Collectors"
+            title="Fresh cards from your local collector area"
+            description="Only public cards from opted-in collectors appear here. Exact location is never shown."
+          />
+        </div>
       </PageSection>
 
       <PageSection surface="subtle" spacing="compact" className="p-2.5">
@@ -73,20 +116,25 @@ export default async function NearbyNetworkPage() {
             title="Nearby activity"
             description={
               feed.rows.length > 0
-                ? "Public collector cards from your coarse local area."
+                ? "Only public cards from opted-in collectors appear here."
                 : "No nearby public cards are available yet."
             }
           />
 
-          {feed.rows.length === 0 ? (
+          {displayRows.length === 0 ? (
             <PublicCollectionEmptyState
               title="No nearby cards yet"
               body="Cards appear here when opted-in local collectors share Wall, Trade, Sell, or Showcase cards."
             />
           ) : (
             <div className="space-y-4">
-              {feed.rows.map((row) => (
-                <LocalCommunityFeedCard key={row.feedItemId} row={row} />
+              {displayRows.map(({ row, sourceLabels, activityCount }) => (
+                <LocalCommunityFeedCard
+                  key={`${row.ownerSlug}-${row.gvId}-${row.routeTarget}`}
+                  row={row}
+                  sourceLabels={sourceLabels}
+                  activityCount={activityCount}
+                />
               ))}
             </div>
           )}
