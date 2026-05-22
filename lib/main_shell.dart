@@ -8,18 +8,22 @@ class AppShell extends StatefulWidget {
     this.onCanonicalLinkHandled,
     this.pendingDebugAction,
     this.onDebugActionHandled,
+    required this.themeMode,
+    required this.onThemeModeChanged,
   });
 
   final PendingCanonicalLinkRequest? pendingCanonicalLink;
   final ValueChanged<int>? onCanonicalLinkHandled;
   final PendingDebugActionRequest? pendingDebugAction;
   final ValueChanged<int>? onDebugActionHandled;
+  final ThemeMode themeMode;
+  final ValueChanged<ThemeMode> onThemeModeChanged;
 
   @override
   State<AppShell> createState() => _AppShellState();
 }
 
-enum _ExploreHeaderAction { sets, compare }
+enum _ExploreHeaderAction { dex, sets, compare }
 
 enum _ShellDestination {
   // BOTTOM_NAV_LUXURY_PASS_V1
@@ -89,10 +93,13 @@ class _AppShellState extends State<AppShell> {
       AppBootTiming.markOnce('app_shell_first_post_frame');
       unawaited(_maybeHandlePendingCanonicalLink());
       unawaited(_maybeHandlePendingDebugAction());
-      if (!kFixedSlotCaptureScannerV1Enabled && kNativeScannerPhase0Enabled) {
+      if (!kScannerConstructionPlaceholderEnabled &&
+          !kFixedSlotCaptureScannerV1Enabled &&
+          kNativeScannerPhase0Enabled) {
         unawaited(NativeScannerPhase0Bridge.startSession());
       }
-      if (!kFixedSlotCaptureScannerV1Enabled) {
+      if (!kScannerConstructionPlaceholderEnabled &&
+          !kFixedSlotCaptureScannerV1Enabled) {
         unawaited(_prewarmScanCardSurface(reason: 'shell_ready'));
       }
     });
@@ -398,6 +405,10 @@ class _AppShellState extends State<AppShell> {
     await _pushPage<void>(const PublicSetsScreen());
   }
 
+  Future<void> _openDex() async {
+    await _pushPage<void>(const GrookaiDexScreen());
+  }
+
   Future<void> _openCompare() async {
     await _pushPage<void>(const CompareScreen());
   }
@@ -456,48 +467,14 @@ class _AppShellState extends State<AppShell> {
     }
   }
 
-  Future<String?> _showPublicCollectorSlugPrompt() async {
-    var draftSlug = '';
-    return showDialog<String>(
-      context: context,
-      builder: (dialogContext) => AlertDialog(
-        title: const Text('Open Public Collector'),
-        content: TextField(
-          autofocus: true,
-          textInputAction: TextInputAction.go,
-          decoration: const InputDecoration(
-            labelText: 'Collector slug',
-            hintText: 'Enter /u/slug',
-          ),
-          onChanged: (value) {
-            draftSlug = value;
-          },
-          onSubmitted: (value) {
-            Navigator.of(dialogContext).pop(value.trim());
-          },
-        ),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.of(dialogContext).pop(),
-            child: const Text('Cancel'),
-          ),
-          FilledButton(
-            onPressed: () => Navigator.of(dialogContext).pop(draftSlug.trim()),
-            child: const Text('Open'),
-          ),
-        ],
-      ),
-    );
-  }
-
   Future<void> _openPublicCollectorPrompt() async {
-    final slug = await _showPublicCollectorSlugPrompt();
+    final slug = await _showPublicCollectorSlugPrompt(context);
 
     if (!mounted) {
       return;
     }
 
-    final normalizedSlug = (slug ?? '').trim().toLowerCase();
+    final normalizedSlug = _normalizePublicCollectorSlugInput(slug ?? '');
     if (normalizedSlug.isEmpty) {
       return;
     }
@@ -506,6 +483,24 @@ class _AppShellState extends State<AppShell> {
   }
 
   Future<void> _startScanFlow() async {
+    if (kScannerConstructionPlaceholderEnabled) {
+      final action = await _pushPage<ScannerBuildPlaceholderAction>(
+        const ScannerBuildPlaceholderScreen(),
+      );
+      if (!mounted || action == null) {
+        return;
+      }
+      switch (action) {
+        case ScannerBuildPlaceholderAction.search:
+          _selectDestination(_ShellDestination.search);
+          break;
+        case ScannerBuildPlaceholderAction.vault:
+          _selectDestination(_ShellDestination.vault);
+          break;
+      }
+      return;
+    }
+
     if (kFixedSlotCaptureScannerV1Enabled) {
       await _pushPage<void>(const FixedSlotCaptureScreen());
       return;
@@ -561,6 +556,9 @@ class _AppShellState extends State<AppShell> {
               tooltip: 'Explore actions',
               onSelected: (value) {
                 switch (value) {
+                  case _ExploreHeaderAction.dex:
+                    _openDex();
+                    break;
                   case _ExploreHeaderAction.sets:
                     _openSets();
                     break;
@@ -571,8 +569,12 @@ class _AppShellState extends State<AppShell> {
               },
               itemBuilder: (context) => [
                 const PopupMenuItem(
+                  value: _ExploreHeaderAction.dex,
+                  child: Text('Grookai Dex'),
+                ),
+                const PopupMenuItem(
                   value: _ExploreHeaderAction.sets,
-                  child: Text('Browse sets'),
+                  child: Text('Sets'),
                 ),
                 if (compareCount > 0)
                   PopupMenuItem(
@@ -669,9 +671,14 @@ class _AppShellState extends State<AppShell> {
         onOpenFeed: () => _selectDestination(_ShellDestination.feed),
         onOpenWall: () => _selectDestination(_ShellDestination.wall),
         onOpenVault: () => _selectDestination(_ShellDestination.vault),
+        onOpenDex: _openDex,
+        onOpenSets: _openSets,
+        onOpenCompare: _openCompare,
         onOpenMessages: _openMessages,
         onOpenNearby: _openNearby,
         onOpenAccount: _openAccountHub,
+        themeMode: widget.themeMode,
+        onThemeModeChanged: widget.onThemeModeChanged,
       ),
       appBar: AppBar(
         toolbarHeight: kShellAppBarHeight,
@@ -813,9 +820,14 @@ class _GrookaiAppDrawer extends StatelessWidget {
     required this.onOpenFeed,
     required this.onOpenWall,
     required this.onOpenVault,
+    required this.onOpenDex,
+    required this.onOpenSets,
+    required this.onOpenCompare,
     required this.onOpenMessages,
     required this.onOpenNearby,
     required this.onOpenAccount,
+    required this.themeMode,
+    required this.onThemeModeChanged,
   });
 
   final _ShellDestination currentDestination;
@@ -823,9 +835,14 @@ class _GrookaiAppDrawer extends StatelessWidget {
   final VoidCallback onOpenFeed;
   final VoidCallback onOpenWall;
   final VoidCallback onOpenVault;
+  final Future<void> Function() onOpenDex;
+  final Future<void> Function() onOpenSets;
+  final Future<void> Function() onOpenCompare;
   final Future<void> Function() onOpenMessages;
   final Future<void> Function() onOpenNearby;
   final Future<void> Function() onOpenAccount;
+  final ThemeMode themeMode;
+  final ValueChanged<ThemeMode> onThemeModeChanged;
 
   @override
   Widget build(BuildContext context) {
@@ -890,6 +907,21 @@ class _GrookaiAppDrawer extends StatelessWidget {
         ),
         const Divider(indent: 20, endIndent: 20),
         _GrookaiDrawerTile(
+          icon: Icons.catching_pokemon_rounded,
+          label: 'Grookai Dex',
+          onTap: () => _closeThenAsync(context, onOpenDex),
+        ),
+        _GrookaiDrawerTile(
+          icon: Icons.style_rounded,
+          label: 'Sets',
+          onTap: () => _closeThenAsync(context, onOpenSets),
+        ),
+        _GrookaiDrawerTile(
+          icon: Icons.compare_arrows_rounded,
+          label: 'Compare',
+          onTap: () => _closeThenAsync(context, onOpenCompare),
+        ),
+        _GrookaiDrawerTile(
           icon: Icons.mail_rounded,
           label: 'Messages',
           onTap: () => _closeThenAsync(context, onOpenMessages),
@@ -898,6 +930,11 @@ class _GrookaiAppDrawer extends StatelessWidget {
           icon: Icons.account_circle_rounded,
           label: 'Account',
           onTap: () => _closeThenAsync(context, onOpenAccount),
+        ),
+        const Divider(indent: 20, endIndent: 20),
+        _GrookaiDrawerAppearanceSelector(
+          value: themeMode,
+          onChanged: onThemeModeChanged,
         ),
       ],
     );
@@ -948,6 +985,77 @@ class _GrookaiDrawerTile extends StatelessWidget {
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(18)),
       contentPadding: const EdgeInsets.symmetric(horizontal: 24),
       onTap: onTap,
+    );
+  }
+}
+
+class _GrookaiDrawerAppearanceSelector extends StatelessWidget {
+  const _GrookaiDrawerAppearanceSelector({
+    required this.value,
+    required this.onChanged,
+  });
+
+  final ThemeMode value;
+  final ValueChanged<ThemeMode> onChanged;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final colorScheme = theme.colorScheme;
+
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(24, 10, 24, 18),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            'Appearance',
+            style: theme.textTheme.labelLarge?.copyWith(
+              color: colorScheme.onSurface.withValues(alpha: 0.68),
+              fontWeight: FontWeight.w700,
+            ),
+          ),
+          const SizedBox(height: 10),
+          SizedBox(
+            width: double.infinity,
+            child: SegmentedButton<ThemeMode>(
+              showSelectedIcon: false,
+              segments: const [
+                ButtonSegment<ThemeMode>(
+                  value: ThemeMode.system,
+                  icon: Icon(Icons.auto_awesome_rounded, size: 17),
+                  label: Text('Auto'),
+                ),
+                ButtonSegment<ThemeMode>(
+                  value: ThemeMode.light,
+                  icon: Icon(Icons.light_mode_rounded, size: 17),
+                  label: Text('Light'),
+                ),
+                ButtonSegment<ThemeMode>(
+                  value: ThemeMode.dark,
+                  icon: Icon(Icons.dark_mode_rounded, size: 17),
+                  label: Text('Dark'),
+                ),
+              ],
+              selected: {value},
+              onSelectionChanged: (selection) {
+                final selected = selection.isEmpty ? null : selection.first;
+                if (selected != null) {
+                  onChanged(selected);
+                }
+              },
+              style: ButtonStyle(
+                visualDensity: VisualDensity.compact,
+                textStyle: WidgetStatePropertyAll(
+                  theme.textTheme.labelMedium?.copyWith(
+                    fontWeight: FontWeight.w800,
+                  ),
+                ),
+              ),
+            ),
+          ),
+        ],
+      ),
     );
   }
 }

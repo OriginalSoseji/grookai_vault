@@ -220,6 +220,8 @@ class _PublicSetDetailScreenState extends State<PublicSetDetailScreen> {
                   ),
                 ),
                 const SizedBox(height: 10),
+                _SetDetailMasterSetPanel(stats: detail.masterSetStats),
+                const SizedBox(height: 10),
                 Row(
                   children: [
                     Expanded(
@@ -328,6 +330,200 @@ ResolvedImagePresentation _setCardImagePresentation(PublicSetCard card) {
     imageStatus: card.imageStatus,
     imageNote: card.imageNote,
   );
+}
+
+class _SetDetailMasterSetPanel extends StatelessWidget {
+  const _SetDetailMasterSetPanel({required this.stats});
+
+  final PublicSetMasterSetStats stats;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final colorScheme = theme.colorScheme;
+    final completionPercent = stats.completionPercent;
+
+    return _SetDetailSurfaceCard(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            children: [
+              Icon(
+                Icons.grid_view_rounded,
+                size: 19,
+                color: colorScheme.primary,
+              ),
+              const SizedBox(width: 8),
+              Expanded(
+                child: Text(
+                  'Master Set',
+                  style: theme.textTheme.titleSmall?.copyWith(
+                    fontWeight: FontWeight.w800,
+                  ),
+                ),
+              ),
+              Text(
+                completionPercent == null
+                    ? '${stats.variantOptionCount}'
+                    : '$completionPercent%',
+                style: theme.textTheme.titleSmall?.copyWith(
+                  fontWeight: FontWeight.w800,
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(height: 10),
+          Row(
+            children: [
+              _SetMasterMetric(
+                label: 'Prints',
+                value: '${stats.parentPrintCount}',
+              ),
+              _SetMasterMetric(
+                label: 'Options',
+                value: '${stats.variantOptionCount}',
+              ),
+              _SetMasterMetric(
+                label: 'Owned',
+                value: stats.ownedVariantOptionCount == null
+                    ? 'Sign in'
+                    : '${stats.ownedVariantOptionCount}/${stats.variantOptionCount}',
+              ),
+            ],
+          ),
+          if (completionPercent != null) ...[
+            const SizedBox(height: 10),
+            ClipRRect(
+              borderRadius: BorderRadius.circular(999),
+              child: LinearProgressIndicator(
+                minHeight: 7,
+                value: completionPercent / 100,
+                backgroundColor: colorScheme.surfaceContainerHighest.withValues(
+                  alpha: 0.72,
+                ),
+              ),
+            ),
+          ],
+          if (stats.unclassifiedOwnedCount > 0) ...[
+            const SizedBox(height: 9),
+            Text(
+              '${stats.unclassifiedOwnedCount} owned copies need finish selection',
+              style: theme.textTheme.bodySmall?.copyWith(
+                color: colorScheme.onSurface.withValues(alpha: 0.62),
+                fontWeight: FontWeight.w600,
+              ),
+            ),
+          ],
+        ],
+      ),
+    );
+  }
+}
+
+class _SetMasterMetric extends StatelessWidget {
+  const _SetMasterMetric({required this.label, required this.value});
+
+  final String label;
+  final String value;
+
+  @override
+  Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
+    return Expanded(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            value,
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
+            style: Theme.of(
+              context,
+            ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w800),
+          ),
+          const SizedBox(height: 2),
+          Text(
+            label,
+            style: Theme.of(context).textTheme.labelSmall?.copyWith(
+              color: colorScheme.onSurface.withValues(alpha: 0.56),
+              fontWeight: FontWeight.w700,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _SetPrintingOptionChips extends StatelessWidget {
+  const _SetPrintingOptionChips({required this.card, required this.compact});
+
+  final PublicSetCard card;
+  final bool compact;
+
+  @override
+  Widget build(BuildContext context) {
+    final visible = card.printings
+        .take(compact ? 3 : 4)
+        .toList(growable: false);
+    return Wrap(
+      spacing: 5,
+      runSpacing: 5,
+      children: [
+        for (final option in visible)
+          _SetPrintingOptionChip(
+            label: option.ownedCount > 0
+                ? '${option.finishName} ${option.ownedCount}x'
+                : option.finishName,
+            owned: option.ownedCount > 0,
+          ),
+        if (card.printings.length > visible.length)
+          _SetPrintingOptionChip(
+            label: '+${card.printings.length - visible.length}',
+            owned: false,
+          ),
+      ],
+    );
+  }
+}
+
+class _SetPrintingOptionChip extends StatelessWidget {
+  const _SetPrintingOptionChip({required this.label, required this.owned});
+
+  final String label;
+  final bool owned;
+
+  @override
+  Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
+    return DecoratedBox(
+      decoration: BoxDecoration(
+        color: owned
+            ? Colors.green.withValues(alpha: 0.10)
+            : colorScheme.surfaceContainerHighest.withValues(alpha: 0.54),
+        borderRadius: BorderRadius.circular(999),
+        border: Border.all(
+          color: owned
+              ? Colors.green.withValues(alpha: 0.22)
+              : colorScheme.outline.withValues(alpha: 0.08),
+        ),
+      ),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 7, vertical: 4),
+        child: Text(
+          label,
+          maxLines: 1,
+          overflow: TextOverflow.ellipsis,
+          style: Theme.of(context).textTheme.labelSmall?.copyWith(
+            color: owned ? Colors.green.shade800 : colorScheme.onSurfaceVariant,
+            fontWeight: FontWeight.w800,
+            fontSize: 10.6,
+          ),
+        ),
+      ),
+    );
+  }
 }
 
 class _ImageStatusBadge extends StatelessWidget {
@@ -505,6 +701,10 @@ class _SetCardTile extends StatelessWidget {
                         label: imagePresentation.compactBadgeLabel!,
                         strong: imagePresentation.isCollisionRepresentative,
                       ),
+                    ],
+                    if (card.printings.isNotEmpty) ...[
+                      SizedBox(height: compact ? 6 : 8),
+                      _SetPrintingOptionChips(card: card, compact: compact),
                     ],
                     SizedBox(height: compact ? 5 : 6),
                     SizedBox(

@@ -26,7 +26,7 @@
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
-	<string>grookai_vault</string>
+	<string>Grookai Vault</string>
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
@@ -43,6 +43,8 @@
 	<string>Grookai Vault may save card images or exports to your photo library when you choose to do so.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>Grookai Vault uses your photo library so you can select card images and upload them to your collection.</string>
+	<key>ITSAppUsesNonExemptEncryption</key>
+	<false/>
 	<key>FlutterDeepLinkingEnabled</key>
 	<false/>
 	<key>UIApplicationSceneManifest</key>

@@ -25,6 +25,8 @@ ios/Pods/
 ios/Flutter/Flutter.framework
 ios/Flutter/Flutter.podspec
 ios/Flutter/Generated.xcconfig
+ios/Flutter/DebugSecrets.xcconfig
+ios/Flutter/ReleaseSecrets.xcconfig
 ios/Flutter/ephemeral/
 # macOS
 macos/Flutter/ephemeral/

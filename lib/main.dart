@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter/services.dart';
 import 'package:share_plus/share_plus.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:visibility_detector/visibility_detector.dart';
 
@@ -18,6 +19,7 @@ import 'models/provisional_card.dart';
 import 'secrets.dart';
 import 'screens/account/account_screen.dart';
 import 'screens/compare/compare_screen.dart';
+import 'screens/dex/grookai_dex_screen.dart';
 import 'screens/network/network_inbox_screen.dart';
 import 'screens/network/network_nearby_screen.dart';
 import 'screens/network/network_screen.dart';
@@ -29,6 +31,7 @@ import 'screens/vault/vault_gvvi_screen.dart';
 import 'screens/scanner/condition_camera_screen.dart';
 import 'screens/scanner/fixed_slot_capture_screen.dart';
 import 'screens/scanner/native_scanner_phase0_screen.dart';
+import 'screens/scanner/scanner_build_placeholder_screen.dart';
 import 'services/network/card_engagement_service.dart';
 import 'services/network/local_community_feed_service.dart';
 import 'services/network/smart_feed_service.dart';
@@ -66,6 +69,10 @@ const bool kFixedSlotCaptureScannerV1Enabled = bool.fromEnvironment(
   'FIXED_SLOT_CAPTURE_SCANNER_V1',
   defaultValue: true,
 );
+const bool kScannerConstructionPlaceholderEnabled = bool.fromEnvironment(
+  'SCANNER_CONSTRUCTION_PLACEHOLDER',
+  defaultValue: true,
+);
 const bool kFeedDebugOverlay = true;
 const bool _kCatalogOwnershipDiagnostics = false;
 const bool _kGoogleOAuthDiagnostics = true;
@@ -87,6 +94,76 @@ const double _kWallMatchGridChildAspectRatio = 0.5;
 const double _kWallMatchTitleHeight = 40;
 const double _kWallMatchMetaHeight = 22;
 const double _kWallMatchBottomRhythmHeight = 27;
+
+String _normalizePublicCollectorSlugInput(String value) {
+  var normalized = value.trim().toLowerCase();
+  if (normalized.isEmpty) {
+    return '';
+  }
+
+  final parsed = Uri.tryParse(normalized);
+  if (parsed != null && parsed.hasScheme && parsed.pathSegments.isNotEmpty) {
+    final segments = parsed.pathSegments
+        .map((segment) => segment.trim())
+        .where((segment) => segment.isNotEmpty)
+        .toList(growable: false);
+    final userSegmentIndex = segments.indexWhere((segment) => segment == 'u');
+    if (userSegmentIndex >= 0 && userSegmentIndex + 1 < segments.length) {
+      normalized = segments[userSegmentIndex + 1];
+    } else if (segments.isNotEmpty) {
+      normalized = segments.last;
+    }
+  }
+
+  normalized = normalized.split(RegExp(r'[?#]')).first.trim();
+  normalized = normalized.replaceFirst(RegExp(r'^/+'), '');
+  if (normalized.startsWith('u/')) {
+    normalized = normalized.substring(2);
+  }
+  if (normalized.startsWith('@')) {
+    normalized = normalized.substring(1);
+  }
+  return normalized
+      .trim()
+      .replaceAll(RegExp(r'[\s_]+'), '-')
+      .replaceAll(RegExp(r'-+'), '-')
+      .replaceAll(RegExp(r'^-+|-+$'), '');
+}
+
+Future<String?> _showPublicCollectorSlugPrompt(BuildContext context) async {
+  var draftSlug = '';
+  return showDialog<String>(
+    context: context,
+    builder: (dialogContext) => AlertDialog(
+      title: const Text('Open Public Collector'),
+      content: TextField(
+        autofocus: true,
+        textInputAction: TextInputAction.go,
+        decoration: const InputDecoration(
+          labelText: 'Collector slug',
+          hintText: 'Enter /u/slug, @slug, or slug',
+          prefixIcon: Icon(Icons.alternate_email_rounded),
+        ),
+        onChanged: (value) {
+          draftSlug = value;
+        },
+        onSubmitted: (value) {
+          Navigator.of(dialogContext).pop(value);
+        },
+      ),
+      actions: [
+        TextButton(
+          onPressed: () => Navigator.of(dialogContext).pop(),
+          child: const Text('Cancel'),
+        ),
+        FilledButton(
+          onPressed: () => Navigator.of(dialogContext).pop(draftSlug),
+          child: const Text('Open'),
+        ),
+      ],
+    ),
+  );
+}
 
 ThemeData _buildGrookaiTheme(Brightness brightness) {
   const seed = Color(0xFF4A90E2);
@@ -1986,6 +2063,7 @@ class _MyAppState extends State<MyApp> {
     'grookai/debug_intents_v1',
   );
   static const String _scannerV4AutoTestAction = 'scanner_v4_auto_test';
+  static const String _themeModePreferenceKey = 'grookai_theme_mode_v1';
 
   final AppLinks _appLinks = AppLinks();
   StreamSubscription<Uri>? _linkSubscription;
@@ -1998,11 +2076,13 @@ class _MyAppState extends State<MyApp> {
   Session? _authSession;
   bool _authRecoveryPending = false;
   bool _bootWarmupVisible = true;
+  ThemeMode _themeMode = ThemeMode.system;
 
   @override
   void initState() {
     super.initState();
     AppBootTiming.mark('my_app_init_state_start');
+    unawaited(_loadThemeModePreference());
     final initialSession = Supabase.instance.client.auth.currentSession;
     _authSession = initialSession;
     _authRecoveryPending = initialSession?.isExpired ?? false;
@@ -2055,6 +2135,63 @@ class _MyAppState extends State<MyApp> {
     _linkSubscription?.cancel();
     _authSubscription?.cancel();
     super.dispose();
+  }
+
+  Future<void> _loadThemeModePreference() async {
+    try {
+      final prefs = await SharedPreferences.getInstance();
+      final storedMode = prefs.getString(_themeModePreferenceKey);
+      final mode = _themeModeFromPreference(storedMode);
+      if (!mounted || mode == _themeMode) {
+        return;
+      }
+      setState(() {
+        _themeMode = mode;
+      });
+    } catch (_) {
+      // The app can still follow system appearance if local prefs are unavailable.
+    }
+  }
+
+  Future<void> _setThemeMode(ThemeMode mode) async {
+    if (mode == _themeMode) {
+      return;
+    }
+    setState(() {
+      _themeMode = mode;
+    });
+    try {
+      final prefs = await SharedPreferences.getInstance();
+      await prefs.setString(
+        _themeModePreferenceKey,
+        _themeModePreferenceValue(mode),
+      );
+    } catch (_) {
+      // Keep the in-memory choice for this run even if persistence fails.
+    }
+  }
+
+  ThemeMode _themeModeFromPreference(String? value) {
+    switch (value) {
+      case 'light':
+        return ThemeMode.light;
+      case 'dark':
+        return ThemeMode.dark;
+      case 'system':
+      default:
+        return ThemeMode.system;
+    }
+  }
+
+  String _themeModePreferenceValue(ThemeMode mode) {
+    switch (mode) {
+      case ThemeMode.light:
+        return 'light';
+      case ThemeMode.dark:
+        return 'dark';
+      case ThemeMode.system:
+        return 'system';
+    }
   }
 
   Future<void> _attachDebugIntentBridge() async {
@@ -2271,7 +2408,7 @@ class _MyAppState extends State<MyApp> {
       debugShowCheckedModeBanner: false,
       theme: _buildGrookaiTheme(Brightness.light),
       darkTheme: _buildGrookaiTheme(Brightness.dark),
-      themeMode: ThemeMode.system,
+      themeMode: _themeMode,
       home: Builder(
         builder: (context) {
           final session = _authSession;
@@ -2311,6 +2448,8 @@ class _MyAppState extends State<MyApp> {
                     onCanonicalLinkHandled: _handleCanonicalLinkConsumed,
                     pendingDebugAction: _pendingDebugAction,
                     onDebugActionHandled: _handleDebugActionConsumed,
+                    themeMode: _themeMode,
+                    onThemeModeChanged: _setThemeMode,
                   );
                 }()
               : () {
@@ -2916,6 +3055,24 @@ class HomePageState extends State<HomePage> {
     await Navigator.of(
       context,
     ).push(MaterialPageRoute<void>(builder: (_) => const PublicSetsScreen()));
+  }
+
+  Future<void> _openPublicCollectorBySlug() async {
+    final slug = await _showPublicCollectorSlugPrompt(context);
+    if (!mounted) {
+      return;
+    }
+
+    final normalizedSlug = _normalizePublicCollectorSlugInput(slug ?? '');
+    if (normalizedSlug.isEmpty) {
+      return;
+    }
+
+    await Navigator.of(context).push(
+      MaterialPageRoute<void>(
+        builder: (_) => PublicCollectorScreen(slug: normalizedSlug),
+      ),
+    );
   }
 
   Future<void> _openCompareScreen() async {
@@ -3907,6 +4064,21 @@ class HomePageState extends State<HomePage> {
                       ),
                       icon: const Icon(Icons.grid_view_rounded, size: 17),
                       label: const Text('Browse sets'),
+                    ),
+                  ),
+                  const SizedBox(width: 8),
+                  Expanded(
+                    child: OutlinedButton.icon(
+                      onPressed: _openPublicCollectorBySlug,
+                      style: OutlinedButton.styleFrom(
+                        minimumSize: const Size(0, 36),
+                        padding: const EdgeInsets.symmetric(horizontal: 12),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(16),
+                        ),
+                      ),
+                      icon: const Icon(Icons.alternate_email_rounded, size: 17),
+                      label: const Text('Open slug'),
                     ),
                   ),
                   const SizedBox(width: 8),

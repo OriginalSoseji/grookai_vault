@@ -1,6 +1,7 @@
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 import 'card_surface_pricing_service.dart';
+import '../vault/vault_card_service.dart';
 
 class PublicSetSummary {
   const PublicSetSummary({
@@ -32,6 +33,7 @@ class PublicSetCard {
     required this.gvId,
     required this.name,
     required this.number,
+    this.ownedCount = 0,
     this.variantKey,
     this.printedIdentityModifier,
     this.setIdentityModel,
@@ -42,6 +44,7 @@ class PublicSetCard {
     this.imageNote,
     this.displayImageUrl,
     this.displayImageKind,
+    this.printings = const <PublicSetPrintingOption>[],
     this.pricing,
   });
 
@@ -49,6 +52,7 @@ class PublicSetCard {
   final String gvId;
   final String name;
   final String number;
+  final int ownedCount;
   final String? variantKey;
   final String? printedIdentityModifier;
   final String? setIdentityModel;
@@ -59,14 +63,58 @@ class PublicSetCard {
   final String? imageNote;
   final String? displayImageUrl;
   final String? displayImageKind;
+  final List<PublicSetPrintingOption> printings;
   final CardSurfacePricingData? pricing;
 }
 
+class PublicSetPrintingOption {
+  const PublicSetPrintingOption({
+    required this.id,
+    required this.finishName,
+    this.printingGvId,
+    this.finishKey,
+    this.ownedCount = 0,
+  });
+
+  final String id;
+  final String finishName;
+  final String? printingGvId;
+  final String? finishKey;
+  final int ownedCount;
+}
+
+class PublicSetMasterSetStats {
+  const PublicSetMasterSetStats({
+    required this.parentPrintCount,
+    required this.variantOptionCount,
+    this.ownedVariantOptionCount,
+    this.unclassifiedOwnedCount = 0,
+  });
+
+  final int parentPrintCount;
+  final int variantOptionCount;
+  final int? ownedVariantOptionCount;
+  final int unclassifiedOwnedCount;
+
+  int? get completionPercent {
+    final owned = ownedVariantOptionCount;
+    if (owned == null || variantOptionCount <= 0) {
+      return null;
+    }
+    return ((owned / variantOptionCount) * 100).round().clamp(0, 100);
+  }
+}
+
 class PublicSetDetail {
-  const PublicSetDetail({required this.summary, required this.cards});
+  const PublicSetDetail({
+    required this.summary,
+    required this.cards,
+    required this.masterSetStats,
+  });
 
   final PublicSetSummary summary;
   final List<PublicSetCard> cards;
+  final PublicSetMasterSetStats masterSetStats;
 }
 
 enum PublicSetFilter { all, modern, special, alphabetical, newest, oldest }
@@ -217,6 +265,21 @@ class PublicSetsService {
       client: client,
       cardPrintIds: cardPrintIds,
     );
+    final ownedCountsById = _cleanText(client.auth.currentUser?.id).isEmpty
+        ? const <String, int>{}
+        : await VaultCardService.getOwnedCountsByCardPrintIds(
+            client: client,
+            cardPrintIds: cardPrintIds,
+          );
+    final ownedPrintingCounts = await _fetchOwnedPrintingCounts(
+      client: client,
+      cardPrintIds: cardPrintIds,
+    );
+    final printingsByCardPrintId = await _fetchPrintingOptions(
+      client: client,
+      cardPrintIds: cardPrintIds,
+      ownedCountsByPrintingId: ownedPrintingCounts,
+    );
 
     return rawRows
         .map((row) {
@@ -246,6 +309,7 @@ class PublicSetsService {
                 ? 'Unknown card'
                 : _cleanText(row['name']),
             number: displayNumber,
+            ownedCount: ownedCountsById[cardPrintId] ?? 0,
             variantKey: _normalizeOptionalText(row['variant_key']),
             printedIdentityModifier: _normalizeOptionalText(
               row['printed_identity_modifier'],
@@ -279,6 +343,7 @@ class PublicSetsService {
                 : _normalizeHttpUrl(row['representative_image_url']) != null
                 ? 'representative'
                 : 'missing',
+            printings: printingsByCardPrintId[cardPrintId] ?? const [],
             pricing: pricingById[cardPrintId],
           );
         })
@@ -289,19 +354,26 @@ class PublicSetsService {
   static Future<PublicSetDetail?> fetchSetDetail({
     required SupabaseClient client,
     required String setCode,
-    int cardLimit = 72,
+    int? cardLimit,
   }) async {
     final summary = await fetchSetByCode(client: client, setCode: setCode);
     if (summary == null) {
       return null;
     }
 
-    final cards = await fetchSetCards(
+    final cards = await _fetchSetCardsForDetail(
       client: client,
       setCode: summary.code,
-      limit: cardLimit,
+      cardLimit: cardLimit,
     );
-    return PublicSetDetail(summary: summary, cards: cards);
+    return PublicSetDetail(
+      summary: summary,
+      cards: cards,
+      masterSetStats: _buildMasterSetStats(
+        cards: cards,
+        signedIn: _cleanText(client.auth.currentUser?.id).isNotEmpty,
+      ),
+    );
   }
 
   static List<PublicSetSummary> filterAndSortSets({
@@ -375,6 +447,35 @@ class PublicSetsService {
     return filtered;
   }
 
+  static Future<List<PublicSetCard>> _fetchSetCardsForDetail({
+    required SupabaseClient client,
+    required String setCode,
+    int? cardLimit,
+  }) async {
+    const pageSize = 250;
+    final cards = <PublicSetCard>[];
+    while (cardLimit == null || cards.length < cardLimit) {
+      final remaining = cardLimit == null ? pageSize : cardLimit - cards.length;
+      final batchSize = remaining < pageSize ? remaining : pageSize;
+      if (batchSize <= 0) {
+        break;
+      }
+
+      final batch = await fetchSetCards(
+        client: client,
+        setCode: setCode,
+        offset: cards.length,
+        limit: batchSize,
+      );
+      cards.addAll(batch);
+
+      if (batch.length < batchSize) {
+        break;
+      }
+    }
+    return cards;
+  }
+
   static Future<List<Map<String, dynamic>>> _fetchAllCanonicalSetCodes(
     SupabaseClient client,
   ) async {
@@ -402,6 +503,211 @@ class PublicSetsService {
     }
 
     return rows;
+  }
+
+  static PublicSetMasterSetStats _buildMasterSetStats({
+    required List<PublicSetCard> cards,
+    required bool signedIn,
+  }) {
+    var variantOptionCount = 0;
+    var ownedVariantOptionCount = 0;
+    var unclassifiedOwnedCount = 0;
+
+    for (final card in cards) {
+      if (card.printings.isEmpty) {
+        variantOptionCount += 1;
+        if (card.ownedCount > 0) {
+          ownedVariantOptionCount += 1;
+        }
+        continue;
+      }
+
+      variantOptionCount += card.printings.length;
+      final ownedPrintingCount = card.printings.fold<int>(
+        0,
+        (sum, option) => sum + option.ownedCount,
+      );
+      ownedVariantOptionCount += card.printings
+          .where((option) => option.ownedCount > 0)
+          .length;
+      unclassifiedOwnedCount += (card.ownedCount - ownedPrintingCount).clamp(
+        0,
+        card.ownedCount,
+      );
+    }
+
+    return PublicSetMasterSetStats(
+      parentPrintCount: cards.length,
+      variantOptionCount: variantOptionCount,
+      ownedVariantOptionCount: signedIn ? ownedVariantOptionCount : null,
+      unclassifiedOwnedCount: signedIn ? unclassifiedOwnedCount : 0,
+    );
+  }
+
+  static Future<Map<String, int>> _fetchOwnedPrintingCounts({
+    required SupabaseClient client,
+    required Iterable<String> cardPrintIds,
+  }) async {
+    final userId = _cleanText(client.auth.currentUser?.id);
+    if (userId.isEmpty) {
+      return const <String, int>{};
+    }
+
+    final counts = <String, int>{};
+    for (final chunk in _chunks(cardPrintIds, 250)) {
+      late final List<dynamic> data;
+      try {
+        data =
+            await client
+                    .from('vault_item_instances')
+                    .select('card_printing_id')
+                    .eq('user_id', userId)
+                    .filter('archived_at', 'is', null)
+                    .inFilter('card_print_id', chunk)
+                as List<dynamic>;
+      } catch (_) {
+        return counts;
+      }
+      for (final raw in data) {
+        final row = Map<String, dynamic>.from(raw as Map);
+        final printingId = _cleanText(row['card_printing_id']);
+        if (printingId.isNotEmpty) {
+          counts[printingId] = (counts[printingId] ?? 0) + 1;
+        }
+      }
+    }
+
+    return counts;
+  }
+
+  static Future<Map<String, List<PublicSetPrintingOption>>>
+  _fetchPrintingOptions({
+    required SupabaseClient client,
+    required Iterable<String> cardPrintIds,
+    required Map<String, int> ownedCountsByPrintingId,
+  }) async {
+    final values = <String, List<_SortablePublicSetPrintingOption>>{};
+    for (final chunk in _chunks(cardPrintIds, 250)) {
+      late final List<dynamic> data;
+      try {
+        data =
+            await client
+                    .from('card_printings')
+                    .select(
+                      'id,card_print_id,printing_gv_id,finish_key,finish_keys(label,sort_order)',
+                    )
+                    .inFilter('card_print_id', chunk)
+                as List<dynamic>;
+      } catch (_) {
+        try {
+          data =
+              await client
+                      .from('card_printings')
+                      .select('id,card_print_id,printing_gv_id,finish_key')
+                      .inFilter('card_print_id', chunk)
+                  as List<dynamic>;
+        } catch (_) {
+          return values.map((cardPrintId, options) {
+            return MapEntry(
+              cardPrintId,
+              options.map((value) => value.option).toList(growable: false),
+            );
+          });
+        }
+      }
+      for (final raw in data) {
+        final row = Map<String, dynamic>.from(raw as Map);
+        final id = _cleanText(row['id']);
+        final cardPrintId = _cleanText(row['card_print_id']);
+        if (id.isEmpty || cardPrintId.isEmpty) {
+          continue;
+        }
+
+        final finishRecord = _firstNestedRecord(row['finish_keys']);
+        final finishName =
+            _finishLabel(
+              finishKey: _normalizeOptionalText(row['finish_key']),
+              finishLabel: _normalizeOptionalText(finishRecord?['label']),
+            ) ??
+            'Standard';
+        (values[cardPrintId] ??= <_SortablePublicSetPrintingOption>[]).add(
+          _SortablePublicSetPrintingOption(
+            option: PublicSetPrintingOption(
+              id: id,
+              printingGvId: _normalizeOptionalText(row['printing_gv_id']),
+              finishKey: _normalizeOptionalText(row['finish_key']),
+              finishName: finishName,
+              ownedCount: ownedCountsByPrintingId[id] ?? 0,
+            ),
+            sortOrder: _intValue(finishRecord?['sort_order'], fallback: 9999),
+          ),
+        );
+      }
+    }
+
+    return values.map((cardPrintId, options) {
+      options.sort((left, right) {
+        if (left.sortOrder != right.sortOrder) {
+          return left.sortOrder.compareTo(right.sortOrder);
+        }
+        return left.option.finishName.compareTo(right.option.finishName);
+      });
+      return MapEntry(
+        cardPrintId,
+        options.map((value) => value.option).toList(growable: false),
+      );
+    });
+  }
+
+  static Map<String, dynamic>? _firstNestedRecord(dynamic value) {
+    if (value is Map) {
+      return Map<String, dynamic>.from(value);
+    }
+    if (value is List && value.isNotEmpty && value.first is Map) {
+      return Map<String, dynamic>.from(value.first as Map);
+    }
+    return null;
+  }
+
+  static String? _finishLabel({String? finishKey, String? finishLabel}) {
+    switch (_cleanText(finishKey).toLowerCase()) {
+      case 'normal':
+        return 'Normal';
+      case 'holo':
+        return 'Holo';
+      case 'reverse':
+        return 'Reverse Holo';
+      case 'pokeball':
+        return 'Poke Ball';
+      case 'masterball':
+        return 'Master Ball';
+    }
+    return _normalizeOptionalText(finishLabel);
+  }
+
+  static List<List<String>> _chunks(Iterable<String> values, int size) {
+    final normalized = values
+        .map(_cleanText)
+        .where((value) => value.isNotEmpty)
+        .toSet()
+        .toList(growable: false);
+    final chunks = <List<String>>[];
+    for (var index = 0; index < normalized.length; index += size) {
+      chunks.add(
+        normalized.sublist(
+          index,
+          index + size > normalized.length ? normalized.length : index + size,
+        ),
+      );
+    }
+    return chunks;
+  }
+
+  static int _intValue(dynamic value, {int fallback = 0}) {
+    if (value is num) {
+      return value.toInt();
+    }
+    return int.tryParse(_cleanText(value)) ?? fallback;
   }
 
   static PublicSetSummary _chooseCanonicalSet(
@@ -524,4 +830,14 @@ class PublicSetsService {
 
     return url;
   }
+}
+
+class _SortablePublicSetPrintingOption {
+  const _SortablePublicSetPrintingOption({
+    required this.option,
+    required this.sortOrder,
+  });
+
+  final PublicSetPrintingOption option;
+  final int sortOrder;
 }
