@@ -1,5 +1,6 @@
 # CHECKPOINT_INDEX
 
+- `LOCAL_COMMUNITY_FEED_V1_INTERNAL_PREVIEW_COMPLETE` — `2026-05-21` — Permanent project-memory checkpoint locking Local Community Feed V1 as accepted internal-preview infrastructure, with authenticated opt-in access, coarse locality only, block/mute safety, sanitized public-safe images, mobile drawer-only scope, and no public production enablement
 - `FIXED_SLOT_SCANNER_RESET_V1` — `2026-05-15` — L3 scanner architecture reset checkpoint: fixed guide slot becomes production crop authority, still capture becomes final identity frame, detector boxes become advisory, and legacy live-boundary identity is deprecated
 - `CANON_PIPELINE_V1_COMPLETE` — `2026-03-30`
 - `EXTERNAL_SOURCE_INGESTION_MODEL_V1_LOCKED` — `2026-03-31`
