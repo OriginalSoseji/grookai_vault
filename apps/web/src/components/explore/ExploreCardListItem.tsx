@@ -21,9 +21,10 @@ type ExploreCardListItemProps = {
   href: string;
   canViewPricing: boolean;
   signInHref?: string;
+  matchReason?: string;
 };
 
-export default function ExploreCardListItem({ card, href, canViewPricing, signInHref }: ExploreCardListItemProps) {
+export default function ExploreCardListItem({ card, href, canViewPricing, signInHref, matchReason }: ExploreCardListItemProps) {
   const displayIdentity = resolveDisplayIdentity(card);
   const setLabel = [card.set_name, card.number ? `#${card.number}` : undefined, card.rarity].filter(Boolean).join(" • ") || "—";
   const identitySubtitle = resolveDisplayIdentitySubtitleForContext({
@@ -55,6 +56,9 @@ export default function ExploreCardListItem({ card, href, canViewPricing, signIn
                 ) : null}
                 {searchDiscriminator ? (
                   <span className={getSearchContextClassName(searchDiscriminator)}>{searchDiscriminator}</span>
+                ) : null}
+                {matchReason ? (
+                  <span className="gv-hi-search-context block truncate text-xs font-medium text-slate-500">{matchReason}</span>
                 ) : null}
                 <p className="text-sm text-slate-600">{setLabel}</p>
                 <PromotionTransitionNote state={card.promotion_transition} />

@@ -1,0 +1,37 @@
+{
+  "lane": "FEED_FIRST_PAINT_OPTIMIZATION_V1",
+  "date": "2026-05-21",
+  "scope": "mobile_feed_perceived_speed",
+  "implementation": {
+    "skeleton": true,
+    "localFirstPageCache": true,
+    "backgroundRefresh": true,
+    "refreshingBanner": true,
+    "refreshFailureKeepsCachedRows": true
+  },
+  "deviceSmoke": {
+    "device": "SM S908U",
+    "result": "cached_rows_restored_before_live_network_completion"
+  },
+  "cache": {
+    "store": "SharedPreferences",
+    "keyShape": "grookai_network_feed_cache_v1:<feedMode>:<intent>",
+    "rowsStored": "first_page_only",
+    "excluded": [
+      "secrets",
+      "auth_tokens",
+      "raw_rpc_payloads",
+      "pricing_objects",
+      "ownership_state"
+    ]
+  },
+  "safety": {
+    "dbWrites": false,
+    "migrations": false,
+    "scannerChanges": false,
+    "pricingChanges": false,
+    "speciesDexChanges": false,
+    "identityRouteChanges": false,
+    "feedRpcChanges": false
+  }
+}

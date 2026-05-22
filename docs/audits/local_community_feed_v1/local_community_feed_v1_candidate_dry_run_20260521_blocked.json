@@ -1,0 +1,29 @@
+{
+  "audit_id": "LOCAL_COMMUNITY_FEED_V1_CANDIDATE_DRY_RUN_20260521",
+  "status": "NO_WRITE_CANDIDATE_DRY_RUN",
+  "viewer": {
+    "slug": "imnotcesar",
+    "has_local_setting": true,
+    "local_discovery_enabled": true
+  },
+  "source_counts": {
+    "local_settings": 2,
+    "wall_rows": 26,
+    "stream_rows": 23,
+    "blocks": 1,
+    "mutes": 0
+  },
+  "excluded": {
+    "self": 13,
+    "missing_owner_setting": 18,
+    "locality_mismatch": 0,
+    "blocked": 4,
+    "muted": 0,
+    "duplicate_source": 14
+  },
+  "candidate_count": 0,
+  "candidates": [],
+  "no_write_confirmation": true,
+  "precise_location_exposed": false,
+  "raw_user_ids_exposed_in_candidates": false
+}

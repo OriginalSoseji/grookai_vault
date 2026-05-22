@@ -1,0 +1,60 @@
+{
+  "audit": "LOCAL_COMMUNITY_FEED_V1_PHASE5_AUTHENTICATED_SMOKE",
+  "date": "2026-05-21",
+  "status": "pass",
+  "classification": "PASS_WITH_OPERATOR_BROWSER_EVIDENCE",
+  "branch": "scanner-v4-card-present-gate",
+  "commit": "24af6611",
+  "deployment": {
+    "provider": "vercel",
+    "environment": "Preview",
+    "url": "https://grookai-vault-4hdju69a2-sosejis-projects.vercel.app",
+    "githubDeploymentState": "success",
+    "directUnauthenticatedStatus": 401
+  },
+  "completedChecks": {
+    "branchPushed": true,
+    "deploymentSucceeded": true,
+    "routePresentInBuild": true,
+    "localUnauthenticatedRedirectSmoke": "pass",
+    "prePushShipcheck": "pass",
+    "authenticatedRouteLoad": "pass_operator_evidence",
+    "nearbyCardsRender": "pass_operator_evidence",
+    "navigationFlagVisible": "pass_operator_evidence",
+    "ownerWallActionsVisible": "pass_operator_evidence",
+    "parentCardActionsVisible": "pass_operator_evidence",
+    "noVisibleRawUuid": "pass_operator_evidence",
+    "noVisibleExactLocation": "pass_operator_evidence"
+  },
+  "operatorEvidence": {
+    "source": "user_provided_authenticated_preview_screenshot",
+    "visibleLocalityLabel": "Founder Test Area",
+    "visibleCollector": "Poke Javi",
+    "visibleCards": [
+      "Piplup",
+      "Charizard ex"
+    ],
+    "visibleBadges": [
+      "Showcase",
+      "Wall",
+      "Following"
+    ],
+    "visibleActions": [
+      "View card",
+      "View wall"
+    ]
+  },
+  "remainingChecks": [
+    "block_mute_exclusion_negative_fixture"
+  ],
+  "decision": "phase5_passed_do_not_broaden_until_block_mute_negative_fixture_is_proven",
+  "noChangeConfirmations": {
+    "dbWrites": false,
+    "migrations": false,
+    "scanner": false,
+    "pricing": false,
+    "speciesDexDenominator": false,
+    "publicChildRoutes": false,
+    "productionEnablement": false
+  }
+}

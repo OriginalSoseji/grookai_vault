@@ -1,0 +1,48 @@
+{
+  "checkpoint": "LOCAL_COMMUNITY_FEED_V1_INTERNAL_PREVIEW_COMPLETE",
+  "date": "2026-05-21",
+  "classification": "INTERNAL_PREVIEW_COMPLETE",
+  "contract_status": "accepted",
+  "web_phases": {
+    "phase_1_schema_safety": "complete",
+    "phase_2_seed_test_collector": "complete",
+    "phase_3_authenticated_rpc": "complete",
+    "phase_4_internal_ui": "complete",
+    "phase_5_authenticated_smoke": "complete",
+    "phase_6_block_mute_proof": "complete",
+    "phase_7_demo_polish": "complete"
+  },
+  "mobile": {
+    "audit": "complete",
+    "v1_implementation": "complete",
+    "entry_point": "drawer_only",
+    "data_source": "local_community_feed_v1(p_limit)",
+    "client_side_location_logic": false
+  },
+  "safety_gates": {
+    "authenticated_only": true,
+    "opt_in_only": true,
+    "block_exclusion_proven": true,
+    "mute_exclusion_proven": true,
+    "coarse_locality_only": true,
+    "raw_user_ids_exposed": false,
+    "internal_uuids_exposed": false,
+    "coordinates_exposed": false,
+    "geohash_exposed": false
+  },
+  "production_enablement": {
+    "public_enabled": false,
+    "next_allowed_work": [
+      "internal_mobile_smoke",
+      "trusted_collector_demo"
+    ]
+  },
+  "non_changes": {
+    "db_writes": false,
+    "migrations": false,
+    "scanner": false,
+    "pricing": false,
+    "species_dex": false,
+    "identity": false
+  }
+}

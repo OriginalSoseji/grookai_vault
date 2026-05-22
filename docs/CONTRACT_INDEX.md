@@ -98,6 +98,14 @@ If a contract is missing from this index, it is not authoritative.
 
 ---
 
+## 🌐 COMMUNITY & SOCIAL CONTRACTS
+
+| Contract | Status | Description |
+|--------|--------|-------------|
+| LOCAL_COMMUNITY_FEED_V1 | Planned | docs/contracts/LOCAL_COMMUNITY_FEED_V1.md — Governs future nearby collector discovery: separate local opt-in, coarse location only, authenticated local feed access, block/mute safety, and reuse of existing public wall/network primitives without exposing precise location |
+
+---
+
 ## 💰 PRICING & MARKETPLACE CONTRACTS
 
 | Contract | Status | Description |

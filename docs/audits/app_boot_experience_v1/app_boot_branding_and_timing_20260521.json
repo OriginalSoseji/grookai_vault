@@ -1,0 +1,35 @@
+{
+  "lane": "APP_BOOT_EXPERIENCE_V1",
+  "date": "2026-05-21",
+  "scope": "android_branding_and_debug_boot_timing",
+  "logoSource": "apps/web/public/grookai-logo-512.png",
+  "nativeSplash": {
+    "background": "#000000",
+    "logoReference": "@mipmap/launch_logo"
+  },
+  "bootTiming": {
+    "helper": "lib/services/diagnostics/app_boot_timing.dart",
+    "releaseEnabled": false,
+    "logPrefix": "[APP_BOOT_V1]"
+  },
+  "deviceSmoke": {
+    "device": "SM S908U",
+    "observedMarkersMs": {
+      "first_route_warmup": 383,
+      "root_first_post_frame": 531,
+      "first_route_shell": 1069,
+      "app_shell_first_post_frame": 1398,
+      "network_feed_initial_rpc_complete": 3495,
+      "network_feed_initial_render_ready": 3631
+    }
+  },
+  "safety": {
+    "dbWrites": false,
+    "migrations": false,
+    "scannerChanges": false,
+    "pricingChanges": false,
+    "speciesDexChanges": false,
+    "identityRouteChanges": false,
+    "publicRouteChanges": false
+  }
+}

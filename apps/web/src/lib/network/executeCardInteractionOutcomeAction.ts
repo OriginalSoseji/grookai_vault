@@ -5,6 +5,7 @@ import {
   assertVaultInstanceActiveProof,
   assertVaultInstanceArchivedProof,
 } from "@/lib/contracts/ownershipMutationGuards";
+import { createServerAdminClient } from "@/lib/supabase/admin";
 import { createServerComponentClient } from "@/lib/supabase/server";
 
 type ExecutionOutcomeRpcRow = {
@@ -161,7 +162,9 @@ export async function executeCardInteractionOutcomeAction(
     };
   }
 
-  const { data, error } = await client.rpc("execute_card_interaction_outcome_v1", {
+  const adminClient = createServerAdminClient();
+  const { data, error } = await adminClient.rpc("execute_card_interaction_outcome_service_v1", {
+    p_actor_user_id: user.id,
     p_execution_type: executionType,
     p_latest_interaction_id: latestInteractionId,
     p_source_instance_id: sourceInstanceId,

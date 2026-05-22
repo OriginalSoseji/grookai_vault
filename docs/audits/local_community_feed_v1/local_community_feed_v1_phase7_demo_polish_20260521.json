@@ -1,0 +1,58 @@
+{
+  "audit_id": "LOCAL_COMMUNITY_FEED_V1_PHASE7_DEMO_POLISH_20260521",
+  "status": "IMPLEMENTED",
+  "scope": {
+    "route": "/network/nearby",
+    "db_writes": false,
+    "migrations": false,
+    "scanner_changes": false,
+    "pricing_changes": false,
+    "species_dex_changes": false,
+    "public_route_changes": false
+  },
+  "changes": [
+    "Collapsed repeated same collector/card rows into one display card.",
+    "Preserved multi-source context with source chips.",
+    "Added internal preview and opt-in visibility labels.",
+    "Tightened public opt-in privacy copy.",
+    "Improved missing-image fallback copy."
+  ],
+  "demo_checklist": {
+    "desktop": [
+      "Internal preview label visible.",
+      "Public opt-in boundary copy visible.",
+      "Repeated same collector/card rows collapsed.",
+      "Multi-source chips visible where applicable.",
+      "Missing-image fallback readable.",
+      "View card and View wall actions route correctly.",
+      "No raw UUID or exact location visible."
+    ],
+    "mobile_web": [
+      "Card layout stacks cleanly.",
+      "Actions remain tappable.",
+      "Missing-image fallback stays readable."
+    ],
+    "app_viewport": [
+      "Route remains readable in app-sized viewport.",
+      "Public opt-in boundary copy remains visible."
+    ],
+    "safety": [
+      "Unauthenticated access redirects to login.",
+      "Feature flag off hides route.",
+      "Block/mute proof remains documented."
+    ]
+  },
+  "verification": {
+    "typecheck": "pass",
+    "lint": "pass_with_existing_warehouse_img_warning",
+    "build": "pass",
+    "preflight": "pass_with_known_deferred_debt",
+    "diff_check": "pass_for_phase7_files",
+    "local_unauthenticated_smoke": {
+      "route": "/network/nearby",
+      "feature_flag_enabled": true,
+      "status": 307,
+      "location": "/login?next=%2Fnetwork%2Fnearby"
+    }
+  }
+}

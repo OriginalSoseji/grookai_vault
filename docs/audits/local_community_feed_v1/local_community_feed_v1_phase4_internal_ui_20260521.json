@@ -1,0 +1,45 @@
+{
+  "audit": "LOCAL_COMMUNITY_FEED_V1_PHASE4_INTERNAL_UI",
+  "date": "2026-05-21",
+  "status": "implemented_verified",
+  "surface": {
+    "route": "/network/nearby",
+    "navigation": "NetworkSectionNav Nearby link",
+    "authenticatedOnly": true,
+    "featureFlagged": true
+  },
+  "featureFlags": [
+    "LOCAL_COMMUNITY_FEED_V1_ENABLED",
+    "NEXT_PUBLIC_LOCAL_COMMUNITY_FEED_V1_ENABLED",
+    "VERCEL_ENV=preview",
+    "APP_ENV=staging"
+  ],
+  "privacyBoundary": {
+    "rawUserIdsExposed": false,
+    "exactLocationExposed": false,
+    "postalCodeExposed": false,
+    "rawVaultInstanceIdsExposed": false,
+    "signedStorageUrlsExposed": false
+  },
+  "routePolicy": {
+    "parentCardRoutesOnly": true,
+    "publicChildPrintingRoutesEnabled": false
+  },
+  "verification": {
+    "webTypecheck": "pass",
+    "webLint": "pass_existing_warehouse_img_warning",
+    "diffCheck": "pass_phase4_files",
+    "webBuild": "pass",
+    "contractsTest": "pass",
+    "runtimeHealth": "pass",
+    "localRouteSmoke": "pass_unauthenticated_redirect_to_login"
+  },
+  "noChangeConfirmations": {
+    "dbWrites": false,
+    "migrations": false,
+    "scanner": false,
+    "pricing": false,
+    "speciesDexDenominator": false,
+    "mobile": false
+  }
+}

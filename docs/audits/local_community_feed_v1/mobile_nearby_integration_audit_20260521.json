@@ -1,0 +1,92 @@
+{
+  "audit_id": "LOCAL_COMMUNITY_FEED_V1_MOBILE_NEARBY_INTEGRATION_AUDIT_20260521",
+  "status": "AUDIT_ONLY",
+  "recommended_lane": "LOCAL_COMMUNITY_FEED_MOBILE_V1",
+  "allowed_rpc": "local_community_feed_v1(p_limit integer)",
+  "scope_confirmation": {
+    "db_writes": false,
+    "migrations": false,
+    "scanner_changes": false,
+    "pricing_changes": false,
+    "species_dex_changes": false,
+    "identity_changes": false,
+    "mobile_side_location_filtering": false,
+    "new_discovery_algorithm": false
+  },
+  "safe_integration_points": [
+    {
+      "surface": "app_shell_drawer",
+      "files": ["lib/main_shell.dart"],
+      "recommendation": "Add Nearby as a drawer-only entry under Feed when the mobile feature flag is enabled."
+    },
+    {
+      "surface": "nearby_service",
+      "files": ["lib/services/network/local_community_feed_service.dart"],
+      "recommendation": "Create a thin service that only calls local_community_feed_v1 with p_limit."
+    },
+    {
+      "surface": "nearby_screen",
+      "files": ["lib/screens/network/network_nearby_screen.dart"],
+      "recommendation": "Create an isolated authenticated screen instead of blending local discovery into NetworkStreamService."
+    },
+    {
+      "surface": "card_routes",
+      "files": ["lib/card_detail_screen.dart", "lib/main_shell.dart"],
+      "recommendation": "Open parent card detail using card_print_id/gv_id. Do not enable child printing public routes."
+    },
+    {
+      "surface": "collector_routes",
+      "files": ["lib/screens/public_collector/public_collector_screen.dart"],
+      "recommendation": "Open collector walls by owner_slug using existing PublicCollectorScreen."
+    },
+    {
+      "surface": "artwork",
+      "files": ["lib/widgets/card_surface_artwork.dart", "lib/utils/display_image_contract.dart"],
+      "recommendation": "Reuse existing image normalization and fallback behavior."
+    }
+  ],
+  "required_safe_fields": [
+    "feed_item_id",
+    "owner_slug",
+    "owner_display_name",
+    "gv_id",
+    "route_target",
+    "distance_bucket"
+  ],
+  "renderable_fields": [
+    "source_type",
+    "owner_slug",
+    "owner_display_name",
+    "gv_id",
+    "card_name",
+    "set_code",
+    "set_name",
+    "card_number",
+    "intent",
+    "image_url",
+    "display_image_kind",
+    "locality_label",
+    "distance_bucket",
+    "relationship_context",
+    "created_at",
+    "route_target"
+  ],
+  "do_not_render": [
+    "owner_user_id",
+    "internal UUIDs",
+    "latitude",
+    "longitude",
+    "address",
+    "precise distance"
+  ],
+  "feature_flag": {
+    "recommended_name": "LOCAL_COMMUNITY_FEED_V1_ENABLED",
+    "default": false,
+    "rules": [
+      "Drawer entry hidden when false.",
+      "Screen unavailable when false.",
+      "No RPC call when false."
+    ]
+  },
+  "implementation_decision": "SAFE_TO_IMPLEMENT_AS_ISOLATED_MOBILE_LANE"
+}

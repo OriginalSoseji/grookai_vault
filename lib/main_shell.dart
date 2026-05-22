@@ -57,6 +57,7 @@ enum _ShellDestination {
 
 class _AppShellState extends State<AppShell> {
   final SupabaseClient _supabase = Supabase.instance.client;
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   final GlobalKey<HomePageState> _homeKey = GlobalKey();
   final GlobalKey<_MyWallTabState> _wallKey = GlobalKey();
   final GlobalKey<NetworkScreenState> _networkKey = GlobalKey();
@@ -73,6 +74,7 @@ class _AppShellState extends State<AppShell> {
   @override
   void initState() {
     super.initState();
+    AppBootTiming.mark('app_shell_init_state_start');
     // PERFORMANCE_P1_SHELL_LAZY_TABS
     // Defers heavy tab construction until first visit while preserving tab
     // retention after a surface has been opened once.
@@ -82,7 +84,9 @@ class _AppShellState extends State<AppShell> {
       growable: false,
     );
     _ensureShellPageBuilt(_destination);
+    AppBootTiming.mark('app_shell_initial_page_built');
     WidgetsBinding.instance.addPostFrameCallback((_) {
+      AppBootTiming.markOnce('app_shell_first_post_frame');
       unawaited(_maybeHandlePendingCanonicalLink());
       unawaited(_maybeHandlePendingDebugAction());
       if (!kFixedSlotCaptureScannerV1Enabled && kNativeScannerPhase0Enabled) {
@@ -92,6 +96,7 @@ class _AppShellState extends State<AppShell> {
         unawaited(_prewarmScanCardSurface(reason: 'shell_ready'));
       }
     });
+    AppBootTiming.mark('app_shell_init_state_complete');
   }
 
   @override
@@ -401,6 +406,10 @@ class _AppShellState extends State<AppShell> {
     await _pushPage<void>(const NetworkInboxScreen());
   }
 
+  Future<void> _openNearby() async {
+    await _pushPage<void>(const NetworkNearbyScreen());
+  }
+
   Future<void> _openAccountHub() async {
     final action = await _pushPage<AccountHubAction>(const AccountScreen());
 
@@ -629,6 +638,11 @@ class _AppShellState extends State<AppShell> {
         icon: Icons.account_circle_outlined,
         onPressed: _openAccountHub,
       ),
+      _appBarActionButton(
+        tooltip: 'Menu',
+        icon: Icons.menu_rounded,
+        onPressed: () => _scaffoldKey.currentState?.openEndDrawer(),
+      ),
     ];
   }
 
@@ -646,8 +660,19 @@ class _AppShellState extends State<AppShell> {
     final navRadius = BorderRadius.circular(22);
 
     return Scaffold(
+      key: _scaffoldKey,
       extendBody: false,
       resizeToAvoidBottomInset: false,
+      endDrawer: _GrookaiAppDrawer(
+        currentDestination: _destination,
+        onOpenSearch: () => _selectDestination(_ShellDestination.search),
+        onOpenFeed: () => _selectDestination(_ShellDestination.feed),
+        onOpenWall: () => _selectDestination(_ShellDestination.wall),
+        onOpenVault: () => _selectDestination(_ShellDestination.vault),
+        onOpenMessages: _openMessages,
+        onOpenNearby: _openNearby,
+        onOpenAccount: _openAccountHub,
+      ),
       appBar: AppBar(
         toolbarHeight: kShellAppBarHeight,
         actionsPadding: const EdgeInsets.only(right: 6),
@@ -777,6 +802,152 @@ class _AppShellState extends State<AppShell> {
           ),
         ),
       ),
+    );
+  }
+}
+
+class _GrookaiAppDrawer extends StatelessWidget {
+  const _GrookaiAppDrawer({
+    required this.currentDestination,
+    required this.onOpenSearch,
+    required this.onOpenFeed,
+    required this.onOpenWall,
+    required this.onOpenVault,
+    required this.onOpenMessages,
+    required this.onOpenNearby,
+    required this.onOpenAccount,
+  });
+
+  final _ShellDestination currentDestination;
+  final VoidCallback onOpenSearch;
+  final VoidCallback onOpenFeed;
+  final VoidCallback onOpenWall;
+  final VoidCallback onOpenVault;
+  final Future<void> Function() onOpenMessages;
+  final Future<void> Function() onOpenNearby;
+  final Future<void> Function() onOpenAccount;
+
+  @override
+  Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
+
+    return NavigationDrawer(
+      selectedIndex: null,
+      onDestinationSelected: (_) {},
+      children: [
+        Padding(
+          padding: const EdgeInsets.fromLTRB(24, 22, 20, 12),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                'Grookai Vault',
+                style: Theme.of(
+                  context,
+                ).textTheme.titleLarge?.copyWith(fontWeight: FontWeight.w800),
+              ),
+              const SizedBox(height: 4),
+              Text(
+                'Collector tools',
+                style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                  color: colorScheme.onSurface.withValues(alpha: 0.62),
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+            ],
+          ),
+        ),
+        const Divider(indent: 20, endIndent: 20),
+        _GrookaiDrawerTile(
+          icon: Icons.search_rounded,
+          label: 'Search',
+          selected: currentDestination == _ShellDestination.search,
+          onTap: () => _closeThen(context, onOpenSearch),
+        ),
+        _GrookaiDrawerTile(
+          icon: Icons.dynamic_feed_rounded,
+          label: 'Feed',
+          selected: currentDestination == _ShellDestination.feed,
+          onTap: () => _closeThen(context, onOpenFeed),
+        ),
+        if (kLocalCommunityFeedV1Enabled)
+          _GrookaiDrawerTile(
+            icon: Icons.radar_rounded,
+            label: 'Nearby',
+            onTap: () => _closeThenAsync(context, onOpenNearby),
+          ),
+        _GrookaiDrawerTile(
+          icon: Icons.person_rounded,
+          label: 'My Wall',
+          selected: currentDestination == _ShellDestination.wall,
+          onTap: () => _closeThen(context, onOpenWall),
+        ),
+        _GrookaiDrawerTile(
+          icon: Icons.inventory_2_rounded,
+          label: 'Vault',
+          selected: currentDestination == _ShellDestination.vault,
+          onTap: () => _closeThen(context, onOpenVault),
+        ),
+        const Divider(indent: 20, endIndent: 20),
+        _GrookaiDrawerTile(
+          icon: Icons.mail_rounded,
+          label: 'Messages',
+          onTap: () => _closeThenAsync(context, onOpenMessages),
+        ),
+        _GrookaiDrawerTile(
+          icon: Icons.account_circle_rounded,
+          label: 'Account',
+          onTap: () => _closeThenAsync(context, onOpenAccount),
+        ),
+      ],
+    );
+  }
+
+  void _closeThen(BuildContext context, VoidCallback action) {
+    Navigator.of(context).pop();
+    action();
+  }
+
+  void _closeThenAsync(BuildContext context, Future<void> Function() action) {
+    Navigator.of(context).pop();
+    unawaited(action());
+  }
+}
+
+class _GrookaiDrawerTile extends StatelessWidget {
+  const _GrookaiDrawerTile({
+    required this.icon,
+    required this.label,
+    required this.onTap,
+    this.selected = false,
+  });
+
+  final IconData icon;
+  final String label;
+  final VoidCallback onTap;
+  final bool selected;
+
+  @override
+  Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
+    final foreground = selected
+        ? colorScheme.primary
+        : colorScheme.onSurface.withValues(alpha: 0.82);
+
+    return ListTile(
+      leading: Icon(icon, color: foreground),
+      title: Text(
+        label,
+        style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+          color: foreground,
+          fontWeight: selected ? FontWeight.w800 : FontWeight.w600,
+        ),
+      ),
+      selected: selected,
+      selectedTileColor: colorScheme.primary.withValues(alpha: 0.08),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(18)),
+      contentPadding: const EdgeInsets.symmetric(horizontal: 24),
+      onTap: onTap,
     );
   }
 }

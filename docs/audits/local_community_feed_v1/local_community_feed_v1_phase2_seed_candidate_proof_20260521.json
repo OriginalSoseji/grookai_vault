@@ -1,0 +1,77 @@
+{
+  "audit_id": "LOCAL_COMMUNITY_FEED_V1_PHASE2_SEED_CANDIDATE_PROOF_20260521",
+  "date": "2026-05-21",
+  "status": "INTERNAL_PROOF_COMPLETE",
+  "test_collectors": [
+    {
+      "slug": "imnotcesar",
+      "display_name": "imnotcesar",
+      "user_id": "03e80d15-a2bb-4d3c-abd1-2de03e55787b",
+      "public_profile_enabled": true,
+      "vault_sharing_enabled": true
+    },
+    {
+      "slug": "pokejavi",
+      "display_name": "Poke Javi",
+      "user_id": "c177a180-e36b-44cc-93f8-ee104717a389",
+      "public_profile_enabled": true,
+      "vault_sharing_enabled": true
+    }
+  ],
+  "local_seed": {
+    "collectors_seeded": 2,
+    "area_label": "Founder Test Area",
+    "region_code": "CO",
+    "country_code": "US",
+    "geohash_prefix": "9xj",
+    "radius_miles": 25,
+    "location_precision": "coarse",
+    "exact_coordinates_written": false
+  },
+  "candidate_runs": {
+    "baseline": {
+      "viewer_slug": "imnotcesar",
+      "candidate_count": 4,
+      "nearby_owner_slug": "pokejavi",
+      "locality_label": "Founder Test Area",
+      "distance_bucket": "nearby",
+      "raw_user_ids_exposed": false,
+      "precise_location_exposed": false,
+      "artifact": "docs/audits/local_community_feed_v1/local_community_feed_v1_candidate_dry_run_20260521_baseline.json"
+    },
+    "muted": {
+      "temporary_write": "imnotcesar muted pokejavi",
+      "candidate_count": 0,
+      "temporary_row_cleaned_up": true,
+      "artifact": "docs/audits/local_community_feed_v1/local_community_feed_v1_candidate_dry_run_20260521_muted.json"
+    },
+    "blocked": {
+      "temporary_write": "pokejavi blocked imnotcesar",
+      "block_helper_result": true,
+      "candidate_count": 0,
+      "temporary_row_cleaned_up": true,
+      "artifact": "docs/audits/local_community_feed_v1/local_community_feed_v1_candidate_dry_run_20260521_blocked.json"
+    },
+    "post_cleanup": {
+      "candidate_count": 4,
+      "remaining_test_mutes": 0,
+      "remaining_test_blocks_between_accounts": 0,
+      "artifact": "docs/audits/local_community_feed_v1/local_community_feed_v1_candidate_dry_run_20260521_post_cleanup.json"
+    }
+  },
+  "remaining_before_ui": [
+    "draft authenticated local community feed RPC/read model",
+    "replay migration locally",
+    "prove RPC rejects anonymous access",
+    "prove RPC emits no exact location or raw private fields"
+  ],
+  "confirmation": {
+    "ui_changes": false,
+    "global_public_view_changes": false,
+    "scanner_changes": false,
+    "pricing_changes": false,
+    "species_dex_changes": false,
+    "identity_changes": false,
+    "exact_coordinates_written": false
+  }
+}

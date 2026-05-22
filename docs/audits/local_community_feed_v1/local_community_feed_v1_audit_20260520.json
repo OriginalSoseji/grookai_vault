@@ -1,0 +1,182 @@
+{
+  "audit_id": "LOCAL_COMMUNITY_FEED_V1_AUDIT_20260520",
+  "date": "2026-05-20",
+  "status": "AUDIT_ONLY",
+  "decision": "PROCEED_TO_CONTRACT",
+  "summary": {
+    "ready_for_contract": true,
+    "ready_for_implementation": false,
+    "reason": "Existing social, wall, follow, and feed primitives are present, but collector locality, local opt-in, radius preferences, and block/mute safety are missing."
+  },
+  "live_counts": {
+    "public_profiles": 26,
+    "public_profiles_enabled": 26,
+    "public_profiles_vault_sharing": 26,
+    "shared_cards_public": 45,
+    "collector_follows": 5,
+    "user_card_intents": 3,
+    "public_user_card_intents": 0,
+    "card_feed_events": 214,
+    "card_comments_public": 1,
+    "v_card_stream_v1_rows": 23,
+    "wall_sections": 3,
+    "wall_section_memberships": 9,
+    "v_wall_cards_v1_rows": 26,
+    "v_wall_sections_v1_rows": 2
+  },
+  "distributions": {
+    "shared_cards_share_intent": {
+      "shared": 45
+    },
+    "v_card_stream_v1_intent": {
+      "sell": 17,
+      "showcase": 6
+    },
+    "card_feed_events": {
+      "impression": 152,
+      "open_detail": 57,
+      "want_on": 3,
+      "add_to_vault": 1,
+      "share": 1
+    }
+  },
+  "existing_capabilities": [
+    {
+      "capability": "public_profiles",
+      "evidence": [
+        "supabase/migrations/20260313021000_public_profiles_shared_cards_v1.sql",
+        "lib/services/public/public_collector_service.dart"
+      ],
+      "notes": "Public profile and vault sharing gates already exist."
+    },
+    {
+      "capability": "shared_wall_cards",
+      "evidence": [
+        "public.shared_cards",
+        "public.v_wall_cards_v1",
+        "apps/web/src/lib/wallSections/getPublicWallCardsBySlug.ts"
+      ],
+      "notes": "Public wall cards can source nearby feed content after separate local opt-in."
+    },
+    {
+      "capability": "wall_sections",
+      "evidence": [
+        "public.wall_sections",
+        "public.wall_section_memberships",
+        "public.v_wall_sections_v1"
+      ],
+      "notes": "Collectors can organize public wall content."
+    },
+    {
+      "capability": "collector_follows",
+      "evidence": [
+        "supabase/migrations/20260325143000_add_collector_follows_v1.sql",
+        "lib/services/public/following_service.dart",
+        "lib/services/public/collector_follow_service.dart"
+      ],
+      "notes": "Authenticated follower graph exists and is RLS-protected to own following rows."
+    },
+    {
+      "capability": "global_network_stream",
+      "evidence": [
+        "public.v_card_stream_v1",
+        "apps/web/src/lib/network/getCardStreamRows.ts",
+        "lib/services/network/network_stream_service.dart"
+      ],
+      "notes": "Global trade/sell/showcase stream exists; not location-aware."
+    },
+    {
+      "capability": "feed_memory",
+      "evidence": [
+        "public.card_feed_events",
+        "lib/services/network/smart_feed_service.dart"
+      ],
+      "notes": "Append-only feed signals and mobile ranking primitives exist."
+    },
+    {
+      "capability": "collector_contact",
+      "evidence": [
+        "public.card_interactions",
+        "apps/web/src/lib/network/createCardInteractionAction.ts"
+      ],
+      "notes": "Contact flows already anchor to public discoverable ownership."
+    }
+  ],
+  "missing_capabilities": [
+    "collector local discovery opt-in",
+    "coarse collector location model",
+    "radius preference",
+    "safe area label",
+    "distance bucket projection",
+    "collector block/mute controls",
+    "local community feed read model or RPC",
+    "nearby feed UI",
+    "location privacy copy",
+    "authenticated-only nearby feed gating"
+  ],
+  "schema_gap_findings": {
+    "collector_location_columns_found": false,
+    "location_like_fields_found_only_in": [
+      "listings.location_city",
+      "listings.location_region",
+      "listings.location_country",
+      "price_observations.seller_location"
+    ],
+    "block_or_mute_tables_found": false,
+    "notes": "No collector-facing local discovery fields or block/mute schema were found in live public schema."
+  },
+  "risks": [
+    {
+      "risk": "Precise location leak",
+      "severity": "HIGH",
+      "required_rule": "Never expose lat/lng, address, or raw location payload in public views."
+    },
+    {
+      "risk": "Treating public wall as local opt-in",
+      "severity": "HIGH",
+      "required_rule": "Local discoverability must be a separate user-controlled opt-in."
+    },
+    {
+      "risk": "Nearby harassment/spam",
+      "severity": "HIGH",
+      "required_rule": "Block/mute/report controls are required before broad local feed release."
+    },
+    {
+      "risk": "Admin-client overexposure",
+      "severity": "MEDIUM",
+      "required_rule": "Server helpers must project only safe local feed fields."
+    },
+    {
+      "risk": "Ranking drift",
+      "severity": "MEDIUM",
+      "required_rule": "Local feed rows need explicit source buckets and interaction hierarchy."
+    }
+  ],
+  "contract_requirements": [
+    "Local visibility is separate from public profile and vault sharing.",
+    "Nearby feed requires authenticated viewer access.",
+    "Coarse location only; no exact coordinates in app-facing responses.",
+    "Dedicated local feed read model/RPC instead of adding location fields to existing public views.",
+    "Block/mute controls must gate local visibility.",
+    "Feed should reuse existing wall/in-play card rows.",
+    "Existing contact flows should be reused.",
+    "No Species Dex, scanner, pricing, or card identity changes."
+  ],
+  "recommended_phases": [
+    "contract",
+    "no_write_location_readiness_audit",
+    "schema_draft",
+    "local_feed_dry_run",
+    "private_preview_apply",
+    "web_mobile_ui"
+  ],
+  "no_write_confirmation": {
+    "db_writes": false,
+    "migrations": false,
+    "scanner_changes": false,
+    "pricing_changes": false,
+    "species_dex_changes": false,
+    "public_route_changes": false,
+    "local_feed_implementation": false
+  }
+}

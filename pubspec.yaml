@@ -46,6 +46,7 @@ dependencies:
   url_launcher: ^6.3.2
   app_links: ^6.4.1
   visibility_detector: ^0.4.0+2
+  shared_preferences: ^2.5.3
 
 dev_dependencies:
   flutter_test:

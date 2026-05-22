@@ -1,0 +1,82 @@
+{
+  "audit_id": "LOCAL_COMMUNITY_FEED_V1_CANDIDATE_DRY_RUN_20260521",
+  "status": "NO_WRITE_CANDIDATE_DRY_RUN",
+  "viewer": {
+    "slug": "imnotcesar",
+    "has_local_setting": true,
+    "local_discovery_enabled": true
+  },
+  "source_counts": {
+    "local_settings": 2,
+    "wall_rows": 26,
+    "stream_rows": 23,
+    "blocks": 0,
+    "mutes": 0
+  },
+  "excluded": {
+    "self": 13,
+    "missing_owner_setting": 18,
+    "locality_mismatch": 0,
+    "blocked": 0,
+    "muted": 0,
+    "duplicate_source": 14
+  },
+  "candidate_count": 4,
+  "candidates": [
+    {
+      "source_type": "wall_card",
+      "owner_slug": "pokejavi",
+      "owner_display_name_present": true,
+      "gv_id": "GV-PK-OBF-228",
+      "name": "Charizard ex",
+      "set_code": "sv03",
+      "number": "228",
+      "intent": "showcase",
+      "locality_label": "Founder Test Area",
+      "distance_bucket": "nearby",
+      "route_target": "/card/GV-PK-OBF-228"
+    },
+    {
+      "source_type": "wall_card",
+      "owner_slug": "pokejavi",
+      "owner_display_name_present": true,
+      "gv_id": "GV-PK-PFL-098",
+      "name": "Piplup",
+      "set_code": "me02",
+      "number": "098",
+      "intent": "showcase",
+      "locality_label": "Founder Test Area",
+      "distance_bucket": "nearby",
+      "route_target": "/card/GV-PK-PFL-098"
+    },
+    {
+      "source_type": "showcase",
+      "owner_slug": "pokejavi",
+      "owner_display_name_present": true,
+      "gv_id": "GV-PK-PFL-098",
+      "name": "Piplup",
+      "set_code": "me02",
+      "number": "098",
+      "intent": "showcase",
+      "locality_label": "Founder Test Area",
+      "distance_bucket": "nearby",
+      "route_target": "/card/GV-PK-PFL-098"
+    },
+    {
+      "source_type": "showcase",
+      "owner_slug": "pokejavi",
+      "owner_display_name_present": true,
+      "gv_id": "GV-PK-OBF-228",
+      "name": "Charizard ex",
+      "set_code": "sv03",
+      "number": "228",
+      "intent": "showcase",
+      "locality_label": "Founder Test Area",
+      "distance_bucket": "nearby",
+      "route_target": "/card/GV-PK-OBF-228"
+    }
+  ],
+  "no_write_confirmation": true,
+  "precise_location_exposed": false,
+  "raw_user_ids_exposed_in_candidates": false
+}

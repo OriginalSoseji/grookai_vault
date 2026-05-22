@@ -58,6 +58,13 @@ export function readAuthEnv(): AuthEnv | null {
   return { supabaseUrl, serviceRoleKey };
 }
 
+export function createServiceRoleClient(): AuthSupabaseClient {
+  const env = readAuthEnv();
+  if (!env) throw Object.assign(new Error("server_misconfigured"), { code: "server_misconfigured" });
+
+  return createClient(env.supabaseUrl, env.serviceRoleKey);
+}
+
 /**
  * Requires a valid user token.
  * Returns { sb, userId } where sb is a service-role Supabase client
