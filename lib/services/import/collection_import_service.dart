@@ -528,17 +528,21 @@ class CollectionImportService {
       );
     }
 
+    final userId = client.auth.currentUser?.id;
+    if (userId == null || userId.isEmpty) {
+      throw Exception('Sign in required.');
+    }
+
     for (final row in rowsToImport) {
-      await client.rpc(
-        'vault_add_card_instance_v1',
-        params: {
-          'p_card_print_id': row.cardPrintId,
-          'p_quantity': row.importQuantity,
-          'p_condition_label': row.condition,
-          'p_notes': row.notes,
-          'p_name': row.name,
-          'p_set_name': row.setName,
-        },
+      await VaultCardService.addOrIncrementVaultItem(
+        client: client,
+        userId: userId,
+        cardId: row.cardPrintId,
+        deltaQty: row.importQuantity,
+        conditionLabel: row.condition,
+        notes: row.notes,
+        fallbackName: row.name,
+        fallbackSetName: row.setName,
       );
     }
 

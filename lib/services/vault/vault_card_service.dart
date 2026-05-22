@@ -464,18 +464,30 @@ class VaultCardService {
     final qtyDelta = deltaQty < 1 ? 1 : deltaQty;
     debugPrint('vault.mobile.add.begin: $cardId');
 
-    final result = await client.rpc(
-      'vault_add_card_instance_v1',
-      params: {
-        'p_card_print_id': cardId,
-        'p_quantity': qtyDelta,
-        'p_condition_label': conditionLabel,
-        'p_notes': notes,
-        'p_name': fallbackName,
-        'p_set_name': fallbackSetName,
-        'p_photo_url': fallbackImageUrl,
+    final response = await client.functions.invoke(
+      'vault-add-card-instance-v1',
+      body: {
+        'card_print_id': cardId,
+        'quantity': qtyDelta,
+        'condition_label': conditionLabel,
+        'notes': notes,
+        'name': fallbackName,
+        'set_name': fallbackSetName,
+        'photo_url': fallbackImageUrl,
       },
     );
+
+    if (response.status < 200 || response.status >= 300) {
+      throw Exception('Vault add failed.');
+    }
+
+    final responseData = response.data;
+    final result = responseData is Map
+        ? Map<String, dynamic>.from(
+            (responseData['result'] is Map ? responseData['result'] : responseData)
+                as Map,
+          )
+        : null;
 
     if (result is Map<String, dynamic>) {
       final gvviId = (result['gv_vi_id'] ?? '').toString();

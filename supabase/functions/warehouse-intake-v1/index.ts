@@ -1,5 +1,5 @@
 import { serve } from "https://deno.land/std@0.224.0/http/server.ts";
-import { requireUser } from "../_shared/auth.ts";
+import { createServiceRoleClient, requireUser } from "../_shared/auth.ts";
 import { corsHeaders, corsJson } from "../_shared/cors.ts";
 
 type SubmissionIntent = "MISSING_CARD" | "MISSING_IMAGE";
@@ -169,8 +169,9 @@ serve(async (req) => {
 
     const body = (await req.json()) as IntakePayload;
     const parsed = parsePayload(body);
-    const sb = auth.sb;
-    const { data, error } = await sb.rpc("warehouse_intake_v1", {
+    const sb = createServiceRoleClient();
+    const { data, error } = await sb.rpc("warehouse_intake_service_v1", {
+      p_actor_user_id: auth.userId,
       p_notes: parsed.notes,
       p_tcgplayer_id: parsed.tcgplayerId,
       p_submission_intent: parsed.submissionIntent,
@@ -179,6 +180,7 @@ serve(async (req) => {
       p_condition_snapshot_id: parsed.conditionSnapshotId,
       p_identity_scan_event_id: parsed.identityScanEventId,
       p_images: parsed.images.length ? parsed.images : null,
+      p_reference_hints_payload: {},
     });
 
     if (error || !data) {
