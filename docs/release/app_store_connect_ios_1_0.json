@@ -1,0 +1,88 @@
+{
+  "app_id": "6761781008",
+  "bundle_id": "com.cesar.grookaivault",
+  "platform": "IOS",
+  "locale": "en-US",
+  "version_string": "1.0",
+  "build_marketing_version": "1.0.0",
+  "build_number": "15",
+  "archive_path": "build/ios/archive/GrookaiVault-1.0.0-build2-653d00df.xcarchive",
+  "export_path": "build/ios/export/GrookaiVault-1.0.0-build2-653d00df",
+  "export_options_plist": "ios/ExportOptionsAppStore.plist",
+  "app_info_localization": {
+    "subtitle": "Your Pokemon card vault",
+    "privacyPolicyUrl": "https://grookaivault.com/privacy"
+  },
+  "age_rating_declaration": {
+    "alcoholTobaccoOrDrugUseOrReferences": "NONE",
+    "contests": "NONE",
+    "gamblingSimulated": "NONE",
+    "gunsOrOtherWeapons": "NONE",
+    "horrorOrFearThemes": "NONE",
+    "matureOrSuggestiveThemes": "NONE",
+    "medicalOrTreatmentInformation": "NONE",
+    "profanityOrCrudeHumor": "NONE",
+    "sexualContentGraphicAndNudity": "NONE",
+    "sexualContentOrNudity": "NONE",
+    "violenceCartoonOrFantasy": "INFREQUENT",
+    "violenceRealistic": "NONE",
+    "violenceRealisticProlongedGraphicOrSadistic": "NONE",
+    "gambling": false,
+    "lootBox": false,
+    "unrestrictedWebAccess": false,
+    "messagingAndChat": true,
+    "ageAssurance": false,
+    "advertising": false,
+    "parentalControls": false,
+    "userGeneratedContent": true,
+    "healthOrWellnessTopics": false
+  },
+  "price_schedule": {
+    "baseTerritory": "USA",
+    "customerPrice": "0.0"
+  },
+  "app_store_version": {
+    "copyright": "2026 Grookai Vault",
+    "releaseType": "MANUAL"
+  },
+  "version_localization": {
+    "promotionalText": "Track your collection, browse master sets, open public collector walls, and follow the cards that matter most.",
+    "description": "Grookai Vault is built for Pokemon card collectors who want a cleaner way to organize, inspect, and share their collection.\n\nSearch the card catalog, browse sets, track Grookai Dex progress, review master-set options, and keep your personal vault close at hand. Public collector walls make it easier to showcase cards, discover other collectors, and return to profiles by slug.\n\nEarly beta features include card search, vault views, public walls, collector discovery, messaging entry points, Grookai Dex, master-set progress, and an intentionally gated scanner surface while card scanning is rebuilt.",
+    "keywords": "pokemon,cards,collector,vault,trading cards,tcg,sets,dex,collection",
+    "supportUrl": "https://grookaivault.com/support",
+    "marketingUrl": "https://grookaivault.com"
+  },
+  "review_detail": {
+    "contactFirstName": "Cesar",
+    "contactLastName": "Cabral",
+    "contactEmail": "support@grookaivault.com",
+    "contactPhone": null,
+    "demoAccountRequired": true,
+    "demoAccountName": null,
+    "demoAccountPassword": null,
+    "notes": "The scanner tab currently shows an under-construction placeholder by design. Testers should use Search, Sets, and Vault flows to add and inspect cards. This build is iOS beta 1.0.0+2 with the backend RPC permission fix for vault and card detail flows."
+  },
+  "beta_app_localization": {
+    "description": "Grookai Vault helps Pokemon card collectors organize their vault, browse sets, track collection progress, showcase public walls, and connect with other collectors.",
+    "feedbackEmail": "support@grookaivault.com",
+    "marketingUrl": "https://grookaivault.com",
+    "privacyPolicyUrl": "https://grookaivault.com/privacy"
+  },
+  "beta_build_localization": {
+    "whatsNew": "Please test account sign-in, card search, vault browsing, public collector walls, Grookai Dex, set/master-set progress, drawer navigation, appearance mode switching, messaging entry points, and the scanner placeholder flow. The scanner is intentionally marked as under construction in this beta."
+  },
+  "screenshot_sets": [
+    {
+      "display_type": "APP_IPHONE_65",
+      "paths": [
+        "artifacts/app_store/screenshots/prepared/iphone_65_01_signin.png"
+      ]
+    },
+    {
+      "display_type": "APP_IPAD_PRO_3GEN_129",
+      "paths": [
+        "artifacts/app_store/screenshots/prepared/ipad_pro_129_01_signin.png"
+      ]
+    }
+  ]
+}

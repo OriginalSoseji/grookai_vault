@@ -4,6 +4,11 @@
 .env.*
 !.env.example
 
+# App Store Connect API keys
+.appstoreconnect/
+private_keys/
+*.p8
+
 
 .dart_tool/
 .packages
