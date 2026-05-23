@@ -125,27 +125,35 @@ void main() {
     expect(espurrReverse.routeQuery, 'printing=GV-PK-ME03-033-RH');
   });
 
-  test(
-    'parent variant label remains higher priority than child finish label',
-    () {
-      final stampedPikachu = CardPrint.fromJson(<String, dynamic>{
-        'id': 'card-print-pikachu-stamp',
-        'gv_id': 'GV-PK-ME03-025-POKEMON-TOGETHER-STAMP',
-        'name': 'Pikachu',
-        'set_code': 'me03',
-        'number': '025',
-        'variant_key': 'pokemon_together_stamp',
-        'search_object_type': 'child_printing',
-        'printing_gv_id': 'GV-PK-ME03-025-POKEMON-TOGETHER-STAMP-RH',
-        'finish_key': 'reverse',
-        'finish_label': 'Reverse Holo',
-        'display_discriminator': 'Reverse Holo',
-      });
+  test('resolver search context displays before generic identity labels', () {
+    final stampedPikachu = CardPrint.fromJson(<String, dynamic>{
+      'id': 'card-print-pikachu-stamp',
+      'gv_id': 'GV-PK-ME03-025-POKEMON-TOGETHER-STAMP',
+      'name': 'Pikachu',
+      'set_code': 'me03',
+      'number': '025',
+      'variant_key': 'pokemon_together_stamp',
+      'search_object_type': 'child_printing',
+      'printing_gv_id': 'GV-PK-ME03-025-POKEMON-TOGETHER-STAMP-RH',
+      'finish_key': 'reverse',
+      'finish_label': 'Reverse Holo',
+      'display_discriminator': 'Reverse Holo',
+    });
+    final cameoTrainer = CardPrint.fromJson(<String, dynamic>{
+      'id': 'card-print-arcade-game',
+      'gv_id': 'GV-PK-N1-83',
+      'name': 'Arcade Game',
+      'set_code': 'n1',
+      'number': '83',
+      'variant_key': 'alt',
+      'search_object_type': 'parent_print',
+      'display_discriminator': 'Cameo: Pikachu · picture',
+    });
 
-      expect(
-        resolveDisplayName(stampedPikachu),
-        'Pikachu · Pokémon Together Stamp',
-      );
-    },
-  );
+    expect(resolveDisplayName(stampedPikachu), 'Pikachu · Reverse Holo');
+    expect(
+      resolveDisplayName(cameoTrainer),
+      'Arcade Game · Cameo: Pikachu · picture',
+    );
+  });
 }

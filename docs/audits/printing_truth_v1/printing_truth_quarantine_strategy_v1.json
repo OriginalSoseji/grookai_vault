@@ -1,0 +1,47 @@
+{
+  "version": "PRINTING_TRUTH_QUARANTINE_STRATEGY_V1",
+  "date": "2026-05-23",
+  "phase": "phase_2_quarantine_strategy",
+  "destructive": false,
+  "canonical_mutations": {
+    "card_printings": false,
+    "vault": false,
+    "ownership": false,
+    "provenance": false,
+    "pricing": false,
+    "identity": false
+  },
+  "sidecar": {
+    "table": "public.card_printing_truth_reviews",
+    "current_view": "public.v_card_printing_truth_current_v1",
+    "statuses": [
+      "verified",
+      "unsupported",
+      "conflicting",
+      "unverifiable",
+      "quarantined_candidate"
+    ],
+    "public_visibility_values": [
+      "visible",
+      "hidden_pending_review",
+      "hidden_unsupported"
+    ],
+    "public_visibility_effective_in_v1": false
+  },
+  "access": {
+    "anon": "deny_all",
+    "authenticated": "deny_all",
+    "service_role": "select_insert_update"
+  },
+  "source_artifacts": [
+    "docs/audits/printing_truth_v1/printing_truth_global_audit_v1.json",
+    "docs/audits/printing_truth_v1/unsupported_printings_v1.json",
+    "docs/audits/printing_truth_v1/reverse_holo_integrity_v1.json"
+  ],
+  "rollback": [
+    "stop sidecar writers",
+    "drop public.v_card_printing_truth_current_v1",
+    "drop public.card_printing_truth_reviews",
+    "drop public.set_card_printing_truth_reviews_updated_at_v1"
+  ]
+}

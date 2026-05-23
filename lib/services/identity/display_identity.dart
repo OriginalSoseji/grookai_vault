@@ -141,8 +141,7 @@ ResolvedDisplayIdentity resolveDisplayIdentityFromFields({
 }) {
   final baseName = (name ?? '').trim().isEmpty ? 'Unknown card' : name!.trim();
 
-  var suffix = formatVariantKey(variantKey);
-  suffix ??= formatSearchContextLabel(displayDiscriminator);
+  var suffix = formatSearchContextLabel(displayDiscriminator);
   if (suffix == null && searchObjectType == 'child_printing') {
     suffix = (displayDiscriminator ?? '').trim();
     if (suffix.isEmpty) {
@@ -152,6 +151,7 @@ ResolvedDisplayIdentity resolveDisplayIdentityFromFields({
       );
     }
   }
+  suffix ??= formatVariantKey(variantKey);
   suffix ??= formatPrintedIdentityModifier(printedIdentityModifier);
 
   if (suffix == null &&

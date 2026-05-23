@@ -4,12 +4,26 @@ import {
 
 const ALLOWED_FINISH_KEYS = new Set(['normal', 'holo', 'reverse']);
 
+function hasProofEvidence(evidence) {
+  return Boolean(
+    evidence &&
+      typeof evidence === 'object' &&
+      typeof evidence.source === 'string' &&
+      evidence.source.trim().length > 0 &&
+      typeof evidence.external_id === 'string' &&
+      evidence.external_id.trim().length > 0 &&
+      typeof evidence.evidence_type === 'string' &&
+      evidence.evidence_type.trim().length > 0,
+  );
+}
+
 export async function upsertPrinting({
   supabase,
   card_print_id,
   finish_key,
   source,
   ref,
+  evidence,
   is_provisional = false,
   created_by = 'printing_ingestion_v2',
   dryRun = false,
@@ -19,6 +33,7 @@ export async function upsertPrinting({
     finish_key,
     source: source ?? null,
     ref: ref ?? null,
+    evidence: evidence ?? null,
     is_provisional: Boolean(is_provisional),
     created_by,
     dry_run: Boolean(dryRun),
@@ -53,6 +68,13 @@ export async function upsertPrinting({
         contract_name: 'IDENTITY_CONTRACT_SUITE_V1',
         violation_type: 'unsupported_finish_key',
         reason: `printing_upsert_v1 received unsupported finish_key ${finish_key}.`,
+      },
+      {
+        ok: hasProofEvidence(evidence),
+        contract_name: 'PRINTING_TRUTH_CONTRACT_V1',
+        violation_type: 'missing_printing_proof',
+        reason:
+          'printing_upsert_v1 requires explicit source/external_id/evidence_type proof; generated finish flags are not enough.',
       },
     ],
     proofs: [

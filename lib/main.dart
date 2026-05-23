@@ -722,29 +722,7 @@ class _CatalogCardTile extends StatelessWidget {
     final colorScheme = theme.colorScheme;
     final compact = viewMode == AppCardViewMode.compactList;
     final displayIdentity = resolveCardPrintDisplayIdentity(card);
-
-    final subtitleParts = <String>[];
-    if (compact) {
-      final compactSet = card.setCode.isNotEmpty
-          ? card.setCode.toUpperCase()
-          : card.displaySet;
-      if (compactSet.isNotEmpty) {
-        subtitleParts.add(compactSet);
-      }
-    } else if (card.displaySet.isNotEmpty) {
-      subtitleParts.add(card.displaySet);
-    }
-    if (card.displayNumber.isNotEmpty) {
-      subtitleParts.add('#${card.displayNumber}');
-    }
-    final selectedFinish = (card.displayDiscriminator ?? card.finishLabel ?? '')
-        .trim();
-    if (selectedFinish.isNotEmpty) {
-      subtitleParts.add(selectedFinish);
-    }
-    if (!compact && (card.rarity ?? '').isNotEmpty) {
-      subtitleParts.add(card.rarity!);
-    }
+    final subtitleParts = _catalogMetadataParts(card, compact: compact);
     final subtitle = subtitleParts.join(' • ');
     final thumbWidth = compact ? 44.0 : 50.0;
     final thumbHeight = compact ? 62.0 : 72.0;
@@ -995,13 +973,11 @@ class _CatalogCardGridTile extends StatelessWidget {
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
     final displayIdentity = resolveCardPrintDisplayIdentity(card);
-    final subtitleParts = <String>[
-      if (card.displaySet.isNotEmpty)
-        card.displaySet
-      else if (card.setCode.isNotEmpty)
-        card.setCode.toUpperCase(),
-      if (card.displayNumber.isNotEmpty) '#${card.displayNumber}',
-    ];
+    final subtitleParts = _catalogMetadataParts(
+      card,
+      compact: false,
+      includeRarity: false,
+    );
     final subtitle = subtitleParts.join(' • ');
 
     return _CatalogFeedImpressionObserver(
@@ -1356,6 +1332,42 @@ bool _canOpenOwnedSurface(OwnershipState? state) {
   return hasGvvi || hasVaultItem;
 }
 
+String _searchContextLabel(CardPrint card) {
+  final label = (card.displayDiscriminator ?? card.finishLabel ?? '').trim();
+  return label;
+}
+
+List<String> _catalogMetadataParts(
+  CardPrint card, {
+  required bool compact,
+  bool includeRarity = true,
+}) {
+  final parts = <String>[];
+  if (compact) {
+    final compactSet = card.setCode.isNotEmpty
+        ? card.setCode.toUpperCase()
+        : card.displaySet;
+    if (compactSet.isNotEmpty) {
+      parts.add(compactSet);
+    }
+  } else if (card.displaySet.isNotEmpty) {
+    parts.add(card.displaySet);
+  } else if (card.setCode.isNotEmpty) {
+    parts.add(card.setCode.toUpperCase());
+  }
+  if (card.displayNumber.isNotEmpty) {
+    parts.add('#${card.displayNumber}');
+  }
+  final searchContext = _searchContextLabel(card);
+  if (searchContext.isNotEmpty) {
+    parts.add(searchContext);
+  }
+  if (includeRarity && !compact && (card.rarity ?? '').isNotEmpty) {
+    parts.add(card.rarity!);
+  }
+  return parts;
+}
+
 class _SearchResultActionSheet extends StatelessWidget {
   const _SearchResultActionSheet({
     required this.card,
@@ -1428,10 +1440,8 @@ class _SearchResultActionSheet extends StatelessWidget {
         _canOpenOwnedSurface(ownershipState) &&
         action != OwnershipAction.viewYourCopy &&
         action != OwnershipAction.openManageCard;
-    final hasSubtitle =
-        card.displaySet.isNotEmpty ||
-        card.displayNumber.isNotEmpty ||
-        (card.rarity ?? '').isNotEmpty;
+    final metadataParts = _catalogMetadataParts(card, compact: false);
+    final hasSubtitle = metadataParts.isNotEmpty;
 
     return SafeArea(
       child: Padding(
@@ -1478,6 +1488,10 @@ class _SearchResultActionSheet extends StatelessWidget {
                       ),
                     if (card.displayNumber.isNotEmpty)
                       _ActionSheetMetadataText(label: '#${card.displayNumber}'),
+                    if (_searchContextLabel(card).isNotEmpty)
+                      _ActionSheetMetadataText(
+                        label: _searchContextLabel(card),
+                      ),
                     if ((card.rarity ?? '').isNotEmpty)
                       _ActionSheetMetadataText(label: card.rarity!),
                   ],
