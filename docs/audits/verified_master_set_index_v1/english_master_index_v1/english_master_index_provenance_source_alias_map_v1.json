@@ -1,0 +1,2859 @@
+{
+  "generated_at": "2026-05-24T23:19:10.654Z",
+  "version": "english_master_index_provenance_source_alias_map_v1",
+  "audit_only": true,
+  "db_writes_performed": false,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "summary": {
+    "queue_items": 2163,
+    "printing_rows_represented": 5733,
+    "source_alias_rows": 37,
+    "by_lane": {
+      "pocket_scope_exclusion_candidate": 1341,
+      "physical_tcg_alias_recovery_candidate": 807,
+      "marketplace_id_lookup_required": 5,
+      "manual_provenance_review": 10
+    },
+    "by_source_alias": {
+      "A4": 241,
+      "A3": 214,
+      "A2": 186,
+      "sv08.5": 180,
+      "A2b": 111,
+      "sv04.5": 108,
+      "A3b": 107,
+      "A4a": 105,
+      "A3a": 103,
+      "P-A": 100,
+      "A2a": 96,
+      "me01": 83,
+      "A1a": 77,
+      "svp": 73,
+      "xyp": 61,
+      "sv06.5": 52,
+      "pl2": 37,
+      "swsh10.5": 34,
+      "2021swsh": 25,
+      "bw11": 25,
+      "pl4": 20,
+      "xy4": 16,
+      "ecard3": 15,
+      "ecard2": 13,
+      "col1": 11,
+      "mep": 10,
+      "pl1": 9,
+      "pl3": 9,
+      "dp7": 8,
+      "fut2020": 5,
+      "cel25": 4,
+      "ex10": 3,
+      "bw9": 2,
+      "swsh4.5": 2,
+      "A1": 1,
+      "swsh2": 1,
+      "xy9": 1
+    },
+    "by_matched_set": {
+      "sv8pt5": 180,
+      "sv4pt5": 108,
+      "me1": 83,
+      "svp": 73,
+      "xyp": 61,
+      "sv6pt5": 52,
+      "pl2": 37,
+      "pgo": 34,
+      "bw11": 25,
+      "mcd21": 25,
+      "pl4": 20,
+      "xy4": 16,
+      "ecard3": 15,
+      "ecard2": 13,
+      "col1": 11,
+      "mep": 10,
+      "pl1": 9,
+      "pl3": 9,
+      "dp7": 8,
+      "fut2020": 5,
+      "cel25": 4,
+      "ex10": 3,
+      "bw9": 2,
+      "swsh45": 2,
+      "swsh2": 1,
+      "xy9": 1
+    },
+    "by_pocket_alias": {
+      "A4": 241,
+      "A3": 214,
+      "A2": 186,
+      "A2b": 111,
+      "A3b": 107,
+      "A4a": 105,
+      "A3a": 103,
+      "P-A": 100,
+      "A2a": 96,
+      "A1a": 77,
+      "A1": 1
+    },
+    "by_unmatched_alias": {}
+  },
+  "guardrails": [
+    "source alias match is recovery evidence only",
+    "Pocket-style aliases are not English physical TCG alias authority",
+    "numeric marketplace IDs require URL lookup and second-source confirmation",
+    "no DB mutation, quarantine, cleanup, or migration is authorized by this map"
+  ],
+  "source_aliases": [
+    {
+      "source": "tcgdex",
+      "source_set_alias": "sv08.5",
+      "source_set_url": "https://api.tcgdex.net/v2/en/sets/sv08.5",
+      "lane": "physical_tcg_alias_recovery_candidate",
+      "card_print_count": 180,
+      "printing_count": 440,
+      "matched_master_index_set": {
+        "internal_set_key": "sv8pt5",
+        "set_name": "Prismatic Evolutions",
+        "source_key": "tcgdex",
+        "source_alias": "sv08.5",
+        "source_status": "available",
+        "source_url": "https://api.tcgdex.net/v2/en/sets/sv08.5"
+      },
+      "pocket_scope_candidate": false,
+      "sample_cards": [
+        {
+          "card_print_id": "29357eff-81f7-4232-93ac-49f1226abfd2",
+          "card_name": "Amarys",
+          "finish_profile": "holo|normal|reverse",
+          "external_id": "sv08.5-093",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/sv08.5-093"
+        },
+        {
+          "card_print_id": "6196ac6e-1301-451f-9bcf-1349cdafb4f8",
+          "card_name": "Applin",
+          "finish_profile": "holo|normal|reverse",
+          "external_id": "sv08.5-009",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/sv08.5-009"
+        },
+        {
+          "card_print_id": "c8f1da98-202e-46aa-9a85-8649ebf8d399",
+          "card_name": "Area Zero Underdepths",
+          "finish_profile": "holo|normal|reverse",
+          "external_id": "sv08.5-094",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/sv08.5-094"
+        },
+        {
+          "card_print_id": "3c97af9d-aa95-49f6-90b0-706b88b76443",
+          "card_name": "Aromatisse",
+          "finish_profile": "holo|normal|reverse",
+          "external_id": "sv08.5-039",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/sv08.5-039"
+        },
+        {
+          "card_print_id": "77851af6-8d91-43c5-beae-b9e23d5d3713",
+          "card_name": "Binding Mochi",
+          "finish_profile": "holo|normal|reverse",
+          "external_id": "sv08.5-095",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/sv08.5-095"
+        },
+        {
+          "card_print_id": "3da65e78-0221-4651-9467-4d0e4f85b652",
+          "card_name": "Black Belt's Training",
+          "finish_profile": "holo|normal|reverse",
+          "external_id": "sv08.5-096",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/sv08.5-096"
+        },
+        {
+          "card_print_id": "2f0e9e03-7ac5-45bd-9add-eac460ea6432",
+          "card_name": "Black Belt's Training",
+          "finish_profile": "holo|normal|reverse",
+          "external_id": "sv08.5-099",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/sv08.5-099"
+        },
+        {
+          "card_print_id": "21d069c6-f6b7-41d6-8300-37f28e5ce9ae",
+          "card_name": "Black Belt's Training",
+          "finish_profile": "holo|normal|reverse",
+          "external_id": "sv08.5-097",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/sv08.5-097"
+        },
+        {
+          "card_print_id": "1d778c67-b9ea-4aed-99d3-200f5534ac39",
+          "card_name": "Black Belt's Training",
+          "finish_profile": "holo|normal|reverse",
+          "external_id": "sv08.5-098",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/sv08.5-098"
+        },
+        {
+          "card_print_id": "b851ae56-bade-4486-8810-65c0613c6bee",
+          "card_name": "Briar",
+          "finish_profile": "holo|normal|reverse",
+          "external_id": "sv08.5-100",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/sv08.5-100"
+        }
+      ]
+    },
+    {
+      "source": "tcgdex",
+      "source_set_alias": "sv04.5",
+      "source_set_url": "https://api.tcgdex.net/v2/en/sets/sv04.5",
+      "lane": "physical_tcg_alias_recovery_candidate",
+      "card_print_count": 108,
+      "printing_count": 148,
+      "matched_master_index_set": {
+        "internal_set_key": "sv4pt5",
+        "set_name": "Paldean Fates",
+        "source_key": "tcgdex",
+        "source_alias": "sv04.5",
+        "source_status": "available",
+        "source_url": "https://api.tcgdex.net/v2/en/sets/sv04.5"
+      },
+      "pocket_scope_candidate": false,
+      "sample_cards": [
+        {
+          "card_print_id": "435c0599-12c2-4042-9401-8290af312bf6",
+          "card_name": "Annihilape",
+          "finish_profile": "holo|reverse",
+          "external_id": "sv04.5-047",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/sv04.5-047"
+        },
+        {
+          "card_print_id": "5b3fb3aa-2b58-4997-841f-d6771ec3ebc6",
+          "card_name": "Armarouge",
+          "finish_profile": "holo|reverse",
+          "external_id": "sv04.5-015",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/sv04.5-015"
+        },
+        {
+          "card_print_id": "8cf2db86-e98d-4d06-8882-39e8a6c68d30",
+          "card_name": "Ceruledge",
+          "finish_profile": "holo|reverse",
+          "external_id": "sv04.5-040",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/sv04.5-040"
+        },
+        {
+          "card_print_id": "8a71b7c8-ef01-4c87-b5a6-4974984b14d6",
+          "card_name": "Charcadet",
+          "finish_profile": "normal|reverse",
+          "external_id": "sv04.5-014",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/sv04.5-014"
+        },
+        {
+          "card_print_id": "3729104f-71b2-4242-801a-bec9dc31369b",
+          "card_name": "Charmander",
+          "finish_profile": "normal|reverse",
+          "external_id": "sv04.5-007",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/sv04.5-007"
+        },
+        {
+          "card_print_id": "39599b5f-9417-4d67-9d4f-630e413256a2",
+          "card_name": "Charmeleon",
+          "finish_profile": "normal|reverse",
+          "external_id": "sv04.5-008",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/sv04.5-008"
+        },
+        {
+          "card_print_id": "be8f9f47-28a4-4d25-abd5-527f3cf13549",
+          "card_name": "Clive",
+          "finish_profile": "normal|reverse",
+          "external_id": "sv04.5-078",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/sv04.5-078"
+        },
+        {
+          "card_print_id": "3d5d4c62-83d0-4996-878b-e3a61872f4ac",
+          "card_name": "Cyclizar",
+          "finish_profile": "holo|reverse",
+          "external_id": "sv04.5-070",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/sv04.5-070"
+        },
+        {
+          "card_print_id": "21efc498-eb90-420f-8bca-cd36828e49ac",
+          "card_name": "Dachsbun",
+          "finish_profile": "normal|reverse",
+          "external_id": "sv04.5-039",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/sv04.5-039"
+        },
+        {
+          "card_print_id": "1d9a2684-98e7-4e6d-92d9-2b2c3c0c4d6c",
+          "card_name": "Flittle",
+          "finish_profile": "normal|reverse",
+          "external_id": "sv04.5-041",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/sv04.5-041"
+        }
+      ]
+    },
+    {
+      "source": "tcgdex",
+      "source_set_alias": "me01",
+      "source_set_url": "https://api.tcgdex.net/v2/en/sets/me01",
+      "lane": "physical_tcg_alias_recovery_candidate",
+      "card_print_count": 83,
+      "printing_count": 168,
+      "matched_master_index_set": {
+        "internal_set_key": "me1",
+        "set_name": "Mega Evolution",
+        "source_key": "tcgdex",
+        "source_alias": "me01",
+        "source_status": "available",
+        "source_url": "https://api.tcgdex.net/v2/en/sets/me01"
+      },
+      "pocket_scope_candidate": false,
+      "sample_cards": [
+        {
+          "card_print_id": "f7c0bdb9-b762-4c56-b698-4907376db02d",
+          "card_name": "Cinderace",
+          "finish_profile": "holo|normal|reverse",
+          "external_id": "me01-028",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/me01-028"
+        },
+        {
+          "card_print_id": "4faab1bd-e8ce-4fe8-8fda-cd2167875850",
+          "card_name": "Hariyama",
+          "finish_profile": "holo|normal|reverse",
+          "external_id": "me01-073",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/me01-073"
+        },
+        {
+          "card_print_id": "4800e647-2f2b-4ebc-931e-ef4b672788e2",
+          "card_name": "Kirlia",
+          "finish_profile": "holo|normal|reverse",
+          "external_id": "me01-059",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/me01-059"
+        },
+        {
+          "card_print_id": "711a2789-6c0b-4c7b-8e5a-15c865deb444",
+          "card_name": "Meganium",
+          "finish_profile": "holo|normal|reverse",
+          "external_id": "me01-010",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/me01-010"
+        },
+        {
+          "card_print_id": "569f605f-b7e2-4e7d-9182-459287edda7a",
+          "card_name": "Ralts",
+          "finish_profile": "holo|normal|reverse",
+          "external_id": "me01-058",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/me01-058"
+        },
+        {
+          "card_print_id": "6a389901-dd1b-480a-88fc-ca3d1ee02128",
+          "card_name": "Riolu",
+          "finish_profile": "holo|normal|reverse",
+          "external_id": "me01-076",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/me01-076"
+        },
+        {
+          "card_print_id": "6968d365-f435-4047-9c47-8c9f274f92e6",
+          "card_name": "Solrock",
+          "finish_profile": "holo|normal|reverse",
+          "external_id": "me01-075",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/me01-075"
+        },
+        {
+          "card_print_id": "e003f060-6249-47f6-b31b-e2cb4cac5611",
+          "card_name": "Xerneas",
+          "finish_profile": "holo|normal|reverse",
+          "external_id": "me01-064",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/me01-064"
+        },
+        {
+          "card_print_id": "9b837cfd-0f7f-4bd1-ab75-c9b8c14ba027",
+          "card_name": "Alakazam",
+          "finish_profile": "holo|reverse",
+          "external_id": "me01-056",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/me01-056"
+        },
+        {
+          "card_print_id": "493cbe02-e42b-4ca0-97cb-f9b75584c66f",
+          "card_name": "Bayleef",
+          "finish_profile": "normal|reverse",
+          "external_id": "me01-009",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/me01-009"
+        }
+      ]
+    },
+    {
+      "source": "tcgdex",
+      "source_set_alias": "svp",
+      "source_set_url": "https://api.tcgdex.net/v2/en/sets/svp",
+      "lane": "physical_tcg_alias_recovery_candidate",
+      "card_print_count": 73,
+      "printing_count": 219,
+      "matched_master_index_set": {
+        "internal_set_key": "svp",
+        "set_name": "Scarlet & Violet Black Star Promos",
+        "source_key": "tcgdex",
+        "source_alias": "svp",
+        "source_status": "available",
+        "source_url": "https://api.tcgdex.net/v2/en/sets/svp"
+      },
+      "pocket_scope_candidate": false,
+      "sample_cards": [
+        {
+          "card_print_id": "0c500907-b532-4c45-9b35-5cbe4059c21c",
+          "card_name": "Alakazam ex",
+          "finish_profile": "holo|normal|reverse",
+          "external_id": "svp-050",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/svp-050"
+        },
+        {
+          "card_print_id": "1154a3c4-8965-4ac8-be8f-6963bdad7a35",
+          "card_name": "Arcanine",
+          "finish_profile": "holo|normal|reverse",
+          "external_id": "svp-011",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/svp-011"
+        },
+        {
+          "card_print_id": "6f7ddb77-58d2-4e0b-b761-4ce80881c739",
+          "card_name": "Arctibax",
+          "finish_profile": "holo|normal|reverse",
+          "external_id": "svp-064",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/svp-064"
+        },
+        {
+          "card_print_id": "817191d0-a89d-41f0-a61e-833ffb1f85d7",
+          "card_name": "Baxcalibur",
+          "finish_profile": "holo|normal|reverse",
+          "external_id": "svp-019",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/svp-019"
+        },
+        {
+          "card_print_id": "e0e95ad4-64fb-4846-96b6-c1bc4bea89f6",
+          "card_name": "Bellibolt",
+          "finish_profile": "holo|normal|reverse",
+          "external_id": "svp-094",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/svp-094"
+        },
+        {
+          "card_print_id": "94056067-d943-4cf5-85a2-6b7bf9e20896",
+          "card_name": "Bulbasaur",
+          "finish_profile": "holo|normal|reverse",
+          "external_id": "svp-046",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/svp-046"
+        },
+        {
+          "card_print_id": "b4d77eb7-0a23-42e4-8365-59ab89a98cf5",
+          "card_name": "Carvanha",
+          "finish_profile": "holo|normal|reverse",
+          "external_id": "svp-093",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/svp-093"
+        },
+        {
+          "card_print_id": "0658c806-e1be-48f4-9c4b-50b54bcd59da",
+          "card_name": "Charizard ex",
+          "finish_profile": "holo|normal|reverse",
+          "external_id": "svp-074",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/svp-074"
+        },
+        {
+          "card_print_id": "dbf93836-ccac-420f-9967-4281c7e775f6",
+          "card_name": "Charizard ex",
+          "finish_profile": "holo|normal|reverse",
+          "external_id": "svp-056",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/svp-056"
+        },
+        {
+          "card_print_id": "733c241e-8ac0-4426-a2cc-48ae987433ac",
+          "card_name": "Charmander",
+          "finish_profile": "holo|normal|reverse",
+          "external_id": "svp-047",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/svp-047"
+        }
+      ]
+    },
+    {
+      "source": "tcgdex",
+      "source_set_alias": "xyp",
+      "source_set_url": "https://api.tcgdex.net/v2/en/sets/xyp",
+      "lane": "physical_tcg_alias_recovery_candidate",
+      "card_print_count": 61,
+      "printing_count": 183,
+      "matched_master_index_set": {
+        "internal_set_key": "xyp",
+        "set_name": "XY Black Star Promos",
+        "source_key": "tcgdex",
+        "source_alias": "xyp",
+        "source_status": "available",
+        "source_url": "https://api.tcgdex.net/v2/en/sets/xyp"
+      },
+      "pocket_scope_candidate": false,
+      "sample_cards": [
+        {
+          "card_print_id": "880bf738-91f8-44f0-9026-5517058e9cbe",
+          "card_name": "Absol EX",
+          "finish_profile": "holo|normal|reverse",
+          "external_id": "xyp-XY62",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/xyp-XY62"
+        },
+        {
+          "card_print_id": "4f7b83ca-6291-4f21-bc09-add8bb57e266",
+          "card_name": "Aerodactyl EX",
+          "finish_profile": "holo|normal|reverse",
+          "external_id": "xyp-XY97",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/xyp-XY97"
+        },
+        {
+          "card_print_id": "7193b9ae-ed5b-457e-b67f-efef355afb96",
+          "card_name": "Ash Greninja EX",
+          "finish_profile": "holo|normal|reverse",
+          "external_id": "xyp-XY133",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/xyp-XY133"
+        },
+        {
+          "card_print_id": "d159fd8a-4a12-4109-8200-36416c2a2ad2",
+          "card_name": "Aurorus EX",
+          "finish_profile": "holo|normal|reverse",
+          "external_id": "xyp-XY102",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/xyp-XY102"
+        },
+        {
+          "card_print_id": "ce148dc6-45fe-460e-b3c5-cf3483b494b5",
+          "card_name": "Beedrill EX",
+          "finish_profile": "holo|normal|reverse",
+          "external_id": "xyp-XY157",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/xyp-XY157"
+        },
+        {
+          "card_print_id": "e8e43d13-0ee1-4433-91ef-fbe866b48e57",
+          "card_name": "Blastoise EX",
+          "finish_profile": "holo|normal|reverse",
+          "external_id": "xyp-XY122",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/xyp-XY122"
+        },
+        {
+          "card_print_id": "f46d7286-3522-4a9c-9d02-bb1e2aac838d",
+          "card_name": "Blastoise EX",
+          "finish_profile": "holo|normal|reverse",
+          "external_id": "xyp-XY30",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/xyp-XY30"
+        },
+        {
+          "card_print_id": "199e8699-1e8d-42dd-93d3-ac67f7e247be",
+          "card_name": "Blaziken EX",
+          "finish_profile": "holo|normal|reverse",
+          "external_id": "xyp-XY54",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/xyp-XY54"
+        },
+        {
+          "card_print_id": "a87c065b-cbeb-4566-b4b8-81430723bb93",
+          "card_name": "Charizard EX",
+          "finish_profile": "holo|normal|reverse",
+          "external_id": "xyp-XY121",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/xyp-XY121"
+        },
+        {
+          "card_print_id": "21224447-ada6-4b08-b43e-0ff7143821f2",
+          "card_name": "Charizard EX",
+          "finish_profile": "holo|normal|reverse",
+          "external_id": "xyp-XY17",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/xyp-XY17"
+        }
+      ]
+    },
+    {
+      "source": "tcgdex",
+      "source_set_alias": "sv06.5",
+      "source_set_url": "https://api.tcgdex.net/v2/en/sets/sv06.5",
+      "lane": "physical_tcg_alias_recovery_candidate",
+      "card_print_count": 52,
+      "printing_count": 69,
+      "matched_master_index_set": {
+        "internal_set_key": "sv6pt5",
+        "set_name": "Shrouded Fable",
+        "source_key": "tcgdex",
+        "source_alias": "sv06.5",
+        "source_status": "available",
+        "source_url": "https://api.tcgdex.net/v2/en/sets/sv06.5"
+      },
+      "pocket_scope_candidate": false,
+      "sample_cards": [
+        {
+          "card_print_id": "75dee3a0-eba6-4da0-91a2-67d806af9656",
+          "card_name": "Bewear",
+          "finish_profile": "normal|reverse",
+          "external_id": "sv06.5-053",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/sv06.5-053"
+        },
+        {
+          "card_print_id": "560786bd-0eab-4bae-871a-2292db4153c0",
+          "card_name": "Cassiopeia",
+          "finish_profile": "normal|reverse",
+          "external_id": "sv06.5-056",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/sv06.5-056"
+        },
+        {
+          "card_print_id": "62b9c8cd-4be6-483c-b5b8-6cd7bd1aeb5e",
+          "card_name": "Colress's Tenacity",
+          "finish_profile": "normal|reverse",
+          "external_id": "sv06.5-057",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/sv06.5-057"
+        },
+        {
+          "card_print_id": "132bd56e-d03e-4d50-98e5-defab35ebff1",
+          "card_name": "Cresselia",
+          "finish_profile": "holo|reverse",
+          "external_id": "sv06.5-021",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/sv06.5-021"
+        },
+        {
+          "card_print_id": "c51bea66-e243-4d68-a673-c33150bdecdb",
+          "card_name": "Cufant",
+          "finish_profile": "normal|reverse",
+          "external_id": "sv06.5-041",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/sv06.5-041"
+        },
+        {
+          "card_print_id": "c6afa971-a1cb-4f45-ab5e-bbc407fc5af1",
+          "card_name": "Dusclops",
+          "finish_profile": "normal|reverse",
+          "external_id": "sv06.5-019",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/sv06.5-019"
+        },
+        {
+          "card_print_id": "adb529a0-8a7e-4339-a517-b21f1f0081b6",
+          "card_name": "Dusknoir",
+          "finish_profile": "holo|reverse",
+          "external_id": "sv06.5-020",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/sv06.5-020"
+        },
+        {
+          "card_print_id": "8684a96e-9a74-4e36-ae2b-18f85dc7a42a",
+          "card_name": "Duskull",
+          "finish_profile": "normal|reverse",
+          "external_id": "sv06.5-018",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/sv06.5-018"
+        },
+        {
+          "card_print_id": "f283aeaa-dcaf-4a70-b94d-13849be28317",
+          "card_name": "Fraxure",
+          "finish_profile": "normal|reverse",
+          "external_id": "sv06.5-045",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/sv06.5-045"
+        },
+        {
+          "card_print_id": "2e7d63cb-3a11-44b8-ac08-6edcbf405ba3",
+          "card_name": "Horsea",
+          "finish_profile": "normal|reverse",
+          "external_id": "sv06.5-010",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/sv06.5-010"
+        }
+      ]
+    },
+    {
+      "source": "tcgdex",
+      "source_set_alias": "pl2",
+      "source_set_url": "https://api.tcgdex.net/v2/en/sets/pl2",
+      "lane": "physical_tcg_alias_recovery_candidate",
+      "card_print_count": 37,
+      "printing_count": 64,
+      "matched_master_index_set": {
+        "internal_set_key": "pl2",
+        "set_name": "Rising Rivals",
+        "source_key": "tcgdex",
+        "source_alias": "pl2",
+        "source_status": "available",
+        "source_url": "https://api.tcgdex.net/v2/en/sets/pl2"
+      },
+      "pocket_scope_candidate": false,
+      "sample_cards": [
+        {
+          "card_print_id": "1970689f-8f93-4148-96b2-0ed8ed149568",
+          "card_name": "Flygon",
+          "finish_profile": "holo|normal|reverse",
+          "external_id": "pl2-5",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/pl2-5"
+        },
+        {
+          "card_print_id": "ea5af9d8-3a57-4483-8fc2-5d13323bd144",
+          "card_name": "Alakazam 4",
+          "finish_profile": "normal|reverse",
+          "external_id": "pl2-38",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/pl2-38"
+        },
+        {
+          "card_print_id": "2ebe059c-614e-4dd6-812f-ebf268459ce5",
+          "card_name": "Arcanine",
+          "finish_profile": "holo|reverse",
+          "external_id": "pl2-1",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/pl2-1"
+        },
+        {
+          "card_print_id": "6d87f138-46ab-49a4-8f84-5f3f7aee1cca",
+          "card_name": "Bronzong 4",
+          "finish_profile": "normal|reverse",
+          "external_id": "pl2-16",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/pl2-16"
+        },
+        {
+          "card_print_id": "9d6eb3c7-dc61-4543-b436-a67fd23ba16c",
+          "card_name": "Darkrai G",
+          "finish_profile": "holo|reverse",
+          "external_id": "pl2-3",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/pl2-3"
+        },
+        {
+          "card_print_id": "333a3f96-f983-4ffb-8fc9-e439de00f466",
+          "card_name": "Drapion 4",
+          "finish_profile": "normal|reverse",
+          "external_id": "pl2-17",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/pl2-17"
+        },
+        {
+          "card_print_id": "c157b2e8-69e6-4d78-9d39-0e605e179991",
+          "card_name": "Espeon 4",
+          "finish_profile": "normal|reverse",
+          "external_id": "pl2-18",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/pl2-18"
+        },
+        {
+          "card_print_id": "d36e276b-06bb-46a3-8a72-4f6d544d9da3",
+          "card_name": "Flareon 4",
+          "finish_profile": "normal|reverse",
+          "external_id": "pl2-60",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/pl2-60"
+        },
+        {
+          "card_print_id": "338cff03-124b-42ea-9b25-e8bf25017e71",
+          "card_name": "Gallade 4",
+          "finish_profile": "normal|reverse",
+          "external_id": "pl2-20",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/pl2-20"
+        },
+        {
+          "card_print_id": "37f22309-ab0c-4e46-901d-87bec9f18a36",
+          "card_name": "Gliscor 4",
+          "finish_profile": "normal|reverse",
+          "external_id": "pl2-62",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/pl2-62"
+        }
+      ]
+    },
+    {
+      "source": "tcgdex",
+      "source_set_alias": "swsh10.5",
+      "source_set_url": "https://api.tcgdex.net/v2/en/sets/swsh10.5",
+      "lane": "physical_tcg_alias_recovery_candidate",
+      "card_print_count": 34,
+      "printing_count": 42,
+      "matched_master_index_set": {
+        "internal_set_key": "pgo",
+        "set_name": "Pokémon GO",
+        "source_key": "tcgdex",
+        "source_alias": "swsh10.5",
+        "source_status": "available",
+        "source_url": "https://api.tcgdex.net/v2/en/sets/swsh10.5"
+      },
+      "pocket_scope_candidate": false,
+      "sample_cards": [
+        {
+          "card_print_id": "0eafc514-6bba-4629-ba75-1a95493bc819",
+          "card_name": "Pikachu",
+          "finish_profile": "holo|normal|reverse",
+          "external_id": "swsh10.5-028",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/swsh10.5-028"
+        },
+        {
+          "card_print_id": "6206fc08-7415-414f-9c22-c2cf57493c1e",
+          "card_name": "Blanche",
+          "finish_profile": "normal|reverse",
+          "external_id": "swsh10.5-064",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/swsh10.5-064"
+        },
+        {
+          "card_print_id": "fc394554-fa86-4510-8a81-79f48df255c6",
+          "card_name": "Candela",
+          "finish_profile": "normal|reverse",
+          "external_id": "swsh10.5-065",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/swsh10.5-065"
+        },
+        {
+          "card_print_id": "d2f87992-4951-464e-9976-4e2caef7e497",
+          "card_name": "Egg Incubator",
+          "finish_profile": "normal|reverse",
+          "external_id": "swsh10.5-066",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/swsh10.5-066"
+        },
+        {
+          "card_print_id": "b45c87d9-4eef-493b-8bc7-3dd19021a7c2",
+          "card_name": "Lure Module",
+          "finish_profile": "normal|reverse",
+          "external_id": "swsh10.5-067",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/swsh10.5-067"
+        },
+        {
+          "card_print_id": "067bbc12-ce47-4e7a-bfbb-a9d1ac21f0d4",
+          "card_name": "Pikachu",
+          "finish_profile": "normal|reverse",
+          "external_id": "swsh10.5-027",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/swsh10.5-027"
+        },
+        {
+          "card_print_id": "e44d13e5-a6ac-4016-8b81-b6305ea3414b",
+          "card_name": "Spark",
+          "finish_profile": "normal|reverse",
+          "external_id": "swsh10.5-070",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/swsh10.5-070"
+        },
+        {
+          "card_print_id": "4b809146-f6ac-4b99-81e1-f593b115a1aa",
+          "card_name": "Alolan Exeggutor V",
+          "finish_profile": "holo",
+          "external_id": "swsh10.5-071",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/swsh10.5-071"
+        },
+        {
+          "card_print_id": "0832c419-3fe4-439a-8490-41011fcd843b",
+          "card_name": "Alolan Exeggutor V",
+          "finish_profile": "holo",
+          "external_id": "swsh10.5-005",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/swsh10.5-005"
+        },
+        {
+          "card_print_id": "259d6022-618e-4590-845b-989a6ed94bdc",
+          "card_name": "Blanche",
+          "finish_profile": "holo",
+          "external_id": "swsh10.5-082",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/swsh10.5-082"
+        }
+      ]
+    },
+    {
+      "source": "tcgdex",
+      "source_set_alias": "2021swsh",
+      "source_set_url": "https://api.tcgdex.net/v2/en/sets/2021swsh",
+      "lane": "physical_tcg_alias_recovery_candidate",
+      "card_print_count": 25,
+      "printing_count": 50,
+      "matched_master_index_set": {
+        "internal_set_key": "mcd21",
+        "set_name": "McDonald's Collection 2021",
+        "source_key": "tcgdex",
+        "source_alias": "2021swsh",
+        "source_status": "available",
+        "source_url": "https://api.tcgdex.net/v2/en/sets/2021swsh"
+      },
+      "pocket_scope_candidate": false,
+      "sample_cards": [
+        {
+          "card_print_id": "d34033e2-a8e8-4e72-b1e9-2033445e8f00",
+          "card_name": "Bulbasaur",
+          "finish_profile": "holo|normal",
+          "external_id": "2021swsh-1",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/2021swsh-1"
+        },
+        {
+          "card_print_id": "9421cd5e-2640-44c5-8044-47aaa7a7954a",
+          "card_name": "Charmander",
+          "finish_profile": "holo|normal",
+          "external_id": "2021swsh-9",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/2021swsh-9"
+        },
+        {
+          "card_print_id": "e95d8646-b98f-4c8c-a01d-2e499c02aa82",
+          "card_name": "Chespin",
+          "finish_profile": "holo|normal",
+          "external_id": "2021swsh-6",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/2021swsh-6"
+        },
+        {
+          "card_print_id": "987099f7-59e9-4c0a-9bbb-a0b8fa24a086",
+          "card_name": "Chikorita",
+          "finish_profile": "holo|normal",
+          "external_id": "2021swsh-2",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/2021swsh-2"
+        },
+        {
+          "card_print_id": "cefedf7b-f1c0-42f7-af7d-e6e9279358f3",
+          "card_name": "Chimchar",
+          "finish_profile": "holo|normal",
+          "external_id": "2021swsh-12",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/2021swsh-12"
+        },
+        {
+          "card_print_id": "ac9e8297-6e39-419f-8fa0-f58e90c80c01",
+          "card_name": "Cyndaquil",
+          "finish_profile": "holo|normal",
+          "external_id": "2021swsh-10",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/2021swsh-10"
+        },
+        {
+          "card_print_id": "0980ca25-d2fb-43a3-a74f-789e6a0f8f51",
+          "card_name": "Fennekin",
+          "finish_profile": "holo|normal",
+          "external_id": "2021swsh-14",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/2021swsh-14"
+        },
+        {
+          "card_print_id": "3f8c67ec-ac7c-4c02-b46d-a7ff9e9af0b2",
+          "card_name": "Froakie",
+          "finish_profile": "holo|normal",
+          "external_id": "2021swsh-22",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/2021swsh-22"
+        },
+        {
+          "card_print_id": "6613c2ff-8bad-465b-b186-78c6ac7b9c26",
+          "card_name": "Grookey",
+          "finish_profile": "holo|normal",
+          "external_id": "2021swsh-8",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/2021swsh-8"
+        },
+        {
+          "card_print_id": "229d3337-9150-428f-9259-36ee0a0636e2",
+          "card_name": "Litten",
+          "finish_profile": "holo|normal",
+          "external_id": "2021swsh-15",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/2021swsh-15"
+        }
+      ]
+    },
+    {
+      "source": "tcgdex",
+      "source_set_alias": "bw11",
+      "source_set_url": "https://api.tcgdex.net/v2/en/sets/bw11",
+      "lane": "physical_tcg_alias_recovery_candidate",
+      "card_print_count": 25,
+      "printing_count": 75,
+      "matched_master_index_set": {
+        "internal_set_key": "bw11",
+        "set_name": "Legendary Treasures",
+        "source_key": "tcgdex",
+        "source_alias": "bw11",
+        "source_status": "available",
+        "source_url": "https://api.tcgdex.net/v2/en/sets/bw11"
+      },
+      "pocket_scope_candidate": false,
+      "sample_cards": [
+        {
+          "card_print_id": "bef9f1a1-27d7-4e71-ab9e-64aab82e30bf",
+          "card_name": "Charmander",
+          "finish_profile": "holo|normal|reverse",
+          "external_id": "bw11-17",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/bw11-17"
+        },
+        {
+          "card_print_id": "58b916a9-9516-4988-b05b-d91803b7a223",
+          "card_name": "Cinccino",
+          "finish_profile": "holo|normal|reverse",
+          "external_id": "bw11-RC19",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/bw11-RC19"
+        },
+        {
+          "card_print_id": "d57d16ff-5e21-4e58-9cf2-791d3130d57e",
+          "card_name": "Eevee",
+          "finish_profile": "holo|normal|reverse",
+          "external_id": "bw11-RC14",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/bw11-RC14"
+        },
+        {
+          "card_print_id": "d56ed317-6505-4578-9aa5-40fd5fc84f69",
+          "card_name": "Elesa",
+          "finish_profile": "holo|normal|reverse",
+          "external_id": "bw11-RC20",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/bw11-RC20"
+        },
+        {
+          "card_print_id": "5fc644f5-26c9-4f5c-aecb-4dbb703010b4",
+          "card_name": "Emolga",
+          "finish_profile": "holo|normal|reverse",
+          "external_id": "bw11-RC23",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/bw11-RC23"
+        },
+        {
+          "card_print_id": "a53e052b-7854-4044-91eb-a3b7695f5a7b",
+          "card_name": "Gardevoir",
+          "finish_profile": "holo|normal|reverse",
+          "external_id": "bw11-RC10",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/bw11-RC10"
+        },
+        {
+          "card_print_id": "974f95cf-ed5b-4021-adaf-3135bd6a851d",
+          "card_name": "Growlithe",
+          "finish_profile": "holo|normal|reverse",
+          "external_id": "bw11-RC4",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/bw11-RC4"
+        },
+        {
+          "card_print_id": "bac974e4-c472-4f27-9acd-f18d4bb6f60e",
+          "card_name": "Kirlia",
+          "finish_profile": "holo|normal|reverse",
+          "external_id": "bw11-RC9",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/bw11-RC9"
+        },
+        {
+          "card_print_id": "6ccd25fb-8fd1-4588-a380-fd75b97295e6",
+          "card_name": "Mew-EX",
+          "finish_profile": "holo|normal|reverse",
+          "external_id": "bw11-RC24",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/bw11-RC24"
+        },
+        {
+          "card_print_id": "d73f7221-4dfa-4bfb-8f50-8ab81a78244f",
+          "card_name": "Minccino",
+          "finish_profile": "holo|normal|reverse",
+          "external_id": "bw11-RC18",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/bw11-RC18"
+        }
+      ]
+    },
+    {
+      "source": "tcgdex",
+      "source_set_alias": "pl4",
+      "source_set_url": "https://api.tcgdex.net/v2/en/sets/pl4",
+      "lane": "physical_tcg_alias_recovery_candidate",
+      "card_print_count": 20,
+      "printing_count": 27,
+      "matched_master_index_set": {
+        "internal_set_key": "pl4",
+        "set_name": "Arceus",
+        "source_key": "tcgdex",
+        "source_alias": "pl4",
+        "source_status": "available",
+        "source_url": "https://api.tcgdex.net/v2/en/sets/pl4"
+      },
+      "pocket_scope_candidate": false,
+      "sample_cards": [
+        {
+          "card_print_id": "3059259e-c28b-49d6-9f31-64e178e87f28",
+          "card_name": "Swalot",
+          "finish_profile": "holo|normal|reverse",
+          "external_id": "pl4-9",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/pl4-9"
+        },
+        {
+          "card_print_id": "227298d6-9bec-4197-98c6-7ede8ae05cf9",
+          "card_name": "Beedrill",
+          "finish_profile": "normal|reverse",
+          "external_id": "pl4-53",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/pl4-53"
+        },
+        {
+          "card_print_id": "a02f871c-fe3e-432b-944d-6decea0eecdf",
+          "card_name": "Charizard",
+          "finish_profile": "holo|reverse",
+          "external_id": "pl4-1",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/pl4-1"
+        },
+        {
+          "card_print_id": "71779a8b-ee22-4892-9425-8e3da51f179a",
+          "card_name": "Mothim",
+          "finish_profile": "holo|reverse",
+          "external_id": "pl4-6",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/pl4-6"
+        },
+        {
+          "card_print_id": "45ce6c25-7aba-4bf7-8cff-ce1dd9030fb3",
+          "card_name": "Porygon-Z",
+          "finish_profile": "normal|reverse",
+          "external_id": "pl4-26",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/pl4-26"
+        },
+        {
+          "card_print_id": "8716f287-3497-49b2-a499-9c1e026a6a94",
+          "card_name": "Zapdos",
+          "finish_profile": "holo|reverse",
+          "external_id": "pl4-12",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/pl4-12"
+        },
+        {
+          "card_print_id": "cf859f9b-f1d6-41ec-9e38-c7fd27743777",
+          "card_name": "Arceus",
+          "finish_profile": "holo",
+          "external_id": "pl4-AR2",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/pl4-AR2"
+        },
+        {
+          "card_print_id": "8b2c91cf-bd7c-4564-84ca-5863e1414257",
+          "card_name": "Arceus",
+          "finish_profile": "holo",
+          "external_id": "pl4-AR3",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/pl4-AR3"
+        },
+        {
+          "card_print_id": "63a0a7b8-bdfa-4a08-ad30-680bcc45802e",
+          "card_name": "Arceus",
+          "finish_profile": "holo",
+          "external_id": "pl4-AR5",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/pl4-AR5"
+        },
+        {
+          "card_print_id": "67e47461-e03c-4da3-8557-d3df639dbb98",
+          "card_name": "Arceus",
+          "finish_profile": "holo",
+          "external_id": "pl4-AR7",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/pl4-AR7"
+        }
+      ]
+    },
+    {
+      "source": "tcgdex",
+      "source_set_alias": "xy4",
+      "source_set_url": "https://api.tcgdex.net/v2/en/sets/xy4",
+      "lane": "physical_tcg_alias_recovery_candidate",
+      "card_print_count": 16,
+      "printing_count": 48,
+      "matched_master_index_set": {
+        "internal_set_key": "xy4",
+        "set_name": "Phantom Forces",
+        "source_key": "tcgdex",
+        "source_alias": "xy4",
+        "source_status": "available",
+        "source_url": "https://api.tcgdex.net/v2/en/sets/xy4"
+      },
+      "pocket_scope_candidate": false,
+      "sample_cards": [
+        {
+          "card_print_id": "6922b72a-f472-4bea-9c3b-e4320f11924e",
+          "card_name": "Aegislash EX",
+          "finish_profile": "holo|normal|reverse",
+          "external_id": "xy4-65a",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/xy4-65a"
+        },
+        {
+          "card_print_id": "21840232-9191-4566-8e3e-046f74841288",
+          "card_name": "Aegislash EX",
+          "finish_profile": "holo|normal|reverse",
+          "external_id": "xy4-65",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/xy4-65"
+        },
+        {
+          "card_print_id": "29ab165f-342c-467e-993f-ea98d49ba788",
+          "card_name": "Dialga EX",
+          "finish_profile": "holo|normal|reverse",
+          "external_id": "xy4-62",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/xy4-62"
+        },
+        {
+          "card_print_id": "77ebedc5-b9f3-4312-993b-bdf0d6cc9391",
+          "card_name": "Dialga EX",
+          "finish_profile": "holo|normal|reverse",
+          "external_id": "xy4-122",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/xy4-122"
+        },
+        {
+          "card_print_id": "367a9aa6-3ec4-471f-a173-9e292e3a28d9",
+          "card_name": "Florges EX",
+          "finish_profile": "holo|normal|reverse",
+          "external_id": "xy4-67",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/xy4-67"
+        },
+        {
+          "card_print_id": "4057e212-ac7d-4ecf-a3f0-40b396bbfe09",
+          "card_name": "Florges EX",
+          "finish_profile": "holo|normal|reverse",
+          "external_id": "xy4-116",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/xy4-116"
+        },
+        {
+          "card_print_id": "e7bc4b52-6e1b-412a-a121-d27b63c497f9",
+          "card_name": "Gengar EX",
+          "finish_profile": "holo|normal|reverse",
+          "external_id": "xy4-34",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/xy4-34"
+        },
+        {
+          "card_print_id": "2257ea5d-92bf-483b-8f40-8aaddfd7259c",
+          "card_name": "Gengar EX",
+          "finish_profile": "holo|normal|reverse",
+          "external_id": "xy4-114",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/xy4-114"
+        },
+        {
+          "card_print_id": "01657633-3bd1-4bad-9efa-626d9a652596",
+          "card_name": "M Gengar EX",
+          "finish_profile": "holo|normal|reverse",
+          "external_id": "xy4-35",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/xy4-35"
+        },
+        {
+          "card_print_id": "1b9b8cac-ec8f-4d20-a0eb-a81d58b5f41e",
+          "card_name": "M Gengar EX",
+          "finish_profile": "holo|normal|reverse",
+          "external_id": "xy4-121",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/xy4-121"
+        }
+      ]
+    },
+    {
+      "source": "tcgdex",
+      "source_set_alias": "ecard3",
+      "source_set_url": "https://api.tcgdex.net/v2/en/sets/ecard3",
+      "lane": "physical_tcg_alias_recovery_candidate",
+      "card_print_count": 15,
+      "printing_count": 19,
+      "matched_master_index_set": {
+        "internal_set_key": "ecard3",
+        "set_name": "Skyridge",
+        "source_key": "tcgdex",
+        "source_alias": "ecard3",
+        "source_status": "available",
+        "source_url": "https://api.tcgdex.net/v2/en/sets/ecard3"
+      },
+      "pocket_scope_candidate": false,
+      "sample_cards": [
+        {
+          "card_print_id": "d0270c83-13c1-4d2b-ae50-19830be9d134",
+          "card_name": "Articuno",
+          "finish_profile": "normal|reverse",
+          "external_id": "ecard3-4",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/ecard3-4"
+        },
+        {
+          "card_print_id": "36a0af86-f863-4ff0-967c-285a67272dcb",
+          "card_name": "Crobat",
+          "finish_profile": "normal|reverse",
+          "external_id": "ecard3-6",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/ecard3-6"
+        },
+        {
+          "card_print_id": "6406220f-4684-4f26-a52d-310db5eb5700",
+          "card_name": "Flareon",
+          "finish_profile": "normal|reverse",
+          "external_id": "ecard3-8",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/ecard3-8"
+        },
+        {
+          "card_print_id": "982bd726-548f-4e0c-9a93-c1301af1342f",
+          "card_name": "Forretress",
+          "finish_profile": "normal|reverse",
+          "external_id": "ecard3-9",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/ecard3-9"
+        },
+        {
+          "card_print_id": "d139fca7-558c-4dad-9a46-f94e4d45ab6b",
+          "card_name": "Kabutops",
+          "finish_profile": "holo",
+          "external_id": "ecard3-H13",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/ecard3-H13"
+        },
+        {
+          "card_print_id": "8c78b35f-6dd0-4b12-9709-8b4198ad3089",
+          "card_name": "Ledian",
+          "finish_profile": "holo",
+          "external_id": "ecard3-H14",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/ecard3-H14"
+        },
+        {
+          "card_print_id": "bb73d56c-c46f-4341-b4a1-825a10c2406b",
+          "card_name": "Magcargo",
+          "finish_profile": "holo",
+          "external_id": "ecard3-H17",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/ecard3-H17"
+        },
+        {
+          "card_print_id": "02a4156d-5f67-4969-8288-c440938a923c",
+          "card_name": "Magcargo",
+          "finish_profile": "holo",
+          "external_id": "ecard3-H16",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/ecard3-H16"
+        },
+        {
+          "card_print_id": "28d7a9bb-fcff-4e93-861d-d200770984d6",
+          "card_name": "Magneton",
+          "finish_profile": "holo",
+          "external_id": "ecard3-H18",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/ecard3-H18"
+        },
+        {
+          "card_print_id": "415065f4-68dd-44a9-a0f0-d6375e203275",
+          "card_name": "Piloswine",
+          "finish_profile": "holo",
+          "external_id": "ecard3-H22",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/ecard3-H22"
+        }
+      ]
+    },
+    {
+      "source": "tcgdex",
+      "source_set_alias": "ecard2",
+      "source_set_url": "https://api.tcgdex.net/v2/en/sets/ecard2",
+      "lane": "physical_tcg_alias_recovery_candidate",
+      "card_print_count": 13,
+      "printing_count": 26,
+      "matched_master_index_set": {
+        "internal_set_key": "ecard2",
+        "set_name": "Aquapolis",
+        "source_key": "tcgdex",
+        "source_alias": "ecard2",
+        "source_status": "available",
+        "source_url": "https://api.tcgdex.net/v2/en/sets/ecard2"
+      },
+      "pocket_scope_candidate": false,
+      "sample_cards": [
+        {
+          "card_print_id": "5155d8da-c49b-43cf-8173-1e4ceca853d2",
+          "card_name": "Espeon",
+          "finish_profile": "normal|reverse",
+          "external_id": "ecard2-11",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/ecard2-11"
+        },
+        {
+          "card_print_id": "49008b62-21be-48b8-a561-9dc0bea390e1",
+          "card_name": "Exeggutor",
+          "finish_profile": "normal|reverse",
+          "external_id": "ecard2-12",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/ecard2-12"
+        },
+        {
+          "card_print_id": "0f752ca1-5458-4241-af37-4a7b48b85013",
+          "card_name": "Exeggutor",
+          "finish_profile": "normal|reverse",
+          "external_id": "ecard2-13",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/ecard2-13"
+        },
+        {
+          "card_print_id": "bf8fa8c4-a04d-44f8-ae9e-50a6a6784d88",
+          "card_name": "Houndoom",
+          "finish_profile": "normal|reverse",
+          "external_id": "ecard2-15",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/ecard2-15"
+        },
+        {
+          "card_print_id": "d5e3ba78-7a85-49d2-8ab0-295521652f55",
+          "card_name": "Hypno",
+          "finish_profile": "normal|reverse",
+          "external_id": "ecard2-16",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/ecard2-16"
+        },
+        {
+          "card_print_id": "11591d3d-6574-487e-9958-f0d94bba5af4",
+          "card_name": "Jumpluff",
+          "finish_profile": "normal|reverse",
+          "external_id": "ecard2-17",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/ecard2-17"
+        },
+        {
+          "card_print_id": "72b1ec6b-fe84-4190-a0d3-d95155296261",
+          "card_name": "Jynx",
+          "finish_profile": "normal|reverse",
+          "external_id": "ecard2-18",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/ecard2-18"
+        },
+        {
+          "card_print_id": "b22dc290-dade-45f8-b488-5d3c921a79a1",
+          "card_name": "Kingdra",
+          "finish_profile": "normal|reverse",
+          "external_id": "ecard2-19",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/ecard2-19"
+        },
+        {
+          "card_print_id": "0e7d501c-b666-43df-9ee6-82443fcae8cb",
+          "card_name": "Lanturn",
+          "finish_profile": "normal|reverse",
+          "external_id": "ecard2-20",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/ecard2-20"
+        },
+        {
+          "card_print_id": "a077e73a-275a-405e-85ac-24b28b6ffe3a",
+          "card_name": "Ninetales",
+          "finish_profile": "normal|reverse",
+          "external_id": "ecard2-25",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/ecard2-25"
+        }
+      ]
+    },
+    {
+      "source": "tcgdex",
+      "source_set_alias": "col1",
+      "source_set_url": "https://api.tcgdex.net/v2/en/sets/col1",
+      "lane": "physical_tcg_alias_recovery_candidate",
+      "card_print_count": 11,
+      "printing_count": 33,
+      "matched_master_index_set": {
+        "internal_set_key": "col1",
+        "set_name": "Call of Legends",
+        "source_key": "tcgdex",
+        "source_alias": "col1",
+        "source_status": "available",
+        "source_url": "https://api.tcgdex.net/v2/en/sets/col1"
+      },
+      "pocket_scope_candidate": false,
+      "sample_cards": [
+        {
+          "card_print_id": "57560dcd-655d-4dc8-bef2-d5e453b97029",
+          "card_name": "Clefable",
+          "finish_profile": "holo|normal|reverse",
+          "external_id": "col1-1",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/col1-1"
+        },
+        {
+          "card_print_id": "b99eb073-791d-4f94-9dc9-199b97c2df9a",
+          "card_name": "Dialga",
+          "finish_profile": "holo|normal|reverse",
+          "external_id": "col1-SL2",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/col1-SL2"
+        },
+        {
+          "card_print_id": "3cb50761-3241-4b26-9145-746736670098",
+          "card_name": "Entei",
+          "finish_profile": "holo|normal|reverse",
+          "external_id": "col1-SL3",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/col1-SL3"
+        },
+        {
+          "card_print_id": "d74643a3-162e-47e2-9c82-79f9a297156f",
+          "card_name": "Forretress",
+          "finish_profile": "holo|normal|reverse",
+          "external_id": "col1-5",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/col1-5"
+        },
+        {
+          "card_print_id": "2180d1db-0948-4cfc-9a98-da7629c2811a",
+          "card_name": "Groudon",
+          "finish_profile": "holo|normal|reverse",
+          "external_id": "col1-6",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/col1-6"
+        },
+        {
+          "card_print_id": "8a8ba5d1-eac0-4bc8-9c75-ed955b9de177",
+          "card_name": "Groudon",
+          "finish_profile": "holo|normal|reverse",
+          "external_id": "col1-SL4",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/col1-SL4"
+        },
+        {
+          "card_print_id": "922f2b4f-eb6f-492c-89a7-8b4f313509e2",
+          "card_name": "Hitmontop",
+          "finish_profile": "holo|normal|reverse",
+          "external_id": "col1-8",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/col1-8"
+        },
+        {
+          "card_print_id": "a9203bf3-0a2f-4ef5-af3f-3dbdc6bf8bce",
+          "card_name": "Houndoom",
+          "finish_profile": "holo|normal|reverse",
+          "external_id": "col1-10",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/col1-10"
+        },
+        {
+          "card_print_id": "65a51be9-0633-4ca2-b6cb-b94f7c42848a",
+          "card_name": "Lugia",
+          "finish_profile": "holo|normal|reverse",
+          "external_id": "col1-SL7",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/col1-SL7"
+        },
+        {
+          "card_print_id": "ed0104d5-30a4-444e-85da-4458ed8196e2",
+          "card_name": "Raikou",
+          "finish_profile": "holo|normal|reverse",
+          "external_id": "col1-SL9",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/col1-SL9"
+        }
+      ]
+    },
+    {
+      "source": "tcgdex",
+      "source_set_alias": "mep",
+      "source_set_url": "https://api.tcgdex.net/v2/en/sets/mep",
+      "lane": "physical_tcg_alias_recovery_candidate",
+      "card_print_count": 10,
+      "printing_count": 10,
+      "matched_master_index_set": {
+        "internal_set_key": "mep",
+        "set_name": "MEP Black Star Promos",
+        "source_key": "tcgdex",
+        "source_alias": "mep",
+        "source_status": "available",
+        "source_url": "https://api.tcgdex.net/v2/en/sets/mep"
+      },
+      "pocket_scope_candidate": false,
+      "sample_cards": [
+        {
+          "card_print_id": "aa9f207d-c9ea-4607-bbc5-448648bca47f",
+          "card_name": "Alakazam",
+          "finish_profile": "holo",
+          "external_id": "mep-003",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/mep-003"
+        },
+        {
+          "card_print_id": "a3624761-be25-4841-83e4-c5936ec434fe",
+          "card_name": "Alakazam",
+          "finish_profile": "holo",
+          "external_id": "mep-009",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/mep-009"
+        },
+        {
+          "card_print_id": "ac2b6cf7-6873-44e8-96b9-e03a179fae51",
+          "card_name": "Drifblim",
+          "finish_profile": "holo",
+          "external_id": "mep-006",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/mep-006"
+        },
+        {
+          "card_print_id": "04e533ae-dd17-478c-ab46-220859079b2c",
+          "card_name": "Drifloon",
+          "finish_profile": "holo",
+          "external_id": "mep-005",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/mep-005"
+        },
+        {
+          "card_print_id": "47f874b2-ea20-4b89-af44-085905bb1f60",
+          "card_name": "Golduck",
+          "finish_profile": "holo",
+          "external_id": "mep-008",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/mep-008"
+        },
+        {
+          "card_print_id": "b75d4730-3c1a-42ca-9d18-e8ca736ae41f",
+          "card_name": "Inteleon",
+          "finish_profile": "holo",
+          "external_id": "mep-002",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/mep-002"
+        },
+        {
+          "card_print_id": "bf523703-271c-49fe-b8aa-c31c57cb9b32",
+          "card_name": "Lunatone",
+          "finish_profile": "holo",
+          "external_id": "mep-004",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/mep-004"
+        },
+        {
+          "card_print_id": "6419894a-137f-4fc7-8db1-fa853872b190",
+          "card_name": "Meganium",
+          "finish_profile": "holo",
+          "external_id": "mep-001",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/mep-001"
+        },
+        {
+          "card_print_id": "870f45fe-0680-4a92-b77b-dd03a6018bd3",
+          "card_name": "Psyduck",
+          "finish_profile": "holo",
+          "external_id": "mep-007",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/mep-007"
+        },
+        {
+          "card_print_id": "242de512-f2fb-4994-9615-6c1e2c55ac02",
+          "card_name": "Riolu",
+          "finish_profile": "holo",
+          "external_id": "mep-010",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/mep-010"
+        }
+      ]
+    },
+    {
+      "source": "tcgdex",
+      "source_set_alias": "pl1",
+      "source_set_url": "https://api.tcgdex.net/v2/en/sets/pl1",
+      "lane": "physical_tcg_alias_recovery_candidate",
+      "card_print_count": 9,
+      "printing_count": 10,
+      "matched_master_index_set": {
+        "internal_set_key": "pl1",
+        "set_name": "Platinum",
+        "source_key": "tcgdex",
+        "source_alias": "pl1",
+        "source_status": "available",
+        "source_url": "https://api.tcgdex.net/v2/en/sets/pl1"
+      },
+      "pocket_scope_candidate": false,
+      "sample_cards": [
+        {
+          "card_print_id": "cfbaec4b-bc98-4f6f-8b06-a30dbe29af30",
+          "card_name": "Dialga",
+          "finish_profile": "holo|reverse",
+          "external_id": "pl1-6",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/pl1-6"
+        },
+        {
+          "card_print_id": "9d20653b-49ea-4a30-8e18-629267d7397b",
+          "card_name": "Dialga G",
+          "finish_profile": "holo",
+          "external_id": "pl1-122",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/pl1-122"
+        },
+        {
+          "card_print_id": "1cc5b95e-c5b7-477c-a3c1-1d4c26e10875",
+          "card_name": "Drapion",
+          "finish_profile": "holo",
+          "external_id": "pl1-123",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/pl1-123"
+        },
+        {
+          "card_print_id": "9deb3714-1f02-4eb2-a249-6b3b42a106cb",
+          "card_name": "Giratina",
+          "finish_profile": "holo",
+          "external_id": "pl1-124",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/pl1-124"
+        },
+        {
+          "card_print_id": "74b9d351-aecc-4ff9-8ed2-958311074af7",
+          "card_name": "Lotad",
+          "finish_profile": "reverse",
+          "external_id": "pl1-SH4",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/pl1-SH4"
+        },
+        {
+          "card_print_id": "182aab06-7802-4dea-90cb-32dfc7cefaab",
+          "card_name": "Palkia G",
+          "finish_profile": "holo",
+          "external_id": "pl1-125",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/pl1-125"
+        },
+        {
+          "card_print_id": "24bd8689-4031-40d0-8948-1d08e652ef34",
+          "card_name": "Shaymin",
+          "finish_profile": "holo",
+          "external_id": "pl1-126",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/pl1-126"
+        },
+        {
+          "card_print_id": "1f03518a-bed9-4c04-ad0c-3a5cf3008248",
+          "card_name": "Shaymin",
+          "finish_profile": "holo",
+          "external_id": "pl1-127",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/pl1-127"
+        },
+        {
+          "card_print_id": "e48e17b9-b693-4882-9e9f-d177dbce37c8",
+          "card_name": "Swablu",
+          "finish_profile": "reverse",
+          "external_id": "pl1-SH5",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/pl1-SH5"
+        }
+      ]
+    },
+    {
+      "source": "tcgdex",
+      "source_set_alias": "pl3",
+      "source_set_url": "https://api.tcgdex.net/v2/en/sets/pl3",
+      "lane": "physical_tcg_alias_recovery_candidate",
+      "card_print_count": 9,
+      "printing_count": 9,
+      "matched_master_index_set": {
+        "internal_set_key": "pl3",
+        "set_name": "Supreme Victors",
+        "source_key": "tcgdex",
+        "source_alias": "pl3",
+        "source_status": "available",
+        "source_url": "https://api.tcgdex.net/v2/en/sets/pl3"
+      },
+      "pocket_scope_candidate": false,
+      "sample_cards": [
+        {
+          "card_print_id": "8cd92a82-149d-43b4-a7d3-d65782536182",
+          "card_name": "Absol G",
+          "finish_profile": "holo",
+          "external_id": "pl3-141",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/pl3-141"
+        },
+        {
+          "card_print_id": "79097350-eb58-44e8-bd39-3ec5f417f02b",
+          "card_name": "Blaziken FB",
+          "finish_profile": "holo",
+          "external_id": "pl3-142",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/pl3-142"
+        },
+        {
+          "card_print_id": "880dc8c7-6959-4fda-b79a-32e48c684267",
+          "card_name": "Charizard G",
+          "finish_profile": "holo",
+          "external_id": "pl3-143",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/pl3-143"
+        },
+        {
+          "card_print_id": "29a4bca4-6264-45f6-bc24-1d5ded5520cd",
+          "card_name": "Electivire FB",
+          "finish_profile": "holo",
+          "external_id": "pl3-144",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/pl3-144"
+        },
+        {
+          "card_print_id": "2c1b3125-dd67-4522-b3e0-5621c05f7a9a",
+          "card_name": "Garchomp C",
+          "finish_profile": "holo",
+          "external_id": "pl3-145",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/pl3-145"
+        },
+        {
+          "card_print_id": "89f61622-12a4-4861-abb3-ef3dbcaf2a86",
+          "card_name": "Rayquaza C",
+          "finish_profile": "holo",
+          "external_id": "pl3-146",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/pl3-146"
+        },
+        {
+          "card_print_id": "9089264b-fd13-4261-94ac-b252ab89f6c7",
+          "card_name": "Relicanth",
+          "finish_profile": "reverse",
+          "external_id": "pl3-SH8",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/pl3-SH8"
+        },
+        {
+          "card_print_id": "fa6310ae-be43-4309-af1d-a5033daff2f0",
+          "card_name": "Staraptor FB",
+          "finish_profile": "holo",
+          "external_id": "pl3-147",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/pl3-147"
+        },
+        {
+          "card_print_id": "e8a8c0b0-2213-4701-89a9-8926cc0d5669",
+          "card_name": "Yanma",
+          "finish_profile": "reverse",
+          "external_id": "pl3-SH9",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/pl3-SH9"
+        }
+      ]
+    },
+    {
+      "source": "tcgdex",
+      "source_set_alias": "dp7",
+      "source_set_url": "https://api.tcgdex.net/v2/en/sets/dp7",
+      "lane": "physical_tcg_alias_recovery_candidate",
+      "card_print_count": 8,
+      "printing_count": 10,
+      "matched_master_index_set": {
+        "internal_set_key": "dp7",
+        "set_name": "Stormfront",
+        "source_key": "tcgdex",
+        "source_alias": "dp7",
+        "source_status": "available",
+        "source_url": "https://api.tcgdex.net/v2/en/sets/dp7"
+      },
+      "pocket_scope_candidate": false,
+      "sample_cards": [
+        {
+          "card_print_id": "62f77935-5749-4d26-87e6-06bbca565b22",
+          "card_name": "Empoleon",
+          "finish_profile": "holo|reverse",
+          "external_id": "dp7-2",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/dp7-2"
+        },
+        {
+          "card_print_id": "665ee2b0-4a22-43d5-bf8e-8ff22a990384",
+          "card_name": "Infernape",
+          "finish_profile": "holo|reverse",
+          "external_id": "dp7-3",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/dp7-3"
+        },
+        {
+          "card_print_id": "e8444009-0c47-48a6-af07-f5b450ac0082",
+          "card_name": "Drifloon",
+          "finish_profile": "holo",
+          "external_id": "dp7-SH1",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/dp7-SH1"
+        },
+        {
+          "card_print_id": "d45018d3-c2a6-4d82-b3ed-d0ac6ce6e0ff",
+          "card_name": "Dusknoir",
+          "finish_profile": "holo",
+          "external_id": "dp7-96",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/dp7-96"
+        },
+        {
+          "card_print_id": "7c211bf2-ab9e-489d-842f-65c896270783",
+          "card_name": "Heatran",
+          "finish_profile": "holo",
+          "external_id": "dp7-97",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/dp7-97"
+        },
+        {
+          "card_print_id": "6f49c231-0a53-4c0c-9db1-6d4c36aa460e",
+          "card_name": "Machamp",
+          "finish_profile": "holo",
+          "external_id": "dp7-98",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/dp7-98"
+        },
+        {
+          "card_print_id": "7a0dbe87-8ffb-4939-a5c0-371a0a21b302",
+          "card_name": "Raichu",
+          "finish_profile": "holo",
+          "external_id": "dp7-99",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/dp7-99"
+        },
+        {
+          "card_print_id": "687811f7-e3d2-41bb-b37d-1e73882551d2",
+          "card_name": "Regigigas",
+          "finish_profile": "holo",
+          "external_id": "dp7-100",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/dp7-100"
+        }
+      ]
+    },
+    {
+      "source": "tcgdex",
+      "source_set_alias": "fut2020",
+      "source_set_url": "https://api.tcgdex.net/v2/en/sets/fut2020",
+      "lane": "physical_tcg_alias_recovery_candidate",
+      "card_print_count": 5,
+      "printing_count": 13,
+      "matched_master_index_set": {
+        "internal_set_key": "fut2020",
+        "set_name": "Pokémon Futsal 2020",
+        "source_key": "tcgdex",
+        "source_alias": "fut2020",
+        "source_status": "available",
+        "source_url": "https://api.tcgdex.net/v2/en/sets/fut2020"
+      },
+      "pocket_scope_candidate": false,
+      "sample_cards": [
+        {
+          "card_print_id": "2f2942c8-6019-4446-806c-593dd351af98",
+          "card_name": "Eevee on the Ball",
+          "finish_profile": "holo|normal|reverse",
+          "external_id": "fut2020-2",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/fut2020-2"
+        },
+        {
+          "card_print_id": "5029b53f-a1dd-4fe0-ae0c-b38021dd52c2",
+          "card_name": "Grookey on the Ball",
+          "finish_profile": "holo|normal|reverse",
+          "external_id": "fut2020-3",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/fut2020-3"
+        },
+        {
+          "card_print_id": "53919228-7560-480c-9bdb-da99ad67250a",
+          "card_name": "Scorbunny on the Ball",
+          "finish_profile": "holo|normal|reverse",
+          "external_id": "fut2020-4",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/fut2020-4"
+        },
+        {
+          "card_print_id": "82ebefc5-51bc-4dbd-ba14-a9a60186aa61",
+          "card_name": "Sobble on the Ball",
+          "finish_profile": "holo|normal|reverse",
+          "external_id": "fut2020-5",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/fut2020-5"
+        },
+        {
+          "card_print_id": "a676888d-19e0-4064-89aa-e67019af5b95",
+          "card_name": "Pikachu on the Ball",
+          "finish_profile": "holo",
+          "external_id": "fut2020-1",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/fut2020-1"
+        }
+      ]
+    },
+    {
+      "source": "tcgdex",
+      "source_set_alias": "cel25",
+      "source_set_url": "https://api.tcgdex.net/v2/en/sets/cel25",
+      "lane": "physical_tcg_alias_recovery_candidate",
+      "card_print_count": 4,
+      "printing_count": 4,
+      "matched_master_index_set": {
+        "internal_set_key": "cel25",
+        "set_name": "Celebrations",
+        "source_key": "tcgdex",
+        "source_alias": "cel25",
+        "source_status": "available",
+        "source_url": "https://api.tcgdex.net/v2/en/sets/cel25"
+      },
+      "pocket_scope_candidate": false,
+      "sample_cards": [
+        {
+          "card_print_id": "aedd9f51-0d41-48de-a35d-2df67bb72046",
+          "card_name": "Claydol",
+          "finish_profile": "holo",
+          "external_id": "cel25-15A4",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/cel25-15A4"
+        },
+        {
+          "card_print_id": "8e4958ab-1e4e-4636-87e1-4650ae938086",
+          "card_name": "Here Comes Team Rocket!",
+          "finish_profile": "holo",
+          "external_id": "cel25-15A2",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/cel25-15A2"
+        },
+        {
+          "card_print_id": "d7e84443-dae0-4d48-b32a-b2719ec4d670",
+          "card_name": "Rocket's Zapdos",
+          "finish_profile": "holo",
+          "external_id": "cel25-15A3",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/cel25-15A3"
+        },
+        {
+          "card_print_id": "90685cb5-3cfd-4fd8-a4dd-2664e00c4eb0",
+          "card_name": "Venusaur",
+          "finish_profile": "holo",
+          "external_id": "cel25-15A1",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/cel25-15A1"
+        }
+      ]
+    },
+    {
+      "source": "tcgdex",
+      "source_set_alias": "ex10",
+      "source_set_url": "https://api.tcgdex.net/v2/en/sets/ex10",
+      "lane": "physical_tcg_alias_recovery_candidate",
+      "card_print_count": 3,
+      "printing_count": 3,
+      "matched_master_index_set": {
+        "internal_set_key": "ex10",
+        "set_name": "Unseen Forces",
+        "source_key": "tcgdex",
+        "source_alias": "ex10",
+        "source_status": "available",
+        "source_url": "https://api.tcgdex.net/v2/en/sets/ex10"
+      },
+      "pocket_scope_candidate": false,
+      "sample_cards": [
+        {
+          "card_print_id": "2fdd39c8-7afa-4031-be84-649ac28a7b72",
+          "card_name": "Entei Star",
+          "finish_profile": "holo",
+          "external_id": "ex10-113",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/ex10-113"
+        },
+        {
+          "card_print_id": "043dbc47-0815-4ef4-b31d-2027f70f2338",
+          "card_name": "Raikou Star",
+          "finish_profile": "holo",
+          "external_id": "ex10-114",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/ex10-114"
+        },
+        {
+          "card_print_id": "584c31ad-d7ac-4356-b9cc-4de3152511b2",
+          "card_name": "Suicune Star",
+          "finish_profile": "holo",
+          "external_id": "ex10-115",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/ex10-115"
+        }
+      ]
+    },
+    {
+      "source": "tcgdex",
+      "source_set_alias": "bw9",
+      "source_set_url": "https://api.tcgdex.net/v2/en/sets/bw9",
+      "lane": "physical_tcg_alias_recovery_candidate",
+      "card_print_count": 2,
+      "printing_count": 6,
+      "matched_master_index_set": {
+        "internal_set_key": "bw9",
+        "set_name": "Plasma Freeze",
+        "source_key": "tcgdex",
+        "source_alias": "bw9",
+        "source_status": "available",
+        "source_url": "https://api.tcgdex.net/v2/en/sets/bw9"
+      },
+      "pocket_scope_candidate": false,
+      "sample_cards": [
+        {
+          "card_print_id": "7df8528c-c8f8-4110-890d-0fb32bc0fbf3",
+          "card_name": "Nidoran♀",
+          "finish_profile": "holo|normal|reverse",
+          "external_id": "bw9-40",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/bw9-40"
+        },
+        {
+          "card_print_id": "c0b41c1b-2d6f-4c5f-bf85-ccae2c731d46",
+          "card_name": "Nidoran♂",
+          "finish_profile": "holo|normal|reverse",
+          "external_id": "bw9-43",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/bw9-43"
+        }
+      ]
+    },
+    {
+      "source": "tcgdex",
+      "source_set_alias": "swsh4.5",
+      "source_set_url": "https://api.tcgdex.net/v2/en/sets/swsh4.5",
+      "lane": "physical_tcg_alias_recovery_candidate",
+      "card_print_count": 2,
+      "printing_count": 4,
+      "matched_master_index_set": {
+        "internal_set_key": "swsh45",
+        "set_name": "Shining Fates",
+        "source_key": "tcgdex",
+        "source_alias": "swsh4.5",
+        "source_status": "available",
+        "source_url": "https://api.tcgdex.net/v2/en/sets/swsh4.5"
+      },
+      "pocket_scope_candidate": false,
+      "sample_cards": [
+        {
+          "card_print_id": "5ee8ddf9-81b3-43e0-94b5-951ac0386eb8",
+          "card_name": "Boss's Orders (Lysandre)",
+          "finish_profile": "normal|reverse",
+          "external_id": "swsh4.5-58",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/swsh4.5-58"
+        },
+        {
+          "card_print_id": "17cd3179-b844-47a8-a197-ae123ca4b583",
+          "card_name": "Professor's Research (Professor Juniper)",
+          "finish_profile": "normal|reverse",
+          "external_id": "swsh4.5-60",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/swsh4.5-60"
+        }
+      ]
+    },
+    {
+      "source": "tcgdex",
+      "source_set_alias": "swsh2",
+      "source_set_url": "https://api.tcgdex.net/v2/en/sets/swsh2",
+      "lane": "physical_tcg_alias_recovery_candidate",
+      "card_print_count": 1,
+      "printing_count": 2,
+      "matched_master_index_set": {
+        "internal_set_key": "swsh2",
+        "set_name": "Rebel Clash",
+        "source_key": "tcgdex",
+        "source_alias": "swsh2",
+        "source_status": "available",
+        "source_url": "https://api.tcgdex.net/v2/en/sets/swsh2"
+      },
+      "pocket_scope_candidate": false,
+      "sample_cards": [
+        {
+          "card_print_id": "9cf48b11-bf42-4aa3-861b-c2ca5543877e",
+          "card_name": "Boss's Orders (Giovanni)",
+          "finish_profile": "holo|reverse",
+          "external_id": "swsh2-154",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/swsh2-154"
+        }
+      ]
+    },
+    {
+      "source": "tcgdex",
+      "source_set_alias": "xy9",
+      "source_set_url": "https://api.tcgdex.net/v2/en/sets/xy9",
+      "lane": "physical_tcg_alias_recovery_candidate",
+      "card_print_count": 1,
+      "printing_count": 3,
+      "matched_master_index_set": {
+        "internal_set_key": "xy9",
+        "set_name": "BREAKpoint",
+        "source_key": "tcgdex",
+        "source_alias": "xy9",
+        "source_status": "available",
+        "source_url": "https://api.tcgdex.net/v2/en/sets/xy9"
+      },
+      "pocket_scope_candidate": false,
+      "sample_cards": [
+        {
+          "card_print_id": "a6d34131-d056-49ae-a8b7-21d808e351f6",
+          "card_name": "Delinquent",
+          "finish_profile": "holo|normal|reverse",
+          "external_id": "xy9-98",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/xy9-98"
+        }
+      ]
+    },
+    {
+      "source": "tcgdex",
+      "source_set_alias": "A4",
+      "source_set_url": "https://api.tcgdex.net/v2/en/sets/A4",
+      "lane": "pocket_scope_exclusion_candidate",
+      "card_print_count": 241,
+      "printing_count": 723,
+      "pocket_scope_candidate": true,
+      "sample_cards": [
+        {
+          "card_print_id": "2457096b-3789-40e2-96f6-0ba3735e7f62",
+          "card_name": "Absol",
+          "finish_profile": "holo|normal|reverse",
+          "external_id": "A4-120",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/A4-120"
+        },
+        {
+          "card_print_id": "47408825-3e73-4073-9de5-7c39457422e2",
+          "card_name": "Aipom",
+          "finish_profile": "holo|normal|reverse",
+          "external_id": "A4-142",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/A4-142"
+        },
+        {
+          "card_print_id": "a07edabe-45c0-465a-a00e-4d424bdf1a3e",
+          "card_name": "Ambipom",
+          "finish_profile": "holo|normal|reverse",
+          "external_id": "A4-143",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/A4-143"
+        },
+        {
+          "card_print_id": "cf2210ac-804a-4e05-8896-fc785686b295",
+          "card_name": "Ampharos",
+          "finish_profile": "holo|normal|reverse",
+          "external_id": "A4-069",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/A4-069"
+        },
+        {
+          "card_print_id": "e9805a7f-716e-4827-a631-d9d2afe92e20",
+          "card_name": "Ampharos",
+          "finish_profile": "holo|normal|reverse",
+          "external_id": "A4-172",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/A4-172"
+        },
+        {
+          "card_print_id": "08a57e8f-06af-43d0-8be7-a84fe4e9f822",
+          "card_name": "Ariados",
+          "finish_profile": "holo|normal|reverse",
+          "external_id": "A4-111",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/A4-111"
+        },
+        {
+          "card_print_id": "4d73bd1e-b8ed-4d57-bcf8-dad1e4acff23",
+          "card_name": "Azumarill",
+          "finish_profile": "holo|normal|reverse",
+          "external_id": "A4-050",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/A4-050"
+        },
+        {
+          "card_print_id": "358ab7aa-c3dd-463e-806c-2eeb8acbb228",
+          "card_name": "Barbaracle",
+          "finish_profile": "holo|normal|reverse",
+          "external_id": "A4-106",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/A4-106"
+        },
+        {
+          "card_print_id": "ff9d044e-fbc2-483a-9bc3-44601b635c31",
+          "card_name": "Bayleef",
+          "finish_profile": "holo|normal|reverse",
+          "external_id": "A4-009",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/A4-009"
+        },
+        {
+          "card_print_id": "c935409a-cefb-4c94-ae53-d4dd1f435043",
+          "card_name": "Bellossom",
+          "finish_profile": "holo|normal|reverse",
+          "external_id": "A4-003",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/A4-003"
+        }
+      ]
+    },
+    {
+      "source": "tcgdex",
+      "source_set_alias": "A3",
+      "source_set_url": "https://api.tcgdex.net/v2/en/sets/A3",
+      "lane": "pocket_scope_exclusion_candidate",
+      "card_print_count": 214,
+      "printing_count": 642,
+      "pocket_scope_candidate": true,
+      "sample_cards": [
+        {
+          "card_print_id": "3c203018-7eec-4eed-927f-376fa584bd25",
+          "card_name": "Absol",
+          "finish_profile": "holo|normal|reverse",
+          "external_id": "A3-112",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/A3-112"
+        },
+        {
+          "card_print_id": "7553b519-422a-4b87-8d76-06d1276a5f6f",
+          "card_name": "Acerola",
+          "finish_profile": "holo|normal|reverse",
+          "external_id": "A3-148",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/A3-148"
+        },
+        {
+          "card_print_id": "fcf05789-8f12-484a-a9c1-8ddf1c366c4d",
+          "card_name": "Alolan Diglett",
+          "finish_profile": "holo|normal|reverse",
+          "external_id": "A3-117",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/A3-117"
+        },
+        {
+          "card_print_id": "bf7f7058-a1fb-47fc-a9ae-806fbe17dcc1",
+          "card_name": "Alolan Dugtrio",
+          "finish_profile": "holo|normal|reverse",
+          "external_id": "A3-118",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/A3-118"
+        },
+        {
+          "card_print_id": "907e4174-6cfe-47e4-8161-5cfdded300c9",
+          "card_name": "Alolan Exeggutor",
+          "finish_profile": "holo|normal|reverse",
+          "external_id": "A3-002",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/A3-002"
+        },
+        {
+          "card_print_id": "81343dee-8cdc-4ab5-bc46-9fd28b31ce0a",
+          "card_name": "Alolan Exeggutor",
+          "finish_profile": "holo|normal|reverse",
+          "external_id": "A3-156",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/A3-156"
+        },
+        {
+          "card_print_id": "6742f292-65b0-48ee-9708-9530da61edfa",
+          "card_name": "Alolan Geodude",
+          "finish_profile": "holo|normal|reverse",
+          "external_id": "A3-059",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/A3-059"
+        },
+        {
+          "card_print_id": "e4a06bbd-bf6b-4dcb-914b-391c590be91c",
+          "card_name": "Alolan Golem",
+          "finish_profile": "holo|normal|reverse",
+          "external_id": "A3-061",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/A3-061"
+        },
+        {
+          "card_print_id": "d73e0ab4-7684-4f4d-8252-e255384f2310",
+          "card_name": "Alolan Grimer",
+          "finish_profile": "holo|normal|reverse",
+          "external_id": "A3-110",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/A3-110"
+        },
+        {
+          "card_print_id": "0130181e-5496-4b4a-8248-0a20db2fd4ac",
+          "card_name": "Alolan Meowth",
+          "finish_profile": "holo|normal|reverse",
+          "external_id": "A3-108",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/A3-108"
+        }
+      ]
+    },
+    {
+      "source": "tcgdex",
+      "source_set_alias": "A2",
+      "source_set_url": "https://api.tcgdex.net/v2/en/sets/A2",
+      "lane": "pocket_scope_exclusion_candidate",
+      "card_print_count": 186,
+      "printing_count": 558,
+      "pocket_scope_candidate": true,
+      "sample_cards": [
+        {
+          "card_print_id": "9764de93-8ddf-4f91-9ef1-fe5289d35d07",
+          "card_name": "Abomasnow",
+          "finish_profile": "holo|normal|reverse",
+          "external_id": "A2-045",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/A2-045"
+        },
+        {
+          "card_print_id": "d694b550-0487-4346-822d-b4509e5b3f86",
+          "card_name": "Aipom",
+          "finish_profile": "holo|normal|reverse",
+          "external_id": "A2-130",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/A2-130"
+        },
+        {
+          "card_print_id": "a6fe8971-04fc-4caf-9793-84337ebc8b97",
+          "card_name": "Ambipom",
+          "finish_profile": "holo|normal|reverse",
+          "external_id": "A2-131",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/A2-131"
+        },
+        {
+          "card_print_id": "e0bf1e93-c8f5-4000-b603-4234228ec3ae",
+          "card_name": "Armor Fossil",
+          "finish_profile": "holo|normal|reverse",
+          "external_id": "A2-145",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/A2-145"
+        },
+        {
+          "card_print_id": "1f9a4f9e-e8af-4223-9671-57ae76f5435c",
+          "card_name": "Azelf",
+          "finish_profile": "holo|normal|reverse",
+          "external_id": "A2-077",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/A2-077"
+        },
+        {
+          "card_print_id": "58bd6f62-3944-44a9-a372-c1ce1cfc937a",
+          "card_name": "Bastiodon",
+          "finish_profile": "holo|normal|reverse",
+          "external_id": "A2-114",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/A2-114"
+        },
+        {
+          "card_print_id": "dd8fa49c-f8aa-4e93-8945-5019d5fa39fe",
+          "card_name": "Bellossom",
+          "finish_profile": "holo|normal|reverse",
+          "external_id": "A2-003",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/A2-003"
+        },
+        {
+          "card_print_id": "6ca20cbf-e930-4450-b18c-60dc9ce14212",
+          "card_name": "Bibarel",
+          "finish_profile": "holo|normal|reverse",
+          "external_id": "A2-136",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/A2-136"
+        },
+        {
+          "card_print_id": "08a431e9-3fd3-455a-8955-52b5e9b97ebb",
+          "card_name": "Bidoof",
+          "finish_profile": "holo|normal|reverse",
+          "external_id": "A2-135",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/A2-135"
+        },
+        {
+          "card_print_id": "f6504de0-6384-4bc3-ab27-2133a2d6bdc5",
+          "card_name": "Bronzong",
+          "finish_profile": "holo|normal|reverse",
+          "external_id": "A2-117",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/A2-117"
+        }
+      ]
+    },
+    {
+      "source": "tcgdex",
+      "source_set_alias": "A2b",
+      "source_set_url": "https://api.tcgdex.net/v2/en/sets/A2b",
+      "lane": "pocket_scope_exclusion_candidate",
+      "card_print_count": 111,
+      "printing_count": 333,
+      "pocket_scope_candidate": true,
+      "sample_cards": [
+        {
+          "card_print_id": "831ea01a-9756-44dd-ba5e-7d836b299200",
+          "card_name": "Abra",
+          "finish_profile": "holo|normal|reverse",
+          "external_id": "A2b-029",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/A2b-029"
+        },
+        {
+          "card_print_id": "7d82ffdc-2ffe-48c9-9436-72e86aaa6916",
+          "card_name": "Alakazam",
+          "finish_profile": "holo|normal|reverse",
+          "external_id": "A2b-031",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/A2b-031"
+        },
+        {
+          "card_print_id": "c4bef850-12ac-4a73-ba8b-7aa084d44f7a",
+          "card_name": "Arbok",
+          "finish_profile": "holo|normal|reverse",
+          "external_id": "A2b-046",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/A2b-046"
+        },
+        {
+          "card_print_id": "aa7a51ea-b7dd-4a8c-ba69-bae75074f7ad",
+          "card_name": "Beedrill ex",
+          "finish_profile": "holo|normal|reverse",
+          "external_id": "A2b-003",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/A2b-003"
+        },
+        {
+          "card_print_id": "251092ea-a1ce-4ad7-8055-669fe79b3567",
+          "card_name": "Beedrill ex",
+          "finish_profile": "holo|normal|reverse",
+          "external_id": "A2b-079",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/A2b-079"
+        },
+        {
+          "card_print_id": "1eb39c52-83c2-49a2-a37b-10fe4ebd3ad7",
+          "card_name": "Beedrill ex",
+          "finish_profile": "holo|normal|reverse",
+          "external_id": "A2b-107",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/A2b-107"
+        },
+        {
+          "card_print_id": "bb952fc8-1e3c-4455-943a-4449acaaafcb",
+          "card_name": "Bibarel ex",
+          "finish_profile": "holo|normal|reverse",
+          "external_id": "A2b-065",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/A2b-065"
+        },
+        {
+          "card_print_id": "369287e0-fafe-4394-bf4c-8a36f47ed177",
+          "card_name": "Bibarel ex",
+          "finish_profile": "holo|normal|reverse",
+          "external_id": "A2b-087",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/A2b-087"
+        },
+        {
+          "card_print_id": "35910721-779c-4ef8-ab73-909cecccdabf",
+          "card_name": "Bibarel ex",
+          "finish_profile": "holo|normal|reverse",
+          "external_id": "A2b-095",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/A2b-095"
+        },
+        {
+          "card_print_id": "1b71ab1e-1628-4e56-aa66-446bb5deb619",
+          "card_name": "Bidoof",
+          "finish_profile": "holo|normal|reverse",
+          "external_id": "A2b-064",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/A2b-064"
+        }
+      ]
+    },
+    {
+      "source": "tcgdex",
+      "source_set_alias": "A3b",
+      "source_set_url": "https://api.tcgdex.net/v2/en/sets/A3b",
+      "lane": "pocket_scope_exclusion_candidate",
+      "card_print_count": 107,
+      "printing_count": 321,
+      "pocket_scope_candidate": true,
+      "sample_cards": [
+        {
+          "card_print_id": "58423acc-8f37-4d56-8774-4f21ca26e683",
+          "card_name": "Aipom",
+          "finish_profile": "holo|normal|reverse",
+          "external_id": "A3b-058",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/A3b-058"
+        },
+        {
+          "card_print_id": "e3e88a4d-20ef-4fb5-8ccf-e220f5244728",
+          "card_name": "Alcremie",
+          "finish_profile": "holo|normal|reverse",
+          "external_id": "A3b-037",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/A3b-037"
+        },
+        {
+          "card_print_id": "23e7115d-783b-4d7c-a73f-d08fdc9ac437",
+          "card_name": "Alomomola",
+          "finish_profile": "holo|normal|reverse",
+          "external_id": "A3b-021",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/A3b-021"
+        },
+        {
+          "card_print_id": "b9ce7f1f-9864-47fd-8688-006aff157783",
+          "card_name": "Ambipom",
+          "finish_profile": "holo|normal|reverse",
+          "external_id": "A3b-059",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/A3b-059"
+        },
+        {
+          "card_print_id": "f2a05a34-e33f-4196-9888-d8aeffd796f6",
+          "card_name": "Appletun",
+          "finish_profile": "holo|normal|reverse",
+          "external_id": "A3b-007",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/A3b-007"
+        },
+        {
+          "card_print_id": "ecfef832-1104-4343-b6a8-c0b60633fdb6",
+          "card_name": "Applin",
+          "finish_profile": "holo|normal|reverse",
+          "external_id": "A3b-006",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/A3b-006"
+        },
+        {
+          "card_print_id": "18e3f9cb-af34-4caa-af1d-20ce268fe051",
+          "card_name": "Arbok",
+          "finish_profile": "holo|normal|reverse",
+          "external_id": "A3b-101",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/A3b-101"
+        },
+        {
+          "card_print_id": "23186692-0761-499a-aee4-694ded765341",
+          "card_name": "Articuno ex",
+          "finish_profile": "holo|normal|reverse",
+          "external_id": "A3b-104",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/A3b-104"
+        },
+        {
+          "card_print_id": "838fb246-74ad-4a78-8953-7b759c2a18bc",
+          "card_name": "Audino",
+          "finish_profile": "holo|normal|reverse",
+          "external_id": "A3b-061",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/A3b-061"
+        },
+        {
+          "card_print_id": "7b5fc19a-79e5-4415-832c-0048bdf403d8",
+          "card_name": "Barboach",
+          "finish_profile": "holo|normal|reverse",
+          "external_id": "A3b-038",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/A3b-038"
+        }
+      ]
+    },
+    {
+      "source": "tcgdex",
+      "source_set_alias": "A4a",
+      "source_set_url": "https://api.tcgdex.net/v2/en/sets/A4a",
+      "lane": "pocket_scope_exclusion_candidate",
+      "card_print_count": 105,
+      "printing_count": 315,
+      "pocket_scope_candidate": true,
+      "sample_cards": [
+        {
+          "card_print_id": "6b10e418-2ffe-4e86-9bb5-947bcf29c504",
+          "card_name": "Altaria",
+          "finish_profile": "holo|normal|reverse",
+          "external_id": "A4a-055",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/A4a-055"
+        },
+        {
+          "card_print_id": "13658b9c-a3cc-4de6-9892-4a667fc9d4ec",
+          "card_name": "Azurill",
+          "finish_profile": "holo|normal|reverse",
+          "external_id": "A4a-063",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/A4a-063"
+        },
+        {
+          "card_print_id": "a6592a57-5601-4788-91c8-6c6a8ae472e4",
+          "card_name": "Azurill",
+          "finish_profile": "holo|normal|reverse",
+          "external_id": "A4a-077",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/A4a-077"
+        },
+        {
+          "card_print_id": "d37c6768-d957-40b8-baa6-cdbf03714857",
+          "card_name": "Boltund",
+          "finish_profile": "holo|normal|reverse",
+          "external_id": "A4a-031",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/A4a-031"
+        },
+        {
+          "card_print_id": "39d80244-e670-4e16-9be8-e8f2d110b967",
+          "card_name": "Celebi",
+          "finish_profile": "holo|normal|reverse",
+          "external_id": "A4a-006",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/A4a-006"
+        },
+        {
+          "card_print_id": "c53d7bf9-5775-4c1f-86ed-6eb2f188d30d",
+          "card_name": "Chimchar",
+          "finish_profile": "holo|normal|reverse",
+          "external_id": "A4a-091",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/A4a-091"
+        },
+        {
+          "card_print_id": "43cdb924-18e6-4797-8312-931475c9a29b",
+          "card_name": "Crustle",
+          "finish_profile": "holo|normal|reverse",
+          "external_id": "A4a-047",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/A4a-047"
+        },
+        {
+          "card_print_id": "87b32b22-e4c9-49c8-a6b5-f17740640151",
+          "card_name": "Cryogonal",
+          "finish_profile": "holo|normal|reverse",
+          "external_id": "A4a-024",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/A4a-024"
+        },
+        {
+          "card_print_id": "e3bf1112-813c-4a5f-bc02-024b22d75ca7",
+          "card_name": "Diglett",
+          "finish_profile": "holo|normal|reverse",
+          "external_id": "A4a-040",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/A4a-040"
+        },
+        {
+          "card_print_id": "5fa91297-4d97-4675-8ecc-fdd3da0b5196",
+          "card_name": "Donphan",
+          "finish_profile": "holo|normal|reverse",
+          "external_id": "A4a-044",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/A4a-044"
+        }
+      ]
+    },
+    {
+      "source": "tcgdex",
+      "source_set_alias": "A3a",
+      "source_set_url": "https://api.tcgdex.net/v2/en/sets/A3a",
+      "lane": "pocket_scope_exclusion_candidate",
+      "card_print_count": 103,
+      "printing_count": 309,
+      "pocket_scope_candidate": true,
+      "sample_cards": [
+        {
+          "card_print_id": "e3638edc-31a4-4b58-88e8-6d0dccf222d2",
+          "card_name": "Aerodactyl",
+          "finish_profile": "holo|normal|reverse",
+          "external_id": "A3a-098",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/A3a-098"
+        },
+        {
+          "card_print_id": "576946b5-8ab3-49c2-8d7b-eaa50e7f822d",
+          "card_name": "Aerodactyl ex",
+          "finish_profile": "holo|normal|reverse",
+          "external_id": "A3a-101",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/A3a-101"
+        },
+        {
+          "card_print_id": "560fde08-0ef0-489d-b8f7-ee0d994cd070",
+          "card_name": "Aggron",
+          "finish_profile": "holo|normal|reverse",
+          "external_id": "A3a-050",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/A3a-050"
+        },
+        {
+          "card_print_id": "dc70d730-3f95-4164-a280-f8c8463017e5",
+          "card_name": "Alolan Diglett",
+          "finish_profile": "holo|normal|reverse",
+          "external_id": "A3a-046",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/A3a-046"
+        },
+        {
+          "card_print_id": "145e93dc-2599-4674-8e1e-135b622b507c",
+          "card_name": "Alolan Dugtrio ex",
+          "finish_profile": "holo|normal|reverse",
+          "external_id": "A3a-047",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/A3a-047"
+        },
+        {
+          "card_print_id": "52d26452-166f-482a-b35a-fe8008a67b75",
+          "card_name": "Alolan Dugtrio ex",
+          "finish_profile": "holo|normal|reverse",
+          "external_id": "A3a-080",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/A3a-080"
+        },
+        {
+          "card_print_id": "02e39451-bfa3-4427-9a13-40e7a7721d66",
+          "card_name": "Alolan Dugtrio ex",
+          "finish_profile": "holo|normal|reverse",
+          "external_id": "A3a-087",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/A3a-087"
+        },
+        {
+          "card_print_id": "df85125b-e129-4d4f-8dcb-2dd0294b873b",
+          "card_name": "Alolan Meowth",
+          "finish_profile": "holo|normal|reverse",
+          "external_id": "A3a-037",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/A3a-037"
+        },
+        {
+          "card_print_id": "4ef56ba4-e705-467c-9ffe-cd64e2ddd51c",
+          "card_name": "Alolan Meowth",
+          "finish_profile": "holo|normal|reverse",
+          "external_id": "A3a-073",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/A3a-073"
+        },
+        {
+          "card_print_id": "970f0229-fde0-45f6-8555-2789d475cfcc",
+          "card_name": "Alolan Persian",
+          "finish_profile": "holo|normal|reverse",
+          "external_id": "A3a-038",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/A3a-038"
+        }
+      ]
+    },
+    {
+      "source": "tcgdex",
+      "source_set_alias": "P-A",
+      "source_set_url": "https://api.tcgdex.net/v2/en/sets/P-A",
+      "lane": "pocket_scope_exclusion_candidate",
+      "card_print_count": 100,
+      "printing_count": 300,
+      "pocket_scope_candidate": true,
+      "sample_cards": [
+        {
+          "card_print_id": "a1ffef18-bd19-474c-b6ac-da5c3a834128",
+          "card_name": "Alcremie",
+          "finish_profile": "holo|normal|reverse",
+          "external_id": "P-A-087",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/P-A-087"
+        },
+        {
+          "card_print_id": "13451ffe-ae30-4fab-ba12-e94c94b726ef",
+          "card_name": "Alolan Exeggutor",
+          "finish_profile": "holo|normal|reverse",
+          "external_id": "P-A-069",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/P-A-069"
+        },
+        {
+          "card_print_id": "a272debd-dbb4-4866-bdb1-e571c10cbffa",
+          "card_name": "Alolan Grimer",
+          "finish_profile": "holo|normal|reverse",
+          "external_id": "P-A-072",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/P-A-072"
+        },
+        {
+          "card_print_id": "8287016a-a5fd-4015-8604-a8560d6900f5",
+          "card_name": "Alolan Ninetales",
+          "finish_profile": "holo|normal|reverse",
+          "external_id": "P-A-070",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/P-A-070"
+        },
+        {
+          "card_print_id": "17c1745f-fcb0-4691-8ab3-91c0c620373a",
+          "card_name": "Audino",
+          "finish_profile": "holo|normal|reverse",
+          "external_id": "P-A-089",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/P-A-089"
+        },
+        {
+          "card_print_id": "7672c7b8-32c2-4501-801d-9951ec3e43aa",
+          "card_name": "Bidoof",
+          "finish_profile": "holo|normal|reverse",
+          "external_id": "P-A-057",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/P-A-057"
+        },
+        {
+          "card_print_id": "58fffd7a-f8ad-45a6-bbbd-e96fcc19aba1",
+          "card_name": "Blacephalon",
+          "finish_profile": "holo|normal|reverse",
+          "external_id": "P-A-076",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/P-A-076"
+        },
+        {
+          "card_print_id": "5cb0d25c-8fa5-4c27-a514-895e19524796",
+          "card_name": "Blastoise",
+          "finish_profile": "holo|normal|reverse",
+          "external_id": "P-A-029",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/P-A-029"
+        },
+        {
+          "card_print_id": "197a8aaa-b039-4c08-be0c-d8678d3e3af2",
+          "card_name": "Blissey ex",
+          "finish_profile": "holo|normal|reverse",
+          "external_id": "P-A-098",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/P-A-098"
+        },
+        {
+          "card_print_id": "86da75f2-1b1c-4138-ad85-6703a1378617",
+          "card_name": "Bulbasaur",
+          "finish_profile": "holo|normal|reverse",
+          "external_id": "P-A-023",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/P-A-023"
+        }
+      ]
+    },
+    {
+      "source": "tcgdex",
+      "source_set_alias": "A2a",
+      "source_set_url": "https://api.tcgdex.net/v2/en/sets/A2a",
+      "lane": "pocket_scope_exclusion_candidate",
+      "card_print_count": 96,
+      "printing_count": 288,
+      "pocket_scope_candidate": true,
+      "sample_cards": [
+        {
+          "card_print_id": "7a0034dc-d495-4423-8e54-dd43dc9eb4c9",
+          "card_name": "Abomasnow",
+          "finish_profile": "holo|normal|reverse",
+          "external_id": "A2a-021",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/A2a-021"
+        },
+        {
+          "card_print_id": "4b30c56f-6e8a-4b1c-a4ec-517c15ee2354",
+          "card_name": "Adaman",
+          "finish_profile": "holo|normal|reverse",
+          "external_id": "A2a-075",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/A2a-075"
+        },
+        {
+          "card_print_id": "08b4e819-8c65-4e5e-bdc6-5db9d8cb4472",
+          "card_name": "Adaman",
+          "finish_profile": "holo|normal|reverse",
+          "external_id": "A2a-090",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/A2a-090"
+        },
+        {
+          "card_print_id": "ae7d743f-7c2a-4e52-b8f2-ed4d16fe0fe8",
+          "card_name": "Arceus",
+          "finish_profile": "holo|normal|reverse",
+          "external_id": "A2a-070",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/A2a-070"
+        },
+        {
+          "card_print_id": "07985756-5aae-44e1-9ee4-7b517bf2a928",
+          "card_name": "Arceus ex",
+          "finish_profile": "holo|normal|reverse",
+          "external_id": "A2a-086",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/A2a-086"
+        },
+        {
+          "card_print_id": "326908cd-e8f4-4b0e-9731-63b8c777a026",
+          "card_name": "Arceus ex",
+          "finish_profile": "holo|normal|reverse",
+          "external_id": "A2a-071",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/A2a-071"
+        },
+        {
+          "card_print_id": "47a696cc-a912-40c6-904c-c4a4bc37be9d",
+          "card_name": "Arceus ex",
+          "finish_profile": "holo|normal|reverse",
+          "external_id": "A2a-096",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/A2a-096"
+        },
+        {
+          "card_print_id": "ae50328b-685a-494b-81c5-e66f68937dd0",
+          "card_name": "Arceus ex",
+          "finish_profile": "holo|normal|reverse",
+          "external_id": "A2a-095",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/A2a-095"
+        },
+        {
+          "card_print_id": "56ec649e-5293-4fa9-9c1f-3880454cf6ad",
+          "card_name": "Azumarill",
+          "finish_profile": "holo|normal|reverse",
+          "external_id": "A2a-015",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/A2a-015"
+        },
+        {
+          "card_print_id": "7167e900-83b0-4e72-9e51-9047513659bb",
+          "card_name": "Barboach",
+          "finish_profile": "holo|normal|reverse",
+          "external_id": "A2a-016",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/A2a-016"
+        }
+      ]
+    },
+    {
+      "source": "tcgdex",
+      "source_set_alias": "A1a",
+      "source_set_url": "https://api.tcgdex.net/v2/en/sets/A1a",
+      "lane": "pocket_scope_exclusion_candidate",
+      "card_print_count": 77,
+      "printing_count": 231,
+      "pocket_scope_candidate": true,
+      "sample_cards": [
+        {
+          "card_print_id": "1370621a-c89d-4700-be75-275b400e6fb5",
+          "card_name": "Aerodactyl ex",
+          "finish_profile": "holo|normal|reverse",
+          "external_id": "A1a-046",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/A1a-046"
+        },
+        {
+          "card_print_id": "0e915001-674c-46c4-9d05-f793b44ce60d",
+          "card_name": "Aerodactyl ex",
+          "finish_profile": "holo|normal|reverse",
+          "external_id": "A1a-078",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/A1a-078"
+        },
+        {
+          "card_print_id": "172c97ad-710e-41ca-b117-083505a8a9f5",
+          "card_name": "Aerodactyl ex",
+          "finish_profile": "holo|normal|reverse",
+          "external_id": "A1a-084",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/A1a-084"
+        },
+        {
+          "card_print_id": "833b36d4-9d0b-4d31-a5d5-7dcd6936c2cc",
+          "card_name": "Beheeyem",
+          "finish_profile": "holo|normal|reverse",
+          "external_id": "A1a-035",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/A1a-035"
+        },
+        {
+          "card_print_id": "cdfd10e4-f311-4497-b641-2de7f5378cfe",
+          "card_name": "Blue",
+          "finish_profile": "holo|normal|reverse",
+          "external_id": "A1a-067",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/A1a-067"
+        },
+        {
+          "card_print_id": "35888733-8394-4c9a-a468-9edd8d2431ab",
+          "card_name": "Blue",
+          "finish_profile": "holo|normal|reverse",
+          "external_id": "A1a-081",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/A1a-081"
+        },
+        {
+          "card_print_id": "adcbeeca-5f0e-4b91-9f77-9d0a6fac580a",
+          "card_name": "Budding Expeditioner",
+          "finish_profile": "holo|normal|reverse",
+          "external_id": "A1a-066",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/A1a-066"
+        },
+        {
+          "card_print_id": "14268d30-e27f-4324-9492-304a3310da49",
+          "card_name": "Budding Expeditioner",
+          "finish_profile": "holo|normal|reverse",
+          "external_id": "A1a-080",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/A1a-080"
+        },
+        {
+          "card_print_id": "412e915f-f1d9-4d9c-a246-b283eaa9d7c4",
+          "card_name": "Celebi ex",
+          "finish_profile": "holo|normal|reverse",
+          "external_id": "A1a-003",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/A1a-003"
+        },
+        {
+          "card_print_id": "d137d23a-58d9-4947-aeef-14d16119e4f0",
+          "card_name": "Celebi ex",
+          "finish_profile": "holo|normal|reverse",
+          "external_id": "A1a-075",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/A1a-075"
+        }
+      ]
+    },
+    {
+      "source": "tcgdex",
+      "source_set_alias": "A1",
+      "source_set_url": "https://api.tcgdex.net/v2/en/sets/A1",
+      "lane": "pocket_scope_exclusion_candidate",
+      "card_print_count": 1,
+      "printing_count": 3,
+      "pocket_scope_candidate": true,
+      "sample_cards": [
+        {
+          "card_print_id": "18e24304-55bb-4b70-af62-959bfaf63978",
+          "card_name": "Spearow",
+          "finish_profile": "holo|normal|reverse",
+          "external_id": "A1-191",
+          "source_card_url": "https://api.tcgdex.net/v2/en/cards/A1-191"
+        }
+      ]
+    }
+  ]
+}
