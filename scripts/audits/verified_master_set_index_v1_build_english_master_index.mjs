@@ -1101,6 +1101,161 @@ function buildSetUnmappedTriageMarkdown(payload) {
   ].join('\n');
 }
 
+function foldNameForTriage(value) {
+  return String(value ?? '')
+    .normalize('NFKD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .replace(/[★☆]/g, ' star ')
+    .replace(/\b(ex)\b/gi, ' ex ')
+    .replace(/\b(lv)\s*[.]?\s*x\b/gi, ' lvx ')
+    .replace(/[^a-z0-9]+/gi, ' ')
+    .replace(/\s+/g, ' ')
+    .trim()
+    .toLowerCase();
+}
+
+function looseNameForTriage(value) {
+  return foldNameForTriage(value)
+    .replace(/\b(pokemon|poke)\b/g, 'pokemon')
+    .replace(/\bex\b/g, 'ex')
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
+function baseNameWithoutQualifier(value) {
+  return looseNameForTriage(String(value ?? '').replace(/\([^)]*\)/g, ' '))
+    .replace(/\([^)]*\)/g, ' ')
+    .replace(/\b(lvx|ex|star)\b/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
+function subsetCollisionCategoryForSet(setCode) {
+  const categories = {
+    bw11: 'subset_number_collision_legendary_treasures_radiant_collection',
+    cel25: 'subset_number_collision_celebrations_classic_collection',
+    col1: 'subset_number_collision_call_of_legends_shiny',
+    dp7: 'subset_number_collision_dp_secret_shiny',
+    g1: 'subset_number_collision_generations_radiant_collection',
+    pl1: 'subset_number_collision_platinum_secret_shiny',
+    pl2: 'subset_number_collision_rising_rivals_rotom',
+    pl3: 'subset_number_collision_supreme_victors_secret_shiny',
+    pl4: 'subset_number_collision_arceus_ar_subset',
+    'swsh12.5': 'subset_number_collision_crown_zenith_galarian_gallery',
+  };
+  return categories[setCode] ?? null;
+}
+
+function nameMismatchCategory(row) {
+  const grookai = row.grookai_card_name ?? '';
+  const index = row.index_card_name ?? '';
+  const setCode = String(row.set_code ?? row.set_key ?? '').trim();
+  const foldedGrookai = foldNameForTriage(grookai);
+  const foldedIndex = foldNameForTriage(index);
+  const looseGrookai = looseNameForTriage(grookai);
+  const looseIndex = looseNameForTriage(index);
+  const baseGrookai = baseNameWithoutQualifier(grookai);
+  const baseIndex = baseNameWithoutQualifier(index);
+
+  if (foldedGrookai === foldedIndex) return 'diacritic_punctuation_only';
+  if (looseGrookai === looseIndex) return 'harmless_style_only';
+  if (baseGrookai && baseGrookai === baseIndex) {
+    if (/\blv[.]?\s*x\b/i.test(grookai) || /\blv[.]?\s*x\b/i.test(index)) return 'lvx_suffix_style';
+    if (/[★☆]|\bstar\b/i.test(grookai) || /[★☆]|\bstar\b/i.test(index)) return 'star_symbol_style';
+    if (/\([^)]*\)/.test(grookai) || /\([^)]*\)/.test(index)) return 'parenthetical_qualifier';
+    if (/\bex\b/i.test(grookai) || /\bex\b/i.test(index)) return 'ex_hyphen_style';
+    return 'same_base_name_qualifier';
+  }
+  if (setCode === 'sve' && baseGrookai.replace(/^basic /, '') === baseIndex) {
+    return 'basic_energy_prefix_style';
+  }
+  const subsetCategory = subsetCollisionCategoryForSet(setCode);
+  if (subsetCategory) return subsetCategory;
+  return 'possible_identity_conflict';
+}
+
+function buildNameMismatchTriage(grookaiAudit, generatedAt) {
+  const rows = grookaiAudit?.rows?.filter((row) => row.status === 'name_mismatch_needs_review') ?? [];
+  const categorizedRows = rows.map((row) => ({
+    category: nameMismatchCategory(row),
+    ...row,
+  }));
+  const rowsByCategory = Object.fromEntries(
+    Object.entries(countBy(categorizedRows, (row) => row.category)).map(([category, count]) => [
+      category,
+      {
+        count,
+        by_set_code: countBy(
+          categorizedRows.filter((row) => row.category === category),
+          (row) => row.set_code ?? row.set_key ?? 'unknown',
+        ),
+        by_finish: countBy(
+          categorizedRows.filter((row) => row.category === category),
+          (row) => row.finish_key ?? 'unknown',
+        ),
+        rows: categorizedRows.filter((row) => row.category === category),
+      },
+    ]),
+  );
+  return {
+    version: 'ENGLISH_MASTER_INDEX_NAME_MISMATCH_TRIAGE_V1',
+    generated_at: generatedAt,
+    audit_only: true,
+    db_writes: false,
+    source_report: 'english_master_index_grookai_audit_v1.json',
+    rule: 'Name mismatches are review classifications only. Do not rewrite identity or printings from this report.',
+    summary: {
+      total_name_mismatch: rows.length,
+      by_category: countBy(categorizedRows, (row) => row.category),
+      by_set_code: countBy(categorizedRows, (row) => row.set_code ?? row.set_key ?? 'unknown'),
+      by_finish: countBy(categorizedRows, (row) => row.finish_key ?? 'unknown'),
+    },
+    categories: rowsByCategory,
+  };
+}
+
+function buildNameMismatchTriageMarkdown(payload) {
+  const categoryRows = Object.entries(payload.summary.by_category).map(([category, count]) => [category, count]);
+  const setRows = Object.entries(payload.summary.by_set_code).map(([setCode, count]) => [setCode, count]);
+  const finishRows = Object.entries(payload.summary.by_finish).map(([finish, count]) => [finish, count]);
+  const rowLines = Object.entries(payload.categories).flatMap(([category, entry]) => (
+    entry.rows.slice(0, 80).map((row) => [
+      category,
+      row.set_code ?? row.set_key ?? '',
+      row.card_number ?? '',
+      row.finish_key ?? '',
+      row.grookai_card_name ?? '',
+      row.index_card_name ?? '',
+    ])
+  ));
+  return [
+    '# English Master Index Name Mismatch Triage V1',
+    '',
+    `Generated: ${payload.generated_at}`,
+    '',
+    'Audit only. No DB writes, migrations, cleanup, quarantine, or public hiding were performed.',
+    '',
+    payload.rule,
+    '',
+    '## Summary By Category',
+    '',
+    markdownTable(['category', 'count'], categoryRows),
+    '',
+    '## Summary By Set',
+    '',
+    markdownTable(['set_code', 'count'], setRows),
+    '',
+    '## Summary By Finish',
+    '',
+    markdownTable(['finish', 'count'], finishRows),
+    '',
+    '## Review Rows',
+    '',
+    markdownTable(['category', 'set', 'number', 'finish', 'Grookai name', 'Index name'], rowLines),
+    '',
+  ].join('\n');
+}
+
 async function writeJson(outputDir, fileName, data) {
   await fs.writeFile(path.join(outputDir, fileName), `${JSON.stringify(data, null, 2)}\n`);
 }
@@ -1130,6 +1285,7 @@ function indexSummaryArtifact(index) {
 async function writeReports({ outputDir, index, agreement, setAudit, grookaiAudit, generatedAt }) {
   await fs.mkdir(outputDir, { recursive: true });
   const setUnmappedTriage = buildSetUnmappedTriage(grookaiAudit, generatedAt);
+  const nameMismatchTriage = buildNameMismatchTriage(grookaiAudit, generatedAt);
   const conflicts = {
     version: 'ENGLISH_MASTER_INDEX_CONFLICTS_V1',
     generated_at: generatedAt,
@@ -1186,6 +1342,8 @@ async function writeReports({ outputDir, index, agreement, setAudit, grookaiAudi
   await fs.writeFile(path.join(outputDir, 'english_master_index_grookai_audit_v1.md'), buildGrookaiAuditMarkdown(grookaiAudit));
   await writeJson(outputDir, 'english_master_index_set_unmapped_triage_v1.json', setUnmappedTriage);
   await fs.writeFile(path.join(outputDir, 'english_master_index_set_unmapped_triage_v1.md'), buildSetUnmappedTriageMarkdown(setUnmappedTriage));
+  await writeJson(outputDir, 'english_master_index_name_mismatch_triage_v1.json', nameMismatchTriage);
+  await fs.writeFile(path.join(outputDir, 'english_master_index_name_mismatch_triage_v1.md'), buildNameMismatchTriageMarkdown(nameMismatchTriage));
 }
 
 async function main() {
