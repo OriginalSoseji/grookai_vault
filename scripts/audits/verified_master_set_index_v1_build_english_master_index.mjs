@@ -1856,6 +1856,181 @@ function buildCandidateUnconfirmedTriageMarkdown(payload) {
   ].join('\n');
 }
 
+function apiAgreedCategory(row) {
+  const setCode = String(row.set_code ?? row.set_key ?? '').trim();
+  const finish = String(row.finish_key ?? '').trim();
+  const sourceCount = (row.index_sources ?? []).length;
+  const family = unsupportedSetFamily(setCode);
+
+  if (sourceCount < 2) {
+    return {
+      category: 'needs_manual_review',
+      reason: 'API-agreed row has fewer than two sources in the audit payload.',
+      source_count: sourceCount,
+    };
+  }
+  if (family === 'promo_family') {
+    return {
+      category: 'api_agreed_promo_family_needs_human_source',
+      reason: 'Two APIs agree, but promo-family rows still need product/checklist evidence before master verification.',
+      source_count: sourceCount,
+    };
+  }
+  if (['deck_kit', 'mcdonalds', 'pop_series', 'early_promo_or_product'].includes(family)) {
+    return {
+      category: 'api_agreed_product_or_deck_needs_human_source',
+      reason: 'Two APIs agree, but product, deck, POP, McDonald\'s, or early promo rows still need checklist evidence.',
+      source_count: sourceCount,
+    };
+  }
+  if (['trainer_gallery_subset', 'subset_alias', 'subset_number_collision_family'].includes(family)) {
+    return {
+      category: 'api_agreed_subset_alias_needs_human_source',
+      reason: 'Two APIs agree, but subset/gallery/numbering facts still need set/subset verification.',
+      source_count: sourceCount,
+    };
+  }
+  if (legacySetFamilyForCandidate(setCode)) {
+    return {
+      category: 'api_agreed_legacy_or_old_era_needs_human_source',
+      reason: 'Two APIs agree, but legacy/older-era rows need checklist evidence before governing printing truth.',
+      source_count: sourceCount,
+    };
+  }
+  if (finish === 'reverse') {
+    return {
+      category: 'api_agreed_reverse_holo_needs_human_source',
+      reason: 'Two APIs agree on reverse holo, but finish truth still needs human-readable/checklist evidence.',
+      source_count: sourceCount,
+    };
+  }
+  if (finish === 'holo') {
+    return {
+      category: 'api_agreed_holo_needs_human_source',
+      reason: 'Two APIs agree on holo, but finish truth still needs human-readable/checklist evidence.',
+      source_count: sourceCount,
+    };
+  }
+  if (finish === 'normal') {
+    return {
+      category: 'api_agreed_normal_needs_human_source',
+      reason: 'Two APIs agree on normal finish, but this remains below master verification without human-readable/checklist evidence.',
+      source_count: sourceCount,
+    };
+  }
+  return {
+    category: 'needs_manual_review',
+    reason: 'API-agreed row has an unrecognized finish or set pattern.',
+    source_count: sourceCount,
+  };
+}
+
+function buildApiAgreedTriage(grookaiAudit, generatedAt) {
+  const rows = grookaiAudit?.rows?.filter((row) => row.status === 'api_agreed_by_index') ?? [];
+  const categorizedRows = rows.map((row) => {
+    const category = apiAgreedCategory(row);
+    return {
+      category: category.category,
+      reason: category.reason,
+      source_count: category.source_count,
+      ...row,
+    };
+  });
+  const rowsByCategory = Object.fromEntries(
+    Object.entries(countBy(categorizedRows, (row) => row.category)).map(([category, count]) => {
+      const categoryRows = categorizedRows.filter((row) => row.category === category);
+      return [
+        category,
+        {
+          count,
+          by_set_code: countBy(categoryRows, (row) => row.set_code ?? row.set_key ?? 'unknown'),
+          by_finish: countBy(categoryRows, (row) => row.finish_key ?? 'unknown'),
+          by_sources: countBy(categoryRows, (row) => (row.index_sources ?? []).join(',') || 'unknown'),
+          rows: categoryRows,
+        },
+      ];
+    }),
+  );
+  return {
+    version: 'ENGLISH_MASTER_INDEX_API_AGREED_TRIAGE_V1',
+    generated_at: generatedAt,
+    audit_only: true,
+    db_writes: false,
+    source_report: 'english_master_index_grookai_audit_v1.json',
+    rule: 'API-agreed rows have structured-source agreement only. They are not master truth, cleanup authority, insertion authority, or deletion authority without human-readable/checklist evidence.',
+    summary: {
+      total_api_agreed_by_index: rows.length,
+      by_category: countBy(categorizedRows, (row) => row.category),
+      by_set_code: countBy(categorizedRows, (row) => row.set_code ?? row.set_key ?? 'unknown'),
+      by_finish: countBy(categorizedRows, (row) => row.finish_key ?? 'unknown'),
+      by_sources: countBy(categorizedRows, (row) => (row.index_sources ?? []).join(',') || 'unknown'),
+    },
+    categories: rowsByCategory,
+  };
+}
+
+function buildApiAgreedTriageMarkdown(payload) {
+  const categoryRows = Object.entries(payload.summary.by_category).map(([category, count]) => [category, count]);
+  const sourceRows = Object.entries(payload.summary.by_sources).map(([sources, count]) => [sources, count]);
+  const setRows = Object.entries(payload.summary.by_set_code).map(([setCode, count]) => [setCode, count]);
+  const finishRows = Object.entries(payload.summary.by_finish).map(([finish, count]) => [finish, count]);
+  const categorySections = Object.entries(payload.categories).flatMap(([category, entry]) => {
+    const topSets = Object.entries(entry.by_set_code)
+      .sort((left, right) => Number(right[1]) - Number(left[1]) || left[0].localeCompare(right[0]))
+      .slice(0, 20)
+      .map(([setCode, count]) => [setCode, count]);
+    const samples = entry.rows.slice(0, 50).map((row) => [
+      row.set_code ?? row.set_key ?? '',
+      row.card_number ?? '',
+      row.grookai_card_name ?? row.index_card_name ?? '',
+      row.finish_key ?? '',
+      (row.index_sources ?? []).join(', '),
+      row.reason ?? '',
+    ]);
+    return [
+      `## ${category}`,
+      '',
+      `Rows: ${entry.count}`,
+      '',
+      '### Top Sets',
+      '',
+      markdownTable(['set_code', 'count'], topSets),
+      '',
+      '### Sample Rows',
+      '',
+      markdownTable(['set', 'number', 'name', 'finish', 'sources', 'reason'], samples),
+      '',
+    ];
+  });
+  return [
+    '# English Master Index API Agreed Triage V1',
+    '',
+    `Generated: ${payload.generated_at}`,
+    '',
+    'Audit only. No DB writes, migrations, inserts, cleanup, quarantine, or public hiding were performed.',
+    '',
+    payload.rule,
+    '',
+    '## Summary By Category',
+    '',
+    markdownTable(['category', 'count'], categoryRows),
+    '',
+    '## Summary By Sources',
+    '',
+    markdownTable(['sources', 'count'], sourceRows),
+    '',
+    '## Summary By Set',
+    '',
+    markdownTable(['set_code', 'count'], setRows),
+    '',
+    '## Summary By Finish',
+    '',
+    markdownTable(['finish', 'count'], finishRows),
+    '',
+    ...categorySections,
+  ].join('\n');
+}
+
 async function writeJson(outputDir, fileName, data) {
   await fs.writeFile(path.join(outputDir, fileName), `${JSON.stringify(data, null, 2)}\n`);
 }
@@ -1889,6 +2064,7 @@ async function writeReports({ outputDir, index, agreement, setAudit, grookaiAudi
   const unsupportedTriage = buildUnsupportedTriage(grookaiAudit, generatedAt);
   const missingFromGrookaiTriage = buildMissingFromGrookaiTriage(grookaiAudit, generatedAt);
   const candidateUnconfirmedTriage = buildCandidateUnconfirmedTriage(grookaiAudit, generatedAt);
+  const apiAgreedTriage = buildApiAgreedTriage(grookaiAudit, generatedAt);
   const conflicts = {
     version: 'ENGLISH_MASTER_INDEX_CONFLICTS_V1',
     generated_at: generatedAt,
@@ -1953,6 +2129,8 @@ async function writeReports({ outputDir, index, agreement, setAudit, grookaiAudi
   await fs.writeFile(path.join(outputDir, 'english_master_index_missing_from_grookai_triage_v1.md'), buildMissingFromGrookaiTriageMarkdown(missingFromGrookaiTriage));
   await writeJson(outputDir, 'english_master_index_candidate_unconfirmed_triage_v1.json', candidateUnconfirmedTriage);
   await fs.writeFile(path.join(outputDir, 'english_master_index_candidate_unconfirmed_triage_v1.md'), buildCandidateUnconfirmedTriageMarkdown(candidateUnconfirmedTriage));
+  await writeJson(outputDir, 'english_master_index_api_agreed_triage_v1.json', apiAgreedTriage);
+  await fs.writeFile(path.join(outputDir, 'english_master_index_api_agreed_triage_v1.md'), buildApiAgreedTriageMarkdown(apiAgreedTriage));
 }
 
 async function main() {
