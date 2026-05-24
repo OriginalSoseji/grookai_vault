@@ -1,0 +1,5100 @@
+{
+  "generated_at": "2026-05-24T16:03:49.558Z",
+  "version": "english_master_index_provenance_recovery_v1",
+  "audit_only": true,
+  "db_writes_performed": false,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "mutation_safe": false,
+  "scope": {
+    "input_bucket": "set_unmapped / missing_set_code",
+    "english_only": true,
+    "assignment_policy": "This pass does not infer set identity. It only classifies provenance recovery leads."
+  },
+  "summary": {
+    "missing_set_code_printing_rows": 5733,
+    "unique_card_prints": 2163,
+    "rows_with_card_number": 741,
+    "rows_with_set_code": 0,
+    "db_enrichment_executed": true,
+    "db_enrichment_reason": null,
+    "db_card_print_rows_loaded": 5733,
+    "db_external_mapping_rows_loaded": 2185,
+    "by_recovery_classification": {
+      "external_mapping_recoverable": 1411,
+      "possible_pocket_provenance_lead": 742,
+      "provenance_field_recoverable": 10
+    },
+    "by_finish": {
+      "reverse": 1923,
+      "holo": 1998,
+      "normal": 1812
+    },
+    "by_finish_profile": {
+      "holo|normal|reverse": 1630,
+      "holo|reverse": 128,
+      "normal|reverse": 156,
+      "holo|normal": 26,
+      "holo": 214,
+      "reverse": 9
+    },
+    "by_evidence_field": {
+      "ai_metadata": 2135,
+      "external_ids": 2135,
+      "external_mappings": 2153,
+      "image_fields": 2122,
+      "printing_provenance": 2163
+    },
+    "by_external_mapping_source": {
+      "tcgdex": 2148,
+      "justtcg": 19,
+      "tcgplayer": 18,
+      "none": 10
+    },
+    "by_external_id_pattern": {
+      "physical_tcg_set_dash_number": 808,
+      "other_external_id": 616,
+      "numeric_marketplace_id": 18,
+      "possible_pocket_a_series": 642,
+      "possible_pocket_promo_a": 100,
+      "none": 10
+    },
+    "top_card_names": {
+      "Pikachu": 37,
+      "Eevee": 30,
+      "Charmander": 23,
+      "Houndoom": 23,
+      "Professor's Research": 21,
+      "Mew ex": 20,
+      "Riolu": 20,
+      "Vaporeon": 18,
+      "Charizard ex": 17,
+      "Exeggcute": 17,
+      "Magnemite": 17,
+      "Shaymin": 17,
+      "Tangrowth": 17,
+      "Exeggutor": 16,
+      "Glaceon ex": 16,
+      "Leafeon ex": 16,
+      "Kirlia": 15,
+      "Mimikyu": 15,
+      "Oricorio": 15,
+      "Jolteon": 14,
+      "Lucario ex": 14,
+      "Lugia ex": 14,
+      "Paldean Clodsire ex": 14,
+      "Rowlet": 14,
+      "Bulbasaur": 13
+    }
+  },
+  "guardrails": [
+    "missing_set_code is not alias evidence",
+    "name and finish are not source set authority",
+    "external IDs and image URLs are recovery leads only",
+    "no row is mutation-safe from this report",
+    "no database writes, cleanup, quarantine, migrations, or apply paths are allowed"
+  ],
+  "top_recoverable_items": [
+    {
+      "card_print_id": "7a0034dc-d495-4423-8e54-dd43dc9eb4c9",
+      "card_name": "Abomasnow",
+      "number": null,
+      "current_set_code": null,
+      "finish_profile": "holo|normal|reverse",
+      "printing_count": 3,
+      "recovery_classification": "external_mapping_recoverable",
+      "evidence_fields_present": [
+        "ai_metadata",
+        "external_ids",
+        "external_mappings",
+        "image_fields",
+        "printing_provenance"
+      ],
+      "external_mappings": [
+        {
+          "source": "tcgdex",
+          "external_id": "A2a-021",
+          "external_id_pattern": "physical_tcg_set_dash_number",
+          "active": true,
+          "meta_keys": [],
+          "synced_at": "2025-12-19T21:18:21.295Z"
+        }
+      ],
+      "external_mapping_sources": [
+        "tcgdex"
+      ],
+      "external_id_patterns": [
+        "physical_tcg_set_dash_number"
+      ],
+      "tcgplayer_id_present": false,
+      "external_ids_keys": [
+        "tcgdex"
+      ],
+      "provenance_sources": [
+        "tcgdex"
+      ],
+      "provenance_refs_present": true,
+      "image_sources": [
+        "tcgdex"
+      ],
+      "created_by_values": [
+        "printing_ingestion_v2"
+      ],
+      "recommended_next_action": "Use active external mapping IDs as source-acquisition leads, then confirm exact set/card identity against external sources before any alias proposal.",
+      "mutation_authority": "not mutation authority",
+      "alias_authority": "not alias authority",
+      "note": "This row is a provenance recovery lead only. It does not infer source set identity."
+    },
+    {
+      "card_print_id": "831ea01a-9756-44dd-ba5e-7d836b299200",
+      "card_name": "Abra",
+      "number": null,
+      "current_set_code": null,
+      "finish_profile": "holo|normal|reverse",
+      "printing_count": 3,
+      "recovery_classification": "external_mapping_recoverable",
+      "evidence_fields_present": [
+        "ai_metadata",
+        "external_ids",
+        "external_mappings",
+        "image_fields",
+        "printing_provenance"
+      ],
+      "external_mappings": [
+        {
+          "source": "tcgdex",
+          "external_id": "A2b-029",
+          "external_id_pattern": "physical_tcg_set_dash_number",
+          "active": true,
+          "meta_keys": [],
+          "synced_at": "2025-12-22T23:18:23.037Z"
+        }
+      ],
+      "external_mapping_sources": [
+        "tcgdex"
+      ],
+      "external_id_patterns": [
+        "physical_tcg_set_dash_number"
+      ],
+      "tcgplayer_id_present": false,
+      "external_ids_keys": [
+        "tcgdex"
+      ],
+      "provenance_sources": [
+        "tcgdex"
+      ],
+      "provenance_refs_present": true,
+      "image_sources": [
+        "tcgdex"
+      ],
+      "created_by_values": [
+        "printing_ingestion_v2"
+      ],
+      "recommended_next_action": "Use active external mapping IDs as source-acquisition leads, then confirm exact set/card identity against external sources before any alias proposal.",
+      "mutation_authority": "not mutation authority",
+      "alias_authority": "not alias authority",
+      "note": "This row is a provenance recovery lead only. It does not infer source set identity."
+    },
+    {
+      "card_print_id": "880bf738-91f8-44f0-9026-5517058e9cbe",
+      "card_name": "Absol EX",
+      "number": null,
+      "current_set_code": null,
+      "finish_profile": "holo|normal|reverse",
+      "printing_count": 3,
+      "recovery_classification": "external_mapping_recoverable",
+      "evidence_fields_present": [
+        "ai_metadata",
+        "external_ids",
+        "external_mappings",
+        "image_fields",
+        "printing_provenance"
+      ],
+      "external_mappings": [
+        {
+          "source": "tcgdex",
+          "external_id": "xyp-XY62",
+          "external_id_pattern": "other_external_id",
+          "active": true,
+          "meta_keys": [],
+          "synced_at": "2025-12-08T19:12:36.483Z"
+        }
+      ],
+      "external_mapping_sources": [
+        "tcgdex"
+      ],
+      "external_id_patterns": [
+        "other_external_id"
+      ],
+      "tcgplayer_id_present": false,
+      "external_ids_keys": [
+        "tcgdex"
+      ],
+      "provenance_sources": [
+        "tcgdex"
+      ],
+      "provenance_refs_present": true,
+      "image_sources": [
+        "tcgdex"
+      ],
+      "created_by_values": [
+        "printing_ingestion_v2"
+      ],
+      "recommended_next_action": "Use active external mapping IDs as source-acquisition leads, then confirm exact set/card identity against external sources before any alias proposal.",
+      "mutation_authority": "not mutation authority",
+      "alias_authority": "not alias authority",
+      "note": "This row is a provenance recovery lead only. It does not infer source set identity."
+    },
+    {
+      "card_print_id": "4b30c56f-6e8a-4b1c-a4ec-517c15ee2354",
+      "card_name": "Adaman",
+      "number": null,
+      "current_set_code": null,
+      "finish_profile": "holo|normal|reverse",
+      "printing_count": 3,
+      "recovery_classification": "external_mapping_recoverable",
+      "evidence_fields_present": [
+        "ai_metadata",
+        "external_ids",
+        "external_mappings",
+        "image_fields",
+        "printing_provenance"
+      ],
+      "external_mappings": [
+        {
+          "source": "tcgdex",
+          "external_id": "A2a-075",
+          "external_id_pattern": "physical_tcg_set_dash_number",
+          "active": true,
+          "meta_keys": [],
+          "synced_at": "2025-12-19T21:18:21.295Z"
+        }
+      ],
+      "external_mapping_sources": [
+        "tcgdex"
+      ],
+      "external_id_patterns": [
+        "physical_tcg_set_dash_number"
+      ],
+      "tcgplayer_id_present": false,
+      "external_ids_keys": [
+        "tcgdex"
+      ],
+      "provenance_sources": [
+        "tcgdex"
+      ],
+      "provenance_refs_present": true,
+      "image_sources": [
+        "tcgdex"
+      ],
+      "created_by_values": [
+        "printing_ingestion_v2"
+      ],
+      "recommended_next_action": "Use active external mapping IDs as source-acquisition leads, then confirm exact set/card identity against external sources before any alias proposal.",
+      "mutation_authority": "not mutation authority",
+      "alias_authority": "not alias authority",
+      "note": "This row is a provenance recovery lead only. It does not infer source set identity."
+    },
+    {
+      "card_print_id": "08b4e819-8c65-4e5e-bdc6-5db9d8cb4472",
+      "card_name": "Adaman",
+      "number": null,
+      "current_set_code": null,
+      "finish_profile": "holo|normal|reverse",
+      "printing_count": 3,
+      "recovery_classification": "external_mapping_recoverable",
+      "evidence_fields_present": [
+        "ai_metadata",
+        "external_ids",
+        "external_mappings",
+        "image_fields",
+        "printing_provenance"
+      ],
+      "external_mappings": [
+        {
+          "source": "tcgdex",
+          "external_id": "A2a-090",
+          "external_id_pattern": "physical_tcg_set_dash_number",
+          "active": true,
+          "meta_keys": [],
+          "synced_at": "2025-12-19T21:18:21.295Z"
+        }
+      ],
+      "external_mapping_sources": [
+        "tcgdex"
+      ],
+      "external_id_patterns": [
+        "physical_tcg_set_dash_number"
+      ],
+      "tcgplayer_id_present": false,
+      "external_ids_keys": [
+        "tcgdex"
+      ],
+      "provenance_sources": [
+        "tcgdex"
+      ],
+      "provenance_refs_present": true,
+      "image_sources": [
+        "tcgdex"
+      ],
+      "created_by_values": [
+        "printing_ingestion_v2"
+      ],
+      "recommended_next_action": "Use active external mapping IDs as source-acquisition leads, then confirm exact set/card identity against external sources before any alias proposal.",
+      "mutation_authority": "not mutation authority",
+      "alias_authority": "not alias authority",
+      "note": "This row is a provenance recovery lead only. It does not infer source set identity."
+    },
+    {
+      "card_print_id": "6922b72a-f472-4bea-9c3b-e4320f11924e",
+      "card_name": "Aegislash EX",
+      "number": null,
+      "current_set_code": null,
+      "finish_profile": "holo|normal|reverse",
+      "printing_count": 3,
+      "recovery_classification": "external_mapping_recoverable",
+      "evidence_fields_present": [
+        "ai_metadata",
+        "external_ids",
+        "external_mappings",
+        "image_fields",
+        "printing_provenance"
+      ],
+      "external_mappings": [
+        {
+          "source": "tcgdex",
+          "external_id": "xy4-65a",
+          "external_id_pattern": "physical_tcg_set_dash_number",
+          "active": true,
+          "meta_keys": [],
+          "synced_at": "2026-02-26T05:42:43.437Z"
+        }
+      ],
+      "external_mapping_sources": [
+        "tcgdex"
+      ],
+      "external_id_patterns": [
+        "physical_tcg_set_dash_number"
+      ],
+      "tcgplayer_id_present": false,
+      "external_ids_keys": [
+        "tcgdex"
+      ],
+      "provenance_sources": [
+        "tcgdex"
+      ],
+      "provenance_refs_present": true,
+      "image_sources": [
+        "tcgdex"
+      ],
+      "created_by_values": [
+        "printing_ingestion_v2"
+      ],
+      "recommended_next_action": "Use active external mapping IDs as source-acquisition leads, then confirm exact set/card identity against external sources before any alias proposal.",
+      "mutation_authority": "not mutation authority",
+      "alias_authority": "not alias authority",
+      "note": "This row is a provenance recovery lead only. It does not infer source set identity."
+    },
+    {
+      "card_print_id": "21840232-9191-4566-8e3e-046f74841288",
+      "card_name": "Aegislash EX",
+      "number": null,
+      "current_set_code": null,
+      "finish_profile": "holo|normal|reverse",
+      "printing_count": 3,
+      "recovery_classification": "external_mapping_recoverable",
+      "evidence_fields_present": [
+        "ai_metadata",
+        "external_ids",
+        "external_mappings",
+        "image_fields",
+        "printing_provenance"
+      ],
+      "external_mappings": [
+        {
+          "source": "tcgdex",
+          "external_id": "xy4-65",
+          "external_id_pattern": "physical_tcg_set_dash_number",
+          "active": true,
+          "meta_keys": [],
+          "synced_at": "2025-12-08T19:06:15.527Z"
+        }
+      ],
+      "external_mapping_sources": [
+        "tcgdex"
+      ],
+      "external_id_patterns": [
+        "physical_tcg_set_dash_number"
+      ],
+      "tcgplayer_id_present": false,
+      "external_ids_keys": [
+        "tcgdex"
+      ],
+      "provenance_sources": [
+        "tcgdex"
+      ],
+      "provenance_refs_present": true,
+      "image_sources": [
+        "tcgdex"
+      ],
+      "created_by_values": [
+        "printing_ingestion_v2"
+      ],
+      "recommended_next_action": "Use active external mapping IDs as source-acquisition leads, then confirm exact set/card identity against external sources before any alias proposal.",
+      "mutation_authority": "not mutation authority",
+      "alias_authority": "not alias authority",
+      "note": "This row is a provenance recovery lead only. It does not infer source set identity."
+    },
+    {
+      "card_print_id": "e3638edc-31a4-4b58-88e8-6d0dccf222d2",
+      "card_name": "Aerodactyl",
+      "number": "98",
+      "current_set_code": null,
+      "finish_profile": "holo|normal|reverse",
+      "printing_count": 3,
+      "recovery_classification": "external_mapping_recoverable",
+      "evidence_fields_present": [
+        "ai_metadata",
+        "external_ids",
+        "external_mappings",
+        "image_fields",
+        "printing_provenance"
+      ],
+      "external_mappings": [
+        {
+          "source": "tcgdex",
+          "external_id": "A3a-098",
+          "external_id_pattern": "physical_tcg_set_dash_number",
+          "active": true,
+          "meta_keys": [],
+          "synced_at": "2026-03-27T04:15:06.267Z"
+        }
+      ],
+      "external_mapping_sources": [
+        "tcgdex"
+      ],
+      "external_id_patterns": [
+        "physical_tcg_set_dash_number"
+      ],
+      "tcgplayer_id_present": false,
+      "external_ids_keys": [
+        "tcgdex"
+      ],
+      "provenance_sources": [
+        "tcgdex"
+      ],
+      "provenance_refs_present": true,
+      "image_sources": [
+        "tcgdex"
+      ],
+      "created_by_values": [
+        "printing_ingestion_v2"
+      ],
+      "recommended_next_action": "Use active external mapping IDs as source-acquisition leads, then confirm exact set/card identity against external sources before any alias proposal.",
+      "mutation_authority": "not mutation authority",
+      "alias_authority": "not alias authority",
+      "note": "This row is a provenance recovery lead only. It does not infer source set identity."
+    },
+    {
+      "card_print_id": "1370621a-c89d-4700-be75-275b400e6fb5",
+      "card_name": "Aerodactyl ex",
+      "number": null,
+      "current_set_code": null,
+      "finish_profile": "holo|normal|reverse",
+      "printing_count": 3,
+      "recovery_classification": "external_mapping_recoverable",
+      "evidence_fields_present": [
+        "ai_metadata",
+        "external_ids",
+        "external_mappings",
+        "image_fields",
+        "printing_provenance"
+      ],
+      "external_mappings": [
+        {
+          "source": "tcgdex",
+          "external_id": "A1a-046",
+          "external_id_pattern": "physical_tcg_set_dash_number",
+          "active": true,
+          "meta_keys": [],
+          "synced_at": "2025-12-23T18:15:13.901Z"
+        }
+      ],
+      "external_mapping_sources": [
+        "tcgdex"
+      ],
+      "external_id_patterns": [
+        "physical_tcg_set_dash_number"
+      ],
+      "tcgplayer_id_present": false,
+      "external_ids_keys": [
+        "tcgdex"
+      ],
+      "provenance_sources": [
+        "tcgdex"
+      ],
+      "provenance_refs_present": true,
+      "image_sources": [
+        "tcgdex"
+      ],
+      "created_by_values": [
+        "printing_ingestion_v2"
+      ],
+      "recommended_next_action": "Use active external mapping IDs as source-acquisition leads, then confirm exact set/card identity against external sources before any alias proposal.",
+      "mutation_authority": "not mutation authority",
+      "alias_authority": "not alias authority",
+      "note": "This row is a provenance recovery lead only. It does not infer source set identity."
+    },
+    {
+      "card_print_id": "0e915001-674c-46c4-9d05-f793b44ce60d",
+      "card_name": "Aerodactyl ex",
+      "number": null,
+      "current_set_code": null,
+      "finish_profile": "holo|normal|reverse",
+      "printing_count": 3,
+      "recovery_classification": "external_mapping_recoverable",
+      "evidence_fields_present": [
+        "ai_metadata",
+        "external_ids",
+        "external_mappings",
+        "image_fields",
+        "printing_provenance"
+      ],
+      "external_mappings": [
+        {
+          "source": "tcgdex",
+          "external_id": "A1a-078",
+          "external_id_pattern": "physical_tcg_set_dash_number",
+          "active": true,
+          "meta_keys": [],
+          "synced_at": "2025-12-23T18:15:13.901Z"
+        }
+      ],
+      "external_mapping_sources": [
+        "tcgdex"
+      ],
+      "external_id_patterns": [
+        "physical_tcg_set_dash_number"
+      ],
+      "tcgplayer_id_present": false,
+      "external_ids_keys": [
+        "tcgdex"
+      ],
+      "provenance_sources": [
+        "tcgdex"
+      ],
+      "provenance_refs_present": true,
+      "image_sources": [
+        "tcgdex"
+      ],
+      "created_by_values": [
+        "printing_ingestion_v2"
+      ],
+      "recommended_next_action": "Use active external mapping IDs as source-acquisition leads, then confirm exact set/card identity against external sources before any alias proposal.",
+      "mutation_authority": "not mutation authority",
+      "alias_authority": "not alias authority",
+      "note": "This row is a provenance recovery lead only. It does not infer source set identity."
+    },
+    {
+      "card_print_id": "172c97ad-710e-41ca-b117-083505a8a9f5",
+      "card_name": "Aerodactyl ex",
+      "number": null,
+      "current_set_code": null,
+      "finish_profile": "holo|normal|reverse",
+      "printing_count": 3,
+      "recovery_classification": "external_mapping_recoverable",
+      "evidence_fields_present": [
+        "ai_metadata",
+        "external_ids",
+        "external_mappings",
+        "image_fields",
+        "printing_provenance"
+      ],
+      "external_mappings": [
+        {
+          "source": "tcgdex",
+          "external_id": "A1a-084",
+          "external_id_pattern": "physical_tcg_set_dash_number",
+          "active": true,
+          "meta_keys": [],
+          "synced_at": "2025-12-23T18:15:13.901Z"
+        }
+      ],
+      "external_mapping_sources": [
+        "tcgdex"
+      ],
+      "external_id_patterns": [
+        "physical_tcg_set_dash_number"
+      ],
+      "tcgplayer_id_present": false,
+      "external_ids_keys": [
+        "tcgdex"
+      ],
+      "provenance_sources": [
+        "tcgdex"
+      ],
+      "provenance_refs_present": true,
+      "image_sources": [
+        "tcgdex"
+      ],
+      "created_by_values": [
+        "printing_ingestion_v2"
+      ],
+      "recommended_next_action": "Use active external mapping IDs as source-acquisition leads, then confirm exact set/card identity against external sources before any alias proposal.",
+      "mutation_authority": "not mutation authority",
+      "alias_authority": "not alias authority",
+      "note": "This row is a provenance recovery lead only. It does not infer source set identity."
+    },
+    {
+      "card_print_id": "576946b5-8ab3-49c2-8d7b-eaa50e7f822d",
+      "card_name": "Aerodactyl ex",
+      "number": "101",
+      "current_set_code": null,
+      "finish_profile": "holo|normal|reverse",
+      "printing_count": 3,
+      "recovery_classification": "external_mapping_recoverable",
+      "evidence_fields_present": [
+        "ai_metadata",
+        "external_ids",
+        "external_mappings",
+        "image_fields",
+        "printing_provenance"
+      ],
+      "external_mappings": [
+        {
+          "source": "tcgdex",
+          "external_id": "A3a-101",
+          "external_id_pattern": "physical_tcg_set_dash_number",
+          "active": true,
+          "meta_keys": [],
+          "synced_at": "2026-03-27T04:15:15.462Z"
+        }
+      ],
+      "external_mapping_sources": [
+        "tcgdex"
+      ],
+      "external_id_patterns": [
+        "physical_tcg_set_dash_number"
+      ],
+      "tcgplayer_id_present": false,
+      "external_ids_keys": [
+        "tcgdex"
+      ],
+      "provenance_sources": [
+        "tcgdex"
+      ],
+      "provenance_refs_present": true,
+      "image_sources": [
+        "tcgdex"
+      ],
+      "created_by_values": [
+        "printing_ingestion_v2"
+      ],
+      "recommended_next_action": "Use active external mapping IDs as source-acquisition leads, then confirm exact set/card identity against external sources before any alias proposal.",
+      "mutation_authority": "not mutation authority",
+      "alias_authority": "not alias authority",
+      "note": "This row is a provenance recovery lead only. It does not infer source set identity."
+    },
+    {
+      "card_print_id": "4f7b83ca-6291-4f21-bc09-add8bb57e266",
+      "card_name": "Aerodactyl EX",
+      "number": null,
+      "current_set_code": null,
+      "finish_profile": "holo|normal|reverse",
+      "printing_count": 3,
+      "recovery_classification": "external_mapping_recoverable",
+      "evidence_fields_present": [
+        "ai_metadata",
+        "external_ids",
+        "external_mappings",
+        "image_fields",
+        "printing_provenance"
+      ],
+      "external_mappings": [
+        {
+          "source": "tcgdex",
+          "external_id": "xyp-XY97",
+          "external_id_pattern": "other_external_id",
+          "active": true,
+          "meta_keys": [],
+          "synced_at": "2025-12-08T19:12:50.458Z"
+        }
+      ],
+      "external_mapping_sources": [
+        "tcgdex"
+      ],
+      "external_id_patterns": [
+        "other_external_id"
+      ],
+      "tcgplayer_id_present": false,
+      "external_ids_keys": [
+        "tcgdex"
+      ],
+      "provenance_sources": [
+        "tcgdex"
+      ],
+      "provenance_refs_present": true,
+      "image_sources": [
+        "tcgdex"
+      ],
+      "created_by_values": [
+        "printing_ingestion_v2"
+      ],
+      "recommended_next_action": "Use active external mapping IDs as source-acquisition leads, then confirm exact set/card identity against external sources before any alias proposal.",
+      "mutation_authority": "not mutation authority",
+      "alias_authority": "not alias authority",
+      "note": "This row is a provenance recovery lead only. It does not infer source set identity."
+    },
+    {
+      "card_print_id": "560fde08-0ef0-489d-b8f7-ee0d994cd070",
+      "card_name": "Aggron",
+      "number": "50",
+      "current_set_code": null,
+      "finish_profile": "holo|normal|reverse",
+      "printing_count": 3,
+      "recovery_classification": "external_mapping_recoverable",
+      "evidence_fields_present": [
+        "ai_metadata",
+        "external_ids",
+        "external_mappings",
+        "image_fields",
+        "printing_provenance"
+      ],
+      "external_mappings": [
+        {
+          "source": "tcgdex",
+          "external_id": "A3a-050",
+          "external_id_pattern": "physical_tcg_set_dash_number",
+          "active": true,
+          "meta_keys": [],
+          "synced_at": "2026-03-27T04:12:40.422Z"
+        }
+      ],
+      "external_mapping_sources": [
+        "tcgdex"
+      ],
+      "external_id_patterns": [
+        "physical_tcg_set_dash_number"
+      ],
+      "tcgplayer_id_present": false,
+      "external_ids_keys": [
+        "tcgdex"
+      ],
+      "provenance_sources": [
+        "tcgdex"
+      ],
+      "provenance_refs_present": true,
+      "image_sources": [
+        "tcgdex"
+      ],
+      "created_by_values": [
+        "printing_ingestion_v2"
+      ],
+      "recommended_next_action": "Use active external mapping IDs as source-acquisition leads, then confirm exact set/card identity against external sources before any alias proposal.",
+      "mutation_authority": "not mutation authority",
+      "alias_authority": "not alias authority",
+      "note": "This row is a provenance recovery lead only. It does not infer source set identity."
+    },
+    {
+      "card_print_id": "58423acc-8f37-4d56-8774-4f21ca26e683",
+      "card_name": "Aipom",
+      "number": null,
+      "current_set_code": null,
+      "finish_profile": "holo|normal|reverse",
+      "printing_count": 3,
+      "recovery_classification": "external_mapping_recoverable",
+      "evidence_fields_present": [
+        "ai_metadata",
+        "external_ids",
+        "external_mappings",
+        "image_fields",
+        "printing_provenance"
+      ],
+      "external_mappings": [
+        {
+          "source": "tcgdex",
+          "external_id": "A3b-058",
+          "external_id_pattern": "physical_tcg_set_dash_number",
+          "active": true,
+          "meta_keys": [],
+          "synced_at": "2025-12-22T23:22:39.478Z"
+        }
+      ],
+      "external_mapping_sources": [
+        "tcgdex"
+      ],
+      "external_id_patterns": [
+        "physical_tcg_set_dash_number"
+      ],
+      "tcgplayer_id_present": false,
+      "external_ids_keys": [
+        "tcgdex"
+      ],
+      "provenance_sources": [
+        "tcgdex"
+      ],
+      "provenance_refs_present": true,
+      "image_sources": [
+        "tcgdex"
+      ],
+      "created_by_values": [
+        "printing_ingestion_v2"
+      ],
+      "recommended_next_action": "Use active external mapping IDs as source-acquisition leads, then confirm exact set/card identity against external sources before any alias proposal.",
+      "mutation_authority": "not mutation authority",
+      "alias_authority": "not alias authority",
+      "note": "This row is a provenance recovery lead only. It does not infer source set identity."
+    },
+    {
+      "card_print_id": "7d82ffdc-2ffe-48c9-9436-72e86aaa6916",
+      "card_name": "Alakazam",
+      "number": null,
+      "current_set_code": null,
+      "finish_profile": "holo|normal|reverse",
+      "printing_count": 3,
+      "recovery_classification": "external_mapping_recoverable",
+      "evidence_fields_present": [
+        "ai_metadata",
+        "external_ids",
+        "external_mappings",
+        "image_fields",
+        "printing_provenance"
+      ],
+      "external_mappings": [
+        {
+          "source": "tcgdex",
+          "external_id": "A2b-031",
+          "external_id_pattern": "physical_tcg_set_dash_number",
+          "active": true,
+          "meta_keys": [],
+          "synced_at": "2025-12-22T23:18:23.037Z"
+        }
+      ],
+      "external_mapping_sources": [
+        "tcgdex"
+      ],
+      "external_id_patterns": [
+        "physical_tcg_set_dash_number"
+      ],
+      "tcgplayer_id_present": false,
+      "external_ids_keys": [
+        "tcgdex"
+      ],
+      "provenance_sources": [
+        "tcgdex"
+      ],
+      "provenance_refs_present": true,
+      "image_sources": [
+        "tcgdex"
+      ],
+      "created_by_values": [
+        "printing_ingestion_v2"
+      ],
+      "recommended_next_action": "Use active external mapping IDs as source-acquisition leads, then confirm exact set/card identity against external sources before any alias proposal.",
+      "mutation_authority": "not mutation authority",
+      "alias_authority": "not alias authority",
+      "note": "This row is a provenance recovery lead only. It does not infer source set identity."
+    },
+    {
+      "card_print_id": "0c500907-b532-4c45-9b35-5cbe4059c21c",
+      "card_name": "Alakazam ex",
+      "number": null,
+      "current_set_code": null,
+      "finish_profile": "holo|normal|reverse",
+      "printing_count": 3,
+      "recovery_classification": "external_mapping_recoverable",
+      "evidence_fields_present": [
+        "ai_metadata",
+        "external_ids",
+        "external_mappings",
+        "image_fields",
+        "printing_provenance"
+      ],
+      "external_mappings": [
+        {
+          "source": "tcgdex",
+          "external_id": "svp-050",
+          "external_id_pattern": "other_external_id",
+          "active": true,
+          "meta_keys": [],
+          "synced_at": "2025-12-08T18:39:20.448Z"
+        }
+      ],
+      "external_mapping_sources": [
+        "tcgdex"
+      ],
+      "external_id_patterns": [
+        "other_external_id"
+      ],
+      "tcgplayer_id_present": false,
+      "external_ids_keys": [
+        "tcgdex"
+      ],
+      "provenance_sources": [
+        "tcgdex"
+      ],
+      "provenance_refs_present": true,
+      "image_sources": [
+        "tcgdex"
+      ],
+      "created_by_values": [
+        "printing_ingestion_v2"
+      ],
+      "recommended_next_action": "Use active external mapping IDs as source-acquisition leads, then confirm exact set/card identity against external sources before any alias proposal.",
+      "mutation_authority": "not mutation authority",
+      "alias_authority": "not alias authority",
+      "note": "This row is a provenance recovery lead only. It does not infer source set identity."
+    },
+    {
+      "card_print_id": "e3e88a4d-20ef-4fb5-8ccf-e220f5244728",
+      "card_name": "Alcremie",
+      "number": null,
+      "current_set_code": null,
+      "finish_profile": "holo|normal|reverse",
+      "printing_count": 3,
+      "recovery_classification": "external_mapping_recoverable",
+      "evidence_fields_present": [
+        "ai_metadata",
+        "external_ids",
+        "external_mappings",
+        "image_fields",
+        "printing_provenance"
+      ],
+      "external_mappings": [
+        {
+          "source": "tcgdex",
+          "external_id": "A3b-037",
+          "external_id_pattern": "physical_tcg_set_dash_number",
+          "active": true,
+          "meta_keys": [],
+          "synced_at": "2025-12-22T23:22:39.478Z"
+        }
+      ],
+      "external_mapping_sources": [
+        "tcgdex"
+      ],
+      "external_id_patterns": [
+        "physical_tcg_set_dash_number"
+      ],
+      "tcgplayer_id_present": false,
+      "external_ids_keys": [
+        "tcgdex"
+      ],
+      "provenance_sources": [
+        "tcgdex"
+      ],
+      "provenance_refs_present": true,
+      "image_sources": [
+        "tcgdex"
+      ],
+      "created_by_values": [
+        "printing_ingestion_v2"
+      ],
+      "recommended_next_action": "Use active external mapping IDs as source-acquisition leads, then confirm exact set/card identity against external sources before any alias proposal.",
+      "mutation_authority": "not mutation authority",
+      "alias_authority": "not alias authority",
+      "note": "This row is a provenance recovery lead only. It does not infer source set identity."
+    },
+    {
+      "card_print_id": "dc70d730-3f95-4164-a280-f8c8463017e5",
+      "card_name": "Alolan Diglett",
+      "number": "46",
+      "current_set_code": null,
+      "finish_profile": "holo|normal|reverse",
+      "printing_count": 3,
+      "recovery_classification": "external_mapping_recoverable",
+      "evidence_fields_present": [
+        "ai_metadata",
+        "external_ids",
+        "external_mappings",
+        "image_fields",
+        "printing_provenance"
+      ],
+      "external_mappings": [
+        {
+          "source": "tcgdex",
+          "external_id": "A3a-046",
+          "external_id_pattern": "physical_tcg_set_dash_number",
+          "active": true,
+          "meta_keys": [],
+          "synced_at": "2026-03-27T04:12:27.559Z"
+        }
+      ],
+      "external_mapping_sources": [
+        "tcgdex"
+      ],
+      "external_id_patterns": [
+        "physical_tcg_set_dash_number"
+      ],
+      "tcgplayer_id_present": false,
+      "external_ids_keys": [
+        "tcgdex"
+      ],
+      "provenance_sources": [
+        "tcgdex"
+      ],
+      "provenance_refs_present": true,
+      "image_sources": [
+        "tcgdex"
+      ],
+      "created_by_values": [
+        "printing_ingestion_v2"
+      ],
+      "recommended_next_action": "Use active external mapping IDs as source-acquisition leads, then confirm exact set/card identity against external sources before any alias proposal.",
+      "mutation_authority": "not mutation authority",
+      "alias_authority": "not alias authority",
+      "note": "This row is a provenance recovery lead only. It does not infer source set identity."
+    },
+    {
+      "card_print_id": "145e93dc-2599-4674-8e1e-135b622b507c",
+      "card_name": "Alolan Dugtrio ex",
+      "number": "47",
+      "current_set_code": null,
+      "finish_profile": "holo|normal|reverse",
+      "printing_count": 3,
+      "recovery_classification": "external_mapping_recoverable",
+      "evidence_fields_present": [
+        "ai_metadata",
+        "external_ids",
+        "external_mappings",
+        "image_fields",
+        "printing_provenance"
+      ],
+      "external_mappings": [
+        {
+          "source": "tcgdex",
+          "external_id": "A3a-047",
+          "external_id_pattern": "physical_tcg_set_dash_number",
+          "active": true,
+          "meta_keys": [],
+          "synced_at": "2026-03-27T04:12:30.704Z"
+        }
+      ],
+      "external_mapping_sources": [
+        "tcgdex"
+      ],
+      "external_id_patterns": [
+        "physical_tcg_set_dash_number"
+      ],
+      "tcgplayer_id_present": false,
+      "external_ids_keys": [
+        "tcgdex"
+      ],
+      "provenance_sources": [
+        "tcgdex"
+      ],
+      "provenance_refs_present": true,
+      "image_sources": [
+        "tcgdex"
+      ],
+      "created_by_values": [
+        "printing_ingestion_v2"
+      ],
+      "recommended_next_action": "Use active external mapping IDs as source-acquisition leads, then confirm exact set/card identity against external sources before any alias proposal.",
+      "mutation_authority": "not mutation authority",
+      "alias_authority": "not alias authority",
+      "note": "This row is a provenance recovery lead only. It does not infer source set identity."
+    },
+    {
+      "card_print_id": "52d26452-166f-482a-b35a-fe8008a67b75",
+      "card_name": "Alolan Dugtrio ex",
+      "number": "80",
+      "current_set_code": null,
+      "finish_profile": "holo|normal|reverse",
+      "printing_count": 3,
+      "recovery_classification": "external_mapping_recoverable",
+      "evidence_fields_present": [
+        "ai_metadata",
+        "external_ids",
+        "external_mappings",
+        "image_fields",
+        "printing_provenance"
+      ],
+      "external_mappings": [
+        {
+          "source": "tcgdex",
+          "external_id": "A3a-080",
+          "external_id_pattern": "physical_tcg_set_dash_number",
+          "active": true,
+          "meta_keys": [],
+          "synced_at": "2026-03-27T04:14:12.915Z"
+        }
+      ],
+      "external_mapping_sources": [
+        "tcgdex"
+      ],
+      "external_id_patterns": [
+        "physical_tcg_set_dash_number"
+      ],
+      "tcgplayer_id_present": false,
+      "external_ids_keys": [
+        "tcgdex"
+      ],
+      "provenance_sources": [
+        "tcgdex"
+      ],
+      "provenance_refs_present": true,
+      "image_sources": [
+        "tcgdex"
+      ],
+      "created_by_values": [
+        "printing_ingestion_v2"
+      ],
+      "recommended_next_action": "Use active external mapping IDs as source-acquisition leads, then confirm exact set/card identity against external sources before any alias proposal.",
+      "mutation_authority": "not mutation authority",
+      "alias_authority": "not alias authority",
+      "note": "This row is a provenance recovery lead only. It does not infer source set identity."
+    },
+    {
+      "card_print_id": "02e39451-bfa3-4427-9a13-40e7a7721d66",
+      "card_name": "Alolan Dugtrio ex",
+      "number": "87",
+      "current_set_code": null,
+      "finish_profile": "holo|normal|reverse",
+      "printing_count": 3,
+      "recovery_classification": "external_mapping_recoverable",
+      "evidence_fields_present": [
+        "ai_metadata",
+        "external_ids",
+        "external_mappings",
+        "image_fields",
+        "printing_provenance"
+      ],
+      "external_mappings": [
+        {
+          "source": "tcgdex",
+          "external_id": "A3a-087",
+          "external_id_pattern": "physical_tcg_set_dash_number",
+          "active": true,
+          "meta_keys": [],
+          "synced_at": "2026-03-27T04:14:33.667Z"
+        }
+      ],
+      "external_mapping_sources": [
+        "tcgdex"
+      ],
+      "external_id_patterns": [
+        "physical_tcg_set_dash_number"
+      ],
+      "tcgplayer_id_present": false,
+      "external_ids_keys": [
+        "tcgdex"
+      ],
+      "provenance_sources": [
+        "tcgdex"
+      ],
+      "provenance_refs_present": true,
+      "image_sources": [
+        "tcgdex"
+      ],
+      "created_by_values": [
+        "printing_ingestion_v2"
+      ],
+      "recommended_next_action": "Use active external mapping IDs as source-acquisition leads, then confirm exact set/card identity against external sources before any alias proposal.",
+      "mutation_authority": "not mutation authority",
+      "alias_authority": "not alias authority",
+      "note": "This row is a provenance recovery lead only. It does not infer source set identity."
+    },
+    {
+      "card_print_id": "df85125b-e129-4d4f-8dcb-2dd0294b873b",
+      "card_name": "Alolan Meowth",
+      "number": "37",
+      "current_set_code": null,
+      "finish_profile": "holo|normal|reverse",
+      "printing_count": 3,
+      "recovery_classification": "external_mapping_recoverable",
+      "evidence_fields_present": [
+        "ai_metadata",
+        "external_ids",
+        "external_mappings",
+        "image_fields",
+        "printing_provenance"
+      ],
+      "external_mappings": [
+        {
+          "source": "tcgdex",
+          "external_id": "A3a-037",
+          "external_id_pattern": "physical_tcg_set_dash_number",
+          "active": true,
+          "meta_keys": [],
+          "synced_at": "2026-03-27T04:11:58.518Z"
+        }
+      ],
+      "external_mapping_sources": [
+        "tcgdex"
+      ],
+      "external_id_patterns": [
+        "physical_tcg_set_dash_number"
+      ],
+      "tcgplayer_id_present": false,
+      "external_ids_keys": [
+        "tcgdex"
+      ],
+      "provenance_sources": [
+        "tcgdex"
+      ],
+      "provenance_refs_present": true,
+      "image_sources": [
+        "tcgdex"
+      ],
+      "created_by_values": [
+        "printing_ingestion_v2"
+      ],
+      "recommended_next_action": "Use active external mapping IDs as source-acquisition leads, then confirm exact set/card identity against external sources before any alias proposal.",
+      "mutation_authority": "not mutation authority",
+      "alias_authority": "not alias authority",
+      "note": "This row is a provenance recovery lead only. It does not infer source set identity."
+    },
+    {
+      "card_print_id": "4ef56ba4-e705-467c-9ffe-cd64e2ddd51c",
+      "card_name": "Alolan Meowth",
+      "number": "73",
+      "current_set_code": null,
+      "finish_profile": "holo|normal|reverse",
+      "printing_count": 3,
+      "recovery_classification": "external_mapping_recoverable",
+      "evidence_fields_present": [
+        "ai_metadata",
+        "external_ids",
+        "external_mappings",
+        "image_fields",
+        "printing_provenance"
+      ],
+      "external_mappings": [
+        {
+          "source": "tcgdex",
+          "external_id": "A3a-073",
+          "external_id_pattern": "physical_tcg_set_dash_number",
+          "active": true,
+          "meta_keys": [],
+          "synced_at": "2026-03-27T04:13:50.527Z"
+        }
+      ],
+      "external_mapping_sources": [
+        "tcgdex"
+      ],
+      "external_id_patterns": [
+        "physical_tcg_set_dash_number"
+      ],
+      "tcgplayer_id_present": false,
+      "external_ids_keys": [
+        "tcgdex"
+      ],
+      "provenance_sources": [
+        "tcgdex"
+      ],
+      "provenance_refs_present": true,
+      "image_sources": [
+        "tcgdex"
+      ],
+      "created_by_values": [
+        "printing_ingestion_v2"
+      ],
+      "recommended_next_action": "Use active external mapping IDs as source-acquisition leads, then confirm exact set/card identity against external sources before any alias proposal.",
+      "mutation_authority": "not mutation authority",
+      "alias_authority": "not alias authority",
+      "note": "This row is a provenance recovery lead only. It does not infer source set identity."
+    },
+    {
+      "card_print_id": "970f0229-fde0-45f6-8555-2789d475cfcc",
+      "card_name": "Alolan Persian",
+      "number": "38",
+      "current_set_code": null,
+      "finish_profile": "holo|normal|reverse",
+      "printing_count": 3,
+      "recovery_classification": "external_mapping_recoverable",
+      "evidence_fields_present": [
+        "ai_metadata",
+        "external_ids",
+        "external_mappings",
+        "image_fields",
+        "printing_provenance"
+      ],
+      "external_mappings": [
+        {
+          "source": "tcgdex",
+          "external_id": "A3a-038",
+          "external_id_pattern": "physical_tcg_set_dash_number",
+          "active": true,
+          "meta_keys": [],
+          "synced_at": "2026-03-27T04:12:01.786Z"
+        }
+      ],
+      "external_mapping_sources": [
+        "tcgdex"
+      ],
+      "external_id_patterns": [
+        "physical_tcg_set_dash_number"
+      ],
+      "tcgplayer_id_present": false,
+      "external_ids_keys": [
+        "tcgdex"
+      ],
+      "provenance_sources": [
+        "tcgdex"
+      ],
+      "provenance_refs_present": true,
+      "image_sources": [
+        "tcgdex"
+      ],
+      "created_by_values": [
+        "printing_ingestion_v2"
+      ],
+      "recommended_next_action": "Use active external mapping IDs as source-acquisition leads, then confirm exact set/card identity against external sources before any alias proposal.",
+      "mutation_authority": "not mutation authority",
+      "alias_authority": "not alias authority",
+      "note": "This row is a provenance recovery lead only. It does not infer source set identity."
+    },
+    {
+      "card_print_id": "23e7115d-783b-4d7c-a73f-d08fdc9ac437",
+      "card_name": "Alomomola",
+      "number": null,
+      "current_set_code": null,
+      "finish_profile": "holo|normal|reverse",
+      "printing_count": 3,
+      "recovery_classification": "external_mapping_recoverable",
+      "evidence_fields_present": [
+        "ai_metadata",
+        "external_ids",
+        "external_mappings",
+        "image_fields",
+        "printing_provenance"
+      ],
+      "external_mappings": [
+        {
+          "source": "tcgdex",
+          "external_id": "A3b-021",
+          "external_id_pattern": "physical_tcg_set_dash_number",
+          "active": true,
+          "meta_keys": [],
+          "synced_at": "2025-12-22T23:22:39.478Z"
+        }
+      ],
+      "external_mapping_sources": [
+        "tcgdex"
+      ],
+      "external_id_patterns": [
+        "physical_tcg_set_dash_number"
+      ],
+      "tcgplayer_id_present": false,
+      "external_ids_keys": [
+        "tcgdex"
+      ],
+      "provenance_sources": [
+        "tcgdex"
+      ],
+      "provenance_refs_present": true,
+      "image_sources": [
+        "tcgdex"
+      ],
+      "created_by_values": [
+        "printing_ingestion_v2"
+      ],
+      "recommended_next_action": "Use active external mapping IDs as source-acquisition leads, then confirm exact set/card identity against external sources before any alias proposal.",
+      "mutation_authority": "not mutation authority",
+      "alias_authority": "not alias authority",
+      "note": "This row is a provenance recovery lead only. It does not infer source set identity."
+    },
+    {
+      "card_print_id": "6b10e418-2ffe-4e86-9bb5-947bcf29c504",
+      "card_name": "Altaria",
+      "number": null,
+      "current_set_code": null,
+      "finish_profile": "holo|normal|reverse",
+      "printing_count": 3,
+      "recovery_classification": "external_mapping_recoverable",
+      "evidence_fields_present": [
+        "ai_metadata",
+        "external_ids",
+        "external_mappings",
+        "image_fields",
+        "printing_provenance"
+      ],
+      "external_mappings": [
+        {
+          "source": "tcgdex",
+          "external_id": "A4a-055",
+          "external_id_pattern": "physical_tcg_set_dash_number",
+          "active": true,
+          "meta_keys": [],
+          "synced_at": "2025-12-22T23:29:17.611Z"
+        }
+      ],
+      "external_mapping_sources": [
+        "tcgdex"
+      ],
+      "external_id_patterns": [
+        "physical_tcg_set_dash_number"
+      ],
+      "tcgplayer_id_present": false,
+      "external_ids_keys": [
+        "tcgdex"
+      ],
+      "provenance_sources": [
+        "tcgdex"
+      ],
+      "provenance_refs_present": true,
+      "image_sources": [
+        "tcgdex"
+      ],
+      "created_by_values": [
+        "printing_ingestion_v2"
+      ],
+      "recommended_next_action": "Use active external mapping IDs as source-acquisition leads, then confirm exact set/card identity against external sources before any alias proposal.",
+      "mutation_authority": "not mutation authority",
+      "alias_authority": "not alias authority",
+      "note": "This row is a provenance recovery lead only. It does not infer source set identity."
+    },
+    {
+      "card_print_id": "29357eff-81f7-4232-93ac-49f1226abfd2",
+      "card_name": "Amarys",
+      "number": null,
+      "current_set_code": null,
+      "finish_profile": "holo|normal|reverse",
+      "printing_count": 3,
+      "recovery_classification": "external_mapping_recoverable",
+      "evidence_fields_present": [
+        "ai_metadata",
+        "external_ids",
+        "external_mappings",
+        "image_fields",
+        "printing_provenance"
+      ],
+      "external_mappings": [
+        {
+          "source": "tcgdex",
+          "external_id": "sv08.5-093",
+          "external_id_pattern": "other_external_id",
+          "active": true,
+          "meta_keys": [],
+          "synced_at": "2025-12-22T21:35:04.498Z"
+        }
+      ],
+      "external_mapping_sources": [
+        "tcgdex"
+      ],
+      "external_id_patterns": [
+        "other_external_id"
+      ],
+      "tcgplayer_id_present": false,
+      "external_ids_keys": [
+        "tcgdex"
+      ],
+      "provenance_sources": [
+        "tcgdex"
+      ],
+      "provenance_refs_present": true,
+      "image_sources": [
+        "tcgdex"
+      ],
+      "created_by_values": [
+        "printing_ingestion_v2"
+      ],
+      "recommended_next_action": "Use active external mapping IDs as source-acquisition leads, then confirm exact set/card identity against external sources before any alias proposal.",
+      "mutation_authority": "not mutation authority",
+      "alias_authority": "not alias authority",
+      "note": "This row is a provenance recovery lead only. It does not infer source set identity."
+    },
+    {
+      "card_print_id": "b9ce7f1f-9864-47fd-8688-006aff157783",
+      "card_name": "Ambipom",
+      "number": null,
+      "current_set_code": null,
+      "finish_profile": "holo|normal|reverse",
+      "printing_count": 3,
+      "recovery_classification": "external_mapping_recoverable",
+      "evidence_fields_present": [
+        "ai_metadata",
+        "external_ids",
+        "external_mappings",
+        "image_fields",
+        "printing_provenance"
+      ],
+      "external_mappings": [
+        {
+          "source": "tcgdex",
+          "external_id": "A3b-059",
+          "external_id_pattern": "physical_tcg_set_dash_number",
+          "active": true,
+          "meta_keys": [],
+          "synced_at": "2025-12-22T23:22:39.478Z"
+        }
+      ],
+      "external_mapping_sources": [
+        "tcgdex"
+      ],
+      "external_id_patterns": [
+        "physical_tcg_set_dash_number"
+      ],
+      "tcgplayer_id_present": false,
+      "external_ids_keys": [
+        "tcgdex"
+      ],
+      "provenance_sources": [
+        "tcgdex"
+      ],
+      "provenance_refs_present": true,
+      "image_sources": [
+        "tcgdex"
+      ],
+      "created_by_values": [
+        "printing_ingestion_v2"
+      ],
+      "recommended_next_action": "Use active external mapping IDs as source-acquisition leads, then confirm exact set/card identity against external sources before any alias proposal.",
+      "mutation_authority": "not mutation authority",
+      "alias_authority": "not alias authority",
+      "note": "This row is a provenance recovery lead only. It does not infer source set identity."
+    },
+    {
+      "card_print_id": "f2a05a34-e33f-4196-9888-d8aeffd796f6",
+      "card_name": "Appletun",
+      "number": null,
+      "current_set_code": null,
+      "finish_profile": "holo|normal|reverse",
+      "printing_count": 3,
+      "recovery_classification": "external_mapping_recoverable",
+      "evidence_fields_present": [
+        "ai_metadata",
+        "external_ids",
+        "external_mappings",
+        "image_fields",
+        "printing_provenance"
+      ],
+      "external_mappings": [
+        {
+          "source": "tcgdex",
+          "external_id": "A3b-007",
+          "external_id_pattern": "physical_tcg_set_dash_number",
+          "active": true,
+          "meta_keys": [],
+          "synced_at": "2025-12-22T23:22:39.478Z"
+        }
+      ],
+      "external_mapping_sources": [
+        "tcgdex"
+      ],
+      "external_id_patterns": [
+        "physical_tcg_set_dash_number"
+      ],
+      "tcgplayer_id_present": false,
+      "external_ids_keys": [
+        "tcgdex"
+      ],
+      "provenance_sources": [
+        "tcgdex"
+      ],
+      "provenance_refs_present": true,
+      "image_sources": [
+        "tcgdex"
+      ],
+      "created_by_values": [
+        "printing_ingestion_v2"
+      ],
+      "recommended_next_action": "Use active external mapping IDs as source-acquisition leads, then confirm exact set/card identity against external sources before any alias proposal.",
+      "mutation_authority": "not mutation authority",
+      "alias_authority": "not alias authority",
+      "note": "This row is a provenance recovery lead only. It does not infer source set identity."
+    },
+    {
+      "card_print_id": "6196ac6e-1301-451f-9bcf-1349cdafb4f8",
+      "card_name": "Applin",
+      "number": null,
+      "current_set_code": null,
+      "finish_profile": "holo|normal|reverse",
+      "printing_count": 3,
+      "recovery_classification": "external_mapping_recoverable",
+      "evidence_fields_present": [
+        "ai_metadata",
+        "external_ids",
+        "external_mappings",
+        "image_fields",
+        "printing_provenance"
+      ],
+      "external_mappings": [
+        {
+          "source": "tcgdex",
+          "external_id": "sv08.5-009",
+          "external_id_pattern": "other_external_id",
+          "active": true,
+          "meta_keys": [],
+          "synced_at": "2025-12-22T21:35:04.498Z"
+        }
+      ],
+      "external_mapping_sources": [
+        "tcgdex"
+      ],
+      "external_id_patterns": [
+        "other_external_id"
+      ],
+      "tcgplayer_id_present": false,
+      "external_ids_keys": [
+        "tcgdex"
+      ],
+      "provenance_sources": [
+        "tcgdex"
+      ],
+      "provenance_refs_present": true,
+      "image_sources": [
+        "tcgdex"
+      ],
+      "created_by_values": [
+        "printing_ingestion_v2"
+      ],
+      "recommended_next_action": "Use active external mapping IDs as source-acquisition leads, then confirm exact set/card identity against external sources before any alias proposal.",
+      "mutation_authority": "not mutation authority",
+      "alias_authority": "not alias authority",
+      "note": "This row is a provenance recovery lead only. It does not infer source set identity."
+    },
+    {
+      "card_print_id": "ecfef832-1104-4343-b6a8-c0b60633fdb6",
+      "card_name": "Applin",
+      "number": null,
+      "current_set_code": null,
+      "finish_profile": "holo|normal|reverse",
+      "printing_count": 3,
+      "recovery_classification": "external_mapping_recoverable",
+      "evidence_fields_present": [
+        "ai_metadata",
+        "external_ids",
+        "external_mappings",
+        "image_fields",
+        "printing_provenance"
+      ],
+      "external_mappings": [
+        {
+          "source": "tcgdex",
+          "external_id": "A3b-006",
+          "external_id_pattern": "physical_tcg_set_dash_number",
+          "active": true,
+          "meta_keys": [],
+          "synced_at": "2025-12-22T23:22:39.478Z"
+        }
+      ],
+      "external_mapping_sources": [
+        "tcgdex"
+      ],
+      "external_id_patterns": [
+        "physical_tcg_set_dash_number"
+      ],
+      "tcgplayer_id_present": false,
+      "external_ids_keys": [
+        "tcgdex"
+      ],
+      "provenance_sources": [
+        "tcgdex"
+      ],
+      "provenance_refs_present": true,
+      "image_sources": [
+        "tcgdex"
+      ],
+      "created_by_values": [
+        "printing_ingestion_v2"
+      ],
+      "recommended_next_action": "Use active external mapping IDs as source-acquisition leads, then confirm exact set/card identity against external sources before any alias proposal.",
+      "mutation_authority": "not mutation authority",
+      "alias_authority": "not alias authority",
+      "note": "This row is a provenance recovery lead only. It does not infer source set identity."
+    },
+    {
+      "card_print_id": "c4bef850-12ac-4a73-ba8b-7aa084d44f7a",
+      "card_name": "Arbok",
+      "number": null,
+      "current_set_code": null,
+      "finish_profile": "holo|normal|reverse",
+      "printing_count": 3,
+      "recovery_classification": "external_mapping_recoverable",
+      "evidence_fields_present": [
+        "ai_metadata",
+        "external_ids",
+        "external_mappings",
+        "image_fields",
+        "printing_provenance"
+      ],
+      "external_mappings": [
+        {
+          "source": "tcgdex",
+          "external_id": "A2b-046",
+          "external_id_pattern": "physical_tcg_set_dash_number",
+          "active": true,
+          "meta_keys": [],
+          "synced_at": "2025-12-22T23:18:23.037Z"
+        }
+      ],
+      "external_mapping_sources": [
+        "tcgdex"
+      ],
+      "external_id_patterns": [
+        "physical_tcg_set_dash_number"
+      ],
+      "tcgplayer_id_present": false,
+      "external_ids_keys": [
+        "tcgdex"
+      ],
+      "provenance_sources": [
+        "tcgdex"
+      ],
+      "provenance_refs_present": true,
+      "image_sources": [
+        "tcgdex"
+      ],
+      "created_by_values": [
+        "printing_ingestion_v2"
+      ],
+      "recommended_next_action": "Use active external mapping IDs as source-acquisition leads, then confirm exact set/card identity against external sources before any alias proposal.",
+      "mutation_authority": "not mutation authority",
+      "alias_authority": "not alias authority",
+      "note": "This row is a provenance recovery lead only. It does not infer source set identity."
+    },
+    {
+      "card_print_id": "18e3f9cb-af34-4caa-af1d-20ce268fe051",
+      "card_name": "Arbok",
+      "number": null,
+      "current_set_code": null,
+      "finish_profile": "holo|normal|reverse",
+      "printing_count": 3,
+      "recovery_classification": "external_mapping_recoverable",
+      "evidence_fields_present": [
+        "ai_metadata",
+        "external_ids",
+        "external_mappings",
+        "image_fields",
+        "printing_provenance"
+      ],
+      "external_mappings": [
+        {
+          "source": "tcgdex",
+          "external_id": "A3b-101",
+          "external_id_pattern": "physical_tcg_set_dash_number",
+          "active": true,
+          "meta_keys": [],
+          "synced_at": "2025-12-22T23:22:39.478Z"
+        }
+      ],
+      "external_mapping_sources": [
+        "tcgdex"
+      ],
+      "external_id_patterns": [
+        "physical_tcg_set_dash_number"
+      ],
+      "tcgplayer_id_present": false,
+      "external_ids_keys": [
+        "tcgdex"
+      ],
+      "provenance_sources": [
+        "tcgdex"
+      ],
+      "provenance_refs_present": true,
+      "image_sources": [
+        "tcgdex"
+      ],
+      "created_by_values": [
+        "printing_ingestion_v2"
+      ],
+      "recommended_next_action": "Use active external mapping IDs as source-acquisition leads, then confirm exact set/card identity against external sources before any alias proposal.",
+      "mutation_authority": "not mutation authority",
+      "alias_authority": "not alias authority",
+      "note": "This row is a provenance recovery lead only. It does not infer source set identity."
+    },
+    {
+      "card_print_id": "1154a3c4-8965-4ac8-be8f-6963bdad7a35",
+      "card_name": "Arcanine",
+      "number": null,
+      "current_set_code": null,
+      "finish_profile": "holo|normal|reverse",
+      "printing_count": 3,
+      "recovery_classification": "external_mapping_recoverable",
+      "evidence_fields_present": [
+        "ai_metadata",
+        "external_ids",
+        "external_mappings",
+        "image_fields",
+        "printing_provenance"
+      ],
+      "external_mappings": [
+        {
+          "source": "tcgdex",
+          "external_id": "svp-011",
+          "external_id_pattern": "other_external_id",
+          "active": true,
+          "meta_keys": [],
+          "synced_at": "2025-12-08T18:39:05.132Z"
+        }
+      ],
+      "external_mapping_sources": [
+        "tcgdex"
+      ],
+      "external_id_patterns": [
+        "other_external_id"
+      ],
+      "tcgplayer_id_present": false,
+      "external_ids_keys": [
+        "tcgdex"
+      ],
+      "provenance_sources": [
+        "tcgdex"
+      ],
+      "provenance_refs_present": true,
+      "image_sources": [
+        "tcgdex"
+      ],
+      "created_by_values": [
+        "printing_ingestion_v2"
+      ],
+      "recommended_next_action": "Use active external mapping IDs as source-acquisition leads, then confirm exact set/card identity against external sources before any alias proposal.",
+      "mutation_authority": "not mutation authority",
+      "alias_authority": "not alias authority",
+      "note": "This row is a provenance recovery lead only. It does not infer source set identity."
+    },
+    {
+      "card_print_id": "06a3b76b-23bf-4766-a7a4-c94c02993970",
+      "card_name": "Arcanine",
+      "number": "90",
+      "current_set_code": null,
+      "finish_profile": "holo|normal|reverse",
+      "printing_count": 3,
+      "recovery_classification": "external_mapping_recoverable",
+      "evidence_fields_present": [
+        "ai_metadata",
+        "external_ids",
+        "external_mappings",
+        "image_fields",
+        "printing_provenance"
+      ],
+      "external_mappings": [
+        {
+          "source": "tcgdex",
+          "external_id": "A3a-090",
+          "external_id_pattern": "physical_tcg_set_dash_number",
+          "active": true,
+          "meta_keys": [],
+          "synced_at": "2026-03-27T04:14:42.237Z"
+        }
+      ],
+      "external_mapping_sources": [
+        "tcgdex"
+      ],
+      "external_id_patterns": [
+        "physical_tcg_set_dash_number"
+      ],
+      "tcgplayer_id_present": false,
+      "external_ids_keys": [
+        "tcgdex"
+      ],
+      "provenance_sources": [
+        "tcgdex"
+      ],
+      "provenance_refs_present": true,
+      "image_sources": [
+        "tcgdex"
+      ],
+      "created_by_values": [
+        "printing_ingestion_v2"
+      ],
+      "recommended_next_action": "Use active external mapping IDs as source-acquisition leads, then confirm exact set/card identity against external sources before any alias proposal.",
+      "mutation_authority": "not mutation authority",
+      "alias_authority": "not alias authority",
+      "note": "This row is a provenance recovery lead only. It does not infer source set identity."
+    },
+    {
+      "card_print_id": "7e1c6a1e-705d-4ac3-917e-af7f53271711",
+      "card_name": "Arcanine ex",
+      "number": "100",
+      "current_set_code": null,
+      "finish_profile": "holo|normal|reverse",
+      "printing_count": 3,
+      "recovery_classification": "external_mapping_recoverable",
+      "evidence_fields_present": [
+        "ai_metadata",
+        "external_ids",
+        "external_mappings",
+        "image_fields",
+        "printing_provenance"
+      ],
+      "external_mappings": [
+        {
+          "source": "tcgdex",
+          "external_id": "A3a-100",
+          "external_id_pattern": "physical_tcg_set_dash_number",
+          "active": true,
+          "meta_keys": [],
+          "synced_at": "2026-03-27T04:15:12.363Z"
+        }
+      ],
+      "external_mapping_sources": [
+        "tcgdex"
+      ],
+      "external_id_patterns": [
+        "physical_tcg_set_dash_number"
+      ],
+      "tcgplayer_id_present": false,
+      "external_ids_keys": [
+        "tcgdex"
+      ],
+      "provenance_sources": [
+        "tcgdex"
+      ],
+      "provenance_refs_present": true,
+      "image_sources": [
+        "tcgdex"
+      ],
+      "created_by_values": [
+        "printing_ingestion_v2"
+      ],
+      "recommended_next_action": "Use active external mapping IDs as source-acquisition leads, then confirm exact set/card identity against external sources before any alias proposal.",
+      "mutation_authority": "not mutation authority",
+      "alias_authority": "not alias authority",
+      "note": "This row is a provenance recovery lead only. It does not infer source set identity."
+    },
+    {
+      "card_print_id": "ae7d743f-7c2a-4e52-b8f2-ed4d16fe0fe8",
+      "card_name": "Arceus",
+      "number": null,
+      "current_set_code": null,
+      "finish_profile": "holo|normal|reverse",
+      "printing_count": 3,
+      "recovery_classification": "external_mapping_recoverable",
+      "evidence_fields_present": [
+        "ai_metadata",
+        "external_ids",
+        "external_mappings",
+        "image_fields",
+        "printing_provenance"
+      ],
+      "external_mappings": [
+        {
+          "source": "tcgdex",
+          "external_id": "A2a-070",
+          "external_id_pattern": "physical_tcg_set_dash_number",
+          "active": true,
+          "meta_keys": [],
+          "synced_at": "2025-12-19T21:18:21.295Z"
+        }
+      ],
+      "external_mapping_sources": [
+        "tcgdex"
+      ],
+      "external_id_patterns": [
+        "physical_tcg_set_dash_number"
+      ],
+      "tcgplayer_id_present": false,
+      "external_ids_keys": [
+        "tcgdex"
+      ],
+      "provenance_sources": [
+        "tcgdex"
+      ],
+      "provenance_refs_present": true,
+      "image_sources": [
+        "tcgdex"
+      ],
+      "created_by_values": [
+        "printing_ingestion_v2"
+      ],
+      "recommended_next_action": "Use active external mapping IDs as source-acquisition leads, then confirm exact set/card identity against external sources before any alias proposal.",
+      "mutation_authority": "not mutation authority",
+      "alias_authority": "not alias authority",
+      "note": "This row is a provenance recovery lead only. It does not infer source set identity."
+    },
+    {
+      "card_print_id": "07985756-5aae-44e1-9ee4-7b517bf2a928",
+      "card_name": "Arceus ex",
+      "number": null,
+      "current_set_code": null,
+      "finish_profile": "holo|normal|reverse",
+      "printing_count": 3,
+      "recovery_classification": "external_mapping_recoverable",
+      "evidence_fields_present": [
+        "ai_metadata",
+        "external_ids",
+        "external_mappings",
+        "image_fields",
+        "printing_provenance"
+      ],
+      "external_mappings": [
+        {
+          "source": "tcgdex",
+          "external_id": "A2a-086",
+          "external_id_pattern": "physical_tcg_set_dash_number",
+          "active": true,
+          "meta_keys": [],
+          "synced_at": "2025-12-19T21:18:21.295Z"
+        }
+      ],
+      "external_mapping_sources": [
+        "tcgdex"
+      ],
+      "external_id_patterns": [
+        "physical_tcg_set_dash_number"
+      ],
+      "tcgplayer_id_present": false,
+      "external_ids_keys": [
+        "tcgdex"
+      ],
+      "provenance_sources": [
+        "tcgdex"
+      ],
+      "provenance_refs_present": true,
+      "image_sources": [
+        "tcgdex"
+      ],
+      "created_by_values": [
+        "printing_ingestion_v2"
+      ],
+      "recommended_next_action": "Use active external mapping IDs as source-acquisition leads, then confirm exact set/card identity against external sources before any alias proposal.",
+      "mutation_authority": "not mutation authority",
+      "alias_authority": "not alias authority",
+      "note": "This row is a provenance recovery lead only. It does not infer source set identity."
+    },
+    {
+      "card_print_id": "326908cd-e8f4-4b0e-9731-63b8c777a026",
+      "card_name": "Arceus ex",
+      "number": null,
+      "current_set_code": null,
+      "finish_profile": "holo|normal|reverse",
+      "printing_count": 3,
+      "recovery_classification": "external_mapping_recoverable",
+      "evidence_fields_present": [
+        "ai_metadata",
+        "external_ids",
+        "external_mappings",
+        "image_fields",
+        "printing_provenance"
+      ],
+      "external_mappings": [
+        {
+          "source": "tcgdex",
+          "external_id": "A2a-071",
+          "external_id_pattern": "physical_tcg_set_dash_number",
+          "active": true,
+          "meta_keys": [],
+          "synced_at": "2025-12-19T21:18:21.295Z"
+        }
+      ],
+      "external_mapping_sources": [
+        "tcgdex"
+      ],
+      "external_id_patterns": [
+        "physical_tcg_set_dash_number"
+      ],
+      "tcgplayer_id_present": false,
+      "external_ids_keys": [
+        "tcgdex"
+      ],
+      "provenance_sources": [
+        "tcgdex"
+      ],
+      "provenance_refs_present": true,
+      "image_sources": [
+        "tcgdex"
+      ],
+      "created_by_values": [
+        "printing_ingestion_v2"
+      ],
+      "recommended_next_action": "Use active external mapping IDs as source-acquisition leads, then confirm exact set/card identity against external sources before any alias proposal.",
+      "mutation_authority": "not mutation authority",
+      "alias_authority": "not alias authority",
+      "note": "This row is a provenance recovery lead only. It does not infer source set identity."
+    },
+    {
+      "card_print_id": "47a696cc-a912-40c6-904c-c4a4bc37be9d",
+      "card_name": "Arceus ex",
+      "number": null,
+      "current_set_code": null,
+      "finish_profile": "holo|normal|reverse",
+      "printing_count": 3,
+      "recovery_classification": "external_mapping_recoverable",
+      "evidence_fields_present": [
+        "ai_metadata",
+        "external_ids",
+        "external_mappings",
+        "image_fields",
+        "printing_provenance"
+      ],
+      "external_mappings": [
+        {
+          "source": "tcgdex",
+          "external_id": "A2a-096",
+          "external_id_pattern": "physical_tcg_set_dash_number",
+          "active": true,
+          "meta_keys": [],
+          "synced_at": "2025-12-19T21:18:21.295Z"
+        }
+      ],
+      "external_mapping_sources": [
+        "tcgdex"
+      ],
+      "external_id_patterns": [
+        "physical_tcg_set_dash_number"
+      ],
+      "tcgplayer_id_present": false,
+      "external_ids_keys": [
+        "tcgdex"
+      ],
+      "provenance_sources": [
+        "tcgdex"
+      ],
+      "provenance_refs_present": true,
+      "image_sources": [
+        "tcgdex"
+      ],
+      "created_by_values": [
+        "printing_ingestion_v2"
+      ],
+      "recommended_next_action": "Use active external mapping IDs as source-acquisition leads, then confirm exact set/card identity against external sources before any alias proposal.",
+      "mutation_authority": "not mutation authority",
+      "alias_authority": "not alias authority",
+      "note": "This row is a provenance recovery lead only. It does not infer source set identity."
+    },
+    {
+      "card_print_id": "ae50328b-685a-494b-81c5-e66f68937dd0",
+      "card_name": "Arceus ex",
+      "number": null,
+      "current_set_code": null,
+      "finish_profile": "holo|normal|reverse",
+      "printing_count": 3,
+      "recovery_classification": "external_mapping_recoverable",
+      "evidence_fields_present": [
+        "ai_metadata",
+        "external_ids",
+        "external_mappings",
+        "image_fields",
+        "printing_provenance"
+      ],
+      "external_mappings": [
+        {
+          "source": "tcgdex",
+          "external_id": "A2a-095",
+          "external_id_pattern": "physical_tcg_set_dash_number",
+          "active": true,
+          "meta_keys": [],
+          "synced_at": "2025-12-19T21:18:21.295Z"
+        }
+      ],
+      "external_mapping_sources": [
+        "tcgdex"
+      ],
+      "external_id_patterns": [
+        "physical_tcg_set_dash_number"
+      ],
+      "tcgplayer_id_present": false,
+      "external_ids_keys": [
+        "tcgdex"
+      ],
+      "provenance_sources": [
+        "tcgdex"
+      ],
+      "provenance_refs_present": true,
+      "image_sources": [
+        "tcgdex"
+      ],
+      "created_by_values": [
+        "printing_ingestion_v2"
+      ],
+      "recommended_next_action": "Use active external mapping IDs as source-acquisition leads, then confirm exact set/card identity against external sources before any alias proposal.",
+      "mutation_authority": "not mutation authority",
+      "alias_authority": "not alias authority",
+      "note": "This row is a provenance recovery lead only. It does not infer source set identity."
+    },
+    {
+      "card_print_id": "6f7ddb77-58d2-4e0b-b761-4ce80881c739",
+      "card_name": "Arctibax",
+      "number": null,
+      "current_set_code": null,
+      "finish_profile": "holo|normal|reverse",
+      "printing_count": 3,
+      "recovery_classification": "external_mapping_recoverable",
+      "evidence_fields_present": [
+        "ai_metadata",
+        "external_ids",
+        "external_mappings",
+        "image_fields",
+        "printing_provenance"
+      ],
+      "external_mappings": [
+        {
+          "source": "tcgdex",
+          "external_id": "svp-064",
+          "external_id_pattern": "other_external_id",
+          "active": true,
+          "meta_keys": [],
+          "synced_at": "2025-12-08T18:39:25.813Z"
+        }
+      ],
+      "external_mapping_sources": [
+        "tcgdex"
+      ],
+      "external_id_patterns": [
+        "other_external_id"
+      ],
+      "tcgplayer_id_present": false,
+      "external_ids_keys": [
+        "tcgdex"
+      ],
+      "provenance_sources": [
+        "tcgdex"
+      ],
+      "provenance_refs_present": true,
+      "image_sources": [
+        "tcgdex"
+      ],
+      "created_by_values": [
+        "printing_ingestion_v2"
+      ],
+      "recommended_next_action": "Use active external mapping IDs as source-acquisition leads, then confirm exact set/card identity against external sources before any alias proposal.",
+      "mutation_authority": "not mutation authority",
+      "alias_authority": "not alias authority",
+      "note": "This row is a provenance recovery lead only. It does not infer source set identity."
+    },
+    {
+      "card_print_id": "c8f1da98-202e-46aa-9a85-8649ebf8d399",
+      "card_name": "Area Zero Underdepths",
+      "number": null,
+      "current_set_code": null,
+      "finish_profile": "holo|normal|reverse",
+      "printing_count": 3,
+      "recovery_classification": "external_mapping_recoverable",
+      "evidence_fields_present": [
+        "ai_metadata",
+        "external_ids",
+        "external_mappings",
+        "image_fields",
+        "printing_provenance"
+      ],
+      "external_mappings": [
+        {
+          "source": "tcgdex",
+          "external_id": "sv08.5-094",
+          "external_id_pattern": "other_external_id",
+          "active": true,
+          "meta_keys": [],
+          "synced_at": "2025-12-22T21:35:04.498Z"
+        }
+      ],
+      "external_mapping_sources": [
+        "tcgdex"
+      ],
+      "external_id_patterns": [
+        "other_external_id"
+      ],
+      "tcgplayer_id_present": false,
+      "external_ids_keys": [
+        "tcgdex"
+      ],
+      "provenance_sources": [
+        "tcgdex"
+      ],
+      "provenance_refs_present": true,
+      "image_sources": [
+        "tcgdex"
+      ],
+      "created_by_values": [
+        "printing_ingestion_v2"
+      ],
+      "recommended_next_action": "Use active external mapping IDs as source-acquisition leads, then confirm exact set/card identity against external sources before any alias proposal.",
+      "mutation_authority": "not mutation authority",
+      "alias_authority": "not alias authority",
+      "note": "This row is a provenance recovery lead only. It does not infer source set identity."
+    },
+    {
+      "card_print_id": "3c97af9d-aa95-49f6-90b0-706b88b76443",
+      "card_name": "Aromatisse",
+      "number": null,
+      "current_set_code": null,
+      "finish_profile": "holo|normal|reverse",
+      "printing_count": 3,
+      "recovery_classification": "external_mapping_recoverable",
+      "evidence_fields_present": [
+        "ai_metadata",
+        "external_ids",
+        "external_mappings",
+        "image_fields",
+        "printing_provenance"
+      ],
+      "external_mappings": [
+        {
+          "source": "tcgdex",
+          "external_id": "sv08.5-039",
+          "external_id_pattern": "other_external_id",
+          "active": true,
+          "meta_keys": [],
+          "synced_at": "2025-12-22T21:35:04.498Z"
+        }
+      ],
+      "external_mapping_sources": [
+        "tcgdex"
+      ],
+      "external_id_patterns": [
+        "other_external_id"
+      ],
+      "tcgplayer_id_present": false,
+      "external_ids_keys": [
+        "tcgdex"
+      ],
+      "provenance_sources": [
+        "tcgdex"
+      ],
+      "provenance_refs_present": true,
+      "image_sources": [
+        "tcgdex"
+      ],
+      "created_by_values": [
+        "printing_ingestion_v2"
+      ],
+      "recommended_next_action": "Use active external mapping IDs as source-acquisition leads, then confirm exact set/card identity against external sources before any alias proposal.",
+      "mutation_authority": "not mutation authority",
+      "alias_authority": "not alias authority",
+      "note": "This row is a provenance recovery lead only. It does not infer source set identity."
+    },
+    {
+      "card_print_id": "32d268f1-cc72-4874-a8f4-b2a428ee017b",
+      "card_name": "Aron",
+      "number": "48",
+      "current_set_code": null,
+      "finish_profile": "holo|normal|reverse",
+      "printing_count": 3,
+      "recovery_classification": "external_mapping_recoverable",
+      "evidence_fields_present": [
+        "ai_metadata",
+        "external_ids",
+        "external_mappings",
+        "image_fields",
+        "printing_provenance"
+      ],
+      "external_mappings": [
+        {
+          "source": "tcgdex",
+          "external_id": "A3a-048",
+          "external_id_pattern": "physical_tcg_set_dash_number",
+          "active": true,
+          "meta_keys": [],
+          "synced_at": "2026-03-27T04:12:34.019Z"
+        }
+      ],
+      "external_mapping_sources": [
+        "tcgdex"
+      ],
+      "external_id_patterns": [
+        "physical_tcg_set_dash_number"
+      ],
+      "tcgplayer_id_present": false,
+      "external_ids_keys": [
+        "tcgdex"
+      ],
+      "provenance_sources": [
+        "tcgdex"
+      ],
+      "provenance_refs_present": true,
+      "image_sources": [
+        "tcgdex"
+      ],
+      "created_by_values": [
+        "printing_ingestion_v2"
+      ],
+      "recommended_next_action": "Use active external mapping IDs as source-acquisition leads, then confirm exact set/card identity against external sources before any alias proposal.",
+      "mutation_authority": "not mutation authority",
+      "alias_authority": "not alias authority",
+      "note": "This row is a provenance recovery lead only. It does not infer source set identity."
+    },
+    {
+      "card_print_id": "23186692-0761-499a-aee4-694ded765341",
+      "card_name": "Articuno ex",
+      "number": null,
+      "current_set_code": null,
+      "finish_profile": "holo|normal|reverse",
+      "printing_count": 3,
+      "recovery_classification": "external_mapping_recoverable",
+      "evidence_fields_present": [
+        "ai_metadata",
+        "external_ids",
+        "external_mappings",
+        "image_fields",
+        "printing_provenance"
+      ],
+      "external_mappings": [
+        {
+          "source": "tcgdex",
+          "external_id": "A3b-104",
+          "external_id_pattern": "physical_tcg_set_dash_number",
+          "active": true,
+          "meta_keys": [],
+          "synced_at": "2025-12-22T23:22:39.478Z"
+        }
+      ],
+      "external_mapping_sources": [
+        "tcgdex"
+      ],
+      "external_id_patterns": [
+        "physical_tcg_set_dash_number"
+      ],
+      "tcgplayer_id_present": false,
+      "external_ids_keys": [
+        "tcgdex"
+      ],
+      "provenance_sources": [
+        "tcgdex"
+      ],
+      "provenance_refs_present": true,
+      "image_sources": [
+        "tcgdex"
+      ],
+      "created_by_values": [
+        "printing_ingestion_v2"
+      ],
+      "recommended_next_action": "Use active external mapping IDs as source-acquisition leads, then confirm exact set/card identity against external sources before any alias proposal.",
+      "mutation_authority": "not mutation authority",
+      "alias_authority": "not alias authority",
+      "note": "This row is a provenance recovery lead only. It does not infer source set identity."
+    },
+    {
+      "card_print_id": "7193b9ae-ed5b-457e-b67f-efef355afb96",
+      "card_name": "Ash Greninja EX",
+      "number": null,
+      "current_set_code": null,
+      "finish_profile": "holo|normal|reverse",
+      "printing_count": 3,
+      "recovery_classification": "external_mapping_recoverable",
+      "evidence_fields_present": [
+        "ai_metadata",
+        "external_ids",
+        "external_mappings",
+        "image_fields",
+        "printing_provenance"
+      ],
+      "external_mappings": [
+        {
+          "source": "tcgdex",
+          "external_id": "xyp-XY133",
+          "external_id_pattern": "other_external_id",
+          "active": true,
+          "meta_keys": [],
+          "synced_at": "2025-12-08T19:11:44.343Z"
+        }
+      ],
+      "external_mapping_sources": [
+        "tcgdex"
+      ],
+      "external_id_patterns": [
+        "other_external_id"
+      ],
+      "tcgplayer_id_present": false,
+      "external_ids_keys": [
+        "tcgdex"
+      ],
+      "provenance_sources": [
+        "tcgdex"
+      ],
+      "provenance_refs_present": true,
+      "image_sources": [
+        "tcgdex"
+      ],
+      "created_by_values": [
+        "printing_ingestion_v2"
+      ],
+      "recommended_next_action": "Use active external mapping IDs as source-acquisition leads, then confirm exact set/card identity against external sources before any alias proposal.",
+      "mutation_authority": "not mutation authority",
+      "alias_authority": "not alias authority",
+      "note": "This row is a provenance recovery lead only. It does not infer source set identity."
+    },
+    {
+      "card_print_id": "838fb246-74ad-4a78-8953-7b759c2a18bc",
+      "card_name": "Audino",
+      "number": null,
+      "current_set_code": null,
+      "finish_profile": "holo|normal|reverse",
+      "printing_count": 3,
+      "recovery_classification": "external_mapping_recoverable",
+      "evidence_fields_present": [
+        "ai_metadata",
+        "external_ids",
+        "external_mappings",
+        "image_fields",
+        "printing_provenance"
+      ],
+      "external_mappings": [
+        {
+          "source": "tcgdex",
+          "external_id": "A3b-061",
+          "external_id_pattern": "physical_tcg_set_dash_number",
+          "active": true,
+          "meta_keys": [],
+          "synced_at": "2025-12-22T23:22:39.478Z"
+        }
+      ],
+      "external_mapping_sources": [
+        "tcgdex"
+      ],
+      "external_id_patterns": [
+        "physical_tcg_set_dash_number"
+      ],
+      "tcgplayer_id_present": false,
+      "external_ids_keys": [
+        "tcgdex"
+      ],
+      "provenance_sources": [
+        "tcgdex"
+      ],
+      "provenance_refs_present": true,
+      "image_sources": [
+        "tcgdex"
+      ],
+      "created_by_values": [
+        "printing_ingestion_v2"
+      ],
+      "recommended_next_action": "Use active external mapping IDs as source-acquisition leads, then confirm exact set/card identity against external sources before any alias proposal.",
+      "mutation_authority": "not mutation authority",
+      "alias_authority": "not alias authority",
+      "note": "This row is a provenance recovery lead only. It does not infer source set identity."
+    },
+    {
+      "card_print_id": "d159fd8a-4a12-4109-8200-36416c2a2ad2",
+      "card_name": "Aurorus EX",
+      "number": null,
+      "current_set_code": null,
+      "finish_profile": "holo|normal|reverse",
+      "printing_count": 3,
+      "recovery_classification": "external_mapping_recoverable",
+      "evidence_fields_present": [
+        "ai_metadata",
+        "external_ids",
+        "external_mappings",
+        "image_fields",
+        "printing_provenance"
+      ],
+      "external_mappings": [
+        {
+          "source": "tcgdex",
+          "external_id": "xyp-XY102",
+          "external_id_pattern": "other_external_id",
+          "active": true,
+          "meta_keys": [],
+          "synced_at": "2025-12-08T19:11:31.462Z"
+        }
+      ],
+      "external_mapping_sources": [
+        "tcgdex"
+      ],
+      "external_id_patterns": [
+        "other_external_id"
+      ],
+      "tcgplayer_id_present": false,
+      "external_ids_keys": [
+        "tcgdex"
+      ],
+      "provenance_sources": [
+        "tcgdex"
+      ],
+      "provenance_refs_present": true,
+      "image_sources": [
+        "tcgdex"
+      ],
+      "created_by_values": [
+        "printing_ingestion_v2"
+      ],
+      "recommended_next_action": "Use active external mapping IDs as source-acquisition leads, then confirm exact set/card identity against external sources before any alias proposal.",
+      "mutation_authority": "not mutation authority",
+      "alias_authority": "not alias authority",
+      "note": "This row is a provenance recovery lead only. It does not infer source set identity."
+    },
+    {
+      "card_print_id": "56ec649e-5293-4fa9-9c1f-3880454cf6ad",
+      "card_name": "Azumarill",
+      "number": null,
+      "current_set_code": null,
+      "finish_profile": "holo|normal|reverse",
+      "printing_count": 3,
+      "recovery_classification": "external_mapping_recoverable",
+      "evidence_fields_present": [
+        "ai_metadata",
+        "external_ids",
+        "external_mappings",
+        "image_fields",
+        "printing_provenance"
+      ],
+      "external_mappings": [
+        {
+          "source": "tcgdex",
+          "external_id": "A2a-015",
+          "external_id_pattern": "physical_tcg_set_dash_number",
+          "active": true,
+          "meta_keys": [],
+          "synced_at": "2025-12-19T21:18:21.295Z"
+        }
+      ],
+      "external_mapping_sources": [
+        "tcgdex"
+      ],
+      "external_id_patterns": [
+        "physical_tcg_set_dash_number"
+      ],
+      "tcgplayer_id_present": false,
+      "external_ids_keys": [
+        "tcgdex"
+      ],
+      "provenance_sources": [
+        "tcgdex"
+      ],
+      "provenance_refs_present": true,
+      "image_sources": [
+        "tcgdex"
+      ],
+      "created_by_values": [
+        "printing_ingestion_v2"
+      ],
+      "recommended_next_action": "Use active external mapping IDs as source-acquisition leads, then confirm exact set/card identity against external sources before any alias proposal.",
+      "mutation_authority": "not mutation authority",
+      "alias_authority": "not alias authority",
+      "note": "This row is a provenance recovery lead only. It does not infer source set identity."
+    },
+    {
+      "card_print_id": "13658b9c-a3cc-4de6-9892-4a667fc9d4ec",
+      "card_name": "Azurill",
+      "number": null,
+      "current_set_code": null,
+      "finish_profile": "holo|normal|reverse",
+      "printing_count": 3,
+      "recovery_classification": "external_mapping_recoverable",
+      "evidence_fields_present": [
+        "ai_metadata",
+        "external_ids",
+        "external_mappings",
+        "image_fields",
+        "printing_provenance"
+      ],
+      "external_mappings": [
+        {
+          "source": "tcgdex",
+          "external_id": "A4a-063",
+          "external_id_pattern": "physical_tcg_set_dash_number",
+          "active": true,
+          "meta_keys": [],
+          "synced_at": "2025-12-22T23:29:17.611Z"
+        }
+      ],
+      "external_mapping_sources": [
+        "tcgdex"
+      ],
+      "external_id_patterns": [
+        "physical_tcg_set_dash_number"
+      ],
+      "tcgplayer_id_present": false,
+      "external_ids_keys": [
+        "tcgdex"
+      ],
+      "provenance_sources": [
+        "tcgdex"
+      ],
+      "provenance_refs_present": true,
+      "image_sources": [
+        "tcgdex"
+      ],
+      "created_by_values": [
+        "printing_ingestion_v2"
+      ],
+      "recommended_next_action": "Use active external mapping IDs as source-acquisition leads, then confirm exact set/card identity against external sources before any alias proposal.",
+      "mutation_authority": "not mutation authority",
+      "alias_authority": "not alias authority",
+      "note": "This row is a provenance recovery lead only. It does not infer source set identity."
+    },
+    {
+      "card_print_id": "a6592a57-5601-4788-91c8-6c6a8ae472e4",
+      "card_name": "Azurill",
+      "number": null,
+      "current_set_code": null,
+      "finish_profile": "holo|normal|reverse",
+      "printing_count": 3,
+      "recovery_classification": "external_mapping_recoverable",
+      "evidence_fields_present": [
+        "ai_metadata",
+        "external_ids",
+        "external_mappings",
+        "image_fields",
+        "printing_provenance"
+      ],
+      "external_mappings": [
+        {
+          "source": "tcgdex",
+          "external_id": "A4a-077",
+          "external_id_pattern": "physical_tcg_set_dash_number",
+          "active": true,
+          "meta_keys": [],
+          "synced_at": "2025-12-22T23:29:17.611Z"
+        }
+      ],
+      "external_mapping_sources": [
+        "tcgdex"
+      ],
+      "external_id_patterns": [
+        "physical_tcg_set_dash_number"
+      ],
+      "tcgplayer_id_present": false,
+      "external_ids_keys": [
+        "tcgdex"
+      ],
+      "provenance_sources": [
+        "tcgdex"
+      ],
+      "provenance_refs_present": true,
+      "image_sources": [
+        "tcgdex"
+      ],
+      "created_by_values": [
+        "printing_ingestion_v2"
+      ],
+      "recommended_next_action": "Use active external mapping IDs as source-acquisition leads, then confirm exact set/card identity against external sources before any alias proposal.",
+      "mutation_authority": "not mutation authority",
+      "alias_authority": "not alias authority",
+      "note": "This row is a provenance recovery lead only. It does not infer source set identity."
+    },
+    {
+      "card_print_id": "0e4565be-c2a2-42f7-948b-d2f7ad530bf7",
+      "card_name": "Baltoy",
+      "number": "30",
+      "current_set_code": null,
+      "finish_profile": "holo|normal|reverse",
+      "printing_count": 3,
+      "recovery_classification": "external_mapping_recoverable",
+      "evidence_fields_present": [
+        "ai_metadata",
+        "external_ids",
+        "external_mappings",
+        "image_fields",
+        "printing_provenance"
+      ],
+      "external_mappings": [
+        {
+          "source": "tcgdex",
+          "external_id": "A3a-030",
+          "external_id_pattern": "physical_tcg_set_dash_number",
+          "active": true,
+          "meta_keys": [],
+          "synced_at": "2026-03-27T04:11:36.557Z"
+        }
+      ],
+      "external_mapping_sources": [
+        "tcgdex"
+      ],
+      "external_id_patterns": [
+        "physical_tcg_set_dash_number"
+      ],
+      "tcgplayer_id_present": false,
+      "external_ids_keys": [
+        "tcgdex"
+      ],
+      "provenance_sources": [
+        "tcgdex"
+      ],
+      "provenance_refs_present": true,
+      "image_sources": [
+        "tcgdex"
+      ],
+      "created_by_values": [
+        "printing_ingestion_v2"
+      ],
+      "recommended_next_action": "Use active external mapping IDs as source-acquisition leads, then confirm exact set/card identity against external sources before any alias proposal.",
+      "mutation_authority": "not mutation authority",
+      "alias_authority": "not alias authority",
+      "note": "This row is a provenance recovery lead only. It does not infer source set identity."
+    },
+    {
+      "card_print_id": "7167e900-83b0-4e72-9e51-9047513659bb",
+      "card_name": "Barboach",
+      "number": null,
+      "current_set_code": null,
+      "finish_profile": "holo|normal|reverse",
+      "printing_count": 3,
+      "recovery_classification": "external_mapping_recoverable",
+      "evidence_fields_present": [
+        "ai_metadata",
+        "external_ids",
+        "external_mappings",
+        "image_fields",
+        "printing_provenance"
+      ],
+      "external_mappings": [
+        {
+          "source": "tcgdex",
+          "external_id": "A2a-016",
+          "external_id_pattern": "physical_tcg_set_dash_number",
+          "active": true,
+          "meta_keys": [],
+          "synced_at": "2025-12-19T21:18:21.295Z"
+        }
+      ],
+      "external_mapping_sources": [
+        "tcgdex"
+      ],
+      "external_id_patterns": [
+        "physical_tcg_set_dash_number"
+      ],
+      "tcgplayer_id_present": false,
+      "external_ids_keys": [
+        "tcgdex"
+      ],
+      "provenance_sources": [
+        "tcgdex"
+      ],
+      "provenance_refs_present": true,
+      "image_sources": [
+        "tcgdex"
+      ],
+      "created_by_values": [
+        "printing_ingestion_v2"
+      ],
+      "recommended_next_action": "Use active external mapping IDs as source-acquisition leads, then confirm exact set/card identity against external sources before any alias proposal.",
+      "mutation_authority": "not mutation authority",
+      "alias_authority": "not alias authority",
+      "note": "This row is a provenance recovery lead only. It does not infer source set identity."
+    },
+    {
+      "card_print_id": "7b5fc19a-79e5-4415-832c-0048bdf403d8",
+      "card_name": "Barboach",
+      "number": null,
+      "current_set_code": null,
+      "finish_profile": "holo|normal|reverse",
+      "printing_count": 3,
+      "recovery_classification": "external_mapping_recoverable",
+      "evidence_fields_present": [
+        "ai_metadata",
+        "external_ids",
+        "external_mappings",
+        "image_fields",
+        "printing_provenance"
+      ],
+      "external_mappings": [
+        {
+          "source": "tcgdex",
+          "external_id": "A3b-038",
+          "external_id_pattern": "physical_tcg_set_dash_number",
+          "active": true,
+          "meta_keys": [],
+          "synced_at": "2025-12-22T23:22:39.478Z"
+        }
+      ],
+      "external_mapping_sources": [
+        "tcgdex"
+      ],
+      "external_id_patterns": [
+        "physical_tcg_set_dash_number"
+      ],
+      "tcgplayer_id_present": false,
+      "external_ids_keys": [
+        "tcgdex"
+      ],
+      "provenance_sources": [
+        "tcgdex"
+      ],
+      "provenance_refs_present": true,
+      "image_sources": [
+        "tcgdex"
+      ],
+      "created_by_values": [
+        "printing_ingestion_v2"
+      ],
+      "recommended_next_action": "Use active external mapping IDs as source-acquisition leads, then confirm exact set/card identity against external sources before any alias proposal.",
+      "mutation_authority": "not mutation authority",
+      "alias_authority": "not alias authority",
+      "note": "This row is a provenance recovery lead only. It does not infer source set identity."
+    },
+    {
+      "card_print_id": "231803d3-4962-4624-ab2b-713737b191c4",
+      "card_name": "Barry",
+      "number": null,
+      "current_set_code": null,
+      "finish_profile": "holo|normal|reverse",
+      "printing_count": 3,
+      "recovery_classification": "external_mapping_recoverable",
+      "evidence_fields_present": [
+        "ai_metadata",
+        "external_ids",
+        "external_mappings",
+        "image_fields",
+        "printing_provenance"
+      ],
+      "external_mappings": [
+        {
+          "source": "tcgdex",
+          "external_id": "A2a-089",
+          "external_id_pattern": "physical_tcg_set_dash_number",
+          "active": true,
+          "meta_keys": [],
+          "synced_at": "2025-12-19T21:18:21.295Z"
+        }
+      ],
+      "external_mapping_sources": [
+        "tcgdex"
+      ],
+      "external_id_patterns": [
+        "physical_tcg_set_dash_number"
+      ],
+      "tcgplayer_id_present": false,
+      "external_ids_keys": [
+        "tcgdex"
+      ],
+      "provenance_sources": [
+        "tcgdex"
+      ],
+      "provenance_refs_present": true,
+      "image_sources": [
+        "tcgdex"
+      ],
+      "created_by_values": [
+        "printing_ingestion_v2"
+      ],
+      "recommended_next_action": "Use active external mapping IDs as source-acquisition leads, then confirm exact set/card identity against external sources before any alias proposal.",
+      "mutation_authority": "not mutation authority",
+      "alias_authority": "not alias authority",
+      "note": "This row is a provenance recovery lead only. It does not infer source set identity."
+    },
+    {
+      "card_print_id": "595d6144-557b-48ae-90d9-c553097f9b9e",
+      "card_name": "Barry",
+      "number": null,
+      "current_set_code": null,
+      "finish_profile": "holo|normal|reverse",
+      "printing_count": 3,
+      "recovery_classification": "external_mapping_recoverable",
+      "evidence_fields_present": [
+        "ai_metadata",
+        "external_ids",
+        "external_mappings",
+        "image_fields",
+        "printing_provenance"
+      ],
+      "external_mappings": [
+        {
+          "source": "tcgdex",
+          "external_id": "A2a-074",
+          "external_id_pattern": "physical_tcg_set_dash_number",
+          "active": true,
+          "meta_keys": [],
+          "synced_at": "2025-12-19T21:18:21.295Z"
+        }
+      ],
+      "external_mapping_sources": [
+        "tcgdex"
+      ],
+      "external_id_patterns": [
+        "physical_tcg_set_dash_number"
+      ],
+      "tcgplayer_id_present": false,
+      "external_ids_keys": [
+        "tcgdex"
+      ],
+      "provenance_sources": [
+        "tcgdex"
+      ],
+      "provenance_refs_present": true,
+      "image_sources": [
+        "tcgdex"
+      ],
+      "created_by_values": [
+        "printing_ingestion_v2"
+      ],
+      "recommended_next_action": "Use active external mapping IDs as source-acquisition leads, then confirm exact set/card identity against external sources before any alias proposal.",
+      "mutation_authority": "not mutation authority",
+      "alias_authority": "not alias authority",
+      "note": "This row is a provenance recovery lead only. It does not infer source set identity."
+    },
+    {
+      "card_print_id": "817191d0-a89d-41f0-a61e-833ffb1f85d7",
+      "card_name": "Baxcalibur",
+      "number": null,
+      "current_set_code": null,
+      "finish_profile": "holo|normal|reverse",
+      "printing_count": 3,
+      "recovery_classification": "external_mapping_recoverable",
+      "evidence_fields_present": [
+        "ai_metadata",
+        "external_ids",
+        "external_mappings",
+        "image_fields",
+        "printing_provenance"
+      ],
+      "external_mappings": [
+        {
+          "source": "tcgdex",
+          "external_id": "svp-019",
+          "external_id_pattern": "other_external_id",
+          "active": true,
+          "meta_keys": [],
+          "synced_at": "2025-12-08T18:39:08.245Z"
+        }
+      ],
+      "external_mapping_sources": [
+        "tcgdex"
+      ],
+      "external_id_patterns": [
+        "other_external_id"
+      ],
+      "tcgplayer_id_present": false,
+      "external_ids_keys": [
+        "tcgdex"
+      ],
+      "provenance_sources": [
+        "tcgdex"
+      ],
+      "provenance_refs_present": true,
+      "image_sources": [
+        "tcgdex"
+      ],
+      "created_by_values": [
+        "printing_ingestion_v2"
+      ],
+      "recommended_next_action": "Use active external mapping IDs as source-acquisition leads, then confirm exact set/card identity against external sources before any alias proposal.",
+      "mutation_authority": "not mutation authority",
+      "alias_authority": "not alias authority",
+      "note": "This row is a provenance recovery lead only. It does not infer source set identity."
+    },
+    {
+      "card_print_id": "f823220a-056d-45fd-9e33-cf4a2d03c3be",
+      "card_name": "Beast Wall",
+      "number": "63",
+      "current_set_code": null,
+      "finish_profile": "holo|normal|reverse",
+      "printing_count": 3,
+      "recovery_classification": "external_mapping_recoverable",
+      "evidence_fields_present": [
+        "ai_metadata",
+        "external_ids",
+        "external_mappings",
+        "image_fields",
+        "printing_provenance"
+      ],
+      "external_mappings": [
+        {
+          "source": "tcgdex",
+          "external_id": "A3a-063",
+          "external_id_pattern": "physical_tcg_set_dash_number",
+          "active": true,
+          "meta_keys": [],
+          "synced_at": "2026-03-27T04:13:19.764Z"
+        }
+      ],
+      "external_mapping_sources": [
+        "tcgdex"
+      ],
+      "external_id_patterns": [
+        "physical_tcg_set_dash_number"
+      ],
+      "tcgplayer_id_present": false,
+      "external_ids_keys": [
+        "tcgdex"
+      ],
+      "provenance_sources": [
+        "tcgdex"
+      ],
+      "provenance_refs_present": true,
+      "image_sources": [
+        "tcgdex"
+      ],
+      "created_by_values": [
+        "printing_ingestion_v2"
+      ],
+      "recommended_next_action": "Use active external mapping IDs as source-acquisition leads, then confirm exact set/card identity against external sources before any alias proposal.",
+      "mutation_authority": "not mutation authority",
+      "alias_authority": "not alias authority",
+      "note": "This row is a provenance recovery lead only. It does not infer source set identity."
+    },
+    {
+      "card_print_id": "0f1a11a0-515f-4d0f-ad9d-e02fdd5f13f7",
+      "card_name": "Beastite",
+      "number": "66",
+      "current_set_code": null,
+      "finish_profile": "holo|normal|reverse",
+      "printing_count": 3,
+      "recovery_classification": "external_mapping_recoverable",
+      "evidence_fields_present": [
+        "ai_metadata",
+        "external_ids",
+        "external_mappings",
+        "image_fields",
+        "printing_provenance"
+      ],
+      "external_mappings": [
+        {
+          "source": "tcgdex",
+          "external_id": "A3a-066",
+          "external_id_pattern": "physical_tcg_set_dash_number",
+          "active": true,
+          "meta_keys": [],
+          "synced_at": "2026-03-27T04:13:28.801Z"
+        }
+      ],
+      "external_mapping_sources": [
+        "tcgdex"
+      ],
+      "external_id_patterns": [
+        "physical_tcg_set_dash_number"
+      ],
+      "tcgplayer_id_present": false,
+      "external_ids_keys": [
+        "tcgdex"
+      ],
+      "provenance_sources": [
+        "tcgdex"
+      ],
+      "provenance_refs_present": true,
+      "image_sources": [
+        "tcgdex"
+      ],
+      "created_by_values": [
+        "printing_ingestion_v2"
+      ],
+      "recommended_next_action": "Use active external mapping IDs as source-acquisition leads, then confirm exact set/card identity against external sources before any alias proposal.",
+      "mutation_authority": "not mutation authority",
+      "alias_authority": "not alias authority",
+      "note": "This row is a provenance recovery lead only. It does not infer source set identity."
+    },
+    {
+      "card_print_id": "aa7a51ea-b7dd-4a8c-ba69-bae75074f7ad",
+      "card_name": "Beedrill ex",
+      "number": null,
+      "current_set_code": null,
+      "finish_profile": "holo|normal|reverse",
+      "printing_count": 3,
+      "recovery_classification": "external_mapping_recoverable",
+      "evidence_fields_present": [
+        "ai_metadata",
+        "external_ids",
+        "external_mappings",
+        "image_fields",
+        "printing_provenance"
+      ],
+      "external_mappings": [
+        {
+          "source": "tcgdex",
+          "external_id": "A2b-003",
+          "external_id_pattern": "physical_tcg_set_dash_number",
+          "active": true,
+          "meta_keys": [],
+          "synced_at": "2025-12-22T23:18:23.037Z"
+        }
+      ],
+      "external_mapping_sources": [
+        "tcgdex"
+      ],
+      "external_id_patterns": [
+        "physical_tcg_set_dash_number"
+      ],
+      "tcgplayer_id_present": false,
+      "external_ids_keys": [
+        "tcgdex"
+      ],
+      "provenance_sources": [
+        "tcgdex"
+      ],
+      "provenance_refs_present": true,
+      "image_sources": [
+        "tcgdex"
+      ],
+      "created_by_values": [
+        "printing_ingestion_v2"
+      ],
+      "recommended_next_action": "Use active external mapping IDs as source-acquisition leads, then confirm exact set/card identity against external sources before any alias proposal.",
+      "mutation_authority": "not mutation authority",
+      "alias_authority": "not alias authority",
+      "note": "This row is a provenance recovery lead only. It does not infer source set identity."
+    },
+    {
+      "card_print_id": "251092ea-a1ce-4ad7-8055-669fe79b3567",
+      "card_name": "Beedrill ex",
+      "number": null,
+      "current_set_code": null,
+      "finish_profile": "holo|normal|reverse",
+      "printing_count": 3,
+      "recovery_classification": "external_mapping_recoverable",
+      "evidence_fields_present": [
+        "ai_metadata",
+        "external_ids",
+        "external_mappings",
+        "image_fields",
+        "printing_provenance"
+      ],
+      "external_mappings": [
+        {
+          "source": "tcgdex",
+          "external_id": "A2b-079",
+          "external_id_pattern": "physical_tcg_set_dash_number",
+          "active": true,
+          "meta_keys": [],
+          "synced_at": "2025-12-22T23:18:23.037Z"
+        }
+      ],
+      "external_mapping_sources": [
+        "tcgdex"
+      ],
+      "external_id_patterns": [
+        "physical_tcg_set_dash_number"
+      ],
+      "tcgplayer_id_present": false,
+      "external_ids_keys": [
+        "tcgdex"
+      ],
+      "provenance_sources": [
+        "tcgdex"
+      ],
+      "provenance_refs_present": true,
+      "image_sources": [
+        "tcgdex"
+      ],
+      "created_by_values": [
+        "printing_ingestion_v2"
+      ],
+      "recommended_next_action": "Use active external mapping IDs as source-acquisition leads, then confirm exact set/card identity against external sources before any alias proposal.",
+      "mutation_authority": "not mutation authority",
+      "alias_authority": "not alias authority",
+      "note": "This row is a provenance recovery lead only. It does not infer source set identity."
+    },
+    {
+      "card_print_id": "1eb39c52-83c2-49a2-a37b-10fe4ebd3ad7",
+      "card_name": "Beedrill ex",
+      "number": null,
+      "current_set_code": null,
+      "finish_profile": "holo|normal|reverse",
+      "printing_count": 3,
+      "recovery_classification": "external_mapping_recoverable",
+      "evidence_fields_present": [
+        "ai_metadata",
+        "external_ids",
+        "external_mappings",
+        "image_fields",
+        "printing_provenance"
+      ],
+      "external_mappings": [
+        {
+          "source": "tcgdex",
+          "external_id": "A2b-107",
+          "external_id_pattern": "physical_tcg_set_dash_number",
+          "active": true,
+          "meta_keys": [],
+          "synced_at": "2025-12-22T23:18:23.037Z"
+        }
+      ],
+      "external_mapping_sources": [
+        "tcgdex"
+      ],
+      "external_id_patterns": [
+        "physical_tcg_set_dash_number"
+      ],
+      "tcgplayer_id_present": false,
+      "external_ids_keys": [
+        "tcgdex"
+      ],
+      "provenance_sources": [
+        "tcgdex"
+      ],
+      "provenance_refs_present": true,
+      "image_sources": [
+        "tcgdex"
+      ],
+      "created_by_values": [
+        "printing_ingestion_v2"
+      ],
+      "recommended_next_action": "Use active external mapping IDs as source-acquisition leads, then confirm exact set/card identity against external sources before any alias proposal.",
+      "mutation_authority": "not mutation authority",
+      "alias_authority": "not alias authority",
+      "note": "This row is a provenance recovery lead only. It does not infer source set identity."
+    },
+    {
+      "card_print_id": "ce148dc6-45fe-460e-b3c5-cf3483b494b5",
+      "card_name": "Beedrill EX",
+      "number": null,
+      "current_set_code": null,
+      "finish_profile": "holo|normal|reverse",
+      "printing_count": 3,
+      "recovery_classification": "external_mapping_recoverable",
+      "evidence_fields_present": [
+        "ai_metadata",
+        "external_ids",
+        "external_mappings",
+        "image_fields",
+        "printing_provenance"
+      ],
+      "external_mappings": [
+        {
+          "source": "tcgdex",
+          "external_id": "xyp-XY157",
+          "external_id_pattern": "other_external_id",
+          "active": true,
+          "meta_keys": [],
+          "synced_at": "2025-12-08T19:11:55.201Z"
+        }
+      ],
+      "external_mapping_sources": [
+        "tcgdex"
+      ],
+      "external_id_patterns": [
+        "other_external_id"
+      ],
+      "tcgplayer_id_present": false,
+      "external_ids_keys": [
+        "tcgdex"
+      ],
+      "provenance_sources": [
+        "tcgdex"
+      ],
+      "provenance_refs_present": true,
+      "image_sources": [
+        "tcgdex"
+      ],
+      "created_by_values": [
+        "printing_ingestion_v2"
+      ],
+      "recommended_next_action": "Use active external mapping IDs as source-acquisition leads, then confirm exact set/card identity against external sources before any alias proposal.",
+      "mutation_authority": "not mutation authority",
+      "alias_authority": "not alias authority",
+      "note": "This row is a provenance recovery lead only. It does not infer source set identity."
+    },
+    {
+      "card_print_id": "833b36d4-9d0b-4d31-a5d5-7dcd6936c2cc",
+      "card_name": "Beheeyem",
+      "number": null,
+      "current_set_code": null,
+      "finish_profile": "holo|normal|reverse",
+      "printing_count": 3,
+      "recovery_classification": "external_mapping_recoverable",
+      "evidence_fields_present": [
+        "ai_metadata",
+        "external_ids",
+        "external_mappings",
+        "image_fields",
+        "printing_provenance"
+      ],
+      "external_mappings": [
+        {
+          "source": "tcgdex",
+          "external_id": "A1a-035",
+          "external_id_pattern": "physical_tcg_set_dash_number",
+          "active": true,
+          "meta_keys": [],
+          "synced_at": "2025-12-23T18:15:13.901Z"
+        }
+      ],
+      "external_mapping_sources": [
+        "tcgdex"
+      ],
+      "external_id_patterns": [
+        "physical_tcg_set_dash_number"
+      ],
+      "tcgplayer_id_present": false,
+      "external_ids_keys": [
+        "tcgdex"
+      ],
+      "provenance_sources": [
+        "tcgdex"
+      ],
+      "provenance_refs_present": true,
+      "image_sources": [
+        "tcgdex"
+      ],
+      "created_by_values": [
+        "printing_ingestion_v2"
+      ],
+      "recommended_next_action": "Use active external mapping IDs as source-acquisition leads, then confirm exact set/card identity against external sources before any alias proposal.",
+      "mutation_authority": "not mutation authority",
+      "alias_authority": "not alias authority",
+      "note": "This row is a provenance recovery lead only. It does not infer source set identity."
+    },
+    {
+      "card_print_id": "e0e95ad4-64fb-4846-96b6-c1bc4bea89f6",
+      "card_name": "Bellibolt",
+      "number": null,
+      "current_set_code": null,
+      "finish_profile": "holo|normal|reverse",
+      "printing_count": 3,
+      "recovery_classification": "external_mapping_recoverable",
+      "evidence_fields_present": [
+        "ai_metadata",
+        "external_ids",
+        "external_mappings",
+        "image_fields",
+        "printing_provenance"
+      ],
+      "external_mappings": [
+        {
+          "source": "tcgdex",
+          "external_id": "svp-094",
+          "external_id_pattern": "other_external_id",
+          "active": true,
+          "meta_keys": [],
+          "synced_at": "2025-12-08T18:39:37.424Z"
+        }
+      ],
+      "external_mapping_sources": [
+        "tcgdex"
+      ],
+      "external_id_patterns": [
+        "other_external_id"
+      ],
+      "tcgplayer_id_present": false,
+      "external_ids_keys": [
+        "tcgdex"
+      ],
+      "provenance_sources": [
+        "tcgdex"
+      ],
+      "provenance_refs_present": true,
+      "image_sources": [
+        "tcgdex"
+      ],
+      "created_by_values": [
+        "printing_ingestion_v2"
+      ],
+      "recommended_next_action": "Use active external mapping IDs as source-acquisition leads, then confirm exact set/card identity against external sources before any alias proposal.",
+      "mutation_authority": "not mutation authority",
+      "alias_authority": "not alias authority",
+      "note": "This row is a provenance recovery lead only. It does not infer source set identity."
+    },
+    {
+      "card_print_id": "5908f640-18f3-4f6a-b2bb-480d45446bea",
+      "card_name": "Bewear",
+      "number": "58",
+      "current_set_code": null,
+      "finish_profile": "holo|normal|reverse",
+      "printing_count": 3,
+      "recovery_classification": "external_mapping_recoverable",
+      "evidence_fields_present": [
+        "ai_metadata",
+        "external_ids",
+        "external_mappings",
+        "image_fields",
+        "printing_provenance"
+      ],
+      "external_mappings": [
+        {
+          "source": "tcgdex",
+          "external_id": "A3a-058",
+          "external_id_pattern": "physical_tcg_set_dash_number",
+          "active": true,
+          "meta_keys": [],
+          "synced_at": "2026-03-27T04:13:04.997Z"
+        }
+      ],
+      "external_mapping_sources": [
+        "tcgdex"
+      ],
+      "external_id_patterns": [
+        "physical_tcg_set_dash_number"
+      ],
+      "tcgplayer_id_present": false,
+      "external_ids_keys": [
+        "tcgdex"
+      ],
+      "provenance_sources": [
+        "tcgdex"
+      ],
+      "provenance_refs_present": true,
+      "image_sources": [
+        "tcgdex"
+      ],
+      "created_by_values": [
+        "printing_ingestion_v2"
+      ],
+      "recommended_next_action": "Use active external mapping IDs as source-acquisition leads, then confirm exact set/card identity against external sources before any alias proposal.",
+      "mutation_authority": "not mutation authority",
+      "alias_authority": "not alias authority",
+      "note": "This row is a provenance recovery lead only. It does not infer source set identity."
+    },
+    {
+      "card_print_id": "bb952fc8-1e3c-4455-943a-4449acaaafcb",
+      "card_name": "Bibarel ex",
+      "number": null,
+      "current_set_code": null,
+      "finish_profile": "holo|normal|reverse",
+      "printing_count": 3,
+      "recovery_classification": "external_mapping_recoverable",
+      "evidence_fields_present": [
+        "ai_metadata",
+        "external_ids",
+        "external_mappings",
+        "image_fields",
+        "printing_provenance"
+      ],
+      "external_mappings": [
+        {
+          "source": "tcgdex",
+          "external_id": "A2b-065",
+          "external_id_pattern": "physical_tcg_set_dash_number",
+          "active": true,
+          "meta_keys": [],
+          "synced_at": "2025-12-22T23:18:23.037Z"
+        }
+      ],
+      "external_mapping_sources": [
+        "tcgdex"
+      ],
+      "external_id_patterns": [
+        "physical_tcg_set_dash_number"
+      ],
+      "tcgplayer_id_present": false,
+      "external_ids_keys": [
+        "tcgdex"
+      ],
+      "provenance_sources": [
+        "tcgdex"
+      ],
+      "provenance_refs_present": true,
+      "image_sources": [
+        "tcgdex"
+      ],
+      "created_by_values": [
+        "printing_ingestion_v2"
+      ],
+      "recommended_next_action": "Use active external mapping IDs as source-acquisition leads, then confirm exact set/card identity against external sources before any alias proposal.",
+      "mutation_authority": "not mutation authority",
+      "alias_authority": "not alias authority",
+      "note": "This row is a provenance recovery lead only. It does not infer source set identity."
+    },
+    {
+      "card_print_id": "369287e0-fafe-4394-bf4c-8a36f47ed177",
+      "card_name": "Bibarel ex",
+      "number": null,
+      "current_set_code": null,
+      "finish_profile": "holo|normal|reverse",
+      "printing_count": 3,
+      "recovery_classification": "external_mapping_recoverable",
+      "evidence_fields_present": [
+        "ai_metadata",
+        "external_ids",
+        "external_mappings",
+        "image_fields",
+        "printing_provenance"
+      ],
+      "external_mappings": [
+        {
+          "source": "tcgdex",
+          "external_id": "A2b-087",
+          "external_id_pattern": "physical_tcg_set_dash_number",
+          "active": true,
+          "meta_keys": [],
+          "synced_at": "2025-12-22T23:18:23.037Z"
+        }
+      ],
+      "external_mapping_sources": [
+        "tcgdex"
+      ],
+      "external_id_patterns": [
+        "physical_tcg_set_dash_number"
+      ],
+      "tcgplayer_id_present": false,
+      "external_ids_keys": [
+        "tcgdex"
+      ],
+      "provenance_sources": [
+        "tcgdex"
+      ],
+      "provenance_refs_present": true,
+      "image_sources": [
+        "tcgdex"
+      ],
+      "created_by_values": [
+        "printing_ingestion_v2"
+      ],
+      "recommended_next_action": "Use active external mapping IDs as source-acquisition leads, then confirm exact set/card identity against external sources before any alias proposal.",
+      "mutation_authority": "not mutation authority",
+      "alias_authority": "not alias authority",
+      "note": "This row is a provenance recovery lead only. It does not infer source set identity."
+    },
+    {
+      "card_print_id": "35910721-779c-4ef8-ab73-909cecccdabf",
+      "card_name": "Bibarel ex",
+      "number": null,
+      "current_set_code": null,
+      "finish_profile": "holo|normal|reverse",
+      "printing_count": 3,
+      "recovery_classification": "external_mapping_recoverable",
+      "evidence_fields_present": [
+        "ai_metadata",
+        "external_ids",
+        "external_mappings",
+        "image_fields",
+        "printing_provenance"
+      ],
+      "external_mappings": [
+        {
+          "source": "tcgdex",
+          "external_id": "A2b-095",
+          "external_id_pattern": "physical_tcg_set_dash_number",
+          "active": true,
+          "meta_keys": [],
+          "synced_at": "2025-12-22T23:18:23.037Z"
+        }
+      ],
+      "external_mapping_sources": [
+        "tcgdex"
+      ],
+      "external_id_patterns": [
+        "physical_tcg_set_dash_number"
+      ],
+      "tcgplayer_id_present": false,
+      "external_ids_keys": [
+        "tcgdex"
+      ],
+      "provenance_sources": [
+        "tcgdex"
+      ],
+      "provenance_refs_present": true,
+      "image_sources": [
+        "tcgdex"
+      ],
+      "created_by_values": [
+        "printing_ingestion_v2"
+      ],
+      "recommended_next_action": "Use active external mapping IDs as source-acquisition leads, then confirm exact set/card identity against external sources before any alias proposal.",
+      "mutation_authority": "not mutation authority",
+      "alias_authority": "not alias authority",
+      "note": "This row is a provenance recovery lead only. It does not infer source set identity."
+    },
+    {
+      "card_print_id": "1b71ab1e-1628-4e56-aa66-446bb5deb619",
+      "card_name": "Bidoof",
+      "number": null,
+      "current_set_code": null,
+      "finish_profile": "holo|normal|reverse",
+      "printing_count": 3,
+      "recovery_classification": "external_mapping_recoverable",
+      "evidence_fields_present": [
+        "ai_metadata",
+        "external_ids",
+        "external_mappings",
+        "image_fields",
+        "printing_provenance"
+      ],
+      "external_mappings": [
+        {
+          "source": "tcgdex",
+          "external_id": "A2b-064",
+          "external_id_pattern": "physical_tcg_set_dash_number",
+          "active": true,
+          "meta_keys": [],
+          "synced_at": "2025-12-22T23:18:23.037Z"
+        }
+      ],
+      "external_mapping_sources": [
+        "tcgdex"
+      ],
+      "external_id_patterns": [
+        "physical_tcg_set_dash_number"
+      ],
+      "tcgplayer_id_present": false,
+      "external_ids_keys": [
+        "tcgdex"
+      ],
+      "provenance_sources": [
+        "tcgdex"
+      ],
+      "provenance_refs_present": true,
+      "image_sources": [
+        "tcgdex"
+      ],
+      "created_by_values": [
+        "printing_ingestion_v2"
+      ],
+      "recommended_next_action": "Use active external mapping IDs as source-acquisition leads, then confirm exact set/card identity against external sources before any alias proposal.",
+      "mutation_authority": "not mutation authority",
+      "alias_authority": "not alias authority",
+      "note": "This row is a provenance recovery lead only. It does not infer source set identity."
+    },
+    {
+      "card_print_id": "77851af6-8d91-43c5-beae-b9e23d5d3713",
+      "card_name": "Binding Mochi",
+      "number": null,
+      "current_set_code": null,
+      "finish_profile": "holo|normal|reverse",
+      "printing_count": 3,
+      "recovery_classification": "external_mapping_recoverable",
+      "evidence_fields_present": [
+        "ai_metadata",
+        "external_ids",
+        "external_mappings",
+        "image_fields",
+        "printing_provenance"
+      ],
+      "external_mappings": [
+        {
+          "source": "tcgdex",
+          "external_id": "sv08.5-095",
+          "external_id_pattern": "other_external_id",
+          "active": true,
+          "meta_keys": [],
+          "synced_at": "2025-12-22T21:35:04.498Z"
+        }
+      ],
+      "external_mapping_sources": [
+        "tcgdex"
+      ],
+      "external_id_patterns": [
+        "other_external_id"
+      ],
+      "tcgplayer_id_present": false,
+      "external_ids_keys": [
+        "tcgdex"
+      ],
+      "provenance_sources": [
+        "tcgdex"
+      ],
+      "provenance_refs_present": true,
+      "image_sources": [
+        "tcgdex"
+      ],
+      "created_by_values": [
+        "printing_ingestion_v2"
+      ],
+      "recommended_next_action": "Use active external mapping IDs as source-acquisition leads, then confirm exact set/card identity against external sources before any alias proposal.",
+      "mutation_authority": "not mutation authority",
+      "alias_authority": "not alias authority",
+      "note": "This row is a provenance recovery lead only. It does not infer source set identity."
+    },
+    {
+      "card_print_id": "a23822fc-0e74-42ac-9ca3-6fb9f6cbb23d",
+      "card_name": "Blacephalon",
+      "number": "9",
+      "current_set_code": null,
+      "finish_profile": "holo|normal|reverse",
+      "printing_count": 3,
+      "recovery_classification": "external_mapping_recoverable",
+      "evidence_fields_present": [
+        "ai_metadata",
+        "external_ids",
+        "external_mappings",
+        "image_fields",
+        "printing_provenance"
+      ],
+      "external_mappings": [
+        {
+          "source": "tcgdex",
+          "external_id": "A3a-009",
+          "external_id_pattern": "physical_tcg_set_dash_number",
+          "active": true,
+          "meta_keys": [],
+          "synced_at": "2026-03-27T04:10:29.260Z"
+        }
+      ],
+      "external_mapping_sources": [
+        "tcgdex"
+      ],
+      "external_id_patterns": [
+        "physical_tcg_set_dash_number"
+      ],
+      "tcgplayer_id_present": false,
+      "external_ids_keys": [
+        "tcgdex"
+      ],
+      "provenance_sources": [
+        "tcgdex"
+      ],
+      "provenance_refs_present": true,
+      "image_sources": [
+        "tcgdex"
+      ],
+      "created_by_values": [
+        "printing_ingestion_v2"
+      ],
+      "recommended_next_action": "Use active external mapping IDs as source-acquisition leads, then confirm exact set/card identity against external sources before any alias proposal.",
+      "mutation_authority": "not mutation authority",
+      "alias_authority": "not alias authority",
+      "note": "This row is a provenance recovery lead only. It does not infer source set identity."
+    },
+    {
+      "card_print_id": "4e13a8fb-11fe-482a-8920-dac9781b2a0e",
+      "card_name": "Blacephalon",
+      "number": "72",
+      "current_set_code": null,
+      "finish_profile": "holo|normal|reverse",
+      "printing_count": 3,
+      "recovery_classification": "external_mapping_recoverable",
+      "evidence_fields_present": [
+        "ai_metadata",
+        "external_ids",
+        "external_mappings",
+        "image_fields",
+        "printing_provenance"
+      ],
+      "external_mappings": [
+        {
+          "source": "tcgdex",
+          "external_id": "A3a-072",
+          "external_id_pattern": "physical_tcg_set_dash_number",
+          "active": true,
+          "meta_keys": [],
+          "synced_at": "2026-03-27T04:13:47.361Z"
+        }
+      ],
+      "external_mapping_sources": [
+        "tcgdex"
+      ],
+      "external_id_patterns": [
+        "physical_tcg_set_dash_number"
+      ],
+      "tcgplayer_id_present": false,
+      "external_ids_keys": [
+        "tcgdex"
+      ],
+      "provenance_sources": [
+        "tcgdex"
+      ],
+      "provenance_refs_present": true,
+      "image_sources": [
+        "tcgdex"
+      ],
+      "created_by_values": [
+        "printing_ingestion_v2"
+      ],
+      "recommended_next_action": "Use active external mapping IDs as source-acquisition leads, then confirm exact set/card identity against external sources before any alias proposal.",
+      "mutation_authority": "not mutation authority",
+      "alias_authority": "not alias authority",
+      "note": "This row is a provenance recovery lead only. It does not infer source set identity."
+    },
+    {
+      "card_print_id": "3da65e78-0221-4651-9467-4d0e4f85b652",
+      "card_name": "Black Belt's Training",
+      "number": null,
+      "current_set_code": null,
+      "finish_profile": "holo|normal|reverse",
+      "printing_count": 3,
+      "recovery_classification": "external_mapping_recoverable",
+      "evidence_fields_present": [
+        "ai_metadata",
+        "external_ids",
+        "external_mappings",
+        "image_fields",
+        "printing_provenance"
+      ],
+      "external_mappings": [
+        {
+          "source": "tcgdex",
+          "external_id": "sv08.5-096",
+          "external_id_pattern": "other_external_id",
+          "active": true,
+          "meta_keys": [],
+          "synced_at": "2025-12-22T21:35:04.498Z"
+        }
+      ],
+      "external_mapping_sources": [
+        "tcgdex"
+      ],
+      "external_id_patterns": [
+        "other_external_id"
+      ],
+      "tcgplayer_id_present": false,
+      "external_ids_keys": [
+        "tcgdex"
+      ],
+      "provenance_sources": [
+        "tcgdex"
+      ],
+      "provenance_refs_present": true,
+      "image_sources": [
+        "tcgdex"
+      ],
+      "created_by_values": [
+        "printing_ingestion_v2"
+      ],
+      "recommended_next_action": "Use active external mapping IDs as source-acquisition leads, then confirm exact set/card identity against external sources before any alias proposal.",
+      "mutation_authority": "not mutation authority",
+      "alias_authority": "not alias authority",
+      "note": "This row is a provenance recovery lead only. It does not infer source set identity."
+    },
+    {
+      "card_print_id": "2f0e9e03-7ac5-45bd-9add-eac460ea6432",
+      "card_name": "Black Belt's Training",
+      "number": null,
+      "current_set_code": null,
+      "finish_profile": "holo|normal|reverse",
+      "printing_count": 3,
+      "recovery_classification": "external_mapping_recoverable",
+      "evidence_fields_present": [
+        "ai_metadata",
+        "external_ids",
+        "external_mappings",
+        "image_fields",
+        "printing_provenance"
+      ],
+      "external_mappings": [
+        {
+          "source": "tcgdex",
+          "external_id": "sv08.5-099",
+          "external_id_pattern": "other_external_id",
+          "active": true,
+          "meta_keys": [],
+          "synced_at": "2025-12-22T21:35:04.498Z"
+        }
+      ],
+      "external_mapping_sources": [
+        "tcgdex"
+      ],
+      "external_id_patterns": [
+        "other_external_id"
+      ],
+      "tcgplayer_id_present": false,
+      "external_ids_keys": [
+        "tcgdex"
+      ],
+      "provenance_sources": [
+        "tcgdex"
+      ],
+      "provenance_refs_present": true,
+      "image_sources": [
+        "tcgdex"
+      ],
+      "created_by_values": [
+        "printing_ingestion_v2"
+      ],
+      "recommended_next_action": "Use active external mapping IDs as source-acquisition leads, then confirm exact set/card identity against external sources before any alias proposal.",
+      "mutation_authority": "not mutation authority",
+      "alias_authority": "not alias authority",
+      "note": "This row is a provenance recovery lead only. It does not infer source set identity."
+    },
+    {
+      "card_print_id": "21d069c6-f6b7-41d6-8300-37f28e5ce9ae",
+      "card_name": "Black Belt's Training",
+      "number": null,
+      "current_set_code": null,
+      "finish_profile": "holo|normal|reverse",
+      "printing_count": 3,
+      "recovery_classification": "external_mapping_recoverable",
+      "evidence_fields_present": [
+        "ai_metadata",
+        "external_ids",
+        "external_mappings",
+        "image_fields",
+        "printing_provenance"
+      ],
+      "external_mappings": [
+        {
+          "source": "tcgdex",
+          "external_id": "sv08.5-097",
+          "external_id_pattern": "other_external_id",
+          "active": true,
+          "meta_keys": [],
+          "synced_at": "2025-12-22T21:35:04.498Z"
+        }
+      ],
+      "external_mapping_sources": [
+        "tcgdex"
+      ],
+      "external_id_patterns": [
+        "other_external_id"
+      ],
+      "tcgplayer_id_present": false,
+      "external_ids_keys": [
+        "tcgdex"
+      ],
+      "provenance_sources": [
+        "tcgdex"
+      ],
+      "provenance_refs_present": true,
+      "image_sources": [
+        "tcgdex"
+      ],
+      "created_by_values": [
+        "printing_ingestion_v2"
+      ],
+      "recommended_next_action": "Use active external mapping IDs as source-acquisition leads, then confirm exact set/card identity against external sources before any alias proposal.",
+      "mutation_authority": "not mutation authority",
+      "alias_authority": "not alias authority",
+      "note": "This row is a provenance recovery lead only. It does not infer source set identity."
+    },
+    {
+      "card_print_id": "1d778c67-b9ea-4aed-99d3-200f5534ac39",
+      "card_name": "Black Belt's Training",
+      "number": null,
+      "current_set_code": null,
+      "finish_profile": "holo|normal|reverse",
+      "printing_count": 3,
+      "recovery_classification": "external_mapping_recoverable",
+      "evidence_fields_present": [
+        "ai_metadata",
+        "external_ids",
+        "external_mappings",
+        "image_fields",
+        "printing_provenance"
+      ],
+      "external_mappings": [
+        {
+          "source": "tcgdex",
+          "external_id": "sv08.5-098",
+          "external_id_pattern": "other_external_id",
+          "active": true,
+          "meta_keys": [],
+          "synced_at": "2025-12-22T21:35:04.498Z"
+        }
+      ],
+      "external_mapping_sources": [
+        "tcgdex"
+      ],
+      "external_id_patterns": [
+        "other_external_id"
+      ],
+      "tcgplayer_id_present": false,
+      "external_ids_keys": [
+        "tcgdex"
+      ],
+      "provenance_sources": [
+        "tcgdex"
+      ],
+      "provenance_refs_present": true,
+      "image_sources": [
+        "tcgdex"
+      ],
+      "created_by_values": [
+        "printing_ingestion_v2"
+      ],
+      "recommended_next_action": "Use active external mapping IDs as source-acquisition leads, then confirm exact set/card identity against external sources before any alias proposal.",
+      "mutation_authority": "not mutation authority",
+      "alias_authority": "not alias authority",
+      "note": "This row is a provenance recovery lead only. It does not infer source set identity."
+    },
+    {
+      "card_print_id": "e8e43d13-0ee1-4433-91ef-fbe866b48e57",
+      "card_name": "Blastoise EX",
+      "number": null,
+      "current_set_code": null,
+      "finish_profile": "holo|normal|reverse",
+      "printing_count": 3,
+      "recovery_classification": "external_mapping_recoverable",
+      "evidence_fields_present": [
+        "ai_metadata",
+        "external_ids",
+        "external_mappings",
+        "image_fields",
+        "printing_provenance"
+      ],
+      "external_mappings": [
+        {
+          "source": "tcgdex",
+          "external_id": "xyp-XY122",
+          "external_id_pattern": "other_external_id",
+          "active": true,
+          "meta_keys": [],
+          "synced_at": "2025-12-08T19:11:39.797Z"
+        }
+      ],
+      "external_mapping_sources": [
+        "tcgdex"
+      ],
+      "external_id_patterns": [
+        "other_external_id"
+      ],
+      "tcgplayer_id_present": false,
+      "external_ids_keys": [
+        "tcgdex"
+      ],
+      "provenance_sources": [
+        "tcgdex"
+      ],
+      "provenance_refs_present": true,
+      "image_sources": [
+        "tcgdex"
+      ],
+      "created_by_values": [
+        "printing_ingestion_v2"
+      ],
+      "recommended_next_action": "Use active external mapping IDs as source-acquisition leads, then confirm exact set/card identity against external sources before any alias proposal.",
+      "mutation_authority": "not mutation authority",
+      "alias_authority": "not alias authority",
+      "note": "This row is a provenance recovery lead only. It does not infer source set identity."
+    },
+    {
+      "card_print_id": "f46d7286-3522-4a9c-9d02-bb1e2aac838d",
+      "card_name": "Blastoise EX",
+      "number": null,
+      "current_set_code": null,
+      "finish_profile": "holo|normal|reverse",
+      "printing_count": 3,
+      "recovery_classification": "external_mapping_recoverable",
+      "evidence_fields_present": [
+        "ai_metadata",
+        "external_ids",
+        "external_mappings",
+        "image_fields",
+        "printing_provenance"
+      ],
+      "external_mappings": [
+        {
+          "source": "tcgdex",
+          "external_id": "xyp-XY30",
+          "external_id_pattern": "other_external_id",
+          "active": true,
+          "meta_keys": [],
+          "synced_at": "2025-12-08T19:12:23.446Z"
+        }
+      ],
+      "external_mapping_sources": [
+        "tcgdex"
+      ],
+      "external_id_patterns": [
+        "other_external_id"
+      ],
+      "tcgplayer_id_present": false,
+      "external_ids_keys": [
+        "tcgdex"
+      ],
+      "provenance_sources": [
+        "tcgdex"
+      ],
+      "provenance_refs_present": true,
+      "image_sources": [
+        "tcgdex"
+      ],
+      "created_by_values": [
+        "printing_ingestion_v2"
+      ],
+      "recommended_next_action": "Use active external mapping IDs as source-acquisition leads, then confirm exact set/card identity against external sources before any alias proposal.",
+      "mutation_authority": "not mutation authority",
+      "alias_authority": "not alias authority",
+      "note": "This row is a provenance recovery lead only. It does not infer source set identity."
+    },
+    {
+      "card_print_id": "199e8699-1e8d-42dd-93d3-ac67f7e247be",
+      "card_name": "Blaziken EX",
+      "number": null,
+      "current_set_code": null,
+      "finish_profile": "holo|normal|reverse",
+      "printing_count": 3,
+      "recovery_classification": "external_mapping_recoverable",
+      "evidence_fields_present": [
+        "ai_metadata",
+        "external_ids",
+        "external_mappings",
+        "image_fields",
+        "printing_provenance"
+      ],
+      "external_mappings": [
+        {
+          "source": "tcgdex",
+          "external_id": "xyp-XY54",
+          "external_id_pattern": "other_external_id",
+          "active": true,
+          "meta_keys": [],
+          "synced_at": "2025-12-08T19:12:33.005Z"
+        }
+      ],
+      "external_mapping_sources": [
+        "tcgdex"
+      ],
+      "external_id_patterns": [
+        "other_external_id"
+      ],
+      "tcgplayer_id_present": false,
+      "external_ids_keys": [
+        "tcgdex"
+      ],
+      "provenance_sources": [
+        "tcgdex"
+      ],
+      "provenance_refs_present": true,
+      "image_sources": [
+        "tcgdex"
+      ],
+      "created_by_values": [
+        "printing_ingestion_v2"
+      ],
+      "recommended_next_action": "Use active external mapping IDs as source-acquisition leads, then confirm exact set/card identity against external sources before any alias proposal.",
+      "mutation_authority": "not mutation authority",
+      "alias_authority": "not alias authority",
+      "note": "This row is a provenance recovery lead only. It does not infer source set identity."
+    },
+    {
+      "card_print_id": "f96a248a-f003-49ea-bd8a-fc7e083a6ebd",
+      "card_name": "Blitzle",
+      "number": "16",
+      "current_set_code": null,
+      "finish_profile": "holo|normal|reverse",
+      "printing_count": 3,
+      "recovery_classification": "external_mapping_recoverable",
+      "evidence_fields_present": [
+        "ai_metadata",
+        "external_ids",
+        "external_mappings",
+        "image_fields",
+        "printing_provenance"
+      ],
+      "external_mappings": [
+        {
+          "source": "tcgdex",
+          "external_id": "A3a-016",
+          "external_id_pattern": "physical_tcg_set_dash_number",
+          "active": true,
+          "meta_keys": [],
+          "synced_at": "2026-03-27T04:10:52.350Z"
+        }
+      ],
+      "external_mapping_sources": [
+        "tcgdex"
+      ],
+      "external_id_patterns": [
+        "physical_tcg_set_dash_number"
+      ],
+      "tcgplayer_id_present": false,
+      "external_ids_keys": [
+        "tcgdex"
+      ],
+      "provenance_sources": [
+        "tcgdex"
+      ],
+      "provenance_refs_present": true,
+      "image_sources": [
+        "tcgdex"
+      ],
+      "created_by_values": [
+        "printing_ingestion_v2"
+      ],
+      "recommended_next_action": "Use active external mapping IDs as source-acquisition leads, then confirm exact set/card identity against external sources before any alias proposal.",
+      "mutation_authority": "not mutation authority",
+      "alias_authority": "not alias authority",
+      "note": "This row is a provenance recovery lead only. It does not infer source set identity."
+    },
+    {
+      "card_print_id": "cdfd10e4-f311-4497-b641-2de7f5378cfe",
+      "card_name": "Blue",
+      "number": null,
+      "current_set_code": null,
+      "finish_profile": "holo|normal|reverse",
+      "printing_count": 3,
+      "recovery_classification": "external_mapping_recoverable",
+      "evidence_fields_present": [
+        "ai_metadata",
+        "external_ids",
+        "external_mappings",
+        "image_fields",
+        "printing_provenance"
+      ],
+      "external_mappings": [
+        {
+          "source": "tcgdex",
+          "external_id": "A1a-067",
+          "external_id_pattern": "physical_tcg_set_dash_number",
+          "active": true,
+          "meta_keys": [],
+          "synced_at": "2025-12-23T18:15:13.901Z"
+        }
+      ],
+      "external_mapping_sources": [
+        "tcgdex"
+      ],
+      "external_id_patterns": [
+        "physical_tcg_set_dash_number"
+      ],
+      "tcgplayer_id_present": false,
+      "external_ids_keys": [
+        "tcgdex"
+      ],
+      "provenance_sources": [
+        "tcgdex"
+      ],
+      "provenance_refs_present": true,
+      "image_sources": [
+        "tcgdex"
+      ],
+      "created_by_values": [
+        "printing_ingestion_v2"
+      ],
+      "recommended_next_action": "Use active external mapping IDs as source-acquisition leads, then confirm exact set/card identity against external sources before any alias proposal.",
+      "mutation_authority": "not mutation authority",
+      "alias_authority": "not alias authority",
+      "note": "This row is a provenance recovery lead only. It does not infer source set identity."
+    },
+    {
+      "card_print_id": "35888733-8394-4c9a-a468-9edd8d2431ab",
+      "card_name": "Blue",
+      "number": null,
+      "current_set_code": null,
+      "finish_profile": "holo|normal|reverse",
+      "printing_count": 3,
+      "recovery_classification": "external_mapping_recoverable",
+      "evidence_fields_present": [
+        "ai_metadata",
+        "external_ids",
+        "external_mappings",
+        "image_fields",
+        "printing_provenance"
+      ],
+      "external_mappings": [
+        {
+          "source": "tcgdex",
+          "external_id": "A1a-081",
+          "external_id_pattern": "physical_tcg_set_dash_number",
+          "active": true,
+          "meta_keys": [],
+          "synced_at": "2025-12-23T18:15:13.901Z"
+        }
+      ],
+      "external_mapping_sources": [
+        "tcgdex"
+      ],
+      "external_id_patterns": [
+        "physical_tcg_set_dash_number"
+      ],
+      "tcgplayer_id_present": false,
+      "external_ids_keys": [
+        "tcgdex"
+      ],
+      "provenance_sources": [
+        "tcgdex"
+      ],
+      "provenance_refs_present": true,
+      "image_sources": [
+        "tcgdex"
+      ],
+      "created_by_values": [
+        "printing_ingestion_v2"
+      ],
+      "recommended_next_action": "Use active external mapping IDs as source-acquisition leads, then confirm exact set/card identity against external sources before any alias proposal.",
+      "mutation_authority": "not mutation authority",
+      "alias_authority": "not alias authority",
+      "note": "This row is a provenance recovery lead only. It does not infer source set identity."
+    },
+    {
+      "card_print_id": "d37c6768-d957-40b8-baa6-cdbf03714857",
+      "card_name": "Boltund",
+      "number": null,
+      "current_set_code": null,
+      "finish_profile": "holo|normal|reverse",
+      "printing_count": 3,
+      "recovery_classification": "external_mapping_recoverable",
+      "evidence_fields_present": [
+        "ai_metadata",
+        "external_ids",
+        "external_mappings",
+        "image_fields",
+        "printing_provenance"
+      ],
+      "external_mappings": [
+        {
+          "source": "tcgdex",
+          "external_id": "A4a-031",
+          "external_id_pattern": "physical_tcg_set_dash_number",
+          "active": true,
+          "meta_keys": [],
+          "synced_at": "2025-12-22T23:29:17.611Z"
+        }
+      ],
+      "external_mapping_sources": [
+        "tcgdex"
+      ],
+      "external_id_patterns": [
+        "physical_tcg_set_dash_number"
+      ],
+      "tcgplayer_id_present": false,
+      "external_ids_keys": [
+        "tcgdex"
+      ],
+      "provenance_sources": [
+        "tcgdex"
+      ],
+      "provenance_refs_present": true,
+      "image_sources": [
+        "tcgdex"
+      ],
+      "created_by_values": [
+        "printing_ingestion_v2"
+      ],
+      "recommended_next_action": "Use active external mapping IDs as source-acquisition leads, then confirm exact set/card identity against external sources before any alias proposal.",
+      "mutation_authority": "not mutation authority",
+      "alias_authority": "not alias authority",
+      "note": "This row is a provenance recovery lead only. It does not infer source set identity."
+    },
+    {
+      "card_print_id": "b86a9ac5-34ed-4f3b-81f3-33847f3c2d4d",
+      "card_name": "Bounsweet",
+      "number": null,
+      "current_set_code": null,
+      "finish_profile": "holo|normal|reverse",
+      "printing_count": 3,
+      "recovery_classification": "external_mapping_recoverable",
+      "evidence_fields_present": [
+        "ai_metadata",
+        "external_ids",
+        "external_mappings",
+        "image_fields",
+        "printing_provenance"
+      ],
+      "external_mappings": [
+        {
+          "source": "tcgdex",
+          "external_id": "A3b-003",
+          "external_id_pattern": "physical_tcg_set_dash_number",
+          "active": true,
+          "meta_keys": [],
+          "synced_at": "2025-12-22T23:22:39.478Z"
+        }
+      ],
+      "external_mapping_sources": [
+        "tcgdex"
+      ],
+      "external_id_patterns": [
+        "physical_tcg_set_dash_number"
+      ],
+      "tcgplayer_id_present": false,
+      "external_ids_keys": [
+        "tcgdex"
+      ],
+      "provenance_sources": [
+        "tcgdex"
+      ],
+      "provenance_refs_present": true,
+      "image_sources": [
+        "tcgdex"
+      ],
+      "created_by_values": [
+        "printing_ingestion_v2"
+      ],
+      "recommended_next_action": "Use active external mapping IDs as source-acquisition leads, then confirm exact set/card identity against external sources before any alias proposal.",
+      "mutation_authority": "not mutation authority",
+      "alias_authority": "not alias authority",
+      "note": "This row is a provenance recovery lead only. It does not infer source set identity."
+    },
+    {
+      "card_print_id": "b851ae56-bade-4486-8810-65c0613c6bee",
+      "card_name": "Briar",
+      "number": null,
+      "current_set_code": null,
+      "finish_profile": "holo|normal|reverse",
+      "printing_count": 3,
+      "recovery_classification": "external_mapping_recoverable",
+      "evidence_fields_present": [
+        "ai_metadata",
+        "external_ids",
+        "external_mappings",
+        "image_fields",
+        "printing_provenance"
+      ],
+      "external_mappings": [
+        {
+          "source": "tcgdex",
+          "external_id": "sv08.5-100",
+          "external_id_pattern": "other_external_id",
+          "active": true,
+          "meta_keys": [],
+          "synced_at": "2025-12-22T21:35:04.498Z"
+        }
+      ],
+      "external_mapping_sources": [
+        "tcgdex"
+      ],
+      "external_id_patterns": [
+        "other_external_id"
+      ],
+      "tcgplayer_id_present": false,
+      "external_ids_keys": [
+        "tcgdex"
+      ],
+      "provenance_sources": [
+        "tcgdex"
+      ],
+      "provenance_refs_present": true,
+      "image_sources": [
+        "tcgdex"
+      ],
+      "created_by_values": [
+        "printing_ingestion_v2"
+      ],
+      "recommended_next_action": "Use active external mapping IDs as source-acquisition leads, then confirm exact set/card identity against external sources before any alias proposal.",
+      "mutation_authority": "not mutation authority",
+      "alias_authority": "not alias authority",
+      "note": "This row is a provenance recovery lead only. It does not infer source set identity."
+    },
+    {
+      "card_print_id": "103fd85f-c0eb-4ad5-ac8a-b38cd298285e",
+      "card_name": "Brionne",
+      "number": null,
+      "current_set_code": null,
+      "finish_profile": "holo|normal|reverse",
+      "printing_count": 3,
+      "recovery_classification": "external_mapping_recoverable",
+      "evidence_fields_present": [
+        "ai_metadata",
+        "external_ids",
+        "external_mappings",
+        "image_fields",
+        "printing_provenance"
+      ],
+      "external_mappings": [
+        {
+          "source": "tcgdex",
+          "external_id": "A3b-023",
+          "external_id_pattern": "physical_tcg_set_dash_number",
+          "active": true,
+          "meta_keys": [],
+          "synced_at": "2025-12-22T23:22:39.478Z"
+        }
+      ],
+      "external_mapping_sources": [
+        "tcgdex"
+      ],
+      "external_id_patterns": [
+        "physical_tcg_set_dash_number"
+      ],
+      "tcgplayer_id_present": false,
+      "external_ids_keys": [
+        "tcgdex"
+      ],
+      "provenance_sources": [
+        "tcgdex"
+      ],
+      "provenance_refs_present": true,
+      "image_sources": [
+        "tcgdex"
+      ],
+      "created_by_values": [
+        "printing_ingestion_v2"
+      ],
+      "recommended_next_action": "Use active external mapping IDs as source-acquisition leads, then confirm exact set/card identity against external sources before any alias proposal.",
+      "mutation_authority": "not mutation authority",
+      "alias_authority": "not alias authority",
+      "note": "This row is a provenance recovery lead only. It does not infer source set identity."
+    },
+    {
+      "card_print_id": "f62f966c-c60e-4226-913e-bcd69a35c17b",
+      "card_name": "Bronzong",
+      "number": null,
+      "current_set_code": null,
+      "finish_profile": "holo|normal|reverse",
+      "printing_count": 3,
+      "recovery_classification": "external_mapping_recoverable",
+      "evidence_fields_present": [
+        "ai_metadata",
+        "external_ids",
+        "external_mappings",
+        "image_fields",
+        "printing_provenance"
+      ],
+      "external_mappings": [
+        {
+          "source": "tcgdex",
+          "external_id": "sv08.5-067",
+          "external_id_pattern": "other_external_id",
+          "active": true,
+          "meta_keys": [],
+          "synced_at": "2025-12-22T21:35:04.498Z"
+        }
+      ],
+      "external_mapping_sources": [
+        "tcgdex"
+      ],
+      "external_id_patterns": [
+        "other_external_id"
+      ],
+      "tcgplayer_id_present": false,
+      "external_ids_keys": [
+        "tcgdex"
+      ],
+      "provenance_sources": [
+        "tcgdex"
+      ],
+      "provenance_refs_present": true,
+      "image_sources": [
+        "tcgdex"
+      ],
+      "created_by_values": [
+        "printing_ingestion_v2"
+      ],
+      "recommended_next_action": "Use active external mapping IDs as source-acquisition leads, then confirm exact set/card identity against external sources before any alias proposal.",
+      "mutation_authority": "not mutation authority",
+      "alias_authority": "not alias authority",
+      "note": "This row is a provenance recovery lead only. It does not infer source set identity."
+    },
+    {
+      "card_print_id": "0215ba70-42a9-4f76-9236-050ac62065fa",
+      "card_name": "Bronzong",
+      "number": null,
+      "current_set_code": null,
+      "finish_profile": "holo|normal|reverse",
+      "printing_count": 3,
+      "recovery_classification": "external_mapping_recoverable",
+      "evidence_fields_present": [
+        "ai_metadata",
+        "external_ids",
+        "external_mappings",
+        "image_fields",
+        "printing_provenance"
+      ],
+      "external_mappings": [
+        {
+          "source": "tcgdex",
+          "external_id": "A2a-059",
+          "external_id_pattern": "physical_tcg_set_dash_number",
+          "active": true,
+          "meta_keys": [],
+          "synced_at": "2025-12-19T21:18:21.295Z"
+        }
+      ],
+      "external_mapping_sources": [
+        "tcgdex"
+      ],
+      "external_id_patterns": [
+        "physical_tcg_set_dash_number"
+      ],
+      "tcgplayer_id_present": false,
+      "external_ids_keys": [
+        "tcgdex"
+      ],
+      "provenance_sources": [
+        "tcgdex"
+      ],
+      "provenance_refs_present": true,
+      "image_sources": [
+        "tcgdex"
+      ],
+      "created_by_values": [
+        "printing_ingestion_v2"
+      ],
+      "recommended_next_action": "Use active external mapping IDs as source-acquisition leads, then confirm exact set/card identity against external sources before any alias proposal.",
+      "mutation_authority": "not mutation authority",
+      "alias_authority": "not alias authority",
+      "note": "This row is a provenance recovery lead only. It does not infer source set identity."
+    },
+    {
+      "card_print_id": "b1cef86a-6042-4473-be07-14c9d9ed7b7f",
+      "card_name": "Bronzor",
+      "number": null,
+      "current_set_code": null,
+      "finish_profile": "holo|normal|reverse",
+      "printing_count": 3,
+      "recovery_classification": "external_mapping_recoverable",
+      "evidence_fields_present": [
+        "ai_metadata",
+        "external_ids",
+        "external_mappings",
+        "image_fields",
+        "printing_provenance"
+      ],
+      "external_mappings": [
+        {
+          "source": "tcgdex",
+          "external_id": "sv08.5-066",
+          "external_id_pattern": "other_external_id",
+          "active": true,
+          "meta_keys": [],
+          "synced_at": "2025-12-22T21:35:04.498Z"
+        }
+      ],
+      "external_mapping_sources": [
+        "tcgdex"
+      ],
+      "external_id_patterns": [
+        "other_external_id"
+      ],
+      "tcgplayer_id_present": false,
+      "external_ids_keys": [
+        "tcgdex"
+      ],
+      "provenance_sources": [
+        "tcgdex"
+      ],
+      "provenance_refs_present": true,
+      "image_sources": [
+        "tcgdex"
+      ],
+      "created_by_values": [
+        "printing_ingestion_v2"
+      ],
+      "recommended_next_action": "Use active external mapping IDs as source-acquisition leads, then confirm exact set/card identity against external sources before any alias proposal.",
+      "mutation_authority": "not mutation authority",
+      "alias_authority": "not alias authority",
+      "note": "This row is a provenance recovery lead only. It does not infer source set identity."
+    },
+    {
+      "card_print_id": "8a7673d5-27bf-402c-bd00-28297d1a8581",
+      "card_name": "Bronzor",
+      "number": null,
+      "current_set_code": null,
+      "finish_profile": "holo|normal|reverse",
+      "printing_count": 3,
+      "recovery_classification": "external_mapping_recoverable",
+      "evidence_fields_present": [
+        "ai_metadata",
+        "external_ids",
+        "external_mappings",
+        "image_fields",
+        "printing_provenance"
+      ],
+      "external_mappings": [
+        {
+          "source": "tcgdex",
+          "external_id": "A2a-058",
+          "external_id_pattern": "physical_tcg_set_dash_number",
+          "active": true,
+          "meta_keys": [],
+          "synced_at": "2025-12-19T21:18:21.295Z"
+        }
+      ],
+      "external_mapping_sources": [
+        "tcgdex"
+      ],
+      "external_id_patterns": [
+        "physical_tcg_set_dash_number"
+      ],
+      "tcgplayer_id_present": false,
+      "external_ids_keys": [
+        "tcgdex"
+      ],
+      "provenance_sources": [
+        "tcgdex"
+      ],
+      "provenance_refs_present": true,
+      "image_sources": [
+        "tcgdex"
+      ],
+      "created_by_values": [
+        "printing_ingestion_v2"
+      ],
+      "recommended_next_action": "Use active external mapping IDs as source-acquisition leads, then confirm exact set/card identity against external sources before any alias proposal.",
+      "mutation_authority": "not mutation authority",
+      "alias_authority": "not alias authority",
+      "note": "This row is a provenance recovery lead only. It does not infer source set identity."
+    },
+    {
+      "card_print_id": "adcbeeca-5f0e-4b91-9f77-9d0a6fac580a",
+      "card_name": "Budding Expeditioner",
+      "number": null,
+      "current_set_code": null,
+      "finish_profile": "holo|normal|reverse",
+      "printing_count": 3,
+      "recovery_classification": "external_mapping_recoverable",
+      "evidence_fields_present": [
+        "ai_metadata",
+        "external_ids",
+        "external_mappings",
+        "image_fields",
+        "printing_provenance"
+      ],
+      "external_mappings": [
+        {
+          "source": "tcgdex",
+          "external_id": "A1a-066",
+          "external_id_pattern": "physical_tcg_set_dash_number",
+          "active": true,
+          "meta_keys": [],
+          "synced_at": "2025-12-23T18:15:13.901Z"
+        }
+      ],
+      "external_mapping_sources": [
+        "tcgdex"
+      ],
+      "external_id_patterns": [
+        "physical_tcg_set_dash_number"
+      ],
+      "tcgplayer_id_present": false,
+      "external_ids_keys": [
+        "tcgdex"
+      ],
+      "provenance_sources": [
+        "tcgdex"
+      ],
+      "provenance_refs_present": true,
+      "image_sources": [
+        "tcgdex"
+      ],
+      "created_by_values": [
+        "printing_ingestion_v2"
+      ],
+      "recommended_next_action": "Use active external mapping IDs as source-acquisition leads, then confirm exact set/card identity against external sources before any alias proposal.",
+      "mutation_authority": "not mutation authority",
+      "alias_authority": "not alias authority",
+      "note": "This row is a provenance recovery lead only. It does not infer source set identity."
+    },
+    {
+      "card_print_id": "14268d30-e27f-4324-9492-304a3310da49",
+      "card_name": "Budding Expeditioner",
+      "number": null,
+      "current_set_code": null,
+      "finish_profile": "holo|normal|reverse",
+      "printing_count": 3,
+      "recovery_classification": "external_mapping_recoverable",
+      "evidence_fields_present": [
+        "ai_metadata",
+        "external_ids",
+        "external_mappings",
+        "image_fields",
+        "printing_provenance"
+      ],
+      "external_mappings": [
+        {
+          "source": "tcgdex",
+          "external_id": "A1a-080",
+          "external_id_pattern": "physical_tcg_set_dash_number",
+          "active": true,
+          "meta_keys": [],
+          "synced_at": "2025-12-23T18:15:13.901Z"
+        }
+      ],
+      "external_mapping_sources": [
+        "tcgdex"
+      ],
+      "external_id_patterns": [
+        "physical_tcg_set_dash_number"
+      ],
+      "tcgplayer_id_present": false,
+      "external_ids_keys": [
+        "tcgdex"
+      ],
+      "provenance_sources": [
+        "tcgdex"
+      ],
+      "provenance_refs_present": true,
+      "image_sources": [
+        "tcgdex"
+      ],
+      "created_by_values": [
+        "printing_ingestion_v2"
+      ],
+      "recommended_next_action": "Use active external mapping IDs as source-acquisition leads, then confirm exact set/card identity against external sources before any alias proposal.",
+      "mutation_authority": "not mutation authority",
+      "alias_authority": "not alias authority",
+      "note": "This row is a provenance recovery lead only. It does not infer source set identity."
+    },
+    {
+      "card_print_id": "4ae14f7a-0e64-449d-9829-4af2ea40fa82",
+      "card_name": "Buddy-Buddy Poffin",
+      "number": null,
+      "current_set_code": null,
+      "finish_profile": "holo|normal|reverse",
+      "printing_count": 3,
+      "recovery_classification": "external_mapping_recoverable",
+      "evidence_fields_present": [
+        "ai_metadata",
+        "external_ids",
+        "external_mappings",
+        "image_fields",
+        "printing_provenance"
+      ],
+      "external_mappings": [
+        {
+          "source": "tcgdex",
+          "external_id": "sv08.5-101",
+          "external_id_pattern": "other_external_id",
+          "active": true,
+          "meta_keys": [],
+          "synced_at": "2025-12-22T21:35:04.498Z"
+        }
+      ],
+      "external_mapping_sources": [
+        "tcgdex"
+      ],
+      "external_id_patterns": [
+        "other_external_id"
+      ],
+      "tcgplayer_id_present": false,
+      "external_ids_keys": [
+        "tcgdex"
+      ],
+      "provenance_sources": [
+        "tcgdex"
+      ],
+      "provenance_refs_present": true,
+      "image_sources": [
+        "tcgdex"
+      ],
+      "created_by_values": [
+        "printing_ingestion_v2"
+      ],
+      "recommended_next_action": "Use active external mapping IDs as source-acquisition leads, then confirm exact set/card identity against external sources before any alias proposal.",
+      "mutation_authority": "not mutation authority",
+      "alias_authority": "not alias authority",
+      "note": "This row is a provenance recovery lead only. It does not infer source set identity."
+    },
+    {
+      "card_print_id": "35898507-890a-48ec-8655-58c076bdcc5a",
+      "card_name": "Budew",
+      "number": null,
+      "current_set_code": null,
+      "finish_profile": "holo|normal|reverse",
+      "printing_count": 3,
+      "recovery_classification": "external_mapping_recoverable",
+      "evidence_fields_present": [
+        "ai_metadata",
+        "external_ids",
+        "external_mappings",
+        "image_fields",
+        "printing_provenance"
+      ],
+      "external_mappings": [
+        {
+          "source": "tcgdex",
+          "external_id": "sv08.5-004",
+          "external_id_pattern": "other_external_id",
+          "active": true,
+          "meta_keys": [],
+          "synced_at": "2025-12-22T21:35:04.498Z"
+        }
+      ],
+      "external_mapping_sources": [
+        "tcgdex"
+      ],
+      "external_id_patterns": [
+        "other_external_id"
+      ],
+      "tcgplayer_id_present": false,
+      "external_ids_keys": [
+        "tcgdex"
+      ],
+      "provenance_sources": [
+        "tcgdex"
+      ],
+      "provenance_refs_present": true,
+      "image_sources": [
+        "tcgdex"
+      ],
+      "created_by_values": [
+        "printing_ingestion_v2"
+      ],
+      "recommended_next_action": "Use active external mapping IDs as source-acquisition leads, then confirm exact set/card identity against external sources before any alias proposal.",
+      "mutation_authority": "not mutation authority",
+      "alias_authority": "not alias authority",
+      "note": "This row is a provenance recovery lead only. It does not infer source set identity."
+    },
+    {
+      "card_print_id": "4a3ef39f-6542-4414-ae40-6841ce1ac609",
+      "card_name": "Bug Catching Set",
+      "number": null,
+      "current_set_code": null,
+      "finish_profile": "holo|normal|reverse",
+      "printing_count": 3,
+      "recovery_classification": "external_mapping_recoverable",
+      "evidence_fields_present": [
+        "ai_metadata",
+        "external_ids",
+        "external_mappings",
+        "image_fields",
+        "printing_provenance"
+      ],
+      "external_mappings": [
+        {
+          "source": "tcgdex",
+          "external_id": "sv08.5-102",
+          "external_id_pattern": "other_external_id",
+          "active": true,
+          "meta_keys": [],
+          "synced_at": "2025-12-22T21:35:04.498Z"
+        }
+      ],
+      "external_mapping_sources": [
+        "tcgdex"
+      ],
+      "external_id_patterns": [
+        "other_external_id"
+      ],
+      "tcgplayer_id_present": false,
+      "external_ids_keys": [
+        "tcgdex"
+      ],
+      "provenance_sources": [
+        "tcgdex"
+      ],
+      "provenance_refs_present": true,
+      "image_sources": [
+        "tcgdex"
+      ],
+      "created_by_values": [
+        "printing_ingestion_v2"
+      ],
+      "recommended_next_action": "Use active external mapping IDs as source-acquisition leads, then confirm exact set/card identity against external sources before any alias proposal.",
+      "mutation_authority": "not mutation authority",
+      "alias_authority": "not alias authority",
+      "note": "This row is a provenance recovery lead only. It does not infer source set identity."
+    },
+    {
+      "card_print_id": "2de77b16-381a-4271-8242-f03fb2db8621",
+      "card_name": "Buizel",
+      "number": null,
+      "current_set_code": null,
+      "finish_profile": "holo|normal|reverse",
+      "printing_count": 3,
+      "recovery_classification": "external_mapping_recoverable",
+      "evidence_fields_present": [
+        "ai_metadata",
+        "external_ids",
+        "external_mappings",
+        "image_fields",
+        "printing_provenance"
+      ],
+      "external_mappings": [
+        {
+          "source": "tcgdex",
+          "external_id": "A2b-016",
+          "external_id_pattern": "physical_tcg_set_dash_number",
+          "active": true,
+          "meta_keys": [],
+          "synced_at": "2025-12-22T23:18:23.037Z"
+        }
+      ],
+      "external_mapping_sources": [
+        "tcgdex"
+      ],
+      "external_id_patterns": [
+        "physical_tcg_set_dash_number"
+      ],
+      "tcgplayer_id_present": false,
+      "external_ids_keys": [
+        "tcgdex"
+      ],
+      "provenance_sources": [
+        "tcgdex"
+      ],
+      "provenance_refs_present": true,
+      "image_sources": [
+        "tcgdex"
+      ],
+      "created_by_values": [
+        "printing_ingestion_v2"
+      ],
+      "recommended_next_action": "Use active external mapping IDs as source-acquisition leads, then confirm exact set/card identity against external sources before any alias proposal.",
+      "mutation_authority": "not mutation authority",
+      "alias_authority": "not alias authority",
+      "note": "This row is a provenance recovery lead only. It does not infer source set identity."
+    },
+    {
+      "card_print_id": "af7176fb-6f20-4112-903e-7eaaffdc3388",
+      "card_name": "Buizel",
+      "number": null,
+      "current_set_code": null,
+      "finish_profile": "holo|normal|reverse",
+      "printing_count": 3,
+      "recovery_classification": "external_mapping_recoverable",
+      "evidence_fields_present": [
+        "ai_metadata",
+        "external_ids",
+        "external_mappings",
+        "image_fields",
+        "printing_provenance"
+      ],
+      "external_mappings": [
+        {
+          "source": "tcgdex",
+          "external_id": "A2b-074",
+          "external_id_pattern": "physical_tcg_set_dash_number",
+          "active": true,
+          "meta_keys": [],
+          "synced_at": "2025-12-22T23:18:23.037Z"
+        }
+      ],
+      "external_mapping_sources": [
+        "tcgdex"
+      ],
+      "external_id_patterns": [
+        "physical_tcg_set_dash_number"
+      ],
+      "tcgplayer_id_present": false,
+      "external_ids_keys": [
+        "tcgdex"
+      ],
+      "provenance_sources": [
+        "tcgdex"
+      ],
+      "provenance_refs_present": true,
+      "image_sources": [
+        "tcgdex"
+      ],
+      "created_by_values": [
+        "printing_ingestion_v2"
+      ],
+      "recommended_next_action": "Use active external mapping IDs as source-acquisition leads, then confirm exact set/card identity against external sources before any alias proposal.",
+      "mutation_authority": "not mutation authority",
+      "alias_authority": "not alias authority",
+      "note": "This row is a provenance recovery lead only. It does not infer source set identity."
+    }
+  ]
+}
