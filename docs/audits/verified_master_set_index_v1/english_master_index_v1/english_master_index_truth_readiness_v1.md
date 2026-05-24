@@ -1,6 +1,6 @@
 # English Master Index Truth Readiness V1
 
-Generated: 2026-05-24T14:13:11.642Z
+Generated: 2026-05-24T14:39:53.479Z
 
 Audit only. Scores are planning signals only and do not authorize mutation.
 
