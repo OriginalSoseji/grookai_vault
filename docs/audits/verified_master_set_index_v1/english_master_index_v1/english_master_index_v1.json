@@ -1,0 +1,2646 @@
+{
+  "version": "ENGLISH_VERIFIED_MASTER_SET_INDEX_V1",
+  "generated_at": "2026-05-24T06:12:52.703Z",
+  "audit_only": true,
+  "db_writes": false,
+  "language": "en",
+  "source_standard": {
+    "api_agreed_is_not_master_truth": true,
+    "finish_truth_requires_human_or_checklist_source_for_master_verified": true,
+    "fail_closed_unknown_printings": true,
+    "no_db_writes": true
+  },
+  "transport": {
+    "note": "Local run used NODE_TLS_REJECT_UNAUTHORIZED=0 because this Windows environment could not validate upstream API certificates. This is a command-level workaround only and is not encoded in the pipeline."
+  },
+  "summary": {
+    "sets": 201,
+    "evidence_rows": 102197,
+    "source_overlap": [
+      {
+        "source_key": "beckett_ascended_heroes_oddish_001",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "big_orbit_ascended_heroes_bellsprout_004",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "big_orbit_ascended_heroes_honchkrow_127",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "big_orbit_ascended_heroes_victreebel_006",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "bulbapedia_sv01",
+        "evidence_rows": 8
+      },
+      {
+        "source_key": "cardmarket_ascended_heroes",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "cardtrader_ascended_heroes_exeggcute_077",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "cardtrader_ascended_heroes_meowth_161",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "cardtrader_ascended_heroes_mimikyu_097",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "cardtrader_ascended_heroes_weepinbell_005",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "crazygamer_ascended_heroes_diglett_100",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "digitaltq_ascended_heroes_003",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "digitaltq_ascended_heroes_010",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "digitaltq_ascended_heroes_026",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "digitaltq_ascended_heroes_031",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "digitaltq_ascended_heroes_038",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "digitaltq_ascended_heroes_043",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "digitaltq_ascended_heroes_047",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "digitaltq_ascended_heroes_048",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "digitaltq_ascended_heroes_057",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "digitaltq_ascended_heroes_058",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "digitaltq_ascended_heroes_061",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "digitaltq_ascended_heroes_068",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "digitaltq_ascended_heroes_070",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "digitaltq_ascended_heroes_073",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "digitaltq_ascended_heroes_076",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "digitaltq_ascended_heroes_079",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "digitaltq_ascended_heroes_084",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "digitaltq_ascended_heroes_089",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "digitaltq_ascended_heroes_107",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "digitaltq_ascended_heroes_111",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "digitaltq_ascended_heroes_113",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "digitaltq_ascended_heroes_114",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "digitaltq_ascended_heroes_116",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "digitaltq_ascended_heroes_121",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "digitaltq_ascended_heroes_125",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "digitaltq_ascended_heroes_135",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "digitaltq_ascended_heroes_137",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "digitaltq_ascended_heroes_139",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "digitaltq_ascended_heroes_142",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "digitaltq_ascended_heroes_145",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "digitaltq_ascended_heroes_149",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "digitaltq_ascended_heroes_152",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "digitaltq_ascended_heroes_160",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "digitaltq_ascended_heroes_162",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "digitaltq_ascended_heroes_164",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "digitaltq_ascended_heroes_167",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "digitaltq_ascended_heroes_172",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "digitaltq_ascended_heroes_179",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "lockett_labs_ascended_heroes_dugtrio_101",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "official_pokemon_svi_cardlist_en",
+        "evidence_rows": 8
+      },
+      {
+        "source_key": "packmagik_ascended_heroes_team_rockets_great_ball_205",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "pokebeach_ascended_heroes_set_guide",
+        "evidence_rows": 5
+      },
+      {
+        "source_key": "pokellector_ascended_heroes_murkrow_126",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "pokemasters_ascended_heroes",
+        "evidence_rows": 7
+      },
+      {
+        "source_key": "pokemontcg_api",
+        "evidence_rows": 51482
+      },
+      {
+        "source_key": "pokescope_ascended_heroes_mimikyu_097",
+        "evidence_rows": 2
+      },
+      {
+        "source_key": "pokescope_ascended_heroes_tarountula_018",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "pricedex_ascended_heroes_price_list",
+        "evidence_rows": 51
+      },
+      {
+        "source_key": "pricedex_ascended_heroes_variant_index",
+        "evidence_rows": 620
+      },
+      {
+        "source_key": "psa_ascended_heroes_checklist",
+        "evidence_rows": 5
+      },
+      {
+        "source_key": "sports_card_investor_ascended_heroes_exeggutor_078",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "sports_card_investor_ascended_heroes_gloom_002",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "sports_card_investor_ascended_heroes_mimikyu",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgdex",
+        "evidence_rows": 49331
+      },
+      {
+        "source_key": "tcgplayer_product_675813",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_675814",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_675815",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_675816",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_675817",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_675818",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_675819",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_675820",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_675821",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_675822",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_675823",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_675824",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_675825",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_675826",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_675827",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_675828",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_675829",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_675830",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_675831",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_675832",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_675833",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_675834",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_675835",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_675836",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_675837",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_675838",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_675839",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_675840",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_675841",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_675842",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_675843",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_675844",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_675845",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_675846",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_675847",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_675848",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_675849",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_675850",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_675851",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_675852",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_675853",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_675854",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_675855",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_675856",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_675857",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_675858",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_675859",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_675860",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_675861",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_675862",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_675863",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_675864",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_675865",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_675866",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_675867",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_675868",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_675869",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_675870",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_675871",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_675872",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_675873",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_675874",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_675875",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_675876",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_675877",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_675878",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_675879",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_675880",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_675881",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_675882",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_675883",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_675884",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_675885",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_675886",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_675887",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_675888",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_675889",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_675890",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_675891",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_675892",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_675893",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_675894",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_675895",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_675896",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_675897",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_675898",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_675899",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_675900",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_675901",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_675902",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_675903",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_675904",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_675905",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_675906",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_675907",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_675908",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_675909",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_675910",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_675911",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_675912",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_675913",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_675914",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_675915",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_675916",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_675917",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_675918",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_675919",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_675920",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_675921",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_675922",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_675923",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_675924",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_675925",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_675926",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_675927",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_675928",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_675929",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_675930",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_675931",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_675932",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_675933",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_675934",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_675935",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_675936",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_675937",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_675938",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_675939",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_675940",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_675941",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_675942",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_675943",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_675944",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_675945",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_675946",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_675947",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_675948",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_675949",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_675950",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_675951",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_675952",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_675953",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_675954",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_675955",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_675956",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_675957",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_675958",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_675959",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_675960",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_675961",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_675962",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_675963",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_675964",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_675965",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_675966",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_675967",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_675968",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_675969",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_675970",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_675971",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_675972",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_675973",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_675974",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_675975",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_675976",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_675977",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_675978",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_675979",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_675980",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_675981",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_675982",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_675983",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_675984",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_675985",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_675986",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_675987",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_675988",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_675989",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_675990",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_675991",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_675992",
+        "evidence_rows": 2
+      },
+      {
+        "source_key": "tcgplayer_product_675993",
+        "evidence_rows": 2
+      },
+      {
+        "source_key": "tcgplayer_product_675994",
+        "evidence_rows": 2
+      },
+      {
+        "source_key": "tcgplayer_product_675995",
+        "evidence_rows": 2
+      },
+      {
+        "source_key": "tcgplayer_product_675996",
+        "evidence_rows": 2
+      },
+      {
+        "source_key": "tcgplayer_product_675997",
+        "evidence_rows": 2
+      },
+      {
+        "source_key": "tcgplayer_product_675998",
+        "evidence_rows": 2
+      },
+      {
+        "source_key": "tcgplayer_product_675999",
+        "evidence_rows": 2
+      },
+      {
+        "source_key": "tcgplayer_product_676000",
+        "evidence_rows": 2
+      },
+      {
+        "source_key": "tcgplayer_product_676001",
+        "evidence_rows": 2
+      },
+      {
+        "source_key": "tcgplayer_product_676002",
+        "evidence_rows": 2
+      },
+      {
+        "source_key": "tcgplayer_product_676003",
+        "evidence_rows": 2
+      },
+      {
+        "source_key": "tcgplayer_product_676004",
+        "evidence_rows": 2
+      },
+      {
+        "source_key": "tcgplayer_product_676005",
+        "evidence_rows": 2
+      },
+      {
+        "source_key": "tcgplayer_product_676006",
+        "evidence_rows": 2
+      },
+      {
+        "source_key": "tcgplayer_product_676007",
+        "evidence_rows": 2
+      },
+      {
+        "source_key": "tcgplayer_product_676008",
+        "evidence_rows": 2
+      },
+      {
+        "source_key": "tcgplayer_product_676009",
+        "evidence_rows": 2
+      },
+      {
+        "source_key": "tcgplayer_product_676010",
+        "evidence_rows": 2
+      },
+      {
+        "source_key": "tcgplayer_product_676011",
+        "evidence_rows": 2
+      },
+      {
+        "source_key": "tcgplayer_product_676012",
+        "evidence_rows": 2
+      },
+      {
+        "source_key": "tcgplayer_product_676013",
+        "evidence_rows": 2
+      },
+      {
+        "source_key": "tcgplayer_product_676014",
+        "evidence_rows": 2
+      },
+      {
+        "source_key": "tcgplayer_product_676015",
+        "evidence_rows": 2
+      },
+      {
+        "source_key": "tcgplayer_product_676016",
+        "evidence_rows": 2
+      },
+      {
+        "source_key": "tcgplayer_product_676017",
+        "evidence_rows": 2
+      },
+      {
+        "source_key": "tcgplayer_product_676018",
+        "evidence_rows": 2
+      },
+      {
+        "source_key": "tcgplayer_product_676019",
+        "evidence_rows": 2
+      },
+      {
+        "source_key": "tcgplayer_product_676020",
+        "evidence_rows": 2
+      },
+      {
+        "source_key": "tcgplayer_product_676021",
+        "evidence_rows": 2
+      },
+      {
+        "source_key": "tcgplayer_product_676022",
+        "evidence_rows": 2
+      },
+      {
+        "source_key": "tcgplayer_product_676023",
+        "evidence_rows": 2
+      },
+      {
+        "source_key": "tcgplayer_product_676024",
+        "evidence_rows": 2
+      },
+      {
+        "source_key": "tcgplayer_product_676025",
+        "evidence_rows": 2
+      },
+      {
+        "source_key": "tcgplayer_product_676026",
+        "evidence_rows": 2
+      },
+      {
+        "source_key": "tcgplayer_product_676027",
+        "evidence_rows": 2
+      },
+      {
+        "source_key": "tcgplayer_product_676028",
+        "evidence_rows": 2
+      },
+      {
+        "source_key": "tcgplayer_product_676029",
+        "evidence_rows": 2
+      },
+      {
+        "source_key": "tcgplayer_product_676030",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_676031",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_676032",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_676033",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_676034",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_676035",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_676036",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_676037",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_676038",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_676039",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_676040",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_676041",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_676042",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_676043",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_676044",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_676045",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_676046",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_676047",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_676048",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_676049",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_676050",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_676051",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_676052",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_676053",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_676054",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_676055",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_676056",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_676057",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_676058",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_676059",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_676060",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_676061",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_676062",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_676063",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_676064",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_676065",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_676066",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_676067",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_676068",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_676069",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_676070",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_676071",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_676072",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_676073",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_676074",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_676075",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_676076",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_676077",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_676078",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_676079",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_676080",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_676081",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_676082",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_676083",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_676084",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_676085",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_676086",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_676087",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_676088",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_676089",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_676090",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_676091",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_676092",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_676093",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_676094",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_676095",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_676096",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_676097",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_676098",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_676099",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_676100",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_676101",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_676102",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_676103",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_676104",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_676105",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_676106",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_676107",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_676852",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_676853",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_676854",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_676855",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_676856",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_676857",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_676858",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_676859",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_676860",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_676861",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_676862",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_676863",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_676864",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_676865",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_676866",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_676867",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_676868",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_676869",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_676870",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_676871",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_676872",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_676873",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_676874",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_676875",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_676876",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_676877",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_676878",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_676879",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_676880",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_676881",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_676882",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_676883",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_676884",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_676885",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_676886",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_676887",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_676888",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_676889",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_676890",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_676891",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_676892",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_676893",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_676894",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_676895",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_676896",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_676897",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_676898",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_676899",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_676900",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_676901",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_676902",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_676903",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_676904",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_676905",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_676906",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_676907",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_676908",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_676909",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_676910",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_676911",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_676912",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_676913",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_676914",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_676915",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_676916",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_676917",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_676918",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_676919",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_676920",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_676921",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_676922",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_676923",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_676924",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_676925",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_676926",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_676927",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_676928",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_676929",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_676930",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_676931",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_676932",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_676933",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_676934",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_676935",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_676936",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_676937",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_676938",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_676939",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_676940",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_676941",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_676942",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_676943",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_676944",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_676945",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_676946",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_676947",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_676948",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_676949",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_676950",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_676951",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_676952",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_676953",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_676954",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_676955",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_676956",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_676957",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_676958",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_676959",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_676960",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_676961",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_676962",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_676963",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_676964",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_676965",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_676966",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_676967",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_676968",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_676969",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_676970",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_676971",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_676972",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_676973",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_676974",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_676975",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_676976",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_676977",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_676978",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_676979",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_676980",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_676981",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_676982",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_676983",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_676984",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_676985",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_676986",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_676987",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_676988",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_676989",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_676990",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_676991",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_676992",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_676993",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_676994",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_676995",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_676996",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_676997",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_676998",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_676999",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_677000",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_677001",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_677002",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_677003",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_677004",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_677005",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_677006",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_677007",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_677008",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_677009",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_677010",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_677011",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_677012",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_677013",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_677014",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_677015",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_677016",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_677017",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_677018",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_677019",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_677020",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_677021",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_677022",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_677023",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_677024",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_677025",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_677026",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_677027",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_677028",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_677029",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_677030",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_677031",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_677032",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_677033",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_677034",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_677035",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_677036",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_677037",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_677038",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_677039",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_677040",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_677041",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_677042",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_677043",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_677044",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_677045",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_677046",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_677047",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_677048",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_677049",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_677050",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_677051",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_677052",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_677053",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_677054",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_677055",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_677056",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_677057",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_677058",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_677059",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_677060",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_677061",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_677062",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_677063",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_677064",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_677065",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_677066",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_677067",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_677068",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_677069",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_677070",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_677071",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_677072",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_677073",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_677074",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_677075",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_677076",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_677077",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_677078",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_677079",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_677080",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_677081",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_677082",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_677083",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_677084",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_677085",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_677086",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_677087",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_677088",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_677089",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_677090",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_677091",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_677092",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_677093",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_677094",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_677095",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_677096",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_677097",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_677098",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_677099",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_677100",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_677101",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_677102",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_677103",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_677104",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_677105",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_677106",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_677107",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_677108",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_677109",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_677110",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_677111",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_677112",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_677113",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_677114",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_677115",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_677116",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_677117",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_677118",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_677119",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_677120",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_677121",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_677122",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_677123",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_677124",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_677125",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_677126",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_677127",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_677128",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_677129",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_677130",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_677131",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_677398",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_677399",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_679249",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_679253",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_680709",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_680710",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgplayer_product_681895",
+        "evidence_rows": 1
+      },
+      {
+        "source_key": "tcgstats_ascended_heroes_ns_zekrom",
+        "evidence_rows": 2
+      },
+      {
+        "source_key": "vendortools_ascended_heroes_spidops_019",
+        "evidence_rows": 1
+      }
+    ],
+    "cards_by_status": {
+      "api_agreed": 19569,
+      "candidate_unconfirmed": 1753,
+      "master_verified": 12
+    },
+    "printings_by_status": {
+      "api_agreed": 21190,
+      "candidate_unconfirmed": 17000,
+      "master_verified": 620
+    },
+    "conflicts": 0,
+    "manual_review": 18757,
+    "source_availability_by_status": {
+      "human_fixtures|collected": 1,
+      "pokemontcg_api|collected": 172,
+      "pokemontcg_api|unavailable": 29,
+      "tcgdex|collected": 189,
+      "tcgdex|unavailable": 12
+    }
+  },
+  "artifact_manifest": {
+    "sets": "english_master_index_sets_v1.json",
+    "source_availability": "english_master_index_source_availability_v1.json",
+    "cards": "english_master_index_cards_v1.json",
+    "printings": "english_master_index_printings_v1.json",
+    "manual_review": "english_master_index_manual_review_v1.json",
+    "conflicts": "english_master_index_conflicts_v1.json",
+    "grookai_audit": "english_master_index_grookai_audit_v1.json"
+  }
+}

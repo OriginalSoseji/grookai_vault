@@ -1,0 +1,5238 @@
+{
+  "version": "ENGLISH_MASTER_INDEX_SETS_V1",
+  "generated_at": "2026-05-24T06:12:52.703Z",
+  "audit_only": true,
+  "db_writes": false,
+  "sets": [
+    {
+      "key": "tk-bw-e",
+      "set_name": "BW trainer Kit (Excadrill)",
+      "pokemontcg": null,
+      "tcgdex": "tk-bw-e",
+      "manual_aliases": [],
+      "release_date": null,
+      "source_aliases": {
+        "pokemontcg_api": null,
+        "tcgdex": "tk-bw-e"
+      },
+      "source_status": {
+        "pokemontcg_api": "unavailable",
+        "tcgdex": "available"
+      },
+      "source_totals": {
+        "pokemontcg_api": {
+          "printed_total": null,
+          "total": null
+        },
+        "tcgdex": {
+          "official": 30,
+          "total": 30
+        }
+      }
+    },
+    {
+      "key": "tk-bw-z",
+      "set_name": "BW trainer Kit (Zoroark)",
+      "pokemontcg": null,
+      "tcgdex": "tk-bw-z",
+      "manual_aliases": [],
+      "release_date": null,
+      "source_aliases": {
+        "pokemontcg_api": null,
+        "tcgdex": "tk-bw-z"
+      },
+      "source_status": {
+        "pokemontcg_api": "unavailable",
+        "tcgdex": "available"
+      },
+      "source_totals": {
+        "pokemontcg_api": {
+          "printed_total": null,
+          "total": null
+        },
+        "tcgdex": {
+          "official": 30,
+          "total": 30
+        }
+      }
+    },
+    {
+      "key": "tk-dp-l",
+      "set_name": "DP trainer Kit (Lucario)",
+      "pokemontcg": null,
+      "tcgdex": "tk-dp-l",
+      "manual_aliases": [],
+      "release_date": null,
+      "source_aliases": {
+        "pokemontcg_api": null,
+        "tcgdex": "tk-dp-l"
+      },
+      "source_status": {
+        "pokemontcg_api": "unavailable",
+        "tcgdex": "available"
+      },
+      "source_totals": {
+        "pokemontcg_api": {
+          "printed_total": null,
+          "total": null
+        },
+        "tcgdex": {
+          "official": 11,
+          "total": 11
+        }
+      }
+    },
+    {
+      "key": "tk-dp-m",
+      "set_name": "DP trainer Kit (Manaphy)",
+      "pokemontcg": null,
+      "tcgdex": "tk-dp-m",
+      "manual_aliases": [],
+      "release_date": null,
+      "source_aliases": {
+        "pokemontcg_api": null,
+        "tcgdex": "tk-dp-m"
+      },
+      "source_status": {
+        "pokemontcg_api": "unavailable",
+        "tcgdex": "available"
+      },
+      "source_totals": {
+        "pokemontcg_api": {
+          "printed_total": null,
+          "total": null
+        },
+        "tcgdex": {
+          "official": 12,
+          "total": 12
+        }
+      }
+    },
+    {
+      "key": "tk-hs-g",
+      "set_name": "HS trainer Kit (Gyarados)",
+      "pokemontcg": null,
+      "tcgdex": "tk-hs-g",
+      "manual_aliases": [],
+      "release_date": null,
+      "source_aliases": {
+        "pokemontcg_api": null,
+        "tcgdex": "tk-hs-g"
+      },
+      "source_status": {
+        "pokemontcg_api": "unavailable",
+        "tcgdex": "available"
+      },
+      "source_totals": {
+        "pokemontcg_api": {
+          "printed_total": null,
+          "total": null
+        },
+        "tcgdex": {
+          "official": 30,
+          "total": 30
+        }
+      }
+    },
+    {
+      "key": "tk-hs-r",
+      "set_name": "HS trainer Kit (Raichu)",
+      "pokemontcg": null,
+      "tcgdex": "tk-hs-r",
+      "manual_aliases": [],
+      "release_date": null,
+      "source_aliases": {
+        "pokemontcg_api": null,
+        "tcgdex": "tk-hs-r"
+      },
+      "source_status": {
+        "pokemontcg_api": "unavailable",
+        "tcgdex": "available"
+      },
+      "source_totals": {
+        "pokemontcg_api": {
+          "printed_total": null,
+          "total": null
+        },
+        "tcgdex": {
+          "official": 30,
+          "total": 30
+        }
+      }
+    },
+    {
+      "key": "jumbo",
+      "set_name": "Jumbo cards",
+      "pokemontcg": null,
+      "tcgdex": "jumbo",
+      "manual_aliases": [],
+      "release_date": null,
+      "source_aliases": {
+        "pokemontcg_api": null,
+        "tcgdex": "jumbo"
+      },
+      "source_status": {
+        "pokemontcg_api": "unavailable",
+        "tcgdex": "available"
+      },
+      "source_totals": {
+        "pokemontcg_api": {
+          "printed_total": null,
+          "total": null
+        },
+        "tcgdex": {
+          "official": 160,
+          "total": 160
+        }
+      }
+    },
+    {
+      "key": "2023sv",
+      "set_name": "McDonald's Collection 2023",
+      "pokemontcg": null,
+      "tcgdex": "2023sv",
+      "manual_aliases": [],
+      "release_date": null,
+      "source_aliases": {
+        "pokemontcg_api": null,
+        "tcgdex": "2023sv"
+      },
+      "source_status": {
+        "pokemontcg_api": "unavailable",
+        "tcgdex": "available"
+      },
+      "source_totals": {
+        "pokemontcg_api": {
+          "printed_total": null,
+          "total": null
+        },
+        "tcgdex": {
+          "official": 15,
+          "total": 15
+        }
+      }
+    },
+    {
+      "key": "2024sv",
+      "set_name": "McDonald's Collection 2024",
+      "pokemontcg": null,
+      "tcgdex": "2024sv",
+      "manual_aliases": [],
+      "release_date": null,
+      "source_aliases": {
+        "pokemontcg_api": null,
+        "tcgdex": "2024sv"
+      },
+      "source_status": {
+        "pokemontcg_api": "unavailable",
+        "tcgdex": "available"
+      },
+      "source_totals": {
+        "pokemontcg_api": {
+          "printed_total": null,
+          "total": null
+        },
+        "tcgdex": {
+          "official": 15,
+          "total": 15
+        }
+      }
+    },
+    {
+      "key": "mee",
+      "set_name": "Mega Evolution Energy",
+      "pokemontcg": null,
+      "tcgdex": "mee",
+      "manual_aliases": [],
+      "release_date": null,
+      "source_aliases": {
+        "pokemontcg_api": null,
+        "tcgdex": "mee"
+      },
+      "source_status": {
+        "pokemontcg_api": "unavailable",
+        "tcgdex": "available"
+      },
+      "source_totals": {
+        "pokemontcg_api": {
+          "printed_total": null,
+          "total": null
+        },
+        "tcgdex": {
+          "official": 8,
+          "total": 8
+        }
+      }
+    },
+    {
+      "key": "mep",
+      "set_name": "MEP Black Star Promos",
+      "pokemontcg": null,
+      "tcgdex": "mep",
+      "manual_aliases": [],
+      "release_date": null,
+      "source_aliases": {
+        "pokemontcg_api": null,
+        "tcgdex": "mep"
+      },
+      "source_status": {
+        "pokemontcg_api": "unavailable",
+        "tcgdex": "available"
+      },
+      "source_totals": {
+        "pokemontcg_api": {
+          "printed_total": null,
+          "total": null
+        },
+        "tcgdex": {
+          "official": 0,
+          "total": 52
+        }
+      }
+    },
+    {
+      "key": "mfb",
+      "set_name": "My First Battle",
+      "pokemontcg": null,
+      "tcgdex": "mfb",
+      "manual_aliases": [],
+      "release_date": null,
+      "source_aliases": {
+        "pokemontcg_api": null,
+        "tcgdex": "mfb"
+      },
+      "source_status": {
+        "pokemontcg_api": "unavailable",
+        "tcgdex": "available"
+      },
+      "source_totals": {
+        "pokemontcg_api": {
+          "printed_total": null,
+          "total": null
+        },
+        "tcgdex": {
+          "official": 48,
+          "total": 48
+        }
+      }
+    },
+    {
+      "key": "ex5.5",
+      "set_name": "Poké Card Creator Pack",
+      "pokemontcg": null,
+      "tcgdex": "ex5.5",
+      "manual_aliases": [],
+      "release_date": null,
+      "source_aliases": {
+        "pokemontcg_api": null,
+        "tcgdex": "ex5.5"
+      },
+      "source_status": {
+        "pokemontcg_api": "unavailable",
+        "tcgdex": "available"
+      },
+      "source_totals": {
+        "pokemontcg_api": {
+          "printed_total": null,
+          "total": null
+        },
+        "tcgdex": {
+          "official": 5,
+          "total": 5
+        }
+      }
+    },
+    {
+      "key": "fut2020",
+      "set_name": "Pokémon Futsal 2020",
+      "pokemontcg": null,
+      "tcgdex": "fut2020",
+      "manual_aliases": [],
+      "release_date": null,
+      "source_aliases": {
+        "pokemontcg_api": null,
+        "tcgdex": "fut2020"
+      },
+      "source_status": {
+        "pokemontcg_api": "unavailable",
+        "tcgdex": "available"
+      },
+      "source_totals": {
+        "pokemontcg_api": {
+          "printed_total": null,
+          "total": null
+        },
+        "tcgdex": {
+          "official": 5,
+          "total": 5
+        }
+      }
+    },
+    {
+      "key": "rc",
+      "set_name": "Radiant Collection",
+      "pokemontcg": null,
+      "tcgdex": "rc",
+      "manual_aliases": [],
+      "release_date": null,
+      "source_aliases": {
+        "pokemontcg_api": null,
+        "tcgdex": "rc"
+      },
+      "source_status": {
+        "pokemontcg_api": "unavailable",
+        "tcgdex": "available"
+      },
+      "source_totals": {
+        "pokemontcg_api": {
+          "printed_total": null,
+          "total": null
+        },
+        "tcgdex": {
+          "official": 25,
+          "total": 25
+        }
+      }
+    },
+    {
+      "key": "sp",
+      "set_name": "Sample",
+      "pokemontcg": null,
+      "tcgdex": "sp",
+      "manual_aliases": [],
+      "release_date": null,
+      "source_aliases": {
+        "pokemontcg_api": null,
+        "tcgdex": "sp"
+      },
+      "source_status": {
+        "pokemontcg_api": "unavailable",
+        "tcgdex": "available"
+      },
+      "source_totals": {
+        "pokemontcg_api": {
+          "printed_total": null,
+          "total": null
+        },
+        "tcgdex": {
+          "official": 10,
+          "total": 10
+        }
+      }
+    },
+    {
+      "key": "tk-sm-r",
+      "set_name": "SM trainer Kit (Alolan Raichu)",
+      "pokemontcg": null,
+      "tcgdex": "tk-sm-r",
+      "manual_aliases": [],
+      "release_date": null,
+      "source_aliases": {
+        "pokemontcg_api": null,
+        "tcgdex": "tk-sm-r"
+      },
+      "source_status": {
+        "pokemontcg_api": "unavailable",
+        "tcgdex": "available"
+      },
+      "source_totals": {
+        "pokemontcg_api": {
+          "printed_total": null,
+          "total": null
+        },
+        "tcgdex": {
+          "official": 30,
+          "total": 30
+        }
+      }
+    },
+    {
+      "key": "tk-sm-l",
+      "set_name": "SM trainer Kit (Lycanroc)",
+      "pokemontcg": null,
+      "tcgdex": "tk-sm-l",
+      "manual_aliases": [],
+      "release_date": null,
+      "source_aliases": {
+        "pokemontcg_api": null,
+        "tcgdex": "tk-sm-l"
+      },
+      "source_status": {
+        "pokemontcg_api": "unavailable",
+        "tcgdex": "available"
+      },
+      "source_totals": {
+        "pokemontcg_api": {
+          "printed_total": null,
+          "total": null
+        },
+        "tcgdex": {
+          "official": 30,
+          "total": 30
+        }
+      }
+    },
+    {
+      "key": "exu",
+      "set_name": "Unseen Forces Unown Collection",
+      "pokemontcg": null,
+      "tcgdex": "exu",
+      "manual_aliases": [],
+      "release_date": null,
+      "source_aliases": {
+        "pokemontcg_api": null,
+        "tcgdex": "exu"
+      },
+      "source_status": {
+        "pokemontcg_api": "unavailable",
+        "tcgdex": "available"
+      },
+      "source_totals": {
+        "pokemontcg_api": {
+          "printed_total": null,
+          "total": null
+        },
+        "tcgdex": {
+          "official": 28,
+          "total": 28
+        }
+      }
+    },
+    {
+      "key": "wp",
+      "set_name": "W Promotional",
+      "pokemontcg": null,
+      "tcgdex": "wp",
+      "manual_aliases": [],
+      "release_date": null,
+      "source_aliases": {
+        "pokemontcg_api": null,
+        "tcgdex": "wp"
+      },
+      "source_status": {
+        "pokemontcg_api": "unavailable",
+        "tcgdex": "available"
+      },
+      "source_totals": {
+        "pokemontcg_api": {
+          "printed_total": null,
+          "total": null
+        },
+        "tcgdex": {
+          "official": 7,
+          "total": 7
+        }
+      }
+    },
+    {
+      "key": "tk-xy-b",
+      "set_name": "XY trainer Kit (Bisharp)",
+      "pokemontcg": null,
+      "tcgdex": "tk-xy-b",
+      "manual_aliases": [],
+      "release_date": null,
+      "source_aliases": {
+        "pokemontcg_api": null,
+        "tcgdex": "tk-xy-b"
+      },
+      "source_status": {
+        "pokemontcg_api": "unavailable",
+        "tcgdex": "available"
+      },
+      "source_totals": {
+        "pokemontcg_api": {
+          "printed_total": null,
+          "total": null
+        },
+        "tcgdex": {
+          "official": 30,
+          "total": 30
+        }
+      }
+    },
+    {
+      "key": "tk-xy-latia",
+      "set_name": "XY trainer Kit (Latias)",
+      "pokemontcg": null,
+      "tcgdex": "tk-xy-latia",
+      "manual_aliases": [],
+      "release_date": null,
+      "source_aliases": {
+        "pokemontcg_api": null,
+        "tcgdex": "tk-xy-latia"
+      },
+      "source_status": {
+        "pokemontcg_api": "unavailable",
+        "tcgdex": "available"
+      },
+      "source_totals": {
+        "pokemontcg_api": {
+          "printed_total": null,
+          "total": null
+        },
+        "tcgdex": {
+          "official": 30,
+          "total": 30
+        }
+      }
+    },
+    {
+      "key": "tk-xy-latio",
+      "set_name": "XY trainer Kit (Latios)",
+      "pokemontcg": null,
+      "tcgdex": "tk-xy-latio",
+      "manual_aliases": [],
+      "release_date": null,
+      "source_aliases": {
+        "pokemontcg_api": null,
+        "tcgdex": "tk-xy-latio"
+      },
+      "source_status": {
+        "pokemontcg_api": "unavailable",
+        "tcgdex": "available"
+      },
+      "source_totals": {
+        "pokemontcg_api": {
+          "printed_total": null,
+          "total": null
+        },
+        "tcgdex": {
+          "official": 30,
+          "total": 30
+        }
+      }
+    },
+    {
+      "key": "tk-xy-n",
+      "set_name": "XY trainer Kit (Noivern)",
+      "pokemontcg": null,
+      "tcgdex": "tk-xy-n",
+      "manual_aliases": [],
+      "release_date": null,
+      "source_aliases": {
+        "pokemontcg_api": null,
+        "tcgdex": "tk-xy-n"
+      },
+      "source_status": {
+        "pokemontcg_api": "unavailable",
+        "tcgdex": "available"
+      },
+      "source_totals": {
+        "pokemontcg_api": {
+          "printed_total": null,
+          "total": null
+        },
+        "tcgdex": {
+          "official": 30,
+          "total": 30
+        }
+      }
+    },
+    {
+      "key": "tk-xy-p",
+      "set_name": "XY trainer Kit (Pikachu Libre)",
+      "pokemontcg": null,
+      "tcgdex": "tk-xy-p",
+      "manual_aliases": [],
+      "release_date": null,
+      "source_aliases": {
+        "pokemontcg_api": null,
+        "tcgdex": "tk-xy-p"
+      },
+      "source_status": {
+        "pokemontcg_api": "unavailable",
+        "tcgdex": "available"
+      },
+      "source_totals": {
+        "pokemontcg_api": {
+          "printed_total": null,
+          "total": null
+        },
+        "tcgdex": {
+          "official": 30,
+          "total": 30
+        }
+      }
+    },
+    {
+      "key": "tk-xy-su",
+      "set_name": "XY trainer Kit (Suicune)",
+      "pokemontcg": null,
+      "tcgdex": "tk-xy-su",
+      "manual_aliases": [],
+      "release_date": null,
+      "source_aliases": {
+        "pokemontcg_api": null,
+        "tcgdex": "tk-xy-su"
+      },
+      "source_status": {
+        "pokemontcg_api": "unavailable",
+        "tcgdex": "available"
+      },
+      "source_totals": {
+        "pokemontcg_api": {
+          "printed_total": null,
+          "total": null
+        },
+        "tcgdex": {
+          "official": 30,
+          "total": 30
+        }
+      }
+    },
+    {
+      "key": "tk-xy-sy",
+      "set_name": "XY trainer Kit (Sylveon)",
+      "pokemontcg": null,
+      "tcgdex": "tk-xy-sy",
+      "manual_aliases": [],
+      "release_date": null,
+      "source_aliases": {
+        "pokemontcg_api": null,
+        "tcgdex": "tk-xy-sy"
+      },
+      "source_status": {
+        "pokemontcg_api": "unavailable",
+        "tcgdex": "available"
+      },
+      "source_totals": {
+        "pokemontcg_api": {
+          "printed_total": null,
+          "total": null
+        },
+        "tcgdex": {
+          "official": 30,
+          "total": 30
+        }
+      }
+    },
+    {
+      "key": "tk-xy-w",
+      "set_name": "XY trainer Kit (Wigglytuff)",
+      "pokemontcg": null,
+      "tcgdex": "tk-xy-w",
+      "manual_aliases": [],
+      "release_date": null,
+      "source_aliases": {
+        "pokemontcg_api": null,
+        "tcgdex": "tk-xy-w"
+      },
+      "source_status": {
+        "pokemontcg_api": "unavailable",
+        "tcgdex": "available"
+      },
+      "source_totals": {
+        "pokemontcg_api": {
+          "printed_total": null,
+          "total": null
+        },
+        "tcgdex": {
+          "official": 30,
+          "total": 30
+        }
+      }
+    },
+    {
+      "key": "xya",
+      "set_name": "Yellow A Alternate",
+      "pokemontcg": null,
+      "tcgdex": "xya",
+      "manual_aliases": [],
+      "release_date": null,
+      "source_aliases": {
+        "pokemontcg_api": null,
+        "tcgdex": "xya"
+      },
+      "source_status": {
+        "pokemontcg_api": "unavailable",
+        "tcgdex": "available"
+      },
+      "source_totals": {
+        "pokemontcg_api": {
+          "printed_total": null,
+          "total": null
+        },
+        "tcgdex": {
+          "official": 6,
+          "total": 6
+        }
+      }
+    },
+    {
+      "key": "base1",
+      "set_name": "Base",
+      "pokemontcg": "base1",
+      "tcgdex": "base1",
+      "manual_aliases": [],
+      "release_date": "1999/01/09",
+      "source_aliases": {
+        "pokemontcg_api": "base1",
+        "tcgdex": "base1"
+      },
+      "source_status": {
+        "pokemontcg_api": "available",
+        "tcgdex": "available"
+      },
+      "source_totals": {
+        "pokemontcg_api": {
+          "printed_total": 102,
+          "total": 102
+        },
+        "tcgdex": {
+          "official": 102,
+          "total": 102
+        }
+      }
+    },
+    {
+      "key": "base2",
+      "set_name": "Jungle",
+      "pokemontcg": "base2",
+      "tcgdex": "base2",
+      "manual_aliases": [],
+      "release_date": "1999/06/16",
+      "source_aliases": {
+        "pokemontcg_api": "base2",
+        "tcgdex": "base2"
+      },
+      "source_status": {
+        "pokemontcg_api": "available",
+        "tcgdex": "available"
+      },
+      "source_totals": {
+        "pokemontcg_api": {
+          "printed_total": 64,
+          "total": 64
+        },
+        "tcgdex": {
+          "official": 64,
+          "total": 64
+        }
+      }
+    },
+    {
+      "key": "basep",
+      "set_name": "Wizards Black Star Promos",
+      "pokemontcg": "basep",
+      "tcgdex": "basep",
+      "manual_aliases": [],
+      "release_date": "1999/07/01",
+      "source_aliases": {
+        "pokemontcg_api": "basep",
+        "tcgdex": "basep"
+      },
+      "source_status": {
+        "pokemontcg_api": "available",
+        "tcgdex": "available"
+      },
+      "source_totals": {
+        "pokemontcg_api": {
+          "printed_total": 53,
+          "total": 53
+        },
+        "tcgdex": {
+          "official": 53,
+          "total": 53
+        }
+      }
+    },
+    {
+      "key": "base3",
+      "set_name": "Fossil",
+      "pokemontcg": "base3",
+      "tcgdex": "base3",
+      "manual_aliases": [],
+      "release_date": "1999/10/10",
+      "source_aliases": {
+        "pokemontcg_api": "base3",
+        "tcgdex": "base3"
+      },
+      "source_status": {
+        "pokemontcg_api": "available",
+        "tcgdex": "available"
+      },
+      "source_totals": {
+        "pokemontcg_api": {
+          "printed_total": 62,
+          "total": 62
+        },
+        "tcgdex": {
+          "official": 62,
+          "total": 62
+        }
+      }
+    },
+    {
+      "key": "base4",
+      "set_name": "Base Set 2",
+      "pokemontcg": "base4",
+      "tcgdex": "base4",
+      "manual_aliases": [],
+      "release_date": "2000/02/24",
+      "source_aliases": {
+        "pokemontcg_api": "base4",
+        "tcgdex": "base4"
+      },
+      "source_status": {
+        "pokemontcg_api": "available",
+        "tcgdex": "available"
+      },
+      "source_totals": {
+        "pokemontcg_api": {
+          "printed_total": 130,
+          "total": 130
+        },
+        "tcgdex": {
+          "official": 130,
+          "total": 130
+        }
+      }
+    },
+    {
+      "key": "base5",
+      "set_name": "Team Rocket",
+      "pokemontcg": "base5",
+      "tcgdex": "base5",
+      "manual_aliases": [],
+      "release_date": "2000/04/24",
+      "source_aliases": {
+        "pokemontcg_api": "base5",
+        "tcgdex": "base5"
+      },
+      "source_status": {
+        "pokemontcg_api": "available",
+        "tcgdex": "available"
+      },
+      "source_totals": {
+        "pokemontcg_api": {
+          "printed_total": 82,
+          "total": 83
+        },
+        "tcgdex": {
+          "official": 82,
+          "total": 83
+        }
+      }
+    },
+    {
+      "key": "gym1",
+      "set_name": "Gym Heroes",
+      "pokemontcg": "gym1",
+      "tcgdex": "gym1",
+      "manual_aliases": [],
+      "release_date": "2000/08/14",
+      "source_aliases": {
+        "pokemontcg_api": "gym1",
+        "tcgdex": "gym1"
+      },
+      "source_status": {
+        "pokemontcg_api": "available",
+        "tcgdex": "available"
+      },
+      "source_totals": {
+        "pokemontcg_api": {
+          "printed_total": 132,
+          "total": 132
+        },
+        "tcgdex": {
+          "official": 132,
+          "total": 132
+        }
+      }
+    },
+    {
+      "key": "gym2",
+      "set_name": "Gym Challenge",
+      "pokemontcg": "gym2",
+      "tcgdex": "gym2",
+      "manual_aliases": [],
+      "release_date": "2000/10/16",
+      "source_aliases": {
+        "pokemontcg_api": "gym2",
+        "tcgdex": "gym2"
+      },
+      "source_status": {
+        "pokemontcg_api": "available",
+        "tcgdex": "available"
+      },
+      "source_totals": {
+        "pokemontcg_api": {
+          "printed_total": 132,
+          "total": 132
+        },
+        "tcgdex": {
+          "official": 132,
+          "total": 132
+        }
+      }
+    },
+    {
+      "key": "neo1",
+      "set_name": "Neo Genesis",
+      "pokemontcg": "neo1",
+      "tcgdex": "neo1",
+      "manual_aliases": [],
+      "release_date": "2000/12/16",
+      "source_aliases": {
+        "pokemontcg_api": "neo1",
+        "tcgdex": "neo1"
+      },
+      "source_status": {
+        "pokemontcg_api": "available",
+        "tcgdex": "available"
+      },
+      "source_totals": {
+        "pokemontcg_api": {
+          "printed_total": 111,
+          "total": 111
+        },
+        "tcgdex": {
+          "official": 111,
+          "total": 111
+        }
+      }
+    },
+    {
+      "key": "neo2",
+      "set_name": "Neo Discovery",
+      "pokemontcg": "neo2",
+      "tcgdex": "neo2",
+      "manual_aliases": [],
+      "release_date": "2001/06/01",
+      "source_aliases": {
+        "pokemontcg_api": "neo2",
+        "tcgdex": "neo2"
+      },
+      "source_status": {
+        "pokemontcg_api": "available",
+        "tcgdex": "available"
+      },
+      "source_totals": {
+        "pokemontcg_api": {
+          "printed_total": 75,
+          "total": 75
+        },
+        "tcgdex": {
+          "official": 75,
+          "total": 75
+        }
+      }
+    },
+    {
+      "key": "si1",
+      "set_name": "Southern Islands",
+      "pokemontcg": "si1",
+      "tcgdex": "si1",
+      "manual_aliases": [],
+      "release_date": "2001/07/31",
+      "source_aliases": {
+        "pokemontcg_api": "si1",
+        "tcgdex": "si1"
+      },
+      "source_status": {
+        "pokemontcg_api": "available",
+        "tcgdex": "available"
+      },
+      "source_totals": {
+        "pokemontcg_api": {
+          "printed_total": 18,
+          "total": 18
+        },
+        "tcgdex": {
+          "official": 18,
+          "total": 18
+        }
+      }
+    },
+    {
+      "key": "neo3",
+      "set_name": "Neo Revelation",
+      "pokemontcg": "neo3",
+      "tcgdex": "neo3",
+      "manual_aliases": [],
+      "release_date": "2001/09/21",
+      "source_aliases": {
+        "pokemontcg_api": "neo3",
+        "tcgdex": "neo3"
+      },
+      "source_status": {
+        "pokemontcg_api": "available",
+        "tcgdex": "available"
+      },
+      "source_totals": {
+        "pokemontcg_api": {
+          "printed_total": 64,
+          "total": 66
+        },
+        "tcgdex": {
+          "official": 64,
+          "total": 66
+        }
+      }
+    },
+    {
+      "key": "neo4",
+      "set_name": "Neo Destiny",
+      "pokemontcg": "neo4",
+      "tcgdex": "neo4",
+      "manual_aliases": [],
+      "release_date": "2002/02/28",
+      "source_aliases": {
+        "pokemontcg_api": "neo4",
+        "tcgdex": "neo4"
+      },
+      "source_status": {
+        "pokemontcg_api": "available",
+        "tcgdex": "available"
+      },
+      "source_totals": {
+        "pokemontcg_api": {
+          "printed_total": 105,
+          "total": 113
+        },
+        "tcgdex": {
+          "official": 105,
+          "total": 113
+        }
+      }
+    },
+    {
+      "key": "base6",
+      "set_name": "Legendary Collection",
+      "pokemontcg": "base6",
+      "tcgdex": "lc",
+      "manual_aliases": [],
+      "release_date": "2002/05/24",
+      "source_aliases": {
+        "pokemontcg_api": "base6",
+        "tcgdex": "lc"
+      },
+      "source_status": {
+        "pokemontcg_api": "available",
+        "tcgdex": "available"
+      },
+      "source_totals": {
+        "pokemontcg_api": {
+          "printed_total": 110,
+          "total": 110
+        },
+        "tcgdex": {
+          "official": 110,
+          "total": 110
+        }
+      }
+    },
+    {
+      "key": "ecard1",
+      "set_name": "Expedition Base Set",
+      "pokemontcg": "ecard1",
+      "tcgdex": "ecard1",
+      "manual_aliases": [],
+      "release_date": "2002/09/15",
+      "source_aliases": {
+        "pokemontcg_api": "ecard1",
+        "tcgdex": "ecard1"
+      },
+      "source_status": {
+        "pokemontcg_api": "available",
+        "tcgdex": "available"
+      },
+      "source_totals": {
+        "pokemontcg_api": {
+          "printed_total": 165,
+          "total": 165
+        },
+        "tcgdex": {
+          "official": 165,
+          "total": 165
+        }
+      }
+    },
+    {
+      "key": "bp",
+      "set_name": "Best of Game",
+      "pokemontcg": "bp",
+      "tcgdex": "bog",
+      "manual_aliases": [],
+      "release_date": "2002/12/01",
+      "source_aliases": {
+        "pokemontcg_api": "bp",
+        "tcgdex": "bog"
+      },
+      "source_status": {
+        "pokemontcg_api": "available",
+        "tcgdex": "available"
+      },
+      "source_totals": {
+        "pokemontcg_api": {
+          "printed_total": 9,
+          "total": 9
+        },
+        "tcgdex": {
+          "official": 9,
+          "total": 9
+        }
+      }
+    },
+    {
+      "key": "ecard2",
+      "set_name": "Aquapolis",
+      "pokemontcg": "ecard2",
+      "tcgdex": "ecard2",
+      "manual_aliases": [],
+      "release_date": "2003/01/15",
+      "source_aliases": {
+        "pokemontcg_api": "ecard2",
+        "tcgdex": "ecard2"
+      },
+      "source_status": {
+        "pokemontcg_api": "available",
+        "tcgdex": "available"
+      },
+      "source_totals": {
+        "pokemontcg_api": {
+          "printed_total": 147,
+          "total": 182
+        },
+        "tcgdex": {
+          "official": 147,
+          "total": 185
+        }
+      }
+    },
+    {
+      "key": "ecard3",
+      "set_name": "Skyridge",
+      "pokemontcg": "ecard3",
+      "tcgdex": "ecard3",
+      "manual_aliases": [],
+      "release_date": "2003/05/12",
+      "source_aliases": {
+        "pokemontcg_api": "ecard3",
+        "tcgdex": "ecard3"
+      },
+      "source_status": {
+        "pokemontcg_api": "available",
+        "tcgdex": "available"
+      },
+      "source_totals": {
+        "pokemontcg_api": {
+          "printed_total": 144,
+          "total": 182
+        },
+        "tcgdex": {
+          "official": 144,
+          "total": 182
+        }
+      }
+    },
+    {
+      "key": "ex1",
+      "set_name": "Ruby & Sapphire",
+      "pokemontcg": "ex1",
+      "tcgdex": "ex1",
+      "manual_aliases": [],
+      "release_date": "2003/07/01",
+      "source_aliases": {
+        "pokemontcg_api": "ex1",
+        "tcgdex": "ex1"
+      },
+      "source_status": {
+        "pokemontcg_api": "available",
+        "tcgdex": "available"
+      },
+      "source_totals": {
+        "pokemontcg_api": {
+          "printed_total": 109,
+          "total": 109
+        },
+        "tcgdex": {
+          "official": 109,
+          "total": 109
+        }
+      }
+    },
+    {
+      "key": "ex2",
+      "set_name": "Sandstorm",
+      "pokemontcg": "ex2",
+      "tcgdex": "ex2",
+      "manual_aliases": [],
+      "release_date": "2003/09/18",
+      "source_aliases": {
+        "pokemontcg_api": "ex2",
+        "tcgdex": "ex2"
+      },
+      "source_status": {
+        "pokemontcg_api": "available",
+        "tcgdex": "available"
+      },
+      "source_totals": {
+        "pokemontcg_api": {
+          "printed_total": 100,
+          "total": 100
+        },
+        "tcgdex": {
+          "official": 100,
+          "total": 100
+        }
+      }
+    },
+    {
+      "key": "np",
+      "set_name": "Nintendo Black Star Promos",
+      "pokemontcg": "np",
+      "tcgdex": "np",
+      "manual_aliases": [],
+      "release_date": "2003/10/01",
+      "source_aliases": {
+        "pokemontcg_api": "np",
+        "tcgdex": "np"
+      },
+      "source_status": {
+        "pokemontcg_api": "available",
+        "tcgdex": "available"
+      },
+      "source_totals": {
+        "pokemontcg_api": {
+          "printed_total": 40,
+          "total": 40
+        },
+        "tcgdex": {
+          "official": 40,
+          "total": 40
+        }
+      }
+    },
+    {
+      "key": "ex3",
+      "set_name": "Dragon",
+      "pokemontcg": "ex3",
+      "tcgdex": "ex3",
+      "manual_aliases": [],
+      "release_date": "2003/11/24",
+      "source_aliases": {
+        "pokemontcg_api": "ex3",
+        "tcgdex": "ex3"
+      },
+      "source_status": {
+        "pokemontcg_api": "available",
+        "tcgdex": "available"
+      },
+      "source_totals": {
+        "pokemontcg_api": {
+          "printed_total": 97,
+          "total": 100
+        },
+        "tcgdex": {
+          "official": 97,
+          "total": 100
+        }
+      }
+    },
+    {
+      "key": "ex4",
+      "set_name": "Team Magma vs Team Aqua",
+      "pokemontcg": "ex4",
+      "tcgdex": "ex4",
+      "manual_aliases": [],
+      "release_date": "2004/03/01",
+      "source_aliases": {
+        "pokemontcg_api": "ex4",
+        "tcgdex": "ex4"
+      },
+      "source_status": {
+        "pokemontcg_api": "available",
+        "tcgdex": "available"
+      },
+      "source_totals": {
+        "pokemontcg_api": {
+          "printed_total": 95,
+          "total": 97
+        },
+        "tcgdex": {
+          "official": 95,
+          "total": 97
+        }
+      }
+    },
+    {
+      "key": "tk1a",
+      "set_name": "EX Trainer Kit Latias",
+      "pokemontcg": "tk1a",
+      "tcgdex": "tk-ex-latia",
+      "manual_aliases": [],
+      "release_date": "2004/06/01",
+      "source_aliases": {
+        "pokemontcg_api": "tk1a",
+        "tcgdex": "tk-ex-latia"
+      },
+      "source_status": {
+        "pokemontcg_api": "available",
+        "tcgdex": "available"
+      },
+      "source_totals": {
+        "pokemontcg_api": {
+          "printed_total": 10,
+          "total": 10
+        },
+        "tcgdex": {
+          "official": 10,
+          "total": 10
+        }
+      }
+    },
+    {
+      "key": "tk1b",
+      "set_name": "EX Trainer Kit Latios",
+      "pokemontcg": "tk1b",
+      "tcgdex": "tk-ex-latio",
+      "manual_aliases": [],
+      "release_date": "2004/06/01",
+      "source_aliases": {
+        "pokemontcg_api": "tk1b",
+        "tcgdex": "tk-ex-latio"
+      },
+      "source_status": {
+        "pokemontcg_api": "available",
+        "tcgdex": "available"
+      },
+      "source_totals": {
+        "pokemontcg_api": {
+          "printed_total": 10,
+          "total": 10
+        },
+        "tcgdex": {
+          "official": 10,
+          "total": 10
+        }
+      }
+    },
+    {
+      "key": "ex5",
+      "set_name": "Hidden Legends",
+      "pokemontcg": "ex5",
+      "tcgdex": "ex5",
+      "manual_aliases": [],
+      "release_date": "2004/06/01",
+      "source_aliases": {
+        "pokemontcg_api": "ex5",
+        "tcgdex": "ex5"
+      },
+      "source_status": {
+        "pokemontcg_api": "available",
+        "tcgdex": "available"
+      },
+      "source_totals": {
+        "pokemontcg_api": {
+          "printed_total": 101,
+          "total": 102
+        },
+        "tcgdex": {
+          "official": 101,
+          "total": 102
+        }
+      }
+    },
+    {
+      "key": "ex6",
+      "set_name": "FireRed & LeafGreen",
+      "pokemontcg": "ex6",
+      "tcgdex": "ex6",
+      "manual_aliases": [],
+      "release_date": "2004/09/01",
+      "source_aliases": {
+        "pokemontcg_api": "ex6",
+        "tcgdex": "ex6"
+      },
+      "source_status": {
+        "pokemontcg_api": "available",
+        "tcgdex": "available"
+      },
+      "source_totals": {
+        "pokemontcg_api": {
+          "printed_total": 112,
+          "total": 116
+        },
+        "tcgdex": {
+          "official": 112,
+          "total": 116
+        }
+      }
+    },
+    {
+      "key": "pop1",
+      "set_name": "POP Series 1",
+      "pokemontcg": "pop1",
+      "tcgdex": "pop1",
+      "manual_aliases": [],
+      "release_date": "2004/09/01",
+      "source_aliases": {
+        "pokemontcg_api": "pop1",
+        "tcgdex": "pop1"
+      },
+      "source_status": {
+        "pokemontcg_api": "available",
+        "tcgdex": "available"
+      },
+      "source_totals": {
+        "pokemontcg_api": {
+          "printed_total": 17,
+          "total": 17
+        },
+        "tcgdex": {
+          "official": 17,
+          "total": 17
+        }
+      }
+    },
+    {
+      "key": "ex7",
+      "set_name": "Team Rocket Returns",
+      "pokemontcg": "ex7",
+      "tcgdex": "ex7",
+      "manual_aliases": [],
+      "release_date": "2004/11/01",
+      "source_aliases": {
+        "pokemontcg_api": "ex7",
+        "tcgdex": "ex7"
+      },
+      "source_status": {
+        "pokemontcg_api": "available",
+        "tcgdex": "available"
+      },
+      "source_totals": {
+        "pokemontcg_api": {
+          "printed_total": 109,
+          "total": 111
+        },
+        "tcgdex": {
+          "official": 109,
+          "total": 111
+        }
+      }
+    },
+    {
+      "key": "ex8",
+      "set_name": "Deoxys",
+      "pokemontcg": "ex8",
+      "tcgdex": "ex8",
+      "manual_aliases": [],
+      "release_date": "2005/02/01",
+      "source_aliases": {
+        "pokemontcg_api": "ex8",
+        "tcgdex": "ex8"
+      },
+      "source_status": {
+        "pokemontcg_api": "available",
+        "tcgdex": "available"
+      },
+      "source_totals": {
+        "pokemontcg_api": {
+          "printed_total": 107,
+          "total": 108
+        },
+        "tcgdex": {
+          "official": 107,
+          "total": 108
+        }
+      }
+    },
+    {
+      "key": "ex9",
+      "set_name": "Emerald",
+      "pokemontcg": "ex9",
+      "tcgdex": "ex9",
+      "manual_aliases": [],
+      "release_date": "2005/05/01",
+      "source_aliases": {
+        "pokemontcg_api": "ex9",
+        "tcgdex": "ex9"
+      },
+      "source_status": {
+        "pokemontcg_api": "available",
+        "tcgdex": "available"
+      },
+      "source_totals": {
+        "pokemontcg_api": {
+          "printed_total": 106,
+          "total": 107
+        },
+        "tcgdex": {
+          "official": 106,
+          "total": 107
+        }
+      }
+    },
+    {
+      "key": "pop2",
+      "set_name": "POP Series 2",
+      "pokemontcg": "pop2",
+      "tcgdex": "pop2",
+      "manual_aliases": [],
+      "release_date": "2005/08/01",
+      "source_aliases": {
+        "pokemontcg_api": "pop2",
+        "tcgdex": "pop2"
+      },
+      "source_status": {
+        "pokemontcg_api": "available",
+        "tcgdex": "available"
+      },
+      "source_totals": {
+        "pokemontcg_api": {
+          "printed_total": 17,
+          "total": 17
+        },
+        "tcgdex": {
+          "official": 17,
+          "total": 17
+        }
+      }
+    },
+    {
+      "key": "ex10",
+      "set_name": "Unseen Forces",
+      "pokemontcg": "ex10",
+      "tcgdex": "ex10",
+      "manual_aliases": [],
+      "release_date": "2005/08/01",
+      "source_aliases": {
+        "pokemontcg_api": "ex10",
+        "tcgdex": "ex10"
+      },
+      "source_status": {
+        "pokemontcg_api": "available",
+        "tcgdex": "available"
+      },
+      "source_totals": {
+        "pokemontcg_api": {
+          "printed_total": 115,
+          "total": 145
+        },
+        "tcgdex": {
+          "official": 115,
+          "total": 117
+        }
+      }
+    },
+    {
+      "key": "ex11",
+      "set_name": "Delta Species",
+      "pokemontcg": "ex11",
+      "tcgdex": "ex11",
+      "manual_aliases": [],
+      "release_date": "2005/10/31",
+      "source_aliases": {
+        "pokemontcg_api": "ex11",
+        "tcgdex": "ex11"
+      },
+      "source_status": {
+        "pokemontcg_api": "available",
+        "tcgdex": "available"
+      },
+      "source_totals": {
+        "pokemontcg_api": {
+          "printed_total": 113,
+          "total": 114
+        },
+        "tcgdex": {
+          "official": 113,
+          "total": 114
+        }
+      }
+    },
+    {
+      "key": "ex12",
+      "set_name": "Legend Maker",
+      "pokemontcg": "ex12",
+      "tcgdex": "ex12",
+      "manual_aliases": [],
+      "release_date": "2006/02/01",
+      "source_aliases": {
+        "pokemontcg_api": "ex12",
+        "tcgdex": "ex12"
+      },
+      "source_status": {
+        "pokemontcg_api": "available",
+        "tcgdex": "available"
+      },
+      "source_totals": {
+        "pokemontcg_api": {
+          "printed_total": 92,
+          "total": 93
+        },
+        "tcgdex": {
+          "official": 92,
+          "total": 93
+        }
+      }
+    },
+    {
+      "key": "tk2b",
+      "set_name": "EX Trainer Kit 2 Minun",
+      "pokemontcg": "tk2b",
+      "tcgdex": "tk-ex-m",
+      "manual_aliases": [],
+      "release_date": "2006/03/01",
+      "source_aliases": {
+        "pokemontcg_api": "tk2b",
+        "tcgdex": "tk-ex-m"
+      },
+      "source_status": {
+        "pokemontcg_api": "available",
+        "tcgdex": "available"
+      },
+      "source_totals": {
+        "pokemontcg_api": {
+          "printed_total": 12,
+          "total": 12
+        },
+        "tcgdex": {
+          "official": 12,
+          "total": 12
+        }
+      }
+    },
+    {
+      "key": "tk2a",
+      "set_name": "EX Trainer Kit 2 Plusle",
+      "pokemontcg": "tk2a",
+      "tcgdex": "tk-ex-p",
+      "manual_aliases": [],
+      "release_date": "2006/03/01",
+      "source_aliases": {
+        "pokemontcg_api": "tk2a",
+        "tcgdex": "tk-ex-p"
+      },
+      "source_status": {
+        "pokemontcg_api": "available",
+        "tcgdex": "available"
+      },
+      "source_totals": {
+        "pokemontcg_api": {
+          "printed_total": 12,
+          "total": 12
+        },
+        "tcgdex": {
+          "official": 12,
+          "total": 12
+        }
+      }
+    },
+    {
+      "key": "pop3",
+      "set_name": "POP Series 3",
+      "pokemontcg": "pop3",
+      "tcgdex": "pop3",
+      "manual_aliases": [],
+      "release_date": "2006/04/01",
+      "source_aliases": {
+        "pokemontcg_api": "pop3",
+        "tcgdex": "pop3"
+      },
+      "source_status": {
+        "pokemontcg_api": "available",
+        "tcgdex": "available"
+      },
+      "source_totals": {
+        "pokemontcg_api": {
+          "printed_total": 17,
+          "total": 17
+        },
+        "tcgdex": {
+          "official": 17,
+          "total": 17
+        }
+      }
+    },
+    {
+      "key": "ex13",
+      "set_name": "Holon Phantoms",
+      "pokemontcg": "ex13",
+      "tcgdex": "ex13",
+      "manual_aliases": [],
+      "release_date": "2006/05/01",
+      "source_aliases": {
+        "pokemontcg_api": "ex13",
+        "tcgdex": "ex13"
+      },
+      "source_status": {
+        "pokemontcg_api": "available",
+        "tcgdex": "available"
+      },
+      "source_totals": {
+        "pokemontcg_api": {
+          "printed_total": 110,
+          "total": 111
+        },
+        "tcgdex": {
+          "official": 110,
+          "total": 111
+        }
+      }
+    },
+    {
+      "key": "ex14",
+      "set_name": "Crystal Guardians",
+      "pokemontcg": "ex14",
+      "tcgdex": "ex14",
+      "manual_aliases": [],
+      "release_date": "2006/08/01",
+      "source_aliases": {
+        "pokemontcg_api": "ex14",
+        "tcgdex": "ex14"
+      },
+      "source_status": {
+        "pokemontcg_api": "available",
+        "tcgdex": "available"
+      },
+      "source_totals": {
+        "pokemontcg_api": {
+          "printed_total": 100,
+          "total": 100
+        },
+        "tcgdex": {
+          "official": 100,
+          "total": 100
+        }
+      }
+    },
+    {
+      "key": "pop4",
+      "set_name": "POP Series 4",
+      "pokemontcg": "pop4",
+      "tcgdex": "pop4",
+      "manual_aliases": [],
+      "release_date": "2006/08/01",
+      "source_aliases": {
+        "pokemontcg_api": "pop4",
+        "tcgdex": "pop4"
+      },
+      "source_status": {
+        "pokemontcg_api": "available",
+        "tcgdex": "available"
+      },
+      "source_totals": {
+        "pokemontcg_api": {
+          "printed_total": 17,
+          "total": 17
+        },
+        "tcgdex": {
+          "official": 17,
+          "total": 17
+        }
+      }
+    },
+    {
+      "key": "ex15",
+      "set_name": "Dragon Frontiers",
+      "pokemontcg": "ex15",
+      "tcgdex": "ex15",
+      "manual_aliases": [],
+      "release_date": "2006/11/01",
+      "source_aliases": {
+        "pokemontcg_api": "ex15",
+        "tcgdex": "ex15"
+      },
+      "source_status": {
+        "pokemontcg_api": "available",
+        "tcgdex": "available"
+      },
+      "source_totals": {
+        "pokemontcg_api": {
+          "printed_total": 101,
+          "total": 101
+        },
+        "tcgdex": {
+          "official": 101,
+          "total": 101
+        }
+      }
+    },
+    {
+      "key": "ex16",
+      "set_name": "Power Keepers",
+      "pokemontcg": "ex16",
+      "tcgdex": "ex16",
+      "manual_aliases": [],
+      "release_date": "2007/02/02",
+      "source_aliases": {
+        "pokemontcg_api": "ex16",
+        "tcgdex": "ex16"
+      },
+      "source_status": {
+        "pokemontcg_api": "available",
+        "tcgdex": "available"
+      },
+      "source_totals": {
+        "pokemontcg_api": {
+          "printed_total": 108,
+          "total": 108
+        },
+        "tcgdex": {
+          "official": 108,
+          "total": 108
+        }
+      }
+    },
+    {
+      "key": "pop5",
+      "set_name": "POP Series 5",
+      "pokemontcg": "pop5",
+      "tcgdex": "pop5",
+      "manual_aliases": [],
+      "release_date": "2007/03/01",
+      "source_aliases": {
+        "pokemontcg_api": "pop5",
+        "tcgdex": "pop5"
+      },
+      "source_status": {
+        "pokemontcg_api": "available",
+        "tcgdex": "available"
+      },
+      "source_totals": {
+        "pokemontcg_api": {
+          "printed_total": 17,
+          "total": 17
+        },
+        "tcgdex": {
+          "official": 17,
+          "total": 17
+        }
+      }
+    },
+    {
+      "key": "dp1",
+      "set_name": "Diamond & Pearl",
+      "pokemontcg": "dp1",
+      "tcgdex": "dp1",
+      "manual_aliases": [],
+      "release_date": "2007/05/01",
+      "source_aliases": {
+        "pokemontcg_api": "dp1",
+        "tcgdex": "dp1"
+      },
+      "source_status": {
+        "pokemontcg_api": "available",
+        "tcgdex": "available"
+      },
+      "source_totals": {
+        "pokemontcg_api": {
+          "printed_total": 130,
+          "total": 130
+        },
+        "tcgdex": {
+          "official": 130,
+          "total": 130
+        }
+      }
+    },
+    {
+      "key": "dpp",
+      "set_name": "DP Black Star Promos",
+      "pokemontcg": "dpp",
+      "tcgdex": "dpp",
+      "manual_aliases": [],
+      "release_date": "2007/05/01",
+      "source_aliases": {
+        "pokemontcg_api": "dpp",
+        "tcgdex": "dpp"
+      },
+      "source_status": {
+        "pokemontcg_api": "available",
+        "tcgdex": "available"
+      },
+      "source_totals": {
+        "pokemontcg_api": {
+          "printed_total": 56,
+          "total": 56
+        },
+        "tcgdex": {
+          "official": 56,
+          "total": 56
+        }
+      }
+    },
+    {
+      "key": "dp2",
+      "set_name": "Mysterious Treasures",
+      "pokemontcg": "dp2",
+      "tcgdex": "dp2",
+      "manual_aliases": [],
+      "release_date": "2007/08/01",
+      "source_aliases": {
+        "pokemontcg_api": "dp2",
+        "tcgdex": "dp2"
+      },
+      "source_status": {
+        "pokemontcg_api": "available",
+        "tcgdex": "available"
+      },
+      "source_totals": {
+        "pokemontcg_api": {
+          "printed_total": 123,
+          "total": 124
+        },
+        "tcgdex": {
+          "official": 123,
+          "total": 124
+        }
+      }
+    },
+    {
+      "key": "pop6",
+      "set_name": "POP Series 6",
+      "pokemontcg": "pop6",
+      "tcgdex": "pop6",
+      "manual_aliases": [],
+      "release_date": "2007/09/01",
+      "source_aliases": {
+        "pokemontcg_api": "pop6",
+        "tcgdex": "pop6"
+      },
+      "source_status": {
+        "pokemontcg_api": "available",
+        "tcgdex": "available"
+      },
+      "source_totals": {
+        "pokemontcg_api": {
+          "printed_total": 17,
+          "total": 17
+        },
+        "tcgdex": {
+          "official": 17,
+          "total": 17
+        }
+      }
+    },
+    {
+      "key": "dp3",
+      "set_name": "Secret Wonders",
+      "pokemontcg": "dp3",
+      "tcgdex": "dp3",
+      "manual_aliases": [],
+      "release_date": "2007/11/01",
+      "source_aliases": {
+        "pokemontcg_api": "dp3",
+        "tcgdex": "dp3"
+      },
+      "source_status": {
+        "pokemontcg_api": "available",
+        "tcgdex": "available"
+      },
+      "source_totals": {
+        "pokemontcg_api": {
+          "printed_total": 132,
+          "total": 132
+        },
+        "tcgdex": {
+          "official": 132,
+          "total": 132
+        }
+      }
+    },
+    {
+      "key": "dp4",
+      "set_name": "Great Encounters",
+      "pokemontcg": "dp4",
+      "tcgdex": "dp4",
+      "manual_aliases": [],
+      "release_date": "2008/02/01",
+      "source_aliases": {
+        "pokemontcg_api": "dp4",
+        "tcgdex": "dp4"
+      },
+      "source_status": {
+        "pokemontcg_api": "available",
+        "tcgdex": "available"
+      },
+      "source_totals": {
+        "pokemontcg_api": {
+          "printed_total": 106,
+          "total": 106
+        },
+        "tcgdex": {
+          "official": 106,
+          "total": 106
+        }
+      }
+    },
+    {
+      "key": "pop7",
+      "set_name": "POP Series 7",
+      "pokemontcg": "pop7",
+      "tcgdex": "pop7",
+      "manual_aliases": [],
+      "release_date": "2008/03/01",
+      "source_aliases": {
+        "pokemontcg_api": "pop7",
+        "tcgdex": "pop7"
+      },
+      "source_status": {
+        "pokemontcg_api": "available",
+        "tcgdex": "available"
+      },
+      "source_totals": {
+        "pokemontcg_api": {
+          "printed_total": 17,
+          "total": 17
+        },
+        "tcgdex": {
+          "official": 17,
+          "total": 17
+        }
+      }
+    },
+    {
+      "key": "dp5",
+      "set_name": "Majestic Dawn",
+      "pokemontcg": "dp5",
+      "tcgdex": "dp5",
+      "manual_aliases": [],
+      "release_date": "2008/05/01",
+      "source_aliases": {
+        "pokemontcg_api": "dp5",
+        "tcgdex": "dp5"
+      },
+      "source_status": {
+        "pokemontcg_api": "available",
+        "tcgdex": "available"
+      },
+      "source_totals": {
+        "pokemontcg_api": {
+          "printed_total": 100,
+          "total": 100
+        },
+        "tcgdex": {
+          "official": 100,
+          "total": 100
+        }
+      }
+    },
+    {
+      "key": "dp6",
+      "set_name": "Legends Awakened",
+      "pokemontcg": "dp6",
+      "tcgdex": "dp6",
+      "manual_aliases": [],
+      "release_date": "2008/08/01",
+      "source_aliases": {
+        "pokemontcg_api": "dp6",
+        "tcgdex": "dp6"
+      },
+      "source_status": {
+        "pokemontcg_api": "available",
+        "tcgdex": "available"
+      },
+      "source_totals": {
+        "pokemontcg_api": {
+          "printed_total": 146,
+          "total": 146
+        },
+        "tcgdex": {
+          "official": 146,
+          "total": 146
+        }
+      }
+    },
+    {
+      "key": "pop8",
+      "set_name": "POP Series 8",
+      "pokemontcg": "pop8",
+      "tcgdex": "pop8",
+      "manual_aliases": [],
+      "release_date": "2008/09/01",
+      "source_aliases": {
+        "pokemontcg_api": "pop8",
+        "tcgdex": "pop8"
+      },
+      "source_status": {
+        "pokemontcg_api": "available",
+        "tcgdex": "available"
+      },
+      "source_totals": {
+        "pokemontcg_api": {
+          "printed_total": 17,
+          "total": 17
+        },
+        "tcgdex": {
+          "official": 17,
+          "total": 17
+        }
+      }
+    },
+    {
+      "key": "dp7",
+      "set_name": "Stormfront",
+      "pokemontcg": "dp7",
+      "tcgdex": "dp7",
+      "manual_aliases": [],
+      "release_date": "2008/11/01",
+      "source_aliases": {
+        "pokemontcg_api": "dp7",
+        "tcgdex": "dp7"
+      },
+      "source_status": {
+        "pokemontcg_api": "available",
+        "tcgdex": "available"
+      },
+      "source_totals": {
+        "pokemontcg_api": {
+          "printed_total": 100,
+          "total": 106
+        },
+        "tcgdex": {
+          "official": 100,
+          "total": 106
+        }
+      }
+    },
+    {
+      "key": "pl1",
+      "set_name": "Platinum",
+      "pokemontcg": "pl1",
+      "tcgdex": "pl1",
+      "manual_aliases": [],
+      "release_date": "2009/02/11",
+      "source_aliases": {
+        "pokemontcg_api": "pl1",
+        "tcgdex": "pl1"
+      },
+      "source_status": {
+        "pokemontcg_api": "available",
+        "tcgdex": "available"
+      },
+      "source_totals": {
+        "pokemontcg_api": {
+          "printed_total": 127,
+          "total": 133
+        },
+        "tcgdex": {
+          "official": 127,
+          "total": 133
+        }
+      }
+    },
+    {
+      "key": "pop9",
+      "set_name": "POP Series 9",
+      "pokemontcg": "pop9",
+      "tcgdex": "pop9",
+      "manual_aliases": [],
+      "release_date": "2009/03/01",
+      "source_aliases": {
+        "pokemontcg_api": "pop9",
+        "tcgdex": "pop9"
+      },
+      "source_status": {
+        "pokemontcg_api": "available",
+        "tcgdex": "available"
+      },
+      "source_totals": {
+        "pokemontcg_api": {
+          "printed_total": 17,
+          "total": 17
+        },
+        "tcgdex": {
+          "official": 17,
+          "total": 17
+        }
+      }
+    },
+    {
+      "key": "pl2",
+      "set_name": "Rising Rivals",
+      "pokemontcg": "pl2",
+      "tcgdex": "pl2",
+      "manual_aliases": [],
+      "release_date": "2009/05/16",
+      "source_aliases": {
+        "pokemontcg_api": "pl2",
+        "tcgdex": "pl2"
+      },
+      "source_status": {
+        "pokemontcg_api": "available",
+        "tcgdex": "available"
+      },
+      "source_totals": {
+        "pokemontcg_api": {
+          "printed_total": 111,
+          "total": 120
+        },
+        "tcgdex": {
+          "official": 111,
+          "total": 120
+        }
+      }
+    },
+    {
+      "key": "pl3",
+      "set_name": "Supreme Victors",
+      "pokemontcg": "pl3",
+      "tcgdex": "pl3",
+      "manual_aliases": [],
+      "release_date": "2009/08/19",
+      "source_aliases": {
+        "pokemontcg_api": "pl3",
+        "tcgdex": "pl3"
+      },
+      "source_status": {
+        "pokemontcg_api": "available",
+        "tcgdex": "available"
+      },
+      "source_totals": {
+        "pokemontcg_api": {
+          "printed_total": 147,
+          "total": 153
+        },
+        "tcgdex": {
+          "official": 147,
+          "total": 153
+        }
+      }
+    },
+    {
+      "key": "pl4",
+      "set_name": "Arceus",
+      "pokemontcg": "pl4",
+      "tcgdex": "pl4",
+      "manual_aliases": [],
+      "release_date": "2009/11/04",
+      "source_aliases": {
+        "pokemontcg_api": "pl4",
+        "tcgdex": "pl4"
+      },
+      "source_status": {
+        "pokemontcg_api": "available",
+        "tcgdex": "available"
+      },
+      "source_totals": {
+        "pokemontcg_api": {
+          "printed_total": 99,
+          "total": 111
+        },
+        "tcgdex": {
+          "official": 99,
+          "total": 111
+        }
+      }
+    },
+    {
+      "key": "ru1",
+      "set_name": "Pokémon Rumble",
+      "pokemontcg": "ru1",
+      "tcgdex": "ru1",
+      "manual_aliases": [],
+      "release_date": "2009/12/02",
+      "source_aliases": {
+        "pokemontcg_api": "ru1",
+        "tcgdex": "ru1"
+      },
+      "source_status": {
+        "pokemontcg_api": "available",
+        "tcgdex": "available"
+      },
+      "source_totals": {
+        "pokemontcg_api": {
+          "printed_total": 16,
+          "total": 16
+        },
+        "tcgdex": {
+          "official": 16,
+          "total": 16
+        }
+      }
+    },
+    {
+      "key": "hgss1",
+      "set_name": "HeartGold & SoulSilver",
+      "pokemontcg": "hgss1",
+      "tcgdex": "hgss1",
+      "manual_aliases": [],
+      "release_date": "2010/02/10",
+      "source_aliases": {
+        "pokemontcg_api": "hgss1",
+        "tcgdex": "hgss1"
+      },
+      "source_status": {
+        "pokemontcg_api": "available",
+        "tcgdex": "available"
+      },
+      "source_totals": {
+        "pokemontcg_api": {
+          "printed_total": 123,
+          "total": 124
+        },
+        "tcgdex": {
+          "official": 123,
+          "total": 124
+        }
+      }
+    },
+    {
+      "key": "hsp",
+      "set_name": "HGSS Black Star Promos",
+      "pokemontcg": "hsp",
+      "tcgdex": "hgssp",
+      "manual_aliases": [],
+      "release_date": "2010/02/10",
+      "source_aliases": {
+        "pokemontcg_api": "hsp",
+        "tcgdex": "hgssp"
+      },
+      "source_status": {
+        "pokemontcg_api": "available",
+        "tcgdex": "available"
+      },
+      "source_totals": {
+        "pokemontcg_api": {
+          "printed_total": 25,
+          "total": 25
+        },
+        "tcgdex": {
+          "official": 25,
+          "total": 25
+        }
+      }
+    },
+    {
+      "key": "hgss2",
+      "set_name": "HS—Unleashed",
+      "pokemontcg": "hgss2",
+      "tcgdex": "hgss2",
+      "manual_aliases": [],
+      "release_date": "2010/05/12",
+      "source_aliases": {
+        "pokemontcg_api": "hgss2",
+        "tcgdex": "hgss2"
+      },
+      "source_status": {
+        "pokemontcg_api": "available",
+        "tcgdex": "available"
+      },
+      "source_totals": {
+        "pokemontcg_api": {
+          "printed_total": 95,
+          "total": 96
+        },
+        "tcgdex": {
+          "official": 95,
+          "total": 96
+        }
+      }
+    },
+    {
+      "key": "hgss3",
+      "set_name": "HS—Undaunted",
+      "pokemontcg": "hgss3",
+      "tcgdex": "hgss3",
+      "manual_aliases": [],
+      "release_date": "2010/08/18",
+      "source_aliases": {
+        "pokemontcg_api": "hgss3",
+        "tcgdex": "hgss3"
+      },
+      "source_status": {
+        "pokemontcg_api": "available",
+        "tcgdex": "available"
+      },
+      "source_totals": {
+        "pokemontcg_api": {
+          "printed_total": 90,
+          "total": 91
+        },
+        "tcgdex": {
+          "official": 90,
+          "total": 91
+        }
+      }
+    },
+    {
+      "key": "hgss4",
+      "set_name": "HS—Triumphant",
+      "pokemontcg": "hgss4",
+      "tcgdex": "hgss4",
+      "manual_aliases": [],
+      "release_date": "2010/11/03",
+      "source_aliases": {
+        "pokemontcg_api": "hgss4",
+        "tcgdex": "hgss4"
+      },
+      "source_status": {
+        "pokemontcg_api": "available",
+        "tcgdex": "available"
+      },
+      "source_totals": {
+        "pokemontcg_api": {
+          "printed_total": 102,
+          "total": 103
+        },
+        "tcgdex": {
+          "official": 102,
+          "total": 103
+        }
+      }
+    },
+    {
+      "key": "col1",
+      "set_name": "Call of Legends",
+      "pokemontcg": "col1",
+      "tcgdex": "col1",
+      "manual_aliases": [],
+      "release_date": "2011/02/09",
+      "source_aliases": {
+        "pokemontcg_api": "col1",
+        "tcgdex": "col1"
+      },
+      "source_status": {
+        "pokemontcg_api": "available",
+        "tcgdex": "available"
+      },
+      "source_totals": {
+        "pokemontcg_api": {
+          "printed_total": 95,
+          "total": 106
+        },
+        "tcgdex": {
+          "official": 95,
+          "total": 106
+        }
+      }
+    },
+    {
+      "key": "bwp",
+      "set_name": "BW Black Star Promos",
+      "pokemontcg": "bwp",
+      "tcgdex": "bwp",
+      "manual_aliases": [],
+      "release_date": "2011/03/01",
+      "source_aliases": {
+        "pokemontcg_api": "bwp",
+        "tcgdex": "bwp"
+      },
+      "source_status": {
+        "pokemontcg_api": "available",
+        "tcgdex": "available"
+      },
+      "source_totals": {
+        "pokemontcg_api": {
+          "printed_total": 101,
+          "total": 101
+        },
+        "tcgdex": {
+          "official": 101,
+          "total": 101
+        }
+      }
+    },
+    {
+      "key": "bw1",
+      "set_name": "Black & White",
+      "pokemontcg": "bw1",
+      "tcgdex": "bw1",
+      "manual_aliases": [],
+      "release_date": "2011/04/25",
+      "source_aliases": {
+        "pokemontcg_api": "bw1",
+        "tcgdex": "bw1"
+      },
+      "source_status": {
+        "pokemontcg_api": "available",
+        "tcgdex": "available"
+      },
+      "source_totals": {
+        "pokemontcg_api": {
+          "printed_total": 114,
+          "total": 115
+        },
+        "tcgdex": {
+          "official": 114,
+          "total": 115
+        }
+      }
+    },
+    {
+      "key": "mcd11",
+      "set_name": "McDonald's Collection 2011",
+      "pokemontcg": "mcd11",
+      "tcgdex": "2011bw",
+      "manual_aliases": [],
+      "release_date": "2011/06/17",
+      "source_aliases": {
+        "pokemontcg_api": "mcd11",
+        "tcgdex": "2011bw"
+      },
+      "source_status": {
+        "pokemontcg_api": "available",
+        "tcgdex": "available"
+      },
+      "source_totals": {
+        "pokemontcg_api": {
+          "printed_total": 12,
+          "total": 12
+        },
+        "tcgdex": {
+          "official": 12,
+          "total": 12
+        }
+      }
+    },
+    {
+      "key": "bw2",
+      "set_name": "Emerging Powers",
+      "pokemontcg": "bw2",
+      "tcgdex": "bw2",
+      "manual_aliases": [],
+      "release_date": "2011/08/31",
+      "source_aliases": {
+        "pokemontcg_api": "bw2",
+        "tcgdex": "bw2"
+      },
+      "source_status": {
+        "pokemontcg_api": "available",
+        "tcgdex": "available"
+      },
+      "source_totals": {
+        "pokemontcg_api": {
+          "printed_total": 98,
+          "total": 98
+        },
+        "tcgdex": {
+          "official": 98,
+          "total": 98
+        }
+      }
+    },
+    {
+      "key": "bw3",
+      "set_name": "Noble Victories",
+      "pokemontcg": "bw3",
+      "tcgdex": "bw3",
+      "manual_aliases": [],
+      "release_date": "2011/11/16",
+      "source_aliases": {
+        "pokemontcg_api": "bw3",
+        "tcgdex": "bw3"
+      },
+      "source_status": {
+        "pokemontcg_api": "available",
+        "tcgdex": "available"
+      },
+      "source_totals": {
+        "pokemontcg_api": {
+          "printed_total": 101,
+          "total": 102
+        },
+        "tcgdex": {
+          "official": 101,
+          "total": 102
+        }
+      }
+    },
+    {
+      "key": "bw4",
+      "set_name": "Next Destinies",
+      "pokemontcg": "bw4",
+      "tcgdex": "bw4",
+      "manual_aliases": [],
+      "release_date": "2012/02/08",
+      "source_aliases": {
+        "pokemontcg_api": "bw4",
+        "tcgdex": "bw4"
+      },
+      "source_status": {
+        "pokemontcg_api": "available",
+        "tcgdex": "available"
+      },
+      "source_totals": {
+        "pokemontcg_api": {
+          "printed_total": 99,
+          "total": 103
+        },
+        "tcgdex": {
+          "official": 99,
+          "total": 103
+        }
+      }
+    },
+    {
+      "key": "bw5",
+      "set_name": "Dark Explorers",
+      "pokemontcg": "bw5",
+      "tcgdex": "bw5",
+      "manual_aliases": [],
+      "release_date": "2012/05/09",
+      "source_aliases": {
+        "pokemontcg_api": "bw5",
+        "tcgdex": "bw5"
+      },
+      "source_status": {
+        "pokemontcg_api": "available",
+        "tcgdex": "available"
+      },
+      "source_totals": {
+        "pokemontcg_api": {
+          "printed_total": 108,
+          "total": 111
+        },
+        "tcgdex": {
+          "official": 108,
+          "total": 111
+        }
+      }
+    },
+    {
+      "key": "mcd12",
+      "set_name": "McDonald's Collection 2012",
+      "pokemontcg": "mcd12",
+      "tcgdex": "2012bw",
+      "manual_aliases": [],
+      "release_date": "2012/06/15",
+      "source_aliases": {
+        "pokemontcg_api": "mcd12",
+        "tcgdex": "2012bw"
+      },
+      "source_status": {
+        "pokemontcg_api": "available",
+        "tcgdex": "available"
+      },
+      "source_totals": {
+        "pokemontcg_api": {
+          "printed_total": 12,
+          "total": 12
+        },
+        "tcgdex": {
+          "official": 12,
+          "total": 12
+        }
+      }
+    },
+    {
+      "key": "bw6",
+      "set_name": "Dragons Exalted",
+      "pokemontcg": "bw6",
+      "tcgdex": "bw6",
+      "manual_aliases": [],
+      "release_date": "2012/08/15",
+      "source_aliases": {
+        "pokemontcg_api": "bw6",
+        "tcgdex": "bw6"
+      },
+      "source_status": {
+        "pokemontcg_api": "available",
+        "tcgdex": "available"
+      },
+      "source_totals": {
+        "pokemontcg_api": {
+          "printed_total": 124,
+          "total": 128
+        },
+        "tcgdex": {
+          "official": 124,
+          "total": 128
+        }
+      }
+    },
+    {
+      "key": "dv1",
+      "set_name": "Dragon Vault",
+      "pokemontcg": "dv1",
+      "tcgdex": "dv1",
+      "manual_aliases": [],
+      "release_date": "2012/10/05",
+      "source_aliases": {
+        "pokemontcg_api": "dv1",
+        "tcgdex": "dv1"
+      },
+      "source_status": {
+        "pokemontcg_api": "available",
+        "tcgdex": "available"
+      },
+      "source_totals": {
+        "pokemontcg_api": {
+          "printed_total": 20,
+          "total": 21
+        },
+        "tcgdex": {
+          "official": 20,
+          "total": 21
+        }
+      }
+    },
+    {
+      "key": "bw7",
+      "set_name": "Boundaries Crossed",
+      "pokemontcg": "bw7",
+      "tcgdex": "bw7",
+      "manual_aliases": [],
+      "release_date": "2012/11/07",
+      "source_aliases": {
+        "pokemontcg_api": "bw7",
+        "tcgdex": "bw7"
+      },
+      "source_status": {
+        "pokemontcg_api": "available",
+        "tcgdex": "available"
+      },
+      "source_totals": {
+        "pokemontcg_api": {
+          "printed_total": 149,
+          "total": 153
+        },
+        "tcgdex": {
+          "official": 149,
+          "total": 153
+        }
+      }
+    },
+    {
+      "key": "bw8",
+      "set_name": "Plasma Storm",
+      "pokemontcg": "bw8",
+      "tcgdex": "bw8",
+      "manual_aliases": [],
+      "release_date": "2013/02/06",
+      "source_aliases": {
+        "pokemontcg_api": "bw8",
+        "tcgdex": "bw8"
+      },
+      "source_status": {
+        "pokemontcg_api": "available",
+        "tcgdex": "available"
+      },
+      "source_totals": {
+        "pokemontcg_api": {
+          "printed_total": 135,
+          "total": 138
+        },
+        "tcgdex": {
+          "official": 135,
+          "total": 138
+        }
+      }
+    },
+    {
+      "key": "bw9",
+      "set_name": "Plasma Freeze",
+      "pokemontcg": "bw9",
+      "tcgdex": "bw9",
+      "manual_aliases": [],
+      "release_date": "2013/05/08",
+      "source_aliases": {
+        "pokemontcg_api": "bw9",
+        "tcgdex": "bw9"
+      },
+      "source_status": {
+        "pokemontcg_api": "available",
+        "tcgdex": "available"
+      },
+      "source_totals": {
+        "pokemontcg_api": {
+          "printed_total": 116,
+          "total": 122
+        },
+        "tcgdex": {
+          "official": 116,
+          "total": 122
+        }
+      }
+    },
+    {
+      "key": "bw10",
+      "set_name": "Plasma Blast",
+      "pokemontcg": "bw10",
+      "tcgdex": "bw10",
+      "manual_aliases": [],
+      "release_date": "2013/08/14",
+      "source_aliases": {
+        "pokemontcg_api": "bw10",
+        "tcgdex": "bw10"
+      },
+      "source_status": {
+        "pokemontcg_api": "available",
+        "tcgdex": "available"
+      },
+      "source_totals": {
+        "pokemontcg_api": {
+          "printed_total": 101,
+          "total": 105
+        },
+        "tcgdex": {
+          "official": 101,
+          "total": 105
+        }
+      }
+    },
+    {
+      "key": "xyp",
+      "set_name": "XY Black Star Promos",
+      "pokemontcg": "xyp",
+      "tcgdex": "xyp",
+      "manual_aliases": [],
+      "release_date": "2013/10/12",
+      "source_aliases": {
+        "pokemontcg_api": "xyp",
+        "tcgdex": "xyp"
+      },
+      "source_status": {
+        "pokemontcg_api": "available",
+        "tcgdex": "available"
+      },
+      "source_totals": {
+        "pokemontcg_api": {
+          "printed_total": 211,
+          "total": 216
+        },
+        "tcgdex": {
+          "official": 211,
+          "total": 216
+        }
+      }
+    },
+    {
+      "key": "bw11",
+      "set_name": "Legendary Treasures",
+      "pokemontcg": "bw11",
+      "tcgdex": "bw11",
+      "manual_aliases": [],
+      "release_date": "2013/11/06",
+      "source_aliases": {
+        "pokemontcg_api": "bw11",
+        "tcgdex": "bw11"
+      },
+      "source_status": {
+        "pokemontcg_api": "available",
+        "tcgdex": "available"
+      },
+      "source_totals": {
+        "pokemontcg_api": {
+          "printed_total": 113,
+          "total": 140
+        },
+        "tcgdex": {
+          "official": 113,
+          "total": 140
+        }
+      }
+    },
+    {
+      "key": "xy0",
+      "set_name": "Kalos Starter Set",
+      "pokemontcg": "xy0",
+      "tcgdex": "xy0",
+      "manual_aliases": [],
+      "release_date": "2013/11/08",
+      "source_aliases": {
+        "pokemontcg_api": "xy0",
+        "tcgdex": "xy0"
+      },
+      "source_status": {
+        "pokemontcg_api": "available",
+        "tcgdex": "available"
+      },
+      "source_totals": {
+        "pokemontcg_api": {
+          "printed_total": 39,
+          "total": 39
+        },
+        "tcgdex": {
+          "official": 39,
+          "total": 39
+        }
+      }
+    },
+    {
+      "key": "xy1",
+      "set_name": "XY",
+      "pokemontcg": "xy1",
+      "tcgdex": "xy1",
+      "manual_aliases": [],
+      "release_date": "2014/02/05",
+      "source_aliases": {
+        "pokemontcg_api": "xy1",
+        "tcgdex": "xy1"
+      },
+      "source_status": {
+        "pokemontcg_api": "available",
+        "tcgdex": "available"
+      },
+      "source_totals": {
+        "pokemontcg_api": {
+          "printed_total": 146,
+          "total": 146
+        },
+        "tcgdex": {
+          "official": 146,
+          "total": 146
+        }
+      }
+    },
+    {
+      "key": "xy2",
+      "set_name": "Flashfire",
+      "pokemontcg": "xy2",
+      "tcgdex": "xy2",
+      "manual_aliases": [],
+      "release_date": "2014/05/07",
+      "source_aliases": {
+        "pokemontcg_api": "xy2",
+        "tcgdex": "xy2"
+      },
+      "source_status": {
+        "pokemontcg_api": "available",
+        "tcgdex": "available"
+      },
+      "source_totals": {
+        "pokemontcg_api": {
+          "printed_total": 106,
+          "total": 110
+        },
+        "tcgdex": {
+          "official": 106,
+          "total": 110
+        }
+      }
+    },
+    {
+      "key": "mcd14",
+      "set_name": "McDonald's Collection 2014",
+      "pokemontcg": "mcd14",
+      "tcgdex": "2014xy",
+      "manual_aliases": [],
+      "release_date": "2014/05/23",
+      "source_aliases": {
+        "pokemontcg_api": "mcd14",
+        "tcgdex": "2014xy"
+      },
+      "source_status": {
+        "pokemontcg_api": "available",
+        "tcgdex": "available"
+      },
+      "source_totals": {
+        "pokemontcg_api": {
+          "printed_total": 12,
+          "total": 12
+        },
+        "tcgdex": {
+          "official": 12,
+          "total": 12
+        }
+      }
+    },
+    {
+      "key": "xy3",
+      "set_name": "Furious Fists",
+      "pokemontcg": "xy3",
+      "tcgdex": "xy3",
+      "manual_aliases": [],
+      "release_date": "2014/08/13",
+      "source_aliases": {
+        "pokemontcg_api": "xy3",
+        "tcgdex": "xy3"
+      },
+      "source_status": {
+        "pokemontcg_api": "available",
+        "tcgdex": "available"
+      },
+      "source_totals": {
+        "pokemontcg_api": {
+          "printed_total": 111,
+          "total": 114
+        },
+        "tcgdex": {
+          "official": 111,
+          "total": 114
+        }
+      }
+    },
+    {
+      "key": "xy4",
+      "set_name": "Phantom Forces",
+      "pokemontcg": "xy4",
+      "tcgdex": "xy4",
+      "manual_aliases": [],
+      "release_date": "2014/11/05",
+      "source_aliases": {
+        "pokemontcg_api": "xy4",
+        "tcgdex": "xy4"
+      },
+      "source_status": {
+        "pokemontcg_api": "available",
+        "tcgdex": "available"
+      },
+      "source_totals": {
+        "pokemontcg_api": {
+          "printed_total": 119,
+          "total": 124
+        },
+        "tcgdex": {
+          "official": 119,
+          "total": 124
+        }
+      }
+    },
+    {
+      "key": "xy5",
+      "set_name": "Primal Clash",
+      "pokemontcg": "xy5",
+      "tcgdex": "xy5",
+      "manual_aliases": [],
+      "release_date": "2015/02/04",
+      "source_aliases": {
+        "pokemontcg_api": "xy5",
+        "tcgdex": "xy5"
+      },
+      "source_status": {
+        "pokemontcg_api": "available",
+        "tcgdex": "available"
+      },
+      "source_totals": {
+        "pokemontcg_api": {
+          "printed_total": 160,
+          "total": 164
+        },
+        "tcgdex": {
+          "official": 160,
+          "total": 164
+        }
+      }
+    },
+    {
+      "key": "dc1",
+      "set_name": "Double Crisis",
+      "pokemontcg": "dc1",
+      "tcgdex": "dc1",
+      "manual_aliases": [],
+      "release_date": "2015/03/25",
+      "source_aliases": {
+        "pokemontcg_api": "dc1",
+        "tcgdex": "dc1"
+      },
+      "source_status": {
+        "pokemontcg_api": "available",
+        "tcgdex": "available"
+      },
+      "source_totals": {
+        "pokemontcg_api": {
+          "printed_total": 34,
+          "total": 34
+        },
+        "tcgdex": {
+          "official": 34,
+          "total": 34
+        }
+      }
+    },
+    {
+      "key": "xy6",
+      "set_name": "Roaring Skies",
+      "pokemontcg": "xy6",
+      "tcgdex": "xy6",
+      "manual_aliases": [],
+      "release_date": "2015/05/06",
+      "source_aliases": {
+        "pokemontcg_api": "xy6",
+        "tcgdex": "xy6"
+      },
+      "source_status": {
+        "pokemontcg_api": "available",
+        "tcgdex": "available"
+      },
+      "source_totals": {
+        "pokemontcg_api": {
+          "printed_total": 108,
+          "total": 112
+        },
+        "tcgdex": {
+          "official": 108,
+          "total": 112
+        }
+      }
+    },
+    {
+      "key": "xy7",
+      "set_name": "Ancient Origins",
+      "pokemontcg": "xy7",
+      "tcgdex": "xy7",
+      "manual_aliases": [],
+      "release_date": "2015/08/12",
+      "source_aliases": {
+        "pokemontcg_api": "xy7",
+        "tcgdex": "xy7"
+      },
+      "source_status": {
+        "pokemontcg_api": "available",
+        "tcgdex": "available"
+      },
+      "source_totals": {
+        "pokemontcg_api": {
+          "printed_total": 98,
+          "total": 100
+        },
+        "tcgdex": {
+          "official": 98,
+          "total": 101
+        }
+      }
+    },
+    {
+      "key": "xy8",
+      "set_name": "BREAKthrough",
+      "pokemontcg": "xy8",
+      "tcgdex": "xy8",
+      "manual_aliases": [],
+      "release_date": "2015/11/04",
+      "source_aliases": {
+        "pokemontcg_api": "xy8",
+        "tcgdex": "xy8"
+      },
+      "source_status": {
+        "pokemontcg_api": "available",
+        "tcgdex": "available"
+      },
+      "source_totals": {
+        "pokemontcg_api": {
+          "printed_total": 162,
+          "total": 165
+        },
+        "tcgdex": {
+          "official": 162,
+          "total": 165
+        }
+      }
+    },
+    {
+      "key": "mcd15",
+      "set_name": "McDonald's Collection 2015",
+      "pokemontcg": "mcd15",
+      "tcgdex": "2015xy",
+      "manual_aliases": [],
+      "release_date": "2015/11/27",
+      "source_aliases": {
+        "pokemontcg_api": "mcd15",
+        "tcgdex": "2015xy"
+      },
+      "source_status": {
+        "pokemontcg_api": "available",
+        "tcgdex": "available"
+      },
+      "source_totals": {
+        "pokemontcg_api": {
+          "printed_total": 12,
+          "total": 12
+        },
+        "tcgdex": {
+          "official": 12,
+          "total": 12
+        }
+      }
+    },
+    {
+      "key": "xy9",
+      "set_name": "BREAKpoint",
+      "pokemontcg": "xy9",
+      "tcgdex": "xy9",
+      "manual_aliases": [],
+      "release_date": "2016/02/03",
+      "source_aliases": {
+        "pokemontcg_api": "xy9",
+        "tcgdex": "xy9"
+      },
+      "source_status": {
+        "pokemontcg_api": "available",
+        "tcgdex": "available"
+      },
+      "source_totals": {
+        "pokemontcg_api": {
+          "printed_total": 122,
+          "total": 126
+        },
+        "tcgdex": {
+          "official": 122,
+          "total": 126
+        }
+      }
+    },
+    {
+      "key": "xy10",
+      "set_name": "Fates Collide",
+      "pokemontcg": "xy10",
+      "tcgdex": "xy10",
+      "manual_aliases": [],
+      "release_date": "2016/05/02",
+      "source_aliases": {
+        "pokemontcg_api": "xy10",
+        "tcgdex": "xy10"
+      },
+      "source_status": {
+        "pokemontcg_api": "available",
+        "tcgdex": "available"
+      },
+      "source_totals": {
+        "pokemontcg_api": {
+          "printed_total": 124,
+          "total": 129
+        },
+        "tcgdex": {
+          "official": 124,
+          "total": 129
+        }
+      }
+    },
+    {
+      "key": "xy11",
+      "set_name": "Steam Siege",
+      "pokemontcg": "xy11",
+      "tcgdex": "xy11",
+      "manual_aliases": [],
+      "release_date": "2016/08/03",
+      "source_aliases": {
+        "pokemontcg_api": "xy11",
+        "tcgdex": "xy11"
+      },
+      "source_status": {
+        "pokemontcg_api": "available",
+        "tcgdex": "available"
+      },
+      "source_totals": {
+        "pokemontcg_api": {
+          "printed_total": 114,
+          "total": 116
+        },
+        "tcgdex": {
+          "official": 114,
+          "total": 116
+        }
+      }
+    },
+    {
+      "key": "mcd16",
+      "set_name": "McDonald's Collection 2016",
+      "pokemontcg": "mcd16",
+      "tcgdex": "2016xy",
+      "manual_aliases": [],
+      "release_date": "2016/08/19",
+      "source_aliases": {
+        "pokemontcg_api": "mcd16",
+        "tcgdex": "2016xy"
+      },
+      "source_status": {
+        "pokemontcg_api": "available",
+        "tcgdex": "available"
+      },
+      "source_totals": {
+        "pokemontcg_api": {
+          "printed_total": 12,
+          "total": 12
+        },
+        "tcgdex": {
+          "official": 12,
+          "total": 12
+        }
+      }
+    },
+    {
+      "key": "xy12",
+      "set_name": "Evolutions",
+      "pokemontcg": "xy12",
+      "tcgdex": "xy12",
+      "manual_aliases": [],
+      "release_date": "2016/11/02",
+      "source_aliases": {
+        "pokemontcg_api": "xy12",
+        "tcgdex": "xy12"
+      },
+      "source_status": {
+        "pokemontcg_api": "available",
+        "tcgdex": "available"
+      },
+      "source_totals": {
+        "pokemontcg_api": {
+          "printed_total": 108,
+          "total": 113
+        },
+        "tcgdex": {
+          "official": 108,
+          "total": 113
+        }
+      }
+    },
+    {
+      "key": "smp",
+      "set_name": "SM Black Star Promos",
+      "pokemontcg": "smp",
+      "tcgdex": "smp",
+      "manual_aliases": [],
+      "release_date": "2017/02/03",
+      "source_aliases": {
+        "pokemontcg_api": "smp",
+        "tcgdex": "smp"
+      },
+      "source_status": {
+        "pokemontcg_api": "available",
+        "tcgdex": "available"
+      },
+      "source_totals": {
+        "pokemontcg_api": {
+          "printed_total": 248,
+          "total": 250
+        },
+        "tcgdex": {
+          "official": 248,
+          "total": 248
+        }
+      }
+    },
+    {
+      "key": "sm1",
+      "set_name": "Sun & Moon",
+      "pokemontcg": "sm1",
+      "tcgdex": "sm1",
+      "manual_aliases": [],
+      "release_date": "2017/02/03",
+      "source_aliases": {
+        "pokemontcg_api": "sm1",
+        "tcgdex": "sm1"
+      },
+      "source_status": {
+        "pokemontcg_api": "available",
+        "tcgdex": "available"
+      },
+      "source_totals": {
+        "pokemontcg_api": {
+          "printed_total": 149,
+          "total": 173
+        },
+        "tcgdex": {
+          "official": 149,
+          "total": 172
+        }
+      }
+    },
+    {
+      "key": "sm2",
+      "set_name": "Guardians Rising",
+      "pokemontcg": "sm2",
+      "tcgdex": "sm2",
+      "manual_aliases": [],
+      "release_date": "2017/05/05",
+      "source_aliases": {
+        "pokemontcg_api": "sm2",
+        "tcgdex": "sm2"
+      },
+      "source_status": {
+        "pokemontcg_api": "available",
+        "tcgdex": "available"
+      },
+      "source_totals": {
+        "pokemontcg_api": {
+          "printed_total": 145,
+          "total": 180
+        },
+        "tcgdex": {
+          "official": 145,
+          "total": 169
+        }
+      }
+    },
+    {
+      "key": "sm3",
+      "set_name": "Burning Shadows",
+      "pokemontcg": "sm3",
+      "tcgdex": "sm3",
+      "manual_aliases": [],
+      "release_date": "2017/08/05",
+      "source_aliases": {
+        "pokemontcg_api": "sm3",
+        "tcgdex": "sm3"
+      },
+      "source_status": {
+        "pokemontcg_api": "available",
+        "tcgdex": "available"
+      },
+      "source_totals": {
+        "pokemontcg_api": {
+          "printed_total": 147,
+          "total": 177
+        },
+        "tcgdex": {
+          "official": 147,
+          "total": 169
+        }
+      }
+    },
+    {
+      "key": "sm35",
+      "set_name": "Shining Legends",
+      "pokemontcg": "sm35",
+      "tcgdex": "sm3.5",
+      "manual_aliases": [],
+      "release_date": "2017/10/06",
+      "source_aliases": {
+        "pokemontcg_api": "sm35",
+        "tcgdex": "sm3.5"
+      },
+      "source_status": {
+        "pokemontcg_api": "available",
+        "tcgdex": "available"
+      },
+      "source_totals": {
+        "pokemontcg_api": {
+          "printed_total": 73,
+          "total": 81
+        },
+        "tcgdex": {
+          "official": 73,
+          "total": 78
+        }
+      }
+    },
+    {
+      "key": "sm4",
+      "set_name": "Crimson Invasion",
+      "pokemontcg": "sm4",
+      "tcgdex": "sm4",
+      "manual_aliases": [],
+      "release_date": "2017/11/03",
+      "source_aliases": {
+        "pokemontcg_api": "sm4",
+        "tcgdex": "sm4"
+      },
+      "source_status": {
+        "pokemontcg_api": "available",
+        "tcgdex": "available"
+      },
+      "source_totals": {
+        "pokemontcg_api": {
+          "printed_total": 111,
+          "total": 126
+        },
+        "tcgdex": {
+          "official": 111,
+          "total": 125
+        }
+      }
+    },
+    {
+      "key": "mcd17",
+      "set_name": "McDonald's Collection 2017",
+      "pokemontcg": "mcd17",
+      "tcgdex": "2017sm",
+      "manual_aliases": [],
+      "release_date": "2017/11/07",
+      "source_aliases": {
+        "pokemontcg_api": "mcd17",
+        "tcgdex": "2017sm"
+      },
+      "source_status": {
+        "pokemontcg_api": "available",
+        "tcgdex": "available"
+      },
+      "source_totals": {
+        "pokemontcg_api": {
+          "printed_total": 12,
+          "total": 12
+        },
+        "tcgdex": {
+          "official": 12,
+          "total": 12
+        }
+      }
+    },
+    {
+      "key": "sm5",
+      "set_name": "Ultra Prism",
+      "pokemontcg": "sm5",
+      "tcgdex": "sm5",
+      "manual_aliases": [],
+      "release_date": "2018/02/02",
+      "source_aliases": {
+        "pokemontcg_api": "sm5",
+        "tcgdex": "sm5"
+      },
+      "source_status": {
+        "pokemontcg_api": "available",
+        "tcgdex": "available"
+      },
+      "source_totals": {
+        "pokemontcg_api": {
+          "printed_total": 156,
+          "total": 178
+        },
+        "tcgdex": {
+          "official": 156,
+          "total": 173
+        }
+      }
+    },
+    {
+      "key": "sm6",
+      "set_name": "Forbidden Light",
+      "pokemontcg": "sm6",
+      "tcgdex": "sm6",
+      "manual_aliases": [],
+      "release_date": "2018/05/04",
+      "source_aliases": {
+        "pokemontcg_api": "sm6",
+        "tcgdex": "sm6"
+      },
+      "source_status": {
+        "pokemontcg_api": "available",
+        "tcgdex": "available"
+      },
+      "source_totals": {
+        "pokemontcg_api": {
+          "printed_total": 131,
+          "total": 150
+        },
+        "tcgdex": {
+          "official": 131,
+          "total": 146
+        }
+      }
+    },
+    {
+      "key": "sm7",
+      "set_name": "Celestial Storm",
+      "pokemontcg": "sm7",
+      "tcgdex": "sm7",
+      "manual_aliases": [],
+      "release_date": "2018/08/03",
+      "source_aliases": {
+        "pokemontcg_api": "sm7",
+        "tcgdex": "sm7"
+      },
+      "source_status": {
+        "pokemontcg_api": "available",
+        "tcgdex": "available"
+      },
+      "source_totals": {
+        "pokemontcg_api": {
+          "printed_total": 168,
+          "total": 187
+        },
+        "tcgdex": {
+          "official": 168,
+          "total": 183
+        }
+      }
+    },
+    {
+      "key": "sm75",
+      "set_name": "Dragon Majesty",
+      "pokemontcg": "sm75",
+      "tcgdex": "sm7.5",
+      "manual_aliases": [],
+      "release_date": "2018/09/07",
+      "source_aliases": {
+        "pokemontcg_api": "sm75",
+        "tcgdex": "sm7.5"
+      },
+      "source_status": {
+        "pokemontcg_api": "available",
+        "tcgdex": "available"
+      },
+      "source_totals": {
+        "pokemontcg_api": {
+          "printed_total": 70,
+          "total": 80
+        },
+        "tcgdex": {
+          "official": 70,
+          "total": 78
+        }
+      }
+    },
+    {
+      "key": "mcd18",
+      "set_name": "McDonald's Collection 2018",
+      "pokemontcg": "mcd18",
+      "tcgdex": "2018sm",
+      "manual_aliases": [],
+      "release_date": "2018/10/16",
+      "source_aliases": {
+        "pokemontcg_api": "mcd18",
+        "tcgdex": "2018sm"
+      },
+      "source_status": {
+        "pokemontcg_api": "available",
+        "tcgdex": "available"
+      },
+      "source_totals": {
+        "pokemontcg_api": {
+          "printed_total": 12,
+          "total": 12
+        },
+        "tcgdex": {
+          "official": 12,
+          "total": 12
+        }
+      }
+    },
+    {
+      "key": "sm8",
+      "set_name": "Lost Thunder",
+      "pokemontcg": "sm8",
+      "tcgdex": "sm8",
+      "manual_aliases": [],
+      "release_date": "2018/11/02",
+      "source_aliases": {
+        "pokemontcg_api": "sm8",
+        "tcgdex": "sm8"
+      },
+      "source_status": {
+        "pokemontcg_api": "available",
+        "tcgdex": "available"
+      },
+      "source_totals": {
+        "pokemontcg_api": {
+          "printed_total": 214,
+          "total": 240
+        },
+        "tcgdex": {
+          "official": 214,
+          "total": 236
+        }
+      }
+    },
+    {
+      "key": "sm9",
+      "set_name": "Team Up",
+      "pokemontcg": "sm9",
+      "tcgdex": "sm9",
+      "manual_aliases": [],
+      "release_date": "2019/02/01",
+      "source_aliases": {
+        "pokemontcg_api": "sm9",
+        "tcgdex": "sm9"
+      },
+      "source_status": {
+        "pokemontcg_api": "available",
+        "tcgdex": "available"
+      },
+      "source_totals": {
+        "pokemontcg_api": {
+          "printed_total": 181,
+          "total": 198
+        },
+        "tcgdex": {
+          "official": 181,
+          "total": 196
+        }
+      }
+    },
+    {
+      "key": "det1",
+      "set_name": "Detective Pikachu",
+      "pokemontcg": "det1",
+      "tcgdex": "det1",
+      "manual_aliases": [],
+      "release_date": "2019/04/05",
+      "source_aliases": {
+        "pokemontcg_api": "det1",
+        "tcgdex": "det1"
+      },
+      "source_status": {
+        "pokemontcg_api": "available",
+        "tcgdex": "available"
+      },
+      "source_totals": {
+        "pokemontcg_api": {
+          "printed_total": 18,
+          "total": 18
+        },
+        "tcgdex": {
+          "official": 18,
+          "total": 18
+        }
+      }
+    },
+    {
+      "key": "sm10",
+      "set_name": "Unbroken Bonds",
+      "pokemontcg": "sm10",
+      "tcgdex": "sm10",
+      "manual_aliases": [],
+      "release_date": "2019/05/03",
+      "source_aliases": {
+        "pokemontcg_api": "sm10",
+        "tcgdex": "sm10"
+      },
+      "source_status": {
+        "pokemontcg_api": "available",
+        "tcgdex": "available"
+      },
+      "source_totals": {
+        "pokemontcg_api": {
+          "printed_total": 214,
+          "total": 234
+        },
+        "tcgdex": {
+          "official": 214,
+          "total": 234
+        }
+      }
+    },
+    {
+      "key": "sm11",
+      "set_name": "Unified Minds",
+      "pokemontcg": "sm11",
+      "tcgdex": "sm11",
+      "manual_aliases": [],
+      "release_date": "2019/08/02",
+      "source_aliases": {
+        "pokemontcg_api": "sm11",
+        "tcgdex": "sm11"
+      },
+      "source_status": {
+        "pokemontcg_api": "available",
+        "tcgdex": "available"
+      },
+      "source_totals": {
+        "pokemontcg_api": {
+          "printed_total": 236,
+          "total": 260
+        },
+        "tcgdex": {
+          "official": 236,
+          "total": 258
+        }
+      }
+    },
+    {
+      "key": "sm115",
+      "set_name": "Hidden Fates",
+      "pokemontcg": "sm115",
+      "tcgdex": "sm115",
+      "manual_aliases": [],
+      "release_date": "2019/08/23",
+      "source_aliases": {
+        "pokemontcg_api": "sm115",
+        "tcgdex": "sm115"
+      },
+      "source_status": {
+        "pokemontcg_api": "available",
+        "tcgdex": "available"
+      },
+      "source_totals": {
+        "pokemontcg_api": {
+          "printed_total": 68,
+          "total": 69
+        },
+        "tcgdex": {
+          "official": 68,
+          "total": 69
+        }
+      }
+    },
+    {
+      "key": "sma",
+      "set_name": "Hidden Fates Shiny Vault",
+      "pokemontcg": "sma",
+      "tcgdex": "sma",
+      "manual_aliases": [],
+      "release_date": "2019/08/23",
+      "source_aliases": {
+        "pokemontcg_api": "sma",
+        "tcgdex": "sma"
+      },
+      "source_status": {
+        "pokemontcg_api": "available",
+        "tcgdex": "available"
+      },
+      "source_totals": {
+        "pokemontcg_api": {
+          "printed_total": 94,
+          "total": 94
+        },
+        "tcgdex": {
+          "official": 94,
+          "total": 94
+        }
+      }
+    },
+    {
+      "key": "mcd19",
+      "set_name": "McDonald's Collection 2019",
+      "pokemontcg": "mcd19",
+      "tcgdex": "2019sm",
+      "manual_aliases": [],
+      "release_date": "2019/10/15",
+      "source_aliases": {
+        "pokemontcg_api": "mcd19",
+        "tcgdex": "2019sm"
+      },
+      "source_status": {
+        "pokemontcg_api": "available",
+        "tcgdex": "available"
+      },
+      "source_totals": {
+        "pokemontcg_api": {
+          "printed_total": 12,
+          "total": 12
+        },
+        "tcgdex": {
+          "official": 12,
+          "total": 12
+        }
+      }
+    },
+    {
+      "key": "sm12",
+      "set_name": "Cosmic Eclipse",
+      "pokemontcg": "sm12",
+      "tcgdex": "sm12",
+      "manual_aliases": [],
+      "release_date": "2019/11/01",
+      "source_aliases": {
+        "pokemontcg_api": "sm12",
+        "tcgdex": "sm12"
+      },
+      "source_status": {
+        "pokemontcg_api": "available",
+        "tcgdex": "available"
+      },
+      "source_totals": {
+        "pokemontcg_api": {
+          "printed_total": 236,
+          "total": 272
+        },
+        "tcgdex": {
+          "official": 236,
+          "total": 271
+        }
+      }
+    },
+    {
+      "key": "swshp",
+      "set_name": "SWSH Black Star Promos",
+      "pokemontcg": "swshp",
+      "tcgdex": "swshp",
+      "manual_aliases": [],
+      "release_date": "2019/11/15",
+      "source_aliases": {
+        "pokemontcg_api": "swshp",
+        "tcgdex": "swshp"
+      },
+      "source_status": {
+        "pokemontcg_api": "available",
+        "tcgdex": "available"
+      },
+      "source_totals": {
+        "pokemontcg_api": {
+          "printed_total": 307,
+          "total": 304
+        },
+        "tcgdex": {
+          "official": 307,
+          "total": 307
+        }
+      }
+    },
+    {
+      "key": "swsh1",
+      "set_name": "Sword & Shield",
+      "pokemontcg": "swsh1",
+      "tcgdex": "swsh1",
+      "manual_aliases": [],
+      "release_date": "2020/02/07",
+      "source_aliases": {
+        "pokemontcg_api": "swsh1",
+        "tcgdex": "swsh1"
+      },
+      "source_status": {
+        "pokemontcg_api": "available",
+        "tcgdex": "available"
+      },
+      "source_totals": {
+        "pokemontcg_api": {
+          "printed_total": 202,
+          "total": 216
+        },
+        "tcgdex": {
+          "official": 202,
+          "total": 216
+        }
+      }
+    },
+    {
+      "key": "swsh2",
+      "set_name": "Rebel Clash",
+      "pokemontcg": "swsh2",
+      "tcgdex": "swsh2",
+      "manual_aliases": [],
+      "release_date": "2020/05/01",
+      "source_aliases": {
+        "pokemontcg_api": "swsh2",
+        "tcgdex": "swsh2"
+      },
+      "source_status": {
+        "pokemontcg_api": "available",
+        "tcgdex": "available"
+      },
+      "source_totals": {
+        "pokemontcg_api": {
+          "printed_total": 192,
+          "total": 209
+        },
+        "tcgdex": {
+          "official": 192,
+          "total": 209
+        }
+      }
+    },
+    {
+      "key": "swsh3",
+      "set_name": "Darkness Ablaze",
+      "pokemontcg": "swsh3",
+      "tcgdex": "swsh3",
+      "manual_aliases": [],
+      "release_date": "2020/08/14",
+      "source_aliases": {
+        "pokemontcg_api": "swsh3",
+        "tcgdex": "swsh3"
+      },
+      "source_status": {
+        "pokemontcg_api": "available",
+        "tcgdex": "available"
+      },
+      "source_totals": {
+        "pokemontcg_api": {
+          "printed_total": 189,
+          "total": 201
+        },
+        "tcgdex": {
+          "official": 189,
+          "total": 201
+        }
+      }
+    },
+    {
+      "key": "fut20",
+      "set_name": "Pokémon Futsal Collection",
+      "pokemontcg": "fut20",
+      "tcgdex": null,
+      "manual_aliases": [],
+      "release_date": "2020/09/11",
+      "source_aliases": {
+        "pokemontcg_api": "fut20",
+        "tcgdex": null
+      },
+      "source_status": {
+        "pokemontcg_api": "available",
+        "tcgdex": "unavailable"
+      },
+      "source_totals": {
+        "pokemontcg_api": {
+          "printed_total": 5,
+          "total": 5
+        },
+        "tcgdex": {
+          "official": null,
+          "total": null
+        }
+      }
+    },
+    {
+      "key": "swsh35",
+      "set_name": "Champion's Path",
+      "pokemontcg": "swsh35",
+      "tcgdex": "swsh3.5",
+      "manual_aliases": [],
+      "release_date": "2020/09/25",
+      "source_aliases": {
+        "pokemontcg_api": "swsh35",
+        "tcgdex": "swsh3.5"
+      },
+      "source_status": {
+        "pokemontcg_api": "available",
+        "tcgdex": "available"
+      },
+      "source_totals": {
+        "pokemontcg_api": {
+          "printed_total": 73,
+          "total": 80
+        },
+        "tcgdex": {
+          "official": 73,
+          "total": 80
+        }
+      }
+    },
+    {
+      "key": "swsh4",
+      "set_name": "Vivid Voltage",
+      "pokemontcg": "swsh4",
+      "tcgdex": "swsh4",
+      "manual_aliases": [],
+      "release_date": "2020/11/13",
+      "source_aliases": {
+        "pokemontcg_api": "swsh4",
+        "tcgdex": "swsh4"
+      },
+      "source_status": {
+        "pokemontcg_api": "available",
+        "tcgdex": "available"
+      },
+      "source_totals": {
+        "pokemontcg_api": {
+          "printed_total": 185,
+          "total": 203
+        },
+        "tcgdex": {
+          "official": 185,
+          "total": 203
+        }
+      }
+    },
+    {
+      "key": "mcd21",
+      "set_name": "McDonald's Collection 2021",
+      "pokemontcg": "mcd21",
+      "tcgdex": "2021swsh",
+      "manual_aliases": [],
+      "release_date": "2021/02/09",
+      "source_aliases": {
+        "pokemontcg_api": "mcd21",
+        "tcgdex": "2021swsh"
+      },
+      "source_status": {
+        "pokemontcg_api": "available",
+        "tcgdex": "available"
+      },
+      "source_totals": {
+        "pokemontcg_api": {
+          "printed_total": 25,
+          "total": 25
+        },
+        "tcgdex": {
+          "official": 25,
+          "total": 25
+        }
+      }
+    },
+    {
+      "key": "swsh45",
+      "set_name": "Shining Fates",
+      "pokemontcg": "swsh45",
+      "tcgdex": "swsh4.5",
+      "manual_aliases": [],
+      "release_date": "2021/02/19",
+      "source_aliases": {
+        "pokemontcg_api": "swsh45",
+        "tcgdex": "swsh4.5"
+      },
+      "source_status": {
+        "pokemontcg_api": "available",
+        "tcgdex": "available"
+      },
+      "source_totals": {
+        "pokemontcg_api": {
+          "printed_total": 72,
+          "total": 73
+        },
+        "tcgdex": {
+          "official": 72,
+          "total": 195
+        }
+      }
+    },
+    {
+      "key": "swsh45sv",
+      "set_name": "Shining Fates Shiny Vault",
+      "pokemontcg": "swsh45sv",
+      "tcgdex": null,
+      "manual_aliases": [],
+      "release_date": "2021/02/19",
+      "source_aliases": {
+        "pokemontcg_api": "swsh45sv",
+        "tcgdex": null
+      },
+      "source_status": {
+        "pokemontcg_api": "available",
+        "tcgdex": "unavailable"
+      },
+      "source_totals": {
+        "pokemontcg_api": {
+          "printed_total": 122,
+          "total": 122
+        },
+        "tcgdex": {
+          "official": null,
+          "total": null
+        }
+      }
+    },
+    {
+      "key": "swsh5",
+      "set_name": "Battle Styles",
+      "pokemontcg": "swsh5",
+      "tcgdex": "swsh5",
+      "manual_aliases": [],
+      "release_date": "2021/03/19",
+      "source_aliases": {
+        "pokemontcg_api": "swsh5",
+        "tcgdex": "swsh5"
+      },
+      "source_status": {
+        "pokemontcg_api": "available",
+        "tcgdex": "available"
+      },
+      "source_totals": {
+        "pokemontcg_api": {
+          "printed_total": 163,
+          "total": 183
+        },
+        "tcgdex": {
+          "official": 163,
+          "total": 183
+        }
+      }
+    },
+    {
+      "key": "swsh6",
+      "set_name": "Chilling Reign",
+      "pokemontcg": "swsh6",
+      "tcgdex": "swsh6",
+      "manual_aliases": [],
+      "release_date": "2021/06/18",
+      "source_aliases": {
+        "pokemontcg_api": "swsh6",
+        "tcgdex": "swsh6"
+      },
+      "source_status": {
+        "pokemontcg_api": "available",
+        "tcgdex": "available"
+      },
+      "source_totals": {
+        "pokemontcg_api": {
+          "printed_total": 198,
+          "total": 233
+        },
+        "tcgdex": {
+          "official": 198,
+          "total": 233
+        }
+      }
+    },
+    {
+      "key": "swsh7",
+      "set_name": "Evolving Skies",
+      "pokemontcg": "swsh7",
+      "tcgdex": "swsh7",
+      "manual_aliases": [],
+      "release_date": "2021/08/27",
+      "source_aliases": {
+        "pokemontcg_api": "swsh7",
+        "tcgdex": "swsh7"
+      },
+      "source_status": {
+        "pokemontcg_api": "available",
+        "tcgdex": "available"
+      },
+      "source_totals": {
+        "pokemontcg_api": {
+          "printed_total": 203,
+          "total": 237
+        },
+        "tcgdex": {
+          "official": 203,
+          "total": 237
+        }
+      }
+    },
+    {
+      "key": "cel25",
+      "set_name": "Celebrations",
+      "pokemontcg": "cel25",
+      "tcgdex": "cel25",
+      "manual_aliases": [],
+      "release_date": "2021/10/08",
+      "source_aliases": {
+        "pokemontcg_api": "cel25",
+        "tcgdex": "cel25"
+      },
+      "source_status": {
+        "pokemontcg_api": "available",
+        "tcgdex": "available"
+      },
+      "source_totals": {
+        "pokemontcg_api": {
+          "printed_total": 25,
+          "total": 25
+        },
+        "tcgdex": {
+          "official": 25,
+          "total": 50
+        }
+      }
+    },
+    {
+      "key": "cel25c",
+      "set_name": "Celebrations: Classic Collection",
+      "pokemontcg": "cel25c",
+      "tcgdex": null,
+      "manual_aliases": [],
+      "release_date": "2021/10/08",
+      "source_aliases": {
+        "pokemontcg_api": "cel25c",
+        "tcgdex": null
+      },
+      "source_status": {
+        "pokemontcg_api": "available",
+        "tcgdex": "unavailable"
+      },
+      "source_totals": {
+        "pokemontcg_api": {
+          "printed_total": 25,
+          "total": 25
+        },
+        "tcgdex": {
+          "official": null,
+          "total": null
+        }
+      }
+    },
+    {
+      "key": "swsh8",
+      "set_name": "Fusion Strike",
+      "pokemontcg": "swsh8",
+      "tcgdex": "swsh8",
+      "manual_aliases": [],
+      "release_date": "2021/11/12",
+      "source_aliases": {
+        "pokemontcg_api": "swsh8",
+        "tcgdex": "swsh8"
+      },
+      "source_status": {
+        "pokemontcg_api": "available",
+        "tcgdex": "available"
+      },
+      "source_totals": {
+        "pokemontcg_api": {
+          "printed_total": 264,
+          "total": 284
+        },
+        "tcgdex": {
+          "official": 264,
+          "total": 284
+        }
+      }
+    },
+    {
+      "key": "swsh9",
+      "set_name": "Brilliant Stars",
+      "pokemontcg": "swsh9",
+      "tcgdex": "swsh9",
+      "manual_aliases": [],
+      "release_date": "2022/02/25",
+      "source_aliases": {
+        "pokemontcg_api": "swsh9",
+        "tcgdex": "swsh9"
+      },
+      "source_status": {
+        "pokemontcg_api": "available",
+        "tcgdex": "available"
+      },
+      "source_totals": {
+        "pokemontcg_api": {
+          "printed_total": 172,
+          "total": 186
+        },
+        "tcgdex": {
+          "official": 172,
+          "total": 216
+        }
+      }
+    },
+    {
+      "key": "swsh9tg",
+      "set_name": "Brilliant Stars Trainer Gallery",
+      "pokemontcg": "swsh9tg",
+      "tcgdex": null,
+      "manual_aliases": [],
+      "release_date": "2022/02/25",
+      "source_aliases": {
+        "pokemontcg_api": "swsh9tg",
+        "tcgdex": null
+      },
+      "source_status": {
+        "pokemontcg_api": "available",
+        "tcgdex": "unavailable"
+      },
+      "source_totals": {
+        "pokemontcg_api": {
+          "printed_total": 30,
+          "total": 30
+        },
+        "tcgdex": {
+          "official": null,
+          "total": null
+        }
+      }
+    },
+    {
+      "key": "swsh10",
+      "set_name": "Astral Radiance",
+      "pokemontcg": "swsh10",
+      "tcgdex": "swsh10",
+      "manual_aliases": [],
+      "release_date": "2022/05/27",
+      "source_aliases": {
+        "pokemontcg_api": "swsh10",
+        "tcgdex": "swsh10"
+      },
+      "source_status": {
+        "pokemontcg_api": "available",
+        "tcgdex": "available"
+      },
+      "source_totals": {
+        "pokemontcg_api": {
+          "printed_total": 189,
+          "total": 216
+        },
+        "tcgdex": {
+          "official": 189,
+          "total": 246
+        }
+      }
+    },
+    {
+      "key": "swsh10tg",
+      "set_name": "Astral Radiance Trainer Gallery",
+      "pokemontcg": "swsh10tg",
+      "tcgdex": null,
+      "manual_aliases": [],
+      "release_date": "2022/05/27",
+      "source_aliases": {
+        "pokemontcg_api": "swsh10tg",
+        "tcgdex": null
+      },
+      "source_status": {
+        "pokemontcg_api": "available",
+        "tcgdex": "unavailable"
+      },
+      "source_totals": {
+        "pokemontcg_api": {
+          "printed_total": 30,
+          "total": 30
+        },
+        "tcgdex": {
+          "official": null,
+          "total": null
+        }
+      }
+    },
+    {
+      "key": "pgo",
+      "set_name": "Pokémon GO",
+      "pokemontcg": "pgo",
+      "tcgdex": "swsh10.5",
+      "manual_aliases": [],
+      "release_date": "2022/07/01",
+      "source_aliases": {
+        "pokemontcg_api": "pgo",
+        "tcgdex": "swsh10.5"
+      },
+      "source_status": {
+        "pokemontcg_api": "available",
+        "tcgdex": "available"
+      },
+      "source_totals": {
+        "pokemontcg_api": {
+          "printed_total": 78,
+          "total": 88
+        },
+        "tcgdex": {
+          "official": 78,
+          "total": 88
+        }
+      }
+    },
+    {
+      "key": "mcd22",
+      "set_name": "McDonald's Collection 2022",
+      "pokemontcg": "mcd22",
+      "tcgdex": "2022swsh",
+      "manual_aliases": [],
+      "release_date": "2022/08/03",
+      "source_aliases": {
+        "pokemontcg_api": "mcd22",
+        "tcgdex": "2022swsh"
+      },
+      "source_status": {
+        "pokemontcg_api": "available",
+        "tcgdex": "available"
+      },
+      "source_totals": {
+        "pokemontcg_api": {
+          "printed_total": 15,
+          "total": 15
+        },
+        "tcgdex": {
+          "official": 15,
+          "total": 15
+        }
+      }
+    },
+    {
+      "key": "swsh11",
+      "set_name": "Lost Origin",
+      "pokemontcg": "swsh11",
+      "tcgdex": "swsh11",
+      "manual_aliases": [],
+      "release_date": "2022/09/09",
+      "source_aliases": {
+        "pokemontcg_api": "swsh11",
+        "tcgdex": "swsh11"
+      },
+      "source_status": {
+        "pokemontcg_api": "available",
+        "tcgdex": "available"
+      },
+      "source_totals": {
+        "pokemontcg_api": {
+          "printed_total": 196,
+          "total": 217
+        },
+        "tcgdex": {
+          "official": 196,
+          "total": 247
+        }
+      }
+    },
+    {
+      "key": "swsh11tg",
+      "set_name": "Lost Origin Trainer Gallery",
+      "pokemontcg": "swsh11tg",
+      "tcgdex": null,
+      "manual_aliases": [],
+      "release_date": "2022/09/09",
+      "source_aliases": {
+        "pokemontcg_api": "swsh11tg",
+        "tcgdex": null
+      },
+      "source_status": {
+        "pokemontcg_api": "available",
+        "tcgdex": "unavailable"
+      },
+      "source_totals": {
+        "pokemontcg_api": {
+          "printed_total": 30,
+          "total": 30
+        },
+        "tcgdex": {
+          "official": null,
+          "total": null
+        }
+      }
+    },
+    {
+      "key": "swsh12",
+      "set_name": "Silver Tempest",
+      "pokemontcg": "swsh12",
+      "tcgdex": "swsh12",
+      "manual_aliases": [],
+      "release_date": "2022/11/11",
+      "source_aliases": {
+        "pokemontcg_api": "swsh12",
+        "tcgdex": "swsh12"
+      },
+      "source_status": {
+        "pokemontcg_api": "available",
+        "tcgdex": "available"
+      },
+      "source_totals": {
+        "pokemontcg_api": {
+          "printed_total": 195,
+          "total": 215
+        },
+        "tcgdex": {
+          "official": 195,
+          "total": 245
+        }
+      }
+    },
+    {
+      "key": "swsh12tg",
+      "set_name": "Silver Tempest Trainer Gallery",
+      "pokemontcg": "swsh12tg",
+      "tcgdex": null,
+      "manual_aliases": [],
+      "release_date": "2022/11/11",
+      "source_aliases": {
+        "pokemontcg_api": "swsh12tg",
+        "tcgdex": null
+      },
+      "source_status": {
+        "pokemontcg_api": "available",
+        "tcgdex": "unavailable"
+      },
+      "source_totals": {
+        "pokemontcg_api": {
+          "printed_total": 30,
+          "total": 30
+        },
+        "tcgdex": {
+          "official": null,
+          "total": null
+        }
+      }
+    },
+    {
+      "key": "svp",
+      "set_name": "Scarlet & Violet Black Star Promos",
+      "pokemontcg": "svp",
+      "tcgdex": "svp",
+      "manual_aliases": [],
+      "release_date": "2023/01/01",
+      "source_aliases": {
+        "pokemontcg_api": "svp",
+        "tcgdex": "svp"
+      },
+      "source_status": {
+        "pokemontcg_api": "available",
+        "tcgdex": "available"
+      },
+      "source_totals": {
+        "pokemontcg_api": {
+          "printed_total": 215,
+          "total": 196
+        },
+        "tcgdex": {
+          "official": 225,
+          "total": 226
+        }
+      }
+    },
+    {
+      "key": "swsh12pt5",
+      "set_name": "Crown Zenith",
+      "pokemontcg": "swsh12pt5",
+      "tcgdex": "swsh12.5",
+      "manual_aliases": [],
+      "release_date": "2023/01/20",
+      "source_aliases": {
+        "pokemontcg_api": "swsh12pt5",
+        "tcgdex": "swsh12.5"
+      },
+      "source_status": {
+        "pokemontcg_api": "available",
+        "tcgdex": "available"
+      },
+      "source_totals": {
+        "pokemontcg_api": {
+          "printed_total": 159,
+          "total": 160
+        },
+        "tcgdex": {
+          "official": 159,
+          "total": 230
+        }
+      }
+    },
+    {
+      "key": "swsh12pt5gg",
+      "set_name": "Crown Zenith Galarian Gallery",
+      "pokemontcg": "swsh12pt5gg",
+      "tcgdex": null,
+      "manual_aliases": [],
+      "release_date": "2023/01/20",
+      "source_aliases": {
+        "pokemontcg_api": "swsh12pt5gg",
+        "tcgdex": null
+      },
+      "source_status": {
+        "pokemontcg_api": "available",
+        "tcgdex": "unavailable"
+      },
+      "source_totals": {
+        "pokemontcg_api": {
+          "printed_total": 70,
+          "total": 70
+        },
+        "tcgdex": {
+          "official": null,
+          "total": null
+        }
+      }
+    },
+    {
+      "key": "sv1",
+      "set_name": "Scarlet & Violet",
+      "pokemontcg": "sv1",
+      "tcgdex": "sv01",
+      "manual_aliases": [],
+      "release_date": "2023/03/31",
+      "source_aliases": {
+        "pokemontcg_api": "sv1",
+        "tcgdex": "sv01"
+      },
+      "source_status": {
+        "pokemontcg_api": "available",
+        "tcgdex": "available"
+      },
+      "source_totals": {
+        "pokemontcg_api": {
+          "printed_total": 198,
+          "total": 258
+        },
+        "tcgdex": {
+          "official": 198,
+          "total": 258
+        }
+      }
+    },
+    {
+      "key": "sve",
+      "set_name": "Scarlet & Violet Energies",
+      "pokemontcg": "sve",
+      "tcgdex": "sve",
+      "manual_aliases": [],
+      "release_date": "2023/03/31",
+      "source_aliases": {
+        "pokemontcg_api": "sve",
+        "tcgdex": "sve"
+      },
+      "source_status": {
+        "pokemontcg_api": "available",
+        "tcgdex": "available"
+      },
+      "source_totals": {
+        "pokemontcg_api": {
+          "printed_total": 8,
+          "total": 8
+        },
+        "tcgdex": {
+          "official": 24,
+          "total": 24
+        }
+      }
+    },
+    {
+      "key": "sv2",
+      "set_name": "Paldea Evolved",
+      "pokemontcg": "sv2",
+      "tcgdex": "sv02",
+      "manual_aliases": [],
+      "release_date": "2023/06/09",
+      "source_aliases": {
+        "pokemontcg_api": "sv2",
+        "tcgdex": "sv02"
+      },
+      "source_status": {
+        "pokemontcg_api": "available",
+        "tcgdex": "available"
+      },
+      "source_totals": {
+        "pokemontcg_api": {
+          "printed_total": 193,
+          "total": 279
+        },
+        "tcgdex": {
+          "official": 193,
+          "total": 279
+        }
+      }
+    },
+    {
+      "key": "sv3",
+      "set_name": "Obsidian Flames",
+      "pokemontcg": "sv3",
+      "tcgdex": "sv03",
+      "manual_aliases": [],
+      "release_date": "2023/08/11",
+      "source_aliases": {
+        "pokemontcg_api": "sv3",
+        "tcgdex": "sv03"
+      },
+      "source_status": {
+        "pokemontcg_api": "available",
+        "tcgdex": "available"
+      },
+      "source_totals": {
+        "pokemontcg_api": {
+          "printed_total": 197,
+          "total": 230
+        },
+        "tcgdex": {
+          "official": 197,
+          "total": 230
+        }
+      }
+    },
+    {
+      "key": "sv3pt5",
+      "set_name": "151",
+      "pokemontcg": "sv3pt5",
+      "tcgdex": "sv03.5",
+      "manual_aliases": [],
+      "release_date": "2023/09/22",
+      "source_aliases": {
+        "pokemontcg_api": "sv3pt5",
+        "tcgdex": "sv03.5"
+      },
+      "source_status": {
+        "pokemontcg_api": "available",
+        "tcgdex": "available"
+      },
+      "source_totals": {
+        "pokemontcg_api": {
+          "printed_total": 165,
+          "total": 207
+        },
+        "tcgdex": {
+          "official": 165,
+          "total": 207
+        }
+      }
+    },
+    {
+      "key": "sv4",
+      "set_name": "Paradox Rift",
+      "pokemontcg": "sv4",
+      "tcgdex": "sv04",
+      "manual_aliases": [],
+      "release_date": "2023/11/03",
+      "source_aliases": {
+        "pokemontcg_api": "sv4",
+        "tcgdex": "sv04"
+      },
+      "source_status": {
+        "pokemontcg_api": "available",
+        "tcgdex": "available"
+      },
+      "source_totals": {
+        "pokemontcg_api": {
+          "printed_total": 182,
+          "total": 266
+        },
+        "tcgdex": {
+          "official": 182,
+          "total": 266
+        }
+      }
+    },
+    {
+      "key": "sv4pt5",
+      "set_name": "Paldean Fates",
+      "pokemontcg": "sv4pt5",
+      "tcgdex": "sv04.5",
+      "manual_aliases": [],
+      "release_date": "2024/01/26",
+      "source_aliases": {
+        "pokemontcg_api": "sv4pt5",
+        "tcgdex": "sv04.5"
+      },
+      "source_status": {
+        "pokemontcg_api": "available",
+        "tcgdex": "available"
+      },
+      "source_totals": {
+        "pokemontcg_api": {
+          "printed_total": 91,
+          "total": 245
+        },
+        "tcgdex": {
+          "official": 91,
+          "total": 245
+        }
+      }
+    },
+    {
+      "key": "sv5",
+      "set_name": "Temporal Forces",
+      "pokemontcg": "sv5",
+      "tcgdex": "sv05",
+      "manual_aliases": [],
+      "release_date": "2024/03/22",
+      "source_aliases": {
+        "pokemontcg_api": "sv5",
+        "tcgdex": "sv05"
+      },
+      "source_status": {
+        "pokemontcg_api": "available",
+        "tcgdex": "available"
+      },
+      "source_totals": {
+        "pokemontcg_api": {
+          "printed_total": 162,
+          "total": 218
+        },
+        "tcgdex": {
+          "official": 162,
+          "total": 218
+        }
+      }
+    },
+    {
+      "key": "sv6",
+      "set_name": "Twilight Masquerade",
+      "pokemontcg": "sv6",
+      "tcgdex": "sv06",
+      "manual_aliases": [],
+      "release_date": "2024/05/24",
+      "source_aliases": {
+        "pokemontcg_api": "sv6",
+        "tcgdex": "sv06"
+      },
+      "source_status": {
+        "pokemontcg_api": "available",
+        "tcgdex": "available"
+      },
+      "source_totals": {
+        "pokemontcg_api": {
+          "printed_total": 167,
+          "total": 226
+        },
+        "tcgdex": {
+          "official": 167,
+          "total": 226
+        }
+      }
+    },
+    {
+      "key": "sv6pt5",
+      "set_name": "Shrouded Fable",
+      "pokemontcg": "sv6pt5",
+      "tcgdex": "sv06.5",
+      "manual_aliases": [],
+      "release_date": "2024/08/02",
+      "source_aliases": {
+        "pokemontcg_api": "sv6pt5",
+        "tcgdex": "sv06.5"
+      },
+      "source_status": {
+        "pokemontcg_api": "available",
+        "tcgdex": "available"
+      },
+      "source_totals": {
+        "pokemontcg_api": {
+          "printed_total": 64,
+          "total": 99
+        },
+        "tcgdex": {
+          "official": 64,
+          "total": 99
+        }
+      }
+    },
+    {
+      "key": "sv7",
+      "set_name": "Stellar Crown",
+      "pokemontcg": "sv7",
+      "tcgdex": "sv07",
+      "manual_aliases": [],
+      "release_date": "2024/09/13",
+      "source_aliases": {
+        "pokemontcg_api": "sv7",
+        "tcgdex": "sv07"
+      },
+      "source_status": {
+        "pokemontcg_api": "available",
+        "tcgdex": "available"
+      },
+      "source_totals": {
+        "pokemontcg_api": {
+          "printed_total": 142,
+          "total": 175
+        },
+        "tcgdex": {
+          "official": 142,
+          "total": 175
+        }
+      }
+    },
+    {
+      "key": "sv8",
+      "set_name": "Surging Sparks",
+      "pokemontcg": "sv8",
+      "tcgdex": "sv08",
+      "manual_aliases": [],
+      "release_date": "2024/11/08",
+      "source_aliases": {
+        "pokemontcg_api": "sv8",
+        "tcgdex": "sv08"
+      },
+      "source_status": {
+        "pokemontcg_api": "available",
+        "tcgdex": "available"
+      },
+      "source_totals": {
+        "pokemontcg_api": {
+          "printed_total": 191,
+          "total": 252
+        },
+        "tcgdex": {
+          "official": 191,
+          "total": 252
+        }
+      }
+    },
+    {
+      "key": "sv8pt5",
+      "set_name": "Prismatic Evolutions",
+      "pokemontcg": "sv8pt5",
+      "tcgdex": "sv08.5",
+      "manual_aliases": [],
+      "release_date": "2025/01/17",
+      "source_aliases": {
+        "pokemontcg_api": "sv8pt5",
+        "tcgdex": "sv08.5"
+      },
+      "source_status": {
+        "pokemontcg_api": "available",
+        "tcgdex": "available"
+      },
+      "source_totals": {
+        "pokemontcg_api": {
+          "printed_total": 131,
+          "total": 180
+        },
+        "tcgdex": {
+          "official": 131,
+          "total": 180
+        }
+      }
+    },
+    {
+      "key": "sv9",
+      "set_name": "Journey Together",
+      "pokemontcg": "sv9",
+      "tcgdex": "sv09",
+      "manual_aliases": [],
+      "release_date": "2025/03/28",
+      "source_aliases": {
+        "pokemontcg_api": "sv9",
+        "tcgdex": "sv09"
+      },
+      "source_status": {
+        "pokemontcg_api": "available",
+        "tcgdex": "available"
+      },
+      "source_totals": {
+        "pokemontcg_api": {
+          "printed_total": 159,
+          "total": 190
+        },
+        "tcgdex": {
+          "official": 159,
+          "total": 190
+        }
+      }
+    },
+    {
+      "key": "sv10",
+      "set_name": "Destined Rivals",
+      "pokemontcg": "sv10",
+      "tcgdex": "sv10",
+      "manual_aliases": [],
+      "release_date": "2025/05/30",
+      "source_aliases": {
+        "pokemontcg_api": "sv10",
+        "tcgdex": "sv10"
+      },
+      "source_status": {
+        "pokemontcg_api": "available",
+        "tcgdex": "available"
+      },
+      "source_totals": {
+        "pokemontcg_api": {
+          "printed_total": 182,
+          "total": 244
+        },
+        "tcgdex": {
+          "official": 182,
+          "total": 244
+        }
+      }
+    },
+    {
+      "key": "zsv10pt5",
+      "set_name": "Black Bolt",
+      "pokemontcg": "zsv10pt5",
+      "tcgdex": "sv10.5b",
+      "manual_aliases": [],
+      "release_date": "2025/07/18",
+      "source_aliases": {
+        "pokemontcg_api": "zsv10pt5",
+        "tcgdex": "sv10.5b"
+      },
+      "source_status": {
+        "pokemontcg_api": "available",
+        "tcgdex": "available"
+      },
+      "source_totals": {
+        "pokemontcg_api": {
+          "printed_total": 86,
+          "total": 172
+        },
+        "tcgdex": {
+          "official": 86,
+          "total": 172
+        }
+      }
+    },
+    {
+      "key": "rsv10pt5",
+      "set_name": "White Flare",
+      "pokemontcg": "rsv10pt5",
+      "tcgdex": "sv10.5w",
+      "manual_aliases": [],
+      "release_date": "2025/07/18",
+      "source_aliases": {
+        "pokemontcg_api": "rsv10pt5",
+        "tcgdex": "sv10.5w"
+      },
+      "source_status": {
+        "pokemontcg_api": "available",
+        "tcgdex": "available"
+      },
+      "source_totals": {
+        "pokemontcg_api": {
+          "printed_total": 86,
+          "total": 173
+        },
+        "tcgdex": {
+          "official": 86,
+          "total": 173
+        }
+      }
+    },
+    {
+      "key": "me1",
+      "set_name": "Mega Evolution",
+      "pokemontcg": "me1",
+      "tcgdex": "me01",
+      "manual_aliases": [],
+      "release_date": "2025/09/26",
+      "source_aliases": {
+        "pokemontcg_api": "me1",
+        "tcgdex": "me01"
+      },
+      "source_status": {
+        "pokemontcg_api": "available",
+        "tcgdex": "available"
+      },
+      "source_totals": {
+        "pokemontcg_api": {
+          "printed_total": 132,
+          "total": 188
+        },
+        "tcgdex": {
+          "official": 132,
+          "total": 188
+        }
+      }
+    },
+    {
+      "key": "me2",
+      "set_name": "Phantasmal Flames",
+      "pokemontcg": "me2",
+      "tcgdex": "me02",
+      "manual_aliases": [],
+      "release_date": "2025/11/14",
+      "source_aliases": {
+        "pokemontcg_api": "me2",
+        "tcgdex": "me02"
+      },
+      "source_status": {
+        "pokemontcg_api": "available",
+        "tcgdex": "available"
+      },
+      "source_totals": {
+        "pokemontcg_api": {
+          "printed_total": 94,
+          "total": 130
+        },
+        "tcgdex": {
+          "official": 94,
+          "total": 130
+        }
+      }
+    },
+    {
+      "key": "ascended_heroes",
+      "set_name": "Ascended Heroes",
+      "pokemontcg": "me2pt5",
+      "tcgdex": "me02.5",
+      "manual_aliases": [
+        "ascended_heroes",
+        "me02.5",
+        "me2pt5"
+      ],
+      "release_date": "2026/01/30",
+      "source_aliases": {
+        "pokemontcg_api": "me2pt5",
+        "tcgdex": "me02.5"
+      },
+      "source_status": {
+        "pokemontcg_api": "available",
+        "tcgdex": "available"
+      },
+      "source_totals": {
+        "pokemontcg_api": {
+          "printed_total": 217,
+          "total": 295
+        },
+        "tcgdex": {
+          "official": 217,
+          "total": 295
+        }
+      }
+    },
+    {
+      "key": "me3",
+      "set_name": "Perfect Order",
+      "pokemontcg": "me3",
+      "tcgdex": "me03",
+      "manual_aliases": [],
+      "release_date": "2026/03/27",
+      "source_aliases": {
+        "pokemontcg_api": "me3",
+        "tcgdex": "me03"
+      },
+      "source_status": {
+        "pokemontcg_api": "available",
+        "tcgdex": "available"
+      },
+      "source_totals": {
+        "pokemontcg_api": {
+          "printed_total": 88,
+          "total": 124
+        },
+        "tcgdex": {
+          "official": 88,
+          "total": 124
+        }
+      }
+    },
+    {
+      "key": "me4",
+      "set_name": "Chaos Rising",
+      "pokemontcg": "me4",
+      "tcgdex": "me04",
+      "manual_aliases": [],
+      "release_date": "2026/05/22",
+      "source_aliases": {
+        "pokemontcg_api": "me4",
+        "tcgdex": "me04"
+      },
+      "source_status": {
+        "pokemontcg_api": "available",
+        "tcgdex": "available"
+      },
+      "source_totals": {
+        "pokemontcg_api": {
+          "printed_total": 86,
+          "total": 122
+        },
+        "tcgdex": {
+          "official": 86,
+          "total": 122
+        }
+      }
+    }
+  ]
+}
