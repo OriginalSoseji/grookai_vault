@@ -1487,6 +1487,182 @@ function buildUnsupportedTriageMarkdown(payload) {
   ].join('\n');
 }
 
+function missingCategory(row) {
+  const setKey = String(row.set_key ?? row.set_code ?? '').trim();
+  const finish = String(row.finish_key ?? '').trim();
+  const indexStatus = String(row.index_status ?? '').trim();
+  const family = unsupportedSetFamily(setKey);
+  const sourceCount = (row.index_sources ?? []).length;
+
+  if (indexStatus === 'master_verified') {
+    return {
+      category: 'master_verified_missing',
+      reason: 'The index has a master-verified printing fact that Grookai does not exactly match.',
+      source_count: sourceCount,
+    };
+  }
+  if (indexStatus === 'human_source_verified') {
+    return {
+      category: 'human_source_verified_missing',
+      reason: 'The index has human-readable/checklist evidence, but not full master verification, and Grookai does not exactly match it.',
+      source_count: sourceCount,
+    };
+  }
+  if (finish.startsWith('first_edition')) {
+    return {
+      category: 'first_edition_policy_gap',
+      reason: 'First edition printings require a separate legacy policy pass before any insertion or cleanup decision.',
+      source_count: sourceCount,
+    };
+  }
+  if (indexStatus === 'api_agreed') {
+    return {
+      category: 'api_agreed_missing_needs_human_source',
+      reason: 'Two structured APIs agree, but this is still not insertion authority without human-readable/checklist evidence.',
+      source_count: sourceCount,
+    };
+  }
+  if (family === 'promo_family') {
+    return {
+      category: 'promo_family_source_only_candidate',
+      reason: 'Promo-family missing row is currently source-only and needs checklist/product evidence before any repair path.',
+      source_count: sourceCount,
+    };
+  }
+  if (['deck_kit', 'mcdonalds', 'pop_series', 'early_promo_or_product'].includes(family)) {
+    return {
+      category: 'product_or_deck_set_source_only_candidate',
+      reason: 'Product, deck, POP, McDonald\'s, or early promo missing row is source-only and needs dedicated checklist evidence.',
+      source_count: sourceCount,
+    };
+  }
+  if (['trainer_gallery_subset', 'subset_alias', 'subset_number_collision_family'].includes(family)) {
+    return {
+      category: 'subset_alias_or_numbering_gap',
+      reason: 'Subset, gallery, or number-collision missing row needs set/subset identity resolution before any repair path.',
+      source_count: sourceCount,
+    };
+  }
+  return {
+    category: 'source_only_candidate_missing',
+    reason: 'Only source-limited index evidence supports this missing row, so it remains a candidate and not insertion authority.',
+    source_count: sourceCount,
+  };
+}
+
+function buildMissingFromGrookaiTriage(grookaiAudit, generatedAt) {
+  const rows = grookaiAudit?.rows?.filter((row) => row.status === 'missing_from_grookai') ?? [];
+  const categorizedRows = rows.map((row) => {
+    const category = missingCategory(row);
+    return {
+      category: category.category,
+      reason: category.reason,
+      source_count: category.source_count,
+      ...row,
+    };
+  });
+  const rowsByCategory = Object.fromEntries(
+    Object.entries(countBy(categorizedRows, (row) => row.category)).map(([category, count]) => {
+      const categoryRows = categorizedRows.filter((row) => row.category === category);
+      return [
+        category,
+        {
+          count,
+          by_set_key: countBy(categoryRows, (row) => row.set_key ?? row.set_code ?? 'unknown'),
+          by_finish: countBy(categoryRows, (row) => row.finish_key ?? 'unknown'),
+          by_index_status: countBy(categoryRows, (row) => row.index_status ?? 'unknown'),
+          rows: categoryRows,
+        },
+      ];
+    }),
+  );
+  return {
+    version: 'ENGLISH_MASTER_INDEX_MISSING_FROM_GROOKAI_TRIAGE_V1',
+    generated_at: generatedAt,
+    audit_only: true,
+    db_writes: false,
+    source_report: 'english_master_index_grookai_audit_v1.json',
+    rule: 'Missing-from-Grookai rows are not insertion authority. Only controlled per-set proof loops may create repair candidates.',
+    summary: {
+      total_missing_from_grookai: rows.length,
+      by_category: countBy(categorizedRows, (row) => row.category),
+      by_set_key: countBy(categorizedRows, (row) => row.set_key ?? row.set_code ?? 'unknown'),
+      by_finish: countBy(categorizedRows, (row) => row.finish_key ?? 'unknown'),
+      by_index_status: countBy(categorizedRows, (row) => row.index_status ?? 'unknown'),
+      by_source_count: countBy(categorizedRows, (row) => String(row.source_count ?? 0)),
+    },
+    categories: rowsByCategory,
+  };
+}
+
+function buildMissingFromGrookaiTriageMarkdown(payload) {
+  const categoryRows = Object.entries(payload.summary.by_category).map(([category, count]) => [category, count]);
+  const setRows = Object.entries(payload.summary.by_set_key).map(([setKey, count]) => [setKey, count]);
+  const finishRows = Object.entries(payload.summary.by_finish).map(([finish, count]) => [finish, count]);
+  const statusRows = Object.entries(payload.summary.by_index_status).map(([status, count]) => [status, count]);
+  const sourceCountRows = Object.entries(payload.summary.by_source_count).map(([sourceCount, count]) => [sourceCount, count]);
+  const categorySections = Object.entries(payload.categories).flatMap(([category, entry]) => {
+    const topSets = Object.entries(entry.by_set_key)
+      .sort((left, right) => Number(right[1]) - Number(left[1]) || left[0].localeCompare(right[0]))
+      .slice(0, 20)
+      .map(([setKey, count]) => [setKey, count]);
+    const samples = entry.rows.slice(0, 50).map((row) => [
+      row.set_key ?? row.set_code ?? '',
+      row.card_number ?? '',
+      row.index_card_name ?? '',
+      row.finish_key ?? '',
+      row.index_status ?? '',
+      (row.index_sources ?? []).join(', '),
+      row.reason ?? '',
+    ]);
+    return [
+      `## ${category}`,
+      '',
+      `Rows: ${entry.count}`,
+      '',
+      '### Top Sets',
+      '',
+      markdownTable(['set_key', 'count'], topSets),
+      '',
+      '### Sample Rows',
+      '',
+      markdownTable(['set', 'number', 'Index name', 'finish', 'index status', 'sources', 'reason'], samples),
+      '',
+    ];
+  });
+  return [
+    '# English Master Index Missing From Grookai Triage V1',
+    '',
+    `Generated: ${payload.generated_at}`,
+    '',
+    'Audit only. No DB writes, migrations, inserts, cleanup, quarantine, or public hiding were performed.',
+    '',
+    payload.rule,
+    '',
+    '## Summary By Category',
+    '',
+    markdownTable(['category', 'count'], categoryRows),
+    '',
+    '## Summary By Index Status',
+    '',
+    markdownTable(['index_status', 'count'], statusRows),
+    '',
+    '## Summary By Source Count',
+    '',
+    markdownTable(['source_count', 'count'], sourceCountRows),
+    '',
+    '## Summary By Set',
+    '',
+    markdownTable(['set_key', 'count'], setRows),
+    '',
+    '## Summary By Finish',
+    '',
+    markdownTable(['finish', 'count'], finishRows),
+    '',
+    ...categorySections,
+  ].join('\n');
+}
+
 async function writeJson(outputDir, fileName, data) {
   await fs.writeFile(path.join(outputDir, fileName), `${JSON.stringify(data, null, 2)}\n`);
 }
@@ -1518,6 +1694,7 @@ async function writeReports({ outputDir, index, agreement, setAudit, grookaiAudi
   const setUnmappedTriage = buildSetUnmappedTriage(grookaiAudit, generatedAt);
   const nameMismatchTriage = buildNameMismatchTriage(grookaiAudit, generatedAt);
   const unsupportedTriage = buildUnsupportedTriage(grookaiAudit, generatedAt);
+  const missingFromGrookaiTriage = buildMissingFromGrookaiTriage(grookaiAudit, generatedAt);
   const conflicts = {
     version: 'ENGLISH_MASTER_INDEX_CONFLICTS_V1',
     generated_at: generatedAt,
@@ -1578,6 +1755,8 @@ async function writeReports({ outputDir, index, agreement, setAudit, grookaiAudi
   await fs.writeFile(path.join(outputDir, 'english_master_index_name_mismatch_triage_v1.md'), buildNameMismatchTriageMarkdown(nameMismatchTriage));
   await writeJson(outputDir, 'english_master_index_unsupported_triage_v1.json', unsupportedTriage);
   await fs.writeFile(path.join(outputDir, 'english_master_index_unsupported_triage_v1.md'), buildUnsupportedTriageMarkdown(unsupportedTriage));
+  await writeJson(outputDir, 'english_master_index_missing_from_grookai_triage_v1.json', missingFromGrookaiTriage);
+  await fs.writeFile(path.join(outputDir, 'english_master_index_missing_from_grookai_triage_v1.md'), buildMissingFromGrookaiTriageMarkdown(missingFromGrookaiTriage));
 }
 
 async function main() {
