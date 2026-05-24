@@ -1,6 +1,6 @@
 # English Master Index Bucket Triage V1
 
-Generated: 2026-05-24T12:50:44.902Z
+Generated: 2026-05-24T13:15:31.063Z
 
 Audit only. No DB writes, migrations, cleanup, quarantine, or public hiding were performed.
 
@@ -8,14 +8,14 @@ Audit only. No DB writes, migrations, cleanup, quarantine, or public hiding were
 
 | status | count |
 | --- | --- |
-| set_unmapped | 11524 |
-| name_mismatch_needs_review | 130 |
-| unsupported_by_current_index | 10380 |
-| missing_from_grookai | 6027 |
+| set_unmapped | 11176 |
+| name_mismatch_needs_review | 196 |
+| unsupported_by_current_index | 10489 |
+| missing_from_grookai | 6080 |
 
 ## 1. Set Unmapped
 
-Resolve set aliases/source IDs first. Do not judge printing truth for unmapped sets until set identity is mapped.
+Use english_master_index_set_unmapped_triage_v1 first. Do not judge printing truth for unmapped sets until set identity/scope is resolved.
 
 | set_code | count |
 | --- | --- |
@@ -25,7 +25,6 @@ Resolve set aliases/source IDs first. Do not judge printing truth for unmapped s
 | A4 | 723 |
 | A3 | 717 |
 | A2 | 621 |
-| g1 | 348 |
 | A2b | 333 |
 | A3b | 321 |
 | A4a | 315 |
@@ -39,6 +38,7 @@ Review exact card names, punctuation, formes, gender symbols, and source naming 
 
 | set_code | count |
 | --- | --- |
+| g1 | 66 |
 | swsh12.5 | 25 |
 | sve | 16 |
 | col1 | 15 |
@@ -66,8 +66,8 @@ Treat as index unsupported only, not deletion authority. Split source gaps from 
 
 | finish_key | count |
 | --- | --- |
-| holo | 5860 |
-| reverse | 3040 |
+| holo | 5942 |
+| reverse | 3067 |
 | normal | 1313 |
 | pokeball | 100 |
 | masterball | 67 |
@@ -106,6 +106,7 @@ Treat as index unsupported only, not deletion authority. Split source gaps from 
 | sm4 | 112 |
 | bw1 | 111 |
 | xy4 | 111 |
+| g1 | 109 |
 | bw9 | 108 |
 | xy11 | 107 |
 | xy12 | 105 |
@@ -113,7 +114,6 @@ Treat as index unsupported only, not deletion authority. Split source gaps from 
 | bw5 | 102 |
 | xy6 | 102 |
 | xy2 | 101 |
-| bw10 | 94 |
 
 ## 4. Missing From Grookai
 
@@ -121,8 +121,8 @@ Do not insert from this global audit. Use controlled per-set proof loops before 
 
 | finish_key | count |
 | --- | --- |
-| holo | 2038 |
-| normal | 1598 |
+| holo | 2057 |
+| normal | 1632 |
 | reverse | 1300 |
 | first_edition_normal | 940 |
 | first_edition_holo | 151 |
@@ -166,6 +166,6 @@ Do not insert from this global audit. Use controlled per-set proof loops before 
 | swsh12pt5gg | 70 |
 | pl2 | 64 |
 | bw11 | 61 |
+| g1 | 53 |
 | swsh7 | 53 |
 | mep | 52 |
-| ecard2 | 45 |

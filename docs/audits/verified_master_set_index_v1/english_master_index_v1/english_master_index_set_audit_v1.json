@@ -1,6 +1,6 @@
 {
   "version": "ENGLISH_MASTER_INDEX_SET_AUDIT_V1",
-  "generated_at": "2026-05-24T06:12:52.703Z",
+  "generated_at": "2026-05-24T13:06:37.953Z",
   "audit_only": true,
   "db_writes": false,
   "sets": [
@@ -6964,6 +6964,62 @@
           "configured_status": "available",
           "runtime_status": "collected",
           "evidence_rows": 252,
+          "error": null
+        }
+      ]
+    },
+    {
+      "key": "g1",
+      "set_name": "Generations",
+      "pokemontcg": "g1",
+      "tcgdex": "g1",
+      "manual_aliases": [],
+      "release_date": "2016/02/22",
+      "source_aliases": {
+        "pokemontcg_api": "g1",
+        "tcgdex": "g1"
+      },
+      "source_status": {
+        "pokemontcg_api": "available",
+        "tcgdex": "available"
+      },
+      "source_totals": {
+        "pokemontcg_api": {
+          "printed_total": 83,
+          "total": 117
+        },
+        "tcgdex": {
+          "official": 83,
+          "total": 117
+        }
+      },
+      "evidence_rows": 535,
+      "card_status_counts": {
+        "api_agreed": 117
+      },
+      "printing_status_counts": {
+        "api_agreed": 77,
+        "candidate_unconfirmed": 147
+      },
+      "source_availability": [
+        {
+          "set_key": "g1",
+          "set_name": "Generations",
+          "source_key": "pokemontcg_api",
+          "source_alias": "g1",
+          "configured_status": "available",
+          "runtime_status": "collected",
+          "evidence_rows": 301,
+          "error": null
+        },
+        {
+          "set_key": "g1",
+          "set_name": "Generations",
+          "source_key": "tcgdex",
+          "source_alias": "g1",
+          "configured_status": "available",
+          "runtime_status": "collected",
+          "evidence_rows": 234,
           "error": null
         }
       ]

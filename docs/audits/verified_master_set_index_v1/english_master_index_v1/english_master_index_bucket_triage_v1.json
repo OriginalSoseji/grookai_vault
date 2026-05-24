@@ -1,18 +1,18 @@
 {
   "version": "ENGLISH_MASTER_INDEX_BUCKET_TRIAGE_V1",
-  "generated_at": "2026-05-24T12:50:44.902Z",
+  "generated_at": "2026-05-24T13:15:31.063Z",
   "audit_only": true,
   "db_writes": false,
   "source_report": "english_master_index_grookai_audit_v1.json",
   "summary": {
-    "set_unmapped": 11524,
-    "name_mismatch_needs_review": 130,
-    "unsupported_by_current_index": 10380,
-    "missing_from_grookai": 6027
+    "set_unmapped": 11176,
+    "name_mismatch_needs_review": 196,
+    "unsupported_by_current_index": 10489,
+    "missing_from_grookai": 6080
   },
   "buckets": {
     "set_unmapped": {
-      "count": 11524,
+      "count": 11176,
       "by_set_code": [
         {
           "set_code": "unknown",
@@ -37,10 +37,6 @@
         {
           "set_code": "A2",
           "count": 621
-        },
-        {
-          "set_code": "g1",
-          "count": 348
         },
         {
           "set_code": "A2b",
@@ -70,15 +66,15 @@
       "by_finish": [
         {
           "finish_key": "holo",
-          "count": 3923
+          "count": 3807
         },
         {
           "finish_key": "reverse",
-          "count": 3848
+          "count": 3732
         },
         {
           "finish_key": "normal",
-          "count": 3753
+          "count": 3637
         }
       ],
       "top_set_finish": [
@@ -171,21 +167,6 @@
           "set_code": "A2",
           "finish_key": "reverse",
           "count": 207
-        },
-        {
-          "set_code": "g1",
-          "finish_key": "holo",
-          "count": 116
-        },
-        {
-          "set_code": "g1",
-          "finish_key": "normal",
-          "count": 116
-        },
-        {
-          "set_code": "g1",
-          "finish_key": "reverse",
-          "count": 116
         },
         {
           "set_code": "A2b",
@@ -557,16 +538,6 @@
           "finish_key": "normal",
           "grookai_card_print_id": "65c12ff4-cd68-4ad7-80a6-bb13ca3c444b",
           "grookai_printing_id": "5dbd3bdd-2c72-4b15-a63e-7adf6355aa05",
-          "note": "Grookai set_code was not present in the current English Master Index source set map."
-        },
-        {
-          "status": "set_unmapped",
-          "set_code": "g1",
-          "card_number": "26",
-          "grookai_card_name": "Floral Crown",
-          "finish_key": "normal",
-          "grookai_card_print_id": "b3ef7a40-9d58-489a-9573-846c5587f867",
-          "grookai_printing_id": "afd59cac-ada0-4e49-acf8-01a5bc3395a4",
           "note": "Grookai set_code was not present in the current English Master Index source set map."
         },
         {
@@ -1268,13 +1239,27 @@
           "grookai_card_print_id": "662ab3c3-1a13-43c6-9717-e0ca341c8674",
           "grookai_printing_id": "b5a220ef-6207-43c6-9426-2c878e36f2b4",
           "note": "Grookai set_code was not present in the current English Master Index source set map."
+        },
+        {
+          "status": "set_unmapped",
+          "set_code": "A1a",
+          "card_number": "050",
+          "grookai_card_name": "Weezing",
+          "finish_key": "normal",
+          "grookai_card_print_id": "d2aaa840-d82a-4bec-a016-27350ab930bc",
+          "grookai_printing_id": "688a20f1-0624-4c7f-90ce-7a17a2894d29",
+          "note": "Grookai set_code was not present in the current English Master Index source set map."
         }
       ],
-      "next_action": "Resolve set aliases/source IDs first. Do not judge printing truth for unmapped sets until set identity is mapped."
+      "next_action": "Use english_master_index_set_unmapped_triage_v1 first. Do not judge printing truth for unmapped sets until set identity/scope is resolved."
     },
     "name_mismatch_needs_review": {
-      "count": 130,
+      "count": 196,
       "by_set_code": [
+        {
+          "set_code": "g1",
+          "count": 66
+        },
         {
           "set_code": "swsh12.5",
           "count": 25
@@ -1358,16 +1343,16 @@
       ],
       "by_finish": [
         {
-          "finish_key": "holo",
-          "count": 58
+          "finish_key": "normal",
+          "count": 73
         },
         {
-          "finish_key": "normal",
-          "count": 41
+          "finish_key": "holo",
+          "count": 72
         },
         {
           "finish_key": "reverse",
-          "count": 31
+          "count": 51
         }
       ],
       "rows": [
@@ -1433,6 +1418,23 @@
           ],
           "grookai_card_print_id": "d501fbcc-245b-4f08-8303-4ea4d2a48ae1",
           "grookai_printing_id": "ca1f6c02-0fae-40ca-b7d2-85e7474da865",
+          "note": "Set, number, and finish matched the index, but card name did not match exactly."
+        },
+        {
+          "status": "name_mismatch_needs_review",
+          "set_key": "g1",
+          "set_code": "g1",
+          "card_number": "26",
+          "grookai_card_name": "Floral Crown",
+          "index_card_name": "Pikachu",
+          "finish_key": "normal",
+          "index_status": "api_agreed",
+          "index_sources": [
+            "pokemontcg_api",
+            "tcgdex"
+          ],
+          "grookai_card_print_id": "b3ef7a40-9d58-489a-9573-846c5587f867",
+          "grookai_printing_id": "afd59cac-ada0-4e49-acf8-01a5bc3395a4",
           "note": "Set, number, and finish matched the index, but card name did not match exactly."
         },
         {
@@ -1504,6 +1506,172 @@
         },
         {
           "status": "name_mismatch_needs_review",
+          "set_key": "g1",
+          "set_code": "g1",
+          "card_number": "6",
+          "grookai_card_name": "Flareon-EX",
+          "index_card_name": "Paras",
+          "finish_key": "normal",
+          "index_status": "api_agreed",
+          "index_sources": [
+            "pokemontcg_api",
+            "tcgdex"
+          ],
+          "grookai_card_print_id": "a9eac1dd-7a1c-471b-9ba3-918a3c2b8a48",
+          "grookai_printing_id": "a854e9ef-fb9f-463b-988c-2d7dbd33e41f",
+          "note": "Set, number, and finish matched the index, but card name did not match exactly."
+        },
+        {
+          "status": "name_mismatch_needs_review",
+          "set_key": "g1",
+          "set_code": "g1",
+          "card_number": "32",
+          "grookai_card_name": "Sylveon-EX",
+          "index_card_name": "Slowpoke",
+          "finish_key": "normal",
+          "index_status": "api_agreed",
+          "index_sources": [
+            "pokemontcg_api",
+            "tcgdex"
+          ],
+          "grookai_card_print_id": "f19dbfb7-0c97-4763-a79e-06ae44bab5f6",
+          "grookai_printing_id": "fa740539-ccb4-4538-aaea-a7682619a6f8",
+          "note": "Set, number, and finish matched the index, but card name did not match exactly."
+        },
+        {
+          "status": "name_mismatch_needs_review",
+          "set_key": "g1",
+          "set_code": "g1",
+          "card_number": "9",
+          "grookai_card_name": "Raichu",
+          "index_card_name": "Pinsir",
+          "finish_key": "normal",
+          "index_status": "api_agreed",
+          "index_sources": [
+            "pokemontcg_api",
+            "tcgdex"
+          ],
+          "grookai_card_print_id": "3247d9d0-017b-46aa-8cb4-f56e8d7c818c",
+          "grookai_printing_id": "ccdab26e-a8b1-4164-bbac-3b37fa235d12",
+          "note": "Set, number, and finish matched the index, but card name did not match exactly."
+        },
+        {
+          "status": "name_mismatch_needs_review",
+          "set_key": "g1",
+          "set_code": "g1",
+          "card_number": "22",
+          "grookai_card_name": "Diancie",
+          "index_card_name": "Magikarp",
+          "finish_key": "normal",
+          "index_status": "api_agreed",
+          "index_sources": [
+            "pokemontcg_api",
+            "tcgdex"
+          ],
+          "grookai_card_print_id": "651a6955-c4ee-4af2-ba84-743f71c04cd9",
+          "grookai_printing_id": "7841b3d9-e636-4ba5-9906-1c173161c062",
+          "note": "Set, number, and finish matched the index, but card name did not match exactly."
+        },
+        {
+          "status": "name_mismatch_needs_review",
+          "set_key": "g1",
+          "set_code": "g1",
+          "card_number": "11",
+          "grookai_card_name": "Wobbuffet",
+          "index_card_name": "Charizard EX",
+          "finish_key": "normal",
+          "index_status": "candidate_unconfirmed",
+          "index_sources": [
+            "tcgdex"
+          ],
+          "grookai_card_print_id": "856ab742-92e4-4245-8896-ce8012a475a7",
+          "grookai_printing_id": "cfeb61dc-f437-4840-83ad-e28b6f6ab7b4",
+          "note": "Set, number, and finish matched the index, but card name did not match exactly."
+        },
+        {
+          "status": "name_mismatch_needs_review",
+          "set_key": "g1",
+          "set_code": "g1",
+          "card_number": "10",
+          "grookai_card_name": "Dedenne",
+          "index_card_name": "Leafeon EX",
+          "finish_key": "normal",
+          "index_status": "candidate_unconfirmed",
+          "index_sources": [
+            "tcgdex"
+          ],
+          "grookai_card_print_id": "149dbe9e-680e-4c31-8021-a14d9df1cbf4",
+          "grookai_printing_id": "f3f1b0fa-569b-4953-bae2-0d718afd919c",
+          "note": "Set, number, and finish matched the index, but card name did not match exactly."
+        },
+        {
+          "status": "name_mismatch_needs_review",
+          "set_key": "g1",
+          "set_code": "g1",
+          "card_number": "4",
+          "grookai_card_name": "Charmeleon",
+          "index_card_name": "Metapod",
+          "finish_key": "normal",
+          "index_status": "api_agreed",
+          "index_sources": [
+            "pokemontcg_api",
+            "tcgdex"
+          ],
+          "grookai_card_print_id": "0b830b8e-e94f-4ebb-ab79-970d5cb3ab41",
+          "grookai_printing_id": "73d60d6b-9960-4910-8586-d7686d66b175",
+          "note": "Set, number, and finish matched the index, but card name did not match exactly."
+        },
+        {
+          "status": "name_mismatch_needs_review",
+          "set_key": "g1",
+          "set_code": "g1",
+          "card_number": "28",
+          "grookai_card_name": "Flareon-EX",
+          "index_card_name": "Jolteon EX",
+          "finish_key": "normal",
+          "index_status": "candidate_unconfirmed",
+          "index_sources": [
+            "tcgdex"
+          ],
+          "grookai_card_print_id": "1ac5d2df-f9d5-4442-9e11-8322cf97c7de",
+          "grookai_printing_id": "eea9ea2e-ab82-49e4-a1d7-048470213977",
+          "note": "Set, number, and finish matched the index, but card name did not match exactly."
+        },
+        {
+          "status": "name_mismatch_needs_review",
+          "set_key": "g1",
+          "set_code": "g1",
+          "card_number": "24",
+          "grookai_card_name": "Altaria",
+          "index_card_name": "Vaporeon EX",
+          "finish_key": "normal",
+          "index_status": "candidate_unconfirmed",
+          "index_sources": [
+            "tcgdex"
+          ],
+          "grookai_card_print_id": "0bdd7bc6-b807-4982-9b6b-1a4deb3e9d93",
+          "grookai_printing_id": "52c259eb-84b3-4574-8941-4bb07beb9fd0",
+          "note": "Set, number, and finish matched the index, but card name did not match exactly."
+        },
+        {
+          "status": "name_mismatch_needs_review",
+          "set_key": "g1",
+          "set_code": "g1",
+          "card_number": "15",
+          "grookai_card_name": "Meowstic",
+          "index_card_name": "Rapidash",
+          "finish_key": "normal",
+          "index_status": "api_agreed",
+          "index_sources": [
+            "pokemontcg_api",
+            "tcgdex"
+          ],
+          "grookai_card_print_id": "171cb1ee-9c28-4df1-a1cb-e92d4d9359d8",
+          "grookai_printing_id": "75266b0d-3a94-4e04-9ea7-a3467d58fc6e",
+          "note": "Set, number, and finish matched the index, but card name did not match exactly."
+        },
+        {
+          "status": "name_mismatch_needs_review",
           "set_key": "bw11",
           "set_code": "bw11",
           "card_number": "25",
@@ -1517,6 +1685,88 @@
           ],
           "grookai_card_print_id": "3628261c-3aef-4c27-93b6-64144552b6bf",
           "grookai_printing_id": "afab849a-e23d-46f4-94a1-33b8dab7a315",
+          "note": "Set, number, and finish matched the index, but card name did not match exactly."
+        },
+        {
+          "status": "name_mismatch_needs_review",
+          "set_key": "g1",
+          "set_code": "g1",
+          "card_number": "1",
+          "grookai_card_name": "Chikorita",
+          "index_card_name": "Venusaur EX",
+          "finish_key": "normal",
+          "index_status": "candidate_unconfirmed",
+          "index_sources": [
+            "tcgdex"
+          ],
+          "grookai_card_print_id": "7f3436c3-78b4-43fb-8825-fafaa39f5a35",
+          "grookai_printing_id": "c5636cb6-ffdc-41c3-9513-8903efec9a11",
+          "note": "Set, number, and finish matched the index, but card name did not match exactly."
+        },
+        {
+          "status": "name_mismatch_needs_review",
+          "set_key": "g1",
+          "set_code": "g1",
+          "card_number": "27",
+          "grookai_card_name": "Wally",
+          "index_card_name": "Raichu",
+          "finish_key": "normal",
+          "index_status": "candidate_unconfirmed",
+          "index_sources": [
+            "tcgdex"
+          ],
+          "grookai_card_print_id": "ab846b92-4a09-4297-b48f-c728d2b2823a",
+          "grookai_printing_id": "64a6e790-41d3-489e-87d1-873426944ba9",
+          "note": "Set, number, and finish matched the index, but card name did not match exactly."
+        },
+        {
+          "status": "name_mismatch_needs_review",
+          "set_key": "g1",
+          "set_code": "g1",
+          "card_number": "29",
+          "grookai_card_name": "Pikachu",
+          "index_card_name": "Zapdos",
+          "finish_key": "normal",
+          "index_status": "candidate_unconfirmed",
+          "index_sources": [
+            "tcgdex"
+          ],
+          "grookai_card_print_id": "7189a54c-f97e-4379-a714-854a26e017a4",
+          "grookai_printing_id": "a9a61791-cbc7-4c42-901f-37696453fdd4",
+          "note": "Set, number, and finish matched the index, but card name did not match exactly."
+        },
+        {
+          "status": "name_mismatch_needs_review",
+          "set_key": "g1",
+          "set_code": "g1",
+          "card_number": "21",
+          "grookai_card_name": "Sylveon-EX",
+          "index_card_name": "Krabby",
+          "finish_key": "normal",
+          "index_status": "api_agreed",
+          "index_sources": [
+            "pokemontcg_api",
+            "tcgdex"
+          ],
+          "grookai_card_print_id": "69d21e53-2f8c-4e3e-986b-73ed87ff943c",
+          "grookai_printing_id": "4f542166-0ef5-4a80-8851-170e3baa764c",
+          "note": "Set, number, and finish matched the index, but card name did not match exactly."
+        },
+        {
+          "status": "name_mismatch_needs_review",
+          "set_key": "g1",
+          "set_code": "g1",
+          "card_number": "31",
+          "grookai_card_name": "M Gardevoir-EX",
+          "index_card_name": "Golbat",
+          "finish_key": "normal",
+          "index_status": "api_agreed",
+          "index_sources": [
+            "pokemontcg_api",
+            "tcgdex"
+          ],
+          "grookai_card_print_id": "02b086ef-d294-439b-a872-b3bdf2738c52",
+          "grookai_printing_id": "08b9dde6-6f42-4372-be4a-3dc4185afebd",
           "note": "Set, number, and finish matched the index, but card name did not match exactly."
         },
         {
@@ -1569,6 +1819,70 @@
         },
         {
           "status": "name_mismatch_needs_review",
+          "set_key": "g1",
+          "set_code": "g1",
+          "card_number": "27",
+          "grookai_card_name": "Wally",
+          "index_card_name": "Raichu",
+          "finish_key": "reverse",
+          "index_status": "candidate_unconfirmed",
+          "index_sources": [
+            "pokemontcg_api"
+          ],
+          "grookai_card_print_id": "ab846b92-4a09-4297-b48f-c728d2b2823a",
+          "grookai_printing_id": "bb0f96a2-62bd-43cb-b957-f48202ce2381",
+          "note": "Set, number, and finish matched the index, but card name did not match exactly."
+        },
+        {
+          "status": "name_mismatch_needs_review",
+          "set_key": "g1",
+          "set_code": "g1",
+          "card_number": "4",
+          "grookai_card_name": "Charmeleon",
+          "index_card_name": "Metapod",
+          "finish_key": "reverse",
+          "index_status": "candidate_unconfirmed",
+          "index_sources": [
+            "pokemontcg_api"
+          ],
+          "grookai_card_print_id": "0b830b8e-e94f-4ebb-ab79-970d5cb3ab41",
+          "grookai_printing_id": "6e992d63-afa0-4966-bad0-444a8d2a83ee",
+          "note": "Set, number, and finish matched the index, but card name did not match exactly."
+        },
+        {
+          "status": "name_mismatch_needs_review",
+          "set_key": "g1",
+          "set_code": "g1",
+          "card_number": "32",
+          "grookai_card_name": "Sylveon-EX",
+          "index_card_name": "Slowpoke",
+          "finish_key": "reverse",
+          "index_status": "candidate_unconfirmed",
+          "index_sources": [
+            "pokemontcg_api"
+          ],
+          "grookai_card_print_id": "f19dbfb7-0c97-4763-a79e-06ae44bab5f6",
+          "grookai_printing_id": "5ac8f4bc-09f5-4d49-bd72-78729b32d571",
+          "note": "Set, number, and finish matched the index, but card name did not match exactly."
+        },
+        {
+          "status": "name_mismatch_needs_review",
+          "set_key": "g1",
+          "set_code": "g1",
+          "card_number": "26",
+          "grookai_card_name": "Floral Crown",
+          "index_card_name": "Pikachu",
+          "finish_key": "reverse",
+          "index_status": "candidate_unconfirmed",
+          "index_sources": [
+            "pokemontcg_api"
+          ],
+          "grookai_card_print_id": "b3ef7a40-9d58-489a-9573-846c5587f867",
+          "grookai_printing_id": "3319ee73-74f6-4b3c-bef4-0986611b7039",
+          "note": "Set, number, and finish matched the index, but card name did not match exactly."
+        },
+        {
+          "status": "name_mismatch_needs_review",
           "set_key": "bw11",
           "set_code": "bw11",
           "card_number": "8",
@@ -1601,6 +1915,70 @@
         },
         {
           "status": "name_mismatch_needs_review",
+          "set_key": "g1",
+          "set_code": "g1",
+          "card_number": "31",
+          "grookai_card_name": "M Gardevoir-EX",
+          "index_card_name": "Golbat",
+          "finish_key": "reverse",
+          "index_status": "candidate_unconfirmed",
+          "index_sources": [
+            "pokemontcg_api"
+          ],
+          "grookai_card_print_id": "02b086ef-d294-439b-a872-b3bdf2738c52",
+          "grookai_printing_id": "b5ff4b6f-d73d-4542-903e-d3a61f184f46",
+          "note": "Set, number, and finish matched the index, but card name did not match exactly."
+        },
+        {
+          "status": "name_mismatch_needs_review",
+          "set_key": "g1",
+          "set_code": "g1",
+          "card_number": "22",
+          "grookai_card_name": "Diancie",
+          "index_card_name": "Magikarp",
+          "finish_key": "reverse",
+          "index_status": "candidate_unconfirmed",
+          "index_sources": [
+            "pokemontcg_api"
+          ],
+          "grookai_card_print_id": "651a6955-c4ee-4af2-ba84-743f71c04cd9",
+          "grookai_printing_id": "98bb9c21-8a75-4c5d-9c2f-8f4efa4f72cf",
+          "note": "Set, number, and finish matched the index, but card name did not match exactly."
+        },
+        {
+          "status": "name_mismatch_needs_review",
+          "set_key": "g1",
+          "set_code": "g1",
+          "card_number": "15",
+          "grookai_card_name": "Meowstic",
+          "index_card_name": "Rapidash",
+          "finish_key": "reverse",
+          "index_status": "candidate_unconfirmed",
+          "index_sources": [
+            "pokemontcg_api"
+          ],
+          "grookai_card_print_id": "171cb1ee-9c28-4df1-a1cb-e92d4d9359d8",
+          "grookai_printing_id": "a454a4ed-53d8-4776-be95-623120839e28",
+          "note": "Set, number, and finish matched the index, but card name did not match exactly."
+        },
+        {
+          "status": "name_mismatch_needs_review",
+          "set_key": "g1",
+          "set_code": "g1",
+          "card_number": "6",
+          "grookai_card_name": "Flareon-EX",
+          "index_card_name": "Paras",
+          "finish_key": "reverse",
+          "index_status": "candidate_unconfirmed",
+          "index_sources": [
+            "pokemontcg_api"
+          ],
+          "grookai_card_print_id": "a9eac1dd-7a1c-471b-9ba3-918a3c2b8a48",
+          "grookai_printing_id": "94451834-5b96-4eba-8862-791770000e97",
+          "note": "Set, number, and finish matched the index, but card name did not match exactly."
+        },
+        {
+          "status": "name_mismatch_needs_review",
           "set_key": "bw11",
           "set_code": "bw11",
           "card_number": "25",
@@ -1629,6 +2007,22 @@
           ],
           "grookai_card_print_id": "72398f5c-8931-4eec-8243-86d11ea4231b",
           "grookai_printing_id": "f5a3bc68-800a-4b2d-98fe-99fec5fb1730",
+          "note": "Set, number, and finish matched the index, but card name did not match exactly."
+        },
+        {
+          "status": "name_mismatch_needs_review",
+          "set_key": "g1",
+          "set_code": "g1",
+          "card_number": "9",
+          "grookai_card_name": "Raichu",
+          "index_card_name": "Pinsir",
+          "finish_key": "reverse",
+          "index_status": "candidate_unconfirmed",
+          "index_sources": [
+            "pokemontcg_api"
+          ],
+          "grookai_card_print_id": "3247d9d0-017b-46aa-8cb4-f56e8d7c818c",
+          "grookai_printing_id": "9b8dab4e-70e9-4a67-b8af-b0876cea0aad",
           "note": "Set, number, and finish matched the index, but card name did not match exactly."
         },
         {
@@ -1677,6 +2071,102 @@
           ],
           "grookai_card_print_id": "6e68f984-674b-4a6f-9578-11ec370b25a3",
           "grookai_printing_id": "df2b7bee-82a0-48bd-9202-fe0b8f08af7b",
+          "note": "Set, number, and finish matched the index, but card name did not match exactly."
+        },
+        {
+          "status": "name_mismatch_needs_review",
+          "set_key": "g1",
+          "set_code": "g1",
+          "card_number": "29",
+          "grookai_card_name": "Pikachu",
+          "index_card_name": "Zapdos",
+          "finish_key": "holo",
+          "index_status": "candidate_unconfirmed",
+          "index_sources": [
+            "pokemontcg_api"
+          ],
+          "grookai_card_print_id": "7189a54c-f97e-4379-a714-854a26e017a4",
+          "grookai_printing_id": "a94c2bb8-1942-4bfe-9d35-353b45556e4c",
+          "note": "Set, number, and finish matched the index, but card name did not match exactly."
+        },
+        {
+          "status": "name_mismatch_needs_review",
+          "set_key": "g1",
+          "set_code": "g1",
+          "card_number": "11",
+          "grookai_card_name": "Wobbuffet",
+          "index_card_name": "Charizard-EX",
+          "finish_key": "holo",
+          "index_status": "candidate_unconfirmed",
+          "index_sources": [
+            "pokemontcg_api"
+          ],
+          "grookai_card_print_id": "856ab742-92e4-4245-8896-ce8012a475a7",
+          "grookai_printing_id": "297b0f99-9f72-49b5-8277-d890010569de",
+          "note": "Set, number, and finish matched the index, but card name did not match exactly."
+        },
+        {
+          "status": "name_mismatch_needs_review",
+          "set_key": "g1",
+          "set_code": "g1",
+          "card_number": "1",
+          "grookai_card_name": "Chikorita",
+          "index_card_name": "Venusaur-EX",
+          "finish_key": "holo",
+          "index_status": "candidate_unconfirmed",
+          "index_sources": [
+            "pokemontcg_api"
+          ],
+          "grookai_card_print_id": "7f3436c3-78b4-43fb-8825-fafaa39f5a35",
+          "grookai_printing_id": "aadb6715-14a7-4c39-852f-a2d5c3f2d3e4",
+          "note": "Set, number, and finish matched the index, but card name did not match exactly."
+        },
+        {
+          "status": "name_mismatch_needs_review",
+          "set_key": "g1",
+          "set_code": "g1",
+          "card_number": "10",
+          "grookai_card_name": "Dedenne",
+          "index_card_name": "Leafeon-EX",
+          "finish_key": "holo",
+          "index_status": "candidate_unconfirmed",
+          "index_sources": [
+            "pokemontcg_api"
+          ],
+          "grookai_card_print_id": "149dbe9e-680e-4c31-8021-a14d9df1cbf4",
+          "grookai_printing_id": "bdb2100a-41ce-4f27-9aca-451d44c051f2",
+          "note": "Set, number, and finish matched the index, but card name did not match exactly."
+        },
+        {
+          "status": "name_mismatch_needs_review",
+          "set_key": "g1",
+          "set_code": "g1",
+          "card_number": "27",
+          "grookai_card_name": "Wally",
+          "index_card_name": "Raichu",
+          "finish_key": "holo",
+          "index_status": "candidate_unconfirmed",
+          "index_sources": [
+            "pokemontcg_api"
+          ],
+          "grookai_card_print_id": "ab846b92-4a09-4297-b48f-c728d2b2823a",
+          "grookai_printing_id": "b01f7215-0966-49df-9af4-677441c8f6fe",
+          "note": "Set, number, and finish matched the index, but card name did not match exactly."
+        },
+        {
+          "status": "name_mismatch_needs_review",
+          "set_key": "g1",
+          "set_code": "g1",
+          "card_number": "24",
+          "grookai_card_name": "Altaria",
+          "index_card_name": "Vaporeon-EX",
+          "finish_key": "holo",
+          "index_status": "candidate_unconfirmed",
+          "index_sources": [
+            "pokemontcg_api"
+          ],
+          "grookai_card_print_id": "0bdd7bc6-b807-4982-9b6b-1a4deb3e9d93",
+          "grookai_printing_id": "7c38a6cd-1171-45e5-86c8-0b5531258363",
           "note": "Set, number, and finish matched the index, but card name did not match exactly."
         },
         {
@@ -1778,6 +2268,38 @@
           ],
           "grookai_card_print_id": "1fdf3e02-9156-4003-bc52-2b4d8f40ed65",
           "grookai_printing_id": "56bbf37a-1050-4b0b-97e8-e24d0ed34f93",
+          "note": "Set, number, and finish matched the index, but card name did not match exactly."
+        },
+        {
+          "status": "name_mismatch_needs_review",
+          "set_key": "g1",
+          "set_code": "g1",
+          "card_number": "21",
+          "grookai_card_name": "Sylveon-EX",
+          "index_card_name": "Krabby",
+          "finish_key": "reverse",
+          "index_status": "candidate_unconfirmed",
+          "index_sources": [
+            "pokemontcg_api"
+          ],
+          "grookai_card_print_id": "69d21e53-2f8c-4e3e-986b-73ed87ff943c",
+          "grookai_printing_id": "c221156a-06e8-43dd-a06d-b50a72c27b83",
+          "note": "Set, number, and finish matched the index, but card name did not match exactly."
+        },
+        {
+          "status": "name_mismatch_needs_review",
+          "set_key": "g1",
+          "set_code": "g1",
+          "card_number": "28",
+          "grookai_card_name": "Flareon-EX",
+          "index_card_name": "Jolteon-EX",
+          "finish_key": "holo",
+          "index_status": "candidate_unconfirmed",
+          "index_sources": [
+            "pokemontcg_api"
+          ],
+          "grookai_card_print_id": "1ac5d2df-f9d5-4442-9e11-8322cf97c7de",
+          "grookai_printing_id": "46f26b31-bf3c-452a-a908-e10027e5fddd",
           "note": "Set, number, and finish matched the index, but card name did not match exactly."
         },
         {
@@ -2166,6 +2688,298 @@
         },
         {
           "status": "name_mismatch_needs_review",
+          "set_key": "g1",
+          "set_code": "g1",
+          "card_number": "2",
+          "grookai_card_name": "Shroomish",
+          "index_card_name": "M Venusaur-EX",
+          "finish_key": "holo",
+          "index_status": "candidate_unconfirmed",
+          "index_sources": [
+            "pokemontcg_api"
+          ],
+          "grookai_card_print_id": "4674e8c9-82c7-54fb-b2b6-878879a8c136",
+          "grookai_printing_id": "2064c6b2-057b-4605-87be-acb82b6b3f6a",
+          "note": "Set, number, and finish matched the index, but card name did not match exactly."
+        },
+        {
+          "status": "name_mismatch_needs_review",
+          "set_key": "g1",
+          "set_code": "g1",
+          "card_number": "12",
+          "grookai_card_name": "Gulpin",
+          "index_card_name": "M Charizard EX",
+          "finish_key": "normal",
+          "index_status": "candidate_unconfirmed",
+          "index_sources": [
+            "tcgdex"
+          ],
+          "grookai_card_print_id": "5e278fec-4752-53f7-973b-6e3cbd66dbe9",
+          "grookai_printing_id": "a39fa874-1597-41ec-8d7c-86a285962e86",
+          "note": "Set, number, and finish matched the index, but card name did not match exactly."
+        },
+        {
+          "status": "name_mismatch_needs_review",
+          "set_key": "g1",
+          "set_code": "g1",
+          "card_number": "13",
+          "grookai_card_name": "Jirachi",
+          "index_card_name": "Ninetales-EX",
+          "finish_key": "holo",
+          "index_status": "candidate_unconfirmed",
+          "index_sources": [
+            "pokemontcg_api"
+          ],
+          "grookai_card_print_id": "069fd350-fedd-516f-b820-330fb06efb3b",
+          "grookai_printing_id": "e5c5de1c-c81c-438e-91d1-9af6170dfee3",
+          "note": "Set, number, and finish matched the index, but card name did not match exactly."
+        },
+        {
+          "status": "name_mismatch_needs_review",
+          "set_key": "g1",
+          "set_code": "g1",
+          "card_number": "16",
+          "grookai_card_name": "Yveltal",
+          "index_card_name": "Magmar",
+          "finish_key": "reverse",
+          "index_status": "candidate_unconfirmed",
+          "index_sources": [
+            "pokemontcg_api"
+          ],
+          "grookai_card_print_id": "3031b6f5-0531-5d1a-8e4e-4fb2e74870fe",
+          "grookai_printing_id": "30ad7832-4d3b-4e51-88ba-25873d638e28",
+          "note": "Set, number, and finish matched the index, but card name did not match exactly."
+        },
+        {
+          "status": "name_mismatch_needs_review",
+          "set_key": "g1",
+          "set_code": "g1",
+          "card_number": "18",
+          "grookai_card_name": "Floette",
+          "index_card_name": "M Blastoise EX",
+          "finish_key": "normal",
+          "index_status": "candidate_unconfirmed",
+          "index_sources": [
+            "tcgdex"
+          ],
+          "grookai_card_print_id": "85f4847a-da8f-50e1-b0e6-5878b000a2e8",
+          "grookai_printing_id": "caad0c4d-901c-4e78-9626-a365ad51928a",
+          "note": "Set, number, and finish matched the index, but card name did not match exactly."
+        },
+        {
+          "status": "name_mismatch_needs_review",
+          "set_key": "g1",
+          "set_code": "g1",
+          "card_number": "19",
+          "grookai_card_name": "Swirlix",
+          "index_card_name": "Shellder",
+          "finish_key": "normal",
+          "index_status": "api_agreed",
+          "index_sources": [
+            "pokemontcg_api",
+            "tcgdex"
+          ],
+          "grookai_card_print_id": "47c452a9-f990-59b1-a62f-beedb3264c3c",
+          "grookai_printing_id": "c0ffb26e-a3ff-465c-893d-b2b36ea7dff8",
+          "note": "Set, number, and finish matched the index, but card name did not match exactly."
+        },
+        {
+          "status": "name_mismatch_needs_review",
+          "set_key": "g1",
+          "set_code": "g1",
+          "card_number": "20",
+          "grookai_card_name": "Slurpuff",
+          "index_card_name": "Cloyster",
+          "finish_key": "reverse",
+          "index_status": "candidate_unconfirmed",
+          "index_sources": [
+            "pokemontcg_api"
+          ],
+          "grookai_card_print_id": "dbbc03b1-4224-551a-b344-6922bd6681a4",
+          "grookai_printing_id": "df828bb5-6c5f-4bf7-84ae-38ac3a130029",
+          "note": "Set, number, and finish matched the index, but card name did not match exactly."
+        },
+        {
+          "status": "name_mismatch_needs_review",
+          "set_key": "g1",
+          "set_code": "g1",
+          "card_number": "12",
+          "grookai_card_name": "Gulpin",
+          "index_card_name": "M Charizard-EX",
+          "finish_key": "holo",
+          "index_status": "candidate_unconfirmed",
+          "index_sources": [
+            "pokemontcg_api"
+          ],
+          "grookai_card_print_id": "5e278fec-4752-53f7-973b-6e3cbd66dbe9",
+          "grookai_printing_id": "7498d162-9aa9-415f-ab64-c4b104e71391",
+          "note": "Set, number, and finish matched the index, but card name did not match exactly."
+        },
+        {
+          "status": "name_mismatch_needs_review",
+          "set_key": "g1",
+          "set_code": "g1",
+          "card_number": "14",
+          "grookai_card_name": "Espurr",
+          "index_card_name": "Ponyta",
+          "finish_key": "reverse",
+          "index_status": "candidate_unconfirmed",
+          "index_sources": [
+            "pokemontcg_api"
+          ],
+          "grookai_card_print_id": "20a79271-481b-5c1c-8da2-ebce987481cb",
+          "grookai_printing_id": "42696cac-4c2c-4d35-9af2-68cda25b305e",
+          "note": "Set, number, and finish matched the index, but card name did not match exactly."
+        },
+        {
+          "status": "name_mismatch_needs_review",
+          "set_key": "g1",
+          "set_code": "g1",
+          "card_number": "16",
+          "grookai_card_name": "Yveltal",
+          "index_card_name": "Magmar",
+          "finish_key": "normal",
+          "index_status": "api_agreed",
+          "index_sources": [
+            "pokemontcg_api",
+            "tcgdex"
+          ],
+          "grookai_card_print_id": "3031b6f5-0531-5d1a-8e4e-4fb2e74870fe",
+          "grookai_printing_id": "1a5ec162-3bca-4135-ab64-61d9a305f407",
+          "note": "Set, number, and finish matched the index, but card name did not match exactly."
+        },
+        {
+          "status": "name_mismatch_needs_review",
+          "set_key": "g1",
+          "set_code": "g1",
+          "card_number": "17",
+          "grookai_card_name": "Flabébé",
+          "index_card_name": "Blastoise EX",
+          "finish_key": "normal",
+          "index_status": "candidate_unconfirmed",
+          "index_sources": [
+            "tcgdex"
+          ],
+          "grookai_card_print_id": "7bc45f19-798c-5a54-bbcb-3644276ccc99",
+          "grookai_printing_id": "2a94fe16-7d06-4ba9-a44a-18779fafac32",
+          "note": "Set, number, and finish matched the index, but card name did not match exactly."
+        },
+        {
+          "status": "name_mismatch_needs_review",
+          "set_key": "g1",
+          "set_code": "g1",
+          "card_number": "18",
+          "grookai_card_name": "Floette",
+          "index_card_name": "M Blastoise-EX",
+          "finish_key": "holo",
+          "index_status": "candidate_unconfirmed",
+          "index_sources": [
+            "pokemontcg_api"
+          ],
+          "grookai_card_print_id": "85f4847a-da8f-50e1-b0e6-5878b000a2e8",
+          "grookai_printing_id": "b541b6d4-6751-49d0-8a84-4191e916e92e",
+          "note": "Set, number, and finish matched the index, but card name did not match exactly."
+        },
+        {
+          "status": "name_mismatch_needs_review",
+          "set_key": "g1",
+          "set_code": "g1",
+          "card_number": "2",
+          "grookai_card_name": "Shroomish",
+          "index_card_name": "M Venusaur EX",
+          "finish_key": "normal",
+          "index_status": "candidate_unconfirmed",
+          "index_sources": [
+            "tcgdex"
+          ],
+          "grookai_card_print_id": "4674e8c9-82c7-54fb-b2b6-878879a8c136",
+          "grookai_printing_id": "27ac9295-365c-4aa5-8f45-15b10b24fd1f",
+          "note": "Set, number, and finish matched the index, but card name did not match exactly."
+        },
+        {
+          "status": "name_mismatch_needs_review",
+          "set_key": "g1",
+          "set_code": "g1",
+          "card_number": "13",
+          "grookai_card_name": "Jirachi",
+          "index_card_name": "Ninetales EX",
+          "finish_key": "normal",
+          "index_status": "candidate_unconfirmed",
+          "index_sources": [
+            "tcgdex"
+          ],
+          "grookai_card_print_id": "069fd350-fedd-516f-b820-330fb06efb3b",
+          "grookai_printing_id": "7952268b-b30e-4b14-baa4-978c352c29b1",
+          "note": "Set, number, and finish matched the index, but card name did not match exactly."
+        },
+        {
+          "status": "name_mismatch_needs_review",
+          "set_key": "g1",
+          "set_code": "g1",
+          "card_number": "14",
+          "grookai_card_name": "Espurr",
+          "index_card_name": "Ponyta",
+          "finish_key": "normal",
+          "index_status": "api_agreed",
+          "index_sources": [
+            "pokemontcg_api",
+            "tcgdex"
+          ],
+          "grookai_card_print_id": "20a79271-481b-5c1c-8da2-ebce987481cb",
+          "grookai_printing_id": "1f9456e3-3313-432a-a906-79ba12d51ff2",
+          "note": "Set, number, and finish matched the index, but card name did not match exactly."
+        },
+        {
+          "status": "name_mismatch_needs_review",
+          "set_key": "g1",
+          "set_code": "g1",
+          "card_number": "17",
+          "grookai_card_name": "Flabébé",
+          "index_card_name": "Blastoise-EX",
+          "finish_key": "holo",
+          "index_status": "candidate_unconfirmed",
+          "index_sources": [
+            "pokemontcg_api"
+          ],
+          "grookai_card_print_id": "7bc45f19-798c-5a54-bbcb-3644276ccc99",
+          "grookai_printing_id": "0f3f2926-0d7d-4c8b-ae76-65b7b9254076",
+          "note": "Set, number, and finish matched the index, but card name did not match exactly."
+        },
+        {
+          "status": "name_mismatch_needs_review",
+          "set_key": "g1",
+          "set_code": "g1",
+          "card_number": "19",
+          "grookai_card_name": "Swirlix",
+          "index_card_name": "Shellder",
+          "finish_key": "reverse",
+          "index_status": "candidate_unconfirmed",
+          "index_sources": [
+            "pokemontcg_api"
+          ],
+          "grookai_card_print_id": "47c452a9-f990-59b1-a62f-beedb3264c3c",
+          "grookai_printing_id": "6e87ce82-ad50-4773-a880-8f1adfc03801",
+          "note": "Set, number, and finish matched the index, but card name did not match exactly."
+        },
+        {
+          "status": "name_mismatch_needs_review",
+          "set_key": "g1",
+          "set_code": "g1",
+          "card_number": "20",
+          "grookai_card_name": "Slurpuff",
+          "index_card_name": "Cloyster",
+          "finish_key": "normal",
+          "index_status": "api_agreed",
+          "index_sources": [
+            "pokemontcg_api",
+            "tcgdex"
+          ],
+          "grookai_card_print_id": "dbbc03b1-4224-551a-b344-6922bd6681a4",
+          "grookai_printing_id": "d9366811-352e-45d9-8314-90a6f1fed911",
+          "note": "Set, number, and finish matched the index, but card name did not match exactly."
+        },
+        {
+          "status": "name_mismatch_needs_review",
           "set_key": "dp7",
           "set_code": "dp7",
           "card_number": "2",
@@ -2200,6 +3014,120 @@
         },
         {
           "status": "name_mismatch_needs_review",
+          "set_key": "g1",
+          "set_code": "g1",
+          "card_number": "3",
+          "grookai_card_name": "Charmander",
+          "index_card_name": "Caterpie",
+          "finish_key": "normal",
+          "index_status": "api_agreed",
+          "index_sources": [
+            "pokemontcg_api",
+            "tcgdex"
+          ],
+          "grookai_card_print_id": "1bcfb6ac-b621-5644-b2b8-ff8c4c11c6bd",
+          "grookai_printing_id": "8ece1acd-251f-49e0-80d8-a55ee9ed2c4c",
+          "note": "Set, number, and finish matched the index, but card name did not match exactly."
+        },
+        {
+          "status": "name_mismatch_needs_review",
+          "set_key": "g1",
+          "set_code": "g1",
+          "card_number": "3",
+          "grookai_card_name": "Charmander",
+          "index_card_name": "Caterpie",
+          "finish_key": "reverse",
+          "index_status": "candidate_unconfirmed",
+          "index_sources": [
+            "pokemontcg_api"
+          ],
+          "grookai_card_print_id": "1bcfb6ac-b621-5644-b2b8-ff8c4c11c6bd",
+          "grookai_printing_id": "bb25af48-6f45-4ba8-a44d-c58cdf830785",
+          "note": "Set, number, and finish matched the index, but card name did not match exactly."
+        },
+        {
+          "status": "name_mismatch_needs_review",
+          "set_key": "g1",
+          "set_code": "g1",
+          "card_number": "5",
+          "grookai_card_name": "Charizard",
+          "index_card_name": "Butterfree",
+          "finish_key": "holo",
+          "index_status": "candidate_unconfirmed",
+          "index_sources": [
+            "pokemontcg_api"
+          ],
+          "grookai_card_print_id": "ee1ee550-c737-5223-9f3d-ab9b2cc50860",
+          "grookai_printing_id": "79c8da9a-0093-4ebb-b9d4-241984788ce1",
+          "note": "Set, number, and finish matched the index, but card name did not match exactly."
+        },
+        {
+          "status": "name_mismatch_needs_review",
+          "set_key": "g1",
+          "set_code": "g1",
+          "card_number": "7",
+          "grookai_card_name": "Snorunt",
+          "index_card_name": "Parasect",
+          "finish_key": "normal",
+          "index_status": "api_agreed",
+          "index_sources": [
+            "pokemontcg_api",
+            "tcgdex"
+          ],
+          "grookai_card_print_id": "9f16e181-8fb5-5f2c-a41d-f02438ccec73",
+          "grookai_printing_id": "601053f0-8b30-4950-b2f9-14fb694d6556",
+          "note": "Set, number, and finish matched the index, but card name did not match exactly."
+        },
+        {
+          "status": "name_mismatch_needs_review",
+          "set_key": "g1",
+          "set_code": "g1",
+          "card_number": "8",
+          "grookai_card_name": "Froslass",
+          "index_card_name": "Tangela",
+          "finish_key": "reverse",
+          "index_status": "candidate_unconfirmed",
+          "index_sources": [
+            "pokemontcg_api"
+          ],
+          "grookai_card_print_id": "2b45e7d0-ac49-5ac3-bd1d-c72ab858c4d7",
+          "grookai_printing_id": "6878e75f-abd9-449d-b823-84923c44e52d",
+          "note": "Set, number, and finish matched the index, but card name did not match exactly."
+        },
+        {
+          "status": "name_mismatch_needs_review",
+          "set_key": "g1",
+          "set_code": "g1",
+          "card_number": "23",
+          "grookai_card_name": "Swablu",
+          "index_card_name": "Gyarados",
+          "finish_key": "reverse",
+          "index_status": "candidate_unconfirmed",
+          "index_sources": [
+            "pokemontcg_api"
+          ],
+          "grookai_card_print_id": "fd7d6e32-b09f-5439-9740-564920503795",
+          "grookai_printing_id": "79da3158-71fa-4c26-b03e-23e552e2e59f",
+          "note": "Set, number, and finish matched the index, but card name did not match exactly."
+        },
+        {
+          "status": "name_mismatch_needs_review",
+          "set_key": "g1",
+          "set_code": "g1",
+          "card_number": "25",
+          "grookai_card_name": "Fletchling",
+          "index_card_name": "Articuno",
+          "finish_key": "normal",
+          "index_status": "candidate_unconfirmed",
+          "index_sources": [
+            "tcgdex"
+          ],
+          "grookai_card_print_id": "52d1b25d-fe16-557a-b749-cbdd9f986dc1",
+          "grookai_printing_id": "697867ad-acd3-4fd9-b444-748426e0a69f",
+          "note": "Set, number, and finish matched the index, but card name did not match exactly."
+        },
+        {
+          "status": "name_mismatch_needs_review",
           "set_key": "dp7",
           "set_code": "dp7",
           "card_number": "3",
@@ -2230,6 +3158,137 @@
           ],
           "grookai_card_print_id": "0fa024a0-c7ae-4a65-b6d4-6d638a82027a",
           "grookai_printing_id": "c59c992d-ab2a-4e75-ac04-b8fd586644d0",
+          "note": "Set, number, and finish matched the index, but card name did not match exactly."
+        },
+        {
+          "status": "name_mismatch_needs_review",
+          "set_key": "g1",
+          "set_code": "g1",
+          "card_number": "5",
+          "grookai_card_name": "Charizard",
+          "index_card_name": "Butterfree",
+          "finish_key": "reverse",
+          "index_status": "candidate_unconfirmed",
+          "index_sources": [
+            "pokemontcg_api"
+          ],
+          "grookai_card_print_id": "ee1ee550-c737-5223-9f3d-ab9b2cc50860",
+          "grookai_printing_id": "b4a63602-ee6b-4089-88eb-f56471c77c34",
+          "note": "Set, number, and finish matched the index, but card name did not match exactly."
+        },
+        {
+          "status": "name_mismatch_needs_review",
+          "set_key": "g1",
+          "set_code": "g1",
+          "card_number": "8",
+          "grookai_card_name": "Froslass",
+          "index_card_name": "Tangela",
+          "finish_key": "normal",
+          "index_status": "api_agreed",
+          "index_sources": [
+            "pokemontcg_api",
+            "tcgdex"
+          ],
+          "grookai_card_print_id": "2b45e7d0-ac49-5ac3-bd1d-c72ab858c4d7",
+          "grookai_printing_id": "e60a748b-d719-447f-9583-fca07d4824a2",
+          "note": "Set, number, and finish matched the index, but card name did not match exactly."
+        },
+        {
+          "status": "name_mismatch_needs_review",
+          "set_key": "g1",
+          "set_code": "g1",
+          "card_number": "23",
+          "grookai_card_name": "Swablu",
+          "index_card_name": "Gyarados",
+          "finish_key": "normal",
+          "index_status": "api_agreed",
+          "index_sources": [
+            "pokemontcg_api",
+            "tcgdex"
+          ],
+          "grookai_card_print_id": "fd7d6e32-b09f-5439-9740-564920503795",
+          "grookai_printing_id": "fa3b92c2-652b-4769-a69c-bebb02d1c16f",
+          "note": "Set, number, and finish matched the index, but card name did not match exactly."
+        },
+        {
+          "status": "name_mismatch_needs_review",
+          "set_key": "g1",
+          "set_code": "g1",
+          "card_number": "30",
+          "grookai_card_name": "Gardevoir-EX",
+          "index_card_name": "Zubat",
+          "finish_key": "normal",
+          "index_status": "api_agreed",
+          "index_sources": [
+            "pokemontcg_api",
+            "tcgdex"
+          ],
+          "grookai_card_print_id": "8498f4ed-a36c-5463-85d6-f4f697136385",
+          "grookai_printing_id": "f93679bf-89f2-434a-a5fc-9c87e2a1f3f3",
+          "note": "Set, number, and finish matched the index, but card name did not match exactly."
+        },
+        {
+          "status": "name_mismatch_needs_review",
+          "set_key": "g1",
+          "set_code": "g1",
+          "card_number": "5",
+          "grookai_card_name": "Charizard",
+          "index_card_name": "Butterfree",
+          "finish_key": "normal",
+          "index_status": "candidate_unconfirmed",
+          "index_sources": [
+            "tcgdex"
+          ],
+          "grookai_card_print_id": "ee1ee550-c737-5223-9f3d-ab9b2cc50860",
+          "grookai_printing_id": "30170693-b6b1-45c1-a660-e09ad0e24a1a",
+          "note": "Set, number, and finish matched the index, but card name did not match exactly."
+        },
+        {
+          "status": "name_mismatch_needs_review",
+          "set_key": "g1",
+          "set_code": "g1",
+          "card_number": "7",
+          "grookai_card_name": "Snorunt",
+          "index_card_name": "Parasect",
+          "finish_key": "reverse",
+          "index_status": "candidate_unconfirmed",
+          "index_sources": [
+            "pokemontcg_api"
+          ],
+          "grookai_card_print_id": "9f16e181-8fb5-5f2c-a41d-f02438ccec73",
+          "grookai_printing_id": "f6239d96-9359-4c3d-91a5-bbd8cad24bfb",
+          "note": "Set, number, and finish matched the index, but card name did not match exactly."
+        },
+        {
+          "status": "name_mismatch_needs_review",
+          "set_key": "g1",
+          "set_code": "g1",
+          "card_number": "25",
+          "grookai_card_name": "Fletchling",
+          "index_card_name": "Articuno",
+          "finish_key": "holo",
+          "index_status": "candidate_unconfirmed",
+          "index_sources": [
+            "pokemontcg_api"
+          ],
+          "grookai_card_print_id": "52d1b25d-fe16-557a-b749-cbdd9f986dc1",
+          "grookai_printing_id": "fabd7ccb-7721-4c97-b7d7-15587b9c4145",
+          "note": "Set, number, and finish matched the index, but card name did not match exactly."
+        },
+        {
+          "status": "name_mismatch_needs_review",
+          "set_key": "g1",
+          "set_code": "g1",
+          "card_number": "30",
+          "grookai_card_name": "Gardevoir-EX",
+          "index_card_name": "Zubat",
+          "finish_key": "reverse",
+          "index_status": "candidate_unconfirmed",
+          "index_sources": [
+            "pokemontcg_api"
+          ],
+          "grookai_card_print_id": "8498f4ed-a36c-5463-85d6-f4f697136385",
+          "grookai_printing_id": "ae9e762a-0b04-445c-ab5a-d741bc14bc73",
           "note": "Set, number, and finish matched the index, but card name did not match exactly."
         },
         {
@@ -3513,7 +4572,7 @@
       "next_action": "Review exact card names, punctuation, formes, gender symbols, and source naming differences before any canonical decision."
     },
     "unsupported_by_current_index": {
-      "count": 10380,
+      "count": 10489,
       "by_set_code": [
         {
           "set_code": "smp",
@@ -3642,6 +4701,10 @@
         {
           "set_code": "xy4",
           "count": 111
+        },
+        {
+          "set_code": "g1",
+          "count": 109
         },
         {
           "set_code": "bw9",
@@ -3910,20 +4973,16 @@
         {
           "set_code": "mcd22",
           "count": 6
-        },
-        {
-          "set_code": "bp",
-          "count": 5
         }
       ],
       "by_finish": [
         {
           "finish_key": "holo",
-          "count": 5860
+          "count": 5942
         },
         {
           "finish_key": "reverse",
-          "count": 3040
+          "count": 3067
         },
         {
           "finish_key": "normal",
@@ -4198,6 +5257,11 @@
           "set_code": "xy2",
           "finish_key": "holo",
           "count": 83
+        },
+        {
+          "set_code": "g1",
+          "finish_key": "holo",
+          "count": 82
         },
         {
           "set_code": "sm4",
@@ -4500,6 +5564,11 @@
           "count": 28
         },
         {
+          "set_code": "g1",
+          "finish_key": "reverse",
+          "count": 27
+        },
+        {
           "set_code": "dc1",
           "finish_key": "holo",
           "count": 26
@@ -4678,16 +5747,6 @@
           "set_code": "swsh12",
           "finish_key": "holo",
           "count": 13
-        },
-        {
-          "set_code": "swsh8",
-          "finish_key": "reverse",
-          "count": 13
-        },
-        {
-          "set_code": "ex3",
-          "finish_key": "reverse",
-          "count": 12
         }
       ],
       "sample_rows": [
@@ -5795,7 +6854,7 @@
       "next_action": "Treat as index unsupported only, not deletion authority. Split source gaps from likely speculative Grookai printings set by set."
     },
     "missing_from_grookai": {
-      "count": 6027,
+      "count": 6080,
       "by_set_key": [
         {
           "set_key": "smp",
@@ -5944,6 +7003,10 @@
         {
           "set_key": "bw11",
           "count": 61
+        },
+        {
+          "set_key": "g1",
+          "count": 53
         },
         {
           "set_key": "swsh7",
@@ -6192,20 +7255,16 @@
         {
           "set_key": "mcd15",
           "count": 3
-        },
-        {
-          "set_key": "me1",
-          "count": 3
         }
       ],
       "by_finish": [
         {
           "finish_key": "holo",
-          "count": 2038
+          "count": 2057
         },
         {
           "finish_key": "normal",
-          "count": 1598
+          "count": 1632
         },
         {
           "finish_key": "reverse",
@@ -6223,11 +7282,11 @@
       "by_index_status": [
         {
           "index_status": "candidate_unconfirmed",
-          "count": 5620
+          "count": 5660
         },
         {
           "index_status": "api_agreed",
-          "count": 407
+          "count": 420
         }
       ],
       "top_set_finish": [
@@ -6447,6 +7506,11 @@
           "count": 52
         },
         {
+          "set_key": "g1",
+          "finish_key": "normal",
+          "count": 34
+        },
+        {
           "set_key": "mfb",
           "finish_key": "normal",
           "count": 34
@@ -6559,6 +7623,11 @@
         {
           "set_key": "ex6",
           "finish_key": "normal",
+          "count": 19
+        },
+        {
+          "set_key": "g1",
+          "finish_key": "holo",
           "count": 19
         },
         {
@@ -6968,16 +8037,6 @@
         },
         {
           "set_key": "ex8",
-          "finish_key": "holo",
-          "count": 3
-        },
-        {
-          "set_key": "hgss1",
-          "finish_key": "reverse",
-          "count": 3
-        },
-        {
-          "set_key": "mcd15",
           "finish_key": "holo",
           "count": 3
         }

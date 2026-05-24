@@ -1,6 +1,6 @@
 # English Master Index Set Audit V1
 
-Generated: 2026-05-24T06:12:52.703Z
+Generated: 2026-05-24T13:06:37.953Z
 
 Audit only. This inventory documents source availability and status counts per set.
 
@@ -131,6 +131,7 @@ Audit only. This inventory documents source availability and status counts per s
 | xy8 | BREAKthrough | xy8 | xy8 | 797 | {"api_agreed":165} | {"api_agreed":122,"candidate_unconfirmed":223} |
 | mcd15 | McDonald's Collection 2015 | mcd15 | 2015xy | 36 | {"api_agreed":12} | {"candidate_unconfirmed":12} |
 | xy9 | BREAKpoint | xy9 | xy9 | 598 | {"api_agreed":126} | {"api_agreed":90,"candidate_unconfirmed":166} |
+| g1 | Generations | g1 | g1 | 535 | {"api_agreed":117} | {"api_agreed":77,"candidate_unconfirmed":147} |
 | xy10 | Fates Collide | xy10 | xy10 | 609 | {"api_agreed":129} | {"api_agreed":92,"candidate_unconfirmed":167} |
 | xy11 | Steam Siege | xy11 | xy11 | 557 | {"api_agreed":116} | {"api_agreed":84,"candidate_unconfirmed":157} |
 | mcd16 | McDonald's Collection 2016 | mcd16 | 2016xy | 36 | {"api_agreed":12} | {"candidate_unconfirmed":12} |

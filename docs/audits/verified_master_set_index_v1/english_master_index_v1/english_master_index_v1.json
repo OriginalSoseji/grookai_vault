@@ -1,6 +1,6 @@
 {
   "version": "ENGLISH_VERIFIED_MASTER_SET_INDEX_V1",
-  "generated_at": "2026-05-24T06:12:52.703Z",
+  "generated_at": "2026-05-24T13:06:37.953Z",
   "audit_only": true,
   "db_writes": false,
   "language": "en",
@@ -14,8 +14,8 @@
     "note": "Local run used NODE_TLS_REJECT_UNAUTHORIZED=0 because this Windows environment could not validate upstream API certificates. This is a command-level workaround only and is not encoded in the pipeline."
   },
   "summary": {
-    "sets": 201,
-    "evidence_rows": 102197,
+    "sets": 202,
+    "evidence_rows": 102732,
     "source_overlap": [
       {
         "source_key": "beckett_ascended_heroes_oddish_001",
@@ -239,7 +239,7 @@
       },
       {
         "source_key": "pokemontcg_api",
-        "evidence_rows": 51482
+        "evidence_rows": 51783
       },
       {
         "source_key": "pokescope_ascended_heroes_mimikyu_097",
@@ -275,7 +275,7 @@
       },
       {
         "source_key": "tcgdex",
-        "evidence_rows": 49331
+        "evidence_rows": 49565
       },
       {
         "source_key": "tcgplayer_product_675813",
@@ -2615,22 +2615,22 @@
       }
     ],
     "cards_by_status": {
-      "api_agreed": 19569,
+      "api_agreed": 19686,
       "candidate_unconfirmed": 1753,
       "master_verified": 12
     },
     "printings_by_status": {
-      "api_agreed": 21190,
-      "candidate_unconfirmed": 17000,
+      "api_agreed": 21267,
+      "candidate_unconfirmed": 17147,
       "master_verified": 620
     },
     "conflicts": 0,
-    "manual_review": 18757,
+    "manual_review": 18904,
     "source_availability_by_status": {
       "human_fixtures|collected": 1,
-      "pokemontcg_api|collected": 172,
+      "pokemontcg_api|collected": 173,
       "pokemontcg_api|unavailable": 29,
-      "tcgdex|collected": 189,
+      "tcgdex|collected": 190,
       "tcgdex|unavailable": 12
     }
   },

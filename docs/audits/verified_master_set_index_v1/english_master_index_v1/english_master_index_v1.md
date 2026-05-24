@@ -1,6 +1,6 @@
 # English Verified Master Set Index V1
 
-Generated: 2026-05-24T06:12:52.703Z
+Generated: 2026-05-24T13:06:37.953Z
 
 Audit only. No DB writes, migrations, cleanup, quarantine, or public hiding were performed.
 
@@ -12,16 +12,16 @@ Transport: Local run used NODE_TLS_REJECT_UNAUTHORIZED=0 because this Windows en
 
 | metric | count |
 | --- | --- |
-| sets | 201 |
-| evidence rows | 102197 |
+| sets | 202 |
+| evidence rows | 102732 |
 | conflicts | 0 |
-| manual review | 18757 |
+| manual review | 18904 |
 
 ## Cards By Status
 
 | status | count |
 | --- | --- |
-| api_agreed | 19569 |
+| api_agreed | 19686 |
 | candidate_unconfirmed | 1753 |
 | master_verified | 12 |
 
@@ -29,8 +29,8 @@ Transport: Local run used NODE_TLS_REJECT_UNAUTHORIZED=0 because this Windows en
 
 | status | count |
 | --- | --- |
-| api_agreed | 21190 |
-| candidate_unconfirmed | 17000 |
+| api_agreed | 21267 |
+| candidate_unconfirmed | 17147 |
 | master_verified | 620 |
 
 ## Source Evidence Rows
@@ -92,7 +92,7 @@ Transport: Local run used NODE_TLS_REJECT_UNAUTHORIZED=0 because this Windows en
 | pokebeach_ascended_heroes_set_guide | 5 |
 | pokellector_ascended_heroes_murkrow_126 | 1 |
 | pokemasters_ascended_heroes | 7 |
-| pokemontcg_api | 51482 |
+| pokemontcg_api | 51783 |
 | pokescope_ascended_heroes_mimikyu_097 | 2 |
 | pokescope_ascended_heroes_tarountula_018 | 1 |
 | pricedex_ascended_heroes_price_list | 51 |
@@ -101,7 +101,7 @@ Transport: Local run used NODE_TLS_REJECT_UNAUTHORIZED=0 because this Windows en
 | sports_card_investor_ascended_heroes_exeggutor_078 | 1 |
 | sports_card_investor_ascended_heroes_gloom_002 | 1 |
 | sports_card_investor_ascended_heroes_mimikyu | 1 |
-| tcgdex | 49331 |
+| tcgdex | 49565 |
 | tcgplayer_product_675813 | 1 |
 | tcgplayer_product_675814 | 1 |
 | tcgplayer_product_675815 | 1 |
@@ -692,7 +692,7 @@ Transport: Local run used NODE_TLS_REJECT_UNAUTHORIZED=0 because this Windows en
 | source | runtime status | count |
 | --- | --- | --- |
 | human_fixtures | collected | 1 |
-| pokemontcg_api | collected | 172 |
+| pokemontcg_api | collected | 173 |
 | pokemontcg_api | unavailable | 29 |
-| tcgdex | collected | 189 |
+| tcgdex | collected | 190 |
 | tcgdex | unavailable | 12 |

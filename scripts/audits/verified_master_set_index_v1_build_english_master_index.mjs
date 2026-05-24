@@ -152,7 +152,7 @@ function isPhysicalEnglishTcgSet(set) {
   const id = String(set?.id ?? '');
   const mediaRefs = [set?.logo, set?.symbol].filter(Boolean).join(' ');
   if (/\/tcgp\//i.test(mediaRefs)) return false;
-  if (/^([A-Z]\d|PROMO-A|P-A)/i.test(id)) return false;
+  if (/^([A-Z]\d|PROMO-A|P-A)/.test(id)) return false;
   return true;
 }
 
@@ -1010,6 +1010,97 @@ function buildGrookaiAuditMarkdown(payload) {
   ].join('\n');
 }
 
+function setUnmappedCategory(row) {
+  const setCode = String(row.set_code ?? '').trim();
+  if (!setCode) return 'missing_set_code';
+  if (setCode === 'legacy_orphan') return 'legacy_orphan';
+  if (/^([A-Z]\d[A-Za-z]?|PROMO-A|P-A)$/.test(setCode)) return 'out_of_scope_pocket';
+  return 'real_alias_gap';
+}
+
+function buildSetUnmappedTriage(grookaiAudit, generatedAt) {
+  const rows = grookaiAudit?.rows?.filter((row) => row.status === 'set_unmapped') ?? [];
+  const categorizedRows = rows.map((row) => ({
+    category: setUnmappedCategory(row),
+    ...row,
+  }));
+  const rowsByCategory = Object.fromEntries(
+    Object.entries(countBy(categorizedRows, (row) => row.category)).map(([category, count]) => [
+      category,
+      {
+        count,
+        by_set_code: countBy(
+          categorizedRows.filter((row) => row.category === category),
+          (row) => row.set_code ?? 'unknown',
+        ),
+        by_finish: countBy(
+          categorizedRows.filter((row) => row.category === category),
+          (row) => row.finish_key ?? 'unknown',
+        ),
+        sample_rows: categorizedRows.filter((row) => row.category === category).slice(0, 100),
+      },
+    ]),
+  );
+  return {
+    version: 'ENGLISH_MASTER_INDEX_SET_UNMAPPED_TRIAGE_V1',
+    generated_at: generatedAt,
+    audit_only: true,
+    db_writes: false,
+    source_report: 'english_master_index_grookai_audit_v1.json',
+    rule: 'Set-unmapped rows are set identity/audit-scope issues first. Do not judge printing truth until the set category is resolved.',
+    summary: {
+      total_set_unmapped: rows.length,
+      by_category: countBy(categorizedRows, (row) => row.category),
+    },
+    categories: rowsByCategory,
+  };
+}
+
+function buildSetUnmappedTriageMarkdown(payload) {
+  const categoryRows = Object.entries(payload.summary.by_category).map(([category, count]) => ({ category, count }));
+  const sectionRows = (category) => Object.entries(payload.categories[category]?.by_set_code ?? {})
+    .sort((left, right) => Number(right[1]) - Number(left[1]) || left[0].localeCompare(right[0]))
+    .map(([set_code, count]) => ({ set_code, count }));
+  return [
+    '# English Master Index Set Unmapped Triage V1',
+    '',
+    `Generated: ${payload.generated_at}`,
+    '',
+    'Audit only. No DB writes, migrations, cleanup, quarantine, or public hiding were performed.',
+    '',
+    payload.rule,
+    '',
+    '## Summary',
+    '',
+    markdownTable(['category', 'count'], categoryRows.map((row) => [row.category, row.count])),
+    '',
+    '## Missing Set Code',
+    '',
+    'Rows whose Grookai parent card has no usable `set_code`. These need source identity recovery before comparison.',
+    '',
+    markdownTable(['set_code', 'count'], sectionRows('missing_set_code').map((row) => [row.set_code, row.count])),
+    '',
+    '## Out Of Scope Pocket',
+    '',
+    'Rows whose set code matches Pokemon TCG Pocket-style source IDs. They are intentionally excluded from the English physical TCG Master Index.',
+    '',
+    markdownTable(['set_code', 'count'], sectionRows('out_of_scope_pocket').map((row) => [row.set_code, row.count])),
+    '',
+    '## Legacy Orphan',
+    '',
+    'Rows already labeled as legacy orphans. They need a separate legacy identity recovery pass.',
+    '',
+    markdownTable(['set_code', 'count'], sectionRows('legacy_orphan').map((row) => [row.set_code, row.count])),
+    '',
+    '## Real Alias Gap',
+    '',
+    'Rows that appear in-scope but do not currently map to a Master Index set alias.',
+    '',
+    markdownTable(['set_code', 'count'], sectionRows('real_alias_gap').map((row) => [row.set_code, row.count])),
+    '',
+  ].join('\n');
+}
+
 async function writeJson(outputDir, fileName, data) {
   await fs.writeFile(path.join(outputDir, fileName), `${JSON.stringify(data, null, 2)}\n`);
 }
@@ -1038,6 +1129,7 @@ function indexSummaryArtifact(index) {
 
 async function writeReports({ outputDir, index, agreement, setAudit, grookaiAudit, generatedAt }) {
   await fs.mkdir(outputDir, { recursive: true });
+  const setUnmappedTriage = buildSetUnmappedTriage(grookaiAudit, generatedAt);
   const conflicts = {
     version: 'ENGLISH_MASTER_INDEX_CONFLICTS_V1',
     generated_at: generatedAt,
@@ -1092,6 +1184,8 @@ async function writeReports({ outputDir, index, agreement, setAudit, grookaiAudi
   await fs.writeFile(path.join(outputDir, 'english_master_index_conflicts_v1.md'), buildConflictsMarkdown(conflicts));
   await writeJson(outputDir, 'english_master_index_grookai_audit_v1.json', grookaiAudit);
   await fs.writeFile(path.join(outputDir, 'english_master_index_grookai_audit_v1.md'), buildGrookaiAuditMarkdown(grookaiAudit));
+  await writeJson(outputDir, 'english_master_index_set_unmapped_triage_v1.json', setUnmappedTriage);
+  await fs.writeFile(path.join(outputDir, 'english_master_index_set_unmapped_triage_v1.md'), buildSetUnmappedTriageMarkdown(setUnmappedTriage));
 }
 
 async function main() {

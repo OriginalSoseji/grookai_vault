@@ -1,6 +1,6 @@
 {
   "version": "ENGLISH_MASTER_INDEX_SOURCE_AVAILABILITY_V1",
-  "generated_at": "2026-05-24T06:12:52.703Z",
+  "generated_at": "2026-05-24T13:06:37.953Z",
   "audit_only": true,
   "db_writes": false,
   "source_availability": [
@@ -2502,6 +2502,26 @@
       "configured_status": "available",
       "runtime_status": "collected",
       "evidence_rows": 252,
+      "error": null
+    },
+    {
+      "set_key": "g1",
+      "set_name": "Generations",
+      "source_key": "pokemontcg_api",
+      "source_alias": "g1",
+      "configured_status": "available",
+      "runtime_status": "collected",
+      "evidence_rows": 301,
+      "error": null
+    },
+    {
+      "set_key": "g1",
+      "set_name": "Generations",
+      "source_key": "tcgdex",
+      "source_alias": "g1",
+      "configured_status": "available",
+      "runtime_status": "collected",
+      "evidence_rows": 234,
       "error": null
     },
     {

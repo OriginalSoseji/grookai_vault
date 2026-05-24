@@ -1,6 +1,6 @@
 {
   "version": "ENGLISH_MASTER_INDEX_SETS_V1",
-  "generated_at": "2026-05-24T06:12:52.703Z",
+  "generated_at": "2026-05-24T13:06:37.953Z",
   "audit_only": true,
   "db_writes": false,
   "sets": [
@@ -3251,6 +3251,32 @@
         "tcgdex": {
           "official": 122,
           "total": 126
+        }
+      }
+    },
+    {
+      "key": "g1",
+      "set_name": "Generations",
+      "pokemontcg": "g1",
+      "tcgdex": "g1",
+      "manual_aliases": [],
+      "release_date": "2016/02/22",
+      "source_aliases": {
+        "pokemontcg_api": "g1",
+        "tcgdex": "g1"
+      },
+      "source_status": {
+        "pokemontcg_api": "available",
+        "tcgdex": "available"
+      },
+      "source_totals": {
+        "pokemontcg_api": {
+          "printed_total": 83,
+          "total": 117
+        },
+        "tcgdex": {
+          "official": 83,
+          "total": 117
         }
       }
     },
