@@ -1256,6 +1256,237 @@ function buildNameMismatchTriageMarkdown(payload) {
   ].join('\n');
 }
 
+function unsupportedCardKey(row) {
+  return [
+    row.set_code ?? row.set_key ?? '',
+    normalizeNumber(row.card_number ?? ''),
+    foldNameForTriage(row.grookai_card_name ?? row.index_card_name ?? ''),
+  ].join('|');
+}
+
+function buildIndexFactsByCard(grookaiAudit) {
+  const facts = new Map();
+  const supportedStatuses = new Set([
+    'master_verified_by_index',
+    'human_source_verified_by_index',
+    'api_agreed_by_index',
+    'candidate_unconfirmed_by_index',
+    'missing_from_grookai',
+  ]);
+  for (const row of grookaiAudit?.rows ?? []) {
+    if (!supportedStatuses.has(row.status)) continue;
+    const key = unsupportedCardKey(row);
+    const entry = facts.get(key) ?? {
+      finishes: new Set(),
+      statuses: new Set(),
+      sources: new Set(),
+    };
+    if (row.finish_key) entry.finishes.add(row.finish_key);
+    if (row.index_status) entry.statuses.add(row.index_status);
+    for (const source of row.index_sources ?? []) entry.sources.add(source);
+    facts.set(key, entry);
+  }
+  return facts;
+}
+
+function unsupportedSetFamily(setCode) {
+  const code = String(setCode ?? '').trim();
+  if (/^tk-/i.test(code)) return 'deck_kit';
+  if (/^mcd/i.test(code)) return 'mcdonalds';
+  if (/^pop/i.test(code)) return 'pop_series';
+  if (['bp', 'np'].includes(code)) return 'early_promo_or_product';
+  if (['basep', 'bwp', 'xyp', 'sma', 'smp', 'swshp', 'svp'].includes(code)) return 'promo_family';
+  if (/tg$/i.test(code)) return 'trainer_gallery_subset';
+  if (['cel25c', 'swsh45sv'].includes(code)) return 'subset_alias';
+  if (['g1', 'bw11', 'cel25', 'col1', 'dp7', 'pl1', 'pl2', 'pl3', 'pl4', 'swsh12.5'].includes(code)) return 'subset_number_collision_family';
+  if (/^sv10\.5[wb]$/i.test(code) || ['sv8pt5'].includes(code)) return 'modern_parallel_family';
+  return 'standard_set';
+}
+
+function unsupportedCategory(row, indexFactsByCard) {
+  const setCode = String(row.set_code ?? row.set_key ?? '').trim();
+  const finish = String(row.finish_key ?? '').trim();
+  const family = unsupportedSetFamily(setCode);
+  const fact = indexFactsByCard.get(unsupportedCardKey(row));
+  const knownFinishes = fact ? [...fact.finishes].sort() : [];
+
+  if (row.card_number === '?' || !String(row.card_number ?? '').trim()) {
+    return {
+      category: 'invalid_or_unknown_card_number_review',
+      reason: 'Grookai card number is missing or unknown, so exact external matching is not possible.',
+      known_index_finishes: knownFinishes,
+    };
+  }
+  if (finish === 'masterball' || finish === 'pokeball') {
+    return {
+      category: 'modern_parallel_exact_finish_needs_source',
+      reason: 'Modern parallel finish exists in Grookai but the current index has no exact card-level support for this finish.',
+      known_index_finishes: knownFinishes,
+    };
+  }
+  if (family === 'promo_family') {
+    return {
+      category: 'promo_family_source_coverage_gap',
+      reason: 'Promo-family rows often require product/checklist evidence beyond structured API coverage before judging support.',
+      known_index_finishes: knownFinishes,
+    };
+  }
+  if (['deck_kit', 'mcdonalds', 'pop_series', 'early_promo_or_product'].includes(family)) {
+    return {
+      category: 'product_or_deck_set_source_coverage_gap',
+      reason: 'Product, deck, POP, McDonald\'s, or early promo rows need dedicated checklist/source coverage before judging support.',
+      known_index_finishes: knownFinishes,
+    };
+  }
+  if (['trainer_gallery_subset', 'subset_alias', 'subset_number_collision_family'].includes(family)) {
+    return {
+      category: 'subset_or_numbering_alias_review',
+      reason: 'Subset, gallery, or number-collision family needs set/subset identity resolution before judging printing support.',
+      known_index_finishes: knownFinishes,
+    };
+  }
+  if (family === 'modern_parallel_family') {
+    return {
+      category: 'modern_parallel_set_review',
+      reason: 'Modern parallel-heavy set needs exact card-level parallel evidence before judging support.',
+      known_index_finishes: knownFinishes,
+    };
+  }
+  if (fact && finish === 'reverse') {
+    return {
+      category: 'reverse_holo_overgeneration_candidate',
+      reason: 'The index knows this exact card identity but does not support Grookai\'s reverse finish in this audit pass.',
+      known_index_finishes: knownFinishes,
+    };
+  }
+  if (fact && finish === 'holo') {
+    return {
+      category: 'holo_overgeneration_candidate',
+      reason: 'The index knows this exact card identity but does not support Grookai\'s holo finish in this audit pass.',
+      known_index_finishes: knownFinishes,
+    };
+  }
+  if (fact && finish === 'normal') {
+    return {
+      category: 'normal_variant_not_in_index_review',
+      reason: 'The index knows this exact card identity but does not support Grookai\'s normal finish in this audit pass.',
+      known_index_finishes: knownFinishes,
+    };
+  }
+  if (fact) {
+    return {
+      category: 'known_card_unsupported_finish_review',
+      reason: 'The index knows this exact card identity but not this Grookai finish.',
+      known_index_finishes: knownFinishes,
+    };
+  }
+  return {
+    category: 'source_coverage_or_alias_gap',
+    reason: 'No exact card identity fact was found in the current index for this Grookai row.',
+    known_index_finishes: knownFinishes,
+  };
+}
+
+function buildUnsupportedTriage(grookaiAudit, generatedAt) {
+  const rows = grookaiAudit?.rows?.filter((row) => row.status === 'unsupported_by_current_index') ?? [];
+  const indexFactsByCard = buildIndexFactsByCard(grookaiAudit);
+  const categorizedRows = rows.map((row) => {
+    const category = unsupportedCategory(row, indexFactsByCard);
+    return {
+      category: category.category,
+      reason: category.reason,
+      known_index_finishes: category.known_index_finishes,
+      ...row,
+    };
+  });
+  const rowsByCategory = Object.fromEntries(
+    Object.entries(countBy(categorizedRows, (row) => row.category)).map(([category, count]) => {
+      const categoryRows = categorizedRows.filter((row) => row.category === category);
+      return [
+        category,
+        {
+          count,
+          by_set_code: countBy(categoryRows, (row) => row.set_code ?? row.set_key ?? 'unknown'),
+          by_finish: countBy(categoryRows, (row) => row.finish_key ?? 'unknown'),
+          rows: categoryRows,
+        },
+      ];
+    }),
+  );
+  return {
+    version: 'ENGLISH_MASTER_INDEX_UNSUPPORTED_TRIAGE_V1',
+    generated_at: generatedAt,
+    audit_only: true,
+    db_writes: false,
+    source_report: 'english_master_index_grookai_audit_v1.json',
+    rule: 'Unsupported-by-current-index rows are not deletion authority. They must be split into source coverage gaps, alias/subset issues, and finish overgeneration candidates before any controlled set repair.',
+    summary: {
+      total_unsupported_by_current_index: rows.length,
+      by_category: countBy(categorizedRows, (row) => row.category),
+      by_set_code: countBy(categorizedRows, (row) => row.set_code ?? row.set_key ?? 'unknown'),
+      by_finish: countBy(categorizedRows, (row) => row.finish_key ?? 'unknown'),
+    },
+    categories: rowsByCategory,
+  };
+}
+
+function buildUnsupportedTriageMarkdown(payload) {
+  const categoryRows = Object.entries(payload.summary.by_category).map(([category, count]) => [category, count]);
+  const setRows = Object.entries(payload.summary.by_set_code).map(([setCode, count]) => [setCode, count]);
+  const finishRows = Object.entries(payload.summary.by_finish).map(([finish, count]) => [finish, count]);
+  const categorySections = Object.entries(payload.categories).flatMap(([category, entry]) => {
+    const topSets = Object.entries(entry.by_set_code)
+      .sort((left, right) => Number(right[1]) - Number(left[1]) || left[0].localeCompare(right[0]))
+      .slice(0, 20)
+      .map(([setCode, count]) => [setCode, count]);
+    const samples = entry.rows.slice(0, 50).map((row) => [
+      row.set_code ?? row.set_key ?? '',
+      row.card_number ?? '',
+      row.grookai_card_name ?? '',
+      row.finish_key ?? '',
+      (row.known_index_finishes ?? []).join(', '),
+      row.reason ?? '',
+    ]);
+    return [
+      `## ${category}`,
+      '',
+      `Rows: ${entry.count}`,
+      '',
+      '### Top Sets',
+      '',
+      markdownTable(['set_code', 'count'], topSets),
+      '',
+      '### Sample Rows',
+      '',
+      markdownTable(['set', 'number', 'Grookai name', 'finish', 'known index finishes', 'reason'], samples),
+      '',
+    ];
+  });
+  return [
+    '# English Master Index Unsupported Triage V1',
+    '',
+    `Generated: ${payload.generated_at}`,
+    '',
+    'Audit only. No DB writes, migrations, cleanup, quarantine, or public hiding were performed.',
+    '',
+    payload.rule,
+    '',
+    '## Summary By Category',
+    '',
+    markdownTable(['category', 'count'], categoryRows),
+    '',
+    '## Summary By Set',
+    '',
+    markdownTable(['set_code', 'count'], setRows),
+    '',
+    '## Summary By Finish',
+    '',
+    markdownTable(['finish', 'count'], finishRows),
+    '',
+    ...categorySections,
+  ].join('\n');
+}
+
 async function writeJson(outputDir, fileName, data) {
   await fs.writeFile(path.join(outputDir, fileName), `${JSON.stringify(data, null, 2)}\n`);
 }
@@ -1286,6 +1517,7 @@ async function writeReports({ outputDir, index, agreement, setAudit, grookaiAudi
   await fs.mkdir(outputDir, { recursive: true });
   const setUnmappedTriage = buildSetUnmappedTriage(grookaiAudit, generatedAt);
   const nameMismatchTriage = buildNameMismatchTriage(grookaiAudit, generatedAt);
+  const unsupportedTriage = buildUnsupportedTriage(grookaiAudit, generatedAt);
   const conflicts = {
     version: 'ENGLISH_MASTER_INDEX_CONFLICTS_V1',
     generated_at: generatedAt,
@@ -1344,6 +1576,8 @@ async function writeReports({ outputDir, index, agreement, setAudit, grookaiAudi
   await fs.writeFile(path.join(outputDir, 'english_master_index_set_unmapped_triage_v1.md'), buildSetUnmappedTriageMarkdown(setUnmappedTriage));
   await writeJson(outputDir, 'english_master_index_name_mismatch_triage_v1.json', nameMismatchTriage);
   await fs.writeFile(path.join(outputDir, 'english_master_index_name_mismatch_triage_v1.md'), buildNameMismatchTriageMarkdown(nameMismatchTriage));
+  await writeJson(outputDir, 'english_master_index_unsupported_triage_v1.json', unsupportedTriage);
+  await fs.writeFile(path.join(outputDir, 'english_master_index_unsupported_triage_v1.md'), buildUnsupportedTriageMarkdown(unsupportedTriage));
 }
 
 async function main() {
