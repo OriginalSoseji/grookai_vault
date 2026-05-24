@@ -1,0 +1,4279 @@
+{
+  "version": "ASCENDED_HEROES_PARALLEL_COVERAGE_V1",
+  "generated_at": "2026-05-24T05:23:31.140Z",
+  "audit_only": true,
+  "db_writes": false,
+  "rule": "Expected coverage is source-backed planning data only. A row is master_verified only when exact card-level finish evidence has 2+ independent sources.",
+  "rows": [
+    {
+      "finish_key": "reverse",
+      "label": "Reverse Holo",
+      "expected_count": 178,
+      "master_verified_count": 178,
+      "gap_count": 0,
+      "status": "coverage_complete",
+      "basis": "ThePriceDex lists 178 main-set reverseHolofoil variants; CardDeckr describes 140 Energy pattern reverse variants plus 38 Trainer reverse variants.",
+      "source_urls": [
+        "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+        "https://carddeckr.com/blog/pokemon-tcg-mega-evolution-ascended-heroes-the-complete-guide-2026/"
+      ],
+      "verified_rows": [
+        {
+          "card_number": "155",
+          "card_name": "N's Zekrom",
+          "finish_key": "reverse",
+          "sources": [
+            "pricedex_ascended_heroes_price_list",
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_677113",
+            "tcgstats_ascended_heroes_ns_zekrom"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://tcgstats.com/pokemon/products/ns-zekrom-371064",
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/677113"
+          ]
+        },
+        {
+          "card_number": "097",
+          "card_name": "Team Rocket's Mimikyu",
+          "finish_key": "reverse",
+          "sources": [
+            "pokescope_ascended_heroes_mimikyu_097",
+            "pricedex_ascended_heroes_variant_index",
+            "sports_card_investor_ascended_heroes_mimikyu",
+            "tcgplayer_product_677069"
+          ],
+          "evidence_urls": [
+            "https://pokescope.app/card/me2pt5-97/",
+            "https://www.sportscardinvestor.com/subjects/team-rocket-s-mimikyu-pokemon/",
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/677069"
+          ]
+        },
+        {
+          "card_number": "205",
+          "card_name": "Team Rocket's Great Ball",
+          "finish_key": "reverse",
+          "sources": [
+            "packmagik_ascended_heroes_team_rockets_great_ball_205",
+            "pricedex_ascended_heroes_price_list",
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_676017"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.packmagik.com/cards/pkmn-me2pt5-205-217-reverseholo",
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/676017"
+          ]
+        },
+        {
+          "card_number": "001",
+          "card_name": "Erika's Oddish",
+          "finish_key": "reverse",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_676992"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/676992"
+          ]
+        },
+        {
+          "card_number": "002",
+          "card_name": "Erika's Gloom",
+          "finish_key": "reverse",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_676993"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/676993"
+          ]
+        },
+        {
+          "card_number": "004",
+          "card_name": "Erika's Bellsprout",
+          "finish_key": "reverse",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_676994"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/676994"
+          ]
+        },
+        {
+          "card_number": "005",
+          "card_name": "Erika's Weepinbell",
+          "finish_key": "reverse",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_676995"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/676995"
+          ]
+        },
+        {
+          "card_number": "006",
+          "card_name": "Erika's Victreebel",
+          "finish_key": "reverse",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_676996"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/676996"
+          ]
+        },
+        {
+          "card_number": "007",
+          "card_name": "Erika's Tangela",
+          "finish_key": "reverse",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_676997"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/676997"
+          ]
+        },
+        {
+          "card_number": "008",
+          "card_name": "Chikorita",
+          "finish_key": "reverse",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_676998"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/676998"
+          ]
+        },
+        {
+          "card_number": "009",
+          "card_name": "Bayleef",
+          "finish_key": "reverse",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_676999"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/676999"
+          ]
+        },
+        {
+          "card_number": "011",
+          "card_name": "Wurmple",
+          "finish_key": "reverse",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_677000"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/677000"
+          ]
+        },
+        {
+          "card_number": "012",
+          "card_name": "Silcoon",
+          "finish_key": "reverse",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_677001"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/677001"
+          ]
+        },
+        {
+          "card_number": "013",
+          "card_name": "Beautifly",
+          "finish_key": "reverse",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_677002"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/677002"
+          ]
+        },
+        {
+          "card_number": "014",
+          "card_name": "Cascoon",
+          "finish_key": "reverse",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_677003"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/677003"
+          ]
+        },
+        {
+          "card_number": "015",
+          "card_name": "Dustox",
+          "finish_key": "reverse",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_677004"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/677004"
+          ]
+        },
+        {
+          "card_number": "016",
+          "card_name": "Budew",
+          "finish_key": "reverse",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_677005"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/677005"
+          ]
+        },
+        {
+          "card_number": "017",
+          "card_name": "Grubbin",
+          "finish_key": "reverse",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_677006"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/677006"
+          ]
+        },
+        {
+          "card_number": "018",
+          "card_name": "Team Rocket's Tarountula",
+          "finish_key": "reverse",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_677007"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/677007"
+          ]
+        },
+        {
+          "card_number": "019",
+          "card_name": "Team Rocket's Spidops",
+          "finish_key": "reverse",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_677008"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/677008"
+          ]
+        },
+        {
+          "card_number": "020",
+          "card_name": "Charmander",
+          "finish_key": "reverse",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_677009"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/677009"
+          ]
+        },
+        {
+          "card_number": "021",
+          "card_name": "Charmeleon",
+          "finish_key": "reverse",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_677010"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/677010"
+          ]
+        },
+        {
+          "card_number": "023",
+          "card_name": "Ethan's Slugma",
+          "finish_key": "reverse",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_677011"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/677011"
+          ]
+        },
+        {
+          "card_number": "024",
+          "card_name": "Ethan's Magcargo",
+          "finish_key": "reverse",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_677012"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/677012"
+          ]
+        },
+        {
+          "card_number": "025",
+          "card_name": "Entei",
+          "finish_key": "reverse",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_677013"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/677013"
+          ]
+        },
+        {
+          "card_number": "027",
+          "card_name": "Numel",
+          "finish_key": "reverse",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_677014"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/677014"
+          ]
+        },
+        {
+          "card_number": "028",
+          "card_name": "Camerupt",
+          "finish_key": "reverse",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_677015"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/677015"
+          ]
+        },
+        {
+          "card_number": "029",
+          "card_name": "Tepig",
+          "finish_key": "reverse",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_677016"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/677016"
+          ]
+        },
+        {
+          "card_number": "030",
+          "card_name": "Pignite",
+          "finish_key": "reverse",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_677017"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/677017"
+          ]
+        },
+        {
+          "card_number": "032",
+          "card_name": "N's Darumaka",
+          "finish_key": "reverse",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_677018"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/677018"
+          ]
+        },
+        {
+          "card_number": "033",
+          "card_name": "N's Darmanitan",
+          "finish_key": "reverse",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_677019"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/677019"
+          ]
+        },
+        {
+          "card_number": "034",
+          "card_name": "Salandit",
+          "finish_key": "reverse",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_677020"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/677020"
+          ]
+        },
+        {
+          "card_number": "035",
+          "card_name": "Salazzle",
+          "finish_key": "reverse",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_677021"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/677021"
+          ]
+        },
+        {
+          "card_number": "036",
+          "card_name": "Scorbunny",
+          "finish_key": "reverse",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_677022"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/677022"
+          ]
+        },
+        {
+          "card_number": "037",
+          "card_name": "Raboot",
+          "finish_key": "reverse",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_677023"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/677023"
+          ]
+        },
+        {
+          "card_number": "039",
+          "card_name": "Psyduck",
+          "finish_key": "reverse",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_677024"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/677024"
+          ]
+        },
+        {
+          "card_number": "040",
+          "card_name": "Golduck",
+          "finish_key": "reverse",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_677025"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/677025"
+          ]
+        },
+        {
+          "card_number": "041",
+          "card_name": "Totodile",
+          "finish_key": "reverse",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_677026"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/677026"
+          ]
+        },
+        {
+          "card_number": "042",
+          "card_name": "Croconaw",
+          "finish_key": "reverse",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_677027"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/677027"
+          ]
+        },
+        {
+          "card_number": "044",
+          "card_name": "Sneasel",
+          "finish_key": "reverse",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_677028"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/677028"
+          ]
+        },
+        {
+          "card_number": "045",
+          "card_name": "Weavile",
+          "finish_key": "reverse",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_677029"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/677029"
+          ]
+        },
+        {
+          "card_number": "046",
+          "card_name": "Snorunt",
+          "finish_key": "reverse",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_677030"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/677030"
+          ]
+        },
+        {
+          "card_number": "049",
+          "card_name": "N's Vanillite",
+          "finish_key": "reverse",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_677031"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/677031"
+          ]
+        },
+        {
+          "card_number": "050",
+          "card_name": "N's Vanillish",
+          "finish_key": "reverse",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_677032"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/677032"
+          ]
+        },
+        {
+          "card_number": "051",
+          "card_name": "N's Vanilluxe",
+          "finish_key": "reverse",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_677033"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/677033"
+          ]
+        },
+        {
+          "card_number": "052",
+          "card_name": "Snom",
+          "finish_key": "reverse",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_677034"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/677034"
+          ]
+        },
+        {
+          "card_number": "053",
+          "card_name": "Frosmoth",
+          "finish_key": "reverse",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_677035"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/677035"
+          ]
+        },
+        {
+          "card_number": "054",
+          "card_name": "Glastrier",
+          "finish_key": "reverse",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_677036"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/677036"
+          ]
+        },
+        {
+          "card_number": "055",
+          "card_name": "Pikachu",
+          "finish_key": "reverse",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_677037"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/677037"
+          ]
+        },
+        {
+          "card_number": "056",
+          "card_name": "Raichu",
+          "finish_key": "reverse",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_677038"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/677038"
+          ]
+        },
+        {
+          "card_number": "059",
+          "card_name": "Tynamo",
+          "finish_key": "reverse",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_677039"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/677039"
+          ]
+        },
+        {
+          "card_number": "060",
+          "card_name": "Eelektrik",
+          "finish_key": "reverse",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_677040"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/677040"
+          ]
+        },
+        {
+          "card_number": "062",
+          "card_name": "Stunfisk",
+          "finish_key": "reverse",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_677041"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/677041"
+          ]
+        },
+        {
+          "card_number": "063",
+          "card_name": "Helioptile",
+          "finish_key": "reverse",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_677042"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/677042"
+          ]
+        },
+        {
+          "card_number": "064",
+          "card_name": "Heliolisk",
+          "finish_key": "reverse",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_677043"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/677043"
+          ]
+        },
+        {
+          "card_number": "065",
+          "card_name": "Charjabug",
+          "finish_key": "reverse",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_677044"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/677044"
+          ]
+        },
+        {
+          "card_number": "066",
+          "card_name": "Vikavolt",
+          "finish_key": "reverse",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_677045"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/677045"
+          ]
+        },
+        {
+          "card_number": "067",
+          "card_name": "Tapu Koko",
+          "finish_key": "reverse",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_677046"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/677046"
+          ]
+        },
+        {
+          "card_number": "069",
+          "card_name": "Iono's Tadbulb",
+          "finish_key": "reverse",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_677047"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/677047"
+          ]
+        },
+        {
+          "card_number": "071",
+          "card_name": "Iono's Wattrel",
+          "finish_key": "reverse",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_677048"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/677048"
+          ]
+        },
+        {
+          "card_number": "072",
+          "card_name": "Iono's Kilowattrel",
+          "finish_key": "reverse",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_677049"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/677049"
+          ]
+        },
+        {
+          "card_number": "074",
+          "card_name": "Clefairy",
+          "finish_key": "reverse",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_677050"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/677050"
+          ]
+        },
+        {
+          "card_number": "075",
+          "card_name": "Clefable",
+          "finish_key": "reverse",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_677051"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/677051"
+          ]
+        },
+        {
+          "card_number": "077",
+          "card_name": "Team Rocket's Exeggcute",
+          "finish_key": "reverse",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_677052"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/677052"
+          ]
+        },
+        {
+          "card_number": "078",
+          "card_name": "Team Rocket's Exeggutor",
+          "finish_key": "reverse",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_677053"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/677053"
+          ]
+        },
+        {
+          "card_number": "080",
+          "card_name": "Togepi",
+          "finish_key": "reverse",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_677054"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/677054"
+          ]
+        },
+        {
+          "card_number": "081",
+          "card_name": "Togetic",
+          "finish_key": "reverse",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_677055"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/677055"
+          ]
+        },
+        {
+          "card_number": "082",
+          "card_name": "Togekiss",
+          "finish_key": "reverse",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_677056"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/677056"
+          ]
+        },
+        {
+          "card_number": "083",
+          "card_name": "Marill",
+          "finish_key": "reverse",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_677057"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/677057"
+          ]
+        },
+        {
+          "card_number": "085",
+          "card_name": "Misdreavus",
+          "finish_key": "reverse",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_677058"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/677058"
+          ]
+        },
+        {
+          "card_number": "086",
+          "card_name": "Mismagius",
+          "finish_key": "reverse",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_677059"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/677059"
+          ]
+        },
+        {
+          "card_number": "087",
+          "card_name": "Ralts",
+          "finish_key": "reverse",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_677060"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/677060"
+          ]
+        },
+        {
+          "card_number": "088",
+          "card_name": "Kirlia",
+          "finish_key": "reverse",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_677061"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/677061"
+          ]
+        },
+        {
+          "card_number": "090",
+          "card_name": "Shuppet",
+          "finish_key": "reverse",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_677062"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/677062"
+          ]
+        },
+        {
+          "card_number": "091",
+          "card_name": "Banette",
+          "finish_key": "reverse",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_677063"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/677063"
+          ]
+        },
+        {
+          "card_number": "092",
+          "card_name": "Rotom",
+          "finish_key": "reverse",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_677064"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/677064"
+          ]
+        },
+        {
+          "card_number": "093",
+          "card_name": "Swirlix",
+          "finish_key": "reverse",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_677065"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/677065"
+          ]
+        },
+        {
+          "card_number": "094",
+          "card_name": "Slurpuff",
+          "finish_key": "reverse",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_677066"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/677066"
+          ]
+        },
+        {
+          "card_number": "095",
+          "card_name": "Hop's Phantump",
+          "finish_key": "reverse",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_677067"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/677067"
+          ]
+        },
+        {
+          "card_number": "096",
+          "card_name": "Hop's Trevenant",
+          "finish_key": "reverse",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_677068"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/677068"
+          ]
+        },
+        {
+          "card_number": "098",
+          "card_name": "Spectrier",
+          "finish_key": "reverse",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_677070"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/677070"
+          ]
+        },
+        {
+          "card_number": "099",
+          "card_name": "Munkidori",
+          "finish_key": "reverse",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_677071"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/677071"
+          ]
+        },
+        {
+          "card_number": "100",
+          "card_name": "Team Rocket's Diglett",
+          "finish_key": "reverse",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_677072"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/677072"
+          ]
+        },
+        {
+          "card_number": "101",
+          "card_name": "Team Rocket's Dugtrio",
+          "finish_key": "reverse",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_677073"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/677073"
+          ]
+        },
+        {
+          "card_number": "102",
+          "card_name": "Hitmontop",
+          "finish_key": "reverse",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_677074"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/677074"
+          ]
+        },
+        {
+          "card_number": "103",
+          "card_name": "Meditite",
+          "finish_key": "reverse",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_677075"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/677075"
+          ]
+        },
+        {
+          "card_number": "104",
+          "card_name": "Medicham",
+          "finish_key": "reverse",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_677076"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/677076"
+          ]
+        },
+        {
+          "card_number": "105",
+          "card_name": "Lunatone",
+          "finish_key": "reverse",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_677077"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/677077"
+          ]
+        },
+        {
+          "card_number": "106",
+          "card_name": "Solrock",
+          "finish_key": "reverse",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_677078"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/677078"
+          ]
+        },
+        {
+          "card_number": "108",
+          "card_name": "Groudon",
+          "finish_key": "reverse",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_677079"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/677079"
+          ]
+        },
+        {
+          "card_number": "109",
+          "card_name": "Cynthia's Gible",
+          "finish_key": "reverse",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_677080"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/677080"
+          ]
+        },
+        {
+          "card_number": "110",
+          "card_name": "Cynthia's Gabite",
+          "finish_key": "reverse",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_677081"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/677081"
+          ]
+        },
+        {
+          "card_number": "112",
+          "card_name": "Riolu",
+          "finish_key": "reverse",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_677082"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/677082"
+          ]
+        },
+        {
+          "card_number": "115",
+          "card_name": "Pancham",
+          "finish_key": "reverse",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_677083"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/677083"
+          ]
+        },
+        {
+          "card_number": "117",
+          "card_name": "Carbink",
+          "finish_key": "reverse",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_677084"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/677084"
+          ]
+        },
+        {
+          "card_number": "118",
+          "card_name": "Rolycoly",
+          "finish_key": "reverse",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_677085"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/677085"
+          ]
+        },
+        {
+          "card_number": "119",
+          "card_name": "Carkol",
+          "finish_key": "reverse",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_677086"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/677086"
+          ]
+        },
+        {
+          "card_number": "120",
+          "card_name": "Coalossal",
+          "finish_key": "reverse",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_677087"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/677087"
+          ]
+        },
+        {
+          "card_number": "122",
+          "card_name": "Okidogi",
+          "finish_key": "reverse",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_677088"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/677088"
+          ]
+        },
+        {
+          "card_number": "123",
+          "card_name": "Gastly",
+          "finish_key": "reverse",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_677089"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/677089"
+          ]
+        },
+        {
+          "card_number": "124",
+          "card_name": "Haunter",
+          "finish_key": "reverse",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_677090"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/677090"
+          ]
+        },
+        {
+          "card_number": "126",
+          "card_name": "Team Rocket's Murkrow",
+          "finish_key": "reverse",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_677091"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/677091"
+          ]
+        },
+        {
+          "card_number": "127",
+          "card_name": "Team Rocket's Honchkrow",
+          "finish_key": "reverse",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_677092"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/677092"
+          ]
+        },
+        {
+          "card_number": "128",
+          "card_name": "Poochyena",
+          "finish_key": "reverse",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_677093"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/677093"
+          ]
+        },
+        {
+          "card_number": "129",
+          "card_name": "Mightyena",
+          "finish_key": "reverse",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_677094"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/677094"
+          ]
+        },
+        {
+          "card_number": "130",
+          "card_name": "Galarian Zigzagoon",
+          "finish_key": "reverse",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_677095"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/677095"
+          ]
+        },
+        {
+          "card_number": "131",
+          "card_name": "Galarian Linoone",
+          "finish_key": "reverse",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_677096"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/677096"
+          ]
+        },
+        {
+          "card_number": "132",
+          "card_name": "Galarian Obstagoon",
+          "finish_key": "reverse",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_677097"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/677097"
+          ]
+        },
+        {
+          "card_number": "133",
+          "card_name": "Cynthia's Spiritomb",
+          "finish_key": "reverse",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_677098"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/677098"
+          ]
+        },
+        {
+          "card_number": "134",
+          "card_name": "Scraggy",
+          "finish_key": "reverse",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_677099"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/677099"
+          ]
+        },
+        {
+          "card_number": "136",
+          "card_name": "N's Zorua",
+          "finish_key": "reverse",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_677100"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/677100"
+          ]
+        },
+        {
+          "card_number": "138",
+          "card_name": "Vullaby",
+          "finish_key": "reverse",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_677101"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/677101"
+          ]
+        },
+        {
+          "card_number": "140",
+          "card_name": "Pangoro",
+          "finish_key": "reverse",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_677102"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/677102"
+          ]
+        },
+        {
+          "card_number": "141",
+          "card_name": "Hoopa",
+          "finish_key": "reverse",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_677103"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/677103"
+          ]
+        },
+        {
+          "card_number": "143",
+          "card_name": "Pecharunt",
+          "finish_key": "reverse",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_677104"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/677104"
+          ]
+        },
+        {
+          "card_number": "144",
+          "card_name": "Mawile",
+          "finish_key": "reverse",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_677105"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/677105"
+          ]
+        },
+        {
+          "card_number": "146",
+          "card_name": "Pawniard",
+          "finish_key": "reverse",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_677106"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/677106"
+          ]
+        },
+        {
+          "card_number": "147",
+          "card_name": "Bisharp",
+          "finish_key": "reverse",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_677107"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/677107"
+          ]
+        },
+        {
+          "card_number": "148",
+          "card_name": "Kingambit",
+          "finish_key": "reverse",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_677108"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/677108"
+          ]
+        },
+        {
+          "card_number": "150",
+          "card_name": "Dratini",
+          "finish_key": "reverse",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_677109"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/677109"
+          ]
+        },
+        {
+          "card_number": "151",
+          "card_name": "Dragonair",
+          "finish_key": "reverse",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_677110"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/677110"
+          ]
+        },
+        {
+          "card_number": "153",
+          "card_name": "Rayquaza",
+          "finish_key": "reverse",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_677111"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/677111"
+          ]
+        },
+        {
+          "card_number": "154",
+          "card_name": "N's Reshiram",
+          "finish_key": "reverse",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_677112"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/677112"
+          ]
+        },
+        {
+          "card_number": "156",
+          "card_name": "Noibat",
+          "finish_key": "reverse",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_677114"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/677114"
+          ]
+        },
+        {
+          "card_number": "157",
+          "card_name": "Noivern",
+          "finish_key": "reverse",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_677115"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/677115"
+          ]
+        },
+        {
+          "card_number": "158",
+          "card_name": "Dreepy",
+          "finish_key": "reverse",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_677116"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/677116"
+          ]
+        },
+        {
+          "card_number": "159",
+          "card_name": "Drakloak",
+          "finish_key": "reverse",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_677117"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/677117"
+          ]
+        },
+        {
+          "card_number": "161",
+          "card_name": "Team Rocket's Meowth",
+          "finish_key": "reverse",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_677118"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/677118"
+          ]
+        },
+        {
+          "card_number": "163",
+          "card_name": "Larry's Dunsparce",
+          "finish_key": "reverse",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_677119"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/677119"
+          ]
+        },
+        {
+          "card_number": "165",
+          "card_name": "Skitty",
+          "finish_key": "reverse",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_677120"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/677120"
+          ]
+        },
+        {
+          "card_number": "166",
+          "card_name": "Delcatty",
+          "finish_key": "reverse",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_677121"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/677121"
+          ]
+        },
+        {
+          "card_number": "168",
+          "card_name": "Larry's Starly",
+          "finish_key": "reverse",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_677122"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/677122"
+          ]
+        },
+        {
+          "card_number": "169",
+          "card_name": "Larry's Staravia",
+          "finish_key": "reverse",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_677123"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/677123"
+          ]
+        },
+        {
+          "card_number": "170",
+          "card_name": "Larry's Staraptor",
+          "finish_key": "reverse",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_677124"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/677124"
+          ]
+        },
+        {
+          "card_number": "171",
+          "card_name": "Fan Rotom",
+          "finish_key": "reverse",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_677125"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/677125"
+          ]
+        },
+        {
+          "card_number": "173",
+          "card_name": "Larry's Rufflet",
+          "finish_key": "reverse",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_677126"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/677126"
+          ]
+        },
+        {
+          "card_number": "174",
+          "card_name": "Larry's Braviary",
+          "finish_key": "reverse",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_677127"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/677127"
+          ]
+        },
+        {
+          "card_number": "175",
+          "card_name": "Larry's Komala",
+          "finish_key": "reverse",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_677128"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/677128"
+          ]
+        },
+        {
+          "card_number": "176",
+          "card_name": "Drampa",
+          "finish_key": "reverse",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_677129"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/677129"
+          ]
+        },
+        {
+          "card_number": "177",
+          "card_name": "Hop's Cramorant",
+          "finish_key": "reverse",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_677130"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/677130"
+          ]
+        },
+        {
+          "card_number": "178",
+          "card_name": "Terapagos",
+          "finish_key": "reverse",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_677131"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/677131"
+          ]
+        },
+        {
+          "card_number": "180",
+          "card_name": "Acerola's Mischief",
+          "finish_key": "reverse",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_675992"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/675992"
+          ]
+        },
+        {
+          "card_number": "181",
+          "card_name": "Air Balloon",
+          "finish_key": "reverse",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_675993"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/675993"
+          ]
+        },
+        {
+          "card_number": "182",
+          "card_name": "Anthea & Concordia",
+          "finish_key": "reverse",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_675994"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/675994"
+          ]
+        },
+        {
+          "card_number": "183",
+          "card_name": "Boss's Orders",
+          "finish_key": "reverse",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_675995"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/675995"
+          ]
+        },
+        {
+          "card_number": "184",
+          "card_name": "Buddy-Buddy Poffin",
+          "finish_key": "reverse",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_675996"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/675996"
+          ]
+        },
+        {
+          "card_number": "185",
+          "card_name": "Canari",
+          "finish_key": "reverse",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_675997"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/675997"
+          ]
+        },
+        {
+          "card_number": "186",
+          "card_name": "Counter Gain",
+          "finish_key": "reverse",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_675998"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/675998"
+          ]
+        },
+        {
+          "card_number": "187",
+          "card_name": "Fighting Gong",
+          "finish_key": "reverse",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_675999"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/675999"
+          ]
+        },
+        {
+          "card_number": "188",
+          "card_name": "Forest of Vitality",
+          "finish_key": "reverse",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_676000"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/676000"
+          ]
+        },
+        {
+          "card_number": "189",
+          "card_name": "Glass Trumpet",
+          "finish_key": "reverse",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_676001"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/676001"
+          ]
+        },
+        {
+          "card_number": "190",
+          "card_name": "Iris's Fighting Spirit",
+          "finish_key": "reverse",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_676002"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/676002"
+          ]
+        },
+        {
+          "card_number": "191",
+          "card_name": "Light Ball",
+          "finish_key": "reverse",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_676003"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/676003"
+          ]
+        },
+        {
+          "card_number": "192",
+          "card_name": "Lillie's Determination",
+          "finish_key": "reverse",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_676004"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/676004"
+          ]
+        },
+        {
+          "card_number": "193",
+          "card_name": "Mega Signal",
+          "finish_key": "reverse",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_676005"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/676005"
+          ]
+        },
+        {
+          "card_number": "194",
+          "card_name": "Mystery Garden",
+          "finish_key": "reverse",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_676006"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/676006"
+          ]
+        },
+        {
+          "card_number": "195",
+          "card_name": "N's PP Up",
+          "finish_key": "reverse",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_676007"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/676007"
+          ]
+        },
+        {
+          "card_number": "196",
+          "card_name": "Night Stretcher",
+          "finish_key": "reverse",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_676008"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/676008"
+          ]
+        },
+        {
+          "card_number": "197",
+          "card_name": "Nighttime Mine",
+          "finish_key": "reverse",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_676009"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/676009"
+          ]
+        },
+        {
+          "card_number": "198",
+          "card_name": "Poké Pad",
+          "finish_key": "reverse",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_676010"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/676010"
+          ]
+        },
+        {
+          "card_number": "199",
+          "card_name": "Premium Power Pro",
+          "finish_key": "reverse",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_676011"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/676011"
+          ]
+        },
+        {
+          "card_number": "200",
+          "card_name": "Surfer",
+          "finish_key": "reverse",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_676012"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/676012"
+          ]
+        },
+        {
+          "card_number": "201",
+          "card_name": "Team Rocket's Archer",
+          "finish_key": "reverse",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_676013"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/676013"
+          ]
+        },
+        {
+          "card_number": "202",
+          "card_name": "Team Rocket's Ariana",
+          "finish_key": "reverse",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_676014"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/676014"
+          ]
+        },
+        {
+          "card_number": "203",
+          "card_name": "Team Rocket's Factory",
+          "finish_key": "reverse",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_676015"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/676015"
+          ]
+        },
+        {
+          "card_number": "204",
+          "card_name": "Team Rocket's Giovanni",
+          "finish_key": "reverse",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_676016"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/676016"
+          ]
+        },
+        {
+          "card_number": "206",
+          "card_name": "Team Rocket's Hypnotizer",
+          "finish_key": "reverse",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_676018"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/676018"
+          ]
+        },
+        {
+          "card_number": "207",
+          "card_name": "Team Rocket's Petrel",
+          "finish_key": "reverse",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_676019"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/676019"
+          ]
+        },
+        {
+          "card_number": "208",
+          "card_name": "Team Rocket's Proton",
+          "finish_key": "reverse",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_676020"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/676020"
+          ]
+        },
+        {
+          "card_number": "209",
+          "card_name": "Team Rocket's Transceiver",
+          "finish_key": "reverse",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_676021"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/676021"
+          ]
+        },
+        {
+          "card_number": "210",
+          "card_name": "Team Rocket's Watchtower",
+          "finish_key": "reverse",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_676022"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/676022"
+          ]
+        },
+        {
+          "card_number": "211",
+          "card_name": "Thick Scale",
+          "finish_key": "reverse",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_676023"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/676023"
+          ]
+        },
+        {
+          "card_number": "212",
+          "card_name": "Tool Scrapper",
+          "finish_key": "reverse",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_676024"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/676024"
+          ]
+        },
+        {
+          "card_number": "213",
+          "card_name": "Ultra Ball",
+          "finish_key": "reverse",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_676025"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/676025"
+          ]
+        },
+        {
+          "card_number": "214",
+          "card_name": "Urbain",
+          "finish_key": "reverse",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_676026"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/676026"
+          ]
+        },
+        {
+          "card_number": "215",
+          "card_name": "Waitress",
+          "finish_key": "reverse",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_676027"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/676027"
+          ]
+        },
+        {
+          "card_number": "216",
+          "card_name": "Prism Energy",
+          "finish_key": "reverse",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_676028"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/676028"
+          ]
+        },
+        {
+          "card_number": "217",
+          "card_name": "Team Rocket's Energy",
+          "finish_key": "reverse",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_676029"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/676029"
+          ]
+        }
+      ]
+    },
+    {
+      "finish_key": "pokeball",
+      "label": "Poke Ball",
+      "expected_count": 130,
+      "master_verified_count": 130,
+      "gap_count": 0,
+      "status": "coverage_complete",
+      "basis": "PokeBeach says non-Team Rocket non-ex Pokemon receive a Poke Ball reverse lane; ThePriceDex identifies 130 non-Team Rocket non-ex Pokemon in the main set.",
+      "source_urls": [
+        "https://www.pokebeach.com/2026/01/ascended-heroes-set-guide-full-set-list-god-packs-reverse-holos-product-lineup-and-more",
+        "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list"
+      ],
+      "verified_rows": [
+        {
+          "card_number": "155",
+          "card_name": "N's Zekrom",
+          "finish_key": "pokeball",
+          "sources": [
+            "pricedex_ascended_heroes_price_list",
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_676973",
+            "tcgstats_ascended_heroes_ns_zekrom"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://tcgstats.com/pokemon/products/ns-zekrom-371064",
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/676973"
+          ]
+        },
+        {
+          "card_number": "001",
+          "card_name": "Erika's Oddish",
+          "finish_key": "pokeball",
+          "sources": [
+            "beckett_ascended_heroes_oddish_001",
+            "pricedex_ascended_heroes_variant_index",
+            "psa_ascended_heroes_checklist",
+            "tcgplayer_product_676852"
+          ],
+          "evidence_urls": [
+            "https://www.psacard.com/auctionprices/tcg-cards/2026-pokemon-asc-en-ascended-heroes/329259",
+            "https://www.beckett.com/pokemon/2026/pokemon-tcg-mega-evolution-ascended-heroes/001-erikas-oddish-poke-ball-reverse-holo-c-33131996",
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/676852"
+          ]
+        },
+        {
+          "card_number": "002",
+          "card_name": "Erika's Gloom",
+          "finish_key": "pokeball",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "psa_ascended_heroes_checklist",
+            "sports_card_investor_ascended_heroes_gloom_002",
+            "tcgplayer_product_676853"
+          ],
+          "evidence_urls": [
+            "https://www.psacard.com/auctionprices/tcg-cards/2026-pokemon-asc-en-ascended-heroes/329259",
+            "https://www.sportscardinvestor.com/cards/erika-s-gloom-pokemon/2026-mega-evolution-ascended-heroes-poke-ball-reverse-holo-2-217",
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/676853"
+          ]
+        },
+        {
+          "card_number": "004",
+          "card_name": "Erika's Bellsprout",
+          "finish_key": "pokeball",
+          "sources": [
+            "big_orbit_ascended_heroes_bellsprout_004",
+            "pricedex_ascended_heroes_variant_index",
+            "psa_ascended_heroes_checklist",
+            "tcgplayer_product_676854"
+          ],
+          "evidence_urls": [
+            "https://www.psacard.com/auctionprices/tcg-cards/2026-pokemon-asc-en-ascended-heroes/329259",
+            "https://www.bigorbitcards.co.uk/pokemon/ascended-heroes/erikas-bellsprout-poke-ball-reverse-holo.html",
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/676854"
+          ]
+        },
+        {
+          "card_number": "005",
+          "card_name": "Erika's Weepinbell",
+          "finish_key": "pokeball",
+          "sources": [
+            "cardtrader_ascended_heroes_weepinbell_005",
+            "pricedex_ascended_heroes_variant_index",
+            "psa_ascended_heroes_checklist",
+            "tcgplayer_product_676855"
+          ],
+          "evidence_urls": [
+            "https://www.psacard.com/auctionprices/tcg-cards/2026-pokemon-asc-en-ascended-heroes/329259",
+            "https://www.cardtrader.com/en/cards/erika-s-weepinbell-poke-ball-reverse-holo-005-217-ascended-heroes-ball-rocket-reverse-holo",
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/676855"
+          ]
+        },
+        {
+          "card_number": "006",
+          "card_name": "Erika's Victreebel",
+          "finish_key": "pokeball",
+          "sources": [
+            "big_orbit_ascended_heroes_victreebel_006",
+            "pricedex_ascended_heroes_variant_index",
+            "psa_ascended_heroes_checklist",
+            "tcgplayer_product_676856"
+          ],
+          "evidence_urls": [
+            "https://www.psacard.com/auctionprices/tcg-cards/2026-pokemon-asc-en-ascended-heroes/329259",
+            "https://www.bigorbitcards.co.uk/pokemon/ascended-heroes/erikas-victreebel-poke-ball-reverse-holo.html",
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/676856"
+          ]
+        },
+        {
+          "card_number": "007",
+          "card_name": "Erika's Tangela",
+          "finish_key": "pokeball",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_676857"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/676857"
+          ]
+        },
+        {
+          "card_number": "008",
+          "card_name": "Chikorita",
+          "finish_key": "pokeball",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_676858"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/676858"
+          ]
+        },
+        {
+          "card_number": "009",
+          "card_name": "Bayleef",
+          "finish_key": "pokeball",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_676859"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/676859"
+          ]
+        },
+        {
+          "card_number": "011",
+          "card_name": "Wurmple",
+          "finish_key": "pokeball",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_676860"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/676860"
+          ]
+        },
+        {
+          "card_number": "012",
+          "card_name": "Silcoon",
+          "finish_key": "pokeball",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_676861"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/676861"
+          ]
+        },
+        {
+          "card_number": "013",
+          "card_name": "Beautifly",
+          "finish_key": "pokeball",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_676862"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/676862"
+          ]
+        },
+        {
+          "card_number": "014",
+          "card_name": "Cascoon",
+          "finish_key": "pokeball",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_676863"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/676863"
+          ]
+        },
+        {
+          "card_number": "015",
+          "card_name": "Dustox",
+          "finish_key": "pokeball",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_676864"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/676864"
+          ]
+        },
+        {
+          "card_number": "016",
+          "card_name": "Budew",
+          "finish_key": "pokeball",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_676865"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/676865"
+          ]
+        },
+        {
+          "card_number": "017",
+          "card_name": "Grubbin",
+          "finish_key": "pokeball",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_676866"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/676866"
+          ]
+        },
+        {
+          "card_number": "020",
+          "card_name": "Charmander",
+          "finish_key": "pokeball",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_676869"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/676869"
+          ]
+        },
+        {
+          "card_number": "021",
+          "card_name": "Charmeleon",
+          "finish_key": "pokeball",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_676870"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/676870"
+          ]
+        },
+        {
+          "card_number": "023",
+          "card_name": "Ethan's Slugma",
+          "finish_key": "pokeball",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_676871"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/676871"
+          ]
+        },
+        {
+          "card_number": "024",
+          "card_name": "Ethan's Magcargo",
+          "finish_key": "pokeball",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_676872"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/676872"
+          ]
+        },
+        {
+          "card_number": "025",
+          "card_name": "Entei",
+          "finish_key": "pokeball",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_676873"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/676873"
+          ]
+        },
+        {
+          "card_number": "027",
+          "card_name": "Numel",
+          "finish_key": "pokeball",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_676874"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/676874"
+          ]
+        },
+        {
+          "card_number": "028",
+          "card_name": "Camerupt",
+          "finish_key": "pokeball",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_676875"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/676875"
+          ]
+        },
+        {
+          "card_number": "029",
+          "card_name": "Tepig",
+          "finish_key": "pokeball",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_676876"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/676876"
+          ]
+        },
+        {
+          "card_number": "030",
+          "card_name": "Pignite",
+          "finish_key": "pokeball",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_676877"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/676877"
+          ]
+        },
+        {
+          "card_number": "032",
+          "card_name": "N's Darumaka",
+          "finish_key": "pokeball",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_676878"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/676878"
+          ]
+        },
+        {
+          "card_number": "033",
+          "card_name": "N's Darmanitan",
+          "finish_key": "pokeball",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_676879"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/676879"
+          ]
+        },
+        {
+          "card_number": "034",
+          "card_name": "Salandit",
+          "finish_key": "pokeball",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_676880"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/676880"
+          ]
+        },
+        {
+          "card_number": "035",
+          "card_name": "Salazzle",
+          "finish_key": "pokeball",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_676881"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/676881"
+          ]
+        },
+        {
+          "card_number": "036",
+          "card_name": "Scorbunny",
+          "finish_key": "pokeball",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_676882"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/676882"
+          ]
+        },
+        {
+          "card_number": "037",
+          "card_name": "Raboot",
+          "finish_key": "pokeball",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_676883"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/676883"
+          ]
+        },
+        {
+          "card_number": "039",
+          "card_name": "Psyduck",
+          "finish_key": "pokeball",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_676884"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/676884"
+          ]
+        },
+        {
+          "card_number": "040",
+          "card_name": "Golduck",
+          "finish_key": "pokeball",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_676885"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/676885"
+          ]
+        },
+        {
+          "card_number": "041",
+          "card_name": "Totodile",
+          "finish_key": "pokeball",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_676886"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/676886"
+          ]
+        },
+        {
+          "card_number": "042",
+          "card_name": "Croconaw",
+          "finish_key": "pokeball",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_676887"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/676887"
+          ]
+        },
+        {
+          "card_number": "044",
+          "card_name": "Sneasel",
+          "finish_key": "pokeball",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_676888"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/676888"
+          ]
+        },
+        {
+          "card_number": "045",
+          "card_name": "Weavile",
+          "finish_key": "pokeball",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_676889"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/676889"
+          ]
+        },
+        {
+          "card_number": "046",
+          "card_name": "Snorunt",
+          "finish_key": "pokeball",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_676890"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/676890"
+          ]
+        },
+        {
+          "card_number": "049",
+          "card_name": "N's Vanillite",
+          "finish_key": "pokeball",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_676891"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/676891"
+          ]
+        },
+        {
+          "card_number": "050",
+          "card_name": "N's Vanillish",
+          "finish_key": "pokeball",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_676892"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/676892"
+          ]
+        },
+        {
+          "card_number": "051",
+          "card_name": "N's Vanilluxe",
+          "finish_key": "pokeball",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_676893"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/676893"
+          ]
+        },
+        {
+          "card_number": "052",
+          "card_name": "Snom",
+          "finish_key": "pokeball",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_676894"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/676894"
+          ]
+        },
+        {
+          "card_number": "053",
+          "card_name": "Frosmoth",
+          "finish_key": "pokeball",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_676895"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/676895"
+          ]
+        },
+        {
+          "card_number": "054",
+          "card_name": "Glastrier",
+          "finish_key": "pokeball",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_676896"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/676896"
+          ]
+        },
+        {
+          "card_number": "055",
+          "card_name": "Pikachu",
+          "finish_key": "pokeball",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_676897"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/676897"
+          ]
+        },
+        {
+          "card_number": "056",
+          "card_name": "Raichu",
+          "finish_key": "pokeball",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_676898"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/676898"
+          ]
+        },
+        {
+          "card_number": "059",
+          "card_name": "Tynamo",
+          "finish_key": "pokeball",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_676899"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/676899"
+          ]
+        },
+        {
+          "card_number": "060",
+          "card_name": "Eelektrik",
+          "finish_key": "pokeball",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_676900"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/676900"
+          ]
+        },
+        {
+          "card_number": "062",
+          "card_name": "Stunfisk",
+          "finish_key": "pokeball",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_676901"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/676901"
+          ]
+        },
+        {
+          "card_number": "063",
+          "card_name": "Helioptile",
+          "finish_key": "pokeball",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_676902"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/676902"
+          ]
+        },
+        {
+          "card_number": "064",
+          "card_name": "Heliolisk",
+          "finish_key": "pokeball",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_676903"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/676903"
+          ]
+        },
+        {
+          "card_number": "065",
+          "card_name": "Charjabug",
+          "finish_key": "pokeball",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_676904"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/676904"
+          ]
+        },
+        {
+          "card_number": "066",
+          "card_name": "Vikavolt",
+          "finish_key": "pokeball",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_676905"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/676905"
+          ]
+        },
+        {
+          "card_number": "067",
+          "card_name": "Tapu Koko",
+          "finish_key": "pokeball",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_676906"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/676906"
+          ]
+        },
+        {
+          "card_number": "069",
+          "card_name": "Iono's Tadbulb",
+          "finish_key": "pokeball",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_676907"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/676907"
+          ]
+        },
+        {
+          "card_number": "071",
+          "card_name": "Iono's Wattrel",
+          "finish_key": "pokeball",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_676908"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/676908"
+          ]
+        },
+        {
+          "card_number": "072",
+          "card_name": "Iono's Kilowattrel",
+          "finish_key": "pokeball",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_676909"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/676909"
+          ]
+        },
+        {
+          "card_number": "074",
+          "card_name": "Clefairy",
+          "finish_key": "pokeball",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_676910"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/676910"
+          ]
+        },
+        {
+          "card_number": "075",
+          "card_name": "Clefable",
+          "finish_key": "pokeball",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_676911"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/676911"
+          ]
+        },
+        {
+          "card_number": "080",
+          "card_name": "Togepi",
+          "finish_key": "pokeball",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_676914"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/676914"
+          ]
+        },
+        {
+          "card_number": "081",
+          "card_name": "Togetic",
+          "finish_key": "pokeball",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_676915"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/676915"
+          ]
+        },
+        {
+          "card_number": "082",
+          "card_name": "Togekiss",
+          "finish_key": "pokeball",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_676916"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/676916"
+          ]
+        },
+        {
+          "card_number": "083",
+          "card_name": "Marill",
+          "finish_key": "pokeball",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_676917"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/676917"
+          ]
+        },
+        {
+          "card_number": "085",
+          "card_name": "Misdreavus",
+          "finish_key": "pokeball",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_676918"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/676918"
+          ]
+        },
+        {
+          "card_number": "086",
+          "card_name": "Mismagius",
+          "finish_key": "pokeball",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_676919"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/676919"
+          ]
+        },
+        {
+          "card_number": "087",
+          "card_name": "Ralts",
+          "finish_key": "pokeball",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_676920"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/676920"
+          ]
+        },
+        {
+          "card_number": "088",
+          "card_name": "Kirlia",
+          "finish_key": "pokeball",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_676921"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/676921"
+          ]
+        },
+        {
+          "card_number": "090",
+          "card_name": "Shuppet",
+          "finish_key": "pokeball",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_676922"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/676922"
+          ]
+        },
+        {
+          "card_number": "091",
+          "card_name": "Banette",
+          "finish_key": "pokeball",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_676923"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/676923"
+          ]
+        },
+        {
+          "card_number": "092",
+          "card_name": "Rotom",
+          "finish_key": "pokeball",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_676924"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/676924"
+          ]
+        },
+        {
+          "card_number": "093",
+          "card_name": "Swirlix",
+          "finish_key": "pokeball",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_676925"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/676925"
+          ]
+        },
+        {
+          "card_number": "094",
+          "card_name": "Slurpuff",
+          "finish_key": "pokeball",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_676926"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/676926"
+          ]
+        },
+        {
+          "card_number": "095",
+          "card_name": "Hop's Phantump",
+          "finish_key": "pokeball",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_676927"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/676927"
+          ]
+        },
+        {
+          "card_number": "096",
+          "card_name": "Hop's Trevenant",
+          "finish_key": "pokeball",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_676928"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/676928"
+          ]
+        },
+        {
+          "card_number": "098",
+          "card_name": "Spectrier",
+          "finish_key": "pokeball",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_676930"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/676930"
+          ]
+        },
+        {
+          "card_number": "099",
+          "card_name": "Munkidori",
+          "finish_key": "pokeball",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_676931"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/676931"
+          ]
+        },
+        {
+          "card_number": "102",
+          "card_name": "Hitmontop",
+          "finish_key": "pokeball",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_676934"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/676934"
+          ]
+        },
+        {
+          "card_number": "103",
+          "card_name": "Meditite",
+          "finish_key": "pokeball",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_676935"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/676935"
+          ]
+        },
+        {
+          "card_number": "104",
+          "card_name": "Medicham",
+          "finish_key": "pokeball",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_676936"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/676936"
+          ]
+        },
+        {
+          "card_number": "105",
+          "card_name": "Lunatone",
+          "finish_key": "pokeball",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_676937"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/676937"
+          ]
+        },
+        {
+          "card_number": "106",
+          "card_name": "Solrock",
+          "finish_key": "pokeball",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_676938"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/676938"
+          ]
+        },
+        {
+          "card_number": "108",
+          "card_name": "Groudon",
+          "finish_key": "pokeball",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_676939"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/676939"
+          ]
+        },
+        {
+          "card_number": "109",
+          "card_name": "Cynthia's Gible",
+          "finish_key": "pokeball",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_676940"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/676940"
+          ]
+        },
+        {
+          "card_number": "110",
+          "card_name": "Cynthia's Gabite",
+          "finish_key": "pokeball",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_676941"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/676941"
+          ]
+        },
+        {
+          "card_number": "112",
+          "card_name": "Riolu",
+          "finish_key": "pokeball",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_676942"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/676942"
+          ]
+        },
+        {
+          "card_number": "115",
+          "card_name": "Pancham",
+          "finish_key": "pokeball",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_676943"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/676943"
+          ]
+        },
+        {
+          "card_number": "117",
+          "card_name": "Carbink",
+          "finish_key": "pokeball",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_676944"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/676944"
+          ]
+        },
+        {
+          "card_number": "118",
+          "card_name": "Rolycoly",
+          "finish_key": "pokeball",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_676945"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/676945"
+          ]
+        },
+        {
+          "card_number": "119",
+          "card_name": "Carkol",
+          "finish_key": "pokeball",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_676946"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/676946"
+          ]
+        },
+        {
+          "card_number": "120",
+          "card_name": "Coalossal",
+          "finish_key": "pokeball",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_676947"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/676947"
+          ]
+        },
+        {
+          "card_number": "122",
+          "card_name": "Okidogi",
+          "finish_key": "pokeball",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_676948"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/676948"
+          ]
+        },
+        {
+          "card_number": "123",
+          "card_name": "Gastly",
+          "finish_key": "pokeball",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_676949"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/676949"
+          ]
+        },
+        {
+          "card_number": "124",
+          "card_name": "Haunter",
+          "finish_key": "pokeball",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_676950"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/676950"
+          ]
+        },
+        {
+          "card_number": "128",
+          "card_name": "Poochyena",
+          "finish_key": "pokeball",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_676953"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/676953"
+          ]
+        },
+        {
+          "card_number": "129",
+          "card_name": "Mightyena",
+          "finish_key": "pokeball",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_676954"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/676954"
+          ]
+        },
+        {
+          "card_number": "130",
+          "card_name": "Galarian Zigzagoon",
+          "finish_key": "pokeball",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_676955"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/676955"
+          ]
+        },
+        {
+          "card_number": "131",
+          "card_name": "Galarian Linoone",
+          "finish_key": "pokeball",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_676956"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/676956"
+          ]
+        },
+        {
+          "card_number": "132",
+          "card_name": "Galarian Obstagoon",
+          "finish_key": "pokeball",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_676957"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/676957"
+          ]
+        },
+        {
+          "card_number": "133",
+          "card_name": "Cynthia's Spiritomb",
+          "finish_key": "pokeball",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_676958"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/676958"
+          ]
+        },
+        {
+          "card_number": "134",
+          "card_name": "Scraggy",
+          "finish_key": "pokeball",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_676959"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/676959"
+          ]
+        },
+        {
+          "card_number": "136",
+          "card_name": "N's Zorua",
+          "finish_key": "pokeball",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_676960"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/676960"
+          ]
+        },
+        {
+          "card_number": "138",
+          "card_name": "Vullaby",
+          "finish_key": "pokeball",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_676961"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/676961"
+          ]
+        },
+        {
+          "card_number": "140",
+          "card_name": "Pangoro",
+          "finish_key": "pokeball",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_676962"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/676962"
+          ]
+        },
+        {
+          "card_number": "141",
+          "card_name": "Hoopa",
+          "finish_key": "pokeball",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_676963"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/676963"
+          ]
+        },
+        {
+          "card_number": "143",
+          "card_name": "Pecharunt",
+          "finish_key": "pokeball",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_676964"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/676964"
+          ]
+        },
+        {
+          "card_number": "144",
+          "card_name": "Mawile",
+          "finish_key": "pokeball",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_676965"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/676965"
+          ]
+        },
+        {
+          "card_number": "146",
+          "card_name": "Pawniard",
+          "finish_key": "pokeball",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_676966"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/676966"
+          ]
+        },
+        {
+          "card_number": "147",
+          "card_name": "Bisharp",
+          "finish_key": "pokeball",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_676967"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/676967"
+          ]
+        },
+        {
+          "card_number": "148",
+          "card_name": "Kingambit",
+          "finish_key": "pokeball",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_676968"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/676968"
+          ]
+        },
+        {
+          "card_number": "150",
+          "card_name": "Dratini",
+          "finish_key": "pokeball",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_676969"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/676969"
+          ]
+        },
+        {
+          "card_number": "151",
+          "card_name": "Dragonair",
+          "finish_key": "pokeball",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_676970"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/676970"
+          ]
+        },
+        {
+          "card_number": "153",
+          "card_name": "Rayquaza",
+          "finish_key": "pokeball",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_676971"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/676971"
+          ]
+        },
+        {
+          "card_number": "154",
+          "card_name": "N's Reshiram",
+          "finish_key": "pokeball",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_676972"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/676972"
+          ]
+        },
+        {
+          "card_number": "156",
+          "card_name": "Noibat",
+          "finish_key": "pokeball",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_676974"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/676974"
+          ]
+        },
+        {
+          "card_number": "157",
+          "card_name": "Noivern",
+          "finish_key": "pokeball",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_676975"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/676975"
+          ]
+        },
+        {
+          "card_number": "158",
+          "card_name": "Dreepy",
+          "finish_key": "pokeball",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_676976"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/676976"
+          ]
+        },
+        {
+          "card_number": "159",
+          "card_name": "Drakloak",
+          "finish_key": "pokeball",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_676977"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/676977"
+          ]
+        },
+        {
+          "card_number": "163",
+          "card_name": "Larry's Dunsparce",
+          "finish_key": "pokeball",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_676979"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/676979"
+          ]
+        },
+        {
+          "card_number": "165",
+          "card_name": "Skitty",
+          "finish_key": "pokeball",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_676980"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/676980"
+          ]
+        },
+        {
+          "card_number": "166",
+          "card_name": "Delcatty",
+          "finish_key": "pokeball",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_676981"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/676981"
+          ]
+        },
+        {
+          "card_number": "168",
+          "card_name": "Larry's Starly",
+          "finish_key": "pokeball",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_676982"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/676982"
+          ]
+        },
+        {
+          "card_number": "169",
+          "card_name": "Larry's Staravia",
+          "finish_key": "pokeball",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_676983"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/676983"
+          ]
+        },
+        {
+          "card_number": "170",
+          "card_name": "Larry's Staraptor",
+          "finish_key": "pokeball",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_676984"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/676984"
+          ]
+        },
+        {
+          "card_number": "171",
+          "card_name": "Fan Rotom",
+          "finish_key": "pokeball",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_676985"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/676985"
+          ]
+        },
+        {
+          "card_number": "173",
+          "card_name": "Larry's Rufflet",
+          "finish_key": "pokeball",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_676986"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/676986"
+          ]
+        },
+        {
+          "card_number": "174",
+          "card_name": "Larry's Braviary",
+          "finish_key": "pokeball",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_676987"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/676987"
+          ]
+        },
+        {
+          "card_number": "175",
+          "card_name": "Larry's Komala",
+          "finish_key": "pokeball",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_676988"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/676988"
+          ]
+        },
+        {
+          "card_number": "176",
+          "card_name": "Drampa",
+          "finish_key": "pokeball",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_676989"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/676989"
+          ]
+        },
+        {
+          "card_number": "177",
+          "card_name": "Hop's Cramorant",
+          "finish_key": "pokeball",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_676990"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/676990"
+          ]
+        },
+        {
+          "card_number": "178",
+          "card_name": "Terapagos",
+          "finish_key": "pokeball",
+          "sources": [
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_676991"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/676991"
+          ]
+        }
+      ]
+    },
+    {
+      "finish_key": "rocket_reverse",
+      "label": "Rocket Reverse",
+      "expected_count": 10,
+      "master_verified_count": 10,
+      "gap_count": 0,
+      "status": "coverage_complete",
+      "basis": "PokeBeach says Team Rocket Pokemon use an R reverse in place of the Poke Ball lane; ThePriceDex identifies 10 non-ex Team Rocket Pokemon in the main set.",
+      "source_urls": [
+        "https://www.pokebeach.com/2026/01/ascended-heroes-set-guide-full-set-list-god-packs-reverse-holos-product-lineup-and-more",
+        "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list"
+      ],
+      "verified_rows": [
+        {
+          "card_number": "097",
+          "card_name": "Team Rocket's Mimikyu",
+          "finish_key": "rocket_reverse",
+          "sources": [
+            "cardtrader_ascended_heroes_mimikyu_097",
+            "pokescope_ascended_heroes_mimikyu_097",
+            "pricedex_ascended_heroes_price_list",
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_676929"
+          ],
+          "evidence_urls": [
+            "https://pokescope.app/card/me2pt5-97/",
+            "https://www.cardtrader.com/en/cards/371020-team-rocket-s-mimikyu-rocket-reverse-holo-097-217-ascended-heroes-ball-rocket-reverse-holo",
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/676929",
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list"
+          ]
+        },
+        {
+          "card_number": "018",
+          "card_name": "Team Rocket's Tarountula",
+          "finish_key": "rocket_reverse",
+          "sources": [
+            "pokescope_ascended_heroes_tarountula_018",
+            "pricedex_ascended_heroes_price_list",
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_676867"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/676867",
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://pokescope.app/card/me2pt5-18/"
+          ]
+        },
+        {
+          "card_number": "019",
+          "card_name": "Team Rocket's Spidops",
+          "finish_key": "rocket_reverse",
+          "sources": [
+            "pricedex_ascended_heroes_price_list",
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_676868",
+            "vendortools_ascended_heroes_spidops_019"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/676868",
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://vendortools.net/database/pokemon/expansions/ascended-heroes/team-rockets-spidops-rocket-reverse-holofoil-19"
+          ]
+        },
+        {
+          "card_number": "077",
+          "card_name": "Team Rocket's Exeggcute",
+          "finish_key": "rocket_reverse",
+          "sources": [
+            "cardtrader_ascended_heroes_exeggcute_077",
+            "pricedex_ascended_heroes_price_list",
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_676912"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/676912",
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.cardtrader.com/en/cards/team-rocket-s-exeggcute-rocket-reverse-holo-077-217-ascended-heroes-ball-rocket-reverse-holo"
+          ]
+        },
+        {
+          "card_number": "078",
+          "card_name": "Team Rocket's Exeggutor",
+          "finish_key": "rocket_reverse",
+          "sources": [
+            "pricedex_ascended_heroes_price_list",
+            "pricedex_ascended_heroes_variant_index",
+            "sports_card_investor_ascended_heroes_exeggutor_078",
+            "tcgplayer_product_676913"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/676913",
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.sportscardinvestor.com/cards/team-rocket-s-exeggutor-pokemon/2026-mega-evolution-ascended-heroes-team-rocket-reverse-holo-78-217"
+          ]
+        },
+        {
+          "card_number": "100",
+          "card_name": "Team Rocket's Diglett",
+          "finish_key": "rocket_reverse",
+          "sources": [
+            "crazygamer_ascended_heroes_diglett_100",
+            "pricedex_ascended_heroes_price_list",
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_676932"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/676932",
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://crazygamer.uk/pokemon-single-cards-ascended-heroes-c-2_67_678/team-rockets-diglett-rocket-reverse-holo-100217-ascended-heroes-p-31797"
+          ]
+        },
+        {
+          "card_number": "101",
+          "card_name": "Team Rocket's Dugtrio",
+          "finish_key": "rocket_reverse",
+          "sources": [
+            "lockett_labs_ascended_heroes_dugtrio_101",
+            "pricedex_ascended_heroes_price_list",
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_676933"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/676933",
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://lockett-labs.com/products/team-rockets-dugtrio-ascended-heroes-rocket-reverse-holo-101-217"
+          ]
+        },
+        {
+          "card_number": "126",
+          "card_name": "Team Rocket's Murkrow",
+          "finish_key": "rocket_reverse",
+          "sources": [
+            "pokellector_ascended_heroes_murkrow_126",
+            "pricedex_ascended_heroes_price_list",
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_676951"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/676951",
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.pokellector.com/Ascended-Heroes-Expansion/Team-Rockets-Murkrow-Card-126"
+          ]
+        },
+        {
+          "card_number": "127",
+          "card_name": "Team Rocket's Honchkrow",
+          "finish_key": "rocket_reverse",
+          "sources": [
+            "big_orbit_ascended_heroes_honchkrow_127",
+            "pricedex_ascended_heroes_price_list",
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_676952"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/676952",
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.bigorbitcards.co.uk/pokemon/ascended-heroes/team-rockets-honchkrow-team-rocket-reverse-holo.html"
+          ]
+        },
+        {
+          "card_number": "161",
+          "card_name": "Team Rocket's Meowth",
+          "finish_key": "rocket_reverse",
+          "sources": [
+            "cardtrader_ascended_heroes_meowth_161",
+            "pricedex_ascended_heroes_price_list",
+            "pricedex_ascended_heroes_variant_index",
+            "tcgplayer_product_676978"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.tcgplayer.com/product/676978",
+            "https://www.thepricedex.com/set/me2pt5/ascended-heroes/price-list",
+            "https://www.cardtrader.com/en/cards/team-rocket-s-meowth-rocket-reverse-holo-161-217-ascended-heroes-ball-rocket-reverse-holo"
+          ]
+        }
+      ]
+    },
+    {
+      "finish_key": "masterball",
+      "label": "Master Ball",
+      "expected_count": 0,
+      "master_verified_count": 0,
+      "gap_count": 0,
+      "status": "not_applicable",
+      "basis": "No source-backed Ascended Heroes finish profile includes Master Ball reverse; this finish is explicitly not applicable for this set.",
+      "source_urls": [
+        "https://www.pokebeach.com/2026/01/ascended-heroes-set-guide-full-set-list-god-packs-reverse-holos-product-lineup-and-more"
+      ],
+      "verified_rows": []
+    }
+  ]
+}

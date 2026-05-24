@@ -1,0 +1,49 @@
+{
+  "fixture_version": "VERIFIED_MASTER_SET_INDEX_V1_HUMAN_SOURCE_FIXTURE",
+  "source_key": "pokebeach_ascended_heroes_set_guide",
+  "source_kind": "collector_reference",
+  "source_url": "https://www.pokebeach.com/2026/01/ascended-heroes-set-guide-full-set-list-god-packs-reverse-holos-product-lineup-and-more",
+  "source_status": "available",
+  "set_key": "ascended_heroes",
+  "set_name": "Ascended Heroes",
+  "retrieved_at": "2026-05-23T19:05:00.000Z",
+  "raw_snapshot_ref": "manual_fixture:no_page_dump",
+  "records": [
+    {
+      "source_key": "pokebeach_ascended_heroes_set_guide",
+      "source_kind": "collector_reference",
+      "source_url": "https://www.pokebeach.com/2026/01/ascended-heroes-set-guide-full-set-list-god-packs-reverse-holos-product-lineup-and-more",
+      "set_name": "Ascended Heroes",
+      "card_number": null,
+      "card_name": null,
+      "finish_key": "reverse",
+      "evidence_type": "parallel_rule",
+      "evidence_label": "Set guide says each non-ex Pokemon has an Energy reverse holo.",
+      "notes": "General Energy reverse rule only. This must not create exact card-level finish truth."
+    },
+    {
+      "source_key": "pokebeach_ascended_heroes_set_guide",
+      "source_kind": "collector_reference",
+      "source_url": "https://www.pokebeach.com/2026/01/ascended-heroes-set-guide-full-set-list-god-packs-reverse-holos-product-lineup-and-more",
+      "set_name": "Ascended Heroes",
+      "card_number": null,
+      "card_name": null,
+      "finish_key": "pokeball",
+      "evidence_type": "parallel_rule",
+      "evidence_label": "Set guide discusses a specific Poke Ball reverse holo treatment for non-ex Pokemon.",
+      "notes": "General parallel discussion only. Exact card-level coverage remains needs_manual_review."
+    },
+    {
+      "source_key": "pokebeach_ascended_heroes_set_guide",
+      "source_kind": "collector_reference",
+      "source_url": "https://www.pokebeach.com/2026/01/ascended-heroes-set-guide-full-set-list-god-packs-reverse-holos-product-lineup-and-more",
+      "set_name": "Ascended Heroes",
+      "card_number": null,
+      "card_name": null,
+      "finish_key": "rocket_reverse",
+      "evidence_type": "parallel_rule",
+      "evidence_label": "Set guide says Team Rocket's Pokemon have an R reverse holo in place of the Poke Ball reverse.",
+      "notes": "General Team Rocket R reverse rule only. Exact card-level coverage remains needs_manual_review."
+    }
+  ]
+}

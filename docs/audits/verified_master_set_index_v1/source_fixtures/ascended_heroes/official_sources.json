@@ -1,0 +1,12 @@
+{
+  "fixture_version": "VERIFIED_MASTER_SET_INDEX_V1_HUMAN_SOURCE_FIXTURE",
+  "source_key": "official_pokemon_ascended_heroes",
+  "source_kind": "official_gallery",
+  "source_url": "https://www.pokemon.com/us/pokemon-tcg/pokemon-cards/",
+  "source_status": "unavailable",
+  "set_key": "ascended_heroes",
+  "set_name": "Ascended Heroes",
+  "retrieved_at": "2026-05-23T19:05:00.000Z",
+  "raw_snapshot_ref": "manual_fixture:no_page_dump",
+  "records": []
+}

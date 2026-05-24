@@ -1,0 +1,37 @@
+{
+  "version": "ASCENDED_HEROES_APPLY_READINESS_V1",
+  "generated_at": "2026-05-24T05:28:51.580Z",
+  "source_plan_path": "docs/audits/verified_master_set_index_v1/ascended_heroes/ascended_heroes_normalization_plan_v1.json",
+  "audit_only": true,
+  "db_writes": false,
+  "mode": "dry-run",
+  "ready_to_apply": true,
+  "apply_supported_by_this_runner": true,
+  "stop_reason": "Plan is readiness-clean. Apply still requires explicit canon maintenance mode and confirmation.",
+  "summary": {
+    "remove_or_quarantine_candidates": 0,
+    "remove_candidates_live_dependency_clean": 0,
+    "add_missing_printing_candidates": 0,
+    "add_candidates_parent_resolved": 0,
+    "manual_review_holds": 0,
+    "blocker_count": 0,
+    "blockers_by_type": {},
+    "remove_candidates_by_finish": {},
+    "add_candidates_by_finish": {},
+    "available_finish_keys": [
+      "cosmos",
+      "holo",
+      "masterball",
+      "normal",
+      "pokeball",
+      "reverse",
+      "rocket_reverse"
+    ],
+    "missing_finish_keys": []
+  },
+  "blockers": [],
+  "apply_plan": {
+    "add_rows": [],
+    "remove_rows": []
+  }
+}

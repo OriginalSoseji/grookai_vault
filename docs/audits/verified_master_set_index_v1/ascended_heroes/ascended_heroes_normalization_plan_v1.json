@@ -1,0 +1,29 @@
+{
+  "version": "ASCENDED_HEROES_NORMALIZATION_PLAN_V1",
+  "generated_at": "2026-05-24T05:23:31.140Z",
+  "audit_only": true,
+  "db_writes": false,
+  "quarantine_applied": false,
+  "destructive_actions_applied": false,
+  "rule": "This plan is evidence-backed remediation planning only. It must not be applied without a separate approved migration or maintenance path.",
+  "stop_rules": [
+    "Do not delete or quarantine rows from this report directly.",
+    "Stop if ownership/vault/provenance dependencies are found for any candidate row.",
+    "Stop if a candidate row has unresolved identity ambiguity.",
+    "Stop if another source contradicts the Verified Master Set Index.",
+    "Stop if apply logic cannot be made transactional and reversible."
+  ],
+  "summary": {
+    "remove_or_quarantine_candidates": 0,
+    "add_missing_printing_candidates": 0,
+    "manual_review_required": 0,
+    "dependency_hold_candidates": 0,
+    "add_blocked_by_apply_guardrail": 0,
+    "add_blockers_by_type": {},
+    "remove_candidates_by_finish": {},
+    "add_candidates_by_finish": {},
+    "blocked_adds_by_finish": {},
+    "dependency_holds_by_finish": {}
+  },
+  "rows": []
+}

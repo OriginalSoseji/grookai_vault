@@ -55,6 +55,7 @@ If a contract is missing from this index, it is not authoritative.
 | PRINTED_IDENTITY_CONTRACT_V1 | Frozen | Printed set abbreviation and printed_total rules |
 | PRINTED_IDENTITY_PASS_V1 | Frozen | Completed printed identity normalization workflow |
 | PRINTING_TRUTH_CONTRACT_V1 | Active | docs/contracts/PRINTING_TRUTH_CONTRACT_V1.md — Card printings must be externally verifiable, fail closed when unknown, and quarantine before destructive cleanup |
+| VERIFIED_MASTER_SET_INDEX_V1 | Active | docs/contracts/VERIFIED_MASTER_SET_INDEX_V1.md — English-only external source agreement index for set cards and printings; audit-only and no DB writes |
 
 ---
 

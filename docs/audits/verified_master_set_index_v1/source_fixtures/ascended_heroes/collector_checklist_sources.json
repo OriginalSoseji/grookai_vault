@@ -1,0 +1,61 @@
+{
+  "fixture_version": "VERIFIED_MASTER_SET_INDEX_V1_HUMAN_SOURCE_FIXTURE",
+  "source_key": "pokemasters_ascended_heroes",
+  "source_kind": "collector_reference",
+  "source_url": "https://www.pokemasters.net/tcg/set/ascended-heroes",
+  "source_status": "available",
+  "set_key": "ascended_heroes",
+  "set_name": "Ascended Heroes",
+  "retrieved_at": "2026-05-23T19:05:00.000Z",
+  "raw_snapshot_ref": "manual_fixture:no_page_dump",
+  "records": [
+    {
+      "source_key": "pokemasters_ascended_heroes",
+      "source_kind": "collector_reference",
+      "source_url": "https://www.pokemasters.net/tcg/set/ascended-heroes",
+      "set_name": "Ascended Heroes",
+      "card_number": "001",
+      "card_name": "Erika's Oddish",
+      "finish_key": null,
+      "evidence_type": "checklist_entry",
+      "evidence_label": "Ascended Heroes set list entry: Erika's Oddish #1",
+      "notes": "Fixture captures card identity only; no exact finish truth is asserted."
+    },
+    {
+      "source_key": "pokemasters_ascended_heroes",
+      "source_kind": "collector_reference",
+      "source_url": "https://www.pokemasters.net/tcg/set/ascended-heroes",
+      "set_name": "Ascended Heroes",
+      "card_number": "010",
+      "card_name": "Mega Meganium ex",
+      "finish_key": null,
+      "evidence_type": "checklist_entry",
+      "evidence_label": "Ascended Heroes set list entry: Mega Meganium ex #10",
+      "notes": "EX identity sample only; finish truth requires separate evidence."
+    },
+    {
+      "source_key": "pokemasters_ascended_heroes",
+      "source_kind": "collector_reference",
+      "source_url": "https://www.pokemasters.net/tcg/set/ascended-heroes",
+      "set_name": "Ascended Heroes",
+      "card_number": "113",
+      "card_name": "Mega Lucario ex",
+      "finish_key": null,
+      "evidence_type": "checklist_entry",
+      "evidence_label": "Ascended Heroes set list entry: Mega Lucario ex #113",
+      "notes": "EX identity sample only; finish truth requires separate evidence."
+    },
+    {
+      "source_key": "pokemasters_ascended_heroes",
+      "source_kind": "collector_reference",
+      "source_url": "https://www.pokemasters.net/tcg/set/ascended-heroes",
+      "set_name": "Ascended Heroes",
+      "card_number": "152",
+      "card_name": "Mega Dragonite ex",
+      "finish_key": null,
+      "evidence_type": "checklist_entry",
+      "evidence_label": "Ascended Heroes set list entry: Mega Dragonite ex #152",
+      "notes": "EX identity sample only; finish truth requires separate evidence."
+    }
+  ]
+}

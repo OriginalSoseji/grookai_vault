@@ -1,0 +1,20 @@
+{
+  "fixture_version": "VERIFIED_MASTER_SET_INDEX_V1_HUMAN_SOURCE_FIXTURE",
+  "source_key": "bulbapedia_sv01",
+  "source_kind": "human_readable_checklist",
+  "source_url": "https://bulbapedia.bulbagarden.net/wiki/SV1",
+  "set_key": "sv01",
+  "set_name": "Scarlet & Violet",
+  "retrieved_at": "2026-05-23T18:45:00.000Z",
+  "raw_snapshot_ref": "manual_fixture:no_page_dump",
+  "records": [
+    { "card_number": "001", "card_name": "Pineco", "finish_key": null, "evidence_type": "set_list_entry", "evidence_text_or_label": "Set list entry: 001/198 Pineco" },
+    { "card_number": "002", "card_name": "Heracross", "finish_key": null, "evidence_type": "set_list_entry", "evidence_text_or_label": "Set list entry: 002/198 Heracross" },
+    { "card_number": "003", "card_name": "Shroomish", "finish_key": null, "evidence_type": "set_list_entry", "evidence_text_or_label": "Set list entry: 003/198 Shroomish" },
+    { "card_number": "004", "card_name": "Breloom", "finish_key": null, "evidence_type": "set_list_entry", "evidence_text_or_label": "Set list entry: 004/198 Breloom" },
+    { "card_number": "005", "card_name": "Cacnea", "finish_key": null, "evidence_type": "set_list_entry", "evidence_text_or_label": "Set list entry: 005/198 Cacnea" },
+    { "card_number": "006", "card_name": "Cacturne", "finish_key": null, "evidence_type": "set_list_entry", "evidence_text_or_label": "Set list entry: 006/198 Cacturne" },
+    { "card_number": "007", "card_name": "Tropius", "finish_key": null, "evidence_type": "set_list_entry", "evidence_text_or_label": "Set list entry: 007/198 Tropius" },
+    { "card_number": "008", "card_name": "Scatterbug", "finish_key": null, "evidence_type": "set_list_entry", "evidence_text_or_label": "Set list entry: 008/198 Scatterbug" }
+  ]
+}

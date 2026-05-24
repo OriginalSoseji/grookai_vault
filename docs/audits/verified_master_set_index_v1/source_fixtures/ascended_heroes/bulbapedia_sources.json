@@ -1,0 +1,12 @@
+{
+  "fixture_version": "VERIFIED_MASTER_SET_INDEX_V1_HUMAN_SOURCE_FIXTURE",
+  "source_key": "bulbapedia_ascended_heroes",
+  "source_kind": "human_readable_checklist",
+  "source_url": "https://bulbapedia.bulbagarden.net/wiki/Ascended_Heroes_(TCG)",
+  "source_status": "unavailable",
+  "set_key": "ascended_heroes",
+  "set_name": "Ascended Heroes",
+  "retrieved_at": "2026-05-23T19:05:00.000Z",
+  "raw_snapshot_ref": "manual_fixture:no_page_dump",
+  "records": []
+}

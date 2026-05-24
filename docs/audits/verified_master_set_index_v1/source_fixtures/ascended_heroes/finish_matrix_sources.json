@@ -1,0 +1,112 @@
+{
+  "fixture_version": "VERIFIED_MASTER_SET_INDEX_V1_HUMAN_SOURCE_FIXTURE",
+  "source_key": "ascended_heroes_finish_matrix_sources",
+  "source_kind": "manual_review",
+  "source_url": "https://www.pokebeach.com/2026/01/ascended-heroes-set-guide-full-set-list-god-packs-reverse-holos-product-lineup-and-more",
+  "source_status": "available_partial",
+  "set_key": "ascended_heroes",
+  "set_name": "Ascended Heroes",
+  "retrieved_at": "2026-05-23T19:20:00.000Z",
+  "raw_snapshot_ref": "manual_fixture:no_page_dump",
+  "records": [
+    {
+      "source_key": "pokemasters_ascended_heroes",
+      "source_kind": "collector_reference",
+      "source_url": "https://www.pokemasters.net/tcg/set/ascended-heroes",
+      "set_name": "Ascended Heroes",
+      "card_number": "010",
+      "card_name": "Mega Meganium ex",
+      "finish_key": "holo",
+      "evidence_type": "finish_presence",
+      "evidence_label": "Collector checklist identifies Mega Meganium ex #10 as a listed ex card in Ascended Heroes.",
+      "notes": "One human-readable source supports holo/ex-style finish presence for this exact card."
+    },
+    {
+      "source_key": "pokemasters_ascended_heroes",
+      "source_kind": "collector_reference",
+      "source_url": "https://www.pokemasters.net/tcg/set/ascended-heroes",
+      "set_name": "Ascended Heroes",
+      "card_number": "113",
+      "card_name": "Mega Lucario ex",
+      "finish_key": "holo",
+      "evidence_type": "finish_presence",
+      "evidence_label": "Collector checklist identifies Mega Lucario ex #113 as a listed ex card in Ascended Heroes.",
+      "notes": "One human-readable source supports holo/ex-style finish presence for this exact card."
+    },
+    {
+      "source_key": "pokemasters_ascended_heroes",
+      "source_kind": "collector_reference",
+      "source_url": "https://www.pokemasters.net/tcg/set/ascended-heroes",
+      "set_name": "Ascended Heroes",
+      "card_number": "152",
+      "card_name": "Mega Dragonite ex",
+      "finish_key": "holo",
+      "evidence_type": "finish_presence",
+      "evidence_label": "Collector checklist identifies Mega Dragonite ex #152 as a listed ex card in Ascended Heroes.",
+      "notes": "One human-readable source supports holo/ex-style finish presence for this exact card."
+    },
+    {
+      "source_key": "digitaltq_ascended_heroes_010",
+      "source_kind": "collector_reference",
+      "source_url": "https://www.digitaltq.com/pokemon-tcg/ascended-heroes/mega-meganium-ex-10",
+      "set_name": "Ascended Heroes",
+      "card_number": "010",
+      "card_name": "Mega Meganium ex",
+      "finish_key": "holo",
+      "rarity": "Double Rare Holo",
+      "evidence_type": "finish_presence",
+      "evidence_label": "DigitalTQ exact card page identifies Mega Meganium ex #010 with rarity Double Rare Holo and a Holo price lane.",
+      "notes": "Second independent collector-reference source supports exact card-level holo finish for #010."
+    },
+    {
+      "source_key": "digitaltq_ascended_heroes_113",
+      "source_kind": "collector_reference",
+      "source_url": "https://www.digitaltq.com/pokemon-tcg/ascended-heroes/mega-lucario-ex-113",
+      "set_name": "Ascended Heroes",
+      "card_number": "113",
+      "card_name": "Mega Lucario ex",
+      "finish_key": "holo",
+      "rarity": "Double Rare Holo",
+      "evidence_type": "finish_presence",
+      "evidence_label": "DigitalTQ exact card page identifies Mega Lucario ex #113 with rarity Double Rare Holo and a Holo price lane.",
+      "notes": "Second independent collector-reference source supports exact card-level holo finish for #113."
+    },
+    {
+      "source_key": "digitaltq_ascended_heroes_152",
+      "source_kind": "collector_reference",
+      "source_url": "https://www.digitaltq.com/pokemon-tcg/ascended-heroes/mega-dragonite-ex-152",
+      "set_name": "Ascended Heroes",
+      "card_number": "152",
+      "card_name": "Mega Dragonite ex",
+      "finish_key": "holo",
+      "rarity": "Double Rare Holo",
+      "evidence_type": "finish_presence",
+      "evidence_label": "DigitalTQ exact card page identifies Mega Dragonite ex #152 with rarity Double Rare Holo and a Holo price lane.",
+      "notes": "Second independent collector-reference source supports exact card-level holo finish for #152."
+    },
+    {
+      "source_key": "pokebeach_ascended_heroes_set_guide",
+      "source_kind": "collector_reference",
+      "source_url": "https://www.pokebeach.com/2026/01/ascended-heroes-set-guide-full-set-list-god-packs-reverse-holos-product-lineup-and-more",
+      "set_name": "Ascended Heroes",
+      "card_number": "010",
+      "card_name": "Mega Meganium ex",
+      "finish_key": "poke_ball_reverse",
+      "evidence_type": "finish_absence",
+      "evidence_label": "Set guide describes Poke Ball reverse treatment as applying to non-ex Pokemon; Mega Meganium ex is an ex card.",
+      "notes": "Source-backed absence for this exact ex sample under the cited general exclusion rule; still review before cleanup."
+    },
+    {
+      "source_key": "pokebeach_ascended_heroes_set_guide",
+      "source_kind": "collector_reference",
+      "source_url": "https://www.pokebeach.com/2026/01/ascended-heroes-set-guide-full-set-list-god-packs-reverse-holos-product-lineup-and-more",
+      "set_name": "Ascended Heroes",
+      "card_number": "113",
+      "card_name": "Mega Lucario ex",
+      "finish_key": "poke_ball_reverse",
+      "evidence_type": "finish_absence",
+      "evidence_label": "Set guide describes Poke Ball reverse treatment as applying to non-ex Pokemon; Mega Lucario ex is an ex card.",
+      "notes": "Source-backed absence for this exact ex sample under the cited general exclusion rule; still review before cleanup."
+    }
+  ]
+}

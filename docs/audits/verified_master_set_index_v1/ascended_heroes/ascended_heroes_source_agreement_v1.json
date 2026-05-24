@@ -1,0 +1,2747 @@
+{
+  "version": "ASCENDED_HEROES_SOURCE_AGREEMENT_V1",
+  "generated_at": "2026-05-24T05:23:31.140Z",
+  "source_availability": [
+    {
+      "set_key": "ascended_heroes",
+      "set_name": "Ascended Heroes",
+      "source_aliases": {
+        "tcgdex": null,
+        "pokemontcg_io": null,
+        "official": null,
+        "bulbapedia": null
+      },
+      "source_status": {
+        "tcgdex": "unavailable",
+        "pokemontcg_api": "unavailable",
+        "official_gallery": "fixture_required",
+        "human_readable_checklist": "fixture_available",
+        "marketplace_checklist": "fixture_available",
+        "collector_reference": "fixture_available"
+      }
+    }
+  ],
+  "source_overlap": [
+    {
+      "source_key": "pokemasters_ascended_heroes",
+      "facts": 7
+    },
+    {
+      "source_key": "digitaltq_ascended_heroes_003",
+      "facts": 1
+    },
+    {
+      "source_key": "pricedex_ascended_heroes_price_list",
+      "facts": 51
+    },
+    {
+      "source_key": "digitaltq_ascended_heroes_026",
+      "facts": 1
+    },
+    {
+      "source_key": "digitaltq_ascended_heroes_031",
+      "facts": 1
+    },
+    {
+      "source_key": "digitaltq_ascended_heroes_038",
+      "facts": 1
+    },
+    {
+      "source_key": "digitaltq_ascended_heroes_043",
+      "facts": 1
+    },
+    {
+      "source_key": "digitaltq_ascended_heroes_047",
+      "facts": 1
+    },
+    {
+      "source_key": "digitaltq_ascended_heroes_048",
+      "facts": 1
+    },
+    {
+      "source_key": "digitaltq_ascended_heroes_057",
+      "facts": 1
+    },
+    {
+      "source_key": "digitaltq_ascended_heroes_058",
+      "facts": 1
+    },
+    {
+      "source_key": "digitaltq_ascended_heroes_061",
+      "facts": 1
+    },
+    {
+      "source_key": "digitaltq_ascended_heroes_068",
+      "facts": 1
+    },
+    {
+      "source_key": "digitaltq_ascended_heroes_070",
+      "facts": 1
+    },
+    {
+      "source_key": "digitaltq_ascended_heroes_073",
+      "facts": 1
+    },
+    {
+      "source_key": "digitaltq_ascended_heroes_076",
+      "facts": 1
+    },
+    {
+      "source_key": "digitaltq_ascended_heroes_079",
+      "facts": 1
+    },
+    {
+      "source_key": "digitaltq_ascended_heroes_084",
+      "facts": 1
+    },
+    {
+      "source_key": "digitaltq_ascended_heroes_089",
+      "facts": 1
+    },
+    {
+      "source_key": "digitaltq_ascended_heroes_107",
+      "facts": 1
+    },
+    {
+      "source_key": "digitaltq_ascended_heroes_111",
+      "facts": 1
+    },
+    {
+      "source_key": "digitaltq_ascended_heroes_114",
+      "facts": 1
+    },
+    {
+      "source_key": "digitaltq_ascended_heroes_116",
+      "facts": 1
+    },
+    {
+      "source_key": "digitaltq_ascended_heroes_121",
+      "facts": 1
+    },
+    {
+      "source_key": "digitaltq_ascended_heroes_125",
+      "facts": 1
+    },
+    {
+      "source_key": "digitaltq_ascended_heroes_135",
+      "facts": 1
+    },
+    {
+      "source_key": "digitaltq_ascended_heroes_137",
+      "facts": 1
+    },
+    {
+      "source_key": "digitaltq_ascended_heroes_139",
+      "facts": 1
+    },
+    {
+      "source_key": "digitaltq_ascended_heroes_142",
+      "facts": 1
+    },
+    {
+      "source_key": "digitaltq_ascended_heroes_145",
+      "facts": 1
+    },
+    {
+      "source_key": "digitaltq_ascended_heroes_149",
+      "facts": 1
+    },
+    {
+      "source_key": "digitaltq_ascended_heroes_160",
+      "facts": 1
+    },
+    {
+      "source_key": "digitaltq_ascended_heroes_162",
+      "facts": 1
+    },
+    {
+      "source_key": "digitaltq_ascended_heroes_164",
+      "facts": 1
+    },
+    {
+      "source_key": "digitaltq_ascended_heroes_167",
+      "facts": 1
+    },
+    {
+      "source_key": "digitaltq_ascended_heroes_172",
+      "facts": 1
+    },
+    {
+      "source_key": "digitaltq_ascended_heroes_179",
+      "facts": 1
+    },
+    {
+      "source_key": "digitaltq_ascended_heroes_010",
+      "facts": 1
+    },
+    {
+      "source_key": "digitaltq_ascended_heroes_113",
+      "facts": 1
+    },
+    {
+      "source_key": "digitaltq_ascended_heroes_152",
+      "facts": 1
+    },
+    {
+      "source_key": "pokebeach_ascended_heroes_set_guide",
+      "facts": 5
+    },
+    {
+      "source_key": "cardmarket_ascended_heroes",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgstats_ascended_heroes_ns_zekrom",
+      "facts": 2
+    },
+    {
+      "source_key": "pokescope_ascended_heroes_mimikyu_097",
+      "facts": 2
+    },
+    {
+      "source_key": "sports_card_investor_ascended_heroes_mimikyu",
+      "facts": 1
+    },
+    {
+      "source_key": "cardtrader_ascended_heroes_mimikyu_097",
+      "facts": 1
+    },
+    {
+      "source_key": "packmagik_ascended_heroes_team_rockets_great_ball_205",
+      "facts": 1
+    },
+    {
+      "source_key": "psa_ascended_heroes_checklist",
+      "facts": 5
+    },
+    {
+      "source_key": "beckett_ascended_heroes_oddish_001",
+      "facts": 1
+    },
+    {
+      "source_key": "sports_card_investor_ascended_heroes_gloom_002",
+      "facts": 1
+    },
+    {
+      "source_key": "big_orbit_ascended_heroes_bellsprout_004",
+      "facts": 1
+    },
+    {
+      "source_key": "cardtrader_ascended_heroes_weepinbell_005",
+      "facts": 1
+    },
+    {
+      "source_key": "big_orbit_ascended_heroes_victreebel_006",
+      "facts": 1
+    },
+    {
+      "source_key": "pricedex_ascended_heroes_variant_index",
+      "facts": 620
+    },
+    {
+      "source_key": "tcgplayer_product_675813",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_676992",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_676852",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_675814",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_676993",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_676853",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_675815",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_675816",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_676994",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_676854",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_675817",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_676995",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_676855",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_675818",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_676996",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_676856",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_675819",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_679253",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_676997",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_676857",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_675820",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_680709",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_676998",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_676858",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_675821",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_676999",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_676859",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_675822",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_675823",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_677000",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_676860",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_675824",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_677001",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_676861",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_675825",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_677002",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_676862",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_675826",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_677003",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_676863",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_675827",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_677004",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_676864",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_675828",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_677005",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_676865",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_675829",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_677006",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_676866",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_675830",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_677007",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_676867",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_675831",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_677008",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_676868",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_675832",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_677398",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_677009",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_676869",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_675833",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_677010",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_676870",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_675834",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_675835",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_677011",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_676871",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_675836",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_677012",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_676872",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_675837",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_677013",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_676873",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_675838",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_675839",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_677014",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_676874",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_675840",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_677015",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_676875",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_675841",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_681895",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_677016",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_676876",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_675842",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_677017",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_676877",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_675843",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_675844",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_677018",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_676878",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_675845",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_677019",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_676879",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_675846",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_677020",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_676880",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_675847",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_677021",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_676881",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_675848",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_677022",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_676882",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_675849",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_677023",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_676883",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_675850",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_675851",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_677024",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_676884",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_675852",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_677025",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_676885",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_675853",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_680710",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_677026",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_676886",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_675854",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_677027",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_676887",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_675855",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_675856",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_676888",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_677028",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_675857",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_676889",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_677029",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_675858",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_677030",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_676890",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_675859",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_675860",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_675861",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_677031",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_676891",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_675862",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_677032",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_676892",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_675863",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_677033",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_676893",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_675864",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_677034",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_676894",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_675865",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_677035",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_676895",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_675866",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_677036",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_676896",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_675867",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_677037",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_676897",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_675868",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_677038",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_676898",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_675869",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_675870",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_675871",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_677039",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_676899",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_675872",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_677040",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_676900",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_675873",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_675874",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_677041",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_676901",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_675875",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_677042",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_676902",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_675876",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_677043",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_676903",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_675877",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_677044",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_676904",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_675878",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_677045",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_676905",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_675879",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_677046",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_676906",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_675880",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_675881",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_677047",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_676907",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_675882",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_675883",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_677048",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_676908",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_675884",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_677049",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_676909",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_675885",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_675886",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_677050",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_676910",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_675887",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_677051",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_676911",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_675888",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_675889",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_677052",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_676912",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_675890",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_677053",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_676913",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_675891",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_675892",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_677054",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_676914",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_675893",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_677055",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_676915",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_675894",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_677056",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_676916",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_675895",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_677057",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_676917",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_675896",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_675897",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_676918",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_677058",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_675898",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_676919",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_677059",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_675899",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_677060",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_676920",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_675900",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_677061",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_676921",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_675901",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_675902",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_676922",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_677062",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_675903",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_676923",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_677063",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_675904",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_676924",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_677064",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_675905",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_677065",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_676925",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_675906",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_677066",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_676926",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_675907",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_677067",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_676927",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_675908",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_677068",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_676928",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_675909",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_677069",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_676929",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_675910",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_676930",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_677070",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_675911",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_676931",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_677071",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_675912",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_677072",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_676932",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_675913",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_677073",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_676933",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_675914",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_676934",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_677074",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_675915",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_677075",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_676935",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_675916",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_677076",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_676936",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_675917",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_676937",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_677077",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_675918",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_676938",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_677078",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_675919",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_675920",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_676939",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_677079",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_675921",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_677080",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_676940",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_675922",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_677081",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_676941",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_675923",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_675924",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_677082",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_676942",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_675925",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_675926",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_675927",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_677083",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_676943",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_675928",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_675929",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_677084",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_676944",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_675930",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_676945",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_677085",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_675931",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_676946",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_677086",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_675932",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_676947",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_677087",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_675933",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_675934",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_677088",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_676948",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_675935",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_677399",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_676949",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_677089",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_675936",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_676950",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_677090",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_675937",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_675938",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_677091",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_676951",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_675939",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_677092",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_676952",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_675940",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_676953",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_677093",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_675941",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_676954",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_677094",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_675942",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_676955",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_677095",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_675943",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_676956",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_677096",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_675944",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_676957",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_677097",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_675945",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_677098",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_676958",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_675946",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_677099",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_676959",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_675947",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_675948",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_677100",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_676960",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_675949",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_675950",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_676961",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_677101",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_675951",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_675952",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_677102",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_676962",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_675953",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_677103",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_676963",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_675954",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_675955",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_677104",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_676964",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_675956",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_676965",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_677105",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_675957",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_675958",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_677106",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_676966",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_675959",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_677107",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_676967",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_675960",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_677108",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_676968",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_675961",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_675962",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_677109",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_676969",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_675963",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_677110",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_676970",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_675964",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_675965",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_677111",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_676971",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_675966",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_677112",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_676972",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_675967",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_677113",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_676973",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_675968",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_677114",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_676974",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_675969",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_677115",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_676975",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_675970",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_677116",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_676976",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_675971",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_677117",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_676977",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_675972",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_675973",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_677118",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_676978",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_675974",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_675975",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_677119",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_676979",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_675976",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_675977",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_677120",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_676980",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_675978",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_677121",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_676981",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_675979",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_675980",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_677122",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_676982",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_675981",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_677123",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_676983",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_675982",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_677124",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_676984",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_675983",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_676985",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_677125",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_675984",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_675985",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_677126",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_676986",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_675986",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_677127",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_676987",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_675987",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_679249",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_677128",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_676988",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_675988",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_677129",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_676989",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_675989",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_677130",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_676990",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_675990",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_677131",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_676991",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_675991",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_675992",
+      "facts": 2
+    },
+    {
+      "source_key": "tcgplayer_product_675993",
+      "facts": 2
+    },
+    {
+      "source_key": "tcgplayer_product_675994",
+      "facts": 2
+    },
+    {
+      "source_key": "tcgplayer_product_675995",
+      "facts": 2
+    },
+    {
+      "source_key": "tcgplayer_product_675996",
+      "facts": 2
+    },
+    {
+      "source_key": "tcgplayer_product_675997",
+      "facts": 2
+    },
+    {
+      "source_key": "tcgplayer_product_675998",
+      "facts": 2
+    },
+    {
+      "source_key": "tcgplayer_product_675999",
+      "facts": 2
+    },
+    {
+      "source_key": "tcgplayer_product_676000",
+      "facts": 2
+    },
+    {
+      "source_key": "tcgplayer_product_676001",
+      "facts": 2
+    },
+    {
+      "source_key": "tcgplayer_product_676002",
+      "facts": 2
+    },
+    {
+      "source_key": "tcgplayer_product_676003",
+      "facts": 2
+    },
+    {
+      "source_key": "tcgplayer_product_676004",
+      "facts": 2
+    },
+    {
+      "source_key": "tcgplayer_product_676005",
+      "facts": 2
+    },
+    {
+      "source_key": "tcgplayer_product_676006",
+      "facts": 2
+    },
+    {
+      "source_key": "tcgplayer_product_676007",
+      "facts": 2
+    },
+    {
+      "source_key": "tcgplayer_product_676008",
+      "facts": 2
+    },
+    {
+      "source_key": "tcgplayer_product_676009",
+      "facts": 2
+    },
+    {
+      "source_key": "tcgplayer_product_676010",
+      "facts": 2
+    },
+    {
+      "source_key": "tcgplayer_product_676011",
+      "facts": 2
+    },
+    {
+      "source_key": "tcgplayer_product_676012",
+      "facts": 2
+    },
+    {
+      "source_key": "tcgplayer_product_676013",
+      "facts": 2
+    },
+    {
+      "source_key": "tcgplayer_product_676014",
+      "facts": 2
+    },
+    {
+      "source_key": "tcgplayer_product_676015",
+      "facts": 2
+    },
+    {
+      "source_key": "tcgplayer_product_676016",
+      "facts": 2
+    },
+    {
+      "source_key": "tcgplayer_product_676017",
+      "facts": 2
+    },
+    {
+      "source_key": "tcgplayer_product_676018",
+      "facts": 2
+    },
+    {
+      "source_key": "tcgplayer_product_676019",
+      "facts": 2
+    },
+    {
+      "source_key": "tcgplayer_product_676020",
+      "facts": 2
+    },
+    {
+      "source_key": "tcgplayer_product_676021",
+      "facts": 2
+    },
+    {
+      "source_key": "tcgplayer_product_676022",
+      "facts": 2
+    },
+    {
+      "source_key": "tcgplayer_product_676023",
+      "facts": 2
+    },
+    {
+      "source_key": "tcgplayer_product_676024",
+      "facts": 2
+    },
+    {
+      "source_key": "tcgplayer_product_676025",
+      "facts": 2
+    },
+    {
+      "source_key": "tcgplayer_product_676026",
+      "facts": 2
+    },
+    {
+      "source_key": "tcgplayer_product_676027",
+      "facts": 2
+    },
+    {
+      "source_key": "tcgplayer_product_676028",
+      "facts": 2
+    },
+    {
+      "source_key": "tcgplayer_product_676029",
+      "facts": 2
+    },
+    {
+      "source_key": "tcgplayer_product_676030",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_676031",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_676032",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_676033",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_676034",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_676035",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_676036",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_676037",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_676038",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_676039",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_676040",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_676041",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_676042",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_676043",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_676044",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_676045",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_676046",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_676047",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_676048",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_676049",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_676050",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_676051",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_676052",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_676053",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_676054",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_676055",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_676056",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_676057",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_676058",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_676059",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_676060",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_676061",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_676062",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_676063",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_676064",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_676065",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_676066",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_676067",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_676068",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_676069",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_676070",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_676071",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_676072",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_676073",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_676074",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_676075",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_676076",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_676077",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_676078",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_676079",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_676080",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_676081",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_676082",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_676083",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_676084",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_676085",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_676086",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_676087",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_676088",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_676089",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_676090",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_676091",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_676092",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_676093",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_676094",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_676095",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_676096",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_676097",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_676098",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_676099",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_676100",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_676101",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_676102",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_676103",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_676104",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_676105",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_676106",
+      "facts": 1
+    },
+    {
+      "source_key": "tcgplayer_product_676107",
+      "facts": 1
+    },
+    {
+      "source_key": "pokescope_ascended_heroes_tarountula_018",
+      "facts": 1
+    },
+    {
+      "source_key": "vendortools_ascended_heroes_spidops_019",
+      "facts": 1
+    },
+    {
+      "source_key": "cardtrader_ascended_heroes_exeggcute_077",
+      "facts": 1
+    },
+    {
+      "source_key": "sports_card_investor_ascended_heroes_exeggutor_078",
+      "facts": 1
+    },
+    {
+      "source_key": "crazygamer_ascended_heroes_diglett_100",
+      "facts": 1
+    },
+    {
+      "source_key": "lockett_labs_ascended_heroes_dugtrio_101",
+      "facts": 1
+    },
+    {
+      "source_key": "pokellector_ascended_heroes_murkrow_126",
+      "facts": 1
+    },
+    {
+      "source_key": "big_orbit_ascended_heroes_honchkrow_127",
+      "facts": 1
+    },
+    {
+      "source_key": "cardtrader_ascended_heroes_meowth_161",
+      "facts": 1
+    }
+  ],
+  "source_disagreement": [],
+  "finish_disagreement": [],
+  "reverse_holo_disagreement": [],
+  "unsupported_claims": [
+    {
+      "fact_type": "set_level_evidence",
+      "key": "ascended heroes|parallel_rule|reverse",
+      "status": "needs_manual_review",
+      "set_key": "ascended_heroes",
+      "set_name": "Ascended Heroes",
+      "card_number": null,
+      "card_name": null,
+      "finish_key": "reverse",
+      "source_count": 1,
+      "sources": [
+        "pokebeach_ascended_heroes_set_guide"
+      ],
+      "source_authorities": [
+        "pokebeach.com"
+      ],
+      "source_kinds": [
+        "collector_reference"
+      ],
+      "evidence": [
+        {
+          "source_key": "pokebeach_ascended_heroes_set_guide",
+          "source_kind": "collector_reference",
+          "source_url": "https://www.pokebeach.com/2026/01/ascended-heroes-set-guide-full-set-list-god-packs-reverse-holos-product-lineup-and-more",
+          "evidence_type": "parallel_rule",
+          "evidence_label": "Set guide says each non-ex Pokemon has an Energy reverse holo.",
+          "finish_key_raw": "reverse",
+          "notes": "General Energy reverse rule only. This must not create exact card-level finish truth.",
+          "rarity": null,
+          "retrieved_at": "2026-05-23T19:05:00.000Z",
+          "raw_snapshot_ref": "manual_fixture:no_page_dump"
+        }
+      ]
+    },
+    {
+      "fact_type": "set_level_evidence",
+      "key": "ascended heroes|parallel_rule|pokeball",
+      "status": "needs_manual_review",
+      "set_key": "ascended_heroes",
+      "set_name": "Ascended Heroes",
+      "card_number": null,
+      "card_name": null,
+      "finish_key": "pokeball",
+      "source_count": 1,
+      "sources": [
+        "pokebeach_ascended_heroes_set_guide"
+      ],
+      "source_authorities": [
+        "pokebeach.com"
+      ],
+      "source_kinds": [
+        "collector_reference"
+      ],
+      "evidence": [
+        {
+          "source_key": "pokebeach_ascended_heroes_set_guide",
+          "source_kind": "collector_reference",
+          "source_url": "https://www.pokebeach.com/2026/01/ascended-heroes-set-guide-full-set-list-god-packs-reverse-holos-product-lineup-and-more",
+          "evidence_type": "parallel_rule",
+          "evidence_label": "Set guide discusses a specific Poke Ball reverse holo treatment for non-ex Pokemon.",
+          "finish_key_raw": "pokeball",
+          "notes": "General parallel discussion only. Exact card-level coverage remains needs_manual_review.",
+          "rarity": null,
+          "retrieved_at": "2026-05-23T19:05:00.000Z",
+          "raw_snapshot_ref": "manual_fixture:no_page_dump"
+        }
+      ]
+    },
+    {
+      "fact_type": "set_level_evidence",
+      "key": "ascended heroes|parallel_rule|rocket_reverse",
+      "status": "needs_manual_review",
+      "set_key": "ascended_heroes",
+      "set_name": "Ascended Heroes",
+      "card_number": null,
+      "card_name": null,
+      "finish_key": "rocket_reverse",
+      "source_count": 1,
+      "sources": [
+        "pokebeach_ascended_heroes_set_guide"
+      ],
+      "source_authorities": [
+        "pokebeach.com"
+      ],
+      "source_kinds": [
+        "collector_reference"
+      ],
+      "evidence": [
+        {
+          "source_key": "pokebeach_ascended_heroes_set_guide",
+          "source_kind": "collector_reference",
+          "source_url": "https://www.pokebeach.com/2026/01/ascended-heroes-set-guide-full-set-list-god-packs-reverse-holos-product-lineup-and-more",
+          "evidence_type": "parallel_rule",
+          "evidence_label": "Set guide says Team Rocket's Pokemon have an R reverse holo in place of the Poke Ball reverse.",
+          "finish_key_raw": "rocket_reverse",
+          "notes": "General Team Rocket R reverse rule only. Exact card-level coverage remains needs_manual_review.",
+          "rarity": null,
+          "retrieved_at": "2026-05-23T19:05:00.000Z",
+          "raw_snapshot_ref": "manual_fixture:no_page_dump"
+        }
+      ]
+    },
+    {
+      "fact_type": "set_level_evidence",
+      "key": "ascended heroes|set_identity|",
+      "status": "needs_manual_review",
+      "set_key": "ascended_heroes",
+      "set_name": "Ascended Heroes",
+      "card_number": null,
+      "card_name": null,
+      "finish_key": null,
+      "source_count": 1,
+      "sources": [
+        "cardmarket_ascended_heroes"
+      ],
+      "source_authorities": [
+        "cardmarket.com"
+      ],
+      "source_kinds": [
+        "marketplace_checklist"
+      ],
+      "evidence": [
+        {
+          "source_key": "cardmarket_ascended_heroes",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.cardmarket.com/en/Pokemon/Expansions/Ascended-Heroes",
+          "evidence_type": "set_identity",
+          "evidence_label": "Cardmarket expansion page for Ascended Heroes",
+          "finish_key_raw": null,
+          "notes": "Set-level marketplace checklist evidence only; no exact card or finish truth is asserted.",
+          "rarity": null,
+          "retrieved_at": "2026-05-23T19:05:00.000Z",
+          "raw_snapshot_ref": "manual_fixture:no_page_dump"
+        }
+      ]
+    }
+  ]
+}

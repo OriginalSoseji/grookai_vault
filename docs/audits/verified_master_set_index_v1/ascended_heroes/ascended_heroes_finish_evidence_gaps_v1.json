@@ -1,0 +1,63 @@
+{
+  "version": "ASCENDED_HEROES_FINISH_EVIDENCE_GAPS_V1",
+  "generated_at": "2026-05-24T05:23:31.140Z",
+  "rule": "Lack of matrix evidence is not proof of absence unless a source-backed finish_absence row exists.",
+  "rows": [
+    {
+      "set_name": "Ascended Heroes",
+      "card_number": null,
+      "card_name": null,
+      "finish_key": "stamped",
+      "status": "source_unavailable",
+      "reason": "no usable exact card-level finish source in pilot"
+    },
+    {
+      "set_name": "Ascended Heroes",
+      "card_number": null,
+      "card_name": null,
+      "finish_key": "cracked_ice",
+      "status": "source_unavailable",
+      "reason": "no usable exact card-level finish source in pilot"
+    },
+    {
+      "set_name": "Ascended Heroes",
+      "card_number": null,
+      "card_name": null,
+      "finish_key": "other",
+      "status": "source_unavailable",
+      "reason": "no usable exact card-level finish source in pilot"
+    },
+    {
+      "set_name": "Ascended Heroes",
+      "card_number": null,
+      "card_name": null,
+      "finish_key": "reverse",
+      "status": "needs_manual_review",
+      "reason": "General Energy reverse rule only. This must not create exact card-level finish truth."
+    },
+    {
+      "set_name": "Ascended Heroes",
+      "card_number": null,
+      "card_name": null,
+      "finish_key": "pokeball",
+      "status": "needs_manual_review",
+      "reason": "General parallel discussion only. Exact card-level coverage remains needs_manual_review."
+    },
+    {
+      "set_name": "Ascended Heroes",
+      "card_number": null,
+      "card_name": null,
+      "finish_key": "rocket_reverse",
+      "status": "needs_manual_review",
+      "reason": "General Team Rocket R reverse rule only. Exact card-level coverage remains needs_manual_review."
+    },
+    {
+      "set_name": "Ascended Heroes",
+      "card_number": null,
+      "card_name": null,
+      "finish_key": null,
+      "status": "needs_manual_review",
+      "reason": "Set-level marketplace checklist evidence only; no exact card or finish truth is asserted."
+    }
+  ]
+}

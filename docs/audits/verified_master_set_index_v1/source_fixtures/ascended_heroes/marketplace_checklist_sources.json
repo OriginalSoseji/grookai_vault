@@ -1,0 +1,25 @@
+{
+  "fixture_version": "VERIFIED_MASTER_SET_INDEX_V1_HUMAN_SOURCE_FIXTURE",
+  "source_key": "cardmarket_ascended_heroes",
+  "source_kind": "marketplace_checklist",
+  "source_url": "https://www.cardmarket.com/en/Pokemon/Expansions/Ascended-Heroes",
+  "source_status": "available",
+  "set_key": "ascended_heroes",
+  "set_name": "Ascended Heroes",
+  "retrieved_at": "2026-05-23T19:05:00.000Z",
+  "raw_snapshot_ref": "manual_fixture:no_page_dump",
+  "records": [
+    {
+      "source_key": "cardmarket_ascended_heroes",
+      "source_kind": "marketplace_checklist",
+      "source_url": "https://www.cardmarket.com/en/Pokemon/Expansions/Ascended-Heroes",
+      "set_name": "Ascended Heroes",
+      "card_number": null,
+      "card_name": null,
+      "finish_key": null,
+      "evidence_type": "set_identity",
+      "evidence_label": "Cardmarket expansion page for Ascended Heroes",
+      "notes": "Set-level marketplace checklist evidence only; no exact card or finish truth is asserted."
+    }
+  ]
+}

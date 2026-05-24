@@ -1,0 +1,13 @@
+{
+  "version": "ASCENDED_HEROES_PARALLEL_ACQUISITION_QUEUE_V1",
+  "generated_at": "2026-05-24T05:23:31.140Z",
+  "audit_only": true,
+  "db_writes": false,
+  "rule": "Queue rows are work items only. They do not create master truth and must not drive cleanup.",
+  "summary": {
+    "exact_candidate_rows": 0,
+    "lane_gap_rows": 0,
+    "next_recommended_batch": "Complete second-source evidence for rocket_reverse candidates first because the lane is bounded at 10 expected rows."
+  },
+  "rows": []
+}
