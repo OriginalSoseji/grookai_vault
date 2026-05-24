@@ -1663,6 +1663,199 @@ function buildMissingFromGrookaiTriageMarkdown(payload) {
   ].join('\n');
 }
 
+function legacySetFamilyForCandidate(setCode) {
+  const code = String(setCode ?? '').trim();
+  return /^(base|gym|neo|ecard|ex|dp|pl|hgss|col)/.test(code);
+}
+
+function candidateUnconfirmedCategory(row) {
+  const setCode = String(row.set_code ?? row.set_key ?? '').trim();
+  const finish = String(row.finish_key ?? '').trim();
+  const sourceCount = (row.index_sources ?? []).length;
+  const family = unsupportedSetFamily(setCode);
+
+  if (sourceCount !== 1) {
+    return {
+      category: 'needs_manual_review',
+      reason: 'Candidate row did not have exactly one source even though it was classified as candidate_unconfirmed.',
+      source_key: (row.index_sources ?? []).join(',') || 'none',
+    };
+  }
+  if (family === 'promo_family') {
+    return {
+      category: 'promo_family_single_source',
+      reason: 'Promo-family row matches the index from one source only and needs product/checklist evidence.',
+      source_key: row.index_sources[0],
+    };
+  }
+  if (['deck_kit', 'mcdonalds', 'pop_series', 'early_promo_or_product'].includes(family)) {
+    return {
+      category: 'product_or_deck_set_single_source',
+      reason: 'Product, deck, POP, McDonald\'s, or early promo row matches from one source only and needs checklist evidence.',
+      source_key: row.index_sources[0],
+    };
+  }
+  if (['trainer_gallery_subset', 'subset_alias', 'subset_number_collision_family'].includes(family)) {
+    return {
+      category: 'subset_alias_single_source',
+      reason: 'Subset, gallery, or number-collision row matches from one source only and needs set/subset verification.',
+      source_key: row.index_sources[0],
+    };
+  }
+  if (legacySetFamilyForCandidate(setCode)) {
+    return {
+      category: 'legacy_or_old_era_single_source',
+      reason: 'Legacy or older-era row matches from one source only and needs checklist/source confirmation before governing truth.',
+      source_key: row.index_sources[0],
+    };
+  }
+  if (finish === 'reverse') {
+    return {
+      category: 'reverse_holo_single_source',
+      reason: 'Reverse holo row matches from one source only and needs independent finish verification.',
+      source_key: row.index_sources[0],
+    };
+  }
+  if (finish === 'holo') {
+    return {
+      category: 'holo_single_source',
+      reason: 'Holo row matches from one source only and needs independent finish verification.',
+      source_key: row.index_sources[0],
+    };
+  }
+  if (finish === 'normal') {
+    return {
+      category: 'normal_single_source',
+      reason: 'Normal row matches from one source only and needs independent verification before promotion.',
+      source_key: row.index_sources[0],
+    };
+  }
+  return {
+    category: 'needs_manual_review',
+    reason: 'Single-source candidate has an unrecognized finish or set pattern.',
+    source_key: row.index_sources[0],
+  };
+}
+
+function buildCandidateUnconfirmedTriage(grookaiAudit, generatedAt) {
+  const rows = grookaiAudit?.rows?.filter((row) => row.status === 'candidate_unconfirmed_by_index') ?? [];
+  const categorizedRows = rows.map((row) => {
+    const category = candidateUnconfirmedCategory(row);
+    return {
+      category: category.category,
+      reason: category.reason,
+      source_key: category.source_key,
+      ...row,
+    };
+  });
+  const rowsByCategory = Object.fromEntries(
+    Object.entries(countBy(categorizedRows, (row) => row.category)).map(([category, count]) => {
+      const categoryRows = categorizedRows.filter((row) => row.category === category);
+      return [
+        category,
+        {
+          count,
+          by_source_key: countBy(categoryRows, (row) => row.source_key ?? 'unknown'),
+          by_set_code: countBy(categoryRows, (row) => row.set_code ?? row.set_key ?? 'unknown'),
+          by_finish: countBy(categoryRows, (row) => row.finish_key ?? 'unknown'),
+          rows: categoryRows,
+        },
+      ];
+    }),
+  );
+  return {
+    version: 'ENGLISH_MASTER_INDEX_CANDIDATE_UNCONFIRMED_TRIAGE_V1',
+    generated_at: generatedAt,
+    audit_only: true,
+    db_writes: false,
+    source_report: 'english_master_index_grookai_audit_v1.json',
+    rule: 'Candidate-unconfirmed rows match the current index from one source only. They are not cleanup authority, insertion authority, or master truth.',
+    summary: {
+      total_candidate_unconfirmed_by_index: rows.length,
+      by_category: countBy(categorizedRows, (row) => row.category),
+      by_source_key: countBy(categorizedRows, (row) => row.source_key ?? 'unknown'),
+      by_source_and_finish: countBy(categorizedRows, (row) => `${row.source_key ?? 'unknown'}|${row.finish_key ?? 'unknown'}`),
+      by_set_code: countBy(categorizedRows, (row) => row.set_code ?? row.set_key ?? 'unknown'),
+      by_finish: countBy(categorizedRows, (row) => row.finish_key ?? 'unknown'),
+    },
+    categories: rowsByCategory,
+  };
+}
+
+function buildCandidateUnconfirmedTriageMarkdown(payload) {
+  const categoryRows = Object.entries(payload.summary.by_category).map(([category, count]) => [category, count]);
+  const sourceRows = Object.entries(payload.summary.by_source_key).map(([source, count]) => [source, count]);
+  const sourceFinishRows = Object.entries(payload.summary.by_source_and_finish).map(([key, count]) => {
+    const [source, finish] = key.split('|');
+    return [source, finish, count];
+  });
+  const setRows = Object.entries(payload.summary.by_set_code).map(([setCode, count]) => [setCode, count]);
+  const finishRows = Object.entries(payload.summary.by_finish).map(([finish, count]) => [finish, count]);
+  const categorySections = Object.entries(payload.categories).flatMap(([category, entry]) => {
+    const topSets = Object.entries(entry.by_set_code)
+      .sort((left, right) => Number(right[1]) - Number(left[1]) || left[0].localeCompare(right[0]))
+      .slice(0, 20)
+      .map(([setCode, count]) => [setCode, count]);
+    const samples = entry.rows.slice(0, 50).map((row) => [
+      row.source_key ?? '',
+      row.set_code ?? row.set_key ?? '',
+      row.card_number ?? '',
+      row.grookai_card_name ?? row.index_card_name ?? '',
+      row.finish_key ?? '',
+      row.reason ?? '',
+    ]);
+    return [
+      `## ${category}`,
+      '',
+      `Rows: ${entry.count}`,
+      '',
+      '### By Source',
+      '',
+      markdownTable(['source', 'count'], Object.entries(entry.by_source_key).map(([source, count]) => [source, count])),
+      '',
+      '### Top Sets',
+      '',
+      markdownTable(['set_code', 'count'], topSets),
+      '',
+      '### Sample Rows',
+      '',
+      markdownTable(['source', 'set', 'number', 'name', 'finish', 'reason'], samples),
+      '',
+    ];
+  });
+  return [
+    '# English Master Index Candidate Unconfirmed Triage V1',
+    '',
+    `Generated: ${payload.generated_at}`,
+    '',
+    'Audit only. No DB writes, migrations, inserts, cleanup, quarantine, or public hiding were performed.',
+    '',
+    payload.rule,
+    '',
+    '## Summary By Category',
+    '',
+    markdownTable(['category', 'count'], categoryRows),
+    '',
+    '## Summary By Source',
+    '',
+    markdownTable(['source', 'count'], sourceRows),
+    '',
+    '## Summary By Source And Finish',
+    '',
+    markdownTable(['source', 'finish', 'count'], sourceFinishRows),
+    '',
+    '## Summary By Set',
+    '',
+    markdownTable(['set_code', 'count'], setRows),
+    '',
+    '## Summary By Finish',
+    '',
+    markdownTable(['finish', 'count'], finishRows),
+    '',
+    ...categorySections,
+  ].join('\n');
+}
+
 async function writeJson(outputDir, fileName, data) {
   await fs.writeFile(path.join(outputDir, fileName), `${JSON.stringify(data, null, 2)}\n`);
 }
@@ -1695,6 +1888,7 @@ async function writeReports({ outputDir, index, agreement, setAudit, grookaiAudi
   const nameMismatchTriage = buildNameMismatchTriage(grookaiAudit, generatedAt);
   const unsupportedTriage = buildUnsupportedTriage(grookaiAudit, generatedAt);
   const missingFromGrookaiTriage = buildMissingFromGrookaiTriage(grookaiAudit, generatedAt);
+  const candidateUnconfirmedTriage = buildCandidateUnconfirmedTriage(grookaiAudit, generatedAt);
   const conflicts = {
     version: 'ENGLISH_MASTER_INDEX_CONFLICTS_V1',
     generated_at: generatedAt,
@@ -1757,6 +1951,8 @@ async function writeReports({ outputDir, index, agreement, setAudit, grookaiAudi
   await fs.writeFile(path.join(outputDir, 'english_master_index_unsupported_triage_v1.md'), buildUnsupportedTriageMarkdown(unsupportedTriage));
   await writeJson(outputDir, 'english_master_index_missing_from_grookai_triage_v1.json', missingFromGrookaiTriage);
   await fs.writeFile(path.join(outputDir, 'english_master_index_missing_from_grookai_triage_v1.md'), buildMissingFromGrookaiTriageMarkdown(missingFromGrookaiTriage));
+  await writeJson(outputDir, 'english_master_index_candidate_unconfirmed_triage_v1.json', candidateUnconfirmedTriage);
+  await fs.writeFile(path.join(outputDir, 'english_master_index_candidate_unconfirmed_triage_v1.md'), buildCandidateUnconfirmedTriageMarkdown(candidateUnconfirmedTriage));
 }
 
 async function main() {
