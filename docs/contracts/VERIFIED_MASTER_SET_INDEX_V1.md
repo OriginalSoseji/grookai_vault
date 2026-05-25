@@ -107,9 +107,31 @@ Sources must be tracked by source name, source kind, and evidence URL or source 
 
 - `tcgdex`
 - `pokemontcg_api`
+- `thepricedex_price_list`
 - bounded fixture-backed human-readable/checklist sources
 
 Additional sources may be added only as explicit adapters that preserve source name, retrieval timestamp, raw identity fields, and evidence URL.
+
+### ThePriceDex Checklist Rule
+
+`thepricedex_price_list` is allowed as `marketplace_checklist` evidence only when the adapter reads exact card-level variant rows from a set price-list page.
+
+The adapter may emit `finish_presence` only for explicitly listed variants that map to Grookai's governed finish vocabulary, such as:
+
+```text
+normal
+holo
+reverse
+first_edition_normal
+first_edition_holo
+pokeball
+masterball
+cosmos
+cracked_ice
+stamped
+```
+
+Unknown marketplace variants, signatures, jumbo rows, or product-specific labels must not become canonical finish truth by default. They must be ignored or held for manual review until a governed finish mapping exists.
 
 ### Marketplace Bridge Rule
 

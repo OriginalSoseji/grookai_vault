@@ -584,6 +584,7 @@ function buildArtifacts({ setsArtifact, cardsArtifact, printingsArtifact, availa
 }
 
 function evidenceUrls(row) {
+  if (Array.isArray(row.evidence_urls)) return uniqueSorted(row.evidence_urls);
   return uniqueSorted((row.evidence ?? []).map((evidence) => evidence.source_url));
 }
 

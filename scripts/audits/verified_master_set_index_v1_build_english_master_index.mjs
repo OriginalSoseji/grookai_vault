@@ -2,6 +2,7 @@ import fs from 'node:fs/promises';
 import path from 'node:path';
 import process from 'node:process';
 import { createRequire } from 'node:module';
+import zlib from 'node:zlib';
 
 import {
   DEFAULT_OUTPUT_DIR,
@@ -27,7 +28,7 @@ for (const envPath of ['.env.local', '.env']) {
 }
 
 const DEFAULT_MASTER_OUTPUT_DIR = path.join(DEFAULT_OUTPUT_DIR, 'english_master_index_v1');
-const STRUCTURED_SOURCE_KINDS = new Set(['tcgdex', 'pokemontcg_api']);
+const SUPPORTED_SOURCES = new Set(['tcgdex', 'pokemontcg_api', 'official_checklist_pdf', 'thepricedex']);
 const HUMAN_REQUIRED_NOTE = 'Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.';
 
 async function sleep(ms) {
@@ -55,10 +56,29 @@ async function fetchJson(url, headers = {}, attempts = 6) {
   throw lastError;
 }
 
+async function fetchBuffer(url, headers = {}, attempts = 4) {
+  let lastError = null;
+  for (let attempt = 1; attempt <= attempts; attempt += 1) {
+    try {
+      const response = await fetch(url, { headers: { Accept: 'application/pdf,*/*', ...headers } });
+      const bytes = Buffer.from(await response.arrayBuffer());
+      if (!response.ok) {
+        throw new Error(`Fetch failed ${response.status} ${response.statusText}: ${url}`);
+      }
+      return bytes;
+    } catch (error) {
+      lastError = error;
+      if (attempt === attempts) break;
+      await sleep(1000 * attempt);
+    }
+  }
+  throw lastError;
+}
+
 function parseArgs(argv) {
   const options = {
     outputDir: DEFAULT_MASTER_OUTPUT_DIR,
-    sources: ['tcgdex', 'pokemontcg_api'],
+    sources: ['tcgdex', 'pokemontcg_api', 'thepricedex'],
     setFilter: null,
     maxSets: null,
     maxCardsPerSet: null,
@@ -107,7 +127,7 @@ function parseArgs(argv) {
   }
 
   for (const source of options.sources) {
-    if (!STRUCTURED_SOURCE_KINDS.has(source)) {
+    if (!SUPPORTED_SOURCES.has(source)) {
       throw new Error(`Unsupported source: ${source}`);
     }
   }
@@ -218,10 +238,18 @@ function buildSetConfigs({ pokemonSets, tcgdexSets, options }) {
       source_aliases: {
         pokemontcg_api: pokemonSet.id ?? null,
         tcgdex: tcgdexSet?.id ?? null,
+        official_checklist_pdf: pokemonSet.id ?? null,
+        official_pokemon_checklist: pokemonSet.id ?? null,
+        thepricedex: pokemonSet.id ?? null,
+        thepricedex_price_list: pokemonSet.id ?? null,
       },
       source_status: {
         pokemontcg_api: pokemonSet ? 'available' : 'unavailable',
         tcgdex: tcgdexSet ? 'available' : 'unavailable',
+        official_checklist_pdf: pokemonSet ? 'candidate_url' : 'unavailable',
+        official_pokemon_checklist: pokemonSet ? 'candidate_url' : 'unavailable',
+        thepricedex: pokemonSet ? 'candidate_url' : 'unavailable',
+        thepricedex_price_list: pokemonSet ? 'candidate_url' : 'unavailable',
       },
       source_totals: {
         pokemontcg_api: {
@@ -250,10 +278,18 @@ function buildSetConfigs({ pokemonSets, tcgdexSets, options }) {
       source_aliases: {
         pokemontcg_api: null,
         tcgdex: tcgdexSet.id,
+        official_checklist_pdf: null,
+        official_pokemon_checklist: null,
+        thepricedex: null,
+        thepricedex_price_list: null,
       },
       source_status: {
         pokemontcg_api: 'unavailable',
         tcgdex: 'available',
+        official_checklist_pdf: 'unavailable',
+        official_pokemon_checklist: 'unavailable',
+        thepricedex: 'unavailable',
+        thepricedex_price_list: 'unavailable',
       },
       source_totals: {
         pokemontcg_api: {
@@ -277,6 +313,10 @@ function buildSetConfigs({ pokemonSets, tcgdexSets, options }) {
         ...(set.manual_aliases ?? []),
         set.source_aliases.pokemontcg_api,
         set.source_aliases.tcgdex,
+        set.source_aliases.official_checklist_pdf,
+        set.source_aliases.official_pokemon_checklist,
+        set.source_aliases.thepricedex,
+        set.source_aliases.thepricedex_price_list,
       ].map(normalizeText);
       return aliases.some((alias) => options.setFilter.has(alias));
     })
@@ -307,6 +347,48 @@ function finishCandidatesFromTcgdex(card) {
   if (variants.firstEdition === true || variants.firstEditionNormal === true) finishes.push('first_edition_normal');
   if (variants.firstEditionHolo === true) finishes.push('first_edition_holo');
   return uniqueSorted(finishes.map(normalizeFinishKey));
+}
+
+function finishKeyFromThePriceDexVariant(value) {
+  const normalized = String(value ?? '').trim()
+    .replace(/([a-z0-9])([A-Z])/g, '$1_$2')
+    .replace(/[^a-zA-Z0-9]+/g, '_')
+    .replace(/^_+|_+$/g, '')
+    .toLowerCase();
+  const aliases = {
+    normal: 'normal',
+    holofoil: 'holo',
+    holo_foil: 'holo',
+    holo: 'holo',
+    reverse_holofoil: 'reverse',
+    reverse_holo: 'reverse',
+    reverse: 'reverse',
+    first_edition_normal: 'first_edition_normal',
+    first_edition_holofoil: 'first_edition_holo',
+    first_edition_holo: 'first_edition_holo',
+    pokeball: 'pokeball',
+    poke_ball: 'pokeball',
+    masterball: 'masterball',
+    master_ball: 'masterball',
+    cosmos_holofoil: 'cosmos',
+    cosmos_holo: 'cosmos',
+    cracked_ice_holofoil: 'cracked_ice',
+    cracked_ice_holo: 'cracked_ice',
+  };
+  if (aliases[normalized]) return normalizeFinishKey(aliases[normalized]);
+  if (normalized.includes('stamp')) return 'stamped';
+  if (normalized.includes('cosmos')) return 'cosmos';
+  if (normalized.includes('cracked_ice')) return 'cracked_ice';
+  return null;
+}
+
+function slugifyForThePriceDex(value) {
+  return String(value ?? '')
+    .toLowerCase()
+    .replace(/&/g, 'and')
+    .replace(/['’]/g, '')
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '');
 }
 
 function evidenceBase({ sourceKey, sourceUrl, setConfig, card, cardNumber, cardName, rarity, retrievedAt, rawSnapshotRef }) {
@@ -388,6 +470,283 @@ function tcgdexCardEvidence(card, setConfig, retrievedAt) {
       notes: HUMAN_REQUIRED_NOTE,
     })),
   ];
+}
+
+function decodePdfLiteral(text) {
+  let decoded = '';
+  for (let index = 0; index < text.length; index += 1) {
+    const char = text[index];
+    if (char === '\\') {
+      index += 1;
+      const escaped = text[index];
+      if (escaped === 'n') decoded += '\n';
+      else if (escaped === 'r') decoded += '\r';
+      else if (escaped === 't') decoded += '\t';
+      else if (escaped === 'b') decoded += '\b';
+      else if (escaped === 'f') decoded += '\f';
+      else if (escaped === '(' || escaped === ')' || escaped === '\\') decoded += escaped;
+      else if (/[0-7]/.test(escaped ?? '')) {
+        let octal = escaped;
+        for (let extra = 0; extra < 2 && /[0-7]/.test(text[index + 1] ?? ''); extra += 1) {
+          index += 1;
+          octal += text[index];
+        }
+        decoded += String.fromCharCode(parseInt(octal, 8));
+      } else if (escaped) {
+        decoded += escaped;
+      }
+    } else {
+      decoded += char;
+    }
+  }
+  return decoded;
+}
+
+function decodePdfHex(hex) {
+  const clean = hex.replace(/\s+/g, '');
+  const bytes = [];
+  for (let index = 0; index < clean.length; index += 2) {
+    const value = parseInt(clean.slice(index, index + 2).padEnd(2, '0'), 16);
+    if (Number.isFinite(value) && value >= 32 && value <= 126) bytes.push(value);
+  }
+  return Buffer.from(bytes).toString('latin1');
+}
+
+function decodePdfTextToken(token) {
+  if (token.startsWith('(') && token.endsWith(')')) return decodePdfLiteral(token.slice(1, -1));
+  if (token.startsWith('<') && token.endsWith('>')) return decodePdfHex(token.slice(1, -1));
+  return '';
+}
+
+function decodePdfTextArray(arrayBody) {
+  const pieces = [];
+  const tokenPattern = /\((?:\\.|[^\\)])*\)|<([0-9A-Fa-f\s]+)>/g;
+  for (const match of arrayBody.matchAll(tokenPattern)) {
+    pieces.push(decodePdfTextToken(match[0]));
+  }
+  return pieces.join('');
+}
+
+function inflatePdfStreams(buffer) {
+  const source = buffer.toString('latin1');
+  const streams = [];
+  const pattern = /<<(?:.|\n|\r)*?>>\s*stream\r?\n?([\s\S]*?)\r?\n?endstream/g;
+  for (const match of source.matchAll(pattern)) {
+    const headerStart = Math.max(0, match.index - 2000);
+    const header = source.slice(headerStart, match.index);
+    if (!/\/FlateDecode\b/.test(header)) continue;
+    const raw = Buffer.from(match[1], 'latin1');
+    try {
+      streams.push(zlib.inflateSync(raw).toString('latin1'));
+    } catch {
+      try {
+        streams.push(zlib.inflateRawSync(raw).toString('latin1'));
+      } catch {
+        // Ignore image or unsupported streams. This parser only needs checklist text streams.
+      }
+    }
+  }
+  return streams;
+}
+
+function extractPdfTextChunks(buffer) {
+  const chunks = [];
+  for (const stream of inflatePdfStreams(buffer)) {
+    let x = 0;
+    let y = 0;
+    let font = '';
+    let size = 0;
+    const tokenPattern = /\/([A-Za-z0-9_+-]+)\s+([0-9.]+)\s+Tf|(-?[0-9.]+)\s+(-?[0-9.]+)\s+(-?[0-9.]+)\s+(-?[0-9.]+)\s+(-?[0-9.]+)\s+(-?[0-9.]+)\s+Tm|(-?[0-9.]+)\s+(-?[0-9.]+)\s+Td|(\((?:\\.|[^\\)])*\)|<[0-9A-Fa-f\s]+>)\s*Tj|\[((?:.|\n|\r)*?)\]\s*TJ/g;
+    for (const match of stream.matchAll(tokenPattern)) {
+      if (match[1]) {
+        font = match[1];
+        size = Number(match[2]);
+      } else if (match[3]) {
+        x = Number(match[7]);
+        y = Number(match[8]);
+      } else if (match[9]) {
+        x += Number(match[9]);
+        y += Number(match[10]);
+      } else if (match[11]) {
+        const text = decodePdfTextToken(match[11]).trim();
+        if (text) chunks.push({ x, y, font, size, text });
+      } else if (match[12]) {
+        const text = decodePdfTextArray(match[12]).trim();
+        if (text) chunks.push({ x, y, font, size, text });
+      }
+    }
+  }
+  return chunks;
+}
+
+function officialChecklistUrl(setConfig) {
+  const setId = setConfig.source_aliases.official_checklist_pdf;
+  if (!setId) return null;
+  return `https://assets.pokemon.com/assets/cms2/pdf/trading-card-game/checklist/${encodeURIComponent(setId)}_web_cardlist_en.pdf`;
+}
+
+function standardOfficialFinish({ cardName, rarityText }) {
+  const rarity = String(rarityText ?? '');
+  const name = String(cardName ?? '');
+  if (/[+H]/.test(rarity)) return 'holo';
+  if (/\b(?:V|VMAX|VSTAR|ex)\b/i.test(name)) return 'holo';
+  return 'normal';
+}
+
+function chooseOfficialCardName(rowChunks, numberChunk) {
+  const candidates = rowChunks
+    .filter((chunk) => chunk.x > numberChunk.x + 24 && chunk.x < numberChunk.x + 110)
+    .map((chunk) => chunk.text.trim())
+    .filter((text) => /[A-Za-z]/.test(text))
+    .filter((text) => !/^(?:H|O|X|\+)$/.test(text));
+  return candidates.sort((a, b) => b.length - a.length)[0] ?? '';
+}
+
+function parseOfficialChecklistRows(buffer) {
+  const chunks = extractPdfTextChunks(buffer);
+  const numberChunks = chunks.filter((chunk) => /^\d{3}[A-Za-z]?$/.test(chunk.text));
+  const rows = [];
+  const seen = new Set();
+
+  for (const numberChunk of numberChunks) {
+    const rowChunks = chunks.filter((chunk) => (
+      Math.abs(chunk.y - numberChunk.y) < 0.8
+      && chunk.x >= numberChunk.x - 2
+      && chunk.x <= numberChunk.x + 135
+    ));
+    const boxes = rowChunks.filter((chunk) => chunk.text === 'Q' && chunk.x > numberChunk.x + 8 && chunk.x < numberChunk.x + 28);
+    if (boxes.length === 0) continue;
+    const cardName = chooseOfficialCardName(rowChunks, numberChunk);
+    if (!cardName) continue;
+    const rarityText = rowChunks
+      .filter((chunk) => chunk.x > numberChunk.x + 96 && chunk.x < numberChunk.x + 128)
+      .map((chunk) => chunk.text)
+      .filter((text) => !/^\d{3}[A-Za-z]?$/.test(text) && text !== 'Q')
+      .join(' ')
+      .trim();
+    const key = `${numberChunk.text}|${cardName}`;
+    if (seen.has(key)) continue;
+    seen.add(key);
+    const finishes = [standardOfficialFinish({ cardName, rarityText })];
+    if (boxes.length >= 2) finishes.push('reverse');
+    for (const finishKey of uniqueSorted(finishes.map(normalizeFinishKey))) {
+      rows.push({
+        card_number: numberChunk.text,
+        card_name: cardName,
+        rarity_text: rarityText || null,
+        finish_key: finishKey,
+        checklist_box_count: boxes.length,
+      });
+    }
+  }
+
+  return rows.sort((a, b) => normalizeNumber(a.card_number).localeCompare(normalizeNumber(b.card_number), undefined, { numeric: true }));
+}
+
+async function collectOfficialChecklistEvidenceForSet(setConfig, options, retrievedAt) {
+  if (!options.sources.includes('official_checklist_pdf')) return [];
+  const url = officialChecklistUrl(setConfig);
+  if (!url) return [];
+  const buffer = await fetchBuffer(url);
+  const parsedRows = parseOfficialChecklistRows(buffer);
+  if (parsedRows.length === 0) {
+    throw new Error('Official checklist PDF fetched, but no extractable checklist rows were found.');
+  }
+  return parsedRows.map((row) => ({
+    source_key: 'official_pokemon_checklist',
+    source_kind: 'official_gallery',
+    source_url: url,
+    set_key: setConfig.key,
+    set_name: setConfig.set_name,
+    card_number: row.card_number,
+    card_name: row.card_name,
+    finish_key: row.finish_key,
+    rarity: row.rarity_text,
+    language: 'en',
+    evidence_type: 'finish_presence',
+    evidence_label: `Official Pokemon checklist ${setConfig.source_aliases.official_checklist_pdf} ${row.card_number} ${row.card_name} ${row.finish_key}`,
+    retrieved_at: retrievedAt,
+    raw_snapshot_ref: `official_pokemon_checklist:${setConfig.source_aliases.official_checklist_pdf}:${row.card_number}:${row.finish_key}`,
+    source_card_name: row.card_name,
+    source_set_name: setConfig.set_name,
+    notes: 'Parsed from the official Pokemon PDF checklist row. The standard checklist box is mapped to normal or holo by rarity/name, and a second checklist box is mapped to reverse holo presence.',
+  }));
+}
+
+function thePriceDexUrl(setConfig) {
+  const setId = setConfig.source_aliases.thepricedex;
+  if (!setId) return null;
+  return `https://www.thepricedex.com/set/${encodeURIComponent(setId)}/${slugifyForThePriceDex(setConfig.set_name)}/price-list`;
+}
+
+function extractNextDataJson(html, url) {
+  const match = String(html).match(/<script id="__NEXT_DATA__" type="application\/json">([\s\S]*?)<\/script>/);
+  if (!match) throw new Error(`ThePriceDex page did not expose __NEXT_DATA__: ${url}`);
+  return JSON.parse(match[1]);
+}
+
+async function collectThePriceDexEvidenceForSet(setConfig, options, retrievedAt) {
+  if (!options.sources.includes('thepricedex')) return [];
+  const url = thePriceDexUrl(setConfig);
+  if (!url) return [];
+  const response = await fetch(url, {
+    headers: {
+      Accept: 'text/html,application/xhtml+xml',
+      'User-Agent': 'Grookai Master Index Audit/1.0',
+    },
+  });
+  const html = await response.text();
+  if (!response.ok) {
+    throw new Error(`Fetch failed ${response.status} ${response.statusText}: ${url}`);
+  }
+  const data = extractNextDataJson(html, url);
+  const cards = data?.props?.pageProps?.initialCards;
+  if (!Array.isArray(cards) || cards.length === 0) {
+    throw new Error(`ThePriceDex page contained no card rows: ${url}`);
+  }
+
+  const rows = [];
+  for (const card of sortByCardNumber(cards)) {
+    const cardNumber = card.number ?? card.printedNumber ?? '';
+    const cardName = card.name ?? '';
+    if (!cardNumber || !cardName) continue;
+    const base = {
+      source_key: 'thepricedex_price_list',
+      source_kind: 'marketplace_checklist',
+      source_url: url,
+      set_key: setConfig.key,
+      set_name: setConfig.set_name,
+      card_number: cardNumber,
+      card_name: cardName,
+      rarity: card.rarity ?? null,
+      language: 'en',
+      retrieved_at: retrievedAt,
+      raw_snapshot_ref: `thepricedex:${setConfig.source_aliases.thepricedex}:${card.id ?? cardNumber}`,
+      source_card_name: cardName,
+      source_set_name: card?.expansion?.name ?? setConfig.set_name,
+    };
+    rows.push({
+      ...base,
+      finish_key: null,
+      evidence_type: 'card_identity',
+      evidence_label: `ThePriceDex price-list card ${card.id ?? `${setConfig.key}-${cardNumber}`}`,
+      notes: 'Human-readable marketplace/checklist card identity evidence from ThePriceDex embedded set price-list data.',
+    });
+    const variants = Array.isArray(card.variants) ? card.variants : [];
+    for (const variant of variants) {
+      const finishKey = finishKeyFromThePriceDexVariant(variant?.name);
+      if (!finishKey) continue;
+      rows.push({
+        ...base,
+        finish_key: finishKey,
+        evidence_type: 'finish_presence',
+        evidence_label: `ThePriceDex price-list variant ${variant.name}`,
+        raw_snapshot_ref: `thepricedex:${setConfig.source_aliases.thepricedex}:${card.id ?? cardNumber}:${variant.name}`,
+        notes: 'Exact card-level finish evidence from ThePriceDex price-list variant data. This source does not create finish rows unless the variant is listed for the specific card.',
+      });
+    }
+  }
+  return rows;
 }
 
 async function collectPokemonCardsForSet(setConfig, options, retrievedAt) {
@@ -501,6 +860,26 @@ async function collectEvidenceForSet(setConfig, options, retrievedAt) {
     }
   }
 
+  if (options.sources.includes('official_checklist_pdf')) {
+    try {
+      const sourceRows = await collectOfficialChecklistEvidenceForSet(setConfig, options, retrievedAt);
+      rows.push(...sourceRows);
+      availability.push(sourceAvailabilityFromSet(setConfig, 'official_pokemon_checklist', sourceRows));
+    } catch (error) {
+      availability.push(sourceAvailabilityFromSet(setConfig, 'official_pokemon_checklist', [], error));
+    }
+  }
+
+  if (options.sources.includes('thepricedex')) {
+    try {
+      const sourceRows = await collectThePriceDexEvidenceForSet(setConfig, options, retrievedAt);
+      rows.push(...sourceRows);
+      availability.push(sourceAvailabilityFromSet(setConfig, 'thepricedex_price_list', sourceRows));
+    } catch (error) {
+      availability.push(sourceAvailabilityFromSet(setConfig, 'thepricedex_price_list', [], error));
+    }
+  }
+
   const tcgplayerBridgeRows = buildTcgplayerMarketplaceBridgeEvidence(rows, retrievedAt);
   if (tcgplayerBridgeRows.length > 0) {
     rows.push(...tcgplayerBridgeRows);
@@ -521,6 +900,10 @@ function makeAliasMap(setConfigs) {
       ...(set.manual_aliases ?? []),
       set.source_aliases.pokemontcg_api,
       set.source_aliases.tcgdex,
+      set.source_aliases.official_checklist_pdf,
+      set.source_aliases.official_pokemon_checklist,
+      set.source_aliases.thepricedex,
+      set.source_aliases.thepricedex_price_list,
     ]) {
       const normalized = normalizeText(alias);
       if (normalized) map.set(normalized, set.key);
@@ -537,6 +920,10 @@ function indexPrintingKeys(classified, setConfigs) {
       set.set_name,
       set.source_aliases.pokemontcg_api,
       set.source_aliases.tcgdex,
+      set.source_aliases.official_checklist_pdf,
+      set.source_aliases.official_pokemon_checklist,
+      set.source_aliases.thepricedex,
+      set.source_aliases.thepricedex_price_list,
     ].map(normalizeText)),
   ]));
   const byExact = new Map();
@@ -934,6 +1321,8 @@ function buildSetAuditMarkdown(payload) {
     set.set_name,
     set.source_aliases.pokemontcg_api ?? '',
     set.source_aliases.tcgdex ?? '',
+    set.source_aliases.official_checklist_pdf ?? '',
+    set.source_aliases.thepricedex ?? '',
     set.evidence_rows,
     JSON.stringify(set.card_status_counts),
     JSON.stringify(set.printing_status_counts),
@@ -945,7 +1334,7 @@ function buildSetAuditMarkdown(payload) {
     '',
     'Audit only. This inventory documents source availability and status counts per set.',
     '',
-    markdownTable(['set_key', 'set_name', 'PokemonTCG.io', 'TCGdex', 'evidence rows', 'card statuses', 'printing statuses'], rows),
+    markdownTable(['set_key', 'set_name', 'PokemonTCG.io', 'TCGdex', 'Official checklist', 'ThePriceDex', 'evidence rows', 'card statuses', 'printing statuses'], rows),
     '',
   ].join('\n');
 }
@@ -2080,6 +2469,19 @@ async function writeJson(outputDir, fileName, data) {
   await fs.writeFile(path.join(outputDir, fileName), `${JSON.stringify(data, null, 2)}\n`);
 }
 
+function evidenceUrlsForFact(row) {
+  return uniqueSorted((row.evidence ?? []).map((evidence) => evidence.source_url));
+}
+
+function compactPrintingFact(row) {
+  const { evidence, ...rest } = row;
+  return {
+    ...rest,
+    evidence_count: Array.isArray(evidence) ? evidence.length : 0,
+    evidence_urls: evidenceUrlsForFact(row),
+  };
+}
+
 function indexSummaryArtifact(index) {
   return {
     version: index.version,
@@ -2145,8 +2547,9 @@ async function writeReports({ outputDir, index, agreement, setAudit, grookaiAudi
     generated_at: index.generated_at,
     audit_only: true,
     db_writes: false,
-    printings: index.printings,
-    finish_absences: index.finish_absences,
+    evidence_storage: 'compact_evidence_urls_only',
+    printings: index.printings.map(compactPrintingFact),
+    finish_absences: index.finish_absences.map(compactPrintingFact),
   });
   await writeJson(outputDir, 'english_master_index_manual_review_v1.json', {
     version: 'ENGLISH_MASTER_INDEX_MANUAL_REVIEW_V1',

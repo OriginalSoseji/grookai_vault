@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-25T14:40:17.586Z",
+  "generated_at": "2026-05-25T15:22:29.580Z",
   "contract": "ENGLISH_MASTER_INDEX_COMPLETION_V1",
   "audit_only": true,
   "db_writes_performed": false,
@@ -11,32 +11,34 @@
   "purpose": "Completion-first Master Index report. This is not a Grookai reconciliation report.",
   "summary": {
     "sets_in_registry": 203,
-    "complete_master_index_sets": 11,
-    "incomplete_sets": 192,
-    "working_card_identity_facts": 21451,
-    "master_admissible_card_identity_facts": 19743,
-    "printing_derived_card_identity_facts": 45,
-    "working_printing_facts": 39032,
-    "master_admissible_printing_facts": 21885,
+    "complete_master_index_sets": 21,
+    "incomplete_sets": 182,
+    "working_card_identity_facts": 21578,
+    "master_admissible_card_identity_facts": 20638,
+    "printing_derived_card_identity_facts": 0,
+    "working_printing_facts": 41434,
+    "master_admissible_printing_facts": 32838,
     "finish_absence_facts": 2,
     "by_completion_status": {
-      "card_identity_complete_finish_incomplete": 96,
-      "complete_master_index_set": 11,
-      "finish_evidence_missing": 33,
-      "source_agreed_card_identity": 58,
+      "card_identity_complete_finish_incomplete": 98,
+      "complete_master_index_set": 21,
+      "finish_evidence_missing": 25,
+      "source_agreed_card_identity": 54,
       "source_limited": 1,
       "source_unavailable": 4
     },
     "by_card_fact_status": {
-      "candidate_unconfirmed": 1753,
-      "api_agreed": 19686,
-      "master_verified": 12
+      "candidate_unconfirmed": 813,
+      "master_verified": 20606,
+      "api_agreed": 32,
+      "human_source_verified": 127
     },
     "by_printing_fact_status": {
-      "candidate_unconfirmed": 17147,
-      "master_verified": 21885
+      "candidate_unconfirmed": 6194,
+      "master_verified": 32838,
+      "human_source_verified": 2402
     },
-    "source_gap_queue_items": 281,
+    "source_gap_queue_items": 260,
     "grookai_reconciliation_performed": false
   },
   "source_standard": {

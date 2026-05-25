@@ -1,6 +1,6 @@
 # English Master Index Set Unmapped Triage V1
 
-Generated: 2026-05-25T14:37:31.779Z
+Generated: 2026-05-25T15:19:30.123Z
 
 Audit only. No DB writes, migrations, cleanup, quarantine, or public hiding were performed.
 
@@ -10,6 +10,9 @@ Set-unmapped rows are set identity/audit-scope issues first. Do not judge printi
 
 | category | count |
 | --- | --- |
+| legacy_orphan | 16 |
+| missing_set_code | 5733 |
+| out_of_scope_pocket | 5427 |
 
 ## Missing Set Code
 
@@ -17,6 +20,7 @@ Rows whose Grookai parent card has no usable `set_code`. These need source ident
 
 | set_code | count |
 | --- | --- |
+| unknown | 5733 |
 
 ## Out Of Scope Pocket
 
@@ -24,6 +28,16 @@ Rows whose set code matches Pokemon TCG Pocket-style source IDs. They are intent
 
 | set_code | count |
 | --- | --- |
+| B1 | 993 |
+| A1 | 858 |
+| A4 | 723 |
+| A3 | 717 |
+| A2 | 621 |
+| A2b | 333 |
+| A3b | 321 |
+| A4a | 315 |
+| A2a | 288 |
+| A1a | 258 |
 
 ## Legacy Orphan
 
@@ -31,6 +45,7 @@ Rows already labeled as legacy orphans. They need a separate legacy identity rec
 
 | set_code | count |
 | --- | --- |
+| legacy_orphan | 16 |
 
 ## Real Alias Gap
 

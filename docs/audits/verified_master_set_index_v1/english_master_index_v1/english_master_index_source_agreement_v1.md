@@ -1,6 +1,6 @@
 # English Master Index Source Agreement V1
 
-Generated: 2026-05-25T14:37:31.779Z
+Generated: 2026-05-25T15:19:30.123Z
 
 API agreement is separated from master truth. Unknown or conflicting finish truth fails closed.
 
@@ -657,14 +657,16 @@ API agreement is separated from master truth. Unknown or conflicting finish trut
 | tcgplayer_product_680710 | 1 |
 | tcgplayer_product_681895 | 1 |
 | tcgstats_ascended_heroes_ns_zekrom | 2 |
+| thepricedex_price_list | 56350 |
 | vendortools_ascended_heroes_spidops_019 | 1 |
 
 ## Printings By Status
 
 | status | count |
 | --- | --- |
-| candidate_unconfirmed | 17147 |
-| master_verified | 21885 |
+| candidate_unconfirmed | 6194 |
+| human_source_verified | 2402 |
+| master_verified | 32838 |
 
 ## Reverse Holo Disagreement Sample
 

@@ -1,6 +1,6 @@
 # English Verified Master Set Index V1
 
-Generated: 2026-05-25T14:37:31.779Z
+Generated: 2026-05-25T15:19:30.123Z
 
 Audit only. No DB writes, migrations, cleanup, quarantine, or public hiding were performed.
 
@@ -13,24 +13,26 @@ Transport: Local run used NODE_TLS_REJECT_UNAUTHORIZED=0 because this Windows en
 | metric | count |
 | --- | --- |
 | sets | 202 |
-| evidence rows | 123993 |
+| evidence rows | 180343 |
 | conflicts | 0 |
-| manual review | 18904 |
+| manual review | 7011 |
 
 ## Cards By Status
 
 | status | count |
 | --- | --- |
-| api_agreed | 19686 |
-| candidate_unconfirmed | 1753 |
-| master_verified | 12 |
+| api_agreed | 32 |
+| candidate_unconfirmed | 813 |
+| human_source_verified | 127 |
+| master_verified | 20606 |
 
 ## Printings By Status
 
 | status | count |
 | --- | --- |
-| candidate_unconfirmed | 17147 |
-| master_verified | 21885 |
+| candidate_unconfirmed | 6194 |
+| human_source_verified | 2402 |
+| master_verified | 32838 |
 
 ## Source Evidence Rows
 
@@ -685,6 +687,7 @@ Transport: Local run used NODE_TLS_REJECT_UNAUTHORIZED=0 because this Windows en
 | tcgplayer_product_680710 | 1 |
 | tcgplayer_product_681895 | 1 |
 | tcgstats_ascended_heroes_ns_zekrom | 2 |
+| thepricedex_price_list | 56350 |
 | vendortools_ascended_heroes_spidops_019 | 1 |
 
 ## Source Availability
@@ -698,3 +701,5 @@ Transport: Local run used NODE_TLS_REJECT_UNAUTHORIZED=0 because this Windows en
 | tcgdex | unavailable | 12 |
 | tcgplayer_price_guide | collected | 140 |
 | tcgplayer_price_guide | unavailable | 62 |
+| thepricedex_price_list | collected | 173 |
+| thepricedex_price_list | unavailable | 29 |

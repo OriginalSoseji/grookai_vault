@@ -1,6 +1,6 @@
 {
   "version": "ENGLISH_VERIFIED_MASTER_SET_INDEX_V1",
-  "generated_at": "2026-05-25T14:37:31.779Z",
+  "generated_at": "2026-05-25T15:19:30.123Z",
   "audit_only": true,
   "db_writes": false,
   "language": "en",
@@ -15,7 +15,7 @@
   },
   "summary": {
     "sets": 202,
-    "evidence_rows": 123993,
+    "evidence_rows": 180343,
     "source_overlap": [
       {
         "source_key": "beckett_ascended_heroes_oddish_001",
@@ -2614,21 +2614,27 @@
         "evidence_rows": 2
       },
       {
+        "source_key": "thepricedex_price_list",
+        "evidence_rows": 56350
+      },
+      {
         "source_key": "vendortools_ascended_heroes_spidops_019",
         "evidence_rows": 1
       }
     ],
     "cards_by_status": {
-      "api_agreed": 19686,
-      "candidate_unconfirmed": 1753,
-      "master_verified": 12
+      "api_agreed": 32,
+      "candidate_unconfirmed": 813,
+      "human_source_verified": 127,
+      "master_verified": 20606
     },
     "printings_by_status": {
-      "candidate_unconfirmed": 17147,
-      "master_verified": 21885
+      "candidate_unconfirmed": 6194,
+      "human_source_verified": 2402,
+      "master_verified": 32838
     },
     "conflicts": 0,
-    "manual_review": 18904,
+    "manual_review": 7011,
     "source_availability_by_status": {
       "human_fixtures|collected": 1,
       "pokemontcg_api|collected": 173,
@@ -2636,7 +2642,9 @@
       "tcgdex|collected": 190,
       "tcgdex|unavailable": 12,
       "tcgplayer_price_guide|collected": 140,
-      "tcgplayer_price_guide|unavailable": 62
+      "tcgplayer_price_guide|unavailable": 62,
+      "thepricedex_price_list|collected": 173,
+      "thepricedex_price_list|unavailable": 29
     }
   },
   "artifact_manifest": {
