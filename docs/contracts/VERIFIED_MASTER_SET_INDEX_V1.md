@@ -111,6 +111,22 @@ Sources must be tracked by source name, source kind, and evidence URL or source 
 
 Additional sources may be added only as explicit adapters that preserve source name, retrieval timestamp, raw identity fields, and evidence URL.
 
+### Marketplace Bridge Rule
+
+Marketplace/checklist bridge evidence may support a printing/finish fact only when it does not create the fact.
+
+For `tcgplayer_price_guide` evidence:
+
+```text
+the exact finish fact must already exist in at least two structured sources
+AND one of those structured records must expose TCGplayer price-guide metadata
+AND the bridge row must preserve the marketplace URL
+```
+
+This bridge may promote already-agreed finish evidence to `master_verified` with a marketplace/checklist source present.
+
+It must not promote single-source finish facts, resolve source disagreements, infer missing variants, or create new printings.
+
 Required source record shape:
 
 ```text

@@ -1,6 +1,6 @@
 {
   "version": "ENGLISH_MASTER_INDEX_SOURCE_AVAILABILITY_V1",
-  "generated_at": "2026-05-24T14:33:16.250Z",
+  "generated_at": "2026-05-25T14:37:31.779Z",
   "audit_only": true,
   "db_writes": false,
   "source_availability": [
@@ -25,6 +25,16 @@
       "error": null
     },
     {
+      "set_key": "tk-bw-e",
+      "set_name": "BW trainer Kit (Excadrill)",
+      "source_key": "tcgplayer_price_guide",
+      "source_alias": null,
+      "configured_status": "unavailable",
+      "runtime_status": "unavailable",
+      "evidence_rows": 0,
+      "error": null
+    },
+    {
       "set_key": "tk-bw-z",
       "set_name": "BW trainer Kit (Zoroark)",
       "source_key": "pokemontcg_api",
@@ -42,6 +52,16 @@
       "configured_status": "available",
       "runtime_status": "collected",
       "evidence_rows": 60,
+      "error": null
+    },
+    {
+      "set_key": "tk-bw-z",
+      "set_name": "BW trainer Kit (Zoroark)",
+      "source_key": "tcgplayer_price_guide",
+      "source_alias": null,
+      "configured_status": "unavailable",
+      "runtime_status": "unavailable",
+      "evidence_rows": 0,
       "error": null
     },
     {
@@ -65,6 +85,16 @@
       "error": null
     },
     {
+      "set_key": "tk-dp-l",
+      "set_name": "DP trainer Kit (Lucario)",
+      "source_key": "tcgplayer_price_guide",
+      "source_alias": null,
+      "configured_status": "unavailable",
+      "runtime_status": "unavailable",
+      "evidence_rows": 0,
+      "error": null
+    },
+    {
       "set_key": "tk-dp-m",
       "set_name": "DP trainer Kit (Manaphy)",
       "source_key": "pokemontcg_api",
@@ -82,6 +112,16 @@
       "configured_status": "available",
       "runtime_status": "collected",
       "evidence_rows": 24,
+      "error": null
+    },
+    {
+      "set_key": "tk-dp-m",
+      "set_name": "DP trainer Kit (Manaphy)",
+      "source_key": "tcgplayer_price_guide",
+      "source_alias": null,
+      "configured_status": "unavailable",
+      "runtime_status": "unavailable",
+      "evidence_rows": 0,
       "error": null
     },
     {
@@ -105,6 +145,16 @@
       "error": null
     },
     {
+      "set_key": "tk-hs-g",
+      "set_name": "HS trainer Kit (Gyarados)",
+      "source_key": "tcgplayer_price_guide",
+      "source_alias": null,
+      "configured_status": "unavailable",
+      "runtime_status": "unavailable",
+      "evidence_rows": 0,
+      "error": null
+    },
+    {
       "set_key": "tk-hs-r",
       "set_name": "HS trainer Kit (Raichu)",
       "source_key": "pokemontcg_api",
@@ -125,6 +175,16 @@
       "error": null
     },
     {
+      "set_key": "tk-hs-r",
+      "set_name": "HS trainer Kit (Raichu)",
+      "source_key": "tcgplayer_price_guide",
+      "source_alias": null,
+      "configured_status": "unavailable",
+      "runtime_status": "unavailable",
+      "evidence_rows": 0,
+      "error": null
+    },
+    {
       "set_key": "jumbo",
       "set_name": "Jumbo cards",
       "source_key": "pokemontcg_api",
@@ -140,6 +200,16 @@
       "source_key": "tcgdex",
       "source_alias": "jumbo",
       "configured_status": "available",
+      "runtime_status": "unavailable",
+      "evidence_rows": 0,
+      "error": null
+    },
+    {
+      "set_key": "jumbo",
+      "set_name": "Jumbo cards",
+      "source_key": "tcgplayer_price_guide",
+      "source_alias": null,
+      "configured_status": "unavailable",
       "runtime_status": "unavailable",
       "evidence_rows": 0,
       "error": null
@@ -165,6 +235,16 @@
       "error": null
     },
     {
+      "set_key": "2023sv",
+      "set_name": "McDonald's Collection 2023",
+      "source_key": "tcgplayer_price_guide",
+      "source_alias": null,
+      "configured_status": "unavailable",
+      "runtime_status": "unavailable",
+      "evidence_rows": 0,
+      "error": null
+    },
+    {
       "set_key": "2024sv",
       "set_name": "McDonald's Collection 2024",
       "source_key": "pokemontcg_api",
@@ -182,6 +262,16 @@
       "configured_status": "available",
       "runtime_status": "collected",
       "evidence_rows": 30,
+      "error": null
+    },
+    {
+      "set_key": "2024sv",
+      "set_name": "McDonald's Collection 2024",
+      "source_key": "tcgplayer_price_guide",
+      "source_alias": null,
+      "configured_status": "unavailable",
+      "runtime_status": "unavailable",
+      "evidence_rows": 0,
       "error": null
     },
     {
@@ -205,6 +295,16 @@
       "error": null
     },
     {
+      "set_key": "mee",
+      "set_name": "Mega Evolution Energy",
+      "source_key": "tcgplayer_price_guide",
+      "source_alias": null,
+      "configured_status": "unavailable",
+      "runtime_status": "unavailable",
+      "evidence_rows": 0,
+      "error": null
+    },
+    {
       "set_key": "mep",
       "set_name": "MEP Black Star Promos",
       "source_key": "pokemontcg_api",
@@ -222,6 +322,16 @@
       "configured_status": "available",
       "runtime_status": "collected",
       "evidence_rows": 104,
+      "error": null
+    },
+    {
+      "set_key": "mep",
+      "set_name": "MEP Black Star Promos",
+      "source_key": "tcgplayer_price_guide",
+      "source_alias": null,
+      "configured_status": "unavailable",
+      "runtime_status": "unavailable",
+      "evidence_rows": 0,
       "error": null
     },
     {
@@ -245,6 +355,16 @@
       "error": null
     },
     {
+      "set_key": "mfb",
+      "set_name": "My First Battle",
+      "source_key": "tcgplayer_price_guide",
+      "source_alias": null,
+      "configured_status": "unavailable",
+      "runtime_status": "unavailable",
+      "evidence_rows": 0,
+      "error": null
+    },
+    {
       "set_key": "ex5.5",
       "set_name": "Poké Card Creator Pack",
       "source_key": "pokemontcg_api",
@@ -262,6 +382,16 @@
       "configured_status": "available",
       "runtime_status": "collected",
       "evidence_rows": 10,
+      "error": null
+    },
+    {
+      "set_key": "ex5.5",
+      "set_name": "Poké Card Creator Pack",
+      "source_key": "tcgplayer_price_guide",
+      "source_alias": null,
+      "configured_status": "unavailable",
+      "runtime_status": "unavailable",
+      "evidence_rows": 0,
       "error": null
     },
     {
@@ -285,6 +415,16 @@
       "error": null
     },
     {
+      "set_key": "fut2020",
+      "set_name": "Pokémon Futsal 2020",
+      "source_key": "tcgplayer_price_guide",
+      "source_alias": null,
+      "configured_status": "unavailable",
+      "runtime_status": "unavailable",
+      "evidence_rows": 0,
+      "error": null
+    },
+    {
       "set_key": "rc",
       "set_name": "Radiant Collection",
       "source_key": "pokemontcg_api",
@@ -300,6 +440,16 @@
       "source_key": "tcgdex",
       "source_alias": "rc",
       "configured_status": "available",
+      "runtime_status": "unavailable",
+      "evidence_rows": 0,
+      "error": null
+    },
+    {
+      "set_key": "rc",
+      "set_name": "Radiant Collection",
+      "source_key": "tcgplayer_price_guide",
+      "source_alias": null,
+      "configured_status": "unavailable",
       "runtime_status": "unavailable",
       "evidence_rows": 0,
       "error": null
@@ -325,6 +475,16 @@
       "error": null
     },
     {
+      "set_key": "sp",
+      "set_name": "Sample",
+      "source_key": "tcgplayer_price_guide",
+      "source_alias": null,
+      "configured_status": "unavailable",
+      "runtime_status": "unavailable",
+      "evidence_rows": 0,
+      "error": null
+    },
+    {
       "set_key": "tk-sm-r",
       "set_name": "SM trainer Kit (Alolan Raichu)",
       "source_key": "pokemontcg_api",
@@ -342,6 +502,16 @@
       "configured_status": "available",
       "runtime_status": "collected",
       "evidence_rows": 38,
+      "error": null
+    },
+    {
+      "set_key": "tk-sm-r",
+      "set_name": "SM trainer Kit (Alolan Raichu)",
+      "source_key": "tcgplayer_price_guide",
+      "source_alias": null,
+      "configured_status": "unavailable",
+      "runtime_status": "unavailable",
+      "evidence_rows": 0,
       "error": null
     },
     {
@@ -365,6 +535,16 @@
       "error": null
     },
     {
+      "set_key": "tk-sm-l",
+      "set_name": "SM trainer Kit (Lycanroc)",
+      "source_key": "tcgplayer_price_guide",
+      "source_alias": null,
+      "configured_status": "unavailable",
+      "runtime_status": "unavailable",
+      "evidence_rows": 0,
+      "error": null
+    },
+    {
       "set_key": "exu",
       "set_name": "Unseen Forces Unown Collection",
       "source_key": "pokemontcg_api",
@@ -385,6 +565,16 @@
       "error": null
     },
     {
+      "set_key": "exu",
+      "set_name": "Unseen Forces Unown Collection",
+      "source_key": "tcgplayer_price_guide",
+      "source_alias": null,
+      "configured_status": "unavailable",
+      "runtime_status": "unavailable",
+      "evidence_rows": 0,
+      "error": null
+    },
+    {
       "set_key": "wp",
       "set_name": "W Promotional",
       "source_key": "pokemontcg_api",
@@ -400,6 +590,16 @@
       "source_key": "tcgdex",
       "source_alias": "wp",
       "configured_status": "available",
+      "runtime_status": "unavailable",
+      "evidence_rows": 0,
+      "error": null
+    },
+    {
+      "set_key": "wp",
+      "set_name": "W Promotional",
+      "source_key": "tcgplayer_price_guide",
+      "source_alias": null,
+      "configured_status": "unavailable",
       "runtime_status": "unavailable",
       "evidence_rows": 0,
       "error": null
@@ -425,6 +625,16 @@
       "error": null
     },
     {
+      "set_key": "tk-xy-b",
+      "set_name": "XY trainer Kit (Bisharp)",
+      "source_key": "tcgplayer_price_guide",
+      "source_alias": null,
+      "configured_status": "unavailable",
+      "runtime_status": "unavailable",
+      "evidence_rows": 0,
+      "error": null
+    },
+    {
       "set_key": "tk-xy-latia",
       "set_name": "XY trainer Kit (Latias)",
       "source_key": "pokemontcg_api",
@@ -442,6 +652,16 @@
       "configured_status": "available",
       "runtime_status": "collected",
       "evidence_rows": 60,
+      "error": null
+    },
+    {
+      "set_key": "tk-xy-latia",
+      "set_name": "XY trainer Kit (Latias)",
+      "source_key": "tcgplayer_price_guide",
+      "source_alias": null,
+      "configured_status": "unavailable",
+      "runtime_status": "unavailable",
+      "evidence_rows": 0,
       "error": null
     },
     {
@@ -465,6 +685,16 @@
       "error": null
     },
     {
+      "set_key": "tk-xy-latio",
+      "set_name": "XY trainer Kit (Latios)",
+      "source_key": "tcgplayer_price_guide",
+      "source_alias": null,
+      "configured_status": "unavailable",
+      "runtime_status": "unavailable",
+      "evidence_rows": 0,
+      "error": null
+    },
+    {
       "set_key": "tk-xy-n",
       "set_name": "XY trainer Kit (Noivern)",
       "source_key": "pokemontcg_api",
@@ -482,6 +712,16 @@
       "configured_status": "available",
       "runtime_status": "collected",
       "evidence_rows": 60,
+      "error": null
+    },
+    {
+      "set_key": "tk-xy-n",
+      "set_name": "XY trainer Kit (Noivern)",
+      "source_key": "tcgplayer_price_guide",
+      "source_alias": null,
+      "configured_status": "unavailable",
+      "runtime_status": "unavailable",
+      "evidence_rows": 0,
       "error": null
     },
     {
@@ -505,6 +745,16 @@
       "error": null
     },
     {
+      "set_key": "tk-xy-p",
+      "set_name": "XY trainer Kit (Pikachu Libre)",
+      "source_key": "tcgplayer_price_guide",
+      "source_alias": null,
+      "configured_status": "unavailable",
+      "runtime_status": "unavailable",
+      "evidence_rows": 0,
+      "error": null
+    },
+    {
       "set_key": "tk-xy-su",
       "set_name": "XY trainer Kit (Suicune)",
       "source_key": "pokemontcg_api",
@@ -522,6 +772,16 @@
       "configured_status": "available",
       "runtime_status": "collected",
       "evidence_rows": 60,
+      "error": null
+    },
+    {
+      "set_key": "tk-xy-su",
+      "set_name": "XY trainer Kit (Suicune)",
+      "source_key": "tcgplayer_price_guide",
+      "source_alias": null,
+      "configured_status": "unavailable",
+      "runtime_status": "unavailable",
+      "evidence_rows": 0,
       "error": null
     },
     {
@@ -545,6 +805,16 @@
       "error": null
     },
     {
+      "set_key": "tk-xy-sy",
+      "set_name": "XY trainer Kit (Sylveon)",
+      "source_key": "tcgplayer_price_guide",
+      "source_alias": null,
+      "configured_status": "unavailable",
+      "runtime_status": "unavailable",
+      "evidence_rows": 0,
+      "error": null
+    },
+    {
       "set_key": "tk-xy-w",
       "set_name": "XY trainer Kit (Wigglytuff)",
       "source_key": "pokemontcg_api",
@@ -562,6 +832,16 @@
       "configured_status": "available",
       "runtime_status": "collected",
       "evidence_rows": 60,
+      "error": null
+    },
+    {
+      "set_key": "tk-xy-w",
+      "set_name": "XY trainer Kit (Wigglytuff)",
+      "source_key": "tcgplayer_price_guide",
+      "source_alias": null,
+      "configured_status": "unavailable",
+      "runtime_status": "unavailable",
+      "evidence_rows": 0,
       "error": null
     },
     {
@@ -585,6 +865,16 @@
       "error": null
     },
     {
+      "set_key": "xya",
+      "set_name": "Yellow A Alternate",
+      "source_key": "tcgplayer_price_guide",
+      "source_alias": null,
+      "configured_status": "unavailable",
+      "runtime_status": "unavailable",
+      "evidence_rows": 0,
+      "error": null
+    },
+    {
       "set_key": "base1",
       "set_name": "Base",
       "source_key": "pokemontcg_api",
@@ -602,6 +892,16 @@
       "configured_status": "available",
       "runtime_status": "collected",
       "evidence_rows": 306,
+      "error": null
+    },
+    {
+      "set_key": "base1",
+      "set_name": "Base",
+      "source_key": "tcgplayer_price_guide",
+      "source_alias": null,
+      "configured_status": "unavailable",
+      "runtime_status": "collected",
+      "evidence_rows": 101,
       "error": null
     },
     {
@@ -625,6 +925,16 @@
       "error": null
     },
     {
+      "set_key": "base2",
+      "set_name": "Jungle",
+      "source_key": "tcgplayer_price_guide",
+      "source_alias": null,
+      "configured_status": "unavailable",
+      "runtime_status": "unavailable",
+      "evidence_rows": 0,
+      "error": null
+    },
+    {
       "set_key": "basep",
       "set_name": "Wizards Black Star Promos",
       "source_key": "pokemontcg_api",
@@ -642,6 +952,16 @@
       "configured_status": "available",
       "runtime_status": "collected",
       "evidence_rows": 107,
+      "error": null
+    },
+    {
+      "set_key": "basep",
+      "set_name": "Wizards Black Star Promos",
+      "source_key": "tcgplayer_price_guide",
+      "source_alias": null,
+      "configured_status": "unavailable",
+      "runtime_status": "collected",
+      "evidence_rows": 47,
       "error": null
     },
     {
@@ -665,6 +985,16 @@
       "error": null
     },
     {
+      "set_key": "base3",
+      "set_name": "Fossil",
+      "source_key": "tcgplayer_price_guide",
+      "source_alias": null,
+      "configured_status": "unavailable",
+      "runtime_status": "unavailable",
+      "evidence_rows": 0,
+      "error": null
+    },
+    {
       "set_key": "base4",
       "set_name": "Base Set 2",
       "source_key": "pokemontcg_api",
@@ -682,6 +1012,16 @@
       "configured_status": "available",
       "runtime_status": "collected",
       "evidence_rows": 260,
+      "error": null
+    },
+    {
+      "set_key": "base4",
+      "set_name": "Base Set 2",
+      "source_key": "tcgplayer_price_guide",
+      "source_alias": null,
+      "configured_status": "unavailable",
+      "runtime_status": "collected",
+      "evidence_rows": 129,
       "error": null
     },
     {
@@ -705,6 +1045,16 @@
       "error": null
     },
     {
+      "set_key": "base5",
+      "set_name": "Team Rocket",
+      "source_key": "tcgplayer_price_guide",
+      "source_alias": null,
+      "configured_status": "unavailable",
+      "runtime_status": "unavailable",
+      "evidence_rows": 0,
+      "error": null
+    },
+    {
       "set_key": "gym1",
       "set_name": "Gym Heroes",
       "source_key": "pokemontcg_api",
@@ -722,6 +1072,16 @@
       "configured_status": "available",
       "runtime_status": "collected",
       "evidence_rows": 396,
+      "error": null
+    },
+    {
+      "set_key": "gym1",
+      "set_name": "Gym Heroes",
+      "source_key": "tcgplayer_price_guide",
+      "source_alias": null,
+      "configured_status": "unavailable",
+      "runtime_status": "unavailable",
+      "evidence_rows": 0,
       "error": null
     },
     {
@@ -745,6 +1105,16 @@
       "error": null
     },
     {
+      "set_key": "gym2",
+      "set_name": "Gym Challenge",
+      "source_key": "tcgplayer_price_guide",
+      "source_alias": null,
+      "configured_status": "unavailable",
+      "runtime_status": "unavailable",
+      "evidence_rows": 0,
+      "error": null
+    },
+    {
       "set_key": "neo1",
       "set_name": "Neo Genesis",
       "source_key": "pokemontcg_api",
@@ -765,13 +1135,23 @@
       "error": null
     },
     {
+      "set_key": "neo1",
+      "set_name": "Neo Genesis",
+      "source_key": "tcgplayer_price_guide",
+      "source_alias": null,
+      "configured_status": "unavailable",
+      "runtime_status": "unavailable",
+      "evidence_rows": 0,
+      "error": null
+    },
+    {
       "set_key": "neo2",
       "set_name": "Neo Discovery",
       "source_key": "pokemontcg_api",
       "source_alias": "neo2",
       "configured_status": "available",
       "runtime_status": "collected",
-      "evidence_rows": 91,
+      "evidence_rows": 90,
       "error": null
     },
     {
@@ -785,6 +1165,16 @@
       "error": null
     },
     {
+      "set_key": "neo2",
+      "set_name": "Neo Discovery",
+      "source_key": "tcgplayer_price_guide",
+      "source_alias": null,
+      "configured_status": "unavailable",
+      "runtime_status": "unavailable",
+      "evidence_rows": 0,
+      "error": null
+    },
+    {
       "set_key": "si1",
       "set_name": "Southern Islands",
       "source_key": "pokemontcg_api",
@@ -802,6 +1192,16 @@
       "configured_status": "available",
       "runtime_status": "collected",
       "evidence_rows": 36,
+      "error": null
+    },
+    {
+      "set_key": "si1",
+      "set_name": "Southern Islands",
+      "source_key": "tcgplayer_price_guide",
+      "source_alias": null,
+      "configured_status": "unavailable",
+      "runtime_status": "collected",
+      "evidence_rows": 18,
       "error": null
     },
     {
@@ -825,6 +1225,16 @@
       "error": null
     },
     {
+      "set_key": "neo3",
+      "set_name": "Neo Revelation",
+      "source_key": "tcgplayer_price_guide",
+      "source_alias": null,
+      "configured_status": "unavailable",
+      "runtime_status": "unavailable",
+      "evidence_rows": 0,
+      "error": null
+    },
+    {
       "set_key": "neo4",
       "set_name": "Neo Destiny",
       "source_key": "pokemontcg_api",
@@ -845,13 +1255,23 @@
       "error": null
     },
     {
+      "set_key": "neo4",
+      "set_name": "Neo Destiny",
+      "source_key": "tcgplayer_price_guide",
+      "source_alias": null,
+      "configured_status": "unavailable",
+      "runtime_status": "unavailable",
+      "evidence_rows": 0,
+      "error": null
+    },
+    {
       "set_key": "base6",
       "set_name": "Legendary Collection",
       "source_key": "pokemontcg_api",
       "source_alias": "base6",
       "configured_status": "available",
       "runtime_status": "collected",
-      "evidence_rows": 321,
+      "evidence_rows": 322,
       "error": null
     },
     {
@@ -862,6 +1282,16 @@
       "configured_status": "available",
       "runtime_status": "collected",
       "evidence_rows": 333,
+      "error": null
+    },
+    {
+      "set_key": "base6",
+      "set_name": "Legendary Collection",
+      "source_key": "tcgplayer_price_guide",
+      "source_alias": null,
+      "configured_status": "unavailable",
+      "runtime_status": "collected",
+      "evidence_rows": 212,
       "error": null
     },
     {
@@ -885,6 +1315,16 @@
       "error": null
     },
     {
+      "set_key": "ecard1",
+      "set_name": "Expedition Base Set",
+      "source_key": "tcgplayer_price_guide",
+      "source_alias": null,
+      "configured_status": "unavailable",
+      "runtime_status": "collected",
+      "evidence_rows": 323,
+      "error": null
+    },
+    {
       "set_key": "bp",
       "set_name": "Best of Game",
       "source_key": "pokemontcg_api",
@@ -905,13 +1345,23 @@
       "error": null
     },
     {
+      "set_key": "bp",
+      "set_name": "Best of Game",
+      "source_key": "tcgplayer_price_guide",
+      "source_alias": null,
+      "configured_status": "unavailable",
+      "runtime_status": "collected",
+      "evidence_rows": 9,
+      "error": null
+    },
+    {
       "set_key": "ecard2",
       "set_name": "Aquapolis",
       "source_key": "pokemontcg_api",
       "source_alias": "ecard2",
       "configured_status": "available",
       "runtime_status": "collected",
-      "evidence_rows": 487,
+      "evidence_rows": 486,
       "error": null
     },
     {
@@ -925,13 +1375,23 @@
       "error": null
     },
     {
+      "set_key": "ecard2",
+      "set_name": "Aquapolis",
+      "source_key": "tcgplayer_price_guide",
+      "source_alias": null,
+      "configured_status": "unavailable",
+      "runtime_status": "collected",
+      "evidence_rows": 293,
+      "error": null
+    },
+    {
       "set_key": "ecard3",
       "set_name": "Skyridge",
       "source_key": "pokemontcg_api",
       "source_alias": "ecard3",
       "configured_status": "available",
       "runtime_status": "collected",
-      "evidence_rows": 481,
+      "evidence_rows": 480,
       "error": null
     },
     {
@@ -942,6 +1402,16 @@
       "configured_status": "available",
       "runtime_status": "collected",
       "evidence_rows": 514,
+      "error": null
+    },
+    {
+      "set_key": "ecard3",
+      "set_name": "Skyridge",
+      "source_key": "tcgplayer_price_guide",
+      "source_alias": null,
+      "configured_status": "unavailable",
+      "runtime_status": "collected",
+      "evidence_rows": 284,
       "error": null
     },
     {
@@ -962,6 +1432,16 @@
       "configured_status": "available",
       "runtime_status": "collected",
       "evidence_rows": 329,
+      "error": null
+    },
+    {
+      "set_key": "ex1",
+      "set_name": "Ruby & Sapphire",
+      "source_key": "tcgplayer_price_guide",
+      "source_alias": null,
+      "configured_status": "unavailable",
+      "runtime_status": "collected",
+      "evidence_rows": 202,
       "error": null
     },
     {
@@ -985,6 +1465,16 @@
       "error": null
     },
     {
+      "set_key": "ex2",
+      "set_name": "Sandstorm",
+      "source_key": "tcgplayer_price_guide",
+      "source_alias": null,
+      "configured_status": "unavailable",
+      "runtime_status": "collected",
+      "evidence_rows": 193,
+      "error": null
+    },
+    {
       "set_key": "np",
       "set_name": "Nintendo Black Star Promos",
       "source_key": "pokemontcg_api",
@@ -1005,6 +1495,16 @@
       "error": null
     },
     {
+      "set_key": "np",
+      "set_name": "Nintendo Black Star Promos",
+      "source_key": "tcgplayer_price_guide",
+      "source_alias": null,
+      "configured_status": "unavailable",
+      "runtime_status": "collected",
+      "evidence_rows": 13,
+      "error": null
+    },
+    {
       "set_key": "ex3",
       "set_name": "Dragon",
       "source_key": "pokemontcg_api",
@@ -1022,6 +1522,16 @@
       "configured_status": "available",
       "runtime_status": "collected",
       "evidence_rows": 200,
+      "error": null
+    },
+    {
+      "set_key": "ex3",
+      "set_name": "Dragon",
+      "source_key": "tcgplayer_price_guide",
+      "source_alias": null,
+      "configured_status": "unavailable",
+      "runtime_status": "collected",
+      "evidence_rows": 76,
       "error": null
     },
     {
@@ -1045,6 +1555,16 @@
       "error": null
     },
     {
+      "set_key": "ex4",
+      "set_name": "Team Magma vs Team Aqua",
+      "source_key": "tcgplayer_price_guide",
+      "source_alias": null,
+      "configured_status": "unavailable",
+      "runtime_status": "collected",
+      "evidence_rows": 174,
+      "error": null
+    },
+    {
       "set_key": "tk1a",
       "set_name": "EX Trainer Kit Latias",
       "source_key": "pokemontcg_api",
@@ -1062,6 +1582,16 @@
       "configured_status": "available",
       "runtime_status": "collected",
       "evidence_rows": 20,
+      "error": null
+    },
+    {
+      "set_key": "tk1a",
+      "set_name": "EX Trainer Kit Latias",
+      "source_key": "tcgplayer_price_guide",
+      "source_alias": null,
+      "configured_status": "unavailable",
+      "runtime_status": "unavailable",
+      "evidence_rows": 0,
       "error": null
     },
     {
@@ -1085,13 +1615,23 @@
       "error": null
     },
     {
+      "set_key": "tk1b",
+      "set_name": "EX Trainer Kit Latios",
+      "source_key": "tcgplayer_price_guide",
+      "source_alias": null,
+      "configured_status": "unavailable",
+      "runtime_status": "unavailable",
+      "evidence_rows": 0,
+      "error": null
+    },
+    {
       "set_key": "ex5",
       "set_name": "Hidden Legends",
       "source_key": "pokemontcg_api",
       "source_alias": "ex5",
       "configured_status": "available",
       "runtime_status": "collected",
-      "evidence_rows": 295,
+      "evidence_rows": 296,
       "error": null
     },
     {
@@ -1105,13 +1645,23 @@
       "error": null
     },
     {
+      "set_key": "ex5",
+      "set_name": "Hidden Legends",
+      "source_key": "tcgplayer_price_guide",
+      "source_alias": null,
+      "configured_status": "unavailable",
+      "runtime_status": "collected",
+      "evidence_rows": 103,
+      "error": null
+    },
+    {
       "set_key": "ex6",
       "set_name": "FireRed & LeafGreen",
       "source_key": "pokemontcg_api",
       "source_alias": "ex6",
       "configured_status": "available",
       "runtime_status": "collected",
-      "evidence_rows": 355,
+      "evidence_rows": 356,
       "error": null
     },
     {
@@ -1122,6 +1672,16 @@
       "configured_status": "available",
       "runtime_status": "collected",
       "evidence_rows": 318,
+      "error": null
+    },
+    {
+      "set_key": "ex6",
+      "set_name": "FireRed & LeafGreen",
+      "source_key": "tcgplayer_price_guide",
+      "source_alias": null,
+      "configured_status": "unavailable",
+      "runtime_status": "collected",
+      "evidence_rows": 116,
       "error": null
     },
     {
@@ -1145,6 +1705,16 @@
       "error": null
     },
     {
+      "set_key": "pop1",
+      "set_name": "POP Series 1",
+      "source_key": "tcgplayer_price_guide",
+      "source_alias": null,
+      "configured_status": "unavailable",
+      "runtime_status": "collected",
+      "evidence_rows": 16,
+      "error": null
+    },
+    {
       "set_key": "ex7",
       "set_name": "Team Rocket Returns",
       "source_key": "pokemontcg_api",
@@ -1165,13 +1735,23 @@
       "error": null
     },
     {
+      "set_key": "ex7",
+      "set_name": "Team Rocket Returns",
+      "source_key": "tcgplayer_price_guide",
+      "source_alias": null,
+      "configured_status": "unavailable",
+      "runtime_status": "collected",
+      "evidence_rows": 109,
+      "error": null
+    },
+    {
       "set_key": "ex8",
       "set_name": "Deoxys",
       "source_key": "pokemontcg_api",
       "source_alias": "ex8",
       "configured_status": "available",
       "runtime_status": "collected",
-      "evidence_rows": 326,
+      "evidence_rows": 325,
       "error": null
     },
     {
@@ -1182,6 +1762,16 @@
       "configured_status": "available",
       "runtime_status": "collected",
       "evidence_rows": 299,
+      "error": null
+    },
+    {
+      "set_key": "ex8",
+      "set_name": "Deoxys",
+      "source_key": "tcgplayer_price_guide",
+      "source_alias": null,
+      "configured_status": "unavailable",
+      "runtime_status": "collected",
+      "evidence_rows": 105,
       "error": null
     },
     {
@@ -1205,6 +1795,16 @@
       "error": null
     },
     {
+      "set_key": "ex9",
+      "set_name": "Emerald",
+      "source_key": "tcgplayer_price_guide",
+      "source_alias": null,
+      "configured_status": "unavailable",
+      "runtime_status": "collected",
+      "evidence_rows": 110,
+      "error": null
+    },
+    {
       "set_key": "pop2",
       "set_name": "POP Series 2",
       "source_key": "pokemontcg_api",
@@ -1222,6 +1822,16 @@
       "configured_status": "available",
       "runtime_status": "collected",
       "evidence_rows": 38,
+      "error": null
+    },
+    {
+      "set_key": "pop2",
+      "set_name": "POP Series 2",
+      "source_key": "tcgplayer_price_guide",
+      "source_alias": null,
+      "configured_status": "unavailable",
+      "runtime_status": "collected",
+      "evidence_rows": 21,
       "error": null
     },
     {
@@ -1245,13 +1855,23 @@
       "error": null
     },
     {
+      "set_key": "ex10",
+      "set_name": "Unseen Forces",
+      "source_key": "tcgplayer_price_guide",
+      "source_alias": null,
+      "configured_status": "unavailable",
+      "runtime_status": "collected",
+      "evidence_rows": 114,
+      "error": null
+    },
+    {
       "set_key": "ex11",
       "set_name": "Delta Species",
       "source_key": "pokemontcg_api",
       "source_alias": "ex11",
       "configured_status": "available",
       "runtime_status": "collected",
-      "evidence_rows": 334,
+      "evidence_rows": 333,
       "error": null
     },
     {
@@ -1262,6 +1882,16 @@
       "configured_status": "available",
       "runtime_status": "collected",
       "evidence_rows": 230,
+      "error": null
+    },
+    {
+      "set_key": "ex11",
+      "set_name": "Delta Species",
+      "source_key": "tcgplayer_price_guide",
+      "source_alias": null,
+      "configured_status": "unavailable",
+      "runtime_status": "collected",
+      "evidence_rows": 111,
       "error": null
     },
     {
@@ -1285,6 +1915,16 @@
       "error": null
     },
     {
+      "set_key": "ex12",
+      "set_name": "Legend Maker",
+      "source_key": "tcgplayer_price_guide",
+      "source_alias": null,
+      "configured_status": "unavailable",
+      "runtime_status": "collected",
+      "evidence_rows": 90,
+      "error": null
+    },
+    {
       "set_key": "tk2b",
       "set_name": "EX Trainer Kit 2 Minun",
       "source_key": "pokemontcg_api",
@@ -1302,6 +1942,16 @@
       "configured_status": "available",
       "runtime_status": "collected",
       "evidence_rows": 24,
+      "error": null
+    },
+    {
+      "set_key": "tk2b",
+      "set_name": "EX Trainer Kit 2 Minun",
+      "source_key": "tcgplayer_price_guide",
+      "source_alias": null,
+      "configured_status": "unavailable",
+      "runtime_status": "unavailable",
+      "evidence_rows": 0,
       "error": null
     },
     {
@@ -1325,6 +1975,16 @@
       "error": null
     },
     {
+      "set_key": "tk2a",
+      "set_name": "EX Trainer Kit 2 Plusle",
+      "source_key": "tcgplayer_price_guide",
+      "source_alias": null,
+      "configured_status": "unavailable",
+      "runtime_status": "unavailable",
+      "evidence_rows": 0,
+      "error": null
+    },
+    {
       "set_key": "pop3",
       "set_name": "POP Series 3",
       "source_key": "pokemontcg_api",
@@ -1342,6 +2002,16 @@
       "configured_status": "available",
       "runtime_status": "collected",
       "evidence_rows": 27,
+      "error": null
+    },
+    {
+      "set_key": "pop3",
+      "set_name": "POP Series 3",
+      "source_key": "tcgplayer_price_guide",
+      "source_alias": null,
+      "configured_status": "unavailable",
+      "runtime_status": "collected",
+      "evidence_rows": 10,
       "error": null
     },
     {
@@ -1365,6 +2035,16 @@
       "error": null
     },
     {
+      "set_key": "ex13",
+      "set_name": "Holon Phantoms",
+      "source_key": "tcgplayer_price_guide",
+      "source_alias": null,
+      "configured_status": "unavailable",
+      "runtime_status": "collected",
+      "evidence_rows": 107,
+      "error": null
+    },
+    {
       "set_key": "ex14",
       "set_name": "Crystal Guardians",
       "source_key": "pokemontcg_api",
@@ -1382,6 +2062,16 @@
       "configured_status": "available",
       "runtime_status": "collected",
       "evidence_rows": 205,
+      "error": null
+    },
+    {
+      "set_key": "ex14",
+      "set_name": "Crystal Guardians",
+      "source_key": "tcgplayer_price_guide",
+      "source_alias": null,
+      "configured_status": "unavailable",
+      "runtime_status": "collected",
+      "evidence_rows": 98,
       "error": null
     },
     {
@@ -1405,6 +2095,16 @@
       "error": null
     },
     {
+      "set_key": "pop4",
+      "set_name": "POP Series 4",
+      "source_key": "tcgplayer_price_guide",
+      "source_alias": null,
+      "configured_status": "unavailable",
+      "runtime_status": "collected",
+      "evidence_rows": 14,
+      "error": null
+    },
+    {
       "set_key": "ex15",
       "set_name": "Dragon Frontiers",
       "source_key": "pokemontcg_api",
@@ -1425,6 +2125,16 @@
       "error": null
     },
     {
+      "set_key": "ex15",
+      "set_name": "Dragon Frontiers",
+      "source_key": "tcgplayer_price_guide",
+      "source_alias": null,
+      "configured_status": "unavailable",
+      "runtime_status": "collected",
+      "evidence_rows": 99,
+      "error": null
+    },
+    {
       "set_key": "ex16",
       "set_name": "Power Keepers",
       "source_key": "pokemontcg_api",
@@ -1442,6 +2152,16 @@
       "configured_status": "available",
       "runtime_status": "collected",
       "evidence_rows": 222,
+      "error": null
+    },
+    {
+      "set_key": "ex16",
+      "set_name": "Power Keepers",
+      "source_key": "tcgplayer_price_guide",
+      "source_alias": null,
+      "configured_status": "unavailable",
+      "runtime_status": "collected",
+      "evidence_rows": 92,
       "error": null
     },
     {
@@ -1465,6 +2185,16 @@
       "error": null
     },
     {
+      "set_key": "pop5",
+      "set_name": "POP Series 5",
+      "source_key": "tcgplayer_price_guide",
+      "source_alias": null,
+      "configured_status": "unavailable",
+      "runtime_status": "collected",
+      "evidence_rows": 16,
+      "error": null
+    },
+    {
       "set_key": "dp1",
       "set_name": "Diamond & Pearl",
       "source_key": "pokemontcg_api",
@@ -1482,6 +2212,16 @@
       "configured_status": "available",
       "runtime_status": "collected",
       "evidence_rows": 395,
+      "error": null
+    },
+    {
+      "set_key": "dp1",
+      "set_name": "Diamond & Pearl",
+      "source_key": "tcgplayer_price_guide",
+      "source_alias": null,
+      "configured_status": "unavailable",
+      "runtime_status": "collected",
+      "evidence_rows": 246,
       "error": null
     },
     {
@@ -1505,6 +2245,16 @@
       "error": null
     },
     {
+      "set_key": "dpp",
+      "set_name": "DP Black Star Promos",
+      "source_key": "tcgplayer_price_guide",
+      "source_alias": null,
+      "configured_status": "unavailable",
+      "runtime_status": "collected",
+      "evidence_rows": 34,
+      "error": null
+    },
+    {
       "set_key": "dp2",
       "set_name": "Mysterious Treasures",
       "source_key": "pokemontcg_api",
@@ -1522,6 +2272,16 @@
       "configured_status": "available",
       "runtime_status": "collected",
       "evidence_rows": 374,
+      "error": null
+    },
+    {
+      "set_key": "dp2",
+      "set_name": "Mysterious Treasures",
+      "source_key": "tcgplayer_price_guide",
+      "source_alias": null,
+      "configured_status": "unavailable",
+      "runtime_status": "collected",
+      "evidence_rows": 240,
       "error": null
     },
     {
@@ -1545,6 +2305,16 @@
       "error": null
     },
     {
+      "set_key": "pop6",
+      "set_name": "POP Series 6",
+      "source_key": "tcgplayer_price_guide",
+      "source_alias": null,
+      "configured_status": "unavailable",
+      "runtime_status": "collected",
+      "evidence_rows": 14,
+      "error": null
+    },
+    {
       "set_key": "dp3",
       "set_name": "Secret Wonders",
       "source_key": "pokemontcg_api",
@@ -1562,6 +2332,16 @@
       "configured_status": "available",
       "runtime_status": "collected",
       "evidence_rows": 399,
+      "error": null
+    },
+    {
+      "set_key": "dp3",
+      "set_name": "Secret Wonders",
+      "source_key": "tcgplayer_price_guide",
+      "source_alias": null,
+      "configured_status": "unavailable",
+      "runtime_status": "collected",
+      "evidence_rows": 260,
       "error": null
     },
     {
@@ -1585,6 +2365,16 @@
       "error": null
     },
     {
+      "set_key": "dp4",
+      "set_name": "Great Encounters",
+      "source_key": "tcgplayer_price_guide",
+      "source_alias": null,
+      "configured_status": "unavailable",
+      "runtime_status": "collected",
+      "evidence_rows": 204,
+      "error": null
+    },
+    {
       "set_key": "pop7",
       "set_name": "POP Series 7",
       "source_key": "pokemontcg_api",
@@ -1605,6 +2395,16 @@
       "error": null
     },
     {
+      "set_key": "pop7",
+      "set_name": "POP Series 7",
+      "source_key": "tcgplayer_price_guide",
+      "source_alias": null,
+      "configured_status": "unavailable",
+      "runtime_status": "collected",
+      "evidence_rows": 22,
+      "error": null
+    },
+    {
       "set_key": "dp5",
       "set_name": "Majestic Dawn",
       "source_key": "pokemontcg_api",
@@ -1622,6 +2422,16 @@
       "configured_status": "available",
       "runtime_status": "collected",
       "evidence_rows": 300,
+      "error": null
+    },
+    {
+      "set_key": "dp5",
+      "set_name": "Majestic Dawn",
+      "source_key": "tcgplayer_price_guide",
+      "source_alias": null,
+      "configured_status": "unavailable",
+      "runtime_status": "collected",
+      "evidence_rows": 192,
       "error": null
     },
     {
@@ -1645,6 +2455,16 @@
       "error": null
     },
     {
+      "set_key": "dp6",
+      "set_name": "Legends Awakened",
+      "source_key": "tcgplayer_price_guide",
+      "source_alias": null,
+      "configured_status": "unavailable",
+      "runtime_status": "collected",
+      "evidence_rows": 273,
+      "error": null
+    },
+    {
       "set_key": "pop8",
       "set_name": "POP Series 8",
       "source_key": "pokemontcg_api",
@@ -1662,6 +2482,16 @@
       "configured_status": "available",
       "runtime_status": "collected",
       "evidence_rows": 41,
+      "error": null
+    },
+    {
+      "set_key": "pop8",
+      "set_name": "POP Series 8",
+      "source_key": "tcgplayer_price_guide",
+      "source_alias": null,
+      "configured_status": "unavailable",
+      "runtime_status": "collected",
+      "evidence_rows": 20,
       "error": null
     },
     {
@@ -1685,6 +2515,16 @@
       "error": null
     },
     {
+      "set_key": "dp7",
+      "set_name": "Stormfront",
+      "source_key": "tcgplayer_price_guide",
+      "source_alias": null,
+      "configured_status": "unavailable",
+      "runtime_status": "collected",
+      "evidence_rows": 193,
+      "error": null
+    },
+    {
       "set_key": "pl1",
       "set_name": "Platinum",
       "source_key": "pokemontcg_api",
@@ -1702,6 +2542,16 @@
       "configured_status": "available",
       "runtime_status": "collected",
       "evidence_rows": 390,
+      "error": null
+    },
+    {
+      "set_key": "pl1",
+      "set_name": "Platinum",
+      "source_key": "tcgplayer_price_guide",
+      "source_alias": null,
+      "configured_status": "unavailable",
+      "runtime_status": "collected",
+      "evidence_rows": 247,
       "error": null
     },
     {
@@ -1725,6 +2575,16 @@
       "error": null
     },
     {
+      "set_key": "pop9",
+      "set_name": "POP Series 9",
+      "source_key": "tcgplayer_price_guide",
+      "source_alias": null,
+      "configured_status": "unavailable",
+      "runtime_status": "collected",
+      "evidence_rows": 18,
+      "error": null
+    },
+    {
       "set_key": "pl2",
       "set_name": "Rising Rivals",
       "source_key": "pokemontcg_api",
@@ -1745,13 +2605,23 @@
       "error": null
     },
     {
+      "set_key": "pl2",
+      "set_name": "Rising Rivals",
+      "source_key": "tcgplayer_price_guide",
+      "source_alias": null,
+      "configured_status": "unavailable",
+      "runtime_status": "collected",
+      "evidence_rows": 171,
+      "error": null
+    },
+    {
       "set_key": "pl3",
       "set_name": "Supreme Victors",
       "source_key": "pokemontcg_api",
       "source_alias": "pl3",
       "configured_status": "available",
       "runtime_status": "collected",
-      "evidence_rows": 445,
+      "evidence_rows": 444,
       "error": null
     },
     {
@@ -1762,6 +2632,16 @@
       "configured_status": "available",
       "runtime_status": "collected",
       "evidence_rows": 450,
+      "error": null
+    },
+    {
+      "set_key": "pl3",
+      "set_name": "Supreme Victors",
+      "source_key": "tcgplayer_price_guide",
+      "source_alias": null,
+      "configured_status": "unavailable",
+      "runtime_status": "collected",
+      "evidence_rows": 171,
       "error": null
     },
     {
@@ -1785,6 +2665,16 @@
       "error": null
     },
     {
+      "set_key": "pl4",
+      "set_name": "Arceus",
+      "source_key": "tcgplayer_price_guide",
+      "source_alias": null,
+      "configured_status": "unavailable",
+      "runtime_status": "collected",
+      "evidence_rows": 198,
+      "error": null
+    },
+    {
       "set_key": "ru1",
       "set_name": "Pokémon Rumble",
       "source_key": "pokemontcg_api",
@@ -1802,6 +2692,16 @@
       "configured_status": "available",
       "runtime_status": "collected",
       "evidence_rows": 32,
+      "error": null
+    },
+    {
+      "set_key": "ru1",
+      "set_name": "Pokémon Rumble",
+      "source_key": "tcgplayer_price_guide",
+      "source_alias": null,
+      "configured_status": "unavailable",
+      "runtime_status": "collected",
+      "evidence_rows": 13,
       "error": null
     },
     {
@@ -1825,6 +2725,16 @@
       "error": null
     },
     {
+      "set_key": "hgss1",
+      "set_name": "HeartGold & SoulSilver",
+      "source_key": "tcgplayer_price_guide",
+      "source_alias": null,
+      "configured_status": "unavailable",
+      "runtime_status": "collected",
+      "evidence_rows": 226,
+      "error": null
+    },
+    {
       "set_key": "hsp",
       "set_name": "HGSS Black Star Promos",
       "source_key": "pokemontcg_api",
@@ -1842,6 +2752,16 @@
       "configured_status": "available",
       "runtime_status": "collected",
       "evidence_rows": 50,
+      "error": null
+    },
+    {
+      "set_key": "hsp",
+      "set_name": "HGSS Black Star Promos",
+      "source_key": "tcgplayer_price_guide",
+      "source_alias": null,
+      "configured_status": "unavailable",
+      "runtime_status": "collected",
+      "evidence_rows": 24,
       "error": null
     },
     {
@@ -1865,6 +2785,16 @@
       "error": null
     },
     {
+      "set_key": "hgss2",
+      "set_name": "HS—Unleashed",
+      "source_key": "tcgplayer_price_guide",
+      "source_alias": null,
+      "configured_status": "unavailable",
+      "runtime_status": "collected",
+      "evidence_rows": 177,
+      "error": null
+    },
+    {
       "set_key": "hgss3",
       "set_name": "HS—Undaunted",
       "source_key": "pokemontcg_api",
@@ -1882,6 +2812,16 @@
       "configured_status": "available",
       "runtime_status": "collected",
       "evidence_rows": 267,
+      "error": null
+    },
+    {
+      "set_key": "hgss3",
+      "set_name": "HS—Undaunted",
+      "source_key": "tcgplayer_price_guide",
+      "source_alias": null,
+      "configured_status": "unavailable",
+      "runtime_status": "collected",
+      "evidence_rows": 170,
       "error": null
     },
     {
@@ -1905,6 +2845,16 @@
       "error": null
     },
     {
+      "set_key": "hgss4",
+      "set_name": "HS—Triumphant",
+      "source_key": "tcgplayer_price_guide",
+      "source_alias": null,
+      "configured_status": "unavailable",
+      "runtime_status": "collected",
+      "evidence_rows": 182,
+      "error": null
+    },
+    {
       "set_key": "col1",
       "set_name": "Call of Legends",
       "source_key": "pokemontcg_api",
@@ -1922,6 +2872,16 @@
       "configured_status": "available",
       "runtime_status": "collected",
       "evidence_rows": 212,
+      "error": null
+    },
+    {
+      "set_key": "col1",
+      "set_name": "Call of Legends",
+      "source_key": "tcgplayer_price_guide",
+      "source_alias": null,
+      "configured_status": "unavailable",
+      "runtime_status": "collected",
+      "evidence_rows": 72,
       "error": null
     },
     {
@@ -1945,6 +2905,16 @@
       "error": null
     },
     {
+      "set_key": "bwp",
+      "set_name": "BW Black Star Promos",
+      "source_key": "tcgplayer_price_guide",
+      "source_alias": null,
+      "configured_status": "unavailable",
+      "runtime_status": "collected",
+      "evidence_rows": 13,
+      "error": null
+    },
+    {
       "set_key": "bw1",
       "set_name": "Black & White",
       "source_key": "pokemontcg_api",
@@ -1962,6 +2932,16 @@
       "configured_status": "available",
       "runtime_status": "collected",
       "evidence_rows": 230,
+      "error": null
+    },
+    {
+      "set_key": "bw1",
+      "set_name": "Black & White",
+      "source_key": "tcgplayer_price_guide",
+      "source_alias": null,
+      "configured_status": "unavailable",
+      "runtime_status": "collected",
+      "evidence_rows": 100,
       "error": null
     },
     {
@@ -1985,6 +2965,16 @@
       "error": null
     },
     {
+      "set_key": "mcd11",
+      "set_name": "McDonald's Collection 2011",
+      "source_key": "tcgplayer_price_guide",
+      "source_alias": null,
+      "configured_status": "unavailable",
+      "runtime_status": "collected",
+      "evidence_rows": 12,
+      "error": null
+    },
+    {
       "set_key": "bw2",
       "set_name": "Emerging Powers",
       "source_key": "pokemontcg_api",
@@ -2002,6 +2992,16 @@
       "configured_status": "available",
       "runtime_status": "collected",
       "evidence_rows": 196,
+      "error": null
+    },
+    {
+      "set_key": "bw2",
+      "set_name": "Emerging Powers",
+      "source_key": "tcgplayer_price_guide",
+      "source_alias": null,
+      "configured_status": "unavailable",
+      "runtime_status": "collected",
+      "evidence_rows": 86,
       "error": null
     },
     {
@@ -2025,6 +3025,16 @@
       "error": null
     },
     {
+      "set_key": "bw3",
+      "set_name": "Noble Victories",
+      "source_key": "tcgplayer_price_guide",
+      "source_alias": null,
+      "configured_status": "unavailable",
+      "runtime_status": "collected",
+      "evidence_rows": 83,
+      "error": null
+    },
+    {
       "set_key": "bw4",
       "set_name": "Next Destinies",
       "source_key": "pokemontcg_api",
@@ -2045,13 +3055,23 @@
       "error": null
     },
     {
+      "set_key": "bw4",
+      "set_name": "Next Destinies",
+      "source_key": "tcgplayer_price_guide",
+      "source_alias": null,
+      "configured_status": "unavailable",
+      "runtime_status": "collected",
+      "evidence_rows": 77,
+      "error": null
+    },
+    {
       "set_key": "bw5",
       "set_name": "Dark Explorers",
       "source_key": "pokemontcg_api",
       "source_alias": "bw5",
       "configured_status": "available",
       "runtime_status": "collected",
-      "evidence_rows": 318,
+      "evidence_rows": 317,
       "error": null
     },
     {
@@ -2062,6 +3082,16 @@
       "configured_status": "available",
       "runtime_status": "collected",
       "evidence_rows": 222,
+      "error": null
+    },
+    {
+      "set_key": "bw5",
+      "set_name": "Dark Explorers",
+      "source_key": "tcgplayer_price_guide",
+      "source_alias": null,
+      "configured_status": "unavailable",
+      "runtime_status": "collected",
+      "evidence_rows": 87,
       "error": null
     },
     {
@@ -2085,13 +3115,23 @@
       "error": null
     },
     {
+      "set_key": "mcd12",
+      "set_name": "McDonald's Collection 2012",
+      "source_key": "tcgplayer_price_guide",
+      "source_alias": null,
+      "configured_status": "unavailable",
+      "runtime_status": "collected",
+      "evidence_rows": 12,
+      "error": null
+    },
+    {
       "set_key": "bw6",
       "set_name": "Dragons Exalted",
       "source_key": "pokemontcg_api",
       "source_alias": "bw6",
       "configured_status": "available",
       "runtime_status": "collected",
-      "evidence_rows": 365,
+      "evidence_rows": 366,
       "error": null
     },
     {
@@ -2105,6 +3145,16 @@
       "error": null
     },
     {
+      "set_key": "bw6",
+      "set_name": "Dragons Exalted",
+      "source_key": "tcgplayer_price_guide",
+      "source_alias": null,
+      "configured_status": "unavailable",
+      "runtime_status": "collected",
+      "evidence_rows": 97,
+      "error": null
+    },
+    {
       "set_key": "dv1",
       "set_name": "Dragon Vault",
       "source_key": "pokemontcg_api",
@@ -2122,6 +3172,16 @@
       "configured_status": "available",
       "runtime_status": "collected",
       "evidence_rows": 42,
+      "error": null
+    },
+    {
+      "set_key": "dv1",
+      "set_name": "Dragon Vault",
+      "source_key": "tcgplayer_price_guide",
+      "source_alias": null,
+      "configured_status": "unavailable",
+      "runtime_status": "unavailable",
+      "evidence_rows": 0,
       "error": null
     },
     {
@@ -2145,6 +3205,16 @@
       "error": null
     },
     {
+      "set_key": "bw7",
+      "set_name": "Boundaries Crossed",
+      "source_key": "tcgplayer_price_guide",
+      "source_alias": null,
+      "configured_status": "unavailable",
+      "runtime_status": "collected",
+      "evidence_rows": 111,
+      "error": null
+    },
+    {
       "set_key": "bw8",
       "set_name": "Plasma Storm",
       "source_key": "pokemontcg_api",
@@ -2162,6 +3232,16 @@
       "configured_status": "available",
       "runtime_status": "collected",
       "evidence_rows": 276,
+      "error": null
+    },
+    {
+      "set_key": "bw8",
+      "set_name": "Plasma Storm",
+      "source_key": "tcgplayer_price_guide",
+      "source_alias": null,
+      "configured_status": "unavailable",
+      "runtime_status": "collected",
+      "evidence_rows": 109,
       "error": null
     },
     {
@@ -2185,6 +3265,16 @@
       "error": null
     },
     {
+      "set_key": "bw9",
+      "set_name": "Plasma Freeze",
+      "source_key": "tcgplayer_price_guide",
+      "source_alias": null,
+      "configured_status": "unavailable",
+      "runtime_status": "collected",
+      "evidence_rows": 86,
+      "error": null
+    },
+    {
       "set_key": "bw10",
       "set_name": "Plasma Blast",
       "source_key": "pokemontcg_api",
@@ -2202,6 +3292,16 @@
       "configured_status": "available",
       "runtime_status": "collected",
       "evidence_rows": 210,
+      "error": null
+    },
+    {
+      "set_key": "bw10",
+      "set_name": "Plasma Blast",
+      "source_key": "tcgplayer_price_guide",
+      "source_alias": null,
+      "configured_status": "unavailable",
+      "runtime_status": "collected",
+      "evidence_rows": 74,
       "error": null
     },
     {
@@ -2225,6 +3325,16 @@
       "error": null
     },
     {
+      "set_key": "xyp",
+      "set_name": "XY Black Star Promos",
+      "source_key": "tcgplayer_price_guide",
+      "source_alias": null,
+      "configured_status": "unavailable",
+      "runtime_status": "collected",
+      "evidence_rows": 11,
+      "error": null
+    },
+    {
       "set_key": "bw11",
       "set_name": "Legendary Treasures",
       "source_key": "pokemontcg_api",
@@ -2242,6 +3352,16 @@
       "configured_status": "available",
       "runtime_status": "collected",
       "evidence_rows": 280,
+      "error": null
+    },
+    {
+      "set_key": "bw11",
+      "set_name": "Legendary Treasures",
+      "source_key": "tcgplayer_price_guide",
+      "source_alias": null,
+      "configured_status": "unavailable",
+      "runtime_status": "collected",
+      "evidence_rows": 71,
       "error": null
     },
     {
@@ -2265,6 +3385,16 @@
       "error": null
     },
     {
+      "set_key": "xy0",
+      "set_name": "Kalos Starter Set",
+      "source_key": "tcgplayer_price_guide",
+      "source_alias": null,
+      "configured_status": "unavailable",
+      "runtime_status": "collected",
+      "evidence_rows": 39,
+      "error": null
+    },
+    {
       "set_key": "xy1",
       "set_name": "XY",
       "source_key": "pokemontcg_api",
@@ -2282,6 +3412,16 @@
       "configured_status": "available",
       "runtime_status": "collected",
       "evidence_rows": 292,
+      "error": null
+    },
+    {
+      "set_key": "xy1",
+      "set_name": "XY",
+      "source_key": "tcgplayer_price_guide",
+      "source_alias": null,
+      "configured_status": "unavailable",
+      "runtime_status": "collected",
+      "evidence_rows": 116,
       "error": null
     },
     {
@@ -2305,6 +3445,16 @@
       "error": null
     },
     {
+      "set_key": "xy2",
+      "set_name": "Flashfire",
+      "source_key": "tcgplayer_price_guide",
+      "source_alias": null,
+      "configured_status": "unavailable",
+      "runtime_status": "collected",
+      "evidence_rows": 83,
+      "error": null
+    },
+    {
       "set_key": "mcd14",
       "set_name": "McDonald's Collection 2014",
       "source_key": "pokemontcg_api",
@@ -2322,6 +3472,16 @@
       "configured_status": "available",
       "runtime_status": "collected",
       "evidence_rows": 24,
+      "error": null
+    },
+    {
+      "set_key": "mcd14",
+      "set_name": "McDonald's Collection 2014",
+      "source_key": "tcgplayer_price_guide",
+      "source_alias": null,
+      "configured_status": "unavailable",
+      "runtime_status": "unavailable",
+      "evidence_rows": 0,
       "error": null
     },
     {
@@ -2345,6 +3505,16 @@
       "error": null
     },
     {
+      "set_key": "xy3",
+      "set_name": "Furious Fists",
+      "source_key": "tcgplayer_price_guide",
+      "source_alias": null,
+      "configured_status": "unavailable",
+      "runtime_status": "collected",
+      "evidence_rows": 88,
+      "error": null
+    },
+    {
       "set_key": "xy4",
       "set_name": "Phantom Forces",
       "source_key": "pokemontcg_api",
@@ -2362,6 +3532,16 @@
       "configured_status": "available",
       "runtime_status": "collected",
       "evidence_rows": 248,
+      "error": null
+    },
+    {
+      "set_key": "xy4",
+      "set_name": "Phantom Forces",
+      "source_key": "tcgplayer_price_guide",
+      "source_alias": null,
+      "configured_status": "unavailable",
+      "runtime_status": "collected",
+      "evidence_rows": 90,
       "error": null
     },
     {
@@ -2385,6 +3565,16 @@
       "error": null
     },
     {
+      "set_key": "xy5",
+      "set_name": "Primal Clash",
+      "source_key": "tcgplayer_price_guide",
+      "source_alias": null,
+      "configured_status": "unavailable",
+      "runtime_status": "collected",
+      "evidence_rows": 114,
+      "error": null
+    },
+    {
       "set_key": "dc1",
       "set_name": "Double Crisis",
       "source_key": "pokemontcg_api",
@@ -2402,6 +3592,16 @@
       "configured_status": "available",
       "runtime_status": "collected",
       "evidence_rows": 68,
+      "error": null
+    },
+    {
+      "set_key": "dc1",
+      "set_name": "Double Crisis",
+      "source_key": "tcgplayer_price_guide",
+      "source_alias": null,
+      "configured_status": "unavailable",
+      "runtime_status": "collected",
+      "evidence_rows": 26,
       "error": null
     },
     {
@@ -2425,6 +3625,16 @@
       "error": null
     },
     {
+      "set_key": "xy6",
+      "set_name": "Roaring Skies",
+      "source_key": "tcgplayer_price_guide",
+      "source_alias": null,
+      "configured_status": "unavailable",
+      "runtime_status": "collected",
+      "evidence_rows": 76,
+      "error": null
+    },
+    {
       "set_key": "xy7",
       "set_name": "Ancient Origins",
       "source_key": "pokemontcg_api",
@@ -2442,6 +3652,16 @@
       "configured_status": "available",
       "runtime_status": "collected",
       "evidence_rows": 202,
+      "error": null
+    },
+    {
+      "set_key": "xy7",
+      "set_name": "Ancient Origins",
+      "source_key": "tcgplayer_price_guide",
+      "source_alias": null,
+      "configured_status": "unavailable",
+      "runtime_status": "collected",
+      "evidence_rows": 64,
       "error": null
     },
     {
@@ -2465,6 +3685,16 @@
       "error": null
     },
     {
+      "set_key": "xy8",
+      "set_name": "BREAKthrough",
+      "source_key": "tcgplayer_price_guide",
+      "source_alias": null,
+      "configured_status": "unavailable",
+      "runtime_status": "collected",
+      "evidence_rows": 122,
+      "error": null
+    },
+    {
       "set_key": "mcd15",
       "set_name": "McDonald's Collection 2015",
       "source_key": "pokemontcg_api",
@@ -2482,6 +3712,16 @@
       "configured_status": "available",
       "runtime_status": "collected",
       "evidence_rows": 24,
+      "error": null
+    },
+    {
+      "set_key": "mcd15",
+      "set_name": "McDonald's Collection 2015",
+      "source_key": "tcgplayer_price_guide",
+      "source_alias": null,
+      "configured_status": "unavailable",
+      "runtime_status": "unavailable",
+      "evidence_rows": 0,
       "error": null
     },
     {
@@ -2505,6 +3745,16 @@
       "error": null
     },
     {
+      "set_key": "xy9",
+      "set_name": "BREAKpoint",
+      "source_key": "tcgplayer_price_guide",
+      "source_alias": null,
+      "configured_status": "unavailable",
+      "runtime_status": "collected",
+      "evidence_rows": 90,
+      "error": null
+    },
+    {
       "set_key": "g1",
       "set_name": "Generations",
       "source_key": "pokemontcg_api",
@@ -2522,6 +3772,16 @@
       "configured_status": "available",
       "runtime_status": "collected",
       "evidence_rows": 234,
+      "error": null
+    },
+    {
+      "set_key": "g1",
+      "set_name": "Generations",
+      "source_key": "tcgplayer_price_guide",
+      "source_alias": null,
+      "configured_status": "unavailable",
+      "runtime_status": "collected",
+      "evidence_rows": 77,
       "error": null
     },
     {
@@ -2545,6 +3805,16 @@
       "error": null
     },
     {
+      "set_key": "xy10",
+      "set_name": "Fates Collide",
+      "source_key": "tcgplayer_price_guide",
+      "source_alias": null,
+      "configured_status": "unavailable",
+      "runtime_status": "collected",
+      "evidence_rows": 92,
+      "error": null
+    },
+    {
       "set_key": "xy11",
       "set_name": "Steam Siege",
       "source_key": "pokemontcg_api",
@@ -2562,6 +3832,16 @@
       "configured_status": "available",
       "runtime_status": "collected",
       "evidence_rows": 232,
+      "error": null
+    },
+    {
+      "set_key": "xy11",
+      "set_name": "Steam Siege",
+      "source_key": "tcgplayer_price_guide",
+      "source_alias": null,
+      "configured_status": "unavailable",
+      "runtime_status": "collected",
+      "evidence_rows": 84,
       "error": null
     },
     {
@@ -2585,6 +3865,16 @@
       "error": null
     },
     {
+      "set_key": "mcd16",
+      "set_name": "McDonald's Collection 2016",
+      "source_key": "tcgplayer_price_guide",
+      "source_alias": null,
+      "configured_status": "unavailable",
+      "runtime_status": "unavailable",
+      "evidence_rows": 0,
+      "error": null
+    },
+    {
       "set_key": "xy12",
       "set_name": "Evolutions",
       "source_key": "pokemontcg_api",
@@ -2602,6 +3892,16 @@
       "configured_status": "available",
       "runtime_status": "collected",
       "evidence_rows": 226,
+      "error": null
+    },
+    {
+      "set_key": "xy12",
+      "set_name": "Evolutions",
+      "source_key": "tcgplayer_price_guide",
+      "source_alias": null,
+      "configured_status": "unavailable",
+      "runtime_status": "collected",
+      "evidence_rows": 75,
       "error": null
     },
     {
@@ -2625,6 +3925,16 @@
       "error": null
     },
     {
+      "set_key": "smp",
+      "set_name": "SM Black Star Promos",
+      "source_key": "tcgplayer_price_guide",
+      "source_alias": null,
+      "configured_status": "unavailable",
+      "runtime_status": "collected",
+      "evidence_rows": 21,
+      "error": null
+    },
+    {
       "set_key": "sm1",
       "set_name": "Sun & Moon",
       "source_key": "pokemontcg_api",
@@ -2642,6 +3952,16 @@
       "configured_status": "available",
       "runtime_status": "collected",
       "evidence_rows": 344,
+      "error": null
+    },
+    {
+      "set_key": "sm1",
+      "set_name": "Sun & Moon",
+      "source_key": "tcgplayer_price_guide",
+      "source_alias": null,
+      "configured_status": "unavailable",
+      "runtime_status": "collected",
+      "evidence_rows": 110,
       "error": null
     },
     {
@@ -2665,6 +3985,16 @@
       "error": null
     },
     {
+      "set_key": "sm2",
+      "set_name": "Guardians Rising",
+      "source_key": "tcgplayer_price_guide",
+      "source_alias": null,
+      "configured_status": "unavailable",
+      "runtime_status": "collected",
+      "evidence_rows": 103,
+      "error": null
+    },
+    {
       "set_key": "sm3",
       "set_name": "Burning Shadows",
       "source_key": "pokemontcg_api",
@@ -2682,6 +4012,16 @@
       "configured_status": "available",
       "runtime_status": "collected",
       "evidence_rows": 338,
+      "error": null
+    },
+    {
+      "set_key": "sm3",
+      "set_name": "Burning Shadows",
+      "source_key": "tcgplayer_price_guide",
+      "source_alias": null,
+      "configured_status": "unavailable",
+      "runtime_status": "collected",
+      "evidence_rows": 103,
       "error": null
     },
     {
@@ -2705,6 +4045,16 @@
       "error": null
     },
     {
+      "set_key": "sm35",
+      "set_name": "Shining Legends",
+      "source_key": "tcgplayer_price_guide",
+      "source_alias": null,
+      "configured_status": "unavailable",
+      "runtime_status": "collected",
+      "evidence_rows": 48,
+      "error": null
+    },
+    {
       "set_key": "sm4",
       "set_name": "Crimson Invasion",
       "source_key": "pokemontcg_api",
@@ -2722,6 +4072,16 @@
       "configured_status": "available",
       "runtime_status": "collected",
       "evidence_rows": 250,
+      "error": null
+    },
+    {
+      "set_key": "sm4",
+      "set_name": "Crimson Invasion",
+      "source_key": "tcgplayer_price_guide",
+      "source_alias": null,
+      "configured_status": "unavailable",
+      "runtime_status": "collected",
+      "evidence_rows": 80,
       "error": null
     },
     {
@@ -2745,6 +4105,16 @@
       "error": null
     },
     {
+      "set_key": "mcd17",
+      "set_name": "McDonald's Collection 2017",
+      "source_key": "tcgplayer_price_guide",
+      "source_alias": null,
+      "configured_status": "unavailable",
+      "runtime_status": "unavailable",
+      "evidence_rows": 0,
+      "error": null
+    },
+    {
       "set_key": "sm5",
       "set_name": "Ultra Prism",
       "source_key": "pokemontcg_api",
@@ -2762,6 +4132,16 @@
       "configured_status": "available",
       "runtime_status": "collected",
       "evidence_rows": 346,
+      "error": null
+    },
+    {
+      "set_key": "sm5",
+      "set_name": "Ultra Prism",
+      "source_key": "tcgplayer_price_guide",
+      "source_alias": null,
+      "configured_status": "unavailable",
+      "runtime_status": "collected",
+      "evidence_rows": 112,
       "error": null
     },
     {
@@ -2785,6 +4165,16 @@
       "error": null
     },
     {
+      "set_key": "sm6",
+      "set_name": "Forbidden Light",
+      "source_key": "tcgplayer_price_guide",
+      "source_alias": null,
+      "configured_status": "unavailable",
+      "runtime_status": "collected",
+      "evidence_rows": 93,
+      "error": null
+    },
+    {
       "set_key": "sm7",
       "set_name": "Celestial Storm",
       "source_key": "pokemontcg_api",
@@ -2802,6 +4192,16 @@
       "configured_status": "available",
       "runtime_status": "collected",
       "evidence_rows": 366,
+      "error": null
+    },
+    {
+      "set_key": "sm7",
+      "set_name": "Celestial Storm",
+      "source_key": "tcgplayer_price_guide",
+      "source_alias": null,
+      "configured_status": "unavailable",
+      "runtime_status": "collected",
+      "evidence_rows": 119,
       "error": null
     },
     {
@@ -2825,6 +4225,16 @@
       "error": null
     },
     {
+      "set_key": "sm75",
+      "set_name": "Dragon Majesty",
+      "source_key": "tcgplayer_price_guide",
+      "source_alias": null,
+      "configured_status": "unavailable",
+      "runtime_status": "collected",
+      "evidence_rows": 46,
+      "error": null
+    },
+    {
       "set_key": "mcd18",
       "set_name": "McDonald's Collection 2018",
       "source_key": "pokemontcg_api",
@@ -2842,6 +4252,16 @@
       "configured_status": "available",
       "runtime_status": "collected",
       "evidence_rows": 24,
+      "error": null
+    },
+    {
+      "set_key": "mcd18",
+      "set_name": "McDonald's Collection 2018",
+      "source_key": "tcgplayer_price_guide",
+      "source_alias": null,
+      "configured_status": "unavailable",
+      "runtime_status": "unavailable",
+      "evidence_rows": 0,
       "error": null
     },
     {
@@ -2865,6 +4285,16 @@
       "error": null
     },
     {
+      "set_key": "sm8",
+      "set_name": "Lost Thunder",
+      "source_key": "tcgplayer_price_guide",
+      "source_alias": null,
+      "configured_status": "unavailable",
+      "runtime_status": "collected",
+      "evidence_rows": 153,
+      "error": null
+    },
+    {
       "set_key": "sm9",
       "set_name": "Team Up",
       "source_key": "pokemontcg_api",
@@ -2885,6 +4315,16 @@
       "error": null
     },
     {
+      "set_key": "sm9",
+      "set_name": "Team Up",
+      "source_key": "tcgplayer_price_guide",
+      "source_alias": null,
+      "configured_status": "unavailable",
+      "runtime_status": "collected",
+      "evidence_rows": 124,
+      "error": null
+    },
+    {
       "set_key": "det1",
       "set_name": "Detective Pikachu",
       "source_key": "pokemontcg_api",
@@ -2902,6 +4342,16 @@
       "configured_status": "available",
       "runtime_status": "collected",
       "evidence_rows": 36,
+      "error": null
+    },
+    {
+      "set_key": "det1",
+      "set_name": "Detective Pikachu",
+      "source_key": "tcgplayer_price_guide",
+      "source_alias": null,
+      "configured_status": "unavailable",
+      "runtime_status": "unavailable",
+      "evidence_rows": 0,
       "error": null
     },
     {
@@ -2925,6 +4375,16 @@
       "error": null
     },
     {
+      "set_key": "sm10",
+      "set_name": "Unbroken Bonds",
+      "source_key": "tcgplayer_price_guide",
+      "source_alias": null,
+      "configured_status": "unavailable",
+      "runtime_status": "collected",
+      "evidence_rows": 154,
+      "error": null
+    },
+    {
       "set_key": "sm11",
       "set_name": "Unified Minds",
       "source_key": "pokemontcg_api",
@@ -2942,6 +4402,16 @@
       "configured_status": "available",
       "runtime_status": "collected",
       "evidence_rows": 516,
+      "error": null
+    },
+    {
+      "set_key": "sm11",
+      "set_name": "Unified Minds",
+      "source_key": "tcgplayer_price_guide",
+      "source_alias": null,
+      "configured_status": "unavailable",
+      "runtime_status": "collected",
+      "evidence_rows": 175,
       "error": null
     },
     {
@@ -2965,6 +4435,16 @@
       "error": null
     },
     {
+      "set_key": "sm115",
+      "set_name": "Hidden Fates",
+      "source_key": "tcgplayer_price_guide",
+      "source_alias": null,
+      "configured_status": "unavailable",
+      "runtime_status": "collected",
+      "evidence_rows": 50,
+      "error": null
+    },
+    {
       "set_key": "sma",
       "set_name": "Hidden Fates Shiny Vault",
       "source_key": "pokemontcg_api",
@@ -2982,6 +4462,16 @@
       "configured_status": "available",
       "runtime_status": "collected",
       "evidence_rows": 188,
+      "error": null
+    },
+    {
+      "set_key": "sma",
+      "set_name": "Hidden Fates Shiny Vault",
+      "source_key": "tcgplayer_price_guide",
+      "source_alias": null,
+      "configured_status": "unavailable",
+      "runtime_status": "unavailable",
+      "evidence_rows": 0,
       "error": null
     },
     {
@@ -3005,6 +4495,16 @@
       "error": null
     },
     {
+      "set_key": "mcd19",
+      "set_name": "McDonald's Collection 2019",
+      "source_key": "tcgplayer_price_guide",
+      "source_alias": null,
+      "configured_status": "unavailable",
+      "runtime_status": "collected",
+      "evidence_rows": 12,
+      "error": null
+    },
+    {
       "set_key": "sm12",
       "set_name": "Cosmic Eclipse",
       "source_key": "pokemontcg_api",
@@ -3022,6 +4522,16 @@
       "configured_status": "available",
       "runtime_status": "collected",
       "evidence_rows": 542,
+      "error": null
+    },
+    {
+      "set_key": "sm12",
+      "set_name": "Cosmic Eclipse",
+      "source_key": "tcgplayer_price_guide",
+      "source_alias": null,
+      "configured_status": "unavailable",
+      "runtime_status": "collected",
+      "evidence_rows": 171,
       "error": null
     },
     {
@@ -3045,6 +4555,16 @@
       "error": null
     },
     {
+      "set_key": "swshp",
+      "set_name": "SWSH Black Star Promos",
+      "source_key": "tcgplayer_price_guide",
+      "source_alias": null,
+      "configured_status": "unavailable",
+      "runtime_status": "collected",
+      "evidence_rows": 136,
+      "error": null
+    },
+    {
       "set_key": "swsh1",
       "set_name": "Sword & Shield",
       "source_key": "pokemontcg_api",
@@ -3065,13 +4585,23 @@
       "error": null
     },
     {
+      "set_key": "swsh1",
+      "set_name": "Sword & Shield",
+      "source_key": "tcgplayer_price_guide",
+      "source_alias": null,
+      "configured_status": "unavailable",
+      "runtime_status": "collected",
+      "evidence_rows": 380,
+      "error": null
+    },
+    {
       "set_key": "swsh2",
       "set_name": "Rebel Clash",
       "source_key": "pokemontcg_api",
       "source_alias": "swsh2",
       "configured_status": "available",
       "runtime_status": "collected",
-      "evidence_rows": 570,
+      "evidence_rows": 569,
       "error": null
     },
     {
@@ -3085,6 +4615,16 @@
       "error": null
     },
     {
+      "set_key": "swsh2",
+      "set_name": "Rebel Clash",
+      "source_key": "tcgplayer_price_guide",
+      "source_alias": null,
+      "configured_status": "unavailable",
+      "runtime_status": "collected",
+      "evidence_rows": 352,
+      "error": null
+    },
+    {
       "set_key": "swsh3",
       "set_name": "Darkness Ablaze",
       "source_key": "pokemontcg_api",
@@ -3102,6 +4642,16 @@
       "configured_status": "available",
       "runtime_status": "collected",
       "evidence_rows": 557,
+      "error": null
+    },
+    {
+      "set_key": "swsh3",
+      "set_name": "Darkness Ablaze",
+      "source_key": "tcgplayer_price_guide",
+      "source_alias": null,
+      "configured_status": "unavailable",
+      "runtime_status": "collected",
+      "evidence_rows": 356,
       "error": null
     },
     {
@@ -3118,6 +4668,16 @@
       "set_key": "fut20",
       "set_name": "Pokémon Futsal Collection",
       "source_key": "tcgdex",
+      "source_alias": null,
+      "configured_status": "unavailable",
+      "runtime_status": "unavailable",
+      "evidence_rows": 0,
+      "error": null
+    },
+    {
+      "set_key": "fut20",
+      "set_name": "Pokémon Futsal Collection",
+      "source_key": "tcgplayer_price_guide",
       "source_alias": null,
       "configured_status": "unavailable",
       "runtime_status": "unavailable",
@@ -3145,6 +4705,16 @@
       "error": null
     },
     {
+      "set_key": "swsh35",
+      "set_name": "Champion's Path",
+      "source_key": "tcgplayer_price_guide",
+      "source_alias": null,
+      "configured_status": "unavailable",
+      "runtime_status": "collected",
+      "evidence_rows": 134,
+      "error": null
+    },
+    {
       "set_key": "swsh4",
       "set_name": "Vivid Voltage",
       "source_key": "pokemontcg_api",
@@ -3162,6 +4732,16 @@
       "configured_status": "available",
       "runtime_status": "collected",
       "evidence_rows": 548,
+      "error": null
+    },
+    {
+      "set_key": "swsh4",
+      "set_name": "Vivid Voltage",
+      "source_key": "tcgplayer_price_guide",
+      "source_alias": null,
+      "configured_status": "unavailable",
+      "runtime_status": "collected",
+      "evidence_rows": 345,
       "error": null
     },
     {
@@ -3185,6 +4765,16 @@
       "error": null
     },
     {
+      "set_key": "mcd21",
+      "set_name": "McDonald's Collection 2021",
+      "source_key": "tcgplayer_price_guide",
+      "source_alias": null,
+      "configured_status": "unavailable",
+      "runtime_status": "collected",
+      "evidence_rows": 50,
+      "error": null
+    },
+    {
       "set_key": "swsh45",
       "set_name": "Shining Fates",
       "source_key": "pokemontcg_api",
@@ -3202,6 +4792,16 @@
       "configured_status": "available",
       "runtime_status": "collected",
       "evidence_rows": 436,
+      "error": null
+    },
+    {
+      "set_key": "swsh45",
+      "set_name": "Shining Fates",
+      "source_key": "tcgplayer_price_guide",
+      "source_alias": null,
+      "configured_status": "unavailable",
+      "runtime_status": "collected",
+      "evidence_rows": 115,
       "error": null
     },
     {
@@ -3225,6 +4825,16 @@
       "error": null
     },
     {
+      "set_key": "swsh45sv",
+      "set_name": "Shining Fates Shiny Vault",
+      "source_key": "tcgplayer_price_guide",
+      "source_alias": null,
+      "configured_status": "unavailable",
+      "runtime_status": "unavailable",
+      "evidence_rows": 0,
+      "error": null
+    },
+    {
       "set_key": "swsh5",
       "set_name": "Battle Styles",
       "source_key": "pokemontcg_api",
@@ -3242,6 +4852,16 @@
       "configured_status": "available",
       "runtime_status": "collected",
       "evidence_rows": 489,
+      "error": null
+    },
+    {
+      "set_key": "swsh5",
+      "set_name": "Battle Styles",
+      "source_key": "tcgplayer_price_guide",
+      "source_alias": null,
+      "configured_status": "unavailable",
+      "runtime_status": "collected",
+      "evidence_rows": 306,
       "error": null
     },
     {
@@ -3265,6 +4885,16 @@
       "error": null
     },
     {
+      "set_key": "swsh6",
+      "set_name": "Chilling Reign",
+      "source_key": "tcgplayer_price_guide",
+      "source_alias": null,
+      "configured_status": "unavailable",
+      "runtime_status": "collected",
+      "evidence_rows": 363,
+      "error": null
+    },
+    {
       "set_key": "swsh7",
       "set_name": "Evolving Skies",
       "source_key": "pokemontcg_api",
@@ -3282,6 +4912,16 @@
       "configured_status": "available",
       "runtime_status": "collected",
       "evidence_rows": 553,
+      "error": null
+    },
+    {
+      "set_key": "swsh7",
+      "set_name": "Evolving Skies",
+      "source_key": "tcgplayer_price_guide",
+      "source_alias": null,
+      "configured_status": "unavailable",
+      "runtime_status": "collected",
+      "evidence_rows": 315,
       "error": null
     },
     {
@@ -3305,6 +4945,16 @@
       "error": null
     },
     {
+      "set_key": "cel25",
+      "set_name": "Celebrations",
+      "source_key": "tcgplayer_price_guide",
+      "source_alias": null,
+      "configured_status": "unavailable",
+      "runtime_status": "collected",
+      "evidence_rows": 25,
+      "error": null
+    },
+    {
       "set_key": "cel25c",
       "set_name": "Celebrations: Classic Collection",
       "source_key": "pokemontcg_api",
@@ -3318,6 +4968,16 @@
       "set_key": "cel25c",
       "set_name": "Celebrations: Classic Collection",
       "source_key": "tcgdex",
+      "source_alias": null,
+      "configured_status": "unavailable",
+      "runtime_status": "unavailable",
+      "evidence_rows": 0,
+      "error": null
+    },
+    {
+      "set_key": "cel25c",
+      "set_name": "Celebrations: Classic Collection",
+      "source_key": "tcgplayer_price_guide",
       "source_alias": null,
       "configured_status": "unavailable",
       "runtime_status": "unavailable",
@@ -3345,6 +5005,16 @@
       "error": null
     },
     {
+      "set_key": "swsh8",
+      "set_name": "Fusion Strike",
+      "source_key": "tcgplayer_price_guide",
+      "source_alias": null,
+      "configured_status": "unavailable",
+      "runtime_status": "collected",
+      "evidence_rows": 488,
+      "error": null
+    },
+    {
       "set_key": "swsh9",
       "set_name": "Brilliant Stars",
       "source_key": "pokemontcg_api",
@@ -3365,6 +5035,16 @@
       "error": null
     },
     {
+      "set_key": "swsh9",
+      "set_name": "Brilliant Stars",
+      "source_key": "tcgplayer_price_guide",
+      "source_alias": null,
+      "configured_status": "unavailable",
+      "runtime_status": "collected",
+      "evidence_rows": 310,
+      "error": null
+    },
+    {
       "set_key": "swsh9tg",
       "set_name": "Brilliant Stars Trainer Gallery",
       "source_key": "pokemontcg_api",
@@ -3378,6 +5058,16 @@
       "set_key": "swsh9tg",
       "set_name": "Brilliant Stars Trainer Gallery",
       "source_key": "tcgdex",
+      "source_alias": null,
+      "configured_status": "unavailable",
+      "runtime_status": "unavailable",
+      "evidence_rows": 0,
+      "error": null
+    },
+    {
+      "set_key": "swsh9tg",
+      "set_name": "Brilliant Stars Trainer Gallery",
+      "source_key": "tcgplayer_price_guide",
       "source_alias": null,
       "configured_status": "unavailable",
       "runtime_status": "unavailable",
@@ -3405,6 +5095,16 @@
       "error": null
     },
     {
+      "set_key": "swsh10",
+      "set_name": "Astral Radiance",
+      "source_key": "tcgplayer_price_guide",
+      "source_alias": null,
+      "configured_status": "unavailable",
+      "runtime_status": "collected",
+      "evidence_rows": 344,
+      "error": null
+    },
+    {
       "set_key": "swsh10tg",
       "set_name": "Astral Radiance Trainer Gallery",
       "source_key": "pokemontcg_api",
@@ -3418,6 +5118,16 @@
       "set_key": "swsh10tg",
       "set_name": "Astral Radiance Trainer Gallery",
       "source_key": "tcgdex",
+      "source_alias": null,
+      "configured_status": "unavailable",
+      "runtime_status": "unavailable",
+      "evidence_rows": 0,
+      "error": null
+    },
+    {
+      "set_key": "swsh10tg",
+      "set_name": "Astral Radiance Trainer Gallery",
+      "source_key": "tcgplayer_price_guide",
       "source_alias": null,
       "configured_status": "unavailable",
       "runtime_status": "unavailable",
@@ -3445,6 +5155,16 @@
       "error": null
     },
     {
+      "set_key": "pgo",
+      "set_name": "Pokémon GO",
+      "source_key": "tcgplayer_price_guide",
+      "source_alias": null,
+      "configured_status": "unavailable",
+      "runtime_status": "collected",
+      "evidence_rows": 145,
+      "error": null
+    },
+    {
       "set_key": "mcd22",
       "set_name": "McDonald's Collection 2022",
       "source_key": "pokemontcg_api",
@@ -3462,6 +5182,16 @@
       "configured_status": "available",
       "runtime_status": "collected",
       "evidence_rows": 30,
+      "error": null
+    },
+    {
+      "set_key": "mcd22",
+      "set_name": "McDonald's Collection 2022",
+      "source_key": "tcgplayer_price_guide",
+      "source_alias": null,
+      "configured_status": "unavailable",
+      "runtime_status": "collected",
+      "evidence_rows": 6,
       "error": null
     },
     {
@@ -3485,6 +5215,16 @@
       "error": null
     },
     {
+      "set_key": "swsh11",
+      "set_name": "Lost Origin",
+      "source_key": "tcgplayer_price_guide",
+      "source_alias": null,
+      "configured_status": "unavailable",
+      "runtime_status": "collected",
+      "evidence_rows": 364,
+      "error": null
+    },
+    {
       "set_key": "swsh11tg",
       "set_name": "Lost Origin Trainer Gallery",
       "source_key": "pokemontcg_api",
@@ -3498,6 +5238,16 @@
       "set_key": "swsh11tg",
       "set_name": "Lost Origin Trainer Gallery",
       "source_key": "tcgdex",
+      "source_alias": null,
+      "configured_status": "unavailable",
+      "runtime_status": "unavailable",
+      "evidence_rows": 0,
+      "error": null
+    },
+    {
+      "set_key": "swsh11tg",
+      "set_name": "Lost Origin Trainer Gallery",
+      "source_key": "tcgplayer_price_guide",
       "source_alias": null,
       "configured_status": "unavailable",
       "runtime_status": "unavailable",
@@ -3525,6 +5275,16 @@
       "error": null
     },
     {
+      "set_key": "swsh12",
+      "set_name": "Silver Tempest",
+      "source_key": "tcgplayer_price_guide",
+      "source_alias": null,
+      "configured_status": "unavailable",
+      "runtime_status": "collected",
+      "evidence_rows": 357,
+      "error": null
+    },
+    {
       "set_key": "swsh12tg",
       "set_name": "Silver Tempest Trainer Gallery",
       "source_key": "pokemontcg_api",
@@ -3538,6 +5298,16 @@
       "set_key": "swsh12tg",
       "set_name": "Silver Tempest Trainer Gallery",
       "source_key": "tcgdex",
+      "source_alias": null,
+      "configured_status": "unavailable",
+      "runtime_status": "unavailable",
+      "evidence_rows": 0,
+      "error": null
+    },
+    {
+      "set_key": "swsh12tg",
+      "set_name": "Silver Tempest Trainer Gallery",
+      "source_key": "tcgplayer_price_guide",
       "source_alias": null,
       "configured_status": "unavailable",
       "runtime_status": "unavailable",
@@ -3565,6 +5335,16 @@
       "error": null
     },
     {
+      "set_key": "svp",
+      "set_name": "Scarlet & Violet Black Star Promos",
+      "source_key": "tcgplayer_price_guide",
+      "source_alias": null,
+      "configured_status": "unavailable",
+      "runtime_status": "collected",
+      "evidence_rows": 8,
+      "error": null
+    },
+    {
       "set_key": "swsh12pt5",
       "set_name": "Crown Zenith",
       "source_key": "pokemontcg_api",
@@ -3585,6 +5365,16 @@
       "error": null
     },
     {
+      "set_key": "swsh12pt5",
+      "set_name": "Crown Zenith",
+      "source_key": "tcgplayer_price_guide",
+      "source_alias": null,
+      "configured_status": "unavailable",
+      "runtime_status": "collected",
+      "evidence_rows": 272,
+      "error": null
+    },
+    {
       "set_key": "swsh12pt5gg",
       "set_name": "Crown Zenith Galarian Gallery",
       "source_key": "pokemontcg_api",
@@ -3598,6 +5388,16 @@
       "set_key": "swsh12pt5gg",
       "set_name": "Crown Zenith Galarian Gallery",
       "source_key": "tcgdex",
+      "source_alias": null,
+      "configured_status": "unavailable",
+      "runtime_status": "unavailable",
+      "evidence_rows": 0,
+      "error": null
+    },
+    {
+      "set_key": "swsh12pt5gg",
+      "set_name": "Crown Zenith Galarian Gallery",
+      "source_key": "tcgplayer_price_guide",
       "source_alias": null,
       "configured_status": "unavailable",
       "runtime_status": "unavailable",
@@ -3625,6 +5425,16 @@
       "error": null
     },
     {
+      "set_key": "sv1",
+      "set_name": "Scarlet & Violet",
+      "source_key": "tcgplayer_price_guide",
+      "source_alias": null,
+      "configured_status": "unavailable",
+      "runtime_status": "collected",
+      "evidence_rows": 169,
+      "error": null
+    },
+    {
       "set_key": "sve",
       "set_name": "Scarlet & Violet Energies",
       "source_key": "pokemontcg_api",
@@ -3642,6 +5452,16 @@
       "configured_status": "available",
       "runtime_status": "collected",
       "evidence_rows": 48,
+      "error": null
+    },
+    {
+      "set_key": "sve",
+      "set_name": "Scarlet & Violet Energies",
+      "source_key": "tcgplayer_price_guide",
+      "source_alias": null,
+      "configured_status": "unavailable",
+      "runtime_status": "unavailable",
+      "evidence_rows": 0,
       "error": null
     },
     {
@@ -3665,6 +5485,16 @@
       "error": null
     },
     {
+      "set_key": "sv2",
+      "set_name": "Paldea Evolved",
+      "source_key": "tcgplayer_price_guide",
+      "source_alias": null,
+      "configured_status": "unavailable",
+      "runtime_status": "collected",
+      "evidence_rows": 151,
+      "error": null
+    },
+    {
       "set_key": "sv3",
       "set_name": "Obsidian Flames",
       "source_key": "pokemontcg_api",
@@ -3682,6 +5512,16 @@
       "configured_status": "available",
       "runtime_status": "collected",
       "evidence_rows": 647,
+      "error": null
+    },
+    {
+      "set_key": "sv3",
+      "set_name": "Obsidian Flames",
+      "source_key": "tcgplayer_price_guide",
+      "source_alias": null,
+      "configured_status": "unavailable",
+      "runtime_status": "collected",
+      "evidence_rows": 406,
       "error": null
     },
     {
@@ -3705,6 +5545,16 @@
       "error": null
     },
     {
+      "set_key": "sv3pt5",
+      "set_name": "151",
+      "source_key": "tcgplayer_price_guide",
+      "source_alias": null,
+      "configured_status": "unavailable",
+      "runtime_status": "collected",
+      "evidence_rows": 360,
+      "error": null
+    },
+    {
       "set_key": "sv4",
       "set_name": "Paradox Rift",
       "source_key": "pokemontcg_api",
@@ -3722,6 +5572,16 @@
       "configured_status": "available",
       "runtime_status": "collected",
       "evidence_rows": 698,
+      "error": null
+    },
+    {
+      "set_key": "sv4",
+      "set_name": "Paradox Rift",
+      "source_key": "tcgplayer_price_guide",
+      "source_alias": null,
+      "configured_status": "unavailable",
+      "runtime_status": "collected",
+      "evidence_rows": 428,
       "error": null
     },
     {
@@ -3745,6 +5605,16 @@
       "error": null
     },
     {
+      "set_key": "sv4pt5",
+      "set_name": "Paldean Fates",
+      "source_key": "tcgplayer_price_guide",
+      "source_alias": null,
+      "configured_status": "unavailable",
+      "runtime_status": "collected",
+      "evidence_rows": 325,
+      "error": null
+    },
+    {
       "set_key": "sv5",
       "set_name": "Temporal Forces",
       "source_key": "pokemontcg_api",
@@ -3762,6 +5632,16 @@
       "configured_status": "available",
       "runtime_status": "collected",
       "evidence_rows": 597,
+      "error": null
+    },
+    {
+      "set_key": "sv5",
+      "set_name": "Temporal Forces",
+      "source_key": "tcgplayer_price_guide",
+      "source_alias": null,
+      "configured_status": "unavailable",
+      "runtime_status": "collected",
+      "evidence_rows": 358,
       "error": null
     },
     {
@@ -3785,6 +5665,16 @@
       "error": null
     },
     {
+      "set_key": "sv6",
+      "set_name": "Twilight Masquerade",
+      "source_key": "tcgplayer_price_guide",
+      "source_alias": null,
+      "configured_status": "unavailable",
+      "runtime_status": "collected",
+      "evidence_rows": 373,
+      "error": null
+    },
+    {
       "set_key": "sv6pt5",
       "set_name": "Shrouded Fable",
       "source_key": "pokemontcg_api",
@@ -3802,6 +5692,16 @@
       "configured_status": "available",
       "runtime_status": "collected",
       "evidence_rows": 147,
+      "error": null
+    },
+    {
+      "set_key": "sv6pt5",
+      "set_name": "Shrouded Fable",
+      "source_key": "tcgplayer_price_guide",
+      "source_alias": null,
+      "configured_status": "unavailable",
+      "runtime_status": "collected",
+      "evidence_rows": 48,
       "error": null
     },
     {
@@ -3825,6 +5725,16 @@
       "error": null
     },
     {
+      "set_key": "sv7",
+      "set_name": "Stellar Crown",
+      "source_key": "tcgplayer_price_guide",
+      "source_alias": null,
+      "configured_status": "unavailable",
+      "runtime_status": "collected",
+      "evidence_rows": 299,
+      "error": null
+    },
+    {
       "set_key": "sv8",
       "set_name": "Surging Sparks",
       "source_key": "pokemontcg_api",
@@ -3842,6 +5752,16 @@
       "configured_status": "available",
       "runtime_status": "collected",
       "evidence_rows": 674,
+      "error": null
+    },
+    {
+      "set_key": "sv8",
+      "set_name": "Surging Sparks",
+      "source_key": "tcgplayer_price_guide",
+      "source_alias": null,
+      "configured_status": "unavailable",
+      "runtime_status": "collected",
+      "evidence_rows": 417,
       "error": null
     },
     {
@@ -3865,6 +5785,16 @@
       "error": null
     },
     {
+      "set_key": "sv8pt5",
+      "set_name": "Prismatic Evolutions",
+      "source_key": "tcgplayer_price_guide",
+      "source_alias": null,
+      "configured_status": "unavailable",
+      "runtime_status": "collected",
+      "evidence_rows": 280,
+      "error": null
+    },
+    {
       "set_key": "sv9",
       "set_name": "Journey Together",
       "source_key": "pokemontcg_api",
@@ -3882,6 +5812,16 @@
       "configured_status": "available",
       "runtime_status": "collected",
       "evidence_rows": 539,
+      "error": null
+    },
+    {
+      "set_key": "sv9",
+      "set_name": "Journey Together",
+      "source_key": "tcgplayer_price_guide",
+      "source_alias": null,
+      "configured_status": "unavailable",
+      "runtime_status": "collected",
+      "evidence_rows": 333,
       "error": null
     },
     {
@@ -3905,6 +5845,16 @@
       "error": null
     },
     {
+      "set_key": "sv10",
+      "set_name": "Destined Rivals",
+      "source_key": "tcgplayer_price_guide",
+      "source_alias": null,
+      "configured_status": "unavailable",
+      "runtime_status": "collected",
+      "evidence_rows": 409,
+      "error": null
+    },
+    {
       "set_key": "zsv10pt5",
       "set_name": "Black Bolt",
       "source_key": "pokemontcg_api",
@@ -3922,6 +5872,16 @@
       "configured_status": "available",
       "runtime_status": "collected",
       "evidence_rows": 426,
+      "error": null
+    },
+    {
+      "set_key": "zsv10pt5",
+      "set_name": "Black Bolt",
+      "source_key": "tcgplayer_price_guide",
+      "source_alias": null,
+      "configured_status": "unavailable",
+      "runtime_status": "collected",
+      "evidence_rows": 250,
       "error": null
     },
     {
@@ -3945,6 +5905,16 @@
       "error": null
     },
     {
+      "set_key": "rsv10pt5",
+      "set_name": "White Flare",
+      "source_key": "tcgplayer_price_guide",
+      "source_alias": null,
+      "configured_status": "unavailable",
+      "runtime_status": "collected",
+      "evidence_rows": 254,
+      "error": null
+    },
+    {
       "set_key": "me1",
       "set_name": "Mega Evolution",
       "source_key": "pokemontcg_api",
@@ -3962,6 +5932,16 @@
       "configured_status": "available",
       "runtime_status": "collected",
       "evidence_rows": 516,
+      "error": null
+    },
+    {
+      "set_key": "me1",
+      "set_name": "Mega Evolution",
+      "source_key": "tcgplayer_price_guide",
+      "source_alias": null,
+      "configured_status": "unavailable",
+      "runtime_status": "collected",
+      "evidence_rows": 310,
       "error": null
     },
     {
@@ -3985,6 +5965,16 @@
       "error": null
     },
     {
+      "set_key": "me2",
+      "set_name": "Phantasmal Flames",
+      "source_key": "tcgplayer_price_guide",
+      "source_alias": null,
+      "configured_status": "unavailable",
+      "runtime_status": "collected",
+      "evidence_rows": 213,
+      "error": null
+    },
+    {
       "set_key": "ascended_heroes",
       "set_name": "Ascended Heroes",
       "source_key": "pokemontcg_api",
@@ -4002,6 +5992,16 @@
       "configured_status": "available",
       "runtime_status": "collected",
       "evidence_rows": 768,
+      "error": null
+    },
+    {
+      "set_key": "ascended_heroes",
+      "set_name": "Ascended Heroes",
+      "source_key": "tcgplayer_price_guide",
+      "source_alias": null,
+      "configured_status": "unavailable",
+      "runtime_status": "unavailable",
+      "evidence_rows": 0,
       "error": null
     },
     {
@@ -4025,6 +6025,16 @@
       "error": null
     },
     {
+      "set_key": "me3",
+      "set_name": "Perfect Order",
+      "source_key": "tcgplayer_price_guide",
+      "source_alias": null,
+      "configured_status": "unavailable",
+      "runtime_status": "unavailable",
+      "evidence_rows": 0,
+      "error": null
+    },
+    {
       "set_key": "me4",
       "set_name": "Chaos Rising",
       "source_key": "pokemontcg_api",
@@ -4042,6 +6052,16 @@
       "configured_status": "available",
       "runtime_status": "collected",
       "evidence_rows": 244,
+      "error": null
+    },
+    {
+      "set_key": "me4",
+      "set_name": "Chaos Rising",
+      "source_key": "tcgplayer_price_guide",
+      "source_alias": null,
+      "configured_status": "unavailable",
+      "runtime_status": "unavailable",
+      "evidence_rows": 0,
       "error": null
     },
     {

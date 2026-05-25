@@ -1,6 +1,6 @@
 {
   "version": "ENGLISH_MASTER_INDEX_SET_AUDIT_V1",
-  "generated_at": "2026-05-24T14:33:16.250Z",
+  "generated_at": "2026-05-25T14:37:31.779Z",
   "audit_only": true,
   "db_writes": false,
   "sets": [
@@ -55,6 +55,16 @@
           "configured_status": "available",
           "runtime_status": "collected",
           "evidence_rows": 60,
+          "error": null
+        },
+        {
+          "set_key": "tk-bw-e",
+          "set_name": "BW trainer Kit (Excadrill)",
+          "source_key": "tcgplayer_price_guide",
+          "source_alias": null,
+          "configured_status": "unavailable",
+          "runtime_status": "unavailable",
+          "evidence_rows": 0,
           "error": null
         }
       ]
@@ -111,6 +121,16 @@
           "runtime_status": "collected",
           "evidence_rows": 60,
           "error": null
+        },
+        {
+          "set_key": "tk-bw-z",
+          "set_name": "BW trainer Kit (Zoroark)",
+          "source_key": "tcgplayer_price_guide",
+          "source_alias": null,
+          "configured_status": "unavailable",
+          "runtime_status": "unavailable",
+          "evidence_rows": 0,
+          "error": null
         }
       ]
     },
@@ -165,6 +185,16 @@
           "configured_status": "available",
           "runtime_status": "collected",
           "evidence_rows": 22,
+          "error": null
+        },
+        {
+          "set_key": "tk-dp-l",
+          "set_name": "DP trainer Kit (Lucario)",
+          "source_key": "tcgplayer_price_guide",
+          "source_alias": null,
+          "configured_status": "unavailable",
+          "runtime_status": "unavailable",
+          "evidence_rows": 0,
           "error": null
         }
       ]
@@ -221,6 +251,16 @@
           "runtime_status": "collected",
           "evidence_rows": 24,
           "error": null
+        },
+        {
+          "set_key": "tk-dp-m",
+          "set_name": "DP trainer Kit (Manaphy)",
+          "source_key": "tcgplayer_price_guide",
+          "source_alias": null,
+          "configured_status": "unavailable",
+          "runtime_status": "unavailable",
+          "evidence_rows": 0,
+          "error": null
         }
       ]
     },
@@ -275,6 +315,16 @@
           "configured_status": "available",
           "runtime_status": "collected",
           "evidence_rows": 2,
+          "error": null
+        },
+        {
+          "set_key": "tk-hs-g",
+          "set_name": "HS trainer Kit (Gyarados)",
+          "source_key": "tcgplayer_price_guide",
+          "source_alias": null,
+          "configured_status": "unavailable",
+          "runtime_status": "unavailable",
+          "evidence_rows": 0,
           "error": null
         }
       ]
@@ -331,6 +381,16 @@
           "runtime_status": "collected",
           "evidence_rows": 2,
           "error": null
+        },
+        {
+          "set_key": "tk-hs-r",
+          "set_name": "HS trainer Kit (Raichu)",
+          "source_key": "tcgplayer_price_guide",
+          "source_alias": null,
+          "configured_status": "unavailable",
+          "runtime_status": "unavailable",
+          "evidence_rows": 0,
+          "error": null
         }
       ]
     },
@@ -379,6 +439,16 @@
           "source_key": "tcgdex",
           "source_alias": "jumbo",
           "configured_status": "available",
+          "runtime_status": "unavailable",
+          "evidence_rows": 0,
+          "error": null
+        },
+        {
+          "set_key": "jumbo",
+          "set_name": "Jumbo cards",
+          "source_key": "tcgplayer_price_guide",
+          "source_alias": null,
+          "configured_status": "unavailable",
           "runtime_status": "unavailable",
           "evidence_rows": 0,
           "error": null
@@ -437,6 +507,16 @@
           "runtime_status": "collected",
           "evidence_rows": 30,
           "error": null
+        },
+        {
+          "set_key": "2023sv",
+          "set_name": "McDonald's Collection 2023",
+          "source_key": "tcgplayer_price_guide",
+          "source_alias": null,
+          "configured_status": "unavailable",
+          "runtime_status": "unavailable",
+          "evidence_rows": 0,
+          "error": null
         }
       ]
     },
@@ -491,6 +571,16 @@
           "configured_status": "available",
           "runtime_status": "collected",
           "evidence_rows": 30,
+          "error": null
+        },
+        {
+          "set_key": "2024sv",
+          "set_name": "McDonald's Collection 2024",
+          "source_key": "tcgplayer_price_guide",
+          "source_alias": null,
+          "configured_status": "unavailable",
+          "runtime_status": "unavailable",
+          "evidence_rows": 0,
           "error": null
         }
       ]
@@ -547,6 +637,16 @@
           "runtime_status": "collected",
           "evidence_rows": 16,
           "error": null
+        },
+        {
+          "set_key": "mee",
+          "set_name": "Mega Evolution Energy",
+          "source_key": "tcgplayer_price_guide",
+          "source_alias": null,
+          "configured_status": "unavailable",
+          "runtime_status": "unavailable",
+          "evidence_rows": 0,
+          "error": null
         }
       ]
     },
@@ -601,6 +701,16 @@
           "configured_status": "available",
           "runtime_status": "collected",
           "evidence_rows": 104,
+          "error": null
+        },
+        {
+          "set_key": "mep",
+          "set_name": "MEP Black Star Promos",
+          "source_key": "tcgplayer_price_guide",
+          "source_alias": null,
+          "configured_status": "unavailable",
+          "runtime_status": "unavailable",
+          "evidence_rows": 0,
           "error": null
         }
       ]
@@ -657,6 +767,16 @@
           "runtime_status": "collected",
           "evidence_rows": 68,
           "error": null
+        },
+        {
+          "set_key": "mfb",
+          "set_name": "My First Battle",
+          "source_key": "tcgplayer_price_guide",
+          "source_alias": null,
+          "configured_status": "unavailable",
+          "runtime_status": "unavailable",
+          "evidence_rows": 0,
+          "error": null
         }
       ]
     },
@@ -711,6 +831,16 @@
           "configured_status": "available",
           "runtime_status": "collected",
           "evidence_rows": 10,
+          "error": null
+        },
+        {
+          "set_key": "ex5.5",
+          "set_name": "Poké Card Creator Pack",
+          "source_key": "tcgplayer_price_guide",
+          "source_alias": null,
+          "configured_status": "unavailable",
+          "runtime_status": "unavailable",
+          "evidence_rows": 0,
           "error": null
         }
       ]
@@ -767,6 +897,16 @@
           "runtime_status": "collected",
           "evidence_rows": 10,
           "error": null
+        },
+        {
+          "set_key": "fut2020",
+          "set_name": "Pokémon Futsal 2020",
+          "source_key": "tcgplayer_price_guide",
+          "source_alias": null,
+          "configured_status": "unavailable",
+          "runtime_status": "unavailable",
+          "evidence_rows": 0,
+          "error": null
         }
       ]
     },
@@ -818,6 +958,16 @@
           "runtime_status": "unavailable",
           "evidence_rows": 0,
           "error": null
+        },
+        {
+          "set_key": "rc",
+          "set_name": "Radiant Collection",
+          "source_key": "tcgplayer_price_guide",
+          "source_alias": null,
+          "configured_status": "unavailable",
+          "runtime_status": "unavailable",
+          "evidence_rows": 0,
+          "error": null
         }
       ]
     },
@@ -866,6 +1016,16 @@
           "source_key": "tcgdex",
           "source_alias": "sp",
           "configured_status": "available",
+          "runtime_status": "unavailable",
+          "evidence_rows": 0,
+          "error": null
+        },
+        {
+          "set_key": "sp",
+          "set_name": "Sample",
+          "source_key": "tcgplayer_price_guide",
+          "source_alias": null,
+          "configured_status": "unavailable",
           "runtime_status": "unavailable",
           "evidence_rows": 0,
           "error": null
@@ -924,6 +1084,16 @@
           "runtime_status": "collected",
           "evidence_rows": 38,
           "error": null
+        },
+        {
+          "set_key": "tk-sm-r",
+          "set_name": "SM trainer Kit (Alolan Raichu)",
+          "source_key": "tcgplayer_price_guide",
+          "source_alias": null,
+          "configured_status": "unavailable",
+          "runtime_status": "unavailable",
+          "evidence_rows": 0,
+          "error": null
         }
       ]
     },
@@ -978,6 +1148,16 @@
           "configured_status": "available",
           "runtime_status": "collected",
           "evidence_rows": 36,
+          "error": null
+        },
+        {
+          "set_key": "tk-sm-l",
+          "set_name": "SM trainer Kit (Lycanroc)",
+          "source_key": "tcgplayer_price_guide",
+          "source_alias": null,
+          "configured_status": "unavailable",
+          "runtime_status": "unavailable",
+          "evidence_rows": 0,
           "error": null
         }
       ]
@@ -1034,6 +1214,16 @@
           "runtime_status": "collected",
           "evidence_rows": 56,
           "error": null
+        },
+        {
+          "set_key": "exu",
+          "set_name": "Unseen Forces Unown Collection",
+          "source_key": "tcgplayer_price_guide",
+          "source_alias": null,
+          "configured_status": "unavailable",
+          "runtime_status": "unavailable",
+          "evidence_rows": 0,
+          "error": null
         }
       ]
     },
@@ -1082,6 +1272,16 @@
           "source_key": "tcgdex",
           "source_alias": "wp",
           "configured_status": "available",
+          "runtime_status": "unavailable",
+          "evidence_rows": 0,
+          "error": null
+        },
+        {
+          "set_key": "wp",
+          "set_name": "W Promotional",
+          "source_key": "tcgplayer_price_guide",
+          "source_alias": null,
+          "configured_status": "unavailable",
           "runtime_status": "unavailable",
           "evidence_rows": 0,
           "error": null
@@ -1140,6 +1340,16 @@
           "runtime_status": "collected",
           "evidence_rows": 60,
           "error": null
+        },
+        {
+          "set_key": "tk-xy-b",
+          "set_name": "XY trainer Kit (Bisharp)",
+          "source_key": "tcgplayer_price_guide",
+          "source_alias": null,
+          "configured_status": "unavailable",
+          "runtime_status": "unavailable",
+          "evidence_rows": 0,
+          "error": null
         }
       ]
     },
@@ -1194,6 +1404,16 @@
           "configured_status": "available",
           "runtime_status": "collected",
           "evidence_rows": 60,
+          "error": null
+        },
+        {
+          "set_key": "tk-xy-latia",
+          "set_name": "XY trainer Kit (Latias)",
+          "source_key": "tcgplayer_price_guide",
+          "source_alias": null,
+          "configured_status": "unavailable",
+          "runtime_status": "unavailable",
+          "evidence_rows": 0,
           "error": null
         }
       ]
@@ -1250,6 +1470,16 @@
           "runtime_status": "collected",
           "evidence_rows": 60,
           "error": null
+        },
+        {
+          "set_key": "tk-xy-latio",
+          "set_name": "XY trainer Kit (Latios)",
+          "source_key": "tcgplayer_price_guide",
+          "source_alias": null,
+          "configured_status": "unavailable",
+          "runtime_status": "unavailable",
+          "evidence_rows": 0,
+          "error": null
         }
       ]
     },
@@ -1304,6 +1534,16 @@
           "configured_status": "available",
           "runtime_status": "collected",
           "evidence_rows": 60,
+          "error": null
+        },
+        {
+          "set_key": "tk-xy-n",
+          "set_name": "XY trainer Kit (Noivern)",
+          "source_key": "tcgplayer_price_guide",
+          "source_alias": null,
+          "configured_status": "unavailable",
+          "runtime_status": "unavailable",
+          "evidence_rows": 0,
           "error": null
         }
       ]
@@ -1360,6 +1600,16 @@
           "runtime_status": "collected",
           "evidence_rows": 60,
           "error": null
+        },
+        {
+          "set_key": "tk-xy-p",
+          "set_name": "XY trainer Kit (Pikachu Libre)",
+          "source_key": "tcgplayer_price_guide",
+          "source_alias": null,
+          "configured_status": "unavailable",
+          "runtime_status": "unavailable",
+          "evidence_rows": 0,
+          "error": null
         }
       ]
     },
@@ -1414,6 +1664,16 @@
           "configured_status": "available",
           "runtime_status": "collected",
           "evidence_rows": 60,
+          "error": null
+        },
+        {
+          "set_key": "tk-xy-su",
+          "set_name": "XY trainer Kit (Suicune)",
+          "source_key": "tcgplayer_price_guide",
+          "source_alias": null,
+          "configured_status": "unavailable",
+          "runtime_status": "unavailable",
+          "evidence_rows": 0,
           "error": null
         }
       ]
@@ -1470,6 +1730,16 @@
           "runtime_status": "collected",
           "evidence_rows": 60,
           "error": null
+        },
+        {
+          "set_key": "tk-xy-sy",
+          "set_name": "XY trainer Kit (Sylveon)",
+          "source_key": "tcgplayer_price_guide",
+          "source_alias": null,
+          "configured_status": "unavailable",
+          "runtime_status": "unavailable",
+          "evidence_rows": 0,
+          "error": null
         }
       ]
     },
@@ -1524,6 +1794,16 @@
           "configured_status": "available",
           "runtime_status": "collected",
           "evidence_rows": 60,
+          "error": null
+        },
+        {
+          "set_key": "tk-xy-w",
+          "set_name": "XY trainer Kit (Wigglytuff)",
+          "source_key": "tcgplayer_price_guide",
+          "source_alias": null,
+          "configured_status": "unavailable",
+          "runtime_status": "unavailable",
+          "evidence_rows": 0,
           "error": null
         }
       ]
@@ -1580,6 +1860,16 @@
           "runtime_status": "collected",
           "evidence_rows": 12,
           "error": null
+        },
+        {
+          "set_key": "xya",
+          "set_name": "Yellow A Alternate",
+          "source_key": "tcgplayer_price_guide",
+          "source_alias": null,
+          "configured_status": "unavailable",
+          "runtime_status": "unavailable",
+          "evidence_rows": 0,
+          "error": null
         }
       ]
     },
@@ -1608,13 +1898,13 @@
           "total": 102
         }
       },
-      "evidence_rows": 509,
+      "evidence_rows": 610,
       "card_status_counts": {
         "api_agreed": 102
       },
       "printing_status_counts": {
-        "api_agreed": 101,
-        "candidate_unconfirmed": 103
+        "candidate_unconfirmed": 103,
+        "master_verified": 101
       },
       "source_availability": [
         {
@@ -1635,6 +1925,16 @@
           "configured_status": "available",
           "runtime_status": "collected",
           "evidence_rows": 306,
+          "error": null
+        },
+        {
+          "set_key": "base1",
+          "set_name": "Base",
+          "source_key": "tcgplayer_price_guide",
+          "source_alias": null,
+          "configured_status": "unavailable",
+          "runtime_status": "collected",
+          "evidence_rows": 101,
           "error": null
         }
       ]
@@ -1691,6 +1991,16 @@
           "runtime_status": "collected",
           "evidence_rows": 192,
           "error": null
+        },
+        {
+          "set_key": "base2",
+          "set_name": "Jungle",
+          "source_key": "tcgplayer_price_guide",
+          "source_alias": null,
+          "configured_status": "unavailable",
+          "runtime_status": "unavailable",
+          "evidence_rows": 0,
+          "error": null
         }
       ]
     },
@@ -1719,13 +2029,13 @@
           "total": 53
         }
       },
-      "evidence_rows": 211,
+      "evidence_rows": 258,
       "card_status_counts": {
         "api_agreed": 53
       },
       "printing_status_counts": {
-        "api_agreed": 47,
-        "candidate_unconfirmed": 11
+        "candidate_unconfirmed": 11,
+        "master_verified": 47
       },
       "source_availability": [
         {
@@ -1746,6 +2056,16 @@
           "configured_status": "available",
           "runtime_status": "collected",
           "evidence_rows": 107,
+          "error": null
+        },
+        {
+          "set_key": "basep",
+          "set_name": "Wizards Black Star Promos",
+          "source_key": "tcgplayer_price_guide",
+          "source_alias": null,
+          "configured_status": "unavailable",
+          "runtime_status": "collected",
+          "evidence_rows": 47,
           "error": null
         }
       ]
@@ -1802,6 +2122,16 @@
           "runtime_status": "collected",
           "evidence_rows": 186,
           "error": null
+        },
+        {
+          "set_key": "base3",
+          "set_name": "Fossil",
+          "source_key": "tcgplayer_price_guide",
+          "source_alias": null,
+          "configured_status": "unavailable",
+          "runtime_status": "unavailable",
+          "evidence_rows": 0,
+          "error": null
         }
       ]
     },
@@ -1830,14 +2160,14 @@
           "total": 130
         }
       },
-      "evidence_rows": 520,
+      "evidence_rows": 649,
       "card_status_counts": {
         "api_agreed": 129,
         "candidate_unconfirmed": 2
       },
       "printing_status_counts": {
-        "api_agreed": 129,
-        "candidate_unconfirmed": 2
+        "candidate_unconfirmed": 2,
+        "master_verified": 129
       },
       "source_availability": [
         {
@@ -1858,6 +2188,16 @@
           "configured_status": "available",
           "runtime_status": "collected",
           "evidence_rows": 260,
+          "error": null
+        },
+        {
+          "set_key": "base4",
+          "set_name": "Base Set 2",
+          "source_key": "tcgplayer_price_guide",
+          "source_alias": null,
+          "configured_status": "unavailable",
+          "runtime_status": "collected",
+          "evidence_rows": 129,
           "error": null
         }
       ]
@@ -1914,6 +2254,16 @@
           "runtime_status": "collected",
           "evidence_rows": 249,
           "error": null
+        },
+        {
+          "set_key": "base5",
+          "set_name": "Team Rocket",
+          "source_key": "tcgplayer_price_guide",
+          "source_alias": null,
+          "configured_status": "unavailable",
+          "runtime_status": "unavailable",
+          "evidence_rows": 0,
+          "error": null
         }
       ]
     },
@@ -1968,6 +2318,16 @@
           "configured_status": "available",
           "runtime_status": "collected",
           "evidence_rows": 396,
+          "error": null
+        },
+        {
+          "set_key": "gym1",
+          "set_name": "Gym Heroes",
+          "source_key": "tcgplayer_price_guide",
+          "source_alias": null,
+          "configured_status": "unavailable",
+          "runtime_status": "unavailable",
+          "evidence_rows": 0,
           "error": null
         }
       ]
@@ -2024,6 +2384,16 @@
           "runtime_status": "collected",
           "evidence_rows": 396,
           "error": null
+        },
+        {
+          "set_key": "gym2",
+          "set_name": "Gym Challenge",
+          "source_key": "tcgplayer_price_guide",
+          "source_alias": null,
+          "configured_status": "unavailable",
+          "runtime_status": "unavailable",
+          "evidence_rows": 0,
+          "error": null
         }
       ]
     },
@@ -2079,6 +2449,16 @@
           "runtime_status": "collected",
           "evidence_rows": 333,
           "error": null
+        },
+        {
+          "set_key": "neo1",
+          "set_name": "Neo Genesis",
+          "source_key": "tcgplayer_price_guide",
+          "source_alias": null,
+          "configured_status": "unavailable",
+          "runtime_status": "unavailable",
+          "evidence_rows": 0,
+          "error": null
         }
       ]
     },
@@ -2107,12 +2487,12 @@
           "total": 75
         }
       },
-      "evidence_rows": 316,
+      "evidence_rows": 315,
       "card_status_counts": {
         "api_agreed": 75
       },
       "printing_status_counts": {
-        "candidate_unconfirmed": 166
+        "candidate_unconfirmed": 165
       },
       "source_availability": [
         {
@@ -2122,7 +2502,7 @@
           "source_alias": "neo2",
           "configured_status": "available",
           "runtime_status": "collected",
-          "evidence_rows": 91,
+          "evidence_rows": 90,
           "error": null
         },
         {
@@ -2133,6 +2513,16 @@
           "configured_status": "available",
           "runtime_status": "collected",
           "evidence_rows": 225,
+          "error": null
+        },
+        {
+          "set_key": "neo2",
+          "set_name": "Neo Discovery",
+          "source_key": "tcgplayer_price_guide",
+          "source_alias": null,
+          "configured_status": "unavailable",
+          "runtime_status": "unavailable",
+          "evidence_rows": 0,
           "error": null
         }
       ]
@@ -2162,12 +2552,12 @@
           "total": 18
         }
       },
-      "evidence_rows": 72,
+      "evidence_rows": 90,
       "card_status_counts": {
         "api_agreed": 18
       },
       "printing_status_counts": {
-        "api_agreed": 18
+        "master_verified": 18
       },
       "source_availability": [
         {
@@ -2188,6 +2578,16 @@
           "configured_status": "available",
           "runtime_status": "collected",
           "evidence_rows": 36,
+          "error": null
+        },
+        {
+          "set_key": "si1",
+          "set_name": "Southern Islands",
+          "source_key": "tcgplayer_price_guide",
+          "source_alias": null,
+          "configured_status": "unavailable",
+          "runtime_status": "collected",
+          "evidence_rows": 18,
           "error": null
         }
       ]
@@ -2243,6 +2643,16 @@
           "configured_status": "available",
           "runtime_status": "collected",
           "evidence_rows": 198,
+          "error": null
+        },
+        {
+          "set_key": "neo3",
+          "set_name": "Neo Revelation",
+          "source_key": "tcgplayer_price_guide",
+          "source_alias": null,
+          "configured_status": "unavailable",
+          "runtime_status": "unavailable",
+          "evidence_rows": 0,
           "error": null
         }
       ]
@@ -2300,6 +2710,16 @@
           "runtime_status": "collected",
           "evidence_rows": 339,
           "error": null
+        },
+        {
+          "set_key": "neo4",
+          "set_name": "Neo Destiny",
+          "source_key": "tcgplayer_price_guide",
+          "source_alias": null,
+          "configured_status": "unavailable",
+          "runtime_status": "unavailable",
+          "evidence_rows": 0,
+          "error": null
         }
       ]
     },
@@ -2328,13 +2748,13 @@
           "total": 110
         }
       },
-      "evidence_rows": 654,
+      "evidence_rows": 867,
       "card_status_counts": {
         "api_agreed": 110
       },
       "printing_status_counts": {
-        "api_agreed": 211,
-        "candidate_unconfirmed": 12
+        "candidate_unconfirmed": 11,
+        "master_verified": 212
       },
       "source_availability": [
         {
@@ -2344,7 +2764,7 @@
           "source_alias": "base6",
           "configured_status": "available",
           "runtime_status": "collected",
-          "evidence_rows": 321,
+          "evidence_rows": 322,
           "error": null
         },
         {
@@ -2355,6 +2775,16 @@
           "configured_status": "available",
           "runtime_status": "collected",
           "evidence_rows": 333,
+          "error": null
+        },
+        {
+          "set_key": "base6",
+          "set_name": "Legendary Collection",
+          "source_key": "tcgplayer_price_guide",
+          "source_alias": null,
+          "configured_status": "unavailable",
+          "runtime_status": "collected",
+          "evidence_rows": 212,
           "error": null
         }
       ]
@@ -2384,13 +2814,13 @@
           "total": 165
         }
       },
-      "evidence_rows": 983,
+      "evidence_rows": 1306,
       "card_status_counts": {
         "api_agreed": 165
       },
       "printing_status_counts": {
-        "api_agreed": 323,
-        "candidate_unconfirmed": 7
+        "candidate_unconfirmed": 7,
+        "master_verified": 323
       },
       "source_availability": [
         {
@@ -2411,6 +2841,16 @@
           "configured_status": "available",
           "runtime_status": "collected",
           "evidence_rows": 495,
+          "error": null
+        },
+        {
+          "set_key": "ecard1",
+          "set_name": "Expedition Base Set",
+          "source_key": "tcgplayer_price_guide",
+          "source_alias": null,
+          "configured_status": "unavailable",
+          "runtime_status": "collected",
+          "evidence_rows": 323,
           "error": null
         }
       ]
@@ -2440,12 +2880,12 @@
           "total": 9
         }
       },
-      "evidence_rows": 36,
+      "evidence_rows": 45,
       "card_status_counts": {
         "api_agreed": 9
       },
       "printing_status_counts": {
-        "api_agreed": 9
+        "master_verified": 9
       },
       "source_availability": [
         {
@@ -2466,6 +2906,16 @@
           "configured_status": "available",
           "runtime_status": "collected",
           "evidence_rows": 18,
+          "error": null
+        },
+        {
+          "set_key": "bp",
+          "set_name": "Best of Game",
+          "source_key": "tcgplayer_price_guide",
+          "source_alias": null,
+          "configured_status": "unavailable",
+          "runtime_status": "collected",
+          "evidence_rows": 9,
           "error": null
         }
       ]
@@ -2495,14 +2945,14 @@
           "total": 185
         }
       },
-      "evidence_rows": 1010,
+      "evidence_rows": 1302,
       "card_status_counts": {
         "api_agreed": 168,
         "candidate_unconfirmed": 31
       },
       "printing_status_counts": {
-        "api_agreed": 294,
-        "candidate_unconfirmed": 55
+        "candidate_unconfirmed": 56,
+        "master_verified": 293
       },
       "source_availability": [
         {
@@ -2512,7 +2962,7 @@
           "source_alias": "ecard2",
           "configured_status": "available",
           "runtime_status": "collected",
-          "evidence_rows": 487,
+          "evidence_rows": 486,
           "error": null
         },
         {
@@ -2523,6 +2973,16 @@
           "configured_status": "available",
           "runtime_status": "collected",
           "evidence_rows": 523,
+          "error": null
+        },
+        {
+          "set_key": "ecard2",
+          "set_name": "Aquapolis",
+          "source_key": "tcgplayer_price_guide",
+          "source_alias": null,
+          "configured_status": "unavailable",
+          "runtime_status": "collected",
+          "evidence_rows": 293,
           "error": null
         }
       ]
@@ -2552,14 +3012,14 @@
           "total": 182
         }
       },
-      "evidence_rows": 995,
+      "evidence_rows": 1278,
       "card_status_counts": {
         "api_agreed": 166,
         "candidate_unconfirmed": 32
       },
       "printing_status_counts": {
-        "api_agreed": 285,
-        "candidate_unconfirmed": 61
+        "candidate_unconfirmed": 62,
+        "master_verified": 284
       },
       "source_availability": [
         {
@@ -2569,7 +3029,7 @@
           "source_alias": "ecard3",
           "configured_status": "available",
           "runtime_status": "collected",
-          "evidence_rows": 481,
+          "evidence_rows": 480,
           "error": null
         },
         {
@@ -2580,6 +3040,16 @@
           "configured_status": "available",
           "runtime_status": "collected",
           "evidence_rows": 514,
+          "error": null
+        },
+        {
+          "set_key": "ecard3",
+          "set_name": "Skyridge",
+          "source_key": "tcgplayer_price_guide",
+          "source_alias": null,
+          "configured_status": "unavailable",
+          "runtime_status": "collected",
+          "evidence_rows": 284,
           "error": null
         }
       ]
@@ -2609,13 +3079,13 @@
           "total": 109
         }
       },
-      "evidence_rows": 648,
+      "evidence_rows": 850,
       "card_status_counts": {
         "api_agreed": 109
       },
       "printing_status_counts": {
-        "api_agreed": 202,
-        "candidate_unconfirmed": 26
+        "candidate_unconfirmed": 26,
+        "master_verified": 202
       },
       "source_availability": [
         {
@@ -2636,6 +3106,16 @@
           "configured_status": "available",
           "runtime_status": "collected",
           "evidence_rows": 329,
+          "error": null
+        },
+        {
+          "set_key": "ex1",
+          "set_name": "Ruby & Sapphire",
+          "source_key": "tcgplayer_price_guide",
+          "source_alias": null,
+          "configured_status": "unavailable",
+          "runtime_status": "collected",
+          "evidence_rows": 202,
           "error": null
         }
       ]
@@ -2665,13 +3145,13 @@
           "total": 100
         }
       },
-      "evidence_rows": 587,
+      "evidence_rows": 780,
       "card_status_counts": {
         "api_agreed": 100
       },
       "printing_status_counts": {
-        "api_agreed": 193,
-        "candidate_unconfirmed": 1
+        "candidate_unconfirmed": 1,
+        "master_verified": 193
       },
       "source_availability": [
         {
@@ -2692,6 +3172,16 @@
           "configured_status": "available",
           "runtime_status": "collected",
           "evidence_rows": 294,
+          "error": null
+        },
+        {
+          "set_key": "ex2",
+          "set_name": "Sandstorm",
+          "source_key": "tcgplayer_price_guide",
+          "source_alias": null,
+          "configured_status": "unavailable",
+          "runtime_status": "collected",
+          "evidence_rows": 193,
           "error": null
         }
       ]
@@ -2721,13 +3211,13 @@
           "total": 40
         }
       },
-      "evidence_rows": 159,
+      "evidence_rows": 172,
       "card_status_counts": {
         "api_agreed": 40
       },
       "printing_status_counts": {
-        "api_agreed": 13,
-        "candidate_unconfirmed": 53
+        "candidate_unconfirmed": 53,
+        "master_verified": 13
       },
       "source_availability": [
         {
@@ -2748,6 +3238,16 @@
           "configured_status": "available",
           "runtime_status": "collected",
           "evidence_rows": 80,
+          "error": null
+        },
+        {
+          "set_key": "np",
+          "set_name": "Nintendo Black Star Promos",
+          "source_key": "tcgplayer_price_guide",
+          "source_alias": null,
+          "configured_status": "unavailable",
+          "runtime_status": "collected",
+          "evidence_rows": 13,
           "error": null
         }
       ]
@@ -2777,13 +3277,13 @@
           "total": 100
         }
       },
-      "evidence_rows": 488,
+      "evidence_rows": 564,
       "card_status_counts": {
         "api_agreed": 100
       },
       "printing_status_counts": {
-        "api_agreed": 76,
-        "candidate_unconfirmed": 136
+        "candidate_unconfirmed": 136,
+        "master_verified": 76
       },
       "source_availability": [
         {
@@ -2804,6 +3304,16 @@
           "configured_status": "available",
           "runtime_status": "collected",
           "evidence_rows": 200,
+          "error": null
+        },
+        {
+          "set_key": "ex3",
+          "set_name": "Dragon",
+          "source_key": "tcgplayer_price_guide",
+          "source_alias": null,
+          "configured_status": "unavailable",
+          "runtime_status": "collected",
+          "evidence_rows": 76,
           "error": null
         }
       ]
@@ -2833,14 +3343,14 @@
           "total": 97
         }
       },
-      "evidence_rows": 571,
+      "evidence_rows": 745,
       "card_status_counts": {
         "api_agreed": 95,
         "candidate_unconfirmed": 4
       },
       "printing_status_counts": {
-        "api_agreed": 174,
-        "candidate_unconfirmed": 29
+        "candidate_unconfirmed": 29,
+        "master_verified": 174
       },
       "source_availability": [
         {
@@ -2861,6 +3371,16 @@
           "configured_status": "available",
           "runtime_status": "collected",
           "evidence_rows": 290,
+          "error": null
+        },
+        {
+          "set_key": "ex4",
+          "set_name": "Team Magma vs Team Aqua",
+          "source_key": "tcgplayer_price_guide",
+          "source_alias": null,
+          "configured_status": "unavailable",
+          "runtime_status": "collected",
+          "evidence_rows": 174,
           "error": null
         }
       ]
@@ -2917,6 +3437,16 @@
           "runtime_status": "collected",
           "evidence_rows": 20,
           "error": null
+        },
+        {
+          "set_key": "tk1a",
+          "set_name": "EX Trainer Kit Latias",
+          "source_key": "tcgplayer_price_guide",
+          "source_alias": null,
+          "configured_status": "unavailable",
+          "runtime_status": "unavailable",
+          "evidence_rows": 0,
+          "error": null
         }
       ]
     },
@@ -2972,6 +3502,16 @@
           "runtime_status": "collected",
           "evidence_rows": 20,
           "error": null
+        },
+        {
+          "set_key": "tk1b",
+          "set_name": "EX Trainer Kit Latios",
+          "source_key": "tcgplayer_price_guide",
+          "source_alias": null,
+          "configured_status": "unavailable",
+          "runtime_status": "unavailable",
+          "evidence_rows": 0,
+          "error": null
         }
       ]
     },
@@ -3000,13 +3540,13 @@
           "total": 102
         }
       },
-      "evidence_rows": 579,
+      "evidence_rows": 683,
       "card_status_counts": {
         "api_agreed": 102
       },
       "printing_status_counts": {
-        "api_agreed": 102,
-        "candidate_unconfirmed": 171
+        "candidate_unconfirmed": 170,
+        "master_verified": 103
       },
       "source_availability": [
         {
@@ -3016,7 +3556,7 @@
           "source_alias": "ex5",
           "configured_status": "available",
           "runtime_status": "collected",
-          "evidence_rows": 295,
+          "evidence_rows": 296,
           "error": null
         },
         {
@@ -3027,6 +3567,16 @@
           "configured_status": "available",
           "runtime_status": "collected",
           "evidence_rows": 284,
+          "error": null
+        },
+        {
+          "set_key": "ex5",
+          "set_name": "Hidden Legends",
+          "source_key": "tcgplayer_price_guide",
+          "source_alias": null,
+          "configured_status": "unavailable",
+          "runtime_status": "collected",
+          "evidence_rows": 103,
           "error": null
         }
       ]
@@ -3056,13 +3606,13 @@
           "total": 116
         }
       },
-      "evidence_rows": 673,
+      "evidence_rows": 790,
       "card_status_counts": {
         "api_agreed": 116
       },
       "printing_status_counts": {
-        "api_agreed": 116,
-        "candidate_unconfirmed": 209
+        "candidate_unconfirmed": 210,
+        "master_verified": 116
       },
       "source_availability": [
         {
@@ -3072,7 +3622,7 @@
           "source_alias": "ex6",
           "configured_status": "available",
           "runtime_status": "collected",
-          "evidence_rows": 355,
+          "evidence_rows": 356,
           "error": null
         },
         {
@@ -3083,6 +3633,16 @@
           "configured_status": "available",
           "runtime_status": "collected",
           "evidence_rows": 318,
+          "error": null
+        },
+        {
+          "set_key": "ex6",
+          "set_name": "FireRed & LeafGreen",
+          "source_key": "tcgplayer_price_guide",
+          "source_alias": null,
+          "configured_status": "unavailable",
+          "runtime_status": "collected",
+          "evidence_rows": 116,
           "error": null
         }
       ]
@@ -3112,13 +3672,13 @@
           "total": 17
         }
       },
-      "evidence_rows": 73,
+      "evidence_rows": 89,
       "card_status_counts": {
         "api_agreed": 17
       },
       "printing_status_counts": {
-        "api_agreed": 16,
-        "candidate_unconfirmed": 7
+        "candidate_unconfirmed": 7,
+        "master_verified": 16
       },
       "source_availability": [
         {
@@ -3139,6 +3699,16 @@
           "configured_status": "available",
           "runtime_status": "collected",
           "evidence_rows": 34,
+          "error": null
+        },
+        {
+          "set_key": "pop1",
+          "set_name": "POP Series 1",
+          "source_key": "tcgplayer_price_guide",
+          "source_alias": null,
+          "configured_status": "unavailable",
+          "runtime_status": "collected",
+          "evidence_rows": 16,
           "error": null
         }
       ]
@@ -3168,14 +3738,14 @@
           "total": 111
         }
       },
-      "evidence_rows": 634,
+      "evidence_rows": 743,
       "card_status_counts": {
         "api_agreed": 108,
         "candidate_unconfirmed": 6
       },
       "printing_status_counts": {
-        "api_agreed": 109,
-        "candidate_unconfirmed": 194
+        "candidate_unconfirmed": 194,
+        "master_verified": 109
       },
       "source_availability": [
         {
@@ -3196,6 +3766,16 @@
           "configured_status": "available",
           "runtime_status": "collected",
           "evidence_rows": 305,
+          "error": null
+        },
+        {
+          "set_key": "ex7",
+          "set_name": "Team Rocket Returns",
+          "source_key": "tcgplayer_price_guide",
+          "source_alias": null,
+          "configured_status": "unavailable",
+          "runtime_status": "collected",
+          "evidence_rows": 109,
           "error": null
         }
       ]
@@ -3225,14 +3805,14 @@
           "total": 108
         }
       },
-      "evidence_rows": 625,
+      "evidence_rows": 729,
       "card_status_counts": {
         "api_agreed": 105,
         "candidate_unconfirmed": 6
       },
       "printing_status_counts": {
-        "api_agreed": 105,
-        "candidate_unconfirmed": 199
+        "candidate_unconfirmed": 198,
+        "master_verified": 105
       },
       "source_availability": [
         {
@@ -3242,7 +3822,7 @@
           "source_alias": "ex8",
           "configured_status": "available",
           "runtime_status": "collected",
-          "evidence_rows": 326,
+          "evidence_rows": 325,
           "error": null
         },
         {
@@ -3253,6 +3833,16 @@
           "configured_status": "available",
           "runtime_status": "collected",
           "evidence_rows": 299,
+          "error": null
+        },
+        {
+          "set_key": "ex8",
+          "set_name": "Deoxys",
+          "source_key": "tcgplayer_price_guide",
+          "source_alias": null,
+          "configured_status": "unavailable",
+          "runtime_status": "collected",
+          "evidence_rows": 105,
           "error": null
         }
       ]
@@ -3282,13 +3872,13 @@
           "total": 107
         }
       },
-      "evidence_rows": 618,
+      "evidence_rows": 728,
       "card_status_counts": {
         "api_agreed": 107
       },
       "printing_status_counts": {
-        "api_agreed": 110,
-        "candidate_unconfirmed": 184
+        "candidate_unconfirmed": 184,
+        "master_verified": 110
       },
       "source_availability": [
         {
@@ -3309,6 +3899,16 @@
           "configured_status": "available",
           "runtime_status": "collected",
           "evidence_rows": 296,
+          "error": null
+        },
+        {
+          "set_key": "ex9",
+          "set_name": "Emerald",
+          "source_key": "tcgplayer_price_guide",
+          "source_alias": null,
+          "configured_status": "unavailable",
+          "runtime_status": "collected",
+          "evidence_rows": 110,
           "error": null
         }
       ]
@@ -3338,13 +3938,13 @@
           "total": 17
         }
       },
-      "evidence_rows": 78,
+      "evidence_rows": 99,
       "card_status_counts": {
         "api_agreed": 17
       },
       "printing_status_counts": {
-        "api_agreed": 21,
-        "candidate_unconfirmed": 2
+        "candidate_unconfirmed": 2,
+        "master_verified": 21
       },
       "source_availability": [
         {
@@ -3365,6 +3965,16 @@
           "configured_status": "available",
           "runtime_status": "collected",
           "evidence_rows": 38,
+          "error": null
+        },
+        {
+          "set_key": "pop2",
+          "set_name": "POP Series 2",
+          "source_key": "tcgplayer_price_guide",
+          "source_alias": null,
+          "configured_status": "unavailable",
+          "runtime_status": "collected",
+          "evidence_rows": 21,
           "error": null
         }
       ]
@@ -3394,14 +4004,14 @@
           "total": 117
         }
       },
-      "evidence_rows": 629,
+      "evidence_rows": 743,
       "card_status_counts": {
         "api_agreed": 114,
         "candidate_unconfirmed": 34
       },
       "printing_status_counts": {
-        "api_agreed": 114,
-        "candidate_unconfirmed": 139
+        "candidate_unconfirmed": 139,
+        "master_verified": 114
       },
       "source_availability": [
         {
@@ -3422,6 +4032,16 @@
           "configured_status": "available",
           "runtime_status": "collected",
           "evidence_rows": 240,
+          "error": null
+        },
+        {
+          "set_key": "ex10",
+          "set_name": "Unseen Forces",
+          "source_key": "tcgplayer_price_guide",
+          "source_alias": null,
+          "configured_status": "unavailable",
+          "runtime_status": "collected",
+          "evidence_rows": 114,
           "error": null
         }
       ]
@@ -3451,14 +4071,14 @@
           "total": 114
         }
       },
-      "evidence_rows": 564,
+      "evidence_rows": 674,
       "card_status_counts": {
         "api_agreed": 111,
         "candidate_unconfirmed": 6
       },
       "printing_status_counts": {
-        "api_agreed": 111,
-        "candidate_unconfirmed": 114
+        "candidate_unconfirmed": 113,
+        "master_verified": 111
       },
       "source_availability": [
         {
@@ -3468,7 +4088,7 @@
           "source_alias": "ex11",
           "configured_status": "available",
           "runtime_status": "collected",
-          "evidence_rows": 334,
+          "evidence_rows": 333,
           "error": null
         },
         {
@@ -3479,6 +4099,16 @@
           "configured_status": "available",
           "runtime_status": "collected",
           "evidence_rows": 230,
+          "error": null
+        },
+        {
+          "set_key": "ex11",
+          "set_name": "Delta Species",
+          "source_key": "tcgplayer_price_guide",
+          "source_alias": null,
+          "configured_status": "unavailable",
+          "runtime_status": "collected",
+          "evidence_rows": 111,
           "error": null
         }
       ]
@@ -3508,14 +4138,14 @@
           "total": 93
         }
       },
-      "evidence_rows": 454,
+      "evidence_rows": 544,
       "card_status_counts": {
         "api_agreed": 90,
         "candidate_unconfirmed": 6
       },
       "printing_status_counts": {
-        "api_agreed": 90,
-        "candidate_unconfirmed": 88
+        "candidate_unconfirmed": 88,
+        "master_verified": 90
       },
       "source_availability": [
         {
@@ -3536,6 +4166,16 @@
           "configured_status": "available",
           "runtime_status": "collected",
           "evidence_rows": 186,
+          "error": null
+        },
+        {
+          "set_key": "ex12",
+          "set_name": "Legend Maker",
+          "source_key": "tcgplayer_price_guide",
+          "source_alias": null,
+          "configured_status": "unavailable",
+          "runtime_status": "collected",
+          "evidence_rows": 90,
           "error": null
         }
       ]
@@ -3592,6 +4232,16 @@
           "runtime_status": "collected",
           "evidence_rows": 24,
           "error": null
+        },
+        {
+          "set_key": "tk2b",
+          "set_name": "EX Trainer Kit 2 Minun",
+          "source_key": "tcgplayer_price_guide",
+          "source_alias": null,
+          "configured_status": "unavailable",
+          "runtime_status": "unavailable",
+          "evidence_rows": 0,
+          "error": null
         }
       ]
     },
@@ -3647,6 +4297,16 @@
           "runtime_status": "collected",
           "evidence_rows": 24,
           "error": null
+        },
+        {
+          "set_key": "tk2a",
+          "set_name": "EX Trainer Kit 2 Plusle",
+          "source_key": "tcgplayer_price_guide",
+          "source_alias": null,
+          "configured_status": "unavailable",
+          "runtime_status": "unavailable",
+          "evidence_rows": 0,
+          "error": null
         }
       ]
     },
@@ -3675,13 +4335,13 @@
           "total": 17
         }
       },
-      "evidence_rows": 66,
+      "evidence_rows": 76,
       "card_status_counts": {
         "api_agreed": 17
       },
       "printing_status_counts": {
-        "api_agreed": 10,
-        "candidate_unconfirmed": 12
+        "candidate_unconfirmed": 12,
+        "master_verified": 10
       },
       "source_availability": [
         {
@@ -3702,6 +4362,16 @@
           "configured_status": "available",
           "runtime_status": "collected",
           "evidence_rows": 27,
+          "error": null
+        },
+        {
+          "set_key": "pop3",
+          "set_name": "POP Series 3",
+          "source_key": "tcgplayer_price_guide",
+          "source_alias": null,
+          "configured_status": "unavailable",
+          "runtime_status": "collected",
+          "evidence_rows": 10,
           "error": null
         }
       ]
@@ -3731,14 +4401,14 @@
           "total": 111
         }
       },
-      "evidence_rows": 545,
+      "evidence_rows": 652,
       "card_status_counts": {
         "api_agreed": 108,
         "candidate_unconfirmed": 6
       },
       "printing_status_counts": {
-        "api_agreed": 107,
-        "candidate_unconfirmed": 109
+        "candidate_unconfirmed": 109,
+        "master_verified": 107
       },
       "source_availability": [
         {
@@ -3759,6 +4429,16 @@
           "configured_status": "available",
           "runtime_status": "collected",
           "evidence_rows": 225,
+          "error": null
+        },
+        {
+          "set_key": "ex13",
+          "set_name": "Holon Phantoms",
+          "source_key": "tcgplayer_price_guide",
+          "source_alias": null,
+          "configured_status": "unavailable",
+          "runtime_status": "collected",
+          "evidence_rows": 107,
           "error": null
         }
       ]
@@ -3788,14 +4468,14 @@
           "total": 100
         }
       },
-      "evidence_rows": 493,
+      "evidence_rows": 591,
       "card_status_counts": {
         "api_agreed": 98,
         "candidate_unconfirmed": 4
       },
       "printing_status_counts": {
-        "api_agreed": 98,
-        "candidate_unconfirmed": 97
+        "candidate_unconfirmed": 97,
+        "master_verified": 98
       },
       "source_availability": [
         {
@@ -3816,6 +4496,16 @@
           "configured_status": "available",
           "runtime_status": "collected",
           "evidence_rows": 205,
+          "error": null
+        },
+        {
+          "set_key": "ex14",
+          "set_name": "Crystal Guardians",
+          "source_key": "tcgplayer_price_guide",
+          "source_alias": null,
+          "configured_status": "unavailable",
+          "runtime_status": "collected",
+          "evidence_rows": 98,
           "error": null
         }
       ]
@@ -3845,13 +4535,13 @@
           "total": 17
         }
       },
-      "evidence_rows": 72,
+      "evidence_rows": 86,
       "card_status_counts": {
         "api_agreed": 17
       },
       "printing_status_counts": {
-        "api_agreed": 14,
-        "candidate_unconfirmed": 10
+        "candidate_unconfirmed": 10,
+        "master_verified": 14
       },
       "source_availability": [
         {
@@ -3872,6 +4562,16 @@
           "configured_status": "available",
           "runtime_status": "collected",
           "evidence_rows": 31,
+          "error": null
+        },
+        {
+          "set_key": "pop4",
+          "set_name": "POP Series 4",
+          "source_key": "tcgplayer_price_guide",
+          "source_alias": null,
+          "configured_status": "unavailable",
+          "runtime_status": "collected",
+          "evidence_rows": 14,
           "error": null
         }
       ]
@@ -3901,14 +4601,14 @@
           "total": 101
         }
       },
-      "evidence_rows": 493,
+      "evidence_rows": 592,
       "card_status_counts": {
         "api_agreed": 99,
         "candidate_unconfirmed": 4
       },
       "printing_status_counts": {
-        "api_agreed": 99,
-        "candidate_unconfirmed": 93
+        "candidate_unconfirmed": 93,
+        "master_verified": 99
       },
       "source_availability": [
         {
@@ -3929,6 +4629,16 @@
           "configured_status": "available",
           "runtime_status": "collected",
           "evidence_rows": 202,
+          "error": null
+        },
+        {
+          "set_key": "ex15",
+          "set_name": "Dragon Frontiers",
+          "source_key": "tcgplayer_price_guide",
+          "source_alias": null,
+          "configured_status": "unavailable",
+          "runtime_status": "collected",
+          "evidence_rows": 99,
           "error": null
         }
       ]
@@ -3958,14 +4668,14 @@
           "total": 108
         }
       },
-      "evidence_rows": 529,
+      "evidence_rows": 621,
       "card_status_counts": {
         "api_agreed": 105,
         "candidate_unconfirmed": 6
       },
       "printing_status_counts": {
-        "api_agreed": 92,
-        "candidate_unconfirmed": 129
+        "candidate_unconfirmed": 129,
+        "master_verified": 92
       },
       "source_availability": [
         {
@@ -3986,6 +4696,16 @@
           "configured_status": "available",
           "runtime_status": "collected",
           "evidence_rows": 222,
+          "error": null
+        },
+        {
+          "set_key": "ex16",
+          "set_name": "Power Keepers",
+          "source_key": "tcgplayer_price_guide",
+          "source_alias": null,
+          "configured_status": "unavailable",
+          "runtime_status": "collected",
+          "evidence_rows": 92,
           "error": null
         }
       ]
@@ -4015,13 +4735,13 @@
           "total": 17
         }
       },
-      "evidence_rows": 73,
+      "evidence_rows": 89,
       "card_status_counts": {
         "api_agreed": 17
       },
       "printing_status_counts": {
-        "api_agreed": 16,
-        "candidate_unconfirmed": 7
+        "candidate_unconfirmed": 7,
+        "master_verified": 16
       },
       "source_availability": [
         {
@@ -4042,6 +4762,16 @@
           "configured_status": "available",
           "runtime_status": "collected",
           "evidence_rows": 33,
+          "error": null
+        },
+        {
+          "set_key": "pop5",
+          "set_name": "POP Series 5",
+          "source_key": "tcgplayer_price_guide",
+          "source_alias": null,
+          "configured_status": "unavailable",
+          "runtime_status": "collected",
+          "evidence_rows": 16,
           "error": null
         }
       ]
@@ -4071,14 +4801,14 @@
           "total": 130
         }
       },
-      "evidence_rows": 774,
+      "evidence_rows": 1020,
       "card_status_counts": {
         "api_agreed": 127,
         "candidate_unconfirmed": 6
       },
       "printing_status_counts": {
-        "api_agreed": 246,
-        "candidate_unconfirmed": 22
+        "candidate_unconfirmed": 22,
+        "master_verified": 246
       },
       "source_availability": [
         {
@@ -4099,6 +4829,16 @@
           "configured_status": "available",
           "runtime_status": "collected",
           "evidence_rows": 395,
+          "error": null
+        },
+        {
+          "set_key": "dp1",
+          "set_name": "Diamond & Pearl",
+          "source_key": "tcgplayer_price_guide",
+          "source_alias": null,
+          "configured_status": "unavailable",
+          "runtime_status": "collected",
+          "evidence_rows": 246,
           "error": null
         }
       ]
@@ -4128,14 +4868,14 @@
           "total": 56
         }
       },
-      "evidence_rows": 223,
+      "evidence_rows": 257,
       "card_status_counts": {
         "api_agreed": 37,
         "candidate_unconfirmed": 38
       },
       "printing_status_counts": {
-        "api_agreed": 34,
-        "candidate_unconfirmed": 43
+        "candidate_unconfirmed": 43,
+        "master_verified": 34
       },
       "source_availability": [
         {
@@ -4156,6 +4896,16 @@
           "configured_status": "available",
           "runtime_status": "collected",
           "evidence_rows": 114,
+          "error": null
+        },
+        {
+          "set_key": "dpp",
+          "set_name": "DP Black Star Promos",
+          "source_key": "tcgplayer_price_guide",
+          "source_alias": null,
+          "configured_status": "unavailable",
+          "runtime_status": "collected",
+          "evidence_rows": 34,
           "error": null
         }
       ]
@@ -4185,14 +4935,14 @@
           "total": 124
         }
       },
-      "evidence_rows": 742,
+      "evidence_rows": 982,
       "card_status_counts": {
         "api_agreed": 121,
         "candidate_unconfirmed": 6
       },
       "printing_status_counts": {
-        "api_agreed": 240,
-        "candidate_unconfirmed": 14
+        "candidate_unconfirmed": 14,
+        "master_verified": 240
       },
       "source_availability": [
         {
@@ -4213,6 +4963,16 @@
           "configured_status": "available",
           "runtime_status": "collected",
           "evidence_rows": 374,
+          "error": null
+        },
+        {
+          "set_key": "dp2",
+          "set_name": "Mysterious Treasures",
+          "source_key": "tcgplayer_price_guide",
+          "source_alias": null,
+          "configured_status": "unavailable",
+          "runtime_status": "collected",
+          "evidence_rows": 240,
           "error": null
         }
       ]
@@ -4242,13 +5002,13 @@
           "total": 17
         }
       },
-      "evidence_rows": 72,
+      "evidence_rows": 86,
       "card_status_counts": {
         "api_agreed": 17
       },
       "printing_status_counts": {
-        "api_agreed": 14,
-        "candidate_unconfirmed": 10
+        "candidate_unconfirmed": 10,
+        "master_verified": 14
       },
       "source_availability": [
         {
@@ -4269,6 +5029,16 @@
           "configured_status": "available",
           "runtime_status": "collected",
           "evidence_rows": 31,
+          "error": null
+        },
+        {
+          "set_key": "pop6",
+          "set_name": "POP Series 6",
+          "source_key": "tcgplayer_price_guide",
+          "source_alias": null,
+          "configured_status": "unavailable",
+          "runtime_status": "collected",
+          "evidence_rows": 14,
           "error": null
         }
       ]
@@ -4298,14 +5068,14 @@
           "total": 132
         }
       },
-      "evidence_rows": 793,
+      "evidence_rows": 1053,
       "card_status_counts": {
         "api_agreed": 130,
         "candidate_unconfirmed": 4
       },
       "printing_status_counts": {
-        "api_agreed": 260,
-        "candidate_unconfirmed": 9
+        "candidate_unconfirmed": 9,
+        "master_verified": 260
       },
       "source_availability": [
         {
@@ -4326,6 +5096,16 @@
           "configured_status": "available",
           "runtime_status": "collected",
           "evidence_rows": 399,
+          "error": null
+        },
+        {
+          "set_key": "dp3",
+          "set_name": "Secret Wonders",
+          "source_key": "tcgplayer_price_guide",
+          "source_alias": null,
+          "configured_status": "unavailable",
+          "runtime_status": "collected",
+          "evidence_rows": 260,
           "error": null
         }
       ]
@@ -4355,14 +5135,14 @@
           "total": 106
         }
       },
-      "evidence_rows": 633,
+      "evidence_rows": 837,
       "card_status_counts": {
         "api_agreed": 102,
         "candidate_unconfirmed": 8
       },
       "printing_status_counts": {
-        "api_agreed": 204,
-        "candidate_unconfirmed": 13
+        "candidate_unconfirmed": 13,
+        "master_verified": 204
       },
       "source_availability": [
         {
@@ -4383,6 +5163,16 @@
           "configured_status": "available",
           "runtime_status": "collected",
           "evidence_rows": 319,
+          "error": null
+        },
+        {
+          "set_key": "dp4",
+          "set_name": "Great Encounters",
+          "source_key": "tcgplayer_price_guide",
+          "source_alias": null,
+          "configured_status": "unavailable",
+          "runtime_status": "collected",
+          "evidence_rows": 204,
           "error": null
         }
       ]
@@ -4412,13 +5202,13 @@
           "total": 17
         }
       },
-      "evidence_rows": 79,
+      "evidence_rows": 101,
       "card_status_counts": {
         "api_agreed": 17
       },
       "printing_status_counts": {
-        "api_agreed": 22,
-        "candidate_unconfirmed": 1
+        "candidate_unconfirmed": 1,
+        "master_verified": 22
       },
       "source_availability": [
         {
@@ -4439,6 +5229,16 @@
           "configured_status": "available",
           "runtime_status": "collected",
           "evidence_rows": 39,
+          "error": null
+        },
+        {
+          "set_key": "pop7",
+          "set_name": "POP Series 7",
+          "source_key": "tcgplayer_price_guide",
+          "source_alias": null,
+          "configured_status": "unavailable",
+          "runtime_status": "collected",
+          "evidence_rows": 22,
           "error": null
         }
       ]
@@ -4468,14 +5268,14 @@
           "total": 100
         }
       },
-      "evidence_rows": 596,
+      "evidence_rows": 788,
       "card_status_counts": {
         "api_agreed": 96,
         "candidate_unconfirmed": 8
       },
       "printing_status_counts": {
-        "api_agreed": 192,
-        "candidate_unconfirmed": 12
+        "candidate_unconfirmed": 12,
+        "master_verified": 192
       },
       "source_availability": [
         {
@@ -4496,6 +5296,16 @@
           "configured_status": "available",
           "runtime_status": "collected",
           "evidence_rows": 300,
+          "error": null
+        },
+        {
+          "set_key": "dp5",
+          "set_name": "Majestic Dawn",
+          "source_key": "tcgplayer_price_guide",
+          "source_alias": null,
+          "configured_status": "unavailable",
+          "runtime_status": "collected",
+          "evidence_rows": 192,
           "error": null
         }
       ]
@@ -4525,14 +5335,14 @@
           "total": 146
         }
       },
-      "evidence_rows": 866,
+      "evidence_rows": 1139,
       "card_status_counts": {
         "api_agreed": 139,
         "candidate_unconfirmed": 14
       },
       "printing_status_counts": {
-        "api_agreed": 273,
-        "candidate_unconfirmed": 28
+        "candidate_unconfirmed": 28,
+        "master_verified": 273
       },
       "source_availability": [
         {
@@ -4553,6 +5363,16 @@
           "configured_status": "available",
           "runtime_status": "collected",
           "evidence_rows": 440,
+          "error": null
+        },
+        {
+          "set_key": "dp6",
+          "set_name": "Legends Awakened",
+          "source_key": "tcgplayer_price_guide",
+          "source_alias": null,
+          "configured_status": "unavailable",
+          "runtime_status": "collected",
+          "evidence_rows": 273,
           "error": null
         }
       ]
@@ -4582,13 +5402,13 @@
           "total": 17
         }
       },
-      "evidence_rows": 87,
+      "evidence_rows": 107,
       "card_status_counts": {
         "api_agreed": 17
       },
       "printing_status_counts": {
-        "api_agreed": 20,
-        "candidate_unconfirmed": 13
+        "candidate_unconfirmed": 13,
+        "master_verified": 20
       },
       "source_availability": [
         {
@@ -4609,6 +5429,16 @@
           "configured_status": "available",
           "runtime_status": "collected",
           "evidence_rows": 41,
+          "error": null
+        },
+        {
+          "set_key": "pop8",
+          "set_name": "POP Series 8",
+          "source_key": "tcgplayer_price_guide",
+          "source_alias": null,
+          "configured_status": "unavailable",
+          "runtime_status": "collected",
+          "evidence_rows": 20,
           "error": null
         }
       ]
@@ -4638,14 +5468,14 @@
           "total": 106
         }
       },
-      "evidence_rows": 617,
+      "evidence_rows": 810,
       "card_status_counts": {
         "api_agreed": 101,
         "candidate_unconfirmed": 10
       },
       "printing_status_counts": {
-        "api_agreed": 193,
-        "candidate_unconfirmed": 19
+        "candidate_unconfirmed": 19,
+        "master_verified": 193
       },
       "source_availability": [
         {
@@ -4666,6 +5496,16 @@
           "configured_status": "available",
           "runtime_status": "collected",
           "evidence_rows": 310,
+          "error": null
+        },
+        {
+          "set_key": "dp7",
+          "set_name": "Stormfront",
+          "source_key": "tcgplayer_price_guide",
+          "source_alias": null,
+          "configured_status": "unavailable",
+          "runtime_status": "collected",
+          "evidence_rows": 193,
           "error": null
         }
       ]
@@ -4695,14 +5535,14 @@
           "total": 133
         }
       },
-      "evidence_rows": 776,
+      "evidence_rows": 1023,
       "card_status_counts": {
         "api_agreed": 127,
         "candidate_unconfirmed": 12
       },
       "printing_status_counts": {
-        "api_agreed": 247,
-        "candidate_unconfirmed": 16
+        "candidate_unconfirmed": 16,
+        "master_verified": 247
       },
       "source_availability": [
         {
@@ -4723,6 +5563,16 @@
           "configured_status": "available",
           "runtime_status": "collected",
           "evidence_rows": 390,
+          "error": null
+        },
+        {
+          "set_key": "pl1",
+          "set_name": "Platinum",
+          "source_key": "tcgplayer_price_guide",
+          "source_alias": null,
+          "configured_status": "unavailable",
+          "runtime_status": "collected",
+          "evidence_rows": 247,
           "error": null
         }
       ]
@@ -4752,13 +5602,13 @@
           "total": 17
         }
       },
-      "evidence_rows": 74,
+      "evidence_rows": 92,
       "card_status_counts": {
         "api_agreed": 17
       },
       "printing_status_counts": {
-        "api_agreed": 18,
-        "candidate_unconfirmed": 4
+        "candidate_unconfirmed": 4,
+        "master_verified": 18
       },
       "source_availability": [
         {
@@ -4779,6 +5629,16 @@
           "configured_status": "available",
           "runtime_status": "collected",
           "evidence_rows": 35,
+          "error": null
+        },
+        {
+          "set_key": "pop9",
+          "set_name": "POP Series 9",
+          "source_key": "tcgplayer_price_guide",
+          "source_alias": null,
+          "configured_status": "unavailable",
+          "runtime_status": "collected",
+          "evidence_rows": 18,
           "error": null
         }
       ]
@@ -4808,14 +5668,14 @@
           "total": 120
         }
       },
-      "evidence_rows": 685,
+      "evidence_rows": 856,
       "card_status_counts": {
         "api_agreed": 91,
         "candidate_unconfirmed": 58
       },
       "printing_status_counts": {
-        "api_agreed": 171,
-        "candidate_unconfirmed": 103
+        "candidate_unconfirmed": 103,
+        "master_verified": 171
       },
       "source_availability": [
         {
@@ -4836,6 +5696,16 @@
           "configured_status": "available",
           "runtime_status": "collected",
           "evidence_rows": 344,
+          "error": null
+        },
+        {
+          "set_key": "pl2",
+          "set_name": "Rising Rivals",
+          "source_key": "tcgplayer_price_guide",
+          "source_alias": null,
+          "configured_status": "unavailable",
+          "runtime_status": "collected",
+          "evidence_rows": 171,
           "error": null
         }
       ]
@@ -4865,14 +5735,14 @@
           "total": 153
         }
       },
-      "evidence_rows": 895,
+      "evidence_rows": 1065,
       "card_status_counts": {
         "api_agreed": 146,
         "candidate_unconfirmed": 14
       },
       "printing_status_counts": {
-        "api_agreed": 172,
-        "candidate_unconfirmed": 245
+        "candidate_unconfirmed": 246,
+        "master_verified": 171
       },
       "source_availability": [
         {
@@ -4882,7 +5752,7 @@
           "source_alias": "pl3",
           "configured_status": "available",
           "runtime_status": "collected",
-          "evidence_rows": 445,
+          "evidence_rows": 444,
           "error": null
         },
         {
@@ -4893,6 +5763,16 @@
           "configured_status": "available",
           "runtime_status": "collected",
           "evidence_rows": 450,
+          "error": null
+        },
+        {
+          "set_key": "pl3",
+          "set_name": "Supreme Victors",
+          "source_key": "tcgplayer_price_guide",
+          "source_alias": null,
+          "configured_status": "unavailable",
+          "runtime_status": "collected",
+          "evidence_rows": 171,
           "error": null
         }
       ]
@@ -4922,14 +5802,14 @@
           "total": 111
         }
       },
-      "evidence_rows": 633,
+      "evidence_rows": 831,
       "card_status_counts": {
         "api_agreed": 108,
         "candidate_unconfirmed": 6
       },
       "printing_status_counts": {
-        "api_agreed": 198,
-        "candidate_unconfirmed": 15
+        "candidate_unconfirmed": 15,
+        "master_verified": 198
       },
       "source_availability": [
         {
@@ -4950,6 +5830,16 @@
           "configured_status": "available",
           "runtime_status": "collected",
           "evidence_rows": 318,
+          "error": null
+        },
+        {
+          "set_key": "pl4",
+          "set_name": "Arceus",
+          "source_key": "tcgplayer_price_guide",
+          "source_alias": null,
+          "configured_status": "unavailable",
+          "runtime_status": "collected",
+          "evidence_rows": 198,
           "error": null
         }
       ]
@@ -4979,13 +5869,13 @@
           "total": 16
         }
       },
-      "evidence_rows": 64,
+      "evidence_rows": 77,
       "card_status_counts": {
         "api_agreed": 16
       },
       "printing_status_counts": {
-        "api_agreed": 13,
-        "candidate_unconfirmed": 6
+        "candidate_unconfirmed": 6,
+        "master_verified": 13
       },
       "source_availability": [
         {
@@ -5006,6 +5896,16 @@
           "configured_status": "available",
           "runtime_status": "collected",
           "evidence_rows": 32,
+          "error": null
+        },
+        {
+          "set_key": "ru1",
+          "set_name": "Pokémon Rumble",
+          "source_key": "tcgplayer_price_guide",
+          "source_alias": null,
+          "configured_status": "unavailable",
+          "runtime_status": "collected",
+          "evidence_rows": 13,
           "error": null
         }
       ]
@@ -5035,14 +5935,14 @@
           "total": 124
         }
       },
-      "evidence_rows": 713,
+      "evidence_rows": 939,
       "card_status_counts": {
         "api_agreed": 123,
         "candidate_unconfirmed": 2
       },
       "printing_status_counts": {
-        "api_agreed": 226,
-        "candidate_unconfirmed": 13
+        "candidate_unconfirmed": 13,
+        "master_verified": 226
       },
       "source_availability": [
         {
@@ -5063,6 +5963,16 @@
           "configured_status": "available",
           "runtime_status": "collected",
           "evidence_rows": 358,
+          "error": null
+        },
+        {
+          "set_key": "hgss1",
+          "set_name": "HeartGold & SoulSilver",
+          "source_key": "tcgplayer_price_guide",
+          "source_alias": null,
+          "configured_status": "unavailable",
+          "runtime_status": "collected",
+          "evidence_rows": 226,
           "error": null
         }
       ]
@@ -5092,13 +6002,13 @@
           "total": 25
         }
       },
-      "evidence_rows": 100,
+      "evidence_rows": 124,
       "card_status_counts": {
         "api_agreed": 25
       },
       "printing_status_counts": {
-        "api_agreed": 24,
-        "candidate_unconfirmed": 2
+        "candidate_unconfirmed": 2,
+        "master_verified": 24
       },
       "source_availability": [
         {
@@ -5119,6 +6029,16 @@
           "configured_status": "available",
           "runtime_status": "collected",
           "evidence_rows": 50,
+          "error": null
+        },
+        {
+          "set_key": "hsp",
+          "set_name": "HGSS Black Star Promos",
+          "source_key": "tcgplayer_price_guide",
+          "source_alias": null,
+          "configured_status": "unavailable",
+          "runtime_status": "collected",
+          "evidence_rows": 24,
           "error": null
         }
       ]
@@ -5148,13 +6068,13 @@
           "total": 96
         }
       },
-      "evidence_rows": 552,
+      "evidence_rows": 729,
       "card_status_counts": {
         "api_agreed": 96
       },
       "printing_status_counts": {
-        "api_agreed": 177,
-        "candidate_unconfirmed": 6
+        "candidate_unconfirmed": 6,
+        "master_verified": 177
       },
       "source_availability": [
         {
@@ -5175,6 +6095,16 @@
           "configured_status": "available",
           "runtime_status": "collected",
           "evidence_rows": 277,
+          "error": null
+        },
+        {
+          "set_key": "hgss2",
+          "set_name": "HS—Unleashed",
+          "source_key": "tcgplayer_price_guide",
+          "source_alias": null,
+          "configured_status": "unavailable",
+          "runtime_status": "collected",
+          "evidence_rows": 177,
           "error": null
         }
       ]
@@ -5204,13 +6134,13 @@
           "total": 91
         }
       },
-      "evidence_rows": 529,
+      "evidence_rows": 699,
       "card_status_counts": {
         "api_agreed": 91
       },
       "printing_status_counts": {
-        "api_agreed": 170,
-        "candidate_unconfirmed": 7
+        "candidate_unconfirmed": 7,
+        "master_verified": 170
       },
       "source_availability": [
         {
@@ -5231,6 +6161,16 @@
           "configured_status": "available",
           "runtime_status": "collected",
           "evidence_rows": 267,
+          "error": null
+        },
+        {
+          "set_key": "hgss3",
+          "set_name": "HS—Undaunted",
+          "source_key": "tcgplayer_price_guide",
+          "source_alias": null,
+          "configured_status": "unavailable",
+          "runtime_status": "collected",
+          "evidence_rows": 170,
           "error": null
         }
       ]
@@ -5260,13 +6200,13 @@
           "total": 103
         }
       },
-      "evidence_rows": 581,
+      "evidence_rows": 763,
       "card_status_counts": {
         "api_agreed": 103
       },
       "printing_status_counts": {
-        "api_agreed": 182,
-        "candidate_unconfirmed": 11
+        "candidate_unconfirmed": 11,
+        "master_verified": 182
       },
       "source_availability": [
         {
@@ -5287,6 +6227,16 @@
           "configured_status": "available",
           "runtime_status": "collected",
           "evidence_rows": 285,
+          "error": null
+        },
+        {
+          "set_key": "hgss4",
+          "set_name": "HS—Triumphant",
+          "source_key": "tcgplayer_price_guide",
+          "source_alias": null,
+          "configured_status": "unavailable",
+          "runtime_status": "collected",
+          "evidence_rows": 182,
           "error": null
         }
       ]
@@ -5316,13 +6266,13 @@
           "total": 106
         }
       },
-      "evidence_rows": 508,
+      "evidence_rows": 580,
       "card_status_counts": {
         "api_agreed": 106
       },
       "printing_status_counts": {
-        "api_agreed": 72,
-        "candidate_unconfirmed": 152
+        "candidate_unconfirmed": 152,
+        "master_verified": 72
       },
       "source_availability": [
         {
@@ -5343,6 +6293,16 @@
           "configured_status": "available",
           "runtime_status": "collected",
           "evidence_rows": 212,
+          "error": null
+        },
+        {
+          "set_key": "col1",
+          "set_name": "Call of Legends",
+          "source_key": "tcgplayer_price_guide",
+          "source_alias": null,
+          "configured_status": "unavailable",
+          "runtime_status": "collected",
+          "evidence_rows": 72,
           "error": null
         }
       ]
@@ -5372,14 +6332,14 @@
           "total": 101
         }
       },
-      "evidence_rows": 402,
+      "evidence_rows": 415,
       "card_status_counts": {
         "api_agreed": 99,
         "candidate_unconfirmed": 4
       },
       "printing_status_counts": {
-        "api_agreed": 13,
-        "candidate_unconfirmed": 174
+        "candidate_unconfirmed": 174,
+        "master_verified": 13
       },
       "source_availability": [
         {
@@ -5400,6 +6360,16 @@
           "configured_status": "available",
           "runtime_status": "collected",
           "evidence_rows": 202,
+          "error": null
+        },
+        {
+          "set_key": "bwp",
+          "set_name": "BW Black Star Promos",
+          "source_key": "tcgplayer_price_guide",
+          "source_alias": null,
+          "configured_status": "unavailable",
+          "runtime_status": "collected",
+          "evidence_rows": 13,
           "error": null
         }
       ]
@@ -5429,13 +6399,13 @@
           "total": 115
         }
       },
-      "evidence_rows": 564,
+      "evidence_rows": 664,
       "card_status_counts": {
         "api_agreed": 115
       },
       "printing_status_counts": {
-        "api_agreed": 100,
-        "candidate_unconfirmed": 134
+        "candidate_unconfirmed": 134,
+        "master_verified": 100
       },
       "source_availability": [
         {
@@ -5456,6 +6426,16 @@
           "configured_status": "available",
           "runtime_status": "collected",
           "evidence_rows": 230,
+          "error": null
+        },
+        {
+          "set_key": "bw1",
+          "set_name": "Black & White",
+          "source_key": "tcgplayer_price_guide",
+          "source_alias": null,
+          "configured_status": "unavailable",
+          "runtime_status": "collected",
+          "evidence_rows": 100,
           "error": null
         }
       ]
@@ -5485,12 +6465,12 @@
           "total": 12
         }
       },
-      "evidence_rows": 48,
+      "evidence_rows": 60,
       "card_status_counts": {
         "api_agreed": 12
       },
       "printing_status_counts": {
-        "api_agreed": 12
+        "master_verified": 12
       },
       "source_availability": [
         {
@@ -5511,6 +6491,16 @@
           "configured_status": "available",
           "runtime_status": "collected",
           "evidence_rows": 24,
+          "error": null
+        },
+        {
+          "set_key": "mcd11",
+          "set_name": "McDonald's Collection 2011",
+          "source_key": "tcgplayer_price_guide",
+          "source_alias": null,
+          "configured_status": "unavailable",
+          "runtime_status": "collected",
+          "evidence_rows": 12,
           "error": null
         }
       ]
@@ -5540,13 +6530,13 @@
           "total": 98
         }
       },
-      "evidence_rows": 487,
+      "evidence_rows": 573,
       "card_status_counts": {
         "api_agreed": 98
       },
       "printing_status_counts": {
-        "api_agreed": 86,
-        "candidate_unconfirmed": 119
+        "candidate_unconfirmed": 119,
+        "master_verified": 86
       },
       "source_availability": [
         {
@@ -5567,6 +6557,16 @@
           "configured_status": "available",
           "runtime_status": "collected",
           "evidence_rows": 196,
+          "error": null
+        },
+        {
+          "set_key": "bw2",
+          "set_name": "Emerging Powers",
+          "source_key": "tcgplayer_price_guide",
+          "source_alias": null,
+          "configured_status": "unavailable",
+          "runtime_status": "collected",
+          "evidence_rows": 86,
           "error": null
         }
       ]
@@ -5596,13 +6596,13 @@
           "total": 102
         }
       },
-      "evidence_rows": 504,
+      "evidence_rows": 587,
       "card_status_counts": {
         "api_agreed": 102
       },
       "printing_status_counts": {
-        "api_agreed": 83,
-        "candidate_unconfirmed": 134
+        "candidate_unconfirmed": 134,
+        "master_verified": 83
       },
       "source_availability": [
         {
@@ -5623,6 +6623,16 @@
           "configured_status": "available",
           "runtime_status": "collected",
           "evidence_rows": 204,
+          "error": null
+        },
+        {
+          "set_key": "bw3",
+          "set_name": "Noble Victories",
+          "source_key": "tcgplayer_price_guide",
+          "source_alias": null,
+          "configured_status": "unavailable",
+          "runtime_status": "collected",
+          "evidence_rows": 83,
           "error": null
         }
       ]
@@ -5652,13 +6662,13 @@
           "total": 103
         }
       },
-      "evidence_rows": 499,
+      "evidence_rows": 576,
       "card_status_counts": {
         "api_agreed": 103
       },
       "printing_status_counts": {
-        "api_agreed": 77,
-        "candidate_unconfirmed": 139
+        "candidate_unconfirmed": 139,
+        "master_verified": 77
       },
       "source_availability": [
         {
@@ -5679,6 +6689,16 @@
           "configured_status": "available",
           "runtime_status": "collected",
           "evidence_rows": 206,
+          "error": null
+        },
+        {
+          "set_key": "bw4",
+          "set_name": "Next Destinies",
+          "source_key": "tcgplayer_price_guide",
+          "source_alias": null,
+          "configured_status": "unavailable",
+          "runtime_status": "collected",
+          "evidence_rows": 77,
           "error": null
         }
       ]
@@ -5708,13 +6728,13 @@
           "total": 111
         }
       },
-      "evidence_rows": 540,
+      "evidence_rows": 626,
       "card_status_counts": {
         "api_agreed": 111
       },
       "printing_status_counts": {
-        "api_agreed": 87,
-        "candidate_unconfirmed": 144
+        "candidate_unconfirmed": 143,
+        "master_verified": 87
       },
       "source_availability": [
         {
@@ -5724,7 +6744,7 @@
           "source_alias": "bw5",
           "configured_status": "available",
           "runtime_status": "collected",
-          "evidence_rows": 318,
+          "evidence_rows": 317,
           "error": null
         },
         {
@@ -5735,6 +6755,16 @@
           "configured_status": "available",
           "runtime_status": "collected",
           "evidence_rows": 222,
+          "error": null
+        },
+        {
+          "set_key": "bw5",
+          "set_name": "Dark Explorers",
+          "source_key": "tcgplayer_price_guide",
+          "source_alias": null,
+          "configured_status": "unavailable",
+          "runtime_status": "collected",
+          "evidence_rows": 87,
           "error": null
         }
       ]
@@ -5764,12 +6794,12 @@
           "total": 12
         }
       },
-      "evidence_rows": 48,
+      "evidence_rows": 60,
       "card_status_counts": {
         "api_agreed": 12
       },
       "printing_status_counts": {
-        "api_agreed": 12
+        "master_verified": 12
       },
       "source_availability": [
         {
@@ -5790,6 +6820,16 @@
           "configured_status": "available",
           "runtime_status": "collected",
           "evidence_rows": 24,
+          "error": null
+        },
+        {
+          "set_key": "mcd12",
+          "set_name": "McDonald's Collection 2012",
+          "source_key": "tcgplayer_price_guide",
+          "source_alias": null,
+          "configured_status": "unavailable",
+          "runtime_status": "collected",
+          "evidence_rows": 12,
           "error": null
         }
       ]
@@ -5819,14 +6859,14 @@
           "total": 128
         }
       },
-      "evidence_rows": 621,
+      "evidence_rows": 719,
       "card_status_counts": {
         "api_agreed": 126,
         "candidate_unconfirmed": 4
       },
       "printing_status_counts": {
-        "api_agreed": 97,
-        "candidate_unconfirmed": 171
+        "candidate_unconfirmed": 172,
+        "master_verified": 97
       },
       "source_availability": [
         {
@@ -5836,7 +6876,7 @@
           "source_alias": "bw6",
           "configured_status": "available",
           "runtime_status": "collected",
-          "evidence_rows": 365,
+          "evidence_rows": 366,
           "error": null
         },
         {
@@ -5847,6 +6887,16 @@
           "configured_status": "available",
           "runtime_status": "collected",
           "evidence_rows": 256,
+          "error": null
+        },
+        {
+          "set_key": "bw6",
+          "set_name": "Dragons Exalted",
+          "source_key": "tcgplayer_price_guide",
+          "source_alias": null,
+          "configured_status": "unavailable",
+          "runtime_status": "collected",
+          "evidence_rows": 97,
           "error": null
         }
       ]
@@ -5903,6 +6953,16 @@
           "runtime_status": "collected",
           "evidence_rows": 42,
           "error": null
+        },
+        {
+          "set_key": "dv1",
+          "set_name": "Dragon Vault",
+          "source_key": "tcgplayer_price_guide",
+          "source_alias": null,
+          "configured_status": "unavailable",
+          "runtime_status": "unavailable",
+          "evidence_rows": 0,
+          "error": null
         }
       ]
     },
@@ -5931,13 +6991,13 @@
           "total": 153
         }
       },
-      "evidence_rows": 741,
+      "evidence_rows": 852,
       "card_status_counts": {
         "api_agreed": 153
       },
       "printing_status_counts": {
-        "api_agreed": 111,
-        "candidate_unconfirmed": 213
+        "candidate_unconfirmed": 213,
+        "master_verified": 111
       },
       "source_availability": [
         {
@@ -5958,6 +7018,16 @@
           "configured_status": "available",
           "runtime_status": "collected",
           "evidence_rows": 306,
+          "error": null
+        },
+        {
+          "set_key": "bw7",
+          "set_name": "Boundaries Crossed",
+          "source_key": "tcgplayer_price_guide",
+          "source_alias": null,
+          "configured_status": "unavailable",
+          "runtime_status": "collected",
+          "evidence_rows": 111,
           "error": null
         }
       ]
@@ -5987,13 +7057,13 @@
           "total": 138
         }
       },
-      "evidence_rows": 671,
+      "evidence_rows": 780,
       "card_status_counts": {
         "api_agreed": 138
       },
       "printing_status_counts": {
-        "api_agreed": 109,
-        "candidate_unconfirmed": 177
+        "candidate_unconfirmed": 177,
+        "master_verified": 109
       },
       "source_availability": [
         {
@@ -6014,6 +7084,16 @@
           "configured_status": "available",
           "runtime_status": "collected",
           "evidence_rows": 276,
+          "error": null
+        },
+        {
+          "set_key": "bw8",
+          "set_name": "Plasma Storm",
+          "source_key": "tcgplayer_price_guide",
+          "source_alias": null,
+          "configured_status": "unavailable",
+          "runtime_status": "collected",
+          "evidence_rows": 109,
           "error": null
         }
       ]
@@ -6043,13 +7123,13 @@
           "total": 122
         }
       },
-      "evidence_rows": 588,
+      "evidence_rows": 674,
       "card_status_counts": {
         "api_agreed": 122
       },
       "printing_status_counts": {
-        "api_agreed": 86,
-        "candidate_unconfirmed": 172
+        "candidate_unconfirmed": 172,
+        "master_verified": 86
       },
       "source_availability": [
         {
@@ -6070,6 +7150,16 @@
           "configured_status": "available",
           "runtime_status": "collected",
           "evidence_rows": 244,
+          "error": null
+        },
+        {
+          "set_key": "bw9",
+          "set_name": "Plasma Freeze",
+          "source_key": "tcgplayer_price_guide",
+          "source_alias": null,
+          "configured_status": "unavailable",
+          "runtime_status": "collected",
+          "evidence_rows": 86,
           "error": null
         }
       ]
@@ -6099,13 +7189,13 @@
           "total": 105
         }
       },
-      "evidence_rows": 505,
+      "evidence_rows": 579,
       "card_status_counts": {
         "api_agreed": 105
       },
       "printing_status_counts": {
-        "api_agreed": 74,
-        "candidate_unconfirmed": 147
+        "candidate_unconfirmed": 147,
+        "master_verified": 74
       },
       "source_availability": [
         {
@@ -6126,6 +7216,16 @@
           "configured_status": "available",
           "runtime_status": "collected",
           "evidence_rows": 210,
+          "error": null
+        },
+        {
+          "set_key": "bw10",
+          "set_name": "Plasma Blast",
+          "source_key": "tcgplayer_price_guide",
+          "source_alias": null,
+          "configured_status": "unavailable",
+          "runtime_status": "collected",
+          "evidence_rows": 74,
           "error": null
         }
       ]
@@ -6155,13 +7255,13 @@
           "total": 216
         }
       },
-      "evidence_rows": 857,
+      "evidence_rows": 868,
       "card_status_counts": {
         "api_agreed": 216
       },
       "printing_status_counts": {
-        "api_agreed": 11,
-        "candidate_unconfirmed": 403
+        "candidate_unconfirmed": 403,
+        "master_verified": 11
       },
       "source_availability": [
         {
@@ -6182,6 +7282,16 @@
           "configured_status": "available",
           "runtime_status": "collected",
           "evidence_rows": 432,
+          "error": null
+        },
+        {
+          "set_key": "xyp",
+          "set_name": "XY Black Star Promos",
+          "source_key": "tcgplayer_price_guide",
+          "source_alias": null,
+          "configured_status": "unavailable",
+          "runtime_status": "collected",
+          "evidence_rows": 11,
           "error": null
         }
       ]
@@ -6211,13 +7321,13 @@
           "total": 140
         }
       },
-      "evidence_rows": 661,
+      "evidence_rows": 732,
       "card_status_counts": {
         "api_agreed": 140
       },
       "printing_status_counts": {
-        "api_agreed": 71,
-        "candidate_unconfirmed": 239
+        "candidate_unconfirmed": 239,
+        "master_verified": 71
       },
       "source_availability": [
         {
@@ -6238,6 +7348,16 @@
           "configured_status": "available",
           "runtime_status": "collected",
           "evidence_rows": 280,
+          "error": null
+        },
+        {
+          "set_key": "bw11",
+          "set_name": "Legendary Treasures",
+          "source_key": "tcgplayer_price_guide",
+          "source_alias": null,
+          "configured_status": "unavailable",
+          "runtime_status": "collected",
+          "evidence_rows": 71,
           "error": null
         }
       ]
@@ -6267,13 +7387,13 @@
           "total": 39
         }
       },
-      "evidence_rows": 165,
+      "evidence_rows": 204,
       "card_status_counts": {
         "api_agreed": 39
       },
       "printing_status_counts": {
-        "api_agreed": 39,
-        "candidate_unconfirmed": 9
+        "candidate_unconfirmed": 9,
+        "master_verified": 39
       },
       "source_availability": [
         {
@@ -6294,6 +7414,16 @@
           "configured_status": "available",
           "runtime_status": "collected",
           "evidence_rows": 78,
+          "error": null
+        },
+        {
+          "set_key": "xy0",
+          "set_name": "Kalos Starter Set",
+          "source_key": "tcgplayer_price_guide",
+          "source_alias": null,
+          "configured_status": "unavailable",
+          "runtime_status": "collected",
+          "evidence_rows": 39,
           "error": null
         }
       ]
@@ -6323,13 +7453,13 @@
           "total": 146
         }
       },
-      "evidence_rows": 707,
+      "evidence_rows": 823,
       "card_status_counts": {
         "api_agreed": 146
       },
       "printing_status_counts": {
-        "api_agreed": 116,
-        "candidate_unconfirmed": 183
+        "candidate_unconfirmed": 183,
+        "master_verified": 116
       },
       "source_availability": [
         {
@@ -6350,6 +7480,16 @@
           "configured_status": "available",
           "runtime_status": "collected",
           "evidence_rows": 292,
+          "error": null
+        },
+        {
+          "set_key": "xy1",
+          "set_name": "XY",
+          "source_key": "tcgplayer_price_guide",
+          "source_alias": null,
+          "configured_status": "unavailable",
+          "runtime_status": "collected",
+          "evidence_rows": 116,
           "error": null
         }
       ]
@@ -6379,13 +7519,13 @@
           "total": 110
         }
       },
-      "evidence_rows": 530,
+      "evidence_rows": 613,
       "card_status_counts": {
         "api_agreed": 110
       },
       "printing_status_counts": {
-        "api_agreed": 83,
-        "candidate_unconfirmed": 144
+        "candidate_unconfirmed": 144,
+        "master_verified": 83
       },
       "source_availability": [
         {
@@ -6406,6 +7546,16 @@
           "configured_status": "available",
           "runtime_status": "collected",
           "evidence_rows": 220,
+          "error": null
+        },
+        {
+          "set_key": "xy2",
+          "set_name": "Flashfire",
+          "source_key": "tcgplayer_price_guide",
+          "source_alias": null,
+          "configured_status": "unavailable",
+          "runtime_status": "collected",
+          "evidence_rows": 83,
           "error": null
         }
       ]
@@ -6462,6 +7612,16 @@
           "runtime_status": "collected",
           "evidence_rows": 24,
           "error": null
+        },
+        {
+          "set_key": "mcd14",
+          "set_name": "McDonald's Collection 2014",
+          "source_key": "tcgplayer_price_guide",
+          "source_alias": null,
+          "configured_status": "unavailable",
+          "runtime_status": "unavailable",
+          "evidence_rows": 0,
+          "error": null
         }
       ]
     },
@@ -6490,13 +7650,13 @@
           "total": 114
         }
       },
-      "evidence_rows": 552,
+      "evidence_rows": 640,
       "card_status_counts": {
         "api_agreed": 114
       },
       "printing_status_counts": {
-        "api_agreed": 88,
-        "candidate_unconfirmed": 148
+        "candidate_unconfirmed": 148,
+        "master_verified": 88
       },
       "source_availability": [
         {
@@ -6517,6 +7677,16 @@
           "configured_status": "available",
           "runtime_status": "collected",
           "evidence_rows": 228,
+          "error": null
+        },
+        {
+          "set_key": "xy3",
+          "set_name": "Furious Fists",
+          "source_key": "tcgplayer_price_guide",
+          "source_alias": null,
+          "configured_status": "unavailable",
+          "runtime_status": "collected",
+          "evidence_rows": 88,
           "error": null
         }
       ]
@@ -6546,13 +7716,13 @@
           "total": 124
         }
       },
-      "evidence_rows": 596,
+      "evidence_rows": 686,
       "card_status_counts": {
         "api_agreed": 124
       },
       "printing_status_counts": {
-        "api_agreed": 90,
-        "candidate_unconfirmed": 168
+        "candidate_unconfirmed": 168,
+        "master_verified": 90
       },
       "source_availability": [
         {
@@ -6573,6 +7743,16 @@
           "configured_status": "available",
           "runtime_status": "collected",
           "evidence_rows": 248,
+          "error": null
+        },
+        {
+          "set_key": "xy4",
+          "set_name": "Phantom Forces",
+          "source_key": "tcgplayer_price_guide",
+          "source_alias": null,
+          "configured_status": "unavailable",
+          "runtime_status": "collected",
+          "evidence_rows": 90,
           "error": null
         }
       ]
@@ -6602,13 +7782,13 @@
           "total": 164
         }
       },
-      "evidence_rows": 788,
+      "evidence_rows": 902,
       "card_status_counts": {
         "api_agreed": 164
       },
       "printing_status_counts": {
-        "api_agreed": 114,
-        "candidate_unconfirmed": 232
+        "candidate_unconfirmed": 232,
+        "master_verified": 114
       },
       "source_availability": [
         {
@@ -6629,6 +7809,16 @@
           "configured_status": "available",
           "runtime_status": "collected",
           "evidence_rows": 328,
+          "error": null
+        },
+        {
+          "set_key": "xy5",
+          "set_name": "Primal Clash",
+          "source_key": "tcgplayer_price_guide",
+          "source_alias": null,
+          "configured_status": "unavailable",
+          "runtime_status": "collected",
+          "evidence_rows": 114,
           "error": null
         }
       ]
@@ -6658,13 +7848,13 @@
           "total": 34
         }
       },
-      "evidence_rows": 168,
+      "evidence_rows": 194,
       "card_status_counts": {
         "api_agreed": 34
       },
       "printing_status_counts": {
-        "api_agreed": 26,
-        "candidate_unconfirmed": 48
+        "candidate_unconfirmed": 48,
+        "master_verified": 26
       },
       "source_availability": [
         {
@@ -6685,6 +7875,16 @@
           "configured_status": "available",
           "runtime_status": "collected",
           "evidence_rows": 68,
+          "error": null
+        },
+        {
+          "set_key": "dc1",
+          "set_name": "Double Crisis",
+          "source_key": "tcgplayer_price_guide",
+          "source_alias": null,
+          "configured_status": "unavailable",
+          "runtime_status": "collected",
+          "evidence_rows": 26,
           "error": null
         }
       ]
@@ -6714,13 +7914,13 @@
           "total": 112
         }
       },
-      "evidence_rows": 532,
+      "evidence_rows": 608,
       "card_status_counts": {
         "api_agreed": 112
       },
       "printing_status_counts": {
-        "api_agreed": 76,
-        "candidate_unconfirmed": 156
+        "candidate_unconfirmed": 156,
+        "master_verified": 76
       },
       "source_availability": [
         {
@@ -6741,6 +7941,16 @@
           "configured_status": "available",
           "runtime_status": "collected",
           "evidence_rows": 224,
+          "error": null
+        },
+        {
+          "set_key": "xy6",
+          "set_name": "Roaring Skies",
+          "source_key": "tcgplayer_price_guide",
+          "source_alias": null,
+          "configured_status": "unavailable",
+          "runtime_status": "collected",
+          "evidence_rows": 76,
           "error": null
         }
       ]
@@ -6770,13 +7980,13 @@
           "total": 101
         }
       },
-      "evidence_rows": 475,
+      "evidence_rows": 539,
       "card_status_counts": {
         "api_agreed": 101
       },
       "printing_status_counts": {
-        "api_agreed": 64,
-        "candidate_unconfirmed": 145
+        "candidate_unconfirmed": 145,
+        "master_verified": 64
       },
       "source_availability": [
         {
@@ -6797,6 +8007,16 @@
           "configured_status": "available",
           "runtime_status": "collected",
           "evidence_rows": 202,
+          "error": null
+        },
+        {
+          "set_key": "xy7",
+          "set_name": "Ancient Origins",
+          "source_key": "tcgplayer_price_guide",
+          "source_alias": null,
+          "configured_status": "unavailable",
+          "runtime_status": "collected",
+          "evidence_rows": 64,
           "error": null
         }
       ]
@@ -6826,13 +8046,13 @@
           "total": 165
         }
       },
-      "evidence_rows": 797,
+      "evidence_rows": 919,
       "card_status_counts": {
         "api_agreed": 165
       },
       "printing_status_counts": {
-        "api_agreed": 122,
-        "candidate_unconfirmed": 223
+        "candidate_unconfirmed": 223,
+        "master_verified": 122
       },
       "source_availability": [
         {
@@ -6853,6 +8073,16 @@
           "configured_status": "available",
           "runtime_status": "collected",
           "evidence_rows": 330,
+          "error": null
+        },
+        {
+          "set_key": "xy8",
+          "set_name": "BREAKthrough",
+          "source_key": "tcgplayer_price_guide",
+          "source_alias": null,
+          "configured_status": "unavailable",
+          "runtime_status": "collected",
+          "evidence_rows": 122,
           "error": null
         }
       ]
@@ -6909,6 +8139,16 @@
           "runtime_status": "collected",
           "evidence_rows": 24,
           "error": null
+        },
+        {
+          "set_key": "mcd15",
+          "set_name": "McDonald's Collection 2015",
+          "source_key": "tcgplayer_price_guide",
+          "source_alias": null,
+          "configured_status": "unavailable",
+          "runtime_status": "unavailable",
+          "evidence_rows": 0,
+          "error": null
         }
       ]
     },
@@ -6937,13 +8177,13 @@
           "total": 126
         }
       },
-      "evidence_rows": 598,
+      "evidence_rows": 688,
       "card_status_counts": {
         "api_agreed": 126
       },
       "printing_status_counts": {
-        "api_agreed": 90,
-        "candidate_unconfirmed": 166
+        "candidate_unconfirmed": 166,
+        "master_verified": 90
       },
       "source_availability": [
         {
@@ -6964,6 +8204,16 @@
           "configured_status": "available",
           "runtime_status": "collected",
           "evidence_rows": 252,
+          "error": null
+        },
+        {
+          "set_key": "xy9",
+          "set_name": "BREAKpoint",
+          "source_key": "tcgplayer_price_guide",
+          "source_alias": null,
+          "configured_status": "unavailable",
+          "runtime_status": "collected",
+          "evidence_rows": 90,
           "error": null
         }
       ]
@@ -6993,13 +8243,13 @@
           "total": 117
         }
       },
-      "evidence_rows": 535,
+      "evidence_rows": 612,
       "card_status_counts": {
         "api_agreed": 117
       },
       "printing_status_counts": {
-        "api_agreed": 77,
-        "candidate_unconfirmed": 147
+        "candidate_unconfirmed": 147,
+        "master_verified": 77
       },
       "source_availability": [
         {
@@ -7020,6 +8270,16 @@
           "configured_status": "available",
           "runtime_status": "collected",
           "evidence_rows": 234,
+          "error": null
+        },
+        {
+          "set_key": "g1",
+          "set_name": "Generations",
+          "source_key": "tcgplayer_price_guide",
+          "source_alias": null,
+          "configured_status": "unavailable",
+          "runtime_status": "collected",
+          "evidence_rows": 77,
           "error": null
         }
       ]
@@ -7049,13 +8309,13 @@
           "total": 129
         }
       },
-      "evidence_rows": 609,
+      "evidence_rows": 701,
       "card_status_counts": {
         "api_agreed": 129
       },
       "printing_status_counts": {
-        "api_agreed": 92,
-        "candidate_unconfirmed": 167
+        "candidate_unconfirmed": 167,
+        "master_verified": 92
       },
       "source_availability": [
         {
@@ -7076,6 +8336,16 @@
           "configured_status": "available",
           "runtime_status": "collected",
           "evidence_rows": 258,
+          "error": null
+        },
+        {
+          "set_key": "xy10",
+          "set_name": "Fates Collide",
+          "source_key": "tcgplayer_price_guide",
+          "source_alias": null,
+          "configured_status": "unavailable",
+          "runtime_status": "collected",
+          "evidence_rows": 92,
           "error": null
         }
       ]
@@ -7105,13 +8375,13 @@
           "total": 116
         }
       },
-      "evidence_rows": 557,
+      "evidence_rows": 641,
       "card_status_counts": {
         "api_agreed": 116
       },
       "printing_status_counts": {
-        "api_agreed": 84,
-        "candidate_unconfirmed": 157
+        "candidate_unconfirmed": 157,
+        "master_verified": 84
       },
       "source_availability": [
         {
@@ -7132,6 +8402,16 @@
           "configured_status": "available",
           "runtime_status": "collected",
           "evidence_rows": 232,
+          "error": null
+        },
+        {
+          "set_key": "xy11",
+          "set_name": "Steam Siege",
+          "source_key": "tcgplayer_price_guide",
+          "source_alias": null,
+          "configured_status": "unavailable",
+          "runtime_status": "collected",
+          "evidence_rows": 84,
           "error": null
         }
       ]
@@ -7188,6 +8468,16 @@
           "runtime_status": "collected",
           "evidence_rows": 24,
           "error": null
+        },
+        {
+          "set_key": "mcd16",
+          "set_name": "McDonald's Collection 2016",
+          "source_key": "tcgplayer_price_guide",
+          "source_alias": null,
+          "configured_status": "unavailable",
+          "runtime_status": "unavailable",
+          "evidence_rows": 0,
+          "error": null
         }
       ]
     },
@@ -7216,13 +8506,13 @@
           "total": 113
         }
       },
-      "evidence_rows": 535,
+      "evidence_rows": 610,
       "card_status_counts": {
         "api_agreed": 113
       },
       "printing_status_counts": {
-        "api_agreed": 75,
-        "candidate_unconfirmed": 159
+        "candidate_unconfirmed": 159,
+        "master_verified": 75
       },
       "source_availability": [
         {
@@ -7243,6 +8533,16 @@
           "configured_status": "available",
           "runtime_status": "collected",
           "evidence_rows": 226,
+          "error": null
+        },
+        {
+          "set_key": "xy12",
+          "set_name": "Evolutions",
+          "source_key": "tcgplayer_price_guide",
+          "source_alias": null,
+          "configured_status": "unavailable",
+          "runtime_status": "collected",
+          "evidence_rows": 75,
           "error": null
         }
       ]
@@ -7272,14 +8572,14 @@
           "total": 248
         }
       },
-      "evidence_rows": 999,
+      "evidence_rows": 1020,
       "card_status_counts": {
         "api_agreed": 248,
         "candidate_unconfirmed": 3
       },
       "printing_status_counts": {
-        "api_agreed": 21,
-        "candidate_unconfirmed": 458
+        "candidate_unconfirmed": 458,
+        "master_verified": 21
       },
       "source_availability": [
         {
@@ -7300,6 +8600,16 @@
           "configured_status": "available",
           "runtime_status": "collected",
           "evidence_rows": 496,
+          "error": null
+        },
+        {
+          "set_key": "smp",
+          "set_name": "SM Black Star Promos",
+          "source_key": "tcgplayer_price_guide",
+          "source_alias": null,
+          "configured_status": "unavailable",
+          "runtime_status": "collected",
+          "evidence_rows": 21,
           "error": null
         }
       ]
@@ -7329,14 +8639,14 @@
           "total": 172
         }
       },
-      "evidence_rows": 806,
+      "evidence_rows": 916,
       "card_status_counts": {
         "api_agreed": 172,
         "candidate_unconfirmed": 1
       },
       "printing_status_counts": {
-        "api_agreed": 110,
-        "candidate_unconfirmed": 241
+        "candidate_unconfirmed": 241,
+        "master_verified": 110
       },
       "source_availability": [
         {
@@ -7357,6 +8667,16 @@
           "configured_status": "available",
           "runtime_status": "collected",
           "evidence_rows": 344,
+          "error": null
+        },
+        {
+          "set_key": "sm1",
+          "set_name": "Sun & Moon",
+          "source_key": "tcgplayer_price_guide",
+          "source_alias": null,
+          "configured_status": "unavailable",
+          "runtime_status": "collected",
+          "evidence_rows": 110,
           "error": null
         }
       ]
@@ -7386,14 +8706,14 @@
           "total": 169
         }
       },
-      "evidence_rows": 805,
+      "evidence_rows": 908,
       "card_status_counts": {
         "api_agreed": 169,
         "candidate_unconfirmed": 11
       },
       "printing_status_counts": {
-        "api_agreed": 103,
-        "candidate_unconfirmed": 250
+        "candidate_unconfirmed": 250,
+        "master_verified": 103
       },
       "source_availability": [
         {
@@ -7414,6 +8734,16 @@
           "configured_status": "available",
           "runtime_status": "collected",
           "evidence_rows": 338,
+          "error": null
+        },
+        {
+          "set_key": "sm2",
+          "set_name": "Guardians Rising",
+          "source_key": "tcgplayer_price_guide",
+          "source_alias": null,
+          "configured_status": "unavailable",
+          "runtime_status": "collected",
+          "evidence_rows": 103,
           "error": null
         }
       ]
@@ -7443,14 +8773,14 @@
           "total": 169
         }
       },
-      "evidence_rows": 800,
+      "evidence_rows": 903,
       "card_status_counts": {
         "api_agreed": 169,
         "candidate_unconfirmed": 8
       },
       "printing_status_counts": {
-        "api_agreed": 103,
-        "candidate_unconfirmed": 248
+        "candidate_unconfirmed": 248,
+        "master_verified": 103
       },
       "source_availability": [
         {
@@ -7471,6 +8801,16 @@
           "configured_status": "available",
           "runtime_status": "collected",
           "evidence_rows": 338,
+          "error": null
+        },
+        {
+          "set_key": "sm3",
+          "set_name": "Burning Shadows",
+          "source_key": "tcgplayer_price_guide",
+          "source_alias": null,
+          "configured_status": "unavailable",
+          "runtime_status": "collected",
+          "evidence_rows": 103,
           "error": null
         }
       ]
@@ -7500,14 +8840,14 @@
           "total": 78
         }
       },
-      "evidence_rows": 375,
+      "evidence_rows": 423,
       "card_status_counts": {
         "api_agreed": 78,
         "candidate_unconfirmed": 3
       },
       "printing_status_counts": {
-        "api_agreed": 48,
-        "candidate_unconfirmed": 120
+        "candidate_unconfirmed": 120,
+        "master_verified": 48
       },
       "source_availability": [
         {
@@ -7528,6 +8868,16 @@
           "configured_status": "available",
           "runtime_status": "collected",
           "evidence_rows": 156,
+          "error": null
+        },
+        {
+          "set_key": "sm35",
+          "set_name": "Shining Legends",
+          "source_key": "tcgplayer_price_guide",
+          "source_alias": null,
+          "configured_status": "unavailable",
+          "runtime_status": "collected",
+          "evidence_rows": 48,
           "error": null
         }
       ]
@@ -7557,14 +8907,14 @@
           "total": 125
         }
       },
-      "evidence_rows": 592,
+      "evidence_rows": 672,
       "card_status_counts": {
         "api_agreed": 125,
         "candidate_unconfirmed": 1
       },
       "printing_status_counts": {
-        "api_agreed": 80,
-        "candidate_unconfirmed": 181
+        "candidate_unconfirmed": 181,
+        "master_verified": 80
       },
       "source_availability": [
         {
@@ -7585,6 +8935,16 @@
           "configured_status": "available",
           "runtime_status": "collected",
           "evidence_rows": 250,
+          "error": null
+        },
+        {
+          "set_key": "sm4",
+          "set_name": "Crimson Invasion",
+          "source_key": "tcgplayer_price_guide",
+          "source_alias": null,
+          "configured_status": "unavailable",
+          "runtime_status": "collected",
+          "evidence_rows": 80,
           "error": null
         }
       ]
@@ -7641,6 +9001,16 @@
           "runtime_status": "collected",
           "evidence_rows": 24,
           "error": null
+        },
+        {
+          "set_key": "mcd17",
+          "set_name": "McDonald's Collection 2017",
+          "source_key": "tcgplayer_price_guide",
+          "source_alias": null,
+          "configured_status": "unavailable",
+          "runtime_status": "unavailable",
+          "evidence_rows": 0,
+          "error": null
         }
       ]
     },
@@ -7669,14 +9039,14 @@
           "total": 173
         }
       },
-      "evidence_rows": 822,
+      "evidence_rows": 934,
       "card_status_counts": {
         "api_agreed": 173,
         "candidate_unconfirmed": 5
       },
       "printing_status_counts": {
-        "api_agreed": 112,
-        "candidate_unconfirmed": 247
+        "candidate_unconfirmed": 247,
+        "master_verified": 112
       },
       "source_availability": [
         {
@@ -7697,6 +9067,16 @@
           "configured_status": "available",
           "runtime_status": "collected",
           "evidence_rows": 346,
+          "error": null
+        },
+        {
+          "set_key": "sm5",
+          "set_name": "Ultra Prism",
+          "source_key": "tcgplayer_price_guide",
+          "source_alias": null,
+          "configured_status": "unavailable",
+          "runtime_status": "collected",
+          "evidence_rows": 112,
           "error": null
         }
       ]
@@ -7726,14 +9106,14 @@
           "total": 146
         }
       },
-      "evidence_rows": 693,
+      "evidence_rows": 786,
       "card_status_counts": {
         "api_agreed": 146,
         "candidate_unconfirmed": 4
       },
       "printing_status_counts": {
-        "api_agreed": 93,
-        "candidate_unconfirmed": 211
+        "candidate_unconfirmed": 211,
+        "master_verified": 93
       },
       "source_availability": [
         {
@@ -7754,6 +9134,16 @@
           "configured_status": "available",
           "runtime_status": "collected",
           "evidence_rows": 292,
+          "error": null
+        },
+        {
+          "set_key": "sm6",
+          "set_name": "Forbidden Light",
+          "source_key": "tcgplayer_price_guide",
+          "source_alias": null,
+          "configured_status": "unavailable",
+          "runtime_status": "collected",
+          "evidence_rows": 93,
           "error": null
         }
       ]
@@ -7783,14 +9173,14 @@
           "total": 183
         }
       },
-      "evidence_rows": 873,
+      "evidence_rows": 992,
       "card_status_counts": {
         "api_agreed": 183,
         "candidate_unconfirmed": 4
       },
       "printing_status_counts": {
-        "api_agreed": 119,
-        "candidate_unconfirmed": 265
+        "candidate_unconfirmed": 265,
+        "master_verified": 119
       },
       "source_availability": [
         {
@@ -7811,6 +9201,16 @@
           "configured_status": "available",
           "runtime_status": "collected",
           "evidence_rows": 366,
+          "error": null
+        },
+        {
+          "set_key": "sm7",
+          "set_name": "Celestial Storm",
+          "source_key": "tcgplayer_price_guide",
+          "source_alias": null,
+          "configured_status": "unavailable",
+          "runtime_status": "collected",
+          "evidence_rows": 119,
           "error": null
         }
       ]
@@ -7840,14 +9240,14 @@
           "total": 78
         }
       },
-      "evidence_rows": 370,
+      "evidence_rows": 416,
       "card_status_counts": {
         "api_agreed": 78,
         "candidate_unconfirmed": 2
       },
       "printing_status_counts": {
-        "api_agreed": 46,
-        "candidate_unconfirmed": 120
+        "candidate_unconfirmed": 120,
+        "master_verified": 46
       },
       "source_availability": [
         {
@@ -7868,6 +9268,16 @@
           "configured_status": "available",
           "runtime_status": "collected",
           "evidence_rows": 156,
+          "error": null
+        },
+        {
+          "set_key": "sm75",
+          "set_name": "Dragon Majesty",
+          "source_key": "tcgplayer_price_guide",
+          "source_alias": null,
+          "configured_status": "unavailable",
+          "runtime_status": "collected",
+          "evidence_rows": 46,
           "error": null
         }
       ]
@@ -7924,6 +9334,16 @@
           "runtime_status": "collected",
           "evidence_rows": 24,
           "error": null
+        },
+        {
+          "set_key": "mcd18",
+          "set_name": "McDonald's Collection 2018",
+          "source_key": "tcgplayer_price_guide",
+          "source_alias": null,
+          "configured_status": "unavailable",
+          "runtime_status": "unavailable",
+          "evidence_rows": 0,
+          "error": null
         }
       ]
     },
@@ -7952,14 +9372,14 @@
           "total": 236
         }
       },
-      "evidence_rows": 1122,
+      "evidence_rows": 1275,
       "card_status_counts": {
         "api_agreed": 236,
         "candidate_unconfirmed": 4
       },
       "printing_status_counts": {
-        "api_agreed": 153,
-        "candidate_unconfirmed": 340
+        "candidate_unconfirmed": 340,
+        "master_verified": 153
       },
       "source_availability": [
         {
@@ -7980,6 +9400,16 @@
           "configured_status": "available",
           "runtime_status": "collected",
           "evidence_rows": 472,
+          "error": null
+        },
+        {
+          "set_key": "sm8",
+          "set_name": "Lost Thunder",
+          "source_key": "tcgplayer_price_guide",
+          "source_alias": null,
+          "configured_status": "unavailable",
+          "runtime_status": "collected",
+          "evidence_rows": 153,
           "error": null
         }
       ]
@@ -8009,14 +9439,14 @@
           "total": 196
         }
       },
-      "evidence_rows": 929,
+      "evidence_rows": 1053,
       "card_status_counts": {
         "api_agreed": 196,
         "candidate_unconfirmed": 2
       },
       "printing_status_counts": {
-        "api_agreed": 124,
-        "candidate_unconfirmed": 287
+        "candidate_unconfirmed": 287,
+        "master_verified": 124
       },
       "source_availability": [
         {
@@ -8037,6 +9467,16 @@
           "configured_status": "available",
           "runtime_status": "collected",
           "evidence_rows": 392,
+          "error": null
+        },
+        {
+          "set_key": "sm9",
+          "set_name": "Team Up",
+          "source_key": "tcgplayer_price_guide",
+          "source_alias": null,
+          "configured_status": "unavailable",
+          "runtime_status": "collected",
+          "evidence_rows": 124,
           "error": null
         }
       ]
@@ -8093,6 +9533,16 @@
           "runtime_status": "collected",
           "evidence_rows": 36,
           "error": null
+        },
+        {
+          "set_key": "det1",
+          "set_name": "Detective Pikachu",
+          "source_key": "tcgplayer_price_guide",
+          "source_alias": null,
+          "configured_status": "unavailable",
+          "runtime_status": "unavailable",
+          "evidence_rows": 0,
+          "error": null
         }
       ]
     },
@@ -8121,14 +9571,14 @@
           "total": 234
         }
       },
-      "evidence_rows": 1116,
+      "evidence_rows": 1270,
       "card_status_counts": {
         "api_agreed": 234,
         "candidate_unconfirmed": 4
       },
       "printing_status_counts": {
-        "api_agreed": 154,
-        "candidate_unconfirmed": 336
+        "candidate_unconfirmed": 336,
+        "master_verified": 154
       },
       "source_availability": [
         {
@@ -8149,6 +9599,16 @@
           "configured_status": "available",
           "runtime_status": "collected",
           "evidence_rows": 468,
+          "error": null
+        },
+        {
+          "set_key": "sm10",
+          "set_name": "Unbroken Bonds",
+          "source_key": "tcgplayer_price_guide",
+          "source_alias": null,
+          "configured_status": "unavailable",
+          "runtime_status": "collected",
+          "evidence_rows": 154,
           "error": null
         }
       ]
@@ -8178,14 +9638,14 @@
           "total": 258
         }
       },
-      "evidence_rows": 1231,
+      "evidence_rows": 1406,
       "card_status_counts": {
         "api_agreed": 258,
         "candidate_unconfirmed": 3
       },
       "printing_status_counts": {
-        "api_agreed": 175,
-        "candidate_unconfirmed": 362
+        "candidate_unconfirmed": 362,
+        "master_verified": 175
       },
       "source_availability": [
         {
@@ -8206,6 +9666,16 @@
           "configured_status": "available",
           "runtime_status": "collected",
           "evidence_rows": 516,
+          "error": null
+        },
+        {
+          "set_key": "sm11",
+          "set_name": "Unified Minds",
+          "source_key": "tcgplayer_price_guide",
+          "source_alias": null,
+          "configured_status": "unavailable",
+          "runtime_status": "collected",
+          "evidence_rows": 175,
           "error": null
         }
       ]
@@ -8235,13 +9705,13 @@
           "total": 69
         }
       },
-      "evidence_rows": 332,
+      "evidence_rows": 382,
       "card_status_counts": {
         "api_agreed": 69
       },
       "printing_status_counts": {
-        "api_agreed": 50,
-        "candidate_unconfirmed": 94
+        "candidate_unconfirmed": 94,
+        "master_verified": 50
       },
       "source_availability": [
         {
@@ -8262,6 +9732,16 @@
           "configured_status": "available",
           "runtime_status": "collected",
           "evidence_rows": 138,
+          "error": null
+        },
+        {
+          "set_key": "sm115",
+          "set_name": "Hidden Fates",
+          "source_key": "tcgplayer_price_guide",
+          "source_alias": null,
+          "configured_status": "unavailable",
+          "runtime_status": "collected",
+          "evidence_rows": 50,
           "error": null
         }
       ]
@@ -8318,6 +9798,16 @@
           "runtime_status": "collected",
           "evidence_rows": 188,
           "error": null
+        },
+        {
+          "set_key": "sma",
+          "set_name": "Hidden Fates Shiny Vault",
+          "source_key": "tcgplayer_price_guide",
+          "source_alias": null,
+          "configured_status": "unavailable",
+          "runtime_status": "unavailable",
+          "evidence_rows": 0,
+          "error": null
         }
       ]
     },
@@ -8346,12 +9836,12 @@
           "total": 12
         }
       },
-      "evidence_rows": 48,
+      "evidence_rows": 60,
       "card_status_counts": {
         "api_agreed": 12
       },
       "printing_status_counts": {
-        "api_agreed": 12
+        "master_verified": 12
       },
       "source_availability": [
         {
@@ -8372,6 +9862,16 @@
           "configured_status": "available",
           "runtime_status": "collected",
           "evidence_rows": 24,
+          "error": null
+        },
+        {
+          "set_key": "mcd19",
+          "set_name": "McDonald's Collection 2019",
+          "source_key": "tcgplayer_price_guide",
+          "source_alias": null,
+          "configured_status": "unavailable",
+          "runtime_status": "collected",
+          "evidence_rows": 12,
           "error": null
         }
       ]
@@ -8401,14 +9901,14 @@
           "total": 271
         }
       },
-      "evidence_rows": 1278,
+      "evidence_rows": 1449,
       "card_status_counts": {
         "api_agreed": 271,
         "candidate_unconfirmed": 1
       },
       "printing_status_counts": {
-        "api_agreed": 171,
-        "candidate_unconfirmed": 393
+        "candidate_unconfirmed": 393,
+        "master_verified": 171
       },
       "source_availability": [
         {
@@ -8429,6 +9929,16 @@
           "configured_status": "available",
           "runtime_status": "collected",
           "evidence_rows": 542,
+          "error": null
+        },
+        {
+          "set_key": "sm12",
+          "set_name": "Cosmic Eclipse",
+          "source_key": "tcgplayer_price_guide",
+          "source_alias": null,
+          "configured_status": "unavailable",
+          "runtime_status": "collected",
+          "evidence_rows": 171,
           "error": null
         }
       ]
@@ -8458,14 +9968,14 @@
           "total": 307
         }
       },
-      "evidence_rows": 1167,
+      "evidence_rows": 1303,
       "card_status_counts": {
         "api_agreed": 299,
         "candidate_unconfirmed": 8
       },
       "printing_status_counts": {
-        "api_agreed": 136,
-        "candidate_unconfirmed": 289
+        "candidate_unconfirmed": 289,
+        "master_verified": 136
       },
       "source_availability": [
         {
@@ -8486,6 +9996,16 @@
           "configured_status": "available",
           "runtime_status": "collected",
           "evidence_rows": 563,
+          "error": null
+        },
+        {
+          "set_key": "swshp",
+          "set_name": "SWSH Black Star Promos",
+          "source_key": "tcgplayer_price_guide",
+          "source_alias": null,
+          "configured_status": "unavailable",
+          "runtime_status": "collected",
+          "evidence_rows": 136,
           "error": null
         }
       ]
@@ -8515,13 +10035,13 @@
           "total": 216
         }
       },
-      "evidence_rows": 1193,
+      "evidence_rows": 1573,
       "card_status_counts": {
         "api_agreed": 216
       },
       "printing_status_counts": {
-        "api_agreed": 380,
-        "candidate_unconfirmed": 1
+        "candidate_unconfirmed": 1,
+        "master_verified": 380
       },
       "source_availability": [
         {
@@ -8542,6 +10062,16 @@
           "configured_status": "available",
           "runtime_status": "collected",
           "evidence_rows": 596,
+          "error": null
+        },
+        {
+          "set_key": "swsh1",
+          "set_name": "Sword & Shield",
+          "source_key": "tcgplayer_price_guide",
+          "source_alias": null,
+          "configured_status": "unavailable",
+          "runtime_status": "collected",
+          "evidence_rows": 380,
           "error": null
         }
       ]
@@ -8571,14 +10101,14 @@
           "total": 209
         }
       },
-      "evidence_rows": 1135,
+      "evidence_rows": 1486,
       "card_status_counts": {
         "api_agreed": 206,
         "candidate_unconfirmed": 6
       },
       "printing_status_counts": {
-        "api_agreed": 353,
-        "candidate_unconfirmed": 11
+        "candidate_unconfirmed": 12,
+        "master_verified": 352
       },
       "source_availability": [
         {
@@ -8588,7 +10118,7 @@
           "source_alias": "swsh2",
           "configured_status": "available",
           "runtime_status": "collected",
-          "evidence_rows": 570,
+          "evidence_rows": 569,
           "error": null
         },
         {
@@ -8599,6 +10129,16 @@
           "configured_status": "available",
           "runtime_status": "collected",
           "evidence_rows": 565,
+          "error": null
+        },
+        {
+          "set_key": "swsh2",
+          "set_name": "Rebel Clash",
+          "source_key": "tcgplayer_price_guide",
+          "source_alias": null,
+          "configured_status": "unavailable",
+          "runtime_status": "collected",
+          "evidence_rows": 352,
           "error": null
         }
       ]
@@ -8628,12 +10168,12 @@
           "total": 201
         }
       },
-      "evidence_rows": 1114,
+      "evidence_rows": 1470,
       "card_status_counts": {
         "api_agreed": 201
       },
       "printing_status_counts": {
-        "api_agreed": 356
+        "master_verified": 356
       },
       "source_availability": [
         {
@@ -8654,6 +10194,16 @@
           "configured_status": "available",
           "runtime_status": "collected",
           "evidence_rows": 557,
+          "error": null
+        },
+        {
+          "set_key": "swsh3",
+          "set_name": "Darkness Ablaze",
+          "source_key": "tcgplayer_price_guide",
+          "source_alias": null,
+          "configured_status": "unavailable",
+          "runtime_status": "collected",
+          "evidence_rows": 356,
           "error": null
         }
       ]
@@ -8710,6 +10260,16 @@
           "runtime_status": "unavailable",
           "evidence_rows": 0,
           "error": null
+        },
+        {
+          "set_key": "fut20",
+          "set_name": "Pokémon Futsal Collection",
+          "source_key": "tcgplayer_price_guide",
+          "source_alias": null,
+          "configured_status": "unavailable",
+          "runtime_status": "unavailable",
+          "evidence_rows": 0,
+          "error": null
         }
       ]
     },
@@ -8738,12 +10298,12 @@
           "total": 80
         }
       },
-      "evidence_rows": 428,
+      "evidence_rows": 562,
       "card_status_counts": {
         "api_agreed": 80
       },
       "printing_status_counts": {
-        "api_agreed": 134
+        "master_verified": 134
       },
       "source_availability": [
         {
@@ -8764,6 +10324,16 @@
           "configured_status": "available",
           "runtime_status": "collected",
           "evidence_rows": 214,
+          "error": null
+        },
+        {
+          "set_key": "swsh35",
+          "set_name": "Champion's Path",
+          "source_key": "tcgplayer_price_guide",
+          "source_alias": null,
+          "configured_status": "unavailable",
+          "runtime_status": "collected",
+          "evidence_rows": 134,
           "error": null
         }
       ]
@@ -8793,12 +10363,12 @@
           "total": 203
         }
       },
-      "evidence_rows": 1096,
+      "evidence_rows": 1441,
       "card_status_counts": {
         "api_agreed": 203
       },
       "printing_status_counts": {
-        "api_agreed": 345
+        "master_verified": 345
       },
       "source_availability": [
         {
@@ -8819,6 +10389,16 @@
           "configured_status": "available",
           "runtime_status": "collected",
           "evidence_rows": 548,
+          "error": null
+        },
+        {
+          "set_key": "swsh4",
+          "set_name": "Vivid Voltage",
+          "source_key": "tcgplayer_price_guide",
+          "source_alias": null,
+          "configured_status": "unavailable",
+          "runtime_status": "collected",
+          "evidence_rows": 345,
           "error": null
         }
       ]
@@ -8848,12 +10428,12 @@
           "total": 25
         }
       },
-      "evidence_rows": 150,
+      "evidence_rows": 200,
       "card_status_counts": {
         "api_agreed": 25
       },
       "printing_status_counts": {
-        "api_agreed": 50
+        "master_verified": 50
       },
       "source_availability": [
         {
@@ -8874,6 +10454,16 @@
           "configured_status": "available",
           "runtime_status": "collected",
           "evidence_rows": 75,
+          "error": null
+        },
+        {
+          "set_key": "mcd21",
+          "set_name": "McDonald's Collection 2021",
+          "source_key": "tcgplayer_price_guide",
+          "source_alias": null,
+          "configured_status": "unavailable",
+          "runtime_status": "collected",
+          "evidence_rows": 50,
           "error": null
         }
       ]
@@ -8903,14 +10493,14 @@
           "total": 195
         }
       },
-      "evidence_rows": 628,
+      "evidence_rows": 743,
       "card_status_counts": {
         "api_agreed": 71,
         "candidate_unconfirmed": 126
       },
       "printing_status_counts": {
-        "api_agreed": 115,
-        "candidate_unconfirmed": 130
+        "candidate_unconfirmed": 130,
+        "master_verified": 115
       },
       "source_availability": [
         {
@@ -8931,6 +10521,16 @@
           "configured_status": "available",
           "runtime_status": "collected",
           "evidence_rows": 436,
+          "error": null
+        },
+        {
+          "set_key": "swsh45",
+          "set_name": "Shining Fates",
+          "source_key": "tcgplayer_price_guide",
+          "source_alias": null,
+          "configured_status": "unavailable",
+          "runtime_status": "collected",
+          "evidence_rows": 115,
           "error": null
         }
       ]
@@ -8987,6 +10587,16 @@
           "runtime_status": "unavailable",
           "evidence_rows": 0,
           "error": null
+        },
+        {
+          "set_key": "swsh45sv",
+          "set_name": "Shining Fates Shiny Vault",
+          "source_key": "tcgplayer_price_guide",
+          "source_alias": null,
+          "configured_status": "unavailable",
+          "runtime_status": "unavailable",
+          "evidence_rows": 0,
+          "error": null
         }
       ]
     },
@@ -9015,12 +10625,12 @@
           "total": 183
         }
       },
-      "evidence_rows": 978,
+      "evidence_rows": 1284,
       "card_status_counts": {
         "api_agreed": 183
       },
       "printing_status_counts": {
-        "api_agreed": 306
+        "master_verified": 306
       },
       "source_availability": [
         {
@@ -9041,6 +10651,16 @@
           "configured_status": "available",
           "runtime_status": "collected",
           "evidence_rows": 489,
+          "error": null
+        },
+        {
+          "set_key": "swsh5",
+          "set_name": "Battle Styles",
+          "source_key": "tcgplayer_price_guide",
+          "source_alias": null,
+          "configured_status": "unavailable",
+          "runtime_status": "collected",
+          "evidence_rows": 306,
           "error": null
         }
       ]
@@ -9070,13 +10690,13 @@
           "total": 233
         }
       },
-      "evidence_rows": 1198,
+      "evidence_rows": 1561,
       "card_status_counts": {
         "api_agreed": 233
       },
       "printing_status_counts": {
-        "api_agreed": 363,
-        "candidate_unconfirmed": 6
+        "candidate_unconfirmed": 6,
+        "master_verified": 363
       },
       "source_availability": [
         {
@@ -9097,6 +10717,16 @@
           "configured_status": "available",
           "runtime_status": "collected",
           "evidence_rows": 596,
+          "error": null
+        },
+        {
+          "set_key": "swsh6",
+          "set_name": "Chilling Reign",
+          "source_key": "tcgplayer_price_guide",
+          "source_alias": null,
+          "configured_status": "unavailable",
+          "runtime_status": "collected",
+          "evidence_rows": 363,
           "error": null
         }
       ]
@@ -9126,13 +10756,13 @@
           "total": 237
         }
       },
-      "evidence_rows": 1159,
+      "evidence_rows": 1474,
       "card_status_counts": {
         "api_agreed": 237
       },
       "printing_status_counts": {
-        "api_agreed": 315,
-        "candidate_unconfirmed": 55
+        "candidate_unconfirmed": 55,
+        "master_verified": 315
       },
       "source_availability": [
         {
@@ -9153,6 +10783,16 @@
           "configured_status": "available",
           "runtime_status": "collected",
           "evidence_rows": 553,
+          "error": null
+        },
+        {
+          "set_key": "swsh7",
+          "set_name": "Evolving Skies",
+          "source_key": "tcgplayer_price_guide",
+          "source_alias": null,
+          "configured_status": "unavailable",
+          "runtime_status": "collected",
+          "evidence_rows": 315,
           "error": null
         }
       ]
@@ -9182,13 +10822,13 @@
           "total": 50
         }
       },
-      "evidence_rows": 125,
+      "evidence_rows": 150,
       "card_status_counts": {
         "api_agreed": 25,
         "candidate_unconfirmed": 25
       },
       "printing_status_counts": {
-        "api_agreed": 25
+        "master_verified": 25
       },
       "source_availability": [
         {
@@ -9209,6 +10849,16 @@
           "configured_status": "available",
           "runtime_status": "collected",
           "evidence_rows": 75,
+          "error": null
+        },
+        {
+          "set_key": "cel25",
+          "set_name": "Celebrations",
+          "source_key": "tcgplayer_price_guide",
+          "source_alias": null,
+          "configured_status": "unavailable",
+          "runtime_status": "collected",
+          "evidence_rows": 25,
           "error": null
         }
       ]
@@ -9265,6 +10915,16 @@
           "runtime_status": "unavailable",
           "evidence_rows": 0,
           "error": null
+        },
+        {
+          "set_key": "cel25c",
+          "set_name": "Celebrations: Classic Collection",
+          "source_key": "tcgplayer_price_guide",
+          "source_alias": null,
+          "configured_status": "unavailable",
+          "runtime_status": "unavailable",
+          "evidence_rows": 0,
+          "error": null
         }
       ]
     },
@@ -9293,13 +10953,13 @@
           "total": 284
         }
       },
-      "evidence_rows": 1570,
+      "evidence_rows": 2058,
       "card_status_counts": {
         "api_agreed": 284
       },
       "printing_status_counts": {
-        "api_agreed": 488,
-        "candidate_unconfirmed": 26
+        "candidate_unconfirmed": 26,
+        "master_verified": 488
       },
       "source_availability": [
         {
@@ -9320,6 +10980,16 @@
           "configured_status": "available",
           "runtime_status": "collected",
           "evidence_rows": 785,
+          "error": null
+        },
+        {
+          "set_key": "swsh8",
+          "set_name": "Fusion Strike",
+          "source_key": "tcgplayer_price_guide",
+          "source_alias": null,
+          "configured_status": "unavailable",
+          "runtime_status": "collected",
+          "evidence_rows": 488,
           "error": null
         }
       ]
@@ -9349,14 +11019,14 @@
           "total": 216
         }
       },
-      "evidence_rows": 1053,
+      "evidence_rows": 1363,
       "card_status_counts": {
         "api_agreed": 186,
         "candidate_unconfirmed": 30
       },
       "printing_status_counts": {
-        "api_agreed": 310,
-        "candidate_unconfirmed": 31
+        "candidate_unconfirmed": 31,
+        "master_verified": 310
       },
       "source_availability": [
         {
@@ -9377,6 +11047,16 @@
           "configured_status": "available",
           "runtime_status": "collected",
           "evidence_rows": 557,
+          "error": null
+        },
+        {
+          "set_key": "swsh9",
+          "set_name": "Brilliant Stars",
+          "source_key": "tcgplayer_price_guide",
+          "source_alias": null,
+          "configured_status": "unavailable",
+          "runtime_status": "collected",
+          "evidence_rows": 310,
           "error": null
         }
       ]
@@ -9433,6 +11113,16 @@
           "runtime_status": "unavailable",
           "evidence_rows": 0,
           "error": null
+        },
+        {
+          "set_key": "swsh9tg",
+          "set_name": "Brilliant Stars Trainer Gallery",
+          "source_key": "tcgplayer_price_guide",
+          "source_alias": null,
+          "configured_status": "unavailable",
+          "runtime_status": "unavailable",
+          "evidence_rows": 0,
+          "error": null
         }
       ]
     },
@@ -9461,14 +11151,14 @@
           "total": 246
         }
       },
-      "evidence_rows": 1180,
+      "evidence_rows": 1524,
       "card_status_counts": {
         "api_agreed": 216,
         "candidate_unconfirmed": 30
       },
       "printing_status_counts": {
-        "api_agreed": 344,
-        "candidate_unconfirmed": 30
+        "candidate_unconfirmed": 30,
+        "master_verified": 344
       },
       "source_availability": [
         {
@@ -9489,6 +11179,16 @@
           "configured_status": "available",
           "runtime_status": "collected",
           "evidence_rows": 620,
+          "error": null
+        },
+        {
+          "set_key": "swsh10",
+          "set_name": "Astral Radiance",
+          "source_key": "tcgplayer_price_guide",
+          "source_alias": null,
+          "configured_status": "unavailable",
+          "runtime_status": "collected",
+          "evidence_rows": 344,
           "error": null
         }
       ]
@@ -9545,6 +11245,16 @@
           "runtime_status": "unavailable",
           "evidence_rows": 0,
           "error": null
+        },
+        {
+          "set_key": "swsh10tg",
+          "set_name": "Astral Radiance Trainer Gallery",
+          "source_key": "tcgplayer_price_guide",
+          "source_alias": null,
+          "configured_status": "unavailable",
+          "runtime_status": "unavailable",
+          "evidence_rows": 0,
+          "error": null
         }
       ]
     },
@@ -9573,13 +11283,13 @@
           "total": 88
         }
       },
-      "evidence_rows": 467,
+      "evidence_rows": 612,
       "card_status_counts": {
         "api_agreed": 88
       },
       "printing_status_counts": {
-        "api_agreed": 145,
-        "candidate_unconfirmed": 1
+        "candidate_unconfirmed": 1,
+        "master_verified": 145
       },
       "source_availability": [
         {
@@ -9600,6 +11310,16 @@
           "configured_status": "available",
           "runtime_status": "collected",
           "evidence_rows": 234,
+          "error": null
+        },
+        {
+          "set_key": "pgo",
+          "set_name": "Pokémon GO",
+          "source_key": "tcgplayer_price_guide",
+          "source_alias": null,
+          "configured_status": "unavailable",
+          "runtime_status": "collected",
+          "evidence_rows": 145,
           "error": null
         }
       ]
@@ -9629,13 +11349,13 @@
           "total": 15
         }
       },
-      "evidence_rows": 60,
+      "evidence_rows": 66,
       "card_status_counts": {
         "api_agreed": 15
       },
       "printing_status_counts": {
-        "api_agreed": 6,
-        "candidate_unconfirmed": 18
+        "candidate_unconfirmed": 18,
+        "master_verified": 6
       },
       "source_availability": [
         {
@@ -9656,6 +11376,16 @@
           "configured_status": "available",
           "runtime_status": "collected",
           "evidence_rows": 30,
+          "error": null
+        },
+        {
+          "set_key": "mcd22",
+          "set_name": "McDonald's Collection 2022",
+          "source_key": "tcgplayer_price_guide",
+          "source_alias": null,
+          "configured_status": "unavailable",
+          "runtime_status": "collected",
+          "evidence_rows": 6,
           "error": null
         }
       ]
@@ -9685,14 +11415,14 @@
           "total": 247
         }
       },
-      "evidence_rows": 1226,
+      "evidence_rows": 1590,
       "card_status_counts": {
         "api_agreed": 217,
         "candidate_unconfirmed": 30
       },
       "printing_status_counts": {
-        "api_agreed": 364,
-        "candidate_unconfirmed": 34
+        "candidate_unconfirmed": 34,
+        "master_verified": 364
       },
       "source_availability": [
         {
@@ -9713,6 +11443,16 @@
           "configured_status": "available",
           "runtime_status": "collected",
           "evidence_rows": 643,
+          "error": null
+        },
+        {
+          "set_key": "swsh11",
+          "set_name": "Lost Origin",
+          "source_key": "tcgplayer_price_guide",
+          "source_alias": null,
+          "configured_status": "unavailable",
+          "runtime_status": "collected",
+          "evidence_rows": 364,
           "error": null
         }
       ]
@@ -9769,6 +11509,16 @@
           "runtime_status": "unavailable",
           "evidence_rows": 0,
           "error": null
+        },
+        {
+          "set_key": "swsh11tg",
+          "set_name": "Lost Origin Trainer Gallery",
+          "source_key": "tcgplayer_price_guide",
+          "source_alias": null,
+          "configured_status": "unavailable",
+          "runtime_status": "unavailable",
+          "evidence_rows": 0,
+          "error": null
         }
       ]
     },
@@ -9797,14 +11547,14 @@
           "total": 245
         }
       },
-      "evidence_rows": 1204,
+      "evidence_rows": 1561,
       "card_status_counts": {
         "api_agreed": 215,
         "candidate_unconfirmed": 30
       },
       "printing_status_counts": {
-        "api_agreed": 357,
-        "candidate_unconfirmed": 30
+        "candidate_unconfirmed": 30,
+        "master_verified": 357
       },
       "source_availability": [
         {
@@ -9825,6 +11575,16 @@
           "configured_status": "available",
           "runtime_status": "collected",
           "evidence_rows": 632,
+          "error": null
+        },
+        {
+          "set_key": "swsh12",
+          "set_name": "Silver Tempest",
+          "source_key": "tcgplayer_price_guide",
+          "source_alias": null,
+          "configured_status": "unavailable",
+          "runtime_status": "collected",
+          "evidence_rows": 357,
           "error": null
         }
       ]
@@ -9881,6 +11641,16 @@
           "runtime_status": "unavailable",
           "evidence_rows": 0,
           "error": null
+        },
+        {
+          "set_key": "swsh12tg",
+          "set_name": "Silver Tempest Trainer Gallery",
+          "source_key": "tcgplayer_price_guide",
+          "source_alias": null,
+          "configured_status": "unavailable",
+          "runtime_status": "unavailable",
+          "evidence_rows": 0,
+          "error": null
         }
       ]
     },
@@ -9909,14 +11679,14 @@
           "total": 226
         }
       },
-      "evidence_rows": 837,
+      "evidence_rows": 845,
       "card_status_counts": {
         "api_agreed": 200,
         "candidate_unconfirmed": 26
       },
       "printing_status_counts": {
-        "api_agreed": 8,
-        "candidate_unconfirmed": 395
+        "candidate_unconfirmed": 395,
+        "master_verified": 8
       },
       "source_availability": [
         {
@@ -9937,6 +11707,16 @@
           "configured_status": "available",
           "runtime_status": "collected",
           "evidence_rows": 453,
+          "error": null
+        },
+        {
+          "set_key": "svp",
+          "set_name": "Scarlet & Violet Black Star Promos",
+          "source_key": "tcgplayer_price_guide",
+          "source_alias": null,
+          "configured_status": "unavailable",
+          "runtime_status": "collected",
+          "evidence_rows": 8,
           "error": null
         }
       ]
@@ -9966,14 +11746,14 @@
           "total": 230
         }
       },
-      "evidence_rows": 1004,
+      "evidence_rows": 1276,
       "card_status_counts": {
         "api_agreed": 160,
         "candidate_unconfirmed": 70
       },
       "printing_status_counts": {
-        "api_agreed": 272,
-        "candidate_unconfirmed": 70
+        "candidate_unconfirmed": 70,
+        "master_verified": 272
       },
       "source_availability": [
         {
@@ -9994,6 +11774,16 @@
           "configured_status": "available",
           "runtime_status": "collected",
           "evidence_rows": 572,
+          "error": null
+        },
+        {
+          "set_key": "swsh12pt5",
+          "set_name": "Crown Zenith",
+          "source_key": "tcgplayer_price_guide",
+          "source_alias": null,
+          "configured_status": "unavailable",
+          "runtime_status": "collected",
+          "evidence_rows": 272,
           "error": null
         }
       ]
@@ -10050,6 +11840,16 @@
           "runtime_status": "unavailable",
           "evidence_rows": 0,
           "error": null
+        },
+        {
+          "set_key": "swsh12pt5gg",
+          "set_name": "Crown Zenith Galarian Gallery",
+          "source_key": "tcgplayer_price_guide",
+          "source_alias": null,
+          "configured_status": "unavailable",
+          "runtime_status": "unavailable",
+          "evidence_rows": 0,
+          "error": null
         }
       ]
     },
@@ -10078,15 +11878,15 @@
           "total": 258
         }
       },
-      "evidence_rows": 1131,
+      "evidence_rows": 1300,
       "card_status_counts": {
         "api_agreed": 246,
         "candidate_unconfirmed": 8,
         "master_verified": 8
       },
       "printing_status_counts": {
-        "api_agreed": 169,
-        "candidate_unconfirmed": 277
+        "candidate_unconfirmed": 277,
+        "master_verified": 169
       },
       "source_availability": [
         {
@@ -10107,6 +11907,16 @@
           "configured_status": "available",
           "runtime_status": "collected",
           "evidence_rows": 429,
+          "error": null
+        },
+        {
+          "set_key": "sv1",
+          "set_name": "Scarlet & Violet",
+          "source_key": "tcgplayer_price_guide",
+          "source_alias": null,
+          "configured_status": "unavailable",
+          "runtime_status": "collected",
+          "evidence_rows": 169,
           "error": null
         }
       ]
@@ -10163,6 +11973,16 @@
           "runtime_status": "collected",
           "evidence_rows": 48,
           "error": null
+        },
+        {
+          "set_key": "sve",
+          "set_name": "Scarlet & Violet Energies",
+          "source_key": "tcgplayer_price_guide",
+          "source_alias": null,
+          "configured_status": "unavailable",
+          "runtime_status": "unavailable",
+          "evidence_rows": 0,
+          "error": null
         }
       ]
     },
@@ -10191,14 +12011,14 @@
           "total": 279
         }
       },
-      "evidence_rows": 1164,
+      "evidence_rows": 1315,
       "card_status_counts": {
         "api_agreed": 276,
         "candidate_unconfirmed": 6
       },
       "printing_status_counts": {
-        "api_agreed": 151,
-        "candidate_unconfirmed": 304
+        "candidate_unconfirmed": 304,
+        "master_verified": 151
       },
       "source_availability": [
         {
@@ -10219,6 +12039,16 @@
           "configured_status": "available",
           "runtime_status": "collected",
           "evidence_rows": 430,
+          "error": null
+        },
+        {
+          "set_key": "sv2",
+          "set_name": "Paldea Evolved",
+          "source_key": "tcgplayer_price_guide",
+          "source_alias": null,
+          "configured_status": "unavailable",
+          "runtime_status": "collected",
+          "evidence_rows": 151,
           "error": null
         }
       ]
@@ -10248,13 +12078,13 @@
           "total": 230
         }
       },
-      "evidence_rows": 1283,
+      "evidence_rows": 1689,
       "card_status_counts": {
         "api_agreed": 230
       },
       "printing_status_counts": {
-        "api_agreed": 406,
-        "candidate_unconfirmed": 11
+        "candidate_unconfirmed": 11,
+        "master_verified": 406
       },
       "source_availability": [
         {
@@ -10275,6 +12105,16 @@
           "configured_status": "available",
           "runtime_status": "collected",
           "evidence_rows": 647,
+          "error": null
+        },
+        {
+          "set_key": "sv3",
+          "set_name": "Obsidian Flames",
+          "source_key": "tcgplayer_price_guide",
+          "source_alias": null,
+          "configured_status": "unavailable",
+          "runtime_status": "collected",
+          "evidence_rows": 406,
           "error": null
         }
       ]
@@ -10304,13 +12144,13 @@
           "total": 207
         }
       },
-      "evidence_rows": 1136,
+      "evidence_rows": 1496,
       "card_status_counts": {
         "api_agreed": 207
       },
       "printing_status_counts": {
-        "api_agreed": 360,
-        "candidate_unconfirmed": 2
+        "candidate_unconfirmed": 2,
+        "master_verified": 360
       },
       "source_availability": [
         {
@@ -10331,6 +12171,16 @@
           "configured_status": "available",
           "runtime_status": "collected",
           "evidence_rows": 569,
+          "error": null
+        },
+        {
+          "set_key": "sv3pt5",
+          "set_name": "151",
+          "source_key": "tcgplayer_price_guide",
+          "source_alias": null,
+          "configured_status": "unavailable",
+          "runtime_status": "collected",
+          "evidence_rows": 360,
           "error": null
         }
       ]
@@ -10360,13 +12210,13 @@
           "total": 266
         }
       },
-      "evidence_rows": 1392,
+      "evidence_rows": 1820,
       "card_status_counts": {
         "api_agreed": 266
       },
       "printing_status_counts": {
-        "api_agreed": 428,
-        "candidate_unconfirmed": 4
+        "candidate_unconfirmed": 4,
+        "master_verified": 428
       },
       "source_availability": [
         {
@@ -10387,6 +12237,16 @@
           "configured_status": "available",
           "runtime_status": "collected",
           "evidence_rows": 698,
+          "error": null
+        },
+        {
+          "set_key": "sv4",
+          "set_name": "Paradox Rift",
+          "source_key": "tcgplayer_price_guide",
+          "source_alias": null,
+          "configured_status": "unavailable",
+          "runtime_status": "collected",
+          "evidence_rows": 428,
           "error": null
         }
       ]
@@ -10416,13 +12276,13 @@
           "total": 245
         }
       },
-      "evidence_rows": 1143,
+      "evidence_rows": 1468,
       "card_status_counts": {
         "api_agreed": 245
       },
       "printing_status_counts": {
-        "api_agreed": 325,
-        "candidate_unconfirmed": 3
+        "candidate_unconfirmed": 3,
+        "master_verified": 325
       },
       "source_availability": [
         {
@@ -10443,6 +12303,16 @@
           "configured_status": "available",
           "runtime_status": "collected",
           "evidence_rows": 573,
+          "error": null
+        },
+        {
+          "set_key": "sv4pt5",
+          "set_name": "Paldean Fates",
+          "source_key": "tcgplayer_price_guide",
+          "source_alias": null,
+          "configured_status": "unavailable",
+          "runtime_status": "collected",
+          "evidence_rows": 325,
           "error": null
         }
       ]
@@ -10472,13 +12342,13 @@
           "total": 218
         }
       },
-      "evidence_rows": 1173,
+      "evidence_rows": 1531,
       "card_status_counts": {
         "api_agreed": 218
       },
       "printing_status_counts": {
-        "api_agreed": 358,
-        "candidate_unconfirmed": 21
+        "candidate_unconfirmed": 21,
+        "master_verified": 358
       },
       "source_availability": [
         {
@@ -10499,6 +12369,16 @@
           "configured_status": "available",
           "runtime_status": "collected",
           "evidence_rows": 597,
+          "error": null
+        },
+        {
+          "set_key": "sv5",
+          "set_name": "Temporal Forces",
+          "source_key": "tcgplayer_price_guide",
+          "source_alias": null,
+          "configured_status": "unavailable",
+          "runtime_status": "collected",
+          "evidence_rows": 358,
           "error": null
         }
       ]
@@ -10528,13 +12408,13 @@
           "total": 226
         }
       },
-      "evidence_rows": 1209,
+      "evidence_rows": 1582,
       "card_status_counts": {
         "api_agreed": 226
       },
       "printing_status_counts": {
-        "api_agreed": 373,
-        "candidate_unconfirmed": 11
+        "candidate_unconfirmed": 11,
+        "master_verified": 373
       },
       "source_availability": [
         {
@@ -10555,6 +12435,16 @@
           "configured_status": "available",
           "runtime_status": "collected",
           "evidence_rows": 610,
+          "error": null
+        },
+        {
+          "set_key": "sv6",
+          "set_name": "Twilight Masquerade",
+          "source_key": "tcgplayer_price_guide",
+          "source_alias": null,
+          "configured_status": "unavailable",
+          "runtime_status": "collected",
+          "evidence_rows": 373,
           "error": null
         }
       ]
@@ -10584,13 +12474,13 @@
           "total": 99
         }
       },
-      "evidence_rows": 400,
+      "evidence_rows": 448,
       "card_status_counts": {
         "api_agreed": 99
       },
       "printing_status_counts": {
-        "api_agreed": 48,
-        "candidate_unconfirmed": 106
+        "candidate_unconfirmed": 106,
+        "master_verified": 48
       },
       "source_availability": [
         {
@@ -10611,6 +12501,16 @@
           "configured_status": "available",
           "runtime_status": "collected",
           "evidence_rows": 147,
+          "error": null
+        },
+        {
+          "set_key": "sv6pt5",
+          "set_name": "Shrouded Fable",
+          "source_key": "tcgplayer_price_guide",
+          "source_alias": null,
+          "configured_status": "unavailable",
+          "runtime_status": "collected",
+          "evidence_rows": 48,
           "error": null
         }
       ]
@@ -10640,13 +12540,13 @@
           "total": 175
         }
       },
-      "evidence_rows": 954,
+      "evidence_rows": 1253,
       "card_status_counts": {
         "api_agreed": 175
       },
       "printing_status_counts": {
-        "api_agreed": 299,
-        "candidate_unconfirmed": 6
+        "candidate_unconfirmed": 6,
+        "master_verified": 299
       },
       "source_availability": [
         {
@@ -10667,6 +12567,16 @@
           "configured_status": "available",
           "runtime_status": "collected",
           "evidence_rows": 479,
+          "error": null
+        },
+        {
+          "set_key": "sv7",
+          "set_name": "Stellar Crown",
+          "source_key": "tcgplayer_price_guide",
+          "source_alias": null,
+          "configured_status": "unavailable",
+          "runtime_status": "collected",
+          "evidence_rows": 299,
           "error": null
         }
       ]
@@ -10696,13 +12606,13 @@
           "total": 252
         }
       },
-      "evidence_rows": 1343,
+      "evidence_rows": 1760,
       "card_status_counts": {
         "api_agreed": 252
       },
       "printing_status_counts": {
-        "api_agreed": 417,
-        "candidate_unconfirmed": 5
+        "candidate_unconfirmed": 5,
+        "master_verified": 417
       },
       "source_availability": [
         {
@@ -10723,6 +12633,16 @@
           "configured_status": "available",
           "runtime_status": "collected",
           "evidence_rows": 674,
+          "error": null
+        },
+        {
+          "set_key": "sv8",
+          "set_name": "Surging Sparks",
+          "source_key": "tcgplayer_price_guide",
+          "source_alias": null,
+          "configured_status": "unavailable",
+          "runtime_status": "collected",
+          "evidence_rows": 417,
           "error": null
         }
       ]
@@ -10752,13 +12672,13 @@
           "total": 180
         }
       },
-      "evidence_rows": 921,
+      "evidence_rows": 1201,
       "card_status_counts": {
         "api_agreed": 180
       },
       "printing_status_counts": {
-        "api_agreed": 280,
-        "candidate_unconfirmed": 1
+        "candidate_unconfirmed": 1,
+        "master_verified": 280
       },
       "source_availability": [
         {
@@ -10779,6 +12699,16 @@
           "configured_status": "available",
           "runtime_status": "collected",
           "evidence_rows": 461,
+          "error": null
+        },
+        {
+          "set_key": "sv8pt5",
+          "set_name": "Prismatic Evolutions",
+          "source_key": "tcgplayer_price_guide",
+          "source_alias": null,
+          "configured_status": "unavailable",
+          "runtime_status": "collected",
+          "evidence_rows": 280,
           "error": null
         }
       ]
@@ -10808,13 +12738,13 @@
           "total": 190
         }
       },
-      "evidence_rows": 1062,
+      "evidence_rows": 1395,
       "card_status_counts": {
         "api_agreed": 190
       },
       "printing_status_counts": {
-        "api_agreed": 333,
-        "candidate_unconfirmed": 16
+        "candidate_unconfirmed": 16,
+        "master_verified": 333
       },
       "source_availability": [
         {
@@ -10835,6 +12765,16 @@
           "configured_status": "available",
           "runtime_status": "collected",
           "evidence_rows": 539,
+          "error": null
+        },
+        {
+          "set_key": "sv9",
+          "set_name": "Journey Together",
+          "source_key": "tcgplayer_price_guide",
+          "source_alias": null,
+          "configured_status": "unavailable",
+          "runtime_status": "collected",
+          "evidence_rows": 333,
           "error": null
         }
       ]
@@ -10864,13 +12804,13 @@
           "total": 244
         }
       },
-      "evidence_rows": 1313,
+      "evidence_rows": 1722,
       "card_status_counts": {
         "api_agreed": 244
       },
       "printing_status_counts": {
-        "api_agreed": 409,
-        "candidate_unconfirmed": 7
+        "candidate_unconfirmed": 7,
+        "master_verified": 409
       },
       "source_availability": [
         {
@@ -10891,6 +12831,16 @@
           "configured_status": "available",
           "runtime_status": "collected",
           "evidence_rows": 660,
+          "error": null
+        },
+        {
+          "set_key": "sv10",
+          "set_name": "Destined Rivals",
+          "source_key": "tcgplayer_price_guide",
+          "source_alias": null,
+          "configured_status": "unavailable",
+          "runtime_status": "collected",
+          "evidence_rows": 409,
           "error": null
         }
       ]
@@ -10920,14 +12870,14 @@
           "total": 172
         }
       },
-      "evidence_rows": 851,
+      "evidence_rows": 1101,
       "card_status_counts": {
         "api_agreed": 171,
         "candidate_unconfirmed": 2
       },
       "printing_status_counts": {
-        "api_agreed": 250,
-        "candidate_unconfirmed": 7
+        "candidate_unconfirmed": 7,
+        "master_verified": 250
       },
       "source_availability": [
         {
@@ -10948,6 +12898,16 @@
           "configured_status": "available",
           "runtime_status": "collected",
           "evidence_rows": 426,
+          "error": null
+        },
+        {
+          "set_key": "zsv10pt5",
+          "set_name": "Black Bolt",
+          "source_key": "tcgplayer_price_guide",
+          "source_alias": null,
+          "configured_status": "unavailable",
+          "runtime_status": "collected",
+          "evidence_rows": 250,
           "error": null
         }
       ]
@@ -10977,13 +12937,13 @@
           "total": 173
         }
       },
-      "evidence_rows": 856,
+      "evidence_rows": 1110,
       "card_status_counts": {
         "api_agreed": 173
       },
       "printing_status_counts": {
-        "api_agreed": 254,
-        "candidate_unconfirmed": 2
+        "candidate_unconfirmed": 2,
+        "master_verified": 254
       },
       "source_availability": [
         {
@@ -11004,6 +12964,16 @@
           "configured_status": "available",
           "runtime_status": "collected",
           "evidence_rows": 428,
+          "error": null
+        },
+        {
+          "set_key": "rsv10pt5",
+          "set_name": "White Flare",
+          "source_key": "tcgplayer_price_guide",
+          "source_alias": null,
+          "configured_status": "unavailable",
+          "runtime_status": "collected",
+          "evidence_rows": 254,
           "error": null
         }
       ]
@@ -11033,13 +13003,13 @@
           "total": 188
         }
       },
-      "evidence_rows": 1014,
+      "evidence_rows": 1324,
       "card_status_counts": {
         "api_agreed": 188
       },
       "printing_status_counts": {
-        "api_agreed": 310,
-        "candidate_unconfirmed": 18
+        "candidate_unconfirmed": 18,
+        "master_verified": 310
       },
       "source_availability": [
         {
@@ -11060,6 +13030,16 @@
           "configured_status": "available",
           "runtime_status": "collected",
           "evidence_rows": 516,
+          "error": null
+        },
+        {
+          "set_key": "me1",
+          "set_name": "Mega Evolution",
+          "source_key": "tcgplayer_price_guide",
+          "source_alias": null,
+          "configured_status": "unavailable",
+          "runtime_status": "collected",
+          "evidence_rows": 310,
           "error": null
         }
       ]
@@ -11089,13 +13069,13 @@
           "total": 130
         }
       },
-      "evidence_rows": 692,
+      "evidence_rows": 905,
       "card_status_counts": {
         "api_agreed": 130
       },
       "printing_status_counts": {
-        "api_agreed": 213,
-        "candidate_unconfirmed": 6
+        "candidate_unconfirmed": 6,
+        "master_verified": 213
       },
       "source_availability": [
         {
@@ -11116,6 +13096,16 @@
           "configured_status": "available",
           "runtime_status": "collected",
           "evidence_rows": 348,
+          "error": null
+        },
+        {
+          "set_key": "me2",
+          "set_name": "Phantasmal Flames",
+          "source_key": "tcgplayer_price_guide",
+          "source_alias": null,
+          "configured_status": "unavailable",
+          "runtime_status": "collected",
+          "evidence_rows": 213,
           "error": null
         }
       ]
@@ -11178,6 +13168,16 @@
           "runtime_status": "collected",
           "evidence_rows": 768,
           "error": null
+        },
+        {
+          "set_key": "ascended_heroes",
+          "set_name": "Ascended Heroes",
+          "source_key": "tcgplayer_price_guide",
+          "source_alias": null,
+          "configured_status": "unavailable",
+          "runtime_status": "unavailable",
+          "evidence_rows": 0,
+          "error": null
         }
       ]
     },
@@ -11233,6 +13233,16 @@
           "runtime_status": "collected",
           "evidence_rows": 327,
           "error": null
+        },
+        {
+          "set_key": "me3",
+          "set_name": "Perfect Order",
+          "source_key": "tcgplayer_price_guide",
+          "source_alias": null,
+          "configured_status": "unavailable",
+          "runtime_status": "unavailable",
+          "evidence_rows": 0,
+          "error": null
         }
       ]
     },
@@ -11287,6 +13297,16 @@
           "configured_status": "available",
           "runtime_status": "collected",
           "evidence_rows": 244,
+          "error": null
+        },
+        {
+          "set_key": "me4",
+          "set_name": "Chaos Rising",
+          "source_key": "tcgplayer_price_guide",
+          "source_alias": null,
+          "configured_status": "unavailable",
+          "runtime_status": "unavailable",
+          "evidence_rows": 0,
           "error": null
         }
       ]

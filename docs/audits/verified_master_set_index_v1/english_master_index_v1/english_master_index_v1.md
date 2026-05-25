@@ -1,6 +1,6 @@
 # English Verified Master Set Index V1
 
-Generated: 2026-05-24T14:33:16.250Z
+Generated: 2026-05-25T14:37:31.779Z
 
 Audit only. No DB writes, migrations, cleanup, quarantine, or public hiding were performed.
 
@@ -13,7 +13,7 @@ Transport: Local run used NODE_TLS_REJECT_UNAUTHORIZED=0 because this Windows en
 | metric | count |
 | --- | --- |
 | sets | 202 |
-| evidence rows | 102732 |
+| evidence rows | 123993 |
 | conflicts | 0 |
 | manual review | 18904 |
 
@@ -29,9 +29,8 @@ Transport: Local run used NODE_TLS_REJECT_UNAUTHORIZED=0 because this Windows en
 
 | status | count |
 | --- | --- |
-| api_agreed | 21267 |
 | candidate_unconfirmed | 17147 |
-| master_verified | 620 |
+| master_verified | 21885 |
 
 ## Source Evidence Rows
 
@@ -92,7 +91,7 @@ Transport: Local run used NODE_TLS_REJECT_UNAUTHORIZED=0 because this Windows en
 | pokebeach_ascended_heroes_set_guide | 5 |
 | pokellector_ascended_heroes_murkrow_126 | 1 |
 | pokemasters_ascended_heroes | 7 |
-| pokemontcg_api | 51783 |
+| pokemontcg_api | 51779 |
 | pokescope_ascended_heroes_mimikyu_097 | 2 |
 | pokescope_ascended_heroes_tarountula_018 | 1 |
 | pricedex_ascended_heroes_price_list | 51 |
@@ -102,6 +101,7 @@ Transport: Local run used NODE_TLS_REJECT_UNAUTHORIZED=0 because this Windows en
 | sports_card_investor_ascended_heroes_gloom_002 | 1 |
 | sports_card_investor_ascended_heroes_mimikyu | 1 |
 | tcgdex | 49565 |
+| tcgplayer_price_guide | 21265 |
 | tcgplayer_product_675813 | 1 |
 | tcgplayer_product_675814 | 1 |
 | tcgplayer_product_675815 | 1 |
@@ -696,3 +696,5 @@ Transport: Local run used NODE_TLS_REJECT_UNAUTHORIZED=0 because this Windows en
 | pokemontcg_api | unavailable | 29 |
 | tcgdex | collected | 190 |
 | tcgdex | unavailable | 12 |
+| tcgplayer_price_guide | collected | 140 |
+| tcgplayer_price_guide | unavailable | 62 |

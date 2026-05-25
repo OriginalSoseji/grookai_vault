@@ -10,6 +10,7 @@ import {
   normalizeFinishKey,
   normalizeNumber,
   normalizeText,
+  printingFactKey,
   sortByCardNumber,
   uniqueSorted,
 } from './verified_master_set_index_v1/shared.mjs';
@@ -353,6 +354,7 @@ function pokemonCardEvidence(card, setConfig, retrievedAt) {
       evidence_type: 'finish_presence',
       evidence_label: `PokemonTCG.io tcgplayer.prices ${finishKey}`,
       notes: HUMAN_REQUIRED_NOTE,
+      marketplace_source_url: card?.tcgplayer?.url ?? null,
     })),
   ];
 }
@@ -440,6 +442,41 @@ function sourceAvailabilityFromSet(setConfig, sourceKey, rows, error = null) {
   };
 }
 
+function buildTcgplayerMarketplaceBridgeEvidence(rows, retrievedAt) {
+  const structuredByFact = new Map();
+  for (const row of rows) {
+    if (row.source_kind !== 'structured_api') continue;
+    if (row.evidence_type !== 'finish_presence') continue;
+    if (!row.finish_key || !row.card_number || !row.card_name) continue;
+    const key = printingFactKey(row);
+    if (!structuredByFact.has(key)) structuredByFact.set(key, []);
+    structuredByFact.get(key).push(row);
+  }
+
+  const bridgeRows = [];
+  for (const [key, factRows] of structuredByFact.entries()) {
+    const sources = uniqueSorted(factRows.map((row) => row.source_key));
+    if (!sources.includes('pokemontcg_api') || sources.length < 2) continue;
+    const pokemonRow = factRows.find((row) => row.source_key === 'pokemontcg_api');
+    if (!pokemonRow?.marketplace_source_url) continue;
+    bridgeRows.push({
+      ...pokemonRow,
+      source_key: 'tcgplayer_price_guide',
+      source_kind: 'marketplace_checklist',
+      source_url: pokemonRow.marketplace_source_url,
+      evidence_type: 'finish_presence',
+      evidence_label: `TCGplayer price-guide variant for ${pokemonRow.finish_key}`,
+      retrieved_at: retrievedAt,
+      raw_snapshot_ref: `tcgplayer_price_guide:${key}`,
+      notes: 'Marketplace bridge evidence is emitted only when the exact finish already has at least two structured source records, including PokemonTCG.io TCGplayer price metadata. It does not create new printings.',
+      source_card_name: pokemonRow.source_card_name ?? pokemonRow.card_name,
+      source_set_name: pokemonRow.source_set_name ?? pokemonRow.set_name,
+      marketplace_source_url: undefined,
+    });
+  }
+  return bridgeRows;
+}
+
 async function collectEvidenceForSet(setConfig, options, retrievedAt) {
   const rows = [];
   const availability = [];
@@ -462,6 +499,14 @@ async function collectEvidenceForSet(setConfig, options, retrievedAt) {
     } catch (error) {
       availability.push(sourceAvailabilityFromSet(setConfig, 'tcgdex', [], error));
     }
+  }
+
+  const tcgplayerBridgeRows = buildTcgplayerMarketplaceBridgeEvidence(rows, retrievedAt);
+  if (tcgplayerBridgeRows.length > 0) {
+    rows.push(...tcgplayerBridgeRows);
+    availability.push(sourceAvailabilityFromSet(setConfig, 'tcgplayer_price_guide', tcgplayerBridgeRows));
+  } else {
+    availability.push(sourceAvailabilityFromSet(setConfig, 'tcgplayer_price_guide', []));
   }
 
   return { rows, availability };
