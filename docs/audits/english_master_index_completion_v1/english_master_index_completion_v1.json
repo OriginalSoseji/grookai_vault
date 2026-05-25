@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-25T14:14:18.426Z",
+  "generated_at": "2026-05-25T14:18:17.242Z",
   "contract": "ENGLISH_MASTER_INDEX_COMPLETION_V1",
   "audit_only": true,
   "db_writes_performed": false,
@@ -46,5 +46,6 @@
   },
   "set_completion_matrix_ref": "english_master_index_set_completion_matrix_v1.json",
   "source_gap_queue_ref": "english_master_index_source_gap_queue_v1.json",
+  "source_worklist_ref": "english_master_index_source_worklist_v1.json",
   "master_admissible_export_ref": "english_master_index_master_admissible_export_v1.json"
 }

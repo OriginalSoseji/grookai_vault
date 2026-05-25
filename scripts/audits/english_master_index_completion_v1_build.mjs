@@ -12,6 +12,8 @@ const GENERATED_FILES = [
   'english_master_index_set_completion_matrix_v1.md',
   'english_master_index_source_gap_queue_v1.json',
   'english_master_index_source_gap_queue_v1.md',
+  'english_master_index_source_worklist_v1.json',
+  'english_master_index_source_worklist_v1.md',
   'english_master_index_master_admissible_export_v1.json',
   'english_master_index_master_admissible_export_v1.md',
   'english_master_index_reused_scaffold_map_v1.json',
@@ -369,6 +371,73 @@ function buildGapQueue(setRows) {
   return queue.sort((left, right) => right.priority - left.priority || right.gap_count - left.gap_count || left.set_key.localeCompare(right.set_key));
 }
 
+function buildSourceWorklist(setRows, gapQueue) {
+  const gapsBySet = new Map();
+  for (const gap of gapQueue) {
+    const key = setKey(gap);
+    const current = gapsBySet.get(key) ?? {
+      lanes: [],
+      total_gap_count: 0,
+      max_priority: 0,
+      required_evidence: [],
+    };
+    current.lanes.push(gap.lane);
+    current.total_gap_count += gap.gap_count ?? 0;
+    current.max_priority = Math.max(current.max_priority, gap.priority ?? 0);
+    current.required_evidence.push(gap.required_evidence);
+    gapsBySet.set(key, current);
+  }
+
+  return setRows
+    .filter((set) => set.completion.status !== 'complete_master_index_set')
+    .map((set) => {
+      const gaps = gapsBySet.get(set.set_key) ?? {
+        lanes: [],
+        total_gap_count: 0,
+        max_priority: 0,
+        required_evidence: [],
+      };
+      return {
+        rank: 0,
+        set_key: set.set_key,
+        set_name: set.set_name,
+        completion_status: set.completion.status,
+        completion_score: set.completion.completion_score,
+        total_gap_count: gaps.total_gap_count,
+        card_identity_gap_count: Math.max(0, set.card_identity.total_working_facts - set.card_identity.master_admissible),
+        printing_finish_gap_count: Math.max(0, set.printings.total_working_facts - set.printings.master_admissible),
+        source_alias_gap: set.completion.status === 'source_unavailable',
+        lanes: uniqueSorted(gaps.lanes),
+        required_evidence: uniqueSorted(gaps.required_evidence),
+        card_identity_progress: `${set.card_identity.master_admissible}/${set.card_identity.total_working_facts}`,
+        printing_finish_progress: `${set.printings.master_admissible}/${set.printings.total_working_facts}`,
+        priority: gaps.max_priority,
+        mutation_authority: 'not mutation authority',
+        blocker_summary: set.completion.blocker_summary,
+      };
+    })
+    .filter((row) => row.total_gap_count > 0 || row.source_alias_gap)
+    .sort((left, right) => (
+      statusRank(left.completion_status) - statusRank(right.completion_status)
+      || right.priority - left.priority
+      || right.total_gap_count - left.total_gap_count
+      || left.set_key.localeCompare(right.set_key)
+    ))
+    .map((row, index) => ({ ...row, rank: index + 1 }));
+}
+
+function statusRank(status) {
+  return {
+    card_identity_complete_finish_incomplete: 1,
+    source_agreed_card_identity: 2,
+    finish_evidence_missing: 3,
+    source_limited: 4,
+    manual_review_required: 5,
+    conflict_blocked: 6,
+    source_unavailable: 7,
+  }[status] ?? 99;
+}
+
 function priorityForSet(set, base) {
   const volume = Math.min(25, Math.log10(Math.max(1, set.card_identity.total_working_facts + set.printings.total_working_facts)) * 10);
   const blockerPenalty = set.completion.status === 'source_unavailable' ? 20 : 0;
@@ -414,6 +483,7 @@ function buildArtifacts({ setsArtifact, cardsArtifact, printingsArtifact, availa
   applyConflicts(buckets, conflictsArtifact);
   const setRows = finalizeBuckets(buckets);
   const gapQueue = buildGapQueue(setRows);
+  const sourceWorklist = buildSourceWorklist(setRows, gapQueue);
   const summary = buildSummary(setRows, gapQueue, cardsArtifact, printingsArtifact);
   const base = {
     generated_at: new Date().toISOString(),
@@ -445,6 +515,7 @@ function buildArtifacts({ setsArtifact, cardsArtifact, printingsArtifact, availa
       },
       set_completion_matrix_ref: 'english_master_index_set_completion_matrix_v1.json',
       source_gap_queue_ref: 'english_master_index_source_gap_queue_v1.json',
+      source_worklist_ref: 'english_master_index_source_worklist_v1.json',
       master_admissible_export_ref: 'english_master_index_master_admissible_export_v1.json',
     },
     setMatrix: {
@@ -462,6 +533,19 @@ function buildArtifacts({ setsArtifact, cardsArtifact, printingsArtifact, availa
         top_sets: Object.fromEntries(topEntries(countRowsBy(gapQueue, 'set_key'), 30)),
       },
       queue: gapQueue,
+    },
+    sourceWorklist: {
+      ...base,
+      version: 'english_master_index_source_worklist_v1',
+      rule: 'Set-first source acquisition list for completing the Master Index. It is not a Grookai write, cleanup, or reconciliation plan.',
+      summary: {
+        total_incomplete_sets: sourceWorklist.length,
+        by_completion_status: countBy(sourceWorklist, 'completion_status'),
+        by_primary_lane: countBy(sourceWorklist.map((row) => ({
+          primary_lane: row.lanes[0] ?? 'none',
+        })), 'primary_lane'),
+      },
+      worklist: sourceWorklist,
     },
     masterAdmissibleExport: {
       ...base,
@@ -629,6 +713,49 @@ ${markdownTable(['lane', 'set_key', 'set_name', 'gap_count', 'priority', 'requir
 `;
 }
 
+function buildSourceWorklistMarkdown(artifact) {
+  const rows = artifact.worklist.map((row) => [
+    row.rank,
+    row.set_key,
+    row.set_name ?? '',
+    row.completion_status,
+    row.total_gap_count,
+    row.card_identity_gap_count,
+    row.printing_finish_gap_count,
+    row.lanes.join(', '),
+    row.blocker_summary,
+  ]);
+  const statusRows = topEntries(artifact.summary.by_completion_status, 20).map(([status, count]) => [status, count]);
+  const laneRows = topEntries(artifact.summary.by_primary_lane, 20).map(([lane, count]) => [lane, count]);
+  return `# English Master Index Source Worklist V1
+
+Set-first source acquisition list for completing the English physical Pokemon TCG Master Index.
+
+This is not a Grookai write plan, cleanup plan, quarantine plan, or reconciliation plan.
+
+## Safety
+
+- audit_only: ${artifact.audit_only}
+- db_writes_performed: ${artifact.db_writes_performed}
+- migrations_created: ${artifact.migrations_created}
+- cleanup_performed: ${artifact.cleanup_performed}
+- quarantine_performed: ${artifact.quarantine_performed}
+- grookai_reconciliation_performed: ${artifact.grookai_reconciliation_performed}
+
+## Summary
+
+- total_incomplete_sets: ${artifact.summary.total_incomplete_sets}
+
+${markdownTable(['completion_status', 'sets'], statusRows)}
+
+${markdownTable(['primary_lane', 'sets'], laneRows)}
+
+## Worklist
+
+${markdownTable(['rank', 'set_key', 'set_name', 'status', 'total_gaps', 'card_gaps', 'finish_gaps', 'lanes', 'blocker'], rows)}
+`;
+}
+
 function buildMasterAdmissibleMarkdown(artifact) {
   return `# English Master Index Master-Admissible Export V1
 
@@ -677,6 +804,8 @@ async function main() {
   await writeMarkdown('english_master_index_set_completion_matrix_v1.md', buildSetMatrixMarkdown(artifacts.setMatrix));
   await writeJson('english_master_index_source_gap_queue_v1.json', artifacts.sourceGapQueue);
   await writeMarkdown('english_master_index_source_gap_queue_v1.md', buildGapQueueMarkdown(artifacts.sourceGapQueue));
+  await writeJson('english_master_index_source_worklist_v1.json', artifacts.sourceWorklist);
+  await writeMarkdown('english_master_index_source_worklist_v1.md', buildSourceWorklistMarkdown(artifacts.sourceWorklist));
   await writeJson('english_master_index_master_admissible_export_v1.json', artifacts.masterAdmissibleExport, { compact: true });
   await writeMarkdown('english_master_index_master_admissible_export_v1.md', buildMasterAdmissibleMarkdown(artifacts.masterAdmissibleExport));
   await writeJson('english_master_index_reused_scaffold_map_v1.json', artifacts.reusedScaffoldMap);
