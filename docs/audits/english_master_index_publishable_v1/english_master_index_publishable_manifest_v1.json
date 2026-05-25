@@ -1,6 +1,6 @@
 {
   "version": "english_master_index_publishable_manifest_v1",
-  "generated_at": "2026-05-25T16:44:24.384Z",
+  "generated_at": "2026-05-25T17:37:42.531Z",
   "contract": "ENGLISH_MASTER_INDEX_COMPLETION_V1",
   "audit_only": true,
   "db_writes_performed": false,
@@ -16,14 +16,38 @@
     "publishable_card_facts": 2538,
     "publishable_printing_facts": 4011,
     "by_publishability_status": {
-      "not_publishable_card_identity_gaps": 79,
-      "not_publishable_finish_gaps": 86,
+      "not_publishable_card_identity_gaps": 45,
+      "not_publishable_finish_gaps": 120,
       "not_publishable_manual_review": 1,
       "publishable_complete": 33,
       "source_unavailable": 4
     }
   },
   "sets": [
+    {
+      "set_key": "sv1",
+      "set_name": "Scarlet & Violet",
+      "publishability_status": "not_publishable_finish_gaps",
+      "completion_status": "card_identity_complete_finish_incomplete",
+      "completion_score": 99.89,
+      "cards": {
+        "master_admissible": 262,
+        "total": 262,
+        "gap_count": 0
+      },
+      "printings": {
+        "master_admissible": 444,
+        "total": 445,
+        "gap_count": 1
+      },
+      "finish_counts": {
+        "normal": 166,
+        "reverse": 186,
+        "holo": 93
+      },
+      "blocker_summary": "Printing/finish facts need human-readable checklist evidence and exact card-level support.",
+      "shard_refs": null
+    },
     {
       "set_key": "gym2",
       "set_name": "Gym Challenge",
@@ -178,6 +202,32 @@
       "shard_refs": null
     },
     {
+      "set_key": "sm12",
+      "set_name": "Cosmic Eclipse",
+      "publishability_status": "not_publishable_finish_gaps",
+      "completion_status": "card_identity_complete_finish_incomplete",
+      "completion_score": 99.49,
+      "cards": {
+        "master_admissible": 272,
+        "total": 272,
+        "gap_count": 0
+      },
+      "printings": {
+        "master_admissible": 467,
+        "total": 473,
+        "gap_count": 6
+      },
+      "finish_counts": {
+        "holo": 100,
+        "normal": 174,
+        "reverse": 193,
+        "cracked_ice": 2,
+        "stamped": 4
+      },
+      "blocker_summary": "Printing/finish facts need human-readable checklist evidence and exact card-level support.",
+      "shard_refs": null
+    },
+    {
       "set_key": "neo1",
       "set_name": "Neo Genesis",
       "publishability_status": "not_publishable_finish_gaps",
@@ -224,6 +274,31 @@
         "holo": 56,
         "cosmos": 2,
         "stamped": 1
+      },
+      "blocker_summary": "Printing/finish facts need human-readable checklist evidence and exact card-level support.",
+      "shard_refs": null
+    },
+    {
+      "set_key": "sm75",
+      "set_name": "Dragon Majesty",
+      "publishability_status": "not_publishable_finish_gaps",
+      "completion_status": "card_identity_complete_finish_incomplete",
+      "completion_score": 99.42,
+      "cards": {
+        "master_admissible": 80,
+        "total": 80,
+        "gap_count": 0
+      },
+      "printings": {
+        "master_admissible": 136,
+        "total": 138,
+        "gap_count": 2
+      },
+      "finish_counts": {
+        "normal": 48,
+        "reverse": 56,
+        "holo": 32,
+        "stamped": 2
       },
       "blocker_summary": "Printing/finish facts need human-readable checklist evidence and exact card-level support.",
       "shard_refs": null
@@ -282,6 +357,111 @@
       "shard_refs": null
     },
     {
+      "set_key": "sm9",
+      "set_name": "Team Up",
+      "publishability_status": "not_publishable_finish_gaps",
+      "completion_status": "card_identity_complete_finish_incomplete",
+      "completion_score": 99.31,
+      "cards": {
+        "master_admissible": 198,
+        "total": 198,
+        "gap_count": 0
+      },
+      "printings": {
+        "master_admissible": 342,
+        "total": 348,
+        "gap_count": 6
+      },
+      "finish_counts": {
+        "holo": 73,
+        "normal": 127,
+        "reverse": 143,
+        "cracked_ice": 2,
+        "stamped": 2,
+        "cosmos": 1
+      },
+      "blocker_summary": "Printing/finish facts need human-readable checklist evidence and exact card-level support.",
+      "shard_refs": null
+    },
+    {
+      "set_key": "sm10",
+      "set_name": "Unbroken Bonds",
+      "publishability_status": "not_publishable_finish_gaps",
+      "completion_status": "card_identity_complete_finish_incomplete",
+      "completion_score": 99.15,
+      "cards": {
+        "master_admissible": 238,
+        "total": 238,
+        "gap_count": 0
+      },
+      "printings": {
+        "master_admissible": 414,
+        "total": 423,
+        "gap_count": 9
+      },
+      "finish_counts": {
+        "holo": 83,
+        "normal": 158,
+        "reverse": 176,
+        "cosmos": 3,
+        "cracked_ice": 1,
+        "stamped": 2
+      },
+      "blocker_summary": "Printing/finish facts need human-readable checklist evidence and exact card-level support.",
+      "shard_refs": null
+    },
+    {
+      "set_key": "sm35",
+      "set_name": "Shining Legends",
+      "publishability_status": "not_publishable_finish_gaps",
+      "completion_status": "card_identity_complete_finish_incomplete",
+      "completion_score": 99.15,
+      "cards": {
+        "master_admissible": 81,
+        "total": 81,
+        "gap_count": 0
+      },
+      "printings": {
+        "master_admissible": 138,
+        "total": 141,
+        "gap_count": 3
+      },
+      "finish_counts": {
+        "normal": 48,
+        "reverse": 60,
+        "holo": 30,
+        "cosmos": 1,
+        "cracked_ice": 2
+      },
+      "blocker_summary": "Printing/finish facts need human-readable checklist evidence and exact card-level support.",
+      "shard_refs": null
+    },
+    {
+      "set_key": "ex13",
+      "set_name": "Holon Phantoms",
+      "publishability_status": "not_publishable_finish_gaps",
+      "completion_status": "card_identity_complete_finish_incomplete",
+      "completion_score": 99.12,
+      "cards": {
+        "master_admissible": 114,
+        "total": 114,
+        "gap_count": 0
+      },
+      "printings": {
+        "master_admissible": 212,
+        "total": 216,
+        "gap_count": 4
+      },
+      "finish_counts": {
+        "holo": 35,
+        "reverse": 98,
+        "normal": 82,
+        "stamped": 1
+      },
+      "blocker_summary": "Printing/finish facts need human-readable checklist evidence and exact card-level support.",
+      "shard_refs": null
+    },
+    {
       "set_key": "bw8",
       "set_name": "Plasma Storm",
       "publishability_status": "not_publishable_finish_gaps",
@@ -304,6 +484,31 @@
         "cosmos": 1,
         "cracked_ice": 1,
         "stamped": 3
+      },
+      "blocker_summary": "Printing/finish facts need human-readable checklist evidence and exact card-level support.",
+      "shard_refs": null
+    },
+    {
+      "set_key": "ex15",
+      "set_name": "Dragon Frontiers",
+      "publishability_status": "not_publishable_finish_gaps",
+      "completion_status": "card_identity_complete_finish_incomplete",
+      "completion_score": 99.07,
+      "cards": {
+        "master_admissible": 103,
+        "total": 103,
+        "gap_count": 0
+      },
+      "printings": {
+        "master_admissible": 190,
+        "total": 194,
+        "gap_count": 4
+      },
+      "finish_counts": {
+        "holo": 26,
+        "reverse": 89,
+        "normal": 77,
+        "stamped": 2
       },
       "blocker_summary": "Printing/finish facts need human-readable checklist evidence and exact card-level support.",
       "shard_refs": null
@@ -413,6 +618,33 @@
       "shard_refs": null
     },
     {
+      "set_key": "sm11",
+      "set_name": "Unified Minds",
+      "publishability_status": "not_publishable_finish_gaps",
+      "completion_status": "card_identity_complete_finish_incomplete",
+      "completion_score": 98.98,
+      "cards": {
+        "master_admissible": 261,
+        "total": 261,
+        "gap_count": 0
+      },
+      "printings": {
+        "master_admissible": 459,
+        "total": 471,
+        "gap_count": 12
+      },
+      "finish_counts": {
+        "holo": 84,
+        "normal": 180,
+        "reverse": 196,
+        "stamped": 6,
+        "cosmos": 3,
+        "cracked_ice": 2
+      },
+      "blocker_summary": "Printing/finish facts need human-readable checklist evidence and exact card-level support.",
+      "shard_refs": null
+    },
+    {
       "set_key": "neo3",
       "set_name": "Neo Revelation",
       "publishability_status": "not_publishable_finish_gaps",
@@ -490,6 +722,32 @@
       "shard_refs": null
     },
     {
+      "set_key": "ex16",
+      "set_name": "Power Keepers",
+      "publishability_status": "not_publishable_finish_gaps",
+      "completion_status": "card_identity_complete_finish_incomplete",
+      "completion_score": 98.66,
+      "cards": {
+        "master_admissible": 111,
+        "total": 111,
+        "gap_count": 0
+      },
+      "printings": {
+        "master_admissible": 202,
+        "total": 208,
+        "gap_count": 6
+      },
+      "finish_counts": {
+        "holo": 32,
+        "reverse": 91,
+        "normal": 83,
+        "cosmos": 1,
+        "stamped": 1
+      },
+      "blocker_summary": "Printing/finish facts need human-readable checklist evidence and exact card-level support.",
+      "shard_refs": null
+    },
+    {
       "set_key": "bw9",
       "set_name": "Plasma Freeze",
       "publishability_status": "not_publishable_finish_gaps",
@@ -539,6 +797,135 @@
         "stamped": 2,
         "cracked_ice": 1,
         "cosmos": 3
+      },
+      "blocker_summary": "Printing/finish facts need human-readable checklist evidence and exact card-level support.",
+      "shard_refs": null
+    },
+    {
+      "set_key": "sm7",
+      "set_name": "Celestial Storm",
+      "publishability_status": "not_publishable_finish_gaps",
+      "completion_status": "card_identity_complete_finish_incomplete",
+      "completion_score": 98.56,
+      "cards": {
+        "master_admissible": 187,
+        "total": 187,
+        "gap_count": 0
+      },
+      "printings": {
+        "master_admissible": 322,
+        "total": 334,
+        "gap_count": 12
+      },
+      "finish_counts": {
+        "normal": 121,
+        "reverse": 137,
+        "holo": 64,
+        "stamped": 7,
+        "cracked_ice": 2,
+        "cosmos": 3
+      },
+      "blocker_summary": "Printing/finish facts need human-readable checklist evidence and exact card-level support.",
+      "shard_refs": null
+    },
+    {
+      "set_key": "sm2",
+      "set_name": "Guardians Rising",
+      "publishability_status": "not_publishable_finish_gaps",
+      "completion_status": "card_identity_complete_finish_incomplete",
+      "completion_score": 98.54,
+      "cards": {
+        "master_admissible": 180,
+        "total": 180,
+        "gap_count": 0
+      },
+      "printings": {
+        "master_admissible": 290,
+        "total": 301,
+        "gap_count": 11
+      },
+      "finish_counts": {
+        "normal": 106,
+        "reverse": 118,
+        "holo": 66,
+        "stamped": 7,
+        "cosmos": 2,
+        "cracked_ice": 2
+      },
+      "blocker_summary": "Printing/finish facts need human-readable checklist evidence and exact card-level support.",
+      "shard_refs": null
+    },
+    {
+      "set_key": "ex12",
+      "set_name": "Legend Maker",
+      "publishability_status": "not_publishable_finish_gaps",
+      "completion_status": "card_identity_complete_finish_incomplete",
+      "completion_score": 98.51,
+      "cards": {
+        "master_admissible": 96,
+        "total": 96,
+        "gap_count": 0
+      },
+      "printings": {
+        "master_admissible": 175,
+        "total": 181,
+        "gap_count": 6
+      },
+      "finish_counts": {
+        "holo": 28,
+        "reverse": 82,
+        "normal": 68,
+        "stamped": 3
+      },
+      "blocker_summary": "Printing/finish facts need human-readable checklist evidence and exact card-level support.",
+      "shard_refs": null
+    },
+    {
+      "set_key": "ex14",
+      "set_name": "Crystal Guardians",
+      "publishability_status": "not_publishable_finish_gaps",
+      "completion_status": "card_identity_complete_finish_incomplete",
+      "completion_score": 98.49,
+      "cards": {
+        "master_admissible": 102,
+        "total": 102,
+        "gap_count": 0
+      },
+      "printings": {
+        "master_admissible": 192,
+        "total": 199,
+        "gap_count": 7
+      },
+      "finish_counts": {
+        "holo": 30,
+        "reverse": 88,
+        "normal": 76,
+        "stamped": 5
+      },
+      "blocker_summary": "Printing/finish facts need human-readable checklist evidence and exact card-level support.",
+      "shard_refs": null
+    },
+    {
+      "set_key": "ex11",
+      "set_name": "Delta Species",
+      "publishability_status": "not_publishable_finish_gaps",
+      "completion_status": "card_identity_complete_finish_incomplete",
+      "completion_score": 98.46,
+      "cards": {
+        "master_admissible": 117,
+        "total": 117,
+        "gap_count": 0
+      },
+      "printings": {
+        "master_admissible": 219,
+        "total": 227,
+        "gap_count": 8
+      },
+      "finish_counts": {
+        "holo": 28,
+        "reverse": 107,
+        "normal": 89,
+        "stamped": 3
       },
       "blocker_summary": "Printing/finish facts need human-readable checklist evidence and exact card-level support.",
       "shard_refs": null
@@ -645,6 +1032,32 @@
       "shard_refs": null
     },
     {
+      "set_key": "ex10",
+      "set_name": "Unseen Forces",
+      "publishability_status": "not_publishable_finish_gaps",
+      "completion_status": "card_identity_complete_finish_incomplete",
+      "completion_score": 98.39,
+      "cards": {
+        "master_admissible": 148,
+        "total": 148,
+        "gap_count": 0
+      },
+      "printings": {
+        "master_admissible": 246,
+        "total": 255,
+        "gap_count": 9
+      },
+      "finish_counts": {
+        "holo": 68,
+        "reverse": 100,
+        "normal": 84,
+        "cosmos": 1,
+        "stamped": 2
+      },
+      "blocker_summary": "Printing/finish facts need human-readable checklist evidence and exact card-level support.",
+      "shard_refs": null
+    },
+    {
       "set_key": "ex1",
       "set_name": "Ruby & Sapphire",
       "publishability_status": "not_publishable_finish_gaps",
@@ -666,6 +1079,32 @@
         "normal": 89,
         "stamped": 6,
         "cosmos": 1
+      },
+      "blocker_summary": "Printing/finish facts need human-readable checklist evidence and exact card-level support.",
+      "shard_refs": null
+    },
+    {
+      "set_key": "ex7",
+      "set_name": "Team Rocket Returns",
+      "publishability_status": "not_publishable_finish_gaps",
+      "completion_status": "card_identity_complete_finish_incomplete",
+      "completion_score": 98.36,
+      "cards": {
+        "master_admissible": 114,
+        "total": 114,
+        "gap_count": 0
+      },
+      "printings": {
+        "master_admissible": 206,
+        "total": 214,
+        "gap_count": 8
+      },
+      "finish_counts": {
+        "holo": 34,
+        "normal": 83,
+        "reverse": 95,
+        "cosmos": 1,
+        "stamped": 1
       },
       "blocker_summary": "Printing/finish facts need human-readable checklist evidence and exact card-level support.",
       "shard_refs": null
@@ -693,6 +1132,32 @@
         "cracked_ice": 1,
         "stamped": 2,
         "cosmos": 2
+      },
+      "blocker_summary": "Printing/finish facts need human-readable checklist evidence and exact card-level support.",
+      "shard_refs": null
+    },
+    {
+      "set_key": "sm5",
+      "set_name": "Ultra Prism",
+      "publishability_status": "not_publishable_finish_gaps",
+      "completion_status": "card_identity_complete_finish_incomplete",
+      "completion_score": 98.34,
+      "cards": {
+        "master_admissible": 178,
+        "total": 178,
+        "gap_count": 0
+      },
+      "printings": {
+        "master_admissible": 301,
+        "total": 314,
+        "gap_count": 13
+      },
+      "finish_counts": {
+        "normal": 115,
+        "reverse": 125,
+        "holo": 61,
+        "stamped": 11,
+        "cracked_ice": 2
       },
       "blocker_summary": "Printing/finish facts need human-readable checklist evidence and exact card-level support.",
       "shard_refs": null
@@ -763,6 +1228,33 @@
       "finish_counts": {
         "holo": 6,
         "normal": 17,
+        "cosmos": 1
+      },
+      "blocker_summary": "Printing/finish facts need human-readable checklist evidence and exact card-level support.",
+      "shard_refs": null
+    },
+    {
+      "set_key": "sm6",
+      "set_name": "Forbidden Light",
+      "publishability_status": "not_publishable_finish_gaps",
+      "completion_status": "card_identity_complete_finish_incomplete",
+      "completion_score": 98.33,
+      "cards": {
+        "master_admissible": 150,
+        "total": 150,
+        "gap_count": 0
+      },
+      "printings": {
+        "master_admissible": 252,
+        "total": 263,
+        "gap_count": 11
+      },
+      "finish_counts": {
+        "normal": 94,
+        "reverse": 105,
+        "holo": 53,
+        "cracked_ice": 2,
+        "stamped": 8,
         "cosmos": 1
       },
       "blocker_summary": "Printing/finish facts need human-readable checklist evidence and exact card-level support.",
@@ -923,6 +1415,85 @@
         "normal": 82,
         "cracked_ice": 2,
         "stamped": 4
+      },
+      "blocker_summary": "Printing/finish facts need human-readable checklist evidence and exact card-level support.",
+      "shard_refs": null
+    },
+    {
+      "set_key": "sm3",
+      "set_name": "Burning Shadows",
+      "publishability_status": "not_publishable_finish_gaps",
+      "completion_status": "card_identity_complete_finish_incomplete",
+      "completion_score": 98.03,
+      "cards": {
+        "master_admissible": 177,
+        "total": 177,
+        "gap_count": 0
+      },
+      "printings": {
+        "master_admissible": 290,
+        "total": 305,
+        "gap_count": 15
+      },
+      "finish_counts": {
+        "normal": 108,
+        "reverse": 116,
+        "holo": 69,
+        "stamped": 9,
+        "cosmos": 2,
+        "cracked_ice": 1
+      },
+      "blocker_summary": "Printing/finish facts need human-readable checklist evidence and exact card-level support.",
+      "shard_refs": null
+    },
+    {
+      "set_key": "ex8",
+      "set_name": "Deoxys",
+      "publishability_status": "not_publishable_finish_gaps",
+      "completion_status": "card_identity_complete_finish_incomplete",
+      "completion_score": 97.95,
+      "cards": {
+        "master_admissible": 111,
+        "total": 111,
+        "gap_count": 0
+      },
+      "printings": {
+        "master_admissible": 205,
+        "total": 215,
+        "gap_count": 10
+      },
+      "finish_counts": {
+        "holo": 33,
+        "reverse": 95,
+        "normal": 83,
+        "stamped": 4
+      },
+      "blocker_summary": "Printing/finish facts need human-readable checklist evidence and exact card-level support.",
+      "shard_refs": null
+    },
+    {
+      "set_key": "sm8",
+      "set_name": "Lost Thunder",
+      "publishability_status": "not_publishable_finish_gaps",
+      "completion_status": "card_identity_complete_finish_incomplete",
+      "completion_score": 97.89,
+      "cards": {
+        "master_admissible": 240,
+        "total": 240,
+        "gap_count": 0
+      },
+      "printings": {
+        "master_admissible": 413,
+        "total": 436,
+        "gap_count": 23
+      },
+      "finish_counts": {
+        "normal": 156,
+        "reverse": 174,
+        "holo": 83,
+        "stamped": 13,
+        "cracked_ice": 4,
+        "cosmos": 6
       },
       "blocker_summary": "Printing/finish facts need human-readable checklist evidence and exact card-level support.",
       "shard_refs": null
@@ -1185,6 +1756,33 @@
         "stamped": 1,
         "cosmos": 8,
         "cracked_ice": 3
+      },
+      "blocker_summary": "Printing/finish facts need human-readable checklist evidence and exact card-level support.",
+      "shard_refs": null
+    },
+    {
+      "set_key": "sm4",
+      "set_name": "Crimson Invasion",
+      "publishability_status": "not_publishable_finish_gaps",
+      "completion_status": "card_identity_complete_finish_incomplete",
+      "completion_score": 97.41,
+      "cards": {
+        "master_admissible": 126,
+        "total": 126,
+        "gap_count": 0
+      },
+      "printings": {
+        "master_admissible": 221,
+        "total": 236,
+        "gap_count": 15
+      },
+      "finish_counts": {
+        "normal": 86,
+        "reverse": 92,
+        "holo": 44,
+        "cosmos": 4,
+        "stamped": 8,
+        "cracked_ice": 2
       },
       "blocker_summary": "Printing/finish facts need human-readable checklist evidence and exact card-level support.",
       "shard_refs": null
@@ -1957,6 +2555,32 @@
       "shard_refs": null
     },
     {
+      "set_key": "sv2",
+      "set_name": "Paldea Evolved",
+      "publishability_status": "not_publishable_finish_gaps",
+      "completion_status": "card_identity_complete_finish_incomplete",
+      "completion_score": 95.2,
+      "cards": {
+        "master_admissible": 282,
+        "total": 282,
+        "gap_count": 0
+      },
+      "printings": {
+        "master_admissible": 455,
+        "total": 517,
+        "gap_count": 62
+      },
+      "finish_counts": {
+        "normal": 156,
+        "reverse": 176,
+        "holo": 131,
+        "stamped": 42,
+        "cosmos": 12
+      },
+      "blocker_summary": "Printing/finish facts need human-readable checklist evidence and exact card-level support.",
+      "shard_refs": null
+    },
+    {
       "set_key": "swsh5",
       "set_name": "Battle Styles",
       "publishability_status": "not_publishable_finish_gaps",
@@ -2004,6 +2628,33 @@
         "holo": 125,
         "stamped": 45,
         "cosmos": 2
+      },
+      "blocker_summary": "Printing/finish facts need human-readable checklist evidence and exact card-level support.",
+      "shard_refs": null
+    },
+    {
+      "set_key": "sm1",
+      "set_name": "Sun & Moon",
+      "publishability_status": "not_publishable_finish_gaps",
+      "completion_status": "card_identity_complete_finish_incomplete",
+      "completion_score": 94.82,
+      "cards": {
+        "master_admissible": 173,
+        "total": 173,
+        "gap_count": 0
+      },
+      "printings": {
+        "master_admissible": 293,
+        "total": 334,
+        "gap_count": 41
+      },
+      "finish_counts": {
+        "normal": 123,
+        "reverse": 126,
+        "holo": 53,
+        "cosmos": 14,
+        "cracked_ice": 3,
+        "stamped": 15
       },
       "blocker_summary": "Printing/finish facts need human-readable checklist evidence and exact card-level support.",
       "shard_refs": null
@@ -2138,6 +2789,31 @@
       "shard_refs": null
     },
     {
+      "set_key": "smp",
+      "set_name": "SM Black Star Promos",
+      "publishability_status": "not_publishable_finish_gaps",
+      "completion_status": "card_identity_complete_finish_incomplete",
+      "completion_score": 91.58,
+      "cards": {
+        "master_admissible": 251,
+        "total": 251,
+        "gap_count": 0
+      },
+      "printings": {
+        "master_admissible": 250,
+        "total": 316,
+        "gap_count": 66
+      },
+      "finish_counts": {
+        "holo": 234,
+        "normal": 20,
+        "stamped": 59,
+        "cosmos": 3
+      },
+      "blocker_summary": "Printing/finish facts need human-readable checklist evidence and exact card-level support.",
+      "shard_refs": null
+    },
+    {
       "set_key": "si1",
       "set_name": "Southern Islands",
       "publishability_status": "not_publishable_finish_gaps",
@@ -2229,6 +2905,182 @@
         "normal": 64,
         "reverse": 76,
         "holo": 58
+      },
+      "blocker_summary": "Printing/finish facts need human-readable checklist evidence and exact card-level support.",
+      "shard_refs": null
+    },
+    {
+      "set_key": "tk-xy-b",
+      "set_name": "XY trainer Kit (Bisharp)",
+      "publishability_status": "not_publishable_finish_gaps",
+      "completion_status": "card_identity_complete_finish_incomplete",
+      "completion_score": 50,
+      "cards": {
+        "master_admissible": 30,
+        "total": 30,
+        "gap_count": 0
+      },
+      "printings": {
+        "master_admissible": 0,
+        "total": 30,
+        "gap_count": 30
+      },
+      "finish_counts": {
+        "normal": 30
+      },
+      "blocker_summary": "Printing/finish facts need human-readable checklist evidence and exact card-level support.",
+      "shard_refs": null
+    },
+    {
+      "set_key": "tk-xy-latia",
+      "set_name": "XY trainer Kit (Latias)",
+      "publishability_status": "not_publishable_finish_gaps",
+      "completion_status": "card_identity_complete_finish_incomplete",
+      "completion_score": 50,
+      "cards": {
+        "master_admissible": 30,
+        "total": 30,
+        "gap_count": 0
+      },
+      "printings": {
+        "master_admissible": 0,
+        "total": 30,
+        "gap_count": 30
+      },
+      "finish_counts": {
+        "normal": 30
+      },
+      "blocker_summary": "Printing/finish facts need human-readable checklist evidence and exact card-level support.",
+      "shard_refs": null
+    },
+    {
+      "set_key": "tk-xy-latio",
+      "set_name": "XY trainer Kit (Latios)",
+      "publishability_status": "not_publishable_finish_gaps",
+      "completion_status": "card_identity_complete_finish_incomplete",
+      "completion_score": 50,
+      "cards": {
+        "master_admissible": 30,
+        "total": 30,
+        "gap_count": 0
+      },
+      "printings": {
+        "master_admissible": 0,
+        "total": 30,
+        "gap_count": 30
+      },
+      "finish_counts": {
+        "normal": 30
+      },
+      "blocker_summary": "Printing/finish facts need human-readable checklist evidence and exact card-level support.",
+      "shard_refs": null
+    },
+    {
+      "set_key": "tk-xy-n",
+      "set_name": "XY trainer Kit (Noivern)",
+      "publishability_status": "not_publishable_finish_gaps",
+      "completion_status": "card_identity_complete_finish_incomplete",
+      "completion_score": 50,
+      "cards": {
+        "master_admissible": 30,
+        "total": 30,
+        "gap_count": 0
+      },
+      "printings": {
+        "master_admissible": 0,
+        "total": 30,
+        "gap_count": 30
+      },
+      "finish_counts": {
+        "normal": 30
+      },
+      "blocker_summary": "Printing/finish facts need human-readable checklist evidence and exact card-level support.",
+      "shard_refs": null
+    },
+    {
+      "set_key": "tk-xy-p",
+      "set_name": "XY trainer Kit (Pikachu Libre)",
+      "publishability_status": "not_publishable_finish_gaps",
+      "completion_status": "card_identity_complete_finish_incomplete",
+      "completion_score": 50,
+      "cards": {
+        "master_admissible": 30,
+        "total": 30,
+        "gap_count": 0
+      },
+      "printings": {
+        "master_admissible": 0,
+        "total": 30,
+        "gap_count": 30
+      },
+      "finish_counts": {
+        "normal": 30
+      },
+      "blocker_summary": "Printing/finish facts need human-readable checklist evidence and exact card-level support.",
+      "shard_refs": null
+    },
+    {
+      "set_key": "tk-xy-su",
+      "set_name": "XY trainer Kit (Suicune)",
+      "publishability_status": "not_publishable_finish_gaps",
+      "completion_status": "card_identity_complete_finish_incomplete",
+      "completion_score": 50,
+      "cards": {
+        "master_admissible": 30,
+        "total": 30,
+        "gap_count": 0
+      },
+      "printings": {
+        "master_admissible": 0,
+        "total": 30,
+        "gap_count": 30
+      },
+      "finish_counts": {
+        "normal": 30
+      },
+      "blocker_summary": "Printing/finish facts need human-readable checklist evidence and exact card-level support.",
+      "shard_refs": null
+    },
+    {
+      "set_key": "tk-xy-sy",
+      "set_name": "XY trainer Kit (Sylveon)",
+      "publishability_status": "not_publishable_finish_gaps",
+      "completion_status": "card_identity_complete_finish_incomplete",
+      "completion_score": 50,
+      "cards": {
+        "master_admissible": 30,
+        "total": 30,
+        "gap_count": 0
+      },
+      "printings": {
+        "master_admissible": 0,
+        "total": 30,
+        "gap_count": 30
+      },
+      "finish_counts": {
+        "normal": 30
+      },
+      "blocker_summary": "Printing/finish facts need human-readable checklist evidence and exact card-level support.",
+      "shard_refs": null
+    },
+    {
+      "set_key": "tk-xy-w",
+      "set_name": "XY trainer Kit (Wigglytuff)",
+      "publishability_status": "not_publishable_finish_gaps",
+      "completion_status": "card_identity_complete_finish_incomplete",
+      "completion_score": 50,
+      "cards": {
+        "master_admissible": 30,
+        "total": 30,
+        "gap_count": 0
+      },
+      "printings": {
+        "master_admissible": 0,
+        "total": 30,
+        "gap_count": 30
+      },
+      "finish_counts": {
+        "normal": 30
       },
       "blocker_summary": "Printing/finish facts need human-readable checklist evidence and exact card-level support.",
       "shard_refs": null
@@ -3487,182 +4339,6 @@
       "shard_refs": null
     },
     {
-      "set_key": "tk-xy-b",
-      "set_name": "XY trainer Kit (Bisharp)",
-      "publishability_status": "not_publishable_card_identity_gaps",
-      "completion_status": "finish_evidence_missing",
-      "completion_score": 7.5,
-      "cards": {
-        "master_admissible": 0,
-        "total": 30,
-        "gap_count": 30
-      },
-      "printings": {
-        "master_admissible": 0,
-        "total": 30,
-        "gap_count": 30
-      },
-      "finish_counts": {
-        "normal": 30
-      },
-      "blocker_summary": "Card identities need second-source agreement.",
-      "shard_refs": null
-    },
-    {
-      "set_key": "tk-xy-latia",
-      "set_name": "XY trainer Kit (Latias)",
-      "publishability_status": "not_publishable_card_identity_gaps",
-      "completion_status": "finish_evidence_missing",
-      "completion_score": 7.5,
-      "cards": {
-        "master_admissible": 0,
-        "total": 30,
-        "gap_count": 30
-      },
-      "printings": {
-        "master_admissible": 0,
-        "total": 30,
-        "gap_count": 30
-      },
-      "finish_counts": {
-        "normal": 30
-      },
-      "blocker_summary": "Card identities need second-source agreement.",
-      "shard_refs": null
-    },
-    {
-      "set_key": "tk-xy-latio",
-      "set_name": "XY trainer Kit (Latios)",
-      "publishability_status": "not_publishable_card_identity_gaps",
-      "completion_status": "finish_evidence_missing",
-      "completion_score": 7.5,
-      "cards": {
-        "master_admissible": 0,
-        "total": 30,
-        "gap_count": 30
-      },
-      "printings": {
-        "master_admissible": 0,
-        "total": 30,
-        "gap_count": 30
-      },
-      "finish_counts": {
-        "normal": 30
-      },
-      "blocker_summary": "Card identities need second-source agreement.",
-      "shard_refs": null
-    },
-    {
-      "set_key": "tk-xy-n",
-      "set_name": "XY trainer Kit (Noivern)",
-      "publishability_status": "not_publishable_card_identity_gaps",
-      "completion_status": "finish_evidence_missing",
-      "completion_score": 7.5,
-      "cards": {
-        "master_admissible": 0,
-        "total": 30,
-        "gap_count": 30
-      },
-      "printings": {
-        "master_admissible": 0,
-        "total": 30,
-        "gap_count": 30
-      },
-      "finish_counts": {
-        "normal": 30
-      },
-      "blocker_summary": "Card identities need second-source agreement.",
-      "shard_refs": null
-    },
-    {
-      "set_key": "tk-xy-p",
-      "set_name": "XY trainer Kit (Pikachu Libre)",
-      "publishability_status": "not_publishable_card_identity_gaps",
-      "completion_status": "finish_evidence_missing",
-      "completion_score": 7.5,
-      "cards": {
-        "master_admissible": 0,
-        "total": 30,
-        "gap_count": 30
-      },
-      "printings": {
-        "master_admissible": 0,
-        "total": 30,
-        "gap_count": 30
-      },
-      "finish_counts": {
-        "normal": 30
-      },
-      "blocker_summary": "Card identities need second-source agreement.",
-      "shard_refs": null
-    },
-    {
-      "set_key": "tk-xy-su",
-      "set_name": "XY trainer Kit (Suicune)",
-      "publishability_status": "not_publishable_card_identity_gaps",
-      "completion_status": "finish_evidence_missing",
-      "completion_score": 7.5,
-      "cards": {
-        "master_admissible": 0,
-        "total": 30,
-        "gap_count": 30
-      },
-      "printings": {
-        "master_admissible": 0,
-        "total": 30,
-        "gap_count": 30
-      },
-      "finish_counts": {
-        "normal": 30
-      },
-      "blocker_summary": "Card identities need second-source agreement.",
-      "shard_refs": null
-    },
-    {
-      "set_key": "tk-xy-sy",
-      "set_name": "XY trainer Kit (Sylveon)",
-      "publishability_status": "not_publishable_card_identity_gaps",
-      "completion_status": "finish_evidence_missing",
-      "completion_score": 7.5,
-      "cards": {
-        "master_admissible": 0,
-        "total": 30,
-        "gap_count": 30
-      },
-      "printings": {
-        "master_admissible": 0,
-        "total": 30,
-        "gap_count": 30
-      },
-      "finish_counts": {
-        "normal": 30
-      },
-      "blocker_summary": "Card identities need second-source agreement.",
-      "shard_refs": null
-    },
-    {
-      "set_key": "tk-xy-w",
-      "set_name": "XY trainer Kit (Wigglytuff)",
-      "publishability_status": "not_publishable_card_identity_gaps",
-      "completion_status": "finish_evidence_missing",
-      "completion_score": 7.5,
-      "cards": {
-        "master_admissible": 0,
-        "total": 30,
-        "gap_count": 30
-      },
-      "printings": {
-        "master_admissible": 0,
-        "total": 30,
-        "gap_count": 30
-      },
-      "finish_counts": {
-        "normal": 30
-      },
-      "blocker_summary": "Card identities need second-source agreement.",
-      "shard_refs": null
-    },
-    {
       "set_key": "xya",
       "set_name": "Yellow A Alternate",
       "publishability_status": "not_publishable_card_identity_gaps",
@@ -3680,56 +4356,6 @@
       },
       "finish_counts": {
         "normal": 6
-      },
-      "blocker_summary": "Card identities need second-source agreement.",
-      "shard_refs": null
-    },
-    {
-      "set_key": "sm12",
-      "set_name": "Cosmic Eclipse",
-      "publishability_status": "not_publishable_card_identity_gaps",
-      "completion_status": "source_agreed_card_identity",
-      "completion_score": 99.36,
-      "cards": {
-        "master_admissible": 271,
-        "total": 272,
-        "gap_count": 1
-      },
-      "printings": {
-        "master_admissible": 467,
-        "total": 473,
-        "gap_count": 6
-      },
-      "finish_counts": {
-        "holo": 100,
-        "normal": 174,
-        "reverse": 193,
-        "cracked_ice": 2,
-        "stamped": 4
-      },
-      "blocker_summary": "Card identities need second-source agreement.",
-      "shard_refs": null
-    },
-    {
-      "set_key": "sv1",
-      "set_name": "Scarlet & Violet",
-      "publishability_status": "not_publishable_card_identity_gaps",
-      "completion_status": "source_agreed_card_identity",
-      "completion_score": 99.35,
-      "cards": {
-        "master_admissible": 258,
-        "total": 262,
-        "gap_count": 4
-      },
-      "printings": {
-        "master_admissible": 444,
-        "total": 445,
-        "gap_count": 1
-      },
-      "finish_counts": {
-        "normal": 166,
-        "reverse": 186,
-        "holo": 93
       },
       "blocker_summary": "Card identities need second-source agreement.",
       "shard_refs": null
@@ -3784,162 +4410,6 @@
       "shard_refs": null
     },
     {
-      "set_key": "sm9",
-      "set_name": "Team Up",
-      "publishability_status": "not_publishable_card_identity_gaps",
-      "completion_status": "source_agreed_card_identity",
-      "completion_score": 98.96,
-      "cards": {
-        "master_admissible": 196,
-        "total": 198,
-        "gap_count": 2
-      },
-      "printings": {
-        "master_admissible": 342,
-        "total": 348,
-        "gap_count": 6
-      },
-      "finish_counts": {
-        "holo": 73,
-        "normal": 127,
-        "reverse": 143,
-        "cracked_ice": 2,
-        "stamped": 2,
-        "cosmos": 1
-      },
-      "blocker_summary": "Card identities need second-source agreement.",
-      "shard_refs": null
-    },
-    {
-      "set_key": "sm11",
-      "set_name": "Unified Minds",
-      "publishability_status": "not_publishable_card_identity_gaps",
-      "completion_status": "source_agreed_card_identity",
-      "completion_score": 98.58,
-      "cards": {
-        "master_admissible": 258,
-        "total": 261,
-        "gap_count": 3
-      },
-      "printings": {
-        "master_admissible": 459,
-        "total": 471,
-        "gap_count": 12
-      },
-      "finish_counts": {
-        "holo": 84,
-        "normal": 180,
-        "reverse": 196,
-        "stamped": 6,
-        "cosmos": 3,
-        "cracked_ice": 2
-      },
-      "blocker_summary": "Card identities need second-source agreement.",
-      "shard_refs": null
-    },
-    {
-      "set_key": "sm10",
-      "set_name": "Unbroken Bonds",
-      "publishability_status": "not_publishable_card_identity_gaps",
-      "completion_status": "source_agreed_card_identity",
-      "completion_score": 98.56,
-      "cards": {
-        "master_admissible": 234,
-        "total": 238,
-        "gap_count": 4
-      },
-      "printings": {
-        "master_admissible": 414,
-        "total": 423,
-        "gap_count": 9
-      },
-      "finish_counts": {
-        "holo": 83,
-        "normal": 158,
-        "reverse": 176,
-        "cosmos": 3,
-        "cracked_ice": 1,
-        "stamped": 2
-      },
-      "blocker_summary": "Card identities need second-source agreement.",
-      "shard_refs": null
-    },
-    {
-      "set_key": "sm75",
-      "set_name": "Dragon Majesty",
-      "publishability_status": "not_publishable_card_identity_gaps",
-      "completion_status": "source_agreed_card_identity",
-      "completion_score": 98.55,
-      "cards": {
-        "master_admissible": 78,
-        "total": 80,
-        "gap_count": 2
-      },
-      "printings": {
-        "master_admissible": 136,
-        "total": 138,
-        "gap_count": 2
-      },
-      "finish_counts": {
-        "normal": 48,
-        "reverse": 56,
-        "holo": 32,
-        "stamped": 2
-      },
-      "blocker_summary": "Card identities need second-source agreement.",
-      "shard_refs": null
-    },
-    {
-      "set_key": "ex15",
-      "set_name": "Dragon Frontiers",
-      "publishability_status": "not_publishable_card_identity_gaps",
-      "completion_status": "source_agreed_card_identity",
-      "completion_score": 98.39,
-      "cards": {
-        "master_admissible": 101,
-        "total": 103,
-        "gap_count": 2
-      },
-      "printings": {
-        "master_admissible": 190,
-        "total": 194,
-        "gap_count": 4
-      },
-      "finish_counts": {
-        "holo": 26,
-        "reverse": 89,
-        "normal": 77,
-        "stamped": 2
-      },
-      "blocker_summary": "Card identities need second-source agreement.",
-      "shard_refs": null
-    },
-    {
-      "set_key": "ex13",
-      "set_name": "Holon Phantoms",
-      "publishability_status": "not_publishable_card_identity_gaps",
-      "completion_status": "source_agreed_card_identity",
-      "completion_score": 98.2,
-      "cards": {
-        "master_admissible": 111,
-        "total": 114,
-        "gap_count": 3
-      },
-      "printings": {
-        "master_admissible": 212,
-        "total": 216,
-        "gap_count": 4
-      },
-      "finish_counts": {
-        "holo": 35,
-        "reverse": 98,
-        "normal": 82,
-        "stamped": 1
-      },
-      "blocker_summary": "Card identities need second-source agreement.",
-      "shard_refs": null
-    },
-    {
       "set_key": "ex4",
       "set_name": "Team Magma vs Team Aqua",
       "publishability_status": "not_publishable_card_identity_gaps",
@@ -3960,135 +4430,6 @@
         "reverse": 90,
         "normal": 80,
         "stamped": 1
-      },
-      "blocker_summary": "Card identities need second-source agreement.",
-      "shard_refs": null
-    },
-    {
-      "set_key": "sm35",
-      "set_name": "Shining Legends",
-      "publishability_status": "not_publishable_card_identity_gaps",
-      "completion_status": "source_agreed_card_identity",
-      "completion_score": 97.85,
-      "cards": {
-        "master_admissible": 78,
-        "total": 81,
-        "gap_count": 3
-      },
-      "printings": {
-        "master_admissible": 138,
-        "total": 141,
-        "gap_count": 3
-      },
-      "finish_counts": {
-        "normal": 48,
-        "reverse": 60,
-        "holo": 30,
-        "cosmos": 1,
-        "cracked_ice": 2
-      },
-      "blocker_summary": "Card identities need second-source agreement.",
-      "shard_refs": null
-    },
-    {
-      "set_key": "ex14",
-      "set_name": "Crystal Guardians",
-      "publishability_status": "not_publishable_card_identity_gaps",
-      "completion_status": "source_agreed_card_identity",
-      "completion_score": 97.81,
-      "cards": {
-        "master_admissible": 100,
-        "total": 102,
-        "gap_count": 2
-      },
-      "printings": {
-        "master_admissible": 192,
-        "total": 199,
-        "gap_count": 7
-      },
-      "finish_counts": {
-        "holo": 30,
-        "reverse": 88,
-        "normal": 76,
-        "stamped": 5
-      },
-      "blocker_summary": "Card identities need second-source agreement.",
-      "shard_refs": null
-    },
-    {
-      "set_key": "sm7",
-      "set_name": "Celestial Storm",
-      "publishability_status": "not_publishable_card_identity_gaps",
-      "completion_status": "source_agreed_card_identity",
-      "completion_score": 97.81,
-      "cards": {
-        "master_admissible": 183,
-        "total": 187,
-        "gap_count": 4
-      },
-      "printings": {
-        "master_admissible": 322,
-        "total": 334,
-        "gap_count": 12
-      },
-      "finish_counts": {
-        "normal": 121,
-        "reverse": 137,
-        "holo": 64,
-        "stamped": 7,
-        "cracked_ice": 2,
-        "cosmos": 3
-      },
-      "blocker_summary": "Card identities need second-source agreement.",
-      "shard_refs": null
-    },
-    {
-      "set_key": "ex16",
-      "set_name": "Power Keepers",
-      "publishability_status": "not_publishable_card_identity_gaps",
-      "completion_status": "source_agreed_card_identity",
-      "completion_score": 97.71,
-      "cards": {
-        "master_admissible": 108,
-        "total": 111,
-        "gap_count": 3
-      },
-      "printings": {
-        "master_admissible": 202,
-        "total": 208,
-        "gap_count": 6
-      },
-      "finish_counts": {
-        "holo": 32,
-        "reverse": 91,
-        "normal": 83,
-        "cosmos": 1,
-        "stamped": 1
-      },
-      "blocker_summary": "Card identities need second-source agreement.",
-      "shard_refs": null
-    },
-    {
-      "set_key": "ex11",
-      "set_name": "Delta Species",
-      "publishability_status": "not_publishable_card_identity_gaps",
-      "completion_status": "source_agreed_card_identity",
-      "completion_score": 97.56,
-      "cards": {
-        "master_admissible": 114,
-        "total": 117,
-        "gap_count": 3
-      },
-      "printings": {
-        "master_admissible": 219,
-        "total": 227,
-        "gap_count": 8
-      },
-      "finish_counts": {
-        "holo": 28,
-        "reverse": 107,
-        "normal": 89,
-        "stamped": 3
       },
       "blocker_summary": "Card identities need second-source agreement.",
       "shard_refs": null
@@ -4120,163 +4461,6 @@
       "shard_refs": null
     },
     {
-      "set_key": "ex7",
-      "set_name": "Team Rocket Returns",
-      "publishability_status": "not_publishable_card_identity_gaps",
-      "completion_status": "source_agreed_card_identity",
-      "completion_score": 97.44,
-      "cards": {
-        "master_admissible": 111,
-        "total": 114,
-        "gap_count": 3
-      },
-      "printings": {
-        "master_admissible": 206,
-        "total": 214,
-        "gap_count": 8
-      },
-      "finish_counts": {
-        "holo": 34,
-        "normal": 83,
-        "reverse": 95,
-        "cosmos": 1,
-        "stamped": 1
-      },
-      "blocker_summary": "Card identities need second-source agreement.",
-      "shard_refs": null
-    },
-    {
-      "set_key": "ex12",
-      "set_name": "Legend Maker",
-      "publishability_status": "not_publishable_card_identity_gaps",
-      "completion_status": "source_agreed_card_identity",
-      "completion_score": 97.42,
-      "cards": {
-        "master_admissible": 93,
-        "total": 96,
-        "gap_count": 3
-      },
-      "printings": {
-        "master_admissible": 175,
-        "total": 181,
-        "gap_count": 6
-      },
-      "finish_counts": {
-        "holo": 28,
-        "reverse": 82,
-        "normal": 68,
-        "stamped": 3
-      },
-      "blocker_summary": "Card identities need second-source agreement.",
-      "shard_refs": null
-    },
-    {
-      "set_key": "sm6",
-      "set_name": "Forbidden Light",
-      "publishability_status": "not_publishable_card_identity_gaps",
-      "completion_status": "source_agreed_card_identity",
-      "completion_score": 97.39,
-      "cards": {
-        "master_admissible": 146,
-        "total": 150,
-        "gap_count": 4
-      },
-      "printings": {
-        "master_admissible": 252,
-        "total": 263,
-        "gap_count": 11
-      },
-      "finish_counts": {
-        "normal": 94,
-        "reverse": 105,
-        "holo": 53,
-        "cracked_ice": 2,
-        "stamped": 8,
-        "cosmos": 1
-      },
-      "blocker_summary": "Card identities need second-source agreement.",
-      "shard_refs": null
-    },
-    {
-      "set_key": "sm5",
-      "set_name": "Ultra Prism",
-      "publishability_status": "not_publishable_card_identity_gaps",
-      "completion_status": "source_agreed_card_identity",
-      "completion_score": 97.36,
-      "cards": {
-        "master_admissible": 173,
-        "total": 178,
-        "gap_count": 5
-      },
-      "printings": {
-        "master_admissible": 301,
-        "total": 314,
-        "gap_count": 13
-      },
-      "finish_counts": {
-        "normal": 115,
-        "reverse": 125,
-        "holo": 61,
-        "stamped": 11,
-        "cracked_ice": 2
-      },
-      "blocker_summary": "Card identities need second-source agreement.",
-      "shard_refs": null
-    },
-    {
-      "set_key": "sm8",
-      "set_name": "Lost Thunder",
-      "publishability_status": "not_publishable_card_identity_gaps",
-      "completion_status": "source_agreed_card_identity",
-      "completion_score": 97.3,
-      "cards": {
-        "master_admissible": 236,
-        "total": 240,
-        "gap_count": 4
-      },
-      "printings": {
-        "master_admissible": 413,
-        "total": 436,
-        "gap_count": 23
-      },
-      "finish_counts": {
-        "normal": 156,
-        "reverse": 174,
-        "holo": 83,
-        "stamped": 13,
-        "cracked_ice": 4,
-        "cosmos": 6
-      },
-      "blocker_summary": "Card identities need second-source agreement.",
-      "shard_refs": null
-    },
-    {
-      "set_key": "ex10",
-      "set_name": "Unseen Forces",
-      "publishability_status": "not_publishable_card_identity_gaps",
-      "completion_status": "source_agreed_card_identity",
-      "completion_score": 97.21,
-      "cards": {
-        "master_admissible": 143,
-        "total": 148,
-        "gap_count": 5
-      },
-      "printings": {
-        "master_admissible": 246,
-        "total": 255,
-        "gap_count": 9
-      },
-      "finish_counts": {
-        "holo": 68,
-        "reverse": 100,
-        "normal": 84,
-        "cosmos": 1,
-        "stamped": 2
-      },
-      "blocker_summary": "Card identities need second-source agreement.",
-      "shard_refs": null
-    },
-    {
       "set_key": "bw6",
       "set_name": "Dragons Exalted",
       "publishability_status": "not_publishable_card_identity_gaps",
@@ -4299,58 +4483,6 @@
         "cosmos": 6,
         "cracked_ice": 1,
         "stamped": 2
-      },
-      "blocker_summary": "Card identities need second-source agreement.",
-      "shard_refs": null
-    },
-    {
-      "set_key": "sm4",
-      "set_name": "Crimson Invasion",
-      "publishability_status": "not_publishable_card_identity_gaps",
-      "completion_status": "source_agreed_card_identity",
-      "completion_score": 97.14,
-      "cards": {
-        "master_admissible": 125,
-        "total": 126,
-        "gap_count": 1
-      },
-      "printings": {
-        "master_admissible": 221,
-        "total": 236,
-        "gap_count": 15
-      },
-      "finish_counts": {
-        "normal": 86,
-        "reverse": 92,
-        "holo": 44,
-        "cosmos": 4,
-        "stamped": 8,
-        "cracked_ice": 2
-      },
-      "blocker_summary": "Card identities need second-source agreement.",
-      "shard_refs": null
-    },
-    {
-      "set_key": "ex8",
-      "set_name": "Deoxys",
-      "publishability_status": "not_publishable_card_identity_gaps",
-      "completion_status": "source_agreed_card_identity",
-      "completion_score": 97.01,
-      "cards": {
-        "master_admissible": 108,
-        "total": 111,
-        "gap_count": 3
-      },
-      "printings": {
-        "master_admissible": 205,
-        "total": 215,
-        "gap_count": 10
-      },
-      "finish_counts": {
-        "holo": 33,
-        "reverse": 95,
-        "normal": 83,
-        "stamped": 4
       },
       "blocker_summary": "Card identities need second-source agreement.",
       "shard_refs": null
@@ -4454,60 +4586,6 @@
         "normal": 105,
         "stamped": 5,
         "cosmos": 1
-      },
-      "blocker_summary": "Card identities need second-source agreement.",
-      "shard_refs": null
-    },
-    {
-      "set_key": "sm3",
-      "set_name": "Burning Shadows",
-      "publishability_status": "not_publishable_card_identity_gaps",
-      "completion_status": "source_agreed_card_identity",
-      "completion_score": 96.45,
-      "cards": {
-        "master_admissible": 169,
-        "total": 177,
-        "gap_count": 8
-      },
-      "printings": {
-        "master_admissible": 290,
-        "total": 305,
-        "gap_count": 15
-      },
-      "finish_counts": {
-        "normal": 108,
-        "reverse": 116,
-        "holo": 69,
-        "stamped": 9,
-        "cosmos": 2,
-        "cracked_ice": 1
-      },
-      "blocker_summary": "Card identities need second-source agreement.",
-      "shard_refs": null
-    },
-    {
-      "set_key": "sm2",
-      "set_name": "Guardians Rising",
-      "publishability_status": "not_publishable_card_identity_gaps",
-      "completion_status": "source_agreed_card_identity",
-      "completion_score": 96.4,
-      "cards": {
-        "master_admissible": 169,
-        "total": 180,
-        "gap_count": 11
-      },
-      "printings": {
-        "master_admissible": 290,
-        "total": 301,
-        "gap_count": 11
-      },
-      "finish_counts": {
-        "normal": 106,
-        "reverse": 118,
-        "holo": 66,
-        "stamped": 7,
-        "cosmos": 2,
-        "cracked_ice": 2
       },
       "blocker_summary": "Card identities need second-source agreement.",
       "shard_refs": null
@@ -4723,54 +4801,25 @@
       "shard_refs": null
     },
     {
-      "set_key": "sv2",
-      "set_name": "Paldea Evolved",
+      "set_key": "ecard3",
+      "set_name": "Skyridge",
       "publishability_status": "not_publishable_card_identity_gaps",
       "completion_status": "source_agreed_card_identity",
-      "completion_score": 94.83,
+      "completion_score": 94.16,
       "cards": {
-        "master_admissible": 279,
-        "total": 282,
-        "gap_count": 3
+        "master_admissible": 189,
+        "total": 198,
+        "gap_count": 9
       },
       "printings": {
-        "master_admissible": 455,
-        "total": 517,
-        "gap_count": 62
+        "master_admissible": 323,
+        "total": 355,
+        "gap_count": 32
       },
       "finish_counts": {
-        "normal": 156,
-        "reverse": 176,
-        "holo": 131,
-        "stamped": 42,
-        "cosmos": 12
-      },
-      "blocker_summary": "Card identities need second-source agreement.",
-      "shard_refs": null
-    },
-    {
-      "set_key": "sm1",
-      "set_name": "Sun & Moon",
-      "publishability_status": "not_publishable_card_identity_gaps",
-      "completion_status": "source_agreed_card_identity",
-      "completion_score": 94.62,
-      "cards": {
-        "master_admissible": 172,
-        "total": 173,
-        "gap_count": 1
-      },
-      "printings": {
-        "master_admissible": 293,
-        "total": 334,
-        "gap_count": 41
-      },
-      "finish_counts": {
-        "normal": 123,
-        "reverse": 126,
-        "holo": 53,
-        "cosmos": 14,
-        "cracked_ice": 3,
-        "stamped": 15
+        "normal": 151,
+        "reverse": 157,
+        "holo": 47
       },
       "blocker_summary": "Card identities need second-source agreement.",
       "shard_refs": null
@@ -4796,30 +4845,6 @@
         "normal": 6,
         "stamped": 47,
         "cosmos": 3
-      },
-      "blocker_summary": "Card identities need second-source agreement.",
-      "shard_refs": null
-    },
-    {
-      "set_key": "ecard3",
-      "set_name": "Skyridge",
-      "publishability_status": "not_publishable_card_identity_gaps",
-      "completion_status": "source_agreed_card_identity",
-      "completion_score": 92.92,
-      "cards": {
-        "master_admissible": 182,
-        "total": 198,
-        "gap_count": 16
-      },
-      "printings": {
-        "master_admissible": 323,
-        "total": 355,
-        "gap_count": 32
-      },
-      "finish_counts": {
-        "normal": 151,
-        "reverse": 157,
-        "holo": 47
       },
       "blocker_summary": "Card identities need second-source agreement.",
       "shard_refs": null
@@ -4871,31 +4896,6 @@
         "cosmos": 3,
         "cracked_ice": 3,
         "stamped": 12
-      },
-      "blocker_summary": "Card identities need second-source agreement.",
-      "shard_refs": null
-    },
-    {
-      "set_key": "smp",
-      "set_name": "SM Black Star Promos",
-      "publishability_status": "not_publishable_card_identity_gaps",
-      "completion_status": "source_agreed_card_identity",
-      "completion_score": 91.16,
-      "cards": {
-        "master_admissible": 248,
-        "total": 251,
-        "gap_count": 3
-      },
-      "printings": {
-        "master_admissible": 250,
-        "total": 316,
-        "gap_count": 66
-      },
-      "finish_counts": {
-        "holo": 234,
-        "normal": 20,
-        "stamped": 59,
-        "cosmos": 3
       },
       "blocker_summary": "Card identities need second-source agreement.",
       "shard_refs": null
@@ -5027,6 +5027,28 @@
       "shard_refs": null
     },
     {
+      "set_key": "cel25",
+      "set_name": "Celebrations",
+      "publishability_status": "not_publishable_card_identity_gaps",
+      "completion_status": "source_agreed_card_identity",
+      "completion_score": 67.87,
+      "cards": {
+        "master_admissible": 49,
+        "total": 75,
+        "gap_count": 26
+      },
+      "printings": {
+        "master_admissible": 25,
+        "total": 50,
+        "gap_count": 25
+      },
+      "finish_counts": {
+        "holo": 50
+      },
+      "blocker_summary": "Card identities need second-source agreement.",
+      "shard_refs": null
+    },
+    {
       "set_key": "sm115",
       "set_name": "Hidden Fates",
       "publishability_status": "not_publishable_card_identity_gaps",
@@ -5047,28 +5069,6 @@
         "reverse": 56,
         "holo": 113,
         "stamped": 9
-      },
-      "blocker_summary": "Card identities need second-source agreement.",
-      "shard_refs": null
-    },
-    {
-      "set_key": "cel25",
-      "set_name": "Celebrations",
-      "publishability_status": "not_publishable_card_identity_gaps",
-      "completion_status": "source_agreed_card_identity",
-      "completion_score": 56.67,
-      "cards": {
-        "master_admissible": 25,
-        "total": 75,
-        "gap_count": 50
-      },
-      "printings": {
-        "master_admissible": 25,
-        "total": 50,
-        "gap_count": 25
-      },
-      "finish_counts": {
-        "holo": 50
       },
       "blocker_summary": "Card identities need second-source agreement.",
       "shard_refs": null

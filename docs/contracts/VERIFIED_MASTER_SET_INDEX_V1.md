@@ -108,6 +108,8 @@ Sources must be tracked by source name, source kind, and evidence URL or source 
 - `tcgdex`
 - `pokemontcg_api`
 - `thepricedex_price_list`
+- `pkmncards`
+- `bulbapedia_set_list`
 - bounded fixture-backed human-readable/checklist sources
 
 Additional sources may be added only as explicit adapters that preserve source name, retrieval timestamp, raw identity fields, and evidence URL.
@@ -176,6 +178,23 @@ AND the bridge row must preserve the marketplace URL
 This bridge may promote already-agreed finish evidence to `master_verified` with a marketplace/checklist source present.
 
 It must not promote single-source finish facts, resolve source disagreements, infer missing variants, or create new printings.
+
+### Supportive Collector Reference Rule
+
+Collector-reference or human-readable set-list adapters such as `pkmncards` and `bulbapedia_set_list` may support card identity only when the same exact working fact was already observed from another governed source:
+
+```text
+set + card number + card name
+```
+
+These adapters must not introduce unmatched source-only card identities into canonical working truth by default. If a source uses alternate names, symbols, suffixes, or product wording that does not exactly match an existing governed fact, that evidence remains a source-exhaustion/manual-review concern until alias governance can resolve it.
+
+Current limits:
+
+- `pkmncards` is a collector-reference card identity support lane only.
+- `bulbapedia_set_list` is an optional human-readable checklist card identity and rarity-context lane only.
+- neither adapter emits finish/printing truth.
+- neither adapter may infer reverse holo, holo, stamped, cosmos, cracked ice, Poke Ball, Master Ball, Rocket reverse, or product-exclusive variants.
 
 Required source record shape:
 

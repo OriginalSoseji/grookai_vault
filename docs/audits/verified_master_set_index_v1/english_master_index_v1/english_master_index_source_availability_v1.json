@@ -1,6 +1,6 @@
 {
   "version": "ENGLISH_MASTER_INDEX_SOURCE_AVAILABILITY_V1",
-  "generated_at": "2026-05-25T16:40:48.237Z",
+  "generated_at": "2026-05-25T17:31:46.407Z",
   "audit_only": true,
   "db_writes": false,
   "source_availability": [
@@ -33,6 +33,16 @@
       "runtime_status": "error",
       "evidence_rows": 0,
       "error": "Fetch failed 404 Not Found: https://www.thepricedex.com/set/tk-bw-e/bw-trainer-kit-excadrill/price-list"
+    },
+    {
+      "set_key": "tk-bw-e",
+      "set_name": "BW trainer Kit (Excadrill)",
+      "source_key": "pkmncards",
+      "source_alias": "bw-trainer-kit-excadrill",
+      "configured_status": "candidate_url",
+      "runtime_status": "error",
+      "evidence_rows": 0,
+      "error": "Fetch failed 404 Not Found: https://pkmncards.com/set/bw-trainer-kit-excadrill/"
     },
     {
       "set_key": "tk-bw-e",
@@ -77,6 +87,16 @@
     {
       "set_key": "tk-bw-z",
       "set_name": "BW trainer Kit (Zoroark)",
+      "source_key": "pkmncards",
+      "source_alias": "bw-trainer-kit-zoroark",
+      "configured_status": "candidate_url",
+      "runtime_status": "error",
+      "evidence_rows": 0,
+      "error": "Fetch failed 404 Not Found: https://pkmncards.com/set/bw-trainer-kit-zoroark/"
+    },
+    {
+      "set_key": "tk-bw-z",
+      "set_name": "BW trainer Kit (Zoroark)",
       "source_key": "tcgplayer_price_guide",
       "source_alias": null,
       "configured_status": "unavailable",
@@ -113,6 +133,16 @@
       "runtime_status": "error",
       "evidence_rows": 0,
       "error": "Fetch failed 404 Not Found: https://www.thepricedex.com/set/tk-dp-l/dp-trainer-kit-lucario/price-list"
+    },
+    {
+      "set_key": "tk-dp-l",
+      "set_name": "DP trainer Kit (Lucario)",
+      "source_key": "pkmncards",
+      "source_alias": "dp-trainer-kit-lucario",
+      "configured_status": "candidate_url",
+      "runtime_status": "error",
+      "evidence_rows": 0,
+      "error": "Fetch failed 404 Not Found: https://pkmncards.com/set/dp-trainer-kit-lucario/"
     },
     {
       "set_key": "tk-dp-l",
@@ -157,6 +187,16 @@
     {
       "set_key": "tk-dp-m",
       "set_name": "DP trainer Kit (Manaphy)",
+      "source_key": "pkmncards",
+      "source_alias": "dp-trainer-kit-manaphy",
+      "configured_status": "candidate_url",
+      "runtime_status": "error",
+      "evidence_rows": 0,
+      "error": "Fetch failed 404 Not Found: https://pkmncards.com/set/dp-trainer-kit-manaphy/"
+    },
+    {
+      "set_key": "tk-dp-m",
+      "set_name": "DP trainer Kit (Manaphy)",
       "source_key": "tcgplayer_price_guide",
       "source_alias": null,
       "configured_status": "unavailable",
@@ -193,6 +233,16 @@
       "runtime_status": "error",
       "evidence_rows": 0,
       "error": "Fetch failed 404 Not Found: https://www.thepricedex.com/set/tk-hs-g/hs-trainer-kit-gyarados/price-list"
+    },
+    {
+      "set_key": "tk-hs-g",
+      "set_name": "HS trainer Kit (Gyarados)",
+      "source_key": "pkmncards",
+      "source_alias": "hs-trainer-kit-gyarados",
+      "configured_status": "candidate_url",
+      "runtime_status": "error",
+      "evidence_rows": 0,
+      "error": "PkmnCards page contained no card rows: https://pkmncards.com/set/hs-trainer-kit-gyarados/"
     },
     {
       "set_key": "tk-hs-g",
@@ -237,6 +287,16 @@
     {
       "set_key": "tk-hs-r",
       "set_name": "HS trainer Kit (Raichu)",
+      "source_key": "pkmncards",
+      "source_alias": "hs-trainer-kit-raichu",
+      "configured_status": "candidate_url",
+      "runtime_status": "error",
+      "evidence_rows": 0,
+      "error": "PkmnCards page contained no card rows: https://pkmncards.com/set/hs-trainer-kit-raichu/"
+    },
+    {
+      "set_key": "tk-hs-r",
+      "set_name": "HS trainer Kit (Raichu)",
       "source_key": "tcgplayer_price_guide",
       "source_alias": null,
       "configured_status": "unavailable",
@@ -273,6 +333,16 @@
       "runtime_status": "error",
       "evidence_rows": 0,
       "error": "Fetch failed 404 Not Found: https://www.thepricedex.com/set/jumbo/jumbo-cards/price-list"
+    },
+    {
+      "set_key": "jumbo",
+      "set_name": "Jumbo cards",
+      "source_key": "pkmncards",
+      "source_alias": "jumbo-cards",
+      "configured_status": "candidate_url",
+      "runtime_status": "error",
+      "evidence_rows": 0,
+      "error": "Fetch failed 404 Not Found: https://pkmncards.com/set/jumbo-cards/"
     },
     {
       "set_key": "jumbo",
@@ -317,6 +387,16 @@
     {
       "set_key": "2023sv",
       "set_name": "McDonald's Collection 2023",
+      "source_key": "pkmncards",
+      "source_alias": "mcdonalds-collection-2023",
+      "configured_status": "candidate_url",
+      "runtime_status": "error",
+      "evidence_rows": 0,
+      "error": "Fetch failed 404 Not Found: https://pkmncards.com/set/mcdonalds-collection-2023/"
+    },
+    {
+      "set_key": "2023sv",
+      "set_name": "McDonald's Collection 2023",
       "source_key": "tcgplayer_price_guide",
       "source_alias": null,
       "configured_status": "unavailable",
@@ -353,6 +433,16 @@
       "runtime_status": "error",
       "evidence_rows": 0,
       "error": "Fetch failed 404 Not Found: https://www.thepricedex.com/set/2024sv/mcdonalds-collection-2024/price-list"
+    },
+    {
+      "set_key": "2024sv",
+      "set_name": "McDonald's Collection 2024",
+      "source_key": "pkmncards",
+      "source_alias": "mcdonalds-collection-2024",
+      "configured_status": "candidate_url",
+      "runtime_status": "error",
+      "evidence_rows": 0,
+      "error": "Fetch failed 404 Not Found: https://pkmncards.com/set/mcdonalds-collection-2024/"
     },
     {
       "set_key": "2024sv",
@@ -397,6 +487,16 @@
     {
       "set_key": "mee",
       "set_name": "Mega Evolution Energy",
+      "source_key": "pkmncards",
+      "source_alias": "mega-evolution-energy",
+      "configured_status": "candidate_url",
+      "runtime_status": "error",
+      "evidence_rows": 0,
+      "error": "Fetch failed 404 Not Found: https://pkmncards.com/set/mega-evolution-energy/"
+    },
+    {
+      "set_key": "mee",
+      "set_name": "Mega Evolution Energy",
       "source_key": "tcgplayer_price_guide",
       "source_alias": null,
       "configured_status": "unavailable",
@@ -433,6 +533,16 @@
       "runtime_status": "collected",
       "evidence_rows": 143,
       "error": null
+    },
+    {
+      "set_key": "mep",
+      "set_name": "MEP Black Star Promos",
+      "source_key": "pkmncards",
+      "source_alias": "mep-black-star-promos",
+      "configured_status": "candidate_url",
+      "runtime_status": "error",
+      "evidence_rows": 0,
+      "error": "Fetch failed 404 Not Found: https://pkmncards.com/set/mep-black-star-promos/"
     },
     {
       "set_key": "mep",
@@ -477,6 +587,16 @@
     {
       "set_key": "mfb",
       "set_name": "My First Battle",
+      "source_key": "pkmncards",
+      "source_alias": "my-first-battle",
+      "configured_status": "candidate_url",
+      "runtime_status": "error",
+      "evidence_rows": 0,
+      "error": "Fetch failed 404 Not Found: https://pkmncards.com/set/my-first-battle/"
+    },
+    {
+      "set_key": "mfb",
+      "set_name": "My First Battle",
       "source_key": "tcgplayer_price_guide",
       "source_alias": null,
       "configured_status": "unavailable",
@@ -513,6 +633,16 @@
       "runtime_status": "error",
       "evidence_rows": 0,
       "error": "Fetch failed 404 Not Found: https://www.thepricedex.com/set/ex5.5/pok-card-creator-pack/price-list"
+    },
+    {
+      "set_key": "ex5.5",
+      "set_name": "Poké Card Creator Pack",
+      "source_key": "pkmncards",
+      "source_alias": "pok-card-creator-pack",
+      "configured_status": "candidate_url",
+      "runtime_status": "error",
+      "evidence_rows": 0,
+      "error": "Fetch failed 404 Not Found: https://pkmncards.com/set/pok-card-creator-pack/"
     },
     {
       "set_key": "ex5.5",
@@ -557,6 +687,16 @@
     {
       "set_key": "fut2020",
       "set_name": "Pokémon Futsal 2020",
+      "source_key": "pkmncards",
+      "source_alias": "pok-mon-futsal-2020",
+      "configured_status": "candidate_url",
+      "runtime_status": "error",
+      "evidence_rows": 0,
+      "error": "Fetch failed 404 Not Found: https://pkmncards.com/set/pok-mon-futsal-2020/"
+    },
+    {
+      "set_key": "fut2020",
+      "set_name": "Pokémon Futsal 2020",
       "source_key": "tcgplayer_price_guide",
       "source_alias": null,
       "configured_status": "unavailable",
@@ -593,6 +733,16 @@
       "runtime_status": "error",
       "evidence_rows": 0,
       "error": "Fetch failed 404 Not Found: https://www.thepricedex.com/set/rc/radiant-collection/price-list"
+    },
+    {
+      "set_key": "rc",
+      "set_name": "Radiant Collection",
+      "source_key": "pkmncards",
+      "source_alias": "radiant-collection",
+      "configured_status": "candidate_url",
+      "runtime_status": "error",
+      "evidence_rows": 0,
+      "error": "Fetch failed 404 Not Found: https://pkmncards.com/set/radiant-collection/"
     },
     {
       "set_key": "rc",
@@ -637,6 +787,16 @@
     {
       "set_key": "sp",
       "set_name": "Sample",
+      "source_key": "pkmncards",
+      "source_alias": "sample",
+      "configured_status": "candidate_url",
+      "runtime_status": "error",
+      "evidence_rows": 0,
+      "error": "Fetch failed 404 Not Found: https://pkmncards.com/set/sample/"
+    },
+    {
+      "set_key": "sp",
+      "set_name": "Sample",
       "source_key": "tcgplayer_price_guide",
       "source_alias": null,
       "configured_status": "unavailable",
@@ -673,6 +833,16 @@
       "runtime_status": "error",
       "evidence_rows": 0,
       "error": "Fetch failed 404 Not Found: https://www.thepricedex.com/set/tk-sm-r/sm-trainer-kit-alolan-raichu/price-list"
+    },
+    {
+      "set_key": "tk-sm-r",
+      "set_name": "SM trainer Kit (Alolan Raichu)",
+      "source_key": "pkmncards",
+      "source_alias": "sm-trainer-kit-alolan-raichu",
+      "configured_status": "candidate_url",
+      "runtime_status": "error",
+      "evidence_rows": 0,
+      "error": "Fetch failed 404 Not Found: https://pkmncards.com/set/sm-trainer-kit-alolan-raichu/"
     },
     {
       "set_key": "tk-sm-r",
@@ -717,6 +887,16 @@
     {
       "set_key": "tk-sm-l",
       "set_name": "SM trainer Kit (Lycanroc)",
+      "source_key": "pkmncards",
+      "source_alias": "sm-trainer-kit-lycanroc",
+      "configured_status": "candidate_url",
+      "runtime_status": "error",
+      "evidence_rows": 0,
+      "error": "Fetch failed 404 Not Found: https://pkmncards.com/set/sm-trainer-kit-lycanroc/"
+    },
+    {
+      "set_key": "tk-sm-l",
+      "set_name": "SM trainer Kit (Lycanroc)",
       "source_key": "tcgplayer_price_guide",
       "source_alias": null,
       "configured_status": "unavailable",
@@ -753,6 +933,16 @@
       "runtime_status": "error",
       "evidence_rows": 0,
       "error": "Fetch failed 404 Not Found: https://www.thepricedex.com/set/exu/unseen-forces-unown-collection/price-list"
+    },
+    {
+      "set_key": "exu",
+      "set_name": "Unseen Forces Unown Collection",
+      "source_key": "pkmncards",
+      "source_alias": "unseen-forces-unown-collection",
+      "configured_status": "candidate_url",
+      "runtime_status": "error",
+      "evidence_rows": 0,
+      "error": "Fetch failed 404 Not Found: https://pkmncards.com/set/unseen-forces-unown-collection/"
     },
     {
       "set_key": "exu",
@@ -797,6 +987,16 @@
     {
       "set_key": "wp",
       "set_name": "W Promotional",
+      "source_key": "pkmncards",
+      "source_alias": "w-promotional",
+      "configured_status": "candidate_url",
+      "runtime_status": "error",
+      "evidence_rows": 0,
+      "error": "Fetch failed 404 Not Found: https://pkmncards.com/set/w-promotional/"
+    },
+    {
+      "set_key": "wp",
+      "set_name": "W Promotional",
       "source_key": "tcgplayer_price_guide",
       "source_alias": null,
       "configured_status": "unavailable",
@@ -833,6 +1033,16 @@
       "runtime_status": "error",
       "evidence_rows": 0,
       "error": "Fetch failed 404 Not Found: https://www.thepricedex.com/set/tk-xy-b/xy-trainer-kit-bisharp/price-list"
+    },
+    {
+      "set_key": "tk-xy-b",
+      "set_name": "XY trainer Kit (Bisharp)",
+      "source_key": "pkmncards",
+      "source_alias": "xy-trainer-kit-bisharp",
+      "configured_status": "candidate_url",
+      "runtime_status": "collected",
+      "evidence_rows": 30,
+      "error": null
     },
     {
       "set_key": "tk-xy-b",
@@ -877,6 +1087,16 @@
     {
       "set_key": "tk-xy-latia",
       "set_name": "XY trainer Kit (Latias)",
+      "source_key": "pkmncards",
+      "source_alias": "xy-trainer-kit-latias",
+      "configured_status": "candidate_url",
+      "runtime_status": "collected",
+      "evidence_rows": 30,
+      "error": null
+    },
+    {
+      "set_key": "tk-xy-latia",
+      "set_name": "XY trainer Kit (Latias)",
       "source_key": "tcgplayer_price_guide",
       "source_alias": null,
       "configured_status": "unavailable",
@@ -913,6 +1133,16 @@
       "runtime_status": "error",
       "evidence_rows": 0,
       "error": "Fetch failed 404 Not Found: https://www.thepricedex.com/set/tk-xy-latio/xy-trainer-kit-latios/price-list"
+    },
+    {
+      "set_key": "tk-xy-latio",
+      "set_name": "XY trainer Kit (Latios)",
+      "source_key": "pkmncards",
+      "source_alias": "xy-trainer-kit-latios",
+      "configured_status": "candidate_url",
+      "runtime_status": "collected",
+      "evidence_rows": 30,
+      "error": null
     },
     {
       "set_key": "tk-xy-latio",
@@ -957,6 +1187,16 @@
     {
       "set_key": "tk-xy-n",
       "set_name": "XY trainer Kit (Noivern)",
+      "source_key": "pkmncards",
+      "source_alias": "xy-trainer-kit-noivern",
+      "configured_status": "candidate_url",
+      "runtime_status": "collected",
+      "evidence_rows": 30,
+      "error": null
+    },
+    {
+      "set_key": "tk-xy-n",
+      "set_name": "XY trainer Kit (Noivern)",
       "source_key": "tcgplayer_price_guide",
       "source_alias": null,
       "configured_status": "unavailable",
@@ -993,6 +1233,16 @@
       "runtime_status": "error",
       "evidence_rows": 0,
       "error": "Fetch failed 404 Not Found: https://www.thepricedex.com/set/tk-xy-p/xy-trainer-kit-pikachu-libre/price-list"
+    },
+    {
+      "set_key": "tk-xy-p",
+      "set_name": "XY trainer Kit (Pikachu Libre)",
+      "source_key": "pkmncards",
+      "source_alias": "xy-trainer-kit-pikachu-libre",
+      "configured_status": "candidate_url",
+      "runtime_status": "collected",
+      "evidence_rows": 30,
+      "error": null
     },
     {
       "set_key": "tk-xy-p",
@@ -1037,6 +1287,16 @@
     {
       "set_key": "tk-xy-su",
       "set_name": "XY trainer Kit (Suicune)",
+      "source_key": "pkmncards",
+      "source_alias": "xy-trainer-kit-suicune",
+      "configured_status": "candidate_url",
+      "runtime_status": "collected",
+      "evidence_rows": 30,
+      "error": null
+    },
+    {
+      "set_key": "tk-xy-su",
+      "set_name": "XY trainer Kit (Suicune)",
       "source_key": "tcgplayer_price_guide",
       "source_alias": null,
       "configured_status": "unavailable",
@@ -1073,6 +1333,16 @@
       "runtime_status": "error",
       "evidence_rows": 0,
       "error": "Fetch failed 404 Not Found: https://www.thepricedex.com/set/tk-xy-sy/xy-trainer-kit-sylveon/price-list"
+    },
+    {
+      "set_key": "tk-xy-sy",
+      "set_name": "XY trainer Kit (Sylveon)",
+      "source_key": "pkmncards",
+      "source_alias": "xy-trainer-kit-sylveon",
+      "configured_status": "candidate_url",
+      "runtime_status": "collected",
+      "evidence_rows": 30,
+      "error": null
     },
     {
       "set_key": "tk-xy-sy",
@@ -1117,6 +1387,16 @@
     {
       "set_key": "tk-xy-w",
       "set_name": "XY trainer Kit (Wigglytuff)",
+      "source_key": "pkmncards",
+      "source_alias": "xy-trainer-kit-wigglytuff",
+      "configured_status": "candidate_url",
+      "runtime_status": "collected",
+      "evidence_rows": 30,
+      "error": null
+    },
+    {
+      "set_key": "tk-xy-w",
+      "set_name": "XY trainer Kit (Wigglytuff)",
       "source_key": "tcgplayer_price_guide",
       "source_alias": null,
       "configured_status": "unavailable",
@@ -1153,6 +1433,16 @@
       "runtime_status": "error",
       "evidence_rows": 0,
       "error": "Fetch failed 404 Not Found: https://www.thepricedex.com/set/xya/yellow-a-alternate/price-list"
+    },
+    {
+      "set_key": "xya",
+      "set_name": "Yellow A Alternate",
+      "source_key": "pkmncards",
+      "source_alias": "yellow-a-alternate",
+      "configured_status": "candidate_url",
+      "runtime_status": "error",
+      "evidence_rows": 0,
+      "error": "Fetch failed 404 Not Found: https://pkmncards.com/set/yellow-a-alternate/"
     },
     {
       "set_key": "xya",
@@ -1197,6 +1487,16 @@
     {
       "set_key": "base1",
       "set_name": "Base",
+      "source_key": "pkmncards",
+      "source_alias": "base",
+      "configured_status": "candidate_url",
+      "runtime_status": "error",
+      "evidence_rows": 0,
+      "error": "Fetch failed 404 Not Found: https://pkmncards.com/set/base/"
+    },
+    {
+      "set_key": "base1",
+      "set_name": "Base",
       "source_key": "tcgplayer_price_guide",
       "source_alias": null,
       "configured_status": "unavailable",
@@ -1232,6 +1532,16 @@
       "configured_status": "candidate_url",
       "runtime_status": "collected",
       "evidence_rows": 194,
+      "error": null
+    },
+    {
+      "set_key": "base2",
+      "set_name": "Jungle",
+      "source_key": "pkmncards",
+      "source_alias": "jungle",
+      "configured_status": "candidate_url",
+      "runtime_status": "collected",
+      "evidence_rows": 63,
       "error": null
     },
     {
@@ -1277,6 +1587,16 @@
     {
       "set_key": "basep",
       "set_name": "Wizards Black Star Promos",
+      "source_key": "pkmncards",
+      "source_alias": "wizards-black-star-promos",
+      "configured_status": "candidate_url",
+      "runtime_status": "error",
+      "evidence_rows": 0,
+      "error": "PkmnCards page contained no card rows: https://pkmncards.com/set/wizards-black-star-promos/"
+    },
+    {
+      "set_key": "basep",
+      "set_name": "Wizards Black Star Promos",
       "source_key": "tcgplayer_price_guide",
       "source_alias": null,
       "configured_status": "unavailable",
@@ -1312,6 +1632,16 @@
       "configured_status": "candidate_url",
       "runtime_status": "collected",
       "evidence_rows": 189,
+      "error": null
+    },
+    {
+      "set_key": "base3",
+      "set_name": "Fossil",
+      "source_key": "pkmncards",
+      "source_alias": "fossil",
+      "configured_status": "candidate_url",
+      "runtime_status": "collected",
+      "evidence_rows": 62,
       "error": null
     },
     {
@@ -1357,6 +1687,16 @@
     {
       "set_key": "base4",
       "set_name": "Base Set 2",
+      "source_key": "pkmncards",
+      "source_alias": "base-set-2",
+      "configured_status": "candidate_url",
+      "runtime_status": "collected",
+      "evidence_rows": 128,
+      "error": null
+    },
+    {
+      "set_key": "base4",
+      "set_name": "Base Set 2",
       "source_key": "tcgplayer_price_guide",
       "source_alias": null,
       "configured_status": "unavailable",
@@ -1392,6 +1732,16 @@
       "configured_status": "candidate_url",
       "runtime_status": "collected",
       "evidence_rows": 252,
+      "error": null
+    },
+    {
+      "set_key": "base5",
+      "set_name": "Team Rocket",
+      "source_key": "pkmncards",
+      "source_alias": "team-rocket",
+      "configured_status": "candidate_url",
+      "runtime_status": "collected",
+      "evidence_rows": 83,
       "error": null
     },
     {
@@ -1437,6 +1787,16 @@
     {
       "set_key": "gym1",
       "set_name": "Gym Heroes",
+      "source_key": "pkmncards",
+      "source_alias": "gym-heroes",
+      "configured_status": "candidate_url",
+      "runtime_status": "collected",
+      "evidence_rows": 132,
+      "error": null
+    },
+    {
+      "set_key": "gym1",
+      "set_name": "Gym Heroes",
       "source_key": "tcgplayer_price_guide",
       "source_alias": null,
       "configured_status": "unavailable",
@@ -1472,6 +1832,16 @@
       "configured_status": "candidate_url",
       "runtime_status": "collected",
       "evidence_rows": 397,
+      "error": null
+    },
+    {
+      "set_key": "gym2",
+      "set_name": "Gym Challenge",
+      "source_key": "pkmncards",
+      "source_alias": "gym-challenge",
+      "configured_status": "candidate_url",
+      "runtime_status": "collected",
+      "evidence_rows": 130,
       "error": null
     },
     {
@@ -1517,6 +1887,16 @@
     {
       "set_key": "neo1",
       "set_name": "Neo Genesis",
+      "source_key": "pkmncards",
+      "source_alias": "neo-genesis",
+      "configured_status": "candidate_url",
+      "runtime_status": "collected",
+      "evidence_rows": 111,
+      "error": null
+    },
+    {
+      "set_key": "neo1",
+      "set_name": "Neo Genesis",
       "source_key": "tcgplayer_price_guide",
       "source_alias": null,
       "configured_status": "unavailable",
@@ -1552,6 +1932,16 @@
       "configured_status": "candidate_url",
       "runtime_status": "collected",
       "evidence_rows": 225,
+      "error": null
+    },
+    {
+      "set_key": "neo2",
+      "set_name": "Neo Discovery",
+      "source_key": "pkmncards",
+      "source_alias": "neo-discovery",
+      "configured_status": "candidate_url",
+      "runtime_status": "collected",
+      "evidence_rows": 75,
       "error": null
     },
     {
@@ -1597,6 +1987,16 @@
     {
       "set_key": "si1",
       "set_name": "Southern Islands",
+      "source_key": "pkmncards",
+      "source_alias": "southern-islands",
+      "configured_status": "candidate_url",
+      "runtime_status": "collected",
+      "evidence_rows": 18,
+      "error": null
+    },
+    {
+      "set_key": "si1",
+      "set_name": "Southern Islands",
       "source_key": "tcgplayer_price_guide",
       "source_alias": null,
       "configured_status": "unavailable",
@@ -1632,6 +2032,16 @@
       "configured_status": "candidate_url",
       "runtime_status": "collected",
       "evidence_rows": 198,
+      "error": null
+    },
+    {
+      "set_key": "neo3",
+      "set_name": "Neo Revelation",
+      "source_key": "pkmncards",
+      "source_alias": "neo-revelation",
+      "configured_status": "candidate_url",
+      "runtime_status": "collected",
+      "evidence_rows": 66,
       "error": null
     },
     {
@@ -1677,6 +2087,16 @@
     {
       "set_key": "neo4",
       "set_name": "Neo Destiny",
+      "source_key": "pkmncards",
+      "source_alias": "neo-destiny",
+      "configured_status": "candidate_url",
+      "runtime_status": "collected",
+      "evidence_rows": 113,
+      "error": null
+    },
+    {
+      "set_key": "neo4",
+      "set_name": "Neo Destiny",
       "source_key": "tcgplayer_price_guide",
       "source_alias": null,
       "configured_status": "unavailable",
@@ -1712,6 +2132,16 @@
       "configured_status": "candidate_url",
       "runtime_status": "collected",
       "evidence_rows": 333,
+      "error": null
+    },
+    {
+      "set_key": "base6",
+      "set_name": "Legendary Collection",
+      "source_key": "pkmncards",
+      "source_alias": "legendary-collection",
+      "configured_status": "candidate_url",
+      "runtime_status": "collected",
+      "evidence_rows": 108,
       "error": null
     },
     {
@@ -1757,6 +2187,16 @@
     {
       "set_key": "ecard1",
       "set_name": "Expedition Base Set",
+      "source_key": "pkmncards",
+      "source_alias": "expedition-base-set",
+      "configured_status": "candidate_url",
+      "runtime_status": "error",
+      "evidence_rows": 0,
+      "error": "Fetch failed 404 Not Found: https://pkmncards.com/set/expedition-base-set/"
+    },
+    {
+      "set_key": "ecard1",
+      "set_name": "Expedition Base Set",
       "source_key": "tcgplayer_price_guide",
       "source_alias": null,
       "configured_status": "unavailable",
@@ -1797,6 +2237,16 @@
     {
       "set_key": "bp",
       "set_name": "Best of Game",
+      "source_key": "pkmncards",
+      "source_alias": "best-of-game",
+      "configured_status": "candidate_url",
+      "runtime_status": "error",
+      "evidence_rows": 0,
+      "error": "PkmnCards page contained no card rows: https://pkmncards.com/set/best-of-game/"
+    },
+    {
+      "set_key": "bp",
+      "set_name": "Best of Game",
       "source_key": "tcgplayer_price_guide",
       "source_alias": null,
       "configured_status": "unavailable",
@@ -1832,6 +2282,16 @@
       "configured_status": "candidate_url",
       "runtime_status": "collected",
       "evidence_rows": 511,
+      "error": null
+    },
+    {
+      "set_key": "ecard2",
+      "set_name": "Aquapolis",
+      "source_key": "pkmncards",
+      "source_alias": "aquapolis",
+      "configured_status": "candidate_url",
+      "runtime_status": "collected",
+      "evidence_rows": 181,
       "error": null
     },
     {
@@ -1877,6 +2337,16 @@
     {
       "set_key": "ecard3",
       "set_name": "Skyridge",
+      "source_key": "pkmncards",
+      "source_alias": "skyridge",
+      "configured_status": "candidate_url",
+      "runtime_status": "collected",
+      "evidence_rows": 180,
+      "error": null
+    },
+    {
+      "set_key": "ecard3",
+      "set_name": "Skyridge",
       "source_key": "tcgplayer_price_guide",
       "source_alias": null,
       "configured_status": "unavailable",
@@ -1917,6 +2387,16 @@
     {
       "set_key": "ex1",
       "set_name": "Ruby & Sapphire",
+      "source_key": "pkmncards",
+      "source_alias": "ruby-sapphire",
+      "configured_status": "candidate_url",
+      "runtime_status": "collected",
+      "evidence_rows": 109,
+      "error": null
+    },
+    {
+      "set_key": "ex1",
+      "set_name": "Ruby & Sapphire",
       "source_key": "tcgplayer_price_guide",
       "source_alias": null,
       "configured_status": "unavailable",
@@ -1952,6 +2432,16 @@
       "configured_status": "candidate_url",
       "runtime_status": "collected",
       "evidence_rows": 296,
+      "error": null
+    },
+    {
+      "set_key": "ex2",
+      "set_name": "Sandstorm",
+      "source_key": "pkmncards",
+      "source_alias": "sandstorm",
+      "configured_status": "candidate_url",
+      "runtime_status": "collected",
+      "evidence_rows": 100,
       "error": null
     },
     {
@@ -1997,6 +2487,16 @@
     {
       "set_key": "np",
       "set_name": "Nintendo Black Star Promos",
+      "source_key": "pkmncards",
+      "source_alias": "nintendo-promos",
+      "configured_status": "candidate_url",
+      "runtime_status": "error",
+      "evidence_rows": 0,
+      "error": "Fetch failed 404 Not Found: https://pkmncards.com/set/nintendo-promos/"
+    },
+    {
+      "set_key": "np",
+      "set_name": "Nintendo Black Star Promos",
       "source_key": "tcgplayer_price_guide",
       "source_alias": null,
       "configured_status": "unavailable",
@@ -2032,6 +2532,16 @@
       "configured_status": "candidate_url",
       "runtime_status": "collected",
       "evidence_rows": 299,
+      "error": null
+    },
+    {
+      "set_key": "ex3",
+      "set_name": "Dragon",
+      "source_key": "pkmncards",
+      "source_alias": "dragon",
+      "configured_status": "candidate_url",
+      "runtime_status": "collected",
+      "evidence_rows": 100,
       "error": null
     },
     {
@@ -2077,6 +2587,16 @@
     {
       "set_key": "ex4",
       "set_name": "Team Magma vs Team Aqua",
+      "source_key": "pkmncards",
+      "source_alias": "team-magma-vs-team-aqua",
+      "configured_status": "candidate_url",
+      "runtime_status": "collected",
+      "evidence_rows": 97,
+      "error": null
+    },
+    {
+      "set_key": "ex4",
+      "set_name": "Team Magma vs Team Aqua",
       "source_key": "tcgplayer_price_guide",
       "source_alias": null,
       "configured_status": "unavailable",
@@ -2112,6 +2632,16 @@
       "configured_status": "candidate_url",
       "runtime_status": "collected",
       "evidence_rows": 20,
+      "error": null
+    },
+    {
+      "set_key": "tk1a",
+      "set_name": "EX Trainer Kit Latias",
+      "source_key": "pkmncards",
+      "source_alias": "ex-trainer-kit-latias",
+      "configured_status": "candidate_url",
+      "runtime_status": "collected",
+      "evidence_rows": 7,
       "error": null
     },
     {
@@ -2157,6 +2687,16 @@
     {
       "set_key": "tk1b",
       "set_name": "EX Trainer Kit Latios",
+      "source_key": "pkmncards",
+      "source_alias": "ex-trainer-kit-latios",
+      "configured_status": "candidate_url",
+      "runtime_status": "collected",
+      "evidence_rows": 7,
+      "error": null
+    },
+    {
+      "set_key": "tk1b",
+      "set_name": "EX Trainer Kit Latios",
       "source_key": "tcgplayer_price_guide",
       "source_alias": null,
       "configured_status": "unavailable",
@@ -2192,6 +2732,16 @@
       "configured_status": "candidate_url",
       "runtime_status": "collected",
       "evidence_rows": 303,
+      "error": null
+    },
+    {
+      "set_key": "ex5",
+      "set_name": "Hidden Legends",
+      "source_key": "pkmncards",
+      "source_alias": "hidden-legends",
+      "configured_status": "candidate_url",
+      "runtime_status": "collected",
+      "evidence_rows": 102,
       "error": null
     },
     {
@@ -2237,6 +2787,16 @@
     {
       "set_key": "ex6",
       "set_name": "FireRed & LeafGreen",
+      "source_key": "pkmncards",
+      "source_alias": "firered-leafgreen",
+      "configured_status": "candidate_url",
+      "runtime_status": "collected",
+      "evidence_rows": 114,
+      "error": null
+    },
+    {
+      "set_key": "ex6",
+      "set_name": "FireRed & LeafGreen",
       "source_key": "tcgplayer_price_guide",
       "source_alias": null,
       "configured_status": "unavailable",
@@ -2272,6 +2832,16 @@
       "configured_status": "candidate_url",
       "runtime_status": "collected",
       "evidence_rows": 41,
+      "error": null
+    },
+    {
+      "set_key": "pop1",
+      "set_name": "POP Series 1",
+      "source_key": "pkmncards",
+      "source_alias": "pop-series-1",
+      "configured_status": "candidate_url",
+      "runtime_status": "collected",
+      "evidence_rows": 17,
       "error": null
     },
     {
@@ -2317,6 +2887,16 @@
     {
       "set_key": "ex7",
       "set_name": "Team Rocket Returns",
+      "source_key": "pkmncards",
+      "source_alias": "team-rocket-returns",
+      "configured_status": "candidate_url",
+      "runtime_status": "collected",
+      "evidence_rows": 111,
+      "error": null
+    },
+    {
+      "set_key": "ex7",
+      "set_name": "Team Rocket Returns",
       "source_key": "tcgplayer_price_guide",
       "source_alias": null,
       "configured_status": "unavailable",
@@ -2352,6 +2932,16 @@
       "configured_status": "candidate_url",
       "runtime_status": "collected",
       "evidence_rows": 320,
+      "error": null
+    },
+    {
+      "set_key": "ex8",
+      "set_name": "Deoxys",
+      "source_key": "pkmncards",
+      "source_alias": "deoxys",
+      "configured_status": "candidate_url",
+      "runtime_status": "collected",
+      "evidence_rows": 108,
       "error": null
     },
     {
@@ -2397,6 +2987,16 @@
     {
       "set_key": "ex9",
       "set_name": "Emerald",
+      "source_key": "pkmncards",
+      "source_alias": "emerald",
+      "configured_status": "candidate_url",
+      "runtime_status": "collected",
+      "evidence_rows": 107,
+      "error": null
+    },
+    {
+      "set_key": "ex9",
+      "set_name": "Emerald",
       "source_key": "tcgplayer_price_guide",
       "source_alias": null,
       "configured_status": "unavailable",
@@ -2432,6 +3032,16 @@
       "configured_status": "candidate_url",
       "runtime_status": "collected",
       "evidence_rows": 41,
+      "error": null
+    },
+    {
+      "set_key": "pop2",
+      "set_name": "POP Series 2",
+      "source_key": "pkmncards",
+      "source_alias": "pop-series-2",
+      "configured_status": "candidate_url",
+      "runtime_status": "collected",
+      "evidence_rows": 17,
       "error": null
     },
     {
@@ -2477,6 +3087,16 @@
     {
       "set_key": "ex10",
       "set_name": "Unseen Forces",
+      "source_key": "pkmncards",
+      "source_alias": "unseen-forces",
+      "configured_status": "candidate_url",
+      "runtime_status": "collected",
+      "evidence_rows": 145,
+      "error": null
+    },
+    {
+      "set_key": "ex10",
+      "set_name": "Unseen Forces",
       "source_key": "tcgplayer_price_guide",
       "source_alias": null,
       "configured_status": "unavailable",
@@ -2512,6 +3132,16 @@
       "configured_status": "candidate_url",
       "runtime_status": "collected",
       "evidence_rows": 338,
+      "error": null
+    },
+    {
+      "set_key": "ex11",
+      "set_name": "Delta Species",
+      "source_key": "pkmncards",
+      "source_alias": "delta-species",
+      "configured_status": "candidate_url",
+      "runtime_status": "collected",
+      "evidence_rows": 114,
       "error": null
     },
     {
@@ -2557,6 +3187,16 @@
     {
       "set_key": "ex12",
       "set_name": "Legend Maker",
+      "source_key": "pkmncards",
+      "source_alias": "legend-maker",
+      "configured_status": "candidate_url",
+      "runtime_status": "collected",
+      "evidence_rows": 93,
+      "error": null
+    },
+    {
+      "set_key": "ex12",
+      "set_name": "Legend Maker",
       "source_key": "tcgplayer_price_guide",
       "source_alias": null,
       "configured_status": "unavailable",
@@ -2593,6 +3233,16 @@
       "runtime_status": "collected",
       "evidence_rows": 24,
       "error": null
+    },
+    {
+      "set_key": "tk2b",
+      "set_name": "EX Trainer Kit 2 Minun",
+      "source_key": "pkmncards",
+      "source_alias": "ex-trainer-kit-2-minun",
+      "configured_status": "candidate_url",
+      "runtime_status": "error",
+      "evidence_rows": 0,
+      "error": "Fetch failed 404 Not Found: https://pkmncards.com/set/ex-trainer-kit-2-minun/"
     },
     {
       "set_key": "tk2b",
@@ -2637,6 +3287,16 @@
     {
       "set_key": "tk2a",
       "set_name": "EX Trainer Kit 2 Plusle",
+      "source_key": "pkmncards",
+      "source_alias": "ex-trainer-kit-2-plusle",
+      "configured_status": "candidate_url",
+      "runtime_status": "error",
+      "evidence_rows": 0,
+      "error": "Fetch failed 404 Not Found: https://pkmncards.com/set/ex-trainer-kit-2-plusle/"
+    },
+    {
+      "set_key": "tk2a",
+      "set_name": "EX Trainer Kit 2 Plusle",
       "source_key": "tcgplayer_price_guide",
       "source_alias": null,
       "configured_status": "unavailable",
@@ -2672,6 +3332,16 @@
       "configured_status": "candidate_url",
       "runtime_status": "collected",
       "evidence_rows": 41,
+      "error": null
+    },
+    {
+      "set_key": "pop3",
+      "set_name": "POP Series 3",
+      "source_key": "pkmncards",
+      "source_alias": "pop-series-3",
+      "configured_status": "candidate_url",
+      "runtime_status": "collected",
+      "evidence_rows": 17,
       "error": null
     },
     {
@@ -2717,6 +3387,16 @@
     {
       "set_key": "ex13",
       "set_name": "Holon Phantoms",
+      "source_key": "pkmncards",
+      "source_alias": "holon-phantoms",
+      "configured_status": "candidate_url",
+      "runtime_status": "collected",
+      "evidence_rows": 110,
+      "error": null
+    },
+    {
+      "set_key": "ex13",
+      "set_name": "Holon Phantoms",
       "source_key": "tcgplayer_price_guide",
       "source_alias": null,
       "configured_status": "unavailable",
@@ -2752,6 +3432,16 @@
       "configured_status": "candidate_url",
       "runtime_status": "collected",
       "evidence_rows": 298,
+      "error": null
+    },
+    {
+      "set_key": "ex14",
+      "set_name": "Crystal Guardians",
+      "source_key": "pkmncards",
+      "source_alias": "crystal-guardians",
+      "configured_status": "candidate_url",
+      "runtime_status": "collected",
+      "evidence_rows": 100,
       "error": null
     },
     {
@@ -2797,6 +3487,16 @@
     {
       "set_key": "pop4",
       "set_name": "POP Series 4",
+      "source_key": "pkmncards",
+      "source_alias": "pop-series-4",
+      "configured_status": "candidate_url",
+      "runtime_status": "collected",
+      "evidence_rows": 17,
+      "error": null
+    },
+    {
+      "set_key": "pop4",
+      "set_name": "POP Series 4",
       "source_key": "tcgplayer_price_guide",
       "source_alias": null,
       "configured_status": "unavailable",
@@ -2832,6 +3532,16 @@
       "configured_status": "candidate_url",
       "runtime_status": "collected",
       "evidence_rows": 294,
+      "error": null
+    },
+    {
+      "set_key": "ex15",
+      "set_name": "Dragon Frontiers",
+      "source_key": "pkmncards",
+      "source_alias": "dragon-frontiers",
+      "configured_status": "candidate_url",
+      "runtime_status": "collected",
+      "evidence_rows": 98,
       "error": null
     },
     {
@@ -2877,6 +3587,16 @@
     {
       "set_key": "ex16",
       "set_name": "Power Keepers",
+      "source_key": "pkmncards",
+      "source_alias": "power-keepers",
+      "configured_status": "candidate_url",
+      "runtime_status": "collected",
+      "evidence_rows": 108,
+      "error": null
+    },
+    {
+      "set_key": "ex16",
+      "set_name": "Power Keepers",
       "source_key": "tcgplayer_price_guide",
       "source_alias": null,
       "configured_status": "unavailable",
@@ -2912,6 +3632,16 @@
       "configured_status": "candidate_url",
       "runtime_status": "collected",
       "evidence_rows": 40,
+      "error": null
+    },
+    {
+      "set_key": "pop5",
+      "set_name": "POP Series 5",
+      "source_key": "pkmncards",
+      "source_alias": "pop-series-5",
+      "configured_status": "candidate_url",
+      "runtime_status": "collected",
+      "evidence_rows": 14,
       "error": null
     },
     {
@@ -2957,6 +3687,16 @@
     {
       "set_key": "dp1",
       "set_name": "Diamond & Pearl",
+      "source_key": "pkmncards",
+      "source_alias": "diamond-pearl",
+      "configured_status": "candidate_url",
+      "runtime_status": "collected",
+      "evidence_rows": 130,
+      "error": null
+    },
+    {
+      "set_key": "dp1",
+      "set_name": "Diamond & Pearl",
       "source_key": "tcgplayer_price_guide",
       "source_alias": null,
       "configured_status": "unavailable",
@@ -2997,6 +3737,16 @@
     {
       "set_key": "dpp",
       "set_name": "DP Black Star Promos",
+      "source_key": "pkmncards",
+      "source_alias": "diamond-pearl-promos",
+      "configured_status": "candidate_url",
+      "runtime_status": "error",
+      "evidence_rows": 0,
+      "error": "PkmnCards page contained no card rows: https://pkmncards.com/set/diamond-pearl-promos/"
+    },
+    {
+      "set_key": "dpp",
+      "set_name": "DP Black Star Promos",
       "source_key": "tcgplayer_price_guide",
       "source_alias": null,
       "configured_status": "unavailable",
@@ -3032,6 +3782,16 @@
       "configured_status": "candidate_url",
       "runtime_status": "collected",
       "evidence_rows": 384,
+      "error": null
+    },
+    {
+      "set_key": "dp2",
+      "set_name": "Mysterious Treasures",
+      "source_key": "pkmncards",
+      "source_alias": "mysterious-treasures",
+      "configured_status": "candidate_url",
+      "runtime_status": "collected",
+      "evidence_rows": 123,
       "error": null
     },
     {
@@ -3077,6 +3837,16 @@
     {
       "set_key": "pop6",
       "set_name": "POP Series 6",
+      "source_key": "pkmncards",
+      "source_alias": "pop-series-6",
+      "configured_status": "candidate_url",
+      "runtime_status": "collected",
+      "evidence_rows": 17,
+      "error": null
+    },
+    {
+      "set_key": "pop6",
+      "set_name": "POP Series 6",
       "source_key": "tcgplayer_price_guide",
       "source_alias": null,
       "configured_status": "unavailable",
@@ -3112,6 +3882,16 @@
       "configured_status": "candidate_url",
       "runtime_status": "collected",
       "evidence_rows": 411,
+      "error": null
+    },
+    {
+      "set_key": "dp3",
+      "set_name": "Secret Wonders",
+      "source_key": "pkmncards",
+      "source_alias": "secret-wonders",
+      "configured_status": "candidate_url",
+      "runtime_status": "collected",
+      "evidence_rows": 131,
       "error": null
     },
     {
@@ -3157,6 +3937,16 @@
     {
       "set_key": "dp4",
       "set_name": "Great Encounters",
+      "source_key": "pkmncards",
+      "source_alias": "great-encounters",
+      "configured_status": "candidate_url",
+      "runtime_status": "collected",
+      "evidence_rows": 106,
+      "error": null
+    },
+    {
+      "set_key": "dp4",
+      "set_name": "Great Encounters",
       "source_key": "tcgplayer_price_guide",
       "source_alias": null,
       "configured_status": "unavailable",
@@ -3192,6 +3982,16 @@
       "configured_status": "candidate_url",
       "runtime_status": "collected",
       "evidence_rows": 41,
+      "error": null
+    },
+    {
+      "set_key": "pop7",
+      "set_name": "POP Series 7",
+      "source_key": "pkmncards",
+      "source_alias": "pop-series-7",
+      "configured_status": "candidate_url",
+      "runtime_status": "collected",
+      "evidence_rows": 17,
       "error": null
     },
     {
@@ -3237,6 +4037,16 @@
     {
       "set_key": "dp5",
       "set_name": "Majestic Dawn",
+      "source_key": "pkmncards",
+      "source_alias": "majestic-dawn",
+      "configured_status": "candidate_url",
+      "runtime_status": "collected",
+      "evidence_rows": 100,
+      "error": null
+    },
+    {
+      "set_key": "dp5",
+      "set_name": "Majestic Dawn",
       "source_key": "tcgplayer_price_guide",
       "source_alias": null,
       "configured_status": "unavailable",
@@ -3277,6 +4087,16 @@
     {
       "set_key": "dp6",
       "set_name": "Legends Awakened",
+      "source_key": "pkmncards",
+      "source_alias": "legends-awakened",
+      "configured_status": "candidate_url",
+      "runtime_status": "collected",
+      "evidence_rows": 146,
+      "error": null
+    },
+    {
+      "set_key": "dp6",
+      "set_name": "Legends Awakened",
       "source_key": "tcgplayer_price_guide",
       "source_alias": null,
       "configured_status": "unavailable",
@@ -3312,6 +4132,16 @@
       "configured_status": "candidate_url",
       "runtime_status": "collected",
       "evidence_rows": 46,
+      "error": null
+    },
+    {
+      "set_key": "pop8",
+      "set_name": "POP Series 8",
+      "source_key": "pkmncards",
+      "source_alias": "pop-series-8",
+      "configured_status": "candidate_url",
+      "runtime_status": "collected",
+      "evidence_rows": 17,
       "error": null
     },
     {
@@ -3357,6 +4187,16 @@
     {
       "set_key": "dp7",
       "set_name": "Stormfront",
+      "source_key": "pkmncards",
+      "source_alias": "stormfront",
+      "configured_status": "candidate_url",
+      "runtime_status": "collected",
+      "evidence_rows": 106,
+      "error": null
+    },
+    {
+      "set_key": "dp7",
+      "set_name": "Stormfront",
       "source_key": "tcgplayer_price_guide",
       "source_alias": null,
       "configured_status": "unavailable",
@@ -3392,6 +4232,16 @@
       "configured_status": "candidate_url",
       "runtime_status": "collected",
       "evidence_rows": 397,
+      "error": null
+    },
+    {
+      "set_key": "pl1",
+      "set_name": "Platinum",
+      "source_key": "pkmncards",
+      "source_alias": "platinum",
+      "configured_status": "candidate_url",
+      "runtime_status": "collected",
+      "evidence_rows": 133,
       "error": null
     },
     {
@@ -3437,6 +4287,16 @@
     {
       "set_key": "pop9",
       "set_name": "POP Series 9",
+      "source_key": "pkmncards",
+      "source_alias": "pop-series-9",
+      "configured_status": "candidate_url",
+      "runtime_status": "collected",
+      "evidence_rows": 17,
+      "error": null
+    },
+    {
+      "set_key": "pop9",
+      "set_name": "POP Series 9",
       "source_key": "tcgplayer_price_guide",
       "source_alias": null,
       "configured_status": "unavailable",
@@ -3472,6 +4332,16 @@
       "configured_status": "candidate_url",
       "runtime_status": "collected",
       "evidence_rows": 356,
+      "error": null
+    },
+    {
+      "set_key": "pl2",
+      "set_name": "Rising Rivals",
+      "source_key": "pkmncards",
+      "source_alias": "rising-rivals",
+      "configured_status": "candidate_url",
+      "runtime_status": "collected",
+      "evidence_rows": 118,
       "error": null
     },
     {
@@ -3517,6 +4387,16 @@
     {
       "set_key": "pl3",
       "set_name": "Supreme Victors",
+      "source_key": "pkmncards",
+      "source_alias": "supreme-victors",
+      "configured_status": "candidate_url",
+      "runtime_status": "collected",
+      "evidence_rows": 153,
+      "error": null
+    },
+    {
+      "set_key": "pl3",
+      "set_name": "Supreme Victors",
       "source_key": "tcgplayer_price_guide",
       "source_alias": null,
       "configured_status": "unavailable",
@@ -3552,6 +4432,16 @@
       "configured_status": "candidate_url",
       "runtime_status": "collected",
       "evidence_rows": 323,
+      "error": null
+    },
+    {
+      "set_key": "pl4",
+      "set_name": "Arceus",
+      "source_key": "pkmncards",
+      "source_alias": "arceus",
+      "configured_status": "candidate_url",
+      "runtime_status": "collected",
+      "evidence_rows": 111,
       "error": null
     },
     {
@@ -3597,6 +4487,16 @@
     {
       "set_key": "ru1",
       "set_name": "Pokémon Rumble",
+      "source_key": "pkmncards",
+      "source_alias": "pok-mon-rumble",
+      "configured_status": "candidate_url",
+      "runtime_status": "error",
+      "evidence_rows": 0,
+      "error": "Fetch failed 404 Not Found: https://pkmncards.com/set/pok-mon-rumble/"
+    },
+    {
+      "set_key": "ru1",
+      "set_name": "Pokémon Rumble",
       "source_key": "tcgplayer_price_guide",
       "source_alias": null,
       "configured_status": "unavailable",
@@ -3632,6 +4532,16 @@
       "configured_status": "candidate_url",
       "runtime_status": "collected",
       "evidence_rows": 376,
+      "error": null
+    },
+    {
+      "set_key": "hgss1",
+      "set_name": "HeartGold & SoulSilver",
+      "source_key": "pkmncards",
+      "source_alias": "heartgold-soulsilver",
+      "configured_status": "candidate_url",
+      "runtime_status": "collected",
+      "evidence_rows": 124,
       "error": null
     },
     {
@@ -3677,6 +4587,16 @@
     {
       "set_key": "hsp",
       "set_name": "HGSS Black Star Promos",
+      "source_key": "pkmncards",
+      "source_alias": "heartgold-soulsilver-promos",
+      "configured_status": "candidate_url",
+      "runtime_status": "error",
+      "evidence_rows": 0,
+      "error": "PkmnCards page contained no card rows: https://pkmncards.com/set/heartgold-soulsilver-promos/"
+    },
+    {
+      "set_key": "hsp",
+      "set_name": "HGSS Black Star Promos",
       "source_key": "tcgplayer_price_guide",
       "source_alias": null,
       "configured_status": "unavailable",
@@ -3713,6 +4633,16 @@
       "runtime_status": "collected",
       "evidence_rows": 298,
       "error": null
+    },
+    {
+      "set_key": "hgss2",
+      "set_name": "HS—Unleashed",
+      "source_key": "pkmncards",
+      "source_alias": "hs-unleashed",
+      "configured_status": "candidate_url",
+      "runtime_status": "error",
+      "evidence_rows": 0,
+      "error": "Fetch failed 404 Not Found: https://pkmncards.com/set/hs-unleashed/"
     },
     {
       "set_key": "hgss2",
@@ -3757,6 +4687,16 @@
     {
       "set_key": "hgss3",
       "set_name": "HS—Undaunted",
+      "source_key": "pkmncards",
+      "source_alias": "hs-undaunted",
+      "configured_status": "candidate_url",
+      "runtime_status": "error",
+      "evidence_rows": 0,
+      "error": "Fetch failed 404 Not Found: https://pkmncards.com/set/hs-undaunted/"
+    },
+    {
+      "set_key": "hgss3",
+      "set_name": "HS—Undaunted",
       "source_key": "tcgplayer_price_guide",
       "source_alias": null,
       "configured_status": "unavailable",
@@ -3797,6 +4737,16 @@
     {
       "set_key": "hgss4",
       "set_name": "HS—Triumphant",
+      "source_key": "pkmncards",
+      "source_alias": "hs-triumphant",
+      "configured_status": "candidate_url",
+      "runtime_status": "error",
+      "evidence_rows": 0,
+      "error": "Fetch failed 404 Not Found: https://pkmncards.com/set/hs-triumphant/"
+    },
+    {
+      "set_key": "hgss4",
+      "set_name": "HS—Triumphant",
       "source_key": "tcgplayer_price_guide",
       "source_alias": null,
       "configured_status": "unavailable",
@@ -3832,6 +4782,16 @@
       "configured_status": "candidate_url",
       "runtime_status": "collected",
       "evidence_rows": 316,
+      "error": null
+    },
+    {
+      "set_key": "col1",
+      "set_name": "Call of Legends",
+      "source_key": "pkmncards",
+      "source_alias": "call-of-legends",
+      "configured_status": "candidate_url",
+      "runtime_status": "collected",
+      "evidence_rows": 106,
       "error": null
     },
     {
@@ -3877,6 +4837,16 @@
     {
       "set_key": "bwp",
       "set_name": "BW Black Star Promos",
+      "source_key": "pkmncards",
+      "source_alias": "black-white-promos",
+      "configured_status": "candidate_url",
+      "runtime_status": "collected",
+      "evidence_rows": 99,
+      "error": null
+    },
+    {
+      "set_key": "bwp",
+      "set_name": "BW Black Star Promos",
       "source_key": "tcgplayer_price_guide",
       "source_alias": null,
       "configured_status": "unavailable",
@@ -3912,6 +4882,16 @@
       "configured_status": "candidate_url",
       "runtime_status": "collected",
       "evidence_rows": 375,
+      "error": null
+    },
+    {
+      "set_key": "bw1",
+      "set_name": "Black & White",
+      "source_key": "pkmncards",
+      "source_alias": "black-white",
+      "configured_status": "candidate_url",
+      "runtime_status": "collected",
+      "evidence_rows": 115,
       "error": null
     },
     {
@@ -3957,6 +4937,16 @@
     {
       "set_key": "mcd11",
       "set_name": "McDonald's Collection 2011",
+      "source_key": "pkmncards",
+      "source_alias": "mcdonalds-collection-2011",
+      "configured_status": "candidate_url",
+      "runtime_status": "collected",
+      "evidence_rows": 12,
+      "error": null
+    },
+    {
+      "set_key": "mcd11",
+      "set_name": "McDonald's Collection 2011",
       "source_key": "tcgplayer_price_guide",
       "source_alias": null,
       "configured_status": "unavailable",
@@ -3992,6 +4982,16 @@
       "configured_status": "candidate_url",
       "runtime_status": "collected",
       "evidence_rows": 304,
+      "error": null
+    },
+    {
+      "set_key": "bw2",
+      "set_name": "Emerging Powers",
+      "source_key": "pkmncards",
+      "source_alias": "emerging-powers",
+      "configured_status": "candidate_url",
+      "runtime_status": "collected",
+      "evidence_rows": 98,
       "error": null
     },
     {
@@ -4037,6 +5037,16 @@
     {
       "set_key": "bw3",
       "set_name": "Noble Victories",
+      "source_key": "pkmncards",
+      "source_alias": "noble-victories",
+      "configured_status": "candidate_url",
+      "runtime_status": "collected",
+      "evidence_rows": 102,
+      "error": null
+    },
+    {
+      "set_key": "bw3",
+      "set_name": "Noble Victories",
       "source_key": "tcgplayer_price_guide",
       "source_alias": null,
       "configured_status": "unavailable",
@@ -4072,6 +5082,16 @@
       "configured_status": "candidate_url",
       "runtime_status": "collected",
       "evidence_rows": 310,
+      "error": null
+    },
+    {
+      "set_key": "bw4",
+      "set_name": "Next Destinies",
+      "source_key": "pkmncards",
+      "source_alias": "next-destinies",
+      "configured_status": "candidate_url",
+      "runtime_status": "collected",
+      "evidence_rows": 103,
       "error": null
     },
     {
@@ -4117,6 +5137,16 @@
     {
       "set_key": "bw5",
       "set_name": "Dark Explorers",
+      "source_key": "pkmncards",
+      "source_alias": "dark-explorers",
+      "configured_status": "candidate_url",
+      "runtime_status": "collected",
+      "evidence_rows": 111,
+      "error": null
+    },
+    {
+      "set_key": "bw5",
+      "set_name": "Dark Explorers",
       "source_key": "tcgplayer_price_guide",
       "source_alias": null,
       "configured_status": "unavailable",
@@ -4152,6 +5182,16 @@
       "configured_status": "candidate_url",
       "runtime_status": "collected",
       "evidence_rows": 24,
+      "error": null
+    },
+    {
+      "set_key": "mcd12",
+      "set_name": "McDonald's Collection 2012",
+      "source_key": "pkmncards",
+      "source_alias": "mcdonalds-collection-2012",
+      "configured_status": "candidate_url",
+      "runtime_status": "collected",
+      "evidence_rows": 12,
       "error": null
     },
     {
@@ -4197,6 +5237,16 @@
     {
       "set_key": "bw6",
       "set_name": "Dragons Exalted",
+      "source_key": "pkmncards",
+      "source_alias": "dragons-exalted",
+      "configured_status": "candidate_url",
+      "runtime_status": "collected",
+      "evidence_rows": 126,
+      "error": null
+    },
+    {
+      "set_key": "bw6",
+      "set_name": "Dragons Exalted",
       "source_key": "tcgplayer_price_guide",
       "source_alias": null,
       "configured_status": "unavailable",
@@ -4232,6 +5282,16 @@
       "configured_status": "candidate_url",
       "runtime_status": "collected",
       "evidence_rows": 55,
+      "error": null
+    },
+    {
+      "set_key": "dv1",
+      "set_name": "Dragon Vault",
+      "source_key": "pkmncards",
+      "source_alias": "dragon-vault",
+      "configured_status": "candidate_url",
+      "runtime_status": "collected",
+      "evidence_rows": 21,
       "error": null
     },
     {
@@ -4277,6 +5337,16 @@
     {
       "set_key": "bw7",
       "set_name": "Boundaries Crossed",
+      "source_key": "pkmncards",
+      "source_alias": "boundaries-crossed",
+      "configured_status": "candidate_url",
+      "runtime_status": "collected",
+      "evidence_rows": 153,
+      "error": null
+    },
+    {
+      "set_key": "bw7",
+      "set_name": "Boundaries Crossed",
       "source_key": "tcgplayer_price_guide",
       "source_alias": null,
       "configured_status": "unavailable",
@@ -4312,6 +5382,16 @@
       "configured_status": "candidate_url",
       "runtime_status": "collected",
       "evidence_rows": 405,
+      "error": null
+    },
+    {
+      "set_key": "bw8",
+      "set_name": "Plasma Storm",
+      "source_key": "pkmncards",
+      "source_alias": "plasma-storm",
+      "configured_status": "candidate_url",
+      "runtime_status": "collected",
+      "evidence_rows": 138,
       "error": null
     },
     {
@@ -4357,6 +5437,16 @@
     {
       "set_key": "bw9",
       "set_name": "Plasma Freeze",
+      "source_key": "pkmncards",
+      "source_alias": "plasma-freeze",
+      "configured_status": "candidate_url",
+      "runtime_status": "collected",
+      "evidence_rows": 120,
+      "error": null
+    },
+    {
+      "set_key": "bw9",
+      "set_name": "Plasma Freeze",
       "source_key": "tcgplayer_price_guide",
       "source_alias": null,
       "configured_status": "unavailable",
@@ -4392,6 +5482,16 @@
       "configured_status": "candidate_url",
       "runtime_status": "collected",
       "evidence_rows": 305,
+      "error": null
+    },
+    {
+      "set_key": "bw10",
+      "set_name": "Plasma Blast",
+      "source_key": "pkmncards",
+      "source_alias": "plasma-blast",
+      "configured_status": "candidate_url",
+      "runtime_status": "collected",
+      "evidence_rows": 105,
       "error": null
     },
     {
@@ -4437,6 +5537,16 @@
     {
       "set_key": "xyp",
       "set_name": "XY Black Star Promos",
+      "source_key": "pkmncards",
+      "source_alias": "xy-promos",
+      "configured_status": "candidate_url",
+      "runtime_status": "collected",
+      "evidence_rows": 216,
+      "error": null
+    },
+    {
+      "set_key": "xyp",
+      "set_name": "XY Black Star Promos",
       "source_key": "tcgplayer_price_guide",
       "source_alias": null,
       "configured_status": "unavailable",
@@ -4472,6 +5582,16 @@
       "configured_status": "candidate_url",
       "runtime_status": "collected",
       "evidence_rows": 395,
+      "error": null
+    },
+    {
+      "set_key": "bw11",
+      "set_name": "Legendary Treasures",
+      "source_key": "pkmncards",
+      "source_alias": "legendary-treasures",
+      "configured_status": "candidate_url",
+      "runtime_status": "collected",
+      "evidence_rows": 140,
       "error": null
     },
     {
@@ -4517,6 +5637,16 @@
     {
       "set_key": "xy0",
       "set_name": "Kalos Starter Set",
+      "source_key": "pkmncards",
+      "source_alias": "kalos-starter-set",
+      "configured_status": "candidate_url",
+      "runtime_status": "collected",
+      "evidence_rows": 39,
+      "error": null
+    },
+    {
+      "set_key": "xy0",
+      "set_name": "Kalos Starter Set",
       "source_key": "tcgplayer_price_guide",
       "source_alias": null,
       "configured_status": "unavailable",
@@ -4552,6 +5682,16 @@
       "configured_status": "candidate_url",
       "runtime_status": "collected",
       "evidence_rows": 450,
+      "error": null
+    },
+    {
+      "set_key": "xy1",
+      "set_name": "XY",
+      "source_key": "pkmncards",
+      "source_alias": "xy",
+      "configured_status": "candidate_url",
+      "runtime_status": "collected",
+      "evidence_rows": 146,
       "error": null
     },
     {
@@ -4597,6 +5737,16 @@
     {
       "set_key": "xy2",
       "set_name": "Flashfire",
+      "source_key": "pkmncards",
+      "source_alias": "flashfire",
+      "configured_status": "candidate_url",
+      "runtime_status": "collected",
+      "evidence_rows": 110,
+      "error": null
+    },
+    {
+      "set_key": "xy2",
+      "set_name": "Flashfire",
       "source_key": "tcgplayer_price_guide",
       "source_alias": null,
       "configured_status": "unavailable",
@@ -4637,6 +5787,16 @@
     {
       "set_key": "mcd14",
       "set_name": "McDonald's Collection 2014",
+      "source_key": "pkmncards",
+      "source_alias": "mcdonalds-collection-2014",
+      "configured_status": "candidate_url",
+      "runtime_status": "error",
+      "evidence_rows": 0,
+      "error": "Fetch failed 404 Not Found: https://pkmncards.com/set/mcdonalds-collection-2014/"
+    },
+    {
+      "set_key": "mcd14",
+      "set_name": "McDonald's Collection 2014",
       "source_key": "tcgplayer_price_guide",
       "source_alias": null,
       "configured_status": "unavailable",
@@ -4672,6 +5832,16 @@
       "configured_status": "candidate_url",
       "runtime_status": "collected",
       "evidence_rows": 348,
+      "error": null
+    },
+    {
+      "set_key": "xy3",
+      "set_name": "Furious Fists",
+      "source_key": "pkmncards",
+      "source_alias": "furious-fists",
+      "configured_status": "candidate_url",
+      "runtime_status": "collected",
+      "evidence_rows": 114,
       "error": null
     },
     {
@@ -4717,6 +5887,16 @@
     {
       "set_key": "xy4",
       "set_name": "Phantom Forces",
+      "source_key": "pkmncards",
+      "source_alias": "phantom-forces",
+      "configured_status": "candidate_url",
+      "runtime_status": "collected",
+      "evidence_rows": 124,
+      "error": null
+    },
+    {
+      "set_key": "xy4",
+      "set_name": "Phantom Forces",
       "source_key": "tcgplayer_price_guide",
       "source_alias": null,
       "configured_status": "unavailable",
@@ -4752,6 +5932,16 @@
       "configured_status": "candidate_url",
       "runtime_status": "collected",
       "evidence_rows": 468,
+      "error": null
+    },
+    {
+      "set_key": "xy5",
+      "set_name": "Primal Clash",
+      "source_key": "pkmncards",
+      "source_alias": "primal-clash",
+      "configured_status": "candidate_url",
+      "runtime_status": "collected",
+      "evidence_rows": 163,
       "error": null
     },
     {
@@ -4797,6 +5987,16 @@
     {
       "set_key": "dc1",
       "set_name": "Double Crisis",
+      "source_key": "pkmncards",
+      "source_alias": "double-crisis",
+      "configured_status": "candidate_url",
+      "runtime_status": "collected",
+      "evidence_rows": 34,
+      "error": null
+    },
+    {
+      "set_key": "dc1",
+      "set_name": "Double Crisis",
       "source_key": "tcgplayer_price_guide",
       "source_alias": null,
       "configured_status": "unavailable",
@@ -4832,6 +6032,16 @@
       "configured_status": "candidate_url",
       "runtime_status": "collected",
       "evidence_rows": 315,
+      "error": null
+    },
+    {
+      "set_key": "xy6",
+      "set_name": "Roaring Skies",
+      "source_key": "pkmncards",
+      "source_alias": "roaring-skies",
+      "configured_status": "candidate_url",
+      "runtime_status": "collected",
+      "evidence_rows": 112,
       "error": null
     },
     {
@@ -4877,6 +6087,16 @@
     {
       "set_key": "xy7",
       "set_name": "Ancient Origins",
+      "source_key": "pkmncards",
+      "source_alias": "ancient-origins",
+      "configured_status": "candidate_url",
+      "runtime_status": "collected",
+      "evidence_rows": 101,
+      "error": null
+    },
+    {
+      "set_key": "xy7",
+      "set_name": "Ancient Origins",
       "source_key": "tcgplayer_price_guide",
       "source_alias": null,
       "configured_status": "unavailable",
@@ -4912,6 +6132,16 @@
       "configured_status": "candidate_url",
       "runtime_status": "collected",
       "evidence_rows": 493,
+      "error": null
+    },
+    {
+      "set_key": "xy8",
+      "set_name": "BREAKthrough",
+      "source_key": "pkmncards",
+      "source_alias": "breakthrough",
+      "configured_status": "candidate_url",
+      "runtime_status": "collected",
+      "evidence_rows": 165,
       "error": null
     },
     {
@@ -4957,6 +6187,16 @@
     {
       "set_key": "mcd15",
       "set_name": "McDonald's Collection 2015",
+      "source_key": "pkmncards",
+      "source_alias": "mcdonalds-collection-2015",
+      "configured_status": "candidate_url",
+      "runtime_status": "error",
+      "evidence_rows": 0,
+      "error": "Fetch failed 404 Not Found: https://pkmncards.com/set/mcdonalds-collection-2015/"
+    },
+    {
+      "set_key": "mcd15",
+      "set_name": "McDonald's Collection 2015",
       "source_key": "tcgplayer_price_guide",
       "source_alias": null,
       "configured_status": "unavailable",
@@ -4992,6 +6232,16 @@
       "configured_status": "candidate_url",
       "runtime_status": "collected",
       "evidence_rows": 361,
+      "error": null
+    },
+    {
+      "set_key": "xy9",
+      "set_name": "BREAKpoint",
+      "source_key": "pkmncards",
+      "source_alias": "breakpoint",
+      "configured_status": "candidate_url",
+      "runtime_status": "collected",
+      "evidence_rows": 126,
       "error": null
     },
     {
@@ -5037,6 +6287,16 @@
     {
       "set_key": "g1",
       "set_name": "Generations",
+      "source_key": "pkmncards",
+      "source_alias": "generations",
+      "configured_status": "candidate_url",
+      "runtime_status": "collected",
+      "evidence_rows": 117,
+      "error": null
+    },
+    {
+      "set_key": "g1",
+      "set_name": "Generations",
       "source_key": "tcgplayer_price_guide",
       "source_alias": null,
       "configured_status": "unavailable",
@@ -5072,6 +6332,16 @@
       "configured_status": "candidate_url",
       "runtime_status": "collected",
       "evidence_rows": 362,
+      "error": null
+    },
+    {
+      "set_key": "xy10",
+      "set_name": "Fates Collide",
+      "source_key": "pkmncards",
+      "source_alias": "fates-collide",
+      "configured_status": "candidate_url",
+      "runtime_status": "collected",
+      "evidence_rows": 129,
       "error": null
     },
     {
@@ -5117,6 +6387,16 @@
     {
       "set_key": "xy11",
       "set_name": "Steam Siege",
+      "source_key": "pkmncards",
+      "source_alias": "steam-siege",
+      "configured_status": "candidate_url",
+      "runtime_status": "collected",
+      "evidence_rows": 115,
+      "error": null
+    },
+    {
+      "set_key": "xy11",
+      "set_name": "Steam Siege",
       "source_key": "tcgplayer_price_guide",
       "source_alias": null,
       "configured_status": "unavailable",
@@ -5152,6 +6432,16 @@
       "configured_status": "candidate_url",
       "runtime_status": "collected",
       "evidence_rows": 24,
+      "error": null
+    },
+    {
+      "set_key": "mcd16",
+      "set_name": "McDonald's Collection 2016",
+      "source_key": "pkmncards",
+      "source_alias": "mcdonalds-collection-2016",
+      "configured_status": "candidate_url",
+      "runtime_status": "collected",
+      "evidence_rows": 12,
       "error": null
     },
     {
@@ -5197,6 +6487,16 @@
     {
       "set_key": "xy12",
       "set_name": "Evolutions",
+      "source_key": "pkmncards",
+      "source_alias": "evolutions",
+      "configured_status": "candidate_url",
+      "runtime_status": "collected",
+      "evidence_rows": 112,
+      "error": null
+    },
+    {
+      "set_key": "xy12",
+      "set_name": "Evolutions",
       "source_key": "tcgplayer_price_guide",
       "source_alias": null,
       "configured_status": "unavailable",
@@ -5232,6 +6532,16 @@
       "configured_status": "candidate_url",
       "runtime_status": "collected",
       "evidence_rows": 582,
+      "error": null
+    },
+    {
+      "set_key": "smp",
+      "set_name": "SM Black Star Promos",
+      "source_key": "pkmncards",
+      "source_alias": "sun-moon-promos",
+      "configured_status": "candidate_url",
+      "runtime_status": "collected",
+      "evidence_rows": 251,
       "error": null
     },
     {
@@ -5277,6 +6587,16 @@
     {
       "set_key": "sm1",
       "set_name": "Sun & Moon",
+      "source_key": "pkmncards",
+      "source_alias": "sun-moon",
+      "configured_status": "candidate_url",
+      "runtime_status": "collected",
+      "evidence_rows": 164,
+      "error": null
+    },
+    {
+      "set_key": "sm1",
+      "set_name": "Sun & Moon",
       "source_key": "tcgplayer_price_guide",
       "source_alias": null,
       "configured_status": "unavailable",
@@ -5312,6 +6632,16 @@
       "configured_status": "candidate_url",
       "runtime_status": "collected",
       "evidence_rows": 476,
+      "error": null
+    },
+    {
+      "set_key": "sm2",
+      "set_name": "Guardians Rising",
+      "source_key": "pkmncards",
+      "source_alias": "guardians-rising",
+      "configured_status": "candidate_url",
+      "runtime_status": "collected",
+      "evidence_rows": 180,
       "error": null
     },
     {
@@ -5357,6 +6687,16 @@
     {
       "set_key": "sm3",
       "set_name": "Burning Shadows",
+      "source_key": "pkmncards",
+      "source_alias": "burning-shadows",
+      "configured_status": "candidate_url",
+      "runtime_status": "collected",
+      "evidence_rows": 177,
+      "error": null
+    },
+    {
+      "set_key": "sm3",
+      "set_name": "Burning Shadows",
       "source_key": "tcgplayer_price_guide",
       "source_alias": null,
       "configured_status": "unavailable",
@@ -5392,6 +6732,16 @@
       "configured_status": "candidate_url",
       "runtime_status": "collected",
       "evidence_rows": 219,
+      "error": null
+    },
+    {
+      "set_key": "sm35",
+      "set_name": "Shining Legends",
+      "source_key": "pkmncards",
+      "source_alias": "shining-legends",
+      "configured_status": "candidate_url",
+      "runtime_status": "collected",
+      "evidence_rows": 81,
       "error": null
     },
     {
@@ -5437,6 +6787,16 @@
     {
       "set_key": "sm4",
       "set_name": "Crimson Invasion",
+      "source_key": "pkmncards",
+      "source_alias": "crimson-invasion",
+      "configured_status": "candidate_url",
+      "runtime_status": "collected",
+      "evidence_rows": 126,
+      "error": null
+    },
+    {
+      "set_key": "sm4",
+      "set_name": "Crimson Invasion",
       "source_key": "tcgplayer_price_guide",
       "source_alias": null,
       "configured_status": "unavailable",
@@ -5477,6 +6837,16 @@
     {
       "set_key": "mcd17",
       "set_name": "McDonald's Collection 2017",
+      "source_key": "pkmncards",
+      "source_alias": "mcdonalds-collection-2017",
+      "configured_status": "candidate_url",
+      "runtime_status": "error",
+      "evidence_rows": 0,
+      "error": "Fetch failed 404 Not Found: https://pkmncards.com/set/mcdonalds-collection-2017/"
+    },
+    {
+      "set_key": "mcd17",
+      "set_name": "McDonald's Collection 2017",
       "source_key": "tcgplayer_price_guide",
       "source_alias": null,
       "configured_status": "unavailable",
@@ -5512,6 +6882,16 @@
       "configured_status": "candidate_url",
       "runtime_status": "collected",
       "evidence_rows": 505,
+      "error": null
+    },
+    {
+      "set_key": "sm5",
+      "set_name": "Ultra Prism",
+      "source_key": "pkmncards",
+      "source_alias": "ultra-prism",
+      "configured_status": "candidate_url",
+      "runtime_status": "collected",
+      "evidence_rows": 168,
       "error": null
     },
     {
@@ -5557,6 +6937,16 @@
     {
       "set_key": "sm6",
       "set_name": "Forbidden Light",
+      "source_key": "pkmncards",
+      "source_alias": "forbidden-light",
+      "configured_status": "candidate_url",
+      "runtime_status": "collected",
+      "evidence_rows": 143,
+      "error": null
+    },
+    {
+      "set_key": "sm6",
+      "set_name": "Forbidden Light",
       "source_key": "tcgplayer_price_guide",
       "source_alias": null,
       "configured_status": "unavailable",
@@ -5592,6 +6982,16 @@
       "configured_status": "candidate_url",
       "runtime_status": "collected",
       "evidence_rows": 522,
+      "error": null
+    },
+    {
+      "set_key": "sm7",
+      "set_name": "Celestial Storm",
+      "source_key": "pkmncards",
+      "source_alias": "celestial-storm",
+      "configured_status": "candidate_url",
+      "runtime_status": "collected",
+      "evidence_rows": 184,
       "error": null
     },
     {
@@ -5637,6 +7037,16 @@
     {
       "set_key": "sm75",
       "set_name": "Dragon Majesty",
+      "source_key": "pkmncards",
+      "source_alias": "dragon-majesty",
+      "configured_status": "candidate_url",
+      "runtime_status": "collected",
+      "evidence_rows": 78,
+      "error": null
+    },
+    {
+      "set_key": "sm75",
+      "set_name": "Dragon Majesty",
       "source_key": "tcgplayer_price_guide",
       "source_alias": null,
       "configured_status": "unavailable",
@@ -5677,6 +7087,16 @@
     {
       "set_key": "mcd18",
       "set_name": "McDonald's Collection 2018",
+      "source_key": "pkmncards",
+      "source_alias": "mcdonalds-collection-2018",
+      "configured_status": "candidate_url",
+      "runtime_status": "error",
+      "evidence_rows": 0,
+      "error": "Fetch failed 404 Not Found: https://pkmncards.com/set/mcdonalds-collection-2018/"
+    },
+    {
+      "set_key": "mcd18",
+      "set_name": "McDonald's Collection 2018",
       "source_key": "tcgplayer_price_guide",
       "source_alias": null,
       "configured_status": "unavailable",
@@ -5712,6 +7132,16 @@
       "configured_status": "candidate_url",
       "runtime_status": "collected",
       "evidence_rows": 680,
+      "error": null
+    },
+    {
+      "set_key": "sm8",
+      "set_name": "Lost Thunder",
+      "source_key": "pkmncards",
+      "source_alias": "lost-thunder",
+      "configured_status": "candidate_url",
+      "runtime_status": "collected",
+      "evidence_rows": 229,
       "error": null
     },
     {
@@ -5757,6 +7187,16 @@
     {
       "set_key": "sm9",
       "set_name": "Team Up",
+      "source_key": "pkmncards",
+      "source_alias": "team-up",
+      "configured_status": "candidate_url",
+      "runtime_status": "collected",
+      "evidence_rows": 192,
+      "error": null
+    },
+    {
+      "set_key": "sm9",
+      "set_name": "Team Up",
       "source_key": "tcgplayer_price_guide",
       "source_alias": null,
       "configured_status": "unavailable",
@@ -5792,6 +7232,16 @@
       "configured_status": "candidate_url",
       "runtime_status": "collected",
       "evidence_rows": 36,
+      "error": null
+    },
+    {
+      "set_key": "det1",
+      "set_name": "Detective Pikachu",
+      "source_key": "pkmncards",
+      "source_alias": "detective-pikachu",
+      "configured_status": "candidate_url",
+      "runtime_status": "collected",
+      "evidence_rows": 18,
       "error": null
     },
     {
@@ -5837,6 +7287,16 @@
     {
       "set_key": "sm10",
       "set_name": "Unbroken Bonds",
+      "source_key": "pkmncards",
+      "source_alias": "unbroken-bonds",
+      "configured_status": "candidate_url",
+      "runtime_status": "collected",
+      "evidence_rows": 237,
+      "error": null
+    },
+    {
+      "set_key": "sm10",
+      "set_name": "Unbroken Bonds",
       "source_key": "tcgplayer_price_guide",
       "source_alias": null,
       "configured_status": "unavailable",
@@ -5872,6 +7332,16 @@
       "configured_status": "candidate_url",
       "runtime_status": "collected",
       "evidence_rows": 738,
+      "error": null
+    },
+    {
+      "set_key": "sm11",
+      "set_name": "Unified Minds",
+      "source_key": "pkmncards",
+      "source_alias": "unified-minds",
+      "configured_status": "candidate_url",
+      "runtime_status": "collected",
+      "evidence_rows": 261,
       "error": null
     },
     {
@@ -5917,6 +7387,16 @@
     {
       "set_key": "sm115",
       "set_name": "Hidden Fates",
+      "source_key": "pkmncards",
+      "source_alias": "hidden-fates",
+      "configured_status": "candidate_url",
+      "runtime_status": "collected",
+      "evidence_rows": 69,
+      "error": null
+    },
+    {
+      "set_key": "sm115",
+      "set_name": "Hidden Fates",
       "source_key": "tcgplayer_price_guide",
       "source_alias": null,
       "configured_status": "unavailable",
@@ -5957,6 +7437,16 @@
     {
       "set_key": "sma",
       "set_name": "Hidden Fates Shiny Vault",
+      "source_key": "pkmncards",
+      "source_alias": "hidden-fates-shiny-vault",
+      "configured_status": "candidate_url",
+      "runtime_status": "error",
+      "evidence_rows": 0,
+      "error": "Fetch failed 404 Not Found: https://pkmncards.com/set/hidden-fates-shiny-vault/"
+    },
+    {
+      "set_key": "sma",
+      "set_name": "Hidden Fates Shiny Vault",
       "source_key": "tcgplayer_price_guide",
       "source_alias": null,
       "configured_status": "unavailable",
@@ -5992,6 +7482,16 @@
       "configured_status": "candidate_url",
       "runtime_status": "collected",
       "evidence_rows": 24,
+      "error": null
+    },
+    {
+      "set_key": "mcd19",
+      "set_name": "McDonald's Collection 2019",
+      "source_key": "pkmncards",
+      "source_alias": "mcdonalds-collection-2019",
+      "configured_status": "candidate_url",
+      "runtime_status": "collected",
+      "evidence_rows": 12,
       "error": null
     },
     {
@@ -6037,6 +7537,16 @@
     {
       "set_key": "sm12",
       "set_name": "Cosmic Eclipse",
+      "source_key": "pkmncards",
+      "source_alias": "cosmic-eclipse",
+      "configured_status": "candidate_url",
+      "runtime_status": "collected",
+      "evidence_rows": 272,
+      "error": null
+    },
+    {
+      "set_key": "sm12",
+      "set_name": "Cosmic Eclipse",
       "source_key": "tcgplayer_price_guide",
       "source_alias": null,
       "configured_status": "unavailable",
@@ -6077,6 +7587,16 @@
     {
       "set_key": "swshp",
       "set_name": "SWSH Black Star Promos",
+      "source_key": "pkmncards",
+      "source_alias": "sword-shield-promos",
+      "configured_status": "candidate_url",
+      "runtime_status": "error",
+      "evidence_rows": 0,
+      "error": "PkmnCards page contained no card rows: https://pkmncards.com/set/sword-shield-promos/"
+    },
+    {
+      "set_key": "swshp",
+      "set_name": "SWSH Black Star Promos",
       "source_key": "tcgplayer_price_guide",
       "source_alias": null,
       "configured_status": "unavailable",
@@ -6112,6 +7632,16 @@
       "configured_status": "candidate_url",
       "runtime_status": "collected",
       "evidence_rows": 705,
+      "error": null
+    },
+    {
+      "set_key": "swsh1",
+      "set_name": "Sword & Shield",
+      "source_key": "pkmncards",
+      "source_alias": "sword-shield",
+      "configured_status": "candidate_url",
+      "runtime_status": "collected",
+      "evidence_rows": 213,
       "error": null
     },
     {
@@ -6157,6 +7687,16 @@
     {
       "set_key": "swsh2",
       "set_name": "Rebel Clash",
+      "source_key": "pkmncards",
+      "source_alias": "rebel-clash",
+      "configured_status": "candidate_url",
+      "runtime_status": "collected",
+      "evidence_rows": 207,
+      "error": null
+    },
+    {
+      "set_key": "swsh2",
+      "set_name": "Rebel Clash",
       "source_key": "tcgplayer_price_guide",
       "source_alias": null,
       "configured_status": "unavailable",
@@ -6192,6 +7732,16 @@
       "configured_status": "candidate_url",
       "runtime_status": "collected",
       "evidence_rows": 597,
+      "error": null
+    },
+    {
+      "set_key": "swsh3",
+      "set_name": "Darkness Ablaze",
+      "source_key": "pkmncards",
+      "source_alias": "darkness-ablaze",
+      "configured_status": "candidate_url",
+      "runtime_status": "collected",
+      "evidence_rows": 198,
       "error": null
     },
     {
@@ -6237,6 +7787,16 @@
     {
       "set_key": "fut20",
       "set_name": "Pokémon Futsal Collection",
+      "source_key": "pkmncards",
+      "source_alias": "pok-mon-futsal-collection",
+      "configured_status": "candidate_url",
+      "runtime_status": "error",
+      "evidence_rows": 0,
+      "error": "Fetch failed 404 Not Found: https://pkmncards.com/set/pok-mon-futsal-collection/"
+    },
+    {
+      "set_key": "fut20",
+      "set_name": "Pokémon Futsal Collection",
       "source_key": "tcgplayer_price_guide",
       "source_alias": null,
       "configured_status": "unavailable",
@@ -6272,6 +7832,16 @@
       "configured_status": "candidate_url",
       "runtime_status": "collected",
       "evidence_rows": 223,
+      "error": null
+    },
+    {
+      "set_key": "swsh35",
+      "set_name": "Champion's Path",
+      "source_key": "pkmncards",
+      "source_alias": "champions-path",
+      "configured_status": "candidate_url",
+      "runtime_status": "collected",
+      "evidence_rows": 79,
       "error": null
     },
     {
@@ -6317,6 +7887,16 @@
     {
       "set_key": "swsh4",
       "set_name": "Vivid Voltage",
+      "source_key": "pkmncards",
+      "source_alias": "vivid-voltage",
+      "configured_status": "candidate_url",
+      "runtime_status": "collected",
+      "evidence_rows": 199,
+      "error": null
+    },
+    {
+      "set_key": "swsh4",
+      "set_name": "Vivid Voltage",
       "source_key": "tcgplayer_price_guide",
       "source_alias": null,
       "configured_status": "unavailable",
@@ -6352,6 +7932,16 @@
       "configured_status": "candidate_url",
       "runtime_status": "collected",
       "evidence_rows": 75,
+      "error": null
+    },
+    {
+      "set_key": "mcd21",
+      "set_name": "McDonald's Collection 2021",
+      "source_key": "pkmncards",
+      "source_alias": "mcdonalds-collection-2021",
+      "configured_status": "candidate_url",
+      "runtime_status": "collected",
+      "evidence_rows": 25,
       "error": null
     },
     {
@@ -6397,6 +7987,16 @@
     {
       "set_key": "swsh45",
       "set_name": "Shining Fates",
+      "source_key": "pkmncards",
+      "source_alias": "shining-fates",
+      "configured_status": "candidate_url",
+      "runtime_status": "collected",
+      "evidence_rows": 195,
+      "error": null
+    },
+    {
+      "set_key": "swsh45",
+      "set_name": "Shining Fates",
       "source_key": "tcgplayer_price_guide",
       "source_alias": null,
       "configured_status": "unavailable",
@@ -6437,6 +8037,16 @@
     {
       "set_key": "swsh45sv",
       "set_name": "Shining Fates Shiny Vault",
+      "source_key": "pkmncards",
+      "source_alias": "shining-fates-shiny-vault",
+      "configured_status": "candidate_url",
+      "runtime_status": "error",
+      "evidence_rows": 0,
+      "error": "Fetch failed 404 Not Found: https://pkmncards.com/set/shining-fates-shiny-vault/"
+    },
+    {
+      "set_key": "swsh45sv",
+      "set_name": "Shining Fates Shiny Vault",
       "source_key": "tcgplayer_price_guide",
       "source_alias": null,
       "configured_status": "unavailable",
@@ -6472,6 +8082,16 @@
       "configured_status": "candidate_url",
       "runtime_status": "collected",
       "evidence_rows": 541,
+      "error": null
+    },
+    {
+      "set_key": "swsh5",
+      "set_name": "Battle Styles",
+      "source_key": "pkmncards",
+      "source_alias": "battle-styles",
+      "configured_status": "candidate_url",
+      "runtime_status": "collected",
+      "evidence_rows": 183,
       "error": null
     },
     {
@@ -6517,6 +8137,16 @@
     {
       "set_key": "swsh6",
       "set_name": "Chilling Reign",
+      "source_key": "pkmncards",
+      "source_alias": "chilling-reign",
+      "configured_status": "candidate_url",
+      "runtime_status": "collected",
+      "evidence_rows": 233,
+      "error": null
+    },
+    {
+      "set_key": "swsh6",
+      "set_name": "Chilling Reign",
       "source_key": "tcgplayer_price_guide",
       "source_alias": null,
       "configured_status": "unavailable",
@@ -6552,6 +8182,16 @@
       "configured_status": "candidate_url",
       "runtime_status": "collected",
       "evidence_rows": 665,
+      "error": null
+    },
+    {
+      "set_key": "swsh7",
+      "set_name": "Evolving Skies",
+      "source_key": "pkmncards",
+      "source_alias": "evolving-skies",
+      "configured_status": "candidate_url",
+      "runtime_status": "collected",
+      "evidence_rows": 237,
       "error": null
     },
     {
@@ -6597,6 +8237,16 @@
     {
       "set_key": "cel25",
       "set_name": "Celebrations",
+      "source_key": "pkmncards",
+      "source_alias": "celebrations",
+      "configured_status": "candidate_url",
+      "runtime_status": "collected",
+      "evidence_rows": 47,
+      "error": null
+    },
+    {
+      "set_key": "cel25",
+      "set_name": "Celebrations",
       "source_key": "tcgplayer_price_guide",
       "source_alias": null,
       "configured_status": "unavailable",
@@ -6637,6 +8287,16 @@
     {
       "set_key": "cel25c",
       "set_name": "Celebrations: Classic Collection",
+      "source_key": "pkmncards",
+      "source_alias": "celebrations-classic-collection",
+      "configured_status": "candidate_url",
+      "runtime_status": "error",
+      "evidence_rows": 0,
+      "error": "Fetch failed 404 Not Found: https://pkmncards.com/set/celebrations-classic-collection/"
+    },
+    {
+      "set_key": "cel25c",
+      "set_name": "Celebrations: Classic Collection",
       "source_key": "tcgplayer_price_guide",
       "source_alias": null,
       "configured_status": "unavailable",
@@ -6672,6 +8332,16 @@
       "configured_status": "candidate_url",
       "runtime_status": "collected",
       "evidence_rows": 864,
+      "error": null
+    },
+    {
+      "set_key": "swsh8",
+      "set_name": "Fusion Strike",
+      "source_key": "pkmncards",
+      "source_alias": "fusion-strike",
+      "configured_status": "candidate_url",
+      "runtime_status": "collected",
+      "evidence_rows": 284,
       "error": null
     },
     {
@@ -6717,6 +8387,16 @@
     {
       "set_key": "swsh9",
       "set_name": "Brilliant Stars",
+      "source_key": "pkmncards",
+      "source_alias": "brilliant-stars",
+      "configured_status": "candidate_url",
+      "runtime_status": "collected",
+      "evidence_rows": 216,
+      "error": null
+    },
+    {
+      "set_key": "swsh9",
+      "set_name": "Brilliant Stars",
       "source_key": "tcgplayer_price_guide",
       "source_alias": null,
       "configured_status": "unavailable",
@@ -6757,6 +8437,16 @@
     {
       "set_key": "swsh9tg",
       "set_name": "Brilliant Stars Trainer Gallery",
+      "source_key": "pkmncards",
+      "source_alias": "brilliant-stars-trainer-gallery",
+      "configured_status": "candidate_url",
+      "runtime_status": "error",
+      "evidence_rows": 0,
+      "error": "Fetch failed 404 Not Found: https://pkmncards.com/set/brilliant-stars-trainer-gallery/"
+    },
+    {
+      "set_key": "swsh9tg",
+      "set_name": "Brilliant Stars Trainer Gallery",
       "source_key": "tcgplayer_price_guide",
       "source_alias": null,
       "configured_status": "unavailable",
@@ -6792,6 +8482,16 @@
       "configured_status": "candidate_url",
       "runtime_status": "collected",
       "evidence_rows": 674,
+      "error": null
+    },
+    {
+      "set_key": "swsh10",
+      "set_name": "Astral Radiance",
+      "source_key": "pkmncards",
+      "source_alias": "astral-radiance",
+      "configured_status": "candidate_url",
+      "runtime_status": "collected",
+      "evidence_rows": 246,
       "error": null
     },
     {
@@ -6837,6 +8537,16 @@
     {
       "set_key": "swsh10tg",
       "set_name": "Astral Radiance Trainer Gallery",
+      "source_key": "pkmncards",
+      "source_alias": "astral-radiance-trainer-gallery",
+      "configured_status": "candidate_url",
+      "runtime_status": "error",
+      "evidence_rows": 0,
+      "error": "Fetch failed 404 Not Found: https://pkmncards.com/set/astral-radiance-trainer-gallery/"
+    },
+    {
+      "set_key": "swsh10tg",
+      "set_name": "Astral Radiance Trainer Gallery",
       "source_key": "tcgplayer_price_guide",
       "source_alias": null,
       "configured_status": "unavailable",
@@ -6877,6 +8587,16 @@
     {
       "set_key": "pgo",
       "set_name": "Pokémon GO",
+      "source_key": "pkmncards",
+      "source_alias": "pok-mon-go",
+      "configured_status": "candidate_url",
+      "runtime_status": "error",
+      "evidence_rows": 0,
+      "error": "Fetch failed 404 Not Found: https://pkmncards.com/set/pok-mon-go/"
+    },
+    {
+      "set_key": "pgo",
+      "set_name": "Pokémon GO",
       "source_key": "tcgplayer_price_guide",
       "source_alias": null,
       "configured_status": "unavailable",
@@ -6912,6 +8632,16 @@
       "configured_status": "candidate_url",
       "runtime_status": "collected",
       "evidence_rows": 30,
+      "error": null
+    },
+    {
+      "set_key": "mcd22",
+      "set_name": "McDonald's Collection 2022",
+      "source_key": "pkmncards",
+      "source_alias": "mcdonalds-collection-2022",
+      "configured_status": "candidate_url",
+      "runtime_status": "collected",
+      "evidence_rows": 15,
       "error": null
     },
     {
@@ -6957,6 +8687,16 @@
     {
       "set_key": "swsh11",
       "set_name": "Lost Origin",
+      "source_key": "pkmncards",
+      "source_alias": "lost-origin",
+      "configured_status": "candidate_url",
+      "runtime_status": "collected",
+      "evidence_rows": 247,
+      "error": null
+    },
+    {
+      "set_key": "swsh11",
+      "set_name": "Lost Origin",
       "source_key": "tcgplayer_price_guide",
       "source_alias": null,
       "configured_status": "unavailable",
@@ -6997,6 +8737,16 @@
     {
       "set_key": "swsh11tg",
       "set_name": "Lost Origin Trainer Gallery",
+      "source_key": "pkmncards",
+      "source_alias": "lost-origin-trainer-gallery",
+      "configured_status": "candidate_url",
+      "runtime_status": "error",
+      "evidence_rows": 0,
+      "error": "Fetch failed 404 Not Found: https://pkmncards.com/set/lost-origin-trainer-gallery/"
+    },
+    {
+      "set_key": "swsh11tg",
+      "set_name": "Lost Origin Trainer Gallery",
       "source_key": "tcgplayer_price_guide",
       "source_alias": null,
       "configured_status": "unavailable",
@@ -7032,6 +8782,16 @@
       "configured_status": "candidate_url",
       "runtime_status": "collected",
       "evidence_rows": 672,
+      "error": null
+    },
+    {
+      "set_key": "swsh12",
+      "set_name": "Silver Tempest",
+      "source_key": "pkmncards",
+      "source_alias": "silver-tempest",
+      "configured_status": "candidate_url",
+      "runtime_status": "collected",
+      "evidence_rows": 245,
       "error": null
     },
     {
@@ -7077,6 +8837,16 @@
     {
       "set_key": "swsh12tg",
       "set_name": "Silver Tempest Trainer Gallery",
+      "source_key": "pkmncards",
+      "source_alias": "silver-tempest-trainer-gallery",
+      "configured_status": "candidate_url",
+      "runtime_status": "error",
+      "evidence_rows": 0,
+      "error": "Fetch failed 404 Not Found: https://pkmncards.com/set/silver-tempest-trainer-gallery/"
+    },
+    {
+      "set_key": "swsh12tg",
+      "set_name": "Silver Tempest Trainer Gallery",
       "source_key": "tcgplayer_price_guide",
       "source_alias": null,
       "configured_status": "unavailable",
@@ -7112,6 +8882,16 @@
       "configured_status": "candidate_url",
       "runtime_status": "collected",
       "evidence_rows": 541,
+      "error": null
+    },
+    {
+      "set_key": "svp",
+      "set_name": "Scarlet & Violet Black Star Promos",
+      "source_key": "pkmncards",
+      "source_alias": "scarlet-violet-promos",
+      "configured_status": "candidate_url",
+      "runtime_status": "collected",
+      "evidence_rows": 224,
       "error": null
     },
     {
@@ -7157,6 +8937,16 @@
     {
       "set_key": "swsh12pt5",
       "set_name": "Crown Zenith",
+      "source_key": "pkmncards",
+      "source_alias": "crown-zenith",
+      "configured_status": "candidate_url",
+      "runtime_status": "collected",
+      "evidence_rows": 230,
+      "error": null
+    },
+    {
+      "set_key": "swsh12pt5",
+      "set_name": "Crown Zenith",
       "source_key": "tcgplayer_price_guide",
       "source_alias": null,
       "configured_status": "unavailable",
@@ -7197,6 +8987,16 @@
     {
       "set_key": "swsh12pt5gg",
       "set_name": "Crown Zenith Galarian Gallery",
+      "source_key": "pkmncards",
+      "source_alias": "crown-zenith-galarian-gallery",
+      "configured_status": "candidate_url",
+      "runtime_status": "error",
+      "evidence_rows": 0,
+      "error": "Fetch failed 404 Not Found: https://pkmncards.com/set/crown-zenith-galarian-gallery/"
+    },
+    {
+      "set_key": "swsh12pt5gg",
+      "set_name": "Crown Zenith Galarian Gallery",
       "source_key": "tcgplayer_price_guide",
       "source_alias": null,
       "configured_status": "unavailable",
@@ -7232,6 +9032,16 @@
       "configured_status": "candidate_url",
       "runtime_status": "collected",
       "evidence_rows": 702,
+      "error": null
+    },
+    {
+      "set_key": "sv1",
+      "set_name": "Scarlet & Violet",
+      "source_key": "pkmncards",
+      "source_alias": "scarlet-violet",
+      "configured_status": "candidate_url",
+      "runtime_status": "collected",
+      "evidence_rows": 256,
       "error": null
     },
     {
@@ -7277,6 +9087,16 @@
     {
       "set_key": "sve",
       "set_name": "Scarlet & Violet Energies",
+      "source_key": "pkmncards",
+      "source_alias": "scarlet-violet-energies",
+      "configured_status": "candidate_url",
+      "runtime_status": "error",
+      "evidence_rows": 0,
+      "error": "Fetch failed 404 Not Found: https://pkmncards.com/set/scarlet-violet-energies/"
+    },
+    {
+      "set_key": "sve",
+      "set_name": "Scarlet & Violet Energies",
       "source_key": "tcgplayer_price_guide",
       "source_alias": null,
       "configured_status": "unavailable",
@@ -7312,6 +9132,16 @@
       "configured_status": "candidate_url",
       "runtime_status": "collected",
       "evidence_rows": 822,
+      "error": null
+    },
+    {
+      "set_key": "sv2",
+      "set_name": "Paldea Evolved",
+      "source_key": "pkmncards",
+      "source_alias": "paldea-evolved",
+      "configured_status": "candidate_url",
+      "runtime_status": "collected",
+      "evidence_rows": 277,
       "error": null
     },
     {
@@ -7357,6 +9187,16 @@
     {
       "set_key": "sv3",
       "set_name": "Obsidian Flames",
+      "source_key": "pkmncards",
+      "source_alias": "obsidian-flames",
+      "configured_status": "candidate_url",
+      "runtime_status": "collected",
+      "evidence_rows": 229,
+      "error": null
+    },
+    {
+      "set_key": "sv3",
+      "set_name": "Obsidian Flames",
       "source_key": "tcgplayer_price_guide",
       "source_alias": null,
       "configured_status": "unavailable",
@@ -7392,6 +9232,16 @@
       "configured_status": "candidate_url",
       "runtime_status": "collected",
       "evidence_rows": 593,
+      "error": null
+    },
+    {
+      "set_key": "sv3pt5",
+      "set_name": "151",
+      "source_key": "pkmncards",
+      "source_alias": "151",
+      "configured_status": "candidate_url",
+      "runtime_status": "collected",
+      "evidence_rows": 204,
       "error": null
     },
     {
@@ -7437,6 +9287,16 @@
     {
       "set_key": "sv4",
       "set_name": "Paradox Rift",
+      "source_key": "pkmncards",
+      "source_alias": "paradox-rift",
+      "configured_status": "candidate_url",
+      "runtime_status": "collected",
+      "evidence_rows": 266,
+      "error": null
+    },
+    {
+      "set_key": "sv4",
+      "set_name": "Paradox Rift",
       "source_key": "tcgplayer_price_guide",
       "source_alias": null,
       "configured_status": "unavailable",
@@ -7472,6 +9332,16 @@
       "configured_status": "candidate_url",
       "runtime_status": "collected",
       "evidence_rows": 571,
+      "error": null
+    },
+    {
+      "set_key": "sv4pt5",
+      "set_name": "Paldean Fates",
+      "source_key": "pkmncards",
+      "source_alias": "paldean-fates",
+      "configured_status": "candidate_url",
+      "runtime_status": "collected",
+      "evidence_rows": 245,
       "error": null
     },
     {
@@ -7517,6 +9387,16 @@
     {
       "set_key": "sv5",
       "set_name": "Temporal Forces",
+      "source_key": "pkmncards",
+      "source_alias": "temporal-forces",
+      "configured_status": "candidate_url",
+      "runtime_status": "collected",
+      "evidence_rows": 218,
+      "error": null
+    },
+    {
+      "set_key": "sv5",
+      "set_name": "Temporal Forces",
       "source_key": "tcgplayer_price_guide",
       "source_alias": null,
       "configured_status": "unavailable",
@@ -7552,6 +9432,16 @@
       "configured_status": "candidate_url",
       "runtime_status": "collected",
       "evidence_rows": 599,
+      "error": null
+    },
+    {
+      "set_key": "sv6",
+      "set_name": "Twilight Masquerade",
+      "source_key": "pkmncards",
+      "source_alias": "twilight-masquerade",
+      "configured_status": "candidate_url",
+      "runtime_status": "collected",
+      "evidence_rows": 226,
       "error": null
     },
     {
@@ -7597,6 +9487,16 @@
     {
       "set_key": "sv6pt5",
       "set_name": "Shrouded Fable",
+      "source_key": "pkmncards",
+      "source_alias": "shrouded-fable",
+      "configured_status": "candidate_url",
+      "runtime_status": "collected",
+      "evidence_rows": 97,
+      "error": null
+    },
+    {
+      "set_key": "sv6pt5",
+      "set_name": "Shrouded Fable",
       "source_key": "tcgplayer_price_guide",
       "source_alias": null,
       "configured_status": "unavailable",
@@ -7632,6 +9532,16 @@
       "configured_status": "candidate_url",
       "runtime_status": "collected",
       "evidence_rows": 508,
+      "error": null
+    },
+    {
+      "set_key": "sv7",
+      "set_name": "Stellar Crown",
+      "source_key": "pkmncards",
+      "source_alias": "stellar-crown",
+      "configured_status": "candidate_url",
+      "runtime_status": "collected",
+      "evidence_rows": 175,
       "error": null
     },
     {
@@ -7677,6 +9587,16 @@
     {
       "set_key": "sv8",
       "set_name": "Surging Sparks",
+      "source_key": "pkmncards",
+      "source_alias": "surging-sparks",
+      "configured_status": "candidate_url",
+      "runtime_status": "collected",
+      "evidence_rows": 252,
+      "error": null
+    },
+    {
+      "set_key": "sv8",
+      "set_name": "Surging Sparks",
       "source_key": "tcgplayer_price_guide",
       "source_alias": null,
       "configured_status": "unavailable",
@@ -7712,6 +9632,16 @@
       "configured_status": "candidate_url",
       "runtime_status": "collected",
       "evidence_rows": 503,
+      "error": null
+    },
+    {
+      "set_key": "sv8pt5",
+      "set_name": "Prismatic Evolutions",
+      "source_key": "pkmncards",
+      "source_alias": "prismatic-evolutions",
+      "configured_status": "candidate_url",
+      "runtime_status": "collected",
+      "evidence_rows": 180,
       "error": null
     },
     {
@@ -7757,6 +9687,16 @@
     {
       "set_key": "sv9",
       "set_name": "Journey Together",
+      "source_key": "pkmncards",
+      "source_alias": "journey-together",
+      "configured_status": "candidate_url",
+      "runtime_status": "collected",
+      "evidence_rows": 190,
+      "error": null
+    },
+    {
+      "set_key": "sv9",
+      "set_name": "Journey Together",
       "source_key": "tcgplayer_price_guide",
       "source_alias": null,
       "configured_status": "unavailable",
@@ -7792,6 +9732,16 @@
       "configured_status": "candidate_url",
       "runtime_status": "collected",
       "evidence_rows": 706,
+      "error": null
+    },
+    {
+      "set_key": "sv10",
+      "set_name": "Destined Rivals",
+      "source_key": "pkmncards",
+      "source_alias": "destined-rivals",
+      "configured_status": "candidate_url",
+      "runtime_status": "collected",
+      "evidence_rows": 242,
       "error": null
     },
     {
@@ -7837,6 +9787,16 @@
     {
       "set_key": "zsv10pt5",
       "set_name": "Black Bolt",
+      "source_key": "pkmncards",
+      "source_alias": "black-bolt",
+      "configured_status": "candidate_url",
+      "runtime_status": "collected",
+      "evidence_rows": 172,
+      "error": null
+    },
+    {
+      "set_key": "zsv10pt5",
+      "set_name": "Black Bolt",
       "source_key": "tcgplayer_price_guide",
       "source_alias": null,
       "configured_status": "unavailable",
@@ -7872,6 +9832,16 @@
       "configured_status": "candidate_url",
       "runtime_status": "collected",
       "evidence_rows": 428,
+      "error": null
+    },
+    {
+      "set_key": "rsv10pt5",
+      "set_name": "White Flare",
+      "source_key": "pkmncards",
+      "source_alias": "white-flare",
+      "configured_status": "candidate_url",
+      "runtime_status": "collected",
+      "evidence_rows": 173,
       "error": null
     },
     {
@@ -7917,6 +9887,16 @@
     {
       "set_key": "me1",
       "set_name": "Mega Evolution",
+      "source_key": "pkmncards",
+      "source_alias": "mega-evolution",
+      "configured_status": "candidate_url",
+      "runtime_status": "collected",
+      "evidence_rows": 188,
+      "error": null
+    },
+    {
+      "set_key": "me1",
+      "set_name": "Mega Evolution",
       "source_key": "tcgplayer_price_guide",
       "source_alias": null,
       "configured_status": "unavailable",
@@ -7952,6 +9932,16 @@
       "configured_status": "candidate_url",
       "runtime_status": "collected",
       "evidence_rows": 349,
+      "error": null
+    },
+    {
+      "set_key": "me2",
+      "set_name": "Phantasmal Flames",
+      "source_key": "pkmncards",
+      "source_alias": "phantasmal-flames",
+      "configured_status": "candidate_url",
+      "runtime_status": "collected",
+      "evidence_rows": 130,
       "error": null
     },
     {
@@ -7997,6 +9987,16 @@
     {
       "set_key": "ascended_heroes",
       "set_name": "Ascended Heroes",
+      "source_key": "pkmncards",
+      "source_alias": "ascended-heroes",
+      "configured_status": "candidate_url",
+      "runtime_status": "collected",
+      "evidence_rows": 295,
+      "error": null
+    },
+    {
+      "set_key": "ascended_heroes",
+      "set_name": "Ascended Heroes",
       "source_key": "tcgplayer_price_guide",
       "source_alias": null,
       "configured_status": "unavailable",
@@ -8037,6 +10037,16 @@
     {
       "set_key": "me3",
       "set_name": "Perfect Order",
+      "source_key": "pkmncards",
+      "source_alias": "perfect-order",
+      "configured_status": "candidate_url",
+      "runtime_status": "collected",
+      "evidence_rows": 121,
+      "error": null
+    },
+    {
+      "set_key": "me3",
+      "set_name": "Perfect Order",
       "source_key": "tcgplayer_price_guide",
       "source_alias": null,
       "configured_status": "unavailable",
@@ -8072,6 +10082,16 @@
       "configured_status": "candidate_url",
       "runtime_status": "collected",
       "evidence_rows": 320,
+      "error": null
+    },
+    {
+      "set_key": "me4",
+      "set_name": "Chaos Rising",
+      "source_key": "pkmncards",
+      "source_alias": "chaos-rising",
+      "configured_status": "candidate_url",
+      "runtime_status": "collected",
+      "evidence_rows": 119,
       "error": null
     },
     {

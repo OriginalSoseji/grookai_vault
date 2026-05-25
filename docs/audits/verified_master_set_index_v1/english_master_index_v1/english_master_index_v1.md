@@ -1,6 +1,6 @@
 # English Verified Master Set Index V1
 
-Generated: 2026-05-25T16:40:48.237Z
+Generated: 2026-05-25T17:31:46.407Z
 
 Audit only. No DB writes, migrations, cleanup, quarantine, or public hiding were performed.
 
@@ -13,18 +13,18 @@ Transport: Local run used NODE_TLS_REJECT_UNAUTHORIZED=0 because this Windows en
 | metric | count |
 | --- | --- |
 | sets | 202 |
-| evidence rows | 178459 |
+| evidence rows | 197626 |
 | conflicts | 0 |
-| manual review | 1519 |
+| manual review | 1182 |
 
 ## Cards By Status
 
 | status | count |
 | --- | --- |
-| api_agreed | 32 |
-| candidate_unconfirmed | 761 |
-| human_source_verified | 135 |
-| master_verified | 20658 |
+| api_agreed | 9 |
+| candidate_unconfirmed | 424 |
+| human_source_verified | 111 |
+| master_verified | 21042 |
 
 ## Printings By Status
 
@@ -90,6 +90,7 @@ Transport: Local run used NODE_TLS_REJECT_UNAUTHORIZED=0 because this Windows en
 | lockett_labs_ascended_heroes_dugtrio_101 | 1 |
 | official_pokemon_svi_cardlist_en | 8 |
 | packmagik_ascended_heroes_team_rockets_great_ball_205 | 1 |
+| pkmncards | 19167 |
 | pokebeach_ascended_heroes_set_guide | 5 |
 | pokellector_ascended_heroes_murkrow_126 | 1 |
 | pokemasters_ascended_heroes | 7 |
@@ -695,6 +696,8 @@ Transport: Local run used NODE_TLS_REJECT_UNAUTHORIZED=0 because this Windows en
 | source | runtime status | count |
 | --- | --- | --- |
 | human_fixtures | collected | 1 |
+| pkmncards | collected | 152 |
+| pkmncards | error | 50 |
 | pokemontcg_api | collected | 173 |
 | pokemontcg_api | unavailable | 29 |
 | tcgdex | collected | 190 |

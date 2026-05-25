@@ -4,7 +4,7 @@ This is the source acquisition queue for completing the Master Index. It is not 
 
 ## Summary
 
-- total_queue_items: 248
+- total_queue_items: 214
 
 | lane | set_key | set_name | gap_count | priority | required_evidence |
 | --- | --- | --- | --- | --- | --- |
@@ -46,21 +46,13 @@ This is the source acquisition queue for completing the Master Index. It is not 
 | finish_human_checklist_evidence | tk-bw-e | BW trainer Kit (Excadrill) | 30 | 100 | Human-readable/checklist exact finish evidence with second-source agreement. |
 | card_identity_second_source | tk-bw-z | BW trainer Kit (Zoroark) | 30 | 100 | Independent source agreement for set + card_number + card_name. |
 | finish_human_checklist_evidence | tk-bw-z | BW trainer Kit (Zoroark) | 30 | 100 | Human-readable/checklist exact finish evidence with second-source agreement. |
-| card_identity_second_source | tk-xy-b | XY trainer Kit (Bisharp) | 30 | 100 | Independent source agreement for set + card_number + card_name. |
 | finish_human_checklist_evidence | tk-xy-b | XY trainer Kit (Bisharp) | 30 | 100 | Human-readable/checklist exact finish evidence with second-source agreement. |
-| card_identity_second_source | tk-xy-latia | XY trainer Kit (Latias) | 30 | 100 | Independent source agreement for set + card_number + card_name. |
 | finish_human_checklist_evidence | tk-xy-latia | XY trainer Kit (Latias) | 30 | 100 | Human-readable/checklist exact finish evidence with second-source agreement. |
-| card_identity_second_source | tk-xy-latio | XY trainer Kit (Latios) | 30 | 100 | Independent source agreement for set + card_number + card_name. |
 | finish_human_checklist_evidence | tk-xy-latio | XY trainer Kit (Latios) | 30 | 100 | Human-readable/checklist exact finish evidence with second-source agreement. |
-| card_identity_second_source | tk-xy-n | XY trainer Kit (Noivern) | 30 | 100 | Independent source agreement for set + card_number + card_name. |
 | finish_human_checklist_evidence | tk-xy-n | XY trainer Kit (Noivern) | 30 | 100 | Human-readable/checklist exact finish evidence with second-source agreement. |
-| card_identity_second_source | tk-xy-p | XY trainer Kit (Pikachu Libre) | 30 | 100 | Independent source agreement for set + card_number + card_name. |
 | finish_human_checklist_evidence | tk-xy-p | XY trainer Kit (Pikachu Libre) | 30 | 100 | Human-readable/checklist exact finish evidence with second-source agreement. |
-| card_identity_second_source | tk-xy-su | XY trainer Kit (Suicune) | 30 | 100 | Independent source agreement for set + card_number + card_name. |
 | finish_human_checklist_evidence | tk-xy-su | XY trainer Kit (Suicune) | 30 | 100 | Human-readable/checklist exact finish evidence with second-source agreement. |
-| card_identity_second_source | tk-xy-sy | XY trainer Kit (Sylveon) | 30 | 100 | Independent source agreement for set + card_number + card_name. |
 | finish_human_checklist_evidence | tk-xy-sy | XY trainer Kit (Sylveon) | 30 | 100 | Human-readable/checklist exact finish evidence with second-source agreement. |
-| card_identity_second_source | tk-xy-w | XY trainer Kit (Wigglytuff) | 30 | 100 | Independent source agreement for set + card_number + card_name. |
 | finish_human_checklist_evidence | tk-xy-w | XY trainer Kit (Wigglytuff) | 30 | 100 | Human-readable/checklist exact finish evidence with second-source agreement. |
 | finish_human_checklist_evidence | dp1 | Diamond & Pearl | 28 | 100 | Human-readable/checklist exact finish evidence with second-source agreement. |
 | card_identity_second_source | exu | Unseen Forces Unown Collection | 28 | 100 | Independent source agreement for set + card_number + card_name. |
@@ -140,7 +132,6 @@ This is the source acquisition queue for completing the Master Index. It is not 
 | finish_human_checklist_evidence | ex14 | Crystal Guardians | 7 | 100 | Human-readable/checklist exact finish evidence with second-source agreement. |
 | finish_human_checklist_evidence | bw11 | Legendary Treasures | 6 | 100 | Human-readable/checklist exact finish evidence with second-source agreement. |
 | finish_human_checklist_evidence | bw8 | Plasma Storm | 6 | 100 | Human-readable/checklist exact finish evidence with second-source agreement. |
-| finish_human_checklist_evidence | ex12 | Legend Maker | 6 | 100 | Human-readable/checklist exact finish evidence with second-source agreement. |
 | finish_human_checklist_evidence | ex16 | Power Keepers | 6 | 100 | Human-readable/checklist exact finish evidence with second-source agreement. |
 | finish_human_checklist_evidence | sm12 | Cosmic Eclipse | 6 | 100 | Human-readable/checklist exact finish evidence with second-source agreement. |
 | finish_human_checklist_evidence | sm9 | Team Up | 6 | 100 | Human-readable/checklist exact finish evidence with second-source agreement. |
@@ -151,7 +142,6 @@ This is the source acquisition queue for completing the Master Index. It is not 
 | finish_human_checklist_evidence | fut2020 | Pokémon Futsal 2020 | 5 | 100 | Human-readable/checklist exact finish evidence with second-source agreement. |
 | finish_human_checklist_evidence | xy5 | Primal Clash | 5 | 100 | Human-readable/checklist exact finish evidence with second-source agreement. |
 | finish_human_checklist_evidence | ex13 | Holon Phantoms | 4 | 100 | Human-readable/checklist exact finish evidence with second-source agreement. |
-| finish_human_checklist_evidence | ex15 | Dragon Frontiers | 4 | 100 | Human-readable/checklist exact finish evidence with second-source agreement. |
 | finish_human_checklist_evidence | zsv10pt5 | Black Bolt | 4 | 100 | Human-readable/checklist exact finish evidence with second-source agreement. |
 | finish_human_checklist_evidence | me2 | Phantasmal Flames | 3 | 100 | Human-readable/checklist exact finish evidence with second-source agreement. |
 | finish_human_checklist_evidence | neo1 | Neo Genesis | 3 | 100 | Human-readable/checklist exact finish evidence with second-source agreement. |
@@ -163,8 +153,18 @@ This is the source acquisition queue for completing the Master Index. It is not 
 | finish_human_checklist_evidence | sv1 | Scarlet & Violet | 1 | 100 | Human-readable/checklist exact finish evidence with second-source agreement. |
 | finish_human_checklist_evidence | tk-hs-g | HS trainer Kit (Gyarados) | 1 | 100 | Human-readable/checklist exact finish evidence with second-source agreement. |
 | finish_human_checklist_evidence | tk-hs-r | HS trainer Kit (Raichu) | 1 | 100 | Human-readable/checklist exact finish evidence with second-source agreement. |
+| finish_human_checklist_evidence | ex15 | Dragon Frontiers | 4 | 99.96 | Human-readable/checklist exact finish evidence with second-source agreement. |
 | finish_human_checklist_evidence | base1 | Base | 1 | 99.91 | Human-readable/checklist exact finish evidence with second-source agreement. |
 | finish_human_checklist_evidence | ex2 | Sandstorm | 3 | 99.87 | Human-readable/checklist exact finish evidence with second-source agreement. |
+| finish_human_checklist_evidence | ex12 | Legend Maker | 6 | 99.8 | Human-readable/checklist exact finish evidence with second-source agreement. |
 | finish_human_checklist_evidence | hgss3 | HS—Undaunted | 7 | 99.75 | Human-readable/checklist exact finish evidence with second-source agreement. |
 | card_identity_second_source | sm115 | Hidden Fates | 94 | 99.56 | Independent source agreement for set + card_number + card_name. |
 | finish_human_checklist_evidence | base4 | Base Set 2 | 2 | 99.44 | Human-readable/checklist exact finish evidence with second-source agreement. |
+| finish_human_checklist_evidence | base5 | Team Rocket | 4 | 99.25 | Human-readable/checklist exact finish evidence with second-source agreement. |
+| finish_human_checklist_evidence | pgo | Pokémon GO | 5 | 99.1 | Human-readable/checklist exact finish evidence with second-source agreement. |
+| finish_human_checklist_evidence | swsh35 | Champion's Path | 8 | 99.03 | Human-readable/checklist exact finish evidence with second-source agreement. |
+| card_identity_second_source | xya | Yellow A Alternate | 6 | 98.92 | Independent source agreement for set + card_number + card_name. |
+| finish_human_checklist_evidence | sm35 | Shining Legends | 3 | 98.68 | Human-readable/checklist exact finish evidence with second-source agreement. |
+| finish_human_checklist_evidence | sm75 | Dragon Majesty | 2 | 98.53 | Human-readable/checklist exact finish evidence with second-source agreement. |
+| finish_human_checklist_evidence | neo3 | Neo Revelation | 4 | 98.27 | Human-readable/checklist exact finish evidence with second-source agreement. |
+| finish_human_checklist_evidence | base2 | Jungle | 4 | 98.19 | Human-readable/checklist exact finish evidence with second-source agreement. |

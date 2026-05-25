@@ -1,6 +1,6 @@
 {
   "version": "ENGLISH_MASTER_INDEX_SETS_V1",
-  "generated_at": "2026-05-25T16:40:48.237Z",
+  "generated_at": "2026-05-25T17:31:46.407Z",
   "audit_only": true,
   "db_writes": false,
   "sets": [
@@ -17,7 +17,10 @@
         "official_checklist_pdf": null,
         "official_pokemon_checklist": null,
         "thepricedex": "tk-bw-e",
-        "thepricedex_price_list": "tk-bw-e"
+        "thepricedex_price_list": "tk-bw-e",
+        "pkmncards": "bw-trainer-kit-excadrill",
+        "bulbapedia": "BW_trainer_Kit_(Excadrill)_(TCG)",
+        "bulbapedia_set_list": "BW_trainer_Kit_(Excadrill)_(TCG)"
       },
       "source_status": {
         "pokemontcg_api": "unavailable",
@@ -25,7 +28,10 @@
         "official_checklist_pdf": "unavailable",
         "official_pokemon_checklist": "unavailable",
         "thepricedex": "candidate_url",
-        "thepricedex_price_list": "candidate_url"
+        "thepricedex_price_list": "candidate_url",
+        "pkmncards": "candidate_url",
+        "bulbapedia": "candidate_url",
+        "bulbapedia_set_list": "candidate_url"
       },
       "source_totals": {
         "pokemontcg_api": {
@@ -51,7 +57,10 @@
         "official_checklist_pdf": null,
         "official_pokemon_checklist": null,
         "thepricedex": "tk-bw-z",
-        "thepricedex_price_list": "tk-bw-z"
+        "thepricedex_price_list": "tk-bw-z",
+        "pkmncards": "bw-trainer-kit-zoroark",
+        "bulbapedia": "BW_trainer_Kit_(Zoroark)_(TCG)",
+        "bulbapedia_set_list": "BW_trainer_Kit_(Zoroark)_(TCG)"
       },
       "source_status": {
         "pokemontcg_api": "unavailable",
@@ -59,7 +68,10 @@
         "official_checklist_pdf": "unavailable",
         "official_pokemon_checklist": "unavailable",
         "thepricedex": "candidate_url",
-        "thepricedex_price_list": "candidate_url"
+        "thepricedex_price_list": "candidate_url",
+        "pkmncards": "candidate_url",
+        "bulbapedia": "candidate_url",
+        "bulbapedia_set_list": "candidate_url"
       },
       "source_totals": {
         "pokemontcg_api": {
@@ -85,7 +97,10 @@
         "official_checklist_pdf": null,
         "official_pokemon_checklist": null,
         "thepricedex": "tk-dp-l",
-        "thepricedex_price_list": "tk-dp-l"
+        "thepricedex_price_list": "tk-dp-l",
+        "pkmncards": "dp-trainer-kit-lucario",
+        "bulbapedia": "DP_trainer_Kit_(Lucario)_(TCG)",
+        "bulbapedia_set_list": "DP_trainer_Kit_(Lucario)_(TCG)"
       },
       "source_status": {
         "pokemontcg_api": "unavailable",
@@ -93,7 +108,10 @@
         "official_checklist_pdf": "unavailable",
         "official_pokemon_checklist": "unavailable",
         "thepricedex": "candidate_url",
-        "thepricedex_price_list": "candidate_url"
+        "thepricedex_price_list": "candidate_url",
+        "pkmncards": "candidate_url",
+        "bulbapedia": "candidate_url",
+        "bulbapedia_set_list": "candidate_url"
       },
       "source_totals": {
         "pokemontcg_api": {
@@ -119,7 +137,10 @@
         "official_checklist_pdf": null,
         "official_pokemon_checklist": null,
         "thepricedex": "tk-dp-m",
-        "thepricedex_price_list": "tk-dp-m"
+        "thepricedex_price_list": "tk-dp-m",
+        "pkmncards": "dp-trainer-kit-manaphy",
+        "bulbapedia": "DP_trainer_Kit_(Manaphy)_(TCG)",
+        "bulbapedia_set_list": "DP_trainer_Kit_(Manaphy)_(TCG)"
       },
       "source_status": {
         "pokemontcg_api": "unavailable",
@@ -127,7 +148,10 @@
         "official_checklist_pdf": "unavailable",
         "official_pokemon_checklist": "unavailable",
         "thepricedex": "candidate_url",
-        "thepricedex_price_list": "candidate_url"
+        "thepricedex_price_list": "candidate_url",
+        "pkmncards": "candidate_url",
+        "bulbapedia": "candidate_url",
+        "bulbapedia_set_list": "candidate_url"
       },
       "source_totals": {
         "pokemontcg_api": {
@@ -153,7 +177,10 @@
         "official_checklist_pdf": null,
         "official_pokemon_checklist": null,
         "thepricedex": "tk-hs-g",
-        "thepricedex_price_list": "tk-hs-g"
+        "thepricedex_price_list": "tk-hs-g",
+        "pkmncards": "hs-trainer-kit-gyarados",
+        "bulbapedia": "HS_trainer_Kit_(Gyarados)_(TCG)",
+        "bulbapedia_set_list": "HS_trainer_Kit_(Gyarados)_(TCG)"
       },
       "source_status": {
         "pokemontcg_api": "unavailable",
@@ -161,7 +188,10 @@
         "official_checklist_pdf": "unavailable",
         "official_pokemon_checklist": "unavailable",
         "thepricedex": "candidate_url",
-        "thepricedex_price_list": "candidate_url"
+        "thepricedex_price_list": "candidate_url",
+        "pkmncards": "candidate_url",
+        "bulbapedia": "candidate_url",
+        "bulbapedia_set_list": "candidate_url"
       },
       "source_totals": {
         "pokemontcg_api": {
@@ -187,7 +217,10 @@
         "official_checklist_pdf": null,
         "official_pokemon_checklist": null,
         "thepricedex": "tk-hs-r",
-        "thepricedex_price_list": "tk-hs-r"
+        "thepricedex_price_list": "tk-hs-r",
+        "pkmncards": "hs-trainer-kit-raichu",
+        "bulbapedia": "HS_trainer_Kit_(Raichu)_(TCG)",
+        "bulbapedia_set_list": "HS_trainer_Kit_(Raichu)_(TCG)"
       },
       "source_status": {
         "pokemontcg_api": "unavailable",
@@ -195,7 +228,10 @@
         "official_checklist_pdf": "unavailable",
         "official_pokemon_checklist": "unavailable",
         "thepricedex": "candidate_url",
-        "thepricedex_price_list": "candidate_url"
+        "thepricedex_price_list": "candidate_url",
+        "pkmncards": "candidate_url",
+        "bulbapedia": "candidate_url",
+        "bulbapedia_set_list": "candidate_url"
       },
       "source_totals": {
         "pokemontcg_api": {
@@ -221,7 +257,10 @@
         "official_checklist_pdf": null,
         "official_pokemon_checklist": null,
         "thepricedex": "jumbo",
-        "thepricedex_price_list": "jumbo"
+        "thepricedex_price_list": "jumbo",
+        "pkmncards": "jumbo-cards",
+        "bulbapedia": "Jumbo_cards_(TCG)",
+        "bulbapedia_set_list": "Jumbo_cards_(TCG)"
       },
       "source_status": {
         "pokemontcg_api": "unavailable",
@@ -229,7 +268,10 @@
         "official_checklist_pdf": "unavailable",
         "official_pokemon_checklist": "unavailable",
         "thepricedex": "candidate_url",
-        "thepricedex_price_list": "candidate_url"
+        "thepricedex_price_list": "candidate_url",
+        "pkmncards": "candidate_url",
+        "bulbapedia": "candidate_url",
+        "bulbapedia_set_list": "candidate_url"
       },
       "source_totals": {
         "pokemontcg_api": {
@@ -255,7 +297,10 @@
         "official_checklist_pdf": null,
         "official_pokemon_checklist": null,
         "thepricedex": "2023sv",
-        "thepricedex_price_list": "2023sv"
+        "thepricedex_price_list": "2023sv",
+        "pkmncards": "mcdonalds-collection-2023",
+        "bulbapedia": "McDonald's_Collection_2023_(TCG)",
+        "bulbapedia_set_list": "McDonald's_Collection_2023_(TCG)"
       },
       "source_status": {
         "pokemontcg_api": "unavailable",
@@ -263,7 +308,10 @@
         "official_checklist_pdf": "unavailable",
         "official_pokemon_checklist": "unavailable",
         "thepricedex": "candidate_url",
-        "thepricedex_price_list": "candidate_url"
+        "thepricedex_price_list": "candidate_url",
+        "pkmncards": "candidate_url",
+        "bulbapedia": "candidate_url",
+        "bulbapedia_set_list": "candidate_url"
       },
       "source_totals": {
         "pokemontcg_api": {
@@ -289,7 +337,10 @@
         "official_checklist_pdf": null,
         "official_pokemon_checklist": null,
         "thepricedex": "2024sv",
-        "thepricedex_price_list": "2024sv"
+        "thepricedex_price_list": "2024sv",
+        "pkmncards": "mcdonalds-collection-2024",
+        "bulbapedia": "McDonald's_Collection_2024_(TCG)",
+        "bulbapedia_set_list": "McDonald's_Collection_2024_(TCG)"
       },
       "source_status": {
         "pokemontcg_api": "unavailable",
@@ -297,7 +348,10 @@
         "official_checklist_pdf": "unavailable",
         "official_pokemon_checklist": "unavailable",
         "thepricedex": "candidate_url",
-        "thepricedex_price_list": "candidate_url"
+        "thepricedex_price_list": "candidate_url",
+        "pkmncards": "candidate_url",
+        "bulbapedia": "candidate_url",
+        "bulbapedia_set_list": "candidate_url"
       },
       "source_totals": {
         "pokemontcg_api": {
@@ -323,7 +377,10 @@
         "official_checklist_pdf": null,
         "official_pokemon_checklist": null,
         "thepricedex": "mee",
-        "thepricedex_price_list": "mee"
+        "thepricedex_price_list": "mee",
+        "pkmncards": "mega-evolution-energy",
+        "bulbapedia": "Mega_Evolution_Energy_(TCG)",
+        "bulbapedia_set_list": "Mega_Evolution_Energy_(TCG)"
       },
       "source_status": {
         "pokemontcg_api": "unavailable",
@@ -331,7 +388,10 @@
         "official_checklist_pdf": "unavailable",
         "official_pokemon_checklist": "unavailable",
         "thepricedex": "candidate_url",
-        "thepricedex_price_list": "candidate_url"
+        "thepricedex_price_list": "candidate_url",
+        "pkmncards": "candidate_url",
+        "bulbapedia": "candidate_url",
+        "bulbapedia_set_list": "candidate_url"
       },
       "source_totals": {
         "pokemontcg_api": {
@@ -357,7 +417,10 @@
         "official_checklist_pdf": null,
         "official_pokemon_checklist": null,
         "thepricedex": "mep",
-        "thepricedex_price_list": "mep"
+        "thepricedex_price_list": "mep",
+        "pkmncards": "mep-black-star-promos",
+        "bulbapedia": "MEP_Black_Star_Promos_(TCG)",
+        "bulbapedia_set_list": "MEP_Black_Star_Promos_(TCG)"
       },
       "source_status": {
         "pokemontcg_api": "unavailable",
@@ -365,7 +428,10 @@
         "official_checklist_pdf": "unavailable",
         "official_pokemon_checklist": "unavailable",
         "thepricedex": "candidate_url",
-        "thepricedex_price_list": "candidate_url"
+        "thepricedex_price_list": "candidate_url",
+        "pkmncards": "candidate_url",
+        "bulbapedia": "candidate_url",
+        "bulbapedia_set_list": "candidate_url"
       },
       "source_totals": {
         "pokemontcg_api": {
@@ -391,7 +457,10 @@
         "official_checklist_pdf": null,
         "official_pokemon_checklist": null,
         "thepricedex": "mfb",
-        "thepricedex_price_list": "mfb"
+        "thepricedex_price_list": "mfb",
+        "pkmncards": "my-first-battle",
+        "bulbapedia": "My_First_Battle_(TCG)",
+        "bulbapedia_set_list": "My_First_Battle_(TCG)"
       },
       "source_status": {
         "pokemontcg_api": "unavailable",
@@ -399,7 +468,10 @@
         "official_checklist_pdf": "unavailable",
         "official_pokemon_checklist": "unavailable",
         "thepricedex": "candidate_url",
-        "thepricedex_price_list": "candidate_url"
+        "thepricedex_price_list": "candidate_url",
+        "pkmncards": "candidate_url",
+        "bulbapedia": "candidate_url",
+        "bulbapedia_set_list": "candidate_url"
       },
       "source_totals": {
         "pokemontcg_api": {
@@ -425,7 +497,10 @@
         "official_checklist_pdf": null,
         "official_pokemon_checklist": null,
         "thepricedex": "ex5.5",
-        "thepricedex_price_list": "ex5.5"
+        "thepricedex_price_list": "ex5.5",
+        "pkmncards": "pok-card-creator-pack",
+        "bulbapedia": "Poké_Card_Creator_Pack_(TCG)",
+        "bulbapedia_set_list": "Poké_Card_Creator_Pack_(TCG)"
       },
       "source_status": {
         "pokemontcg_api": "unavailable",
@@ -433,7 +508,10 @@
         "official_checklist_pdf": "unavailable",
         "official_pokemon_checklist": "unavailable",
         "thepricedex": "candidate_url",
-        "thepricedex_price_list": "candidate_url"
+        "thepricedex_price_list": "candidate_url",
+        "pkmncards": "candidate_url",
+        "bulbapedia": "candidate_url",
+        "bulbapedia_set_list": "candidate_url"
       },
       "source_totals": {
         "pokemontcg_api": {
@@ -459,7 +537,10 @@
         "official_checklist_pdf": null,
         "official_pokemon_checklist": null,
         "thepricedex": "fut2020",
-        "thepricedex_price_list": "fut2020"
+        "thepricedex_price_list": "fut2020",
+        "pkmncards": "pok-mon-futsal-2020",
+        "bulbapedia": "Pokémon_Futsal_2020_(TCG)",
+        "bulbapedia_set_list": "Pokémon_Futsal_2020_(TCG)"
       },
       "source_status": {
         "pokemontcg_api": "unavailable",
@@ -467,7 +548,10 @@
         "official_checklist_pdf": "unavailable",
         "official_pokemon_checklist": "unavailable",
         "thepricedex": "candidate_url",
-        "thepricedex_price_list": "candidate_url"
+        "thepricedex_price_list": "candidate_url",
+        "pkmncards": "candidate_url",
+        "bulbapedia": "candidate_url",
+        "bulbapedia_set_list": "candidate_url"
       },
       "source_totals": {
         "pokemontcg_api": {
@@ -493,7 +577,10 @@
         "official_checklist_pdf": null,
         "official_pokemon_checklist": null,
         "thepricedex": "rc",
-        "thepricedex_price_list": "rc"
+        "thepricedex_price_list": "rc",
+        "pkmncards": "radiant-collection",
+        "bulbapedia": "Radiant_Collection_(TCG)",
+        "bulbapedia_set_list": "Radiant_Collection_(TCG)"
       },
       "source_status": {
         "pokemontcg_api": "unavailable",
@@ -501,7 +588,10 @@
         "official_checklist_pdf": "unavailable",
         "official_pokemon_checklist": "unavailable",
         "thepricedex": "candidate_url",
-        "thepricedex_price_list": "candidate_url"
+        "thepricedex_price_list": "candidate_url",
+        "pkmncards": "candidate_url",
+        "bulbapedia": "candidate_url",
+        "bulbapedia_set_list": "candidate_url"
       },
       "source_totals": {
         "pokemontcg_api": {
@@ -527,7 +617,10 @@
         "official_checklist_pdf": null,
         "official_pokemon_checklist": null,
         "thepricedex": "sp",
-        "thepricedex_price_list": "sp"
+        "thepricedex_price_list": "sp",
+        "pkmncards": "sample",
+        "bulbapedia": "Sample_(TCG)",
+        "bulbapedia_set_list": "Sample_(TCG)"
       },
       "source_status": {
         "pokemontcg_api": "unavailable",
@@ -535,7 +628,10 @@
         "official_checklist_pdf": "unavailable",
         "official_pokemon_checklist": "unavailable",
         "thepricedex": "candidate_url",
-        "thepricedex_price_list": "candidate_url"
+        "thepricedex_price_list": "candidate_url",
+        "pkmncards": "candidate_url",
+        "bulbapedia": "candidate_url",
+        "bulbapedia_set_list": "candidate_url"
       },
       "source_totals": {
         "pokemontcg_api": {
@@ -561,7 +657,10 @@
         "official_checklist_pdf": null,
         "official_pokemon_checklist": null,
         "thepricedex": "tk-sm-r",
-        "thepricedex_price_list": "tk-sm-r"
+        "thepricedex_price_list": "tk-sm-r",
+        "pkmncards": "sm-trainer-kit-alolan-raichu",
+        "bulbapedia": "SM_trainer_Kit_(Alolan_Raichu)_(TCG)",
+        "bulbapedia_set_list": "SM_trainer_Kit_(Alolan_Raichu)_(TCG)"
       },
       "source_status": {
         "pokemontcg_api": "unavailable",
@@ -569,7 +668,10 @@
         "official_checklist_pdf": "unavailable",
         "official_pokemon_checklist": "unavailable",
         "thepricedex": "candidate_url",
-        "thepricedex_price_list": "candidate_url"
+        "thepricedex_price_list": "candidate_url",
+        "pkmncards": "candidate_url",
+        "bulbapedia": "candidate_url",
+        "bulbapedia_set_list": "candidate_url"
       },
       "source_totals": {
         "pokemontcg_api": {
@@ -595,7 +697,10 @@
         "official_checklist_pdf": null,
         "official_pokemon_checklist": null,
         "thepricedex": "tk-sm-l",
-        "thepricedex_price_list": "tk-sm-l"
+        "thepricedex_price_list": "tk-sm-l",
+        "pkmncards": "sm-trainer-kit-lycanroc",
+        "bulbapedia": "SM_trainer_Kit_(Lycanroc)_(TCG)",
+        "bulbapedia_set_list": "SM_trainer_Kit_(Lycanroc)_(TCG)"
       },
       "source_status": {
         "pokemontcg_api": "unavailable",
@@ -603,7 +708,10 @@
         "official_checklist_pdf": "unavailable",
         "official_pokemon_checklist": "unavailable",
         "thepricedex": "candidate_url",
-        "thepricedex_price_list": "candidate_url"
+        "thepricedex_price_list": "candidate_url",
+        "pkmncards": "candidate_url",
+        "bulbapedia": "candidate_url",
+        "bulbapedia_set_list": "candidate_url"
       },
       "source_totals": {
         "pokemontcg_api": {
@@ -629,7 +737,10 @@
         "official_checklist_pdf": null,
         "official_pokemon_checklist": null,
         "thepricedex": "exu",
-        "thepricedex_price_list": "exu"
+        "thepricedex_price_list": "exu",
+        "pkmncards": "unseen-forces-unown-collection",
+        "bulbapedia": "Unseen_Forces_Unown_Collection_(TCG)",
+        "bulbapedia_set_list": "Unseen_Forces_Unown_Collection_(TCG)"
       },
       "source_status": {
         "pokemontcg_api": "unavailable",
@@ -637,7 +748,10 @@
         "official_checklist_pdf": "unavailable",
         "official_pokemon_checklist": "unavailable",
         "thepricedex": "candidate_url",
-        "thepricedex_price_list": "candidate_url"
+        "thepricedex_price_list": "candidate_url",
+        "pkmncards": "candidate_url",
+        "bulbapedia": "candidate_url",
+        "bulbapedia_set_list": "candidate_url"
       },
       "source_totals": {
         "pokemontcg_api": {
@@ -663,7 +777,10 @@
         "official_checklist_pdf": null,
         "official_pokemon_checklist": null,
         "thepricedex": "wp",
-        "thepricedex_price_list": "wp"
+        "thepricedex_price_list": "wp",
+        "pkmncards": "w-promotional",
+        "bulbapedia": "W_Promotional_(TCG)",
+        "bulbapedia_set_list": "W_Promotional_(TCG)"
       },
       "source_status": {
         "pokemontcg_api": "unavailable",
@@ -671,7 +788,10 @@
         "official_checklist_pdf": "unavailable",
         "official_pokemon_checklist": "unavailable",
         "thepricedex": "candidate_url",
-        "thepricedex_price_list": "candidate_url"
+        "thepricedex_price_list": "candidate_url",
+        "pkmncards": "candidate_url",
+        "bulbapedia": "candidate_url",
+        "bulbapedia_set_list": "candidate_url"
       },
       "source_totals": {
         "pokemontcg_api": {
@@ -697,7 +817,10 @@
         "official_checklist_pdf": null,
         "official_pokemon_checklist": null,
         "thepricedex": "tk-xy-b",
-        "thepricedex_price_list": "tk-xy-b"
+        "thepricedex_price_list": "tk-xy-b",
+        "pkmncards": "xy-trainer-kit-bisharp",
+        "bulbapedia": "XY_trainer_Kit_(Bisharp)_(TCG)",
+        "bulbapedia_set_list": "XY_trainer_Kit_(Bisharp)_(TCG)"
       },
       "source_status": {
         "pokemontcg_api": "unavailable",
@@ -705,7 +828,10 @@
         "official_checklist_pdf": "unavailable",
         "official_pokemon_checklist": "unavailable",
         "thepricedex": "candidate_url",
-        "thepricedex_price_list": "candidate_url"
+        "thepricedex_price_list": "candidate_url",
+        "pkmncards": "candidate_url",
+        "bulbapedia": "candidate_url",
+        "bulbapedia_set_list": "candidate_url"
       },
       "source_totals": {
         "pokemontcg_api": {
@@ -731,7 +857,10 @@
         "official_checklist_pdf": null,
         "official_pokemon_checklist": null,
         "thepricedex": "tk-xy-latia",
-        "thepricedex_price_list": "tk-xy-latia"
+        "thepricedex_price_list": "tk-xy-latia",
+        "pkmncards": "xy-trainer-kit-latias",
+        "bulbapedia": "XY_trainer_Kit_(Latias)_(TCG)",
+        "bulbapedia_set_list": "XY_trainer_Kit_(Latias)_(TCG)"
       },
       "source_status": {
         "pokemontcg_api": "unavailable",
@@ -739,7 +868,10 @@
         "official_checklist_pdf": "unavailable",
         "official_pokemon_checklist": "unavailable",
         "thepricedex": "candidate_url",
-        "thepricedex_price_list": "candidate_url"
+        "thepricedex_price_list": "candidate_url",
+        "pkmncards": "candidate_url",
+        "bulbapedia": "candidate_url",
+        "bulbapedia_set_list": "candidate_url"
       },
       "source_totals": {
         "pokemontcg_api": {
@@ -765,7 +897,10 @@
         "official_checklist_pdf": null,
         "official_pokemon_checklist": null,
         "thepricedex": "tk-xy-latio",
-        "thepricedex_price_list": "tk-xy-latio"
+        "thepricedex_price_list": "tk-xy-latio",
+        "pkmncards": "xy-trainer-kit-latios",
+        "bulbapedia": "XY_trainer_Kit_(Latios)_(TCG)",
+        "bulbapedia_set_list": "XY_trainer_Kit_(Latios)_(TCG)"
       },
       "source_status": {
         "pokemontcg_api": "unavailable",
@@ -773,7 +908,10 @@
         "official_checklist_pdf": "unavailable",
         "official_pokemon_checklist": "unavailable",
         "thepricedex": "candidate_url",
-        "thepricedex_price_list": "candidate_url"
+        "thepricedex_price_list": "candidate_url",
+        "pkmncards": "candidate_url",
+        "bulbapedia": "candidate_url",
+        "bulbapedia_set_list": "candidate_url"
       },
       "source_totals": {
         "pokemontcg_api": {
@@ -799,7 +937,10 @@
         "official_checklist_pdf": null,
         "official_pokemon_checklist": null,
         "thepricedex": "tk-xy-n",
-        "thepricedex_price_list": "tk-xy-n"
+        "thepricedex_price_list": "tk-xy-n",
+        "pkmncards": "xy-trainer-kit-noivern",
+        "bulbapedia": "XY_trainer_Kit_(Noivern)_(TCG)",
+        "bulbapedia_set_list": "XY_trainer_Kit_(Noivern)_(TCG)"
       },
       "source_status": {
         "pokemontcg_api": "unavailable",
@@ -807,7 +948,10 @@
         "official_checklist_pdf": "unavailable",
         "official_pokemon_checklist": "unavailable",
         "thepricedex": "candidate_url",
-        "thepricedex_price_list": "candidate_url"
+        "thepricedex_price_list": "candidate_url",
+        "pkmncards": "candidate_url",
+        "bulbapedia": "candidate_url",
+        "bulbapedia_set_list": "candidate_url"
       },
       "source_totals": {
         "pokemontcg_api": {
@@ -833,7 +977,10 @@
         "official_checklist_pdf": null,
         "official_pokemon_checklist": null,
         "thepricedex": "tk-xy-p",
-        "thepricedex_price_list": "tk-xy-p"
+        "thepricedex_price_list": "tk-xy-p",
+        "pkmncards": "xy-trainer-kit-pikachu-libre",
+        "bulbapedia": "XY_trainer_Kit_(Pikachu_Libre)_(TCG)",
+        "bulbapedia_set_list": "XY_trainer_Kit_(Pikachu_Libre)_(TCG)"
       },
       "source_status": {
         "pokemontcg_api": "unavailable",
@@ -841,7 +988,10 @@
         "official_checklist_pdf": "unavailable",
         "official_pokemon_checklist": "unavailable",
         "thepricedex": "candidate_url",
-        "thepricedex_price_list": "candidate_url"
+        "thepricedex_price_list": "candidate_url",
+        "pkmncards": "candidate_url",
+        "bulbapedia": "candidate_url",
+        "bulbapedia_set_list": "candidate_url"
       },
       "source_totals": {
         "pokemontcg_api": {
@@ -867,7 +1017,10 @@
         "official_checklist_pdf": null,
         "official_pokemon_checklist": null,
         "thepricedex": "tk-xy-su",
-        "thepricedex_price_list": "tk-xy-su"
+        "thepricedex_price_list": "tk-xy-su",
+        "pkmncards": "xy-trainer-kit-suicune",
+        "bulbapedia": "XY_trainer_Kit_(Suicune)_(TCG)",
+        "bulbapedia_set_list": "XY_trainer_Kit_(Suicune)_(TCG)"
       },
       "source_status": {
         "pokemontcg_api": "unavailable",
@@ -875,7 +1028,10 @@
         "official_checklist_pdf": "unavailable",
         "official_pokemon_checklist": "unavailable",
         "thepricedex": "candidate_url",
-        "thepricedex_price_list": "candidate_url"
+        "thepricedex_price_list": "candidate_url",
+        "pkmncards": "candidate_url",
+        "bulbapedia": "candidate_url",
+        "bulbapedia_set_list": "candidate_url"
       },
       "source_totals": {
         "pokemontcg_api": {
@@ -901,7 +1057,10 @@
         "official_checklist_pdf": null,
         "official_pokemon_checklist": null,
         "thepricedex": "tk-xy-sy",
-        "thepricedex_price_list": "tk-xy-sy"
+        "thepricedex_price_list": "tk-xy-sy",
+        "pkmncards": "xy-trainer-kit-sylveon",
+        "bulbapedia": "XY_trainer_Kit_(Sylveon)_(TCG)",
+        "bulbapedia_set_list": "XY_trainer_Kit_(Sylveon)_(TCG)"
       },
       "source_status": {
         "pokemontcg_api": "unavailable",
@@ -909,7 +1068,10 @@
         "official_checklist_pdf": "unavailable",
         "official_pokemon_checklist": "unavailable",
         "thepricedex": "candidate_url",
-        "thepricedex_price_list": "candidate_url"
+        "thepricedex_price_list": "candidate_url",
+        "pkmncards": "candidate_url",
+        "bulbapedia": "candidate_url",
+        "bulbapedia_set_list": "candidate_url"
       },
       "source_totals": {
         "pokemontcg_api": {
@@ -935,7 +1097,10 @@
         "official_checklist_pdf": null,
         "official_pokemon_checklist": null,
         "thepricedex": "tk-xy-w",
-        "thepricedex_price_list": "tk-xy-w"
+        "thepricedex_price_list": "tk-xy-w",
+        "pkmncards": "xy-trainer-kit-wigglytuff",
+        "bulbapedia": "XY_trainer_Kit_(Wigglytuff)_(TCG)",
+        "bulbapedia_set_list": "XY_trainer_Kit_(Wigglytuff)_(TCG)"
       },
       "source_status": {
         "pokemontcg_api": "unavailable",
@@ -943,7 +1108,10 @@
         "official_checklist_pdf": "unavailable",
         "official_pokemon_checklist": "unavailable",
         "thepricedex": "candidate_url",
-        "thepricedex_price_list": "candidate_url"
+        "thepricedex_price_list": "candidate_url",
+        "pkmncards": "candidate_url",
+        "bulbapedia": "candidate_url",
+        "bulbapedia_set_list": "candidate_url"
       },
       "source_totals": {
         "pokemontcg_api": {
@@ -969,7 +1137,10 @@
         "official_checklist_pdf": null,
         "official_pokemon_checklist": null,
         "thepricedex": "xya",
-        "thepricedex_price_list": "xya"
+        "thepricedex_price_list": "xya",
+        "pkmncards": "yellow-a-alternate",
+        "bulbapedia": "Yellow_A_Alternate_(TCG)",
+        "bulbapedia_set_list": "Yellow_A_Alternate_(TCG)"
       },
       "source_status": {
         "pokemontcg_api": "unavailable",
@@ -977,7 +1148,10 @@
         "official_checklist_pdf": "unavailable",
         "official_pokemon_checklist": "unavailable",
         "thepricedex": "candidate_url",
-        "thepricedex_price_list": "candidate_url"
+        "thepricedex_price_list": "candidate_url",
+        "pkmncards": "candidate_url",
+        "bulbapedia": "candidate_url",
+        "bulbapedia_set_list": "candidate_url"
       },
       "source_totals": {
         "pokemontcg_api": {
@@ -1003,7 +1177,10 @@
         "official_checklist_pdf": "base1",
         "official_pokemon_checklist": "base1",
         "thepricedex": "base1",
-        "thepricedex_price_list": "base1"
+        "thepricedex_price_list": "base1",
+        "pkmncards": "base",
+        "bulbapedia": "Base_(TCG)",
+        "bulbapedia_set_list": "Base_(TCG)"
       },
       "source_status": {
         "pokemontcg_api": "available",
@@ -1011,7 +1188,10 @@
         "official_checklist_pdf": "candidate_url",
         "official_pokemon_checklist": "candidate_url",
         "thepricedex": "candidate_url",
-        "thepricedex_price_list": "candidate_url"
+        "thepricedex_price_list": "candidate_url",
+        "pkmncards": "candidate_url",
+        "bulbapedia": "candidate_url",
+        "bulbapedia_set_list": "candidate_url"
       },
       "source_totals": {
         "pokemontcg_api": {
@@ -1037,7 +1217,10 @@
         "official_checklist_pdf": "base2",
         "official_pokemon_checklist": "base2",
         "thepricedex": "base2",
-        "thepricedex_price_list": "base2"
+        "thepricedex_price_list": "base2",
+        "pkmncards": "jungle",
+        "bulbapedia": "Jungle_(TCG)",
+        "bulbapedia_set_list": "Jungle_(TCG)"
       },
       "source_status": {
         "pokemontcg_api": "available",
@@ -1045,7 +1228,10 @@
         "official_checklist_pdf": "candidate_url",
         "official_pokemon_checklist": "candidate_url",
         "thepricedex": "candidate_url",
-        "thepricedex_price_list": "candidate_url"
+        "thepricedex_price_list": "candidate_url",
+        "pkmncards": "candidate_url",
+        "bulbapedia": "candidate_url",
+        "bulbapedia_set_list": "candidate_url"
       },
       "source_totals": {
         "pokemontcg_api": {
@@ -1071,7 +1257,10 @@
         "official_checklist_pdf": "basep",
         "official_pokemon_checklist": "basep",
         "thepricedex": "basep",
-        "thepricedex_price_list": "basep"
+        "thepricedex_price_list": "basep",
+        "pkmncards": "wizards-black-star-promos",
+        "bulbapedia": "Wizards_Black_Star_Promos_(TCG)",
+        "bulbapedia_set_list": "Wizards_Black_Star_Promos_(TCG)"
       },
       "source_status": {
         "pokemontcg_api": "available",
@@ -1079,7 +1268,10 @@
         "official_checklist_pdf": "candidate_url",
         "official_pokemon_checklist": "candidate_url",
         "thepricedex": "candidate_url",
-        "thepricedex_price_list": "candidate_url"
+        "thepricedex_price_list": "candidate_url",
+        "pkmncards": "candidate_url",
+        "bulbapedia": "candidate_url",
+        "bulbapedia_set_list": "candidate_url"
       },
       "source_totals": {
         "pokemontcg_api": {
@@ -1105,7 +1297,10 @@
         "official_checklist_pdf": "base3",
         "official_pokemon_checklist": "base3",
         "thepricedex": "base3",
-        "thepricedex_price_list": "base3"
+        "thepricedex_price_list": "base3",
+        "pkmncards": "fossil",
+        "bulbapedia": "Fossil_(TCG)",
+        "bulbapedia_set_list": "Fossil_(TCG)"
       },
       "source_status": {
         "pokemontcg_api": "available",
@@ -1113,7 +1308,10 @@
         "official_checklist_pdf": "candidate_url",
         "official_pokemon_checklist": "candidate_url",
         "thepricedex": "candidate_url",
-        "thepricedex_price_list": "candidate_url"
+        "thepricedex_price_list": "candidate_url",
+        "pkmncards": "candidate_url",
+        "bulbapedia": "candidate_url",
+        "bulbapedia_set_list": "candidate_url"
       },
       "source_totals": {
         "pokemontcg_api": {
@@ -1139,7 +1337,10 @@
         "official_checklist_pdf": "base4",
         "official_pokemon_checklist": "base4",
         "thepricedex": "base4",
-        "thepricedex_price_list": "base4"
+        "thepricedex_price_list": "base4",
+        "pkmncards": "base-set-2",
+        "bulbapedia": "Base_Set_2_(TCG)",
+        "bulbapedia_set_list": "Base_Set_2_(TCG)"
       },
       "source_status": {
         "pokemontcg_api": "available",
@@ -1147,7 +1348,10 @@
         "official_checklist_pdf": "candidate_url",
         "official_pokemon_checklist": "candidate_url",
         "thepricedex": "candidate_url",
-        "thepricedex_price_list": "candidate_url"
+        "thepricedex_price_list": "candidate_url",
+        "pkmncards": "candidate_url",
+        "bulbapedia": "candidate_url",
+        "bulbapedia_set_list": "candidate_url"
       },
       "source_totals": {
         "pokemontcg_api": {
@@ -1173,7 +1377,10 @@
         "official_checklist_pdf": "base5",
         "official_pokemon_checklist": "base5",
         "thepricedex": "base5",
-        "thepricedex_price_list": "base5"
+        "thepricedex_price_list": "base5",
+        "pkmncards": "team-rocket",
+        "bulbapedia": "Team_Rocket_(TCG)",
+        "bulbapedia_set_list": "Team_Rocket_(TCG)"
       },
       "source_status": {
         "pokemontcg_api": "available",
@@ -1181,7 +1388,10 @@
         "official_checklist_pdf": "candidate_url",
         "official_pokemon_checklist": "candidate_url",
         "thepricedex": "candidate_url",
-        "thepricedex_price_list": "candidate_url"
+        "thepricedex_price_list": "candidate_url",
+        "pkmncards": "candidate_url",
+        "bulbapedia": "candidate_url",
+        "bulbapedia_set_list": "candidate_url"
       },
       "source_totals": {
         "pokemontcg_api": {
@@ -1207,7 +1417,10 @@
         "official_checklist_pdf": "gym1",
         "official_pokemon_checklist": "gym1",
         "thepricedex": "gym1",
-        "thepricedex_price_list": "gym1"
+        "thepricedex_price_list": "gym1",
+        "pkmncards": "gym-heroes",
+        "bulbapedia": "Gym_Heroes_(TCG)",
+        "bulbapedia_set_list": "Gym_Heroes_(TCG)"
       },
       "source_status": {
         "pokemontcg_api": "available",
@@ -1215,7 +1428,10 @@
         "official_checklist_pdf": "candidate_url",
         "official_pokemon_checklist": "candidate_url",
         "thepricedex": "candidate_url",
-        "thepricedex_price_list": "candidate_url"
+        "thepricedex_price_list": "candidate_url",
+        "pkmncards": "candidate_url",
+        "bulbapedia": "candidate_url",
+        "bulbapedia_set_list": "candidate_url"
       },
       "source_totals": {
         "pokemontcg_api": {
@@ -1241,7 +1457,10 @@
         "official_checklist_pdf": "gym2",
         "official_pokemon_checklist": "gym2",
         "thepricedex": "gym2",
-        "thepricedex_price_list": "gym2"
+        "thepricedex_price_list": "gym2",
+        "pkmncards": "gym-challenge",
+        "bulbapedia": "Gym_Challenge_(TCG)",
+        "bulbapedia_set_list": "Gym_Challenge_(TCG)"
       },
       "source_status": {
         "pokemontcg_api": "available",
@@ -1249,7 +1468,10 @@
         "official_checklist_pdf": "candidate_url",
         "official_pokemon_checklist": "candidate_url",
         "thepricedex": "candidate_url",
-        "thepricedex_price_list": "candidate_url"
+        "thepricedex_price_list": "candidate_url",
+        "pkmncards": "candidate_url",
+        "bulbapedia": "candidate_url",
+        "bulbapedia_set_list": "candidate_url"
       },
       "source_totals": {
         "pokemontcg_api": {
@@ -1275,7 +1497,10 @@
         "official_checklist_pdf": "neo1",
         "official_pokemon_checklist": "neo1",
         "thepricedex": "neo1",
-        "thepricedex_price_list": "neo1"
+        "thepricedex_price_list": "neo1",
+        "pkmncards": "neo-genesis",
+        "bulbapedia": "Neo_Genesis_(TCG)",
+        "bulbapedia_set_list": "Neo_Genesis_(TCG)"
       },
       "source_status": {
         "pokemontcg_api": "available",
@@ -1283,7 +1508,10 @@
         "official_checklist_pdf": "candidate_url",
         "official_pokemon_checklist": "candidate_url",
         "thepricedex": "candidate_url",
-        "thepricedex_price_list": "candidate_url"
+        "thepricedex_price_list": "candidate_url",
+        "pkmncards": "candidate_url",
+        "bulbapedia": "candidate_url",
+        "bulbapedia_set_list": "candidate_url"
       },
       "source_totals": {
         "pokemontcg_api": {
@@ -1309,7 +1537,10 @@
         "official_checklist_pdf": "neo2",
         "official_pokemon_checklist": "neo2",
         "thepricedex": "neo2",
-        "thepricedex_price_list": "neo2"
+        "thepricedex_price_list": "neo2",
+        "pkmncards": "neo-discovery",
+        "bulbapedia": "Neo_Discovery_(TCG)",
+        "bulbapedia_set_list": "Neo_Discovery_(TCG)"
       },
       "source_status": {
         "pokemontcg_api": "available",
@@ -1317,7 +1548,10 @@
         "official_checklist_pdf": "candidate_url",
         "official_pokemon_checklist": "candidate_url",
         "thepricedex": "candidate_url",
-        "thepricedex_price_list": "candidate_url"
+        "thepricedex_price_list": "candidate_url",
+        "pkmncards": "candidate_url",
+        "bulbapedia": "candidate_url",
+        "bulbapedia_set_list": "candidate_url"
       },
       "source_totals": {
         "pokemontcg_api": {
@@ -1343,7 +1577,10 @@
         "official_checklist_pdf": "si1",
         "official_pokemon_checklist": "si1",
         "thepricedex": "si1",
-        "thepricedex_price_list": "si1"
+        "thepricedex_price_list": "si1",
+        "pkmncards": "southern-islands",
+        "bulbapedia": "Southern_Islands_(TCG)",
+        "bulbapedia_set_list": "Southern_Islands_(TCG)"
       },
       "source_status": {
         "pokemontcg_api": "available",
@@ -1351,7 +1588,10 @@
         "official_checklist_pdf": "candidate_url",
         "official_pokemon_checklist": "candidate_url",
         "thepricedex": "candidate_url",
-        "thepricedex_price_list": "candidate_url"
+        "thepricedex_price_list": "candidate_url",
+        "pkmncards": "candidate_url",
+        "bulbapedia": "candidate_url",
+        "bulbapedia_set_list": "candidate_url"
       },
       "source_totals": {
         "pokemontcg_api": {
@@ -1377,7 +1617,10 @@
         "official_checklist_pdf": "neo3",
         "official_pokemon_checklist": "neo3",
         "thepricedex": "neo3",
-        "thepricedex_price_list": "neo3"
+        "thepricedex_price_list": "neo3",
+        "pkmncards": "neo-revelation",
+        "bulbapedia": "Neo_Revelation_(TCG)",
+        "bulbapedia_set_list": "Neo_Revelation_(TCG)"
       },
       "source_status": {
         "pokemontcg_api": "available",
@@ -1385,7 +1628,10 @@
         "official_checklist_pdf": "candidate_url",
         "official_pokemon_checklist": "candidate_url",
         "thepricedex": "candidate_url",
-        "thepricedex_price_list": "candidate_url"
+        "thepricedex_price_list": "candidate_url",
+        "pkmncards": "candidate_url",
+        "bulbapedia": "candidate_url",
+        "bulbapedia_set_list": "candidate_url"
       },
       "source_totals": {
         "pokemontcg_api": {
@@ -1411,7 +1657,10 @@
         "official_checklist_pdf": "neo4",
         "official_pokemon_checklist": "neo4",
         "thepricedex": "neo4",
-        "thepricedex_price_list": "neo4"
+        "thepricedex_price_list": "neo4",
+        "pkmncards": "neo-destiny",
+        "bulbapedia": "Neo_Destiny_(TCG)",
+        "bulbapedia_set_list": "Neo_Destiny_(TCG)"
       },
       "source_status": {
         "pokemontcg_api": "available",
@@ -1419,7 +1668,10 @@
         "official_checklist_pdf": "candidate_url",
         "official_pokemon_checklist": "candidate_url",
         "thepricedex": "candidate_url",
-        "thepricedex_price_list": "candidate_url"
+        "thepricedex_price_list": "candidate_url",
+        "pkmncards": "candidate_url",
+        "bulbapedia": "candidate_url",
+        "bulbapedia_set_list": "candidate_url"
       },
       "source_totals": {
         "pokemontcg_api": {
@@ -1445,7 +1697,10 @@
         "official_checklist_pdf": "base6",
         "official_pokemon_checklist": "base6",
         "thepricedex": "base6",
-        "thepricedex_price_list": "base6"
+        "thepricedex_price_list": "base6",
+        "pkmncards": "legendary-collection",
+        "bulbapedia": "Legendary_Collection_(TCG)",
+        "bulbapedia_set_list": "Legendary_Collection_(TCG)"
       },
       "source_status": {
         "pokemontcg_api": "available",
@@ -1453,7 +1708,10 @@
         "official_checklist_pdf": "candidate_url",
         "official_pokemon_checklist": "candidate_url",
         "thepricedex": "candidate_url",
-        "thepricedex_price_list": "candidate_url"
+        "thepricedex_price_list": "candidate_url",
+        "pkmncards": "candidate_url",
+        "bulbapedia": "candidate_url",
+        "bulbapedia_set_list": "candidate_url"
       },
       "source_totals": {
         "pokemontcg_api": {
@@ -1479,7 +1737,10 @@
         "official_checklist_pdf": "ecard1",
         "official_pokemon_checklist": "ecard1",
         "thepricedex": "ecard1",
-        "thepricedex_price_list": "ecard1"
+        "thepricedex_price_list": "ecard1",
+        "pkmncards": "expedition-base-set",
+        "bulbapedia": "Expedition_Base_Set_(TCG)",
+        "bulbapedia_set_list": "Expedition_Base_Set_(TCG)"
       },
       "source_status": {
         "pokemontcg_api": "available",
@@ -1487,7 +1748,10 @@
         "official_checklist_pdf": "candidate_url",
         "official_pokemon_checklist": "candidate_url",
         "thepricedex": "candidate_url",
-        "thepricedex_price_list": "candidate_url"
+        "thepricedex_price_list": "candidate_url",
+        "pkmncards": "candidate_url",
+        "bulbapedia": "candidate_url",
+        "bulbapedia_set_list": "candidate_url"
       },
       "source_totals": {
         "pokemontcg_api": {
@@ -1513,7 +1777,10 @@
         "official_checklist_pdf": "bp",
         "official_pokemon_checklist": "bp",
         "thepricedex": "bp",
-        "thepricedex_price_list": "bp"
+        "thepricedex_price_list": "bp",
+        "pkmncards": "best-of-game",
+        "bulbapedia": "Best_of_Game_(TCG)",
+        "bulbapedia_set_list": "Best_of_Game_(TCG)"
       },
       "source_status": {
         "pokemontcg_api": "available",
@@ -1521,7 +1788,10 @@
         "official_checklist_pdf": "candidate_url",
         "official_pokemon_checklist": "candidate_url",
         "thepricedex": "candidate_url",
-        "thepricedex_price_list": "candidate_url"
+        "thepricedex_price_list": "candidate_url",
+        "pkmncards": "candidate_url",
+        "bulbapedia": "candidate_url",
+        "bulbapedia_set_list": "candidate_url"
       },
       "source_totals": {
         "pokemontcg_api": {
@@ -1547,7 +1817,10 @@
         "official_checklist_pdf": "ecard2",
         "official_pokemon_checklist": "ecard2",
         "thepricedex": "ecard2",
-        "thepricedex_price_list": "ecard2"
+        "thepricedex_price_list": "ecard2",
+        "pkmncards": "aquapolis",
+        "bulbapedia": "Aquapolis_(TCG)",
+        "bulbapedia_set_list": "Aquapolis_(TCG)"
       },
       "source_status": {
         "pokemontcg_api": "available",
@@ -1555,7 +1828,10 @@
         "official_checklist_pdf": "candidate_url",
         "official_pokemon_checklist": "candidate_url",
         "thepricedex": "candidate_url",
-        "thepricedex_price_list": "candidate_url"
+        "thepricedex_price_list": "candidate_url",
+        "pkmncards": "candidate_url",
+        "bulbapedia": "candidate_url",
+        "bulbapedia_set_list": "candidate_url"
       },
       "source_totals": {
         "pokemontcg_api": {
@@ -1581,7 +1857,10 @@
         "official_checklist_pdf": "ecard3",
         "official_pokemon_checklist": "ecard3",
         "thepricedex": "ecard3",
-        "thepricedex_price_list": "ecard3"
+        "thepricedex_price_list": "ecard3",
+        "pkmncards": "skyridge",
+        "bulbapedia": "Skyridge_(TCG)",
+        "bulbapedia_set_list": "Skyridge_(TCG)"
       },
       "source_status": {
         "pokemontcg_api": "available",
@@ -1589,7 +1868,10 @@
         "official_checklist_pdf": "candidate_url",
         "official_pokemon_checklist": "candidate_url",
         "thepricedex": "candidate_url",
-        "thepricedex_price_list": "candidate_url"
+        "thepricedex_price_list": "candidate_url",
+        "pkmncards": "candidate_url",
+        "bulbapedia": "candidate_url",
+        "bulbapedia_set_list": "candidate_url"
       },
       "source_totals": {
         "pokemontcg_api": {
@@ -1615,7 +1897,10 @@
         "official_checklist_pdf": "ex1",
         "official_pokemon_checklist": "ex1",
         "thepricedex": "ex1",
-        "thepricedex_price_list": "ex1"
+        "thepricedex_price_list": "ex1",
+        "pkmncards": "ruby-sapphire",
+        "bulbapedia": "Ruby_&_Sapphire_(TCG)",
+        "bulbapedia_set_list": "Ruby_&_Sapphire_(TCG)"
       },
       "source_status": {
         "pokemontcg_api": "available",
@@ -1623,7 +1908,10 @@
         "official_checklist_pdf": "candidate_url",
         "official_pokemon_checklist": "candidate_url",
         "thepricedex": "candidate_url",
-        "thepricedex_price_list": "candidate_url"
+        "thepricedex_price_list": "candidate_url",
+        "pkmncards": "candidate_url",
+        "bulbapedia": "candidate_url",
+        "bulbapedia_set_list": "candidate_url"
       },
       "source_totals": {
         "pokemontcg_api": {
@@ -1649,7 +1937,10 @@
         "official_checklist_pdf": "ex2",
         "official_pokemon_checklist": "ex2",
         "thepricedex": "ex2",
-        "thepricedex_price_list": "ex2"
+        "thepricedex_price_list": "ex2",
+        "pkmncards": "sandstorm",
+        "bulbapedia": "Sandstorm_(TCG)",
+        "bulbapedia_set_list": "Sandstorm_(TCG)"
       },
       "source_status": {
         "pokemontcg_api": "available",
@@ -1657,7 +1948,10 @@
         "official_checklist_pdf": "candidate_url",
         "official_pokemon_checklist": "candidate_url",
         "thepricedex": "candidate_url",
-        "thepricedex_price_list": "candidate_url"
+        "thepricedex_price_list": "candidate_url",
+        "pkmncards": "candidate_url",
+        "bulbapedia": "candidate_url",
+        "bulbapedia_set_list": "candidate_url"
       },
       "source_totals": {
         "pokemontcg_api": {
@@ -1683,7 +1977,10 @@
         "official_checklist_pdf": "np",
         "official_pokemon_checklist": "np",
         "thepricedex": "np",
-        "thepricedex_price_list": "np"
+        "thepricedex_price_list": "np",
+        "pkmncards": "nintendo-promos",
+        "bulbapedia": "Nintendo_Black_Star_Promos_(TCG)",
+        "bulbapedia_set_list": "Nintendo_Black_Star_Promos_(TCG)"
       },
       "source_status": {
         "pokemontcg_api": "available",
@@ -1691,7 +1988,10 @@
         "official_checklist_pdf": "candidate_url",
         "official_pokemon_checklist": "candidate_url",
         "thepricedex": "candidate_url",
-        "thepricedex_price_list": "candidate_url"
+        "thepricedex_price_list": "candidate_url",
+        "pkmncards": "candidate_url",
+        "bulbapedia": "candidate_url",
+        "bulbapedia_set_list": "candidate_url"
       },
       "source_totals": {
         "pokemontcg_api": {
@@ -1717,7 +2017,10 @@
         "official_checklist_pdf": "ex3",
         "official_pokemon_checklist": "ex3",
         "thepricedex": "ex3",
-        "thepricedex_price_list": "ex3"
+        "thepricedex_price_list": "ex3",
+        "pkmncards": "dragon",
+        "bulbapedia": "Dragon_(TCG)",
+        "bulbapedia_set_list": "Dragon_(TCG)"
       },
       "source_status": {
         "pokemontcg_api": "available",
@@ -1725,7 +2028,10 @@
         "official_checklist_pdf": "candidate_url",
         "official_pokemon_checklist": "candidate_url",
         "thepricedex": "candidate_url",
-        "thepricedex_price_list": "candidate_url"
+        "thepricedex_price_list": "candidate_url",
+        "pkmncards": "candidate_url",
+        "bulbapedia": "candidate_url",
+        "bulbapedia_set_list": "candidate_url"
       },
       "source_totals": {
         "pokemontcg_api": {
@@ -1751,7 +2057,10 @@
         "official_checklist_pdf": "ex4",
         "official_pokemon_checklist": "ex4",
         "thepricedex": "ex4",
-        "thepricedex_price_list": "ex4"
+        "thepricedex_price_list": "ex4",
+        "pkmncards": "team-magma-vs-team-aqua",
+        "bulbapedia": "Team_Magma_vs_Team_Aqua_(TCG)",
+        "bulbapedia_set_list": "Team_Magma_vs_Team_Aqua_(TCG)"
       },
       "source_status": {
         "pokemontcg_api": "available",
@@ -1759,7 +2068,10 @@
         "official_checklist_pdf": "candidate_url",
         "official_pokemon_checklist": "candidate_url",
         "thepricedex": "candidate_url",
-        "thepricedex_price_list": "candidate_url"
+        "thepricedex_price_list": "candidate_url",
+        "pkmncards": "candidate_url",
+        "bulbapedia": "candidate_url",
+        "bulbapedia_set_list": "candidate_url"
       },
       "source_totals": {
         "pokemontcg_api": {
@@ -1785,7 +2097,10 @@
         "official_checklist_pdf": "tk1a",
         "official_pokemon_checklist": "tk1a",
         "thepricedex": "tk1a",
-        "thepricedex_price_list": "tk1a"
+        "thepricedex_price_list": "tk1a",
+        "pkmncards": "ex-trainer-kit-latias",
+        "bulbapedia": "EX_Trainer_Kit_Latias_(TCG)",
+        "bulbapedia_set_list": "EX_Trainer_Kit_Latias_(TCG)"
       },
       "source_status": {
         "pokemontcg_api": "available",
@@ -1793,7 +2108,10 @@
         "official_checklist_pdf": "candidate_url",
         "official_pokemon_checklist": "candidate_url",
         "thepricedex": "candidate_url",
-        "thepricedex_price_list": "candidate_url"
+        "thepricedex_price_list": "candidate_url",
+        "pkmncards": "candidate_url",
+        "bulbapedia": "candidate_url",
+        "bulbapedia_set_list": "candidate_url"
       },
       "source_totals": {
         "pokemontcg_api": {
@@ -1819,7 +2137,10 @@
         "official_checklist_pdf": "tk1b",
         "official_pokemon_checklist": "tk1b",
         "thepricedex": "tk1b",
-        "thepricedex_price_list": "tk1b"
+        "thepricedex_price_list": "tk1b",
+        "pkmncards": "ex-trainer-kit-latios",
+        "bulbapedia": "EX_Trainer_Kit_Latios_(TCG)",
+        "bulbapedia_set_list": "EX_Trainer_Kit_Latios_(TCG)"
       },
       "source_status": {
         "pokemontcg_api": "available",
@@ -1827,7 +2148,10 @@
         "official_checklist_pdf": "candidate_url",
         "official_pokemon_checklist": "candidate_url",
         "thepricedex": "candidate_url",
-        "thepricedex_price_list": "candidate_url"
+        "thepricedex_price_list": "candidate_url",
+        "pkmncards": "candidate_url",
+        "bulbapedia": "candidate_url",
+        "bulbapedia_set_list": "candidate_url"
       },
       "source_totals": {
         "pokemontcg_api": {
@@ -1853,7 +2177,10 @@
         "official_checklist_pdf": "ex5",
         "official_pokemon_checklist": "ex5",
         "thepricedex": "ex5",
-        "thepricedex_price_list": "ex5"
+        "thepricedex_price_list": "ex5",
+        "pkmncards": "hidden-legends",
+        "bulbapedia": "Hidden_Legends_(TCG)",
+        "bulbapedia_set_list": "Hidden_Legends_(TCG)"
       },
       "source_status": {
         "pokemontcg_api": "available",
@@ -1861,7 +2188,10 @@
         "official_checklist_pdf": "candidate_url",
         "official_pokemon_checklist": "candidate_url",
         "thepricedex": "candidate_url",
-        "thepricedex_price_list": "candidate_url"
+        "thepricedex_price_list": "candidate_url",
+        "pkmncards": "candidate_url",
+        "bulbapedia": "candidate_url",
+        "bulbapedia_set_list": "candidate_url"
       },
       "source_totals": {
         "pokemontcg_api": {
@@ -1887,7 +2217,10 @@
         "official_checklist_pdf": "ex6",
         "official_pokemon_checklist": "ex6",
         "thepricedex": "ex6",
-        "thepricedex_price_list": "ex6"
+        "thepricedex_price_list": "ex6",
+        "pkmncards": "firered-leafgreen",
+        "bulbapedia": "FireRed_&_LeafGreen_(TCG)",
+        "bulbapedia_set_list": "FireRed_&_LeafGreen_(TCG)"
       },
       "source_status": {
         "pokemontcg_api": "available",
@@ -1895,7 +2228,10 @@
         "official_checklist_pdf": "candidate_url",
         "official_pokemon_checklist": "candidate_url",
         "thepricedex": "candidate_url",
-        "thepricedex_price_list": "candidate_url"
+        "thepricedex_price_list": "candidate_url",
+        "pkmncards": "candidate_url",
+        "bulbapedia": "candidate_url",
+        "bulbapedia_set_list": "candidate_url"
       },
       "source_totals": {
         "pokemontcg_api": {
@@ -1921,7 +2257,10 @@
         "official_checklist_pdf": "pop1",
         "official_pokemon_checklist": "pop1",
         "thepricedex": "pop1",
-        "thepricedex_price_list": "pop1"
+        "thepricedex_price_list": "pop1",
+        "pkmncards": "pop-series-1",
+        "bulbapedia": "POP_Series_1_(TCG)",
+        "bulbapedia_set_list": "POP_Series_1_(TCG)"
       },
       "source_status": {
         "pokemontcg_api": "available",
@@ -1929,7 +2268,10 @@
         "official_checklist_pdf": "candidate_url",
         "official_pokemon_checklist": "candidate_url",
         "thepricedex": "candidate_url",
-        "thepricedex_price_list": "candidate_url"
+        "thepricedex_price_list": "candidate_url",
+        "pkmncards": "candidate_url",
+        "bulbapedia": "candidate_url",
+        "bulbapedia_set_list": "candidate_url"
       },
       "source_totals": {
         "pokemontcg_api": {
@@ -1955,7 +2297,10 @@
         "official_checklist_pdf": "ex7",
         "official_pokemon_checklist": "ex7",
         "thepricedex": "ex7",
-        "thepricedex_price_list": "ex7"
+        "thepricedex_price_list": "ex7",
+        "pkmncards": "team-rocket-returns",
+        "bulbapedia": "Team_Rocket_Returns_(TCG)",
+        "bulbapedia_set_list": "Team_Rocket_Returns_(TCG)"
       },
       "source_status": {
         "pokemontcg_api": "available",
@@ -1963,7 +2308,10 @@
         "official_checklist_pdf": "candidate_url",
         "official_pokemon_checklist": "candidate_url",
         "thepricedex": "candidate_url",
-        "thepricedex_price_list": "candidate_url"
+        "thepricedex_price_list": "candidate_url",
+        "pkmncards": "candidate_url",
+        "bulbapedia": "candidate_url",
+        "bulbapedia_set_list": "candidate_url"
       },
       "source_totals": {
         "pokemontcg_api": {
@@ -1989,7 +2337,10 @@
         "official_checklist_pdf": "ex8",
         "official_pokemon_checklist": "ex8",
         "thepricedex": "ex8",
-        "thepricedex_price_list": "ex8"
+        "thepricedex_price_list": "ex8",
+        "pkmncards": "deoxys",
+        "bulbapedia": "Deoxys_(TCG)",
+        "bulbapedia_set_list": "Deoxys_(TCG)"
       },
       "source_status": {
         "pokemontcg_api": "available",
@@ -1997,7 +2348,10 @@
         "official_checklist_pdf": "candidate_url",
         "official_pokemon_checklist": "candidate_url",
         "thepricedex": "candidate_url",
-        "thepricedex_price_list": "candidate_url"
+        "thepricedex_price_list": "candidate_url",
+        "pkmncards": "candidate_url",
+        "bulbapedia": "candidate_url",
+        "bulbapedia_set_list": "candidate_url"
       },
       "source_totals": {
         "pokemontcg_api": {
@@ -2023,7 +2377,10 @@
         "official_checklist_pdf": "ex9",
         "official_pokemon_checklist": "ex9",
         "thepricedex": "ex9",
-        "thepricedex_price_list": "ex9"
+        "thepricedex_price_list": "ex9",
+        "pkmncards": "emerald",
+        "bulbapedia": "Emerald_(TCG)",
+        "bulbapedia_set_list": "Emerald_(TCG)"
       },
       "source_status": {
         "pokemontcg_api": "available",
@@ -2031,7 +2388,10 @@
         "official_checklist_pdf": "candidate_url",
         "official_pokemon_checklist": "candidate_url",
         "thepricedex": "candidate_url",
-        "thepricedex_price_list": "candidate_url"
+        "thepricedex_price_list": "candidate_url",
+        "pkmncards": "candidate_url",
+        "bulbapedia": "candidate_url",
+        "bulbapedia_set_list": "candidate_url"
       },
       "source_totals": {
         "pokemontcg_api": {
@@ -2057,7 +2417,10 @@
         "official_checklist_pdf": "pop2",
         "official_pokemon_checklist": "pop2",
         "thepricedex": "pop2",
-        "thepricedex_price_list": "pop2"
+        "thepricedex_price_list": "pop2",
+        "pkmncards": "pop-series-2",
+        "bulbapedia": "POP_Series_2_(TCG)",
+        "bulbapedia_set_list": "POP_Series_2_(TCG)"
       },
       "source_status": {
         "pokemontcg_api": "available",
@@ -2065,7 +2428,10 @@
         "official_checklist_pdf": "candidate_url",
         "official_pokemon_checklist": "candidate_url",
         "thepricedex": "candidate_url",
-        "thepricedex_price_list": "candidate_url"
+        "thepricedex_price_list": "candidate_url",
+        "pkmncards": "candidate_url",
+        "bulbapedia": "candidate_url",
+        "bulbapedia_set_list": "candidate_url"
       },
       "source_totals": {
         "pokemontcg_api": {
@@ -2091,7 +2457,10 @@
         "official_checklist_pdf": "ex10",
         "official_pokemon_checklist": "ex10",
         "thepricedex": "ex10",
-        "thepricedex_price_list": "ex10"
+        "thepricedex_price_list": "ex10",
+        "pkmncards": "unseen-forces",
+        "bulbapedia": "Unseen_Forces_(TCG)",
+        "bulbapedia_set_list": "Unseen_Forces_(TCG)"
       },
       "source_status": {
         "pokemontcg_api": "available",
@@ -2099,7 +2468,10 @@
         "official_checklist_pdf": "candidate_url",
         "official_pokemon_checklist": "candidate_url",
         "thepricedex": "candidate_url",
-        "thepricedex_price_list": "candidate_url"
+        "thepricedex_price_list": "candidate_url",
+        "pkmncards": "candidate_url",
+        "bulbapedia": "candidate_url",
+        "bulbapedia_set_list": "candidate_url"
       },
       "source_totals": {
         "pokemontcg_api": {
@@ -2125,7 +2497,10 @@
         "official_checklist_pdf": "ex11",
         "official_pokemon_checklist": "ex11",
         "thepricedex": "ex11",
-        "thepricedex_price_list": "ex11"
+        "thepricedex_price_list": "ex11",
+        "pkmncards": "delta-species",
+        "bulbapedia": "Delta_Species_(TCG)",
+        "bulbapedia_set_list": "Delta_Species_(TCG)"
       },
       "source_status": {
         "pokemontcg_api": "available",
@@ -2133,7 +2508,10 @@
         "official_checklist_pdf": "candidate_url",
         "official_pokemon_checklist": "candidate_url",
         "thepricedex": "candidate_url",
-        "thepricedex_price_list": "candidate_url"
+        "thepricedex_price_list": "candidate_url",
+        "pkmncards": "candidate_url",
+        "bulbapedia": "candidate_url",
+        "bulbapedia_set_list": "candidate_url"
       },
       "source_totals": {
         "pokemontcg_api": {
@@ -2159,7 +2537,10 @@
         "official_checklist_pdf": "ex12",
         "official_pokemon_checklist": "ex12",
         "thepricedex": "ex12",
-        "thepricedex_price_list": "ex12"
+        "thepricedex_price_list": "ex12",
+        "pkmncards": "legend-maker",
+        "bulbapedia": "Legend_Maker_(TCG)",
+        "bulbapedia_set_list": "Legend_Maker_(TCG)"
       },
       "source_status": {
         "pokemontcg_api": "available",
@@ -2167,7 +2548,10 @@
         "official_checklist_pdf": "candidate_url",
         "official_pokemon_checklist": "candidate_url",
         "thepricedex": "candidate_url",
-        "thepricedex_price_list": "candidate_url"
+        "thepricedex_price_list": "candidate_url",
+        "pkmncards": "candidate_url",
+        "bulbapedia": "candidate_url",
+        "bulbapedia_set_list": "candidate_url"
       },
       "source_totals": {
         "pokemontcg_api": {
@@ -2193,7 +2577,10 @@
         "official_checklist_pdf": "tk2b",
         "official_pokemon_checklist": "tk2b",
         "thepricedex": "tk2b",
-        "thepricedex_price_list": "tk2b"
+        "thepricedex_price_list": "tk2b",
+        "pkmncards": "ex-trainer-kit-2-minun",
+        "bulbapedia": "EX_Trainer_Kit_2_Minun_(TCG)",
+        "bulbapedia_set_list": "EX_Trainer_Kit_2_Minun_(TCG)"
       },
       "source_status": {
         "pokemontcg_api": "available",
@@ -2201,7 +2588,10 @@
         "official_checklist_pdf": "candidate_url",
         "official_pokemon_checklist": "candidate_url",
         "thepricedex": "candidate_url",
-        "thepricedex_price_list": "candidate_url"
+        "thepricedex_price_list": "candidate_url",
+        "pkmncards": "candidate_url",
+        "bulbapedia": "candidate_url",
+        "bulbapedia_set_list": "candidate_url"
       },
       "source_totals": {
         "pokemontcg_api": {
@@ -2227,7 +2617,10 @@
         "official_checklist_pdf": "tk2a",
         "official_pokemon_checklist": "tk2a",
         "thepricedex": "tk2a",
-        "thepricedex_price_list": "tk2a"
+        "thepricedex_price_list": "tk2a",
+        "pkmncards": "ex-trainer-kit-2-plusle",
+        "bulbapedia": "EX_Trainer_Kit_2_Plusle_(TCG)",
+        "bulbapedia_set_list": "EX_Trainer_Kit_2_Plusle_(TCG)"
       },
       "source_status": {
         "pokemontcg_api": "available",
@@ -2235,7 +2628,10 @@
         "official_checklist_pdf": "candidate_url",
         "official_pokemon_checklist": "candidate_url",
         "thepricedex": "candidate_url",
-        "thepricedex_price_list": "candidate_url"
+        "thepricedex_price_list": "candidate_url",
+        "pkmncards": "candidate_url",
+        "bulbapedia": "candidate_url",
+        "bulbapedia_set_list": "candidate_url"
       },
       "source_totals": {
         "pokemontcg_api": {
@@ -2261,7 +2657,10 @@
         "official_checklist_pdf": "pop3",
         "official_pokemon_checklist": "pop3",
         "thepricedex": "pop3",
-        "thepricedex_price_list": "pop3"
+        "thepricedex_price_list": "pop3",
+        "pkmncards": "pop-series-3",
+        "bulbapedia": "POP_Series_3_(TCG)",
+        "bulbapedia_set_list": "POP_Series_3_(TCG)"
       },
       "source_status": {
         "pokemontcg_api": "available",
@@ -2269,7 +2668,10 @@
         "official_checklist_pdf": "candidate_url",
         "official_pokemon_checklist": "candidate_url",
         "thepricedex": "candidate_url",
-        "thepricedex_price_list": "candidate_url"
+        "thepricedex_price_list": "candidate_url",
+        "pkmncards": "candidate_url",
+        "bulbapedia": "candidate_url",
+        "bulbapedia_set_list": "candidate_url"
       },
       "source_totals": {
         "pokemontcg_api": {
@@ -2295,7 +2697,10 @@
         "official_checklist_pdf": "ex13",
         "official_pokemon_checklist": "ex13",
         "thepricedex": "ex13",
-        "thepricedex_price_list": "ex13"
+        "thepricedex_price_list": "ex13",
+        "pkmncards": "holon-phantoms",
+        "bulbapedia": "Holon_Phantoms_(TCG)",
+        "bulbapedia_set_list": "Holon_Phantoms_(TCG)"
       },
       "source_status": {
         "pokemontcg_api": "available",
@@ -2303,7 +2708,10 @@
         "official_checklist_pdf": "candidate_url",
         "official_pokemon_checklist": "candidate_url",
         "thepricedex": "candidate_url",
-        "thepricedex_price_list": "candidate_url"
+        "thepricedex_price_list": "candidate_url",
+        "pkmncards": "candidate_url",
+        "bulbapedia": "candidate_url",
+        "bulbapedia_set_list": "candidate_url"
       },
       "source_totals": {
         "pokemontcg_api": {
@@ -2329,7 +2737,10 @@
         "official_checklist_pdf": "ex14",
         "official_pokemon_checklist": "ex14",
         "thepricedex": "ex14",
-        "thepricedex_price_list": "ex14"
+        "thepricedex_price_list": "ex14",
+        "pkmncards": "crystal-guardians",
+        "bulbapedia": "Crystal_Guardians_(TCG)",
+        "bulbapedia_set_list": "Crystal_Guardians_(TCG)"
       },
       "source_status": {
         "pokemontcg_api": "available",
@@ -2337,7 +2748,10 @@
         "official_checklist_pdf": "candidate_url",
         "official_pokemon_checklist": "candidate_url",
         "thepricedex": "candidate_url",
-        "thepricedex_price_list": "candidate_url"
+        "thepricedex_price_list": "candidate_url",
+        "pkmncards": "candidate_url",
+        "bulbapedia": "candidate_url",
+        "bulbapedia_set_list": "candidate_url"
       },
       "source_totals": {
         "pokemontcg_api": {
@@ -2363,7 +2777,10 @@
         "official_checklist_pdf": "pop4",
         "official_pokemon_checklist": "pop4",
         "thepricedex": "pop4",
-        "thepricedex_price_list": "pop4"
+        "thepricedex_price_list": "pop4",
+        "pkmncards": "pop-series-4",
+        "bulbapedia": "POP_Series_4_(TCG)",
+        "bulbapedia_set_list": "POP_Series_4_(TCG)"
       },
       "source_status": {
         "pokemontcg_api": "available",
@@ -2371,7 +2788,10 @@
         "official_checklist_pdf": "candidate_url",
         "official_pokemon_checklist": "candidate_url",
         "thepricedex": "candidate_url",
-        "thepricedex_price_list": "candidate_url"
+        "thepricedex_price_list": "candidate_url",
+        "pkmncards": "candidate_url",
+        "bulbapedia": "candidate_url",
+        "bulbapedia_set_list": "candidate_url"
       },
       "source_totals": {
         "pokemontcg_api": {
@@ -2397,7 +2817,10 @@
         "official_checklist_pdf": "ex15",
         "official_pokemon_checklist": "ex15",
         "thepricedex": "ex15",
-        "thepricedex_price_list": "ex15"
+        "thepricedex_price_list": "ex15",
+        "pkmncards": "dragon-frontiers",
+        "bulbapedia": "Dragon_Frontiers_(TCG)",
+        "bulbapedia_set_list": "Dragon_Frontiers_(TCG)"
       },
       "source_status": {
         "pokemontcg_api": "available",
@@ -2405,7 +2828,10 @@
         "official_checklist_pdf": "candidate_url",
         "official_pokemon_checklist": "candidate_url",
         "thepricedex": "candidate_url",
-        "thepricedex_price_list": "candidate_url"
+        "thepricedex_price_list": "candidate_url",
+        "pkmncards": "candidate_url",
+        "bulbapedia": "candidate_url",
+        "bulbapedia_set_list": "candidate_url"
       },
       "source_totals": {
         "pokemontcg_api": {
@@ -2431,7 +2857,10 @@
         "official_checklist_pdf": "ex16",
         "official_pokemon_checklist": "ex16",
         "thepricedex": "ex16",
-        "thepricedex_price_list": "ex16"
+        "thepricedex_price_list": "ex16",
+        "pkmncards": "power-keepers",
+        "bulbapedia": "Power_Keepers_(TCG)",
+        "bulbapedia_set_list": "Power_Keepers_(TCG)"
       },
       "source_status": {
         "pokemontcg_api": "available",
@@ -2439,7 +2868,10 @@
         "official_checklist_pdf": "candidate_url",
         "official_pokemon_checklist": "candidate_url",
         "thepricedex": "candidate_url",
-        "thepricedex_price_list": "candidate_url"
+        "thepricedex_price_list": "candidate_url",
+        "pkmncards": "candidate_url",
+        "bulbapedia": "candidate_url",
+        "bulbapedia_set_list": "candidate_url"
       },
       "source_totals": {
         "pokemontcg_api": {
@@ -2465,7 +2897,10 @@
         "official_checklist_pdf": "pop5",
         "official_pokemon_checklist": "pop5",
         "thepricedex": "pop5",
-        "thepricedex_price_list": "pop5"
+        "thepricedex_price_list": "pop5",
+        "pkmncards": "pop-series-5",
+        "bulbapedia": "POP_Series_5_(TCG)",
+        "bulbapedia_set_list": "POP_Series_5_(TCG)"
       },
       "source_status": {
         "pokemontcg_api": "available",
@@ -2473,7 +2908,10 @@
         "official_checklist_pdf": "candidate_url",
         "official_pokemon_checklist": "candidate_url",
         "thepricedex": "candidate_url",
-        "thepricedex_price_list": "candidate_url"
+        "thepricedex_price_list": "candidate_url",
+        "pkmncards": "candidate_url",
+        "bulbapedia": "candidate_url",
+        "bulbapedia_set_list": "candidate_url"
       },
       "source_totals": {
         "pokemontcg_api": {
@@ -2499,7 +2937,10 @@
         "official_checklist_pdf": "dp1",
         "official_pokemon_checklist": "dp1",
         "thepricedex": "dp1",
-        "thepricedex_price_list": "dp1"
+        "thepricedex_price_list": "dp1",
+        "pkmncards": "diamond-pearl",
+        "bulbapedia": "Diamond_&_Pearl_(TCG)",
+        "bulbapedia_set_list": "Diamond_&_Pearl_(TCG)"
       },
       "source_status": {
         "pokemontcg_api": "available",
@@ -2507,7 +2948,10 @@
         "official_checklist_pdf": "candidate_url",
         "official_pokemon_checklist": "candidate_url",
         "thepricedex": "candidate_url",
-        "thepricedex_price_list": "candidate_url"
+        "thepricedex_price_list": "candidate_url",
+        "pkmncards": "candidate_url",
+        "bulbapedia": "candidate_url",
+        "bulbapedia_set_list": "candidate_url"
       },
       "source_totals": {
         "pokemontcg_api": {
@@ -2533,7 +2977,10 @@
         "official_checklist_pdf": "dpp",
         "official_pokemon_checklist": "dpp",
         "thepricedex": "dpp",
-        "thepricedex_price_list": "dpp"
+        "thepricedex_price_list": "dpp",
+        "pkmncards": "diamond-pearl-promos",
+        "bulbapedia": "DP_Black_Star_Promos_(TCG)",
+        "bulbapedia_set_list": "DP_Black_Star_Promos_(TCG)"
       },
       "source_status": {
         "pokemontcg_api": "available",
@@ -2541,7 +2988,10 @@
         "official_checklist_pdf": "candidate_url",
         "official_pokemon_checklist": "candidate_url",
         "thepricedex": "candidate_url",
-        "thepricedex_price_list": "candidate_url"
+        "thepricedex_price_list": "candidate_url",
+        "pkmncards": "candidate_url",
+        "bulbapedia": "candidate_url",
+        "bulbapedia_set_list": "candidate_url"
       },
       "source_totals": {
         "pokemontcg_api": {
@@ -2567,7 +3017,10 @@
         "official_checklist_pdf": "dp2",
         "official_pokemon_checklist": "dp2",
         "thepricedex": "dp2",
-        "thepricedex_price_list": "dp2"
+        "thepricedex_price_list": "dp2",
+        "pkmncards": "mysterious-treasures",
+        "bulbapedia": "Mysterious_Treasures_(TCG)",
+        "bulbapedia_set_list": "Mysterious_Treasures_(TCG)"
       },
       "source_status": {
         "pokemontcg_api": "available",
@@ -2575,7 +3028,10 @@
         "official_checklist_pdf": "candidate_url",
         "official_pokemon_checklist": "candidate_url",
         "thepricedex": "candidate_url",
-        "thepricedex_price_list": "candidate_url"
+        "thepricedex_price_list": "candidate_url",
+        "pkmncards": "candidate_url",
+        "bulbapedia": "candidate_url",
+        "bulbapedia_set_list": "candidate_url"
       },
       "source_totals": {
         "pokemontcg_api": {
@@ -2601,7 +3057,10 @@
         "official_checklist_pdf": "pop6",
         "official_pokemon_checklist": "pop6",
         "thepricedex": "pop6",
-        "thepricedex_price_list": "pop6"
+        "thepricedex_price_list": "pop6",
+        "pkmncards": "pop-series-6",
+        "bulbapedia": "POP_Series_6_(TCG)",
+        "bulbapedia_set_list": "POP_Series_6_(TCG)"
       },
       "source_status": {
         "pokemontcg_api": "available",
@@ -2609,7 +3068,10 @@
         "official_checklist_pdf": "candidate_url",
         "official_pokemon_checklist": "candidate_url",
         "thepricedex": "candidate_url",
-        "thepricedex_price_list": "candidate_url"
+        "thepricedex_price_list": "candidate_url",
+        "pkmncards": "candidate_url",
+        "bulbapedia": "candidate_url",
+        "bulbapedia_set_list": "candidate_url"
       },
       "source_totals": {
         "pokemontcg_api": {
@@ -2635,7 +3097,10 @@
         "official_checklist_pdf": "dp3",
         "official_pokemon_checklist": "dp3",
         "thepricedex": "dp3",
-        "thepricedex_price_list": "dp3"
+        "thepricedex_price_list": "dp3",
+        "pkmncards": "secret-wonders",
+        "bulbapedia": "Secret_Wonders_(TCG)",
+        "bulbapedia_set_list": "Secret_Wonders_(TCG)"
       },
       "source_status": {
         "pokemontcg_api": "available",
@@ -2643,7 +3108,10 @@
         "official_checklist_pdf": "candidate_url",
         "official_pokemon_checklist": "candidate_url",
         "thepricedex": "candidate_url",
-        "thepricedex_price_list": "candidate_url"
+        "thepricedex_price_list": "candidate_url",
+        "pkmncards": "candidate_url",
+        "bulbapedia": "candidate_url",
+        "bulbapedia_set_list": "candidate_url"
       },
       "source_totals": {
         "pokemontcg_api": {
@@ -2669,7 +3137,10 @@
         "official_checklist_pdf": "dp4",
         "official_pokemon_checklist": "dp4",
         "thepricedex": "dp4",
-        "thepricedex_price_list": "dp4"
+        "thepricedex_price_list": "dp4",
+        "pkmncards": "great-encounters",
+        "bulbapedia": "Great_Encounters_(TCG)",
+        "bulbapedia_set_list": "Great_Encounters_(TCG)"
       },
       "source_status": {
         "pokemontcg_api": "available",
@@ -2677,7 +3148,10 @@
         "official_checklist_pdf": "candidate_url",
         "official_pokemon_checklist": "candidate_url",
         "thepricedex": "candidate_url",
-        "thepricedex_price_list": "candidate_url"
+        "thepricedex_price_list": "candidate_url",
+        "pkmncards": "candidate_url",
+        "bulbapedia": "candidate_url",
+        "bulbapedia_set_list": "candidate_url"
       },
       "source_totals": {
         "pokemontcg_api": {
@@ -2703,7 +3177,10 @@
         "official_checklist_pdf": "pop7",
         "official_pokemon_checklist": "pop7",
         "thepricedex": "pop7",
-        "thepricedex_price_list": "pop7"
+        "thepricedex_price_list": "pop7",
+        "pkmncards": "pop-series-7",
+        "bulbapedia": "POP_Series_7_(TCG)",
+        "bulbapedia_set_list": "POP_Series_7_(TCG)"
       },
       "source_status": {
         "pokemontcg_api": "available",
@@ -2711,7 +3188,10 @@
         "official_checklist_pdf": "candidate_url",
         "official_pokemon_checklist": "candidate_url",
         "thepricedex": "candidate_url",
-        "thepricedex_price_list": "candidate_url"
+        "thepricedex_price_list": "candidate_url",
+        "pkmncards": "candidate_url",
+        "bulbapedia": "candidate_url",
+        "bulbapedia_set_list": "candidate_url"
       },
       "source_totals": {
         "pokemontcg_api": {
@@ -2737,7 +3217,10 @@
         "official_checklist_pdf": "dp5",
         "official_pokemon_checklist": "dp5",
         "thepricedex": "dp5",
-        "thepricedex_price_list": "dp5"
+        "thepricedex_price_list": "dp5",
+        "pkmncards": "majestic-dawn",
+        "bulbapedia": "Majestic_Dawn_(TCG)",
+        "bulbapedia_set_list": "Majestic_Dawn_(TCG)"
       },
       "source_status": {
         "pokemontcg_api": "available",
@@ -2745,7 +3228,10 @@
         "official_checklist_pdf": "candidate_url",
         "official_pokemon_checklist": "candidate_url",
         "thepricedex": "candidate_url",
-        "thepricedex_price_list": "candidate_url"
+        "thepricedex_price_list": "candidate_url",
+        "pkmncards": "candidate_url",
+        "bulbapedia": "candidate_url",
+        "bulbapedia_set_list": "candidate_url"
       },
       "source_totals": {
         "pokemontcg_api": {
@@ -2771,7 +3257,10 @@
         "official_checklist_pdf": "dp6",
         "official_pokemon_checklist": "dp6",
         "thepricedex": "dp6",
-        "thepricedex_price_list": "dp6"
+        "thepricedex_price_list": "dp6",
+        "pkmncards": "legends-awakened",
+        "bulbapedia": "Legends_Awakened_(TCG)",
+        "bulbapedia_set_list": "Legends_Awakened_(TCG)"
       },
       "source_status": {
         "pokemontcg_api": "available",
@@ -2779,7 +3268,10 @@
         "official_checklist_pdf": "candidate_url",
         "official_pokemon_checklist": "candidate_url",
         "thepricedex": "candidate_url",
-        "thepricedex_price_list": "candidate_url"
+        "thepricedex_price_list": "candidate_url",
+        "pkmncards": "candidate_url",
+        "bulbapedia": "candidate_url",
+        "bulbapedia_set_list": "candidate_url"
       },
       "source_totals": {
         "pokemontcg_api": {
@@ -2805,7 +3297,10 @@
         "official_checklist_pdf": "pop8",
         "official_pokemon_checklist": "pop8",
         "thepricedex": "pop8",
-        "thepricedex_price_list": "pop8"
+        "thepricedex_price_list": "pop8",
+        "pkmncards": "pop-series-8",
+        "bulbapedia": "POP_Series_8_(TCG)",
+        "bulbapedia_set_list": "POP_Series_8_(TCG)"
       },
       "source_status": {
         "pokemontcg_api": "available",
@@ -2813,7 +3308,10 @@
         "official_checklist_pdf": "candidate_url",
         "official_pokemon_checklist": "candidate_url",
         "thepricedex": "candidate_url",
-        "thepricedex_price_list": "candidate_url"
+        "thepricedex_price_list": "candidate_url",
+        "pkmncards": "candidate_url",
+        "bulbapedia": "candidate_url",
+        "bulbapedia_set_list": "candidate_url"
       },
       "source_totals": {
         "pokemontcg_api": {
@@ -2839,7 +3337,10 @@
         "official_checklist_pdf": "dp7",
         "official_pokemon_checklist": "dp7",
         "thepricedex": "dp7",
-        "thepricedex_price_list": "dp7"
+        "thepricedex_price_list": "dp7",
+        "pkmncards": "stormfront",
+        "bulbapedia": "Stormfront_(TCG)",
+        "bulbapedia_set_list": "Stormfront_(TCG)"
       },
       "source_status": {
         "pokemontcg_api": "available",
@@ -2847,7 +3348,10 @@
         "official_checklist_pdf": "candidate_url",
         "official_pokemon_checklist": "candidate_url",
         "thepricedex": "candidate_url",
-        "thepricedex_price_list": "candidate_url"
+        "thepricedex_price_list": "candidate_url",
+        "pkmncards": "candidate_url",
+        "bulbapedia": "candidate_url",
+        "bulbapedia_set_list": "candidate_url"
       },
       "source_totals": {
         "pokemontcg_api": {
@@ -2873,7 +3377,10 @@
         "official_checklist_pdf": "pl1",
         "official_pokemon_checklist": "pl1",
         "thepricedex": "pl1",
-        "thepricedex_price_list": "pl1"
+        "thepricedex_price_list": "pl1",
+        "pkmncards": "platinum",
+        "bulbapedia": "Platinum_(TCG)",
+        "bulbapedia_set_list": "Platinum_(TCG)"
       },
       "source_status": {
         "pokemontcg_api": "available",
@@ -2881,7 +3388,10 @@
         "official_checklist_pdf": "candidate_url",
         "official_pokemon_checklist": "candidate_url",
         "thepricedex": "candidate_url",
-        "thepricedex_price_list": "candidate_url"
+        "thepricedex_price_list": "candidate_url",
+        "pkmncards": "candidate_url",
+        "bulbapedia": "candidate_url",
+        "bulbapedia_set_list": "candidate_url"
       },
       "source_totals": {
         "pokemontcg_api": {
@@ -2907,7 +3417,10 @@
         "official_checklist_pdf": "pop9",
         "official_pokemon_checklist": "pop9",
         "thepricedex": "pop9",
-        "thepricedex_price_list": "pop9"
+        "thepricedex_price_list": "pop9",
+        "pkmncards": "pop-series-9",
+        "bulbapedia": "POP_Series_9_(TCG)",
+        "bulbapedia_set_list": "POP_Series_9_(TCG)"
       },
       "source_status": {
         "pokemontcg_api": "available",
@@ -2915,7 +3428,10 @@
         "official_checklist_pdf": "candidate_url",
         "official_pokemon_checklist": "candidate_url",
         "thepricedex": "candidate_url",
-        "thepricedex_price_list": "candidate_url"
+        "thepricedex_price_list": "candidate_url",
+        "pkmncards": "candidate_url",
+        "bulbapedia": "candidate_url",
+        "bulbapedia_set_list": "candidate_url"
       },
       "source_totals": {
         "pokemontcg_api": {
@@ -2941,7 +3457,10 @@
         "official_checklist_pdf": "pl2",
         "official_pokemon_checklist": "pl2",
         "thepricedex": "pl2",
-        "thepricedex_price_list": "pl2"
+        "thepricedex_price_list": "pl2",
+        "pkmncards": "rising-rivals",
+        "bulbapedia": "Rising_Rivals_(TCG)",
+        "bulbapedia_set_list": "Rising_Rivals_(TCG)"
       },
       "source_status": {
         "pokemontcg_api": "available",
@@ -2949,7 +3468,10 @@
         "official_checklist_pdf": "candidate_url",
         "official_pokemon_checklist": "candidate_url",
         "thepricedex": "candidate_url",
-        "thepricedex_price_list": "candidate_url"
+        "thepricedex_price_list": "candidate_url",
+        "pkmncards": "candidate_url",
+        "bulbapedia": "candidate_url",
+        "bulbapedia_set_list": "candidate_url"
       },
       "source_totals": {
         "pokemontcg_api": {
@@ -2975,7 +3497,10 @@
         "official_checklist_pdf": "pl3",
         "official_pokemon_checklist": "pl3",
         "thepricedex": "pl3",
-        "thepricedex_price_list": "pl3"
+        "thepricedex_price_list": "pl3",
+        "pkmncards": "supreme-victors",
+        "bulbapedia": "Supreme_Victors_(TCG)",
+        "bulbapedia_set_list": "Supreme_Victors_(TCG)"
       },
       "source_status": {
         "pokemontcg_api": "available",
@@ -2983,7 +3508,10 @@
         "official_checklist_pdf": "candidate_url",
         "official_pokemon_checklist": "candidate_url",
         "thepricedex": "candidate_url",
-        "thepricedex_price_list": "candidate_url"
+        "thepricedex_price_list": "candidate_url",
+        "pkmncards": "candidate_url",
+        "bulbapedia": "candidate_url",
+        "bulbapedia_set_list": "candidate_url"
       },
       "source_totals": {
         "pokemontcg_api": {
@@ -3009,7 +3537,10 @@
         "official_checklist_pdf": "pl4",
         "official_pokemon_checklist": "pl4",
         "thepricedex": "pl4",
-        "thepricedex_price_list": "pl4"
+        "thepricedex_price_list": "pl4",
+        "pkmncards": "arceus",
+        "bulbapedia": "Arceus_(TCG)",
+        "bulbapedia_set_list": "Arceus_(TCG)"
       },
       "source_status": {
         "pokemontcg_api": "available",
@@ -3017,7 +3548,10 @@
         "official_checklist_pdf": "candidate_url",
         "official_pokemon_checklist": "candidate_url",
         "thepricedex": "candidate_url",
-        "thepricedex_price_list": "candidate_url"
+        "thepricedex_price_list": "candidate_url",
+        "pkmncards": "candidate_url",
+        "bulbapedia": "candidate_url",
+        "bulbapedia_set_list": "candidate_url"
       },
       "source_totals": {
         "pokemontcg_api": {
@@ -3043,7 +3577,10 @@
         "official_checklist_pdf": "ru1",
         "official_pokemon_checklist": "ru1",
         "thepricedex": "ru1",
-        "thepricedex_price_list": "ru1"
+        "thepricedex_price_list": "ru1",
+        "pkmncards": "pok-mon-rumble",
+        "bulbapedia": "Pokémon_Rumble_(TCG)",
+        "bulbapedia_set_list": "Pokémon_Rumble_(TCG)"
       },
       "source_status": {
         "pokemontcg_api": "available",
@@ -3051,7 +3588,10 @@
         "official_checklist_pdf": "candidate_url",
         "official_pokemon_checklist": "candidate_url",
         "thepricedex": "candidate_url",
-        "thepricedex_price_list": "candidate_url"
+        "thepricedex_price_list": "candidate_url",
+        "pkmncards": "candidate_url",
+        "bulbapedia": "candidate_url",
+        "bulbapedia_set_list": "candidate_url"
       },
       "source_totals": {
         "pokemontcg_api": {
@@ -3077,7 +3617,10 @@
         "official_checklist_pdf": "hgss1",
         "official_pokemon_checklist": "hgss1",
         "thepricedex": "hgss1",
-        "thepricedex_price_list": "hgss1"
+        "thepricedex_price_list": "hgss1",
+        "pkmncards": "heartgold-soulsilver",
+        "bulbapedia": "HeartGold_&_SoulSilver_(TCG)",
+        "bulbapedia_set_list": "HeartGold_&_SoulSilver_(TCG)"
       },
       "source_status": {
         "pokemontcg_api": "available",
@@ -3085,7 +3628,10 @@
         "official_checklist_pdf": "candidate_url",
         "official_pokemon_checklist": "candidate_url",
         "thepricedex": "candidate_url",
-        "thepricedex_price_list": "candidate_url"
+        "thepricedex_price_list": "candidate_url",
+        "pkmncards": "candidate_url",
+        "bulbapedia": "candidate_url",
+        "bulbapedia_set_list": "candidate_url"
       },
       "source_totals": {
         "pokemontcg_api": {
@@ -3111,7 +3657,10 @@
         "official_checklist_pdf": "hsp",
         "official_pokemon_checklist": "hsp",
         "thepricedex": "hsp",
-        "thepricedex_price_list": "hsp"
+        "thepricedex_price_list": "hsp",
+        "pkmncards": "heartgold-soulsilver-promos",
+        "bulbapedia": "HGSS_Black_Star_Promos_(TCG)",
+        "bulbapedia_set_list": "HGSS_Black_Star_Promos_(TCG)"
       },
       "source_status": {
         "pokemontcg_api": "available",
@@ -3119,7 +3668,10 @@
         "official_checklist_pdf": "candidate_url",
         "official_pokemon_checklist": "candidate_url",
         "thepricedex": "candidate_url",
-        "thepricedex_price_list": "candidate_url"
+        "thepricedex_price_list": "candidate_url",
+        "pkmncards": "candidate_url",
+        "bulbapedia": "candidate_url",
+        "bulbapedia_set_list": "candidate_url"
       },
       "source_totals": {
         "pokemontcg_api": {
@@ -3145,7 +3697,10 @@
         "official_checklist_pdf": "hgss2",
         "official_pokemon_checklist": "hgss2",
         "thepricedex": "hgss2",
-        "thepricedex_price_list": "hgss2"
+        "thepricedex_price_list": "hgss2",
+        "pkmncards": "hs-unleashed",
+        "bulbapedia": "HS—Unleashed_(TCG)",
+        "bulbapedia_set_list": "HS—Unleashed_(TCG)"
       },
       "source_status": {
         "pokemontcg_api": "available",
@@ -3153,7 +3708,10 @@
         "official_checklist_pdf": "candidate_url",
         "official_pokemon_checklist": "candidate_url",
         "thepricedex": "candidate_url",
-        "thepricedex_price_list": "candidate_url"
+        "thepricedex_price_list": "candidate_url",
+        "pkmncards": "candidate_url",
+        "bulbapedia": "candidate_url",
+        "bulbapedia_set_list": "candidate_url"
       },
       "source_totals": {
         "pokemontcg_api": {
@@ -3179,7 +3737,10 @@
         "official_checklist_pdf": "hgss3",
         "official_pokemon_checklist": "hgss3",
         "thepricedex": "hgss3",
-        "thepricedex_price_list": "hgss3"
+        "thepricedex_price_list": "hgss3",
+        "pkmncards": "hs-undaunted",
+        "bulbapedia": "HS—Undaunted_(TCG)",
+        "bulbapedia_set_list": "HS—Undaunted_(TCG)"
       },
       "source_status": {
         "pokemontcg_api": "available",
@@ -3187,7 +3748,10 @@
         "official_checklist_pdf": "candidate_url",
         "official_pokemon_checklist": "candidate_url",
         "thepricedex": "candidate_url",
-        "thepricedex_price_list": "candidate_url"
+        "thepricedex_price_list": "candidate_url",
+        "pkmncards": "candidate_url",
+        "bulbapedia": "candidate_url",
+        "bulbapedia_set_list": "candidate_url"
       },
       "source_totals": {
         "pokemontcg_api": {
@@ -3213,7 +3777,10 @@
         "official_checklist_pdf": "hgss4",
         "official_pokemon_checklist": "hgss4",
         "thepricedex": "hgss4",
-        "thepricedex_price_list": "hgss4"
+        "thepricedex_price_list": "hgss4",
+        "pkmncards": "hs-triumphant",
+        "bulbapedia": "HS—Triumphant_(TCG)",
+        "bulbapedia_set_list": "HS—Triumphant_(TCG)"
       },
       "source_status": {
         "pokemontcg_api": "available",
@@ -3221,7 +3788,10 @@
         "official_checklist_pdf": "candidate_url",
         "official_pokemon_checklist": "candidate_url",
         "thepricedex": "candidate_url",
-        "thepricedex_price_list": "candidate_url"
+        "thepricedex_price_list": "candidate_url",
+        "pkmncards": "candidate_url",
+        "bulbapedia": "candidate_url",
+        "bulbapedia_set_list": "candidate_url"
       },
       "source_totals": {
         "pokemontcg_api": {
@@ -3247,7 +3817,10 @@
         "official_checklist_pdf": "col1",
         "official_pokemon_checklist": "col1",
         "thepricedex": "col1",
-        "thepricedex_price_list": "col1"
+        "thepricedex_price_list": "col1",
+        "pkmncards": "call-of-legends",
+        "bulbapedia": "Call_of_Legends_(TCG)",
+        "bulbapedia_set_list": "Call_of_Legends_(TCG)"
       },
       "source_status": {
         "pokemontcg_api": "available",
@@ -3255,7 +3828,10 @@
         "official_checklist_pdf": "candidate_url",
         "official_pokemon_checklist": "candidate_url",
         "thepricedex": "candidate_url",
-        "thepricedex_price_list": "candidate_url"
+        "thepricedex_price_list": "candidate_url",
+        "pkmncards": "candidate_url",
+        "bulbapedia": "candidate_url",
+        "bulbapedia_set_list": "candidate_url"
       },
       "source_totals": {
         "pokemontcg_api": {
@@ -3281,7 +3857,10 @@
         "official_checklist_pdf": "bwp",
         "official_pokemon_checklist": "bwp",
         "thepricedex": "bwp",
-        "thepricedex_price_list": "bwp"
+        "thepricedex_price_list": "bwp",
+        "pkmncards": "black-white-promos",
+        "bulbapedia": "BW_Black_Star_Promos_(TCG)",
+        "bulbapedia_set_list": "BW_Black_Star_Promos_(TCG)"
       },
       "source_status": {
         "pokemontcg_api": "available",
@@ -3289,7 +3868,10 @@
         "official_checklist_pdf": "candidate_url",
         "official_pokemon_checklist": "candidate_url",
         "thepricedex": "candidate_url",
-        "thepricedex_price_list": "candidate_url"
+        "thepricedex_price_list": "candidate_url",
+        "pkmncards": "candidate_url",
+        "bulbapedia": "candidate_url",
+        "bulbapedia_set_list": "candidate_url"
       },
       "source_totals": {
         "pokemontcg_api": {
@@ -3315,7 +3897,10 @@
         "official_checklist_pdf": "bw1",
         "official_pokemon_checklist": "bw1",
         "thepricedex": "bw1",
-        "thepricedex_price_list": "bw1"
+        "thepricedex_price_list": "bw1",
+        "pkmncards": "black-white",
+        "bulbapedia": "Black_&_White_(TCG)",
+        "bulbapedia_set_list": "Black_&_White_(TCG)"
       },
       "source_status": {
         "pokemontcg_api": "available",
@@ -3323,7 +3908,10 @@
         "official_checklist_pdf": "candidate_url",
         "official_pokemon_checklist": "candidate_url",
         "thepricedex": "candidate_url",
-        "thepricedex_price_list": "candidate_url"
+        "thepricedex_price_list": "candidate_url",
+        "pkmncards": "candidate_url",
+        "bulbapedia": "candidate_url",
+        "bulbapedia_set_list": "candidate_url"
       },
       "source_totals": {
         "pokemontcg_api": {
@@ -3349,7 +3937,10 @@
         "official_checklist_pdf": "mcd11",
         "official_pokemon_checklist": "mcd11",
         "thepricedex": "mcd11",
-        "thepricedex_price_list": "mcd11"
+        "thepricedex_price_list": "mcd11",
+        "pkmncards": "mcdonalds-collection-2011",
+        "bulbapedia": "McDonald's_Collection_2011_(TCG)",
+        "bulbapedia_set_list": "McDonald's_Collection_2011_(TCG)"
       },
       "source_status": {
         "pokemontcg_api": "available",
@@ -3357,7 +3948,10 @@
         "official_checklist_pdf": "candidate_url",
         "official_pokemon_checklist": "candidate_url",
         "thepricedex": "candidate_url",
-        "thepricedex_price_list": "candidate_url"
+        "thepricedex_price_list": "candidate_url",
+        "pkmncards": "candidate_url",
+        "bulbapedia": "candidate_url",
+        "bulbapedia_set_list": "candidate_url"
       },
       "source_totals": {
         "pokemontcg_api": {
@@ -3383,7 +3977,10 @@
         "official_checklist_pdf": "bw2",
         "official_pokemon_checklist": "bw2",
         "thepricedex": "bw2",
-        "thepricedex_price_list": "bw2"
+        "thepricedex_price_list": "bw2",
+        "pkmncards": "emerging-powers",
+        "bulbapedia": "Emerging_Powers_(TCG)",
+        "bulbapedia_set_list": "Emerging_Powers_(TCG)"
       },
       "source_status": {
         "pokemontcg_api": "available",
@@ -3391,7 +3988,10 @@
         "official_checklist_pdf": "candidate_url",
         "official_pokemon_checklist": "candidate_url",
         "thepricedex": "candidate_url",
-        "thepricedex_price_list": "candidate_url"
+        "thepricedex_price_list": "candidate_url",
+        "pkmncards": "candidate_url",
+        "bulbapedia": "candidate_url",
+        "bulbapedia_set_list": "candidate_url"
       },
       "source_totals": {
         "pokemontcg_api": {
@@ -3417,7 +4017,10 @@
         "official_checklist_pdf": "bw3",
         "official_pokemon_checklist": "bw3",
         "thepricedex": "bw3",
-        "thepricedex_price_list": "bw3"
+        "thepricedex_price_list": "bw3",
+        "pkmncards": "noble-victories",
+        "bulbapedia": "Noble_Victories_(TCG)",
+        "bulbapedia_set_list": "Noble_Victories_(TCG)"
       },
       "source_status": {
         "pokemontcg_api": "available",
@@ -3425,7 +4028,10 @@
         "official_checklist_pdf": "candidate_url",
         "official_pokemon_checklist": "candidate_url",
         "thepricedex": "candidate_url",
-        "thepricedex_price_list": "candidate_url"
+        "thepricedex_price_list": "candidate_url",
+        "pkmncards": "candidate_url",
+        "bulbapedia": "candidate_url",
+        "bulbapedia_set_list": "candidate_url"
       },
       "source_totals": {
         "pokemontcg_api": {
@@ -3451,7 +4057,10 @@
         "official_checklist_pdf": "bw4",
         "official_pokemon_checklist": "bw4",
         "thepricedex": "bw4",
-        "thepricedex_price_list": "bw4"
+        "thepricedex_price_list": "bw4",
+        "pkmncards": "next-destinies",
+        "bulbapedia": "Next_Destinies_(TCG)",
+        "bulbapedia_set_list": "Next_Destinies_(TCG)"
       },
       "source_status": {
         "pokemontcg_api": "available",
@@ -3459,7 +4068,10 @@
         "official_checklist_pdf": "candidate_url",
         "official_pokemon_checklist": "candidate_url",
         "thepricedex": "candidate_url",
-        "thepricedex_price_list": "candidate_url"
+        "thepricedex_price_list": "candidate_url",
+        "pkmncards": "candidate_url",
+        "bulbapedia": "candidate_url",
+        "bulbapedia_set_list": "candidate_url"
       },
       "source_totals": {
         "pokemontcg_api": {
@@ -3485,7 +4097,10 @@
         "official_checklist_pdf": "bw5",
         "official_pokemon_checklist": "bw5",
         "thepricedex": "bw5",
-        "thepricedex_price_list": "bw5"
+        "thepricedex_price_list": "bw5",
+        "pkmncards": "dark-explorers",
+        "bulbapedia": "Dark_Explorers_(TCG)",
+        "bulbapedia_set_list": "Dark_Explorers_(TCG)"
       },
       "source_status": {
         "pokemontcg_api": "available",
@@ -3493,7 +4108,10 @@
         "official_checklist_pdf": "candidate_url",
         "official_pokemon_checklist": "candidate_url",
         "thepricedex": "candidate_url",
-        "thepricedex_price_list": "candidate_url"
+        "thepricedex_price_list": "candidate_url",
+        "pkmncards": "candidate_url",
+        "bulbapedia": "candidate_url",
+        "bulbapedia_set_list": "candidate_url"
       },
       "source_totals": {
         "pokemontcg_api": {
@@ -3519,7 +4137,10 @@
         "official_checklist_pdf": "mcd12",
         "official_pokemon_checklist": "mcd12",
         "thepricedex": "mcd12",
-        "thepricedex_price_list": "mcd12"
+        "thepricedex_price_list": "mcd12",
+        "pkmncards": "mcdonalds-collection-2012",
+        "bulbapedia": "McDonald's_Collection_2012_(TCG)",
+        "bulbapedia_set_list": "McDonald's_Collection_2012_(TCG)"
       },
       "source_status": {
         "pokemontcg_api": "available",
@@ -3527,7 +4148,10 @@
         "official_checklist_pdf": "candidate_url",
         "official_pokemon_checklist": "candidate_url",
         "thepricedex": "candidate_url",
-        "thepricedex_price_list": "candidate_url"
+        "thepricedex_price_list": "candidate_url",
+        "pkmncards": "candidate_url",
+        "bulbapedia": "candidate_url",
+        "bulbapedia_set_list": "candidate_url"
       },
       "source_totals": {
         "pokemontcg_api": {
@@ -3553,7 +4177,10 @@
         "official_checklist_pdf": "bw6",
         "official_pokemon_checklist": "bw6",
         "thepricedex": "bw6",
-        "thepricedex_price_list": "bw6"
+        "thepricedex_price_list": "bw6",
+        "pkmncards": "dragons-exalted",
+        "bulbapedia": "Dragons_Exalted_(TCG)",
+        "bulbapedia_set_list": "Dragons_Exalted_(TCG)"
       },
       "source_status": {
         "pokemontcg_api": "available",
@@ -3561,7 +4188,10 @@
         "official_checklist_pdf": "candidate_url",
         "official_pokemon_checklist": "candidate_url",
         "thepricedex": "candidate_url",
-        "thepricedex_price_list": "candidate_url"
+        "thepricedex_price_list": "candidate_url",
+        "pkmncards": "candidate_url",
+        "bulbapedia": "candidate_url",
+        "bulbapedia_set_list": "candidate_url"
       },
       "source_totals": {
         "pokemontcg_api": {
@@ -3587,7 +4217,10 @@
         "official_checklist_pdf": "dv1",
         "official_pokemon_checklist": "dv1",
         "thepricedex": "dv1",
-        "thepricedex_price_list": "dv1"
+        "thepricedex_price_list": "dv1",
+        "pkmncards": "dragon-vault",
+        "bulbapedia": "Dragon_Vault_(TCG)",
+        "bulbapedia_set_list": "Dragon_Vault_(TCG)"
       },
       "source_status": {
         "pokemontcg_api": "available",
@@ -3595,7 +4228,10 @@
         "official_checklist_pdf": "candidate_url",
         "official_pokemon_checklist": "candidate_url",
         "thepricedex": "candidate_url",
-        "thepricedex_price_list": "candidate_url"
+        "thepricedex_price_list": "candidate_url",
+        "pkmncards": "candidate_url",
+        "bulbapedia": "candidate_url",
+        "bulbapedia_set_list": "candidate_url"
       },
       "source_totals": {
         "pokemontcg_api": {
@@ -3621,7 +4257,10 @@
         "official_checklist_pdf": "bw7",
         "official_pokemon_checklist": "bw7",
         "thepricedex": "bw7",
-        "thepricedex_price_list": "bw7"
+        "thepricedex_price_list": "bw7",
+        "pkmncards": "boundaries-crossed",
+        "bulbapedia": "Boundaries_Crossed_(TCG)",
+        "bulbapedia_set_list": "Boundaries_Crossed_(TCG)"
       },
       "source_status": {
         "pokemontcg_api": "available",
@@ -3629,7 +4268,10 @@
         "official_checklist_pdf": "candidate_url",
         "official_pokemon_checklist": "candidate_url",
         "thepricedex": "candidate_url",
-        "thepricedex_price_list": "candidate_url"
+        "thepricedex_price_list": "candidate_url",
+        "pkmncards": "candidate_url",
+        "bulbapedia": "candidate_url",
+        "bulbapedia_set_list": "candidate_url"
       },
       "source_totals": {
         "pokemontcg_api": {
@@ -3655,7 +4297,10 @@
         "official_checklist_pdf": "bw8",
         "official_pokemon_checklist": "bw8",
         "thepricedex": "bw8",
-        "thepricedex_price_list": "bw8"
+        "thepricedex_price_list": "bw8",
+        "pkmncards": "plasma-storm",
+        "bulbapedia": "Plasma_Storm_(TCG)",
+        "bulbapedia_set_list": "Plasma_Storm_(TCG)"
       },
       "source_status": {
         "pokemontcg_api": "available",
@@ -3663,7 +4308,10 @@
         "official_checklist_pdf": "candidate_url",
         "official_pokemon_checklist": "candidate_url",
         "thepricedex": "candidate_url",
-        "thepricedex_price_list": "candidate_url"
+        "thepricedex_price_list": "candidate_url",
+        "pkmncards": "candidate_url",
+        "bulbapedia": "candidate_url",
+        "bulbapedia_set_list": "candidate_url"
       },
       "source_totals": {
         "pokemontcg_api": {
@@ -3689,7 +4337,10 @@
         "official_checklist_pdf": "bw9",
         "official_pokemon_checklist": "bw9",
         "thepricedex": "bw9",
-        "thepricedex_price_list": "bw9"
+        "thepricedex_price_list": "bw9",
+        "pkmncards": "plasma-freeze",
+        "bulbapedia": "Plasma_Freeze_(TCG)",
+        "bulbapedia_set_list": "Plasma_Freeze_(TCG)"
       },
       "source_status": {
         "pokemontcg_api": "available",
@@ -3697,7 +4348,10 @@
         "official_checklist_pdf": "candidate_url",
         "official_pokemon_checklist": "candidate_url",
         "thepricedex": "candidate_url",
-        "thepricedex_price_list": "candidate_url"
+        "thepricedex_price_list": "candidate_url",
+        "pkmncards": "candidate_url",
+        "bulbapedia": "candidate_url",
+        "bulbapedia_set_list": "candidate_url"
       },
       "source_totals": {
         "pokemontcg_api": {
@@ -3723,7 +4377,10 @@
         "official_checklist_pdf": "bw10",
         "official_pokemon_checklist": "bw10",
         "thepricedex": "bw10",
-        "thepricedex_price_list": "bw10"
+        "thepricedex_price_list": "bw10",
+        "pkmncards": "plasma-blast",
+        "bulbapedia": "Plasma_Blast_(TCG)",
+        "bulbapedia_set_list": "Plasma_Blast_(TCG)"
       },
       "source_status": {
         "pokemontcg_api": "available",
@@ -3731,7 +4388,10 @@
         "official_checklist_pdf": "candidate_url",
         "official_pokemon_checklist": "candidate_url",
         "thepricedex": "candidate_url",
-        "thepricedex_price_list": "candidate_url"
+        "thepricedex_price_list": "candidate_url",
+        "pkmncards": "candidate_url",
+        "bulbapedia": "candidate_url",
+        "bulbapedia_set_list": "candidate_url"
       },
       "source_totals": {
         "pokemontcg_api": {
@@ -3757,7 +4417,10 @@
         "official_checklist_pdf": "xyp",
         "official_pokemon_checklist": "xyp",
         "thepricedex": "xyp",
-        "thepricedex_price_list": "xyp"
+        "thepricedex_price_list": "xyp",
+        "pkmncards": "xy-promos",
+        "bulbapedia": "XY_Black_Star_Promos_(TCG)",
+        "bulbapedia_set_list": "XY_Black_Star_Promos_(TCG)"
       },
       "source_status": {
         "pokemontcg_api": "available",
@@ -3765,7 +4428,10 @@
         "official_checklist_pdf": "candidate_url",
         "official_pokemon_checklist": "candidate_url",
         "thepricedex": "candidate_url",
-        "thepricedex_price_list": "candidate_url"
+        "thepricedex_price_list": "candidate_url",
+        "pkmncards": "candidate_url",
+        "bulbapedia": "candidate_url",
+        "bulbapedia_set_list": "candidate_url"
       },
       "source_totals": {
         "pokemontcg_api": {
@@ -3791,7 +4457,10 @@
         "official_checklist_pdf": "bw11",
         "official_pokemon_checklist": "bw11",
         "thepricedex": "bw11",
-        "thepricedex_price_list": "bw11"
+        "thepricedex_price_list": "bw11",
+        "pkmncards": "legendary-treasures",
+        "bulbapedia": "Legendary_Treasures_(TCG)",
+        "bulbapedia_set_list": "Legendary_Treasures_(TCG)"
       },
       "source_status": {
         "pokemontcg_api": "available",
@@ -3799,7 +4468,10 @@
         "official_checklist_pdf": "candidate_url",
         "official_pokemon_checklist": "candidate_url",
         "thepricedex": "candidate_url",
-        "thepricedex_price_list": "candidate_url"
+        "thepricedex_price_list": "candidate_url",
+        "pkmncards": "candidate_url",
+        "bulbapedia": "candidate_url",
+        "bulbapedia_set_list": "candidate_url"
       },
       "source_totals": {
         "pokemontcg_api": {
@@ -3825,7 +4497,10 @@
         "official_checklist_pdf": "xy0",
         "official_pokemon_checklist": "xy0",
         "thepricedex": "xy0",
-        "thepricedex_price_list": "xy0"
+        "thepricedex_price_list": "xy0",
+        "pkmncards": "kalos-starter-set",
+        "bulbapedia": "Kalos_Starter_Set_(TCG)",
+        "bulbapedia_set_list": "Kalos_Starter_Set_(TCG)"
       },
       "source_status": {
         "pokemontcg_api": "available",
@@ -3833,7 +4508,10 @@
         "official_checklist_pdf": "candidate_url",
         "official_pokemon_checklist": "candidate_url",
         "thepricedex": "candidate_url",
-        "thepricedex_price_list": "candidate_url"
+        "thepricedex_price_list": "candidate_url",
+        "pkmncards": "candidate_url",
+        "bulbapedia": "candidate_url",
+        "bulbapedia_set_list": "candidate_url"
       },
       "source_totals": {
         "pokemontcg_api": {
@@ -3859,7 +4537,10 @@
         "official_checklist_pdf": "xy1",
         "official_pokemon_checklist": "xy1",
         "thepricedex": "xy1",
-        "thepricedex_price_list": "xy1"
+        "thepricedex_price_list": "xy1",
+        "pkmncards": "xy",
+        "bulbapedia": "XY_(TCG)",
+        "bulbapedia_set_list": "XY_(TCG)"
       },
       "source_status": {
         "pokemontcg_api": "available",
@@ -3867,7 +4548,10 @@
         "official_checklist_pdf": "candidate_url",
         "official_pokemon_checklist": "candidate_url",
         "thepricedex": "candidate_url",
-        "thepricedex_price_list": "candidate_url"
+        "thepricedex_price_list": "candidate_url",
+        "pkmncards": "candidate_url",
+        "bulbapedia": "candidate_url",
+        "bulbapedia_set_list": "candidate_url"
       },
       "source_totals": {
         "pokemontcg_api": {
@@ -3893,7 +4577,10 @@
         "official_checklist_pdf": "xy2",
         "official_pokemon_checklist": "xy2",
         "thepricedex": "xy2",
-        "thepricedex_price_list": "xy2"
+        "thepricedex_price_list": "xy2",
+        "pkmncards": "flashfire",
+        "bulbapedia": "Flashfire_(TCG)",
+        "bulbapedia_set_list": "Flashfire_(TCG)"
       },
       "source_status": {
         "pokemontcg_api": "available",
@@ -3901,7 +4588,10 @@
         "official_checklist_pdf": "candidate_url",
         "official_pokemon_checklist": "candidate_url",
         "thepricedex": "candidate_url",
-        "thepricedex_price_list": "candidate_url"
+        "thepricedex_price_list": "candidate_url",
+        "pkmncards": "candidate_url",
+        "bulbapedia": "candidate_url",
+        "bulbapedia_set_list": "candidate_url"
       },
       "source_totals": {
         "pokemontcg_api": {
@@ -3927,7 +4617,10 @@
         "official_checklist_pdf": "mcd14",
         "official_pokemon_checklist": "mcd14",
         "thepricedex": "mcd14",
-        "thepricedex_price_list": "mcd14"
+        "thepricedex_price_list": "mcd14",
+        "pkmncards": "mcdonalds-collection-2014",
+        "bulbapedia": "McDonald's_Collection_2014_(TCG)",
+        "bulbapedia_set_list": "McDonald's_Collection_2014_(TCG)"
       },
       "source_status": {
         "pokemontcg_api": "available",
@@ -3935,7 +4628,10 @@
         "official_checklist_pdf": "candidate_url",
         "official_pokemon_checklist": "candidate_url",
         "thepricedex": "candidate_url",
-        "thepricedex_price_list": "candidate_url"
+        "thepricedex_price_list": "candidate_url",
+        "pkmncards": "candidate_url",
+        "bulbapedia": "candidate_url",
+        "bulbapedia_set_list": "candidate_url"
       },
       "source_totals": {
         "pokemontcg_api": {
@@ -3961,7 +4657,10 @@
         "official_checklist_pdf": "xy3",
         "official_pokemon_checklist": "xy3",
         "thepricedex": "xy3",
-        "thepricedex_price_list": "xy3"
+        "thepricedex_price_list": "xy3",
+        "pkmncards": "furious-fists",
+        "bulbapedia": "Furious_Fists_(TCG)",
+        "bulbapedia_set_list": "Furious_Fists_(TCG)"
       },
       "source_status": {
         "pokemontcg_api": "available",
@@ -3969,7 +4668,10 @@
         "official_checklist_pdf": "candidate_url",
         "official_pokemon_checklist": "candidate_url",
         "thepricedex": "candidate_url",
-        "thepricedex_price_list": "candidate_url"
+        "thepricedex_price_list": "candidate_url",
+        "pkmncards": "candidate_url",
+        "bulbapedia": "candidate_url",
+        "bulbapedia_set_list": "candidate_url"
       },
       "source_totals": {
         "pokemontcg_api": {
@@ -3995,7 +4697,10 @@
         "official_checklist_pdf": "xy4",
         "official_pokemon_checklist": "xy4",
         "thepricedex": "xy4",
-        "thepricedex_price_list": "xy4"
+        "thepricedex_price_list": "xy4",
+        "pkmncards": "phantom-forces",
+        "bulbapedia": "Phantom_Forces_(TCG)",
+        "bulbapedia_set_list": "Phantom_Forces_(TCG)"
       },
       "source_status": {
         "pokemontcg_api": "available",
@@ -4003,7 +4708,10 @@
         "official_checklist_pdf": "candidate_url",
         "official_pokemon_checklist": "candidate_url",
         "thepricedex": "candidate_url",
-        "thepricedex_price_list": "candidate_url"
+        "thepricedex_price_list": "candidate_url",
+        "pkmncards": "candidate_url",
+        "bulbapedia": "candidate_url",
+        "bulbapedia_set_list": "candidate_url"
       },
       "source_totals": {
         "pokemontcg_api": {
@@ -4029,7 +4737,10 @@
         "official_checklist_pdf": "xy5",
         "official_pokemon_checklist": "xy5",
         "thepricedex": "xy5",
-        "thepricedex_price_list": "xy5"
+        "thepricedex_price_list": "xy5",
+        "pkmncards": "primal-clash",
+        "bulbapedia": "Primal_Clash_(TCG)",
+        "bulbapedia_set_list": "Primal_Clash_(TCG)"
       },
       "source_status": {
         "pokemontcg_api": "available",
@@ -4037,7 +4748,10 @@
         "official_checklist_pdf": "candidate_url",
         "official_pokemon_checklist": "candidate_url",
         "thepricedex": "candidate_url",
-        "thepricedex_price_list": "candidate_url"
+        "thepricedex_price_list": "candidate_url",
+        "pkmncards": "candidate_url",
+        "bulbapedia": "candidate_url",
+        "bulbapedia_set_list": "candidate_url"
       },
       "source_totals": {
         "pokemontcg_api": {
@@ -4063,7 +4777,10 @@
         "official_checklist_pdf": "dc1",
         "official_pokemon_checklist": "dc1",
         "thepricedex": "dc1",
-        "thepricedex_price_list": "dc1"
+        "thepricedex_price_list": "dc1",
+        "pkmncards": "double-crisis",
+        "bulbapedia": "Double_Crisis_(TCG)",
+        "bulbapedia_set_list": "Double_Crisis_(TCG)"
       },
       "source_status": {
         "pokemontcg_api": "available",
@@ -4071,7 +4788,10 @@
         "official_checklist_pdf": "candidate_url",
         "official_pokemon_checklist": "candidate_url",
         "thepricedex": "candidate_url",
-        "thepricedex_price_list": "candidate_url"
+        "thepricedex_price_list": "candidate_url",
+        "pkmncards": "candidate_url",
+        "bulbapedia": "candidate_url",
+        "bulbapedia_set_list": "candidate_url"
       },
       "source_totals": {
         "pokemontcg_api": {
@@ -4097,7 +4817,10 @@
         "official_checklist_pdf": "xy6",
         "official_pokemon_checklist": "xy6",
         "thepricedex": "xy6",
-        "thepricedex_price_list": "xy6"
+        "thepricedex_price_list": "xy6",
+        "pkmncards": "roaring-skies",
+        "bulbapedia": "Roaring_Skies_(TCG)",
+        "bulbapedia_set_list": "Roaring_Skies_(TCG)"
       },
       "source_status": {
         "pokemontcg_api": "available",
@@ -4105,7 +4828,10 @@
         "official_checklist_pdf": "candidate_url",
         "official_pokemon_checklist": "candidate_url",
         "thepricedex": "candidate_url",
-        "thepricedex_price_list": "candidate_url"
+        "thepricedex_price_list": "candidate_url",
+        "pkmncards": "candidate_url",
+        "bulbapedia": "candidate_url",
+        "bulbapedia_set_list": "candidate_url"
       },
       "source_totals": {
         "pokemontcg_api": {
@@ -4131,7 +4857,10 @@
         "official_checklist_pdf": "xy7",
         "official_pokemon_checklist": "xy7",
         "thepricedex": "xy7",
-        "thepricedex_price_list": "xy7"
+        "thepricedex_price_list": "xy7",
+        "pkmncards": "ancient-origins",
+        "bulbapedia": "Ancient_Origins_(TCG)",
+        "bulbapedia_set_list": "Ancient_Origins_(TCG)"
       },
       "source_status": {
         "pokemontcg_api": "available",
@@ -4139,7 +4868,10 @@
         "official_checklist_pdf": "candidate_url",
         "official_pokemon_checklist": "candidate_url",
         "thepricedex": "candidate_url",
-        "thepricedex_price_list": "candidate_url"
+        "thepricedex_price_list": "candidate_url",
+        "pkmncards": "candidate_url",
+        "bulbapedia": "candidate_url",
+        "bulbapedia_set_list": "candidate_url"
       },
       "source_totals": {
         "pokemontcg_api": {
@@ -4165,7 +4897,10 @@
         "official_checklist_pdf": "xy8",
         "official_pokemon_checklist": "xy8",
         "thepricedex": "xy8",
-        "thepricedex_price_list": "xy8"
+        "thepricedex_price_list": "xy8",
+        "pkmncards": "breakthrough",
+        "bulbapedia": "BREAKthrough_(TCG)",
+        "bulbapedia_set_list": "BREAKthrough_(TCG)"
       },
       "source_status": {
         "pokemontcg_api": "available",
@@ -4173,7 +4908,10 @@
         "official_checklist_pdf": "candidate_url",
         "official_pokemon_checklist": "candidate_url",
         "thepricedex": "candidate_url",
-        "thepricedex_price_list": "candidate_url"
+        "thepricedex_price_list": "candidate_url",
+        "pkmncards": "candidate_url",
+        "bulbapedia": "candidate_url",
+        "bulbapedia_set_list": "candidate_url"
       },
       "source_totals": {
         "pokemontcg_api": {
@@ -4199,7 +4937,10 @@
         "official_checklist_pdf": "mcd15",
         "official_pokemon_checklist": "mcd15",
         "thepricedex": "mcd15",
-        "thepricedex_price_list": "mcd15"
+        "thepricedex_price_list": "mcd15",
+        "pkmncards": "mcdonalds-collection-2015",
+        "bulbapedia": "McDonald's_Collection_2015_(TCG)",
+        "bulbapedia_set_list": "McDonald's_Collection_2015_(TCG)"
       },
       "source_status": {
         "pokemontcg_api": "available",
@@ -4207,7 +4948,10 @@
         "official_checklist_pdf": "candidate_url",
         "official_pokemon_checklist": "candidate_url",
         "thepricedex": "candidate_url",
-        "thepricedex_price_list": "candidate_url"
+        "thepricedex_price_list": "candidate_url",
+        "pkmncards": "candidate_url",
+        "bulbapedia": "candidate_url",
+        "bulbapedia_set_list": "candidate_url"
       },
       "source_totals": {
         "pokemontcg_api": {
@@ -4233,7 +4977,10 @@
         "official_checklist_pdf": "xy9",
         "official_pokemon_checklist": "xy9",
         "thepricedex": "xy9",
-        "thepricedex_price_list": "xy9"
+        "thepricedex_price_list": "xy9",
+        "pkmncards": "breakpoint",
+        "bulbapedia": "BREAKpoint_(TCG)",
+        "bulbapedia_set_list": "BREAKpoint_(TCG)"
       },
       "source_status": {
         "pokemontcg_api": "available",
@@ -4241,7 +4988,10 @@
         "official_checklist_pdf": "candidate_url",
         "official_pokemon_checklist": "candidate_url",
         "thepricedex": "candidate_url",
-        "thepricedex_price_list": "candidate_url"
+        "thepricedex_price_list": "candidate_url",
+        "pkmncards": "candidate_url",
+        "bulbapedia": "candidate_url",
+        "bulbapedia_set_list": "candidate_url"
       },
       "source_totals": {
         "pokemontcg_api": {
@@ -4267,7 +5017,10 @@
         "official_checklist_pdf": "g1",
         "official_pokemon_checklist": "g1",
         "thepricedex": "g1",
-        "thepricedex_price_list": "g1"
+        "thepricedex_price_list": "g1",
+        "pkmncards": "generations",
+        "bulbapedia": "Generations_(TCG)",
+        "bulbapedia_set_list": "Generations_(TCG)"
       },
       "source_status": {
         "pokemontcg_api": "available",
@@ -4275,7 +5028,10 @@
         "official_checklist_pdf": "candidate_url",
         "official_pokemon_checklist": "candidate_url",
         "thepricedex": "candidate_url",
-        "thepricedex_price_list": "candidate_url"
+        "thepricedex_price_list": "candidate_url",
+        "pkmncards": "candidate_url",
+        "bulbapedia": "candidate_url",
+        "bulbapedia_set_list": "candidate_url"
       },
       "source_totals": {
         "pokemontcg_api": {
@@ -4301,7 +5057,10 @@
         "official_checklist_pdf": "xy10",
         "official_pokemon_checklist": "xy10",
         "thepricedex": "xy10",
-        "thepricedex_price_list": "xy10"
+        "thepricedex_price_list": "xy10",
+        "pkmncards": "fates-collide",
+        "bulbapedia": "Fates_Collide_(TCG)",
+        "bulbapedia_set_list": "Fates_Collide_(TCG)"
       },
       "source_status": {
         "pokemontcg_api": "available",
@@ -4309,7 +5068,10 @@
         "official_checklist_pdf": "candidate_url",
         "official_pokemon_checklist": "candidate_url",
         "thepricedex": "candidate_url",
-        "thepricedex_price_list": "candidate_url"
+        "thepricedex_price_list": "candidate_url",
+        "pkmncards": "candidate_url",
+        "bulbapedia": "candidate_url",
+        "bulbapedia_set_list": "candidate_url"
       },
       "source_totals": {
         "pokemontcg_api": {
@@ -4335,7 +5097,10 @@
         "official_checklist_pdf": "xy11",
         "official_pokemon_checklist": "xy11",
         "thepricedex": "xy11",
-        "thepricedex_price_list": "xy11"
+        "thepricedex_price_list": "xy11",
+        "pkmncards": "steam-siege",
+        "bulbapedia": "Steam_Siege_(TCG)",
+        "bulbapedia_set_list": "Steam_Siege_(TCG)"
       },
       "source_status": {
         "pokemontcg_api": "available",
@@ -4343,7 +5108,10 @@
         "official_checklist_pdf": "candidate_url",
         "official_pokemon_checklist": "candidate_url",
         "thepricedex": "candidate_url",
-        "thepricedex_price_list": "candidate_url"
+        "thepricedex_price_list": "candidate_url",
+        "pkmncards": "candidate_url",
+        "bulbapedia": "candidate_url",
+        "bulbapedia_set_list": "candidate_url"
       },
       "source_totals": {
         "pokemontcg_api": {
@@ -4369,7 +5137,10 @@
         "official_checklist_pdf": "mcd16",
         "official_pokemon_checklist": "mcd16",
         "thepricedex": "mcd16",
-        "thepricedex_price_list": "mcd16"
+        "thepricedex_price_list": "mcd16",
+        "pkmncards": "mcdonalds-collection-2016",
+        "bulbapedia": "McDonald's_Collection_2016_(TCG)",
+        "bulbapedia_set_list": "McDonald's_Collection_2016_(TCG)"
       },
       "source_status": {
         "pokemontcg_api": "available",
@@ -4377,7 +5148,10 @@
         "official_checklist_pdf": "candidate_url",
         "official_pokemon_checklist": "candidate_url",
         "thepricedex": "candidate_url",
-        "thepricedex_price_list": "candidate_url"
+        "thepricedex_price_list": "candidate_url",
+        "pkmncards": "candidate_url",
+        "bulbapedia": "candidate_url",
+        "bulbapedia_set_list": "candidate_url"
       },
       "source_totals": {
         "pokemontcg_api": {
@@ -4403,7 +5177,10 @@
         "official_checklist_pdf": "xy12",
         "official_pokemon_checklist": "xy12",
         "thepricedex": "xy12",
-        "thepricedex_price_list": "xy12"
+        "thepricedex_price_list": "xy12",
+        "pkmncards": "evolutions",
+        "bulbapedia": "Evolutions_(TCG)",
+        "bulbapedia_set_list": "Evolutions_(TCG)"
       },
       "source_status": {
         "pokemontcg_api": "available",
@@ -4411,7 +5188,10 @@
         "official_checklist_pdf": "candidate_url",
         "official_pokemon_checklist": "candidate_url",
         "thepricedex": "candidate_url",
-        "thepricedex_price_list": "candidate_url"
+        "thepricedex_price_list": "candidate_url",
+        "pkmncards": "candidate_url",
+        "bulbapedia": "candidate_url",
+        "bulbapedia_set_list": "candidate_url"
       },
       "source_totals": {
         "pokemontcg_api": {
@@ -4437,7 +5217,10 @@
         "official_checklist_pdf": "smp",
         "official_pokemon_checklist": "smp",
         "thepricedex": "smp",
-        "thepricedex_price_list": "smp"
+        "thepricedex_price_list": "smp",
+        "pkmncards": "sun-moon-promos",
+        "bulbapedia": "SM_Black_Star_Promos_(TCG)",
+        "bulbapedia_set_list": "SM_Black_Star_Promos_(TCG)"
       },
       "source_status": {
         "pokemontcg_api": "available",
@@ -4445,7 +5228,10 @@
         "official_checklist_pdf": "candidate_url",
         "official_pokemon_checklist": "candidate_url",
         "thepricedex": "candidate_url",
-        "thepricedex_price_list": "candidate_url"
+        "thepricedex_price_list": "candidate_url",
+        "pkmncards": "candidate_url",
+        "bulbapedia": "candidate_url",
+        "bulbapedia_set_list": "candidate_url"
       },
       "source_totals": {
         "pokemontcg_api": {
@@ -4471,7 +5257,10 @@
         "official_checklist_pdf": "sm1",
         "official_pokemon_checklist": "sm1",
         "thepricedex": "sm1",
-        "thepricedex_price_list": "sm1"
+        "thepricedex_price_list": "sm1",
+        "pkmncards": "sun-moon",
+        "bulbapedia": "Sun_&_Moon_(TCG)",
+        "bulbapedia_set_list": "Sun_&_Moon_(TCG)"
       },
       "source_status": {
         "pokemontcg_api": "available",
@@ -4479,7 +5268,10 @@
         "official_checklist_pdf": "candidate_url",
         "official_pokemon_checklist": "candidate_url",
         "thepricedex": "candidate_url",
-        "thepricedex_price_list": "candidate_url"
+        "thepricedex_price_list": "candidate_url",
+        "pkmncards": "candidate_url",
+        "bulbapedia": "candidate_url",
+        "bulbapedia_set_list": "candidate_url"
       },
       "source_totals": {
         "pokemontcg_api": {
@@ -4505,7 +5297,10 @@
         "official_checklist_pdf": "sm2",
         "official_pokemon_checklist": "sm2",
         "thepricedex": "sm2",
-        "thepricedex_price_list": "sm2"
+        "thepricedex_price_list": "sm2",
+        "pkmncards": "guardians-rising",
+        "bulbapedia": "Guardians_Rising_(TCG)",
+        "bulbapedia_set_list": "Guardians_Rising_(TCG)"
       },
       "source_status": {
         "pokemontcg_api": "available",
@@ -4513,7 +5308,10 @@
         "official_checklist_pdf": "candidate_url",
         "official_pokemon_checklist": "candidate_url",
         "thepricedex": "candidate_url",
-        "thepricedex_price_list": "candidate_url"
+        "thepricedex_price_list": "candidate_url",
+        "pkmncards": "candidate_url",
+        "bulbapedia": "candidate_url",
+        "bulbapedia_set_list": "candidate_url"
       },
       "source_totals": {
         "pokemontcg_api": {
@@ -4539,7 +5337,10 @@
         "official_checklist_pdf": "sm3",
         "official_pokemon_checklist": "sm3",
         "thepricedex": "sm3",
-        "thepricedex_price_list": "sm3"
+        "thepricedex_price_list": "sm3",
+        "pkmncards": "burning-shadows",
+        "bulbapedia": "Burning_Shadows_(TCG)",
+        "bulbapedia_set_list": "Burning_Shadows_(TCG)"
       },
       "source_status": {
         "pokemontcg_api": "available",
@@ -4547,7 +5348,10 @@
         "official_checklist_pdf": "candidate_url",
         "official_pokemon_checklist": "candidate_url",
         "thepricedex": "candidate_url",
-        "thepricedex_price_list": "candidate_url"
+        "thepricedex_price_list": "candidate_url",
+        "pkmncards": "candidate_url",
+        "bulbapedia": "candidate_url",
+        "bulbapedia_set_list": "candidate_url"
       },
       "source_totals": {
         "pokemontcg_api": {
@@ -4573,7 +5377,10 @@
         "official_checklist_pdf": "sm35",
         "official_pokemon_checklist": "sm35",
         "thepricedex": "sm35",
-        "thepricedex_price_list": "sm35"
+        "thepricedex_price_list": "sm35",
+        "pkmncards": "shining-legends",
+        "bulbapedia": "Shining_Legends_(TCG)",
+        "bulbapedia_set_list": "Shining_Legends_(TCG)"
       },
       "source_status": {
         "pokemontcg_api": "available",
@@ -4581,7 +5388,10 @@
         "official_checklist_pdf": "candidate_url",
         "official_pokemon_checklist": "candidate_url",
         "thepricedex": "candidate_url",
-        "thepricedex_price_list": "candidate_url"
+        "thepricedex_price_list": "candidate_url",
+        "pkmncards": "candidate_url",
+        "bulbapedia": "candidate_url",
+        "bulbapedia_set_list": "candidate_url"
       },
       "source_totals": {
         "pokemontcg_api": {
@@ -4607,7 +5417,10 @@
         "official_checklist_pdf": "sm4",
         "official_pokemon_checklist": "sm4",
         "thepricedex": "sm4",
-        "thepricedex_price_list": "sm4"
+        "thepricedex_price_list": "sm4",
+        "pkmncards": "crimson-invasion",
+        "bulbapedia": "Crimson_Invasion_(TCG)",
+        "bulbapedia_set_list": "Crimson_Invasion_(TCG)"
       },
       "source_status": {
         "pokemontcg_api": "available",
@@ -4615,7 +5428,10 @@
         "official_checklist_pdf": "candidate_url",
         "official_pokemon_checklist": "candidate_url",
         "thepricedex": "candidate_url",
-        "thepricedex_price_list": "candidate_url"
+        "thepricedex_price_list": "candidate_url",
+        "pkmncards": "candidate_url",
+        "bulbapedia": "candidate_url",
+        "bulbapedia_set_list": "candidate_url"
       },
       "source_totals": {
         "pokemontcg_api": {
@@ -4641,7 +5457,10 @@
         "official_checklist_pdf": "mcd17",
         "official_pokemon_checklist": "mcd17",
         "thepricedex": "mcd17",
-        "thepricedex_price_list": "mcd17"
+        "thepricedex_price_list": "mcd17",
+        "pkmncards": "mcdonalds-collection-2017",
+        "bulbapedia": "McDonald's_Collection_2017_(TCG)",
+        "bulbapedia_set_list": "McDonald's_Collection_2017_(TCG)"
       },
       "source_status": {
         "pokemontcg_api": "available",
@@ -4649,7 +5468,10 @@
         "official_checklist_pdf": "candidate_url",
         "official_pokemon_checklist": "candidate_url",
         "thepricedex": "candidate_url",
-        "thepricedex_price_list": "candidate_url"
+        "thepricedex_price_list": "candidate_url",
+        "pkmncards": "candidate_url",
+        "bulbapedia": "candidate_url",
+        "bulbapedia_set_list": "candidate_url"
       },
       "source_totals": {
         "pokemontcg_api": {
@@ -4675,7 +5497,10 @@
         "official_checklist_pdf": "sm5",
         "official_pokemon_checklist": "sm5",
         "thepricedex": "sm5",
-        "thepricedex_price_list": "sm5"
+        "thepricedex_price_list": "sm5",
+        "pkmncards": "ultra-prism",
+        "bulbapedia": "Ultra_Prism_(TCG)",
+        "bulbapedia_set_list": "Ultra_Prism_(TCG)"
       },
       "source_status": {
         "pokemontcg_api": "available",
@@ -4683,7 +5508,10 @@
         "official_checklist_pdf": "candidate_url",
         "official_pokemon_checklist": "candidate_url",
         "thepricedex": "candidate_url",
-        "thepricedex_price_list": "candidate_url"
+        "thepricedex_price_list": "candidate_url",
+        "pkmncards": "candidate_url",
+        "bulbapedia": "candidate_url",
+        "bulbapedia_set_list": "candidate_url"
       },
       "source_totals": {
         "pokemontcg_api": {
@@ -4709,7 +5537,10 @@
         "official_checklist_pdf": "sm6",
         "official_pokemon_checklist": "sm6",
         "thepricedex": "sm6",
-        "thepricedex_price_list": "sm6"
+        "thepricedex_price_list": "sm6",
+        "pkmncards": "forbidden-light",
+        "bulbapedia": "Forbidden_Light_(TCG)",
+        "bulbapedia_set_list": "Forbidden_Light_(TCG)"
       },
       "source_status": {
         "pokemontcg_api": "available",
@@ -4717,7 +5548,10 @@
         "official_checklist_pdf": "candidate_url",
         "official_pokemon_checklist": "candidate_url",
         "thepricedex": "candidate_url",
-        "thepricedex_price_list": "candidate_url"
+        "thepricedex_price_list": "candidate_url",
+        "pkmncards": "candidate_url",
+        "bulbapedia": "candidate_url",
+        "bulbapedia_set_list": "candidate_url"
       },
       "source_totals": {
         "pokemontcg_api": {
@@ -4743,7 +5577,10 @@
         "official_checklist_pdf": "sm7",
         "official_pokemon_checklist": "sm7",
         "thepricedex": "sm7",
-        "thepricedex_price_list": "sm7"
+        "thepricedex_price_list": "sm7",
+        "pkmncards": "celestial-storm",
+        "bulbapedia": "Celestial_Storm_(TCG)",
+        "bulbapedia_set_list": "Celestial_Storm_(TCG)"
       },
       "source_status": {
         "pokemontcg_api": "available",
@@ -4751,7 +5588,10 @@
         "official_checklist_pdf": "candidate_url",
         "official_pokemon_checklist": "candidate_url",
         "thepricedex": "candidate_url",
-        "thepricedex_price_list": "candidate_url"
+        "thepricedex_price_list": "candidate_url",
+        "pkmncards": "candidate_url",
+        "bulbapedia": "candidate_url",
+        "bulbapedia_set_list": "candidate_url"
       },
       "source_totals": {
         "pokemontcg_api": {
@@ -4777,7 +5617,10 @@
         "official_checklist_pdf": "sm75",
         "official_pokemon_checklist": "sm75",
         "thepricedex": "sm75",
-        "thepricedex_price_list": "sm75"
+        "thepricedex_price_list": "sm75",
+        "pkmncards": "dragon-majesty",
+        "bulbapedia": "Dragon_Majesty_(TCG)",
+        "bulbapedia_set_list": "Dragon_Majesty_(TCG)"
       },
       "source_status": {
         "pokemontcg_api": "available",
@@ -4785,7 +5628,10 @@
         "official_checklist_pdf": "candidate_url",
         "official_pokemon_checklist": "candidate_url",
         "thepricedex": "candidate_url",
-        "thepricedex_price_list": "candidate_url"
+        "thepricedex_price_list": "candidate_url",
+        "pkmncards": "candidate_url",
+        "bulbapedia": "candidate_url",
+        "bulbapedia_set_list": "candidate_url"
       },
       "source_totals": {
         "pokemontcg_api": {
@@ -4811,7 +5657,10 @@
         "official_checklist_pdf": "mcd18",
         "official_pokemon_checklist": "mcd18",
         "thepricedex": "mcd18",
-        "thepricedex_price_list": "mcd18"
+        "thepricedex_price_list": "mcd18",
+        "pkmncards": "mcdonalds-collection-2018",
+        "bulbapedia": "McDonald's_Collection_2018_(TCG)",
+        "bulbapedia_set_list": "McDonald's_Collection_2018_(TCG)"
       },
       "source_status": {
         "pokemontcg_api": "available",
@@ -4819,7 +5668,10 @@
         "official_checklist_pdf": "candidate_url",
         "official_pokemon_checklist": "candidate_url",
         "thepricedex": "candidate_url",
-        "thepricedex_price_list": "candidate_url"
+        "thepricedex_price_list": "candidate_url",
+        "pkmncards": "candidate_url",
+        "bulbapedia": "candidate_url",
+        "bulbapedia_set_list": "candidate_url"
       },
       "source_totals": {
         "pokemontcg_api": {
@@ -4845,7 +5697,10 @@
         "official_checklist_pdf": "sm8",
         "official_pokemon_checklist": "sm8",
         "thepricedex": "sm8",
-        "thepricedex_price_list": "sm8"
+        "thepricedex_price_list": "sm8",
+        "pkmncards": "lost-thunder",
+        "bulbapedia": "Lost_Thunder_(TCG)",
+        "bulbapedia_set_list": "Lost_Thunder_(TCG)"
       },
       "source_status": {
         "pokemontcg_api": "available",
@@ -4853,7 +5708,10 @@
         "official_checklist_pdf": "candidate_url",
         "official_pokemon_checklist": "candidate_url",
         "thepricedex": "candidate_url",
-        "thepricedex_price_list": "candidate_url"
+        "thepricedex_price_list": "candidate_url",
+        "pkmncards": "candidate_url",
+        "bulbapedia": "candidate_url",
+        "bulbapedia_set_list": "candidate_url"
       },
       "source_totals": {
         "pokemontcg_api": {
@@ -4879,7 +5737,10 @@
         "official_checklist_pdf": "sm9",
         "official_pokemon_checklist": "sm9",
         "thepricedex": "sm9",
-        "thepricedex_price_list": "sm9"
+        "thepricedex_price_list": "sm9",
+        "pkmncards": "team-up",
+        "bulbapedia": "Team_Up_(TCG)",
+        "bulbapedia_set_list": "Team_Up_(TCG)"
       },
       "source_status": {
         "pokemontcg_api": "available",
@@ -4887,7 +5748,10 @@
         "official_checklist_pdf": "candidate_url",
         "official_pokemon_checklist": "candidate_url",
         "thepricedex": "candidate_url",
-        "thepricedex_price_list": "candidate_url"
+        "thepricedex_price_list": "candidate_url",
+        "pkmncards": "candidate_url",
+        "bulbapedia": "candidate_url",
+        "bulbapedia_set_list": "candidate_url"
       },
       "source_totals": {
         "pokemontcg_api": {
@@ -4913,7 +5777,10 @@
         "official_checklist_pdf": "det1",
         "official_pokemon_checklist": "det1",
         "thepricedex": "det1",
-        "thepricedex_price_list": "det1"
+        "thepricedex_price_list": "det1",
+        "pkmncards": "detective-pikachu",
+        "bulbapedia": "Detective_Pikachu_(TCG)",
+        "bulbapedia_set_list": "Detective_Pikachu_(TCG)"
       },
       "source_status": {
         "pokemontcg_api": "available",
@@ -4921,7 +5788,10 @@
         "official_checklist_pdf": "candidate_url",
         "official_pokemon_checklist": "candidate_url",
         "thepricedex": "candidate_url",
-        "thepricedex_price_list": "candidate_url"
+        "thepricedex_price_list": "candidate_url",
+        "pkmncards": "candidate_url",
+        "bulbapedia": "candidate_url",
+        "bulbapedia_set_list": "candidate_url"
       },
       "source_totals": {
         "pokemontcg_api": {
@@ -4947,7 +5817,10 @@
         "official_checklist_pdf": "sm10",
         "official_pokemon_checklist": "sm10",
         "thepricedex": "sm10",
-        "thepricedex_price_list": "sm10"
+        "thepricedex_price_list": "sm10",
+        "pkmncards": "unbroken-bonds",
+        "bulbapedia": "Unbroken_Bonds_(TCG)",
+        "bulbapedia_set_list": "Unbroken_Bonds_(TCG)"
       },
       "source_status": {
         "pokemontcg_api": "available",
@@ -4955,7 +5828,10 @@
         "official_checklist_pdf": "candidate_url",
         "official_pokemon_checklist": "candidate_url",
         "thepricedex": "candidate_url",
-        "thepricedex_price_list": "candidate_url"
+        "thepricedex_price_list": "candidate_url",
+        "pkmncards": "candidate_url",
+        "bulbapedia": "candidate_url",
+        "bulbapedia_set_list": "candidate_url"
       },
       "source_totals": {
         "pokemontcg_api": {
@@ -4981,7 +5857,10 @@
         "official_checklist_pdf": "sm11",
         "official_pokemon_checklist": "sm11",
         "thepricedex": "sm11",
-        "thepricedex_price_list": "sm11"
+        "thepricedex_price_list": "sm11",
+        "pkmncards": "unified-minds",
+        "bulbapedia": "Unified_Minds_(TCG)",
+        "bulbapedia_set_list": "Unified_Minds_(TCG)"
       },
       "source_status": {
         "pokemontcg_api": "available",
@@ -4989,7 +5868,10 @@
         "official_checklist_pdf": "candidate_url",
         "official_pokemon_checklist": "candidate_url",
         "thepricedex": "candidate_url",
-        "thepricedex_price_list": "candidate_url"
+        "thepricedex_price_list": "candidate_url",
+        "pkmncards": "candidate_url",
+        "bulbapedia": "candidate_url",
+        "bulbapedia_set_list": "candidate_url"
       },
       "source_totals": {
         "pokemontcg_api": {
@@ -5015,7 +5897,10 @@
         "official_checklist_pdf": "sm115",
         "official_pokemon_checklist": "sm115",
         "thepricedex": "sm115",
-        "thepricedex_price_list": "sm115"
+        "thepricedex_price_list": "sm115",
+        "pkmncards": "hidden-fates",
+        "bulbapedia": "Hidden_Fates_(TCG)",
+        "bulbapedia_set_list": "Hidden_Fates_(TCG)"
       },
       "source_status": {
         "pokemontcg_api": "available",
@@ -5023,7 +5908,10 @@
         "official_checklist_pdf": "candidate_url",
         "official_pokemon_checklist": "candidate_url",
         "thepricedex": "candidate_url",
-        "thepricedex_price_list": "candidate_url"
+        "thepricedex_price_list": "candidate_url",
+        "pkmncards": "candidate_url",
+        "bulbapedia": "candidate_url",
+        "bulbapedia_set_list": "candidate_url"
       },
       "source_totals": {
         "pokemontcg_api": {
@@ -5049,7 +5937,10 @@
         "official_checklist_pdf": "sma",
         "official_pokemon_checklist": "sma",
         "thepricedex": "sma",
-        "thepricedex_price_list": "sma"
+        "thepricedex_price_list": "sma",
+        "pkmncards": "hidden-fates-shiny-vault",
+        "bulbapedia": "Hidden_Fates_Shiny_Vault_(TCG)",
+        "bulbapedia_set_list": "Hidden_Fates_Shiny_Vault_(TCG)"
       },
       "source_status": {
         "pokemontcg_api": "available",
@@ -5057,7 +5948,10 @@
         "official_checklist_pdf": "candidate_url",
         "official_pokemon_checklist": "candidate_url",
         "thepricedex": "candidate_url",
-        "thepricedex_price_list": "candidate_url"
+        "thepricedex_price_list": "candidate_url",
+        "pkmncards": "candidate_url",
+        "bulbapedia": "candidate_url",
+        "bulbapedia_set_list": "candidate_url"
       },
       "source_totals": {
         "pokemontcg_api": {
@@ -5083,7 +5977,10 @@
         "official_checklist_pdf": "mcd19",
         "official_pokemon_checklist": "mcd19",
         "thepricedex": "mcd19",
-        "thepricedex_price_list": "mcd19"
+        "thepricedex_price_list": "mcd19",
+        "pkmncards": "mcdonalds-collection-2019",
+        "bulbapedia": "McDonald's_Collection_2019_(TCG)",
+        "bulbapedia_set_list": "McDonald's_Collection_2019_(TCG)"
       },
       "source_status": {
         "pokemontcg_api": "available",
@@ -5091,7 +5988,10 @@
         "official_checklist_pdf": "candidate_url",
         "official_pokemon_checklist": "candidate_url",
         "thepricedex": "candidate_url",
-        "thepricedex_price_list": "candidate_url"
+        "thepricedex_price_list": "candidate_url",
+        "pkmncards": "candidate_url",
+        "bulbapedia": "candidate_url",
+        "bulbapedia_set_list": "candidate_url"
       },
       "source_totals": {
         "pokemontcg_api": {
@@ -5117,7 +6017,10 @@
         "official_checklist_pdf": "sm12",
         "official_pokemon_checklist": "sm12",
         "thepricedex": "sm12",
-        "thepricedex_price_list": "sm12"
+        "thepricedex_price_list": "sm12",
+        "pkmncards": "cosmic-eclipse",
+        "bulbapedia": "Cosmic_Eclipse_(TCG)",
+        "bulbapedia_set_list": "Cosmic_Eclipse_(TCG)"
       },
       "source_status": {
         "pokemontcg_api": "available",
@@ -5125,7 +6028,10 @@
         "official_checklist_pdf": "candidate_url",
         "official_pokemon_checklist": "candidate_url",
         "thepricedex": "candidate_url",
-        "thepricedex_price_list": "candidate_url"
+        "thepricedex_price_list": "candidate_url",
+        "pkmncards": "candidate_url",
+        "bulbapedia": "candidate_url",
+        "bulbapedia_set_list": "candidate_url"
       },
       "source_totals": {
         "pokemontcg_api": {
@@ -5151,7 +6057,10 @@
         "official_checklist_pdf": "swshp",
         "official_pokemon_checklist": "swshp",
         "thepricedex": "swshp",
-        "thepricedex_price_list": "swshp"
+        "thepricedex_price_list": "swshp",
+        "pkmncards": "sword-shield-promos",
+        "bulbapedia": "SWSH_Black_Star_Promos_(TCG)",
+        "bulbapedia_set_list": "SWSH_Black_Star_Promos_(TCG)"
       },
       "source_status": {
         "pokemontcg_api": "available",
@@ -5159,7 +6068,10 @@
         "official_checklist_pdf": "candidate_url",
         "official_pokemon_checklist": "candidate_url",
         "thepricedex": "candidate_url",
-        "thepricedex_price_list": "candidate_url"
+        "thepricedex_price_list": "candidate_url",
+        "pkmncards": "candidate_url",
+        "bulbapedia": "candidate_url",
+        "bulbapedia_set_list": "candidate_url"
       },
       "source_totals": {
         "pokemontcg_api": {
@@ -5185,7 +6097,10 @@
         "official_checklist_pdf": "swsh1",
         "official_pokemon_checklist": "swsh1",
         "thepricedex": "swsh1",
-        "thepricedex_price_list": "swsh1"
+        "thepricedex_price_list": "swsh1",
+        "pkmncards": "sword-shield",
+        "bulbapedia": "Sword_&_Shield_(TCG)",
+        "bulbapedia_set_list": "Sword_&_Shield_(TCG)"
       },
       "source_status": {
         "pokemontcg_api": "available",
@@ -5193,7 +6108,10 @@
         "official_checklist_pdf": "candidate_url",
         "official_pokemon_checklist": "candidate_url",
         "thepricedex": "candidate_url",
-        "thepricedex_price_list": "candidate_url"
+        "thepricedex_price_list": "candidate_url",
+        "pkmncards": "candidate_url",
+        "bulbapedia": "candidate_url",
+        "bulbapedia_set_list": "candidate_url"
       },
       "source_totals": {
         "pokemontcg_api": {
@@ -5219,7 +6137,10 @@
         "official_checklist_pdf": "swsh2",
         "official_pokemon_checklist": "swsh2",
         "thepricedex": "swsh2",
-        "thepricedex_price_list": "swsh2"
+        "thepricedex_price_list": "swsh2",
+        "pkmncards": "rebel-clash",
+        "bulbapedia": "Rebel_Clash_(TCG)",
+        "bulbapedia_set_list": "Rebel_Clash_(TCG)"
       },
       "source_status": {
         "pokemontcg_api": "available",
@@ -5227,7 +6148,10 @@
         "official_checklist_pdf": "candidate_url",
         "official_pokemon_checklist": "candidate_url",
         "thepricedex": "candidate_url",
-        "thepricedex_price_list": "candidate_url"
+        "thepricedex_price_list": "candidate_url",
+        "pkmncards": "candidate_url",
+        "bulbapedia": "candidate_url",
+        "bulbapedia_set_list": "candidate_url"
       },
       "source_totals": {
         "pokemontcg_api": {
@@ -5253,7 +6177,10 @@
         "official_checklist_pdf": "swsh3",
         "official_pokemon_checklist": "swsh3",
         "thepricedex": "swsh3",
-        "thepricedex_price_list": "swsh3"
+        "thepricedex_price_list": "swsh3",
+        "pkmncards": "darkness-ablaze",
+        "bulbapedia": "Darkness_Ablaze_(TCG)",
+        "bulbapedia_set_list": "Darkness_Ablaze_(TCG)"
       },
       "source_status": {
         "pokemontcg_api": "available",
@@ -5261,7 +6188,10 @@
         "official_checklist_pdf": "candidate_url",
         "official_pokemon_checklist": "candidate_url",
         "thepricedex": "candidate_url",
-        "thepricedex_price_list": "candidate_url"
+        "thepricedex_price_list": "candidate_url",
+        "pkmncards": "candidate_url",
+        "bulbapedia": "candidate_url",
+        "bulbapedia_set_list": "candidate_url"
       },
       "source_totals": {
         "pokemontcg_api": {
@@ -5287,7 +6217,10 @@
         "official_checklist_pdf": "fut20",
         "official_pokemon_checklist": "fut20",
         "thepricedex": "fut20",
-        "thepricedex_price_list": "fut20"
+        "thepricedex_price_list": "fut20",
+        "pkmncards": "pok-mon-futsal-collection",
+        "bulbapedia": "Pokémon_Futsal_Collection_(TCG)",
+        "bulbapedia_set_list": "Pokémon_Futsal_Collection_(TCG)"
       },
       "source_status": {
         "pokemontcg_api": "available",
@@ -5295,7 +6228,10 @@
         "official_checklist_pdf": "candidate_url",
         "official_pokemon_checklist": "candidate_url",
         "thepricedex": "candidate_url",
-        "thepricedex_price_list": "candidate_url"
+        "thepricedex_price_list": "candidate_url",
+        "pkmncards": "candidate_url",
+        "bulbapedia": "candidate_url",
+        "bulbapedia_set_list": "candidate_url"
       },
       "source_totals": {
         "pokemontcg_api": {
@@ -5321,7 +6257,10 @@
         "official_checklist_pdf": "swsh35",
         "official_pokemon_checklist": "swsh35",
         "thepricedex": "swsh35",
-        "thepricedex_price_list": "swsh35"
+        "thepricedex_price_list": "swsh35",
+        "pkmncards": "champions-path",
+        "bulbapedia": "Champion's_Path_(TCG)",
+        "bulbapedia_set_list": "Champion's_Path_(TCG)"
       },
       "source_status": {
         "pokemontcg_api": "available",
@@ -5329,7 +6268,10 @@
         "official_checklist_pdf": "candidate_url",
         "official_pokemon_checklist": "candidate_url",
         "thepricedex": "candidate_url",
-        "thepricedex_price_list": "candidate_url"
+        "thepricedex_price_list": "candidate_url",
+        "pkmncards": "candidate_url",
+        "bulbapedia": "candidate_url",
+        "bulbapedia_set_list": "candidate_url"
       },
       "source_totals": {
         "pokemontcg_api": {
@@ -5355,7 +6297,10 @@
         "official_checklist_pdf": "swsh4",
         "official_pokemon_checklist": "swsh4",
         "thepricedex": "swsh4",
-        "thepricedex_price_list": "swsh4"
+        "thepricedex_price_list": "swsh4",
+        "pkmncards": "vivid-voltage",
+        "bulbapedia": "Vivid_Voltage_(TCG)",
+        "bulbapedia_set_list": "Vivid_Voltage_(TCG)"
       },
       "source_status": {
         "pokemontcg_api": "available",
@@ -5363,7 +6308,10 @@
         "official_checklist_pdf": "candidate_url",
         "official_pokemon_checklist": "candidate_url",
         "thepricedex": "candidate_url",
-        "thepricedex_price_list": "candidate_url"
+        "thepricedex_price_list": "candidate_url",
+        "pkmncards": "candidate_url",
+        "bulbapedia": "candidate_url",
+        "bulbapedia_set_list": "candidate_url"
       },
       "source_totals": {
         "pokemontcg_api": {
@@ -5389,7 +6337,10 @@
         "official_checklist_pdf": "mcd21",
         "official_pokemon_checklist": "mcd21",
         "thepricedex": "mcd21",
-        "thepricedex_price_list": "mcd21"
+        "thepricedex_price_list": "mcd21",
+        "pkmncards": "mcdonalds-collection-2021",
+        "bulbapedia": "McDonald's_Collection_2021_(TCG)",
+        "bulbapedia_set_list": "McDonald's_Collection_2021_(TCG)"
       },
       "source_status": {
         "pokemontcg_api": "available",
@@ -5397,7 +6348,10 @@
         "official_checklist_pdf": "candidate_url",
         "official_pokemon_checklist": "candidate_url",
         "thepricedex": "candidate_url",
-        "thepricedex_price_list": "candidate_url"
+        "thepricedex_price_list": "candidate_url",
+        "pkmncards": "candidate_url",
+        "bulbapedia": "candidate_url",
+        "bulbapedia_set_list": "candidate_url"
       },
       "source_totals": {
         "pokemontcg_api": {
@@ -5423,7 +6377,10 @@
         "official_checklist_pdf": "swsh45",
         "official_pokemon_checklist": "swsh45",
         "thepricedex": "swsh45",
-        "thepricedex_price_list": "swsh45"
+        "thepricedex_price_list": "swsh45",
+        "pkmncards": "shining-fates",
+        "bulbapedia": "Shining_Fates_(TCG)",
+        "bulbapedia_set_list": "Shining_Fates_(TCG)"
       },
       "source_status": {
         "pokemontcg_api": "available",
@@ -5431,7 +6388,10 @@
         "official_checklist_pdf": "candidate_url",
         "official_pokemon_checklist": "candidate_url",
         "thepricedex": "candidate_url",
-        "thepricedex_price_list": "candidate_url"
+        "thepricedex_price_list": "candidate_url",
+        "pkmncards": "candidate_url",
+        "bulbapedia": "candidate_url",
+        "bulbapedia_set_list": "candidate_url"
       },
       "source_totals": {
         "pokemontcg_api": {
@@ -5457,7 +6417,10 @@
         "official_checklist_pdf": "swsh45sv",
         "official_pokemon_checklist": "swsh45sv",
         "thepricedex": "swsh45sv",
-        "thepricedex_price_list": "swsh45sv"
+        "thepricedex_price_list": "swsh45sv",
+        "pkmncards": "shining-fates-shiny-vault",
+        "bulbapedia": "Shining_Fates_Shiny_Vault_(TCG)",
+        "bulbapedia_set_list": "Shining_Fates_Shiny_Vault_(TCG)"
       },
       "source_status": {
         "pokemontcg_api": "available",
@@ -5465,7 +6428,10 @@
         "official_checklist_pdf": "candidate_url",
         "official_pokemon_checklist": "candidate_url",
         "thepricedex": "candidate_url",
-        "thepricedex_price_list": "candidate_url"
+        "thepricedex_price_list": "candidate_url",
+        "pkmncards": "candidate_url",
+        "bulbapedia": "candidate_url",
+        "bulbapedia_set_list": "candidate_url"
       },
       "source_totals": {
         "pokemontcg_api": {
@@ -5491,7 +6457,10 @@
         "official_checklist_pdf": "swsh5",
         "official_pokemon_checklist": "swsh5",
         "thepricedex": "swsh5",
-        "thepricedex_price_list": "swsh5"
+        "thepricedex_price_list": "swsh5",
+        "pkmncards": "battle-styles",
+        "bulbapedia": "Battle_Styles_(TCG)",
+        "bulbapedia_set_list": "Battle_Styles_(TCG)"
       },
       "source_status": {
         "pokemontcg_api": "available",
@@ -5499,7 +6468,10 @@
         "official_checklist_pdf": "candidate_url",
         "official_pokemon_checklist": "candidate_url",
         "thepricedex": "candidate_url",
-        "thepricedex_price_list": "candidate_url"
+        "thepricedex_price_list": "candidate_url",
+        "pkmncards": "candidate_url",
+        "bulbapedia": "candidate_url",
+        "bulbapedia_set_list": "candidate_url"
       },
       "source_totals": {
         "pokemontcg_api": {
@@ -5525,7 +6497,10 @@
         "official_checklist_pdf": "swsh6",
         "official_pokemon_checklist": "swsh6",
         "thepricedex": "swsh6",
-        "thepricedex_price_list": "swsh6"
+        "thepricedex_price_list": "swsh6",
+        "pkmncards": "chilling-reign",
+        "bulbapedia": "Chilling_Reign_(TCG)",
+        "bulbapedia_set_list": "Chilling_Reign_(TCG)"
       },
       "source_status": {
         "pokemontcg_api": "available",
@@ -5533,7 +6508,10 @@
         "official_checklist_pdf": "candidate_url",
         "official_pokemon_checklist": "candidate_url",
         "thepricedex": "candidate_url",
-        "thepricedex_price_list": "candidate_url"
+        "thepricedex_price_list": "candidate_url",
+        "pkmncards": "candidate_url",
+        "bulbapedia": "candidate_url",
+        "bulbapedia_set_list": "candidate_url"
       },
       "source_totals": {
         "pokemontcg_api": {
@@ -5559,7 +6537,10 @@
         "official_checklist_pdf": "swsh7",
         "official_pokemon_checklist": "swsh7",
         "thepricedex": "swsh7",
-        "thepricedex_price_list": "swsh7"
+        "thepricedex_price_list": "swsh7",
+        "pkmncards": "evolving-skies",
+        "bulbapedia": "Evolving_Skies_(TCG)",
+        "bulbapedia_set_list": "Evolving_Skies_(TCG)"
       },
       "source_status": {
         "pokemontcg_api": "available",
@@ -5567,7 +6548,10 @@
         "official_checklist_pdf": "candidate_url",
         "official_pokemon_checklist": "candidate_url",
         "thepricedex": "candidate_url",
-        "thepricedex_price_list": "candidate_url"
+        "thepricedex_price_list": "candidate_url",
+        "pkmncards": "candidate_url",
+        "bulbapedia": "candidate_url",
+        "bulbapedia_set_list": "candidate_url"
       },
       "source_totals": {
         "pokemontcg_api": {
@@ -5593,7 +6577,10 @@
         "official_checklist_pdf": "cel25",
         "official_pokemon_checklist": "cel25",
         "thepricedex": "cel25",
-        "thepricedex_price_list": "cel25"
+        "thepricedex_price_list": "cel25",
+        "pkmncards": "celebrations",
+        "bulbapedia": "Celebrations_(TCG)",
+        "bulbapedia_set_list": "Celebrations_(TCG)"
       },
       "source_status": {
         "pokemontcg_api": "available",
@@ -5601,7 +6588,10 @@
         "official_checklist_pdf": "candidate_url",
         "official_pokemon_checklist": "candidate_url",
         "thepricedex": "candidate_url",
-        "thepricedex_price_list": "candidate_url"
+        "thepricedex_price_list": "candidate_url",
+        "pkmncards": "candidate_url",
+        "bulbapedia": "candidate_url",
+        "bulbapedia_set_list": "candidate_url"
       },
       "source_totals": {
         "pokemontcg_api": {
@@ -5627,7 +6617,10 @@
         "official_checklist_pdf": "cel25c",
         "official_pokemon_checklist": "cel25c",
         "thepricedex": "cel25c",
-        "thepricedex_price_list": "cel25c"
+        "thepricedex_price_list": "cel25c",
+        "pkmncards": "celebrations-classic-collection",
+        "bulbapedia": "Celebrations:_Classic_Collection_(TCG)",
+        "bulbapedia_set_list": "Celebrations:_Classic_Collection_(TCG)"
       },
       "source_status": {
         "pokemontcg_api": "available",
@@ -5635,7 +6628,10 @@
         "official_checklist_pdf": "candidate_url",
         "official_pokemon_checklist": "candidate_url",
         "thepricedex": "candidate_url",
-        "thepricedex_price_list": "candidate_url"
+        "thepricedex_price_list": "candidate_url",
+        "pkmncards": "candidate_url",
+        "bulbapedia": "candidate_url",
+        "bulbapedia_set_list": "candidate_url"
       },
       "source_totals": {
         "pokemontcg_api": {
@@ -5661,7 +6657,10 @@
         "official_checklist_pdf": "swsh8",
         "official_pokemon_checklist": "swsh8",
         "thepricedex": "swsh8",
-        "thepricedex_price_list": "swsh8"
+        "thepricedex_price_list": "swsh8",
+        "pkmncards": "fusion-strike",
+        "bulbapedia": "Fusion_Strike_(TCG)",
+        "bulbapedia_set_list": "Fusion_Strike_(TCG)"
       },
       "source_status": {
         "pokemontcg_api": "available",
@@ -5669,7 +6668,10 @@
         "official_checklist_pdf": "candidate_url",
         "official_pokemon_checklist": "candidate_url",
         "thepricedex": "candidate_url",
-        "thepricedex_price_list": "candidate_url"
+        "thepricedex_price_list": "candidate_url",
+        "pkmncards": "candidate_url",
+        "bulbapedia": "candidate_url",
+        "bulbapedia_set_list": "candidate_url"
       },
       "source_totals": {
         "pokemontcg_api": {
@@ -5695,7 +6697,10 @@
         "official_checklist_pdf": "swsh9",
         "official_pokemon_checklist": "swsh9",
         "thepricedex": "swsh9",
-        "thepricedex_price_list": "swsh9"
+        "thepricedex_price_list": "swsh9",
+        "pkmncards": "brilliant-stars",
+        "bulbapedia": "Brilliant_Stars_(TCG)",
+        "bulbapedia_set_list": "Brilliant_Stars_(TCG)"
       },
       "source_status": {
         "pokemontcg_api": "available",
@@ -5703,7 +6708,10 @@
         "official_checklist_pdf": "candidate_url",
         "official_pokemon_checklist": "candidate_url",
         "thepricedex": "candidate_url",
-        "thepricedex_price_list": "candidate_url"
+        "thepricedex_price_list": "candidate_url",
+        "pkmncards": "candidate_url",
+        "bulbapedia": "candidate_url",
+        "bulbapedia_set_list": "candidate_url"
       },
       "source_totals": {
         "pokemontcg_api": {
@@ -5729,7 +6737,10 @@
         "official_checklist_pdf": "swsh9tg",
         "official_pokemon_checklist": "swsh9tg",
         "thepricedex": "swsh9tg",
-        "thepricedex_price_list": "swsh9tg"
+        "thepricedex_price_list": "swsh9tg",
+        "pkmncards": "brilliant-stars-trainer-gallery",
+        "bulbapedia": "Brilliant_Stars_Trainer_Gallery_(TCG)",
+        "bulbapedia_set_list": "Brilliant_Stars_Trainer_Gallery_(TCG)"
       },
       "source_status": {
         "pokemontcg_api": "available",
@@ -5737,7 +6748,10 @@
         "official_checklist_pdf": "candidate_url",
         "official_pokemon_checklist": "candidate_url",
         "thepricedex": "candidate_url",
-        "thepricedex_price_list": "candidate_url"
+        "thepricedex_price_list": "candidate_url",
+        "pkmncards": "candidate_url",
+        "bulbapedia": "candidate_url",
+        "bulbapedia_set_list": "candidate_url"
       },
       "source_totals": {
         "pokemontcg_api": {
@@ -5763,7 +6777,10 @@
         "official_checklist_pdf": "swsh10",
         "official_pokemon_checklist": "swsh10",
         "thepricedex": "swsh10",
-        "thepricedex_price_list": "swsh10"
+        "thepricedex_price_list": "swsh10",
+        "pkmncards": "astral-radiance",
+        "bulbapedia": "Astral_Radiance_(TCG)",
+        "bulbapedia_set_list": "Astral_Radiance_(TCG)"
       },
       "source_status": {
         "pokemontcg_api": "available",
@@ -5771,7 +6788,10 @@
         "official_checklist_pdf": "candidate_url",
         "official_pokemon_checklist": "candidate_url",
         "thepricedex": "candidate_url",
-        "thepricedex_price_list": "candidate_url"
+        "thepricedex_price_list": "candidate_url",
+        "pkmncards": "candidate_url",
+        "bulbapedia": "candidate_url",
+        "bulbapedia_set_list": "candidate_url"
       },
       "source_totals": {
         "pokemontcg_api": {
@@ -5797,7 +6817,10 @@
         "official_checklist_pdf": "swsh10tg",
         "official_pokemon_checklist": "swsh10tg",
         "thepricedex": "swsh10tg",
-        "thepricedex_price_list": "swsh10tg"
+        "thepricedex_price_list": "swsh10tg",
+        "pkmncards": "astral-radiance-trainer-gallery",
+        "bulbapedia": "Astral_Radiance_Trainer_Gallery_(TCG)",
+        "bulbapedia_set_list": "Astral_Radiance_Trainer_Gallery_(TCG)"
       },
       "source_status": {
         "pokemontcg_api": "available",
@@ -5805,7 +6828,10 @@
         "official_checklist_pdf": "candidate_url",
         "official_pokemon_checklist": "candidate_url",
         "thepricedex": "candidate_url",
-        "thepricedex_price_list": "candidate_url"
+        "thepricedex_price_list": "candidate_url",
+        "pkmncards": "candidate_url",
+        "bulbapedia": "candidate_url",
+        "bulbapedia_set_list": "candidate_url"
       },
       "source_totals": {
         "pokemontcg_api": {
@@ -5831,7 +6857,10 @@
         "official_checklist_pdf": "pgo",
         "official_pokemon_checklist": "pgo",
         "thepricedex": "pgo",
-        "thepricedex_price_list": "pgo"
+        "thepricedex_price_list": "pgo",
+        "pkmncards": "pok-mon-go",
+        "bulbapedia": "Pokémon_GO_(TCG)",
+        "bulbapedia_set_list": "Pokémon_GO_(TCG)"
       },
       "source_status": {
         "pokemontcg_api": "available",
@@ -5839,7 +6868,10 @@
         "official_checklist_pdf": "candidate_url",
         "official_pokemon_checklist": "candidate_url",
         "thepricedex": "candidate_url",
-        "thepricedex_price_list": "candidate_url"
+        "thepricedex_price_list": "candidate_url",
+        "pkmncards": "candidate_url",
+        "bulbapedia": "candidate_url",
+        "bulbapedia_set_list": "candidate_url"
       },
       "source_totals": {
         "pokemontcg_api": {
@@ -5865,7 +6897,10 @@
         "official_checklist_pdf": "mcd22",
         "official_pokemon_checklist": "mcd22",
         "thepricedex": "mcd22",
-        "thepricedex_price_list": "mcd22"
+        "thepricedex_price_list": "mcd22",
+        "pkmncards": "mcdonalds-collection-2022",
+        "bulbapedia": "McDonald's_Collection_2022_(TCG)",
+        "bulbapedia_set_list": "McDonald's_Collection_2022_(TCG)"
       },
       "source_status": {
         "pokemontcg_api": "available",
@@ -5873,7 +6908,10 @@
         "official_checklist_pdf": "candidate_url",
         "official_pokemon_checklist": "candidate_url",
         "thepricedex": "candidate_url",
-        "thepricedex_price_list": "candidate_url"
+        "thepricedex_price_list": "candidate_url",
+        "pkmncards": "candidate_url",
+        "bulbapedia": "candidate_url",
+        "bulbapedia_set_list": "candidate_url"
       },
       "source_totals": {
         "pokemontcg_api": {
@@ -5899,7 +6937,10 @@
         "official_checklist_pdf": "swsh11",
         "official_pokemon_checklist": "swsh11",
         "thepricedex": "swsh11",
-        "thepricedex_price_list": "swsh11"
+        "thepricedex_price_list": "swsh11",
+        "pkmncards": "lost-origin",
+        "bulbapedia": "Lost_Origin_(TCG)",
+        "bulbapedia_set_list": "Lost_Origin_(TCG)"
       },
       "source_status": {
         "pokemontcg_api": "available",
@@ -5907,7 +6948,10 @@
         "official_checklist_pdf": "candidate_url",
         "official_pokemon_checklist": "candidate_url",
         "thepricedex": "candidate_url",
-        "thepricedex_price_list": "candidate_url"
+        "thepricedex_price_list": "candidate_url",
+        "pkmncards": "candidate_url",
+        "bulbapedia": "candidate_url",
+        "bulbapedia_set_list": "candidate_url"
       },
       "source_totals": {
         "pokemontcg_api": {
@@ -5933,7 +6977,10 @@
         "official_checklist_pdf": "swsh11tg",
         "official_pokemon_checklist": "swsh11tg",
         "thepricedex": "swsh11tg",
-        "thepricedex_price_list": "swsh11tg"
+        "thepricedex_price_list": "swsh11tg",
+        "pkmncards": "lost-origin-trainer-gallery",
+        "bulbapedia": "Lost_Origin_Trainer_Gallery_(TCG)",
+        "bulbapedia_set_list": "Lost_Origin_Trainer_Gallery_(TCG)"
       },
       "source_status": {
         "pokemontcg_api": "available",
@@ -5941,7 +6988,10 @@
         "official_checklist_pdf": "candidate_url",
         "official_pokemon_checklist": "candidate_url",
         "thepricedex": "candidate_url",
-        "thepricedex_price_list": "candidate_url"
+        "thepricedex_price_list": "candidate_url",
+        "pkmncards": "candidate_url",
+        "bulbapedia": "candidate_url",
+        "bulbapedia_set_list": "candidate_url"
       },
       "source_totals": {
         "pokemontcg_api": {
@@ -5967,7 +7017,10 @@
         "official_checklist_pdf": "swsh12",
         "official_pokemon_checklist": "swsh12",
         "thepricedex": "swsh12",
-        "thepricedex_price_list": "swsh12"
+        "thepricedex_price_list": "swsh12",
+        "pkmncards": "silver-tempest",
+        "bulbapedia": "Silver_Tempest_(TCG)",
+        "bulbapedia_set_list": "Silver_Tempest_(TCG)"
       },
       "source_status": {
         "pokemontcg_api": "available",
@@ -5975,7 +7028,10 @@
         "official_checklist_pdf": "candidate_url",
         "official_pokemon_checklist": "candidate_url",
         "thepricedex": "candidate_url",
-        "thepricedex_price_list": "candidate_url"
+        "thepricedex_price_list": "candidate_url",
+        "pkmncards": "candidate_url",
+        "bulbapedia": "candidate_url",
+        "bulbapedia_set_list": "candidate_url"
       },
       "source_totals": {
         "pokemontcg_api": {
@@ -6001,7 +7057,10 @@
         "official_checklist_pdf": "swsh12tg",
         "official_pokemon_checklist": "swsh12tg",
         "thepricedex": "swsh12tg",
-        "thepricedex_price_list": "swsh12tg"
+        "thepricedex_price_list": "swsh12tg",
+        "pkmncards": "silver-tempest-trainer-gallery",
+        "bulbapedia": "Silver_Tempest_Trainer_Gallery_(TCG)",
+        "bulbapedia_set_list": "Silver_Tempest_Trainer_Gallery_(TCG)"
       },
       "source_status": {
         "pokemontcg_api": "available",
@@ -6009,7 +7068,10 @@
         "official_checklist_pdf": "candidate_url",
         "official_pokemon_checklist": "candidate_url",
         "thepricedex": "candidate_url",
-        "thepricedex_price_list": "candidate_url"
+        "thepricedex_price_list": "candidate_url",
+        "pkmncards": "candidate_url",
+        "bulbapedia": "candidate_url",
+        "bulbapedia_set_list": "candidate_url"
       },
       "source_totals": {
         "pokemontcg_api": {
@@ -6035,7 +7097,10 @@
         "official_checklist_pdf": "svp",
         "official_pokemon_checklist": "svp",
         "thepricedex": "svp",
-        "thepricedex_price_list": "svp"
+        "thepricedex_price_list": "svp",
+        "pkmncards": "scarlet-violet-promos",
+        "bulbapedia": "SV_Black_Star_Promos_(TCG)",
+        "bulbapedia_set_list": "SV_Black_Star_Promos_(TCG)"
       },
       "source_status": {
         "pokemontcg_api": "available",
@@ -6043,7 +7108,10 @@
         "official_checklist_pdf": "candidate_url",
         "official_pokemon_checklist": "candidate_url",
         "thepricedex": "candidate_url",
-        "thepricedex_price_list": "candidate_url"
+        "thepricedex_price_list": "candidate_url",
+        "pkmncards": "candidate_url",
+        "bulbapedia": "candidate_url",
+        "bulbapedia_set_list": "candidate_url"
       },
       "source_totals": {
         "pokemontcg_api": {
@@ -6069,7 +7137,10 @@
         "official_checklist_pdf": "swsh12pt5",
         "official_pokemon_checklist": "swsh12pt5",
         "thepricedex": "swsh12pt5",
-        "thepricedex_price_list": "swsh12pt5"
+        "thepricedex_price_list": "swsh12pt5",
+        "pkmncards": "crown-zenith",
+        "bulbapedia": "Crown_Zenith_(TCG)",
+        "bulbapedia_set_list": "Crown_Zenith_(TCG)"
       },
       "source_status": {
         "pokemontcg_api": "available",
@@ -6077,7 +7148,10 @@
         "official_checklist_pdf": "candidate_url",
         "official_pokemon_checklist": "candidate_url",
         "thepricedex": "candidate_url",
-        "thepricedex_price_list": "candidate_url"
+        "thepricedex_price_list": "candidate_url",
+        "pkmncards": "candidate_url",
+        "bulbapedia": "candidate_url",
+        "bulbapedia_set_list": "candidate_url"
       },
       "source_totals": {
         "pokemontcg_api": {
@@ -6103,7 +7177,10 @@
         "official_checklist_pdf": "swsh12pt5gg",
         "official_pokemon_checklist": "swsh12pt5gg",
         "thepricedex": "swsh12pt5gg",
-        "thepricedex_price_list": "swsh12pt5gg"
+        "thepricedex_price_list": "swsh12pt5gg",
+        "pkmncards": "crown-zenith-galarian-gallery",
+        "bulbapedia": "Crown_Zenith_Galarian_Gallery_(TCG)",
+        "bulbapedia_set_list": "Crown_Zenith_Galarian_Gallery_(TCG)"
       },
       "source_status": {
         "pokemontcg_api": "available",
@@ -6111,7 +7188,10 @@
         "official_checklist_pdf": "candidate_url",
         "official_pokemon_checklist": "candidate_url",
         "thepricedex": "candidate_url",
-        "thepricedex_price_list": "candidate_url"
+        "thepricedex_price_list": "candidate_url",
+        "pkmncards": "candidate_url",
+        "bulbapedia": "candidate_url",
+        "bulbapedia_set_list": "candidate_url"
       },
       "source_totals": {
         "pokemontcg_api": {
@@ -6137,7 +7217,10 @@
         "official_checklist_pdf": "sv1",
         "official_pokemon_checklist": "sv1",
         "thepricedex": "sv1",
-        "thepricedex_price_list": "sv1"
+        "thepricedex_price_list": "sv1",
+        "pkmncards": "scarlet-violet",
+        "bulbapedia": "Scarlet_&_Violet_(TCG)",
+        "bulbapedia_set_list": "Scarlet_&_Violet_(TCG)"
       },
       "source_status": {
         "pokemontcg_api": "available",
@@ -6145,7 +7228,10 @@
         "official_checklist_pdf": "candidate_url",
         "official_pokemon_checklist": "candidate_url",
         "thepricedex": "candidate_url",
-        "thepricedex_price_list": "candidate_url"
+        "thepricedex_price_list": "candidate_url",
+        "pkmncards": "candidate_url",
+        "bulbapedia": "candidate_url",
+        "bulbapedia_set_list": "candidate_url"
       },
       "source_totals": {
         "pokemontcg_api": {
@@ -6171,7 +7257,10 @@
         "official_checklist_pdf": "sve",
         "official_pokemon_checklist": "sve",
         "thepricedex": "sve",
-        "thepricedex_price_list": "sve"
+        "thepricedex_price_list": "sve",
+        "pkmncards": "scarlet-violet-energies",
+        "bulbapedia": "Scarlet_&_Violet_Energies_(TCG)",
+        "bulbapedia_set_list": "Scarlet_&_Violet_Energies_(TCG)"
       },
       "source_status": {
         "pokemontcg_api": "available",
@@ -6179,7 +7268,10 @@
         "official_checklist_pdf": "candidate_url",
         "official_pokemon_checklist": "candidate_url",
         "thepricedex": "candidate_url",
-        "thepricedex_price_list": "candidate_url"
+        "thepricedex_price_list": "candidate_url",
+        "pkmncards": "candidate_url",
+        "bulbapedia": "candidate_url",
+        "bulbapedia_set_list": "candidate_url"
       },
       "source_totals": {
         "pokemontcg_api": {
@@ -6205,7 +7297,10 @@
         "official_checklist_pdf": "sv2",
         "official_pokemon_checklist": "sv2",
         "thepricedex": "sv2",
-        "thepricedex_price_list": "sv2"
+        "thepricedex_price_list": "sv2",
+        "pkmncards": "paldea-evolved",
+        "bulbapedia": "Paldea_Evolved_(TCG)",
+        "bulbapedia_set_list": "Paldea_Evolved_(TCG)"
       },
       "source_status": {
         "pokemontcg_api": "available",
@@ -6213,7 +7308,10 @@
         "official_checklist_pdf": "candidate_url",
         "official_pokemon_checklist": "candidate_url",
         "thepricedex": "candidate_url",
-        "thepricedex_price_list": "candidate_url"
+        "thepricedex_price_list": "candidate_url",
+        "pkmncards": "candidate_url",
+        "bulbapedia": "candidate_url",
+        "bulbapedia_set_list": "candidate_url"
       },
       "source_totals": {
         "pokemontcg_api": {
@@ -6239,7 +7337,10 @@
         "official_checklist_pdf": "sv3",
         "official_pokemon_checklist": "sv3",
         "thepricedex": "sv3",
-        "thepricedex_price_list": "sv3"
+        "thepricedex_price_list": "sv3",
+        "pkmncards": "obsidian-flames",
+        "bulbapedia": "Obsidian_Flames_(TCG)",
+        "bulbapedia_set_list": "Obsidian_Flames_(TCG)"
       },
       "source_status": {
         "pokemontcg_api": "available",
@@ -6247,7 +7348,10 @@
         "official_checklist_pdf": "candidate_url",
         "official_pokemon_checklist": "candidate_url",
         "thepricedex": "candidate_url",
-        "thepricedex_price_list": "candidate_url"
+        "thepricedex_price_list": "candidate_url",
+        "pkmncards": "candidate_url",
+        "bulbapedia": "candidate_url",
+        "bulbapedia_set_list": "candidate_url"
       },
       "source_totals": {
         "pokemontcg_api": {
@@ -6273,7 +7377,10 @@
         "official_checklist_pdf": "sv3pt5",
         "official_pokemon_checklist": "sv3pt5",
         "thepricedex": "sv3pt5",
-        "thepricedex_price_list": "sv3pt5"
+        "thepricedex_price_list": "sv3pt5",
+        "pkmncards": "151",
+        "bulbapedia": "151_(TCG)",
+        "bulbapedia_set_list": "151_(TCG)"
       },
       "source_status": {
         "pokemontcg_api": "available",
@@ -6281,7 +7388,10 @@
         "official_checklist_pdf": "candidate_url",
         "official_pokemon_checklist": "candidate_url",
         "thepricedex": "candidate_url",
-        "thepricedex_price_list": "candidate_url"
+        "thepricedex_price_list": "candidate_url",
+        "pkmncards": "candidate_url",
+        "bulbapedia": "candidate_url",
+        "bulbapedia_set_list": "candidate_url"
       },
       "source_totals": {
         "pokemontcg_api": {
@@ -6307,7 +7417,10 @@
         "official_checklist_pdf": "sv4",
         "official_pokemon_checklist": "sv4",
         "thepricedex": "sv4",
-        "thepricedex_price_list": "sv4"
+        "thepricedex_price_list": "sv4",
+        "pkmncards": "paradox-rift",
+        "bulbapedia": "Paradox_Rift_(TCG)",
+        "bulbapedia_set_list": "Paradox_Rift_(TCG)"
       },
       "source_status": {
         "pokemontcg_api": "available",
@@ -6315,7 +7428,10 @@
         "official_checklist_pdf": "candidate_url",
         "official_pokemon_checklist": "candidate_url",
         "thepricedex": "candidate_url",
-        "thepricedex_price_list": "candidate_url"
+        "thepricedex_price_list": "candidate_url",
+        "pkmncards": "candidate_url",
+        "bulbapedia": "candidate_url",
+        "bulbapedia_set_list": "candidate_url"
       },
       "source_totals": {
         "pokemontcg_api": {
@@ -6341,7 +7457,10 @@
         "official_checklist_pdf": "sv4pt5",
         "official_pokemon_checklist": "sv4pt5",
         "thepricedex": "sv4pt5",
-        "thepricedex_price_list": "sv4pt5"
+        "thepricedex_price_list": "sv4pt5",
+        "pkmncards": "paldean-fates",
+        "bulbapedia": "Paldean_Fates_(TCG)",
+        "bulbapedia_set_list": "Paldean_Fates_(TCG)"
       },
       "source_status": {
         "pokemontcg_api": "available",
@@ -6349,7 +7468,10 @@
         "official_checklist_pdf": "candidate_url",
         "official_pokemon_checklist": "candidate_url",
         "thepricedex": "candidate_url",
-        "thepricedex_price_list": "candidate_url"
+        "thepricedex_price_list": "candidate_url",
+        "pkmncards": "candidate_url",
+        "bulbapedia": "candidate_url",
+        "bulbapedia_set_list": "candidate_url"
       },
       "source_totals": {
         "pokemontcg_api": {
@@ -6375,7 +7497,10 @@
         "official_checklist_pdf": "sv5",
         "official_pokemon_checklist": "sv5",
         "thepricedex": "sv5",
-        "thepricedex_price_list": "sv5"
+        "thepricedex_price_list": "sv5",
+        "pkmncards": "temporal-forces",
+        "bulbapedia": "Temporal_Forces_(TCG)",
+        "bulbapedia_set_list": "Temporal_Forces_(TCG)"
       },
       "source_status": {
         "pokemontcg_api": "available",
@@ -6383,7 +7508,10 @@
         "official_checklist_pdf": "candidate_url",
         "official_pokemon_checklist": "candidate_url",
         "thepricedex": "candidate_url",
-        "thepricedex_price_list": "candidate_url"
+        "thepricedex_price_list": "candidate_url",
+        "pkmncards": "candidate_url",
+        "bulbapedia": "candidate_url",
+        "bulbapedia_set_list": "candidate_url"
       },
       "source_totals": {
         "pokemontcg_api": {
@@ -6409,7 +7537,10 @@
         "official_checklist_pdf": "sv6",
         "official_pokemon_checklist": "sv6",
         "thepricedex": "sv6",
-        "thepricedex_price_list": "sv6"
+        "thepricedex_price_list": "sv6",
+        "pkmncards": "twilight-masquerade",
+        "bulbapedia": "Twilight_Masquerade_(TCG)",
+        "bulbapedia_set_list": "Twilight_Masquerade_(TCG)"
       },
       "source_status": {
         "pokemontcg_api": "available",
@@ -6417,7 +7548,10 @@
         "official_checklist_pdf": "candidate_url",
         "official_pokemon_checklist": "candidate_url",
         "thepricedex": "candidate_url",
-        "thepricedex_price_list": "candidate_url"
+        "thepricedex_price_list": "candidate_url",
+        "pkmncards": "candidate_url",
+        "bulbapedia": "candidate_url",
+        "bulbapedia_set_list": "candidate_url"
       },
       "source_totals": {
         "pokemontcg_api": {
@@ -6443,7 +7577,10 @@
         "official_checklist_pdf": "sv6pt5",
         "official_pokemon_checklist": "sv6pt5",
         "thepricedex": "sv6pt5",
-        "thepricedex_price_list": "sv6pt5"
+        "thepricedex_price_list": "sv6pt5",
+        "pkmncards": "shrouded-fable",
+        "bulbapedia": "Shrouded_Fable_(TCG)",
+        "bulbapedia_set_list": "Shrouded_Fable_(TCG)"
       },
       "source_status": {
         "pokemontcg_api": "available",
@@ -6451,7 +7588,10 @@
         "official_checklist_pdf": "candidate_url",
         "official_pokemon_checklist": "candidate_url",
         "thepricedex": "candidate_url",
-        "thepricedex_price_list": "candidate_url"
+        "thepricedex_price_list": "candidate_url",
+        "pkmncards": "candidate_url",
+        "bulbapedia": "candidate_url",
+        "bulbapedia_set_list": "candidate_url"
       },
       "source_totals": {
         "pokemontcg_api": {
@@ -6477,7 +7617,10 @@
         "official_checklist_pdf": "sv7",
         "official_pokemon_checklist": "sv7",
         "thepricedex": "sv7",
-        "thepricedex_price_list": "sv7"
+        "thepricedex_price_list": "sv7",
+        "pkmncards": "stellar-crown",
+        "bulbapedia": "Stellar_Crown_(TCG)",
+        "bulbapedia_set_list": "Stellar_Crown_(TCG)"
       },
       "source_status": {
         "pokemontcg_api": "available",
@@ -6485,7 +7628,10 @@
         "official_checklist_pdf": "candidate_url",
         "official_pokemon_checklist": "candidate_url",
         "thepricedex": "candidate_url",
-        "thepricedex_price_list": "candidate_url"
+        "thepricedex_price_list": "candidate_url",
+        "pkmncards": "candidate_url",
+        "bulbapedia": "candidate_url",
+        "bulbapedia_set_list": "candidate_url"
       },
       "source_totals": {
         "pokemontcg_api": {
@@ -6511,7 +7657,10 @@
         "official_checklist_pdf": "sv8",
         "official_pokemon_checklist": "sv8",
         "thepricedex": "sv8",
-        "thepricedex_price_list": "sv8"
+        "thepricedex_price_list": "sv8",
+        "pkmncards": "surging-sparks",
+        "bulbapedia": "Surging_Sparks_(TCG)",
+        "bulbapedia_set_list": "Surging_Sparks_(TCG)"
       },
       "source_status": {
         "pokemontcg_api": "available",
@@ -6519,7 +7668,10 @@
         "official_checklist_pdf": "candidate_url",
         "official_pokemon_checklist": "candidate_url",
         "thepricedex": "candidate_url",
-        "thepricedex_price_list": "candidate_url"
+        "thepricedex_price_list": "candidate_url",
+        "pkmncards": "candidate_url",
+        "bulbapedia": "candidate_url",
+        "bulbapedia_set_list": "candidate_url"
       },
       "source_totals": {
         "pokemontcg_api": {
@@ -6545,7 +7697,10 @@
         "official_checklist_pdf": "sv8pt5",
         "official_pokemon_checklist": "sv8pt5",
         "thepricedex": "sv8pt5",
-        "thepricedex_price_list": "sv8pt5"
+        "thepricedex_price_list": "sv8pt5",
+        "pkmncards": "prismatic-evolutions",
+        "bulbapedia": "Prismatic_Evolutions_(TCG)",
+        "bulbapedia_set_list": "Prismatic_Evolutions_(TCG)"
       },
       "source_status": {
         "pokemontcg_api": "available",
@@ -6553,7 +7708,10 @@
         "official_checklist_pdf": "candidate_url",
         "official_pokemon_checklist": "candidate_url",
         "thepricedex": "candidate_url",
-        "thepricedex_price_list": "candidate_url"
+        "thepricedex_price_list": "candidate_url",
+        "pkmncards": "candidate_url",
+        "bulbapedia": "candidate_url",
+        "bulbapedia_set_list": "candidate_url"
       },
       "source_totals": {
         "pokemontcg_api": {
@@ -6579,7 +7737,10 @@
         "official_checklist_pdf": "sv9",
         "official_pokemon_checklist": "sv9",
         "thepricedex": "sv9",
-        "thepricedex_price_list": "sv9"
+        "thepricedex_price_list": "sv9",
+        "pkmncards": "journey-together",
+        "bulbapedia": "Journey_Together_(TCG)",
+        "bulbapedia_set_list": "Journey_Together_(TCG)"
       },
       "source_status": {
         "pokemontcg_api": "available",
@@ -6587,7 +7748,10 @@
         "official_checklist_pdf": "candidate_url",
         "official_pokemon_checklist": "candidate_url",
         "thepricedex": "candidate_url",
-        "thepricedex_price_list": "candidate_url"
+        "thepricedex_price_list": "candidate_url",
+        "pkmncards": "candidate_url",
+        "bulbapedia": "candidate_url",
+        "bulbapedia_set_list": "candidate_url"
       },
       "source_totals": {
         "pokemontcg_api": {
@@ -6613,7 +7777,10 @@
         "official_checklist_pdf": "sv10",
         "official_pokemon_checklist": "sv10",
         "thepricedex": "sv10",
-        "thepricedex_price_list": "sv10"
+        "thepricedex_price_list": "sv10",
+        "pkmncards": "destined-rivals",
+        "bulbapedia": "Destined_Rivals_(TCG)",
+        "bulbapedia_set_list": "Destined_Rivals_(TCG)"
       },
       "source_status": {
         "pokemontcg_api": "available",
@@ -6621,7 +7788,10 @@
         "official_checklist_pdf": "candidate_url",
         "official_pokemon_checklist": "candidate_url",
         "thepricedex": "candidate_url",
-        "thepricedex_price_list": "candidate_url"
+        "thepricedex_price_list": "candidate_url",
+        "pkmncards": "candidate_url",
+        "bulbapedia": "candidate_url",
+        "bulbapedia_set_list": "candidate_url"
       },
       "source_totals": {
         "pokemontcg_api": {
@@ -6647,7 +7817,10 @@
         "official_checklist_pdf": "zsv10pt5",
         "official_pokemon_checklist": "zsv10pt5",
         "thepricedex": "zsv10pt5",
-        "thepricedex_price_list": "zsv10pt5"
+        "thepricedex_price_list": "zsv10pt5",
+        "pkmncards": "black-bolt",
+        "bulbapedia": "Black_Bolt_(TCG)",
+        "bulbapedia_set_list": "Black_Bolt_(TCG)"
       },
       "source_status": {
         "pokemontcg_api": "available",
@@ -6655,7 +7828,10 @@
         "official_checklist_pdf": "candidate_url",
         "official_pokemon_checklist": "candidate_url",
         "thepricedex": "candidate_url",
-        "thepricedex_price_list": "candidate_url"
+        "thepricedex_price_list": "candidate_url",
+        "pkmncards": "candidate_url",
+        "bulbapedia": "candidate_url",
+        "bulbapedia_set_list": "candidate_url"
       },
       "source_totals": {
         "pokemontcg_api": {
@@ -6681,7 +7857,10 @@
         "official_checklist_pdf": "rsv10pt5",
         "official_pokemon_checklist": "rsv10pt5",
         "thepricedex": "rsv10pt5",
-        "thepricedex_price_list": "rsv10pt5"
+        "thepricedex_price_list": "rsv10pt5",
+        "pkmncards": "white-flare",
+        "bulbapedia": "White_Flare_(TCG)",
+        "bulbapedia_set_list": "White_Flare_(TCG)"
       },
       "source_status": {
         "pokemontcg_api": "available",
@@ -6689,7 +7868,10 @@
         "official_checklist_pdf": "candidate_url",
         "official_pokemon_checklist": "candidate_url",
         "thepricedex": "candidate_url",
-        "thepricedex_price_list": "candidate_url"
+        "thepricedex_price_list": "candidate_url",
+        "pkmncards": "candidate_url",
+        "bulbapedia": "candidate_url",
+        "bulbapedia_set_list": "candidate_url"
       },
       "source_totals": {
         "pokemontcg_api": {
@@ -6715,7 +7897,10 @@
         "official_checklist_pdf": "me1",
         "official_pokemon_checklist": "me1",
         "thepricedex": "me1",
-        "thepricedex_price_list": "me1"
+        "thepricedex_price_list": "me1",
+        "pkmncards": "mega-evolution",
+        "bulbapedia": "Mega_Evolution_(TCG)",
+        "bulbapedia_set_list": "Mega_Evolution_(TCG)"
       },
       "source_status": {
         "pokemontcg_api": "available",
@@ -6723,7 +7908,10 @@
         "official_checklist_pdf": "candidate_url",
         "official_pokemon_checklist": "candidate_url",
         "thepricedex": "candidate_url",
-        "thepricedex_price_list": "candidate_url"
+        "thepricedex_price_list": "candidate_url",
+        "pkmncards": "candidate_url",
+        "bulbapedia": "candidate_url",
+        "bulbapedia_set_list": "candidate_url"
       },
       "source_totals": {
         "pokemontcg_api": {
@@ -6749,7 +7937,10 @@
         "official_checklist_pdf": "me2",
         "official_pokemon_checklist": "me2",
         "thepricedex": "me2",
-        "thepricedex_price_list": "me2"
+        "thepricedex_price_list": "me2",
+        "pkmncards": "phantasmal-flames",
+        "bulbapedia": "Phantasmal_Flames_(TCG)",
+        "bulbapedia_set_list": "Phantasmal_Flames_(TCG)"
       },
       "source_status": {
         "pokemontcg_api": "available",
@@ -6757,7 +7948,10 @@
         "official_checklist_pdf": "candidate_url",
         "official_pokemon_checklist": "candidate_url",
         "thepricedex": "candidate_url",
-        "thepricedex_price_list": "candidate_url"
+        "thepricedex_price_list": "candidate_url",
+        "pkmncards": "candidate_url",
+        "bulbapedia": "candidate_url",
+        "bulbapedia_set_list": "candidate_url"
       },
       "source_totals": {
         "pokemontcg_api": {
@@ -6787,7 +7981,10 @@
         "official_checklist_pdf": "me2pt5",
         "official_pokemon_checklist": "me2pt5",
         "thepricedex": "me2pt5",
-        "thepricedex_price_list": "me2pt5"
+        "thepricedex_price_list": "me2pt5",
+        "pkmncards": "ascended-heroes",
+        "bulbapedia": "Ascended_Heroes_(TCG)",
+        "bulbapedia_set_list": "Ascended_Heroes_(TCG)"
       },
       "source_status": {
         "pokemontcg_api": "available",
@@ -6795,7 +7992,10 @@
         "official_checklist_pdf": "candidate_url",
         "official_pokemon_checklist": "candidate_url",
         "thepricedex": "candidate_url",
-        "thepricedex_price_list": "candidate_url"
+        "thepricedex_price_list": "candidate_url",
+        "pkmncards": "candidate_url",
+        "bulbapedia": "candidate_url",
+        "bulbapedia_set_list": "candidate_url"
       },
       "source_totals": {
         "pokemontcg_api": {
@@ -6821,7 +8021,10 @@
         "official_checklist_pdf": "me3",
         "official_pokemon_checklist": "me3",
         "thepricedex": "me3",
-        "thepricedex_price_list": "me3"
+        "thepricedex_price_list": "me3",
+        "pkmncards": "perfect-order",
+        "bulbapedia": "Perfect_Order_(TCG)",
+        "bulbapedia_set_list": "Perfect_Order_(TCG)"
       },
       "source_status": {
         "pokemontcg_api": "available",
@@ -6829,7 +8032,10 @@
         "official_checklist_pdf": "candidate_url",
         "official_pokemon_checklist": "candidate_url",
         "thepricedex": "candidate_url",
-        "thepricedex_price_list": "candidate_url"
+        "thepricedex_price_list": "candidate_url",
+        "pkmncards": "candidate_url",
+        "bulbapedia": "candidate_url",
+        "bulbapedia_set_list": "candidate_url"
       },
       "source_totals": {
         "pokemontcg_api": {
@@ -6855,7 +8061,10 @@
         "official_checklist_pdf": "me4",
         "official_pokemon_checklist": "me4",
         "thepricedex": "me4",
-        "thepricedex_price_list": "me4"
+        "thepricedex_price_list": "me4",
+        "pkmncards": "chaos-rising",
+        "bulbapedia": "Chaos_Rising_(TCG)",
+        "bulbapedia_set_list": "Chaos_Rising_(TCG)"
       },
       "source_status": {
         "pokemontcg_api": "available",
@@ -6863,7 +8072,10 @@
         "official_checklist_pdf": "candidate_url",
         "official_pokemon_checklist": "candidate_url",
         "thepricedex": "candidate_url",
-        "thepricedex_price_list": "candidate_url"
+        "thepricedex_price_list": "candidate_url",
+        "pkmncards": "candidate_url",
+        "bulbapedia": "candidate_url",
+        "bulbapedia_set_list": "candidate_url"
       },
       "source_totals": {
         "pokemontcg_api": {

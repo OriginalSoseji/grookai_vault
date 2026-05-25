@@ -28,7 +28,7 @@ for (const envPath of ['.env.local', '.env']) {
 }
 
 const DEFAULT_MASTER_OUTPUT_DIR = path.join(DEFAULT_OUTPUT_DIR, 'english_master_index_v1');
-const SUPPORTED_SOURCES = new Set(['tcgdex', 'pokemontcg_api', 'official_checklist_pdf', 'thepricedex']);
+const SUPPORTED_SOURCES = new Set(['tcgdex', 'pokemontcg_api', 'official_checklist_pdf', 'thepricedex', 'pkmncards', 'bulbapedia']);
 const HUMAN_REQUIRED_NOTE = 'Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.';
 const EXACT_CHECKLIST_SOURCE_KINDS = new Set([
   'official_gallery',
@@ -84,7 +84,7 @@ async function fetchBuffer(url, headers = {}, attempts = 4) {
 function parseArgs(argv) {
   const options = {
     outputDir: DEFAULT_MASTER_OUTPUT_DIR,
-    sources: ['tcgdex', 'pokemontcg_api', 'thepricedex'],
+    sources: ['tcgdex', 'pokemontcg_api', 'thepricedex', 'pkmncards'],
     setFilter: null,
     maxSets: null,
     maxCardsPerSet: null,
@@ -175,6 +175,71 @@ function knownManualAliases(setName) {
   return [];
 }
 
+function slugifyForPkmnCards(value) {
+  return String(value ?? '')
+    .toLowerCase()
+    .replace(/&/g, ' ')
+    .replace(/[''.:’]/g, '')
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '');
+}
+
+function pkmnCardsSlugForSet(key, setName) {
+  const normalizedKey = normalizeText(key);
+  const normalizedName = normalizeText(setName);
+  const overrides = {
+    basep: 'wizards-black-star-promos',
+    bwp: 'black-white-promos',
+    dpp: 'diamond-pearl-promos',
+    hsp: 'heartgold-soulsilver-promos',
+    np: 'nintendo-promos',
+    smp: 'sun-moon-promos',
+    swshp: 'sword-shield-promos',
+    svp: 'scarlet-violet-promos',
+    xyp: 'xy-promos',
+    ascended_heroes: 'ascended-heroes',
+  };
+  if (overrides[normalizedKey]) return overrides[normalizedKey];
+  if (normalizedName === 'wizards black star promos') return 'wizards-black-star-promos';
+  if (normalizedName === 'nintendo black star promos') return 'nintendo-promos';
+  if (normalizedName === 'dp black star promos') return 'diamond-pearl-promos';
+  if (normalizedName === 'hgss black star promos') return 'heartgold-soulsilver-promos';
+  if (normalizedName === 'bw black star promos') return 'black-white-promos';
+  if (normalizedName === 'xy black star promos') return 'xy-promos';
+  if (normalizedName === 'sm black star promos') return 'sun-moon-promos';
+  if (normalizedName === 'swsh black star promos') return 'sword-shield-promos';
+  if (normalizedName === 'sv black star promos') return 'scarlet-violet-promos';
+  return slugifyForPkmnCards(setName);
+}
+
+function bulbapediaTitleForSet(key, setName) {
+  const normalizedKey = normalizeText(key);
+  const normalizedName = normalizeText(setName);
+  const overrides = {
+    basep: 'Wizards_Black_Star_Promos_(TCG)',
+    bwp: 'BW_Black_Star_Promos_(TCG)',
+    dpp: 'DP_Black_Star_Promos_(TCG)',
+    hsp: 'HGSS_Black_Star_Promos_(TCG)',
+    np: 'Nintendo_Black_Star_Promos_(TCG)',
+    smp: 'SM_Black_Star_Promos_(TCG)',
+    swshp: 'SWSH_Black_Star_Promos_(TCG)',
+    svp: 'SV_Black_Star_Promos_(TCG)',
+    xyp: 'XY_Black_Star_Promos_(TCG)',
+    ascended_heroes: 'Ascended_Heroes_(TCG)',
+  };
+  if (overrides[normalizedKey]) return overrides[normalizedKey];
+  if (normalizedName === 'wizards black star promos') return 'Wizards_Black_Star_Promos_(TCG)';
+  if (normalizedName === 'nintendo black star promos') return 'Nintendo_Black_Star_Promos_(TCG)';
+  if (normalizedName === 'dp black star promos') return 'DP_Black_Star_Promos_(TCG)';
+  if (normalizedName === 'hgss black star promos') return 'HGSS_Black_Star_Promos_(TCG)';
+  if (normalizedName === 'bw black star promos') return 'BW_Black_Star_Promos_(TCG)';
+  if (normalizedName === 'xy black star promos') return 'XY_Black_Star_Promos_(TCG)';
+  if (normalizedName === 'sm black star promos') return 'SM_Black_Star_Promos_(TCG)';
+  if (normalizedName === 'swsh black star promos') return 'SWSH_Black_Star_Promos_(TCG)';
+  if (normalizedName === 'sv black star promos') return 'SV_Black_Star_Promos_(TCG)';
+  return `${String(setName ?? '').trim().replace(/&/g, '&').replace(/\s+/g, '_')}_(TCG)`;
+}
+
 function isPhysicalEnglishTcgSet(set) {
   const id = String(set?.id ?? '');
   const mediaRefs = [set?.logo, set?.symbol].filter(Boolean).join(' ');
@@ -234,6 +299,8 @@ function buildSetConfigs({ pokemonSets, tcgdexSets, options }) {
 
     const setName = chooseSetName(pokemonSet, tcgdexSet);
     const key = canonicalSetKey(pokemonSet, tcgdexSet);
+    const pkmnCardsSlug = pkmnCardsSlugForSet(key, setName);
+    const bulbapediaTitle = bulbapediaTitleForSet(key, setName);
     configs.push({
       key,
       set_name: setName,
@@ -248,6 +315,9 @@ function buildSetConfigs({ pokemonSets, tcgdexSets, options }) {
         official_pokemon_checklist: pokemonSet.id ?? null,
         thepricedex: pokemonSet.id ?? null,
         thepricedex_price_list: pokemonSet.id ?? null,
+        pkmncards: pkmnCardsSlug,
+        bulbapedia: bulbapediaTitle,
+        bulbapedia_set_list: bulbapediaTitle,
       },
       source_status: {
         pokemontcg_api: pokemonSet ? 'available' : 'unavailable',
@@ -256,6 +326,9 @@ function buildSetConfigs({ pokemonSets, tcgdexSets, options }) {
         official_pokemon_checklist: pokemonSet ? 'candidate_url' : 'unavailable',
         thepricedex: pokemonSet ? 'candidate_url' : 'unavailable',
         thepricedex_price_list: pokemonSet ? 'candidate_url' : 'unavailable',
+        pkmncards: pkmnCardsSlug ? 'candidate_url' : 'unavailable',
+        bulbapedia: bulbapediaTitle ? 'candidate_url' : 'unavailable',
+        bulbapedia_set_list: bulbapediaTitle ? 'candidate_url' : 'unavailable',
       },
       source_totals: {
         pokemontcg_api: {
@@ -274,6 +347,8 @@ function buildSetConfigs({ pokemonSets, tcgdexSets, options }) {
     if (usedTcgdex.has(normalizeText(tcgdexSet.id))) continue;
     const setName = chooseSetName(null, tcgdexSet);
     const key = canonicalSetKey(null, tcgdexSet);
+    const pkmnCardsSlug = pkmnCardsSlugForSet(key, setName);
+    const bulbapediaTitle = bulbapediaTitleForSet(key, setName);
     configs.push({
       key,
       set_name: setName,
@@ -288,6 +363,9 @@ function buildSetConfigs({ pokemonSets, tcgdexSets, options }) {
         official_pokemon_checklist: null,
         thepricedex: tcgdexSet.id,
         thepricedex_price_list: tcgdexSet.id,
+        pkmncards: pkmnCardsSlug,
+        bulbapedia: bulbapediaTitle,
+        bulbapedia_set_list: bulbapediaTitle,
       },
       source_status: {
         pokemontcg_api: 'unavailable',
@@ -296,6 +374,9 @@ function buildSetConfigs({ pokemonSets, tcgdexSets, options }) {
         official_pokemon_checklist: 'unavailable',
         thepricedex: 'candidate_url',
         thepricedex_price_list: 'candidate_url',
+        pkmncards: pkmnCardsSlug ? 'candidate_url' : 'unavailable',
+        bulbapedia: bulbapediaTitle ? 'candidate_url' : 'unavailable',
+        bulbapedia_set_list: bulbapediaTitle ? 'candidate_url' : 'unavailable',
       },
       source_totals: {
         pokemontcg_api: {
@@ -323,6 +404,9 @@ function buildSetConfigs({ pokemonSets, tcgdexSets, options }) {
         set.source_aliases.official_pokemon_checklist,
         set.source_aliases.thepricedex,
         set.source_aliases.thepricedex_price_list,
+        set.source_aliases.pkmncards,
+        set.source_aliases.bulbapedia,
+        set.source_aliases.bulbapedia_set_list,
       ].map(normalizeText);
       return aliases.some((alias) => options.setFilter.has(alias));
     })
@@ -703,6 +787,20 @@ function thePriceDexUrl(setConfig) {
   return `https://www.thepricedex.com/set/${encodeURIComponent(setId)}/${slugifyForThePriceDex(setConfig.set_name)}/price-list`;
 }
 
+function decodeHtmlEntities(value) {
+  return String(value ?? '')
+    .replace(/&#(\d+);/g, (_match, code) => String.fromCodePoint(Number(code)))
+    .replace(/&#x([0-9a-f]+);/gi, (_match, code) => String.fromCodePoint(parseInt(code, 16)))
+    .replace(/&amp;/g, '&')
+    .replace(/&quot;/g, '"')
+    .replace(/&#8217;|&rsquo;/g, "'")
+    .replace(/&#8216;|&lsquo;/g, "'")
+    .replace(/&eacute;/g, 'e')
+    .replace(/&Eacute;/g, 'E')
+    .replace(/&apos;/g, "'")
+    .replace(/&nbsp;/g, ' ');
+}
+
 function extractNextDataJson(html, url) {
   const match = String(html).match(/<script id="__NEXT_DATA__" type="application\/json">([\s\S]*?)<\/script>/);
   if (!match) throw new Error(`ThePriceDex page did not expose __NEXT_DATA__: ${url}`);
@@ -773,6 +871,181 @@ async function collectThePriceDexEvidenceForSet(setConfig, options, retrievedAt)
   return rows;
 }
 
+function pkmnCardsUrl(setConfig) {
+  const slug = setConfig.source_aliases.pkmncards;
+  if (!slug) return null;
+  return `https://pkmncards.com/set/${encodeURIComponent(slug)}/`;
+}
+
+function parsePkmnCardsSetPage(html) {
+  const rows = [];
+  const seen = new Set();
+  const pattern = /<a\b(?=[^>]*\bcard-image-link\b)[^>]*\bhref="([^"]+)"[^>]*\btitle="([^"]+)"[^>]*>/g;
+  for (const match of String(html).matchAll(pattern)) {
+    const sourceUrl = decodeHtmlEntities(match[1]);
+    const title = decodeHtmlEntities(match[2]).trim();
+    const titleMatch = title.match(/^(.*?)\s+·\s+(.*?)\s+\(([^)]+)\)\s+#(.+)$/);
+    if (!titleMatch) continue;
+    const cardName = titleMatch[1].trim();
+    const cardNumber = titleMatch[4].trim();
+    if (!cardName || !cardNumber) continue;
+    const key = `${cardNumber}|${cardName}|${sourceUrl}`;
+    if (seen.has(key)) continue;
+    seen.add(key);
+    rows.push({
+      card_number: cardNumber,
+      card_name: cardName,
+      source_url: sourceUrl,
+      evidence_label: `PkmnCards set page ${title}`,
+      raw_code: titleMatch[3].trim(),
+    });
+  }
+  return sortByCardNumber(rows);
+}
+
+async function collectPkmnCardsEvidenceForSet(setConfig, options, retrievedAt) {
+  if (!options.sources.includes('pkmncards')) return [];
+  const url = pkmnCardsUrl(setConfig);
+  if (!url) return [];
+  const response = await fetch(url, {
+    headers: {
+      Accept: 'text/html,application/xhtml+xml',
+      'User-Agent': 'Grookai Master Index Audit/1.0',
+    },
+  });
+  const html = await response.text();
+  if (!response.ok) {
+    throw new Error(`Fetch failed ${response.status} ${response.statusText}: ${url}`);
+  }
+  const parsedRows = parsePkmnCardsSetPage(html);
+  if (parsedRows.length === 0) {
+    throw new Error(`PkmnCards page contained no card rows: ${url}`);
+  }
+  return parsedRows.map((row) => ({
+    source_key: 'pkmncards',
+    source_kind: 'collector_reference',
+    source_url: row.source_url,
+    set_key: setConfig.key,
+    set_name: setConfig.set_name,
+    card_number: row.card_number,
+    card_name: row.card_name,
+    finish_key: null,
+    rarity: null,
+    language: 'en',
+    evidence_type: 'card_identity',
+    evidence_label: row.evidence_label,
+    retrieved_at: retrievedAt,
+    raw_snapshot_ref: `pkmncards:${setConfig.source_aliases.pkmncards}:${row.raw_code}:${row.card_number}`,
+    source_card_name: row.card_name,
+    source_set_name: setConfig.set_name,
+    notes: 'Human-readable collector-reference card identity evidence from the PkmnCards English set page. This adapter does not emit finish truth or create printings.',
+  }));
+}
+
+function bulbapediaUrl(setConfig) {
+  const title = setConfig.source_aliases.bulbapedia;
+  if (!title) return null;
+  return `https://bulbapedia.bulbagarden.net/wiki/${encodeURIComponent(title)}`;
+}
+
+function stripHtml(value) {
+  return decodeHtmlEntities(String(value ?? '').replace(/<[^>]+>/g, ' '))
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
+function parseBulbapediaCardName(cardCell) {
+  const links = [...String(cardCell ?? '').matchAll(/<a\b[^>]*\btitle="([^"]+)"[^>]*>([\s\S]*?)<\/a>/g)];
+  for (const link of links) {
+    const title = decodeHtmlEntities(link[1]).trim();
+    if (!title || /\b(?:TCG|Energy|Rarity|format|File|Special Energy)\b/i.test(title)) continue;
+    const titleName = title.replace(/\s+\([^)]+\)\s*$/, '').trim();
+    if (titleName) return titleName;
+    const textName = stripHtml(link[2]);
+    if (textName) return textName;
+  }
+  return stripHtml(cardCell);
+}
+
+function parseBulbapediaRarity(rarityCell) {
+  const alt = String(rarityCell ?? '').match(/\balt="([^"]+)"/);
+  if (alt?.[1]) return decodeHtmlEntities(alt[1]).trim();
+  const title = String(rarityCell ?? '').match(/\btitle="([^"]+)"/);
+  if (title?.[1]) return decodeHtmlEntities(title[1]).trim();
+  return stripHtml(rarityCell) || null;
+}
+
+function parseBulbapediaSetPage(html, expectedSetName) {
+  const source = String(html ?? '');
+  const start = source.indexOf('id="Set_lists"');
+  if (start === -1) return [];
+  const nextHeading = source.indexOf('<h2', start + 1);
+  const section = source.slice(start, nextHeading === -1 ? source.length : nextHeading);
+  const expected = normalizeSetLookup(expectedSetName);
+  const headings = [...section.matchAll(/<big><b>([\s\S]*?)<\/b><\/big>/g)];
+  const heading = headings.find((entry) => normalizeSetLookup(stripHtml(entry[1])) === expected) ?? headings[0];
+  const scopedSection = heading
+    ? section.slice(heading.index, headings.find((entry) => entry.index > heading.index)?.index ?? section.length)
+    : section;
+  const rows = [];
+  const seen = new Set();
+  for (const match of scopedSection.matchAll(/<tr\b[\s\S]*?<\/tr>/g)) {
+    const rowHtml = match[0];
+    const cells = [...rowHtml.matchAll(/<(?:td|th)\b[\s\S]*?<\/(?:td|th)>/g)].map((cell) => cell[0]);
+    if (cells.length < 4) continue;
+    const numberText = stripHtml(cells[0]);
+    if (!/^[A-Z]*\d+[A-Za-z]*(?:\/\d+)?$|^[A-Z]{1,4}\d+$/i.test(numberText)) continue;
+    const cardNumber = numberText.split('/')[0].trim();
+    const cardName = parseBulbapediaCardName(cells[2]);
+    if (!cardName || !/[A-Za-z0-9]/.test(cardName)) continue;
+    const rarity = parseBulbapediaRarity(cells[4] ?? cells[cells.length - 1]);
+    const key = `${cardNumber}|${cardName}`;
+    if (seen.has(key)) continue;
+    seen.add(key);
+    rows.push({ card_number: cardNumber, card_name: cardName, rarity });
+  }
+  return sortByCardNumber(rows);
+}
+
+async function collectBulbapediaEvidenceForSet(setConfig, options, retrievedAt) {
+  if (!options.sources.includes('bulbapedia')) return [];
+  const url = bulbapediaUrl(setConfig);
+  if (!url) return [];
+  const response = await fetch(url, {
+    headers: {
+      Accept: 'text/html,application/xhtml+xml',
+      'User-Agent': 'Grookai Master Index Audit/1.0',
+    },
+  });
+  const html = await response.text();
+  if (!response.ok) {
+    throw new Error(`Fetch failed ${response.status} ${response.statusText}: ${url}`);
+  }
+  const parsedRows = parseBulbapediaSetPage(html, setConfig.set_name);
+  if (parsedRows.length === 0) {
+    throw new Error(`Bulbapedia page contained no extractable set-list rows: ${url}`);
+  }
+  return parsedRows.map((row) => ({
+    source_key: 'bulbapedia_set_list',
+    source_kind: 'human_readable_checklist',
+    source_url: `${url}#Set_lists`,
+    set_key: setConfig.key,
+    set_name: setConfig.set_name,
+    card_number: row.card_number,
+    card_name: row.card_name,
+    finish_key: null,
+    rarity: row.rarity,
+    language: 'en',
+    evidence_type: 'card_identity',
+    evidence_label: `Bulbapedia set-list row ${row.card_number} ${row.card_name}`,
+    retrieved_at: retrievedAt,
+    raw_snapshot_ref: `bulbapedia:${setConfig.source_aliases.bulbapedia}:${row.card_number}`,
+    source_card_name: row.card_name,
+    source_set_name: setConfig.set_name,
+    notes: 'Human-readable checklist card identity evidence from the Bulbapedia English set-list table. This adapter records rarity as evidence context but does not emit finish truth.',
+  }));
+}
+
 async function collectPokemonCardsForSet(setConfig, options, retrievedAt) {
   const setId = setConfig.source_aliases.pokemontcg_api;
   if (!setId || !options.sources.includes('pokemontcg_api')) return [];
@@ -823,6 +1096,23 @@ function sourceAvailabilityFromSet(setConfig, sourceKey, rows, error = null) {
     evidence_rows: sourceRecords.length,
     error: error ? String(error.message ?? error) : null,
   };
+}
+
+function identitySupportKey(row) {
+  return [
+    row.set_key,
+    normalizeNumber(row.card_number),
+    normalizeText(row.card_name),
+  ].join('|');
+}
+
+function filterSupportiveIdentityRows(candidateRows, existingRows) {
+  const existingIdentityKeys = new Set(
+    existingRows
+      .filter((row) => row.language === 'en' && row.card_number && row.card_name)
+      .map(identitySupportKey),
+  );
+  return candidateRows.filter((row) => existingIdentityKeys.has(identitySupportKey(row)));
 }
 
 function buildTcgplayerMarketplaceBridgeEvidence(rows, retrievedAt) {
@@ -904,6 +1194,28 @@ async function collectEvidenceForSet(setConfig, options, retrievedAt) {
     }
   }
 
+  if (options.sources.includes('pkmncards')) {
+    try {
+      const sourceRows = await collectPkmnCardsEvidenceForSet(setConfig, options, retrievedAt);
+      const supportiveRows = filterSupportiveIdentityRows(sourceRows, rows);
+      rows.push(...supportiveRows);
+      availability.push(sourceAvailabilityFromSet(setConfig, 'pkmncards', supportiveRows));
+    } catch (error) {
+      availability.push(sourceAvailabilityFromSet(setConfig, 'pkmncards', [], error));
+    }
+  }
+
+  if (options.sources.includes('bulbapedia')) {
+    try {
+      const sourceRows = await collectBulbapediaEvidenceForSet(setConfig, options, retrievedAt);
+      const supportiveRows = filterSupportiveIdentityRows(sourceRows, rows);
+      rows.push(...supportiveRows);
+      availability.push(sourceAvailabilityFromSet(setConfig, 'bulbapedia_set_list', supportiveRows));
+    } catch (error) {
+      availability.push(sourceAvailabilityFromSet(setConfig, 'bulbapedia_set_list', [], error));
+    }
+  }
+
   const tcgplayerBridgeRows = buildTcgplayerMarketplaceBridgeEvidence(rows, retrievedAt);
   if (tcgplayerBridgeRows.length > 0) {
     rows.push(...tcgplayerBridgeRows);
@@ -928,6 +1240,9 @@ function makeAliasMap(setConfigs) {
       set.source_aliases.official_pokemon_checklist,
       set.source_aliases.thepricedex,
       set.source_aliases.thepricedex_price_list,
+      set.source_aliases.pkmncards,
+      set.source_aliases.bulbapedia,
+      set.source_aliases.bulbapedia_set_list,
     ]) {
       const normalized = normalizeText(alias);
       if (normalized) map.set(normalized, set.key);
@@ -948,6 +1263,9 @@ function indexPrintingKeys(classified, setConfigs) {
       set.source_aliases.official_pokemon_checklist,
       set.source_aliases.thepricedex,
       set.source_aliases.thepricedex_price_list,
+      set.source_aliases.pkmncards,
+      set.source_aliases.bulbapedia,
+      set.source_aliases.bulbapedia_set_list,
     ].map(normalizeText)),
   ]));
   const byExact = new Map();
@@ -1412,6 +1730,8 @@ function buildSetAuditMarkdown(payload) {
     set.source_aliases.tcgdex ?? '',
     set.source_aliases.official_checklist_pdf ?? '',
     set.source_aliases.thepricedex ?? '',
+    set.source_aliases.pkmncards ?? '',
+    set.source_aliases.bulbapedia ?? '',
     set.evidence_rows,
     JSON.stringify(set.card_status_counts),
     JSON.stringify(set.printing_status_counts),
@@ -1423,7 +1743,7 @@ function buildSetAuditMarkdown(payload) {
     '',
     'Audit only. This inventory documents source availability and status counts per set.',
     '',
-    markdownTable(['set_key', 'set_name', 'PokemonTCG.io', 'TCGdex', 'Official checklist', 'ThePriceDex', 'evidence rows', 'card statuses', 'printing statuses'], rows),
+    markdownTable(['set_key', 'set_name', 'PokemonTCG.io', 'TCGdex', 'Official checklist', 'ThePriceDex', 'PkmnCards', 'Bulbapedia', 'evidence rows', 'card statuses', 'printing statuses'], rows),
     '',
   ].join('\n');
 }

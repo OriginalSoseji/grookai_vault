@@ -23,8 +23,8 @@ Only `publishable_complete` sets are eligible for public complete-list display.
 
 | publishability_status | sets |
 | --- | --- |
-| not_publishable_card_identity_gaps | 79 |
-| not_publishable_finish_gaps | 86 |
+| not_publishable_card_identity_gaps | 45 |
+| not_publishable_finish_gaps | 120 |
 | not_publishable_manual_review | 1 |
 | publishable_complete | 33 |
 | source_unavailable | 4 |
@@ -71,41 +71,63 @@ Only `publishable_complete` sets are eligible for public complete-list display.
 
 | set_key | set_name | status | card_gaps | finish_gaps | blocker |
 | --- | --- | --- | --- | --- | --- |
+| sv1 | Scarlet & Violet | not_publishable_finish_gaps | 0 | 1 | Printing/finish facts need human-readable checklist evidence and exact card-level support. |
 | gym2 | Gym Challenge | not_publishable_finish_gaps | 0 | 1 | Printing/finish facts need human-readable checklist evidence and exact card-level support. |
 | rsv10pt5 | White Flare | not_publishable_finish_gaps | 0 | 1 | Printing/finish facts need human-readable checklist evidence and exact card-level support. |
 | base1 | Base | not_publishable_finish_gaps | 0 | 1 | Printing/finish facts need human-readable checklist evidence and exact card-level support. |
 | me3 | Perfect Order | not_publishable_finish_gaps | 0 | 1 | Printing/finish facts need human-readable checklist evidence and exact card-level support. |
 | gym1 | Gym Heroes | not_publishable_finish_gaps | 0 | 2 | Printing/finish facts need human-readable checklist evidence and exact card-level support. |
 | ex6 | FireRed & LeafGreen | not_publishable_finish_gaps | 0 | 2 | Printing/finish facts need human-readable checklist evidence and exact card-level support. |
+| sm12 | Cosmic Eclipse | not_publishable_finish_gaps | 0 | 6 | Printing/finish facts need human-readable checklist evidence and exact card-level support. |
 | neo1 | Neo Genesis | not_publishable_finish_gaps | 0 | 3 | Printing/finish facts need human-readable checklist evidence and exact card-level support. |
 | me2 | Phantasmal Flames | not_publishable_finish_gaps | 0 | 3 | Printing/finish facts need human-readable checklist evidence and exact card-level support. |
+| sm75 | Dragon Majesty | not_publishable_finish_gaps | 0 | 2 | Printing/finish facts need human-readable checklist evidence and exact card-level support. |
 | ex2 | Sandstorm | not_publishable_finish_gaps | 0 | 3 | Printing/finish facts need human-readable checklist evidence and exact card-level support. |
 | xy5 | Primal Clash | not_publishable_finish_gaps | 0 | 5 | Printing/finish facts need human-readable checklist evidence and exact card-level support. |
+| sm9 | Team Up | not_publishable_finish_gaps | 0 | 6 | Printing/finish facts need human-readable checklist evidence and exact card-level support. |
+| sm10 | Unbroken Bonds | not_publishable_finish_gaps | 0 | 9 | Printing/finish facts need human-readable checklist evidence and exact card-level support. |
+| sm35 | Shining Legends | not_publishable_finish_gaps | 0 | 3 | Printing/finish facts need human-readable checklist evidence and exact card-level support. |
+| ex13 | Holon Phantoms | not_publishable_finish_gaps | 0 | 4 | Printing/finish facts need human-readable checklist evidence and exact card-level support. |
 | bw8 | Plasma Storm | not_publishable_finish_gaps | 0 | 6 | Printing/finish facts need human-readable checklist evidence and exact card-level support. |
+| ex15 | Dragon Frontiers | not_publishable_finish_gaps | 0 | 4 | Printing/finish facts need human-readable checklist evidence and exact card-level support. |
 | base3 | Fossil | not_publishable_finish_gaps | 0 | 3 | Printing/finish facts need human-readable checklist evidence and exact card-level support. |
 | base5 | Team Rocket | not_publishable_finish_gaps | 0 | 4 | Printing/finish facts need human-readable checklist evidence and exact card-level support. |
 | bw11 | Legendary Treasures | not_publishable_finish_gaps | 0 | 6 | Printing/finish facts need human-readable checklist evidence and exact card-level support. |
 | ex5 | Hidden Legends | not_publishable_finish_gaps | 0 | 5 | Printing/finish facts need human-readable checklist evidence and exact card-level support. |
+| sm11 | Unified Minds | not_publishable_finish_gaps | 0 | 12 | Printing/finish facts need human-readable checklist evidence and exact card-level support. |
 | neo3 | Neo Revelation | not_publishable_finish_gaps | 0 | 4 | Printing/finish facts need human-readable checklist evidence and exact card-level support. |
 | base2 | Jungle | not_publishable_finish_gaps | 0 | 4 | Printing/finish facts need human-readable checklist evidence and exact card-level support. |
 | pgo | Pokémon GO | not_publishable_finish_gaps | 0 | 5 | Printing/finish facts need human-readable checklist evidence and exact card-level support. |
+| ex16 | Power Keepers | not_publishable_finish_gaps | 0 | 6 | Printing/finish facts need human-readable checklist evidence and exact card-level support. |
 | bw9 | Plasma Freeze | not_publishable_finish_gaps | 0 | 8 | Printing/finish facts need human-readable checklist evidence and exact card-level support. |
 | bw10 | Plasma Blast | not_publishable_finish_gaps | 0 | 7 | Printing/finish facts need human-readable checklist evidence and exact card-level support. |
+| sm7 | Celestial Storm | not_publishable_finish_gaps | 0 | 12 | Printing/finish facts need human-readable checklist evidence and exact card-level support. |
+| sm2 | Guardians Rising | not_publishable_finish_gaps | 0 | 11 | Printing/finish facts need human-readable checklist evidence and exact card-level support. |
+| ex12 | Legend Maker | not_publishable_finish_gaps | 0 | 6 | Printing/finish facts need human-readable checklist evidence and exact card-level support. |
+| ex14 | Crystal Guardians | not_publishable_finish_gaps | 0 | 7 | Printing/finish facts need human-readable checklist evidence and exact card-level support. |
+| ex11 | Delta Species | not_publishable_finish_gaps | 0 | 8 | Printing/finish facts need human-readable checklist evidence and exact card-level support. |
 | ex9 | Emerald | not_publishable_finish_gaps | 0 | 8 | Printing/finish facts need human-readable checklist evidence and exact card-level support. |
 | hgss3 | HS—Undaunted | not_publishable_finish_gaps | 0 | 7 | Printing/finish facts need human-readable checklist evidence and exact card-level support. |
 | swsh12pt5 | Crown Zenith | not_publishable_finish_gaps | 0 | 14 | Printing/finish facts need human-readable checklist evidence and exact card-level support. |
 | pop6 | POP Series 6 | not_publishable_finish_gaps | 0 | 1 | Printing/finish facts need human-readable checklist evidence and exact card-level support. |
+| ex10 | Unseen Forces | not_publishable_finish_gaps | 0 | 9 | Printing/finish facts need human-readable checklist evidence and exact card-level support. |
 | ex1 | Ruby & Sapphire | not_publishable_finish_gaps | 0 | 9 | Printing/finish facts need human-readable checklist evidence and exact card-level support. |
+| ex7 | Team Rocket Returns | not_publishable_finish_gaps | 0 | 8 | Printing/finish facts need human-readable checklist evidence and exact card-level support. |
 | xy6 | Roaring Skies | not_publishable_finish_gaps | 0 | 8 | Printing/finish facts need human-readable checklist evidence and exact card-level support. |
+| sm5 | Ultra Prism | not_publishable_finish_gaps | 0 | 13 | Printing/finish facts need human-readable checklist evidence and exact card-level support. |
 | pop1 | POP Series 1 | not_publishable_finish_gaps | 0 | 1 | Printing/finish facts need human-readable checklist evidence and exact card-level support. |
 | pop2 | POP Series 2 | not_publishable_finish_gaps | 0 | 1 | Printing/finish facts need human-readable checklist evidence and exact card-level support. |
 | pop7 | POP Series 7 | not_publishable_finish_gaps | 0 | 1 | Printing/finish facts need human-readable checklist evidence and exact card-level support. |
+| sm6 | Forbidden Light | not_publishable_finish_gaps | 0 | 11 | Printing/finish facts need human-readable checklist evidence and exact card-level support. |
 | xy12 | Evolutions | not_publishable_finish_gaps | 0 | 9 | Printing/finish facts need human-readable checklist evidence and exact card-level support. |
 | bw7 | Boundaries Crossed | not_publishable_finish_gaps | 0 | 13 | Printing/finish facts need human-readable checklist evidence and exact card-level support. |
 | xy2 | Flashfire | not_publishable_finish_gaps | 0 | 9 | Printing/finish facts need human-readable checklist evidence and exact card-level support. |
 | xy11 | Steam Siege | not_publishable_finish_gaps | 0 | 10 | Printing/finish facts need human-readable checklist evidence and exact card-level support. |
 | ex3 | Dragon | not_publishable_finish_gaps | 0 | 9 | Printing/finish facts need human-readable checklist evidence and exact card-level support. |
 | hgss4 | HS—Triumphant | not_publishable_finish_gaps | 0 | 10 | Printing/finish facts need human-readable checklist evidence and exact card-level support. |
+| sm3 | Burning Shadows | not_publishable_finish_gaps | 0 | 15 | Printing/finish facts need human-readable checklist evidence and exact card-level support. |
+| ex8 | Deoxys | not_publishable_finish_gaps | 0 | 10 | Printing/finish facts need human-readable checklist evidence and exact card-level support. |
+| sm8 | Lost Thunder | not_publishable_finish_gaps | 0 | 23 | Printing/finish facts need human-readable checklist evidence and exact card-level support. |
 | xy8 | BREAKthrough | not_publishable_finish_gaps | 0 | 17 | Printing/finish facts need human-readable checklist evidence and exact card-level support. |
 | g1 | Generations | not_publishable_finish_gaps | 0 | 10 | Printing/finish facts need human-readable checklist evidence and exact card-level support. |
 | swsh35 | Champion's Path | not_publishable_finish_gaps | 0 | 8 | Printing/finish facts need human-readable checklist evidence and exact card-level support. |
@@ -116,6 +138,7 @@ Only `publishable_complete` sets are eligible for public complete-list display.
 | sv3pt5 | 151 | not_publishable_finish_gaps | 0 | 23 | Printing/finish facts need human-readable checklist evidence and exact card-level support. |
 | bw3 | Noble Victories | not_publishable_finish_gaps | 0 | 13 | Printing/finish facts need human-readable checklist evidence and exact card-level support. |
 | bw4 | Next Destinies | not_publishable_finish_gaps | 0 | 13 | Printing/finish facts need human-readable checklist evidence and exact card-level support. |
+| sm4 | Crimson Invasion | not_publishable_finish_gaps | 0 | 15 | Printing/finish facts need human-readable checklist evidence and exact card-level support. |
 | xy9 | BREAKpoint | not_publishable_finish_gaps | 0 | 15 | Printing/finish facts need human-readable checklist evidence and exact card-level support. |
 | bw5 | Dark Explorers | not_publishable_finish_gaps | 0 | 15 | Printing/finish facts need human-readable checklist evidence and exact card-level support. |
 | xy7 | Ancient Origins | not_publishable_finish_gaps | 0 | 13 | Printing/finish facts need human-readable checklist evidence and exact card-level support. |
@@ -146,48 +169,25 @@ Only `publishable_complete` sets are eligible for public complete-list display.
 | swsh10 | Astral Radiance | not_publishable_finish_gaps | 0 | 47 | Printing/finish facts need human-readable checklist evidence and exact card-level support. |
 | sv5 | Temporal Forces | not_publishable_finish_gaps | 0 | 49 | Printing/finish facts need human-readable checklist evidence and exact card-level support. |
 | swsh6 | Chilling Reign | not_publishable_finish_gaps | 0 | 50 | Printing/finish facts need human-readable checklist evidence and exact card-level support. |
+| sv2 | Paldea Evolved | not_publishable_finish_gaps | 0 | 62 | Printing/finish facts need human-readable checklist evidence and exact card-level support. |
 | swsh5 | Battle Styles | not_publishable_finish_gaps | 0 | 42 | Printing/finish facts need human-readable checklist evidence and exact card-level support. |
 | swsh7 | Evolving Skies | not_publishable_finish_gaps | 0 | 52 | Printing/finish facts need human-readable checklist evidence and exact card-level support. |
+| sm1 | Sun & Moon | not_publishable_finish_gaps | 0 | 41 | Printing/finish facts need human-readable checklist evidence and exact card-level support. |
 | bw1 | Black & White | not_publishable_finish_gaps | 0 | 35 | Printing/finish facts need human-readable checklist evidence and exact card-level support. |
 | pop8 | POP Series 8 | not_publishable_finish_gaps | 0 | 4 | Printing/finish facts need human-readable checklist evidence and exact card-level support. |
 | swsh1 | Sword & Shield | not_publishable_finish_gaps | 0 | 61 | Printing/finish facts need human-readable checklist evidence and exact card-level support. |
 | swsh9 | Brilliant Stars | not_publishable_finish_gaps | 0 | 56 | Printing/finish facts need human-readable checklist evidence and exact card-level support. |
 | np | Nintendo Black Star Promos | not_publishable_finish_gaps | 0 | 10 | Printing/finish facts need human-readable checklist evidence and exact card-level support. |
+| smp | SM Black Star Promos | not_publishable_finish_gaps | 0 | 66 | Printing/finish facts need human-readable checklist evidence and exact card-level support. |
 | si1 | Southern Islands | not_publishable_finish_gaps | 0 | 6 | Printing/finish facts need human-readable checklist evidence and exact card-level support. |
 | dv1 | Dragon Vault | not_publishable_finish_gaps | 0 | 10 | Printing/finish facts need human-readable checklist evidence and exact card-level support. |
 | bp | Best of Game | not_publishable_finish_gaps | 0 | 6 | Printing/finish facts need human-readable checklist evidence and exact card-level support. |
 | me4 | Chaos Rising | not_publishable_finish_gaps | 0 | 134 | Printing/finish facts need human-readable checklist evidence and exact card-level support. |
-| 2023sv | McDonald's Collection 2023 | not_publishable_card_identity_gaps | 15 | 15 | Card identities need second-source agreement. |
-| 2024sv | McDonald's Collection 2024 | not_publishable_card_identity_gaps | 15 | 15 | Card identities need second-source agreement. |
-| ex5.5 | Poké Card Creator Pack | not_publishable_card_identity_gaps | 5 | 5 | Card identities need second-source agreement. |
-| exu | Unseen Forces Unown Collection | not_publishable_card_identity_gaps | 28 | 28 | Card identities need second-source agreement. |
-| fut2020 | Pokémon Futsal 2020 | not_publishable_card_identity_gaps | 5 | 5 | Card identities need second-source agreement. |
-| mee | Mega Evolution Energy | not_publishable_card_identity_gaps | 8 | 8 | Card identities need second-source agreement. |
-| mfb | My First Battle | not_publishable_card_identity_gaps | 34 | 34 | Card identities need second-source agreement. |
-| tk-bw-e | BW trainer Kit (Excadrill) | not_publishable_card_identity_gaps | 30 | 30 | Card identities need second-source agreement. |
-| tk-bw-z | BW trainer Kit (Zoroark) | not_publishable_card_identity_gaps | 30 | 30 | Card identities need second-source agreement. |
-| tk-dp-l | DP trainer Kit (Lucario) | not_publishable_card_identity_gaps | 11 | 11 | Card identities need second-source agreement. |
-| tk-dp-m | DP trainer Kit (Manaphy) | not_publishable_card_identity_gaps | 12 | 12 | Card identities need second-source agreement. |
-| tk-hs-g | HS trainer Kit (Gyarados) | not_publishable_card_identity_gaps | 1 | 1 | Card identities need second-source agreement. |
-| tk-hs-r | HS trainer Kit (Raichu) | not_publishable_card_identity_gaps | 1 | 1 | Card identities need second-source agreement. |
-| tk-sm-l | SM trainer Kit (Lycanroc) | not_publishable_card_identity_gaps | 18 | 18 | Card identities need second-source agreement. |
-| tk-sm-r | SM trainer Kit (Alolan Raichu) | not_publishable_card_identity_gaps | 19 | 19 | Card identities need second-source agreement. |
-| tk-xy-b | XY trainer Kit (Bisharp) | not_publishable_card_identity_gaps | 30 | 30 | Card identities need second-source agreement. |
-| tk-xy-latia | XY trainer Kit (Latias) | not_publishable_card_identity_gaps | 30 | 30 | Card identities need second-source agreement. |
-| tk-xy-latio | XY trainer Kit (Latios) | not_publishable_card_identity_gaps | 30 | 30 | Card identities need second-source agreement. |
-| tk-xy-n | XY trainer Kit (Noivern) | not_publishable_card_identity_gaps | 30 | 30 | Card identities need second-source agreement. |
-| tk-xy-p | XY trainer Kit (Pikachu Libre) | not_publishable_card_identity_gaps | 30 | 30 | Card identities need second-source agreement. |
-| tk-xy-su | XY trainer Kit (Suicune) | not_publishable_card_identity_gaps | 30 | 30 | Card identities need second-source agreement. |
-| tk-xy-sy | XY trainer Kit (Sylveon) | not_publishable_card_identity_gaps | 30 | 30 | Card identities need second-source agreement. |
-| tk-xy-w | XY trainer Kit (Wigglytuff) | not_publishable_card_identity_gaps | 30 | 30 | Card identities need second-source agreement. |
-| xya | Yellow A Alternate | not_publishable_card_identity_gaps | 6 | 6 | Card identities need second-source agreement. |
-| sm12 | Cosmic Eclipse | not_publishable_card_identity_gaps | 1 | 6 | Card identities need second-source agreement. |
-| sv1 | Scarlet & Violet | not_publishable_card_identity_gaps | 4 | 1 | Card identities need second-source agreement. |
-| zsv10pt5 | Black Bolt | not_publishable_card_identity_gaps | 1 | 4 | Card identities need second-source agreement. |
-| base4 | Base Set 2 | not_publishable_card_identity_gaps | 1 | 2 | Card identities need second-source agreement. |
-| sm9 | Team Up | not_publishable_card_identity_gaps | 2 | 6 | Card identities need second-source agreement. |
-| sm11 | Unified Minds | not_publishable_card_identity_gaps | 3 | 12 | Card identities need second-source agreement. |
-| sm10 | Unbroken Bonds | not_publishable_card_identity_gaps | 4 | 9 | Card identities need second-source agreement. |
-| sm75 | Dragon Majesty | not_publishable_card_identity_gaps | 2 | 2 | Card identities need second-source agreement. |
-| ex15 | Dragon Frontiers | not_publishable_card_identity_gaps | 2 | 4 | Card identities need second-source agreement. |
-| ex13 | Holon Phantoms | not_publishable_card_identity_gaps | 3 | 4 | Card identities need second-source agreement. |
+| tk-xy-b | XY trainer Kit (Bisharp) | not_publishable_finish_gaps | 0 | 30 | Printing/finish facts need human-readable checklist evidence and exact card-level support. |
+| tk-xy-latia | XY trainer Kit (Latias) | not_publishable_finish_gaps | 0 | 30 | Printing/finish facts need human-readable checklist evidence and exact card-level support. |
+| tk-xy-latio | XY trainer Kit (Latios) | not_publishable_finish_gaps | 0 | 30 | Printing/finish facts need human-readable checklist evidence and exact card-level support. |
+| tk-xy-n | XY trainer Kit (Noivern) | not_publishable_finish_gaps | 0 | 30 | Printing/finish facts need human-readable checklist evidence and exact card-level support. |
+| tk-xy-p | XY trainer Kit (Pikachu Libre) | not_publishable_finish_gaps | 0 | 30 | Printing/finish facts need human-readable checklist evidence and exact card-level support. |
+| tk-xy-su | XY trainer Kit (Suicune) | not_publishable_finish_gaps | 0 | 30 | Printing/finish facts need human-readable checklist evidence and exact card-level support. |
+| tk-xy-sy | XY trainer Kit (Sylveon) | not_publishable_finish_gaps | 0 | 30 | Printing/finish facts need human-readable checklist evidence and exact card-level support. |
+| tk-xy-w | XY trainer Kit (Wigglytuff) | not_publishable_finish_gaps | 0 | 30 | Printing/finish facts need human-readable checklist evidence and exact card-level support. |

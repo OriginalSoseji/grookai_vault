@@ -1,6 +1,6 @@
 {
   "version": "ENGLISH_VERIFIED_MASTER_SET_INDEX_V1",
-  "generated_at": "2026-05-25T16:40:48.237Z",
+  "generated_at": "2026-05-25T17:31:46.407Z",
   "audit_only": true,
   "db_writes": false,
   "language": "en",
@@ -15,7 +15,7 @@
   },
   "summary": {
     "sets": 202,
-    "evidence_rows": 178459,
+    "evidence_rows": 197626,
     "source_overlap": [
       {
         "source_key": "beckett_ascended_heroes_oddish_001",
@@ -224,6 +224,10 @@
       {
         "source_key": "packmagik_ascended_heroes_team_rockets_great_ball_205",
         "evidence_rows": 1
+      },
+      {
+        "source_key": "pkmncards",
+        "evidence_rows": 19167
       },
       {
         "source_key": "pokebeach_ascended_heroes_set_guide",
@@ -2623,10 +2627,10 @@
       }
     ],
     "cards_by_status": {
-      "api_agreed": 32,
-      "candidate_unconfirmed": 761,
-      "human_source_verified": 135,
-      "master_verified": 20658
+      "api_agreed": 9,
+      "candidate_unconfirmed": 424,
+      "human_source_verified": 111,
+      "master_verified": 21042
     },
     "printings_by_status": {
       "candidate_unconfirmed": 754,
@@ -2634,10 +2638,12 @@
       "master_verified": 34458
     },
     "conflicts": 0,
-    "manual_review": 1519,
+    "manual_review": 1182,
     "suppressed_structured_finish_candidates": 2800,
     "source_availability_by_status": {
       "human_fixtures|collected": 1,
+      "pkmncards|collected": 152,
+      "pkmncards|error": 50,
       "pokemontcg_api|collected": 173,
       "pokemontcg_api|unavailable": 29,
       "tcgdex|collected": 190,

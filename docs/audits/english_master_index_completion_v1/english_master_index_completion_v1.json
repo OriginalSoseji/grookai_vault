@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-25T16:44:23.964Z",
+  "generated_at": "2026-05-25T17:37:24.740Z",
   "contract": "ENGLISH_MASTER_INDEX_COMPLETION_V1",
   "audit_only": true,
   "db_writes_performed": false,
@@ -14,31 +14,31 @@
     "complete_master_index_sets": 33,
     "incomplete_sets": 170,
     "working_card_identity_facts": 21586,
-    "master_admissible_card_identity_facts": 20690,
+    "master_admissible_card_identity_facts": 21051,
     "printing_derived_card_identity_facts": 0,
     "working_printing_facts": 37689,
     "master_admissible_printing_facts": 34458,
     "finish_absence_facts": 2,
     "by_completion_status": {
-      "card_identity_complete_finish_incomplete": 86,
+      "card_identity_complete_finish_incomplete": 120,
       "complete_master_index_set": 33,
-      "finish_evidence_missing": 24,
-      "source_agreed_card_identity": 55,
+      "finish_evidence_missing": 16,
+      "source_agreed_card_identity": 29,
       "source_limited": 1,
       "source_unavailable": 4
     },
     "by_card_fact_status": {
-      "candidate_unconfirmed": 761,
-      "master_verified": 20658,
-      "human_source_verified": 135,
-      "api_agreed": 32
+      "candidate_unconfirmed": 424,
+      "master_verified": 21042,
+      "human_source_verified": 111,
+      "api_agreed": 9
     },
     "by_printing_fact_status": {
       "candidate_unconfirmed": 754,
       "master_verified": 34458,
       "human_source_verified": 2477
     },
-    "source_gap_queue_items": 248,
+    "source_gap_queue_items": 214,
     "grookai_reconciliation_performed": false
   },
   "source_standard": {
