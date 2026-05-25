@@ -1,0 +1,398 @@
+{
+  "generated_at": "2026-05-25T13:45:46.023Z",
+  "version": "english_master_index_audit_closure_v1",
+  "audit_only": true,
+  "db_writes_performed": false,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "apply_paths_executed": false,
+  "privileged_writes_used": false,
+  "audit_status": "complete_to_write_readiness_boundary",
+  "conclusion": {
+    "entire_audit_completed_to_current_evidence_boundary": true,
+    "ready_for_db_writes": false,
+    "reason": "The audit has enough structure to plan writes, but not enough master_verified finish evidence to execute them safely.",
+    "strongest_positive_finding": "807 physical missing-set candidates have exact Master Index card identity matches.",
+    "main_blocker": "Finish truth still requires human-readable/checklist evidence and master_verified promotion."
+  },
+  "summary": {
+    "write_ready_now": 0,
+    "db_writes_allowed_from_this_plan": false,
+    "planning_ready_but_write_blocked": 5912,
+    "blocked_rows_counted": 60726,
+    "grookai_printing_rows": 55266,
+    "index_printing_rows": 39034,
+    "global_status_counts": {
+      "api_agreed_by_index": 21179,
+      "candidate_unconfirmed_by_index": 11606,
+      "master_verified_by_index": 620,
+      "missing_from_grookai": 6080,
+      "name_mismatch_needs_review": 196,
+      "set_unmapped": 11176,
+      "unsupported_by_current_index": 10489
+    },
+    "set_unmapped_categories": {
+      "legacy_orphan": 16,
+      "missing_set_code": 5733,
+      "out_of_scope_pocket": 5427
+    },
+    "physical_recovery_exact_match": {
+      "candidate_card_prints": 807,
+      "candidate_printing_rows": 1685,
+      "by_set": {
+        "bw11": 25,
+        "bw9": 2,
+        "cel25": 4,
+        "col1": 11,
+        "dp7": 8,
+        "ecard2": 13,
+        "ecard3": 15,
+        "ex10": 3,
+        "fut2020": 5,
+        "mcd21": 25,
+        "me1": 83,
+        "mep": 10,
+        "pgo": 34,
+        "pl1": 9,
+        "pl2": 37,
+        "pl3": 9,
+        "pl4": 20,
+        "sv4pt5": 108,
+        "sv6pt5": 52,
+        "sv8pt5": 180,
+        "svp": 73,
+        "swsh2": 1,
+        "swsh45": 2,
+        "xy4": 16,
+        "xy9": 1,
+        "xyp": 61
+      },
+      "by_card_match_status": {
+        "exact_card_identity_match": 807
+      },
+      "by_finish_match_status": {
+        "partial_finishes_supported_by_index": 348,
+        "all_finishes_supported_but_not_master_verified": 455,
+        "no_finishes_supported_by_index": 4
+      },
+      "by_combined_status": {
+        "exact_card_identity_match / partial_finishes_supported_by_index": 348,
+        "exact_card_identity_match / all_finishes_supported_but_not_master_verified": 455,
+        "exact_card_identity_match / no_finishes_supported_by_index": 4
+      },
+      "by_era_lane": {
+        "legacy": 169,
+        "promo_or_special": 212,
+        "modern": 426
+      },
+      "printing_rows_by_finish_status": {
+        "partial_finishes_supported_by_index": 963,
+        "all_finishes_supported_but_not_master_verified": 718,
+        "no_finishes_supported_by_index": 4
+      }
+    },
+    "source_acquisition_queue": {
+      "total_queue_items": 482,
+      "by_lane": {
+        "reverse_holo": 10238,
+        "holo": 8846,
+        "parallel": 691,
+        "promo": 4652,
+        "subset": 3512,
+        "legacy": 8160,
+        "alias_resolution": 6727
+      },
+      "by_work_type": {
+        "alias_governance": 10239,
+        "source_acquisition": 3371,
+        "second_source_evidence": 10246,
+        "finish_disproof_or_overgeneration_review": 5099,
+        "human_checklist_evidence": 12780,
+        "legacy_policy_evidence": 1091
+      },
+      "by_mutation_authority_warning": {
+        "not mutation authority": 14701,
+        "not truth": 10246,
+        "not deletion authority": 5099,
+        "not master truth": 11940,
+        "not insertion authority": 840
+      }
+    },
+    "truth_readiness": {
+      "proof_ready": 1,
+      "moderate_confidence": 50,
+      "blocked": 125,
+      "source_limited": 66
+    },
+    "repair_priority": {
+      "total_ranked_sets": 242,
+      "by_recommendation": {
+        "already_proven_monitor_only": 1,
+        "blocked": 20,
+        "source_acquisition_then_overgeneration_review": 59,
+        "source_acquisition_first": 148,
+        "alias_governance_first": 14
+      }
+    }
+  },
+  "immediate_next_non_write_work": [
+    "Acquire human/checklist finish evidence for top physical recovery sets.",
+    "Rerun exact-match audit after evidence fixtures are added.",
+    "Only then generate set-specific dry-run write packages."
+  ],
+  "stop_rules_before_any_future_write": [
+    "Stop if a fact is API-only.",
+    "Stop if finish truth is partial or unsupported.",
+    "Stop if source evidence gives only a general rule.",
+    "Stop if row IDs, rollback, and post-apply verification are not explicit.",
+    "Stop if identity-law, ownership, vault, or provenance impact is unresolved."
+  ],
+  "global_buckets": [
+    {
+      "bucket": "master_verified_monitor_only",
+      "row_count": 620,
+      "status": "proven_monitor_only",
+      "mutation_ready": false,
+      "reason": "Already verified by the current index. Monitor only unless a future drift audit finds divergence.",
+      "next_action": "Keep Ascended Heroes proof loop as the reference pattern."
+    },
+    {
+      "bucket": "api_agreed_by_index",
+      "row_count": 21179,
+      "status": "blocked",
+      "mutation_ready": false,
+      "reason": "API agreement is not master truth for finish/printing rows.",
+      "next_action": "Acquire human-readable/checklist evidence before controlled normalization."
+    },
+    {
+      "bucket": "candidate_unconfirmed_by_index",
+      "row_count": 11606,
+      "status": "blocked",
+      "mutation_ready": false,
+      "reason": "Single-source evidence is not canonical truth.",
+      "next_action": "Acquire independent second-source evidence."
+    },
+    {
+      "bucket": "unsupported_by_current_index",
+      "row_count": 10489,
+      "status": "blocked",
+      "mutation_ready": false,
+      "reason": "Unsupported by current index is not deletion authority.",
+      "next_action": "Run set-level proof loops with master_verified evidence before any cleanup proposal."
+    },
+    {
+      "bucket": "missing_from_grookai",
+      "row_count": 6080,
+      "status": "blocked",
+      "mutation_ready": false,
+      "reason": "Missing from Grookai is not insertion authority.",
+      "next_action": "Only master_verified rows may enter a future controlled insertion plan."
+    },
+    {
+      "bucket": "name_mismatch_needs_review",
+      "row_count": 196,
+      "status": "blocked",
+      "mutation_ready": false,
+      "reason": "Name mismatch is not identity rewrite authority.",
+      "next_action": "Resolve exact source card identity and alias policy first."
+    },
+    {
+      "bucket": "set_unmapped_total",
+      "row_count": 11176,
+      "status": "blocked",
+      "mutation_ready": false,
+      "reason": "Unmapped set rows cannot be normalized safely without source identity.",
+      "next_action": "Use provenance recovery lanes before any repair design."
+    },
+    {
+      "bucket": "missing_set_code_physical_candidates",
+      "row_count": 807,
+      "printing_rows": 1685,
+      "status": "identity_matched_finish_blocked",
+      "mutation_ready": false,
+      "reason": "All physical candidates matched card identity, but finish truth is not master_verified.",
+      "next_action": "Acquire human/checklist finish evidence, then rerun exact-match feasibility."
+    },
+    {
+      "bucket": "missing_set_code_pocket_scope_candidates",
+      "row_count": 1341,
+      "status": "scope_decision_required",
+      "mutation_ready": false,
+      "reason": "Pocket/digital aliases are outside English physical TCG scope.",
+      "next_action": "Make explicit product-scope decision before any isolation/quarantine proposal."
+    },
+    {
+      "bucket": "missing_set_code_marketplace_lookup_required",
+      "row_count": 5,
+      "status": "manual_lookup_required",
+      "mutation_ready": false,
+      "reason": "Marketplace IDs require source URL resolution and second-source confirmation.",
+      "next_action": "Resolve exact source URLs manually."
+    },
+    {
+      "bucket": "missing_set_code_manual_review",
+      "row_count": 10,
+      "status": "manual_review_required",
+      "mutation_ready": false,
+      "reason": "No usable source set alias is available.",
+      "next_action": "Manual source acquisition required."
+    },
+    {
+      "bucket": "source_acquisition_queue",
+      "row_count": 482,
+      "weighted_rows": {
+        "reverse_holo": 10238,
+        "holo": 8846,
+        "parallel": 691,
+        "promo": 4652,
+        "subset": 3512,
+        "legacy": 8160,
+        "alias_resolution": 6727
+      },
+      "status": "evidence_work_required",
+      "mutation_ready": false,
+      "reason": "The source acquisition queue is still the main blocker to safe writes.",
+      "next_action": "Prioritize human checklist evidence for high-volume physical recovery sets."
+    },
+    {
+      "bucket": "truth_readiness_sets",
+      "row_count": 242,
+      "detail": {
+        "proof_ready": 1,
+        "moderate_confidence": 50,
+        "blocked": 125,
+        "source_limited": 66
+      },
+      "status": "planning_only",
+      "mutation_ready": false,
+      "reason": "Truth readiness ranks risk; it does not authorize writes.",
+      "next_action": "Use only to choose next proof-loop targets."
+    },
+    {
+      "bucket": "repair_priority_sets",
+      "row_count": 242,
+      "status": "planning_only",
+      "mutation_ready": false,
+      "reason": "Repair priority is a future planning aid only.",
+      "next_action": "Use after evidence acquisition, not before."
+    },
+    {
+      "bucket": "provenance_recovery_leads",
+      "row_count": 2163,
+      "printing_rows": 5733,
+      "status": "lead_map_complete",
+      "mutation_ready": false,
+      "reason": "Provenance recovery leads are not canonical truth.",
+      "next_action": "Promote only through source-backed proof loops."
+    }
+  ],
+  "write_packages": [
+    {
+      "package_id": "PKG-00",
+      "name": "Ascended Heroes monitor-only proof baseline",
+      "current_state": "complete",
+      "future_write_allowed_after_approval": false,
+      "candidate_rows": 620,
+      "blockers": [],
+      "required_before_write": [
+        "No write required unless future drift appears."
+      ],
+      "rollback_requirement": "Existing Ascended Heroes rollback/proof artifacts remain the model for future sets."
+    },
+    {
+      "package_id": "PKG-01",
+      "name": "Physical missing-set recovery",
+      "current_state": "identity_matched_finish_blocked",
+      "future_write_allowed_after_approval": false,
+      "candidate_card_prints": 807,
+      "candidate_printing_rows": 1685,
+      "evidence_shape": {
+        "exact_card_identity_match": 807,
+        "all_finishes_supported_but_not_master_verified": 455,
+        "partial_finishes_supported_by_index": 348,
+        "no_finishes_supported_by_index": 4
+      },
+      "blockers": [
+        "No candidate finish is currently master_verified.",
+        "Partial finish support must be split into supported-only and unsupported lanes.",
+        "Human-readable/checklist finish evidence is required before any write."
+      ],
+      "required_before_write": [
+        "Acquire human/checklist evidence per set and finish.",
+        "Rerun exact-match feasibility and require master_verified finish rows.",
+        "Generate a set-specific dry-run write plan with rollback artifacts.",
+        "Founder/operator approval of exact row IDs and intended mutations."
+      ],
+      "rollback_requirement": "Per-row before/after snapshot and reversible update plan required."
+    },
+    {
+      "package_id": "PKG-02",
+      "name": "Pocket/digital scope isolation",
+      "current_state": "scope_decision_required",
+      "future_write_allowed_after_approval": false,
+      "candidate_card_prints": 1341,
+      "blockers": [
+        "Pocket/digital scope is outside English physical TCG but needs product decision.",
+        "Scope exclusion is not automatic deletion authority."
+      ],
+      "required_before_write": [
+        "Decide whether Grookai stores Pocket/digital rows in a separate domain.",
+        "Design non-destructive isolation/quarantine strategy.",
+        "Verify ownership/vault/provenance impacts before any hide or move."
+      ],
+      "rollback_requirement": "Scope isolation must be reversible and cannot corrupt vault ownership."
+    },
+    {
+      "package_id": "PKG-03",
+      "name": "Unsupported printings cleanup",
+      "current_state": "blocked_by_index_maturity",
+      "future_write_allowed_after_approval": false,
+      "candidate_printing_rows": 10489,
+      "blockers": [
+        "Unsupported by current index is not deletion authority.",
+        "Many sets are API-only or source-limited."
+      ],
+      "required_before_write": [
+        "Run set-level proof loops until relevant facts are master_verified.",
+        "Produce proof-based unsupported row report with exact evidence URLs.",
+        "Generate rollback-safe cleanup plan."
+      ],
+      "rollback_requirement": "Every cleanup row needs before-state snapshot and reasoned evidence."
+    },
+    {
+      "package_id": "PKG-04",
+      "name": "Missing-from-Grookai insertions",
+      "current_state": "blocked_by_master_verification",
+      "future_write_allowed_after_approval": false,
+      "candidate_printing_rows": 6080,
+      "blockers": [
+        "Missing from Grookai is not insertion authority.",
+        "Only master_verified index rows may participate in future insertion."
+      ],
+      "required_before_write": [
+        "Promote candidate rows to master_verified using source law.",
+        "Confirm no duplicate identity or ownership side effects.",
+        "Generate controlled insertion plan and rollback/deletion companion."
+      ],
+      "rollback_requirement": "Insertion rollback must remove only inserted rows and preserve ownership ledgers."
+    },
+    {
+      "package_id": "PKG-05",
+      "name": "Name and alias governance",
+      "current_state": "manual_governance_required",
+      "future_write_allowed_after_approval": false,
+      "candidate_rows": 196,
+      "blockers": [
+        "Name mismatch is not identity rewrite authority.",
+        "Alias and subset policies must be source-backed."
+      ],
+      "required_before_write": [
+        "Resolve aliases with exact source URLs and evidence labels.",
+        "Separate display-name cleanup from identity mutation.",
+        "Run identity-law conflict checks before any write."
+      ],
+      "rollback_requirement": "Alias changes must be reversible and must not mutate canonical identity laws silently."
+    }
+  ]
+}
