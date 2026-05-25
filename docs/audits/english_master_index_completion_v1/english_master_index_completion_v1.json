@@ -1,0 +1,50 @@
+{
+  "generated_at": "2026-05-25T14:14:18.426Z",
+  "contract": "ENGLISH_MASTER_INDEX_COMPLETION_V1",
+  "audit_only": true,
+  "db_writes_performed": false,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "grookai_reconciliation_performed": false,
+  "version": "english_master_index_completion_v1",
+  "purpose": "Completion-first Master Index report. This is not a Grookai reconciliation report.",
+  "summary": {
+    "sets_in_registry": 203,
+    "complete_master_index_sets": 1,
+    "incomplete_sets": 202,
+    "working_card_identity_facts": 21451,
+    "master_admissible_card_identity_facts": 19743,
+    "printing_derived_card_identity_facts": 45,
+    "working_printing_facts": 39034,
+    "master_admissible_printing_facts": 620,
+    "finish_absence_facts": 2,
+    "by_completion_status": {
+      "card_identity_complete_finish_incomplete": 106,
+      "complete_master_index_set": 1,
+      "finish_evidence_missing": 33,
+      "source_agreed_card_identity": 58,
+      "source_limited": 1,
+      "source_unavailable": 4
+    },
+    "by_card_fact_status": {
+      "candidate_unconfirmed": 1753,
+      "api_agreed": 19686,
+      "master_verified": 12
+    },
+    "by_printing_fact_status": {
+      "candidate_unconfirmed": 17147,
+      "api_agreed": 21267,
+      "master_verified": 620
+    },
+    "source_gap_queue_items": 292,
+    "grookai_reconciliation_performed": false
+  },
+  "source_standard": {
+    "card_identity": "source_count >= 2 and independent agreement on set + card_number + card_name",
+    "printing_finish": "source_count >= 2 plus at least one human/checklist-style source supporting exact finish fact"
+  },
+  "set_completion_matrix_ref": "english_master_index_set_completion_matrix_v1.json",
+  "source_gap_queue_ref": "english_master_index_source_gap_queue_v1.json",
+  "master_admissible_export_ref": "english_master_index_master_admissible_export_v1.json"
+}

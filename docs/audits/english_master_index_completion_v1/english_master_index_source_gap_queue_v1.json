@@ -1,0 +1,2681 @@
+{
+  "generated_at": "2026-05-25T14:14:18.426Z",
+  "contract": "ENGLISH_MASTER_INDEX_COMPLETION_V1",
+  "audit_only": true,
+  "db_writes_performed": false,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "grookai_reconciliation_performed": false,
+  "version": "english_master_index_source_gap_queue_v1",
+  "summary": {
+    "total_queue_items": 292,
+    "by_lane": {
+      "finish_human_checklist_evidence": 197,
+      "card_identity_second_source": 91,
+      "source_alias_or_adapter_required": 4
+    },
+    "top_sets": {
+      "sm12": 565,
+      "sm11": 540,
+      "swsh8": 514,
+      "sm8": 497,
+      "sm10": 494,
+      "smp": 482,
+      "sv2": 461,
+      "sv1": 454,
+      "swshp": 433,
+      "sv4": 432,
+      "pl3": 431,
+      "svp": 429,
+      "swsh11": 428,
+      "sv8": 422,
+      "sv3": 417,
+      "swsh12": 417,
+      "sv10": 416,
+      "xyp": 414,
+      "sm9": 413,
+      "swsh12pt5": 412,
+      "swsh10": 404,
+      "sm7": 388,
+      "sv6": 384,
+      "swsh1": 381,
+      "ecard2": 380,
+      "sv5": 379,
+      "ecard3": 378,
+      "swsh45": 371,
+      "swsh9": 371,
+      "swsh2": 370
+    }
+  },
+  "queue": [
+    {
+      "lane": "finish_human_checklist_evidence",
+      "set_key": "sm12",
+      "set_name": "Cosmic Eclipse",
+      "gap_count": 564,
+      "priority": 100,
+      "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "finish_human_checklist_evidence",
+      "set_key": "sm11",
+      "set_name": "Unified Minds",
+      "gap_count": 537,
+      "priority": 100,
+      "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "finish_human_checklist_evidence",
+      "set_key": "swsh8",
+      "set_name": "Fusion Strike",
+      "gap_count": 514,
+      "priority": 100,
+      "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "finish_human_checklist_evidence",
+      "set_key": "sm8",
+      "set_name": "Lost Thunder",
+      "gap_count": 493,
+      "priority": 100,
+      "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "finish_human_checklist_evidence",
+      "set_key": "sm10",
+      "set_name": "Unbroken Bonds",
+      "gap_count": 490,
+      "priority": 100,
+      "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "finish_human_checklist_evidence",
+      "set_key": "smp",
+      "set_name": "SM Black Star Promos",
+      "gap_count": 479,
+      "priority": 100,
+      "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "finish_human_checklist_evidence",
+      "set_key": "sv2",
+      "set_name": "Paldea Evolved",
+      "gap_count": 455,
+      "priority": 100,
+      "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "finish_human_checklist_evidence",
+      "set_key": "sv1",
+      "set_name": "Scarlet & Violet",
+      "gap_count": 446,
+      "priority": 100,
+      "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "finish_human_checklist_evidence",
+      "set_key": "sv4",
+      "set_name": "Paradox Rift",
+      "gap_count": 432,
+      "priority": 100,
+      "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "finish_human_checklist_evidence",
+      "set_key": "swshp",
+      "set_name": "SWSH Black Star Promos",
+      "gap_count": 425,
+      "priority": 100,
+      "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "finish_human_checklist_evidence",
+      "set_key": "sv8",
+      "set_name": "Surging Sparks",
+      "gap_count": 422,
+      "priority": 100,
+      "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "finish_human_checklist_evidence",
+      "set_key": "pl3",
+      "set_name": "Supreme Victors",
+      "gap_count": 417,
+      "priority": 100,
+      "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "finish_human_checklist_evidence",
+      "set_key": "sv3",
+      "set_name": "Obsidian Flames",
+      "gap_count": 417,
+      "priority": 100,
+      "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "finish_human_checklist_evidence",
+      "set_key": "sv10",
+      "set_name": "Destined Rivals",
+      "gap_count": 416,
+      "priority": 100,
+      "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "finish_human_checklist_evidence",
+      "set_key": "xyp",
+      "set_name": "XY Black Star Promos",
+      "gap_count": 414,
+      "priority": 100,
+      "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "finish_human_checklist_evidence",
+      "set_key": "sm9",
+      "set_name": "Team Up",
+      "gap_count": 411,
+      "priority": 100,
+      "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "finish_human_checklist_evidence",
+      "set_key": "svp",
+      "set_name": "Scarlet & Violet Black Star Promos",
+      "gap_count": 403,
+      "priority": 100,
+      "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "finish_human_checklist_evidence",
+      "set_key": "swsh11",
+      "set_name": "Lost Origin",
+      "gap_count": 398,
+      "priority": 100,
+      "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "finish_human_checklist_evidence",
+      "set_key": "swsh12",
+      "set_name": "Silver Tempest",
+      "gap_count": 387,
+      "priority": 100,
+      "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "finish_human_checklist_evidence",
+      "set_key": "sm7",
+      "set_name": "Celestial Storm",
+      "gap_count": 384,
+      "priority": 100,
+      "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "finish_human_checklist_evidence",
+      "set_key": "sv6",
+      "set_name": "Twilight Masquerade",
+      "gap_count": 384,
+      "priority": 100,
+      "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "finish_human_checklist_evidence",
+      "set_key": "swsh1",
+      "set_name": "Sword & Shield",
+      "gap_count": 381,
+      "priority": 100,
+      "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "finish_human_checklist_evidence",
+      "set_key": "sv5",
+      "set_name": "Temporal Forces",
+      "gap_count": 379,
+      "priority": 100,
+      "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "finish_human_checklist_evidence",
+      "set_key": "swsh10",
+      "set_name": "Astral Radiance",
+      "gap_count": 374,
+      "priority": 100,
+      "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "finish_human_checklist_evidence",
+      "set_key": "swsh7",
+      "set_name": "Evolving Skies",
+      "gap_count": 370,
+      "priority": 100,
+      "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "finish_human_checklist_evidence",
+      "set_key": "swsh6",
+      "set_name": "Chilling Reign",
+      "gap_count": 369,
+      "priority": 100,
+      "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "finish_human_checklist_evidence",
+      "set_key": "swsh2",
+      "set_name": "Rebel Clash",
+      "gap_count": 364,
+      "priority": 100,
+      "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "finish_human_checklist_evidence",
+      "set_key": "sv3pt5",
+      "set_name": "151",
+      "gap_count": 362,
+      "priority": 100,
+      "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "finish_human_checklist_evidence",
+      "set_key": "sm5",
+      "set_name": "Ultra Prism",
+      "gap_count": 359,
+      "priority": 100,
+      "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "finish_human_checklist_evidence",
+      "set_key": "swsh3",
+      "set_name": "Darkness Ablaze",
+      "gap_count": 356,
+      "priority": 100,
+      "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "finish_human_checklist_evidence",
+      "set_key": "sm2",
+      "set_name": "Guardians Rising",
+      "gap_count": 353,
+      "priority": 100,
+      "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "finish_human_checklist_evidence",
+      "set_key": "sm1",
+      "set_name": "Sun & Moon",
+      "gap_count": 351,
+      "priority": 100,
+      "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "finish_human_checklist_evidence",
+      "set_key": "sm3",
+      "set_name": "Burning Shadows",
+      "gap_count": 351,
+      "priority": 100,
+      "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "finish_human_checklist_evidence",
+      "set_key": "ecard2",
+      "set_name": "Aquapolis",
+      "gap_count": 349,
+      "priority": 100,
+      "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "finish_human_checklist_evidence",
+      "set_key": "sv9",
+      "set_name": "Journey Together",
+      "gap_count": 349,
+      "priority": 100,
+      "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "finish_human_checklist_evidence",
+      "set_key": "ecard3",
+      "set_name": "Skyridge",
+      "gap_count": 346,
+      "priority": 100,
+      "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "finish_human_checklist_evidence",
+      "set_key": "xy5",
+      "set_name": "Primal Clash",
+      "gap_count": 346,
+      "priority": 100,
+      "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "finish_human_checklist_evidence",
+      "set_key": "swsh4",
+      "set_name": "Vivid Voltage",
+      "gap_count": 345,
+      "priority": 100,
+      "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "finish_human_checklist_evidence",
+      "set_key": "xy8",
+      "set_name": "BREAKthrough",
+      "gap_count": 345,
+      "priority": 100,
+      "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "finish_human_checklist_evidence",
+      "set_key": "swsh12pt5",
+      "set_name": "Crown Zenith",
+      "gap_count": 342,
+      "priority": 100,
+      "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "finish_human_checklist_evidence",
+      "set_key": "swsh9",
+      "set_name": "Brilliant Stars",
+      "gap_count": 341,
+      "priority": 100,
+      "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "finish_human_checklist_evidence",
+      "set_key": "ecard1",
+      "set_name": "Expedition Base Set",
+      "gap_count": 330,
+      "priority": 100,
+      "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "finish_human_checklist_evidence",
+      "set_key": "me1",
+      "set_name": "Mega Evolution",
+      "gap_count": 328,
+      "priority": 100,
+      "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "finish_human_checklist_evidence",
+      "set_key": "sv4pt5",
+      "set_name": "Paldean Fates",
+      "gap_count": 328,
+      "priority": 100,
+      "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "finish_human_checklist_evidence",
+      "set_key": "ex6",
+      "set_name": "FireRed & LeafGreen",
+      "gap_count": 325,
+      "priority": 100,
+      "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "finish_human_checklist_evidence",
+      "set_key": "bw7",
+      "set_name": "Boundaries Crossed",
+      "gap_count": 324,
+      "priority": 100,
+      "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "finish_human_checklist_evidence",
+      "set_key": "bw11",
+      "set_name": "Legendary Treasures",
+      "gap_count": 310,
+      "priority": 100,
+      "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "finish_human_checklist_evidence",
+      "set_key": "swsh5",
+      "set_name": "Battle Styles",
+      "gap_count": 306,
+      "priority": 100,
+      "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "finish_human_checklist_evidence",
+      "set_key": "sv7",
+      "set_name": "Stellar Crown",
+      "gap_count": 305,
+      "priority": 100,
+      "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "finish_human_checklist_evidence",
+      "set_key": "ex8",
+      "set_name": "Deoxys",
+      "gap_count": 304,
+      "priority": 100,
+      "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "finish_human_checklist_evidence",
+      "set_key": "sm6",
+      "set_name": "Forbidden Light",
+      "gap_count": 304,
+      "priority": 100,
+      "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "finish_human_checklist_evidence",
+      "set_key": "ex7",
+      "set_name": "Team Rocket Returns",
+      "gap_count": 303,
+      "priority": 100,
+      "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "finish_human_checklist_evidence",
+      "set_key": "dp6",
+      "set_name": "Legends Awakened",
+      "gap_count": 301,
+      "priority": 100,
+      "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "finish_human_checklist_evidence",
+      "set_key": "xy1",
+      "set_name": "XY",
+      "gap_count": 299,
+      "priority": 100,
+      "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "finish_human_checklist_evidence",
+      "set_key": "ex9",
+      "set_name": "Emerald",
+      "gap_count": 294,
+      "priority": 100,
+      "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "finish_human_checklist_evidence",
+      "set_key": "bw8",
+      "set_name": "Plasma Storm",
+      "gap_count": 286,
+      "priority": 100,
+      "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "finish_human_checklist_evidence",
+      "set_key": "gym2",
+      "set_name": "Gym Challenge",
+      "gap_count": 284,
+      "priority": 100,
+      "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "finish_human_checklist_evidence",
+      "set_key": "gym1",
+      "set_name": "Gym Heroes",
+      "gap_count": 283,
+      "priority": 100,
+      "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "finish_human_checklist_evidence",
+      "set_key": "sv8pt5",
+      "set_name": "Prismatic Evolutions",
+      "gap_count": 281,
+      "priority": 100,
+      "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "finish_human_checklist_evidence",
+      "set_key": "pl2",
+      "set_name": "Rising Rivals",
+      "gap_count": 274,
+      "priority": 100,
+      "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "finish_human_checklist_evidence",
+      "set_key": "ex5",
+      "set_name": "Hidden Legends",
+      "gap_count": 273,
+      "priority": 100,
+      "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "finish_human_checklist_evidence",
+      "set_key": "dp3",
+      "set_name": "Secret Wonders",
+      "gap_count": 269,
+      "priority": 100,
+      "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "finish_human_checklist_evidence",
+      "set_key": "bw6",
+      "set_name": "Dragons Exalted",
+      "gap_count": 268,
+      "priority": 100,
+      "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "finish_human_checklist_evidence",
+      "set_key": "dp1",
+      "set_name": "Diamond & Pearl",
+      "gap_count": 268,
+      "priority": 100,
+      "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "finish_human_checklist_evidence",
+      "set_key": "pl1",
+      "set_name": "Platinum",
+      "gap_count": 263,
+      "priority": 100,
+      "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "finish_human_checklist_evidence",
+      "set_key": "sm4",
+      "set_name": "Crimson Invasion",
+      "gap_count": 261,
+      "priority": 100,
+      "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "finish_human_checklist_evidence",
+      "set_key": "xy10",
+      "set_name": "Fates Collide",
+      "gap_count": 259,
+      "priority": 100,
+      "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "finish_human_checklist_evidence",
+      "set_key": "bw9",
+      "set_name": "Plasma Freeze",
+      "gap_count": 258,
+      "priority": 100,
+      "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "finish_human_checklist_evidence",
+      "set_key": "xy4",
+      "set_name": "Phantom Forces",
+      "gap_count": 258,
+      "priority": 100,
+      "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "finish_human_checklist_evidence",
+      "set_key": "zsv10pt5",
+      "set_name": "Black Bolt",
+      "gap_count": 257,
+      "priority": 100,
+      "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "finish_human_checklist_evidence",
+      "set_key": "rsv10pt5",
+      "set_name": "White Flare",
+      "gap_count": 256,
+      "priority": 100,
+      "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "finish_human_checklist_evidence",
+      "set_key": "xy9",
+      "set_name": "BREAKpoint",
+      "gap_count": 256,
+      "priority": 100,
+      "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "finish_human_checklist_evidence",
+      "set_key": "dp2",
+      "set_name": "Mysterious Treasures",
+      "gap_count": 254,
+      "priority": 100,
+      "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "finish_human_checklist_evidence",
+      "set_key": "ex10",
+      "set_name": "Unseen Forces",
+      "gap_count": 253,
+      "priority": 100,
+      "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "finish_human_checklist_evidence",
+      "set_key": "swsh45",
+      "set_name": "Shining Fates",
+      "gap_count": 245,
+      "priority": 100,
+      "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "finish_human_checklist_evidence",
+      "set_key": "neo1",
+      "set_name": "Neo Genesis",
+      "gap_count": 241,
+      "priority": 100,
+      "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "finish_human_checklist_evidence",
+      "set_key": "xy11",
+      "set_name": "Steam Siege",
+      "gap_count": 241,
+      "priority": 100,
+      "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "finish_human_checklist_evidence",
+      "set_key": "neo4",
+      "set_name": "Neo Destiny",
+      "gap_count": 240,
+      "priority": 100,
+      "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "finish_human_checklist_evidence",
+      "set_key": "hgss1",
+      "set_name": "HeartGold & SoulSilver",
+      "gap_count": 239,
+      "priority": 100,
+      "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "finish_human_checklist_evidence",
+      "set_key": "xy3",
+      "set_name": "Furious Fists",
+      "gap_count": 236,
+      "priority": 100,
+      "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "finish_human_checklist_evidence",
+      "set_key": "bw1",
+      "set_name": "Black & White",
+      "gap_count": 234,
+      "priority": 100,
+      "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "finish_human_checklist_evidence",
+      "set_key": "xy12",
+      "set_name": "Evolutions",
+      "gap_count": 234,
+      "priority": 100,
+      "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "finish_human_checklist_evidence",
+      "set_key": "xy6",
+      "set_name": "Roaring Skies",
+      "gap_count": 232,
+      "priority": 100,
+      "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "finish_human_checklist_evidence",
+      "set_key": "bw5",
+      "set_name": "Dark Explorers",
+      "gap_count": 231,
+      "priority": 100,
+      "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "finish_human_checklist_evidence",
+      "set_key": "ex1",
+      "set_name": "Ruby & Sapphire",
+      "gap_count": 228,
+      "priority": 100,
+      "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "finish_human_checklist_evidence",
+      "set_key": "xy2",
+      "set_name": "Flashfire",
+      "gap_count": 227,
+      "priority": 100,
+      "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "finish_human_checklist_evidence",
+      "set_key": "ex11",
+      "set_name": "Delta Species",
+      "gap_count": 225,
+      "priority": 100,
+      "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "finish_human_checklist_evidence",
+      "set_key": "col1",
+      "set_name": "Call of Legends",
+      "gap_count": 224,
+      "priority": 100,
+      "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "finish_human_checklist_evidence",
+      "set_key": "g1",
+      "set_name": "Generations",
+      "gap_count": 224,
+      "priority": 100,
+      "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "finish_human_checklist_evidence",
+      "set_key": "base6",
+      "set_name": "Legendary Collection",
+      "gap_count": 223,
+      "priority": 100,
+      "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "finish_human_checklist_evidence",
+      "set_key": "bw10",
+      "set_name": "Plasma Blast",
+      "gap_count": 221,
+      "priority": 100,
+      "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "finish_human_checklist_evidence",
+      "set_key": "ex16",
+      "set_name": "Power Keepers",
+      "gap_count": 221,
+      "priority": 100,
+      "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "finish_human_checklist_evidence",
+      "set_key": "me2",
+      "set_name": "Phantasmal Flames",
+      "gap_count": 219,
+      "priority": 100,
+      "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "finish_human_checklist_evidence",
+      "set_key": "bw3",
+      "set_name": "Noble Victories",
+      "gap_count": 217,
+      "priority": 100,
+      "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "finish_human_checklist_evidence",
+      "set_key": "dp4",
+      "set_name": "Great Encounters",
+      "gap_count": 217,
+      "priority": 100,
+      "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "finish_human_checklist_evidence",
+      "set_key": "bw4",
+      "set_name": "Next Destinies",
+      "gap_count": 216,
+      "priority": 100,
+      "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "finish_human_checklist_evidence",
+      "set_key": "ex13",
+      "set_name": "Holon Phantoms",
+      "gap_count": 216,
+      "priority": 100,
+      "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "finish_human_checklist_evidence",
+      "set_key": "pl4",
+      "set_name": "Arceus",
+      "gap_count": 213,
+      "priority": 100,
+      "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "finish_human_checklist_evidence",
+      "set_key": "dp7",
+      "set_name": "Stormfront",
+      "gap_count": 212,
+      "priority": 100,
+      "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "finish_human_checklist_evidence",
+      "set_key": "ex3",
+      "set_name": "Dragon",
+      "gap_count": 212,
+      "priority": 100,
+      "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "finish_human_checklist_evidence",
+      "set_key": "xy7",
+      "set_name": "Ancient Origins",
+      "gap_count": 209,
+      "priority": 100,
+      "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "finish_human_checklist_evidence",
+      "set_key": "bw2",
+      "set_name": "Emerging Powers",
+      "gap_count": 205,
+      "priority": 100,
+      "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "finish_human_checklist_evidence",
+      "set_key": "base1",
+      "set_name": "Base",
+      "gap_count": 204,
+      "priority": 100,
+      "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "finish_human_checklist_evidence",
+      "set_key": "dp5",
+      "set_name": "Majestic Dawn",
+      "gap_count": 204,
+      "priority": 100,
+      "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "finish_human_checklist_evidence",
+      "set_key": "ex4",
+      "set_name": "Team Magma vs Team Aqua",
+      "gap_count": 203,
+      "priority": 100,
+      "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "finish_human_checklist_evidence",
+      "set_key": "me3",
+      "set_name": "Perfect Order",
+      "gap_count": 203,
+      "priority": 100,
+      "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "finish_human_checklist_evidence",
+      "set_key": "ex14",
+      "set_name": "Crystal Guardians",
+      "gap_count": 195,
+      "priority": 100,
+      "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "finish_human_checklist_evidence",
+      "set_key": "ex2",
+      "set_name": "Sandstorm",
+      "gap_count": 194,
+      "priority": 100,
+      "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "finish_human_checklist_evidence",
+      "set_key": "hgss4",
+      "set_name": "HS—Triumphant",
+      "gap_count": 193,
+      "priority": 100,
+      "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "finish_human_checklist_evidence",
+      "set_key": "ex15",
+      "set_name": "Dragon Frontiers",
+      "gap_count": 192,
+      "priority": 100,
+      "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "finish_human_checklist_evidence",
+      "set_key": "sma",
+      "set_name": "Hidden Fates Shiny Vault",
+      "gap_count": 188,
+      "priority": 100,
+      "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "finish_human_checklist_evidence",
+      "set_key": "bwp",
+      "set_name": "BW Black Star Promos",
+      "gap_count": 187,
+      "priority": 100,
+      "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "finish_human_checklist_evidence",
+      "set_key": "base5",
+      "set_name": "Team Rocket",
+      "gap_count": 184,
+      "priority": 100,
+      "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "finish_human_checklist_evidence",
+      "set_key": "hgss2",
+      "set_name": "HS—Unleashed",
+      "gap_count": 183,
+      "priority": 100,
+      "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "finish_human_checklist_evidence",
+      "set_key": "ex12",
+      "set_name": "Legend Maker",
+      "gap_count": 178,
+      "priority": 100,
+      "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "finish_human_checklist_evidence",
+      "set_key": "hgss3",
+      "set_name": "HS—Undaunted",
+      "gap_count": 177,
+      "priority": 100,
+      "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "finish_human_checklist_evidence",
+      "set_key": "sm35",
+      "set_name": "Shining Legends",
+      "gap_count": 168,
+      "priority": 100,
+      "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "finish_human_checklist_evidence",
+      "set_key": "neo2",
+      "set_name": "Neo Discovery",
+      "gap_count": 166,
+      "priority": 100,
+      "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "finish_human_checklist_evidence",
+      "set_key": "sm75",
+      "set_name": "Dragon Majesty",
+      "gap_count": 166,
+      "priority": 100,
+      "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "finish_human_checklist_evidence",
+      "set_key": "sv6pt5",
+      "set_name": "Shrouded Fable",
+      "gap_count": 154,
+      "priority": 100,
+      "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "finish_human_checklist_evidence",
+      "set_key": "neo3",
+      "set_name": "Neo Revelation",
+      "gap_count": 146,
+      "priority": 100,
+      "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "finish_human_checklist_evidence",
+      "set_key": "pgo",
+      "set_name": "Pokémon GO",
+      "gap_count": 146,
+      "priority": 100,
+      "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "finish_human_checklist_evidence",
+      "set_key": "base2",
+      "set_name": "Jungle",
+      "gap_count": 144,
+      "priority": 100,
+      "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "finish_human_checklist_evidence",
+      "set_key": "sm115",
+      "set_name": "Hidden Fates",
+      "gap_count": 144,
+      "priority": 100,
+      "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "finish_human_checklist_evidence",
+      "set_key": "base3",
+      "set_name": "Fossil",
+      "gap_count": 139,
+      "priority": 100,
+      "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "finish_human_checklist_evidence",
+      "set_key": "swsh35",
+      "set_name": "Champion's Path",
+      "gap_count": 134,
+      "priority": 100,
+      "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "finish_human_checklist_evidence",
+      "set_key": "base4",
+      "set_name": "Base Set 2",
+      "gap_count": 131,
+      "priority": 100,
+      "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "card_identity_second_source",
+      "set_key": "swsh45",
+      "set_name": "Shining Fates",
+      "gap_count": 126,
+      "priority": 100,
+      "required_evidence": "Independent source agreement for set + card_number + card_name.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "finish_human_checklist_evidence",
+      "set_key": "me4",
+      "set_name": "Chaos Rising",
+      "gap_count": 122,
+      "priority": 100,
+      "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "card_identity_second_source",
+      "set_key": "swsh45sv",
+      "set_name": "Shining Fates Shiny Vault",
+      "gap_count": 122,
+      "priority": 100,
+      "required_evidence": "Independent source agreement for set + card_number + card_name.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "finish_human_checklist_evidence",
+      "set_key": "swsh45sv",
+      "set_name": "Shining Fates Shiny Vault",
+      "gap_count": 122,
+      "priority": 100,
+      "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "finish_human_checklist_evidence",
+      "set_key": "dpp",
+      "set_name": "DP Black Star Promos",
+      "gap_count": 77,
+      "priority": 100,
+      "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "finish_human_checklist_evidence",
+      "set_key": "dc1",
+      "set_name": "Double Crisis",
+      "gap_count": 74,
+      "priority": 100,
+      "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "card_identity_second_source",
+      "set_key": "swsh12pt5",
+      "set_name": "Crown Zenith",
+      "gap_count": 70,
+      "priority": 100,
+      "required_evidence": "Independent source agreement for set + card_number + card_name.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "card_identity_second_source",
+      "set_key": "swsh12pt5gg",
+      "set_name": "Crown Zenith Galarian Gallery",
+      "gap_count": 70,
+      "priority": 100,
+      "required_evidence": "Independent source agreement for set + card_number + card_name.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "finish_human_checklist_evidence",
+      "set_key": "swsh12pt5gg",
+      "set_name": "Crown Zenith Galarian Gallery",
+      "gap_count": 70,
+      "priority": 100,
+      "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "finish_human_checklist_evidence",
+      "set_key": "np",
+      "set_name": "Nintendo Black Star Promos",
+      "gap_count": 66,
+      "priority": 100,
+      "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "finish_human_checklist_evidence",
+      "set_key": "basep",
+      "set_name": "Wizards Black Star Promos",
+      "gap_count": 58,
+      "priority": 100,
+      "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "card_identity_second_source",
+      "set_key": "pl2",
+      "set_name": "Rising Rivals",
+      "gap_count": 58,
+      "priority": 100,
+      "required_evidence": "Independent source agreement for set + card_number + card_name.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "card_identity_second_source",
+      "set_key": "mep",
+      "set_name": "MEP Black Star Promos",
+      "gap_count": 52,
+      "priority": 100,
+      "required_evidence": "Independent source agreement for set + card_number + card_name.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "finish_human_checklist_evidence",
+      "set_key": "mep",
+      "set_name": "MEP Black Star Promos",
+      "gap_count": 52,
+      "priority": 100,
+      "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "finish_human_checklist_evidence",
+      "set_key": "mcd21",
+      "set_name": "McDonald's Collection 2021",
+      "gap_count": 50,
+      "priority": 100,
+      "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "finish_human_checklist_evidence",
+      "set_key": "xy0",
+      "set_name": "Kalos Starter Set",
+      "gap_count": 48,
+      "priority": 100,
+      "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "finish_human_checklist_evidence",
+      "set_key": "dv1",
+      "set_name": "Dragon Vault",
+      "gap_count": 42,
+      "priority": 100,
+      "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "card_identity_second_source",
+      "set_key": "sve",
+      "set_name": "Scarlet & Violet Energies",
+      "gap_count": 40,
+      "priority": 100,
+      "required_evidence": "Independent source agreement for set + card_number + card_name.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "card_identity_second_source",
+      "set_key": "dpp",
+      "set_name": "DP Black Star Promos",
+      "gap_count": 38,
+      "priority": 100,
+      "required_evidence": "Independent source agreement for set + card_number + card_name.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "finish_human_checklist_evidence",
+      "set_key": "det1",
+      "set_name": "Detective Pikachu",
+      "gap_count": 36,
+      "priority": 100,
+      "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "card_identity_second_source",
+      "set_key": "ex10",
+      "set_name": "Unseen Forces",
+      "gap_count": 34,
+      "priority": 100,
+      "required_evidence": "Independent source agreement for set + card_number + card_name.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "card_identity_second_source",
+      "set_key": "mfb",
+      "set_name": "My First Battle",
+      "gap_count": 34,
+      "priority": 100,
+      "required_evidence": "Independent source agreement for set + card_number + card_name.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "finish_human_checklist_evidence",
+      "set_key": "mfb",
+      "set_name": "My First Battle",
+      "gap_count": 34,
+      "priority": 100,
+      "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "finish_human_checklist_evidence",
+      "set_key": "pop8",
+      "set_name": "POP Series 8",
+      "gap_count": 33,
+      "priority": 100,
+      "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "card_identity_second_source",
+      "set_key": "ecard3",
+      "set_name": "Skyridge",
+      "gap_count": 32,
+      "priority": 100,
+      "required_evidence": "Independent source agreement for set + card_number + card_name.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "card_identity_second_source",
+      "set_key": "ecard2",
+      "set_name": "Aquapolis",
+      "gap_count": 31,
+      "priority": 100,
+      "required_evidence": "Independent source agreement for set + card_number + card_name.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "card_identity_second_source",
+      "set_key": "swsh10",
+      "set_name": "Astral Radiance",
+      "gap_count": 30,
+      "priority": 100,
+      "required_evidence": "Independent source agreement for set + card_number + card_name.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "card_identity_second_source",
+      "set_key": "swsh10tg",
+      "set_name": "Astral Radiance Trainer Gallery",
+      "gap_count": 30,
+      "priority": 100,
+      "required_evidence": "Independent source agreement for set + card_number + card_name.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "finish_human_checklist_evidence",
+      "set_key": "swsh10tg",
+      "set_name": "Astral Radiance Trainer Gallery",
+      "gap_count": 30,
+      "priority": 100,
+      "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "card_identity_second_source",
+      "set_key": "swsh11",
+      "set_name": "Lost Origin",
+      "gap_count": 30,
+      "priority": 100,
+      "required_evidence": "Independent source agreement for set + card_number + card_name.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "card_identity_second_source",
+      "set_key": "swsh11tg",
+      "set_name": "Lost Origin Trainer Gallery",
+      "gap_count": 30,
+      "priority": 100,
+      "required_evidence": "Independent source agreement for set + card_number + card_name.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "finish_human_checklist_evidence",
+      "set_key": "swsh11tg",
+      "set_name": "Lost Origin Trainer Gallery",
+      "gap_count": 30,
+      "priority": 100,
+      "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "card_identity_second_source",
+      "set_key": "swsh12",
+      "set_name": "Silver Tempest",
+      "gap_count": 30,
+      "priority": 100,
+      "required_evidence": "Independent source agreement for set + card_number + card_name.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "card_identity_second_source",
+      "set_key": "swsh12tg",
+      "set_name": "Silver Tempest Trainer Gallery",
+      "gap_count": 30,
+      "priority": 100,
+      "required_evidence": "Independent source agreement for set + card_number + card_name.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "finish_human_checklist_evidence",
+      "set_key": "swsh12tg",
+      "set_name": "Silver Tempest Trainer Gallery",
+      "gap_count": 30,
+      "priority": 100,
+      "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "card_identity_second_source",
+      "set_key": "swsh9",
+      "set_name": "Brilliant Stars",
+      "gap_count": 30,
+      "priority": 100,
+      "required_evidence": "Independent source agreement for set + card_number + card_name.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "card_identity_second_source",
+      "set_key": "swsh9tg",
+      "set_name": "Brilliant Stars Trainer Gallery",
+      "gap_count": 30,
+      "priority": 100,
+      "required_evidence": "Independent source agreement for set + card_number + card_name.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "finish_human_checklist_evidence",
+      "set_key": "swsh9tg",
+      "set_name": "Brilliant Stars Trainer Gallery",
+      "gap_count": 30,
+      "priority": 100,
+      "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "card_identity_second_source",
+      "set_key": "tk-bw-e",
+      "set_name": "BW trainer Kit (Excadrill)",
+      "gap_count": 30,
+      "priority": 100,
+      "required_evidence": "Independent source agreement for set + card_number + card_name.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "finish_human_checklist_evidence",
+      "set_key": "tk-bw-e",
+      "set_name": "BW trainer Kit (Excadrill)",
+      "gap_count": 30,
+      "priority": 100,
+      "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "card_identity_second_source",
+      "set_key": "tk-bw-z",
+      "set_name": "BW trainer Kit (Zoroark)",
+      "gap_count": 30,
+      "priority": 100,
+      "required_evidence": "Independent source agreement for set + card_number + card_name.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "finish_human_checklist_evidence",
+      "set_key": "tk-bw-z",
+      "set_name": "BW trainer Kit (Zoroark)",
+      "gap_count": 30,
+      "priority": 100,
+      "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "card_identity_second_source",
+      "set_key": "tk-xy-b",
+      "set_name": "XY trainer Kit (Bisharp)",
+      "gap_count": 30,
+      "priority": 100,
+      "required_evidence": "Independent source agreement for set + card_number + card_name.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "finish_human_checklist_evidence",
+      "set_key": "tk-xy-b",
+      "set_name": "XY trainer Kit (Bisharp)",
+      "gap_count": 30,
+      "priority": 100,
+      "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "card_identity_second_source",
+      "set_key": "tk-xy-latia",
+      "set_name": "XY trainer Kit (Latias)",
+      "gap_count": 30,
+      "priority": 100,
+      "required_evidence": "Independent source agreement for set + card_number + card_name.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "finish_human_checklist_evidence",
+      "set_key": "tk-xy-latia",
+      "set_name": "XY trainer Kit (Latias)",
+      "gap_count": 30,
+      "priority": 100,
+      "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "card_identity_second_source",
+      "set_key": "tk-xy-latio",
+      "set_name": "XY trainer Kit (Latios)",
+      "gap_count": 30,
+      "priority": 100,
+      "required_evidence": "Independent source agreement for set + card_number + card_name.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "finish_human_checklist_evidence",
+      "set_key": "tk-xy-latio",
+      "set_name": "XY trainer Kit (Latios)",
+      "gap_count": 30,
+      "priority": 100,
+      "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "card_identity_second_source",
+      "set_key": "tk-xy-n",
+      "set_name": "XY trainer Kit (Noivern)",
+      "gap_count": 30,
+      "priority": 100,
+      "required_evidence": "Independent source agreement for set + card_number + card_name.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "finish_human_checklist_evidence",
+      "set_key": "tk-xy-n",
+      "set_name": "XY trainer Kit (Noivern)",
+      "gap_count": 30,
+      "priority": 100,
+      "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "card_identity_second_source",
+      "set_key": "tk-xy-p",
+      "set_name": "XY trainer Kit (Pikachu Libre)",
+      "gap_count": 30,
+      "priority": 100,
+      "required_evidence": "Independent source agreement for set + card_number + card_name.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "finish_human_checklist_evidence",
+      "set_key": "tk-xy-p",
+      "set_name": "XY trainer Kit (Pikachu Libre)",
+      "gap_count": 30,
+      "priority": 100,
+      "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "card_identity_second_source",
+      "set_key": "tk-xy-su",
+      "set_name": "XY trainer Kit (Suicune)",
+      "gap_count": 30,
+      "priority": 100,
+      "required_evidence": "Independent source agreement for set + card_number + card_name.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "finish_human_checklist_evidence",
+      "set_key": "tk-xy-su",
+      "set_name": "XY trainer Kit (Suicune)",
+      "gap_count": 30,
+      "priority": 100,
+      "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "card_identity_second_source",
+      "set_key": "tk-xy-sy",
+      "set_name": "XY trainer Kit (Sylveon)",
+      "gap_count": 30,
+      "priority": 100,
+      "required_evidence": "Independent source agreement for set + card_number + card_name.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "finish_human_checklist_evidence",
+      "set_key": "tk-xy-sy",
+      "set_name": "XY trainer Kit (Sylveon)",
+      "gap_count": 30,
+      "priority": 100,
+      "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "card_identity_second_source",
+      "set_key": "tk-xy-w",
+      "set_name": "XY trainer Kit (Wigglytuff)",
+      "gap_count": 30,
+      "priority": 100,
+      "required_evidence": "Independent source agreement for set + card_number + card_name.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "finish_human_checklist_evidence",
+      "set_key": "tk-xy-w",
+      "set_name": "XY trainer Kit (Wigglytuff)",
+      "gap_count": 30,
+      "priority": 100,
+      "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "card_identity_second_source",
+      "set_key": "exu",
+      "set_name": "Unseen Forces Unown Collection",
+      "gap_count": 28,
+      "priority": 100,
+      "required_evidence": "Independent source agreement for set + card_number + card_name.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "finish_human_checklist_evidence",
+      "set_key": "exu",
+      "set_name": "Unseen Forces Unown Collection",
+      "gap_count": 28,
+      "priority": 100,
+      "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "finish_human_checklist_evidence",
+      "set_key": "hsp",
+      "set_name": "HGSS Black Star Promos",
+      "gap_count": 26,
+      "priority": 100,
+      "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "card_identity_second_source",
+      "set_key": "svp",
+      "set_name": "Scarlet & Violet Black Star Promos",
+      "gap_count": 26,
+      "priority": 100,
+      "required_evidence": "Independent source agreement for set + card_number + card_name.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "card_identity_second_source",
+      "set_key": "cel25",
+      "set_name": "Celebrations",
+      "gap_count": 25,
+      "priority": 100,
+      "required_evidence": "Independent source agreement for set + card_number + card_name.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "finish_human_checklist_evidence",
+      "set_key": "cel25",
+      "set_name": "Celebrations",
+      "gap_count": 25,
+      "priority": 100,
+      "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "card_identity_second_source",
+      "set_key": "cel25c",
+      "set_name": "Celebrations: Classic Collection",
+      "gap_count": 25,
+      "priority": 100,
+      "required_evidence": "Independent source agreement for set + card_number + card_name.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "finish_human_checklist_evidence",
+      "set_key": "cel25c",
+      "set_name": "Celebrations: Classic Collection",
+      "gap_count": 25,
+      "priority": 100,
+      "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "finish_human_checklist_evidence",
+      "set_key": "mcd22",
+      "set_name": "McDonald's Collection 2022",
+      "gap_count": 24,
+      "priority": 100,
+      "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "finish_human_checklist_evidence",
+      "set_key": "pop4",
+      "set_name": "POP Series 4",
+      "gap_count": 24,
+      "priority": 100,
+      "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "finish_human_checklist_evidence",
+      "set_key": "pop6",
+      "set_name": "POP Series 6",
+      "gap_count": 24,
+      "priority": 100,
+      "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "finish_human_checklist_evidence",
+      "set_key": "sve",
+      "set_name": "Scarlet & Violet Energies",
+      "gap_count": 24,
+      "priority": 100,
+      "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "finish_human_checklist_evidence",
+      "set_key": "pop1",
+      "set_name": "POP Series 1",
+      "gap_count": 23,
+      "priority": 100,
+      "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "finish_human_checklist_evidence",
+      "set_key": "pop2",
+      "set_name": "POP Series 2",
+      "gap_count": 23,
+      "priority": 100,
+      "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "finish_human_checklist_evidence",
+      "set_key": "pop5",
+      "set_name": "POP Series 5",
+      "gap_count": 23,
+      "priority": 100,
+      "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "finish_human_checklist_evidence",
+      "set_key": "pop7",
+      "set_name": "POP Series 7",
+      "gap_count": 23,
+      "priority": 100,
+      "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "finish_human_checklist_evidence",
+      "set_key": "pop3",
+      "set_name": "POP Series 3",
+      "gap_count": 22,
+      "priority": 100,
+      "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "finish_human_checklist_evidence",
+      "set_key": "pop9",
+      "set_name": "POP Series 9",
+      "gap_count": 22,
+      "priority": 100,
+      "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "finish_human_checklist_evidence",
+      "set_key": "ru1",
+      "set_name": "Pokémon Rumble",
+      "gap_count": 19,
+      "priority": 100,
+      "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "card_identity_second_source",
+      "set_key": "tk-sm-r",
+      "set_name": "SM trainer Kit (Alolan Raichu)",
+      "gap_count": 19,
+      "priority": 100,
+      "required_evidence": "Independent source agreement for set + card_number + card_name.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "finish_human_checklist_evidence",
+      "set_key": "tk-sm-r",
+      "set_name": "SM trainer Kit (Alolan Raichu)",
+      "gap_count": 19,
+      "priority": 100,
+      "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "finish_human_checklist_evidence",
+      "set_key": "si1",
+      "set_name": "Southern Islands",
+      "gap_count": 18,
+      "priority": 100,
+      "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "card_identity_second_source",
+      "set_key": "tk-sm-l",
+      "set_name": "SM trainer Kit (Lycanroc)",
+      "gap_count": 18,
+      "priority": 100,
+      "required_evidence": "Independent source agreement for set + card_number + card_name.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "finish_human_checklist_evidence",
+      "set_key": "tk-sm-l",
+      "set_name": "SM trainer Kit (Lycanroc)",
+      "gap_count": 18,
+      "priority": 100,
+      "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "card_identity_second_source",
+      "set_key": "2023sv",
+      "set_name": "McDonald's Collection 2023",
+      "gap_count": 15,
+      "priority": 100,
+      "required_evidence": "Independent source agreement for set + card_number + card_name.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "finish_human_checklist_evidence",
+      "set_key": "2023sv",
+      "set_name": "McDonald's Collection 2023",
+      "gap_count": 15,
+      "priority": 100,
+      "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "card_identity_second_source",
+      "set_key": "2024sv",
+      "set_name": "McDonald's Collection 2024",
+      "gap_count": 15,
+      "priority": 100,
+      "required_evidence": "Independent source agreement for set + card_number + card_name.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "finish_human_checklist_evidence",
+      "set_key": "2024sv",
+      "set_name": "McDonald's Collection 2024",
+      "gap_count": 15,
+      "priority": 100,
+      "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "card_identity_second_source",
+      "set_key": "dp6",
+      "set_name": "Legends Awakened",
+      "gap_count": 14,
+      "priority": 100,
+      "required_evidence": "Independent source agreement for set + card_number + card_name.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "card_identity_second_source",
+      "set_key": "pl3",
+      "set_name": "Supreme Victors",
+      "gap_count": 14,
+      "priority": 100,
+      "required_evidence": "Independent source agreement for set + card_number + card_name.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "finish_human_checklist_evidence",
+      "set_key": "mcd11",
+      "set_name": "McDonald's Collection 2011",
+      "gap_count": 12,
+      "priority": 100,
+      "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "finish_human_checklist_evidence",
+      "set_key": "mcd12",
+      "set_name": "McDonald's Collection 2012",
+      "gap_count": 12,
+      "priority": 100,
+      "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "finish_human_checklist_evidence",
+      "set_key": "mcd14",
+      "set_name": "McDonald's Collection 2014",
+      "gap_count": 12,
+      "priority": 100,
+      "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "finish_human_checklist_evidence",
+      "set_key": "mcd15",
+      "set_name": "McDonald's Collection 2015",
+      "gap_count": 12,
+      "priority": 100,
+      "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "finish_human_checklist_evidence",
+      "set_key": "mcd16",
+      "set_name": "McDonald's Collection 2016",
+      "gap_count": 12,
+      "priority": 100,
+      "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "finish_human_checklist_evidence",
+      "set_key": "mcd17",
+      "set_name": "McDonald's Collection 2017",
+      "gap_count": 12,
+      "priority": 100,
+      "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "finish_human_checklist_evidence",
+      "set_key": "mcd18",
+      "set_name": "McDonald's Collection 2018",
+      "gap_count": 12,
+      "priority": 100,
+      "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "finish_human_checklist_evidence",
+      "set_key": "mcd19",
+      "set_name": "McDonald's Collection 2019",
+      "gap_count": 12,
+      "priority": 100,
+      "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "card_identity_second_source",
+      "set_key": "pl1",
+      "set_name": "Platinum",
+      "gap_count": 12,
+      "priority": 100,
+      "required_evidence": "Independent source agreement for set + card_number + card_name.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "card_identity_second_source",
+      "set_key": "tk-dp-m",
+      "set_name": "DP trainer Kit (Manaphy)",
+      "gap_count": 12,
+      "priority": 100,
+      "required_evidence": "Independent source agreement for set + card_number + card_name.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "finish_human_checklist_evidence",
+      "set_key": "tk-dp-m",
+      "set_name": "DP trainer Kit (Manaphy)",
+      "gap_count": 12,
+      "priority": 100,
+      "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "finish_human_checklist_evidence",
+      "set_key": "tk2a",
+      "set_name": "EX Trainer Kit 2 Plusle",
+      "gap_count": 12,
+      "priority": 100,
+      "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "finish_human_checklist_evidence",
+      "set_key": "tk2b",
+      "set_name": "EX Trainer Kit 2 Minun",
+      "gap_count": 12,
+      "priority": 100,
+      "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "card_identity_second_source",
+      "set_key": "sm2",
+      "set_name": "Guardians Rising",
+      "gap_count": 11,
+      "priority": 100,
+      "required_evidence": "Independent source agreement for set + card_number + card_name.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "card_identity_second_source",
+      "set_key": "tk-dp-l",
+      "set_name": "DP trainer Kit (Lucario)",
+      "gap_count": 11,
+      "priority": 100,
+      "required_evidence": "Independent source agreement for set + card_number + card_name.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "finish_human_checklist_evidence",
+      "set_key": "tk-dp-l",
+      "set_name": "DP trainer Kit (Lucario)",
+      "gap_count": 11,
+      "priority": 100,
+      "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "card_identity_second_source",
+      "set_key": "dp7",
+      "set_name": "Stormfront",
+      "gap_count": 10,
+      "priority": 100,
+      "required_evidence": "Independent source agreement for set + card_number + card_name.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "finish_human_checklist_evidence",
+      "set_key": "tk1a",
+      "set_name": "EX Trainer Kit Latias",
+      "gap_count": 10,
+      "priority": 100,
+      "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "finish_human_checklist_evidence",
+      "set_key": "tk1b",
+      "set_name": "EX Trainer Kit Latios",
+      "gap_count": 10,
+      "priority": 100,
+      "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "finish_human_checklist_evidence",
+      "set_key": "bp",
+      "set_name": "Best of Game",
+      "gap_count": 9,
+      "priority": 100,
+      "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "card_identity_second_source",
+      "set_key": "dp4",
+      "set_name": "Great Encounters",
+      "gap_count": 8,
+      "priority": 100,
+      "required_evidence": "Independent source agreement for set + card_number + card_name.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "card_identity_second_source",
+      "set_key": "dp5",
+      "set_name": "Majestic Dawn",
+      "gap_count": 8,
+      "priority": 100,
+      "required_evidence": "Independent source agreement for set + card_number + card_name.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "card_identity_second_source",
+      "set_key": "mee",
+      "set_name": "Mega Evolution Energy",
+      "gap_count": 8,
+      "priority": 100,
+      "required_evidence": "Independent source agreement for set + card_number + card_name.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "finish_human_checklist_evidence",
+      "set_key": "mee",
+      "set_name": "Mega Evolution Energy",
+      "gap_count": 8,
+      "priority": 100,
+      "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "card_identity_second_source",
+      "set_key": "sm3",
+      "set_name": "Burning Shadows",
+      "gap_count": 8,
+      "priority": 100,
+      "required_evidence": "Independent source agreement for set + card_number + card_name.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "card_identity_second_source",
+      "set_key": "sv1",
+      "set_name": "Scarlet & Violet",
+      "gap_count": 8,
+      "priority": 100,
+      "required_evidence": "Independent source agreement for set + card_number + card_name.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "card_identity_second_source",
+      "set_key": "swshp",
+      "set_name": "SWSH Black Star Promos",
+      "gap_count": 8,
+      "priority": 100,
+      "required_evidence": "Independent source agreement for set + card_number + card_name.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "card_identity_second_source",
+      "set_key": "dp1",
+      "set_name": "Diamond & Pearl",
+      "gap_count": 6,
+      "priority": 100,
+      "required_evidence": "Independent source agreement for set + card_number + card_name.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "card_identity_second_source",
+      "set_key": "dp2",
+      "set_name": "Mysterious Treasures",
+      "gap_count": 6,
+      "priority": 100,
+      "required_evidence": "Independent source agreement for set + card_number + card_name.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "card_identity_second_source",
+      "set_key": "ex11",
+      "set_name": "Delta Species",
+      "gap_count": 6,
+      "priority": 100,
+      "required_evidence": "Independent source agreement for set + card_number + card_name.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "card_identity_second_source",
+      "set_key": "ex12",
+      "set_name": "Legend Maker",
+      "gap_count": 6,
+      "priority": 100,
+      "required_evidence": "Independent source agreement for set + card_number + card_name.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "card_identity_second_source",
+      "set_key": "ex13",
+      "set_name": "Holon Phantoms",
+      "gap_count": 6,
+      "priority": 100,
+      "required_evidence": "Independent source agreement for set + card_number + card_name.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "card_identity_second_source",
+      "set_key": "ex16",
+      "set_name": "Power Keepers",
+      "gap_count": 6,
+      "priority": 100,
+      "required_evidence": "Independent source agreement for set + card_number + card_name.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "card_identity_second_source",
+      "set_key": "ex7",
+      "set_name": "Team Rocket Returns",
+      "gap_count": 6,
+      "priority": 100,
+      "required_evidence": "Independent source agreement for set + card_number + card_name.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "card_identity_second_source",
+      "set_key": "ex8",
+      "set_name": "Deoxys",
+      "gap_count": 6,
+      "priority": 100,
+      "required_evidence": "Independent source agreement for set + card_number + card_name.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "card_identity_second_source",
+      "set_key": "pl4",
+      "set_name": "Arceus",
+      "gap_count": 6,
+      "priority": 100,
+      "required_evidence": "Independent source agreement for set + card_number + card_name.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "card_identity_second_source",
+      "set_key": "sv2",
+      "set_name": "Paldea Evolved",
+      "gap_count": 6,
+      "priority": 100,
+      "required_evidence": "Independent source agreement for set + card_number + card_name.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "card_identity_second_source",
+      "set_key": "swsh2",
+      "set_name": "Rebel Clash",
+      "gap_count": 6,
+      "priority": 100,
+      "required_evidence": "Independent source agreement for set + card_number + card_name.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "finish_human_checklist_evidence",
+      "set_key": "xya",
+      "set_name": "Yellow A Alternate",
+      "gap_count": 6,
+      "priority": 100,
+      "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "finish_human_checklist_evidence",
+      "set_key": "ex5.5",
+      "set_name": "Poké Card Creator Pack",
+      "gap_count": 5,
+      "priority": 100,
+      "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "finish_human_checklist_evidence",
+      "set_key": "fut20",
+      "set_name": "Pokémon Futsal Collection",
+      "gap_count": 5,
+      "priority": 100,
+      "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "finish_human_checklist_evidence",
+      "set_key": "fut2020",
+      "set_name": "Pokémon Futsal 2020",
+      "gap_count": 5,
+      "priority": 100,
+      "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "card_identity_second_source",
+      "set_key": "sm5",
+      "set_name": "Ultra Prism",
+      "gap_count": 5,
+      "priority": 100,
+      "required_evidence": "Independent source agreement for set + card_number + card_name.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "card_identity_second_source",
+      "set_key": "bw6",
+      "set_name": "Dragons Exalted",
+      "gap_count": 4,
+      "priority": 100,
+      "required_evidence": "Independent source agreement for set + card_number + card_name.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "card_identity_second_source",
+      "set_key": "bwp",
+      "set_name": "BW Black Star Promos",
+      "gap_count": 4,
+      "priority": 100,
+      "required_evidence": "Independent source agreement for set + card_number + card_name.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "card_identity_second_source",
+      "set_key": "dp3",
+      "set_name": "Secret Wonders",
+      "gap_count": 4,
+      "priority": 100,
+      "required_evidence": "Independent source agreement for set + card_number + card_name.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "card_identity_second_source",
+      "set_key": "ex14",
+      "set_name": "Crystal Guardians",
+      "gap_count": 4,
+      "priority": 100,
+      "required_evidence": "Independent source agreement for set + card_number + card_name.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "card_identity_second_source",
+      "set_key": "ex15",
+      "set_name": "Dragon Frontiers",
+      "gap_count": 4,
+      "priority": 100,
+      "required_evidence": "Independent source agreement for set + card_number + card_name.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "card_identity_second_source",
+      "set_key": "ex4",
+      "set_name": "Team Magma vs Team Aqua",
+      "gap_count": 4,
+      "priority": 100,
+      "required_evidence": "Independent source agreement for set + card_number + card_name.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "card_identity_second_source",
+      "set_key": "sm10",
+      "set_name": "Unbroken Bonds",
+      "gap_count": 4,
+      "priority": 100,
+      "required_evidence": "Independent source agreement for set + card_number + card_name.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "card_identity_second_source",
+      "set_key": "sm6",
+      "set_name": "Forbidden Light",
+      "gap_count": 4,
+      "priority": 100,
+      "required_evidence": "Independent source agreement for set + card_number + card_name.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "card_identity_second_source",
+      "set_key": "sm7",
+      "set_name": "Celestial Storm",
+      "gap_count": 4,
+      "priority": 100,
+      "required_evidence": "Independent source agreement for set + card_number + card_name.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "card_identity_second_source",
+      "set_key": "sm8",
+      "set_name": "Lost Thunder",
+      "gap_count": 4,
+      "priority": 100,
+      "required_evidence": "Independent source agreement for set + card_number + card_name.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "card_identity_second_source",
+      "set_key": "sm11",
+      "set_name": "Unified Minds",
+      "gap_count": 3,
+      "priority": 100,
+      "required_evidence": "Independent source agreement for set + card_number + card_name.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "card_identity_second_source",
+      "set_key": "sm35",
+      "set_name": "Shining Legends",
+      "gap_count": 3,
+      "priority": 100,
+      "required_evidence": "Independent source agreement for set + card_number + card_name.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "card_identity_second_source",
+      "set_key": "smp",
+      "set_name": "SM Black Star Promos",
+      "gap_count": 3,
+      "priority": 100,
+      "required_evidence": "Independent source agreement for set + card_number + card_name.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "card_identity_second_source",
+      "set_key": "base4",
+      "set_name": "Base Set 2",
+      "gap_count": 2,
+      "priority": 100,
+      "required_evidence": "Independent source agreement for set + card_number + card_name.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "card_identity_second_source",
+      "set_key": "hgss1",
+      "set_name": "HeartGold & SoulSilver",
+      "gap_count": 2,
+      "priority": 100,
+      "required_evidence": "Independent source agreement for set + card_number + card_name.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "card_identity_second_source",
+      "set_key": "neo4",
+      "set_name": "Neo Destiny",
+      "gap_count": 2,
+      "priority": 100,
+      "required_evidence": "Independent source agreement for set + card_number + card_name.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "card_identity_second_source",
+      "set_key": "sm75",
+      "set_name": "Dragon Majesty",
+      "gap_count": 2,
+      "priority": 100,
+      "required_evidence": "Independent source agreement for set + card_number + card_name.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "card_identity_second_source",
+      "set_key": "sm9",
+      "set_name": "Team Up",
+      "gap_count": 2,
+      "priority": 100,
+      "required_evidence": "Independent source agreement for set + card_number + card_name.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "card_identity_second_source",
+      "set_key": "zsv10pt5",
+      "set_name": "Black Bolt",
+      "gap_count": 2,
+      "priority": 100,
+      "required_evidence": "Independent source agreement for set + card_number + card_name.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "card_identity_second_source",
+      "set_key": "sm1",
+      "set_name": "Sun & Moon",
+      "gap_count": 1,
+      "priority": 100,
+      "required_evidence": "Independent source agreement for set + card_number + card_name.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "card_identity_second_source",
+      "set_key": "sm12",
+      "set_name": "Cosmic Eclipse",
+      "gap_count": 1,
+      "priority": 100,
+      "required_evidence": "Independent source agreement for set + card_number + card_name.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "card_identity_second_source",
+      "set_key": "sm4",
+      "set_name": "Crimson Invasion",
+      "gap_count": 1,
+      "priority": 100,
+      "required_evidence": "Independent source agreement for set + card_number + card_name.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "finish_human_checklist_evidence",
+      "set_key": "tk-hs-g",
+      "set_name": "HS trainer Kit (Gyarados)",
+      "gap_count": 1,
+      "priority": 100,
+      "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "finish_human_checklist_evidence",
+      "set_key": "tk-hs-r",
+      "set_name": "HS trainer Kit (Raichu)",
+      "gap_count": 1,
+      "priority": 100,
+      "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "card_identity_second_source",
+      "set_key": "xya",
+      "set_name": "Yellow A Alternate",
+      "gap_count": 6,
+      "priority": 98.92,
+      "required_evidence": "Independent source agreement for set + card_number + card_name.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "card_identity_second_source",
+      "set_key": "ex5.5",
+      "set_name": "Poké Card Creator Pack",
+      "gap_count": 5,
+      "priority": 98.13,
+      "required_evidence": "Independent source agreement for set + card_number + card_name.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "card_identity_second_source",
+      "set_key": "fut20",
+      "set_name": "Pokémon Futsal Collection",
+      "gap_count": 5,
+      "priority": 98.13,
+      "required_evidence": "Independent source agreement for set + card_number + card_name.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "card_identity_second_source",
+      "set_key": "fut2020",
+      "set_name": "Pokémon Futsal 2020",
+      "gap_count": 5,
+      "priority": 98.13,
+      "required_evidence": "Independent source agreement for set + card_number + card_name.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "card_identity_second_source",
+      "set_key": "tk-hs-g",
+      "set_name": "HS trainer Kit (Gyarados)",
+      "gap_count": 1,
+      "priority": 91.14,
+      "required_evidence": "Independent source agreement for set + card_number + card_name.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "card_identity_second_source",
+      "set_key": "tk-hs-r",
+      "set_name": "HS trainer Kit (Raichu)",
+      "gap_count": 1,
+      "priority": 91.14,
+      "required_evidence": "Independent source agreement for set + card_number + card_name.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "source_alias_or_adapter_required",
+      "set_key": "jumbo",
+      "set_name": "Jumbo cards",
+      "gap_count": 1,
+      "priority": 60,
+      "required_evidence": "At least one stable source alias and source adapter/fixture.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "source_alias_or_adapter_required",
+      "set_key": "rc",
+      "set_name": "Radiant Collection",
+      "gap_count": 1,
+      "priority": 60,
+      "required_evidence": "At least one stable source alias and source adapter/fixture.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "source_alias_or_adapter_required",
+      "set_key": "sp",
+      "set_name": "Sample",
+      "gap_count": 1,
+      "priority": 60,
+      "required_evidence": "At least one stable source alias and source adapter/fixture.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "source_alias_or_adapter_required",
+      "set_key": "wp",
+      "set_name": "W Promotional",
+      "gap_count": 1,
+      "priority": 60,
+      "required_evidence": "At least one stable source alias and source adapter/fixture.",
+      "mutation_authority": "not mutation authority"
+    }
+  ]
+}
