@@ -1,38 +1,37 @@
 {
   "version": "ENGLISH_MASTER_INDEX_NAME_MISMATCH_TRIAGE_V1",
-  "generated_at": "2026-05-25T15:19:30.123Z",
+  "generated_at": "2026-05-25T16:40:48.237Z",
   "audit_only": true,
   "db_writes": false,
   "source_report": "english_master_index_grookai_audit_v1.json",
   "rule": "Name mismatches are review classifications only. Do not rewrite identity or printings from this report.",
   "summary": {
-    "total_name_mismatch": 170,
+    "total_name_mismatch": 151,
     "by_category": {
       "diacritic_punctuation_only": 7,
       "lvx_suffix_style": 14,
-      "parenthetical_qualifier": 9,
+      "parenthetical_qualifier": 8,
       "subset_number_collision_arceus_ar_subset": 9,
-      "subset_number_collision_call_of_legends_shiny": 15,
+      "subset_number_collision_call_of_legends_shiny": 12,
       "subset_number_collision_crown_zenith_galarian_gallery": 25,
       "subset_number_collision_dp_secret_shiny": 4,
-      "subset_number_collision_generations_radiant_collection": 66,
-      "subset_number_collision_legendary_treasures_radiant_collection": 11,
+      "subset_number_collision_generations_radiant_collection": 52,
+      "subset_number_collision_legendary_treasures_radiant_collection": 10,
       "subset_number_collision_platinum_secret_shiny": 2,
       "subset_number_collision_rising_rivals_rotom": 7,
       "subset_number_collision_supreme_victors_secret_shiny": 1
     },
     "by_set_code": {
-      "bw11": 11,
-      "col1": 15,
+      "bw11": 10,
+      "col1": 12,
       "dp1": 6,
       "dp2": 6,
       "dp3": 1,
       "dp7": 4,
       "ex16": 3,
       "ex8": 1,
-      "g1": 66,
+      "g1": 52,
       "me03": 3,
-      "neo4": 1,
       "pl1": 2,
       "pl2": 8,
       "pl3": 1,
@@ -43,7 +42,7 @@
     },
     "by_finish": {
       "holo": 62,
-      "normal": 57,
+      "normal": 38,
       "reverse": 51
     }
   },
@@ -438,15 +437,13 @@
       ]
     },
     "parenthetical_qualifier": {
-      "count": 9,
+      "count": 8,
       "by_set_code": {
-        "neo4": 1,
         "sv01": 4,
         "sv02": 4
       },
       "by_finish": {
         "holo": 7,
-        "normal": 1,
         "reverse": 1
       },
       "rows": [
@@ -466,23 +463,6 @@
           ],
           "grookai_card_print_id": "3cc9f3b8-542b-4418-bef5-bb2e2131d0d4",
           "grookai_printing_id": "8fd5b3f0-0549-48c5-b96d-6f8e8a5ddfd7",
-          "note": "Set, number, and finish matched the index, but card name did not match exactly."
-        },
-        {
-          "category": "parenthetical_qualifier",
-          "status": "name_mismatch_needs_review",
-          "set_key": "neo4",
-          "set_code": "neo4",
-          "card_number": "96",
-          "grookai_card_name": "Thought Wave Machine",
-          "index_card_name": "Thought Wave Machine (Rocket's Secret Machine)",
-          "finish_key": "normal",
-          "index_status": "candidate_unconfirmed",
-          "index_sources": [
-            "tcgdex"
-          ],
-          "grookai_card_print_id": "c2ec716e-1651-4d2a-958b-abc169bd7e8a",
-          "grookai_printing_id": "5b31258b-37ef-4fad-85e2-cc567a84e3fd",
           "note": "Set, number, and finish matched the index, but card name did not match exactly."
         },
         {
@@ -803,13 +783,13 @@
       ]
     },
     "subset_number_collision_call_of_legends_shiny": {
-      "count": 15,
+      "count": 12,
       "by_set_code": {
-        "col1": 15
+        "col1": 12
       },
       "by_finish": {
         "holo": 5,
-        "normal": 5,
+        "normal": 2,
         "reverse": 5
       },
       "rows": [
@@ -872,40 +852,6 @@
           "status": "name_mismatch_needs_review",
           "set_key": "col1",
           "set_code": "col1",
-          "card_number": "1",
-          "grookai_card_name": "Deoxys",
-          "index_card_name": "Clefable",
-          "finish_key": "normal",
-          "index_status": "candidate_unconfirmed",
-          "index_sources": [
-            "tcgdex"
-          ],
-          "grookai_card_print_id": "6e68f984-674b-4a6f-9578-11ec370b25a3",
-          "grookai_printing_id": "cfa6b1c0-4d39-4c3d-bd30-3e6c246a5d7a",
-          "note": "Set, number, and finish matched the index, but card name did not match exactly."
-        },
-        {
-          "category": "subset_number_collision_call_of_legends_shiny",
-          "status": "name_mismatch_needs_review",
-          "set_key": "col1",
-          "set_code": "col1",
-          "card_number": "10",
-          "grookai_card_name": "Rayquaza",
-          "index_card_name": "Houndoom",
-          "finish_key": "normal",
-          "index_status": "candidate_unconfirmed",
-          "index_sources": [
-            "tcgdex"
-          ],
-          "grookai_card_print_id": "5a3c4254-5da6-40c9-9025-335e01d542f0",
-          "grookai_printing_id": "c2b126cb-9242-45b6-bf0f-775917983f0a",
-          "note": "Set, number, and finish matched the index, but card name did not match exactly."
-        },
-        {
-          "category": "subset_number_collision_call_of_legends_shiny",
-          "status": "name_mismatch_needs_review",
-          "set_key": "col1",
-          "set_code": "col1",
           "card_number": "10",
           "grookai_card_name": "Rayquaza",
           "index_card_name": "Houndoom",
@@ -917,23 +863,6 @@
           ],
           "grookai_card_print_id": "5a3c4254-5da6-40c9-9025-335e01d542f0",
           "grookai_printing_id": "2617a2c7-dc2d-4714-8cfd-afbd37aaec23",
-          "note": "Set, number, and finish matched the index, but card name did not match exactly."
-        },
-        {
-          "category": "subset_number_collision_call_of_legends_shiny",
-          "status": "name_mismatch_needs_review",
-          "set_key": "col1",
-          "set_code": "col1",
-          "card_number": "5",
-          "grookai_card_name": "Ho-Oh",
-          "index_card_name": "Forretress",
-          "finish_key": "normal",
-          "index_status": "candidate_unconfirmed",
-          "index_sources": [
-            "tcgdex"
-          ],
-          "grookai_card_print_id": "5644743f-8241-4737-8f15-ad45c1b1ca4c",
-          "grookai_printing_id": "51f8754b-a32b-418b-814e-be197d3aaccb",
           "note": "Set, number, and finish matched the index, but card name did not match exactly."
         },
         {
@@ -1686,13 +1615,13 @@
       ]
     },
     "subset_number_collision_generations_radiant_collection": {
-      "count": 66,
+      "count": 52,
       "by_set_code": {
-        "g1": 66
+        "g1": 52
       },
       "by_finish": {
         "holo": 14,
-        "normal": 32,
+        "normal": 18,
         "reverse": 20
       },
       "rows": [
@@ -1801,40 +1730,6 @@
           "status": "name_mismatch_needs_review",
           "set_key": "g1",
           "set_code": "g1",
-          "card_number": "11",
-          "grookai_card_name": "Wobbuffet",
-          "index_card_name": "Charizard EX",
-          "finish_key": "normal",
-          "index_status": "candidate_unconfirmed",
-          "index_sources": [
-            "tcgdex"
-          ],
-          "grookai_card_print_id": "856ab742-92e4-4245-8896-ce8012a475a7",
-          "grookai_printing_id": "cfeb61dc-f437-4840-83ad-e28b6f6ab7b4",
-          "note": "Set, number, and finish matched the index, but card name did not match exactly."
-        },
-        {
-          "category": "subset_number_collision_generations_radiant_collection",
-          "status": "name_mismatch_needs_review",
-          "set_key": "g1",
-          "set_code": "g1",
-          "card_number": "10",
-          "grookai_card_name": "Dedenne",
-          "index_card_name": "Leafeon EX",
-          "finish_key": "normal",
-          "index_status": "candidate_unconfirmed",
-          "index_sources": [
-            "tcgdex"
-          ],
-          "grookai_card_print_id": "149dbe9e-680e-4c31-8021-a14d9df1cbf4",
-          "grookai_printing_id": "f3f1b0fa-569b-4953-bae2-0d718afd919c",
-          "note": "Set, number, and finish matched the index, but card name did not match exactly."
-        },
-        {
-          "category": "subset_number_collision_generations_radiant_collection",
-          "status": "name_mismatch_needs_review",
-          "set_key": "g1",
-          "set_code": "g1",
           "card_number": "4",
           "grookai_card_name": "Charmeleon",
           "index_card_name": "Metapod",
@@ -1855,40 +1750,6 @@
           "status": "name_mismatch_needs_review",
           "set_key": "g1",
           "set_code": "g1",
-          "card_number": "28",
-          "grookai_card_name": "Flareon-EX",
-          "index_card_name": "Jolteon EX",
-          "finish_key": "normal",
-          "index_status": "candidate_unconfirmed",
-          "index_sources": [
-            "tcgdex"
-          ],
-          "grookai_card_print_id": "1ac5d2df-f9d5-4442-9e11-8322cf97c7de",
-          "grookai_printing_id": "eea9ea2e-ab82-49e4-a1d7-048470213977",
-          "note": "Set, number, and finish matched the index, but card name did not match exactly."
-        },
-        {
-          "category": "subset_number_collision_generations_radiant_collection",
-          "status": "name_mismatch_needs_review",
-          "set_key": "g1",
-          "set_code": "g1",
-          "card_number": "24",
-          "grookai_card_name": "Altaria",
-          "index_card_name": "Vaporeon EX",
-          "finish_key": "normal",
-          "index_status": "candidate_unconfirmed",
-          "index_sources": [
-            "tcgdex"
-          ],
-          "grookai_card_print_id": "0bdd7bc6-b807-4982-9b6b-1a4deb3e9d93",
-          "grookai_printing_id": "52c259eb-84b3-4574-8941-4bb07beb9fd0",
-          "note": "Set, number, and finish matched the index, but card name did not match exactly."
-        },
-        {
-          "category": "subset_number_collision_generations_radiant_collection",
-          "status": "name_mismatch_needs_review",
-          "set_key": "g1",
-          "set_code": "g1",
           "card_number": "15",
           "grookai_card_name": "Meowstic",
           "index_card_name": "Rapidash",
@@ -1902,57 +1763,6 @@
           ],
           "grookai_card_print_id": "171cb1ee-9c28-4df1-a1cb-e92d4d9359d8",
           "grookai_printing_id": "75266b0d-3a94-4e04-9ea7-a3467d58fc6e",
-          "note": "Set, number, and finish matched the index, but card name did not match exactly."
-        },
-        {
-          "category": "subset_number_collision_generations_radiant_collection",
-          "status": "name_mismatch_needs_review",
-          "set_key": "g1",
-          "set_code": "g1",
-          "card_number": "1",
-          "grookai_card_name": "Chikorita",
-          "index_card_name": "Venusaur EX",
-          "finish_key": "normal",
-          "index_status": "candidate_unconfirmed",
-          "index_sources": [
-            "tcgdex"
-          ],
-          "grookai_card_print_id": "7f3436c3-78b4-43fb-8825-fafaa39f5a35",
-          "grookai_printing_id": "c5636cb6-ffdc-41c3-9513-8903efec9a11",
-          "note": "Set, number, and finish matched the index, but card name did not match exactly."
-        },
-        {
-          "category": "subset_number_collision_generations_radiant_collection",
-          "status": "name_mismatch_needs_review",
-          "set_key": "g1",
-          "set_code": "g1",
-          "card_number": "27",
-          "grookai_card_name": "Wally",
-          "index_card_name": "Raichu",
-          "finish_key": "normal",
-          "index_status": "candidate_unconfirmed",
-          "index_sources": [
-            "tcgdex"
-          ],
-          "grookai_card_print_id": "ab846b92-4a09-4297-b48f-c728d2b2823a",
-          "grookai_printing_id": "64a6e790-41d3-489e-87d1-873426944ba9",
-          "note": "Set, number, and finish matched the index, but card name did not match exactly."
-        },
-        {
-          "category": "subset_number_collision_generations_radiant_collection",
-          "status": "name_mismatch_needs_review",
-          "set_key": "g1",
-          "set_code": "g1",
-          "card_number": "29",
-          "grookai_card_name": "Pikachu",
-          "index_card_name": "Zapdos",
-          "finish_key": "normal",
-          "index_status": "candidate_unconfirmed",
-          "index_sources": [
-            "tcgdex"
-          ],
-          "grookai_card_print_id": "7189a54c-f97e-4379-a714-854a26e017a4",
-          "grookai_printing_id": "a9a61791-cbc7-4c42-901f-37696453fdd4",
           "note": "Set, number, and finish matched the index, but card name did not match exactly."
         },
         {
@@ -2324,23 +2134,6 @@
           "status": "name_mismatch_needs_review",
           "set_key": "g1",
           "set_code": "g1",
-          "card_number": "12",
-          "grookai_card_name": "Gulpin",
-          "index_card_name": "M Charizard EX",
-          "finish_key": "normal",
-          "index_status": "candidate_unconfirmed",
-          "index_sources": [
-            "tcgdex"
-          ],
-          "grookai_card_print_id": "5e278fec-4752-53f7-973b-6e3cbd66dbe9",
-          "grookai_printing_id": "a39fa874-1597-41ec-8d7c-86a285962e86",
-          "note": "Set, number, and finish matched the index, but card name did not match exactly."
-        },
-        {
-          "category": "subset_number_collision_generations_radiant_collection",
-          "status": "name_mismatch_needs_review",
-          "set_key": "g1",
-          "set_code": "g1",
           "card_number": "13",
           "grookai_card_name": "Jirachi",
           "index_card_name": "Ninetales-EX",
@@ -2370,23 +2163,6 @@
           ],
           "grookai_card_print_id": "3031b6f5-0531-5d1a-8e4e-4fb2e74870fe",
           "grookai_printing_id": "30ad7832-4d3b-4e51-88ba-25873d638e28",
-          "note": "Set, number, and finish matched the index, but card name did not match exactly."
-        },
-        {
-          "category": "subset_number_collision_generations_radiant_collection",
-          "status": "name_mismatch_needs_review",
-          "set_key": "g1",
-          "set_code": "g1",
-          "card_number": "18",
-          "grookai_card_name": "Floette",
-          "index_card_name": "M Blastoise EX",
-          "finish_key": "normal",
-          "index_status": "candidate_unconfirmed",
-          "index_sources": [
-            "tcgdex"
-          ],
-          "grookai_card_print_id": "85f4847a-da8f-50e1-b0e6-5878b000a2e8",
-          "grookai_printing_id": "caad0c4d-901c-4e78-9626-a365ad51928a",
           "note": "Set, number, and finish matched the index, but card name did not match exactly."
         },
         {
@@ -2488,23 +2264,6 @@
           "status": "name_mismatch_needs_review",
           "set_key": "g1",
           "set_code": "g1",
-          "card_number": "17",
-          "grookai_card_name": "Flabébé",
-          "index_card_name": "Blastoise EX",
-          "finish_key": "normal",
-          "index_status": "candidate_unconfirmed",
-          "index_sources": [
-            "tcgdex"
-          ],
-          "grookai_card_print_id": "7bc45f19-798c-5a54-bbcb-3644276ccc99",
-          "grookai_printing_id": "2a94fe16-7d06-4ba9-a44a-18779fafac32",
-          "note": "Set, number, and finish matched the index, but card name did not match exactly."
-        },
-        {
-          "category": "subset_number_collision_generations_radiant_collection",
-          "status": "name_mismatch_needs_review",
-          "set_key": "g1",
-          "set_code": "g1",
           "card_number": "18",
           "grookai_card_name": "Floette",
           "index_card_name": "M Blastoise-EX",
@@ -2516,40 +2275,6 @@
           ],
           "grookai_card_print_id": "85f4847a-da8f-50e1-b0e6-5878b000a2e8",
           "grookai_printing_id": "b541b6d4-6751-49d0-8a84-4191e916e92e",
-          "note": "Set, number, and finish matched the index, but card name did not match exactly."
-        },
-        {
-          "category": "subset_number_collision_generations_radiant_collection",
-          "status": "name_mismatch_needs_review",
-          "set_key": "g1",
-          "set_code": "g1",
-          "card_number": "2",
-          "grookai_card_name": "Shroomish",
-          "index_card_name": "M Venusaur EX",
-          "finish_key": "normal",
-          "index_status": "candidate_unconfirmed",
-          "index_sources": [
-            "tcgdex"
-          ],
-          "grookai_card_print_id": "4674e8c9-82c7-54fb-b2b6-878879a8c136",
-          "grookai_printing_id": "27ac9295-365c-4aa5-8f45-15b10b24fd1f",
-          "note": "Set, number, and finish matched the index, but card name did not match exactly."
-        },
-        {
-          "category": "subset_number_collision_generations_radiant_collection",
-          "status": "name_mismatch_needs_review",
-          "set_key": "g1",
-          "set_code": "g1",
-          "card_number": "13",
-          "grookai_card_name": "Jirachi",
-          "index_card_name": "Ninetales EX",
-          "finish_key": "normal",
-          "index_status": "candidate_unconfirmed",
-          "index_sources": [
-            "tcgdex"
-          ],
-          "grookai_card_print_id": "069fd350-fedd-516f-b820-330fb06efb3b",
-          "grookai_printing_id": "7952268b-b30e-4b14-baa4-978c352c29b1",
           "note": "Set, number, and finish matched the index, but card name did not match exactly."
         },
         {
@@ -2745,23 +2470,6 @@
           "status": "name_mismatch_needs_review",
           "set_key": "g1",
           "set_code": "g1",
-          "card_number": "25",
-          "grookai_card_name": "Fletchling",
-          "index_card_name": "Articuno",
-          "finish_key": "normal",
-          "index_status": "candidate_unconfirmed",
-          "index_sources": [
-            "tcgdex"
-          ],
-          "grookai_card_print_id": "52d1b25d-fe16-557a-b749-cbdd9f986dc1",
-          "grookai_printing_id": "697867ad-acd3-4fd9-b444-748426e0a69f",
-          "note": "Set, number, and finish matched the index, but card name did not match exactly."
-        },
-        {
-          "category": "subset_number_collision_generations_radiant_collection",
-          "status": "name_mismatch_needs_review",
-          "set_key": "g1",
-          "set_code": "g1",
           "card_number": "5",
           "grookai_card_name": "Charizard",
           "index_card_name": "Butterfree",
@@ -2840,23 +2548,6 @@
           "status": "name_mismatch_needs_review",
           "set_key": "g1",
           "set_code": "g1",
-          "card_number": "5",
-          "grookai_card_name": "Charizard",
-          "index_card_name": "Butterfree",
-          "finish_key": "normal",
-          "index_status": "candidate_unconfirmed",
-          "index_sources": [
-            "tcgdex"
-          ],
-          "grookai_card_print_id": "ee1ee550-c737-5223-9f3d-ab9b2cc50860",
-          "grookai_printing_id": "30170693-b6b1-45c1-a660-e09ad0e24a1a",
-          "note": "Set, number, and finish matched the index, but card name did not match exactly."
-        },
-        {
-          "category": "subset_number_collision_generations_radiant_collection",
-          "status": "name_mismatch_needs_review",
-          "set_key": "g1",
-          "set_code": "g1",
           "card_number": "7",
           "grookai_card_name": "Snorunt",
           "index_card_name": "Parasect",
@@ -2909,13 +2600,13 @@
       ]
     },
     "subset_number_collision_legendary_treasures_radiant_collection": {
-      "count": 11,
+      "count": 10,
       "by_set_code": {
-        "bw11": 11
+        "bw11": 10
       },
       "by_finish": {
         "holo": 1,
-        "normal": 5,
+        "normal": 4,
         "reverse": 5
       },
       "rows": [
@@ -2957,23 +2648,6 @@
           ],
           "grookai_card_print_id": "89837790-de7e-4c54-9c94-6a7295c96b79",
           "grookai_printing_id": "2ecf6002-0236-4c1b-965a-b5c85fbb570c",
-          "note": "Set, number, and finish matched the index, but card name did not match exactly."
-        },
-        {
-          "category": "subset_number_collision_legendary_treasures_radiant_collection",
-          "status": "name_mismatch_needs_review",
-          "set_key": "bw11",
-          "set_code": "bw11",
-          "card_number": "8",
-          "grookai_card_name": "Ralts",
-          "index_card_name": "Serperior",
-          "finish_key": "normal",
-          "index_status": "candidate_unconfirmed",
-          "index_sources": [
-            "tcgdex"
-          ],
-          "grookai_card_print_id": "cbcaa8a7-8321-4230-bdea-73a31e27f898",
-          "grookai_printing_id": "e78e5b19-ecb0-4685-9e70-0d8adefd45df",
           "note": "Set, number, and finish matched the index, but card name did not match exactly."
         },
         {

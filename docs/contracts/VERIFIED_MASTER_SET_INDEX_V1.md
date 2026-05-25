@@ -133,6 +133,34 @@ stamped
 
 Unknown marketplace variants, signatures, jumbo rows, or product-specific labels must not become canonical finish truth by default. They must be ignored or held for manual review until a governed finish mapping exists.
 
+### Promo Family Fail-Closed Rule
+
+Black Star Promo finish truth is product-specific. A structured source may support card identity for promo families, but a single structured `normal` claim must not create canonical promo finish truth.
+
+For promo-family sets such as:
+
+```text
+Wizards Black Star Promos
+Nintendo Black Star Promos
+DP/HGSS/BW/XY/SM/SWSH/SV/MEP Black Star Promos
+```
+
+`normal` finish evidence from TCGdex is ignored unless another governed source independently supports the exact same finish fact. Human/checklist sources such as ThePriceDex may still contribute exact promo finish facts when the specific variant is listed.
+
+### Exact Checklist Suppression Rule
+
+When a card has exact human/checklist variant evidence, a single structured-source finish claim that is absent from that checklist evidence is not working Master Index truth.
+
+The pipeline must:
+
+```text
+exclude the single-source structured finish from working printings
+retain the excluded row in an audit report
+avoid treating the exclusion as Grookai deletion authority
+```
+
+This rule applies only to single-source structured finish claims. Multi-source structured agreement, human/checklist-supported finishes, conflicts, and product-specific variants must remain visible for review.
+
 ### Marketplace Bridge Rule
 
 Marketplace/checklist bridge evidence may support a printing/finish fact only when it does not create the fact.

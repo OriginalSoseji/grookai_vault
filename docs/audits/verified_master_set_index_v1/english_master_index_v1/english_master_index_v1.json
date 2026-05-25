@@ -1,6 +1,6 @@
 {
   "version": "ENGLISH_VERIFIED_MASTER_SET_INDEX_V1",
-  "generated_at": "2026-05-25T15:19:30.123Z",
+  "generated_at": "2026-05-25T16:40:48.237Z",
   "audit_only": true,
   "db_writes": false,
   "language": "en",
@@ -15,7 +15,7 @@
   },
   "summary": {
     "sets": 202,
-    "evidence_rows": 180343,
+    "evidence_rows": 178459,
     "source_overlap": [
       {
         "source_key": "beckett_ascended_heroes_oddish_001",
@@ -239,7 +239,7 @@
       },
       {
         "source_key": "pokemontcg_api",
-        "evidence_rows": 51779
+        "evidence_rows": 51700
       },
       {
         "source_key": "pokescope_ascended_heroes_mimikyu_097",
@@ -275,11 +275,11 @@
       },
       {
         "source_key": "tcgdex",
-        "evidence_rows": 49565
+        "evidence_rows": 45861
       },
       {
         "source_key": "tcgplayer_price_guide",
-        "evidence_rows": 21265
+        "evidence_rows": 21302
       },
       {
         "source_key": "tcgplayer_product_675813",
@@ -2615,7 +2615,7 @@
       },
       {
         "source_key": "thepricedex_price_list",
-        "evidence_rows": 56350
+        "evidence_rows": 58212
       },
       {
         "source_key": "vendortools_ascended_heroes_spidops_019",
@@ -2624,27 +2624,28 @@
     ],
     "cards_by_status": {
       "api_agreed": 32,
-      "candidate_unconfirmed": 813,
-      "human_source_verified": 127,
-      "master_verified": 20606
+      "candidate_unconfirmed": 761,
+      "human_source_verified": 135,
+      "master_verified": 20658
     },
     "printings_by_status": {
-      "candidate_unconfirmed": 6194,
-      "human_source_verified": 2402,
-      "master_verified": 32838
+      "candidate_unconfirmed": 754,
+      "human_source_verified": 2477,
+      "master_verified": 34458
     },
     "conflicts": 0,
-    "manual_review": 7011,
+    "manual_review": 1519,
+    "suppressed_structured_finish_candidates": 2800,
     "source_availability_by_status": {
       "human_fixtures|collected": 1,
       "pokemontcg_api|collected": 173,
       "pokemontcg_api|unavailable": 29,
       "tcgdex|collected": 190,
       "tcgdex|unavailable": 12,
-      "tcgplayer_price_guide|collected": 140,
-      "tcgplayer_price_guide|unavailable": 62,
-      "thepricedex_price_list|collected": 173,
-      "thepricedex_price_list|unavailable": 29
+      "tcgplayer_price_guide|collected": 145,
+      "tcgplayer_price_guide|unavailable": 57,
+      "thepricedex_price_list|collected": 174,
+      "thepricedex_price_list|error": 28
     }
   },
   "artifact_manifest": {
@@ -2654,6 +2655,7 @@
     "printings": "english_master_index_printings_v1.json",
     "manual_review": "english_master_index_manual_review_v1.json",
     "conflicts": "english_master_index_conflicts_v1.json",
-    "grookai_audit": "english_master_index_grookai_audit_v1.json"
+    "grookai_audit": "english_master_index_grookai_audit_v1.json",
+    "suppressed_structured_finish_candidates": "english_master_index_suppressed_structured_finish_candidates_v1.json"
   }
 }

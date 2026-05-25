@@ -1,6 +1,6 @@
 # English Verified Master Set Index V1
 
-Generated: 2026-05-25T15:19:30.123Z
+Generated: 2026-05-25T16:40:48.237Z
 
 Audit only. No DB writes, migrations, cleanup, quarantine, or public hiding were performed.
 
@@ -13,26 +13,26 @@ Transport: Local run used NODE_TLS_REJECT_UNAUTHORIZED=0 because this Windows en
 | metric | count |
 | --- | --- |
 | sets | 202 |
-| evidence rows | 180343 |
+| evidence rows | 178459 |
 | conflicts | 0 |
-| manual review | 7011 |
+| manual review | 1519 |
 
 ## Cards By Status
 
 | status | count |
 | --- | --- |
 | api_agreed | 32 |
-| candidate_unconfirmed | 813 |
-| human_source_verified | 127 |
-| master_verified | 20606 |
+| candidate_unconfirmed | 761 |
+| human_source_verified | 135 |
+| master_verified | 20658 |
 
 ## Printings By Status
 
 | status | count |
 | --- | --- |
-| candidate_unconfirmed | 6194 |
-| human_source_verified | 2402 |
-| master_verified | 32838 |
+| candidate_unconfirmed | 754 |
+| human_source_verified | 2477 |
+| master_verified | 34458 |
 
 ## Source Evidence Rows
 
@@ -93,7 +93,7 @@ Transport: Local run used NODE_TLS_REJECT_UNAUTHORIZED=0 because this Windows en
 | pokebeach_ascended_heroes_set_guide | 5 |
 | pokellector_ascended_heroes_murkrow_126 | 1 |
 | pokemasters_ascended_heroes | 7 |
-| pokemontcg_api | 51779 |
+| pokemontcg_api | 51700 |
 | pokescope_ascended_heroes_mimikyu_097 | 2 |
 | pokescope_ascended_heroes_tarountula_018 | 1 |
 | pricedex_ascended_heroes_price_list | 51 |
@@ -102,8 +102,8 @@ Transport: Local run used NODE_TLS_REJECT_UNAUTHORIZED=0 because this Windows en
 | sports_card_investor_ascended_heroes_exeggutor_078 | 1 |
 | sports_card_investor_ascended_heroes_gloom_002 | 1 |
 | sports_card_investor_ascended_heroes_mimikyu | 1 |
-| tcgdex | 49565 |
-| tcgplayer_price_guide | 21265 |
+| tcgdex | 45861 |
+| tcgplayer_price_guide | 21302 |
 | tcgplayer_product_675813 | 1 |
 | tcgplayer_product_675814 | 1 |
 | tcgplayer_product_675815 | 1 |
@@ -687,7 +687,7 @@ Transport: Local run used NODE_TLS_REJECT_UNAUTHORIZED=0 because this Windows en
 | tcgplayer_product_680710 | 1 |
 | tcgplayer_product_681895 | 1 |
 | tcgstats_ascended_heroes_ns_zekrom | 2 |
-| thepricedex_price_list | 56350 |
+| thepricedex_price_list | 58212 |
 | vendortools_ascended_heroes_spidops_019 | 1 |
 
 ## Source Availability
@@ -699,7 +699,7 @@ Transport: Local run used NODE_TLS_REJECT_UNAUTHORIZED=0 because this Windows en
 | pokemontcg_api | unavailable | 29 |
 | tcgdex | collected | 190 |
 | tcgdex | unavailable | 12 |
-| tcgplayer_price_guide | collected | 140 |
-| tcgplayer_price_guide | unavailable | 62 |
-| thepricedex_price_list | collected | 173 |
-| thepricedex_price_list | unavailable | 29 |
+| tcgplayer_price_guide | collected | 145 |
+| tcgplayer_price_guide | unavailable | 57 |
+| thepricedex_price_list | collected | 174 |
+| thepricedex_price_list | error | 28 |

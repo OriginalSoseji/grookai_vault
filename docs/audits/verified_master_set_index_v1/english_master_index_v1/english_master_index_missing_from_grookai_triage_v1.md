@@ -1,6 +1,6 @@
 # English Master Index Missing From Grookai Triage V1
 
-Generated: 2026-05-25T15:19:30.123Z
+Generated: 2026-05-25T16:40:48.237Z
 
 Audit only. No DB writes, migrations, inserts, cleanup, quarantine, or public hiding were performed.
 
@@ -10,30 +10,28 @@ Missing-from-Grookai rows are not insertion authority. Only controlled per-set p
 
 | category | count |
 | --- | --- |
-| first_edition_policy_gap | 940 |
-| human_source_verified_missing | 2321 |
-| master_verified_missing | 3628 |
-| product_or_deck_set_source_only_candidate | 13 |
-| promo_family_source_only_candidate | 734 |
-| source_only_candidate_missing | 625 |
-| subset_alias_or_numbering_gap | 138 |
+| first_edition_policy_gap | 1 |
+| human_source_verified_missing | 2374 |
+| master_verified_missing | 4447 |
+| promo_family_source_only_candidate | 4 |
+| source_only_candidate_missing | 276 |
+| subset_alias_or_numbering_gap | 76 |
 
 ## Summary By Index Status
 
 | index_status | count |
 | --- | --- |
-| candidate_unconfirmed | 2450 |
-| human_source_verified | 2321 |
-| master_verified | 3628 |
+| candidate_unconfirmed | 357 |
+| human_source_verified | 2374 |
+| master_verified | 4447 |
 
 ## Summary By Source Count
 
 | source_count | count |
 | --- | --- |
-| 1 | 4771 |
-| 2 | 3208 |
-| 3 | 1 |
-| 4 | 419 |
+| 1 | 2731 |
+| 2 | 3930 |
+| 4 | 517 |
 
 ## Summary By Set
 
@@ -42,15 +40,15 @@ Missing-from-Grookai rows are not insertion authority. Only controlled per-set p
 | 2023sv | 15 |
 | 2024sv | 15 |
 | base1 | 103 |
-| base2 | 82 |
-| base3 | 80 |
+| base2 | 67 |
+| base3 | 65 |
 | base4 | 2 |
-| base5 | 104 |
-| basep | 7 |
+| base5 | 87 |
+| basep | 8 |
 | bp | 6 |
 | bw1 | 34 |
 | bw10 | 6 |
-| bw11 | 67 |
+| bw11 | 41 |
 | bw2 | 10 |
 | bw3 | 13 |
 | bw4 | 12 |
@@ -59,18 +57,18 @@ Missing-from-Grookai rows are not insertion authority. Only controlled per-set p
 | bw7 | 11 |
 | bw8 | 5 |
 | bw9 | 7 |
-| bwp | 208 |
+| bwp | 123 |
 | cel25 | 3 |
 | cel25c | 25 |
-| col1 | 47 |
+| col1 | 33 |
 | dp1 | 31 |
 | dp2 | 22 |
 | dp3 | 13 |
 | dp4 | 13 |
 | dp5 | 19 |
 | dp6 | 17 |
-| dp7 | 18 |
-| dpp | 81 |
+| dp7 | 15 |
+| dpp | 78 |
 | dv1 | 10 |
 | ecard2 | 50 |
 | ecard3 | 42 |
@@ -86,21 +84,21 @@ Missing-from-Grookai rows are not insertion authority. Only controlled per-set p
 | ex3 | 9 |
 | ex4 | 11 |
 | ex5 | 96 |
-| ex6 | 126 |
-| ex7 | 114 |
-| ex8 | 119 |
-| ex9 | 113 |
+| ex6 | 106 |
+| ex7 | 100 |
+| ex8 | 104 |
+| ex9 | 96 |
 | exu | 28 |
 | fut20 | 1 |
 | fut2020 | 5 |
-| g1 | 61 |
-| gym1 | 153 |
-| gym2 | 153 |
-| hgss1 | 24 |
+| g1 | 42 |
+| gym1 | 134 |
+| gym2 | 133 |
+| hgss1 | 23 |
 | hgss2 | 18 |
 | hgss3 | 8 |
 | hgss4 | 21 |
-| hsp | 28 |
+| hsp | 27 |
 | mcd11 | 2 |
 | mcd12 | 5 |
 | mcd15 | 3 |
@@ -108,18 +106,18 @@ Missing-from-Grookai rows are not insertion authority. Only controlled per-set p
 | mcd18 | 1 |
 | mcd19 | 8 |
 | mcd21 | 25 |
-| mcd22 | 15 |
+| mcd22 | 6 |
 | me1 | 39 |
 | me2 | 4 |
 | me3 | 128 |
-| me4 | 256 |
+| me4 | 198 |
 | mee | 8 |
-| mep | 52 |
+| mep | 82 |
 | mfb | 34 |
-| neo1 | 130 |
-| neo2 | 92 |
-| neo3 | 82 |
-| neo4 | 138 |
+| neo1 | 113 |
+| neo2 | 75 |
+| neo3 | 68 |
+| neo4 | 123 |
 | np | 2 |
 | pgo | 5 |
 | pl1 | 17 |
@@ -132,7 +130,7 @@ Missing-from-Grookai rows are not insertion authority. Only controlled per-set p
 | pop5 | 7 |
 | pop6 | 11 |
 | pop7 | 2 |
-| pop8 | 13 |
+| pop8 | 9 |
 | pop9 | 6 |
 | rsv10pt5 | 1 |
 | ru1 | 3 |
@@ -152,24 +150,20 @@ Missing-from-Grookai rows are not insertion authority. Only controlled per-set p
 | sm75 | 2 |
 | sm8 | 23 |
 | sm9 | 5 |
-| sma | 188 |
-| smp | 542 |
+| sma | 94 |
+| smp | 316 |
 | sv1 | 22 |
-| sv10 | 49 |
+| sv10 | 46 |
 | sv2 | 66 |
-| sv3 | 4 |
-| sv3pt5 | 26 |
-| sv4 | 29 |
-| sv4pt5 | 2 |
-| sv5 | 50 |
-| sv6 | 11 |
+| sv3pt5 | 24 |
+| sv4 | 25 |
+| sv5 | 49 |
 | sv6pt5 | 13 |
-| sv7 | 29 |
-| sv8 | 5 |
-| sv8pt5 | 33 |
-| sv9 | 43 |
+| sv7 | 26 |
+| sv8pt5 | 32 |
+| sv9 | 33 |
 | sve | 87 |
-| svp | 90 |
+| svp | 88 |
 | swsh1 | 62 |
 | swsh10 | 77 |
 | swsh10tg | 30 |
@@ -183,7 +177,7 @@ Missing-from-Grookai rows are not insertion authority. Only controlled per-set p
 | swsh3 | 33 |
 | swsh35 | 8 |
 | swsh4 | 32 |
-| swsh45 | 255 |
+| swsh45 | 133 |
 | swsh45sv | 122 |
 | swsh5 | 42 |
 | swsh6 | 56 |
@@ -191,7 +185,7 @@ Missing-from-Grookai rows are not insertion authority. Only controlled per-set p
 | swsh8 | 49 |
 | swsh9 | 86 |
 | swsh9tg | 30 |
-| swshp | 476 |
+| swshp | 356 |
 | xy0 | 3 |
 | xy1 | 21 |
 | xy10 | 13 |
@@ -206,99 +200,41 @@ Missing-from-Grookai rows are not insertion authority. Only controlled per-set p
 | xy8 | 17 |
 | xy9 | 15 |
 | xya | 6 |
-| xyp | 434 |
+| xyp | 230 |
 | zsv10pt5 | 4 |
 
 ## Summary By Finish
 
 | finish | count |
 | --- | --- |
-| cosmos | 316 |
+| cosmos | 320 |
 | cracked_ice | 131 |
-| first_edition_holo | 164 |
-| first_edition_normal | 940 |
-| holo | 2379 |
-| normal | 1722 |
-| reverse | 1406 |
-| stamped | 1341 |
+| first_edition_holo | 180 |
+| first_edition_normal | 762 |
+| holo | 2356 |
+| normal | 664 |
+| reverse | 1401 |
+| stamped | 1364 |
 
 ## first_edition_policy_gap
 
-Rows: 940
+Rows: 1
 
 ### Top Sets
 
 | set_key | count |
 | --- | --- |
-| gym1 | 132 |
-| gym2 | 132 |
-| neo4 | 113 |
-| neo1 | 111 |
-| base1 | 102 |
-| base5 | 83 |
-| neo2 | 75 |
-| neo3 | 66 |
-| base2 | 64 |
-| base3 | 62 |
+| neo4 | 1 |
 
 ### Sample Rows
 
 | set | number | Index name | finish | index status | sources | reason |
 | --- | --- | --- | --- | --- | --- | --- |
-| base1 | 1 | Alakazam | first_edition_normal | candidate_unconfirmed | tcgdex | First edition printings require a separate legacy policy pass before any insertion or cleanup decision. |
-| base1 | 2 | Blastoise | first_edition_normal | candidate_unconfirmed | tcgdex | First edition printings require a separate legacy policy pass before any insertion or cleanup decision. |
-| base1 | 3 | Chansey | first_edition_normal | candidate_unconfirmed | tcgdex | First edition printings require a separate legacy policy pass before any insertion or cleanup decision. |
-| base1 | 4 | Charizard | first_edition_normal | candidate_unconfirmed | tcgdex | First edition printings require a separate legacy policy pass before any insertion or cleanup decision. |
-| base1 | 5 | Clefairy | first_edition_normal | candidate_unconfirmed | tcgdex | First edition printings require a separate legacy policy pass before any insertion or cleanup decision. |
-| base1 | 6 | Gyarados | first_edition_normal | candidate_unconfirmed | tcgdex | First edition printings require a separate legacy policy pass before any insertion or cleanup decision. |
-| base1 | 7 | Hitmonchan | first_edition_normal | candidate_unconfirmed | tcgdex | First edition printings require a separate legacy policy pass before any insertion or cleanup decision. |
-| base1 | 8 | Machamp | first_edition_normal | candidate_unconfirmed | tcgdex | First edition printings require a separate legacy policy pass before any insertion or cleanup decision. |
-| base1 | 9 | Magneton | first_edition_normal | candidate_unconfirmed | tcgdex | First edition printings require a separate legacy policy pass before any insertion or cleanup decision. |
-| base1 | 10 | Mewtwo | first_edition_normal | candidate_unconfirmed | tcgdex | First edition printings require a separate legacy policy pass before any insertion or cleanup decision. |
-| base1 | 11 | Nidoking | first_edition_normal | candidate_unconfirmed | tcgdex | First edition printings require a separate legacy policy pass before any insertion or cleanup decision. |
-| base1 | 12 | Ninetales | first_edition_normal | candidate_unconfirmed | tcgdex | First edition printings require a separate legacy policy pass before any insertion or cleanup decision. |
-| base1 | 13 | Poliwrath | first_edition_normal | candidate_unconfirmed | tcgdex | First edition printings require a separate legacy policy pass before any insertion or cleanup decision. |
-| base1 | 14 | Raichu | first_edition_normal | candidate_unconfirmed | tcgdex | First edition printings require a separate legacy policy pass before any insertion or cleanup decision. |
-| base1 | 15 | Venusaur | first_edition_normal | candidate_unconfirmed | tcgdex | First edition printings require a separate legacy policy pass before any insertion or cleanup decision. |
-| base1 | 16 | Zapdos | first_edition_normal | candidate_unconfirmed | tcgdex | First edition printings require a separate legacy policy pass before any insertion or cleanup decision. |
-| base1 | 17 | Beedrill | first_edition_normal | candidate_unconfirmed | tcgdex | First edition printings require a separate legacy policy pass before any insertion or cleanup decision. |
-| base1 | 18 | Dragonair | first_edition_normal | candidate_unconfirmed | tcgdex | First edition printings require a separate legacy policy pass before any insertion or cleanup decision. |
-| base1 | 19 | Dugtrio | first_edition_normal | candidate_unconfirmed | tcgdex | First edition printings require a separate legacy policy pass before any insertion or cleanup decision. |
-| base1 | 20 | Electabuzz | first_edition_normal | candidate_unconfirmed | tcgdex | First edition printings require a separate legacy policy pass before any insertion or cleanup decision. |
-| base1 | 21 | Electrode | first_edition_normal | candidate_unconfirmed | tcgdex | First edition printings require a separate legacy policy pass before any insertion or cleanup decision. |
-| base1 | 22 | Pidgeotto | first_edition_normal | candidate_unconfirmed | tcgdex | First edition printings require a separate legacy policy pass before any insertion or cleanup decision. |
-| base1 | 23 | Arcanine | first_edition_normal | candidate_unconfirmed | tcgdex | First edition printings require a separate legacy policy pass before any insertion or cleanup decision. |
-| base1 | 24 | Charmeleon | first_edition_normal | candidate_unconfirmed | tcgdex | First edition printings require a separate legacy policy pass before any insertion or cleanup decision. |
-| base1 | 25 | Dewgong | first_edition_normal | candidate_unconfirmed | tcgdex | First edition printings require a separate legacy policy pass before any insertion or cleanup decision. |
-| base1 | 26 | Dratini | first_edition_normal | candidate_unconfirmed | tcgdex | First edition printings require a separate legacy policy pass before any insertion or cleanup decision. |
-| base1 | 27 | Farfetch'd | first_edition_normal | candidate_unconfirmed | tcgdex | First edition printings require a separate legacy policy pass before any insertion or cleanup decision. |
-| base1 | 28 | Growlithe | first_edition_normal | candidate_unconfirmed | tcgdex | First edition printings require a separate legacy policy pass before any insertion or cleanup decision. |
-| base1 | 29 | Haunter | first_edition_normal | candidate_unconfirmed | tcgdex | First edition printings require a separate legacy policy pass before any insertion or cleanup decision. |
-| base1 | 30 | Ivysaur | first_edition_normal | candidate_unconfirmed | tcgdex | First edition printings require a separate legacy policy pass before any insertion or cleanup decision. |
-| base1 | 31 | Jynx | first_edition_normal | candidate_unconfirmed | tcgdex | First edition printings require a separate legacy policy pass before any insertion or cleanup decision. |
-| base1 | 32 | Kadabra | first_edition_normal | candidate_unconfirmed | tcgdex | First edition printings require a separate legacy policy pass before any insertion or cleanup decision. |
-| base1 | 33 | Kakuna | first_edition_normal | candidate_unconfirmed | tcgdex | First edition printings require a separate legacy policy pass before any insertion or cleanup decision. |
-| base1 | 34 | Machoke | first_edition_normal | candidate_unconfirmed | tcgdex | First edition printings require a separate legacy policy pass before any insertion or cleanup decision. |
-| base1 | 35 | Magikarp | first_edition_normal | candidate_unconfirmed | tcgdex | First edition printings require a separate legacy policy pass before any insertion or cleanup decision. |
-| base1 | 36 | Magmar | first_edition_normal | candidate_unconfirmed | tcgdex | First edition printings require a separate legacy policy pass before any insertion or cleanup decision. |
-| base1 | 37 | Nidorino | first_edition_normal | candidate_unconfirmed | tcgdex | First edition printings require a separate legacy policy pass before any insertion or cleanup decision. |
-| base1 | 38 | Poliwhirl | first_edition_normal | candidate_unconfirmed | tcgdex | First edition printings require a separate legacy policy pass before any insertion or cleanup decision. |
-| base1 | 39 | Porygon | first_edition_normal | candidate_unconfirmed | tcgdex | First edition printings require a separate legacy policy pass before any insertion or cleanup decision. |
-| base1 | 40 | Raticate | first_edition_normal | candidate_unconfirmed | tcgdex | First edition printings require a separate legacy policy pass before any insertion or cleanup decision. |
-| base1 | 41 | Seel | first_edition_normal | candidate_unconfirmed | tcgdex | First edition printings require a separate legacy policy pass before any insertion or cleanup decision. |
-| base1 | 42 | Wartortle | first_edition_normal | candidate_unconfirmed | tcgdex | First edition printings require a separate legacy policy pass before any insertion or cleanup decision. |
-| base1 | 43 | Abra | first_edition_normal | candidate_unconfirmed | tcgdex | First edition printings require a separate legacy policy pass before any insertion or cleanup decision. |
-| base1 | 44 | Bulbasaur | first_edition_normal | candidate_unconfirmed | tcgdex | First edition printings require a separate legacy policy pass before any insertion or cleanup decision. |
-| base1 | 45 | Caterpie | first_edition_normal | candidate_unconfirmed | tcgdex | First edition printings require a separate legacy policy pass before any insertion or cleanup decision. |
-| base1 | 46 | Charmander | first_edition_normal | candidate_unconfirmed | tcgdex | First edition printings require a separate legacy policy pass before any insertion or cleanup decision. |
-| base1 | 47 | Diglett | first_edition_normal | candidate_unconfirmed | tcgdex | First edition printings require a separate legacy policy pass before any insertion or cleanup decision. |
-| base1 | 48 | Doduo | first_edition_normal | candidate_unconfirmed | tcgdex | First edition printings require a separate legacy policy pass before any insertion or cleanup decision. |
-| base1 | 49 | Drowzee | first_edition_normal | candidate_unconfirmed | tcgdex | First edition printings require a separate legacy policy pass before any insertion or cleanup decision. |
-| base1 | 50 | Gastly | first_edition_normal | candidate_unconfirmed | tcgdex | First edition printings require a separate legacy policy pass before any insertion or cleanup decision. |
+| neo4 | 96 | Thought Wave Machine (Rocket's Secret Machine) | first_edition_normal | candidate_unconfirmed | tcgdex | First edition printings require a separate legacy policy pass before any insertion or cleanup decision. |
 
 ## human_source_verified_missing
 
-Rows: 2321
+Rows: 2374
 
 ### Top Sets
 
@@ -307,8 +243,8 @@ Rows: 2321
 | me4 | 134 |
 | swsh45 | 129 |
 | sm115 | 103 |
-| svp | 82 |
-| smp | 63 |
+| svp | 87 |
+| smp | 64 |
 | sve | 63 |
 | sv2 | 62 |
 | swsh1 | 61 |
@@ -329,9 +265,45 @@ Rows: 2321
 
 | set | number | Index name | finish | index status | sources | reason |
 | --- | --- | --- | --- | --- | --- | --- |
+| mep | 1 | Meganium | stamped | human_source_verified | thepricedex_price_list | The index has human-readable/checklist evidence, but not full master verification, and Grookai does not exactly match it. |
+| mep | 2 | Inteleon | stamped | human_source_verified | thepricedex_price_list | The index has human-readable/checklist evidence, but not full master verification, and Grookai does not exactly match it. |
+| mep | 3 | Alakazam | stamped | human_source_verified | thepricedex_price_list | The index has human-readable/checklist evidence, but not full master verification, and Grookai does not exactly match it. |
+| mep | 4 | Lunatone | stamped | human_source_verified | thepricedex_price_list | The index has human-readable/checklist evidence, but not full master verification, and Grookai does not exactly match it. |
+| mep | 9 | Alakazam | stamped | human_source_verified | thepricedex_price_list | The index has human-readable/checklist evidence, but not full master verification, and Grookai does not exactly match it. |
+| mep | 10 | Riolu | stamped | human_source_verified | thepricedex_price_list | The index has human-readable/checklist evidence, but not full master verification, and Grookai does not exactly match it. |
+| mep | 14 | Ceruledge | stamped | human_source_verified | thepricedex_price_list | The index has human-readable/checklist evidence, but not full master verification, and Grookai does not exactly match it. |
+| mep | 15 | Zacian | stamped | human_source_verified | thepricedex_price_list | The index has human-readable/checklist evidence, but not full master verification, and Grookai does not exactly match it. |
+| mep | 16 | Flygon | stamped | human_source_verified | thepricedex_price_list | The index has human-readable/checklist evidence, but not full master verification, and Grookai does not exactly match it. |
+| mep | 17 | Toxtricity | stamped | human_source_verified | thepricedex_price_list | The index has human-readable/checklist evidence, but not full master verification, and Grookai does not exactly match it. |
+| mep | 22 | Charcadet | stamped | human_source_verified | thepricedex_price_list | The index has human-readable/checklist evidence, but not full master verification, and Grookai does not exactly match it. |
+| mep | 28 | Celebratory Fanfare | stamped | human_source_verified | thepricedex_price_list | The index has human-readable/checklist evidence, but not full master verification, and Grookai does not exactly match it. |
+| mep | 31 | N's Zekrom | stamped | human_source_verified | thepricedex_price_list | The index has human-readable/checklist evidence, but not full master verification, and Grookai does not exactly match it. |
+| mep | 64 | Serperior | stamped | human_source_verified | thepricedex_price_list | The index has human-readable/checklist evidence, but not full master verification, and Grookai does not exactly match it. |
+| mep | 65 | Barbaracle | stamped | human_source_verified | thepricedex_price_list | The index has human-readable/checklist evidence, but not full master verification, and Grookai does not exactly match it. |
+| mep | 66 | Tyrantrum | stamped | human_source_verified | thepricedex_price_list | The index has human-readable/checklist evidence, but not full master verification, and Grookai does not exactly match it. |
+| mep | 67 | Doublade | stamped | human_source_verified | thepricedex_price_list | The index has human-readable/checklist evidence, but not full master verification, and Grookai does not exactly match it. |
+| mep | 68 | Makuhita | cosmos | human_source_verified | thepricedex_price_list | The index has human-readable/checklist evidence, but not full master verification, and Grookai does not exactly match it. |
+| mep | 69 | Chikorita | cosmos | human_source_verified | thepricedex_price_list | The index has human-readable/checklist evidence, but not full master verification, and Grookai does not exactly match it. |
+| mep | 70 | Tyrunt | stamped | human_source_verified | thepricedex_price_list | The index has human-readable/checklist evidence, but not full master verification, and Grookai does not exactly match it. |
+| mep | 71 | Mega Zygarde ex | holo | human_source_verified | thepricedex_price_list | The index has human-readable/checklist evidence, but not full master verification, and Grookai does not exactly match it. |
+| mep | 74 | Delphox | holo | human_source_verified | thepricedex_price_list | The index has human-readable/checklist evidence, but not full master verification, and Grookai does not exactly match it. |
+| mep | 74 | Delphox | stamped | human_source_verified | thepricedex_price_list | The index has human-readable/checklist evidence, but not full master verification, and Grookai does not exactly match it. |
+| mep | 75 | Ampharos | holo | human_source_verified | thepricedex_price_list | The index has human-readable/checklist evidence, but not full master verification, and Grookai does not exactly match it. |
+| mep | 75 | Ampharos | stamped | human_source_verified | thepricedex_price_list | The index has human-readable/checklist evidence, but not full master verification, and Grookai does not exactly match it. |
+| mep | 76 | Crobat | holo | human_source_verified | thepricedex_price_list | The index has human-readable/checklist evidence, but not full master verification, and Grookai does not exactly match it. |
+| mep | 76 | Crobat | stamped | human_source_verified | thepricedex_price_list | The index has human-readable/checklist evidence, but not full master verification, and Grookai does not exactly match it. |
+| mep | 77 | Goodra | holo | human_source_verified | thepricedex_price_list | The index has human-readable/checklist evidence, but not full master verification, and Grookai does not exactly match it. |
+| mep | 77 | Goodra | stamped | human_source_verified | thepricedex_price_list | The index has human-readable/checklist evidence, but not full master verification, and Grookai does not exactly match it. |
+| mep | 78 | Toxel | cosmos | human_source_verified | thepricedex_price_list | The index has human-readable/checklist evidence, but not full master verification, and Grookai does not exactly match it. |
+| mep | 79 | Charmeleon | cosmos | human_source_verified | thepricedex_price_list | The index has human-readable/checklist evidence, but not full master verification, and Grookai does not exactly match it. |
+| mep | 80 | Fennekin | holo | human_source_verified | thepricedex_price_list | The index has human-readable/checklist evidence, but not full master verification, and Grookai does not exactly match it. |
+| mep | 80 | Fennekin | stamped | human_source_verified | thepricedex_price_list | The index has human-readable/checklist evidence, but not full master verification, and Grookai does not exactly match it. |
 | base1 | 58 | Pikachu | stamped | human_source_verified | thepricedex_price_list | The index has human-readable/checklist evidence, but not full master verification, and Grookai does not exactly match it. |
 | base2 | 1 | Clefable | stamped | human_source_verified | thepricedex_price_list | The index has human-readable/checklist evidence, but not full master verification, and Grookai does not exactly match it. |
+| base2 | 17 | Clefable | first_edition_normal | human_source_verified | thepricedex_price_list | The index has human-readable/checklist evidence, but not full master verification, and Grookai does not exactly match it. |
+| base2 | 17 | Clefable | normal | human_source_verified | thepricedex_price_list | The index has human-readable/checklist evidence, but not full master verification, and Grookai does not exactly match it. |
 | base2 | 60 | Pikachu | stamped | human_source_verified | thepricedex_price_list | The index has human-readable/checklist evidence, but not full master verification, and Grookai does not exactly match it. |
+| basep | 1 | Pikachu | first_edition_normal | human_source_verified | thepricedex_price_list | The index has human-readable/checklist evidence, but not full master verification, and Grookai does not exactly match it. |
 | basep | 11 | Eevee | stamped | human_source_verified | thepricedex_price_list | The index has human-readable/checklist evidence, but not full master verification, and Grookai does not exactly match it. |
 | basep | 51 | Rapidash | stamped | human_source_verified | thepricedex_price_list | The index has human-readable/checklist evidence, but not full master verification, and Grookai does not exactly match it. |
 | basep | 52 | Ho-oh | stamped | human_source_verified | thepricedex_price_list | The index has human-readable/checklist evidence, but not full master verification, and Grookai does not exactly match it. |
@@ -342,255 +314,140 @@ Rows: 2321
 | base5 | 8 | Dark Gyarados | stamped | human_source_verified | thepricedex_price_list | The index has human-readable/checklist evidence, but not full master verification, and Grookai does not exactly match it. |
 | base5 | 19 | Dark Arbok | stamped | human_source_verified | thepricedex_price_list | The index has human-readable/checklist evidence, but not full master verification, and Grookai does not exactly match it. |
 | base5 | 32 | Dark Charmeleon | stamped | human_source_verified | thepricedex_price_list | The index has human-readable/checklist evidence, but not full master verification, and Grookai does not exactly match it. |
-| gym1 | 9 | Misty's Seadra | stamped | human_source_verified | thepricedex_price_list | The index has human-readable/checklist evidence, but not full master verification, and Grookai does not exactly match it. |
-| gym1 | 54 | Misty's Psyduck | stamped | human_source_verified | thepricedex_price_list | The index has human-readable/checklist evidence, but not full master verification, and Grookai does not exactly match it. |
-| gym2 | 37 | Brock's Vulpix | stamped | human_source_verified | thepricedex_price_list | The index has human-readable/checklist evidence, but not full master verification, and Grookai does not exactly match it. |
-| neo2 | 1 | Espeon | first_edition_holo | human_source_verified | thepricedex_price_list | The index has human-readable/checklist evidence, but not full master verification, and Grookai does not exactly match it. |
-| neo2 | 13 | Umbreon | first_edition_holo | human_source_verified | thepricedex_price_list | The index has human-readable/checklist evidence, but not full master verification, and Grookai does not exactly match it. |
-| si1 | 1 | Mew | holo | human_source_verified | thepricedex_price_list | The index has human-readable/checklist evidence, but not full master verification, and Grookai does not exactly match it. |
-| si1 | 4 | Togepi | holo | human_source_verified | thepricedex_price_list | The index has human-readable/checklist evidence, but not full master verification, and Grookai does not exactly match it. |
-| si1 | 7 | Ledyba | holo | human_source_verified | thepricedex_price_list | The index has human-readable/checklist evidence, but not full master verification, and Grookai does not exactly match it. |
-| si1 | 11 | Marill | holo | human_source_verified | thepricedex_price_list | The index has human-readable/checklist evidence, but not full master verification, and Grookai does not exactly match it. |
-| si1 | 14 | Slowking | holo | human_source_verified | thepricedex_price_list | The index has human-readable/checklist evidence, but not full master verification, and Grookai does not exactly match it. |
-| si1 | 17 | Vileplume | holo | human_source_verified | thepricedex_price_list | The index has human-readable/checklist evidence, but not full master verification, and Grookai does not exactly match it. |
-| neo3 | 65 | Shining Gyarados | first_edition_holo | human_source_verified | thepricedex_price_list | The index has human-readable/checklist evidence, but not full master verification, and Grookai does not exactly match it. |
-| neo3 | 66 | Shining Magikarp | first_edition_holo | human_source_verified | thepricedex_price_list | The index has human-readable/checklist evidence, but not full master verification, and Grookai does not exactly match it. |
-| neo4 | 4 | Dark Espeon | first_edition_holo | human_source_verified | thepricedex_price_list | The index has human-readable/checklist evidence, but not full master verification, and Grookai does not exactly match it. |
-| neo4 | 6 | Dark Gengar | first_edition_holo | human_source_verified | thepricedex_price_list | The index has human-readable/checklist evidence, but not full master verification, and Grookai does not exactly match it. |
-| neo4 | 8 | Dark Porygon2 | first_edition_holo | human_source_verified | thepricedex_price_list | The index has human-readable/checklist evidence, but not full master verification, and Grookai does not exactly match it. |
-| neo4 | 10 | Dark Typhlosion | first_edition_holo | human_source_verified | thepricedex_price_list | The index has human-readable/checklist evidence, but not full master verification, and Grookai does not exactly match it. |
-| neo4 | 12 | Light Arcanine | first_edition_holo | human_source_verified | thepricedex_price_list | The index has human-readable/checklist evidence, but not full master verification, and Grookai does not exactly match it. |
-| neo4 | 14 | Light Dragonite | first_edition_holo | human_source_verified | thepricedex_price_list | The index has human-readable/checklist evidence, but not full master verification, and Grookai does not exactly match it. |
-| neo4 | 108 | Shining Kabutops | first_edition_holo | human_source_verified | thepricedex_price_list | The index has human-readable/checklist evidence, but not full master verification, and Grookai does not exactly match it. |
-| neo4 | 109 | Shining Mewtwo | first_edition_holo | human_source_verified | thepricedex_price_list | The index has human-readable/checklist evidence, but not full master verification, and Grookai does not exactly match it. |
-| neo4 | 111 | Shining Raichu | first_edition_holo | human_source_verified | thepricedex_price_list | The index has human-readable/checklist evidence, but not full master verification, and Grookai does not exactly match it. |
-| neo4 | 112 | Shining Steelix | first_edition_holo | human_source_verified | thepricedex_price_list | The index has human-readable/checklist evidence, but not full master verification, and Grookai does not exactly match it. |
-| bp | 1 | Electabuzz | stamped | human_source_verified | thepricedex_price_list | The index has human-readable/checklist evidence, but not full master verification, and Grookai does not exactly match it. |
-| bp | 2 | Hitmonchan | stamped | human_source_verified | thepricedex_price_list | The index has human-readable/checklist evidence, but not full master verification, and Grookai does not exactly match it. |
-| bp | 4 | Rocket's Scizor | stamped | human_source_verified | thepricedex_price_list | The index has human-readable/checklist evidence, but not full master verification, and Grookai does not exactly match it. |
-| bp | 5 | Rocket's Sneasel | stamped | human_source_verified | thepricedex_price_list | The index has human-readable/checklist evidence, but not full master verification, and Grookai does not exactly match it. |
-| bp | 6 | Dark Ivysaur | stamped | human_source_verified | thepricedex_price_list | The index has human-readable/checklist evidence, but not full master verification, and Grookai does not exactly match it. |
-| bp | 7 | Dark Venusaur | stamped | human_source_verified | thepricedex_price_list | The index has human-readable/checklist evidence, but not full master verification, and Grookai does not exactly match it. |
-| ecard2 | H1 | Ampharos | holo | human_source_verified | thepricedex_price_list | The index has human-readable/checklist evidence, but not full master verification, and Grookai does not exactly match it. |
-| ecard2 | H5 | Bellossom | holo | human_source_verified | thepricedex_price_list | The index has human-readable/checklist evidence, but not full master verification, and Grookai does not exactly match it. |
-| ecard2 | H6 | Blissey | holo | human_source_verified | thepricedex_price_list | The index has human-readable/checklist evidence, but not full master verification, and Grookai does not exactly match it. |
-| ecard2 | H7 | Electrode | holo | human_source_verified | thepricedex_price_list | The index has human-readable/checklist evidence, but not full master verification, and Grookai does not exactly match it. |
-| ecard2 | H9 | Espeon | holo | human_source_verified | thepricedex_price_list | The index has human-readable/checklist evidence, but not full master verification, and Grookai does not exactly match it. |
-| ecard3 | H1 | Alakazam | holo | human_source_verified | thepricedex_price_list | The index has human-readable/checklist evidence, but not full master verification, and Grookai does not exactly match it. |
-| ecard3 | H2 | Arcanine | holo | human_source_verified | thepricedex_price_list | The index has human-readable/checklist evidence, but not full master verification, and Grookai does not exactly match it. |
-| ecard3 | H3 | Articuno | holo | human_source_verified | thepricedex_price_list | The index has human-readable/checklist evidence, but not full master verification, and Grookai does not exactly match it. |
+| base5 | 83 | Dark Raichu | holo | human_source_verified | thepricedex_price_list | The index has human-readable/checklist evidence, but not full master verification, and Grookai does not exactly match it. |
 
 ## master_verified_missing
 
-Rows: 3628
+Rows: 4447
 
 ### Top Sets
 
 | set_key | count |
 | --- | --- |
-| swshp | 304 |
-| smp | 251 |
-| xyp | 210 |
+| swshp | 303 |
+| smp | 250 |
+| xyp | 209 |
+| gym1 | 132 |
+| gym2 | 132 |
 | me3 | 127 |
 | swsh45sv | 122 |
 | pl3 | 116 |
+| neo1 | 110 |
+| neo4 | 108 |
 | ex16 | 106 |
 | ex11 | 105 |
 | ex6 | 104 |
-| bwp | 102 |
+| base1 | 102 |
 | ex10 | 100 |
+| bwp | 99 |
 | ex13 | 99 |
 | ex8 | 95 |
 | sma | 94 |
 | ex7 | 93 |
-| ex5 | 91 |
-| ex15 | 89 |
-| ex14 | 88 |
-| ex9 | 88 |
-| ex12 | 82 |
 
 ### Sample Rows
 
 | set | number | Index name | finish | index status | sources | reason |
 | --- | --- | --- | --- | --- | --- | --- |
-| base2 | 1 | Clefable | first_edition_holo | master_verified | pokemontcg_api, thepricedex_price_list | The index has a master-verified printing fact that Grookai does not exactly match. |
-| base2 | 2 | Electrode | first_edition_holo | master_verified | pokemontcg_api, thepricedex_price_list | The index has a master-verified printing fact that Grookai does not exactly match. |
-| base2 | 3 | Flareon | first_edition_holo | master_verified | pokemontcg_api, thepricedex_price_list | The index has a master-verified printing fact that Grookai does not exactly match. |
-| base2 | 4 | Jolteon | first_edition_holo | master_verified | pokemontcg_api, thepricedex_price_list | The index has a master-verified printing fact that Grookai does not exactly match. |
-| base2 | 5 | Kangaskhan | first_edition_holo | master_verified | pokemontcg_api, thepricedex_price_list | The index has a master-verified printing fact that Grookai does not exactly match. |
-| base2 | 6 | Mr. Mime | first_edition_holo | master_verified | pokemontcg_api, thepricedex_price_list | The index has a master-verified printing fact that Grookai does not exactly match. |
-| base2 | 7 | Nidoqueen | first_edition_holo | master_verified | pokemontcg_api, thepricedex_price_list | The index has a master-verified printing fact that Grookai does not exactly match. |
-| base2 | 8 | Pidgeot | first_edition_holo | master_verified | pokemontcg_api, thepricedex_price_list | The index has a master-verified printing fact that Grookai does not exactly match. |
-| base2 | 9 | Pinsir | first_edition_holo | master_verified | pokemontcg_api, thepricedex_price_list | The index has a master-verified printing fact that Grookai does not exactly match. |
-| base2 | 10 | Scyther | first_edition_holo | master_verified | pokemontcg_api, thepricedex_price_list | The index has a master-verified printing fact that Grookai does not exactly match. |
-| base2 | 11 | Snorlax | first_edition_holo | master_verified | pokemontcg_api, thepricedex_price_list | The index has a master-verified printing fact that Grookai does not exactly match. |
-| base2 | 12 | Vaporeon | first_edition_holo | master_verified | pokemontcg_api, thepricedex_price_list | The index has a master-verified printing fact that Grookai does not exactly match. |
-| base2 | 13 | Venomoth | first_edition_holo | master_verified | pokemontcg_api, thepricedex_price_list | The index has a master-verified printing fact that Grookai does not exactly match. |
-| base2 | 14 | Victreebel | first_edition_holo | master_verified | pokemontcg_api, thepricedex_price_list | The index has a master-verified printing fact that Grookai does not exactly match. |
-| base2 | 15 | Vileplume | first_edition_holo | master_verified | pokemontcg_api, thepricedex_price_list | The index has a master-verified printing fact that Grookai does not exactly match. |
-| base2 | 16 | Wigglytuff | first_edition_holo | master_verified | pokemontcg_api, thepricedex_price_list | The index has a master-verified printing fact that Grookai does not exactly match. |
-| basep | 13 | Venusaur | holo | master_verified | pokemontcg_api, thepricedex_price_list | The index has a master-verified printing fact that Grookai does not exactly match. |
-| basep | 15 | Cool Porygon | holo | master_verified | pokemontcg_api, thepricedex_price_list | The index has a master-verified printing fact that Grookai does not exactly match. |
-| basep | 18 | Team Rocket's Meowth | normal | master_verified | pokemontcg_api, thepricedex_price_list | The index has a master-verified printing fact that Grookai does not exactly match. |
-| basep | 33 | Scizor | normal | master_verified | pokemontcg_api, thepricedex_price_list | The index has a master-verified printing fact that Grookai does not exactly match. |
-| base3 | 1 | Aerodactyl | first_edition_holo | master_verified | pokemontcg_api, thepricedex_price_list | The index has a master-verified printing fact that Grookai does not exactly match. |
-| base3 | 2 | Articuno | first_edition_holo | master_verified | pokemontcg_api, thepricedex_price_list | The index has a master-verified printing fact that Grookai does not exactly match. |
-| base3 | 3 | Ditto | first_edition_holo | master_verified | pokemontcg_api, thepricedex_price_list | The index has a master-verified printing fact that Grookai does not exactly match. |
-| base3 | 4 | Dragonite | first_edition_holo | master_verified | pokemontcg_api, thepricedex_price_list | The index has a master-verified printing fact that Grookai does not exactly match. |
-| base3 | 5 | Gengar | first_edition_holo | master_verified | pokemontcg_api, thepricedex_price_list | The index has a master-verified printing fact that Grookai does not exactly match. |
-| base3 | 6 | Haunter | first_edition_holo | master_verified | pokemontcg_api, thepricedex_price_list | The index has a master-verified printing fact that Grookai does not exactly match. |
-| base3 | 7 | Hitmonlee | first_edition_holo | master_verified | pokemontcg_api, thepricedex_price_list | The index has a master-verified printing fact that Grookai does not exactly match. |
-| base3 | 8 | Hypno | first_edition_holo | master_verified | pokemontcg_api, thepricedex_price_list | The index has a master-verified printing fact that Grookai does not exactly match. |
-| base3 | 9 | Kabutops | first_edition_holo | master_verified | pokemontcg_api, thepricedex_price_list | The index has a master-verified printing fact that Grookai does not exactly match. |
-| base3 | 10 | Lapras | first_edition_holo | master_verified | pokemontcg_api, thepricedex_price_list | The index has a master-verified printing fact that Grookai does not exactly match. |
-| base3 | 11 | Magneton | first_edition_holo | master_verified | pokemontcg_api, thepricedex_price_list | The index has a master-verified printing fact that Grookai does not exactly match. |
-| base3 | 12 | Moltres | first_edition_holo | master_verified | pokemontcg_api, thepricedex_price_list | The index has a master-verified printing fact that Grookai does not exactly match. |
-| base3 | 13 | Muk | first_edition_holo | master_verified | pokemontcg_api, thepricedex_price_list | The index has a master-verified printing fact that Grookai does not exactly match. |
-| base3 | 14 | Raichu | first_edition_holo | master_verified | pokemontcg_api, thepricedex_price_list | The index has a master-verified printing fact that Grookai does not exactly match. |
-| base3 | 15 | Zapdos | first_edition_holo | master_verified | pokemontcg_api, thepricedex_price_list | The index has a master-verified printing fact that Grookai does not exactly match. |
-| base5 | 1 | Dark Alakazam | first_edition_holo | master_verified | pokemontcg_api, thepricedex_price_list | The index has a master-verified printing fact that Grookai does not exactly match. |
-| base5 | 2 | Dark Arbok | first_edition_holo | master_verified | pokemontcg_api, thepricedex_price_list | The index has a master-verified printing fact that Grookai does not exactly match. |
-| base5 | 3 | Dark Blastoise | first_edition_holo | master_verified | pokemontcg_api, thepricedex_price_list | The index has a master-verified printing fact that Grookai does not exactly match. |
-| base5 | 4 | Dark Charizard | first_edition_holo | master_verified | pokemontcg_api, thepricedex_price_list | The index has a master-verified printing fact that Grookai does not exactly match. |
-| base5 | 5 | Dark Dragonite | first_edition_holo | master_verified | pokemontcg_api, thepricedex_price_list | The index has a master-verified printing fact that Grookai does not exactly match. |
-| base5 | 6 | Dark Dugtrio | first_edition_holo | master_verified | pokemontcg_api, thepricedex_price_list | The index has a master-verified printing fact that Grookai does not exactly match. |
-| base5 | 7 | Dark Golbat | first_edition_holo | master_verified | pokemontcg_api, thepricedex_price_list | The index has a master-verified printing fact that Grookai does not exactly match. |
-| base5 | 8 | Dark Gyarados | first_edition_holo | master_verified | pokemontcg_api, thepricedex_price_list | The index has a master-verified printing fact that Grookai does not exactly match. |
-| base5 | 9 | Dark Hypno | first_edition_holo | master_verified | pokemontcg_api, thepricedex_price_list | The index has a master-verified printing fact that Grookai does not exactly match. |
-| base5 | 10 | Dark Machamp | first_edition_holo | master_verified | pokemontcg_api, thepricedex_price_list | The index has a master-verified printing fact that Grookai does not exactly match. |
-| base5 | 11 | Dark Magneton | first_edition_holo | master_verified | pokemontcg_api, thepricedex_price_list | The index has a master-verified printing fact that Grookai does not exactly match. |
-| base5 | 12 | Dark Slowbro | first_edition_holo | master_verified | pokemontcg_api, thepricedex_price_list | The index has a master-verified printing fact that Grookai does not exactly match. |
-| base5 | 13 | Dark Vileplume | first_edition_holo | master_verified | pokemontcg_api, thepricedex_price_list | The index has a master-verified printing fact that Grookai does not exactly match. |
-| base5 | 14 | Dark Weezing | first_edition_holo | master_verified | pokemontcg_api, thepricedex_price_list | The index has a master-verified printing fact that Grookai does not exactly match. |
-| base5 | 15 | Here Comes Team Rocket! | first_edition_holo | master_verified | pokemontcg_api, thepricedex_price_list | The index has a master-verified printing fact that Grookai does not exactly match. |
-
-## product_or_deck_set_source_only_candidate
-
-Rows: 13
-
-### Top Sets
-
-| set_key | count |
-| --- | --- |
-| mcd22 | 9 |
-| pop8 | 4 |
-
-### Sample Rows
-
-| set | number | Index name | finish | index status | sources | reason |
-| --- | --- | --- | --- | --- | --- | --- |
-| pop8 | 6 | Cherrim | reverse | candidate_unconfirmed | pokemontcg_api | Product, deck, POP, McDonald's, or early promo missing row is source-only and needs dedicated checklist evidence. |
-| pop8 | 7 | Carnivine | reverse | candidate_unconfirmed | pokemontcg_api | Product, deck, POP, McDonald's, or early promo missing row is source-only and needs dedicated checklist evidence. |
-| pop8 | 12 | Chimchar | reverse | candidate_unconfirmed | pokemontcg_api | Product, deck, POP, McDonald's, or early promo missing row is source-only and needs dedicated checklist evidence. |
-| pop8 | 16 | Riolu | reverse | candidate_unconfirmed | pokemontcg_api | Product, deck, POP, McDonald's, or early promo missing row is source-only and needs dedicated checklist evidence. |
-| mcd22 | 1 | Ledyba | holo | candidate_unconfirmed | tcgdex | Product, deck, POP, McDonald's, or early promo missing row is source-only and needs dedicated checklist evidence. |
-| mcd22 | 6 | Lapras | holo | candidate_unconfirmed | tcgdex | Product, deck, POP, McDonald's, or early promo missing row is source-only and needs dedicated checklist evidence. |
-| mcd22 | 8 | Chinchou | holo | candidate_unconfirmed | tcgdex | Product, deck, POP, McDonald's, or early promo missing row is source-only and needs dedicated checklist evidence. |
-| mcd22 | 9 | Flaaffy | holo | candidate_unconfirmed | tcgdex | Product, deck, POP, McDonald's, or early promo missing row is source-only and needs dedicated checklist evidence. |
-| mcd22 | 10 | Tynamo | holo | candidate_unconfirmed | tcgdex | Product, deck, POP, McDonald's, or early promo missing row is source-only and needs dedicated checklist evidence. |
-| mcd22 | 11 | Cutiefly | holo | candidate_unconfirmed | tcgdex | Product, deck, POP, McDonald's, or early promo missing row is source-only and needs dedicated checklist evidence. |
-| mcd22 | 12 | Bewear | holo | candidate_unconfirmed | tcgdex | Product, deck, POP, McDonald's, or early promo missing row is source-only and needs dedicated checklist evidence. |
-| mcd22 | 13 | Pangoro | holo | candidate_unconfirmed | tcgdex | Product, deck, POP, McDonald's, or early promo missing row is source-only and needs dedicated checklist evidence. |
-| mcd22 | 14 | Drampa | holo | candidate_unconfirmed | tcgdex | Product, deck, POP, McDonald's, or early promo missing row is source-only and needs dedicated checklist evidence. |
+| mep | 001 | Meganium | holo | master_verified | tcgdex, thepricedex_price_list | The index has a master-verified printing fact that Grookai does not exactly match. |
+| mep | 002 | Inteleon | holo | master_verified | tcgdex, thepricedex_price_list | The index has a master-verified printing fact that Grookai does not exactly match. |
+| mep | 003 | Alakazam | holo | master_verified | tcgdex, thepricedex_price_list | The index has a master-verified printing fact that Grookai does not exactly match. |
+| mep | 004 | Lunatone | holo | master_verified | tcgdex, thepricedex_price_list | The index has a master-verified printing fact that Grookai does not exactly match. |
+| mep | 005 | Drifloon | holo | master_verified | tcgdex, thepricedex_price_list | The index has a master-verified printing fact that Grookai does not exactly match. |
+| mep | 006 | Drifblim | holo | master_verified | tcgdex, thepricedex_price_list | The index has a master-verified printing fact that Grookai does not exactly match. |
+| mep | 007 | Psyduck | holo | master_verified | tcgdex, thepricedex_price_list | The index has a master-verified printing fact that Grookai does not exactly match. |
+| mep | 008 | Golduck | holo | master_verified | tcgdex, thepricedex_price_list | The index has a master-verified printing fact that Grookai does not exactly match. |
+| mep | 009 | Alakazam | holo | master_verified | tcgdex, thepricedex_price_list | The index has a master-verified printing fact that Grookai does not exactly match. |
+| mep | 010 | Riolu | holo | master_verified | tcgdex, thepricedex_price_list | The index has a master-verified printing fact that Grookai does not exactly match. |
+| mep | 011 | Mega Latias ex | holo | master_verified | tcgdex, thepricedex_price_list | The index has a master-verified printing fact that Grookai does not exactly match. |
+| mep | 012 | Mega Lucario ex | holo | master_verified | tcgdex, thepricedex_price_list | The index has a master-verified printing fact that Grookai does not exactly match. |
+| mep | 013 | Mega Venusaur ex | holo | master_verified | tcgdex, thepricedex_price_list | The index has a master-verified printing fact that Grookai does not exactly match. |
+| mep | 014 | Ceruledge | holo | master_verified | tcgdex, thepricedex_price_list | The index has a master-verified printing fact that Grookai does not exactly match. |
+| mep | 015 | Zacian | holo | master_verified | tcgdex, thepricedex_price_list | The index has a master-verified printing fact that Grookai does not exactly match. |
+| mep | 016 | Flygon | holo | master_verified | tcgdex, thepricedex_price_list | The index has a master-verified printing fact that Grookai does not exactly match. |
+| mep | 017 | Toxtricity | holo | master_verified | tcgdex, thepricedex_price_list | The index has a master-verified printing fact that Grookai does not exactly match. |
+| mep | 018 | Cottonee | holo | master_verified | tcgdex, thepricedex_price_list | The index has a master-verified printing fact that Grookai does not exactly match. |
+| mep | 019 | Whimsicott | holo | master_verified | tcgdex, thepricedex_price_list | The index has a master-verified printing fact that Grookai does not exactly match. |
+| mep | 020 | Sneasel | holo | master_verified | tcgdex, thepricedex_price_list | The index has a master-verified printing fact that Grookai does not exactly match. |
+| mep | 021 | Weavile | holo | master_verified | tcgdex, thepricedex_price_list | The index has a master-verified printing fact that Grookai does not exactly match. |
+| mep | 022 | Charcadet | holo | master_verified | tcgdex, thepricedex_price_list | The index has a master-verified printing fact that Grookai does not exactly match. |
+| mep | 023 | Mega Charizard X ex | holo | master_verified | tcgdex, thepricedex_price_list | The index has a master-verified printing fact that Grookai does not exactly match. |
+| mep | 024 | Oricorio ex | holo | master_verified | tcgdex, thepricedex_price_list | The index has a master-verified printing fact that Grookai does not exactly match. |
+| mep | 025 | Mega Kangaskhan ex | holo | master_verified | tcgdex, thepricedex_price_list | The index has a master-verified printing fact that Grookai does not exactly match. |
+| mep | 026 | Meloetta | holo | master_verified | tcgdex, thepricedex_price_list | The index has a master-verified printing fact that Grookai does not exactly match. |
+| mep | 027 | Haunter | holo | master_verified | tcgdex, thepricedex_price_list | The index has a master-verified printing fact that Grookai does not exactly match. |
+| mep | 029 | Mega Charizard X ex | holo | master_verified | tcgdex, thepricedex_price_list | The index has a master-verified printing fact that Grookai does not exactly match. |
+| mep | 030 | Mega Charizard Y ex | holo | master_verified | tcgdex, thepricedex_price_list | The index has a master-verified printing fact that Grookai does not exactly match. |
+| mep | 031 | N's Zekrom | holo | master_verified | tcgdex, thepricedex_price_list | The index has a master-verified printing fact that Grookai does not exactly match. |
+| mep | 032 | Mega Gardevoir ex | holo | master_verified | tcgdex, thepricedex_price_list | The index has a master-verified printing fact that Grookai does not exactly match. |
+| mep | 033 | Mega Lucario ex | holo | master_verified | tcgdex, thepricedex_price_list | The index has a master-verified printing fact that Grookai does not exactly match. |
+| mep | 034 | Mega Meganium ex | holo | master_verified | tcgdex, thepricedex_price_list | The index has a master-verified printing fact that Grookai does not exactly match. |
+| mep | 035 | Mega Emboar ex | holo | master_verified | tcgdex, thepricedex_price_list | The index has a master-verified printing fact that Grookai does not exactly match. |
+| mep | 036 | Mega Feraligatr ex | holo | master_verified | tcgdex, thepricedex_price_list | The index has a master-verified printing fact that Grookai does not exactly match. |
+| mep | 037 | Bulbasaur | holo | master_verified | tcgdex, thepricedex_price_list | The index has a master-verified printing fact that Grookai does not exactly match. |
+| mep | 038 | Charmander | holo | master_verified | tcgdex, thepricedex_price_list | The index has a master-verified printing fact that Grookai does not exactly match. |
+| mep | 039 | Squirtle | holo | master_verified | tcgdex, thepricedex_price_list | The index has a master-verified printing fact that Grookai does not exactly match. |
+| mep | 040 | Turtwig | holo | master_verified | tcgdex, thepricedex_price_list | The index has a master-verified printing fact that Grookai does not exactly match. |
+| mep | 041 | Chimchar | holo | master_verified | tcgdex, thepricedex_price_list | The index has a master-verified printing fact that Grookai does not exactly match. |
+| mep | 042 | Piplup | holo | master_verified | tcgdex, thepricedex_price_list | The index has a master-verified printing fact that Grookai does not exactly match. |
+| mep | 043 | Rowlet | holo | master_verified | tcgdex, thepricedex_price_list | The index has a master-verified printing fact that Grookai does not exactly match. |
+| mep | 044 | Litten | holo | master_verified | tcgdex, thepricedex_price_list | The index has a master-verified printing fact that Grookai does not exactly match. |
+| mep | 045 | Popplio | holo | master_verified | tcgdex, thepricedex_price_list | The index has a master-verified printing fact that Grookai does not exactly match. |
+| mep | 064 | Serperior | holo | master_verified | tcgdex, thepricedex_price_list | The index has a master-verified printing fact that Grookai does not exactly match. |
+| mep | 065 | Barbaracle | holo | master_verified | tcgdex, thepricedex_price_list | The index has a master-verified printing fact that Grookai does not exactly match. |
+| mep | 066 | Tyrantrum | holo | master_verified | tcgdex, thepricedex_price_list | The index has a master-verified printing fact that Grookai does not exactly match. |
+| mep | 067 | Doublade | holo | master_verified | tcgdex, thepricedex_price_list | The index has a master-verified printing fact that Grookai does not exactly match. |
+| mep | 070 | Tyrunt | holo | master_verified | tcgdex, thepricedex_price_list | The index has a master-verified printing fact that Grookai does not exactly match. |
+| base1 | 1 | Alakazam | first_edition_holo | master_verified | tcgdex, thepricedex_price_list | The index has a master-verified printing fact that Grookai does not exactly match. |
 
 ## promo_family_source_only_candidate
 
-Rows: 734
+Rows: 4
 
 ### Top Sets
 
 | set_key | count |
 | --- | --- |
-| smp | 228 |
-| xyp | 204 |
-| swshp | 121 |
-| sma | 94 |
-| bwp | 85 |
-| svp | 2 |
+| smp | 2 |
+| swshp | 2 |
 
 ### Sample Rows
 
 | set | number | Index name | finish | index status | sources | reason |
 | --- | --- | --- | --- | --- | --- | --- |
-| bwp | BW01 | Snivy | normal | candidate_unconfirmed | tcgdex | Promo-family missing row is currently source-only and needs checklist/product evidence before any repair path. |
-| bwp | BW02 | Tepig | normal | candidate_unconfirmed | tcgdex | Promo-family missing row is currently source-only and needs checklist/product evidence before any repair path. |
-| bwp | BW03 | Oshawott | normal | candidate_unconfirmed | tcgdex | Promo-family missing row is currently source-only and needs checklist/product evidence before any repair path. |
-| bwp | BW04 | Reshiram | normal | candidate_unconfirmed | tcgdex | Promo-family missing row is currently source-only and needs checklist/product evidence before any repair path. |
-| bwp | BW05 | Zekrom | normal | candidate_unconfirmed | tcgdex | Promo-family missing row is currently source-only and needs checklist/product evidence before any repair path. |
-| bwp | BW06 | Snivy | normal | candidate_unconfirmed | tcgdex | Promo-family missing row is currently source-only and needs checklist/product evidence before any repair path. |
-| bwp | BW07 | Tepig | normal | candidate_unconfirmed | tcgdex | Promo-family missing row is currently source-only and needs checklist/product evidence before any repair path. |
-| bwp | BW08 | Oshawott | normal | candidate_unconfirmed | tcgdex | Promo-family missing row is currently source-only and needs checklist/product evidence before any repair path. |
-| bwp | BW09 | Zoroark | normal | candidate_unconfirmed | tcgdex | Promo-family missing row is currently source-only and needs checklist/product evidence before any repair path. |
-| bwp | BW10 | Axew | normal | candidate_unconfirmed | tcgdex | Promo-family missing row is currently source-only and needs checklist/product evidence before any repair path. |
-| bwp | BW11 | Pansage | normal | candidate_unconfirmed | tcgdex | Promo-family missing row is currently source-only and needs checklist/product evidence before any repair path. |
-| bwp | BW12 | Zorua | normal | candidate_unconfirmed | tcgdex | Promo-family missing row is currently source-only and needs checklist/product evidence before any repair path. |
-| bwp | BW13 | Minccino | normal | candidate_unconfirmed | tcgdex | Promo-family missing row is currently source-only and needs checklist/product evidence before any repair path. |
-| bwp | BW17 | Ducklett | normal | candidate_unconfirmed | tcgdex | Promo-family missing row is currently source-only and needs checklist/product evidence before any repair path. |
-| bwp | BW18 | Darumaka | normal | candidate_unconfirmed | tcgdex | Promo-family missing row is currently source-only and needs checklist/product evidence before any repair path. |
-| bwp | BW19 | Zoroark | normal | candidate_unconfirmed | tcgdex | Promo-family missing row is currently source-only and needs checklist/product evidence before any repair path. |
-| bwp | BW20 | Serperior | normal | candidate_unconfirmed | tcgdex | Promo-family missing row is currently source-only and needs checklist/product evidence before any repair path. |
-| bwp | BW21 | Emboar | normal | candidate_unconfirmed | tcgdex | Promo-family missing row is currently source-only and needs checklist/product evidence before any repair path. |
-| bwp | BW22 | Samurott | normal | candidate_unconfirmed | tcgdex | Promo-family missing row is currently source-only and needs checklist/product evidence before any repair path. |
-| bwp | BW23 | Reshiram | normal | candidate_unconfirmed | tcgdex | Promo-family missing row is currently source-only and needs checklist/product evidence before any repair path. |
-| bwp | BW24 | Zekrom | normal | candidate_unconfirmed | tcgdex | Promo-family missing row is currently source-only and needs checklist/product evidence before any repair path. |
-| bwp | BW25 | Scraggy | normal | candidate_unconfirmed | tcgdex | Promo-family missing row is currently source-only and needs checklist/product evidence before any repair path. |
-| bwp | BW26 | Axew | normal | candidate_unconfirmed | tcgdex | Promo-family missing row is currently source-only and needs checklist/product evidence before any repair path. |
-| bwp | BW27 | Litwick | normal | candidate_unconfirmed | tcgdex | Promo-family missing row is currently source-only and needs checklist/product evidence before any repair path. |
-| bwp | BW29 | Victory Cup | normal | candidate_unconfirmed | tcgdex | Promo-family missing row is currently source-only and needs checklist/product evidence before any repair path. |
-| bwp | BW30 | Victory Cup | normal | candidate_unconfirmed | tcgdex | Promo-family missing row is currently source-only and needs checklist/product evidence before any repair path. |
-| bwp | BW31 | Victory Cup | normal | candidate_unconfirmed | tcgdex | Promo-family missing row is currently source-only and needs checklist/product evidence before any repair path. |
-| bwp | BW32 | Victini | normal | candidate_unconfirmed | tcgdex | Promo-family missing row is currently source-only and needs checklist/product evidence before any repair path. |
-| bwp | BW34 | Luxio | normal | candidate_unconfirmed | tcgdex | Promo-family missing row is currently source-only and needs checklist/product evidence before any repair path. |
-| bwp | BW36 | Reshiram-EX | normal | candidate_unconfirmed | tcgdex | Promo-family missing row is currently source-only and needs checklist/product evidence before any repair path. |
-| bwp | BW37 | Kyurem-EX | normal | candidate_unconfirmed | tcgdex | Promo-family missing row is currently source-only and needs checklist/product evidence before any repair path. |
-| bwp | BW38 | Zekrom-EX | normal | candidate_unconfirmed | tcgdex | Promo-family missing row is currently source-only and needs checklist/product evidence before any repair path. |
-| bwp | BW39 | Battle City | normal | candidate_unconfirmed | tcgdex | Promo-family missing row is currently source-only and needs checklist/product evidence before any repair path. |
-| bwp | BW40 | Volcarona | normal | candidate_unconfirmed | tcgdex | Promo-family missing row is currently source-only and needs checklist/product evidence before any repair path. |
-| bwp | BW41 | Thundurus | normal | candidate_unconfirmed | tcgdex | Promo-family missing row is currently source-only and needs checklist/product evidence before any repair path. |
-| bwp | BW42 | Tornadus | normal | candidate_unconfirmed | tcgdex | Promo-family missing row is currently source-only and needs checklist/product evidence before any repair path. |
-| bwp | BW43 | Landorus | normal | candidate_unconfirmed | tcgdex | Promo-family missing row is currently source-only and needs checklist/product evidence before any repair path. |
-| bwp | BW44 | Kyurem | normal | candidate_unconfirmed | tcgdex | Promo-family missing row is currently source-only and needs checklist/product evidence before any repair path. |
-| bwp | BW45 | Mewtwo-EX | normal | candidate_unconfirmed | tcgdex | Promo-family missing row is currently source-only and needs checklist/product evidence before any repair path. |
-| bwp | BW46 | Darkrai-EX | normal | candidate_unconfirmed | tcgdex | Promo-family missing row is currently source-only and needs checklist/product evidence before any repair path. |
-| bwp | BW47 | Rayquaza-EX | normal | candidate_unconfirmed | tcgdex | Promo-family missing row is currently source-only and needs checklist/product evidence before any repair path. |
-| bwp | BW48 | Altaria | normal | candidate_unconfirmed | tcgdex | Promo-family missing row is currently source-only and needs checklist/product evidence before any repair path. |
-| bwp | BW49 | Lilligant | normal | candidate_unconfirmed | tcgdex | Promo-family missing row is currently source-only and needs checklist/product evidence before any repair path. |
-| bwp | BW51 | Crobat | normal | candidate_unconfirmed | tcgdex | Promo-family missing row is currently source-only and needs checklist/product evidence before any repair path. |
-| bwp | BW52 | Lillipup | normal | candidate_unconfirmed | tcgdex | Promo-family missing row is currently source-only and needs checklist/product evidence before any repair path. |
-| bwp | BW53 | Flygon | normal | candidate_unconfirmed | tcgdex | Promo-family missing row is currently source-only and needs checklist/product evidence before any repair path. |
-| bwp | BW56 | Empoleon | normal | candidate_unconfirmed | tcgdex | Promo-family missing row is currently source-only and needs checklist/product evidence before any repair path. |
-| bwp | BW57 | Haxorus | normal | candidate_unconfirmed | tcgdex | Promo-family missing row is currently source-only and needs checklist/product evidence before any repair path. |
-| bwp | BW58 | Black Kyurem | normal | candidate_unconfirmed | tcgdex | Promo-family missing row is currently source-only and needs checklist/product evidence before any repair path. |
-| bwp | BW59 | White Kyurem | normal | candidate_unconfirmed | tcgdex | Promo-family missing row is currently source-only and needs checklist/product evidence before any repair path. |
+| smp | SM103a | Lunala-GX | holo | candidate_unconfirmed | pokemontcg_api | Promo-family missing row is currently source-only and needs checklist/product evidence before any repair path. |
+| smp | SM104a | Solgaleo-GX | holo | candidate_unconfirmed | pokemontcg_api | Promo-family missing row is currently source-only and needs checklist/product evidence before any repair path. |
+| swshp | SWSH135 | Zacian | holo | candidate_unconfirmed | tcgdex | Promo-family missing row is currently source-only and needs checklist/product evidence before any repair path. |
+| swshp | SWSH301 | Lugia V | holo | candidate_unconfirmed | tcgdex | Promo-family missing row is currently source-only and needs checklist/product evidence before any repair path. |
 
 ## source_only_candidate_missing
 
-Rows: 625
+Rows: 276
 
 ### Top Sets
 
 | set_key | count |
 | --- | --- |
-| swsh45 | 126 |
-| me4 | 58 |
-| mep | 52 |
 | mfb | 34 |
 | exu | 28 |
 | sve | 24 |
-| dpp | 22 |
-| ex6 | 20 |
-| ex8 | 19 |
-| ex7 | 17 |
-| ex9 | 17 |
+| dpp | 19 |
 | ecard2 | 16 |
 | 2023sv | 15 |
 | 2024sv | 15 |
 | ecard3 | 14 |
-| sv6 | 11 |
-| sv9 | 10 |
 | mee | 8 |
 | dp6 | 7 |
 | dp1 | 6 |
+| dp2 | 6 |
+| xya | 6 |
+| fut2020 | 5 |
+| dp4 | 4 |
+| dp5 | 4 |
+| ex16 | 4 |
+| ex4 | 4 |
+| ex8 | 4 |
+| swsh45 | 4 |
 
 ### Sample Rows
 
@@ -634,35 +491,33 @@ Rows: 625
 | mee | 006 | Fighting Energy | normal | candidate_unconfirmed | tcgdex | Only source-limited index evidence supports this missing row, so it remains a candidate and not insertion authority. |
 | mee | 007 | Darkness Energy | normal | candidate_unconfirmed | tcgdex | Only source-limited index evidence supports this missing row, so it remains a candidate and not insertion authority. |
 | mee | 008 | Metal Energy | normal | candidate_unconfirmed | tcgdex | Only source-limited index evidence supports this missing row, so it remains a candidate and not insertion authority. |
-| mep | 001 | Meganium | holo | candidate_unconfirmed | tcgdex | Only source-limited index evidence supports this missing row, so it remains a candidate and not insertion authority. |
-| mep | 002 | Inteleon | holo | candidate_unconfirmed | tcgdex | Only source-limited index evidence supports this missing row, so it remains a candidate and not insertion authority. |
-| mep | 003 | Alakazam | holo | candidate_unconfirmed | tcgdex | Only source-limited index evidence supports this missing row, so it remains a candidate and not insertion authority. |
-| mep | 004 | Lunatone | holo | candidate_unconfirmed | tcgdex | Only source-limited index evidence supports this missing row, so it remains a candidate and not insertion authority. |
-| mep | 005 | Drifloon | holo | candidate_unconfirmed | tcgdex | Only source-limited index evidence supports this missing row, so it remains a candidate and not insertion authority. |
-| mep | 006 | Drifblim | holo | candidate_unconfirmed | tcgdex | Only source-limited index evidence supports this missing row, so it remains a candidate and not insertion authority. |
-| mep | 007 | Psyduck | holo | candidate_unconfirmed | tcgdex | Only source-limited index evidence supports this missing row, so it remains a candidate and not insertion authority. |
-| mep | 008 | Golduck | holo | candidate_unconfirmed | tcgdex | Only source-limited index evidence supports this missing row, so it remains a candidate and not insertion authority. |
-| mep | 009 | Alakazam | holo | candidate_unconfirmed | tcgdex | Only source-limited index evidence supports this missing row, so it remains a candidate and not insertion authority. |
-| mep | 010 | Riolu | holo | candidate_unconfirmed | tcgdex | Only source-limited index evidence supports this missing row, so it remains a candidate and not insertion authority. |
-| mep | 011 | Mega Latias ex | holo | candidate_unconfirmed | tcgdex | Only source-limited index evidence supports this missing row, so it remains a candidate and not insertion authority. |
-| mep | 012 | Mega Lucario ex | holo | candidate_unconfirmed | tcgdex | Only source-limited index evidence supports this missing row, so it remains a candidate and not insertion authority. |
+| mfb | 1 | Bulbasaur | normal | candidate_unconfirmed | tcgdex | Only source-limited index evidence supports this missing row, so it remains a candidate and not insertion authority. |
+| mfb | 2 | Ivysaur | normal | candidate_unconfirmed | tcgdex | Only source-limited index evidence supports this missing row, so it remains a candidate and not insertion authority. |
+| mfb | 3 | Oddish | normal | candidate_unconfirmed | tcgdex | Only source-limited index evidence supports this missing row, so it remains a candidate and not insertion authority. |
+| mfb | 4 | Gloom | normal | candidate_unconfirmed | tcgdex | Only source-limited index evidence supports this missing row, so it remains a candidate and not insertion authority. |
+| mfb | 5 | Exeggcute | normal | candidate_unconfirmed | tcgdex | Only source-limited index evidence supports this missing row, so it remains a candidate and not insertion authority. |
+| mfb | 6 | Exeggutor | normal | candidate_unconfirmed | tcgdex | Only source-limited index evidence supports this missing row, so it remains a candidate and not insertion authority. |
+| mfb | 7 | Scyther | normal | candidate_unconfirmed | tcgdex | Only source-limited index evidence supports this missing row, so it remains a candidate and not insertion authority. |
+| mfb | 8 | Grass Energy | normal | candidate_unconfirmed | tcgdex | Only source-limited index evidence supports this missing row, so it remains a candidate and not insertion authority. |
+| mfb | 9 | Charmander | normal | candidate_unconfirmed | tcgdex | Only source-limited index evidence supports this missing row, so it remains a candidate and not insertion authority. |
+| mfb | 10 | Charmeleon | normal | candidate_unconfirmed | tcgdex | Only source-limited index evidence supports this missing row, so it remains a candidate and not insertion authority. |
+| mfb | 11 | Vulpix | normal | candidate_unconfirmed | tcgdex | Only source-limited index evidence supports this missing row, so it remains a candidate and not insertion authority. |
+| mfb | 12 | Ninetales | normal | candidate_unconfirmed | tcgdex | Only source-limited index evidence supports this missing row, so it remains a candidate and not insertion authority. |
 
 ## subset_alias_or_numbering_gap
 
-Rows: 138
+Rows: 76
 
 ### Top Sets
 
 | set_key | count |
 | --- | --- |
 | pl2 | 50 |
-| bw11 | 26 |
-| g1 | 21 |
-| col1 | 14 |
-| dp7 | 8 |
 | pl3 | 7 |
 | pl1 | 6 |
 | pl4 | 6 |
+| dp7 | 5 |
+| g1 | 2 |
 
 ### Sample Rows
 
@@ -673,9 +528,6 @@ Rows: 138
 | dp7 | 98 | Machamp | holo | candidate_unconfirmed | tcgdex | Subset, gallery, or number-collision missing row needs set/subset identity resolution before any repair path. |
 | dp7 | 99 | Raichu | holo | candidate_unconfirmed | tcgdex | Subset, gallery, or number-collision missing row needs set/subset identity resolution before any repair path. |
 | dp7 | 100 | Regigigas | holo | candidate_unconfirmed | tcgdex | Subset, gallery, or number-collision missing row needs set/subset identity resolution before any repair path. |
-| dp7 | SH1 | Drifloon | holo | candidate_unconfirmed | tcgdex | Subset, gallery, or number-collision missing row needs set/subset identity resolution before any repair path. |
-| dp7 | SH2 | Duskull | holo | candidate_unconfirmed | tcgdex | Subset, gallery, or number-collision missing row needs set/subset identity resolution before any repair path. |
-| dp7 | SH3 | Voltorb | holo | candidate_unconfirmed | tcgdex | Subset, gallery, or number-collision missing row needs set/subset identity resolution before any repair path. |
 | pl1 | 122 | Dialga G | holo | candidate_unconfirmed | tcgdex | Subset, gallery, or number-collision missing row needs set/subset identity resolution before any repair path. |
 | pl1 | 123 | Drapion | holo | candidate_unconfirmed | tcgdex | Subset, gallery, or number-collision missing row needs set/subset identity resolution before any repair path. |
 | pl1 | 124 | Giratina | holo | candidate_unconfirmed | tcgdex | Subset, gallery, or number-collision missing row needs set/subset identity resolution before any repair path. |
@@ -718,3 +570,6 @@ Rows: 138
 | pl2 | 60 | Flareon 4 | reverse | candidate_unconfirmed | tcgdex | Subset, gallery, or number-collision missing row needs set/subset identity resolution before any repair path. |
 | pl2 | 62 | Gliscor 4 | normal | candidate_unconfirmed | tcgdex | Subset, gallery, or number-collision missing row needs set/subset identity resolution before any repair path. |
 | pl2 | 62 | Gliscor 4 | reverse | candidate_unconfirmed | tcgdex | Subset, gallery, or number-collision missing row needs set/subset identity resolution before any repair path. |
+| pl2 | 65 | Houndoom 4 | normal | candidate_unconfirmed | tcgdex | Subset, gallery, or number-collision missing row needs set/subset identity resolution before any repair path. |
+| pl2 | 65 | Houndoom 4 | reverse | candidate_unconfirmed | tcgdex | Subset, gallery, or number-collision missing row needs set/subset identity resolution before any repair path. |
+| pl2 | 95 | Team Galactic's Invention G-107 Technical Machine | normal | candidate_unconfirmed | tcgdex | Subset, gallery, or number-collision missing row needs set/subset identity resolution before any repair path. |

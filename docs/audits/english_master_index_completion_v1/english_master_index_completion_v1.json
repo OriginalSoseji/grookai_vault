@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-25T15:22:29.580Z",
+  "generated_at": "2026-05-25T16:44:23.964Z",
   "contract": "ENGLISH_MASTER_INDEX_COMPLETION_V1",
   "audit_only": true,
   "db_writes_performed": false,
@@ -11,34 +11,34 @@
   "purpose": "Completion-first Master Index report. This is not a Grookai reconciliation report.",
   "summary": {
     "sets_in_registry": 203,
-    "complete_master_index_sets": 21,
-    "incomplete_sets": 182,
-    "working_card_identity_facts": 21578,
-    "master_admissible_card_identity_facts": 20638,
+    "complete_master_index_sets": 33,
+    "incomplete_sets": 170,
+    "working_card_identity_facts": 21586,
+    "master_admissible_card_identity_facts": 20690,
     "printing_derived_card_identity_facts": 0,
-    "working_printing_facts": 41434,
-    "master_admissible_printing_facts": 32838,
+    "working_printing_facts": 37689,
+    "master_admissible_printing_facts": 34458,
     "finish_absence_facts": 2,
     "by_completion_status": {
-      "card_identity_complete_finish_incomplete": 98,
-      "complete_master_index_set": 21,
-      "finish_evidence_missing": 25,
-      "source_agreed_card_identity": 54,
+      "card_identity_complete_finish_incomplete": 86,
+      "complete_master_index_set": 33,
+      "finish_evidence_missing": 24,
+      "source_agreed_card_identity": 55,
       "source_limited": 1,
       "source_unavailable": 4
     },
     "by_card_fact_status": {
-      "candidate_unconfirmed": 813,
-      "master_verified": 20606,
-      "api_agreed": 32,
-      "human_source_verified": 127
+      "candidate_unconfirmed": 761,
+      "master_verified": 20658,
+      "human_source_verified": 135,
+      "api_agreed": 32
     },
     "by_printing_fact_status": {
-      "candidate_unconfirmed": 6194,
-      "master_verified": 32838,
-      "human_source_verified": 2402
+      "candidate_unconfirmed": 754,
+      "master_verified": 34458,
+      "human_source_verified": 2477
     },
-    "source_gap_queue_items": 260,
+    "source_gap_queue_items": 248,
     "grookai_reconciliation_performed": false
   },
   "source_standard": {

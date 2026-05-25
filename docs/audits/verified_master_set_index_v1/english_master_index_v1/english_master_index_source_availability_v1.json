@@ -1,6 +1,6 @@
 {
   "version": "ENGLISH_MASTER_INDEX_SOURCE_AVAILABILITY_V1",
-  "generated_at": "2026-05-25T15:19:30.123Z",
+  "generated_at": "2026-05-25T16:40:48.237Z",
   "audit_only": true,
   "db_writes": false,
   "source_availability": [
@@ -28,11 +28,11 @@
       "set_key": "tk-bw-e",
       "set_name": "BW trainer Kit (Excadrill)",
       "source_key": "thepricedex_price_list",
-      "source_alias": null,
-      "configured_status": "unavailable",
-      "runtime_status": "unavailable",
+      "source_alias": "tk-bw-e",
+      "configured_status": "candidate_url",
+      "runtime_status": "error",
       "evidence_rows": 0,
-      "error": null
+      "error": "Fetch failed 404 Not Found: https://www.thepricedex.com/set/tk-bw-e/bw-trainer-kit-excadrill/price-list"
     },
     {
       "set_key": "tk-bw-e",
@@ -68,11 +68,11 @@
       "set_key": "tk-bw-z",
       "set_name": "BW trainer Kit (Zoroark)",
       "source_key": "thepricedex_price_list",
-      "source_alias": null,
-      "configured_status": "unavailable",
-      "runtime_status": "unavailable",
+      "source_alias": "tk-bw-z",
+      "configured_status": "candidate_url",
+      "runtime_status": "error",
       "evidence_rows": 0,
-      "error": null
+      "error": "Fetch failed 404 Not Found: https://www.thepricedex.com/set/tk-bw-z/bw-trainer-kit-zoroark/price-list"
     },
     {
       "set_key": "tk-bw-z",
@@ -108,11 +108,11 @@
       "set_key": "tk-dp-l",
       "set_name": "DP trainer Kit (Lucario)",
       "source_key": "thepricedex_price_list",
-      "source_alias": null,
-      "configured_status": "unavailable",
-      "runtime_status": "unavailable",
+      "source_alias": "tk-dp-l",
+      "configured_status": "candidate_url",
+      "runtime_status": "error",
       "evidence_rows": 0,
-      "error": null
+      "error": "Fetch failed 404 Not Found: https://www.thepricedex.com/set/tk-dp-l/dp-trainer-kit-lucario/price-list"
     },
     {
       "set_key": "tk-dp-l",
@@ -148,11 +148,11 @@
       "set_key": "tk-dp-m",
       "set_name": "DP trainer Kit (Manaphy)",
       "source_key": "thepricedex_price_list",
-      "source_alias": null,
-      "configured_status": "unavailable",
-      "runtime_status": "unavailable",
+      "source_alias": "tk-dp-m",
+      "configured_status": "candidate_url",
+      "runtime_status": "error",
       "evidence_rows": 0,
-      "error": null
+      "error": "Fetch failed 404 Not Found: https://www.thepricedex.com/set/tk-dp-m/dp-trainer-kit-manaphy/price-list"
     },
     {
       "set_key": "tk-dp-m",
@@ -188,11 +188,11 @@
       "set_key": "tk-hs-g",
       "set_name": "HS trainer Kit (Gyarados)",
       "source_key": "thepricedex_price_list",
-      "source_alias": null,
-      "configured_status": "unavailable",
-      "runtime_status": "unavailable",
+      "source_alias": "tk-hs-g",
+      "configured_status": "candidate_url",
+      "runtime_status": "error",
       "evidence_rows": 0,
-      "error": null
+      "error": "Fetch failed 404 Not Found: https://www.thepricedex.com/set/tk-hs-g/hs-trainer-kit-gyarados/price-list"
     },
     {
       "set_key": "tk-hs-g",
@@ -228,11 +228,11 @@
       "set_key": "tk-hs-r",
       "set_name": "HS trainer Kit (Raichu)",
       "source_key": "thepricedex_price_list",
-      "source_alias": null,
-      "configured_status": "unavailable",
-      "runtime_status": "unavailable",
+      "source_alias": "tk-hs-r",
+      "configured_status": "candidate_url",
+      "runtime_status": "error",
       "evidence_rows": 0,
-      "error": null
+      "error": "Fetch failed 404 Not Found: https://www.thepricedex.com/set/tk-hs-r/hs-trainer-kit-raichu/price-list"
     },
     {
       "set_key": "tk-hs-r",
@@ -268,11 +268,11 @@
       "set_key": "jumbo",
       "set_name": "Jumbo cards",
       "source_key": "thepricedex_price_list",
-      "source_alias": null,
-      "configured_status": "unavailable",
-      "runtime_status": "unavailable",
+      "source_alias": "jumbo",
+      "configured_status": "candidate_url",
+      "runtime_status": "error",
       "evidence_rows": 0,
-      "error": null
+      "error": "Fetch failed 404 Not Found: https://www.thepricedex.com/set/jumbo/jumbo-cards/price-list"
     },
     {
       "set_key": "jumbo",
@@ -308,11 +308,11 @@
       "set_key": "2023sv",
       "set_name": "McDonald's Collection 2023",
       "source_key": "thepricedex_price_list",
-      "source_alias": null,
-      "configured_status": "unavailable",
-      "runtime_status": "unavailable",
+      "source_alias": "2023sv",
+      "configured_status": "candidate_url",
+      "runtime_status": "error",
       "evidence_rows": 0,
-      "error": null
+      "error": "Fetch failed 404 Not Found: https://www.thepricedex.com/set/2023sv/mcdonalds-collection-2023/price-list"
     },
     {
       "set_key": "2023sv",
@@ -348,11 +348,11 @@
       "set_key": "2024sv",
       "set_name": "McDonald's Collection 2024",
       "source_key": "thepricedex_price_list",
-      "source_alias": null,
-      "configured_status": "unavailable",
-      "runtime_status": "unavailable",
+      "source_alias": "2024sv",
+      "configured_status": "candidate_url",
+      "runtime_status": "error",
       "evidence_rows": 0,
-      "error": null
+      "error": "Fetch failed 404 Not Found: https://www.thepricedex.com/set/2024sv/mcdonalds-collection-2024/price-list"
     },
     {
       "set_key": "2024sv",
@@ -388,11 +388,11 @@
       "set_key": "mee",
       "set_name": "Mega Evolution Energy",
       "source_key": "thepricedex_price_list",
-      "source_alias": null,
-      "configured_status": "unavailable",
-      "runtime_status": "unavailable",
+      "source_alias": "mee",
+      "configured_status": "candidate_url",
+      "runtime_status": "error",
       "evidence_rows": 0,
-      "error": null
+      "error": "Fetch failed 404 Not Found: https://www.thepricedex.com/set/mee/mega-evolution-energy/price-list"
     },
     {
       "set_key": "mee",
@@ -428,10 +428,10 @@
       "set_key": "mep",
       "set_name": "MEP Black Star Promos",
       "source_key": "thepricedex_price_list",
-      "source_alias": null,
-      "configured_status": "unavailable",
-      "runtime_status": "unavailable",
-      "evidence_rows": 0,
+      "source_alias": "mep",
+      "configured_status": "candidate_url",
+      "runtime_status": "collected",
+      "evidence_rows": 143,
       "error": null
     },
     {
@@ -468,11 +468,11 @@
       "set_key": "mfb",
       "set_name": "My First Battle",
       "source_key": "thepricedex_price_list",
-      "source_alias": null,
-      "configured_status": "unavailable",
-      "runtime_status": "unavailable",
+      "source_alias": "mfb",
+      "configured_status": "candidate_url",
+      "runtime_status": "error",
       "evidence_rows": 0,
-      "error": null
+      "error": "Fetch failed 404 Not Found: https://www.thepricedex.com/set/mfb/my-first-battle/price-list"
     },
     {
       "set_key": "mfb",
@@ -508,11 +508,11 @@
       "set_key": "ex5.5",
       "set_name": "Poké Card Creator Pack",
       "source_key": "thepricedex_price_list",
-      "source_alias": null,
-      "configured_status": "unavailable",
-      "runtime_status": "unavailable",
+      "source_alias": "ex5.5",
+      "configured_status": "candidate_url",
+      "runtime_status": "error",
       "evidence_rows": 0,
-      "error": null
+      "error": "Fetch failed 404 Not Found: https://www.thepricedex.com/set/ex5.5/pok-card-creator-pack/price-list"
     },
     {
       "set_key": "ex5.5",
@@ -548,11 +548,11 @@
       "set_key": "fut2020",
       "set_name": "Pokémon Futsal 2020",
       "source_key": "thepricedex_price_list",
-      "source_alias": null,
-      "configured_status": "unavailable",
-      "runtime_status": "unavailable",
+      "source_alias": "fut2020",
+      "configured_status": "candidate_url",
+      "runtime_status": "error",
       "evidence_rows": 0,
-      "error": null
+      "error": "Fetch failed 404 Not Found: https://www.thepricedex.com/set/fut2020/pok-mon-futsal-2020/price-list"
     },
     {
       "set_key": "fut2020",
@@ -588,11 +588,11 @@
       "set_key": "rc",
       "set_name": "Radiant Collection",
       "source_key": "thepricedex_price_list",
-      "source_alias": null,
-      "configured_status": "unavailable",
-      "runtime_status": "unavailable",
+      "source_alias": "rc",
+      "configured_status": "candidate_url",
+      "runtime_status": "error",
       "evidence_rows": 0,
-      "error": null
+      "error": "Fetch failed 404 Not Found: https://www.thepricedex.com/set/rc/radiant-collection/price-list"
     },
     {
       "set_key": "rc",
@@ -628,11 +628,11 @@
       "set_key": "sp",
       "set_name": "Sample",
       "source_key": "thepricedex_price_list",
-      "source_alias": null,
-      "configured_status": "unavailable",
-      "runtime_status": "unavailable",
+      "source_alias": "sp",
+      "configured_status": "candidate_url",
+      "runtime_status": "error",
       "evidence_rows": 0,
-      "error": null
+      "error": "Fetch failed 404 Not Found: https://www.thepricedex.com/set/sp/sample/price-list"
     },
     {
       "set_key": "sp",
@@ -668,11 +668,11 @@
       "set_key": "tk-sm-r",
       "set_name": "SM trainer Kit (Alolan Raichu)",
       "source_key": "thepricedex_price_list",
-      "source_alias": null,
-      "configured_status": "unavailable",
-      "runtime_status": "unavailable",
+      "source_alias": "tk-sm-r",
+      "configured_status": "candidate_url",
+      "runtime_status": "error",
       "evidence_rows": 0,
-      "error": null
+      "error": "Fetch failed 404 Not Found: https://www.thepricedex.com/set/tk-sm-r/sm-trainer-kit-alolan-raichu/price-list"
     },
     {
       "set_key": "tk-sm-r",
@@ -708,11 +708,11 @@
       "set_key": "tk-sm-l",
       "set_name": "SM trainer Kit (Lycanroc)",
       "source_key": "thepricedex_price_list",
-      "source_alias": null,
-      "configured_status": "unavailable",
-      "runtime_status": "unavailable",
+      "source_alias": "tk-sm-l",
+      "configured_status": "candidate_url",
+      "runtime_status": "error",
       "evidence_rows": 0,
-      "error": null
+      "error": "Fetch failed 404 Not Found: https://www.thepricedex.com/set/tk-sm-l/sm-trainer-kit-lycanroc/price-list"
     },
     {
       "set_key": "tk-sm-l",
@@ -748,11 +748,11 @@
       "set_key": "exu",
       "set_name": "Unseen Forces Unown Collection",
       "source_key": "thepricedex_price_list",
-      "source_alias": null,
-      "configured_status": "unavailable",
-      "runtime_status": "unavailable",
+      "source_alias": "exu",
+      "configured_status": "candidate_url",
+      "runtime_status": "error",
       "evidence_rows": 0,
-      "error": null
+      "error": "Fetch failed 404 Not Found: https://www.thepricedex.com/set/exu/unseen-forces-unown-collection/price-list"
     },
     {
       "set_key": "exu",
@@ -788,11 +788,11 @@
       "set_key": "wp",
       "set_name": "W Promotional",
       "source_key": "thepricedex_price_list",
-      "source_alias": null,
-      "configured_status": "unavailable",
-      "runtime_status": "unavailable",
+      "source_alias": "wp",
+      "configured_status": "candidate_url",
+      "runtime_status": "error",
       "evidence_rows": 0,
-      "error": null
+      "error": "Fetch failed 404 Not Found: https://www.thepricedex.com/set/wp/w-promotional/price-list"
     },
     {
       "set_key": "wp",
@@ -828,11 +828,11 @@
       "set_key": "tk-xy-b",
       "set_name": "XY trainer Kit (Bisharp)",
       "source_key": "thepricedex_price_list",
-      "source_alias": null,
-      "configured_status": "unavailable",
-      "runtime_status": "unavailable",
+      "source_alias": "tk-xy-b",
+      "configured_status": "candidate_url",
+      "runtime_status": "error",
       "evidence_rows": 0,
-      "error": null
+      "error": "Fetch failed 404 Not Found: https://www.thepricedex.com/set/tk-xy-b/xy-trainer-kit-bisharp/price-list"
     },
     {
       "set_key": "tk-xy-b",
@@ -868,11 +868,11 @@
       "set_key": "tk-xy-latia",
       "set_name": "XY trainer Kit (Latias)",
       "source_key": "thepricedex_price_list",
-      "source_alias": null,
-      "configured_status": "unavailable",
-      "runtime_status": "unavailable",
+      "source_alias": "tk-xy-latia",
+      "configured_status": "candidate_url",
+      "runtime_status": "error",
       "evidence_rows": 0,
-      "error": null
+      "error": "Fetch failed 404 Not Found: https://www.thepricedex.com/set/tk-xy-latia/xy-trainer-kit-latias/price-list"
     },
     {
       "set_key": "tk-xy-latia",
@@ -908,11 +908,11 @@
       "set_key": "tk-xy-latio",
       "set_name": "XY trainer Kit (Latios)",
       "source_key": "thepricedex_price_list",
-      "source_alias": null,
-      "configured_status": "unavailable",
-      "runtime_status": "unavailable",
+      "source_alias": "tk-xy-latio",
+      "configured_status": "candidate_url",
+      "runtime_status": "error",
       "evidence_rows": 0,
-      "error": null
+      "error": "Fetch failed 404 Not Found: https://www.thepricedex.com/set/tk-xy-latio/xy-trainer-kit-latios/price-list"
     },
     {
       "set_key": "tk-xy-latio",
@@ -948,11 +948,11 @@
       "set_key": "tk-xy-n",
       "set_name": "XY trainer Kit (Noivern)",
       "source_key": "thepricedex_price_list",
-      "source_alias": null,
-      "configured_status": "unavailable",
-      "runtime_status": "unavailable",
+      "source_alias": "tk-xy-n",
+      "configured_status": "candidate_url",
+      "runtime_status": "error",
       "evidence_rows": 0,
-      "error": null
+      "error": "Fetch failed 404 Not Found: https://www.thepricedex.com/set/tk-xy-n/xy-trainer-kit-noivern/price-list"
     },
     {
       "set_key": "tk-xy-n",
@@ -988,11 +988,11 @@
       "set_key": "tk-xy-p",
       "set_name": "XY trainer Kit (Pikachu Libre)",
       "source_key": "thepricedex_price_list",
-      "source_alias": null,
-      "configured_status": "unavailable",
-      "runtime_status": "unavailable",
+      "source_alias": "tk-xy-p",
+      "configured_status": "candidate_url",
+      "runtime_status": "error",
       "evidence_rows": 0,
-      "error": null
+      "error": "Fetch failed 404 Not Found: https://www.thepricedex.com/set/tk-xy-p/xy-trainer-kit-pikachu-libre/price-list"
     },
     {
       "set_key": "tk-xy-p",
@@ -1028,11 +1028,11 @@
       "set_key": "tk-xy-su",
       "set_name": "XY trainer Kit (Suicune)",
       "source_key": "thepricedex_price_list",
-      "source_alias": null,
-      "configured_status": "unavailable",
-      "runtime_status": "unavailable",
+      "source_alias": "tk-xy-su",
+      "configured_status": "candidate_url",
+      "runtime_status": "error",
       "evidence_rows": 0,
-      "error": null
+      "error": "Fetch failed 404 Not Found: https://www.thepricedex.com/set/tk-xy-su/xy-trainer-kit-suicune/price-list"
     },
     {
       "set_key": "tk-xy-su",
@@ -1068,11 +1068,11 @@
       "set_key": "tk-xy-sy",
       "set_name": "XY trainer Kit (Sylveon)",
       "source_key": "thepricedex_price_list",
-      "source_alias": null,
-      "configured_status": "unavailable",
-      "runtime_status": "unavailable",
+      "source_alias": "tk-xy-sy",
+      "configured_status": "candidate_url",
+      "runtime_status": "error",
       "evidence_rows": 0,
-      "error": null
+      "error": "Fetch failed 404 Not Found: https://www.thepricedex.com/set/tk-xy-sy/xy-trainer-kit-sylveon/price-list"
     },
     {
       "set_key": "tk-xy-sy",
@@ -1108,11 +1108,11 @@
       "set_key": "tk-xy-w",
       "set_name": "XY trainer Kit (Wigglytuff)",
       "source_key": "thepricedex_price_list",
-      "source_alias": null,
-      "configured_status": "unavailable",
-      "runtime_status": "unavailable",
+      "source_alias": "tk-xy-w",
+      "configured_status": "candidate_url",
+      "runtime_status": "error",
       "evidence_rows": 0,
-      "error": null
+      "error": "Fetch failed 404 Not Found: https://www.thepricedex.com/set/tk-xy-w/xy-trainer-kit-wigglytuff/price-list"
     },
     {
       "set_key": "tk-xy-w",
@@ -1148,11 +1148,11 @@
       "set_key": "xya",
       "set_name": "Yellow A Alternate",
       "source_key": "thepricedex_price_list",
-      "source_alias": null,
-      "configured_status": "unavailable",
-      "runtime_status": "unavailable",
+      "source_alias": "xya",
+      "configured_status": "candidate_url",
+      "runtime_status": "error",
       "evidence_rows": 0,
-      "error": null
+      "error": "Fetch failed 404 Not Found: https://www.thepricedex.com/set/xya/yellow-a-alternate/price-list"
     },
     {
       "set_key": "xya",
@@ -1191,7 +1191,7 @@
       "source_alias": "base1",
       "configured_status": "candidate_url",
       "runtime_status": "collected",
-      "evidence_rows": 105,
+      "evidence_rows": 310,
       "error": null
     },
     {
@@ -1231,7 +1231,7 @@
       "source_alias": "base2",
       "configured_status": "candidate_url",
       "runtime_status": "collected",
-      "evidence_rows": 82,
+      "evidence_rows": 194,
       "error": null
     },
     {
@@ -1240,8 +1240,8 @@
       "source_key": "tcgplayer_price_guide",
       "source_alias": null,
       "configured_status": "unavailable",
-      "runtime_status": "unavailable",
-      "evidence_rows": 0,
+      "runtime_status": "collected",
+      "evidence_rows": 16,
       "error": null
     },
     {
@@ -1261,7 +1261,7 @@
       "source_alias": "basep",
       "configured_status": "available",
       "runtime_status": "collected",
-      "evidence_rows": 107,
+      "evidence_rows": 62,
       "error": null
     },
     {
@@ -1271,7 +1271,7 @@
       "source_alias": "basep",
       "configured_status": "candidate_url",
       "runtime_status": "collected",
-      "evidence_rows": 109,
+      "evidence_rows": 110,
       "error": null
     },
     {
@@ -1281,7 +1281,7 @@
       "source_alias": null,
       "configured_status": "unavailable",
       "runtime_status": "collected",
-      "evidence_rows": 47,
+      "evidence_rows": 7,
       "error": null
     },
     {
@@ -1311,7 +1311,7 @@
       "source_alias": "base3",
       "configured_status": "candidate_url",
       "runtime_status": "collected",
-      "evidence_rows": 80,
+      "evidence_rows": 189,
       "error": null
     },
     {
@@ -1320,8 +1320,8 @@
       "source_key": "tcgplayer_price_guide",
       "source_alias": null,
       "configured_status": "unavailable",
-      "runtime_status": "unavailable",
-      "evidence_rows": 0,
+      "runtime_status": "collected",
+      "evidence_rows": 15,
       "error": null
     },
     {
@@ -1391,7 +1391,7 @@
       "source_alias": "base5",
       "configured_status": "candidate_url",
       "runtime_status": "collected",
-      "evidence_rows": 104,
+      "evidence_rows": 252,
       "error": null
     },
     {
@@ -1400,8 +1400,8 @@
       "source_key": "tcgplayer_price_guide",
       "source_alias": null,
       "configured_status": "unavailable",
-      "runtime_status": "unavailable",
-      "evidence_rows": 0,
+      "runtime_status": "collected",
+      "evidence_rows": 17,
       "error": null
     },
     {
@@ -1431,7 +1431,7 @@
       "source_alias": "gym1",
       "configured_status": "candidate_url",
       "runtime_status": "collected",
-      "evidence_rows": 153,
+      "evidence_rows": 398,
       "error": null
     },
     {
@@ -1440,8 +1440,8 @@
       "source_key": "tcgplayer_price_guide",
       "source_alias": null,
       "configured_status": "unavailable",
-      "runtime_status": "unavailable",
-      "evidence_rows": 0,
+      "runtime_status": "collected",
+      "evidence_rows": 19,
       "error": null
     },
     {
@@ -1471,7 +1471,7 @@
       "source_alias": "gym2",
       "configured_status": "candidate_url",
       "runtime_status": "collected",
-      "evidence_rows": 153,
+      "evidence_rows": 397,
       "error": null
     },
     {
@@ -1480,8 +1480,8 @@
       "source_key": "tcgplayer_price_guide",
       "source_alias": null,
       "configured_status": "unavailable",
-      "runtime_status": "unavailable",
-      "evidence_rows": 0,
+      "runtime_status": "collected",
+      "evidence_rows": 20,
       "error": null
     },
     {
@@ -1511,7 +1511,7 @@
       "source_alias": "neo1",
       "configured_status": "candidate_url",
       "runtime_status": "collected",
-      "evidence_rows": 130,
+      "evidence_rows": 334,
       "error": null
     },
     {
@@ -1520,8 +1520,8 @@
       "source_key": "tcgplayer_price_guide",
       "source_alias": null,
       "configured_status": "unavailable",
-      "runtime_status": "unavailable",
-      "evidence_rows": 0,
+      "runtime_status": "collected",
+      "evidence_rows": 19,
       "error": null
     },
     {
@@ -1551,7 +1551,7 @@
       "source_alias": "neo2",
       "configured_status": "candidate_url",
       "runtime_status": "collected",
-      "evidence_rows": 92,
+      "evidence_rows": 225,
       "error": null
     },
     {
@@ -1560,8 +1560,8 @@
       "source_key": "tcgplayer_price_guide",
       "source_alias": null,
       "configured_status": "unavailable",
-      "runtime_status": "unavailable",
-      "evidence_rows": 0,
+      "runtime_status": "collected",
+      "evidence_rows": 15,
       "error": null
     },
     {
@@ -1631,7 +1631,7 @@
       "source_alias": "neo3",
       "configured_status": "candidate_url",
       "runtime_status": "collected",
-      "evidence_rows": 82,
+      "evidence_rows": 198,
       "error": null
     },
     {
@@ -1640,8 +1640,8 @@
       "source_key": "tcgplayer_price_guide",
       "source_alias": null,
       "configured_status": "unavailable",
-      "runtime_status": "unavailable",
-      "evidence_rows": 0,
+      "runtime_status": "collected",
+      "evidence_rows": 14,
       "error": null
     },
     {
@@ -1671,7 +1671,7 @@
       "source_alias": "neo4",
       "configured_status": "candidate_url",
       "runtime_status": "collected",
-      "evidence_rows": 137,
+      "evidence_rows": 339,
       "error": null
     },
     {
@@ -1680,8 +1680,8 @@
       "source_key": "tcgplayer_price_guide",
       "source_alias": null,
       "configured_status": "unavailable",
-      "runtime_status": "unavailable",
-      "evidence_rows": 0,
+      "runtime_status": "collected",
+      "evidence_rows": 10,
       "error": null
     },
     {
@@ -1981,7 +1981,7 @@
       "source_alias": "np",
       "configured_status": "available",
       "runtime_status": "collected",
-      "evidence_rows": 80,
+      "evidence_rows": 40,
       "error": null
     },
     {
@@ -2000,8 +2000,8 @@
       "source_key": "tcgplayer_price_guide",
       "source_alias": null,
       "configured_status": "unavailable",
-      "runtime_status": "collected",
-      "evidence_rows": 13,
+      "runtime_status": "unavailable",
+      "evidence_rows": 0,
       "error": null
     },
     {
@@ -2981,7 +2981,7 @@
       "source_alias": "dpp",
       "configured_status": "available",
       "runtime_status": "collected",
-      "evidence_rows": 114,
+      "evidence_rows": 109,
       "error": null
     },
     {
@@ -3001,7 +3001,7 @@
       "source_alias": null,
       "configured_status": "unavailable",
       "runtime_status": "collected",
-      "evidence_rows": 34,
+      "evidence_rows": 32,
       "error": null
     },
     {
@@ -3661,7 +3661,7 @@
       "source_alias": "hgssp",
       "configured_status": "available",
       "runtime_status": "collected",
-      "evidence_rows": 50,
+      "evidence_rows": 49,
       "error": null
     },
     {
@@ -3861,7 +3861,7 @@
       "source_alias": "bwp",
       "configured_status": "available",
       "runtime_status": "collected",
-      "evidence_rows": 202,
+      "evidence_rows": 101,
       "error": null
     },
     {
@@ -3880,8 +3880,8 @@
       "source_key": "tcgplayer_price_guide",
       "source_alias": null,
       "configured_status": "unavailable",
-      "runtime_status": "collected",
-      "evidence_rows": 13,
+      "runtime_status": "unavailable",
+      "evidence_rows": 0,
       "error": null
     },
     {
@@ -4421,7 +4421,7 @@
       "source_alias": "xyp",
       "configured_status": "available",
       "runtime_status": "collected",
-      "evidence_rows": 432,
+      "evidence_rows": 216,
       "error": null
     },
     {
@@ -4440,8 +4440,8 @@
       "source_key": "tcgplayer_price_guide",
       "source_alias": null,
       "configured_status": "unavailable",
-      "runtime_status": "collected",
-      "evidence_rows": 11,
+      "runtime_status": "unavailable",
+      "evidence_rows": 0,
       "error": null
     },
     {
@@ -5221,7 +5221,7 @@
       "source_alias": "smp",
       "configured_status": "available",
       "runtime_status": "collected",
-      "evidence_rows": 496,
+      "evidence_rows": 250,
       "error": null
     },
     {
@@ -5241,7 +5241,7 @@
       "source_alias": null,
       "configured_status": "unavailable",
       "runtime_status": "collected",
-      "evidence_rows": 21,
+      "evidence_rows": 2,
       "error": null
     },
     {
@@ -6061,7 +6061,7 @@
       "source_alias": "swshp",
       "configured_status": "available",
       "runtime_status": "collected",
-      "evidence_rows": 563,
+      "evidence_rows": 442,
       "error": null
     },
     {
@@ -6081,7 +6081,7 @@
       "source_alias": null,
       "configured_status": "unavailable",
       "runtime_status": "collected",
-      "evidence_rows": 136,
+      "evidence_rows": 134,
       "error": null
     },
     {
@@ -7101,7 +7101,7 @@
       "source_alias": "svp",
       "configured_status": "available",
       "runtime_status": "collected",
-      "evidence_rows": 453,
+      "evidence_rows": 245,
       "error": null
     },
     {
@@ -7120,8 +7120,8 @@
       "source_key": "tcgplayer_price_guide",
       "source_alias": null,
       "configured_status": "unavailable",
-      "runtime_status": "collected",
-      "evidence_rows": 8,
+      "runtime_status": "unavailable",
+      "evidence_rows": 0,
       "error": null
     },
     {

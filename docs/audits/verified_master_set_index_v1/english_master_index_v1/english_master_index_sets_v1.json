@@ -1,6 +1,6 @@
 {
   "version": "ENGLISH_MASTER_INDEX_SETS_V1",
-  "generated_at": "2026-05-25T15:19:30.123Z",
+  "generated_at": "2026-05-25T16:40:48.237Z",
   "audit_only": true,
   "db_writes": false,
   "sets": [
@@ -16,16 +16,16 @@
         "tcgdex": "tk-bw-e",
         "official_checklist_pdf": null,
         "official_pokemon_checklist": null,
-        "thepricedex": null,
-        "thepricedex_price_list": null
+        "thepricedex": "tk-bw-e",
+        "thepricedex_price_list": "tk-bw-e"
       },
       "source_status": {
         "pokemontcg_api": "unavailable",
         "tcgdex": "available",
         "official_checklist_pdf": "unavailable",
         "official_pokemon_checklist": "unavailable",
-        "thepricedex": "unavailable",
-        "thepricedex_price_list": "unavailable"
+        "thepricedex": "candidate_url",
+        "thepricedex_price_list": "candidate_url"
       },
       "source_totals": {
         "pokemontcg_api": {
@@ -50,16 +50,16 @@
         "tcgdex": "tk-bw-z",
         "official_checklist_pdf": null,
         "official_pokemon_checklist": null,
-        "thepricedex": null,
-        "thepricedex_price_list": null
+        "thepricedex": "tk-bw-z",
+        "thepricedex_price_list": "tk-bw-z"
       },
       "source_status": {
         "pokemontcg_api": "unavailable",
         "tcgdex": "available",
         "official_checklist_pdf": "unavailable",
         "official_pokemon_checklist": "unavailable",
-        "thepricedex": "unavailable",
-        "thepricedex_price_list": "unavailable"
+        "thepricedex": "candidate_url",
+        "thepricedex_price_list": "candidate_url"
       },
       "source_totals": {
         "pokemontcg_api": {
@@ -84,16 +84,16 @@
         "tcgdex": "tk-dp-l",
         "official_checklist_pdf": null,
         "official_pokemon_checklist": null,
-        "thepricedex": null,
-        "thepricedex_price_list": null
+        "thepricedex": "tk-dp-l",
+        "thepricedex_price_list": "tk-dp-l"
       },
       "source_status": {
         "pokemontcg_api": "unavailable",
         "tcgdex": "available",
         "official_checklist_pdf": "unavailable",
         "official_pokemon_checklist": "unavailable",
-        "thepricedex": "unavailable",
-        "thepricedex_price_list": "unavailable"
+        "thepricedex": "candidate_url",
+        "thepricedex_price_list": "candidate_url"
       },
       "source_totals": {
         "pokemontcg_api": {
@@ -118,16 +118,16 @@
         "tcgdex": "tk-dp-m",
         "official_checklist_pdf": null,
         "official_pokemon_checklist": null,
-        "thepricedex": null,
-        "thepricedex_price_list": null
+        "thepricedex": "tk-dp-m",
+        "thepricedex_price_list": "tk-dp-m"
       },
       "source_status": {
         "pokemontcg_api": "unavailable",
         "tcgdex": "available",
         "official_checklist_pdf": "unavailable",
         "official_pokemon_checklist": "unavailable",
-        "thepricedex": "unavailable",
-        "thepricedex_price_list": "unavailable"
+        "thepricedex": "candidate_url",
+        "thepricedex_price_list": "candidate_url"
       },
       "source_totals": {
         "pokemontcg_api": {
@@ -152,16 +152,16 @@
         "tcgdex": "tk-hs-g",
         "official_checklist_pdf": null,
         "official_pokemon_checklist": null,
-        "thepricedex": null,
-        "thepricedex_price_list": null
+        "thepricedex": "tk-hs-g",
+        "thepricedex_price_list": "tk-hs-g"
       },
       "source_status": {
         "pokemontcg_api": "unavailable",
         "tcgdex": "available",
         "official_checklist_pdf": "unavailable",
         "official_pokemon_checklist": "unavailable",
-        "thepricedex": "unavailable",
-        "thepricedex_price_list": "unavailable"
+        "thepricedex": "candidate_url",
+        "thepricedex_price_list": "candidate_url"
       },
       "source_totals": {
         "pokemontcg_api": {
@@ -186,16 +186,16 @@
         "tcgdex": "tk-hs-r",
         "official_checklist_pdf": null,
         "official_pokemon_checklist": null,
-        "thepricedex": null,
-        "thepricedex_price_list": null
+        "thepricedex": "tk-hs-r",
+        "thepricedex_price_list": "tk-hs-r"
       },
       "source_status": {
         "pokemontcg_api": "unavailable",
         "tcgdex": "available",
         "official_checklist_pdf": "unavailable",
         "official_pokemon_checklist": "unavailable",
-        "thepricedex": "unavailable",
-        "thepricedex_price_list": "unavailable"
+        "thepricedex": "candidate_url",
+        "thepricedex_price_list": "candidate_url"
       },
       "source_totals": {
         "pokemontcg_api": {
@@ -220,16 +220,16 @@
         "tcgdex": "jumbo",
         "official_checklist_pdf": null,
         "official_pokemon_checklist": null,
-        "thepricedex": null,
-        "thepricedex_price_list": null
+        "thepricedex": "jumbo",
+        "thepricedex_price_list": "jumbo"
       },
       "source_status": {
         "pokemontcg_api": "unavailable",
         "tcgdex": "available",
         "official_checklist_pdf": "unavailable",
         "official_pokemon_checklist": "unavailable",
-        "thepricedex": "unavailable",
-        "thepricedex_price_list": "unavailable"
+        "thepricedex": "candidate_url",
+        "thepricedex_price_list": "candidate_url"
       },
       "source_totals": {
         "pokemontcg_api": {
@@ -254,16 +254,16 @@
         "tcgdex": "2023sv",
         "official_checklist_pdf": null,
         "official_pokemon_checklist": null,
-        "thepricedex": null,
-        "thepricedex_price_list": null
+        "thepricedex": "2023sv",
+        "thepricedex_price_list": "2023sv"
       },
       "source_status": {
         "pokemontcg_api": "unavailable",
         "tcgdex": "available",
         "official_checklist_pdf": "unavailable",
         "official_pokemon_checklist": "unavailable",
-        "thepricedex": "unavailable",
-        "thepricedex_price_list": "unavailable"
+        "thepricedex": "candidate_url",
+        "thepricedex_price_list": "candidate_url"
       },
       "source_totals": {
         "pokemontcg_api": {
@@ -288,16 +288,16 @@
         "tcgdex": "2024sv",
         "official_checklist_pdf": null,
         "official_pokemon_checklist": null,
-        "thepricedex": null,
-        "thepricedex_price_list": null
+        "thepricedex": "2024sv",
+        "thepricedex_price_list": "2024sv"
       },
       "source_status": {
         "pokemontcg_api": "unavailable",
         "tcgdex": "available",
         "official_checklist_pdf": "unavailable",
         "official_pokemon_checklist": "unavailable",
-        "thepricedex": "unavailable",
-        "thepricedex_price_list": "unavailable"
+        "thepricedex": "candidate_url",
+        "thepricedex_price_list": "candidate_url"
       },
       "source_totals": {
         "pokemontcg_api": {
@@ -322,16 +322,16 @@
         "tcgdex": "mee",
         "official_checklist_pdf": null,
         "official_pokemon_checklist": null,
-        "thepricedex": null,
-        "thepricedex_price_list": null
+        "thepricedex": "mee",
+        "thepricedex_price_list": "mee"
       },
       "source_status": {
         "pokemontcg_api": "unavailable",
         "tcgdex": "available",
         "official_checklist_pdf": "unavailable",
         "official_pokemon_checklist": "unavailable",
-        "thepricedex": "unavailable",
-        "thepricedex_price_list": "unavailable"
+        "thepricedex": "candidate_url",
+        "thepricedex_price_list": "candidate_url"
       },
       "source_totals": {
         "pokemontcg_api": {
@@ -356,16 +356,16 @@
         "tcgdex": "mep",
         "official_checklist_pdf": null,
         "official_pokemon_checklist": null,
-        "thepricedex": null,
-        "thepricedex_price_list": null
+        "thepricedex": "mep",
+        "thepricedex_price_list": "mep"
       },
       "source_status": {
         "pokemontcg_api": "unavailable",
         "tcgdex": "available",
         "official_checklist_pdf": "unavailable",
         "official_pokemon_checklist": "unavailable",
-        "thepricedex": "unavailable",
-        "thepricedex_price_list": "unavailable"
+        "thepricedex": "candidate_url",
+        "thepricedex_price_list": "candidate_url"
       },
       "source_totals": {
         "pokemontcg_api": {
@@ -390,16 +390,16 @@
         "tcgdex": "mfb",
         "official_checklist_pdf": null,
         "official_pokemon_checklist": null,
-        "thepricedex": null,
-        "thepricedex_price_list": null
+        "thepricedex": "mfb",
+        "thepricedex_price_list": "mfb"
       },
       "source_status": {
         "pokemontcg_api": "unavailable",
         "tcgdex": "available",
         "official_checklist_pdf": "unavailable",
         "official_pokemon_checklist": "unavailable",
-        "thepricedex": "unavailable",
-        "thepricedex_price_list": "unavailable"
+        "thepricedex": "candidate_url",
+        "thepricedex_price_list": "candidate_url"
       },
       "source_totals": {
         "pokemontcg_api": {
@@ -424,16 +424,16 @@
         "tcgdex": "ex5.5",
         "official_checklist_pdf": null,
         "official_pokemon_checklist": null,
-        "thepricedex": null,
-        "thepricedex_price_list": null
+        "thepricedex": "ex5.5",
+        "thepricedex_price_list": "ex5.5"
       },
       "source_status": {
         "pokemontcg_api": "unavailable",
         "tcgdex": "available",
         "official_checklist_pdf": "unavailable",
         "official_pokemon_checklist": "unavailable",
-        "thepricedex": "unavailable",
-        "thepricedex_price_list": "unavailable"
+        "thepricedex": "candidate_url",
+        "thepricedex_price_list": "candidate_url"
       },
       "source_totals": {
         "pokemontcg_api": {
@@ -458,16 +458,16 @@
         "tcgdex": "fut2020",
         "official_checklist_pdf": null,
         "official_pokemon_checklist": null,
-        "thepricedex": null,
-        "thepricedex_price_list": null
+        "thepricedex": "fut2020",
+        "thepricedex_price_list": "fut2020"
       },
       "source_status": {
         "pokemontcg_api": "unavailable",
         "tcgdex": "available",
         "official_checklist_pdf": "unavailable",
         "official_pokemon_checklist": "unavailable",
-        "thepricedex": "unavailable",
-        "thepricedex_price_list": "unavailable"
+        "thepricedex": "candidate_url",
+        "thepricedex_price_list": "candidate_url"
       },
       "source_totals": {
         "pokemontcg_api": {
@@ -492,16 +492,16 @@
         "tcgdex": "rc",
         "official_checklist_pdf": null,
         "official_pokemon_checklist": null,
-        "thepricedex": null,
-        "thepricedex_price_list": null
+        "thepricedex": "rc",
+        "thepricedex_price_list": "rc"
       },
       "source_status": {
         "pokemontcg_api": "unavailable",
         "tcgdex": "available",
         "official_checklist_pdf": "unavailable",
         "official_pokemon_checklist": "unavailable",
-        "thepricedex": "unavailable",
-        "thepricedex_price_list": "unavailable"
+        "thepricedex": "candidate_url",
+        "thepricedex_price_list": "candidate_url"
       },
       "source_totals": {
         "pokemontcg_api": {
@@ -526,16 +526,16 @@
         "tcgdex": "sp",
         "official_checklist_pdf": null,
         "official_pokemon_checklist": null,
-        "thepricedex": null,
-        "thepricedex_price_list": null
+        "thepricedex": "sp",
+        "thepricedex_price_list": "sp"
       },
       "source_status": {
         "pokemontcg_api": "unavailable",
         "tcgdex": "available",
         "official_checklist_pdf": "unavailable",
         "official_pokemon_checklist": "unavailable",
-        "thepricedex": "unavailable",
-        "thepricedex_price_list": "unavailable"
+        "thepricedex": "candidate_url",
+        "thepricedex_price_list": "candidate_url"
       },
       "source_totals": {
         "pokemontcg_api": {
@@ -560,16 +560,16 @@
         "tcgdex": "tk-sm-r",
         "official_checklist_pdf": null,
         "official_pokemon_checklist": null,
-        "thepricedex": null,
-        "thepricedex_price_list": null
+        "thepricedex": "tk-sm-r",
+        "thepricedex_price_list": "tk-sm-r"
       },
       "source_status": {
         "pokemontcg_api": "unavailable",
         "tcgdex": "available",
         "official_checklist_pdf": "unavailable",
         "official_pokemon_checklist": "unavailable",
-        "thepricedex": "unavailable",
-        "thepricedex_price_list": "unavailable"
+        "thepricedex": "candidate_url",
+        "thepricedex_price_list": "candidate_url"
       },
       "source_totals": {
         "pokemontcg_api": {
@@ -594,16 +594,16 @@
         "tcgdex": "tk-sm-l",
         "official_checklist_pdf": null,
         "official_pokemon_checklist": null,
-        "thepricedex": null,
-        "thepricedex_price_list": null
+        "thepricedex": "tk-sm-l",
+        "thepricedex_price_list": "tk-sm-l"
       },
       "source_status": {
         "pokemontcg_api": "unavailable",
         "tcgdex": "available",
         "official_checklist_pdf": "unavailable",
         "official_pokemon_checklist": "unavailable",
-        "thepricedex": "unavailable",
-        "thepricedex_price_list": "unavailable"
+        "thepricedex": "candidate_url",
+        "thepricedex_price_list": "candidate_url"
       },
       "source_totals": {
         "pokemontcg_api": {
@@ -628,16 +628,16 @@
         "tcgdex": "exu",
         "official_checklist_pdf": null,
         "official_pokemon_checklist": null,
-        "thepricedex": null,
-        "thepricedex_price_list": null
+        "thepricedex": "exu",
+        "thepricedex_price_list": "exu"
       },
       "source_status": {
         "pokemontcg_api": "unavailable",
         "tcgdex": "available",
         "official_checklist_pdf": "unavailable",
         "official_pokemon_checklist": "unavailable",
-        "thepricedex": "unavailable",
-        "thepricedex_price_list": "unavailable"
+        "thepricedex": "candidate_url",
+        "thepricedex_price_list": "candidate_url"
       },
       "source_totals": {
         "pokemontcg_api": {
@@ -662,16 +662,16 @@
         "tcgdex": "wp",
         "official_checklist_pdf": null,
         "official_pokemon_checklist": null,
-        "thepricedex": null,
-        "thepricedex_price_list": null
+        "thepricedex": "wp",
+        "thepricedex_price_list": "wp"
       },
       "source_status": {
         "pokemontcg_api": "unavailable",
         "tcgdex": "available",
         "official_checklist_pdf": "unavailable",
         "official_pokemon_checklist": "unavailable",
-        "thepricedex": "unavailable",
-        "thepricedex_price_list": "unavailable"
+        "thepricedex": "candidate_url",
+        "thepricedex_price_list": "candidate_url"
       },
       "source_totals": {
         "pokemontcg_api": {
@@ -696,16 +696,16 @@
         "tcgdex": "tk-xy-b",
         "official_checklist_pdf": null,
         "official_pokemon_checklist": null,
-        "thepricedex": null,
-        "thepricedex_price_list": null
+        "thepricedex": "tk-xy-b",
+        "thepricedex_price_list": "tk-xy-b"
       },
       "source_status": {
         "pokemontcg_api": "unavailable",
         "tcgdex": "available",
         "official_checklist_pdf": "unavailable",
         "official_pokemon_checklist": "unavailable",
-        "thepricedex": "unavailable",
-        "thepricedex_price_list": "unavailable"
+        "thepricedex": "candidate_url",
+        "thepricedex_price_list": "candidate_url"
       },
       "source_totals": {
         "pokemontcg_api": {
@@ -730,16 +730,16 @@
         "tcgdex": "tk-xy-latia",
         "official_checklist_pdf": null,
         "official_pokemon_checklist": null,
-        "thepricedex": null,
-        "thepricedex_price_list": null
+        "thepricedex": "tk-xy-latia",
+        "thepricedex_price_list": "tk-xy-latia"
       },
       "source_status": {
         "pokemontcg_api": "unavailable",
         "tcgdex": "available",
         "official_checklist_pdf": "unavailable",
         "official_pokemon_checklist": "unavailable",
-        "thepricedex": "unavailable",
-        "thepricedex_price_list": "unavailable"
+        "thepricedex": "candidate_url",
+        "thepricedex_price_list": "candidate_url"
       },
       "source_totals": {
         "pokemontcg_api": {
@@ -764,16 +764,16 @@
         "tcgdex": "tk-xy-latio",
         "official_checklist_pdf": null,
         "official_pokemon_checklist": null,
-        "thepricedex": null,
-        "thepricedex_price_list": null
+        "thepricedex": "tk-xy-latio",
+        "thepricedex_price_list": "tk-xy-latio"
       },
       "source_status": {
         "pokemontcg_api": "unavailable",
         "tcgdex": "available",
         "official_checklist_pdf": "unavailable",
         "official_pokemon_checklist": "unavailable",
-        "thepricedex": "unavailable",
-        "thepricedex_price_list": "unavailable"
+        "thepricedex": "candidate_url",
+        "thepricedex_price_list": "candidate_url"
       },
       "source_totals": {
         "pokemontcg_api": {
@@ -798,16 +798,16 @@
         "tcgdex": "tk-xy-n",
         "official_checklist_pdf": null,
         "official_pokemon_checklist": null,
-        "thepricedex": null,
-        "thepricedex_price_list": null
+        "thepricedex": "tk-xy-n",
+        "thepricedex_price_list": "tk-xy-n"
       },
       "source_status": {
         "pokemontcg_api": "unavailable",
         "tcgdex": "available",
         "official_checklist_pdf": "unavailable",
         "official_pokemon_checklist": "unavailable",
-        "thepricedex": "unavailable",
-        "thepricedex_price_list": "unavailable"
+        "thepricedex": "candidate_url",
+        "thepricedex_price_list": "candidate_url"
       },
       "source_totals": {
         "pokemontcg_api": {
@@ -832,16 +832,16 @@
         "tcgdex": "tk-xy-p",
         "official_checklist_pdf": null,
         "official_pokemon_checklist": null,
-        "thepricedex": null,
-        "thepricedex_price_list": null
+        "thepricedex": "tk-xy-p",
+        "thepricedex_price_list": "tk-xy-p"
       },
       "source_status": {
         "pokemontcg_api": "unavailable",
         "tcgdex": "available",
         "official_checklist_pdf": "unavailable",
         "official_pokemon_checklist": "unavailable",
-        "thepricedex": "unavailable",
-        "thepricedex_price_list": "unavailable"
+        "thepricedex": "candidate_url",
+        "thepricedex_price_list": "candidate_url"
       },
       "source_totals": {
         "pokemontcg_api": {
@@ -866,16 +866,16 @@
         "tcgdex": "tk-xy-su",
         "official_checklist_pdf": null,
         "official_pokemon_checklist": null,
-        "thepricedex": null,
-        "thepricedex_price_list": null
+        "thepricedex": "tk-xy-su",
+        "thepricedex_price_list": "tk-xy-su"
       },
       "source_status": {
         "pokemontcg_api": "unavailable",
         "tcgdex": "available",
         "official_checklist_pdf": "unavailable",
         "official_pokemon_checklist": "unavailable",
-        "thepricedex": "unavailable",
-        "thepricedex_price_list": "unavailable"
+        "thepricedex": "candidate_url",
+        "thepricedex_price_list": "candidate_url"
       },
       "source_totals": {
         "pokemontcg_api": {
@@ -900,16 +900,16 @@
         "tcgdex": "tk-xy-sy",
         "official_checklist_pdf": null,
         "official_pokemon_checklist": null,
-        "thepricedex": null,
-        "thepricedex_price_list": null
+        "thepricedex": "tk-xy-sy",
+        "thepricedex_price_list": "tk-xy-sy"
       },
       "source_status": {
         "pokemontcg_api": "unavailable",
         "tcgdex": "available",
         "official_checklist_pdf": "unavailable",
         "official_pokemon_checklist": "unavailable",
-        "thepricedex": "unavailable",
-        "thepricedex_price_list": "unavailable"
+        "thepricedex": "candidate_url",
+        "thepricedex_price_list": "candidate_url"
       },
       "source_totals": {
         "pokemontcg_api": {
@@ -934,16 +934,16 @@
         "tcgdex": "tk-xy-w",
         "official_checklist_pdf": null,
         "official_pokemon_checklist": null,
-        "thepricedex": null,
-        "thepricedex_price_list": null
+        "thepricedex": "tk-xy-w",
+        "thepricedex_price_list": "tk-xy-w"
       },
       "source_status": {
         "pokemontcg_api": "unavailable",
         "tcgdex": "available",
         "official_checklist_pdf": "unavailable",
         "official_pokemon_checklist": "unavailable",
-        "thepricedex": "unavailable",
-        "thepricedex_price_list": "unavailable"
+        "thepricedex": "candidate_url",
+        "thepricedex_price_list": "candidate_url"
       },
       "source_totals": {
         "pokemontcg_api": {
@@ -968,16 +968,16 @@
         "tcgdex": "xya",
         "official_checklist_pdf": null,
         "official_pokemon_checklist": null,
-        "thepricedex": null,
-        "thepricedex_price_list": null
+        "thepricedex": "xya",
+        "thepricedex_price_list": "xya"
       },
       "source_status": {
         "pokemontcg_api": "unavailable",
         "tcgdex": "available",
         "official_checklist_pdf": "unavailable",
         "official_pokemon_checklist": "unavailable",
-        "thepricedex": "unavailable",
-        "thepricedex_price_list": "unavailable"
+        "thepricedex": "candidate_url",
+        "thepricedex_price_list": "candidate_url"
       },
       "source_totals": {
         "pokemontcg_api": {

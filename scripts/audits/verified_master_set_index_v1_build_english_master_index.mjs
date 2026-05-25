@@ -30,6 +30,12 @@ for (const envPath of ['.env.local', '.env']) {
 const DEFAULT_MASTER_OUTPUT_DIR = path.join(DEFAULT_OUTPUT_DIR, 'english_master_index_v1');
 const SUPPORTED_SOURCES = new Set(['tcgdex', 'pokemontcg_api', 'official_checklist_pdf', 'thepricedex']);
 const HUMAN_REQUIRED_NOTE = 'Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.';
+const EXACT_CHECKLIST_SOURCE_KINDS = new Set([
+  'official_gallery',
+  'human_readable_checklist',
+  'marketplace_checklist',
+  'collector_reference',
+]);
 
 async function sleep(ms) {
   await new Promise((resolve) => {
@@ -280,16 +286,16 @@ function buildSetConfigs({ pokemonSets, tcgdexSets, options }) {
         tcgdex: tcgdexSet.id,
         official_checklist_pdf: null,
         official_pokemon_checklist: null,
-        thepricedex: null,
-        thepricedex_price_list: null,
+        thepricedex: tcgdexSet.id,
+        thepricedex_price_list: tcgdexSet.id,
       },
       source_status: {
         pokemontcg_api: 'unavailable',
         tcgdex: 'available',
         official_checklist_pdf: 'unavailable',
         official_pokemon_checklist: 'unavailable',
-        thepricedex: 'unavailable',
-        thepricedex_price_list: 'unavailable',
+        thepricedex: 'candidate_url',
+        thepricedex_price_list: 'candidate_url',
       },
       source_totals: {
         pokemontcg_api: {
@@ -338,13 +344,24 @@ function finishCandidatesFromPokemonTcg(card) {
   return uniqueSorted(finishes.map(normalizeFinishKey));
 }
 
-function finishCandidatesFromTcgdex(card) {
+function isBlackStarPromoSet(setConfig) {
+  return /\bblack star promos?\b/i.test(setConfig?.set_name ?? '')
+    || ['basep', 'np', 'dpp', 'hsp', 'bwp', 'xyp', 'smp', 'swshp', 'svp', 'mep'].includes(setConfig?.key);
+}
+
+function finishCandidatesFromTcgdex(card, setConfig) {
   const variants = card?.variants && typeof card.variants === 'object' ? card.variants : {};
   const finishes = [];
-  if (variants.normal === true) finishes.push('normal');
-  if (variants.holo === true || variants.holofoil === true) finishes.push('holo');
+  const hasNormal = variants.normal === true;
+  const hasHolo = variants.holo === true || variants.holofoil === true;
+  if (hasNormal && !isBlackStarPromoSet(setConfig)) finishes.push('normal');
+  if (hasHolo) finishes.push('holo');
   if (variants.reverse === true || variants.reverseHolo === true || variants.reverseHolofoil === true) finishes.push('reverse');
-  if (variants.firstEdition === true || variants.firstEditionNormal === true) finishes.push('first_edition_normal');
+  if (variants.firstEdition === true) {
+    if (hasNormal) finishes.push('first_edition_normal');
+    if (hasHolo) finishes.push('first_edition_holo');
+  }
+  if (variants.firstEditionNormal === true) finishes.push('first_edition_normal');
   if (variants.firstEditionHolo === true) finishes.push('first_edition_holo');
   return uniqueSorted(finishes.map(normalizeFinishKey));
 }
@@ -364,8 +381,15 @@ function finishKeyFromThePriceDexVariant(value) {
     reverse_holo: 'reverse',
     reverse: 'reverse',
     first_edition_normal: 'first_edition_normal',
+    first_edition: 'first_edition_normal',
     first_edition_holofoil: 'first_edition_holo',
     first_edition_holo: 'first_edition_holo',
+    first_edition_shadowless: 'first_edition_normal',
+    first_edition_shadowless_holofoil: 'first_edition_holo',
+    first_edition_shadowless_red_cheeks: 'first_edition_normal',
+    first_edition_unlimited_holofoil: 'first_edition_holo',
+    unlimited: 'normal',
+    unlimited_holofoil: 'holo',
     pokeball: 'pokeball',
     poke_ball: 'pokeball',
     masterball: 'masterball',
@@ -462,7 +486,7 @@ function tcgdexCardEvidence(card, setConfig, retrievedAt) {
       evidence_label: `TCGdex card ${card.id}`,
       notes: 'Structured API card identity evidence.',
     },
-    ...finishCandidatesFromTcgdex(card).map((finishKey) => ({
+    ...finishCandidatesFromTcgdex(card, setConfig).map((finishKey) => ({
       ...base,
       finish_key: finishKey,
       evidence_type: 'finish_presence',
@@ -1166,6 +1190,69 @@ function countBy(rows, keyFn) {
   return Object.fromEntries(Object.entries(counts).sort(([a], [b]) => a.localeCompare(b)));
 }
 
+function cardLevelKey(row) {
+  return [
+    normalizeText(row.set_name),
+    normalizeNumber(row.card_number),
+    normalizeText(row.card_name),
+  ].join('|');
+}
+
+function suppressStructuredOnlyFinishCandidates(records, generatedAt) {
+  const humanFinishesByCard = new Map();
+  const rowsByPrinting = new Map();
+
+  for (const row of records) {
+    if (row.language !== 'en' || row.evidence_type !== 'finish_presence' || !row.finish_key || !row.card_number || !row.card_name) continue;
+    const printingKey = printingFactKey(row);
+    if (!rowsByPrinting.has(printingKey)) rowsByPrinting.set(printingKey, []);
+    rowsByPrinting.get(printingKey).push(row);
+
+    if (EXACT_CHECKLIST_SOURCE_KINDS.has(row.source_kind)) {
+      const cardKey = cardLevelKey(row);
+      if (!humanFinishesByCard.has(cardKey)) humanFinishesByCard.set(cardKey, new Set());
+      humanFinishesByCard.get(cardKey).add(row.finish_key);
+    }
+  }
+
+  const kept = [];
+  const suppressed = [];
+  for (const row of records) {
+    const cardKey = cardLevelKey(row);
+    const humanFinishes = humanFinishesByCard.get(cardKey);
+    const isSuppressibleStructuredFinish = row.language === 'en'
+      && row.source_kind === 'structured_api'
+      && row.evidence_type === 'finish_presence'
+      && row.finish_key
+      && row.card_number
+      && row.card_name
+      && humanFinishes
+      && !humanFinishes.has(row.finish_key);
+
+    if (!isSuppressibleStructuredFinish) {
+      kept.push(row);
+      continue;
+    }
+
+    const sameFactRows = rowsByPrinting.get(printingFactKey(row)) ?? [];
+    const sourceKeys = uniqueSorted(sameFactRows.map((candidate) => candidate.source_key));
+    const hasChecklistSameFinish = sameFactRows.some((candidate) => EXACT_CHECKLIST_SOURCE_KINDS.has(candidate.source_kind));
+    if (sourceKeys.length === 1 && !hasChecklistSameFinish) {
+      suppressed.push({
+        ...row,
+        suppressed_at: generatedAt,
+        suppression_status: 'structured_only_unsupported_by_exact_checklist',
+        supported_checklist_finishes_for_card: uniqueSorted([...humanFinishes]),
+        suppression_reason: 'The card has exact human/checklist variant evidence, but this single structured-source finish is not listed by that checklist lane. It is excluded from working Master Index truth and retained in this audit report.',
+      });
+    } else {
+      kept.push(row);
+    }
+  }
+
+  return { records: kept, suppressed };
+}
+
 function sourceOverlap(records) {
   return Object.entries(countBy(records, (row) => row.source_key))
     .map(([source_key, evidence_rows]) => ({ source_key, evidence_rows }));
@@ -1198,7 +1285,7 @@ function setInventoryPayload({ setConfigs, records, classified, sourceAvailabili
   };
 }
 
-function indexPayload({ records, classified, setConfigs, sourceAvailability, generatedAt }) {
+function indexPayload({ records, classified, setConfigs, sourceAvailability, generatedAt, structuredSuppression }) {
   return {
     version: 'ENGLISH_VERIFIED_MASTER_SET_INDEX_V1',
     generated_at: generatedAt,
@@ -1222,6 +1309,7 @@ function indexPayload({ records, classified, setConfigs, sourceAvailability, gen
       printings_by_status: countBy(classified.printings, (row) => row.status),
       conflicts: classified.conflicts.length,
       manual_review: classified.manual_review.length,
+      suppressed_structured_finish_candidates: structuredSuppression?.suppressed?.length ?? 0,
       source_availability_by_status: countBy(sourceAvailability, (row) => `${row.source_key}|${row.runtime_status}`),
     },
     sets: setConfigs,
@@ -1231,6 +1319,7 @@ function indexPayload({ records, classified, setConfigs, sourceAvailability, gen
     finish_absences: classified.finish_absences,
     conflicts: classified.conflicts,
     manual_review: classified.manual_review,
+    structured_suppression: structuredSuppression ?? { suppressed: [] },
   };
 }
 
@@ -2500,8 +2589,50 @@ function indexSummaryArtifact(index) {
       manual_review: 'english_master_index_manual_review_v1.json',
       conflicts: 'english_master_index_conflicts_v1.json',
       grookai_audit: 'english_master_index_grookai_audit_v1.json',
+      suppressed_structured_finish_candidates: 'english_master_index_suppressed_structured_finish_candidates_v1.json',
     },
   };
+}
+
+function buildSuppressedStructuredFinishCandidatesMarkdown(payload) {
+  const rows = payload.suppressed.slice(0, 500).map((row) => [
+    row.set_key,
+    row.set_name,
+    row.card_number,
+    row.card_name,
+    row.finish_key,
+    row.source_key,
+    row.supported_checklist_finishes_for_card.join(', '),
+  ]);
+  const bySet = Object.entries(countBy(payload.suppressed, (row) => row.set_key))
+    .sort((a, b) => b[1] - a[1])
+    .slice(0, 100);
+  return [
+    '# Suppressed Structured Finish Candidates V1',
+    '',
+    `Generated: ${payload.generated_at}`,
+    '',
+    'Audit only. No DB writes, migrations, cleanup, quarantine, or public hiding were performed.',
+    '',
+    'These rows are single structured-source finish claims excluded from the working Master Index because exact human/checklist variant evidence exists for the same card and does not list that finish.',
+    '',
+    'This is not deletion authority for Grookai. It is a source-quality control report for Master Index construction.',
+    '',
+    '## Summary',
+    '',
+    markdownTable(['metric', 'count'], [
+      ['suppressed rows', payload.suppressed.length],
+    ]),
+    '',
+    '## By Set',
+    '',
+    markdownTable(['set_key', 'count'], bySet),
+    '',
+    '## Sample Rows',
+    '',
+    markdownTable(['set_key', 'set_name', 'card_number', 'card_name', 'suppressed_finish', 'source', 'checklist_finishes'], rows),
+    '',
+  ].join('\n');
 }
 
 async function writeReports({ outputDir, index, agreement, setAudit, grookaiAudit, generatedAt }) {
@@ -2558,6 +2689,19 @@ async function writeReports({ outputDir, index, agreement, setAudit, grookaiAudi
     db_writes: false,
     manual_review: index.manual_review,
   });
+  const suppressedStructuredFinishCandidates = {
+    version: 'ENGLISH_MASTER_INDEX_SUPPRESSED_STRUCTURED_FINISH_CANDIDATES_V1',
+    generated_at: generatedAt,
+    audit_only: true,
+    db_writes: false,
+    rule: 'Single structured-source finish claims are excluded when exact human/checklist variant evidence exists for the same card and does not list that finish.',
+    suppressed: index.structured_suppression?.suppressed ?? [],
+  };
+  await writeJson(outputDir, 'english_master_index_suppressed_structured_finish_candidates_v1.json', suppressedStructuredFinishCandidates);
+  await fs.writeFile(
+    path.join(outputDir, 'english_master_index_suppressed_structured_finish_candidates_v1.md'),
+    buildSuppressedStructuredFinishCandidatesMarkdown(suppressedStructuredFinishCandidates),
+  );
   await fs.writeFile(path.join(outputDir, 'english_master_index_v1.md'), buildIndexMarkdown(index));
   await writeJson(outputDir, 'english_master_index_source_agreement_v1.json', agreement);
   await fs.writeFile(path.join(outputDir, 'english_master_index_source_agreement_v1.md'), buildAgreementMarkdown(agreement));
@@ -2610,7 +2754,7 @@ async function main() {
     console.log(`[master-index] ${index + 1}/${setConfigs.length} collecting ${setConfig.key} ${setConfig.set_name}`);
     return collectEvidenceForSet(setConfig, options, generatedAt);
   });
-  const records = collected.flatMap((entry) => entry.rows);
+  let records = collected.flatMap((entry) => entry.rows);
   const sourceAvailability = collected.flatMap((entry) => entry.availability);
   if (!options.skipHumanFixtures) {
     const fixtureRows = await collectHumanFixtureEvidence(setConfigs, {
@@ -2630,10 +2774,14 @@ async function main() {
     });
     console.log(`[master-index] loaded ${fixtureRows.length} human/checklist fixture evidence rows`);
   }
-  console.log(`[master-index] collected ${records.length} evidence rows`);
+  const preSuppressionCount = records.length;
+  const structuredSuppression = suppressStructuredOnlyFinishCandidates(records, generatedAt);
+  records = structuredSuppression.records;
+  console.log(`[master-index] collected ${preSuppressionCount} evidence rows`);
+  console.log(`[master-index] suppressed ${structuredSuppression.suppressed.length} structured-only finish candidates unsupported by exact checklist variants`);
 
   const classified = classifyEvidence(records);
-  const index = indexPayload({ records, classified, setConfigs, sourceAvailability, generatedAt });
+  const index = indexPayload({ records, classified, setConfigs, sourceAvailability, generatedAt, structuredSuppression });
   const agreement = agreementPayload({ records, classified, generatedAt });
   const setAudit = setInventoryPayload({ setConfigs, records, classified, sourceAvailability, generatedAt });
 

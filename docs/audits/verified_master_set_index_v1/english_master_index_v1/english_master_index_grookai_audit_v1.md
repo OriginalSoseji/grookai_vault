@@ -3,75 +3,69 @@
 Audit only. No DB writes, migrations, cleanup, quarantine, or public hiding were performed.
 
 Grookai printing rows read: 55266
-Index printing facts: 41434
+Index printing facts: 37689
 
 ## Status Summary
 
 | status | count |
 | --- | --- |
-| candidate_unconfirmed_by_index | 3752 |
-| human_source_verified_by_index | 85 |
-| master_verified_by_index | 29653 |
-| missing_from_grookai | 8399 |
-| name_mismatch_needs_review | 170 |
+| candidate_unconfirmed_by_index | 397 |
+| human_source_verified_by_index | 107 |
+| master_verified_by_index | 30454 |
+| missing_from_grookai | 7178 |
+| name_mismatch_needs_review | 151 |
 | set_unmapped | 11176 |
-| unsupported_by_current_index | 10430 |
+| unsupported_by_current_index | 12981 |
 
 ## Status By Finish
 
 | status | finish | count |
 | --- | --- | --- |
-| candidate_unconfirmed_by_index | holo | 766 |
-| candidate_unconfirmed_by_index | normal | 2957 |
-| candidate_unconfirmed_by_index | reverse | 29 |
+| candidate_unconfirmed_by_index | holo | 20 |
+| candidate_unconfirmed_by_index | normal | 377 |
 | human_source_verified_by_index | holo | 54 |
-| human_source_verified_by_index | normal | 20 |
+| human_source_verified_by_index | normal | 42 |
 | human_source_verified_by_index | reverse | 11 |
 | master_verified_by_index | cosmos | 7 |
-| master_verified_by_index | holo | 6076 |
-| master_verified_by_index | normal | 11797 |
+| master_verified_by_index | holo | 6229 |
+| master_verified_by_index | normal | 12445 |
 | master_verified_by_index | pokeball | 130 |
 | master_verified_by_index | reverse | 11633 |
 | master_verified_by_index | rocket_reverse | 10 |
-| missing_from_grookai | cosmos | 316 |
+| missing_from_grookai | cosmos | 320 |
 | missing_from_grookai | cracked_ice | 131 |
-| missing_from_grookai | first_edition_holo | 164 |
-| missing_from_grookai | first_edition_normal | 940 |
-| missing_from_grookai | holo | 2379 |
-| missing_from_grookai | normal | 1722 |
-| missing_from_grookai | reverse | 1406 |
-| missing_from_grookai | stamped | 1341 |
+| missing_from_grookai | first_edition_holo | 180 |
+| missing_from_grookai | first_edition_normal | 762 |
+| missing_from_grookai | holo | 2356 |
+| missing_from_grookai | normal | 664 |
+| missing_from_grookai | reverse | 1401 |
+| missing_from_grookai | stamped | 1364 |
 | name_mismatch_needs_review | holo | 62 |
-| name_mismatch_needs_review | normal | 57 |
+| name_mismatch_needs_review | normal | 38 |
 | name_mismatch_needs_review | reverse | 51 |
 | set_unmapped | holo | 3807 |
 | set_unmapped | normal | 3637 |
 | set_unmapped | reverse | 3732 |
-| unsupported_by_current_index | holo | 5898 |
+| unsupported_by_current_index | holo | 6491 |
 | unsupported_by_current_index | masterball | 67 |
-| unsupported_by_current_index | normal | 1309 |
+| unsupported_by_current_index | normal | 3238 |
 | unsupported_by_current_index | pokeball | 100 |
-| unsupported_by_current_index | reverse | 3056 |
+| unsupported_by_current_index | reverse | 3085 |
 
 ## Issue Sample
 
 | set | number | name | finish | status | note |
 | --- | --- | --- | --- | --- | --- |
 | mcd22 | 4 | Growlithe | normal | unsupported_by_current_index | No exact printing fact exists in the current index. This is audit evidence only and is not deletion authority. |
-| sm11 | 255 | U-Turn Board | normal | candidate_unconfirmed_by_index | Exact set, number, name, and finish matched the current index. |
-| gym1 | 67 | Brock's Mankey | normal | candidate_unconfirmed_by_index | Exact set, number, name, and finish matched the current index. |
-| gym2 | 62 | Blaine's Growlithe | normal | candidate_unconfirmed_by_index | Exact set, number, name, and finish matched the current index. |
-| gym2 | 80 | Koga's Pidgey | normal | candidate_unconfirmed_by_index | Exact set, number, name, and finish matched the current index. |
+| sm11 | 255 | U-Turn Board | normal | unsupported_by_current_index | No exact printing fact exists in the current index. This is audit evidence only and is not deletion authority. |
 | legacy_orphan | 48 | Raikou | normal | set_unmapped | Grookai set_code was not present in the current English Master Index source set map. |
 | me03 | 080 | Poke Ball | reverse | name_mismatch_needs_review | Set, number, and finish matched the index, but card name did not match exactly. |
 | me03 | 081 | Poke Pad | reverse | name_mismatch_needs_review | Set, number, and finish matched the index, but card name did not match exactly. |
 | me03 | 082 | Pokemon Catcher | reverse | name_mismatch_needs_review | Set, number, and finish matched the index, but card name did not match exactly. |
-| neo3 | 43 | Farfetch'd | normal | candidate_unconfirmed_by_index | Exact set, number, name, and finish matched the current index. |
 | B1 | 194 | Delcatty | normal | set_unmapped | Grookai set_code was not present in the current English Master Index source set map. |
 | B1 | 205 | Braviary | normal | set_unmapped | Grookai set_code was not present in the current English Master Index source set map. |
 | B1 | 266 | Marlon | normal | set_unmapped | Grookai set_code was not present in the current English Master Index source set map. |
 | B1 | 295 | Poliwag | normal | set_unmapped | Grookai set_code was not present in the current English Master Index source set map. |
-| neo3 | 53 | Slugma | normal | candidate_unconfirmed_by_index | Exact set, number, name, and finish matched the current index. |
 | B1 | 117 | Swirlix | normal | set_unmapped | Grookai set_code was not present in the current English Master Index source set map. |
 | swsh12tg | 11 | Altaria | normal | unsupported_by_current_index | No exact printing fact exists in the current index. This is audit evidence only and is not deletion authority. |
 | swsh12tg | 28 | Sordward & Shielbert | normal | unsupported_by_current_index | No exact printing fact exists in the current index. This is audit evidence only and is not deletion authority. |
@@ -124,15 +118,12 @@ Index printing facts: 41434
 | A4 | 156 | Will | normal | set_unmapped | Grookai set_code was not present in the current English Master Index source set map. |
 | B1 | 219 | Heavy Helmet | normal | set_unmapped | Grookai set_code was not present in the current English Master Index source set map. |
 | A4 | 193 | Umbreon ex | normal | set_unmapped | Grookai set_code was not present in the current English Master Index source set map. |
-| base2 | 47 | Tauros | normal | candidate_unconfirmed_by_index | Exact set, number, name, and finish matched the current index. |
-| base5 | 29 | Dark Slowbro | normal | candidate_unconfirmed_by_index | Exact set, number, name, and finish matched the current index. |
-| base5 | 57 | Grimer | normal | candidate_unconfirmed_by_index | Exact set, number, name, and finish matched the current index. |
 | bwp | 01 | Snivy | normal | unsupported_by_current_index | No exact printing fact exists in the current index. This is audit evidence only and is not deletion authority. |
 | bwp | 03 | Oshawott | normal | unsupported_by_current_index | No exact printing fact exists in the current index. This is audit evidence only and is not deletion authority. |
 | bwp | 06 | Snivy | normal | unsupported_by_current_index | No exact printing fact exists in the current index. This is audit evidence only and is not deletion authority. |
-| sm1 | 110 | Gumshoos-GX | normal | candidate_unconfirmed_by_index | Exact set, number, name, and finish matched the current index. |
+| sm1 | 110 | Gumshoos-GX | normal | unsupported_by_current_index | No exact printing fact exists in the current index. This is audit evidence only and is not deletion authority. |
 | g1 | 26 | Floral Crown | normal | name_mismatch_needs_review | Set, number, and finish matched the index, but card name did not match exactly. |
-| bw11 | 19 | Charizard | normal | candidate_unconfirmed_by_index | Exact set, number, name, and finish matched the current index. |
+| bw11 | 19 | Charizard | normal | unsupported_by_current_index | No exact printing fact exists in the current index. This is audit evidence only and is not deletion authority. |
 | A2b | 085 | Paldean Clodsire ex | normal | set_unmapped | Grookai set_code was not present in the current English Master Index source set map. |
 | A2b | 086 | Tinkaton ex | normal | set_unmapped | Grookai set_code was not present in the current English Master Index source set map. |
 | A2b | 087 | Bibarel ex | normal | set_unmapped | Grookai set_code was not present in the current English Master Index source set map. |
@@ -176,10 +167,6 @@ Index printing facts: 41434
 | A3b | 105 | Zapdos ex | normal | set_unmapped | Grookai set_code was not present in the current English Master Index source set map. |
 | A3b | 106 | Gallade ex | normal | set_unmapped | Grookai set_code was not present in the current English Master Index source set map. |
 | A3b | 107 | Eevee Bag | normal | set_unmapped | Grookai set_code was not present in the current English Master Index source set map. |
-| base2 | 22 | Mr. Mime | normal | candidate_unconfirmed_by_index | Exact set, number, name, and finish matched the current index. |
-| gym1 | 109 | Erika's Maids | normal | candidate_unconfirmed_by_index | Exact set, number, name, and finish matched the current index. |
-| gym1 | 26 | Erika's Victreebel | normal | candidate_unconfirmed_by_index | Exact set, number, name, and finish matched the current index. |
-| base2 | 24 | Pidgeot | normal | candidate_unconfirmed_by_index | Exact set, number, name, and finish matched the current index. |
 | A4a | 022 | Milotic | normal | set_unmapped | Grookai set_code was not present in the current English Master Index source set map. |
 | A4a | 023 | Mantyke | normal | set_unmapped | Grookai set_code was not present in the current English Master Index source set map. |
 | A4a | 024 | Cryogonal | normal | set_unmapped | Grookai set_code was not present in the current English Master Index source set map. |
@@ -206,9 +193,9 @@ Index printing facts: 41434
 | A2a | 053 | Magnemite | normal | set_unmapped | Grookai set_code was not present in the current English Master Index source set map. |
 | A2a | 064 | Hoothoot | normal | set_unmapped | Grookai set_code was not present in the current English Master Index source set map. |
 | sm11 | 70 | Xurkitree | holo | unsupported_by_current_index | No exact printing fact exists in the current index. This is audit evidence only and is not deletion authority. |
-| sm11 | 71 | Mewtwo & Mew-GX | normal | candidate_unconfirmed_by_index | Exact set, number, name, and finish matched the current index. |
+| sm11 | 71 | Mewtwo & Mew-GX | normal | unsupported_by_current_index | No exact printing fact exists in the current index. This is audit evidence only and is not deletion authority. |
 | sm11 | 71 | Mewtwo & Mew-GX | reverse | unsupported_by_current_index | No exact printing fact exists in the current index. This is audit evidence only and is not deletion authority. |
-| sm11 | 72 | Espeon & Deoxys-GX | normal | candidate_unconfirmed_by_index | Exact set, number, name, and finish matched the current index. |
+| sm11 | 72 | Espeon & Deoxys-GX | normal | unsupported_by_current_index | No exact printing fact exists in the current index. This is audit evidence only and is not deletion authority. |
 | sm11 | 72 | Espeon & Deoxys-GX | reverse | unsupported_by_current_index | No exact printing fact exists in the current index. This is audit evidence only and is not deletion authority. |
 | A1a | 002 | Exeggutor | normal | set_unmapped | Grookai set_code was not present in the current English Master Index source set map. |
 | A1a | 024 | Cramorant | normal | set_unmapped | Grookai set_code was not present in the current English Master Index source set map. |
@@ -225,10 +212,10 @@ Index printing facts: 41434
 | A1a | 061 | Eevee | normal | set_unmapped | Grookai set_code was not present in the current English Master Index source set map. |
 | A1a | 062 | Chatot | normal | set_unmapped | Grookai set_code was not present in the current English Master Index source set map. |
 | A1a | 063 | Old Amber | normal | set_unmapped | Grookai set_code was not present in the current English Master Index source set map. |
-| pgo | 28 | Pikachu | normal | candidate_unconfirmed_by_index | Exact set, number, name, and finish matched the current index. |
-| sm2 | 152 | Vikavolt-GX | normal | candidate_unconfirmed_by_index | Exact set, number, name, and finish matched the current index. |
-| svp | 137 | Horsea | normal | candidate_unconfirmed_by_index | Exact set, number, name, and finish matched the current index. |
-| svp | 21 | Murkrow | normal | candidate_unconfirmed_by_index | Exact set, number, name, and finish matched the current index. |
+| pgo | 28 | Pikachu | normal | unsupported_by_current_index | No exact printing fact exists in the current index. This is audit evidence only and is not deletion authority. |
+| sm2 | 152 | Vikavolt-GX | normal | unsupported_by_current_index | No exact printing fact exists in the current index. This is audit evidence only and is not deletion authority. |
+| svp | 137 | Horsea | normal | unsupported_by_current_index | No exact printing fact exists in the current index. This is audit evidence only and is not deletion authority. |
+| svp | 21 | Murkrow | normal | unsupported_by_current_index | No exact printing fact exists in the current index. This is audit evidence only and is not deletion authority. |
 | A3 | 210 | Bulbasaur | normal | set_unmapped | Grookai set_code was not present in the current English Master Index source set map. |
 | A3 | 211 | Ivysaur | normal | set_unmapped | Grookai set_code was not present in the current English Master Index source set map. |
 | A3 | 213 | Exeggcute | normal | set_unmapped | Grookai set_code was not present in the current English Master Index source set map. |
@@ -268,7 +255,6 @@ Index printing facts: 41434
 | A2 | 015 | Burmy | normal | set_unmapped | Grookai set_code was not present in the current English Master Index source set map. |
 | A2 | 018 | Vespiquen | normal | set_unmapped | Grookai set_code was not present in the current English Master Index source set map. |
 | A2 | 033 | Mamoswine | normal | set_unmapped | Grookai set_code was not present in the current English Master Index source set map. |
-| base3 | 40 | Omastar | normal | candidate_unconfirmed_by_index | Exact set, number, name, and finish matched the current index. |
 | A1a | 074 | Marshadow | normal | set_unmapped | Grookai set_code was not present in the current English Master Index source set map. |
 | A1a | 075 | Celebi ex | normal | set_unmapped | Grookai set_code was not present in the current English Master Index source set map. |
 | A1a | 076 | Gyarados ex | normal | set_unmapped | Grookai set_code was not present in the current English Master Index source set map. |
@@ -282,9 +268,7 @@ Index printing facts: 41434
 | A1a | 086 | Mew ex | normal | set_unmapped | Grookai set_code was not present in the current English Master Index source set map. |
 | A1a | 001 | Exeggcute | normal | set_unmapped | Grookai set_code was not present in the current English Master Index source set map. |
 | A1 | 191 | Spearow | normal | set_unmapped | Grookai set_code was not present in the current English Master Index source set map. |
-| base3 | 52 | Omanyte | normal | candidate_unconfirmed_by_index | Exact set, number, name, and finish matched the current index. |
 | A2 | 177 | Bidoof | normal | set_unmapped | Grookai set_code was not present in the current English Master Index source set map. |
-| gym2 | 39 | Erika's Bulbasaur | normal | candidate_unconfirmed_by_index | Exact set, number, name, and finish matched the current index. |
 | A1 | 041 | Arcanine ex | normal | set_unmapped | Grookai set_code was not present in the current English Master Index source set map. |
 | A1 | 084 | Articuno ex | normal | set_unmapped | Grookai set_code was not present in the current English Master Index source set map. |
 | xyp | 200 | M Sharpedo-EX | normal | unsupported_by_current_index | No exact printing fact exists in the current index. This is audit evidence only and is not deletion authority. |
@@ -305,8 +289,8 @@ Index printing facts: 41434
 | A3b | 069 | Penny | normal | set_unmapped | Grookai set_code was not present in the current English Master Index source set map. |
 | B1 | 177 | Goomy | normal | set_unmapped | Grookai set_code was not present in the current English Master Index source set map. |
 | A4a | 067 | Inflatable Boat | normal | set_unmapped | Grookai set_code was not present in the current English Master Index source set map. |
-| bw4 | 100 | Emboar | normal | candidate_unconfirmed_by_index | Exact set, number, name, and finish matched the current index. |
-| bw4 | 41 | Zapdos | normal | candidate_unconfirmed_by_index | Exact set, number, name, and finish matched the current index. |
+| bw4 | 100 | Emboar | normal | unsupported_by_current_index | No exact printing fact exists in the current index. This is audit evidence only and is not deletion authority. |
+| bw4 | 41 | Zapdos | normal | unsupported_by_current_index | No exact printing fact exists in the current index. This is audit evidence only and is not deletion authority. |
 | A2 | 035 | Piplup | normal | set_unmapped | Grookai set_code was not present in the current English Master Index source set map. |
 | A1 | 206 | Eevee | normal | set_unmapped | Grookai set_code was not present in the current English Master Index source set map. |
 | A1 | 264 | Marowak ex | normal | set_unmapped | Grookai set_code was not present in the current English Master Index source set map. |
@@ -319,8 +303,8 @@ Index printing facts: 41434
 | mcd17 | 2 | Grubbin | normal | unsupported_by_current_index | No exact printing fact exists in the current index. This is audit evidence only and is not deletion authority. |
 | A1 | 091 | Bruxish | normal | set_unmapped | Grookai set_code was not present in the current English Master Index source set map. |
 | ex10 | ? | Unown | normal | unsupported_by_current_index | No exact printing fact exists in the current index. This is audit evidence only and is not deletion authority. |
-| bw11 | 101 | White Kyurem-EX | normal | candidate_unconfirmed_by_index | Exact set, number, name, and finish matched the current index. |
-| sm1 | 147 | Lillie | normal | candidate_unconfirmed_by_index | Exact set, number, name, and finish matched the current index. |
+| bw11 | 101 | White Kyurem-EX | normal | unsupported_by_current_index | No exact printing fact exists in the current index. This is audit evidence only and is not deletion authority. |
+| sm1 | 147 | Lillie | normal | unsupported_by_current_index | No exact printing fact exists in the current index. This is audit evidence only and is not deletion authority. |
 | cel25 | 88 | Mew ex | normal | unsupported_by_current_index | No exact printing fact exists in the current index. This is audit evidence only and is not deletion authority. |
 | cel25 | 15 | Venusaur | normal | unsupported_by_current_index | No exact printing fact exists in the current index. This is audit evidence only and is not deletion authority. |
 | cel25 | 2 | Blastoise | normal | unsupported_by_current_index | No exact printing fact exists in the current index. This is audit evidence only and is not deletion authority. |
@@ -332,35 +316,23 @@ Index printing facts: 41434
 | mcd14 | 1 | Weedle | normal | unsupported_by_current_index | No exact printing fact exists in the current index. This is audit evidence only and is not deletion authority. |
 | mcd14 | 4 | Froakie | normal | unsupported_by_current_index | No exact printing fact exists in the current index. This is audit evidence only and is not deletion authority. |
 | B1 | 211 | Wooloo | normal | set_unmapped | Grookai set_code was not present in the current English Master Index source set map. |
-| bw1 | 26 | Reshiram | normal | candidate_unconfirmed_by_index | Exact set, number, name, and finish matched the current index. |
+| bw1 | 26 | Reshiram | normal | unsupported_by_current_index | No exact printing fact exists in the current index. This is audit evidence only and is not deletion authority. |
 | mcd14 | 9 | Swirlix | normal | unsupported_by_current_index | No exact printing fact exists in the current index. This is audit evidence only and is not deletion authority. |
 | mcd16 | 6 | Pikachu | normal | unsupported_by_current_index | No exact printing fact exists in the current index. This is audit evidence only and is not deletion authority. |
 | mcd17 | 11 | Pikipek | normal | unsupported_by_current_index | No exact printing fact exists in the current index. This is audit evidence only and is not deletion authority. |
 | mcd18 | 10 | Chansey | normal | unsupported_by_current_index | No exact printing fact exists in the current index. This is audit evidence only and is not deletion authority. |
 | bp | 1 | Electabuzz | normal | unsupported_by_current_index | No exact printing fact exists in the current index. This is audit evidence only and is not deletion authority. |
-| base2 | 30 | Victreebel | normal | candidate_unconfirmed_by_index | Exact set, number, name, and finish matched the current index. |
-| base2 | 44 | Rapidash | normal | candidate_unconfirmed_by_index | Exact set, number, name, and finish matched the current index. |
-| base2 | 49 | Bellsprout | normal | candidate_unconfirmed_by_index | Exact set, number, name, and finish matched the current index. |
-| base5 | 19 | Dark Arbok | normal | candidate_unconfirmed_by_index | Exact set, number, name, and finish matched the current index. |
-| base5 | 21 | Dark Charizard | normal | candidate_unconfirmed_by_index | Exact set, number, name, and finish matched the current index. |
-| base5 | 34 | Dark Electrode | normal | candidate_unconfirmed_by_index | Exact set, number, name, and finish matched the current index. |
-| base5 | 36 | Dark Gloom | normal | candidate_unconfirmed_by_index | Exact set, number, name, and finish matched the current index. |
-| base5 | 43 | Dark Primeape | normal | candidate_unconfirmed_by_index | Exact set, number, name, and finish matched the current index. |
-| base5 | 52 | Diglett | normal | candidate_unconfirmed_by_index | Exact set, number, name, and finish matched the current index. |
-| base5 | 61 | Mankey | normal | candidate_unconfirmed_by_index | Exact set, number, name, and finish matched the current index. |
-| base5 | 64 | Ponyta | normal | candidate_unconfirmed_by_index | Exact set, number, name, and finish matched the current index. |
-| base5 | 69 | Voltorb | normal | candidate_unconfirmed_by_index | Exact set, number, name, and finish matched the current index. |
-| basep | 11 | Eevee | normal | candidate_unconfirmed_by_index | Exact set, number, name, and finish matched the current index. |
-| basep | 13 | Venusaur | normal | candidate_unconfirmed_by_index | Exact set, number, name, and finish matched the current index. |
-| bw3 | 100 | Cobalion | normal | candidate_unconfirmed_by_index | Exact set, number, name, and finish matched the current index. |
-| bw4 | 103 | Hydreigon | normal | candidate_unconfirmed_by_index | Exact set, number, name, and finish matched the current index. |
+| basep | 11 | Eevee | normal | unsupported_by_current_index | No exact printing fact exists in the current index. This is audit evidence only and is not deletion authority. |
+| basep | 13 | Venusaur | normal | unsupported_by_current_index | No exact printing fact exists in the current index. This is audit evidence only and is not deletion authority. |
+| bw3 | 100 | Cobalion | normal | unsupported_by_current_index | No exact printing fact exists in the current index. This is audit evidence only and is not deletion authority. |
+| bw4 | 103 | Hydreigon | normal | unsupported_by_current_index | No exact printing fact exists in the current index. This is audit evidence only and is not deletion authority. |
 | A3 | 036 | Salazzle | normal | set_unmapped | Grookai set_code was not present in the current English Master Index source set map. |
 | A3 | 030 | Litten | normal | set_unmapped | Grookai set_code was not present in the current English Master Index source set map. |
-| bw4 | 27 | Articuno | normal | candidate_unconfirmed_by_index | Exact set, number, name, and finish matched the current index. |
-| bw4 | 33 | Vanilluxe | normal | candidate_unconfirmed_by_index | Exact set, number, name, and finish matched the current index. |
-| bw5 | 103 | Entei-EX | normal | candidate_unconfirmed_by_index | Exact set, number, name, and finish matched the current index. |
+| bw4 | 27 | Articuno | normal | unsupported_by_current_index | No exact printing fact exists in the current index. This is audit evidence only and is not deletion authority. |
+| bw4 | 33 | Vanilluxe | normal | unsupported_by_current_index | No exact printing fact exists in the current index. This is audit evidence only and is not deletion authority. |
+| bw5 | 103 | Entei-EX | normal | unsupported_by_current_index | No exact printing fact exists in the current index. This is audit evidence only and is not deletion authority. |
 | A3 | 073 | Lunatone | normal | set_unmapped | Grookai set_code was not present in the current English Master Index source set map. |
-| bw7 | 94 | Scizor | normal | candidate_unconfirmed_by_index | Exact set, number, name, and finish matched the current index. |
+| bw7 | 94 | Scizor | normal | unsupported_by_current_index | No exact printing fact exists in the current index. This is audit evidence only and is not deletion authority. |
 | A3 | 074 | Shuppet | normal | set_unmapped | Grookai set_code was not present in the current English Master Index source set map. |
 | cel25 | 17 | Umbreon ★ | normal | unsupported_by_current_index | No exact printing fact exists in the current index. This is audit evidence only and is not deletion authority. |
 | cel25 | 93 | Gardevoir ex δ | normal | unsupported_by_current_index | No exact printing fact exists in the current index. This is audit evidence only and is not deletion authority. |
@@ -372,20 +344,15 @@ Index printing facts: 41434
 | A3 | 104 | Passimian ex | normal | set_unmapped | Grookai set_code was not present in the current English Master Index source set map. |
 | A3 | 105 | Minior | normal | set_unmapped | Grookai set_code was not present in the current English Master Index source set map. |
 | A3 | 106 | Alolan Rattata | normal | set_unmapped | Grookai set_code was not present in the current English Master Index source set map. |
-| bw5 | 90 | Tornadus-EX | normal | candidate_unconfirmed_by_index | Exact set, number, name, and finish matched the current index. |
-| bw6 | 46 | Mew-EX | normal | candidate_unconfirmed_by_index | Exact set, number, name, and finish matched the current index. |
+| bw5 | 90 | Tornadus-EX | normal | unsupported_by_current_index | No exact printing fact exists in the current index. This is audit evidence only and is not deletion authority. |
+| bw6 | 46 | Mew-EX | normal | unsupported_by_current_index | No exact printing fact exists in the current index. This is audit evidence only and is not deletion authority. |
 | B1 | 288 | Weepinbell | normal | set_unmapped | Grookai set_code was not present in the current English Master Index source set map. |
 | bwp | 47 | Rayquaza-EX | normal | unsupported_by_current_index | No exact printing fact exists in the current index. This is audit evidence only and is not deletion authority. |
 | legacy_orphan | 84 | Garganacl | normal | set_unmapped | Grookai set_code was not present in the current English Master Index source set map. |
-| base2 | 25 | Pinsir | normal | candidate_unconfirmed_by_index | Exact set, number, name, and finish matched the current index. |
-| base2 | 26 | Scyther | normal | candidate_unconfirmed_by_index | Exact set, number, name, and finish matched the current index. |
-| base2 | 54 | Jigglypuff | normal | candidate_unconfirmed_by_index | Exact set, number, name, and finish matched the current index. |
-| base5 | 22 | Dark Dragonite | normal | candidate_unconfirmed_by_index | Exact set, number, name, and finish matched the current index. |
 | bw11 | 11 | Meloetta-EX | normal | name_mismatch_needs_review | Set, number, and finish matched the index, but card name did not match exactly. |
 | bw11 | 2 | Servine | normal | name_mismatch_needs_review | Set, number, and finish matched the index, but card name did not match exactly. |
-| bw11 | 8 | Ralts | normal | name_mismatch_needs_review | Set, number, and finish matched the index, but card name did not match exactly. |
+| bw11 | 8 | Ralts | normal | unsupported_by_current_index | No exact printing fact exists in the current index. This is audit evidence only and is not deletion authority. |
 | bw11 | 17 | Audino | normal | name_mismatch_needs_review | Set, number, and finish matched the index, but card name did not match exactly. |
-| base5 | 24 | Dark Golbat | normal | candidate_unconfirmed_by_index | Exact set, number, name, and finish matched the current index. |
 | bwp | 08 | Oshawott | normal | unsupported_by_current_index | No exact printing fact exists in the current index. This is audit evidence only and is not deletion authority. |
 | bwp | 09 | Zoroark | normal | unsupported_by_current_index | No exact printing fact exists in the current index. This is audit evidence only and is not deletion authority. |
 | bwp | 10 | Axew | normal | unsupported_by_current_index | No exact printing fact exists in the current index. This is audit evidence only and is not deletion authority. |
@@ -393,50 +360,46 @@ Index printing facts: 41434
 | A1 | 134 | Swoobat | normal | set_unmapped | Grookai set_code was not present in the current English Master Index source set map. |
 | cel25 | 109 | Luxray GL LV.X | normal | unsupported_by_current_index | No exact printing fact exists in the current index. This is audit evidence only and is not deletion authority. |
 | g1 | 6 | Flareon-EX | normal | name_mismatch_needs_review | Set, number, and finish matched the index, but card name did not match exactly. |
-| bw8 | 48 | Zapdos-EX | normal | candidate_unconfirmed_by_index | Exact set, number, name, and finish matched the current index. |
+| bw8 | 48 | Zapdos-EX | normal | unsupported_by_current_index | No exact printing fact exists in the current index. This is audit evidence only and is not deletion authority. |
 | bp | 9 | Rocket's Hitmonchan | normal | unsupported_by_current_index | No exact printing fact exists in the current index. This is audit evidence only and is not deletion authority. |
 | ecard3 | H4 | Beedrill | normal | unsupported_by_current_index | No exact printing fact exists in the current index. This is audit evidence only and is not deletion authority. |
 | ecard3 | H6 | Dewgong | normal | unsupported_by_current_index | No exact printing fact exists in the current index. This is audit evidence only and is not deletion authority. |
-| bw6 | 123 | Rayquaza-EX | normal | candidate_unconfirmed_by_index | Exact set, number, name, and finish matched the current index. |
-| bw6 | 67 | Gigalith | normal | candidate_unconfirmed_by_index | Exact set, number, name, and finish matched the current index. |
-| sm7 | 161 | Apricorn Maker | normal | candidate_unconfirmed_by_index | Exact set, number, name, and finish matched the current index. |
-| sm7 | 168 | Underground Expedition | normal | candidate_unconfirmed_by_index | Exact set, number, name, and finish matched the current index. |
-| bw7 | 138 | Crystal Edge | normal | candidate_unconfirmed_by_index | Exact set, number, name, and finish matched the current index. |
-| bw7 | 150 | Golurk | normal | candidate_unconfirmed_by_index | Exact set, number, name, and finish matched the current index. |
-| sm11 | 57 | Alolan Raichu | normal | candidate_unconfirmed_by_index | Exact set, number, name, and finish matched the current index. |
-| sm5 | 165 | Palkia-GX | normal | candidate_unconfirmed_by_index | Exact set, number, name, and finish matched the current index. |
-| sm8 | 22 | Sceptile-GX | normal | candidate_unconfirmed_by_index | Exact set, number, name, and finish matched the current index. |
-| sm8 | 48 | Heatran | normal | candidate_unconfirmed_by_index | Exact set, number, name, and finish matched the current index. |
-| sm8 | 60 | Suicune-GX | normal | candidate_unconfirmed_by_index | Exact set, number, name, and finish matched the current index. |
-| sm8 | 180 | Life Forest ◇ | normal | candidate_unconfirmed_by_index | Exact set, number, name, and finish matched the current index. |
-| dp2 | 124 | Time-Space Distortion | normal | candidate_unconfirmed_by_index | Exact set, number, name, and finish matched the current index. |
+| bw6 | 123 | Rayquaza-EX | normal | unsupported_by_current_index | No exact printing fact exists in the current index. This is audit evidence only and is not deletion authority. |
+| bw6 | 67 | Gigalith | normal | unsupported_by_current_index | No exact printing fact exists in the current index. This is audit evidence only and is not deletion authority. |
+| sm7 | 161 | Apricorn Maker | normal | unsupported_by_current_index | No exact printing fact exists in the current index. This is audit evidence only and is not deletion authority. |
+| sm7 | 168 | Underground Expedition | normal | unsupported_by_current_index | No exact printing fact exists in the current index. This is audit evidence only and is not deletion authority. |
+| bw7 | 138 | Crystal Edge | normal | unsupported_by_current_index | No exact printing fact exists in the current index. This is audit evidence only and is not deletion authority. |
+| bw7 | 150 | Golurk | normal | unsupported_by_current_index | No exact printing fact exists in the current index. This is audit evidence only and is not deletion authority. |
+| sm11 | 57 | Alolan Raichu | normal | unsupported_by_current_index | No exact printing fact exists in the current index. This is audit evidence only and is not deletion authority. |
+| sm5 | 165 | Palkia-GX | normal | unsupported_by_current_index | No exact printing fact exists in the current index. This is audit evidence only and is not deletion authority. |
+| sm8 | 22 | Sceptile-GX | normal | unsupported_by_current_index | No exact printing fact exists in the current index. This is audit evidence only and is not deletion authority. |
+| sm8 | 48 | Heatran | normal | unsupported_by_current_index | No exact printing fact exists in the current index. This is audit evidence only and is not deletion authority. |
+| sm8 | 60 | Suicune-GX | normal | unsupported_by_current_index | No exact printing fact exists in the current index. This is audit evidence only and is not deletion authority. |
+| sm8 | 180 | Life Forest ◇ | normal | unsupported_by_current_index | No exact printing fact exists in the current index. This is audit evidence only and is not deletion authority. |
+| dp2 | 124 | Time-Space Distortion | normal | unsupported_by_current_index | No exact printing fact exists in the current index. This is audit evidence only and is not deletion authority. |
 | mcd17 | 7 | Crabrawler | normal | unsupported_by_current_index | No exact printing fact exists in the current index. This is audit evidence only and is not deletion authority. |
 | g1 | 32 | Sylveon-EX | normal | name_mismatch_needs_review | Set, number, and finish matched the index, but card name did not match exactly. |
 | g1 | 9 | Raichu | normal | name_mismatch_needs_review | Set, number, and finish matched the index, but card name did not match exactly. |
 | g1 | 22 | Diancie | normal | name_mismatch_needs_review | Set, number, and finish matched the index, but card name did not match exactly. |
-| g1 | 11 | Wobbuffet | normal | name_mismatch_needs_review | Set, number, and finish matched the index, but card name did not match exactly. |
-| bw11 | 102 | Lugia-EX | normal | candidate_unconfirmed_by_index | Exact set, number, name, and finish matched the current index. |
-| base2 | 32 | Wigglytuff | normal | candidate_unconfirmed_by_index | Exact set, number, name, and finish matched the current index. |
-| bw3 | 102 | Meowth | normal | candidate_unconfirmed_by_index | Exact set, number, name, and finish matched the current index. |
-| bw3 | 74 | Landorus | normal | candidate_unconfirmed_by_index | Exact set, number, name, and finish matched the current index. |
-| bw4 | 101 | Chandelure | normal | candidate_unconfirmed_by_index | Exact set, number, name, and finish matched the current index. |
-| bw4 | 102 | Zoroark | normal | candidate_unconfirmed_by_index | Exact set, number, name, and finish matched the current index. |
+| g1 | 11 | Wobbuffet | normal | unsupported_by_current_index | No exact printing fact exists in the current index. This is audit evidence only and is not deletion authority. |
+| bw11 | 102 | Lugia-EX | normal | unsupported_by_current_index | No exact printing fact exists in the current index. This is audit evidence only and is not deletion authority. |
+| bw3 | 102 | Meowth | normal | unsupported_by_current_index | No exact printing fact exists in the current index. This is audit evidence only and is not deletion authority. |
+| bw3 | 74 | Landorus | normal | unsupported_by_current_index | No exact printing fact exists in the current index. This is audit evidence only and is not deletion authority. |
+| bw4 | 101 | Chandelure | normal | unsupported_by_current_index | No exact printing fact exists in the current index. This is audit evidence only and is not deletion authority. |
+| bw4 | 102 | Zoroark | normal | unsupported_by_current_index | No exact printing fact exists in the current index. This is audit evidence only and is not deletion authority. |
 | A4 | 075 | Smoochum | normal | set_unmapped | Grookai set_code was not present in the current English Master Index source set map. |
-| bw6 | 19 | Ninetales | normal | candidate_unconfirmed_by_index | Exact set, number, name, and finish matched the current index. |
-| gym1 | 36 | Blaine's Kangaskhan | normal | candidate_unconfirmed_by_index | Exact set, number, name, and finish matched the current index. |
-| neo1 | 100 | Double Gust | normal | candidate_unconfirmed_by_index | Exact set, number, name, and finish matched the current index. |
+| bw6 | 19 | Ninetales | normal | unsupported_by_current_index | No exact printing fact exists in the current index. This is audit evidence only and is not deletion authority. |
 | A4 | 225 | Nidoqueen | normal | set_unmapped | Grookai set_code was not present in the current English Master Index source set map. |
-| gym1 | 42 | Erika's Dratini | normal | candidate_unconfirmed_by_index | Exact set, number, name, and finish matched the current index. |
-| np | 12 | Pikachu | normal | candidate_unconfirmed_by_index | Exact set, number, name, and finish matched the current index. |
-| bw6 | 103 | Slaking | normal | candidate_unconfirmed_by_index | Exact set, number, name, and finish matched the current index. |
+| np | 12 | Pikachu | normal | unsupported_by_current_index | No exact printing fact exists in the current index. This is audit evidence only and is not deletion authority. |
+| bw6 | 103 | Slaking | normal | unsupported_by_current_index | No exact printing fact exists in the current index. This is audit evidence only and is not deletion authority. |
 | A1 | 245 | Pidgeot | normal | set_unmapped | Grookai set_code was not present in the current English Master Index source set map. |
-| bw8 | 14 | Moltres-EX | normal | candidate_unconfirmed_by_index | Exact set, number, name, and finish matched the current index. |
+| bw8 | 14 | Moltres-EX | normal | unsupported_by_current_index | No exact printing fact exists in the current index. This is audit evidence only and is not deletion authority. |
 | swsh12tg | 02 | Milotic | holo | unsupported_by_current_index | No exact printing fact exists in the current index. This is audit evidence only and is not deletion authority. |
 | B1 | 257 | Jolteon ex | normal | set_unmapped | Grookai set_code was not present in the current English Master Index source set map. |
-| bw11 | 100 | Black Kyurem-EX | normal | candidate_unconfirmed_by_index | Exact set, number, name, and finish matched the current index. |
+| bw11 | 100 | Black Kyurem-EX | normal | unsupported_by_current_index | No exact printing fact exists in the current index. This is audit evidence only and is not deletion authority. |
 | B1 | 010 | Shiftry | normal | set_unmapped | Grookai set_code was not present in the current English Master Index source set map. |
 | swsh12tg | 03 | Flaaffy | holo | unsupported_by_current_index | No exact printing fact exists in the current index. This is audit evidence only and is not deletion authority. |
-| sm10 | 157 | Porygon-Z | normal | candidate_unconfirmed_by_index | Exact set, number, name, and finish matched the current index. |
+| sm10 | 157 | Porygon-Z | normal | unsupported_by_current_index | No exact printing fact exists in the current index. This is audit evidence only and is not deletion authority. |
 | swsh12tg | 04 | Jynx | holo | unsupported_by_current_index | No exact printing fact exists in the current index. This is audit evidence only and is not deletion authority. |
 | swsh12tg | 05 | Gardevoir | holo | unsupported_by_current_index | No exact printing fact exists in the current index. This is audit evidence only and is not deletion authority. |
 | swsh12tg | 06 | Malamar | holo | unsupported_by_current_index | No exact printing fact exists in the current index. This is audit evidence only and is not deletion authority. |
@@ -445,7 +408,6 @@ Index printing facts: 41434
 | swsh12tg | 14 | Blaziken V | holo | unsupported_by_current_index | No exact printing fact exists in the current index. This is audit evidence only and is not deletion authority. |
 | swsh12tg | 23 | Friends in Galar | holo | unsupported_by_current_index | No exact printing fact exists in the current index. This is audit evidence only and is not deletion authority. |
 | swsh12tg | 25 | Judge | holo | unsupported_by_current_index | No exact printing fact exists in the current index. This is audit evidence only and is not deletion authority. |
-| neo2 | 37 | Corsola | normal | candidate_unconfirmed_by_index | Exact set, number, name, and finish matched the current index. |
 | B1 | 171 | Doublade | normal | set_unmapped | Grookai set_code was not present in the current English Master Index source set map. |
 | A1 | 217 | Dome Fossil | normal | set_unmapped | Grookai set_code was not present in the current English Master Index source set map. |
 | B1 | 138 | Pancham | normal | set_unmapped | Grookai set_code was not present in the current English Master Index source set map. |
@@ -467,9 +429,9 @@ Index printing facts: 41434
 | A4 | 222 | Primeape | normal | set_unmapped | Grookai set_code was not present in the current English Master Index source set map. |
 | A4 | 223 | Nidoran♀ | normal | set_unmapped | Grookai set_code was not present in the current English Master Index source set map. |
 | A4 | 224 | Nidorina | normal | set_unmapped | Grookai set_code was not present in the current English Master Index source set map. |
-| sm115 | 18 | Vaporeon | normal | candidate_unconfirmed_by_index | Exact set, number, name, and finish matched the current index. |
-| sm115 | 63 | Misty's Water Command | normal | candidate_unconfirmed_by_index | Exact set, number, name, and finish matched the current index. |
-| sm115 | 67 | Giovanni's Exile | normal | candidate_unconfirmed_by_index | Exact set, number, name, and finish matched the current index. |
+| sm115 | 18 | Vaporeon | normal | unsupported_by_current_index | No exact printing fact exists in the current index. This is audit evidence only and is not deletion authority. |
+| sm115 | 63 | Misty's Water Command | normal | unsupported_by_current_index | No exact printing fact exists in the current index. This is audit evidence only and is not deletion authority. |
+| sm115 | 67 | Giovanni's Exile | normal | unsupported_by_current_index | No exact printing fact exists in the current index. This is audit evidence only and is not deletion authority. |
 | A2b | 003 | Beedrill ex | normal | set_unmapped | Grookai set_code was not present in the current English Master Index source set map. |
 | A2b | 017 | Floatzel | normal | set_unmapped | Grookai set_code was not present in the current English Master Index source set map. |
 | A2b | 072 | Team Rocket Grunt | normal | set_unmapped | Grookai set_code was not present in the current English Master Index source set map. |
@@ -557,5 +519,42 @@ Index printing facts: 41434
 | A2b | 110 | Lucario ex | normal | set_unmapped | Grookai set_code was not present in the current English Master Index source set map. |
 | A2b | 111 | Poké Ball | normal | set_unmapped | Grookai set_code was not present in the current English Master Index source set map. |
 | A2b | 098 | Kakuna | normal | set_unmapped | Grookai set_code was not present in the current English Master Index source set map. |
+| A2b | 097 | Weedle | normal | set_unmapped | Grookai set_code was not present in the current English Master Index source set map. |
+| A3b | 009 | Flareon ex | normal | set_unmapped | Grookai set_code was not present in the current English Master Index source set map. |
+| A3b | 036 | Milcery | normal | set_unmapped | Grookai set_code was not present in the current English Master Index source set map. |
+| A3b | 087 | Flareon ex | normal | set_unmapped | Grookai set_code was not present in the current English Master Index source set map. |
+| A3b | 103 | Moltres ex | normal | set_unmapped | Grookai set_code was not present in the current English Master Index source set map. |
+| A3b | 002 | Leafeon | normal | set_unmapped | Grookai set_code was not present in the current English Master Index source set map. |
+| A3b | 001 | Tropius | normal | set_unmapped | Grookai set_code was not present in the current English Master Index source set map. |
+| A3b | 004 | Steenee | normal | set_unmapped | Grookai set_code was not present in the current English Master Index source set map. |
+| A3b | 005 | Tsareena | normal | set_unmapped | Grookai set_code was not present in the current English Master Index source set map. |
+| A3b | 006 | Applin | normal | set_unmapped | Grookai set_code was not present in the current English Master Index source set map. |
+| A3b | 007 | Appletun | normal | set_unmapped | Grookai set_code was not present in the current English Master Index source set map. |
+| A3b | 008 | Flareon | normal | set_unmapped | Grookai set_code was not present in the current English Master Index source set map. |
+| A3b | 003 | Bounsweet | normal | set_unmapped | Grookai set_code was not present in the current English Master Index source set map. |
+| A3b | 010 | Torkoal | normal | set_unmapped | Grookai set_code was not present in the current English Master Index source set map. |
+| A3b | 011 | Litten | normal | set_unmapped | Grookai set_code was not present in the current English Master Index source set map. |
+| A3b | 012 | Torracat | normal | set_unmapped | Grookai set_code was not present in the current English Master Index source set map. |
+| A3b | 013 | Incineroar | normal | set_unmapped | Grookai set_code was not present in the current English Master Index source set map. |
+| A3b | 014 | Salandit | normal | set_unmapped | Grookai set_code was not present in the current English Master Index source set map. |
+| A3b | 015 | Salazzle | normal | set_unmapped | Grookai set_code was not present in the current English Master Index source set map. |
+| A3b | 016 | Vaporeon | normal | set_unmapped | Grookai set_code was not present in the current English Master Index source set map. |
+| A3b | 022 | Popplio | normal | set_unmapped | Grookai set_code was not present in the current English Master Index source set map. |
+| A3b | 019 | Vanillish | normal | set_unmapped | Grookai set_code was not present in the current English Master Index source set map. |
+| A3b | 021 | Alomomola | normal | set_unmapped | Grookai set_code was not present in the current English Master Index source set map. |
+| A3b | 017 | Glaceon | normal | set_unmapped | Grookai set_code was not present in the current English Master Index source set map. |
+| A3b | 018 | Vanillite | normal | set_unmapped | Grookai set_code was not present in the current English Master Index source set map. |
+| A3b | 020 | Vanilluxe | normal | set_unmapped | Grookai set_code was not present in the current English Master Index source set map. |
+| A3b | 024 | Primarina ex | normal | set_unmapped | Grookai set_code was not present in the current English Master Index source set map. |
+| A3b | 025 | Jolteon | normal | set_unmapped | Grookai set_code was not present in the current English Master Index source set map. |
+| A3b | 026 | Joltik | normal | set_unmapped | Grookai set_code was not present in the current English Master Index source set map. |
+| A3b | 027 | Galvantula | normal | set_unmapped | Grookai set_code was not present in the current English Master Index source set map. |
+| A3b | 028 | Espeon | normal | set_unmapped | Grookai set_code was not present in the current English Master Index source set map. |
+| A3b | 029 | Woobat | normal | set_unmapped | Grookai set_code was not present in the current English Master Index source set map. |
+| A3b | 023 | Brionne | normal | set_unmapped | Grookai set_code was not present in the current English Master Index source set map. |
+| A3b | 030 | Swoobat | normal | set_unmapped | Grookai set_code was not present in the current English Master Index source set map. |
+| A3b | 031 | Swirlix | normal | set_unmapped | Grookai set_code was not present in the current English Master Index source set map. |
+| A3b | 032 | Slurpuff | normal | set_unmapped | Grookai set_code was not present in the current English Master Index source set map. |
+| A3b | 033 | Sylveon | normal | set_unmapped | Grookai set_code was not present in the current English Master Index source set map. |
 
 Important: `unsupported_by_current_index` is not deletion authority. It means the current index did not support the row in this audit pass.

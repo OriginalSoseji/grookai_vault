@@ -1,6 +1,6 @@
 {
   "version": "ENGLISH_MASTER_INDEX_SET_AUDIT_V1",
-  "generated_at": "2026-05-25T15:19:30.123Z",
+  "generated_at": "2026-05-25T16:40:48.237Z",
   "audit_only": true,
   "db_writes": false,
   "sets": [
@@ -16,16 +16,16 @@
         "tcgdex": "tk-bw-e",
         "official_checklist_pdf": null,
         "official_pokemon_checklist": null,
-        "thepricedex": null,
-        "thepricedex_price_list": null
+        "thepricedex": "tk-bw-e",
+        "thepricedex_price_list": "tk-bw-e"
       },
       "source_status": {
         "pokemontcg_api": "unavailable",
         "tcgdex": "available",
         "official_checklist_pdf": "unavailable",
         "official_pokemon_checklist": "unavailable",
-        "thepricedex": "unavailable",
-        "thepricedex_price_list": "unavailable"
+        "thepricedex": "candidate_url",
+        "thepricedex_price_list": "candidate_url"
       },
       "source_totals": {
         "pokemontcg_api": {
@@ -69,11 +69,11 @@
           "set_key": "tk-bw-e",
           "set_name": "BW trainer Kit (Excadrill)",
           "source_key": "thepricedex_price_list",
-          "source_alias": null,
-          "configured_status": "unavailable",
-          "runtime_status": "unavailable",
+          "source_alias": "tk-bw-e",
+          "configured_status": "candidate_url",
+          "runtime_status": "error",
           "evidence_rows": 0,
-          "error": null
+          "error": "Fetch failed 404 Not Found: https://www.thepricedex.com/set/tk-bw-e/bw-trainer-kit-excadrill/price-list"
         },
         {
           "set_key": "tk-bw-e",
@@ -99,16 +99,16 @@
         "tcgdex": "tk-bw-z",
         "official_checklist_pdf": null,
         "official_pokemon_checklist": null,
-        "thepricedex": null,
-        "thepricedex_price_list": null
+        "thepricedex": "tk-bw-z",
+        "thepricedex_price_list": "tk-bw-z"
       },
       "source_status": {
         "pokemontcg_api": "unavailable",
         "tcgdex": "available",
         "official_checklist_pdf": "unavailable",
         "official_pokemon_checklist": "unavailable",
-        "thepricedex": "unavailable",
-        "thepricedex_price_list": "unavailable"
+        "thepricedex": "candidate_url",
+        "thepricedex_price_list": "candidate_url"
       },
       "source_totals": {
         "pokemontcg_api": {
@@ -152,11 +152,11 @@
           "set_key": "tk-bw-z",
           "set_name": "BW trainer Kit (Zoroark)",
           "source_key": "thepricedex_price_list",
-          "source_alias": null,
-          "configured_status": "unavailable",
-          "runtime_status": "unavailable",
+          "source_alias": "tk-bw-z",
+          "configured_status": "candidate_url",
+          "runtime_status": "error",
           "evidence_rows": 0,
-          "error": null
+          "error": "Fetch failed 404 Not Found: https://www.thepricedex.com/set/tk-bw-z/bw-trainer-kit-zoroark/price-list"
         },
         {
           "set_key": "tk-bw-z",
@@ -182,16 +182,16 @@
         "tcgdex": "tk-dp-l",
         "official_checklist_pdf": null,
         "official_pokemon_checklist": null,
-        "thepricedex": null,
-        "thepricedex_price_list": null
+        "thepricedex": "tk-dp-l",
+        "thepricedex_price_list": "tk-dp-l"
       },
       "source_status": {
         "pokemontcg_api": "unavailable",
         "tcgdex": "available",
         "official_checklist_pdf": "unavailable",
         "official_pokemon_checklist": "unavailable",
-        "thepricedex": "unavailable",
-        "thepricedex_price_list": "unavailable"
+        "thepricedex": "candidate_url",
+        "thepricedex_price_list": "candidate_url"
       },
       "source_totals": {
         "pokemontcg_api": {
@@ -235,11 +235,11 @@
           "set_key": "tk-dp-l",
           "set_name": "DP trainer Kit (Lucario)",
           "source_key": "thepricedex_price_list",
-          "source_alias": null,
-          "configured_status": "unavailable",
-          "runtime_status": "unavailable",
+          "source_alias": "tk-dp-l",
+          "configured_status": "candidate_url",
+          "runtime_status": "error",
           "evidence_rows": 0,
-          "error": null
+          "error": "Fetch failed 404 Not Found: https://www.thepricedex.com/set/tk-dp-l/dp-trainer-kit-lucario/price-list"
         },
         {
           "set_key": "tk-dp-l",
@@ -265,16 +265,16 @@
         "tcgdex": "tk-dp-m",
         "official_checklist_pdf": null,
         "official_pokemon_checklist": null,
-        "thepricedex": null,
-        "thepricedex_price_list": null
+        "thepricedex": "tk-dp-m",
+        "thepricedex_price_list": "tk-dp-m"
       },
       "source_status": {
         "pokemontcg_api": "unavailable",
         "tcgdex": "available",
         "official_checklist_pdf": "unavailable",
         "official_pokemon_checklist": "unavailable",
-        "thepricedex": "unavailable",
-        "thepricedex_price_list": "unavailable"
+        "thepricedex": "candidate_url",
+        "thepricedex_price_list": "candidate_url"
       },
       "source_totals": {
         "pokemontcg_api": {
@@ -318,11 +318,11 @@
           "set_key": "tk-dp-m",
           "set_name": "DP trainer Kit (Manaphy)",
           "source_key": "thepricedex_price_list",
-          "source_alias": null,
-          "configured_status": "unavailable",
-          "runtime_status": "unavailable",
+          "source_alias": "tk-dp-m",
+          "configured_status": "candidate_url",
+          "runtime_status": "error",
           "evidence_rows": 0,
-          "error": null
+          "error": "Fetch failed 404 Not Found: https://www.thepricedex.com/set/tk-dp-m/dp-trainer-kit-manaphy/price-list"
         },
         {
           "set_key": "tk-dp-m",
@@ -348,16 +348,16 @@
         "tcgdex": "tk-hs-g",
         "official_checklist_pdf": null,
         "official_pokemon_checklist": null,
-        "thepricedex": null,
-        "thepricedex_price_list": null
+        "thepricedex": "tk-hs-g",
+        "thepricedex_price_list": "tk-hs-g"
       },
       "source_status": {
         "pokemontcg_api": "unavailable",
         "tcgdex": "available",
         "official_checklist_pdf": "unavailable",
         "official_pokemon_checklist": "unavailable",
-        "thepricedex": "unavailable",
-        "thepricedex_price_list": "unavailable"
+        "thepricedex": "candidate_url",
+        "thepricedex_price_list": "candidate_url"
       },
       "source_totals": {
         "pokemontcg_api": {
@@ -401,11 +401,11 @@
           "set_key": "tk-hs-g",
           "set_name": "HS trainer Kit (Gyarados)",
           "source_key": "thepricedex_price_list",
-          "source_alias": null,
-          "configured_status": "unavailable",
-          "runtime_status": "unavailable",
+          "source_alias": "tk-hs-g",
+          "configured_status": "candidate_url",
+          "runtime_status": "error",
           "evidence_rows": 0,
-          "error": null
+          "error": "Fetch failed 404 Not Found: https://www.thepricedex.com/set/tk-hs-g/hs-trainer-kit-gyarados/price-list"
         },
         {
           "set_key": "tk-hs-g",
@@ -431,16 +431,16 @@
         "tcgdex": "tk-hs-r",
         "official_checklist_pdf": null,
         "official_pokemon_checklist": null,
-        "thepricedex": null,
-        "thepricedex_price_list": null
+        "thepricedex": "tk-hs-r",
+        "thepricedex_price_list": "tk-hs-r"
       },
       "source_status": {
         "pokemontcg_api": "unavailable",
         "tcgdex": "available",
         "official_checklist_pdf": "unavailable",
         "official_pokemon_checklist": "unavailable",
-        "thepricedex": "unavailable",
-        "thepricedex_price_list": "unavailable"
+        "thepricedex": "candidate_url",
+        "thepricedex_price_list": "candidate_url"
       },
       "source_totals": {
         "pokemontcg_api": {
@@ -484,11 +484,11 @@
           "set_key": "tk-hs-r",
           "set_name": "HS trainer Kit (Raichu)",
           "source_key": "thepricedex_price_list",
-          "source_alias": null,
-          "configured_status": "unavailable",
-          "runtime_status": "unavailable",
+          "source_alias": "tk-hs-r",
+          "configured_status": "candidate_url",
+          "runtime_status": "error",
           "evidence_rows": 0,
-          "error": null
+          "error": "Fetch failed 404 Not Found: https://www.thepricedex.com/set/tk-hs-r/hs-trainer-kit-raichu/price-list"
         },
         {
           "set_key": "tk-hs-r",
@@ -514,16 +514,16 @@
         "tcgdex": "jumbo",
         "official_checklist_pdf": null,
         "official_pokemon_checklist": null,
-        "thepricedex": null,
-        "thepricedex_price_list": null
+        "thepricedex": "jumbo",
+        "thepricedex_price_list": "jumbo"
       },
       "source_status": {
         "pokemontcg_api": "unavailable",
         "tcgdex": "available",
         "official_checklist_pdf": "unavailable",
         "official_pokemon_checklist": "unavailable",
-        "thepricedex": "unavailable",
-        "thepricedex_price_list": "unavailable"
+        "thepricedex": "candidate_url",
+        "thepricedex_price_list": "candidate_url"
       },
       "source_totals": {
         "pokemontcg_api": {
@@ -563,11 +563,11 @@
           "set_key": "jumbo",
           "set_name": "Jumbo cards",
           "source_key": "thepricedex_price_list",
-          "source_alias": null,
-          "configured_status": "unavailable",
-          "runtime_status": "unavailable",
+          "source_alias": "jumbo",
+          "configured_status": "candidate_url",
+          "runtime_status": "error",
           "evidence_rows": 0,
-          "error": null
+          "error": "Fetch failed 404 Not Found: https://www.thepricedex.com/set/jumbo/jumbo-cards/price-list"
         },
         {
           "set_key": "jumbo",
@@ -593,16 +593,16 @@
         "tcgdex": "2023sv",
         "official_checklist_pdf": null,
         "official_pokemon_checklist": null,
-        "thepricedex": null,
-        "thepricedex_price_list": null
+        "thepricedex": "2023sv",
+        "thepricedex_price_list": "2023sv"
       },
       "source_status": {
         "pokemontcg_api": "unavailable",
         "tcgdex": "available",
         "official_checklist_pdf": "unavailable",
         "official_pokemon_checklist": "unavailable",
-        "thepricedex": "unavailable",
-        "thepricedex_price_list": "unavailable"
+        "thepricedex": "candidate_url",
+        "thepricedex_price_list": "candidate_url"
       },
       "source_totals": {
         "pokemontcg_api": {
@@ -646,11 +646,11 @@
           "set_key": "2023sv",
           "set_name": "McDonald's Collection 2023",
           "source_key": "thepricedex_price_list",
-          "source_alias": null,
-          "configured_status": "unavailable",
-          "runtime_status": "unavailable",
+          "source_alias": "2023sv",
+          "configured_status": "candidate_url",
+          "runtime_status": "error",
           "evidence_rows": 0,
-          "error": null
+          "error": "Fetch failed 404 Not Found: https://www.thepricedex.com/set/2023sv/mcdonalds-collection-2023/price-list"
         },
         {
           "set_key": "2023sv",
@@ -676,16 +676,16 @@
         "tcgdex": "2024sv",
         "official_checklist_pdf": null,
         "official_pokemon_checklist": null,
-        "thepricedex": null,
-        "thepricedex_price_list": null
+        "thepricedex": "2024sv",
+        "thepricedex_price_list": "2024sv"
       },
       "source_status": {
         "pokemontcg_api": "unavailable",
         "tcgdex": "available",
         "official_checklist_pdf": "unavailable",
         "official_pokemon_checklist": "unavailable",
-        "thepricedex": "unavailable",
-        "thepricedex_price_list": "unavailable"
+        "thepricedex": "candidate_url",
+        "thepricedex_price_list": "candidate_url"
       },
       "source_totals": {
         "pokemontcg_api": {
@@ -729,11 +729,11 @@
           "set_key": "2024sv",
           "set_name": "McDonald's Collection 2024",
           "source_key": "thepricedex_price_list",
-          "source_alias": null,
-          "configured_status": "unavailable",
-          "runtime_status": "unavailable",
+          "source_alias": "2024sv",
+          "configured_status": "candidate_url",
+          "runtime_status": "error",
           "evidence_rows": 0,
-          "error": null
+          "error": "Fetch failed 404 Not Found: https://www.thepricedex.com/set/2024sv/mcdonalds-collection-2024/price-list"
         },
         {
           "set_key": "2024sv",
@@ -759,16 +759,16 @@
         "tcgdex": "mee",
         "official_checklist_pdf": null,
         "official_pokemon_checklist": null,
-        "thepricedex": null,
-        "thepricedex_price_list": null
+        "thepricedex": "mee",
+        "thepricedex_price_list": "mee"
       },
       "source_status": {
         "pokemontcg_api": "unavailable",
         "tcgdex": "available",
         "official_checklist_pdf": "unavailable",
         "official_pokemon_checklist": "unavailable",
-        "thepricedex": "unavailable",
-        "thepricedex_price_list": "unavailable"
+        "thepricedex": "candidate_url",
+        "thepricedex_price_list": "candidate_url"
       },
       "source_totals": {
         "pokemontcg_api": {
@@ -812,11 +812,11 @@
           "set_key": "mee",
           "set_name": "Mega Evolution Energy",
           "source_key": "thepricedex_price_list",
-          "source_alias": null,
-          "configured_status": "unavailable",
-          "runtime_status": "unavailable",
+          "source_alias": "mee",
+          "configured_status": "candidate_url",
+          "runtime_status": "error",
           "evidence_rows": 0,
-          "error": null
+          "error": "Fetch failed 404 Not Found: https://www.thepricedex.com/set/mee/mega-evolution-energy/price-list"
         },
         {
           "set_key": "mee",
@@ -842,16 +842,16 @@
         "tcgdex": "mep",
         "official_checklist_pdf": null,
         "official_pokemon_checklist": null,
-        "thepricedex": null,
-        "thepricedex_price_list": null
+        "thepricedex": "mep",
+        "thepricedex_price_list": "mep"
       },
       "source_status": {
         "pokemontcg_api": "unavailable",
         "tcgdex": "available",
         "official_checklist_pdf": "unavailable",
         "official_pokemon_checklist": "unavailable",
-        "thepricedex": "unavailable",
-        "thepricedex_price_list": "unavailable"
+        "thepricedex": "candidate_url",
+        "thepricedex_price_list": "candidate_url"
       },
       "source_totals": {
         "pokemontcg_api": {
@@ -863,12 +863,14 @@
           "total": 52
         }
       },
-      "evidence_rows": 104,
+      "evidence_rows": 244,
       "card_status_counts": {
-        "candidate_unconfirmed": 52
+        "human_source_verified": 8,
+        "master_verified": 52
       },
       "printing_status_counts": {
-        "candidate_unconfirmed": 52
+        "human_source_verified": 33,
+        "master_verified": 49
       },
       "source_availability": [
         {
@@ -895,10 +897,10 @@
           "set_key": "mep",
           "set_name": "MEP Black Star Promos",
           "source_key": "thepricedex_price_list",
-          "source_alias": null,
-          "configured_status": "unavailable",
-          "runtime_status": "unavailable",
-          "evidence_rows": 0,
+          "source_alias": "mep",
+          "configured_status": "candidate_url",
+          "runtime_status": "collected",
+          "evidence_rows": 143,
           "error": null
         },
         {
@@ -925,16 +927,16 @@
         "tcgdex": "mfb",
         "official_checklist_pdf": null,
         "official_pokemon_checklist": null,
-        "thepricedex": null,
-        "thepricedex_price_list": null
+        "thepricedex": "mfb",
+        "thepricedex_price_list": "mfb"
       },
       "source_status": {
         "pokemontcg_api": "unavailable",
         "tcgdex": "available",
         "official_checklist_pdf": "unavailable",
         "official_pokemon_checklist": "unavailable",
-        "thepricedex": "unavailable",
-        "thepricedex_price_list": "unavailable"
+        "thepricedex": "candidate_url",
+        "thepricedex_price_list": "candidate_url"
       },
       "source_totals": {
         "pokemontcg_api": {
@@ -978,11 +980,11 @@
           "set_key": "mfb",
           "set_name": "My First Battle",
           "source_key": "thepricedex_price_list",
-          "source_alias": null,
-          "configured_status": "unavailable",
-          "runtime_status": "unavailable",
+          "source_alias": "mfb",
+          "configured_status": "candidate_url",
+          "runtime_status": "error",
           "evidence_rows": 0,
-          "error": null
+          "error": "Fetch failed 404 Not Found: https://www.thepricedex.com/set/mfb/my-first-battle/price-list"
         },
         {
           "set_key": "mfb",
@@ -1008,16 +1010,16 @@
         "tcgdex": "ex5.5",
         "official_checklist_pdf": null,
         "official_pokemon_checklist": null,
-        "thepricedex": null,
-        "thepricedex_price_list": null
+        "thepricedex": "ex5.5",
+        "thepricedex_price_list": "ex5.5"
       },
       "source_status": {
         "pokemontcg_api": "unavailable",
         "tcgdex": "available",
         "official_checklist_pdf": "unavailable",
         "official_pokemon_checklist": "unavailable",
-        "thepricedex": "unavailable",
-        "thepricedex_price_list": "unavailable"
+        "thepricedex": "candidate_url",
+        "thepricedex_price_list": "candidate_url"
       },
       "source_totals": {
         "pokemontcg_api": {
@@ -1061,11 +1063,11 @@
           "set_key": "ex5.5",
           "set_name": "Poké Card Creator Pack",
           "source_key": "thepricedex_price_list",
-          "source_alias": null,
-          "configured_status": "unavailable",
-          "runtime_status": "unavailable",
+          "source_alias": "ex5.5",
+          "configured_status": "candidate_url",
+          "runtime_status": "error",
           "evidence_rows": 0,
-          "error": null
+          "error": "Fetch failed 404 Not Found: https://www.thepricedex.com/set/ex5.5/pok-card-creator-pack/price-list"
         },
         {
           "set_key": "ex5.5",
@@ -1091,16 +1093,16 @@
         "tcgdex": "fut2020",
         "official_checklist_pdf": null,
         "official_pokemon_checklist": null,
-        "thepricedex": null,
-        "thepricedex_price_list": null
+        "thepricedex": "fut2020",
+        "thepricedex_price_list": "fut2020"
       },
       "source_status": {
         "pokemontcg_api": "unavailable",
         "tcgdex": "available",
         "official_checklist_pdf": "unavailable",
         "official_pokemon_checklist": "unavailable",
-        "thepricedex": "unavailable",
-        "thepricedex_price_list": "unavailable"
+        "thepricedex": "candidate_url",
+        "thepricedex_price_list": "candidate_url"
       },
       "source_totals": {
         "pokemontcg_api": {
@@ -1144,11 +1146,11 @@
           "set_key": "fut2020",
           "set_name": "Pokémon Futsal 2020",
           "source_key": "thepricedex_price_list",
-          "source_alias": null,
-          "configured_status": "unavailable",
-          "runtime_status": "unavailable",
+          "source_alias": "fut2020",
+          "configured_status": "candidate_url",
+          "runtime_status": "error",
           "evidence_rows": 0,
-          "error": null
+          "error": "Fetch failed 404 Not Found: https://www.thepricedex.com/set/fut2020/pok-mon-futsal-2020/price-list"
         },
         {
           "set_key": "fut2020",
@@ -1174,16 +1176,16 @@
         "tcgdex": "rc",
         "official_checklist_pdf": null,
         "official_pokemon_checklist": null,
-        "thepricedex": null,
-        "thepricedex_price_list": null
+        "thepricedex": "rc",
+        "thepricedex_price_list": "rc"
       },
       "source_status": {
         "pokemontcg_api": "unavailable",
         "tcgdex": "available",
         "official_checklist_pdf": "unavailable",
         "official_pokemon_checklist": "unavailable",
-        "thepricedex": "unavailable",
-        "thepricedex_price_list": "unavailable"
+        "thepricedex": "candidate_url",
+        "thepricedex_price_list": "candidate_url"
       },
       "source_totals": {
         "pokemontcg_api": {
@@ -1223,11 +1225,11 @@
           "set_key": "rc",
           "set_name": "Radiant Collection",
           "source_key": "thepricedex_price_list",
-          "source_alias": null,
-          "configured_status": "unavailable",
-          "runtime_status": "unavailable",
+          "source_alias": "rc",
+          "configured_status": "candidate_url",
+          "runtime_status": "error",
           "evidence_rows": 0,
-          "error": null
+          "error": "Fetch failed 404 Not Found: https://www.thepricedex.com/set/rc/radiant-collection/price-list"
         },
         {
           "set_key": "rc",
@@ -1253,16 +1255,16 @@
         "tcgdex": "sp",
         "official_checklist_pdf": null,
         "official_pokemon_checklist": null,
-        "thepricedex": null,
-        "thepricedex_price_list": null
+        "thepricedex": "sp",
+        "thepricedex_price_list": "sp"
       },
       "source_status": {
         "pokemontcg_api": "unavailable",
         "tcgdex": "available",
         "official_checklist_pdf": "unavailable",
         "official_pokemon_checklist": "unavailable",
-        "thepricedex": "unavailable",
-        "thepricedex_price_list": "unavailable"
+        "thepricedex": "candidate_url",
+        "thepricedex_price_list": "candidate_url"
       },
       "source_totals": {
         "pokemontcg_api": {
@@ -1302,11 +1304,11 @@
           "set_key": "sp",
           "set_name": "Sample",
           "source_key": "thepricedex_price_list",
-          "source_alias": null,
-          "configured_status": "unavailable",
-          "runtime_status": "unavailable",
+          "source_alias": "sp",
+          "configured_status": "candidate_url",
+          "runtime_status": "error",
           "evidence_rows": 0,
-          "error": null
+          "error": "Fetch failed 404 Not Found: https://www.thepricedex.com/set/sp/sample/price-list"
         },
         {
           "set_key": "sp",
@@ -1332,16 +1334,16 @@
         "tcgdex": "tk-sm-r",
         "official_checklist_pdf": null,
         "official_pokemon_checklist": null,
-        "thepricedex": null,
-        "thepricedex_price_list": null
+        "thepricedex": "tk-sm-r",
+        "thepricedex_price_list": "tk-sm-r"
       },
       "source_status": {
         "pokemontcg_api": "unavailable",
         "tcgdex": "available",
         "official_checklist_pdf": "unavailable",
         "official_pokemon_checklist": "unavailable",
-        "thepricedex": "unavailable",
-        "thepricedex_price_list": "unavailable"
+        "thepricedex": "candidate_url",
+        "thepricedex_price_list": "candidate_url"
       },
       "source_totals": {
         "pokemontcg_api": {
@@ -1385,11 +1387,11 @@
           "set_key": "tk-sm-r",
           "set_name": "SM trainer Kit (Alolan Raichu)",
           "source_key": "thepricedex_price_list",
-          "source_alias": null,
-          "configured_status": "unavailable",
-          "runtime_status": "unavailable",
+          "source_alias": "tk-sm-r",
+          "configured_status": "candidate_url",
+          "runtime_status": "error",
           "evidence_rows": 0,
-          "error": null
+          "error": "Fetch failed 404 Not Found: https://www.thepricedex.com/set/tk-sm-r/sm-trainer-kit-alolan-raichu/price-list"
         },
         {
           "set_key": "tk-sm-r",
@@ -1415,16 +1417,16 @@
         "tcgdex": "tk-sm-l",
         "official_checklist_pdf": null,
         "official_pokemon_checklist": null,
-        "thepricedex": null,
-        "thepricedex_price_list": null
+        "thepricedex": "tk-sm-l",
+        "thepricedex_price_list": "tk-sm-l"
       },
       "source_status": {
         "pokemontcg_api": "unavailable",
         "tcgdex": "available",
         "official_checklist_pdf": "unavailable",
         "official_pokemon_checklist": "unavailable",
-        "thepricedex": "unavailable",
-        "thepricedex_price_list": "unavailable"
+        "thepricedex": "candidate_url",
+        "thepricedex_price_list": "candidate_url"
       },
       "source_totals": {
         "pokemontcg_api": {
@@ -1468,11 +1470,11 @@
           "set_key": "tk-sm-l",
           "set_name": "SM trainer Kit (Lycanroc)",
           "source_key": "thepricedex_price_list",
-          "source_alias": null,
-          "configured_status": "unavailable",
-          "runtime_status": "unavailable",
+          "source_alias": "tk-sm-l",
+          "configured_status": "candidate_url",
+          "runtime_status": "error",
           "evidence_rows": 0,
-          "error": null
+          "error": "Fetch failed 404 Not Found: https://www.thepricedex.com/set/tk-sm-l/sm-trainer-kit-lycanroc/price-list"
         },
         {
           "set_key": "tk-sm-l",
@@ -1498,16 +1500,16 @@
         "tcgdex": "exu",
         "official_checklist_pdf": null,
         "official_pokemon_checklist": null,
-        "thepricedex": null,
-        "thepricedex_price_list": null
+        "thepricedex": "exu",
+        "thepricedex_price_list": "exu"
       },
       "source_status": {
         "pokemontcg_api": "unavailable",
         "tcgdex": "available",
         "official_checklist_pdf": "unavailable",
         "official_pokemon_checklist": "unavailable",
-        "thepricedex": "unavailable",
-        "thepricedex_price_list": "unavailable"
+        "thepricedex": "candidate_url",
+        "thepricedex_price_list": "candidate_url"
       },
       "source_totals": {
         "pokemontcg_api": {
@@ -1551,11 +1553,11 @@
           "set_key": "exu",
           "set_name": "Unseen Forces Unown Collection",
           "source_key": "thepricedex_price_list",
-          "source_alias": null,
-          "configured_status": "unavailable",
-          "runtime_status": "unavailable",
+          "source_alias": "exu",
+          "configured_status": "candidate_url",
+          "runtime_status": "error",
           "evidence_rows": 0,
-          "error": null
+          "error": "Fetch failed 404 Not Found: https://www.thepricedex.com/set/exu/unseen-forces-unown-collection/price-list"
         },
         {
           "set_key": "exu",
@@ -1581,16 +1583,16 @@
         "tcgdex": "wp",
         "official_checklist_pdf": null,
         "official_pokemon_checklist": null,
-        "thepricedex": null,
-        "thepricedex_price_list": null
+        "thepricedex": "wp",
+        "thepricedex_price_list": "wp"
       },
       "source_status": {
         "pokemontcg_api": "unavailable",
         "tcgdex": "available",
         "official_checklist_pdf": "unavailable",
         "official_pokemon_checklist": "unavailable",
-        "thepricedex": "unavailable",
-        "thepricedex_price_list": "unavailable"
+        "thepricedex": "candidate_url",
+        "thepricedex_price_list": "candidate_url"
       },
       "source_totals": {
         "pokemontcg_api": {
@@ -1630,11 +1632,11 @@
           "set_key": "wp",
           "set_name": "W Promotional",
           "source_key": "thepricedex_price_list",
-          "source_alias": null,
-          "configured_status": "unavailable",
-          "runtime_status": "unavailable",
+          "source_alias": "wp",
+          "configured_status": "candidate_url",
+          "runtime_status": "error",
           "evidence_rows": 0,
-          "error": null
+          "error": "Fetch failed 404 Not Found: https://www.thepricedex.com/set/wp/w-promotional/price-list"
         },
         {
           "set_key": "wp",
@@ -1660,16 +1662,16 @@
         "tcgdex": "tk-xy-b",
         "official_checklist_pdf": null,
         "official_pokemon_checklist": null,
-        "thepricedex": null,
-        "thepricedex_price_list": null
+        "thepricedex": "tk-xy-b",
+        "thepricedex_price_list": "tk-xy-b"
       },
       "source_status": {
         "pokemontcg_api": "unavailable",
         "tcgdex": "available",
         "official_checklist_pdf": "unavailable",
         "official_pokemon_checklist": "unavailable",
-        "thepricedex": "unavailable",
-        "thepricedex_price_list": "unavailable"
+        "thepricedex": "candidate_url",
+        "thepricedex_price_list": "candidate_url"
       },
       "source_totals": {
         "pokemontcg_api": {
@@ -1713,11 +1715,11 @@
           "set_key": "tk-xy-b",
           "set_name": "XY trainer Kit (Bisharp)",
           "source_key": "thepricedex_price_list",
-          "source_alias": null,
-          "configured_status": "unavailable",
-          "runtime_status": "unavailable",
+          "source_alias": "tk-xy-b",
+          "configured_status": "candidate_url",
+          "runtime_status": "error",
           "evidence_rows": 0,
-          "error": null
+          "error": "Fetch failed 404 Not Found: https://www.thepricedex.com/set/tk-xy-b/xy-trainer-kit-bisharp/price-list"
         },
         {
           "set_key": "tk-xy-b",
@@ -1743,16 +1745,16 @@
         "tcgdex": "tk-xy-latia",
         "official_checklist_pdf": null,
         "official_pokemon_checklist": null,
-        "thepricedex": null,
-        "thepricedex_price_list": null
+        "thepricedex": "tk-xy-latia",
+        "thepricedex_price_list": "tk-xy-latia"
       },
       "source_status": {
         "pokemontcg_api": "unavailable",
         "tcgdex": "available",
         "official_checklist_pdf": "unavailable",
         "official_pokemon_checklist": "unavailable",
-        "thepricedex": "unavailable",
-        "thepricedex_price_list": "unavailable"
+        "thepricedex": "candidate_url",
+        "thepricedex_price_list": "candidate_url"
       },
       "source_totals": {
         "pokemontcg_api": {
@@ -1796,11 +1798,11 @@
           "set_key": "tk-xy-latia",
           "set_name": "XY trainer Kit (Latias)",
           "source_key": "thepricedex_price_list",
-          "source_alias": null,
-          "configured_status": "unavailable",
-          "runtime_status": "unavailable",
+          "source_alias": "tk-xy-latia",
+          "configured_status": "candidate_url",
+          "runtime_status": "error",
           "evidence_rows": 0,
-          "error": null
+          "error": "Fetch failed 404 Not Found: https://www.thepricedex.com/set/tk-xy-latia/xy-trainer-kit-latias/price-list"
         },
         {
           "set_key": "tk-xy-latia",
@@ -1826,16 +1828,16 @@
         "tcgdex": "tk-xy-latio",
         "official_checklist_pdf": null,
         "official_pokemon_checklist": null,
-        "thepricedex": null,
-        "thepricedex_price_list": null
+        "thepricedex": "tk-xy-latio",
+        "thepricedex_price_list": "tk-xy-latio"
       },
       "source_status": {
         "pokemontcg_api": "unavailable",
         "tcgdex": "available",
         "official_checklist_pdf": "unavailable",
         "official_pokemon_checklist": "unavailable",
-        "thepricedex": "unavailable",
-        "thepricedex_price_list": "unavailable"
+        "thepricedex": "candidate_url",
+        "thepricedex_price_list": "candidate_url"
       },
       "source_totals": {
         "pokemontcg_api": {
@@ -1879,11 +1881,11 @@
           "set_key": "tk-xy-latio",
           "set_name": "XY trainer Kit (Latios)",
           "source_key": "thepricedex_price_list",
-          "source_alias": null,
-          "configured_status": "unavailable",
-          "runtime_status": "unavailable",
+          "source_alias": "tk-xy-latio",
+          "configured_status": "candidate_url",
+          "runtime_status": "error",
           "evidence_rows": 0,
-          "error": null
+          "error": "Fetch failed 404 Not Found: https://www.thepricedex.com/set/tk-xy-latio/xy-trainer-kit-latios/price-list"
         },
         {
           "set_key": "tk-xy-latio",
@@ -1909,16 +1911,16 @@
         "tcgdex": "tk-xy-n",
         "official_checklist_pdf": null,
         "official_pokemon_checklist": null,
-        "thepricedex": null,
-        "thepricedex_price_list": null
+        "thepricedex": "tk-xy-n",
+        "thepricedex_price_list": "tk-xy-n"
       },
       "source_status": {
         "pokemontcg_api": "unavailable",
         "tcgdex": "available",
         "official_checklist_pdf": "unavailable",
         "official_pokemon_checklist": "unavailable",
-        "thepricedex": "unavailable",
-        "thepricedex_price_list": "unavailable"
+        "thepricedex": "candidate_url",
+        "thepricedex_price_list": "candidate_url"
       },
       "source_totals": {
         "pokemontcg_api": {
@@ -1962,11 +1964,11 @@
           "set_key": "tk-xy-n",
           "set_name": "XY trainer Kit (Noivern)",
           "source_key": "thepricedex_price_list",
-          "source_alias": null,
-          "configured_status": "unavailable",
-          "runtime_status": "unavailable",
+          "source_alias": "tk-xy-n",
+          "configured_status": "candidate_url",
+          "runtime_status": "error",
           "evidence_rows": 0,
-          "error": null
+          "error": "Fetch failed 404 Not Found: https://www.thepricedex.com/set/tk-xy-n/xy-trainer-kit-noivern/price-list"
         },
         {
           "set_key": "tk-xy-n",
@@ -1992,16 +1994,16 @@
         "tcgdex": "tk-xy-p",
         "official_checklist_pdf": null,
         "official_pokemon_checklist": null,
-        "thepricedex": null,
-        "thepricedex_price_list": null
+        "thepricedex": "tk-xy-p",
+        "thepricedex_price_list": "tk-xy-p"
       },
       "source_status": {
         "pokemontcg_api": "unavailable",
         "tcgdex": "available",
         "official_checklist_pdf": "unavailable",
         "official_pokemon_checklist": "unavailable",
-        "thepricedex": "unavailable",
-        "thepricedex_price_list": "unavailable"
+        "thepricedex": "candidate_url",
+        "thepricedex_price_list": "candidate_url"
       },
       "source_totals": {
         "pokemontcg_api": {
@@ -2045,11 +2047,11 @@
           "set_key": "tk-xy-p",
           "set_name": "XY trainer Kit (Pikachu Libre)",
           "source_key": "thepricedex_price_list",
-          "source_alias": null,
-          "configured_status": "unavailable",
-          "runtime_status": "unavailable",
+          "source_alias": "tk-xy-p",
+          "configured_status": "candidate_url",
+          "runtime_status": "error",
           "evidence_rows": 0,
-          "error": null
+          "error": "Fetch failed 404 Not Found: https://www.thepricedex.com/set/tk-xy-p/xy-trainer-kit-pikachu-libre/price-list"
         },
         {
           "set_key": "tk-xy-p",
@@ -2075,16 +2077,16 @@
         "tcgdex": "tk-xy-su",
         "official_checklist_pdf": null,
         "official_pokemon_checklist": null,
-        "thepricedex": null,
-        "thepricedex_price_list": null
+        "thepricedex": "tk-xy-su",
+        "thepricedex_price_list": "tk-xy-su"
       },
       "source_status": {
         "pokemontcg_api": "unavailable",
         "tcgdex": "available",
         "official_checklist_pdf": "unavailable",
         "official_pokemon_checklist": "unavailable",
-        "thepricedex": "unavailable",
-        "thepricedex_price_list": "unavailable"
+        "thepricedex": "candidate_url",
+        "thepricedex_price_list": "candidate_url"
       },
       "source_totals": {
         "pokemontcg_api": {
@@ -2128,11 +2130,11 @@
           "set_key": "tk-xy-su",
           "set_name": "XY trainer Kit (Suicune)",
           "source_key": "thepricedex_price_list",
-          "source_alias": null,
-          "configured_status": "unavailable",
-          "runtime_status": "unavailable",
+          "source_alias": "tk-xy-su",
+          "configured_status": "candidate_url",
+          "runtime_status": "error",
           "evidence_rows": 0,
-          "error": null
+          "error": "Fetch failed 404 Not Found: https://www.thepricedex.com/set/tk-xy-su/xy-trainer-kit-suicune/price-list"
         },
         {
           "set_key": "tk-xy-su",
@@ -2158,16 +2160,16 @@
         "tcgdex": "tk-xy-sy",
         "official_checklist_pdf": null,
         "official_pokemon_checklist": null,
-        "thepricedex": null,
-        "thepricedex_price_list": null
+        "thepricedex": "tk-xy-sy",
+        "thepricedex_price_list": "tk-xy-sy"
       },
       "source_status": {
         "pokemontcg_api": "unavailable",
         "tcgdex": "available",
         "official_checklist_pdf": "unavailable",
         "official_pokemon_checklist": "unavailable",
-        "thepricedex": "unavailable",
-        "thepricedex_price_list": "unavailable"
+        "thepricedex": "candidate_url",
+        "thepricedex_price_list": "candidate_url"
       },
       "source_totals": {
         "pokemontcg_api": {
@@ -2211,11 +2213,11 @@
           "set_key": "tk-xy-sy",
           "set_name": "XY trainer Kit (Sylveon)",
           "source_key": "thepricedex_price_list",
-          "source_alias": null,
-          "configured_status": "unavailable",
-          "runtime_status": "unavailable",
+          "source_alias": "tk-xy-sy",
+          "configured_status": "candidate_url",
+          "runtime_status": "error",
           "evidence_rows": 0,
-          "error": null
+          "error": "Fetch failed 404 Not Found: https://www.thepricedex.com/set/tk-xy-sy/xy-trainer-kit-sylveon/price-list"
         },
         {
           "set_key": "tk-xy-sy",
@@ -2241,16 +2243,16 @@
         "tcgdex": "tk-xy-w",
         "official_checklist_pdf": null,
         "official_pokemon_checklist": null,
-        "thepricedex": null,
-        "thepricedex_price_list": null
+        "thepricedex": "tk-xy-w",
+        "thepricedex_price_list": "tk-xy-w"
       },
       "source_status": {
         "pokemontcg_api": "unavailable",
         "tcgdex": "available",
         "official_checklist_pdf": "unavailable",
         "official_pokemon_checklist": "unavailable",
-        "thepricedex": "unavailable",
-        "thepricedex_price_list": "unavailable"
+        "thepricedex": "candidate_url",
+        "thepricedex_price_list": "candidate_url"
       },
       "source_totals": {
         "pokemontcg_api": {
@@ -2294,11 +2296,11 @@
           "set_key": "tk-xy-w",
           "set_name": "XY trainer Kit (Wigglytuff)",
           "source_key": "thepricedex_price_list",
-          "source_alias": null,
-          "configured_status": "unavailable",
-          "runtime_status": "unavailable",
+          "source_alias": "tk-xy-w",
+          "configured_status": "candidate_url",
+          "runtime_status": "error",
           "evidence_rows": 0,
-          "error": null
+          "error": "Fetch failed 404 Not Found: https://www.thepricedex.com/set/tk-xy-w/xy-trainer-kit-wigglytuff/price-list"
         },
         {
           "set_key": "tk-xy-w",
@@ -2324,16 +2326,16 @@
         "tcgdex": "xya",
         "official_checklist_pdf": null,
         "official_pokemon_checklist": null,
-        "thepricedex": null,
-        "thepricedex_price_list": null
+        "thepricedex": "xya",
+        "thepricedex_price_list": "xya"
       },
       "source_status": {
         "pokemontcg_api": "unavailable",
         "tcgdex": "available",
         "official_checklist_pdf": "unavailable",
         "official_pokemon_checklist": "unavailable",
-        "thepricedex": "unavailable",
-        "thepricedex_price_list": "unavailable"
+        "thepricedex": "candidate_url",
+        "thepricedex_price_list": "candidate_url"
       },
       "source_totals": {
         "pokemontcg_api": {
@@ -2377,11 +2379,11 @@
           "set_key": "xya",
           "set_name": "Yellow A Alternate",
           "source_key": "thepricedex_price_list",
-          "source_alias": null,
-          "configured_status": "unavailable",
-          "runtime_status": "unavailable",
+          "source_alias": "xya",
+          "configured_status": "candidate_url",
+          "runtime_status": "error",
           "evidence_rows": 0,
-          "error": null
+          "error": "Fetch failed 404 Not Found: https://www.thepricedex.com/set/xya/yellow-a-alternate/price-list"
         },
         {
           "set_key": "xya",
@@ -2428,14 +2430,13 @@
           "total": 102
         }
       },
-      "evidence_rows": 715,
+      "evidence_rows": 919,
       "card_status_counts": {
         "master_verified": 102
       },
       "printing_status_counts": {
-        "candidate_unconfirmed": 103,
         "human_source_verified": 1,
-        "master_verified": 101
+        "master_verified": 203
       },
       "source_availability": [
         {
@@ -2465,7 +2466,7 @@
           "source_alias": "base1",
           "configured_status": "candidate_url",
           "runtime_status": "collected",
-          "evidence_rows": 105,
+          "evidence_rows": 310,
           "error": null
         },
         {
@@ -2513,14 +2514,13 @@
           "total": 64
         }
       },
-      "evidence_rows": 354,
+      "evidence_rows": 480,
       "card_status_counts": {
         "master_verified": 64
       },
       "printing_status_counts": {
-        "candidate_unconfirmed": 128,
-        "human_source_verified": 2,
-        "master_verified": 16
+        "human_source_verified": 4,
+        "master_verified": 126
       },
       "source_availability": [
         {
@@ -2550,7 +2550,7 @@
           "source_alias": "base2",
           "configured_status": "candidate_url",
           "runtime_status": "collected",
-          "evidence_rows": 82,
+          "evidence_rows": 194,
           "error": null
         },
         {
@@ -2559,8 +2559,8 @@
           "source_key": "tcgplayer_price_guide",
           "source_alias": null,
           "configured_status": "unavailable",
-          "runtime_status": "unavailable",
-          "evidence_rows": 0,
+          "runtime_status": "collected",
+          "evidence_rows": 16,
           "error": null
         }
       ]
@@ -2598,14 +2598,13 @@
           "total": 53
         }
       },
-      "evidence_rows": 367,
+      "evidence_rows": 281,
       "card_status_counts": {
         "master_verified": 53
       },
       "printing_status_counts": {
-        "candidate_unconfirmed": 5,
-        "human_source_verified": 3,
-        "master_verified": 53
+        "human_source_verified": 6,
+        "master_verified": 51
       },
       "source_availability": [
         {
@@ -2625,7 +2624,7 @@
           "source_alias": "basep",
           "configured_status": "available",
           "runtime_status": "collected",
-          "evidence_rows": 107,
+          "evidence_rows": 62,
           "error": null
         },
         {
@@ -2635,7 +2634,7 @@
           "source_alias": "basep",
           "configured_status": "candidate_url",
           "runtime_status": "collected",
-          "evidence_rows": 109,
+          "evidence_rows": 110,
           "error": null
         },
         {
@@ -2645,7 +2644,7 @@
           "source_alias": null,
           "configured_status": "unavailable",
           "runtime_status": "collected",
-          "evidence_rows": 47,
+          "evidence_rows": 7,
           "error": null
         }
       ]
@@ -2683,14 +2682,13 @@
           "total": 62
         }
       },
-      "evidence_rows": 343,
+      "evidence_rows": 467,
       "card_status_counts": {
         "master_verified": 62
       },
       "printing_status_counts": {
-        "candidate_unconfirmed": 124,
         "human_source_verified": 3,
-        "master_verified": 15
+        "master_verified": 124
       },
       "source_availability": [
         {
@@ -2720,7 +2718,7 @@
           "source_alias": "base3",
           "configured_status": "candidate_url",
           "runtime_status": "collected",
-          "evidence_rows": 80,
+          "evidence_rows": 189,
           "error": null
         },
         {
@@ -2729,8 +2727,8 @@
           "source_key": "tcgplayer_price_guide",
           "source_alias": null,
           "configured_status": "unavailable",
-          "runtime_status": "unavailable",
-          "evidence_rows": 0,
+          "runtime_status": "collected",
+          "evidence_rows": 15,
           "error": null
         }
       ]
@@ -2854,14 +2852,13 @@
           "total": 83
         }
       },
-      "evidence_rows": 454,
+      "evidence_rows": 617,
       "card_status_counts": {
         "master_verified": 83
       },
       "printing_status_counts": {
-        "candidate_unconfirmed": 166,
-        "human_source_verified": 3,
-        "master_verified": 18
+        "human_source_verified": 4,
+        "master_verified": 165
       },
       "source_availability": [
         {
@@ -2891,7 +2888,7 @@
           "source_alias": "base5",
           "configured_status": "candidate_url",
           "runtime_status": "collected",
-          "evidence_rows": 104,
+          "evidence_rows": 252,
           "error": null
         },
         {
@@ -2900,8 +2897,8 @@
           "source_key": "tcgplayer_price_guide",
           "source_alias": null,
           "configured_status": "unavailable",
-          "runtime_status": "unavailable",
-          "evidence_rows": 0,
+          "runtime_status": "collected",
+          "evidence_rows": 17,
           "error": null
         }
       ]
@@ -2939,14 +2936,13 @@
           "total": 132
         }
       },
-      "evidence_rows": 700,
+      "evidence_rows": 964,
       "card_status_counts": {
         "master_verified": 132
       },
       "printing_status_counts": {
-        "candidate_unconfirmed": 264,
         "human_source_verified": 2,
-        "master_verified": 19
+        "master_verified": 264
       },
       "source_availability": [
         {
@@ -2976,7 +2972,7 @@
           "source_alias": "gym1",
           "configured_status": "candidate_url",
           "runtime_status": "collected",
-          "evidence_rows": 153,
+          "evidence_rows": 398,
           "error": null
         },
         {
@@ -2985,8 +2981,8 @@
           "source_key": "tcgplayer_price_guide",
           "source_alias": null,
           "configured_status": "unavailable",
-          "runtime_status": "unavailable",
-          "evidence_rows": 0,
+          "runtime_status": "collected",
+          "evidence_rows": 19,
           "error": null
         }
       ]
@@ -3024,14 +3020,13 @@
           "total": 132
         }
       },
-      "evidence_rows": 701,
+      "evidence_rows": 965,
       "card_status_counts": {
         "master_verified": 132
       },
       "printing_status_counts": {
-        "candidate_unconfirmed": 264,
         "human_source_verified": 1,
-        "master_verified": 20
+        "master_verified": 264
       },
       "source_availability": [
         {
@@ -3061,7 +3056,7 @@
           "source_alias": "gym2",
           "configured_status": "candidate_url",
           "runtime_status": "collected",
-          "evidence_rows": 153,
+          "evidence_rows": 397,
           "error": null
         },
         {
@@ -3070,8 +3065,8 @@
           "source_key": "tcgplayer_price_guide",
           "source_alias": null,
           "configured_status": "unavailable",
-          "runtime_status": "unavailable",
-          "evidence_rows": 0,
+          "runtime_status": "collected",
+          "evidence_rows": 20,
           "error": null
         }
       ]
@@ -3109,13 +3104,13 @@
           "total": 111
         }
       },
-      "evidence_rows": 593,
+      "evidence_rows": 814,
       "card_status_counts": {
         "master_verified": 111
       },
       "printing_status_counts": {
-        "candidate_unconfirmed": 222,
-        "master_verified": 19
+        "human_source_verified": 3,
+        "master_verified": 220
       },
       "source_availability": [
         {
@@ -3145,7 +3140,7 @@
           "source_alias": "neo1",
           "configured_status": "candidate_url",
           "runtime_status": "collected",
-          "evidence_rows": 130,
+          "evidence_rows": 334,
           "error": null
         },
         {
@@ -3154,8 +3149,8 @@
           "source_key": "tcgplayer_price_guide",
           "source_alias": null,
           "configured_status": "unavailable",
-          "runtime_status": "unavailable",
-          "evidence_rows": 0,
+          "runtime_status": "collected",
+          "evidence_rows": 19,
           "error": null
         }
       ]
@@ -3193,14 +3188,12 @@
           "total": 75
         }
       },
-      "evidence_rows": 407,
+      "evidence_rows": 555,
       "card_status_counts": {
         "master_verified": 75
       },
       "printing_status_counts": {
-        "candidate_unconfirmed": 150,
-        "human_source_verified": 2,
-        "master_verified": 15
+        "master_verified": 150
       },
       "source_availability": [
         {
@@ -3230,7 +3223,7 @@
           "source_alias": "neo2",
           "configured_status": "candidate_url",
           "runtime_status": "collected",
-          "evidence_rows": 92,
+          "evidence_rows": 225,
           "error": null
         },
         {
@@ -3239,8 +3232,8 @@
           "source_key": "tcgplayer_price_guide",
           "source_alias": null,
           "configured_status": "unavailable",
-          "runtime_status": "unavailable",
-          "evidence_rows": 0,
+          "runtime_status": "collected",
+          "evidence_rows": 15,
           "error": null
         }
       ]
@@ -3362,14 +3355,13 @@
           "total": 66
         }
       },
-      "evidence_rows": 360,
+      "evidence_rows": 486,
       "card_status_counts": {
         "master_verified": 66
       },
       "printing_status_counts": {
-        "candidate_unconfirmed": 132,
-        "human_source_verified": 2,
-        "master_verified": 14
+        "human_source_verified": 4,
+        "master_verified": 128
       },
       "source_availability": [
         {
@@ -3399,7 +3391,7 @@
           "source_alias": "neo3",
           "configured_status": "candidate_url",
           "runtime_status": "collected",
-          "evidence_rows": 82,
+          "evidence_rows": 198,
           "error": null
         },
         {
@@ -3408,8 +3400,8 @@
           "source_key": "tcgplayer_price_guide",
           "source_alias": null,
           "configured_status": "unavailable",
-          "runtime_status": "unavailable",
-          "evidence_rows": 0,
+          "runtime_status": "collected",
+          "evidence_rows": 14,
           "error": null
         }
       ]
@@ -3447,15 +3439,15 @@
           "total": 113
         }
       },
-      "evidence_rows": 603,
+      "evidence_rows": 799,
       "card_status_counts": {
         "candidate_unconfirmed": 1,
         "master_verified": 113
       },
       "printing_status_counts": {
-        "candidate_unconfirmed": 226,
-        "human_source_verified": 10,
-        "master_verified": 14
+        "candidate_unconfirmed": 2,
+        "human_source_verified": 14,
+        "master_verified": 212
       },
       "source_availability": [
         {
@@ -3485,7 +3477,7 @@
           "source_alias": "neo4",
           "configured_status": "candidate_url",
           "runtime_status": "collected",
-          "evidence_rows": 137,
+          "evidence_rows": 339,
           "error": null
         },
         {
@@ -3494,8 +3486,8 @@
           "source_key": "tcgplayer_price_guide",
           "source_alias": null,
           "configured_status": "unavailable",
-          "runtime_status": "unavailable",
-          "evidence_rows": 0,
+          "runtime_status": "collected",
+          "evidence_rows": 10,
           "error": null
         }
       ]
@@ -3616,12 +3608,11 @@
           "total": 165
         }
       },
-      "evidence_rows": 1795,
+      "evidence_rows": 1789,
       "card_status_counts": {
         "master_verified": 165
       },
       "printing_status_counts": {
-        "candidate_unconfirmed": 6,
         "master_verified": 324
       },
       "source_availability": [
@@ -3784,13 +3775,13 @@
           "total": 185
         }
       },
-      "evidence_rows": 1813,
+      "evidence_rows": 1807,
       "card_status_counts": {
         "candidate_unconfirmed": 17,
         "master_verified": 182
       },
       "printing_status_counts": {
-        "candidate_unconfirmed": 31,
+        "candidate_unconfirmed": 25,
         "human_source_verified": 11,
         "master_verified": 318
       },
@@ -3956,12 +3947,11 @@
           "total": 109
         }
       },
-      "evidence_rows": 1178,
+      "evidence_rows": 1160,
       "card_status_counts": {
         "master_verified": 109
       },
       "printing_status_counts": {
-        "candidate_unconfirmed": 18,
         "human_source_verified": 9,
         "master_verified": 210
       },
@@ -4041,12 +4031,11 @@
           "total": 100
         }
       },
-      "evidence_rows": 1076,
+      "evidence_rows": 1075,
       "card_status_counts": {
         "master_verified": 100
       },
       "printing_status_counts": {
-        "candidate_unconfirmed": 1,
         "human_source_verified": 3,
         "master_verified": 193
       },
@@ -4126,14 +4115,13 @@
           "total": 40
         }
       },
-      "evidence_rows": 261,
+      "evidence_rows": 208,
       "card_status_counts": {
         "master_verified": 40
       },
       "printing_status_counts": {
-        "candidate_unconfirmed": 19,
-        "human_source_verified": 2,
-        "master_verified": 47
+        "human_source_verified": 10,
+        "master_verified": 39
       },
       "source_availability": [
         {
@@ -4153,7 +4141,7 @@
           "source_alias": "np",
           "configured_status": "available",
           "runtime_status": "collected",
-          "evidence_rows": 80,
+          "evidence_rows": 40,
           "error": null
         },
         {
@@ -4172,8 +4160,8 @@
           "source_key": "tcgplayer_price_guide",
           "source_alias": null,
           "configured_status": "unavailable",
-          "runtime_status": "collected",
-          "evidence_rows": 13,
+          "runtime_status": "unavailable",
+          "evidence_rows": 0,
           "error": null
         }
       ]
@@ -4211,12 +4199,11 @@
           "total": 100
         }
       },
-      "evidence_rows": 863,
+      "evidence_rows": 839,
       "card_status_counts": {
         "master_verified": 100
       },
       "printing_status_counts": {
-        "candidate_unconfirmed": 24,
         "human_source_verified": 9,
         "master_verified": 188
       },
@@ -4296,13 +4283,13 @@
           "total": 97
         }
       },
-      "evidence_rows": 1030,
+      "evidence_rows": 1018,
       "card_status_counts": {
         "candidate_unconfirmed": 2,
         "master_verified": 97
       },
       "printing_status_counts": {
-        "candidate_unconfirmed": 16,
+        "candidate_unconfirmed": 4,
         "human_source_verified": 1,
         "master_verified": 187
       },
@@ -4382,12 +4369,11 @@
           "total": 10
         }
       },
-      "evidence_rows": 50,
+      "evidence_rows": 49,
       "card_status_counts": {
         "master_verified": 10
       },
       "printing_status_counts": {
-        "candidate_unconfirmed": 1,
         "human_source_verified": 1,
         "master_verified": 9
       },
@@ -4467,12 +4453,11 @@
           "total": 10
         }
       },
-      "evidence_rows": 50,
+      "evidence_rows": 49,
       "card_status_counts": {
         "master_verified": 10
       },
       "printing_status_counts": {
-        "candidate_unconfirmed": 1,
         "human_source_verified": 1,
         "master_verified": 9
       },
@@ -4552,12 +4537,11 @@
           "total": 102
         }
       },
-      "evidence_rows": 986,
+      "evidence_rows": 908,
       "card_status_counts": {
         "master_verified": 102
       },
       "printing_status_counts": {
-        "candidate_unconfirmed": 78,
         "human_source_verified": 5,
         "master_verified": 195
       },
@@ -4637,12 +4621,11 @@
           "total": 116
         }
       },
-      "evidence_rows": 1127,
+      "evidence_rows": 1021,
       "card_status_counts": {
         "master_verified": 116
       },
       "printing_status_counts": {
-        "candidate_unconfirmed": 106,
         "human_source_verified": 2,
         "master_verified": 220
       },
@@ -4806,13 +4789,13 @@
           "total": 111
         }
       },
-      "evidence_rows": 1065,
+      "evidence_rows": 971,
       "card_status_counts": {
         "candidate_unconfirmed": 3,
         "master_verified": 111
       },
       "printing_status_counts": {
-        "candidate_unconfirmed": 97,
+        "candidate_unconfirmed": 3,
         "human_source_verified": 5,
         "master_verified": 206
       },
@@ -4892,13 +4875,13 @@
           "total": 108
         }
       },
-      "evidence_rows": 1049,
+      "evidence_rows": 955,
       "card_status_counts": {
         "candidate_unconfirmed": 3,
         "master_verified": 108
       },
       "printing_status_counts": {
-        "candidate_unconfirmed": 98,
+        "candidate_unconfirmed": 4,
         "human_source_verified": 6,
         "master_verified": 205
       },
@@ -4978,12 +4961,11 @@
           "total": 107
         }
       },
-      "evidence_rows": 1042,
+      "evidence_rows": 948,
       "card_status_counts": {
         "master_verified": 107
       },
       "printing_status_counts": {
-        "candidate_unconfirmed": 94,
         "human_source_verified": 8,
         "master_verified": 200
       },
@@ -5147,13 +5129,13 @@
           "total": 117
         }
       },
-      "evidence_rows": 1136,
+      "evidence_rows": 1134,
       "card_status_counts": {
         "candidate_unconfirmed": 5,
         "master_verified": 143
       },
       "printing_status_counts": {
-        "candidate_unconfirmed": 7,
+        "candidate_unconfirmed": 5,
         "human_source_verified": 4,
         "master_verified": 246
       },
@@ -5233,13 +5215,13 @@
           "total": 114
         }
       },
-      "evidence_rows": 1012,
+      "evidence_rows": 1010,
       "card_status_counts": {
         "candidate_unconfirmed": 3,
         "master_verified": 114
       },
       "printing_status_counts": {
-        "candidate_unconfirmed": 5,
+        "candidate_unconfirmed": 3,
         "human_source_verified": 5,
         "master_verified": 219
       },
@@ -5405,12 +5387,11 @@
           "total": 12
         }
       },
-      "evidence_rows": 60,
+      "evidence_rows": 59,
       "card_status_counts": {
         "master_verified": 12
       },
       "printing_status_counts": {
-        "candidate_unconfirmed": 1,
         "human_source_verified": 1,
         "master_verified": 11
       },
@@ -5490,12 +5471,11 @@
           "total": 12
         }
       },
-      "evidence_rows": 60,
+      "evidence_rows": 59,
       "card_status_counts": {
         "master_verified": 12
       },
       "printing_status_counts": {
-        "candidate_unconfirmed": 1,
         "human_source_verified": 1,
         "master_verified": 11
       },
@@ -5659,13 +5639,13 @@
           "total": 111
         }
       },
-      "evidence_rows": 976,
+      "evidence_rows": 975,
       "card_status_counts": {
         "candidate_unconfirmed": 3,
         "master_verified": 111
       },
       "printing_status_counts": {
-        "candidate_unconfirmed": 4,
+        "candidate_unconfirmed": 3,
         "human_source_verified": 1,
         "master_verified": 212
       },
@@ -5745,13 +5725,13 @@
           "total": 100
         }
       },
-      "evidence_rows": 889,
+      "evidence_rows": 888,
       "card_status_counts": {
         "candidate_unconfirmed": 2,
         "master_verified": 100
       },
       "printing_status_counts": {
-        "candidate_unconfirmed": 3,
+        "candidate_unconfirmed": 2,
         "human_source_verified": 5,
         "master_verified": 192
       },
@@ -6000,13 +5980,13 @@
           "total": 108
         }
       },
-      "evidence_rows": 933,
+      "evidence_rows": 918,
       "card_status_counts": {
         "candidate_unconfirmed": 3,
         "master_verified": 108
       },
       "printing_status_counts": {
-        "candidate_unconfirmed": 19,
+        "candidate_unconfirmed": 4,
         "human_source_verified": 2,
         "master_verified": 202
       },
@@ -6169,13 +6149,13 @@
           "total": 130
         }
       },
-      "evidence_rows": 1431,
+      "evidence_rows": 1422,
       "card_status_counts": {
         "candidate_unconfirmed": 3,
         "master_verified": 130
       },
       "printing_status_counts": {
-        "candidate_unconfirmed": 15,
+        "candidate_unconfirmed": 6,
         "human_source_verified": 22,
         "master_verified": 253
       },
@@ -6255,13 +6235,13 @@
           "total": 56
         }
       },
-      "evidence_rows": 373,
+      "evidence_rows": 366,
       "card_status_counts": {
         "candidate_unconfirmed": 19,
         "master_verified": 56
       },
       "printing_status_counts": {
-        "candidate_unconfirmed": 22,
+        "candidate_unconfirmed": 19,
         "human_source_verified": 4,
         "master_verified": 55
       },
@@ -6283,7 +6263,7 @@
           "source_alias": "dpp",
           "configured_status": "available",
           "runtime_status": "collected",
-          "evidence_rows": 114,
+          "evidence_rows": 109,
           "error": null
         },
         {
@@ -6303,7 +6283,7 @@
           "source_alias": null,
           "configured_status": "unavailable",
           "runtime_status": "collected",
-          "evidence_rows": 34,
+          "evidence_rows": 32,
           "error": null
         }
       ]
@@ -6341,13 +6321,13 @@
           "total": 124
         }
       },
-      "evidence_rows": 1366,
+      "evidence_rows": 1363,
       "card_status_counts": {
         "candidate_unconfirmed": 3,
         "master_verified": 124
       },
       "printing_status_counts": {
-        "candidate_unconfirmed": 9,
+        "candidate_unconfirmed": 6,
         "human_source_verified": 12,
         "master_verified": 245
       },
@@ -6597,13 +6577,13 @@
           "total": 106
         }
       },
-      "evidence_rows": 1162,
+      "evidence_rows": 1158,
       "card_status_counts": {
         "candidate_unconfirmed": 4,
         "master_verified": 106
       },
       "printing_status_counts": {
-        "candidate_unconfirmed": 8,
+        "candidate_unconfirmed": 4,
         "human_source_verified": 9,
         "master_verified": 209
       },
@@ -6767,13 +6747,13 @@
           "total": 100
         }
       },
-      "evidence_rows": 1103,
+      "evidence_rows": 1101,
       "card_status_counts": {
         "candidate_unconfirmed": 4,
         "master_verified": 100
       },
       "printing_status_counts": {
-        "candidate_unconfirmed": 6,
+        "candidate_unconfirmed": 4,
         "human_source_verified": 15,
         "master_verified": 198
       },
@@ -6853,13 +6833,13 @@
           "total": 146
         }
       },
-      "evidence_rows": 1591,
+      "evidence_rows": 1588,
       "card_status_counts": {
         "candidate_unconfirmed": 7,
         "master_verified": 146
       },
       "printing_status_counts": {
-        "candidate_unconfirmed": 10,
+        "candidate_unconfirmed": 7,
         "human_source_verified": 10,
         "master_verified": 291
       },
@@ -6939,12 +6919,11 @@
           "total": 17
         }
       },
-      "evidence_rows": 153,
+      "evidence_rows": 145,
       "card_status_counts": {
         "master_verified": 17
       },
       "printing_status_counts": {
-        "candidate_unconfirmed": 8,
         "human_source_verified": 4,
         "master_verified": 25
       },
@@ -7024,13 +7003,13 @@
           "total": 106
         }
       },
-      "evidence_rows": 1123,
+      "evidence_rows": 1119,
       "card_status_counts": {
         "candidate_unconfirmed": 5,
         "master_verified": 106
       },
       "printing_status_counts": {
-        "candidate_unconfirmed": 9,
+        "candidate_unconfirmed": 5,
         "human_source_verified": 3,
         "master_verified": 203
       },
@@ -7110,13 +7089,13 @@
           "total": 133
         }
       },
-      "evidence_rows": 1420,
+      "evidence_rows": 1419,
       "card_status_counts": {
         "candidate_unconfirmed": 6,
         "master_verified": 133
       },
       "printing_status_counts": {
-        "candidate_unconfirmed": 7,
+        "candidate_unconfirmed": 6,
         "human_source_verified": 6,
         "master_verified": 256
       },
@@ -7280,13 +7259,13 @@
           "total": 120
         }
       },
-      "evidence_rows": 1212,
+      "evidence_rows": 1211,
       "card_status_counts": {
         "candidate_unconfirmed": 29,
         "master_verified": 120
       },
       "printing_status_counts": {
-        "candidate_unconfirmed": 51,
+        "candidate_unconfirmed": 50,
         "human_source_verified": 12,
         "master_verified": 223
       },
@@ -7366,13 +7345,13 @@
           "total": 153
         }
       },
-      "evidence_rows": 1536,
+      "evidence_rows": 1421,
       "card_status_counts": {
         "candidate_unconfirmed": 7,
         "master_verified": 153
       },
       "printing_status_counts": {
-        "candidate_unconfirmed": 122,
+        "candidate_unconfirmed": 7,
         "human_source_verified": 18,
         "master_verified": 295
       },
@@ -7538,12 +7517,11 @@
           "total": 16
         }
       },
-      "evidence_rows": 109,
+      "evidence_rows": 106,
       "card_status_counts": {
         "master_verified": 16
       },
       "printing_status_counts": {
-        "candidate_unconfirmed": 3,
         "master_verified": 16
       },
       "source_availability": [
@@ -7622,13 +7600,13 @@
           "total": 124
         }
       },
-      "evidence_rows": 1315,
+      "evidence_rows": 1310,
       "card_status_counts": {
         "candidate_unconfirmed": 1,
         "master_verified": 124
       },
       "printing_status_counts": {
-        "candidate_unconfirmed": 7,
+        "candidate_unconfirmed": 2,
         "human_source_verified": 19,
         "master_verified": 232
       },
@@ -7708,12 +7686,11 @@
           "total": 25
         }
       },
-      "evidence_rows": 176,
+      "evidence_rows": 175,
       "card_status_counts": {
         "master_verified": 25
       },
       "printing_status_counts": {
-        "candidate_unconfirmed": 1,
         "human_source_verified": 2,
         "master_verified": 25
       },
@@ -7735,7 +7712,7 @@
           "source_alias": "hgssp",
           "configured_status": "available",
           "runtime_status": "collected",
-          "evidence_rows": 50,
+          "evidence_rows": 49,
           "error": null
         },
         {
@@ -7793,12 +7770,11 @@
           "total": 96
         }
       },
-      "evidence_rows": 1027,
+      "evidence_rows": 1025,
       "card_status_counts": {
         "master_verified": 96
       },
       "printing_status_counts": {
-        "candidate_unconfirmed": 2,
         "human_source_verified": 16,
         "master_verified": 181
       },
@@ -7878,12 +7854,11 @@
           "total": 91
         }
       },
-      "evidence_rows": 973,
+      "evidence_rows": 971,
       "card_status_counts": {
         "master_verified": 91
       },
       "printing_status_counts": {
-        "candidate_unconfirmed": 2,
         "human_source_verified": 7,
         "master_verified": 175
       },
@@ -8047,12 +8022,11 @@
           "total": 106
         }
       },
-      "evidence_rows": 896,
+      "evidence_rows": 867,
       "card_status_counts": {
         "master_verified": 106
       },
       "printing_status_counts": {
-        "candidate_unconfirmed": 29,
         "human_source_verified": 21,
         "master_verified": 195
       },
@@ -8132,15 +8106,14 @@
           "total": 101
         }
       },
-      "evidence_rows": 651,
+      "evidence_rows": 537,
       "card_status_counts": {
         "candidate_unconfirmed": 2,
         "master_verified": 101
       },
       "printing_status_counts": {
-        "candidate_unconfirmed": 85,
-        "human_source_verified": 21,
-        "master_verified": 102
+        "human_source_verified": 24,
+        "master_verified": 99
       },
       "source_availability": [
         {
@@ -8160,7 +8133,7 @@
           "source_alias": "bwp",
           "configured_status": "available",
           "runtime_status": "collected",
-          "evidence_rows": 202,
+          "evidence_rows": 101,
           "error": null
         },
         {
@@ -8179,8 +8152,8 @@
           "source_key": "tcgplayer_price_guide",
           "source_alias": null,
           "configured_status": "unavailable",
-          "runtime_status": "collected",
-          "evidence_rows": 13,
+          "runtime_status": "unavailable",
+          "evidence_rows": 0,
           "error": null
         }
       ]
@@ -8218,12 +8191,11 @@
           "total": 115
         }
       },
-      "evidence_rows": 1039,
+      "evidence_rows": 1028,
       "card_status_counts": {
         "master_verified": 115
       },
       "printing_status_counts": {
-        "candidate_unconfirmed": 11,
         "human_source_verified": 35,
         "master_verified": 223
       },
@@ -8386,12 +8358,11 @@
           "total": 98
         }
       },
-      "evidence_rows": 877,
+      "evidence_rows": 865,
       "card_status_counts": {
         "master_verified": 98
       },
       "printing_status_counts": {
-        "candidate_unconfirmed": 12,
         "human_source_verified": 12,
         "master_verified": 193
       },
@@ -8471,12 +8442,11 @@
           "total": 102
         }
       },
-      "evidence_rows": 908,
+      "evidence_rows": 893,
       "card_status_counts": {
         "master_verified": 102
       },
       "printing_status_counts": {
-        "candidate_unconfirmed": 15,
         "human_source_verified": 13,
         "master_verified": 202
       },
@@ -8556,12 +8526,11 @@
           "total": 103
         }
       },
-      "evidence_rows": 886,
+      "evidence_rows": 863,
       "card_status_counts": {
         "master_verified": 103
       },
       "printing_status_counts": {
-        "candidate_unconfirmed": 23,
         "human_source_verified": 13,
         "master_verified": 193
       },
@@ -8641,12 +8610,11 @@
           "total": 111
         }
       },
-      "evidence_rows": 970,
+      "evidence_rows": 949,
       "card_status_counts": {
         "master_verified": 111
       },
       "printing_status_counts": {
-        "candidate_unconfirmed": 21,
         "human_source_verified": 15,
         "master_verified": 209
       },
@@ -8809,13 +8777,13 @@
           "total": 128
         }
       },
-      "evidence_rows": 1100,
+      "evidence_rows": 1074,
       "card_status_counts": {
         "candidate_unconfirmed": 2,
         "master_verified": 128
       },
       "printing_status_counts": {
-        "candidate_unconfirmed": 28,
+        "candidate_unconfirmed": 2,
         "human_source_verified": 12,
         "master_verified": 241
       },
@@ -8895,12 +8863,11 @@
           "total": 21
         }
       },
-      "evidence_rows": 139,
+      "evidence_rows": 118,
       "card_status_counts": {
         "master_verified": 21
       },
       "printing_status_counts": {
-        "candidate_unconfirmed": 21,
         "human_source_verified": 10,
         "master_verified": 21
       },
@@ -8980,12 +8947,11 @@
           "total": 153
         }
       },
-      "evidence_rows": 1307,
+      "evidence_rows": 1269,
       "card_status_counts": {
         "master_verified": 153
       },
       "printing_status_counts": {
-        "candidate_unconfirmed": 38,
         "human_source_verified": 13,
         "master_verified": 286
       },
@@ -9065,12 +9031,11 @@
           "total": 138
         }
       },
-      "evidence_rows": 1185,
+      "evidence_rows": 1160,
       "card_status_counts": {
         "master_verified": 138
       },
       "printing_status_counts": {
-        "candidate_unconfirmed": 25,
         "human_source_verified": 6,
         "master_verified": 261
       },
@@ -9150,12 +9115,11 @@
           "total": 122
         }
       },
-      "evidence_rows": 1034,
+      "evidence_rows": 1004,
       "card_status_counts": {
         "master_verified": 122
       },
       "printing_status_counts": {
-        "candidate_unconfirmed": 30,
         "human_source_verified": 8,
         "master_verified": 228
       },
@@ -9235,12 +9199,11 @@
           "total": 105
         }
       },
-      "evidence_rows": 884,
+      "evidence_rows": 855,
       "card_status_counts": {
         "master_verified": 105
       },
       "printing_status_counts": {
-        "candidate_unconfirmed": 29,
         "human_source_verified": 7,
         "master_verified": 192
       },
@@ -9320,15 +9283,14 @@
           "total": 216
         }
       },
-      "evidence_rows": 1326,
+      "evidence_rows": 1099,
       "card_status_counts": {
         "api_agreed": 5,
         "master_verified": 211
       },
       "printing_status_counts": {
-        "candidate_unconfirmed": 204,
-        "human_source_verified": 20,
-        "master_verified": 210
+        "human_source_verified": 21,
+        "master_verified": 209
       },
       "source_availability": [
         {
@@ -9348,7 +9310,7 @@
           "source_alias": "xyp",
           "configured_status": "available",
           "runtime_status": "collected",
-          "evidence_rows": 432,
+          "evidence_rows": 216,
           "error": null
         },
         {
@@ -9367,8 +9329,8 @@
           "source_key": "tcgplayer_price_guide",
           "source_alias": null,
           "configured_status": "unavailable",
-          "runtime_status": "collected",
-          "evidence_rows": 11,
+          "runtime_status": "unavailable",
+          "evidence_rows": 0,
           "error": null
         }
       ]
@@ -9406,12 +9368,11 @@
           "total": 140
         }
       },
-      "evidence_rows": 1127,
+      "evidence_rows": 1063,
       "card_status_counts": {
         "master_verified": 140
       },
       "printing_status_counts": {
-        "candidate_unconfirmed": 64,
         "human_source_verified": 6,
         "master_verified": 246
       },
@@ -9575,12 +9536,11 @@
           "total": 146
         }
       },
-      "evidence_rows": 1273,
+      "evidence_rows": 1247,
       "card_status_counts": {
         "master_verified": 146
       },
       "printing_status_counts": {
-        "candidate_unconfirmed": 26,
         "human_source_verified": 21,
         "master_verified": 273
       },
@@ -9660,13 +9620,13 @@
           "total": 110
         }
       },
-      "evidence_rows": 936,
+      "evidence_rows": 913,
       "card_status_counts": {
         "api_agreed": 1,
         "master_verified": 109
       },
       "printing_status_counts": {
-        "candidate_unconfirmed": 24,
+        "candidate_unconfirmed": 1,
         "human_source_verified": 8,
         "master_verified": 203
       },
@@ -9829,13 +9789,13 @@
           "total": 114
         }
       },
-      "evidence_rows": 988,
+      "evidence_rows": 966,
       "card_status_counts": {
         "api_agreed": 1,
         "master_verified": 113
       },
       "printing_status_counts": {
-        "candidate_unconfirmed": 23,
+        "candidate_unconfirmed": 1,
         "human_source_verified": 17,
         "master_verified": 213
       },
@@ -9915,13 +9875,13 @@
           "total": 124
         }
       },
-      "evidence_rows": 1049,
+      "evidence_rows": 1020,
       "card_status_counts": {
         "api_agreed": 2,
         "master_verified": 122
       },
       "printing_status_counts": {
-        "candidate_unconfirmed": 31,
+        "candidate_unconfirmed": 2,
         "human_source_verified": 11,
         "master_verified": 227
       },
@@ -10001,12 +9961,11 @@
           "total": 164
         }
       },
-      "evidence_rows": 1370,
+      "evidence_rows": 1323,
       "card_status_counts": {
         "master_verified": 164
       },
       "printing_status_counts": {
-        "candidate_unconfirmed": 47,
         "human_source_verified": 5,
         "master_verified": 299
       },
@@ -10086,12 +10045,11 @@
           "total": 34
         }
       },
-      "evidence_rows": 294,
+      "evidence_rows": 286,
       "card_status_counts": {
         "master_verified": 34
       },
       "printing_status_counts": {
-        "candidate_unconfirmed": 8,
         "master_verified": 66
       },
       "source_availability": [
@@ -10170,13 +10128,13 @@
           "total": 112
         }
       },
-      "evidence_rows": 923,
+      "evidence_rows": 892,
       "card_status_counts": {
         "api_agreed": 2,
         "master_verified": 110
       },
       "printing_status_counts": {
-        "candidate_unconfirmed": 33,
+        "candidate_unconfirmed": 2,
         "human_source_verified": 6,
         "master_verified": 199
       },
@@ -10256,13 +10214,13 @@
           "total": 101
         }
       },
-      "evidence_rows": 828,
+      "evidence_rows": 794,
       "card_status_counts": {
         "api_agreed": 1,
         "master_verified": 100
       },
       "printing_status_counts": {
-        "candidate_unconfirmed": 35,
+        "candidate_unconfirmed": 1,
         "human_source_verified": 12,
         "master_verified": 174
       },
@@ -10342,13 +10300,13 @@
           "total": 165
         }
       },
-      "evidence_rows": 1412,
+      "evidence_rows": 1376,
       "card_status_counts": {
         "api_agreed": 1,
         "master_verified": 164
       },
       "printing_status_counts": {
-        "candidate_unconfirmed": 37,
+        "candidate_unconfirmed": 1,
         "human_source_verified": 16,
         "master_verified": 308
       },
@@ -10511,13 +10469,13 @@
           "total": 126
         }
       },
-      "evidence_rows": 1049,
+      "evidence_rows": 1017,
       "card_status_counts": {
         "api_agreed": 3,
         "master_verified": 123
       },
       "printing_status_counts": {
-        "candidate_unconfirmed": 35,
+        "candidate_unconfirmed": 3,
         "human_source_verified": 12,
         "master_verified": 221
       },
@@ -10597,13 +10555,13 @@
           "total": 117
         }
       },
-      "evidence_rows": 919,
+      "evidence_rows": 881,
       "card_status_counts": {
         "api_agreed": 2,
         "master_verified": 115
       },
       "printing_status_counts": {
-        "candidate_unconfirmed": 40,
+        "candidate_unconfirmed": 2,
         "human_source_verified": 8,
         "master_verified": 184
       },
@@ -10683,13 +10641,13 @@
           "total": 129
         }
       },
-      "evidence_rows": 1063,
+      "evidence_rows": 1032,
       "card_status_counts": {
         "api_agreed": 4,
         "master_verified": 125
       },
       "printing_status_counts": {
-        "candidate_unconfirmed": 35,
+        "candidate_unconfirmed": 4,
         "human_source_verified": 9,
         "master_verified": 224
       },
@@ -10769,12 +10727,11 @@
           "total": 116
         }
       },
-      "evidence_rows": 983,
+      "evidence_rows": 953,
       "card_status_counts": {
         "master_verified": 116
       },
       "printing_status_counts": {
-        "candidate_unconfirmed": 30,
         "human_source_verified": 10,
         "master_verified": 211
       },
@@ -10937,12 +10894,11 @@
           "total": 113
         }
       },
-      "evidence_rows": 946,
+      "evidence_rows": 915,
       "card_status_counts": {
         "master_verified": 113
       },
       "printing_status_counts": {
-        "candidate_unconfirmed": 31,
         "human_source_verified": 9,
         "master_verified": 203
       },
@@ -11022,15 +10978,15 @@
           "total": 248
         }
       },
-      "evidence_rows": 1602,
+      "evidence_rows": 1337,
       "card_status_counts": {
         "candidate_unconfirmed": 3,
         "master_verified": 248
       },
       "printing_status_counts": {
-        "candidate_unconfirmed": 228,
-        "human_source_verified": 63,
-        "master_verified": 251
+        "candidate_unconfirmed": 2,
+        "human_source_verified": 64,
+        "master_verified": 250
       },
       "source_availability": [
         {
@@ -11050,7 +11006,7 @@
           "source_alias": "smp",
           "configured_status": "available",
           "runtime_status": "collected",
-          "evidence_rows": 496,
+          "evidence_rows": 250,
           "error": null
         },
         {
@@ -11070,7 +11026,7 @@
           "source_alias": null,
           "configured_status": "unavailable",
           "runtime_status": "collected",
-          "evidence_rows": 21,
+          "evidence_rows": 2,
           "error": null
         }
       ]
@@ -11108,14 +11064,14 @@
           "total": 172
         }
       },
-      "evidence_rows": 1435,
+      "evidence_rows": 1386,
       "card_status_counts": {
         "api_agreed": 9,
         "candidate_unconfirmed": 1,
         "master_verified": 163
       },
       "printing_status_counts": {
-        "candidate_unconfirmed": 58,
+        "candidate_unconfirmed": 9,
         "human_source_verified": 32,
         "master_verified": 293
       },
@@ -11195,13 +11151,12 @@
           "total": 169
         }
       },
-      "evidence_rows": 1384,
+      "evidence_rows": 1321,
       "card_status_counts": {
         "candidate_unconfirmed": 11,
         "master_verified": 169
       },
       "printing_status_counts": {
-        "candidate_unconfirmed": 63,
         "human_source_verified": 11,
         "master_verified": 290
       },
@@ -11281,13 +11236,12 @@
           "total": 169
         }
       },
-      "evidence_rows": 1386,
+      "evidence_rows": 1325,
       "card_status_counts": {
         "candidate_unconfirmed": 8,
         "master_verified": 169
       },
       "printing_status_counts": {
-        "candidate_unconfirmed": 61,
         "human_source_verified": 15,
         "master_verified": 290
       },
@@ -11367,13 +11321,12 @@
           "total": 78
         }
       },
-      "evidence_rows": 642,
+      "evidence_rows": 612,
       "card_status_counts": {
         "candidate_unconfirmed": 3,
         "master_verified": 78
       },
       "printing_status_counts": {
-        "candidate_unconfirmed": 30,
         "human_source_verified": 3,
         "master_verified": 138
       },
@@ -11453,14 +11406,14 @@
           "total": 125
         }
       },
-      "evidence_rows": 1037,
+      "evidence_rows": 998,
       "card_status_counts": {
         "api_agreed": 1,
         "candidate_unconfirmed": 1,
         "master_verified": 124
       },
       "printing_status_counts": {
-        "candidate_unconfirmed": 40,
+        "candidate_unconfirmed": 1,
         "human_source_verified": 14,
         "master_verified": 221
       },
@@ -11623,13 +11576,12 @@
           "total": 173
         }
       },
-      "evidence_rows": 1439,
+      "evidence_rows": 1381,
       "card_status_counts": {
         "candidate_unconfirmed": 5,
         "master_verified": 173
       },
       "printing_status_counts": {
-        "candidate_unconfirmed": 58,
         "human_source_verified": 13,
         "master_verified": 301
       },
@@ -11709,13 +11661,12 @@
           "total": 146
         }
       },
-      "evidence_rows": 1200,
+      "evidence_rows": 1148,
       "card_status_counts": {
         "candidate_unconfirmed": 4,
         "master_verified": 146
       },
       "printing_status_counts": {
-        "candidate_unconfirmed": 52,
         "human_source_verified": 11,
         "master_verified": 252
       },
@@ -11795,13 +11746,12 @@
           "total": 183
         }
       },
-      "evidence_rows": 1514,
+      "evidence_rows": 1452,
       "card_status_counts": {
         "candidate_unconfirmed": 4,
         "master_verified": 183
       },
       "printing_status_counts": {
-        "candidate_unconfirmed": 62,
         "human_source_verified": 12,
         "master_verified": 322
       },
@@ -11881,13 +11831,12 @@
           "total": 78
         }
       },
-      "evidence_rows": 633,
+      "evidence_rows": 603,
       "card_status_counts": {
         "candidate_unconfirmed": 2,
         "master_verified": 78
       },
       "printing_status_counts": {
-        "candidate_unconfirmed": 30,
         "human_source_verified": 2,
         "master_verified": 136
       },
@@ -12050,13 +11999,12 @@
           "total": 236
         }
       },
-      "evidence_rows": 1955,
+      "evidence_rows": 1875,
       "card_status_counts": {
         "candidate_unconfirmed": 4,
         "master_verified": 236
       },
       "printing_status_counts": {
-        "candidate_unconfirmed": 80,
         "human_source_verified": 23,
         "master_verified": 413
       },
@@ -12136,13 +12084,12 @@
           "total": 196
         }
       },
-      "evidence_rows": 1598,
+      "evidence_rows": 1529,
       "card_status_counts": {
         "candidate_unconfirmed": 2,
         "master_verified": 196
       },
       "printing_status_counts": {
-        "candidate_unconfirmed": 69,
         "human_source_verified": 6,
         "master_verified": 342
       },
@@ -12222,12 +12169,11 @@
           "total": 18
         }
       },
-      "evidence_rows": 108,
+      "evidence_rows": 90,
       "card_status_counts": {
         "master_verified": 18
       },
       "printing_status_counts": {
-        "candidate_unconfirmed": 18,
         "master_verified": 18
       },
       "source_availability": [
@@ -12306,13 +12252,12 @@
           "total": 234
         }
       },
-      "evidence_rows": 1927,
+      "evidence_rows": 1851,
       "card_status_counts": {
         "candidate_unconfirmed": 4,
         "master_verified": 234
       },
       "printing_status_counts": {
-        "candidate_unconfirmed": 76,
         "human_source_verified": 9,
         "master_verified": 414
       },
@@ -12392,13 +12337,12 @@
           "total": 258
         }
       },
-      "evidence_rows": 2144,
+      "evidence_rows": 2066,
       "card_status_counts": {
         "candidate_unconfirmed": 3,
         "master_verified": 258
       },
       "printing_status_counts": {
-        "candidate_unconfirmed": 78,
         "human_source_verified": 12,
         "master_verified": 459
       },
@@ -12478,13 +12422,12 @@
           "total": 69
         }
       },
-      "evidence_rows": 781,
+      "evidence_rows": 762,
       "card_status_counts": {
         "human_source_verified": 94,
         "master_verified": 69
       },
       "printing_status_counts": {
-        "candidate_unconfirmed": 19,
         "human_source_verified": 103,
         "master_verified": 125
       },
@@ -12564,12 +12507,11 @@
           "total": 94
         }
       },
-      "evidence_rows": 564,
+      "evidence_rows": 470,
       "card_status_counts": {
         "master_verified": 94
       },
       "printing_status_counts": {
-        "candidate_unconfirmed": 94,
         "master_verified": 94
       },
       "source_availability": [
@@ -12731,13 +12673,12 @@
           "total": 271
         }
       },
-      "evidence_rows": 2194,
+      "evidence_rows": 2097,
       "card_status_counts": {
         "candidate_unconfirmed": 1,
         "master_verified": 271
       },
       "printing_status_counts": {
-        "candidate_unconfirmed": 97,
         "human_source_verified": 6,
         "master_verified": 467
       },
@@ -12817,15 +12758,15 @@
           "total": 307
         }
       },
-      "evidence_rows": 1964,
+      "evidence_rows": 1840,
       "card_status_counts": {
         "candidate_unconfirmed": 3,
         "master_verified": 304
       },
       "printing_status_counts": {
-        "candidate_unconfirmed": 121,
+        "candidate_unconfirmed": 2,
         "human_source_verified": 51,
-        "master_verified": 304
+        "master_verified": 303
       },
       "source_availability": [
         {
@@ -12845,7 +12786,7 @@
           "source_alias": "swshp",
           "configured_status": "available",
           "runtime_status": "collected",
-          "evidence_rows": 563,
+          "evidence_rows": 442,
           "error": null
         },
         {
@@ -12865,7 +12806,7 @@
           "source_alias": null,
           "configured_status": "unavailable",
           "runtime_status": "collected",
-          "evidence_rows": 136,
+          "evidence_rows": 134,
           "error": null
         }
       ]
@@ -13491,13 +13432,13 @@
           "total": 195
         }
       },
-      "evidence_rows": 1189,
+      "evidence_rows": 1067,
       "card_status_counts": {
         "candidate_unconfirmed": 2,
         "master_verified": 195
       },
       "printing_status_counts": {
-        "candidate_unconfirmed": 126,
+        "candidate_unconfirmed": 4,
         "human_source_verified": 129,
         "master_verified": 119
       },
@@ -13828,12 +13769,11 @@
           "total": 237
         }
       },
-      "evidence_rows": 2139,
+      "evidence_rows": 2138,
       "card_status_counts": {
         "master_verified": 237
       },
       "printing_status_counts": {
-        "candidate_unconfirmed": 1,
         "human_source_verified": 52,
         "master_verified": 369
       },
@@ -14082,12 +14022,11 @@
           "total": 284
         }
       },
-      "evidence_rows": 2922,
+      "evidence_rows": 2909,
       "card_status_counts": {
         "master_verified": 284
       },
       "printing_status_counts": {
-        "candidate_unconfirmed": 13,
         "human_source_verified": 49,
         "master_verified": 501
       },
@@ -14501,12 +14440,11 @@
           "total": 88
         }
       },
-      "evidence_rows": 850,
+      "evidence_rows": 849,
       "card_status_counts": {
         "master_verified": 88
       },
       "printing_status_counts": {
-        "candidate_unconfirmed": 1,
         "human_source_verified": 5,
         "master_verified": 145
       },
@@ -14586,12 +14524,11 @@
           "total": 15
         }
       },
-      "evidence_rows": 96,
+      "evidence_rows": 87,
       "card_status_counts": {
         "master_verified": 15
       },
       "printing_status_counts": {
-        "candidate_unconfirmed": 9,
         "master_verified": 15
       },
       "source_availability": [
@@ -15004,15 +14941,14 @@
           "total": 226
         }
       },
-      "evidence_rows": 1386,
+      "evidence_rows": 1159,
       "card_status_counts": {
         "candidate_unconfirmed": 1,
         "master_verified": 225
       },
       "printing_status_counts": {
-        "candidate_unconfirmed": 193,
-        "human_source_verified": 86,
-        "master_verified": 210
+        "human_source_verified": 102,
+        "master_verified": 192
       },
       "source_availability": [
         {
@@ -15032,7 +14968,7 @@
           "source_alias": "svp",
           "configured_status": "available",
           "runtime_status": "collected",
-          "evidence_rows": 453,
+          "evidence_rows": 245,
           "error": null
         },
         {
@@ -15051,8 +14987,8 @@
           "source_key": "tcgplayer_price_guide",
           "source_alias": null,
           "configured_status": "unavailable",
-          "runtime_status": "collected",
-          "evidence_rows": 8,
+          "runtime_status": "unavailable",
+          "evidence_rows": 0,
           "error": null
         }
       ]
@@ -15257,13 +15193,13 @@
           "total": 258
         }
       },
-      "evidence_rows": 2002,
+      "evidence_rows": 2001,
       "card_status_counts": {
         "candidate_unconfirmed": 4,
         "master_verified": 258
       },
       "printing_status_counts": {
-        "candidate_unconfirmed": 2,
+        "candidate_unconfirmed": 1,
         "master_verified": 444
       },
       "source_availability": [
@@ -15513,12 +15449,11 @@
           "total": 230
         }
       },
-      "evidence_rows": 2325,
+      "evidence_rows": 2314,
       "card_status_counts": {
         "master_verified": 230
       },
       "printing_status_counts": {
-        "candidate_unconfirmed": 11,
         "master_verified": 406
       },
       "source_availability": [
@@ -15597,12 +15532,11 @@
           "total": 207
         }
       },
-      "evidence_rows": 2089,
+      "evidence_rows": 2087,
       "card_status_counts": {
         "master_verified": 207
       },
       "printing_status_counts": {
-        "candidate_unconfirmed": 2,
         "human_source_verified": 23,
         "master_verified": 360
       },
@@ -15682,12 +15616,11 @@
           "total": 266
         }
       },
-      "evidence_rows": 2514,
+      "evidence_rows": 2510,
       "card_status_counts": {
         "master_verified": 266
       },
       "printing_status_counts": {
-        "candidate_unconfirmed": 4,
         "master_verified": 428
       },
       "source_availability": [
@@ -15766,12 +15699,11 @@
           "total": 245
         }
       },
-      "evidence_rows": 2039,
+      "evidence_rows": 2037,
       "card_status_counts": {
         "master_verified": 245
       },
       "printing_status_counts": {
-        "candidate_unconfirmed": 2,
         "master_verified": 326
       },
       "source_availability": [
@@ -15850,12 +15782,11 @@
           "total": 218
         }
       },
-      "evidence_rows": 2171,
+      "evidence_rows": 2156,
       "card_status_counts": {
         "master_verified": 218
       },
       "printing_status_counts": {
-        "candidate_unconfirmed": 15,
         "human_source_verified": 49,
         "master_verified": 364
       },
@@ -15935,12 +15866,11 @@
           "total": 226
         }
       },
-      "evidence_rows": 2181,
+      "evidence_rows": 2170,
       "card_status_counts": {
         "master_verified": 226
       },
       "printing_status_counts": {
-        "candidate_unconfirmed": 11,
         "master_verified": 373
       },
       "source_availability": [
@@ -16103,12 +16033,11 @@
           "total": 175
         }
       },
-      "evidence_rows": 1761,
+      "evidence_rows": 1758,
       "card_status_counts": {
         "master_verified": 175
       },
       "printing_status_counts": {
-        "candidate_unconfirmed": 3,
         "human_source_verified": 24,
         "master_verified": 302
       },
@@ -16188,12 +16117,11 @@
           "total": 252
         }
       },
-      "evidence_rows": 2429,
+      "evidence_rows": 2424,
       "card_status_counts": {
         "master_verified": 252
       },
       "printing_status_counts": {
-        "candidate_unconfirmed": 5,
         "master_verified": 417
       },
       "source_availability": [
@@ -16272,12 +16200,11 @@
           "total": 180
         }
       },
-      "evidence_rows": 1704,
+      "evidence_rows": 1703,
       "card_status_counts": {
         "master_verified": 180
       },
       "printing_status_counts": {
-        "candidate_unconfirmed": 1,
         "human_source_verified": 32,
         "master_verified": 280
       },
@@ -16357,12 +16284,11 @@
           "total": 190
         }
       },
-      "evidence_rows": 1955,
+      "evidence_rows": 1941,
       "card_status_counts": {
         "master_verified": 190
       },
       "printing_status_counts": {
-        "candidate_unconfirmed": 14,
         "human_source_verified": 33,
         "master_verified": 335
       },
@@ -16442,12 +16368,11 @@
           "total": 244
         }
       },
-      "evidence_rows": 2428,
+      "evidence_rows": 2423,
       "card_status_counts": {
         "master_verified": 244
       },
       "printing_status_counts": {
-        "candidate_unconfirmed": 5,
         "human_source_verified": 43,
         "master_verified": 411
       },
@@ -16527,13 +16452,13 @@
           "total": 172
         }
       },
-      "evidence_rows": 1528,
+      "evidence_rows": 1526,
       "card_status_counts": {
         "candidate_unconfirmed": 1,
         "master_verified": 172
       },
       "printing_status_counts": {
-        "candidate_unconfirmed": 4,
+        "candidate_unconfirmed": 2,
         "human_source_verified": 2,
         "master_verified": 253
       },
@@ -16613,12 +16538,11 @@
           "total": 173
         }
       },
-      "evidence_rows": 1538,
+      "evidence_rows": 1537,
       "card_status_counts": {
         "master_verified": 173
       },
       "printing_status_counts": {
-        "candidate_unconfirmed": 1,
         "human_source_verified": 1,
         "master_verified": 255
       },
@@ -16698,12 +16622,11 @@
           "total": 188
         }
       },
-      "evidence_rows": 1864,
+      "evidence_rows": 1849,
       "card_status_counts": {
         "master_verified": 188
       },
       "printing_status_counts": {
-        "candidate_unconfirmed": 15,
         "human_source_verified": 36,
         "master_verified": 313
       },
@@ -16783,12 +16706,11 @@
           "total": 130
         }
       },
-      "evidence_rows": 1254,
+      "evidence_rows": 1251,
       "card_status_counts": {
         "master_verified": 130
       },
       "printing_status_counts": {
-        "candidate_unconfirmed": 3,
         "human_source_verified": 3,
         "master_verified": 216
       },
@@ -17039,12 +16961,11 @@
           "total": 122
         }
       },
-      "evidence_rows": 686,
+      "evidence_rows": 628,
       "card_status_counts": {
         "master_verified": 122
       },
       "printing_status_counts": {
-        "candidate_unconfirmed": 58,
         "human_source_verified": 134,
         "master_verified": 64
       },

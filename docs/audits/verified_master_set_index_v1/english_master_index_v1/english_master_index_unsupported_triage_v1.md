@@ -1,6 +1,6 @@
 # English Master Index Unsupported Triage V1
 
-Generated: 2026-05-25T15:19:30.123Z
+Generated: 2026-05-25T16:40:48.237Z
 
 Audit only. No DB writes, migrations, cleanup, quarantine, or public hiding were performed.
 
@@ -10,46 +10,72 @@ Unsupported-by-current-index rows are not deletion authority. They must be split
 
 | category | count |
 | --- | --- |
-| holo_overgeneration_candidate | 3831 |
+| holo_overgeneration_candidate | 4293 |
 | invalid_or_unknown_card_number_review | 1 |
 | modern_parallel_exact_finish_needs_source | 167 |
-| modern_parallel_set_review | 524 |
-| normal_variant_not_in_index_review | 20 |
-| product_or_deck_set_source_coverage_gap | 1022 |
-| promo_family_source_coverage_gap | 2676 |
-| reverse_holo_overgeneration_candidate | 1253 |
-| source_coverage_or_alias_gap | 84 |
-| subset_or_numbering_alias_review | 852 |
+| modern_parallel_set_review | 527 |
+| normal_variant_not_in_index_review | 1641 |
+| product_or_deck_set_source_coverage_gap | 1049 |
+| promo_family_source_coverage_gap | 2874 |
+| reverse_holo_overgeneration_candidate | 1280 |
+| source_coverage_or_alias_gap | 88 |
+| subset_or_numbering_alias_review | 1061 |
 
 ## Summary By Set
 
 | set_code | count |
 | --- | --- |
+| base1 | 1 |
+| base2 | 1 |
+| base5 | 1 |
+| basep | 5 |
 | bp | 5 |
-| bw1 | 110 |
-| bw10 | 93 |
-| bw11 | 85 |
-| bw2 | 87 |
-| bw3 | 89 |
-| bw4 | 92 |
-| bw5 | 102 |
-| bw6 | 114 |
-| bw7 | 133 |
-| bw8 | 127 |
-| bw9 | 107 |
+| bw1 | 121 |
+| bw10 | 122 |
+| bw11 | 124 |
+| bw2 | 99 |
+| bw3 | 104 |
+| bw4 | 115 |
+| bw5 | 123 |
+| bw6 | 140 |
+| bw7 | 171 |
+| bw8 | 152 |
+| bw9 | 137 |
 | bwp | 303 |
 | cel25 | 22 |
-| col1 | 72 |
-| dc1 | 28 |
-| det1 | 18 |
+| col1 | 90 |
+| dc1 | 36 |
+| det1 | 36 |
+| dp1 | 9 |
+| dp2 | 3 |
+| dp4 | 4 |
+| dp5 | 2 |
+| dp6 | 3 |
+| dp7 | 1 |
 | dpp | 58 |
-| dv1 | 21 |
-| ecard2 | 21 |
+| dv1 | 42 |
+| ecard1 | 6 |
+| ecard2 | 27 |
 | ecard3 | 19 |
-| ex10 | 1 |
-| ex3 | 88 |
+| ex1 | 18 |
+| ex10 | 3 |
+| ex11 | 2 |
+| ex13 | 1 |
+| ex14 | 1 |
+| ex16 | 15 |
+| ex2 | 1 |
+| ex3 | 112 |
+| ex4 | 12 |
+| ex5 | 78 |
+| ex6 | 86 |
+| ex7 | 80 |
+| ex8 | 79 |
+| ex9 | 77 |
 | fut20 | 9 |
-| g1 | 109 |
+| g1 | 143 |
+| hgss1 | 4 |
+| hgss2 | 2 |
+| hgss3 | 2 |
 | hsp | 25 |
 | mcd11 | 12 |
 | mcd12 | 12 |
@@ -60,36 +86,48 @@ Unsupported-by-current-index rows are not deletion authority. They must be split
 | mcd18 | 12 |
 | mcd19 | 12 |
 | mcd22 | 6 |
-| me01 | 4 |
-| np | 54 |
+| me01 | 19 |
+| me02 | 3 |
+| neo1 | 1 |
+| neo3 | 2 |
+| neo4 | 8 |
+| np | 73 |
+| pgo | 1 |
+| pl1 | 1 |
+| pl2 | 1 |
+| pl3 | 115 |
 | pop1 | 27 |
 | pop2 | 14 |
-| sm1 | 165 |
-| sm10 | 209 |
-| sm11 | 236 |
-| sm115 | 63 |
-| sm12 | 249 |
-| sm2 | 154 |
-| sm3 | 153 |
-| sm3.5 | 66 |
-| sm4 | 112 |
-| sm5 | 160 |
-| sm6 | 134 |
-| sm7 | 165 |
-| sm75 | 68 |
-| sm8 | 215 |
-| sm9 | 176 |
+| pop8 | 4 |
+| ru1 | 3 |
+| sm1 | 214 |
+| sm10 | 285 |
+| sm11 | 314 |
+| sm115 | 82 |
+| sm12 | 346 |
+| sm2 | 217 |
+| sm3 | 214 |
+| sm3.5 | 96 |
+| sm4 | 151 |
+| sm5 | 218 |
+| sm6 | 186 |
+| sm7 | 227 |
+| sm75 | 98 |
+| sm8 | 295 |
+| sm9 | 245 |
 | sma | 282 |
 | smp | 736 |
+| sv01 | 1 |
 | sv02 | 4 |
-| sv03 | 2 |
+| sv03 | 9 |
 | sv03.5 | 1 |
-| sv05 | 6 |
-| sv10 | 5 |
-| sv10.5b | 261 |
-| sv10.5w | 263 |
+| sv05 | 20 |
+| sv09 | 4 |
+| sv10 | 7 |
+| sv10.5b | 263 |
+| sv10.5w | 264 |
 | sv8pt5 | 167 |
-| svp | 208 |
+| svp | 401 |
 | swsh10tg | 30 |
 | swsh11 | 4 |
 | swsh11tg | 30 |
@@ -97,8 +135,8 @@ Unsupported-by-current-index rows are not deletion authority. They must be split
 | swsh12.5 | 45 |
 | swsh12tg | 47 |
 | swsh45sv | 366 |
-| swsh7 | 1 |
-| swsh8 | 13 |
+| swsh7 | 2 |
+| swsh8 | 26 |
 | swsh9 | 7 |
 | swsh9tg | 46 |
 | swshp | 505 |
@@ -106,10 +144,10 @@ Unsupported-by-current-index rows are not deletion authority. They must be split
 | tk-bw-z | 60 |
 | tk-dp-l | 22 |
 | tk-dp-m | 24 |
-| tk-ex-latia | 19 |
-| tk-ex-latio | 19 |
-| tk-ex-m | 23 |
-| tk-ex-p | 23 |
+| tk-ex-latia | 20 |
+| tk-ex-latio | 20 |
+| tk-ex-m | 24 |
+| tk-ex-p | 24 |
 | tk-hs-g | 2 |
 | tk-hs-r | 2 |
 | tk-sm-l | 36 |
@@ -122,34 +160,38 @@ Unsupported-by-current-index rows are not deletion authority. They must be split
 | tk-xy-su | 60 |
 | tk-xy-sy | 60 |
 | tk-xy-w | 60 |
+| tk1a | 1 |
+| tk1b | 1 |
+| tk2a | 1 |
+| tk2b | 1 |
 | xy0 | 69 |
-| xy1 | 139 |
-| xy10 | 121 |
-| xy11 | 106 |
-| xy12 | 105 |
-| xy2 | 101 |
-| xy3 | 105 |
-| xy4 | 111 |
-| xy5 | 146 |
-| xy6 | 101 |
-| xy7 | 92 |
-| xy8 | 148 |
-| xy9 | 118 |
+| xy1 | 165 |
+| xy10 | 152 |
+| xy11 | 136 |
+| xy12 | 136 |
+| xy2 | 124 |
+| xy3 | 128 |
+| xy4 | 141 |
+| xy5 | 193 |
+| xy6 | 133 |
+| xy7 | 126 |
+| xy8 | 184 |
+| xy9 | 150 |
 | xyp | 642 |
 
 ## Summary By Finish
 
 | finish | count |
 | --- | --- |
-| holo | 5898 |
+| holo | 6491 |
 | masterball | 67 |
-| normal | 1309 |
+| normal | 3238 |
 | pokeball | 100 |
-| reverse | 3056 |
+| reverse | 3085 |
 
 ## holo_overgeneration_candidate
 
-Rows: 3831
+Rows: 4293
 
 ### Top Sets
 
@@ -314,14 +356,14 @@ Rows: 167
 
 ## modern_parallel_set_review
 
-Rows: 524
+Rows: 527
 
 ### Top Sets
 
 | set_code | count |
 | --- | --- |
-| sv10.5w | 263 |
-| sv10.5b | 261 |
+| sv10.5w | 264 |
+| sv10.5b | 263 |
 
 ### Sample Rows
 
@@ -363,6 +405,7 @@ Rows: 524
 | sv10.5b | 008 | Maractus | holo | normal, reverse | Modern parallel-heavy set needs exact card-level parallel evidence before judging support. |
 | sv10.5b | 010 | Foongus | holo | normal, reverse | Modern parallel-heavy set needs exact card-level parallel evidence before judging support. |
 | sv10.5b | 011 | Amoonguss | holo | normal, reverse | Modern parallel-heavy set needs exact card-level parallel evidence before judging support. |
+| sv10.5b | 012 | Victini | normal | holo, reverse | Modern parallel-heavy set needs exact card-level parallel evidence before judging support. |
 | sv10.5b | 013 | Darumaka | holo | normal, reverse | Modern parallel-heavy set needs exact card-level parallel evidence before judging support. |
 | sv10.5b | 015 | Larvesta | holo | normal, reverse | Modern parallel-heavy set needs exact card-level parallel evidence before judging support. |
 | sv10.5b | 018 | Simipour | holo | normal, reverse | Modern parallel-heavy set needs exact card-level parallel evidence before judging support. |
@@ -376,57 +419,100 @@ Rows: 524
 | sv10.5b | 032 | Eelektross | holo | normal, reverse | Modern parallel-heavy set needs exact card-level parallel evidence before judging support. |
 | sv10.5b | 033 | Thundurus | normal | holo, reverse | Modern parallel-heavy set needs exact card-level parallel evidence before judging support. |
 | sv10.5b | 034 | Zekrom ex | normal | holo | Modern parallel-heavy set needs exact card-level parallel evidence before judging support. |
-| sv10.5b | 034 | Zekrom ex | reverse | holo | Modern parallel-heavy set needs exact card-level parallel evidence before judging support. |
 
 ## normal_variant_not_in_index_review
 
-Rows: 20
+Rows: 1641
 
 ### Top Sets
 
 | set_code | count |
 | --- | --- |
-| ecard2 | 4 |
-| ecard3 | 4 |
-| sv05 | 4 |
-| swsh11 | 4 |
-| me01 | 2 |
-| sv03 | 1 |
-| sv10 | 1 |
+| sm12 | 97 |
+| sm8 | 80 |
+| sm11 | 78 |
+| sm10 | 76 |
+| sm9 | 69 |
+| sm2 | 63 |
+| sm7 | 62 |
+| sm3 | 61 |
+| sm5 | 58 |
+| sm6 | 52 |
+| sm1 | 49 |
+| xy5 | 47 |
+| sm4 | 39 |
+| bw7 | 38 |
+| xy8 | 36 |
+| xy7 | 34 |
+| xy6 | 32 |
+| xy9 | 32 |
+| xy10 | 31 |
+| xy12 | 31 |
 
 ### Sample Rows
 
 | set | number | Grookai name | finish | known index finishes | reason |
 | --- | --- | --- | --- | --- | --- |
+| sm11 | 255 | U-Turn Board | normal | holo | The index knows this exact card identity but does not support Grookai's normal finish in this audit pass. |
+| sm1 | 110 | Gumshoos-GX | normal | holo | The index knows this exact card identity but does not support Grookai's normal finish in this audit pass. |
+| sm11 | 71 | Mewtwo & Mew-GX | normal | holo | The index knows this exact card identity but does not support Grookai's normal finish in this audit pass. |
+| sm11 | 72 | Espeon & Deoxys-GX | normal | holo | The index knows this exact card identity but does not support Grookai's normal finish in this audit pass. |
+| pgo | 28 | Pikachu | normal | holo, reverse | The index knows this exact card identity but does not support Grookai's normal finish in this audit pass. |
+| sm2 | 152 | Vikavolt-GX | normal | holo | The index knows this exact card identity but does not support Grookai's normal finish in this audit pass. |
+| bw4 | 100 | Emboar | normal | holo | The index knows this exact card identity but does not support Grookai's normal finish in this audit pass. |
+| bw4 | 41 | Zapdos | normal | cosmos, holo, reverse | The index knows this exact card identity but does not support Grookai's normal finish in this audit pass. |
+| sm1 | 147 | Lillie | normal | holo | The index knows this exact card identity but does not support Grookai's normal finish in this audit pass. |
+| bw1 | 26 | Reshiram | normal | holo, reverse | The index knows this exact card identity but does not support Grookai's normal finish in this audit pass. |
+| bw3 | 100 | Cobalion | normal | holo | The index knows this exact card identity but does not support Grookai's normal finish in this audit pass. |
+| bw4 | 103 | Hydreigon | normal | holo | The index knows this exact card identity but does not support Grookai's normal finish in this audit pass. |
+| bw4 | 27 | Articuno | normal | holo, reverse | The index knows this exact card identity but does not support Grookai's normal finish in this audit pass. |
+| bw4 | 33 | Vanilluxe | normal | holo, reverse | The index knows this exact card identity but does not support Grookai's normal finish in this audit pass. |
+| bw5 | 103 | Entei-EX | normal | holo | The index knows this exact card identity but does not support Grookai's normal finish in this audit pass. |
+| bw7 | 94 | Scizor | normal | cosmos, holo, reverse | The index knows this exact card identity but does not support Grookai's normal finish in this audit pass. |
+| bw5 | 90 | Tornadus-EX | normal | holo | The index knows this exact card identity but does not support Grookai's normal finish in this audit pass. |
+| bw6 | 46 | Mew-EX | normal | holo | The index knows this exact card identity but does not support Grookai's normal finish in this audit pass. |
+| bw8 | 48 | Zapdos-EX | normal | holo | The index knows this exact card identity but does not support Grookai's normal finish in this audit pass. |
 | ecard3 | H4 | Beedrill | normal | holo | The index knows this exact card identity but does not support Grookai's normal finish in this audit pass. |
 | ecard3 | H6 | Dewgong | normal | holo | The index knows this exact card identity but does not support Grookai's normal finish in this audit pass. |
-| ecard2 | H2 | Arcanine | normal | holo | The index knows this exact card identity but does not support Grookai's normal finish in this audit pass. |
-| ecard2 | H3 | Ariados | normal | holo | The index knows this exact card identity but does not support Grookai's normal finish in this audit pass. |
-| ecard2 | H4 | Azumarill | normal | holo | The index knows this exact card identity but does not support Grookai's normal finish in this audit pass. |
-| ecard2 | H8 | Entei | normal | holo | The index knows this exact card identity but does not support Grookai's normal finish in this audit pass. |
-| ecard3 | H8 | Forretress | normal | holo | The index knows this exact card identity but does not support Grookai's normal finish in this audit pass. |
-| ecard3 | H9 | Gengar | normal | holo | The index knows this exact card identity but does not support Grookai's normal finish in this audit pass. |
-| me01 | 93 | Steelix | normal | reverse | The index knows this exact card identity but does not support Grookai's normal finish in this audit pass. |
-| me01 | 095 | Dialga | normal | reverse | The index knows this exact card identity but does not support Grookai's normal finish in this audit pass. |
-| sv03 | 072 | Toxtricity | normal | holo, reverse | The index knows this exact card identity but does not support Grookai's normal finish in this audit pass. |
-| sv05 | 029 | Magcargo | normal | reverse | The index knows this exact card identity but does not support Grookai's normal finish in this audit pass. |
-| sv05 | 034 | Incineroar ex | normal | holo | The index knows this exact card identity but does not support Grookai's normal finish in this audit pass. |
-| sv05 | 108 | Farigiraf ex | normal | holo | The index knows this exact card identity but does not support Grookai's normal finish in this audit pass. |
-| sv05 | 109 | Roaring Moon | normal | holo, reverse | The index knows this exact card identity but does not support Grookai's normal finish in this audit pass. |
-| sv10 | 146 | Zamazenta | normal | holo, reverse | The index knows this exact card identity but does not support Grookai's normal finish in this audit pass. |
-| swsh11 | 17 | Trevenant | normal | holo, reverse, stamped | The index knows this exact card identity but does not support Grookai's normal finish in this audit pass. |
-| swsh11 | 26 | Chandelure | normal | holo, reverse, stamped | The index knows this exact card identity but does not support Grookai's normal finish in this audit pass. |
-| swsh11 | 45 | Hisuian Basculegion | normal | holo, reverse | The index knows this exact card identity but does not support Grookai's normal finish in this audit pass. |
-| swsh11 | 93 | Aerodactyl VSTAR | normal | holo | The index knows this exact card identity but does not support Grookai's normal finish in this audit pass. |
+| bw6 | 123 | Rayquaza-EX | normal | holo | The index knows this exact card identity but does not support Grookai's normal finish in this audit pass. |
+| bw6 | 67 | Gigalith | normal | holo, reverse | The index knows this exact card identity but does not support Grookai's normal finish in this audit pass. |
+| sm7 | 161 | Apricorn Maker | normal | holo | The index knows this exact card identity but does not support Grookai's normal finish in this audit pass. |
+| sm7 | 168 | Underground Expedition | normal | holo | The index knows this exact card identity but does not support Grookai's normal finish in this audit pass. |
+| bw7 | 138 | Crystal Edge | normal | holo | The index knows this exact card identity but does not support Grookai's normal finish in this audit pass. |
+| bw7 | 150 | Golurk | normal | holo | The index knows this exact card identity but does not support Grookai's normal finish in this audit pass. |
+| sm11 | 57 | Alolan Raichu | normal | holo, reverse | The index knows this exact card identity but does not support Grookai's normal finish in this audit pass. |
+| sm5 | 165 | Palkia-GX | normal | holo | The index knows this exact card identity but does not support Grookai's normal finish in this audit pass. |
+| sm8 | 22 | Sceptile-GX | normal | holo | The index knows this exact card identity but does not support Grookai's normal finish in this audit pass. |
+| sm8 | 48 | Heatran | normal | holo, reverse | The index knows this exact card identity but does not support Grookai's normal finish in this audit pass. |
+| sm8 | 60 | Suicune-GX | normal | holo | The index knows this exact card identity but does not support Grookai's normal finish in this audit pass. |
+| sm8 | 180 | Life Forest ◇ | normal | holo | The index knows this exact card identity but does not support Grookai's normal finish in this audit pass. |
+| dp2 | 124 | Time-Space Distortion | normal | holo | The index knows this exact card identity but does not support Grookai's normal finish in this audit pass. |
+| bw3 | 102 | Meowth | normal | holo | The index knows this exact card identity but does not support Grookai's normal finish in this audit pass. |
+| bw3 | 74 | Landorus | normal | holo, reverse | The index knows this exact card identity but does not support Grookai's normal finish in this audit pass. |
+| bw4 | 101 | Chandelure | normal | holo | The index knows this exact card identity but does not support Grookai's normal finish in this audit pass. |
+| bw4 | 102 | Zoroark | normal | holo | The index knows this exact card identity but does not support Grookai's normal finish in this audit pass. |
+| bw6 | 19 | Ninetales | normal | holo, reverse | The index knows this exact card identity but does not support Grookai's normal finish in this audit pass. |
+| bw6 | 103 | Slaking | normal | holo, reverse | The index knows this exact card identity but does not support Grookai's normal finish in this audit pass. |
+| bw8 | 14 | Moltres-EX | normal | holo | The index knows this exact card identity but does not support Grookai's normal finish in this audit pass. |
+| sm10 | 157 | Porygon-Z | normal | holo, reverse | The index knows this exact card identity but does not support Grookai's normal finish in this audit pass. |
+| sm115 | 18 | Vaporeon | normal | holo, reverse | The index knows this exact card identity but does not support Grookai's normal finish in this audit pass. |
+| sm115 | 63 | Misty's Water Command | normal | holo, reverse | The index knows this exact card identity but does not support Grookai's normal finish in this audit pass. |
+| sm115 | 67 | Giovanni's Exile | normal | holo | The index knows this exact card identity but does not support Grookai's normal finish in this audit pass. |
+| neo4 | 108 | Shining Kabutops | normal | first_edition_holo, holo | The index knows this exact card identity but does not support Grookai's normal finish in this audit pass. |
+| bw6 | 128 | Rayquaza | normal | holo | The index knows this exact card identity but does not support Grookai's normal finish in this audit pass. |
+| bw6 | 84 | Altaria | normal | holo, reverse | The index knows this exact card identity but does not support Grookai's normal finish in this audit pass. |
+| bw6 | 97 | Hydreigon | normal | holo, reverse | The index knows this exact card identity but does not support Grookai's normal finish in this audit pass. |
+| bw8 | 55 | Crobat | normal | holo, reverse | The index knows this exact card identity but does not support Grookai's normal finish in this audit pass. |
 
 ## product_or_deck_set_source_coverage_gap
 
-Rows: 1022
+Rows: 1049
 
 ### Top Sets
 
 | set_code | count |
 | --- | --- |
+| np | 73 |
 | tk-bw-e | 60 |
 | tk-bw-z | 60 |
 | tk-xy-b | 60 |
@@ -437,16 +523,15 @@ Rows: 1022
 | tk-xy-su | 60 |
 | tk-xy-sy | 60 |
 | tk-xy-w | 60 |
-| np | 54 |
 | tk-sm-r | 38 |
 | tk-sm-l | 36 |
 | pop1 | 27 |
 | mcd16 | 24 |
 | tk-dp-m | 24 |
-| tk-ex-m | 23 |
-| tk-ex-p | 23 |
+| tk-ex-m | 24 |
+| tk-ex-p | 24 |
 | tk-dp-l | 22 |
-| tk-ex-latia | 19 |
+| tk-ex-latia | 20 |
 
 ### Sample Rows
 
@@ -465,6 +550,7 @@ Rows: 1022
 | bp | 1 | Electabuzz | normal | stamped | Product, deck, POP, McDonald's, or early promo rows need dedicated checklist/source coverage before judging support. |
 | bp | 9 | Rocket's Hitmonchan | normal |  | Product, deck, POP, McDonald's, or early promo rows need dedicated checklist/source coverage before judging support. |
 | mcd17 | 7 | Crabrawler | normal | holo | Product, deck, POP, McDonald's, or early promo rows need dedicated checklist/source coverage before judging support. |
+| np | 12 | Pikachu | normal | holo, stamped | Product, deck, POP, McDonald's, or early promo rows need dedicated checklist/source coverage before judging support. |
 | mcd14 | 2 | Chespin | normal | holo | Product, deck, POP, McDonald's, or early promo rows need dedicated checklist/source coverage before judging support. |
 | mcd18 | 3 | Horsea | normal | holo | Product, deck, POP, McDonald's, or early promo rows need dedicated checklist/source coverage before judging support. |
 | mcd14 | 8 | Snubbull | normal | holo | Product, deck, POP, McDonald's, or early promo rows need dedicated checklist/source coverage before judging support. |
@@ -501,11 +587,10 @@ Rows: 1022
 | mcd12 | 3 | Dwebble | normal | holo | Product, deck, POP, McDonald's, or early promo rows need dedicated checklist/source coverage before judging support. |
 | mcd12 | 4 | Pignite | normal | holo | Product, deck, POP, McDonald's, or early promo rows need dedicated checklist/source coverage before judging support. |
 | mcd12 | 6 | Emolga | normal | holo | Product, deck, POP, McDonald's, or early promo rows need dedicated checklist/source coverage before judging support. |
-| mcd12 | 7 | Woobat | normal | holo | Product, deck, POP, McDonald's, or early promo rows need dedicated checklist/source coverage before judging support. |
 
 ## promo_family_source_coverage_gap
 
-Rows: 2676
+Rows: 2874
 
 ### Top Sets
 
@@ -514,9 +599,10 @@ Rows: 2676
 | smp | 736 |
 | xyp | 642 |
 | swshp | 505 |
+| svp | 401 |
 | bwp | 303 |
 | sma | 282 |
-| svp | 208 |
+| basep | 5 |
 
 ### Sample Rows
 
@@ -532,7 +618,11 @@ Rows: 2676
 | bwp | 01 | Snivy | normal |  | Promo-family rows often require product/checklist evidence beyond structured API coverage before judging support. |
 | bwp | 03 | Oshawott | normal |  | Promo-family rows often require product/checklist evidence beyond structured API coverage before judging support. |
 | bwp | 06 | Snivy | normal |  | Promo-family rows often require product/checklist evidence beyond structured API coverage before judging support. |
+| svp | 137 | Horsea | normal | holo | Promo-family rows often require product/checklist evidence beyond structured API coverage before judging support. |
+| svp | 21 | Murkrow | normal | holo, stamped | Promo-family rows often require product/checklist evidence beyond structured API coverage before judging support. |
 | xyp | 200 | M Sharpedo-EX | normal |  | Promo-family rows often require product/checklist evidence beyond structured API coverage before judging support. |
+| basep | 11 | Eevee | normal | holo, stamped | Promo-family rows often require product/checklist evidence beyond structured API coverage before judging support. |
+| basep | 13 | Venusaur | normal | holo | Promo-family rows often require product/checklist evidence beyond structured API coverage before judging support. |
 | bwp | 47 | Rayquaza-EX | normal |  | Promo-family rows often require product/checklist evidence beyond structured API coverage before judging support. |
 | bwp | 08 | Oshawott | normal |  | Promo-family rows often require product/checklist evidence beyond structured API coverage before judging support. |
 | bwp | 09 | Zoroark | normal |  | Promo-family rows often require product/checklist evidence beyond structured API coverage before judging support. |
@@ -545,6 +635,12 @@ Rows: 2676
 | sma | 56 | Greninja-GX | normal |  | Promo-family rows often require product/checklist evidence beyond structured API coverage before judging support. |
 | smp | 233 | Eevee-GX | normal |  | Promo-family rows often require product/checklist evidence beyond structured API coverage before judging support. |
 | smp | 248 | Pikachu & Zekrom-GX | normal |  | Promo-family rows often require product/checklist evidence beyond structured API coverage before judging support. |
+| svp | 104 | Melmetal ex | normal | holo | Promo-family rows often require product/checklist evidence beyond structured API coverage before judging support. |
+| svp | 110 | Darkrai ex | normal | holo | Promo-family rows often require product/checklist evidence beyond structured API coverage before judging support. |
+| svp | 117 | Froslass | normal | holo, stamped | Promo-family rows often require product/checklist evidence beyond structured API coverage before judging support. |
+| svp | 119 | Toxel | normal | holo | Promo-family rows often require product/checklist evidence beyond structured API coverage before judging support. |
+| svp | 124 | Iono | normal | holo | Promo-family rows often require product/checklist evidence beyond structured API coverage before judging support. |
+| svp | 126 | Palafin ex | normal | holo | Promo-family rows often require product/checklist evidence beyond structured API coverage before judging support. |
 | sma | 41 | Eevee | normal |  | Promo-family rows often require product/checklist evidence beyond structured API coverage before judging support. |
 | xyp | 200 | M Sharpedo-EX | reverse |  | Promo-family rows often require product/checklist evidence beyond structured API coverage before judging support. |
 | smp | 01 | Rowlet | holo |  | Promo-family rows often require product/checklist evidence beyond structured API coverage before judging support. |
@@ -562,20 +658,10 @@ Rows: 2676
 | smp | 11 | Bruxish | holo |  | Promo-family rows often require product/checklist evidence beyond structured API coverage before judging support. |
 | smp | 110 | Ash's Pikachu | holo |  | Promo-family rows often require product/checklist evidence beyond structured API coverage before judging support. |
 | smp | 111 | Ash's Pikachu | holo |  | Promo-family rows often require product/checklist evidence beyond structured API coverage before judging support. |
-| smp | 112 | Ash's Pikachu | holo |  | Promo-family rows often require product/checklist evidence beyond structured API coverage before judging support. |
-| smp | 113 | Ash's Pikachu | holo |  | Promo-family rows often require product/checklist evidence beyond structured API coverage before judging support. |
-| smp | 114 | Ash's Pikachu | holo |  | Promo-family rows often require product/checklist evidence beyond structured API coverage before judging support. |
-| smp | 115 | Pheromosa | holo |  | Promo-family rows often require product/checklist evidence beyond structured API coverage before judging support. |
-| smp | 116 | Xurkitree | holo |  | Promo-family rows often require product/checklist evidence beyond structured API coverage before judging support. |
-| smp | 117 | Malamar | holo |  | Promo-family rows often require product/checklist evidence beyond structured API coverage before judging support. |
-| smp | 118 | Lycanroc | holo |  | Promo-family rows often require product/checklist evidence beyond structured API coverage before judging support. |
-| smp | 162 | Pikachu | holo |  | Promo-family rows often require product/checklist evidence beyond structured API coverage before judging support. |
-| smp | 164 | Deoxys | holo |  | Promo-family rows often require product/checklist evidence beyond structured API coverage before judging support. |
-| smp | 165 | Ultra Necrozma | holo |  | Promo-family rows often require product/checklist evidence beyond structured API coverage before judging support. |
 
 ## reverse_holo_overgeneration_candidate
 
-Rows: 1253
+Rows: 1280
 
 ### Top Sets
 
@@ -606,60 +692,60 @@ Rows: 1253
 
 | set | number | Grookai name | finish | known index finishes | reason |
 | --- | --- | --- | --- | --- | --- |
-| sm11 | 71 | Mewtwo & Mew-GX | reverse | holo, normal | The index knows this exact card identity but does not support Grookai's reverse finish in this audit pass. |
-| sm11 | 72 | Espeon & Deoxys-GX | reverse | holo, normal | The index knows this exact card identity but does not support Grookai's reverse finish in this audit pass. |
-| sm11 | 78 | Latios-GX | reverse | holo, normal | The index knows this exact card identity but does not support Grookai's reverse finish in this audit pass. |
-| sm11 | 79 | Jirachi-GX | reverse | holo, normal | The index knows this exact card identity but does not support Grookai's reverse finish in this audit pass. |
-| sm4 | 101 | Gyarados-GX | reverse | holo, normal | The index knows this exact card identity but does not support Grookai's reverse finish in this audit pass. |
-| sm4 | 104 | Buzzwole-GX | reverse | holo, normal | The index knows this exact card identity but does not support Grookai's reverse finish in this audit pass. |
-| sm4 | 108 | Silvally-GX | reverse | holo, normal | The index knows this exact card identity but does not support Grookai's reverse finish in this audit pass. |
-| sm4 | 112 | Gyarados-GX | reverse | holo, normal | The index knows this exact card identity but does not support Grookai's reverse finish in this audit pass. |
-| sm4 | 113 | Alolan Golem-GX | reverse | holo, normal | The index knows this exact card identity but does not support Grookai's reverse finish in this audit pass. |
-| sm4 | 118 | Alolan Exeggutor-GX | reverse | holo, normal | The index knows this exact card identity but does not support Grookai's reverse finish in this audit pass. |
-| sm4 | 119 | Silvally-GX | reverse | holo, normal | The index knows this exact card identity but does not support Grookai's reverse finish in this audit pass. |
-| sm4 | 120 | Counter Catcher | reverse | holo, normal | The index knows this exact card identity but does not support Grookai's reverse finish in this audit pass. |
-| xy2 | 104 | Lysandre | reverse | holo, normal | The index knows this exact card identity but does not support Grookai's reverse finish in this audit pass. |
-| xy2 | 105 | Pokémon Center Lady | reverse | holo, normal | The index knows this exact card identity but does not support Grookai's reverse finish in this audit pass. |
-| xy2 | 106 | Pokémon Fan Club | reverse | holo, normal | The index knows this exact card identity but does not support Grookai's reverse finish in this audit pass. |
-| xy3 | 109 | Battle Reporter | reverse | holo, normal | The index knows this exact card identity but does not support Grookai's reverse finish in this audit pass. |
-| xy8 | 104 | Florges BREAK | reverse | holo, normal | The index knows this exact card identity but does not support Grookai's reverse finish in this audit pass. |
-| xy6 | 100 | M Gallade-EX | reverse | holo, normal | The index knows this exact card identity but does not support Grookai's reverse finish in this audit pass. |
-| xy6 | 101 | Latios-EX | reverse | holo, normal | The index knows this exact card identity but does not support Grookai's reverse finish in this audit pass. |
-| xy6 | 102 | M Latios-EX | reverse | holo, normal | The index knows this exact card identity but does not support Grookai's reverse finish in this audit pass. |
-| xy6 | 107 | Wally | reverse | holo, normal | The index knows this exact card identity but does not support Grookai's reverse finish in this audit pass. |
-| xy6 | 108 | Winona | reverse | holo, normal | The index knows this exact card identity but does not support Grookai's reverse finish in this audit pass. |
-| bw10 | 95 | Scoop Up Cyclone | reverse | holo, normal | The index knows this exact card identity but does not support Grookai's reverse finish in this audit pass. |
+| sm11 | 71 | Mewtwo & Mew-GX | reverse | holo | The index knows this exact card identity but does not support Grookai's reverse finish in this audit pass. |
+| sm11 | 72 | Espeon & Deoxys-GX | reverse | holo | The index knows this exact card identity but does not support Grookai's reverse finish in this audit pass. |
+| sm11 | 78 | Latios-GX | reverse | holo | The index knows this exact card identity but does not support Grookai's reverse finish in this audit pass. |
+| sm11 | 79 | Jirachi-GX | reverse | holo | The index knows this exact card identity but does not support Grookai's reverse finish in this audit pass. |
+| sm4 | 101 | Gyarados-GX | reverse | holo | The index knows this exact card identity but does not support Grookai's reverse finish in this audit pass. |
+| sm4 | 104 | Buzzwole-GX | reverse | holo | The index knows this exact card identity but does not support Grookai's reverse finish in this audit pass. |
+| sm4 | 108 | Silvally-GX | reverse | holo | The index knows this exact card identity but does not support Grookai's reverse finish in this audit pass. |
+| sm4 | 112 | Gyarados-GX | reverse | holo | The index knows this exact card identity but does not support Grookai's reverse finish in this audit pass. |
+| sm4 | 113 | Alolan Golem-GX | reverse | holo | The index knows this exact card identity but does not support Grookai's reverse finish in this audit pass. |
+| sm4 | 118 | Alolan Exeggutor-GX | reverse | holo | The index knows this exact card identity but does not support Grookai's reverse finish in this audit pass. |
+| sm4 | 119 | Silvally-GX | reverse | holo | The index knows this exact card identity but does not support Grookai's reverse finish in this audit pass. |
+| sm4 | 120 | Counter Catcher | reverse | holo | The index knows this exact card identity but does not support Grookai's reverse finish in this audit pass. |
+| xy2 | 104 | Lysandre | reverse | holo | The index knows this exact card identity but does not support Grookai's reverse finish in this audit pass. |
+| xy2 | 105 | Pokémon Center Lady | reverse | holo | The index knows this exact card identity but does not support Grookai's reverse finish in this audit pass. |
+| xy2 | 106 | Pokémon Fan Club | reverse | holo | The index knows this exact card identity but does not support Grookai's reverse finish in this audit pass. |
+| xy3 | 109 | Battle Reporter | reverse | holo | The index knows this exact card identity but does not support Grookai's reverse finish in this audit pass. |
+| xy8 | 104 | Florges BREAK | reverse | holo | The index knows this exact card identity but does not support Grookai's reverse finish in this audit pass. |
+| xy6 | 100 | M Gallade-EX | reverse | holo | The index knows this exact card identity but does not support Grookai's reverse finish in this audit pass. |
+| xy6 | 101 | Latios-EX | reverse | holo | The index knows this exact card identity but does not support Grookai's reverse finish in this audit pass. |
+| xy6 | 102 | M Latios-EX | reverse | holo | The index knows this exact card identity but does not support Grookai's reverse finish in this audit pass. |
+| xy6 | 107 | Wally | reverse | holo | The index knows this exact card identity but does not support Grookai's reverse finish in this audit pass. |
+| xy6 | 108 | Winona | reverse | holo | The index knows this exact card identity but does not support Grookai's reverse finish in this audit pass. |
+| bw10 | 95 | Scoop Up Cyclone | reverse | holo | The index knows this exact card identity but does not support Grookai's reverse finish in this audit pass. |
 | bw1 | 107 | Water Energy | reverse | normal, stamped | The index knows this exact card identity but does not support Grookai's reverse finish in this audit pass. |
-| xy3 | 55 | M Lucario-EX | reverse | holo, normal | The index knows this exact card identity but does not support Grookai's reverse finish in this audit pass. |
-| bw1 | 115 | Pikachu | reverse | holo, normal | The index knows this exact card identity but does not support Grookai's reverse finish in this audit pass. |
-| bw10 | 101 | Iris | reverse | holo, normal | The index knows this exact card identity but does not support Grookai's reverse finish in this audit pass. |
-| bw10 | 65 | Dialga-EX | reverse | holo, normal | The index knows this exact card identity but does not support Grookai's reverse finish in this audit pass. |
+| xy3 | 55 | M Lucario-EX | reverse | holo | The index knows this exact card identity but does not support Grookai's reverse finish in this audit pass. |
+| bw1 | 115 | Pikachu | reverse | holo | The index knows this exact card identity but does not support Grookai's reverse finish in this audit pass. |
+| bw10 | 101 | Iris | reverse | holo | The index knows this exact card identity but does not support Grookai's reverse finish in this audit pass. |
+| bw10 | 65 | Dialga-EX | reverse | holo | The index knows this exact card identity but does not support Grookai's reverse finish in this audit pass. |
 | bw1 | 105 | Grass Energy | reverse | normal, stamped | The index knows this exact card identity but does not support Grookai's reverse finish in this audit pass. |
-| bw10 | 100 | Palkia-EX | reverse | holo, normal | The index knows this exact card identity but does not support Grookai's reverse finish in this audit pass. |
-| xy6 | 77 | Shaymin-EX | reverse | holo, normal | The index knows this exact card identity but does not support Grookai's reverse finish in this audit pass. |
-| bw10 | 94 | Master Ball | reverse | holo, normal | The index knows this exact card identity but does not support Grookai's reverse finish in this audit pass. |
-| bw10 | 96 | Virizion-EX | reverse | holo, normal | The index knows this exact card identity but does not support Grookai's reverse finish in this audit pass. |
+| bw10 | 100 | Palkia-EX | reverse | holo | The index knows this exact card identity but does not support Grookai's reverse finish in this audit pass. |
+| xy6 | 77 | Shaymin-EX | reverse | holo | The index knows this exact card identity but does not support Grookai's reverse finish in this audit pass. |
+| bw10 | 94 | Master Ball | reverse | holo | The index knows this exact card identity but does not support Grookai's reverse finish in this audit pass. |
+| bw10 | 96 | Virizion-EX | reverse | holo | The index knows this exact card identity but does not support Grookai's reverse finish in this audit pass. |
 | bw1 | 106 | Fire Energy | reverse | normal, stamped | The index knows this exact card identity but does not support Grookai's reverse finish in this audit pass. |
-| bw4 | 103 | Hydreigon | reverse | holo, normal | The index knows this exact card identity but does not support Grookai's reverse finish in this audit pass. |
-| xy4 | 24 | M Manectric-EX | reverse | holo, normal | The index knows this exact card identity but does not support Grookai's reverse finish in this audit pass. |
+| bw4 | 103 | Hydreigon | reverse | holo | The index knows this exact card identity but does not support Grookai's reverse finish in this audit pass. |
+| xy4 | 24 | M Manectric-EX | reverse | holo | The index knows this exact card identity but does not support Grookai's reverse finish in this audit pass. |
 | bw1 | 111 | Darkness Energy | reverse | normal, stamped | The index knows this exact card identity but does not support Grookai's reverse finish in this audit pass. |
-| bw10 | 104 | Dusknoir | reverse | holo, normal | The index knows this exact card identity but does not support Grookai's reverse finish in this audit pass. |
+| bw10 | 104 | Dusknoir | reverse | holo | The index knows this exact card identity but does not support Grookai's reverse finish in this audit pass. |
 | fut20 | 2 | Eevee on the Ball | reverse | normal | The index knows this exact card identity but does not support Grookai's reverse finish in this audit pass. |
 | fut20 | 3 | Grookey on the Ball | reverse | normal | The index knows this exact card identity but does not support Grookai's reverse finish in this audit pass. |
 | fut20 | 4 | Scorbunny on the Ball | reverse | normal | The index knows this exact card identity but does not support Grookai's reverse finish in this audit pass. |
 | fut20 | 5 | Sobble on the Ball | reverse | normal | The index knows this exact card identity but does not support Grookai's reverse finish in this audit pass. |
-| sm10 | 107 | Greninja & Zoroark-GX | reverse | holo, normal | The index knows this exact card identity but does not support Grookai's reverse finish in this audit pass. |
-| sm10 | 208 | Celesteela-GX | reverse | holo, normal | The index knows this exact card identity but does not support Grookai's reverse finish in this audit pass. |
-| sm115 | 14 | Starmie-GX | reverse | holo, normal | The index knows this exact card identity but does not support Grookai's reverse finish in this audit pass. |
-| sm115 | 16 | Gyarados-GX | reverse | holo, normal | The index knows this exact card identity but does not support Grookai's reverse finish in this audit pass. |
-| sm115 | 20 | Raichu-GX | reverse | holo, normal, stamped | The index knows this exact card identity but does not support Grookai's reverse finish in this audit pass. |
-| sm115 | 31 | Mewtwo-GX | reverse | holo, normal, stamped | The index knows this exact card identity but does not support Grookai's reverse finish in this audit pass. |
-| sm115 | 36 | Onix-GX | reverse | holo, normal | The index knows this exact card identity but does not support Grookai's reverse finish in this audit pass. |
-| sm115 | 42 | Wigglytuff-GX | reverse | holo, normal | The index knows this exact card identity but does not support Grookai's reverse finish in this audit pass. |
+| sm10 | 107 | Greninja & Zoroark-GX | reverse | holo | The index knows this exact card identity but does not support Grookai's reverse finish in this audit pass. |
+| sm10 | 208 | Celesteela-GX | reverse | holo | The index knows this exact card identity but does not support Grookai's reverse finish in this audit pass. |
+| sm115 | 14 | Starmie-GX | reverse | holo | The index knows this exact card identity but does not support Grookai's reverse finish in this audit pass. |
+| sm115 | 16 | Gyarados-GX | reverse | holo | The index knows this exact card identity but does not support Grookai's reverse finish in this audit pass. |
+| sm115 | 20 | Raichu-GX | reverse | holo, stamped | The index knows this exact card identity but does not support Grookai's reverse finish in this audit pass. |
+| sm115 | 31 | Mewtwo-GX | reverse | holo, stamped | The index knows this exact card identity but does not support Grookai's reverse finish in this audit pass. |
+| sm115 | 36 | Onix-GX | reverse | holo | The index knows this exact card identity but does not support Grookai's reverse finish in this audit pass. |
+| sm115 | 42 | Wigglytuff-GX | reverse | holo | The index knows this exact card identity but does not support Grookai's reverse finish in this audit pass. |
 
 ## source_coverage_or_alias_gap
 
-Rows: 84
+Rows: 88
 
 ### Top Sets
 
@@ -668,6 +754,10 @@ Rows: 84
 | dpp | 58 |
 | hsp | 25 |
 | me01 | 1 |
+| tk1a | 1 |
+| tk1b | 1 |
+| tk2a | 1 |
+| tk2b | 1 |
 
 ### Sample Rows
 
@@ -726,22 +816,26 @@ Rows: 84
 
 ## subset_or_numbering_alias_review
 
-Rows: 852
+Rows: 1061
 
 ### Top Sets
 
 | set_code | count |
 | --- | --- |
 | swsh45sv | 366 |
-| g1 | 109 |
-| bw11 | 85 |
-| col1 | 72 |
+| g1 | 143 |
+| bw11 | 124 |
+| pl3 | 115 |
+| col1 | 90 |
 | swsh12tg | 47 |
 | swsh9tg | 46 |
 | swsh12.5 | 45 |
 | swsh10tg | 30 |
 | swsh11tg | 30 |
 | cel25 | 22 |
+| dp7 | 1 |
+| pl1 | 1 |
+| pl2 | 1 |
 
 ### Sample Rows
 
@@ -766,6 +860,8 @@ Rows: 852
 | swsh12tg | 22 | Blissey V | normal |  | Subset, gallery, or number-collision family needs set/subset identity resolution before judging printing support. |
 | cel25 | 97 | Xerneas-EX | normal | holo | Subset, gallery, or number-collision family needs set/subset identity resolution before judging printing support. |
 | cel25 | 4 | Charizard | normal | holo | Subset, gallery, or number-collision family needs set/subset identity resolution before judging printing support. |
+| bw11 | 19 | Charizard | normal | cosmos, holo, reverse | Subset, gallery, or number-collision family needs set/subset identity resolution before judging printing support. |
+| bw11 | 101 | White Kyurem-EX | normal | holo | Subset, gallery, or number-collision family needs set/subset identity resolution before judging printing support. |
 | cel25 | 88 | Mew ex | normal | holo | Subset, gallery, or number-collision family needs set/subset identity resolution before judging printing support. |
 | cel25 | 15 | Venusaur | normal | holo | Subset, gallery, or number-collision family needs set/subset identity resolution before judging printing support. |
 | cel25 | 2 | Blastoise | normal | holo | Subset, gallery, or number-collision family needs set/subset identity resolution before judging printing support. |
@@ -776,8 +872,12 @@ Rows: 852
 | cel25 | 114 | Zekrom | normal | holo | Subset, gallery, or number-collision family needs set/subset identity resolution before judging printing support. |
 | cel25 | 17 | Umbreon ★ | normal | holo | Subset, gallery, or number-collision family needs set/subset identity resolution before judging printing support. |
 | cel25 | 93 | Gardevoir ex δ | normal | holo | Subset, gallery, or number-collision family needs set/subset identity resolution before judging printing support. |
+| bw11 | 8 | Ralts | normal |  | Subset, gallery, or number-collision family needs set/subset identity resolution before judging printing support. |
 | cel25 | 109 | Luxray GL LV.X | normal | holo | Subset, gallery, or number-collision family needs set/subset identity resolution before judging printing support. |
+| g1 | 11 | Wobbuffet | normal |  | Subset, gallery, or number-collision family needs set/subset identity resolution before judging printing support. |
+| bw11 | 102 | Lugia-EX | normal | holo | Subset, gallery, or number-collision family needs set/subset identity resolution before judging printing support. |
 | swsh12tg | 02 | Milotic | holo |  | Subset, gallery, or number-collision family needs set/subset identity resolution before judging printing support. |
+| bw11 | 100 | Black Kyurem-EX | normal | holo | Subset, gallery, or number-collision family needs set/subset identity resolution before judging printing support. |
 | swsh12tg | 03 | Flaaffy | holo |  | Subset, gallery, or number-collision family needs set/subset identity resolution before judging printing support. |
 | swsh12tg | 04 | Jynx | holo |  | Subset, gallery, or number-collision family needs set/subset identity resolution before judging printing support. |
 | swsh12tg | 05 | Gardevoir | holo |  | Subset, gallery, or number-collision family needs set/subset identity resolution before judging printing support. |
@@ -787,13 +887,7 @@ Rows: 852
 | swsh12tg | 14 | Blaziken V | holo |  | Subset, gallery, or number-collision family needs set/subset identity resolution before judging printing support. |
 | swsh12tg | 23 | Friends in Galar | holo |  | Subset, gallery, or number-collision family needs set/subset identity resolution before judging printing support. |
 | swsh12tg | 25 | Judge | holo |  | Subset, gallery, or number-collision family needs set/subset identity resolution before judging printing support. |
+| col1 | 2 | Deoxys | normal | holo, reverse | Subset, gallery, or number-collision family needs set/subset identity resolution before judging printing support. |
 | swsh11tg | 19 | Gallade V | holo |  | Subset, gallery, or number-collision family needs set/subset identity resolution before judging printing support. |
 | swsh11tg | 23 | Adventurer's Discovery | holo |  | Subset, gallery, or number-collision family needs set/subset identity resolution before judging printing support. |
 | swsh11tg | 24 | Boss's Orders | holo |  | Subset, gallery, or number-collision family needs set/subset identity resolution before judging printing support. |
-| swsh11tg | 25 | Cook | holo |  | Subset, gallery, or number-collision family needs set/subset identity resolution before judging printing support. |
-| swsh11tg | 26 | Kabu | holo |  | Subset, gallery, or number-collision family needs set/subset identity resolution before judging printing support. |
-| swsh11tg | 27 | Nessa | holo |  | Subset, gallery, or number-collision family needs set/subset identity resolution before judging printing support. |
-| swsh11tg | 28 | Opal | holo |  | Subset, gallery, or number-collision family needs set/subset identity resolution before judging printing support. |
-| swsh11tg | 29 | Pikachu VMAX | holo |  | Subset, gallery, or number-collision family needs set/subset identity resolution before judging printing support. |
-| swsh11tg | 30 | Mew VMAX | holo |  | Subset, gallery, or number-collision family needs set/subset identity resolution before judging printing support. |
-| swsh45sv | 031 | Arrokuda | reverse |  | Subset, gallery, or number-collision family needs set/subset identity resolution before judging printing support. |
