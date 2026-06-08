@@ -1,0 +1,6272 @@
+{
+  "generated_at": "2026-06-08T20:44:01.590Z",
+  "version": "english_master_index_physical_recovery_apply_design_v1",
+  "audit_only": true,
+  "db_writes_performed": false,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "apply_paths_executed": false,
+  "write_ready_now": 0,
+  "apply_design_status": "apply_design_complete_approval_required_no_write",
+  "approval_status": "operator_approval_required_before_any_write",
+  "conclusion": "The PKG-01 physical recovery apply design is complete enough for human review, but it is not executable and does not authorize writes.",
+  "source_review_gate": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_physical_recovery_review_gate_v1.json",
+  "summary": {
+    "package_count": 12,
+    "candidate_card_prints": 106,
+    "candidate_printing_rows": 143,
+    "before_child_printing_rows": 143,
+    "vault_items_referencing_targets": 0,
+    "external_mappings_referencing_targets": 132,
+    "identity_rows_referencing_targets": 106,
+    "trait_rows_referencing_targets": 106,
+    "changed_fields": {
+      "set_code": 106,
+      "number": 88,
+      "name": 11
+    },
+    "rows_by_set": {
+      "col1": 2,
+      "dp7": 8,
+      "ecard2": 13,
+      "ecard3": 15,
+      "ex10": 3,
+      "fut2020": 1,
+      "mep": 10,
+      "pl1": 9,
+      "pl2": 17,
+      "pl3": 9,
+      "pl4": 18,
+      "swsh2": 1
+    },
+    "stop_findings": 0,
+    "write_ready_now": 0
+  },
+  "hard_rules": [
+    "This is not an executable apply package.",
+    "This report must not be copied into a migration.",
+    "No write may occur until a separate operator-approved execution artifact exists.",
+    "Rollback values must be regenerated from a fresh DB snapshot immediately before any future write.",
+    "Post-apply verification must pass before any transaction commit in a future execution path."
+  ],
+  "required_before_any_write": [
+    "Human review of every before_fields and target_parent_fields row.",
+    "Explicit operator approval of exact card_print_id list.",
+    "Fresh read-only before-state snapshot from production immediately before execution.",
+    "Dedicated transactional execution script with dry-run default and apply flag blocked unless explicitly approved.",
+    "Rollback matrix regenerated from the fresh snapshot.",
+    "Post-apply verification checks run inside the same transaction before commit."
+  ],
+  "direct_parent_fields_under_design": [
+    "set_code",
+    "number",
+    "name"
+  ],
+  "generated_or_readback_fields_not_directly_assigned": [
+    "number_plain"
+  ],
+  "stop_findings": [],
+  "package_summaries": [
+    {
+      "set_key": "col1",
+      "set_name": "Call of Legends",
+      "candidate_card_prints": 2,
+      "candidate_printing_rows": 6,
+      "db_snapshot_available": true,
+      "db_card_prints_found": 2,
+      "db_card_printings_found": 6,
+      "vault_items_referencing_targets": 0,
+      "changed_fields": {
+        "set_code": 2,
+        "number": 2
+      },
+      "design_status": "approval_required_no_write"
+    },
+    {
+      "set_key": "dp7",
+      "set_name": "Stormfront",
+      "candidate_card_prints": 8,
+      "candidate_printing_rows": 10,
+      "db_snapshot_available": true,
+      "db_card_prints_found": 8,
+      "db_card_printings_found": 10,
+      "vault_items_referencing_targets": 0,
+      "changed_fields": {
+        "set_code": 8,
+        "number": 8
+      },
+      "design_status": "approval_required_no_write"
+    },
+    {
+      "set_key": "ecard2",
+      "set_name": "Aquapolis",
+      "candidate_card_prints": 13,
+      "candidate_printing_rows": 26,
+      "db_snapshot_available": true,
+      "db_card_prints_found": 13,
+      "db_card_printings_found": 26,
+      "vault_items_referencing_targets": 0,
+      "changed_fields": {
+        "set_code": 13
+      },
+      "design_status": "approval_required_no_write"
+    },
+    {
+      "set_key": "ecard3",
+      "set_name": "Skyridge",
+      "candidate_card_prints": 15,
+      "candidate_printing_rows": 19,
+      "db_snapshot_available": true,
+      "db_card_prints_found": 15,
+      "db_card_printings_found": 19,
+      "vault_items_referencing_targets": 0,
+      "changed_fields": {
+        "set_code": 15,
+        "number": 11
+      },
+      "design_status": "approval_required_no_write"
+    },
+    {
+      "set_key": "ex10",
+      "set_name": "Unseen Forces",
+      "candidate_card_prints": 3,
+      "candidate_printing_rows": 3,
+      "db_snapshot_available": true,
+      "db_card_prints_found": 3,
+      "db_card_printings_found": 3,
+      "vault_items_referencing_targets": 0,
+      "changed_fields": {
+        "set_code": 3,
+        "number": 3,
+        "name": 3
+      },
+      "design_status": "approval_required_no_write"
+    },
+    {
+      "set_key": "fut2020",
+      "set_name": "Pokémon Futsal 2020",
+      "candidate_card_prints": 1,
+      "candidate_printing_rows": 1,
+      "db_snapshot_available": true,
+      "db_card_prints_found": 1,
+      "db_card_printings_found": 1,
+      "vault_items_referencing_targets": 0,
+      "changed_fields": {
+        "set_code": 1
+      },
+      "design_status": "approval_required_no_write"
+    },
+    {
+      "set_key": "mep",
+      "set_name": "MEP Black Star Promos",
+      "candidate_card_prints": 10,
+      "candidate_printing_rows": 10,
+      "db_snapshot_available": true,
+      "db_card_prints_found": 10,
+      "db_card_printings_found": 10,
+      "vault_items_referencing_targets": 0,
+      "changed_fields": {
+        "set_code": 10,
+        "number": 10
+      },
+      "design_status": "approval_required_no_write"
+    },
+    {
+      "set_key": "pl1",
+      "set_name": "Platinum",
+      "candidate_card_prints": 9,
+      "candidate_printing_rows": 10,
+      "db_snapshot_available": true,
+      "db_card_prints_found": 9,
+      "db_card_printings_found": 10,
+      "vault_items_referencing_targets": 0,
+      "changed_fields": {
+        "set_code": 9,
+        "number": 9
+      },
+      "design_status": "approval_required_no_write"
+    },
+    {
+      "set_key": "pl2",
+      "set_name": "Rising Rivals",
+      "candidate_card_prints": 17,
+      "candidate_printing_rows": 24,
+      "db_snapshot_available": true,
+      "db_card_prints_found": 17,
+      "db_card_printings_found": 24,
+      "vault_items_referencing_targets": 0,
+      "changed_fields": {
+        "set_code": 17,
+        "number": 17,
+        "name": 2
+      },
+      "design_status": "approval_required_no_write"
+    },
+    {
+      "set_key": "pl3",
+      "set_name": "Supreme Victors",
+      "candidate_card_prints": 9,
+      "candidate_printing_rows": 9,
+      "db_snapshot_available": true,
+      "db_card_prints_found": 9,
+      "db_card_printings_found": 9,
+      "vault_items_referencing_targets": 0,
+      "changed_fields": {
+        "set_code": 9,
+        "number": 9
+      },
+      "design_status": "approval_required_no_write"
+    },
+    {
+      "set_key": "pl4",
+      "set_name": "Arceus",
+      "candidate_card_prints": 18,
+      "candidate_printing_rows": 23,
+      "db_snapshot_available": true,
+      "db_card_prints_found": 18,
+      "db_card_printings_found": 23,
+      "vault_items_referencing_targets": 0,
+      "changed_fields": {
+        "set_code": 18,
+        "number": 18,
+        "name": 6
+      },
+      "design_status": "approval_required_no_write"
+    },
+    {
+      "set_key": "swsh2",
+      "set_name": "Rebel Clash",
+      "candidate_card_prints": 1,
+      "candidate_printing_rows": 2,
+      "db_snapshot_available": true,
+      "db_card_prints_found": 1,
+      "db_card_printings_found": 2,
+      "vault_items_referencing_targets": 0,
+      "changed_fields": {
+        "set_code": 1,
+        "number": 1
+      },
+      "design_status": "approval_required_no_write"
+    }
+  ],
+  "verification_plan": {
+    "package_checks": [
+      {
+        "set_key": "col1",
+        "set_name": "Call of Legends",
+        "expected_parent_rows": 2,
+        "expected_child_printing_rows": 6,
+        "required_checks": [
+          "All target parent rows resolve to the intended set_code.",
+          "Child printing row count is unchanged.",
+          "No unsupported finish rows are introduced.",
+          "Vault item references remain unchanged.",
+          "Identity, trait, and external mapping counts remain explainable."
+        ]
+      },
+      {
+        "set_key": "dp7",
+        "set_name": "Stormfront",
+        "expected_parent_rows": 8,
+        "expected_child_printing_rows": 10,
+        "required_checks": [
+          "All target parent rows resolve to the intended set_code.",
+          "Child printing row count is unchanged.",
+          "No unsupported finish rows are introduced.",
+          "Vault item references remain unchanged.",
+          "Identity, trait, and external mapping counts remain explainable."
+        ]
+      },
+      {
+        "set_key": "ecard2",
+        "set_name": "Aquapolis",
+        "expected_parent_rows": 13,
+        "expected_child_printing_rows": 26,
+        "required_checks": [
+          "All target parent rows resolve to the intended set_code.",
+          "Child printing row count is unchanged.",
+          "No unsupported finish rows are introduced.",
+          "Vault item references remain unchanged.",
+          "Identity, trait, and external mapping counts remain explainable."
+        ]
+      },
+      {
+        "set_key": "ecard3",
+        "set_name": "Skyridge",
+        "expected_parent_rows": 15,
+        "expected_child_printing_rows": 19,
+        "required_checks": [
+          "All target parent rows resolve to the intended set_code.",
+          "Child printing row count is unchanged.",
+          "No unsupported finish rows are introduced.",
+          "Vault item references remain unchanged.",
+          "Identity, trait, and external mapping counts remain explainable."
+        ]
+      },
+      {
+        "set_key": "ex10",
+        "set_name": "Unseen Forces",
+        "expected_parent_rows": 3,
+        "expected_child_printing_rows": 3,
+        "required_checks": [
+          "All target parent rows resolve to the intended set_code.",
+          "Child printing row count is unchanged.",
+          "No unsupported finish rows are introduced.",
+          "Vault item references remain unchanged.",
+          "Identity, trait, and external mapping counts remain explainable."
+        ]
+      },
+      {
+        "set_key": "fut2020",
+        "set_name": "Pokémon Futsal 2020",
+        "expected_parent_rows": 1,
+        "expected_child_printing_rows": 1,
+        "required_checks": [
+          "All target parent rows resolve to the intended set_code.",
+          "Child printing row count is unchanged.",
+          "No unsupported finish rows are introduced.",
+          "Vault item references remain unchanged.",
+          "Identity, trait, and external mapping counts remain explainable."
+        ]
+      },
+      {
+        "set_key": "mep",
+        "set_name": "MEP Black Star Promos",
+        "expected_parent_rows": 10,
+        "expected_child_printing_rows": 10,
+        "required_checks": [
+          "All target parent rows resolve to the intended set_code.",
+          "Child printing row count is unchanged.",
+          "No unsupported finish rows are introduced.",
+          "Vault item references remain unchanged.",
+          "Identity, trait, and external mapping counts remain explainable."
+        ]
+      },
+      {
+        "set_key": "pl1",
+        "set_name": "Platinum",
+        "expected_parent_rows": 9,
+        "expected_child_printing_rows": 10,
+        "required_checks": [
+          "All target parent rows resolve to the intended set_code.",
+          "Child printing row count is unchanged.",
+          "No unsupported finish rows are introduced.",
+          "Vault item references remain unchanged.",
+          "Identity, trait, and external mapping counts remain explainable."
+        ]
+      },
+      {
+        "set_key": "pl2",
+        "set_name": "Rising Rivals",
+        "expected_parent_rows": 17,
+        "expected_child_printing_rows": 24,
+        "required_checks": [
+          "All target parent rows resolve to the intended set_code.",
+          "Child printing row count is unchanged.",
+          "No unsupported finish rows are introduced.",
+          "Vault item references remain unchanged.",
+          "Identity, trait, and external mapping counts remain explainable."
+        ]
+      },
+      {
+        "set_key": "pl3",
+        "set_name": "Supreme Victors",
+        "expected_parent_rows": 9,
+        "expected_child_printing_rows": 9,
+        "required_checks": [
+          "All target parent rows resolve to the intended set_code.",
+          "Child printing row count is unchanged.",
+          "No unsupported finish rows are introduced.",
+          "Vault item references remain unchanged.",
+          "Identity, trait, and external mapping counts remain explainable."
+        ]
+      },
+      {
+        "set_key": "pl4",
+        "set_name": "Arceus",
+        "expected_parent_rows": 18,
+        "expected_child_printing_rows": 23,
+        "required_checks": [
+          "All target parent rows resolve to the intended set_code.",
+          "Child printing row count is unchanged.",
+          "No unsupported finish rows are introduced.",
+          "Vault item references remain unchanged.",
+          "Identity, trait, and external mapping counts remain explainable."
+        ]
+      },
+      {
+        "set_key": "swsh2",
+        "set_name": "Rebel Clash",
+        "expected_parent_rows": 1,
+        "expected_child_printing_rows": 2,
+        "required_checks": [
+          "All target parent rows resolve to the intended set_code.",
+          "Child printing row count is unchanged.",
+          "No unsupported finish rows are introduced.",
+          "Vault item references remain unchanged.",
+          "Identity, trait, and external mapping counts remain explainable."
+        ]
+      }
+    ],
+    "global_checks": [
+      {
+        "name": "all_target_parent_rows_resolved",
+        "expected": 106
+      },
+      {
+        "name": "all_target_child_printings_unchanged",
+        "expected": 143
+      },
+      {
+        "name": "vault_items_referencing_targets",
+        "expected": 0
+      },
+      {
+        "name": "unsupported_finishes_in_target_rows",
+        "expected": 0
+      }
+    ]
+  },
+  "mutation_rows": [
+    {
+      "set_key": "col1",
+      "set_name": "Call of Legends",
+      "card_print_id": "2180d1db-0948-4cfc-9a98-da7629c2811a",
+      "source_external_id": "col1-6",
+      "source_card_url": "https://api.tcgdex.net/v2/en/cards/col1-6",
+      "before_fields": {
+        "set_code": null,
+        "number": null,
+        "name": "Groudon",
+        "number_plain": null,
+        "set_id": "82a8d330-f85f-4a8e-8482-4d4a2bc2469d"
+      },
+      "target_parent_fields": {
+        "set_code": "col1",
+        "number": "6",
+        "name": "Groudon"
+      },
+      "expected_generated_readback": {
+        "number_plain": "6"
+      },
+      "rollback_parent_fields": {
+        "set_code": null,
+        "number": null,
+        "name": "Groudon"
+      },
+      "field_changes": {
+        "set_code": {
+          "before": null,
+          "after": "col1"
+        },
+        "number": {
+          "before": null,
+          "after": "6"
+        }
+      },
+      "supported_finishes": [
+        "holo",
+        "normal",
+        "reverse"
+      ],
+      "target_printing_count": 3,
+      "before_child_printing_count": 3,
+      "dependency_counts": {
+        "external_mappings": 1,
+        "card_print_identity": 1,
+        "card_print_traits": 1,
+        "vault_items": 0
+      },
+      "evidence_sources": [
+        "pokemontcg_api",
+        "tcgdex",
+        "thepricedex_price_list"
+      ],
+      "mutation_design_status": "approval_required_no_write"
+    },
+    {
+      "set_key": "col1",
+      "set_name": "Call of Legends",
+      "card_print_id": "922f2b4f-eb6f-492c-89a7-8b4f313509e2",
+      "source_external_id": "col1-8",
+      "source_card_url": "https://api.tcgdex.net/v2/en/cards/col1-8",
+      "before_fields": {
+        "set_code": null,
+        "number": null,
+        "name": "Hitmontop",
+        "number_plain": null,
+        "set_id": "82a8d330-f85f-4a8e-8482-4d4a2bc2469d"
+      },
+      "target_parent_fields": {
+        "set_code": "col1",
+        "number": "8",
+        "name": "Hitmontop"
+      },
+      "expected_generated_readback": {
+        "number_plain": "8"
+      },
+      "rollback_parent_fields": {
+        "set_code": null,
+        "number": null,
+        "name": "Hitmontop"
+      },
+      "field_changes": {
+        "set_code": {
+          "before": null,
+          "after": "col1"
+        },
+        "number": {
+          "before": null,
+          "after": "8"
+        }
+      },
+      "supported_finishes": [
+        "holo",
+        "normal",
+        "reverse"
+      ],
+      "target_printing_count": 3,
+      "before_child_printing_count": 3,
+      "dependency_counts": {
+        "external_mappings": 1,
+        "card_print_identity": 1,
+        "card_print_traits": 1,
+        "vault_items": 0
+      },
+      "evidence_sources": [
+        "pokemontcg_api",
+        "tcgdex",
+        "thepricedex_price_list"
+      ],
+      "mutation_design_status": "approval_required_no_write"
+    },
+    {
+      "set_key": "dp7",
+      "set_name": "Stormfront",
+      "card_print_id": "62f77935-5749-4d26-87e6-06bbca565b22",
+      "source_external_id": "dp7-2",
+      "source_card_url": "https://api.tcgdex.net/v2/en/cards/dp7-2",
+      "before_fields": {
+        "set_code": null,
+        "number": null,
+        "name": "Empoleon",
+        "number_plain": null,
+        "set_id": "bfe8a89a-951b-4e14-a5d2-450aae4b737c"
+      },
+      "target_parent_fields": {
+        "set_code": "dp7",
+        "number": "2",
+        "name": "Empoleon"
+      },
+      "expected_generated_readback": {
+        "number_plain": "2"
+      },
+      "rollback_parent_fields": {
+        "set_code": null,
+        "number": null,
+        "name": "Empoleon"
+      },
+      "field_changes": {
+        "set_code": {
+          "before": null,
+          "after": "dp7"
+        },
+        "number": {
+          "before": null,
+          "after": "2"
+        }
+      },
+      "supported_finishes": [
+        "holo",
+        "reverse"
+      ],
+      "target_printing_count": 2,
+      "before_child_printing_count": 2,
+      "dependency_counts": {
+        "external_mappings": 1,
+        "card_print_identity": 1,
+        "card_print_traits": 1,
+        "vault_items": 0
+      },
+      "evidence_sources": [
+        "pokemontcg_api",
+        "reverseholo_set_checklist",
+        "tcgdex",
+        "tcgplayer_price_guide",
+        "thepricedex_price_list"
+      ],
+      "mutation_design_status": "approval_required_no_write"
+    },
+    {
+      "set_key": "dp7",
+      "set_name": "Stormfront",
+      "card_print_id": "665ee2b0-4a22-43d5-bf8e-8ff22a990384",
+      "source_external_id": "dp7-3",
+      "source_card_url": "https://api.tcgdex.net/v2/en/cards/dp7-3",
+      "before_fields": {
+        "set_code": null,
+        "number": null,
+        "name": "Infernape",
+        "number_plain": null,
+        "set_id": "bfe8a89a-951b-4e14-a5d2-450aae4b737c"
+      },
+      "target_parent_fields": {
+        "set_code": "dp7",
+        "number": "3",
+        "name": "Infernape"
+      },
+      "expected_generated_readback": {
+        "number_plain": "3"
+      },
+      "rollback_parent_fields": {
+        "set_code": null,
+        "number": null,
+        "name": "Infernape"
+      },
+      "field_changes": {
+        "set_code": {
+          "before": null,
+          "after": "dp7"
+        },
+        "number": {
+          "before": null,
+          "after": "3"
+        }
+      },
+      "supported_finishes": [
+        "holo",
+        "reverse"
+      ],
+      "target_printing_count": 2,
+      "before_child_printing_count": 2,
+      "dependency_counts": {
+        "external_mappings": 1,
+        "card_print_identity": 1,
+        "card_print_traits": 1,
+        "vault_items": 0
+      },
+      "evidence_sources": [
+        "pokemontcg_api",
+        "reverseholo_set_checklist",
+        "tcgdex",
+        "tcgplayer_price_guide",
+        "thepricedex_price_list"
+      ],
+      "mutation_design_status": "approval_required_no_write"
+    },
+    {
+      "set_key": "dp7",
+      "set_name": "Stormfront",
+      "card_print_id": "d45018d3-c2a6-4d82-b3ed-d0ac6ce6e0ff",
+      "source_external_id": "dp7-96",
+      "source_card_url": "https://api.tcgdex.net/v2/en/cards/dp7-96",
+      "before_fields": {
+        "set_code": null,
+        "number": null,
+        "name": "Dusknoir",
+        "number_plain": null,
+        "set_id": "bfe8a89a-951b-4e14-a5d2-450aae4b737c"
+      },
+      "target_parent_fields": {
+        "set_code": "dp7",
+        "number": "96",
+        "name": "Dusknoir"
+      },
+      "expected_generated_readback": {
+        "number_plain": "96"
+      },
+      "rollback_parent_fields": {
+        "set_code": null,
+        "number": null,
+        "name": "Dusknoir"
+      },
+      "field_changes": {
+        "set_code": {
+          "before": null,
+          "after": "dp7"
+        },
+        "number": {
+          "before": null,
+          "after": "96"
+        }
+      },
+      "supported_finishes": [
+        "holo"
+      ],
+      "target_printing_count": 1,
+      "before_child_printing_count": 1,
+      "dependency_counts": {
+        "external_mappings": 1,
+        "card_print_identity": 1,
+        "card_print_traits": 1,
+        "vault_items": 0
+      },
+      "evidence_sources": [
+        "reverseholo_set_checklist",
+        "tcgdex"
+      ],
+      "mutation_design_status": "approval_required_no_write"
+    },
+    {
+      "set_key": "dp7",
+      "set_name": "Stormfront",
+      "card_print_id": "7c211bf2-ab9e-489d-842f-65c896270783",
+      "source_external_id": "dp7-97",
+      "source_card_url": "https://api.tcgdex.net/v2/en/cards/dp7-97",
+      "before_fields": {
+        "set_code": null,
+        "number": null,
+        "name": "Heatran",
+        "number_plain": null,
+        "set_id": "bfe8a89a-951b-4e14-a5d2-450aae4b737c"
+      },
+      "target_parent_fields": {
+        "set_code": "dp7",
+        "number": "97",
+        "name": "Heatran"
+      },
+      "expected_generated_readback": {
+        "number_plain": "97"
+      },
+      "rollback_parent_fields": {
+        "set_code": null,
+        "number": null,
+        "name": "Heatran"
+      },
+      "field_changes": {
+        "set_code": {
+          "before": null,
+          "after": "dp7"
+        },
+        "number": {
+          "before": null,
+          "after": "97"
+        }
+      },
+      "supported_finishes": [
+        "holo"
+      ],
+      "target_printing_count": 1,
+      "before_child_printing_count": 1,
+      "dependency_counts": {
+        "external_mappings": 1,
+        "card_print_identity": 1,
+        "card_print_traits": 1,
+        "vault_items": 0
+      },
+      "evidence_sources": [
+        "reverseholo_set_checklist",
+        "tcgdex"
+      ],
+      "mutation_design_status": "approval_required_no_write"
+    },
+    {
+      "set_key": "dp7",
+      "set_name": "Stormfront",
+      "card_print_id": "6f49c231-0a53-4c0c-9db1-6d4c36aa460e",
+      "source_external_id": "dp7-98",
+      "source_card_url": "https://api.tcgdex.net/v2/en/cards/dp7-98",
+      "before_fields": {
+        "set_code": null,
+        "number": null,
+        "name": "Machamp",
+        "number_plain": null,
+        "set_id": "bfe8a89a-951b-4e14-a5d2-450aae4b737c"
+      },
+      "target_parent_fields": {
+        "set_code": "dp7",
+        "number": "98",
+        "name": "Machamp"
+      },
+      "expected_generated_readback": {
+        "number_plain": "98"
+      },
+      "rollback_parent_fields": {
+        "set_code": null,
+        "number": null,
+        "name": "Machamp"
+      },
+      "field_changes": {
+        "set_code": {
+          "before": null,
+          "after": "dp7"
+        },
+        "number": {
+          "before": null,
+          "after": "98"
+        }
+      },
+      "supported_finishes": [
+        "holo"
+      ],
+      "target_printing_count": 1,
+      "before_child_printing_count": 1,
+      "dependency_counts": {
+        "external_mappings": 1,
+        "card_print_identity": 1,
+        "card_print_traits": 1,
+        "vault_items": 0
+      },
+      "evidence_sources": [
+        "reverseholo_set_checklist",
+        "tcgdex"
+      ],
+      "mutation_design_status": "approval_required_no_write"
+    },
+    {
+      "set_key": "dp7",
+      "set_name": "Stormfront",
+      "card_print_id": "7a0dbe87-8ffb-4939-a5c0-371a0a21b302",
+      "source_external_id": "dp7-99",
+      "source_card_url": "https://api.tcgdex.net/v2/en/cards/dp7-99",
+      "before_fields": {
+        "set_code": null,
+        "number": null,
+        "name": "Raichu",
+        "number_plain": null,
+        "set_id": "bfe8a89a-951b-4e14-a5d2-450aae4b737c"
+      },
+      "target_parent_fields": {
+        "set_code": "dp7",
+        "number": "99",
+        "name": "Raichu"
+      },
+      "expected_generated_readback": {
+        "number_plain": "99"
+      },
+      "rollback_parent_fields": {
+        "set_code": null,
+        "number": null,
+        "name": "Raichu"
+      },
+      "field_changes": {
+        "set_code": {
+          "before": null,
+          "after": "dp7"
+        },
+        "number": {
+          "before": null,
+          "after": "99"
+        }
+      },
+      "supported_finishes": [
+        "holo"
+      ],
+      "target_printing_count": 1,
+      "before_child_printing_count": 1,
+      "dependency_counts": {
+        "external_mappings": 1,
+        "card_print_identity": 1,
+        "card_print_traits": 1,
+        "vault_items": 0
+      },
+      "evidence_sources": [
+        "reverseholo_set_checklist",
+        "tcgdex"
+      ],
+      "mutation_design_status": "approval_required_no_write"
+    },
+    {
+      "set_key": "dp7",
+      "set_name": "Stormfront",
+      "card_print_id": "687811f7-e3d2-41bb-b37d-1e73882551d2",
+      "source_external_id": "dp7-100",
+      "source_card_url": "https://api.tcgdex.net/v2/en/cards/dp7-100",
+      "before_fields": {
+        "set_code": null,
+        "number": null,
+        "name": "Regigigas",
+        "number_plain": null,
+        "set_id": "bfe8a89a-951b-4e14-a5d2-450aae4b737c"
+      },
+      "target_parent_fields": {
+        "set_code": "dp7",
+        "number": "100",
+        "name": "Regigigas"
+      },
+      "expected_generated_readback": {
+        "number_plain": "100"
+      },
+      "rollback_parent_fields": {
+        "set_code": null,
+        "number": null,
+        "name": "Regigigas"
+      },
+      "field_changes": {
+        "set_code": {
+          "before": null,
+          "after": "dp7"
+        },
+        "number": {
+          "before": null,
+          "after": "100"
+        }
+      },
+      "supported_finishes": [
+        "holo"
+      ],
+      "target_printing_count": 1,
+      "before_child_printing_count": 1,
+      "dependency_counts": {
+        "external_mappings": 1,
+        "card_print_identity": 1,
+        "card_print_traits": 1,
+        "vault_items": 0
+      },
+      "evidence_sources": [
+        "reverseholo_set_checklist",
+        "tcgdex"
+      ],
+      "mutation_design_status": "approval_required_no_write"
+    },
+    {
+      "set_key": "dp7",
+      "set_name": "Stormfront",
+      "card_print_id": "e8444009-0c47-48a6-af07-f5b450ac0082",
+      "source_external_id": "dp7-SH1",
+      "source_card_url": "https://api.tcgdex.net/v2/en/cards/dp7-SH1",
+      "before_fields": {
+        "set_code": null,
+        "number": null,
+        "name": "Drifloon",
+        "number_plain": null,
+        "set_id": "bfe8a89a-951b-4e14-a5d2-450aae4b737c"
+      },
+      "target_parent_fields": {
+        "set_code": "dp7",
+        "number": "SH1",
+        "name": "Drifloon"
+      },
+      "expected_generated_readback": {
+        "number_plain": "SH1"
+      },
+      "rollback_parent_fields": {
+        "set_code": null,
+        "number": null,
+        "name": "Drifloon"
+      },
+      "field_changes": {
+        "set_code": {
+          "before": null,
+          "after": "dp7"
+        },
+        "number": {
+          "before": null,
+          "after": "SH1"
+        }
+      },
+      "supported_finishes": [
+        "holo"
+      ],
+      "target_printing_count": 1,
+      "before_child_printing_count": 1,
+      "dependency_counts": {
+        "external_mappings": 1,
+        "card_print_identity": 1,
+        "card_print_traits": 1,
+        "vault_items": 0
+      },
+      "evidence_sources": [
+        "reverseholo_set_checklist",
+        "tcgdex"
+      ],
+      "mutation_design_status": "approval_required_no_write"
+    },
+    {
+      "set_key": "ecard2",
+      "set_name": "Aquapolis",
+      "card_print_id": "5155d8da-c49b-43cf-8173-1e4ceca853d2",
+      "source_external_id": "ecard2-11",
+      "source_card_url": "https://api.tcgdex.net/v2/en/cards/ecard2-11",
+      "before_fields": {
+        "set_code": null,
+        "number": "11",
+        "name": "Espeon",
+        "number_plain": "11",
+        "set_id": "7f616ea0-8f96-4250-bee3-c4293c629552"
+      },
+      "target_parent_fields": {
+        "set_code": "ecard2",
+        "number": "11",
+        "name": "Espeon"
+      },
+      "expected_generated_readback": {
+        "number_plain": "11"
+      },
+      "rollback_parent_fields": {
+        "set_code": null,
+        "number": "11",
+        "name": "Espeon"
+      },
+      "field_changes": {
+        "set_code": {
+          "before": null,
+          "after": "ecard2"
+        }
+      },
+      "supported_finishes": [
+        "normal",
+        "reverse"
+      ],
+      "target_printing_count": 2,
+      "before_child_printing_count": 2,
+      "dependency_counts": {
+        "external_mappings": 3,
+        "card_print_identity": 1,
+        "card_print_traits": 1,
+        "vault_items": 0
+      },
+      "evidence_sources": [
+        "pokemontcg_api",
+        "reverseholo_set_checklist",
+        "tcgdex",
+        "tcgplayer_price_guide",
+        "thepricedex_price_list"
+      ],
+      "mutation_design_status": "approval_required_no_write"
+    },
+    {
+      "set_key": "ecard2",
+      "set_name": "Aquapolis",
+      "card_print_id": "49008b62-21be-48b8-a561-9dc0bea390e1",
+      "source_external_id": "ecard2-12",
+      "source_card_url": "https://api.tcgdex.net/v2/en/cards/ecard2-12",
+      "before_fields": {
+        "set_code": null,
+        "number": "12",
+        "name": "Exeggutor",
+        "number_plain": "12",
+        "set_id": "7f616ea0-8f96-4250-bee3-c4293c629552"
+      },
+      "target_parent_fields": {
+        "set_code": "ecard2",
+        "number": "12",
+        "name": "Exeggutor"
+      },
+      "expected_generated_readback": {
+        "number_plain": "12"
+      },
+      "rollback_parent_fields": {
+        "set_code": null,
+        "number": "12",
+        "name": "Exeggutor"
+      },
+      "field_changes": {
+        "set_code": {
+          "before": null,
+          "after": "ecard2"
+        }
+      },
+      "supported_finishes": [
+        "normal",
+        "reverse"
+      ],
+      "target_printing_count": 2,
+      "before_child_printing_count": 2,
+      "dependency_counts": {
+        "external_mappings": 3,
+        "card_print_identity": 1,
+        "card_print_traits": 1,
+        "vault_items": 0
+      },
+      "evidence_sources": [
+        "pokemontcg_api",
+        "reverseholo_set_checklist",
+        "tcgdex",
+        "tcgplayer_price_guide",
+        "thepricedex_price_list"
+      ],
+      "mutation_design_status": "approval_required_no_write"
+    },
+    {
+      "set_key": "ecard2",
+      "set_name": "Aquapolis",
+      "card_print_id": "0f752ca1-5458-4241-af37-4a7b48b85013",
+      "source_external_id": "ecard2-13",
+      "source_card_url": "https://api.tcgdex.net/v2/en/cards/ecard2-13",
+      "before_fields": {
+        "set_code": null,
+        "number": "13",
+        "name": "Exeggutor",
+        "number_plain": "13",
+        "set_id": "7f616ea0-8f96-4250-bee3-c4293c629552"
+      },
+      "target_parent_fields": {
+        "set_code": "ecard2",
+        "number": "13",
+        "name": "Exeggutor"
+      },
+      "expected_generated_readback": {
+        "number_plain": "13"
+      },
+      "rollback_parent_fields": {
+        "set_code": null,
+        "number": "13",
+        "name": "Exeggutor"
+      },
+      "field_changes": {
+        "set_code": {
+          "before": null,
+          "after": "ecard2"
+        }
+      },
+      "supported_finishes": [
+        "normal",
+        "reverse"
+      ],
+      "target_printing_count": 2,
+      "before_child_printing_count": 2,
+      "dependency_counts": {
+        "external_mappings": 3,
+        "card_print_identity": 1,
+        "card_print_traits": 1,
+        "vault_items": 0
+      },
+      "evidence_sources": [
+        "pokemontcg_api",
+        "reverseholo_set_checklist",
+        "tcgdex",
+        "tcgplayer_price_guide",
+        "thepricedex_price_list"
+      ],
+      "mutation_design_status": "approval_required_no_write"
+    },
+    {
+      "set_key": "ecard2",
+      "set_name": "Aquapolis",
+      "card_print_id": "bf8fa8c4-a04d-44f8-ae9e-50a6a6784d88",
+      "source_external_id": "ecard2-15",
+      "source_card_url": "https://api.tcgdex.net/v2/en/cards/ecard2-15",
+      "before_fields": {
+        "set_code": null,
+        "number": "15",
+        "name": "Houndoom",
+        "number_plain": "15",
+        "set_id": "7f616ea0-8f96-4250-bee3-c4293c629552"
+      },
+      "target_parent_fields": {
+        "set_code": "ecard2",
+        "number": "15",
+        "name": "Houndoom"
+      },
+      "expected_generated_readback": {
+        "number_plain": "15"
+      },
+      "rollback_parent_fields": {
+        "set_code": null,
+        "number": "15",
+        "name": "Houndoom"
+      },
+      "field_changes": {
+        "set_code": {
+          "before": null,
+          "after": "ecard2"
+        }
+      },
+      "supported_finishes": [
+        "normal",
+        "reverse"
+      ],
+      "target_printing_count": 2,
+      "before_child_printing_count": 2,
+      "dependency_counts": {
+        "external_mappings": 3,
+        "card_print_identity": 1,
+        "card_print_traits": 1,
+        "vault_items": 0
+      },
+      "evidence_sources": [
+        "pokemontcg_api",
+        "reverseholo_set_checklist",
+        "tcgdex",
+        "tcgplayer_price_guide",
+        "thepricedex_price_list"
+      ],
+      "mutation_design_status": "approval_required_no_write"
+    },
+    {
+      "set_key": "ecard2",
+      "set_name": "Aquapolis",
+      "card_print_id": "d5e3ba78-7a85-49d2-8ab0-295521652f55",
+      "source_external_id": "ecard2-16",
+      "source_card_url": "https://api.tcgdex.net/v2/en/cards/ecard2-16",
+      "before_fields": {
+        "set_code": null,
+        "number": "16",
+        "name": "Hypno",
+        "number_plain": "16",
+        "set_id": "7f616ea0-8f96-4250-bee3-c4293c629552"
+      },
+      "target_parent_fields": {
+        "set_code": "ecard2",
+        "number": "16",
+        "name": "Hypno"
+      },
+      "expected_generated_readback": {
+        "number_plain": "16"
+      },
+      "rollback_parent_fields": {
+        "set_code": null,
+        "number": "16",
+        "name": "Hypno"
+      },
+      "field_changes": {
+        "set_code": {
+          "before": null,
+          "after": "ecard2"
+        }
+      },
+      "supported_finishes": [
+        "normal",
+        "reverse"
+      ],
+      "target_printing_count": 2,
+      "before_child_printing_count": 2,
+      "dependency_counts": {
+        "external_mappings": 3,
+        "card_print_identity": 1,
+        "card_print_traits": 1,
+        "vault_items": 0
+      },
+      "evidence_sources": [
+        "pokemontcg_api",
+        "reverseholo_set_checklist",
+        "tcgdex",
+        "tcgplayer_price_guide",
+        "thepricedex_price_list"
+      ],
+      "mutation_design_status": "approval_required_no_write"
+    },
+    {
+      "set_key": "ecard2",
+      "set_name": "Aquapolis",
+      "card_print_id": "11591d3d-6574-487e-9958-f0d94bba5af4",
+      "source_external_id": "ecard2-17",
+      "source_card_url": "https://api.tcgdex.net/v2/en/cards/ecard2-17",
+      "before_fields": {
+        "set_code": null,
+        "number": "17",
+        "name": "Jumpluff",
+        "number_plain": "17",
+        "set_id": "7f616ea0-8f96-4250-bee3-c4293c629552"
+      },
+      "target_parent_fields": {
+        "set_code": "ecard2",
+        "number": "17",
+        "name": "Jumpluff"
+      },
+      "expected_generated_readback": {
+        "number_plain": "17"
+      },
+      "rollback_parent_fields": {
+        "set_code": null,
+        "number": "17",
+        "name": "Jumpluff"
+      },
+      "field_changes": {
+        "set_code": {
+          "before": null,
+          "after": "ecard2"
+        }
+      },
+      "supported_finishes": [
+        "normal",
+        "reverse"
+      ],
+      "target_printing_count": 2,
+      "before_child_printing_count": 2,
+      "dependency_counts": {
+        "external_mappings": 3,
+        "card_print_identity": 1,
+        "card_print_traits": 1,
+        "vault_items": 0
+      },
+      "evidence_sources": [
+        "pokemontcg_api",
+        "reverseholo_set_checklist",
+        "tcgdex",
+        "tcgplayer_price_guide",
+        "thepricedex_price_list"
+      ],
+      "mutation_design_status": "approval_required_no_write"
+    },
+    {
+      "set_key": "ecard2",
+      "set_name": "Aquapolis",
+      "card_print_id": "72b1ec6b-fe84-4190-a0d3-d95155296261",
+      "source_external_id": "ecard2-18",
+      "source_card_url": "https://api.tcgdex.net/v2/en/cards/ecard2-18",
+      "before_fields": {
+        "set_code": null,
+        "number": "18",
+        "name": "Jynx",
+        "number_plain": "18",
+        "set_id": "7f616ea0-8f96-4250-bee3-c4293c629552"
+      },
+      "target_parent_fields": {
+        "set_code": "ecard2",
+        "number": "18",
+        "name": "Jynx"
+      },
+      "expected_generated_readback": {
+        "number_plain": "18"
+      },
+      "rollback_parent_fields": {
+        "set_code": null,
+        "number": "18",
+        "name": "Jynx"
+      },
+      "field_changes": {
+        "set_code": {
+          "before": null,
+          "after": "ecard2"
+        }
+      },
+      "supported_finishes": [
+        "normal",
+        "reverse"
+      ],
+      "target_printing_count": 2,
+      "before_child_printing_count": 2,
+      "dependency_counts": {
+        "external_mappings": 3,
+        "card_print_identity": 1,
+        "card_print_traits": 1,
+        "vault_items": 0
+      },
+      "evidence_sources": [
+        "pokemontcg_api",
+        "reverseholo_set_checklist",
+        "tcgdex",
+        "tcgplayer_price_guide",
+        "thepricedex_price_list"
+      ],
+      "mutation_design_status": "approval_required_no_write"
+    },
+    {
+      "set_key": "ecard2",
+      "set_name": "Aquapolis",
+      "card_print_id": "b22dc290-dade-45f8-b488-5d3c921a79a1",
+      "source_external_id": "ecard2-19",
+      "source_card_url": "https://api.tcgdex.net/v2/en/cards/ecard2-19",
+      "before_fields": {
+        "set_code": null,
+        "number": "19",
+        "name": "Kingdra",
+        "number_plain": "19",
+        "set_id": "7f616ea0-8f96-4250-bee3-c4293c629552"
+      },
+      "target_parent_fields": {
+        "set_code": "ecard2",
+        "number": "19",
+        "name": "Kingdra"
+      },
+      "expected_generated_readback": {
+        "number_plain": "19"
+      },
+      "rollback_parent_fields": {
+        "set_code": null,
+        "number": "19",
+        "name": "Kingdra"
+      },
+      "field_changes": {
+        "set_code": {
+          "before": null,
+          "after": "ecard2"
+        }
+      },
+      "supported_finishes": [
+        "normal",
+        "reverse"
+      ],
+      "target_printing_count": 2,
+      "before_child_printing_count": 2,
+      "dependency_counts": {
+        "external_mappings": 3,
+        "card_print_identity": 1,
+        "card_print_traits": 1,
+        "vault_items": 0
+      },
+      "evidence_sources": [
+        "pokemontcg_api",
+        "reverseholo_set_checklist",
+        "tcgdex",
+        "tcgplayer_price_guide",
+        "thepricedex_price_list"
+      ],
+      "mutation_design_status": "approval_required_no_write"
+    },
+    {
+      "set_key": "ecard2",
+      "set_name": "Aquapolis",
+      "card_print_id": "0e7d501c-b666-43df-9ee6-82443fcae8cb",
+      "source_external_id": "ecard2-20",
+      "source_card_url": "https://api.tcgdex.net/v2/en/cards/ecard2-20",
+      "before_fields": {
+        "set_code": null,
+        "number": "20",
+        "name": "Lanturn",
+        "number_plain": "20",
+        "set_id": "7f616ea0-8f96-4250-bee3-c4293c629552"
+      },
+      "target_parent_fields": {
+        "set_code": "ecard2",
+        "number": "20",
+        "name": "Lanturn"
+      },
+      "expected_generated_readback": {
+        "number_plain": "20"
+      },
+      "rollback_parent_fields": {
+        "set_code": null,
+        "number": "20",
+        "name": "Lanturn"
+      },
+      "field_changes": {
+        "set_code": {
+          "before": null,
+          "after": "ecard2"
+        }
+      },
+      "supported_finishes": [
+        "normal",
+        "reverse"
+      ],
+      "target_printing_count": 2,
+      "before_child_printing_count": 2,
+      "dependency_counts": {
+        "external_mappings": 3,
+        "card_print_identity": 1,
+        "card_print_traits": 1,
+        "vault_items": 0
+      },
+      "evidence_sources": [
+        "pokemontcg_api",
+        "reverseholo_set_checklist",
+        "tcgdex",
+        "tcgplayer_price_guide",
+        "thepricedex_price_list"
+      ],
+      "mutation_design_status": "approval_required_no_write"
+    },
+    {
+      "set_key": "ecard2",
+      "set_name": "Aquapolis",
+      "card_print_id": "a077e73a-275a-405e-85ac-24b28b6ffe3a",
+      "source_external_id": "ecard2-25",
+      "source_card_url": "https://api.tcgdex.net/v2/en/cards/ecard2-25",
+      "before_fields": {
+        "set_code": null,
+        "number": "25",
+        "name": "Ninetales",
+        "number_plain": "25",
+        "set_id": "7f616ea0-8f96-4250-bee3-c4293c629552"
+      },
+      "target_parent_fields": {
+        "set_code": "ecard2",
+        "number": "25",
+        "name": "Ninetales"
+      },
+      "expected_generated_readback": {
+        "number_plain": "25"
+      },
+      "rollback_parent_fields": {
+        "set_code": null,
+        "number": "25",
+        "name": "Ninetales"
+      },
+      "field_changes": {
+        "set_code": {
+          "before": null,
+          "after": "ecard2"
+        }
+      },
+      "supported_finishes": [
+        "normal",
+        "reverse"
+      ],
+      "target_printing_count": 2,
+      "before_child_printing_count": 2,
+      "dependency_counts": {
+        "external_mappings": 3,
+        "card_print_identity": 1,
+        "card_print_traits": 1,
+        "vault_items": 0
+      },
+      "evidence_sources": [
+        "pokemontcg_api",
+        "reverseholo_set_checklist",
+        "tcgdex",
+        "tcgplayer_price_guide",
+        "thepricedex_price_list"
+      ],
+      "mutation_design_status": "approval_required_no_write"
+    },
+    {
+      "set_key": "ecard2",
+      "set_name": "Aquapolis",
+      "card_print_id": "898ad06e-aab1-4c1a-b91b-44fdd6069031",
+      "source_external_id": "ecard2-28",
+      "source_card_url": "https://api.tcgdex.net/v2/en/cards/ecard2-28",
+      "before_fields": {
+        "set_code": null,
+        "number": "28",
+        "name": "Porygon2",
+        "number_plain": "28",
+        "set_id": "7f616ea0-8f96-4250-bee3-c4293c629552"
+      },
+      "target_parent_fields": {
+        "set_code": "ecard2",
+        "number": "28",
+        "name": "Porygon2"
+      },
+      "expected_generated_readback": {
+        "number_plain": "28"
+      },
+      "rollback_parent_fields": {
+        "set_code": null,
+        "number": "28",
+        "name": "Porygon2"
+      },
+      "field_changes": {
+        "set_code": {
+          "before": null,
+          "after": "ecard2"
+        }
+      },
+      "supported_finishes": [
+        "normal",
+        "reverse"
+      ],
+      "target_printing_count": 2,
+      "before_child_printing_count": 2,
+      "dependency_counts": {
+        "external_mappings": 3,
+        "card_print_identity": 1,
+        "card_print_traits": 1,
+        "vault_items": 0
+      },
+      "evidence_sources": [
+        "pokemontcg_api",
+        "reverseholo_set_checklist",
+        "tcgdex",
+        "tcgplayer_price_guide",
+        "thepricedex_price_list"
+      ],
+      "mutation_design_status": "approval_required_no_write"
+    },
+    {
+      "set_key": "ecard2",
+      "set_name": "Aquapolis",
+      "card_print_id": "507f014e-d43d-4b24-b01f-c9635b6aba81",
+      "source_external_id": "ecard2-30",
+      "source_card_url": "https://api.tcgdex.net/v2/en/cards/ecard2-30",
+      "before_fields": {
+        "set_code": null,
+        "number": "30",
+        "name": "Quagsire",
+        "number_plain": "30",
+        "set_id": "7f616ea0-8f96-4250-bee3-c4293c629552"
+      },
+      "target_parent_fields": {
+        "set_code": "ecard2",
+        "number": "30",
+        "name": "Quagsire"
+      },
+      "expected_generated_readback": {
+        "number_plain": "30"
+      },
+      "rollback_parent_fields": {
+        "set_code": null,
+        "number": "30",
+        "name": "Quagsire"
+      },
+      "field_changes": {
+        "set_code": {
+          "before": null,
+          "after": "ecard2"
+        }
+      },
+      "supported_finishes": [
+        "normal",
+        "reverse"
+      ],
+      "target_printing_count": 2,
+      "before_child_printing_count": 2,
+      "dependency_counts": {
+        "external_mappings": 3,
+        "card_print_identity": 1,
+        "card_print_traits": 1,
+        "vault_items": 0
+      },
+      "evidence_sources": [
+        "pokemontcg_api",
+        "reverseholo_set_checklist",
+        "tcgdex",
+        "tcgplayer_price_guide",
+        "thepricedex_price_list"
+      ],
+      "mutation_design_status": "approval_required_no_write"
+    },
+    {
+      "set_key": "ecard2",
+      "set_name": "Aquapolis",
+      "card_print_id": "2233732b-ced1-4f51-b45b-603c1c15a65c",
+      "source_external_id": "ecard2-32",
+      "source_card_url": "https://api.tcgdex.net/v2/en/cards/ecard2-32",
+      "before_fields": {
+        "set_code": null,
+        "number": "32",
+        "name": "Scizor",
+        "number_plain": "32",
+        "set_id": "7f616ea0-8f96-4250-bee3-c4293c629552"
+      },
+      "target_parent_fields": {
+        "set_code": "ecard2",
+        "number": "32",
+        "name": "Scizor"
+      },
+      "expected_generated_readback": {
+        "number_plain": "32"
+      },
+      "rollback_parent_fields": {
+        "set_code": null,
+        "number": "32",
+        "name": "Scizor"
+      },
+      "field_changes": {
+        "set_code": {
+          "before": null,
+          "after": "ecard2"
+        }
+      },
+      "supported_finishes": [
+        "normal",
+        "reverse"
+      ],
+      "target_printing_count": 2,
+      "before_child_printing_count": 2,
+      "dependency_counts": {
+        "external_mappings": 3,
+        "card_print_identity": 1,
+        "card_print_traits": 1,
+        "vault_items": 0
+      },
+      "evidence_sources": [
+        "pokemontcg_api",
+        "reverseholo_set_checklist",
+        "tcgdex",
+        "tcgplayer_price_guide",
+        "thepricedex_price_list"
+      ],
+      "mutation_design_status": "approval_required_no_write"
+    },
+    {
+      "set_key": "ecard3",
+      "set_name": "Skyridge",
+      "card_print_id": "d0270c83-13c1-4d2b-ae50-19830be9d134",
+      "source_external_id": "ecard3-4",
+      "source_card_url": "https://api.tcgdex.net/v2/en/cards/ecard3-4",
+      "before_fields": {
+        "set_code": null,
+        "number": "4",
+        "name": "Articuno",
+        "number_plain": "4",
+        "set_id": "eece39b6-0d1b-48bf-8b41-9b154172a4c5"
+      },
+      "target_parent_fields": {
+        "set_code": "ecard3",
+        "number": "4",
+        "name": "Articuno"
+      },
+      "expected_generated_readback": {
+        "number_plain": "4"
+      },
+      "rollback_parent_fields": {
+        "set_code": null,
+        "number": "4",
+        "name": "Articuno"
+      },
+      "field_changes": {
+        "set_code": {
+          "before": null,
+          "after": "ecard3"
+        }
+      },
+      "supported_finishes": [
+        "normal",
+        "reverse"
+      ],
+      "target_printing_count": 2,
+      "before_child_printing_count": 2,
+      "dependency_counts": {
+        "external_mappings": 1,
+        "card_print_identity": 1,
+        "card_print_traits": 1,
+        "vault_items": 0
+      },
+      "evidence_sources": [
+        "pokemontcg_api",
+        "reverseholo_set_checklist",
+        "tcgdex",
+        "tcgplayer_price_guide",
+        "thepricedex_price_list"
+      ],
+      "mutation_design_status": "approval_required_no_write"
+    },
+    {
+      "set_key": "ecard3",
+      "set_name": "Skyridge",
+      "card_print_id": "36a0af86-f863-4ff0-967c-285a67272dcb",
+      "source_external_id": "ecard3-6",
+      "source_card_url": "https://api.tcgdex.net/v2/en/cards/ecard3-6",
+      "before_fields": {
+        "set_code": null,
+        "number": "6",
+        "name": "Crobat",
+        "number_plain": "6",
+        "set_id": "eece39b6-0d1b-48bf-8b41-9b154172a4c5"
+      },
+      "target_parent_fields": {
+        "set_code": "ecard3",
+        "number": "6",
+        "name": "Crobat"
+      },
+      "expected_generated_readback": {
+        "number_plain": "6"
+      },
+      "rollback_parent_fields": {
+        "set_code": null,
+        "number": "6",
+        "name": "Crobat"
+      },
+      "field_changes": {
+        "set_code": {
+          "before": null,
+          "after": "ecard3"
+        }
+      },
+      "supported_finishes": [
+        "normal",
+        "reverse"
+      ],
+      "target_printing_count": 2,
+      "before_child_printing_count": 2,
+      "dependency_counts": {
+        "external_mappings": 1,
+        "card_print_identity": 1,
+        "card_print_traits": 1,
+        "vault_items": 0
+      },
+      "evidence_sources": [
+        "pokemontcg_api",
+        "reverseholo_set_checklist",
+        "tcgdex",
+        "tcgplayer_price_guide",
+        "thepricedex_price_list"
+      ],
+      "mutation_design_status": "approval_required_no_write"
+    },
+    {
+      "set_key": "ecard3",
+      "set_name": "Skyridge",
+      "card_print_id": "6406220f-4684-4f26-a52d-310db5eb5700",
+      "source_external_id": "ecard3-8",
+      "source_card_url": "https://api.tcgdex.net/v2/en/cards/ecard3-8",
+      "before_fields": {
+        "set_code": null,
+        "number": "8",
+        "name": "Flareon",
+        "number_plain": "8",
+        "set_id": "eece39b6-0d1b-48bf-8b41-9b154172a4c5"
+      },
+      "target_parent_fields": {
+        "set_code": "ecard3",
+        "number": "8",
+        "name": "Flareon"
+      },
+      "expected_generated_readback": {
+        "number_plain": "8"
+      },
+      "rollback_parent_fields": {
+        "set_code": null,
+        "number": "8",
+        "name": "Flareon"
+      },
+      "field_changes": {
+        "set_code": {
+          "before": null,
+          "after": "ecard3"
+        }
+      },
+      "supported_finishes": [
+        "normal",
+        "reverse"
+      ],
+      "target_printing_count": 2,
+      "before_child_printing_count": 2,
+      "dependency_counts": {
+        "external_mappings": 1,
+        "card_print_identity": 1,
+        "card_print_traits": 1,
+        "vault_items": 0
+      },
+      "evidence_sources": [
+        "pokemontcg_api",
+        "reverseholo_set_checklist",
+        "tcgdex",
+        "tcgplayer_price_guide",
+        "thepricedex_price_list"
+      ],
+      "mutation_design_status": "approval_required_no_write"
+    },
+    {
+      "set_key": "ecard3",
+      "set_name": "Skyridge",
+      "card_print_id": "982bd726-548f-4e0c-9a93-c1301af1342f",
+      "source_external_id": "ecard3-9",
+      "source_card_url": "https://api.tcgdex.net/v2/en/cards/ecard3-9",
+      "before_fields": {
+        "set_code": null,
+        "number": "9",
+        "name": "Forretress",
+        "number_plain": "9",
+        "set_id": "eece39b6-0d1b-48bf-8b41-9b154172a4c5"
+      },
+      "target_parent_fields": {
+        "set_code": "ecard3",
+        "number": "9",
+        "name": "Forretress"
+      },
+      "expected_generated_readback": {
+        "number_plain": "9"
+      },
+      "rollback_parent_fields": {
+        "set_code": null,
+        "number": "9",
+        "name": "Forretress"
+      },
+      "field_changes": {
+        "set_code": {
+          "before": null,
+          "after": "ecard3"
+        }
+      },
+      "supported_finishes": [
+        "normal",
+        "reverse"
+      ],
+      "target_printing_count": 2,
+      "before_child_printing_count": 2,
+      "dependency_counts": {
+        "external_mappings": 1,
+        "card_print_identity": 1,
+        "card_print_traits": 1,
+        "vault_items": 0
+      },
+      "evidence_sources": [
+        "pokemontcg_api",
+        "reverseholo_set_checklist",
+        "tcgdex",
+        "tcgplayer_price_guide",
+        "thepricedex_price_list"
+      ],
+      "mutation_design_status": "approval_required_no_write"
+    },
+    {
+      "set_key": "ecard3",
+      "set_name": "Skyridge",
+      "card_print_id": "d139fca7-558c-4dad-9a46-f94e4d45ab6b",
+      "source_external_id": "ecard3-H13",
+      "source_card_url": "https://api.tcgdex.net/v2/en/cards/ecard3-H13",
+      "before_fields": {
+        "set_code": null,
+        "number": null,
+        "name": "Kabutops",
+        "number_plain": null,
+        "set_id": "eece39b6-0d1b-48bf-8b41-9b154172a4c5"
+      },
+      "target_parent_fields": {
+        "set_code": "ecard3",
+        "number": "H13",
+        "name": "Kabutops"
+      },
+      "expected_generated_readback": {
+        "number_plain": "H13"
+      },
+      "rollback_parent_fields": {
+        "set_code": null,
+        "number": null,
+        "name": "Kabutops"
+      },
+      "field_changes": {
+        "set_code": {
+          "before": null,
+          "after": "ecard3"
+        },
+        "number": {
+          "before": null,
+          "after": "H13"
+        }
+      },
+      "supported_finishes": [
+        "holo"
+      ],
+      "target_printing_count": 1,
+      "before_child_printing_count": 1,
+      "dependency_counts": {
+        "external_mappings": 1,
+        "card_print_identity": 1,
+        "card_print_traits": 1,
+        "vault_items": 0
+      },
+      "evidence_sources": [
+        "pokemontcg_api",
+        "reverseholo_set_checklist",
+        "tcgdex",
+        "tcgplayer_price_guide",
+        "thepricedex_price_list"
+      ],
+      "mutation_design_status": "approval_required_no_write"
+    },
+    {
+      "set_key": "ecard3",
+      "set_name": "Skyridge",
+      "card_print_id": "8c78b35f-6dd0-4b12-9709-8b4198ad3089",
+      "source_external_id": "ecard3-H14",
+      "source_card_url": "https://api.tcgdex.net/v2/en/cards/ecard3-H14",
+      "before_fields": {
+        "set_code": null,
+        "number": null,
+        "name": "Ledian",
+        "number_plain": null,
+        "set_id": "eece39b6-0d1b-48bf-8b41-9b154172a4c5"
+      },
+      "target_parent_fields": {
+        "set_code": "ecard3",
+        "number": "H14",
+        "name": "Ledian"
+      },
+      "expected_generated_readback": {
+        "number_plain": "H14"
+      },
+      "rollback_parent_fields": {
+        "set_code": null,
+        "number": null,
+        "name": "Ledian"
+      },
+      "field_changes": {
+        "set_code": {
+          "before": null,
+          "after": "ecard3"
+        },
+        "number": {
+          "before": null,
+          "after": "H14"
+        }
+      },
+      "supported_finishes": [
+        "holo"
+      ],
+      "target_printing_count": 1,
+      "before_child_printing_count": 1,
+      "dependency_counts": {
+        "external_mappings": 1,
+        "card_print_identity": 1,
+        "card_print_traits": 1,
+        "vault_items": 0
+      },
+      "evidence_sources": [
+        "pokemontcg_api",
+        "reverseholo_set_checklist",
+        "tcgdex",
+        "tcgplayer_price_guide",
+        "thepricedex_price_list"
+      ],
+      "mutation_design_status": "approval_required_no_write"
+    },
+    {
+      "set_key": "ecard3",
+      "set_name": "Skyridge",
+      "card_print_id": "02a4156d-5f67-4969-8288-c440938a923c",
+      "source_external_id": "ecard3-H16",
+      "source_card_url": "https://api.tcgdex.net/v2/en/cards/ecard3-H16",
+      "before_fields": {
+        "set_code": null,
+        "number": null,
+        "name": "Magcargo",
+        "number_plain": null,
+        "set_id": "eece39b6-0d1b-48bf-8b41-9b154172a4c5"
+      },
+      "target_parent_fields": {
+        "set_code": "ecard3",
+        "number": "H16",
+        "name": "Magcargo"
+      },
+      "expected_generated_readback": {
+        "number_plain": "H16"
+      },
+      "rollback_parent_fields": {
+        "set_code": null,
+        "number": null,
+        "name": "Magcargo"
+      },
+      "field_changes": {
+        "set_code": {
+          "before": null,
+          "after": "ecard3"
+        },
+        "number": {
+          "before": null,
+          "after": "H16"
+        }
+      },
+      "supported_finishes": [
+        "holo"
+      ],
+      "target_printing_count": 1,
+      "before_child_printing_count": 1,
+      "dependency_counts": {
+        "external_mappings": 1,
+        "card_print_identity": 1,
+        "card_print_traits": 1,
+        "vault_items": 0
+      },
+      "evidence_sources": [
+        "pokemontcg_api",
+        "reverseholo_set_checklist",
+        "tcgdex",
+        "tcgplayer_price_guide",
+        "thepricedex_price_list"
+      ],
+      "mutation_design_status": "approval_required_no_write"
+    },
+    {
+      "set_key": "ecard3",
+      "set_name": "Skyridge",
+      "card_print_id": "bb73d56c-c46f-4341-b4a1-825a10c2406b",
+      "source_external_id": "ecard3-H17",
+      "source_card_url": "https://api.tcgdex.net/v2/en/cards/ecard3-H17",
+      "before_fields": {
+        "set_code": null,
+        "number": null,
+        "name": "Magcargo",
+        "number_plain": null,
+        "set_id": "eece39b6-0d1b-48bf-8b41-9b154172a4c5"
+      },
+      "target_parent_fields": {
+        "set_code": "ecard3",
+        "number": "H17",
+        "name": "Magcargo"
+      },
+      "expected_generated_readback": {
+        "number_plain": "H17"
+      },
+      "rollback_parent_fields": {
+        "set_code": null,
+        "number": null,
+        "name": "Magcargo"
+      },
+      "field_changes": {
+        "set_code": {
+          "before": null,
+          "after": "ecard3"
+        },
+        "number": {
+          "before": null,
+          "after": "H17"
+        }
+      },
+      "supported_finishes": [
+        "holo"
+      ],
+      "target_printing_count": 1,
+      "before_child_printing_count": 1,
+      "dependency_counts": {
+        "external_mappings": 1,
+        "card_print_identity": 1,
+        "card_print_traits": 1,
+        "vault_items": 0
+      },
+      "evidence_sources": [
+        "pokemontcg_api",
+        "reverseholo_set_checklist",
+        "tcgdex",
+        "tcgplayer_price_guide",
+        "thepricedex_price_list"
+      ],
+      "mutation_design_status": "approval_required_no_write"
+    },
+    {
+      "set_key": "ecard3",
+      "set_name": "Skyridge",
+      "card_print_id": "28d7a9bb-fcff-4e93-861d-d200770984d6",
+      "source_external_id": "ecard3-H18",
+      "source_card_url": "https://api.tcgdex.net/v2/en/cards/ecard3-H18",
+      "before_fields": {
+        "set_code": null,
+        "number": null,
+        "name": "Magneton",
+        "number_plain": null,
+        "set_id": "eece39b6-0d1b-48bf-8b41-9b154172a4c5"
+      },
+      "target_parent_fields": {
+        "set_code": "ecard3",
+        "number": "H18",
+        "name": "Magneton"
+      },
+      "expected_generated_readback": {
+        "number_plain": "H18"
+      },
+      "rollback_parent_fields": {
+        "set_code": null,
+        "number": null,
+        "name": "Magneton"
+      },
+      "field_changes": {
+        "set_code": {
+          "before": null,
+          "after": "ecard3"
+        },
+        "number": {
+          "before": null,
+          "after": "H18"
+        }
+      },
+      "supported_finishes": [
+        "holo"
+      ],
+      "target_printing_count": 1,
+      "before_child_printing_count": 1,
+      "dependency_counts": {
+        "external_mappings": 1,
+        "card_print_identity": 1,
+        "card_print_traits": 1,
+        "vault_items": 0
+      },
+      "evidence_sources": [
+        "pokemontcg_api",
+        "reverseholo_set_checklist",
+        "tcgdex",
+        "tcgplayer_price_guide",
+        "thepricedex_price_list"
+      ],
+      "mutation_design_status": "approval_required_no_write"
+    },
+    {
+      "set_key": "ecard3",
+      "set_name": "Skyridge",
+      "card_print_id": "415065f4-68dd-44a9-a0f0-d6375e203275",
+      "source_external_id": "ecard3-H22",
+      "source_card_url": "https://api.tcgdex.net/v2/en/cards/ecard3-H22",
+      "before_fields": {
+        "set_code": null,
+        "number": null,
+        "name": "Piloswine",
+        "number_plain": null,
+        "set_id": "eece39b6-0d1b-48bf-8b41-9b154172a4c5"
+      },
+      "target_parent_fields": {
+        "set_code": "ecard3",
+        "number": "H22",
+        "name": "Piloswine"
+      },
+      "expected_generated_readback": {
+        "number_plain": "H22"
+      },
+      "rollback_parent_fields": {
+        "set_code": null,
+        "number": null,
+        "name": "Piloswine"
+      },
+      "field_changes": {
+        "set_code": {
+          "before": null,
+          "after": "ecard3"
+        },
+        "number": {
+          "before": null,
+          "after": "H22"
+        }
+      },
+      "supported_finishes": [
+        "holo"
+      ],
+      "target_printing_count": 1,
+      "before_child_printing_count": 1,
+      "dependency_counts": {
+        "external_mappings": 1,
+        "card_print_identity": 1,
+        "card_print_traits": 1,
+        "vault_items": 0
+      },
+      "evidence_sources": [
+        "pokemontcg_api",
+        "reverseholo_set_checklist",
+        "tcgdex",
+        "tcgplayer_price_guide",
+        "thepricedex_price_list"
+      ],
+      "mutation_design_status": "approval_required_no_write"
+    },
+    {
+      "set_key": "ecard3",
+      "set_name": "Skyridge",
+      "card_print_id": "b7c244c2-35bf-4dbd-836c-1341a777d65e",
+      "source_external_id": "ecard3-H23",
+      "source_card_url": "https://api.tcgdex.net/v2/en/cards/ecard3-H23",
+      "before_fields": {
+        "set_code": null,
+        "number": null,
+        "name": "Politoed",
+        "number_plain": null,
+        "set_id": "eece39b6-0d1b-48bf-8b41-9b154172a4c5"
+      },
+      "target_parent_fields": {
+        "set_code": "ecard3",
+        "number": "H23",
+        "name": "Politoed"
+      },
+      "expected_generated_readback": {
+        "number_plain": "H23"
+      },
+      "rollback_parent_fields": {
+        "set_code": null,
+        "number": null,
+        "name": "Politoed"
+      },
+      "field_changes": {
+        "set_code": {
+          "before": null,
+          "after": "ecard3"
+        },
+        "number": {
+          "before": null,
+          "after": "H23"
+        }
+      },
+      "supported_finishes": [
+        "holo"
+      ],
+      "target_printing_count": 1,
+      "before_child_printing_count": 1,
+      "dependency_counts": {
+        "external_mappings": 1,
+        "card_print_identity": 1,
+        "card_print_traits": 1,
+        "vault_items": 0
+      },
+      "evidence_sources": [
+        "pokemontcg_api",
+        "reverseholo_set_checklist",
+        "tcgdex",
+        "tcgplayer_price_guide",
+        "thepricedex_price_list"
+      ],
+      "mutation_design_status": "approval_required_no_write"
+    },
+    {
+      "set_key": "ecard3",
+      "set_name": "Skyridge",
+      "card_print_id": "e99d7d18-af64-4d34-b62c-8a795f6da2c3",
+      "source_external_id": "ecard3-H24",
+      "source_card_url": "https://api.tcgdex.net/v2/en/cards/ecard3-H24",
+      "before_fields": {
+        "set_code": null,
+        "number": null,
+        "name": "Poliwrath",
+        "number_plain": null,
+        "set_id": "eece39b6-0d1b-48bf-8b41-9b154172a4c5"
+      },
+      "target_parent_fields": {
+        "set_code": "ecard3",
+        "number": "H24",
+        "name": "Poliwrath"
+      },
+      "expected_generated_readback": {
+        "number_plain": "H24"
+      },
+      "rollback_parent_fields": {
+        "set_code": null,
+        "number": null,
+        "name": "Poliwrath"
+      },
+      "field_changes": {
+        "set_code": {
+          "before": null,
+          "after": "ecard3"
+        },
+        "number": {
+          "before": null,
+          "after": "H24"
+        }
+      },
+      "supported_finishes": [
+        "holo"
+      ],
+      "target_printing_count": 1,
+      "before_child_printing_count": 1,
+      "dependency_counts": {
+        "external_mappings": 1,
+        "card_print_identity": 1,
+        "card_print_traits": 1,
+        "vault_items": 0
+      },
+      "evidence_sources": [
+        "pokemontcg_api",
+        "reverseholo_set_checklist",
+        "tcgdex",
+        "tcgplayer_price_guide",
+        "thepricedex_price_list"
+      ],
+      "mutation_design_status": "approval_required_no_write"
+    },
+    {
+      "set_key": "ecard3",
+      "set_name": "Skyridge",
+      "card_print_id": "9a1cc452-e8b4-48bf-acc9-e592fe9cc521",
+      "source_external_id": "ecard3-H27",
+      "source_card_url": "https://api.tcgdex.net/v2/en/cards/ecard3-H27",
+      "before_fields": {
+        "set_code": null,
+        "number": null,
+        "name": "Rhydon",
+        "number_plain": null,
+        "set_id": "eece39b6-0d1b-48bf-8b41-9b154172a4c5"
+      },
+      "target_parent_fields": {
+        "set_code": "ecard3",
+        "number": "H27",
+        "name": "Rhydon"
+      },
+      "expected_generated_readback": {
+        "number_plain": "H27"
+      },
+      "rollback_parent_fields": {
+        "set_code": null,
+        "number": null,
+        "name": "Rhydon"
+      },
+      "field_changes": {
+        "set_code": {
+          "before": null,
+          "after": "ecard3"
+        },
+        "number": {
+          "before": null,
+          "after": "H27"
+        }
+      },
+      "supported_finishes": [
+        "holo"
+      ],
+      "target_printing_count": 1,
+      "before_child_printing_count": 1,
+      "dependency_counts": {
+        "external_mappings": 1,
+        "card_print_identity": 1,
+        "card_print_traits": 1,
+        "vault_items": 0
+      },
+      "evidence_sources": [
+        "pokemontcg_api",
+        "reverseholo_set_checklist",
+        "tcgdex",
+        "tcgplayer_price_guide",
+        "thepricedex_price_list"
+      ],
+      "mutation_design_status": "approval_required_no_write"
+    },
+    {
+      "set_key": "ecard3",
+      "set_name": "Skyridge",
+      "card_print_id": "abcf71f3-edd8-4130-aaa3-b7fecada39e2",
+      "source_external_id": "ecard3-H30",
+      "source_card_url": "https://api.tcgdex.net/v2/en/cards/ecard3-H30",
+      "before_fields": {
+        "set_code": null,
+        "number": null,
+        "name": "Umbreon",
+        "number_plain": null,
+        "set_id": "eece39b6-0d1b-48bf-8b41-9b154172a4c5"
+      },
+      "target_parent_fields": {
+        "set_code": "ecard3",
+        "number": "H30",
+        "name": "Umbreon"
+      },
+      "expected_generated_readback": {
+        "number_plain": "H30"
+      },
+      "rollback_parent_fields": {
+        "set_code": null,
+        "number": null,
+        "name": "Umbreon"
+      },
+      "field_changes": {
+        "set_code": {
+          "before": null,
+          "after": "ecard3"
+        },
+        "number": {
+          "before": null,
+          "after": "H30"
+        }
+      },
+      "supported_finishes": [
+        "holo"
+      ],
+      "target_printing_count": 1,
+      "before_child_printing_count": 1,
+      "dependency_counts": {
+        "external_mappings": 1,
+        "card_print_identity": 1,
+        "card_print_traits": 1,
+        "vault_items": 0
+      },
+      "evidence_sources": [
+        "pokemontcg_api",
+        "reverseholo_set_checklist",
+        "tcgdex",
+        "tcgplayer_price_guide",
+        "thepricedex_price_list"
+      ],
+      "mutation_design_status": "approval_required_no_write"
+    },
+    {
+      "set_key": "ecard3",
+      "set_name": "Skyridge",
+      "card_print_id": "7cbee94f-9f6a-441d-98e1-6a50da7f72d7",
+      "source_external_id": "ecard3-H31",
+      "source_card_url": "https://api.tcgdex.net/v2/en/cards/ecard3-H31",
+      "before_fields": {
+        "set_code": null,
+        "number": null,
+        "name": "Vaporeon",
+        "number_plain": null,
+        "set_id": "eece39b6-0d1b-48bf-8b41-9b154172a4c5"
+      },
+      "target_parent_fields": {
+        "set_code": "ecard3",
+        "number": "H31",
+        "name": "Vaporeon"
+      },
+      "expected_generated_readback": {
+        "number_plain": "H31"
+      },
+      "rollback_parent_fields": {
+        "set_code": null,
+        "number": null,
+        "name": "Vaporeon"
+      },
+      "field_changes": {
+        "set_code": {
+          "before": null,
+          "after": "ecard3"
+        },
+        "number": {
+          "before": null,
+          "after": "H31"
+        }
+      },
+      "supported_finishes": [
+        "holo"
+      ],
+      "target_printing_count": 1,
+      "before_child_printing_count": 1,
+      "dependency_counts": {
+        "external_mappings": 1,
+        "card_print_identity": 1,
+        "card_print_traits": 1,
+        "vault_items": 0
+      },
+      "evidence_sources": [
+        "pokemontcg_api",
+        "reverseholo_set_checklist",
+        "tcgdex",
+        "tcgplayer_price_guide",
+        "thepricedex_price_list"
+      ],
+      "mutation_design_status": "approval_required_no_write"
+    },
+    {
+      "set_key": "ex10",
+      "set_name": "Unseen Forces",
+      "card_print_id": "2fdd39c8-7afa-4031-be84-649ac28a7b72",
+      "source_external_id": "ex10-113",
+      "source_card_url": "https://api.tcgdex.net/v2/en/cards/ex10-113",
+      "before_fields": {
+        "set_code": null,
+        "number": null,
+        "name": "Entei Star",
+        "number_plain": null,
+        "set_id": "1d91834d-a6b6-4acf-906f-ce5145e5d93f"
+      },
+      "target_parent_fields": {
+        "set_code": "ex10",
+        "number": "113",
+        "name": "Entei ★"
+      },
+      "expected_generated_readback": {
+        "number_plain": "113"
+      },
+      "rollback_parent_fields": {
+        "set_code": null,
+        "number": null,
+        "name": "Entei Star"
+      },
+      "field_changes": {
+        "set_code": {
+          "before": null,
+          "after": "ex10"
+        },
+        "number": {
+          "before": null,
+          "after": "113"
+        },
+        "name": {
+          "before": "Entei Star",
+          "after": "Entei ★"
+        }
+      },
+      "supported_finishes": [
+        "holo"
+      ],
+      "target_printing_count": 1,
+      "before_child_printing_count": 1,
+      "dependency_counts": {
+        "external_mappings": 1,
+        "card_print_identity": 1,
+        "card_print_traits": 1,
+        "vault_items": 0
+      },
+      "evidence_sources": [
+        "pokemontcg_api",
+        "reverseholo_set_checklist",
+        "tcgdex",
+        "tcgplayer_price_guide",
+        "thepricedex_price_list"
+      ],
+      "mutation_design_status": "approval_required_no_write"
+    },
+    {
+      "set_key": "ex10",
+      "set_name": "Unseen Forces",
+      "card_print_id": "043dbc47-0815-4ef4-b31d-2027f70f2338",
+      "source_external_id": "ex10-114",
+      "source_card_url": "https://api.tcgdex.net/v2/en/cards/ex10-114",
+      "before_fields": {
+        "set_code": null,
+        "number": null,
+        "name": "Raikou Star",
+        "number_plain": null,
+        "set_id": "1d91834d-a6b6-4acf-906f-ce5145e5d93f"
+      },
+      "target_parent_fields": {
+        "set_code": "ex10",
+        "number": "114",
+        "name": "Raikou ★"
+      },
+      "expected_generated_readback": {
+        "number_plain": "114"
+      },
+      "rollback_parent_fields": {
+        "set_code": null,
+        "number": null,
+        "name": "Raikou Star"
+      },
+      "field_changes": {
+        "set_code": {
+          "before": null,
+          "after": "ex10"
+        },
+        "number": {
+          "before": null,
+          "after": "114"
+        },
+        "name": {
+          "before": "Raikou Star",
+          "after": "Raikou ★"
+        }
+      },
+      "supported_finishes": [
+        "holo"
+      ],
+      "target_printing_count": 1,
+      "before_child_printing_count": 1,
+      "dependency_counts": {
+        "external_mappings": 1,
+        "card_print_identity": 1,
+        "card_print_traits": 1,
+        "vault_items": 0
+      },
+      "evidence_sources": [
+        "pokemontcg_api",
+        "reverseholo_set_checklist",
+        "tcgdex",
+        "tcgplayer_price_guide",
+        "thepricedex_price_list"
+      ],
+      "mutation_design_status": "approval_required_no_write"
+    },
+    {
+      "set_key": "ex10",
+      "set_name": "Unseen Forces",
+      "card_print_id": "584c31ad-d7ac-4356-b9cc-4de3152511b2",
+      "source_external_id": "ex10-115",
+      "source_card_url": "https://api.tcgdex.net/v2/en/cards/ex10-115",
+      "before_fields": {
+        "set_code": null,
+        "number": null,
+        "name": "Suicune Star",
+        "number_plain": null,
+        "set_id": "1d91834d-a6b6-4acf-906f-ce5145e5d93f"
+      },
+      "target_parent_fields": {
+        "set_code": "ex10",
+        "number": "115",
+        "name": "Suicune ★"
+      },
+      "expected_generated_readback": {
+        "number_plain": "115"
+      },
+      "rollback_parent_fields": {
+        "set_code": null,
+        "number": null,
+        "name": "Suicune Star"
+      },
+      "field_changes": {
+        "set_code": {
+          "before": null,
+          "after": "ex10"
+        },
+        "number": {
+          "before": null,
+          "after": "115"
+        },
+        "name": {
+          "before": "Suicune Star",
+          "after": "Suicune ★"
+        }
+      },
+      "supported_finishes": [
+        "holo"
+      ],
+      "target_printing_count": 1,
+      "before_child_printing_count": 1,
+      "dependency_counts": {
+        "external_mappings": 1,
+        "card_print_identity": 1,
+        "card_print_traits": 1,
+        "vault_items": 0
+      },
+      "evidence_sources": [
+        "pokemontcg_api",
+        "reverseholo_set_checklist",
+        "tcgdex",
+        "tcgplayer_price_guide",
+        "thepricedex_price_list"
+      ],
+      "mutation_design_status": "approval_required_no_write"
+    },
+    {
+      "set_key": "fut2020",
+      "set_name": "Pokémon Futsal 2020",
+      "card_print_id": "a676888d-19e0-4064-89aa-e67019af5b95",
+      "source_external_id": "fut2020-1",
+      "source_card_url": "https://api.tcgdex.net/v2/en/cards/fut2020-1",
+      "before_fields": {
+        "set_code": null,
+        "number": "1",
+        "name": "Pikachu on the Ball",
+        "number_plain": "1",
+        "set_id": "84b23610-ffe4-4bbd-a5b7-51131bb9fee1"
+      },
+      "target_parent_fields": {
+        "set_code": "fut2020",
+        "number": "1",
+        "name": "Pikachu on the Ball"
+      },
+      "expected_generated_readback": {
+        "number_plain": "1"
+      },
+      "rollback_parent_fields": {
+        "set_code": null,
+        "number": "1",
+        "name": "Pikachu on the Ball"
+      },
+      "field_changes": {
+        "set_code": {
+          "before": null,
+          "after": "fut2020"
+        }
+      },
+      "supported_finishes": [
+        "holo"
+      ],
+      "target_printing_count": 1,
+      "before_child_printing_count": 1,
+      "dependency_counts": {
+        "external_mappings": 1,
+        "card_print_identity": 1,
+        "card_print_traits": 1,
+        "vault_items": 0
+      },
+      "evidence_sources": [
+        "reverseholo_set_checklist",
+        "tcgdex"
+      ],
+      "mutation_design_status": "approval_required_no_write"
+    },
+    {
+      "set_key": "mep",
+      "set_name": "MEP Black Star Promos",
+      "card_print_id": "6419894a-137f-4fc7-8db1-fa853872b190",
+      "source_external_id": "mep-001",
+      "source_card_url": "https://api.tcgdex.net/v2/en/cards/mep-001",
+      "before_fields": {
+        "set_code": null,
+        "number": "1",
+        "name": "Meganium",
+        "number_plain": "1",
+        "set_id": "3af96ea1-8897-4bb9-aa7e-cdfb98118bbf"
+      },
+      "target_parent_fields": {
+        "set_code": "mep",
+        "number": "001",
+        "name": "Meganium"
+      },
+      "expected_generated_readback": {
+        "number_plain": "001"
+      },
+      "rollback_parent_fields": {
+        "set_code": null,
+        "number": "1",
+        "name": "Meganium"
+      },
+      "field_changes": {
+        "set_code": {
+          "before": null,
+          "after": "mep"
+        },
+        "number": {
+          "before": "1",
+          "after": "001"
+        }
+      },
+      "supported_finishes": [
+        "holo"
+      ],
+      "target_printing_count": 1,
+      "before_child_printing_count": 1,
+      "dependency_counts": {
+        "external_mappings": 1,
+        "card_print_identity": 1,
+        "card_print_traits": 1,
+        "vault_items": 0
+      },
+      "evidence_sources": [
+        "reverseholo_set_checklist",
+        "tcgdex",
+        "thepricedex_price_list"
+      ],
+      "mutation_design_status": "approval_required_no_write"
+    },
+    {
+      "set_key": "mep",
+      "set_name": "MEP Black Star Promos",
+      "card_print_id": "b75d4730-3c1a-42ca-9d18-e8ca736ae41f",
+      "source_external_id": "mep-002",
+      "source_card_url": "https://api.tcgdex.net/v2/en/cards/mep-002",
+      "before_fields": {
+        "set_code": null,
+        "number": "2",
+        "name": "Inteleon",
+        "number_plain": "2",
+        "set_id": "3af96ea1-8897-4bb9-aa7e-cdfb98118bbf"
+      },
+      "target_parent_fields": {
+        "set_code": "mep",
+        "number": "002",
+        "name": "Inteleon"
+      },
+      "expected_generated_readback": {
+        "number_plain": "002"
+      },
+      "rollback_parent_fields": {
+        "set_code": null,
+        "number": "2",
+        "name": "Inteleon"
+      },
+      "field_changes": {
+        "set_code": {
+          "before": null,
+          "after": "mep"
+        },
+        "number": {
+          "before": "2",
+          "after": "002"
+        }
+      },
+      "supported_finishes": [
+        "holo"
+      ],
+      "target_printing_count": 1,
+      "before_child_printing_count": 1,
+      "dependency_counts": {
+        "external_mappings": 1,
+        "card_print_identity": 1,
+        "card_print_traits": 1,
+        "vault_items": 0
+      },
+      "evidence_sources": [
+        "reverseholo_set_checklist",
+        "tcgdex",
+        "thepricedex_price_list"
+      ],
+      "mutation_design_status": "approval_required_no_write"
+    },
+    {
+      "set_key": "mep",
+      "set_name": "MEP Black Star Promos",
+      "card_print_id": "aa9f207d-c9ea-4607-bbc5-448648bca47f",
+      "source_external_id": "mep-003",
+      "source_card_url": "https://api.tcgdex.net/v2/en/cards/mep-003",
+      "before_fields": {
+        "set_code": null,
+        "number": "3",
+        "name": "Alakazam",
+        "number_plain": "3",
+        "set_id": "3af96ea1-8897-4bb9-aa7e-cdfb98118bbf"
+      },
+      "target_parent_fields": {
+        "set_code": "mep",
+        "number": "003",
+        "name": "Alakazam"
+      },
+      "expected_generated_readback": {
+        "number_plain": "003"
+      },
+      "rollback_parent_fields": {
+        "set_code": null,
+        "number": "3",
+        "name": "Alakazam"
+      },
+      "field_changes": {
+        "set_code": {
+          "before": null,
+          "after": "mep"
+        },
+        "number": {
+          "before": "3",
+          "after": "003"
+        }
+      },
+      "supported_finishes": [
+        "holo"
+      ],
+      "target_printing_count": 1,
+      "before_child_printing_count": 1,
+      "dependency_counts": {
+        "external_mappings": 1,
+        "card_print_identity": 1,
+        "card_print_traits": 1,
+        "vault_items": 0
+      },
+      "evidence_sources": [
+        "reverseholo_set_checklist",
+        "tcgdex",
+        "thepricedex_price_list"
+      ],
+      "mutation_design_status": "approval_required_no_write"
+    },
+    {
+      "set_key": "mep",
+      "set_name": "MEP Black Star Promos",
+      "card_print_id": "bf523703-271c-49fe-b8aa-c31c57cb9b32",
+      "source_external_id": "mep-004",
+      "source_card_url": "https://api.tcgdex.net/v2/en/cards/mep-004",
+      "before_fields": {
+        "set_code": null,
+        "number": "4",
+        "name": "Lunatone",
+        "number_plain": "4",
+        "set_id": "3af96ea1-8897-4bb9-aa7e-cdfb98118bbf"
+      },
+      "target_parent_fields": {
+        "set_code": "mep",
+        "number": "004",
+        "name": "Lunatone"
+      },
+      "expected_generated_readback": {
+        "number_plain": "004"
+      },
+      "rollback_parent_fields": {
+        "set_code": null,
+        "number": "4",
+        "name": "Lunatone"
+      },
+      "field_changes": {
+        "set_code": {
+          "before": null,
+          "after": "mep"
+        },
+        "number": {
+          "before": "4",
+          "after": "004"
+        }
+      },
+      "supported_finishes": [
+        "holo"
+      ],
+      "target_printing_count": 1,
+      "before_child_printing_count": 1,
+      "dependency_counts": {
+        "external_mappings": 1,
+        "card_print_identity": 1,
+        "card_print_traits": 1,
+        "vault_items": 0
+      },
+      "evidence_sources": [
+        "reverseholo_set_checklist",
+        "tcgdex",
+        "thepricedex_price_list"
+      ],
+      "mutation_design_status": "approval_required_no_write"
+    },
+    {
+      "set_key": "mep",
+      "set_name": "MEP Black Star Promos",
+      "card_print_id": "04e533ae-dd17-478c-ab46-220859079b2c",
+      "source_external_id": "mep-005",
+      "source_card_url": "https://api.tcgdex.net/v2/en/cards/mep-005",
+      "before_fields": {
+        "set_code": null,
+        "number": "5",
+        "name": "Drifloon",
+        "number_plain": "5",
+        "set_id": "3af96ea1-8897-4bb9-aa7e-cdfb98118bbf"
+      },
+      "target_parent_fields": {
+        "set_code": "mep",
+        "number": "005",
+        "name": "Drifloon"
+      },
+      "expected_generated_readback": {
+        "number_plain": "005"
+      },
+      "rollback_parent_fields": {
+        "set_code": null,
+        "number": "5",
+        "name": "Drifloon"
+      },
+      "field_changes": {
+        "set_code": {
+          "before": null,
+          "after": "mep"
+        },
+        "number": {
+          "before": "5",
+          "after": "005"
+        }
+      },
+      "supported_finishes": [
+        "holo"
+      ],
+      "target_printing_count": 1,
+      "before_child_printing_count": 1,
+      "dependency_counts": {
+        "external_mappings": 1,
+        "card_print_identity": 1,
+        "card_print_traits": 1,
+        "vault_items": 0
+      },
+      "evidence_sources": [
+        "reverseholo_set_checklist",
+        "tcgdex",
+        "thepricedex_price_list"
+      ],
+      "mutation_design_status": "approval_required_no_write"
+    },
+    {
+      "set_key": "mep",
+      "set_name": "MEP Black Star Promos",
+      "card_print_id": "ac2b6cf7-6873-44e8-96b9-e03a179fae51",
+      "source_external_id": "mep-006",
+      "source_card_url": "https://api.tcgdex.net/v2/en/cards/mep-006",
+      "before_fields": {
+        "set_code": null,
+        "number": "6",
+        "name": "Drifblim",
+        "number_plain": "6",
+        "set_id": "3af96ea1-8897-4bb9-aa7e-cdfb98118bbf"
+      },
+      "target_parent_fields": {
+        "set_code": "mep",
+        "number": "006",
+        "name": "Drifblim"
+      },
+      "expected_generated_readback": {
+        "number_plain": "006"
+      },
+      "rollback_parent_fields": {
+        "set_code": null,
+        "number": "6",
+        "name": "Drifblim"
+      },
+      "field_changes": {
+        "set_code": {
+          "before": null,
+          "after": "mep"
+        },
+        "number": {
+          "before": "6",
+          "after": "006"
+        }
+      },
+      "supported_finishes": [
+        "holo"
+      ],
+      "target_printing_count": 1,
+      "before_child_printing_count": 1,
+      "dependency_counts": {
+        "external_mappings": 1,
+        "card_print_identity": 1,
+        "card_print_traits": 1,
+        "vault_items": 0
+      },
+      "evidence_sources": [
+        "reverseholo_set_checklist",
+        "tcgdex",
+        "thepricedex_price_list"
+      ],
+      "mutation_design_status": "approval_required_no_write"
+    },
+    {
+      "set_key": "mep",
+      "set_name": "MEP Black Star Promos",
+      "card_print_id": "870f45fe-0680-4a92-b77b-dd03a6018bd3",
+      "source_external_id": "mep-007",
+      "source_card_url": "https://api.tcgdex.net/v2/en/cards/mep-007",
+      "before_fields": {
+        "set_code": null,
+        "number": "7",
+        "name": "Psyduck",
+        "number_plain": "7",
+        "set_id": "3af96ea1-8897-4bb9-aa7e-cdfb98118bbf"
+      },
+      "target_parent_fields": {
+        "set_code": "mep",
+        "number": "007",
+        "name": "Psyduck"
+      },
+      "expected_generated_readback": {
+        "number_plain": "007"
+      },
+      "rollback_parent_fields": {
+        "set_code": null,
+        "number": "7",
+        "name": "Psyduck"
+      },
+      "field_changes": {
+        "set_code": {
+          "before": null,
+          "after": "mep"
+        },
+        "number": {
+          "before": "7",
+          "after": "007"
+        }
+      },
+      "supported_finishes": [
+        "holo"
+      ],
+      "target_printing_count": 1,
+      "before_child_printing_count": 1,
+      "dependency_counts": {
+        "external_mappings": 1,
+        "card_print_identity": 1,
+        "card_print_traits": 1,
+        "vault_items": 0
+      },
+      "evidence_sources": [
+        "reverseholo_set_checklist",
+        "tcgdex",
+        "thepricedex_price_list"
+      ],
+      "mutation_design_status": "approval_required_no_write"
+    },
+    {
+      "set_key": "mep",
+      "set_name": "MEP Black Star Promos",
+      "card_print_id": "47f874b2-ea20-4b89-af44-085905bb1f60",
+      "source_external_id": "mep-008",
+      "source_card_url": "https://api.tcgdex.net/v2/en/cards/mep-008",
+      "before_fields": {
+        "set_code": null,
+        "number": "8",
+        "name": "Golduck",
+        "number_plain": "8",
+        "set_id": "3af96ea1-8897-4bb9-aa7e-cdfb98118bbf"
+      },
+      "target_parent_fields": {
+        "set_code": "mep",
+        "number": "008",
+        "name": "Golduck"
+      },
+      "expected_generated_readback": {
+        "number_plain": "008"
+      },
+      "rollback_parent_fields": {
+        "set_code": null,
+        "number": "8",
+        "name": "Golduck"
+      },
+      "field_changes": {
+        "set_code": {
+          "before": null,
+          "after": "mep"
+        },
+        "number": {
+          "before": "8",
+          "after": "008"
+        }
+      },
+      "supported_finishes": [
+        "holo"
+      ],
+      "target_printing_count": 1,
+      "before_child_printing_count": 1,
+      "dependency_counts": {
+        "external_mappings": 1,
+        "card_print_identity": 1,
+        "card_print_traits": 1,
+        "vault_items": 0
+      },
+      "evidence_sources": [
+        "reverseholo_set_checklist",
+        "tcgdex",
+        "thepricedex_price_list"
+      ],
+      "mutation_design_status": "approval_required_no_write"
+    },
+    {
+      "set_key": "mep",
+      "set_name": "MEP Black Star Promos",
+      "card_print_id": "a3624761-be25-4841-83e4-c5936ec434fe",
+      "source_external_id": "mep-009",
+      "source_card_url": "https://api.tcgdex.net/v2/en/cards/mep-009",
+      "before_fields": {
+        "set_code": null,
+        "number": "9",
+        "name": "Alakazam",
+        "number_plain": "9",
+        "set_id": "3af96ea1-8897-4bb9-aa7e-cdfb98118bbf"
+      },
+      "target_parent_fields": {
+        "set_code": "mep",
+        "number": "009",
+        "name": "Alakazam"
+      },
+      "expected_generated_readback": {
+        "number_plain": "009"
+      },
+      "rollback_parent_fields": {
+        "set_code": null,
+        "number": "9",
+        "name": "Alakazam"
+      },
+      "field_changes": {
+        "set_code": {
+          "before": null,
+          "after": "mep"
+        },
+        "number": {
+          "before": "9",
+          "after": "009"
+        }
+      },
+      "supported_finishes": [
+        "holo"
+      ],
+      "target_printing_count": 1,
+      "before_child_printing_count": 1,
+      "dependency_counts": {
+        "external_mappings": 1,
+        "card_print_identity": 1,
+        "card_print_traits": 1,
+        "vault_items": 0
+      },
+      "evidence_sources": [
+        "reverseholo_set_checklist",
+        "tcgdex",
+        "thepricedex_price_list"
+      ],
+      "mutation_design_status": "approval_required_no_write"
+    },
+    {
+      "set_key": "mep",
+      "set_name": "MEP Black Star Promos",
+      "card_print_id": "242de512-f2fb-4994-9615-6c1e2c55ac02",
+      "source_external_id": "mep-010",
+      "source_card_url": "https://api.tcgdex.net/v2/en/cards/mep-010",
+      "before_fields": {
+        "set_code": null,
+        "number": "10",
+        "name": "Riolu",
+        "number_plain": "10",
+        "set_id": "3af96ea1-8897-4bb9-aa7e-cdfb98118bbf"
+      },
+      "target_parent_fields": {
+        "set_code": "mep",
+        "number": "010",
+        "name": "Riolu"
+      },
+      "expected_generated_readback": {
+        "number_plain": "010"
+      },
+      "rollback_parent_fields": {
+        "set_code": null,
+        "number": "10",
+        "name": "Riolu"
+      },
+      "field_changes": {
+        "set_code": {
+          "before": null,
+          "after": "mep"
+        },
+        "number": {
+          "before": "10",
+          "after": "010"
+        }
+      },
+      "supported_finishes": [
+        "holo"
+      ],
+      "target_printing_count": 1,
+      "before_child_printing_count": 1,
+      "dependency_counts": {
+        "external_mappings": 1,
+        "card_print_identity": 1,
+        "card_print_traits": 1,
+        "vault_items": 0
+      },
+      "evidence_sources": [
+        "reverseholo_set_checklist",
+        "tcgdex",
+        "thepricedex_price_list"
+      ],
+      "mutation_design_status": "approval_required_no_write"
+    },
+    {
+      "set_key": "pl1",
+      "set_name": "Platinum",
+      "card_print_id": "cfbaec4b-bc98-4f6f-8b06-a30dbe29af30",
+      "source_external_id": "pl1-6",
+      "source_card_url": "https://api.tcgdex.net/v2/en/cards/pl1-6",
+      "before_fields": {
+        "set_code": null,
+        "number": null,
+        "name": "Dialga",
+        "number_plain": null,
+        "set_id": "527ab611-6142-40e4-844b-0eb395007e7b"
+      },
+      "target_parent_fields": {
+        "set_code": "pl1",
+        "number": "6",
+        "name": "Dialga"
+      },
+      "expected_generated_readback": {
+        "number_plain": "6"
+      },
+      "rollback_parent_fields": {
+        "set_code": null,
+        "number": null,
+        "name": "Dialga"
+      },
+      "field_changes": {
+        "set_code": {
+          "before": null,
+          "after": "pl1"
+        },
+        "number": {
+          "before": null,
+          "after": "6"
+        }
+      },
+      "supported_finishes": [
+        "holo",
+        "reverse"
+      ],
+      "target_printing_count": 2,
+      "before_child_printing_count": 2,
+      "dependency_counts": {
+        "external_mappings": 1,
+        "card_print_identity": 1,
+        "card_print_traits": 1,
+        "vault_items": 0
+      },
+      "evidence_sources": [
+        "pokemontcg_api",
+        "reverseholo_set_checklist",
+        "tcgdex",
+        "tcgplayer_price_guide",
+        "thepricedex_price_list"
+      ],
+      "mutation_design_status": "approval_required_no_write"
+    },
+    {
+      "set_key": "pl1",
+      "set_name": "Platinum",
+      "card_print_id": "9d20653b-49ea-4a30-8e18-629267d7397b",
+      "source_external_id": "pl1-122",
+      "source_card_url": "https://api.tcgdex.net/v2/en/cards/pl1-122",
+      "before_fields": {
+        "set_code": null,
+        "number": null,
+        "name": "Dialga G",
+        "number_plain": null,
+        "set_id": "527ab611-6142-40e4-844b-0eb395007e7b"
+      },
+      "target_parent_fields": {
+        "set_code": "pl1",
+        "number": "122",
+        "name": "Dialga G"
+      },
+      "expected_generated_readback": {
+        "number_plain": "122"
+      },
+      "rollback_parent_fields": {
+        "set_code": null,
+        "number": null,
+        "name": "Dialga G"
+      },
+      "field_changes": {
+        "set_code": {
+          "before": null,
+          "after": "pl1"
+        },
+        "number": {
+          "before": null,
+          "after": "122"
+        }
+      },
+      "supported_finishes": [
+        "holo"
+      ],
+      "target_printing_count": 1,
+      "before_child_printing_count": 1,
+      "dependency_counts": {
+        "external_mappings": 1,
+        "card_print_identity": 1,
+        "card_print_traits": 1,
+        "vault_items": 0
+      },
+      "evidence_sources": [
+        "reverseholo_set_checklist",
+        "tcgdex"
+      ],
+      "mutation_design_status": "approval_required_no_write"
+    },
+    {
+      "set_key": "pl1",
+      "set_name": "Platinum",
+      "card_print_id": "1cc5b95e-c5b7-477c-a3c1-1d4c26e10875",
+      "source_external_id": "pl1-123",
+      "source_card_url": "https://api.tcgdex.net/v2/en/cards/pl1-123",
+      "before_fields": {
+        "set_code": null,
+        "number": null,
+        "name": "Drapion",
+        "number_plain": null,
+        "set_id": "527ab611-6142-40e4-844b-0eb395007e7b"
+      },
+      "target_parent_fields": {
+        "set_code": "pl1",
+        "number": "123",
+        "name": "Drapion"
+      },
+      "expected_generated_readback": {
+        "number_plain": "123"
+      },
+      "rollback_parent_fields": {
+        "set_code": null,
+        "number": null,
+        "name": "Drapion"
+      },
+      "field_changes": {
+        "set_code": {
+          "before": null,
+          "after": "pl1"
+        },
+        "number": {
+          "before": null,
+          "after": "123"
+        }
+      },
+      "supported_finishes": [
+        "holo"
+      ],
+      "target_printing_count": 1,
+      "before_child_printing_count": 1,
+      "dependency_counts": {
+        "external_mappings": 1,
+        "card_print_identity": 1,
+        "card_print_traits": 1,
+        "vault_items": 0
+      },
+      "evidence_sources": [
+        "reverseholo_set_checklist",
+        "tcgdex"
+      ],
+      "mutation_design_status": "approval_required_no_write"
+    },
+    {
+      "set_key": "pl1",
+      "set_name": "Platinum",
+      "card_print_id": "9deb3714-1f02-4eb2-a249-6b3b42a106cb",
+      "source_external_id": "pl1-124",
+      "source_card_url": "https://api.tcgdex.net/v2/en/cards/pl1-124",
+      "before_fields": {
+        "set_code": null,
+        "number": null,
+        "name": "Giratina",
+        "number_plain": null,
+        "set_id": "527ab611-6142-40e4-844b-0eb395007e7b"
+      },
+      "target_parent_fields": {
+        "set_code": "pl1",
+        "number": "124",
+        "name": "Giratina"
+      },
+      "expected_generated_readback": {
+        "number_plain": "124"
+      },
+      "rollback_parent_fields": {
+        "set_code": null,
+        "number": null,
+        "name": "Giratina"
+      },
+      "field_changes": {
+        "set_code": {
+          "before": null,
+          "after": "pl1"
+        },
+        "number": {
+          "before": null,
+          "after": "124"
+        }
+      },
+      "supported_finishes": [
+        "holo"
+      ],
+      "target_printing_count": 1,
+      "before_child_printing_count": 1,
+      "dependency_counts": {
+        "external_mappings": 1,
+        "card_print_identity": 1,
+        "card_print_traits": 1,
+        "vault_items": 0
+      },
+      "evidence_sources": [
+        "reverseholo_set_checklist",
+        "tcgdex"
+      ],
+      "mutation_design_status": "approval_required_no_write"
+    },
+    {
+      "set_key": "pl1",
+      "set_name": "Platinum",
+      "card_print_id": "182aab06-7802-4dea-90cb-32dfc7cefaab",
+      "source_external_id": "pl1-125",
+      "source_card_url": "https://api.tcgdex.net/v2/en/cards/pl1-125",
+      "before_fields": {
+        "set_code": null,
+        "number": null,
+        "name": "Palkia G",
+        "number_plain": null,
+        "set_id": "527ab611-6142-40e4-844b-0eb395007e7b"
+      },
+      "target_parent_fields": {
+        "set_code": "pl1",
+        "number": "125",
+        "name": "Palkia G"
+      },
+      "expected_generated_readback": {
+        "number_plain": "125"
+      },
+      "rollback_parent_fields": {
+        "set_code": null,
+        "number": null,
+        "name": "Palkia G"
+      },
+      "field_changes": {
+        "set_code": {
+          "before": null,
+          "after": "pl1"
+        },
+        "number": {
+          "before": null,
+          "after": "125"
+        }
+      },
+      "supported_finishes": [
+        "holo"
+      ],
+      "target_printing_count": 1,
+      "before_child_printing_count": 1,
+      "dependency_counts": {
+        "external_mappings": 1,
+        "card_print_identity": 1,
+        "card_print_traits": 1,
+        "vault_items": 0
+      },
+      "evidence_sources": [
+        "reverseholo_set_checklist",
+        "tcgdex"
+      ],
+      "mutation_design_status": "approval_required_no_write"
+    },
+    {
+      "set_key": "pl1",
+      "set_name": "Platinum",
+      "card_print_id": "24bd8689-4031-40d0-8948-1d08e652ef34",
+      "source_external_id": "pl1-126",
+      "source_card_url": "https://api.tcgdex.net/v2/en/cards/pl1-126",
+      "before_fields": {
+        "set_code": null,
+        "number": null,
+        "name": "Shaymin",
+        "number_plain": null,
+        "set_id": "527ab611-6142-40e4-844b-0eb395007e7b"
+      },
+      "target_parent_fields": {
+        "set_code": "pl1",
+        "number": "126",
+        "name": "Shaymin"
+      },
+      "expected_generated_readback": {
+        "number_plain": "126"
+      },
+      "rollback_parent_fields": {
+        "set_code": null,
+        "number": null,
+        "name": "Shaymin"
+      },
+      "field_changes": {
+        "set_code": {
+          "before": null,
+          "after": "pl1"
+        },
+        "number": {
+          "before": null,
+          "after": "126"
+        }
+      },
+      "supported_finishes": [
+        "holo"
+      ],
+      "target_printing_count": 1,
+      "before_child_printing_count": 1,
+      "dependency_counts": {
+        "external_mappings": 1,
+        "card_print_identity": 1,
+        "card_print_traits": 1,
+        "vault_items": 0
+      },
+      "evidence_sources": [
+        "reverseholo_set_checklist",
+        "tcgdex"
+      ],
+      "mutation_design_status": "approval_required_no_write"
+    },
+    {
+      "set_key": "pl1",
+      "set_name": "Platinum",
+      "card_print_id": "1f03518a-bed9-4c04-ad0c-3a5cf3008248",
+      "source_external_id": "pl1-127",
+      "source_card_url": "https://api.tcgdex.net/v2/en/cards/pl1-127",
+      "before_fields": {
+        "set_code": null,
+        "number": null,
+        "name": "Shaymin",
+        "number_plain": null,
+        "set_id": "527ab611-6142-40e4-844b-0eb395007e7b"
+      },
+      "target_parent_fields": {
+        "set_code": "pl1",
+        "number": "127",
+        "name": "Shaymin"
+      },
+      "expected_generated_readback": {
+        "number_plain": "127"
+      },
+      "rollback_parent_fields": {
+        "set_code": null,
+        "number": null,
+        "name": "Shaymin"
+      },
+      "field_changes": {
+        "set_code": {
+          "before": null,
+          "after": "pl1"
+        },
+        "number": {
+          "before": null,
+          "after": "127"
+        }
+      },
+      "supported_finishes": [
+        "holo"
+      ],
+      "target_printing_count": 1,
+      "before_child_printing_count": 1,
+      "dependency_counts": {
+        "external_mappings": 1,
+        "card_print_identity": 1,
+        "card_print_traits": 1,
+        "vault_items": 0
+      },
+      "evidence_sources": [
+        "reverseholo_set_checklist",
+        "tcgdex"
+      ],
+      "mutation_design_status": "approval_required_no_write"
+    },
+    {
+      "set_key": "pl1",
+      "set_name": "Platinum",
+      "card_print_id": "74b9d351-aecc-4ff9-8ed2-958311074af7",
+      "source_external_id": "pl1-SH4",
+      "source_card_url": "https://api.tcgdex.net/v2/en/cards/pl1-SH4",
+      "before_fields": {
+        "set_code": null,
+        "number": null,
+        "name": "Lotad",
+        "number_plain": null,
+        "set_id": "527ab611-6142-40e4-844b-0eb395007e7b"
+      },
+      "target_parent_fields": {
+        "set_code": "pl1",
+        "number": "SH4",
+        "name": "Lotad"
+      },
+      "expected_generated_readback": {
+        "number_plain": "SH4"
+      },
+      "rollback_parent_fields": {
+        "set_code": null,
+        "number": null,
+        "name": "Lotad"
+      },
+      "field_changes": {
+        "set_code": {
+          "before": null,
+          "after": "pl1"
+        },
+        "number": {
+          "before": null,
+          "after": "SH4"
+        }
+      },
+      "supported_finishes": [
+        "reverse"
+      ],
+      "target_printing_count": 1,
+      "before_child_printing_count": 1,
+      "dependency_counts": {
+        "external_mappings": 1,
+        "card_print_identity": 1,
+        "card_print_traits": 1,
+        "vault_items": 0
+      },
+      "evidence_sources": [
+        "pokemontcg_api",
+        "reverseholo_set_checklist",
+        "tcgdex",
+        "tcgplayer_price_guide",
+        "thepricedex_price_list"
+      ],
+      "mutation_design_status": "approval_required_no_write"
+    },
+    {
+      "set_key": "pl1",
+      "set_name": "Platinum",
+      "card_print_id": "e48e17b9-b693-4882-9e9f-d177dbce37c8",
+      "source_external_id": "pl1-SH5",
+      "source_card_url": "https://api.tcgdex.net/v2/en/cards/pl1-SH5",
+      "before_fields": {
+        "set_code": null,
+        "number": null,
+        "name": "Swablu",
+        "number_plain": null,
+        "set_id": "527ab611-6142-40e4-844b-0eb395007e7b"
+      },
+      "target_parent_fields": {
+        "set_code": "pl1",
+        "number": "SH5",
+        "name": "Swablu"
+      },
+      "expected_generated_readback": {
+        "number_plain": "SH5"
+      },
+      "rollback_parent_fields": {
+        "set_code": null,
+        "number": null,
+        "name": "Swablu"
+      },
+      "field_changes": {
+        "set_code": {
+          "before": null,
+          "after": "pl1"
+        },
+        "number": {
+          "before": null,
+          "after": "SH5"
+        }
+      },
+      "supported_finishes": [
+        "reverse"
+      ],
+      "target_printing_count": 1,
+      "before_child_printing_count": 1,
+      "dependency_counts": {
+        "external_mappings": 1,
+        "card_print_identity": 1,
+        "card_print_traits": 1,
+        "vault_items": 0
+      },
+      "evidence_sources": [
+        "pokemontcg_api",
+        "reverseholo_set_checklist",
+        "tcgdex",
+        "tcgplayer_price_guide",
+        "thepricedex_price_list"
+      ],
+      "mutation_design_status": "approval_required_no_write"
+    },
+    {
+      "set_key": "pl2",
+      "set_name": "Rising Rivals",
+      "card_print_id": "2ebe059c-614e-4dd6-812f-ebf268459ce5",
+      "source_external_id": "pl2-1",
+      "source_card_url": "https://api.tcgdex.net/v2/en/cards/pl2-1",
+      "before_fields": {
+        "set_code": null,
+        "number": null,
+        "name": "Arcanine",
+        "number_plain": null,
+        "set_id": "1b4f553a-f12c-4616-bead-ac5081865492"
+      },
+      "target_parent_fields": {
+        "set_code": "pl2",
+        "number": "1",
+        "name": "Arcanine"
+      },
+      "expected_generated_readback": {
+        "number_plain": "1"
+      },
+      "rollback_parent_fields": {
+        "set_code": null,
+        "number": null,
+        "name": "Arcanine"
+      },
+      "field_changes": {
+        "set_code": {
+          "before": null,
+          "after": "pl2"
+        },
+        "number": {
+          "before": null,
+          "after": "1"
+        }
+      },
+      "supported_finishes": [
+        "holo",
+        "reverse"
+      ],
+      "target_printing_count": 2,
+      "before_child_printing_count": 2,
+      "dependency_counts": {
+        "external_mappings": 1,
+        "card_print_identity": 1,
+        "card_print_traits": 1,
+        "vault_items": 0
+      },
+      "evidence_sources": [
+        "pokemontcg_api",
+        "reverseholo_set_checklist",
+        "tcgdex",
+        "tcgplayer_price_guide",
+        "thepricedex_price_list"
+      ],
+      "mutation_design_status": "approval_required_no_write"
+    },
+    {
+      "set_key": "pl2",
+      "set_name": "Rising Rivals",
+      "card_print_id": "9d6eb3c7-dc61-4543-b436-a67fd23ba16c",
+      "source_external_id": "pl2-3",
+      "source_card_url": "https://api.tcgdex.net/v2/en/cards/pl2-3",
+      "before_fields": {
+        "set_code": null,
+        "number": null,
+        "name": "Darkrai G",
+        "number_plain": null,
+        "set_id": "1b4f553a-f12c-4616-bead-ac5081865492"
+      },
+      "target_parent_fields": {
+        "set_code": "pl2",
+        "number": "3",
+        "name": "Darkrai G"
+      },
+      "expected_generated_readback": {
+        "number_plain": "3"
+      },
+      "rollback_parent_fields": {
+        "set_code": null,
+        "number": null,
+        "name": "Darkrai G"
+      },
+      "field_changes": {
+        "set_code": {
+          "before": null,
+          "after": "pl2"
+        },
+        "number": {
+          "before": null,
+          "after": "3"
+        }
+      },
+      "supported_finishes": [
+        "holo",
+        "reverse"
+      ],
+      "target_printing_count": 2,
+      "before_child_printing_count": 2,
+      "dependency_counts": {
+        "external_mappings": 1,
+        "card_print_identity": 1,
+        "card_print_traits": 1,
+        "vault_items": 0
+      },
+      "evidence_sources": [
+        "pokemontcg_api",
+        "reverseholo_set_checklist",
+        "tcgdex",
+        "tcgplayer_price_guide",
+        "thepricedex_price_list"
+      ],
+      "mutation_design_status": "approval_required_no_write"
+    },
+    {
+      "set_key": "pl2",
+      "set_name": "Rising Rivals",
+      "card_print_id": "1970689f-8f93-4148-96b2-0ed8ed149568",
+      "source_external_id": "pl2-5",
+      "source_card_url": "https://api.tcgdex.net/v2/en/cards/pl2-5",
+      "before_fields": {
+        "set_code": null,
+        "number": null,
+        "name": "Flygon",
+        "number_plain": null,
+        "set_id": "1b4f553a-f12c-4616-bead-ac5081865492"
+      },
+      "target_parent_fields": {
+        "set_code": "pl2",
+        "number": "5",
+        "name": "Flygon"
+      },
+      "expected_generated_readback": {
+        "number_plain": "5"
+      },
+      "rollback_parent_fields": {
+        "set_code": null,
+        "number": null,
+        "name": "Flygon"
+      },
+      "field_changes": {
+        "set_code": {
+          "before": null,
+          "after": "pl2"
+        },
+        "number": {
+          "before": null,
+          "after": "5"
+        }
+      },
+      "supported_finishes": [
+        "holo",
+        "normal",
+        "reverse"
+      ],
+      "target_printing_count": 3,
+      "before_child_printing_count": 3,
+      "dependency_counts": {
+        "external_mappings": 1,
+        "card_print_identity": 1,
+        "card_print_traits": 1,
+        "vault_items": 0
+      },
+      "evidence_sources": [
+        "pokemontcg_api",
+        "reverseholo_set_checklist",
+        "tcgdex",
+        "tcgplayer_price_guide",
+        "thepricedex_price_list"
+      ],
+      "mutation_design_status": "approval_required_no_write"
+    },
+    {
+      "set_key": "pl2",
+      "set_name": "Rising Rivals",
+      "card_print_id": "8c817161-627f-4ff5-aa27-127757b88213",
+      "source_external_id": "pl2-71",
+      "source_card_url": "https://api.tcgdex.net/v2/en/cards/pl2-71",
+      "before_fields": {
+        "set_code": null,
+        "number": null,
+        "name": "Nidoran♀",
+        "number_plain": null,
+        "set_id": "1b4f553a-f12c-4616-bead-ac5081865492"
+      },
+      "target_parent_fields": {
+        "set_code": "pl2",
+        "number": "71",
+        "name": "Nidoran ♀"
+      },
+      "expected_generated_readback": {
+        "number_plain": "71"
+      },
+      "rollback_parent_fields": {
+        "set_code": null,
+        "number": null,
+        "name": "Nidoran♀"
+      },
+      "field_changes": {
+        "set_code": {
+          "before": null,
+          "after": "pl2"
+        },
+        "number": {
+          "before": null,
+          "after": "71"
+        },
+        "name": {
+          "before": "Nidoran♀",
+          "after": "Nidoran ♀"
+        }
+      },
+      "supported_finishes": [
+        "normal",
+        "reverse"
+      ],
+      "target_printing_count": 2,
+      "before_child_printing_count": 2,
+      "dependency_counts": {
+        "external_mappings": 1,
+        "card_print_identity": 1,
+        "card_print_traits": 1,
+        "vault_items": 0
+      },
+      "evidence_sources": [
+        "pokemontcg_api",
+        "reverseholo_set_checklist",
+        "tcgdex",
+        "tcgplayer_price_guide",
+        "thepricedex_price_list"
+      ],
+      "mutation_design_status": "approval_required_no_write"
+    },
+    {
+      "set_key": "pl2",
+      "set_name": "Rising Rivals",
+      "card_print_id": "bc120b0e-4aad-47c1-989b-a733435a2000",
+      "source_external_id": "pl2-72",
+      "source_card_url": "https://api.tcgdex.net/v2/en/cards/pl2-72",
+      "before_fields": {
+        "set_code": null,
+        "number": null,
+        "name": "Nidoran♂",
+        "number_plain": null,
+        "set_id": "1b4f553a-f12c-4616-bead-ac5081865492"
+      },
+      "target_parent_fields": {
+        "set_code": "pl2",
+        "number": "72",
+        "name": "Nidoran ♂"
+      },
+      "expected_generated_readback": {
+        "number_plain": "72"
+      },
+      "rollback_parent_fields": {
+        "set_code": null,
+        "number": null,
+        "name": "Nidoran♂"
+      },
+      "field_changes": {
+        "set_code": {
+          "before": null,
+          "after": "pl2"
+        },
+        "number": {
+          "before": null,
+          "after": "72"
+        },
+        "name": {
+          "before": "Nidoran♂",
+          "after": "Nidoran ♂"
+        }
+      },
+      "supported_finishes": [
+        "normal",
+        "reverse"
+      ],
+      "target_printing_count": 2,
+      "before_child_printing_count": 2,
+      "dependency_counts": {
+        "external_mappings": 1,
+        "card_print_identity": 1,
+        "card_print_traits": 1,
+        "vault_items": 0
+      },
+      "evidence_sources": [
+        "pokemontcg_api",
+        "reverseholo_set_checklist",
+        "tcgdex",
+        "tcgplayer_price_guide",
+        "thepricedex_price_list"
+      ],
+      "mutation_design_status": "approval_required_no_write"
+    },
+    {
+      "set_key": "pl2",
+      "set_name": "Rising Rivals",
+      "card_print_id": "f619ad6c-007c-4e4d-bea0-a4a517cffa50",
+      "source_external_id": "pl2-95",
+      "source_card_url": "https://api.tcgdex.net/v2/en/cards/pl2-95",
+      "before_fields": {
+        "set_code": null,
+        "number": null,
+        "name": "Team Galactic's Invention G-107 Technical Machine",
+        "number_plain": null,
+        "set_id": "1b4f553a-f12c-4616-bead-ac5081865492"
+      },
+      "target_parent_fields": {
+        "set_code": "pl2",
+        "number": "95",
+        "name": "Team Galactic's Invention G-107 Technical Machine"
+      },
+      "expected_generated_readback": {
+        "number_plain": "95"
+      },
+      "rollback_parent_fields": {
+        "set_code": null,
+        "number": null,
+        "name": "Team Galactic's Invention G-107 Technical Machine"
+      },
+      "field_changes": {
+        "set_code": {
+          "before": null,
+          "after": "pl2"
+        },
+        "number": {
+          "before": null,
+          "after": "95"
+        }
+      },
+      "supported_finishes": [
+        "normal",
+        "reverse"
+      ],
+      "target_printing_count": 2,
+      "before_child_printing_count": 2,
+      "dependency_counts": {
+        "external_mappings": 1,
+        "card_print_identity": 1,
+        "card_print_traits": 1,
+        "vault_items": 0
+      },
+      "evidence_sources": [
+        "tcgcsv_tcgplayer_catalog",
+        "tcgdex"
+      ],
+      "mutation_design_status": "approval_required_no_write"
+    },
+    {
+      "set_key": "pl2",
+      "set_name": "Rising Rivals",
+      "card_print_id": "a1b66404-67e9-4586-8ac9-873c421da31e",
+      "source_external_id": "pl2-103",
+      "source_card_url": "https://api.tcgdex.net/v2/en/cards/pl2-103",
+      "before_fields": {
+        "set_code": null,
+        "number": null,
+        "name": "Alakazam 4",
+        "number_plain": null,
+        "set_id": "1b4f553a-f12c-4616-bead-ac5081865492"
+      },
+      "target_parent_fields": {
+        "set_code": "pl2",
+        "number": "103",
+        "name": "Alakazam 4"
+      },
+      "expected_generated_readback": {
+        "number_plain": "103"
+      },
+      "rollback_parent_fields": {
+        "set_code": null,
+        "number": null,
+        "name": "Alakazam 4"
+      },
+      "field_changes": {
+        "set_code": {
+          "before": null,
+          "after": "pl2"
+        },
+        "number": {
+          "before": null,
+          "after": "103"
+        }
+      },
+      "supported_finishes": [
+        "holo"
+      ],
+      "target_printing_count": 1,
+      "before_child_printing_count": 1,
+      "dependency_counts": {
+        "external_mappings": 1,
+        "card_print_identity": 1,
+        "card_print_traits": 1,
+        "vault_items": 0
+      },
+      "evidence_sources": [
+        "reverseholo_set_checklist",
+        "tcgdex"
+      ],
+      "mutation_design_status": "approval_required_no_write"
+    },
+    {
+      "set_key": "pl2",
+      "set_name": "Rising Rivals",
+      "card_print_id": "5fd2b141-a2af-4c2c-bb33-df2c2af58c02",
+      "source_external_id": "pl2-104",
+      "source_card_url": "https://api.tcgdex.net/v2/en/cards/pl2-104",
+      "before_fields": {
+        "set_code": null,
+        "number": null,
+        "name": "Floatzel GL",
+        "number_plain": null,
+        "set_id": "1b4f553a-f12c-4616-bead-ac5081865492"
+      },
+      "target_parent_fields": {
+        "set_code": "pl2",
+        "number": "104",
+        "name": "Floatzel GL"
+      },
+      "expected_generated_readback": {
+        "number_plain": "104"
+      },
+      "rollback_parent_fields": {
+        "set_code": null,
+        "number": null,
+        "name": "Floatzel GL"
+      },
+      "field_changes": {
+        "set_code": {
+          "before": null,
+          "after": "pl2"
+        },
+        "number": {
+          "before": null,
+          "after": "104"
+        }
+      },
+      "supported_finishes": [
+        "holo"
+      ],
+      "target_printing_count": 1,
+      "before_child_printing_count": 1,
+      "dependency_counts": {
+        "external_mappings": 1,
+        "card_print_identity": 1,
+        "card_print_traits": 1,
+        "vault_items": 0
+      },
+      "evidence_sources": [
+        "reverseholo_set_checklist",
+        "tcgcsv_tcgplayer_catalog",
+        "tcgdex"
+      ],
+      "mutation_design_status": "approval_required_no_write"
+    },
+    {
+      "set_key": "pl2",
+      "set_name": "Rising Rivals",
+      "card_print_id": "7d47083d-43a4-4868-9bac-eb1deb237136",
+      "source_external_id": "pl2-105",
+      "source_card_url": "https://api.tcgdex.net/v2/en/cards/pl2-105",
+      "before_fields": {
+        "set_code": null,
+        "number": null,
+        "name": "Flygon",
+        "number_plain": null,
+        "set_id": "1b4f553a-f12c-4616-bead-ac5081865492"
+      },
+      "target_parent_fields": {
+        "set_code": "pl2",
+        "number": "105",
+        "name": "Flygon"
+      },
+      "expected_generated_readback": {
+        "number_plain": "105"
+      },
+      "rollback_parent_fields": {
+        "set_code": null,
+        "number": null,
+        "name": "Flygon"
+      },
+      "field_changes": {
+        "set_code": {
+          "before": null,
+          "after": "pl2"
+        },
+        "number": {
+          "before": null,
+          "after": "105"
+        }
+      },
+      "supported_finishes": [
+        "holo"
+      ],
+      "target_printing_count": 1,
+      "before_child_printing_count": 1,
+      "dependency_counts": {
+        "external_mappings": 1,
+        "card_print_identity": 1,
+        "card_print_traits": 1,
+        "vault_items": 0
+      },
+      "evidence_sources": [
+        "reverseholo_set_checklist",
+        "tcgcsv_tcgplayer_catalog",
+        "tcgdex"
+      ],
+      "mutation_design_status": "approval_required_no_write"
+    },
+    {
+      "set_key": "pl2",
+      "set_name": "Rising Rivals",
+      "card_print_id": "60789fd6-a0bb-49cd-848f-1ba462f4e965",
+      "source_external_id": "pl2-106",
+      "source_card_url": "https://api.tcgdex.net/v2/en/cards/pl2-106",
+      "before_fields": {
+        "set_code": null,
+        "number": null,
+        "name": "Gallade 4",
+        "number_plain": null,
+        "set_id": "1b4f553a-f12c-4616-bead-ac5081865492"
+      },
+      "target_parent_fields": {
+        "set_code": "pl2",
+        "number": "106",
+        "name": "Gallade 4"
+      },
+      "expected_generated_readback": {
+        "number_plain": "106"
+      },
+      "rollback_parent_fields": {
+        "set_code": null,
+        "number": null,
+        "name": "Gallade 4"
+      },
+      "field_changes": {
+        "set_code": {
+          "before": null,
+          "after": "pl2"
+        },
+        "number": {
+          "before": null,
+          "after": "106"
+        }
+      },
+      "supported_finishes": [
+        "holo"
+      ],
+      "target_printing_count": 1,
+      "before_child_printing_count": 1,
+      "dependency_counts": {
+        "external_mappings": 1,
+        "card_print_identity": 1,
+        "card_print_traits": 1,
+        "vault_items": 0
+      },
+      "evidence_sources": [
+        "reverseholo_set_checklist",
+        "tcgdex"
+      ],
+      "mutation_design_status": "approval_required_no_write"
+    },
+    {
+      "set_key": "pl2",
+      "set_name": "Rising Rivals",
+      "card_print_id": "2ef89f59-3bd7-430f-9e71-42fea8cdd8ae",
+      "source_external_id": "pl2-107",
+      "source_card_url": "https://api.tcgdex.net/v2/en/cards/pl2-107",
+      "before_fields": {
+        "set_code": null,
+        "number": null,
+        "name": "Hippowdon",
+        "number_plain": null,
+        "set_id": "1b4f553a-f12c-4616-bead-ac5081865492"
+      },
+      "target_parent_fields": {
+        "set_code": "pl2",
+        "number": "107",
+        "name": "Hippowdon"
+      },
+      "expected_generated_readback": {
+        "number_plain": "107"
+      },
+      "rollback_parent_fields": {
+        "set_code": null,
+        "number": null,
+        "name": "Hippowdon"
+      },
+      "field_changes": {
+        "set_code": {
+          "before": null,
+          "after": "pl2"
+        },
+        "number": {
+          "before": null,
+          "after": "107"
+        }
+      },
+      "supported_finishes": [
+        "holo"
+      ],
+      "target_printing_count": 1,
+      "before_child_printing_count": 1,
+      "dependency_counts": {
+        "external_mappings": 1,
+        "card_print_identity": 1,
+        "card_print_traits": 1,
+        "vault_items": 0
+      },
+      "evidence_sources": [
+        "reverseholo_set_checklist",
+        "tcgcsv_tcgplayer_catalog",
+        "tcgdex"
+      ],
+      "mutation_design_status": "approval_required_no_write"
+    },
+    {
+      "set_key": "pl2",
+      "set_name": "Rising Rivals",
+      "card_print_id": "a719dd63-f527-4edf-8c8e-e77bac65a715",
+      "source_external_id": "pl2-108",
+      "source_card_url": "https://api.tcgdex.net/v2/en/cards/pl2-108",
+      "before_fields": {
+        "set_code": null,
+        "number": null,
+        "name": "Infernape 4",
+        "number_plain": null,
+        "set_id": "1b4f553a-f12c-4616-bead-ac5081865492"
+      },
+      "target_parent_fields": {
+        "set_code": "pl2",
+        "number": "108",
+        "name": "Infernape 4"
+      },
+      "expected_generated_readback": {
+        "number_plain": "108"
+      },
+      "rollback_parent_fields": {
+        "set_code": null,
+        "number": null,
+        "name": "Infernape 4"
+      },
+      "field_changes": {
+        "set_code": {
+          "before": null,
+          "after": "pl2"
+        },
+        "number": {
+          "before": null,
+          "after": "108"
+        }
+      },
+      "supported_finishes": [
+        "holo"
+      ],
+      "target_printing_count": 1,
+      "before_child_printing_count": 1,
+      "dependency_counts": {
+        "external_mappings": 1,
+        "card_print_identity": 1,
+        "card_print_traits": 1,
+        "vault_items": 0
+      },
+      "evidence_sources": [
+        "reverseholo_set_checklist",
+        "tcgdex"
+      ],
+      "mutation_design_status": "approval_required_no_write"
+    },
+    {
+      "set_key": "pl2",
+      "set_name": "Rising Rivals",
+      "card_print_id": "26d6335d-9483-4de2-8b1b-771c43ab31cb",
+      "source_external_id": "pl2-110",
+      "source_card_url": "https://api.tcgdex.net/v2/en/cards/pl2-110",
+      "before_fields": {
+        "set_code": null,
+        "number": null,
+        "name": "Mismagius GL",
+        "number_plain": null,
+        "set_id": "1b4f553a-f12c-4616-bead-ac5081865492"
+      },
+      "target_parent_fields": {
+        "set_code": "pl2",
+        "number": "110",
+        "name": "Mismagius GL"
+      },
+      "expected_generated_readback": {
+        "number_plain": "110"
+      },
+      "rollback_parent_fields": {
+        "set_code": null,
+        "number": null,
+        "name": "Mismagius GL"
+      },
+      "field_changes": {
+        "set_code": {
+          "before": null,
+          "after": "pl2"
+        },
+        "number": {
+          "before": null,
+          "after": "110"
+        }
+      },
+      "supported_finishes": [
+        "holo"
+      ],
+      "target_printing_count": 1,
+      "before_child_printing_count": 1,
+      "dependency_counts": {
+        "external_mappings": 1,
+        "card_print_identity": 1,
+        "card_print_traits": 1,
+        "vault_items": 0
+      },
+      "evidence_sources": [
+        "reverseholo_set_checklist",
+        "tcgcsv_tcgplayer_catalog",
+        "tcgdex"
+      ],
+      "mutation_design_status": "approval_required_no_write"
+    },
+    {
+      "set_key": "pl2",
+      "set_name": "Rising Rivals",
+      "card_print_id": "25c91739-b09a-4360-94e5-9a8b1ed43755",
+      "source_external_id": "pl2-111",
+      "source_card_url": "https://api.tcgdex.net/v2/en/cards/pl2-111",
+      "before_fields": {
+        "set_code": null,
+        "number": null,
+        "name": "Snorlax",
+        "number_plain": null,
+        "set_id": "1b4f553a-f12c-4616-bead-ac5081865492"
+      },
+      "target_parent_fields": {
+        "set_code": "pl2",
+        "number": "111",
+        "name": "Snorlax"
+      },
+      "expected_generated_readback": {
+        "number_plain": "111"
+      },
+      "rollback_parent_fields": {
+        "set_code": null,
+        "number": null,
+        "name": "Snorlax"
+      },
+      "field_changes": {
+        "set_code": {
+          "before": null,
+          "after": "pl2"
+        },
+        "number": {
+          "before": null,
+          "after": "111"
+        }
+      },
+      "supported_finishes": [
+        "holo"
+      ],
+      "target_printing_count": 1,
+      "before_child_printing_count": 1,
+      "dependency_counts": {
+        "external_mappings": 1,
+        "card_print_identity": 1,
+        "card_print_traits": 1,
+        "vault_items": 0
+      },
+      "evidence_sources": [
+        "reverseholo_set_checklist",
+        "tcgcsv_tcgplayer_catalog",
+        "tcgdex"
+      ],
+      "mutation_design_status": "approval_required_no_write"
+    },
+    {
+      "set_key": "pl2",
+      "set_name": "Rising Rivals",
+      "card_print_id": "f5ada689-45c1-4b23-ac62-6a9f0bc11c97",
+      "source_external_id": "pl2-RT2",
+      "source_card_url": "https://api.tcgdex.net/v2/en/cards/pl2-RT2",
+      "before_fields": {
+        "set_code": null,
+        "number": null,
+        "name": "Frost Rotom",
+        "number_plain": null,
+        "set_id": "1b4f553a-f12c-4616-bead-ac5081865492"
+      },
+      "target_parent_fields": {
+        "set_code": "pl2",
+        "number": "RT2",
+        "name": "Frost Rotom"
+      },
+      "expected_generated_readback": {
+        "number_plain": "RT2"
+      },
+      "rollback_parent_fields": {
+        "set_code": null,
+        "number": null,
+        "name": "Frost Rotom"
+      },
+      "field_changes": {
+        "set_code": {
+          "before": null,
+          "after": "pl2"
+        },
+        "number": {
+          "before": null,
+          "after": "RT2"
+        }
+      },
+      "supported_finishes": [
+        "reverse"
+      ],
+      "target_printing_count": 1,
+      "before_child_printing_count": 1,
+      "dependency_counts": {
+        "external_mappings": 1,
+        "card_print_identity": 1,
+        "card_print_traits": 1,
+        "vault_items": 0
+      },
+      "evidence_sources": [
+        "pokemontcg_api",
+        "reverseholo_set_checklist",
+        "tcgdex",
+        "tcgplayer_price_guide",
+        "thepricedex_price_list"
+      ],
+      "mutation_design_status": "approval_required_no_write"
+    },
+    {
+      "set_key": "pl2",
+      "set_name": "Rising Rivals",
+      "card_print_id": "949f5c1d-6d29-41cd-91c9-0be81e5360c5",
+      "source_external_id": "pl2-RT4",
+      "source_card_url": "https://api.tcgdex.net/v2/en/cards/pl2-RT4",
+      "before_fields": {
+        "set_code": null,
+        "number": null,
+        "name": "Mow Rotom",
+        "number_plain": null,
+        "set_id": "1b4f553a-f12c-4616-bead-ac5081865492"
+      },
+      "target_parent_fields": {
+        "set_code": "pl2",
+        "number": "RT4",
+        "name": "Mow Rotom"
+      },
+      "expected_generated_readback": {
+        "number_plain": "RT4"
+      },
+      "rollback_parent_fields": {
+        "set_code": null,
+        "number": null,
+        "name": "Mow Rotom"
+      },
+      "field_changes": {
+        "set_code": {
+          "before": null,
+          "after": "pl2"
+        },
+        "number": {
+          "before": null,
+          "after": "RT4"
+        }
+      },
+      "supported_finishes": [
+        "reverse"
+      ],
+      "target_printing_count": 1,
+      "before_child_printing_count": 1,
+      "dependency_counts": {
+        "external_mappings": 1,
+        "card_print_identity": 1,
+        "card_print_traits": 1,
+        "vault_items": 0
+      },
+      "evidence_sources": [
+        "pokemontcg_api",
+        "reverseholo_set_checklist",
+        "tcgdex",
+        "tcgplayer_price_guide",
+        "thepricedex_price_list"
+      ],
+      "mutation_design_status": "approval_required_no_write"
+    },
+    {
+      "set_key": "pl2",
+      "set_name": "Rising Rivals",
+      "card_print_id": "0a14f347-5dd0-425a-9c9c-ffd134a9de4f",
+      "source_external_id": "pl2-RT6",
+      "source_card_url": "https://api.tcgdex.net/v2/en/cards/pl2-RT6",
+      "before_fields": {
+        "set_code": null,
+        "number": null,
+        "name": "Charon's Choice",
+        "number_plain": null,
+        "set_id": "1b4f553a-f12c-4616-bead-ac5081865492"
+      },
+      "target_parent_fields": {
+        "set_code": "pl2",
+        "number": "RT6",
+        "name": "Charon's Choice"
+      },
+      "expected_generated_readback": {
+        "number_plain": "RT6"
+      },
+      "rollback_parent_fields": {
+        "set_code": null,
+        "number": null,
+        "name": "Charon's Choice"
+      },
+      "field_changes": {
+        "set_code": {
+          "before": null,
+          "after": "pl2"
+        },
+        "number": {
+          "before": null,
+          "after": "RT6"
+        }
+      },
+      "supported_finishes": [
+        "reverse"
+      ],
+      "target_printing_count": 1,
+      "before_child_printing_count": 1,
+      "dependency_counts": {
+        "external_mappings": 1,
+        "card_print_identity": 1,
+        "card_print_traits": 1,
+        "vault_items": 0
+      },
+      "evidence_sources": [
+        "pokemontcg_api",
+        "tcgdex",
+        "tcgplayer_price_guide",
+        "thepricedex_price_list"
+      ],
+      "mutation_design_status": "approval_required_no_write"
+    },
+    {
+      "set_key": "pl3",
+      "set_name": "Supreme Victors",
+      "card_print_id": "8cd92a82-149d-43b4-a7d3-d65782536182",
+      "source_external_id": "pl3-141",
+      "source_card_url": "https://api.tcgdex.net/v2/en/cards/pl3-141",
+      "before_fields": {
+        "set_code": null,
+        "number": null,
+        "name": "Absol G",
+        "number_plain": null,
+        "set_id": "77b0bdbe-6bf1-422d-b3d0-3c403e4c8e8d"
+      },
+      "target_parent_fields": {
+        "set_code": "pl3",
+        "number": "141",
+        "name": "Absol G"
+      },
+      "expected_generated_readback": {
+        "number_plain": "141"
+      },
+      "rollback_parent_fields": {
+        "set_code": null,
+        "number": null,
+        "name": "Absol G"
+      },
+      "field_changes": {
+        "set_code": {
+          "before": null,
+          "after": "pl3"
+        },
+        "number": {
+          "before": null,
+          "after": "141"
+        }
+      },
+      "supported_finishes": [
+        "holo"
+      ],
+      "target_printing_count": 1,
+      "before_child_printing_count": 1,
+      "dependency_counts": {
+        "external_mappings": 1,
+        "card_print_identity": 1,
+        "card_print_traits": 1,
+        "vault_items": 0
+      },
+      "evidence_sources": [
+        "reverseholo_set_checklist",
+        "tcgcsv_tcgplayer_catalog",
+        "tcgdex"
+      ],
+      "mutation_design_status": "approval_required_no_write"
+    },
+    {
+      "set_key": "pl3",
+      "set_name": "Supreme Victors",
+      "card_print_id": "79097350-eb58-44e8-bd39-3ec5f417f02b",
+      "source_external_id": "pl3-142",
+      "source_card_url": "https://api.tcgdex.net/v2/en/cards/pl3-142",
+      "before_fields": {
+        "set_code": null,
+        "number": null,
+        "name": "Blaziken FB",
+        "number_plain": null,
+        "set_id": "77b0bdbe-6bf1-422d-b3d0-3c403e4c8e8d"
+      },
+      "target_parent_fields": {
+        "set_code": "pl3",
+        "number": "142",
+        "name": "Blaziken FB"
+      },
+      "expected_generated_readback": {
+        "number_plain": "142"
+      },
+      "rollback_parent_fields": {
+        "set_code": null,
+        "number": null,
+        "name": "Blaziken FB"
+      },
+      "field_changes": {
+        "set_code": {
+          "before": null,
+          "after": "pl3"
+        },
+        "number": {
+          "before": null,
+          "after": "142"
+        }
+      },
+      "supported_finishes": [
+        "holo"
+      ],
+      "target_printing_count": 1,
+      "before_child_printing_count": 1,
+      "dependency_counts": {
+        "external_mappings": 1,
+        "card_print_identity": 1,
+        "card_print_traits": 1,
+        "vault_items": 0
+      },
+      "evidence_sources": [
+        "reverseholo_set_checklist",
+        "tcgcsv_tcgplayer_catalog",
+        "tcgdex"
+      ],
+      "mutation_design_status": "approval_required_no_write"
+    },
+    {
+      "set_key": "pl3",
+      "set_name": "Supreme Victors",
+      "card_print_id": "880dc8c7-6959-4fda-b79a-32e48c684267",
+      "source_external_id": "pl3-143",
+      "source_card_url": "https://api.tcgdex.net/v2/en/cards/pl3-143",
+      "before_fields": {
+        "set_code": null,
+        "number": null,
+        "name": "Charizard G",
+        "number_plain": null,
+        "set_id": "77b0bdbe-6bf1-422d-b3d0-3c403e4c8e8d"
+      },
+      "target_parent_fields": {
+        "set_code": "pl3",
+        "number": "143",
+        "name": "Charizard G"
+      },
+      "expected_generated_readback": {
+        "number_plain": "143"
+      },
+      "rollback_parent_fields": {
+        "set_code": null,
+        "number": null,
+        "name": "Charizard G"
+      },
+      "field_changes": {
+        "set_code": {
+          "before": null,
+          "after": "pl3"
+        },
+        "number": {
+          "before": null,
+          "after": "143"
+        }
+      },
+      "supported_finishes": [
+        "holo"
+      ],
+      "target_printing_count": 1,
+      "before_child_printing_count": 1,
+      "dependency_counts": {
+        "external_mappings": 1,
+        "card_print_identity": 1,
+        "card_print_traits": 1,
+        "vault_items": 0
+      },
+      "evidence_sources": [
+        "reverseholo_set_checklist",
+        "tcgcsv_tcgplayer_catalog",
+        "tcgdex"
+      ],
+      "mutation_design_status": "approval_required_no_write"
+    },
+    {
+      "set_key": "pl3",
+      "set_name": "Supreme Victors",
+      "card_print_id": "29a4bca4-6264-45f6-bc24-1d5ded5520cd",
+      "source_external_id": "pl3-144",
+      "source_card_url": "https://api.tcgdex.net/v2/en/cards/pl3-144",
+      "before_fields": {
+        "set_code": null,
+        "number": null,
+        "name": "Electivire FB",
+        "number_plain": null,
+        "set_id": "77b0bdbe-6bf1-422d-b3d0-3c403e4c8e8d"
+      },
+      "target_parent_fields": {
+        "set_code": "pl3",
+        "number": "144",
+        "name": "Electivire FB"
+      },
+      "expected_generated_readback": {
+        "number_plain": "144"
+      },
+      "rollback_parent_fields": {
+        "set_code": null,
+        "number": null,
+        "name": "Electivire FB"
+      },
+      "field_changes": {
+        "set_code": {
+          "before": null,
+          "after": "pl3"
+        },
+        "number": {
+          "before": null,
+          "after": "144"
+        }
+      },
+      "supported_finishes": [
+        "holo"
+      ],
+      "target_printing_count": 1,
+      "before_child_printing_count": 1,
+      "dependency_counts": {
+        "external_mappings": 1,
+        "card_print_identity": 1,
+        "card_print_traits": 1,
+        "vault_items": 0
+      },
+      "evidence_sources": [
+        "reverseholo_set_checklist",
+        "tcgcsv_tcgplayer_catalog",
+        "tcgdex"
+      ],
+      "mutation_design_status": "approval_required_no_write"
+    },
+    {
+      "set_key": "pl3",
+      "set_name": "Supreme Victors",
+      "card_print_id": "2c1b3125-dd67-4522-b3e0-5621c05f7a9a",
+      "source_external_id": "pl3-145",
+      "source_card_url": "https://api.tcgdex.net/v2/en/cards/pl3-145",
+      "before_fields": {
+        "set_code": null,
+        "number": null,
+        "name": "Garchomp C",
+        "number_plain": null,
+        "set_id": "77b0bdbe-6bf1-422d-b3d0-3c403e4c8e8d"
+      },
+      "target_parent_fields": {
+        "set_code": "pl3",
+        "number": "145",
+        "name": "Garchomp C"
+      },
+      "expected_generated_readback": {
+        "number_plain": "145"
+      },
+      "rollback_parent_fields": {
+        "set_code": null,
+        "number": null,
+        "name": "Garchomp C"
+      },
+      "field_changes": {
+        "set_code": {
+          "before": null,
+          "after": "pl3"
+        },
+        "number": {
+          "before": null,
+          "after": "145"
+        }
+      },
+      "supported_finishes": [
+        "holo"
+      ],
+      "target_printing_count": 1,
+      "before_child_printing_count": 1,
+      "dependency_counts": {
+        "external_mappings": 1,
+        "card_print_identity": 1,
+        "card_print_traits": 1,
+        "vault_items": 0
+      },
+      "evidence_sources": [
+        "reverseholo_set_checklist",
+        "tcgcsv_tcgplayer_catalog",
+        "tcgdex"
+      ],
+      "mutation_design_status": "approval_required_no_write"
+    },
+    {
+      "set_key": "pl3",
+      "set_name": "Supreme Victors",
+      "card_print_id": "89f61622-12a4-4861-abb3-ef3dbcaf2a86",
+      "source_external_id": "pl3-146",
+      "source_card_url": "https://api.tcgdex.net/v2/en/cards/pl3-146",
+      "before_fields": {
+        "set_code": null,
+        "number": null,
+        "name": "Rayquaza C",
+        "number_plain": null,
+        "set_id": "77b0bdbe-6bf1-422d-b3d0-3c403e4c8e8d"
+      },
+      "target_parent_fields": {
+        "set_code": "pl3",
+        "number": "146",
+        "name": "Rayquaza C"
+      },
+      "expected_generated_readback": {
+        "number_plain": "146"
+      },
+      "rollback_parent_fields": {
+        "set_code": null,
+        "number": null,
+        "name": "Rayquaza C"
+      },
+      "field_changes": {
+        "set_code": {
+          "before": null,
+          "after": "pl3"
+        },
+        "number": {
+          "before": null,
+          "after": "146"
+        }
+      },
+      "supported_finishes": [
+        "holo"
+      ],
+      "target_printing_count": 1,
+      "before_child_printing_count": 1,
+      "dependency_counts": {
+        "external_mappings": 1,
+        "card_print_identity": 1,
+        "card_print_traits": 1,
+        "vault_items": 0
+      },
+      "evidence_sources": [
+        "reverseholo_set_checklist",
+        "tcgcsv_tcgplayer_catalog",
+        "tcgdex"
+      ],
+      "mutation_design_status": "approval_required_no_write"
+    },
+    {
+      "set_key": "pl3",
+      "set_name": "Supreme Victors",
+      "card_print_id": "fa6310ae-be43-4309-af1d-a5033daff2f0",
+      "source_external_id": "pl3-147",
+      "source_card_url": "https://api.tcgdex.net/v2/en/cards/pl3-147",
+      "before_fields": {
+        "set_code": null,
+        "number": null,
+        "name": "Staraptor FB",
+        "number_plain": null,
+        "set_id": "77b0bdbe-6bf1-422d-b3d0-3c403e4c8e8d"
+      },
+      "target_parent_fields": {
+        "set_code": "pl3",
+        "number": "147",
+        "name": "Staraptor FB"
+      },
+      "expected_generated_readback": {
+        "number_plain": "147"
+      },
+      "rollback_parent_fields": {
+        "set_code": null,
+        "number": null,
+        "name": "Staraptor FB"
+      },
+      "field_changes": {
+        "set_code": {
+          "before": null,
+          "after": "pl3"
+        },
+        "number": {
+          "before": null,
+          "after": "147"
+        }
+      },
+      "supported_finishes": [
+        "holo"
+      ],
+      "target_printing_count": 1,
+      "before_child_printing_count": 1,
+      "dependency_counts": {
+        "external_mappings": 1,
+        "card_print_identity": 1,
+        "card_print_traits": 1,
+        "vault_items": 0
+      },
+      "evidence_sources": [
+        "reverseholo_set_checklist",
+        "tcgcsv_tcgplayer_catalog",
+        "tcgdex"
+      ],
+      "mutation_design_status": "approval_required_no_write"
+    },
+    {
+      "set_key": "pl3",
+      "set_name": "Supreme Victors",
+      "card_print_id": "9089264b-fd13-4261-94ac-b252ab89f6c7",
+      "source_external_id": "pl3-SH8",
+      "source_card_url": "https://api.tcgdex.net/v2/en/cards/pl3-SH8",
+      "before_fields": {
+        "set_code": null,
+        "number": null,
+        "name": "Relicanth",
+        "number_plain": null,
+        "set_id": "77b0bdbe-6bf1-422d-b3d0-3c403e4c8e8d"
+      },
+      "target_parent_fields": {
+        "set_code": "pl3",
+        "number": "SH8",
+        "name": "Relicanth"
+      },
+      "expected_generated_readback": {
+        "number_plain": "SH8"
+      },
+      "rollback_parent_fields": {
+        "set_code": null,
+        "number": null,
+        "name": "Relicanth"
+      },
+      "field_changes": {
+        "set_code": {
+          "before": null,
+          "after": "pl3"
+        },
+        "number": {
+          "before": null,
+          "after": "SH8"
+        }
+      },
+      "supported_finishes": [
+        "reverse"
+      ],
+      "target_printing_count": 1,
+      "before_child_printing_count": 1,
+      "dependency_counts": {
+        "external_mappings": 1,
+        "card_print_identity": 1,
+        "card_print_traits": 1,
+        "vault_items": 0
+      },
+      "evidence_sources": [
+        "pokemontcg_api",
+        "reverseholo_set_checklist",
+        "tcgdex",
+        "tcgplayer_price_guide",
+        "thepricedex_price_list"
+      ],
+      "mutation_design_status": "approval_required_no_write"
+    },
+    {
+      "set_key": "pl3",
+      "set_name": "Supreme Victors",
+      "card_print_id": "e8a8c0b0-2213-4701-89a9-8926cc0d5669",
+      "source_external_id": "pl3-SH9",
+      "source_card_url": "https://api.tcgdex.net/v2/en/cards/pl3-SH9",
+      "before_fields": {
+        "set_code": null,
+        "number": null,
+        "name": "Yanma",
+        "number_plain": null,
+        "set_id": "77b0bdbe-6bf1-422d-b3d0-3c403e4c8e8d"
+      },
+      "target_parent_fields": {
+        "set_code": "pl3",
+        "number": "SH9",
+        "name": "Yanma"
+      },
+      "expected_generated_readback": {
+        "number_plain": "SH9"
+      },
+      "rollback_parent_fields": {
+        "set_code": null,
+        "number": null,
+        "name": "Yanma"
+      },
+      "field_changes": {
+        "set_code": {
+          "before": null,
+          "after": "pl3"
+        },
+        "number": {
+          "before": null,
+          "after": "SH9"
+        }
+      },
+      "supported_finishes": [
+        "reverse"
+      ],
+      "target_printing_count": 1,
+      "before_child_printing_count": 1,
+      "dependency_counts": {
+        "external_mappings": 1,
+        "card_print_identity": 1,
+        "card_print_traits": 1,
+        "vault_items": 0
+      },
+      "evidence_sources": [
+        "pokemontcg_api",
+        "reverseholo_set_checklist",
+        "tcgdex",
+        "tcgplayer_price_guide",
+        "thepricedex_price_list"
+      ],
+      "mutation_design_status": "approval_required_no_write"
+    },
+    {
+      "set_key": "pl4",
+      "set_name": "Arceus",
+      "card_print_id": "a02f871c-fe3e-432b-944d-6decea0eecdf",
+      "source_external_id": "pl4-1",
+      "source_card_url": "https://api.tcgdex.net/v2/en/cards/pl4-1",
+      "before_fields": {
+        "set_code": null,
+        "number": null,
+        "name": "Charizard",
+        "number_plain": null,
+        "set_id": "f4b3f0be-5d7b-445f-bbe4-bb136699d5fe"
+      },
+      "target_parent_fields": {
+        "set_code": "pl4",
+        "number": "1",
+        "name": "Charizard"
+      },
+      "expected_generated_readback": {
+        "number_plain": "1"
+      },
+      "rollback_parent_fields": {
+        "set_code": null,
+        "number": null,
+        "name": "Charizard"
+      },
+      "field_changes": {
+        "set_code": {
+          "before": null,
+          "after": "pl4"
+        },
+        "number": {
+          "before": null,
+          "after": "1"
+        }
+      },
+      "supported_finishes": [
+        "holo",
+        "reverse"
+      ],
+      "target_printing_count": 2,
+      "before_child_printing_count": 2,
+      "dependency_counts": {
+        "external_mappings": 1,
+        "card_print_identity": 1,
+        "card_print_traits": 1,
+        "vault_items": 0
+      },
+      "evidence_sources": [
+        "pokemontcg_api",
+        "reverseholo_set_checklist",
+        "tcgdex",
+        "tcgplayer_price_guide",
+        "thepricedex_price_list"
+      ],
+      "mutation_design_status": "approval_required_no_write"
+    },
+    {
+      "set_key": "pl4",
+      "set_name": "Arceus",
+      "card_print_id": "71779a8b-ee22-4892-9425-8e3da51f179a",
+      "source_external_id": "pl4-6",
+      "source_card_url": "https://api.tcgdex.net/v2/en/cards/pl4-6",
+      "before_fields": {
+        "set_code": null,
+        "number": null,
+        "name": "Mothim",
+        "number_plain": null,
+        "set_id": "f4b3f0be-5d7b-445f-bbe4-bb136699d5fe"
+      },
+      "target_parent_fields": {
+        "set_code": "pl4",
+        "number": "6",
+        "name": "Mothim"
+      },
+      "expected_generated_readback": {
+        "number_plain": "6"
+      },
+      "rollback_parent_fields": {
+        "set_code": null,
+        "number": null,
+        "name": "Mothim"
+      },
+      "field_changes": {
+        "set_code": {
+          "before": null,
+          "after": "pl4"
+        },
+        "number": {
+          "before": null,
+          "after": "6"
+        }
+      },
+      "supported_finishes": [
+        "holo",
+        "reverse"
+      ],
+      "target_printing_count": 2,
+      "before_child_printing_count": 2,
+      "dependency_counts": {
+        "external_mappings": 1,
+        "card_print_identity": 1,
+        "card_print_traits": 1,
+        "vault_items": 0
+      },
+      "evidence_sources": [
+        "pokemontcg_api",
+        "reverseholo_set_checklist",
+        "tcgdex",
+        "tcgplayer_price_guide",
+        "thepricedex_price_list"
+      ],
+      "mutation_design_status": "approval_required_no_write"
+    },
+    {
+      "set_key": "pl4",
+      "set_name": "Arceus",
+      "card_print_id": "3059259e-c28b-49d6-9f31-64e178e87f28",
+      "source_external_id": "pl4-9",
+      "source_card_url": "https://api.tcgdex.net/v2/en/cards/pl4-9",
+      "before_fields": {
+        "set_code": null,
+        "number": null,
+        "name": "Swalot",
+        "number_plain": null,
+        "set_id": "f4b3f0be-5d7b-445f-bbe4-bb136699d5fe"
+      },
+      "target_parent_fields": {
+        "set_code": "pl4",
+        "number": "9",
+        "name": "Swalot"
+      },
+      "expected_generated_readback": {
+        "number_plain": "9"
+      },
+      "rollback_parent_fields": {
+        "set_code": null,
+        "number": null,
+        "name": "Swalot"
+      },
+      "field_changes": {
+        "set_code": {
+          "before": null,
+          "after": "pl4"
+        },
+        "number": {
+          "before": null,
+          "after": "9"
+        }
+      },
+      "supported_finishes": [
+        "holo",
+        "normal",
+        "reverse"
+      ],
+      "target_printing_count": 3,
+      "before_child_printing_count": 3,
+      "dependency_counts": {
+        "external_mappings": 1,
+        "card_print_identity": 1,
+        "card_print_traits": 1,
+        "vault_items": 0
+      },
+      "evidence_sources": [
+        "pokemontcg_api",
+        "reverseholo_set_checklist",
+        "tcgdex",
+        "tcgplayer_price_guide",
+        "thepricedex_price_list"
+      ],
+      "mutation_design_status": "approval_required_no_write"
+    },
+    {
+      "set_key": "pl4",
+      "set_name": "Arceus",
+      "card_print_id": "8716f287-3497-49b2-a499-9c1e026a6a94",
+      "source_external_id": "pl4-12",
+      "source_card_url": "https://api.tcgdex.net/v2/en/cards/pl4-12",
+      "before_fields": {
+        "set_code": null,
+        "number": null,
+        "name": "Zapdos",
+        "number_plain": null,
+        "set_id": "f4b3f0be-5d7b-445f-bbe4-bb136699d5fe"
+      },
+      "target_parent_fields": {
+        "set_code": "pl4",
+        "number": "12",
+        "name": "Zapdos"
+      },
+      "expected_generated_readback": {
+        "number_plain": "12"
+      },
+      "rollback_parent_fields": {
+        "set_code": null,
+        "number": null,
+        "name": "Zapdos"
+      },
+      "field_changes": {
+        "set_code": {
+          "before": null,
+          "after": "pl4"
+        },
+        "number": {
+          "before": null,
+          "after": "12"
+        }
+      },
+      "supported_finishes": [
+        "holo",
+        "reverse"
+      ],
+      "target_printing_count": 2,
+      "before_child_printing_count": 2,
+      "dependency_counts": {
+        "external_mappings": 1,
+        "card_print_identity": 1,
+        "card_print_traits": 1,
+        "vault_items": 0
+      },
+      "evidence_sources": [
+        "reverseholo_set_checklist",
+        "tcgdex"
+      ],
+      "mutation_design_status": "approval_required_no_write"
+    },
+    {
+      "set_key": "pl4",
+      "set_name": "Arceus",
+      "card_print_id": "460e6437-4bc8-4a1c-90fc-546481f225e2",
+      "source_external_id": "pl4-94",
+      "source_card_url": "https://api.tcgdex.net/v2/en/cards/pl4-94",
+      "before_fields": {
+        "set_code": null,
+        "number": null,
+        "name": "Arceus LV. X",
+        "number_plain": null,
+        "set_id": "f4b3f0be-5d7b-445f-bbe4-bb136699d5fe"
+      },
+      "target_parent_fields": {
+        "set_code": "pl4",
+        "number": "94",
+        "name": "Arceus LV.X"
+      },
+      "expected_generated_readback": {
+        "number_plain": "94"
+      },
+      "rollback_parent_fields": {
+        "set_code": null,
+        "number": null,
+        "name": "Arceus LV. X"
+      },
+      "field_changes": {
+        "set_code": {
+          "before": null,
+          "after": "pl4"
+        },
+        "number": {
+          "before": null,
+          "after": "94"
+        },
+        "name": {
+          "before": "Arceus LV. X",
+          "after": "Arceus LV.X"
+        }
+      },
+      "supported_finishes": [
+        "holo"
+      ],
+      "target_printing_count": 1,
+      "before_child_printing_count": 1,
+      "dependency_counts": {
+        "external_mappings": 1,
+        "card_print_identity": 1,
+        "card_print_traits": 1,
+        "vault_items": 0
+      },
+      "evidence_sources": [
+        "pokemontcg_api",
+        "reverseholo_set_checklist",
+        "tcgdex",
+        "tcgplayer_price_guide",
+        "thepricedex_price_list"
+      ],
+      "mutation_design_status": "approval_required_no_write"
+    },
+    {
+      "set_key": "pl4",
+      "set_name": "Arceus",
+      "card_print_id": "c5125a59-32a9-4a0f-98af-4cf4ad5d6d64",
+      "source_external_id": "pl4-95",
+      "source_card_url": "https://api.tcgdex.net/v2/en/cards/pl4-95",
+      "before_fields": {
+        "set_code": null,
+        "number": null,
+        "name": "Arceus LV. X",
+        "number_plain": null,
+        "set_id": "f4b3f0be-5d7b-445f-bbe4-bb136699d5fe"
+      },
+      "target_parent_fields": {
+        "set_code": "pl4",
+        "number": "95",
+        "name": "Arceus LV.X"
+      },
+      "expected_generated_readback": {
+        "number_plain": "95"
+      },
+      "rollback_parent_fields": {
+        "set_code": null,
+        "number": null,
+        "name": "Arceus LV. X"
+      },
+      "field_changes": {
+        "set_code": {
+          "before": null,
+          "after": "pl4"
+        },
+        "number": {
+          "before": null,
+          "after": "95"
+        },
+        "name": {
+          "before": "Arceus LV. X",
+          "after": "Arceus LV.X"
+        }
+      },
+      "supported_finishes": [
+        "holo"
+      ],
+      "target_printing_count": 1,
+      "before_child_printing_count": 1,
+      "dependency_counts": {
+        "external_mappings": 1,
+        "card_print_identity": 1,
+        "card_print_traits": 1,
+        "vault_items": 0
+      },
+      "evidence_sources": [
+        "pokemontcg_api",
+        "reverseholo_set_checklist",
+        "tcgdex",
+        "tcgplayer_price_guide",
+        "thepricedex_price_list"
+      ],
+      "mutation_design_status": "approval_required_no_write"
+    },
+    {
+      "set_key": "pl4",
+      "set_name": "Arceus",
+      "card_print_id": "ad751d34-d43b-4644-ae2e-622725f781cd",
+      "source_external_id": "pl4-96",
+      "source_card_url": "https://api.tcgdex.net/v2/en/cards/pl4-96",
+      "before_fields": {
+        "set_code": null,
+        "number": null,
+        "name": "Arceus LV. X",
+        "number_plain": null,
+        "set_id": "f4b3f0be-5d7b-445f-bbe4-bb136699d5fe"
+      },
+      "target_parent_fields": {
+        "set_code": "pl4",
+        "number": "96",
+        "name": "Arceus LV.X"
+      },
+      "expected_generated_readback": {
+        "number_plain": "96"
+      },
+      "rollback_parent_fields": {
+        "set_code": null,
+        "number": null,
+        "name": "Arceus LV. X"
+      },
+      "field_changes": {
+        "set_code": {
+          "before": null,
+          "after": "pl4"
+        },
+        "number": {
+          "before": null,
+          "after": "96"
+        },
+        "name": {
+          "before": "Arceus LV. X",
+          "after": "Arceus LV.X"
+        }
+      },
+      "supported_finishes": [
+        "holo"
+      ],
+      "target_printing_count": 1,
+      "before_child_printing_count": 1,
+      "dependency_counts": {
+        "external_mappings": 1,
+        "card_print_identity": 1,
+        "card_print_traits": 1,
+        "vault_items": 0
+      },
+      "evidence_sources": [
+        "pokemontcg_api",
+        "reverseholo_set_checklist",
+        "tcgdex",
+        "tcgplayer_price_guide",
+        "thepricedex_price_list"
+      ],
+      "mutation_design_status": "approval_required_no_write"
+    },
+    {
+      "set_key": "pl4",
+      "set_name": "Arceus",
+      "card_print_id": "1352eb03-1519-4e31-b7ad-a2d4af24ef65",
+      "source_external_id": "pl4-97",
+      "source_card_url": "https://api.tcgdex.net/v2/en/cards/pl4-97",
+      "before_fields": {
+        "set_code": null,
+        "number": null,
+        "name": "Gengar LV. X",
+        "number_plain": null,
+        "set_id": "f4b3f0be-5d7b-445f-bbe4-bb136699d5fe"
+      },
+      "target_parent_fields": {
+        "set_code": "pl4",
+        "number": "97",
+        "name": "Gengar LV.X"
+      },
+      "expected_generated_readback": {
+        "number_plain": "97"
+      },
+      "rollback_parent_fields": {
+        "set_code": null,
+        "number": null,
+        "name": "Gengar LV. X"
+      },
+      "field_changes": {
+        "set_code": {
+          "before": null,
+          "after": "pl4"
+        },
+        "number": {
+          "before": null,
+          "after": "97"
+        },
+        "name": {
+          "before": "Gengar LV. X",
+          "after": "Gengar LV.X"
+        }
+      },
+      "supported_finishes": [
+        "holo"
+      ],
+      "target_printing_count": 1,
+      "before_child_printing_count": 1,
+      "dependency_counts": {
+        "external_mappings": 1,
+        "card_print_identity": 1,
+        "card_print_traits": 1,
+        "vault_items": 0
+      },
+      "evidence_sources": [
+        "pokemontcg_api",
+        "reverseholo_set_checklist",
+        "tcgdex",
+        "tcgplayer_price_guide",
+        "thepricedex_price_list"
+      ],
+      "mutation_design_status": "approval_required_no_write"
+    },
+    {
+      "set_key": "pl4",
+      "set_name": "Arceus",
+      "card_print_id": "2fb3462d-4a19-4412-b8cd-848a669549a0",
+      "source_external_id": "pl4-98",
+      "source_card_url": "https://api.tcgdex.net/v2/en/cards/pl4-98",
+      "before_fields": {
+        "set_code": null,
+        "number": null,
+        "name": "Salamence LV. X",
+        "number_plain": null,
+        "set_id": "f4b3f0be-5d7b-445f-bbe4-bb136699d5fe"
+      },
+      "target_parent_fields": {
+        "set_code": "pl4",
+        "number": "98",
+        "name": "Salamence LV.X"
+      },
+      "expected_generated_readback": {
+        "number_plain": "98"
+      },
+      "rollback_parent_fields": {
+        "set_code": null,
+        "number": null,
+        "name": "Salamence LV. X"
+      },
+      "field_changes": {
+        "set_code": {
+          "before": null,
+          "after": "pl4"
+        },
+        "number": {
+          "before": null,
+          "after": "98"
+        },
+        "name": {
+          "before": "Salamence LV. X",
+          "after": "Salamence LV.X"
+        }
+      },
+      "supported_finishes": [
+        "holo"
+      ],
+      "target_printing_count": 1,
+      "before_child_printing_count": 1,
+      "dependency_counts": {
+        "external_mappings": 1,
+        "card_print_identity": 1,
+        "card_print_traits": 1,
+        "vault_items": 0
+      },
+      "evidence_sources": [
+        "pokemontcg_api",
+        "reverseholo_set_checklist",
+        "tcgdex",
+        "tcgplayer_price_guide",
+        "thepricedex_price_list"
+      ],
+      "mutation_design_status": "approval_required_no_write"
+    },
+    {
+      "set_key": "pl4",
+      "set_name": "Arceus",
+      "card_print_id": "b319332c-aea7-4f3c-ad4c-02f0874b2d60",
+      "source_external_id": "pl4-99",
+      "source_card_url": "https://api.tcgdex.net/v2/en/cards/pl4-99",
+      "before_fields": {
+        "set_code": null,
+        "number": null,
+        "name": "Tangrowth LV. X",
+        "number_plain": null,
+        "set_id": "f4b3f0be-5d7b-445f-bbe4-bb136699d5fe"
+      },
+      "target_parent_fields": {
+        "set_code": "pl4",
+        "number": "99",
+        "name": "Tangrowth LV.X"
+      },
+      "expected_generated_readback": {
+        "number_plain": "99"
+      },
+      "rollback_parent_fields": {
+        "set_code": null,
+        "number": null,
+        "name": "Tangrowth LV. X"
+      },
+      "field_changes": {
+        "set_code": {
+          "before": null,
+          "after": "pl4"
+        },
+        "number": {
+          "before": null,
+          "after": "99"
+        },
+        "name": {
+          "before": "Tangrowth LV. X",
+          "after": "Tangrowth LV.X"
+        }
+      },
+      "supported_finishes": [
+        "holo"
+      ],
+      "target_printing_count": 1,
+      "before_child_printing_count": 1,
+      "dependency_counts": {
+        "external_mappings": 1,
+        "card_print_identity": 1,
+        "card_print_traits": 1,
+        "vault_items": 0
+      },
+      "evidence_sources": [
+        "pokemontcg_api",
+        "reverseholo_set_checklist",
+        "tcgdex",
+        "tcgplayer_price_guide",
+        "thepricedex_price_list"
+      ],
+      "mutation_design_status": "approval_required_no_write"
+    },
+    {
+      "set_key": "pl4",
+      "set_name": "Arceus",
+      "card_print_id": "cf859f9b-f1d6-41ec-9e38-c7fd27743777",
+      "source_external_id": "pl4-AR2",
+      "source_card_url": "https://api.tcgdex.net/v2/en/cards/pl4-AR2",
+      "before_fields": {
+        "set_code": null,
+        "number": null,
+        "name": "Arceus",
+        "number_plain": null,
+        "set_id": "f4b3f0be-5d7b-445f-bbe4-bb136699d5fe"
+      },
+      "target_parent_fields": {
+        "set_code": "pl4",
+        "number": "AR2",
+        "name": "Arceus"
+      },
+      "expected_generated_readback": {
+        "number_plain": "AR2"
+      },
+      "rollback_parent_fields": {
+        "set_code": null,
+        "number": null,
+        "name": "Arceus"
+      },
+      "field_changes": {
+        "set_code": {
+          "before": null,
+          "after": "pl4"
+        },
+        "number": {
+          "before": null,
+          "after": "AR2"
+        }
+      },
+      "supported_finishes": [
+        "holo"
+      ],
+      "target_printing_count": 1,
+      "before_child_printing_count": 1,
+      "dependency_counts": {
+        "external_mappings": 1,
+        "card_print_identity": 1,
+        "card_print_traits": 1,
+        "vault_items": 0
+      },
+      "evidence_sources": [
+        "pokemontcg_api",
+        "reverseholo_set_checklist",
+        "tcgdex",
+        "tcgplayer_price_guide",
+        "thepricedex_price_list"
+      ],
+      "mutation_design_status": "approval_required_no_write"
+    },
+    {
+      "set_key": "pl4",
+      "set_name": "Arceus",
+      "card_print_id": "8b2c91cf-bd7c-4564-84ca-5863e1414257",
+      "source_external_id": "pl4-AR3",
+      "source_card_url": "https://api.tcgdex.net/v2/en/cards/pl4-AR3",
+      "before_fields": {
+        "set_code": null,
+        "number": null,
+        "name": "Arceus",
+        "number_plain": null,
+        "set_id": "f4b3f0be-5d7b-445f-bbe4-bb136699d5fe"
+      },
+      "target_parent_fields": {
+        "set_code": "pl4",
+        "number": "AR3",
+        "name": "Arceus"
+      },
+      "expected_generated_readback": {
+        "number_plain": "AR3"
+      },
+      "rollback_parent_fields": {
+        "set_code": null,
+        "number": null,
+        "name": "Arceus"
+      },
+      "field_changes": {
+        "set_code": {
+          "before": null,
+          "after": "pl4"
+        },
+        "number": {
+          "before": null,
+          "after": "AR3"
+        }
+      },
+      "supported_finishes": [
+        "holo"
+      ],
+      "target_printing_count": 1,
+      "before_child_printing_count": 1,
+      "dependency_counts": {
+        "external_mappings": 1,
+        "card_print_identity": 1,
+        "card_print_traits": 1,
+        "vault_items": 0
+      },
+      "evidence_sources": [
+        "pokemontcg_api",
+        "reverseholo_set_checklist",
+        "tcgdex",
+        "tcgplayer_price_guide",
+        "thepricedex_price_list"
+      ],
+      "mutation_design_status": "approval_required_no_write"
+    },
+    {
+      "set_key": "pl4",
+      "set_name": "Arceus",
+      "card_print_id": "61cd00a6-3418-4980-ade8-b26c8d0b4d5c",
+      "source_external_id": "pl4-AR4",
+      "source_card_url": "https://api.tcgdex.net/v2/en/cards/pl4-AR4",
+      "before_fields": {
+        "set_code": null,
+        "number": null,
+        "name": "Arceus",
+        "number_plain": null,
+        "set_id": "f4b3f0be-5d7b-445f-bbe4-bb136699d5fe"
+      },
+      "target_parent_fields": {
+        "set_code": "pl4",
+        "number": "AR4",
+        "name": "Arceus"
+      },
+      "expected_generated_readback": {
+        "number_plain": "AR4"
+      },
+      "rollback_parent_fields": {
+        "set_code": null,
+        "number": null,
+        "name": "Arceus"
+      },
+      "field_changes": {
+        "set_code": {
+          "before": null,
+          "after": "pl4"
+        },
+        "number": {
+          "before": null,
+          "after": "AR4"
+        }
+      },
+      "supported_finishes": [
+        "holo"
+      ],
+      "target_printing_count": 1,
+      "before_child_printing_count": 1,
+      "dependency_counts": {
+        "external_mappings": 1,
+        "card_print_identity": 1,
+        "card_print_traits": 1,
+        "vault_items": 0
+      },
+      "evidence_sources": [
+        "pokemontcg_api",
+        "reverseholo_set_checklist",
+        "tcgdex",
+        "tcgplayer_price_guide",
+        "thepricedex_price_list"
+      ],
+      "mutation_design_status": "approval_required_no_write"
+    },
+    {
+      "set_key": "pl4",
+      "set_name": "Arceus",
+      "card_print_id": "63a0a7b8-bdfa-4a08-ad30-680bcc45802e",
+      "source_external_id": "pl4-AR5",
+      "source_card_url": "https://api.tcgdex.net/v2/en/cards/pl4-AR5",
+      "before_fields": {
+        "set_code": null,
+        "number": null,
+        "name": "Arceus",
+        "number_plain": null,
+        "set_id": "f4b3f0be-5d7b-445f-bbe4-bb136699d5fe"
+      },
+      "target_parent_fields": {
+        "set_code": "pl4",
+        "number": "AR5",
+        "name": "Arceus"
+      },
+      "expected_generated_readback": {
+        "number_plain": "AR5"
+      },
+      "rollback_parent_fields": {
+        "set_code": null,
+        "number": null,
+        "name": "Arceus"
+      },
+      "field_changes": {
+        "set_code": {
+          "before": null,
+          "after": "pl4"
+        },
+        "number": {
+          "before": null,
+          "after": "AR5"
+        }
+      },
+      "supported_finishes": [
+        "holo"
+      ],
+      "target_printing_count": 1,
+      "before_child_printing_count": 1,
+      "dependency_counts": {
+        "external_mappings": 1,
+        "card_print_identity": 1,
+        "card_print_traits": 1,
+        "vault_items": 0
+      },
+      "evidence_sources": [
+        "pokemontcg_api",
+        "reverseholo_set_checklist",
+        "tcgdex",
+        "tcgplayer_price_guide",
+        "thepricedex_price_list"
+      ],
+      "mutation_design_status": "approval_required_no_write"
+    },
+    {
+      "set_key": "pl4",
+      "set_name": "Arceus",
+      "card_print_id": "67e47461-e03c-4da3-8557-d3df639dbb98",
+      "source_external_id": "pl4-AR7",
+      "source_card_url": "https://api.tcgdex.net/v2/en/cards/pl4-AR7",
+      "before_fields": {
+        "set_code": null,
+        "number": null,
+        "name": "Arceus",
+        "number_plain": null,
+        "set_id": "f4b3f0be-5d7b-445f-bbe4-bb136699d5fe"
+      },
+      "target_parent_fields": {
+        "set_code": "pl4",
+        "number": "AR7",
+        "name": "Arceus"
+      },
+      "expected_generated_readback": {
+        "number_plain": "AR7"
+      },
+      "rollback_parent_fields": {
+        "set_code": null,
+        "number": null,
+        "name": "Arceus"
+      },
+      "field_changes": {
+        "set_code": {
+          "before": null,
+          "after": "pl4"
+        },
+        "number": {
+          "before": null,
+          "after": "AR7"
+        }
+      },
+      "supported_finishes": [
+        "holo"
+      ],
+      "target_printing_count": 1,
+      "before_child_printing_count": 1,
+      "dependency_counts": {
+        "external_mappings": 1,
+        "card_print_identity": 1,
+        "card_print_traits": 1,
+        "vault_items": 0
+      },
+      "evidence_sources": [
+        "pokemontcg_api",
+        "reverseholo_set_checklist",
+        "tcgdex",
+        "tcgplayer_price_guide",
+        "thepricedex_price_list"
+      ],
+      "mutation_design_status": "approval_required_no_write"
+    },
+    {
+      "set_key": "pl4",
+      "set_name": "Arceus",
+      "card_print_id": "0db1b355-bb14-4042-8597-4afd1d9a2b77",
+      "source_external_id": "pl4-AR8",
+      "source_card_url": "https://api.tcgdex.net/v2/en/cards/pl4-AR8",
+      "before_fields": {
+        "set_code": null,
+        "number": null,
+        "name": "Arceus",
+        "number_plain": null,
+        "set_id": "f4b3f0be-5d7b-445f-bbe4-bb136699d5fe"
+      },
+      "target_parent_fields": {
+        "set_code": "pl4",
+        "number": "AR8",
+        "name": "Arceus"
+      },
+      "expected_generated_readback": {
+        "number_plain": "AR8"
+      },
+      "rollback_parent_fields": {
+        "set_code": null,
+        "number": null,
+        "name": "Arceus"
+      },
+      "field_changes": {
+        "set_code": {
+          "before": null,
+          "after": "pl4"
+        },
+        "number": {
+          "before": null,
+          "after": "AR8"
+        }
+      },
+      "supported_finishes": [
+        "holo"
+      ],
+      "target_printing_count": 1,
+      "before_child_printing_count": 1,
+      "dependency_counts": {
+        "external_mappings": 1,
+        "card_print_identity": 1,
+        "card_print_traits": 1,
+        "vault_items": 0
+      },
+      "evidence_sources": [
+        "pokemontcg_api",
+        "reverseholo_set_checklist",
+        "tcgdex",
+        "tcgplayer_price_guide",
+        "thepricedex_price_list"
+      ],
+      "mutation_design_status": "approval_required_no_write"
+    },
+    {
+      "set_key": "pl4",
+      "set_name": "Arceus",
+      "card_print_id": "502ee1d6-d7c2-40d7-8bfa-5e94ff5c3bda",
+      "source_external_id": "pl4-SH10",
+      "source_card_url": "https://api.tcgdex.net/v2/en/cards/pl4-SH10",
+      "before_fields": {
+        "set_code": null,
+        "number": null,
+        "name": "Bagon",
+        "number_plain": null,
+        "set_id": "f4b3f0be-5d7b-445f-bbe4-bb136699d5fe"
+      },
+      "target_parent_fields": {
+        "set_code": "pl4",
+        "number": "SH10",
+        "name": "Bagon"
+      },
+      "expected_generated_readback": {
+        "number_plain": "SH10"
+      },
+      "rollback_parent_fields": {
+        "set_code": null,
+        "number": null,
+        "name": "Bagon"
+      },
+      "field_changes": {
+        "set_code": {
+          "before": null,
+          "after": "pl4"
+        },
+        "number": {
+          "before": null,
+          "after": "SH10"
+        }
+      },
+      "supported_finishes": [
+        "reverse"
+      ],
+      "target_printing_count": 1,
+      "before_child_printing_count": 1,
+      "dependency_counts": {
+        "external_mappings": 1,
+        "card_print_identity": 1,
+        "card_print_traits": 1,
+        "vault_items": 0
+      },
+      "evidence_sources": [
+        "pokemontcg_api",
+        "reverseholo_set_checklist",
+        "tcgdex",
+        "tcgplayer_price_guide",
+        "thepricedex_price_list"
+      ],
+      "mutation_design_status": "approval_required_no_write"
+    },
+    {
+      "set_key": "pl4",
+      "set_name": "Arceus",
+      "card_print_id": "22a0396f-a0fe-4680-8568-71246489db3c",
+      "source_external_id": "pl4-SH11",
+      "source_card_url": "https://api.tcgdex.net/v2/en/cards/pl4-SH11",
+      "before_fields": {
+        "set_code": null,
+        "number": null,
+        "name": "Ponyta",
+        "number_plain": null,
+        "set_id": "f4b3f0be-5d7b-445f-bbe4-bb136699d5fe"
+      },
+      "target_parent_fields": {
+        "set_code": "pl4",
+        "number": "SH11",
+        "name": "Ponyta"
+      },
+      "expected_generated_readback": {
+        "number_plain": "SH11"
+      },
+      "rollback_parent_fields": {
+        "set_code": null,
+        "number": null,
+        "name": "Ponyta"
+      },
+      "field_changes": {
+        "set_code": {
+          "before": null,
+          "after": "pl4"
+        },
+        "number": {
+          "before": null,
+          "after": "SH11"
+        }
+      },
+      "supported_finishes": [
+        "reverse"
+      ],
+      "target_printing_count": 1,
+      "before_child_printing_count": 1,
+      "dependency_counts": {
+        "external_mappings": 1,
+        "card_print_identity": 1,
+        "card_print_traits": 1,
+        "vault_items": 0
+      },
+      "evidence_sources": [
+        "pokemontcg_api",
+        "reverseholo_set_checklist",
+        "tcgdex",
+        "tcgplayer_price_guide",
+        "thepricedex_price_list"
+      ],
+      "mutation_design_status": "approval_required_no_write"
+    },
+    {
+      "set_key": "swsh2",
+      "set_name": "Rebel Clash",
+      "card_print_id": "9cf48b11-bf42-4aa3-861b-c2ca5543877e",
+      "source_external_id": "swsh2-154",
+      "source_card_url": "https://api.tcgdex.net/v2/en/cards/swsh2-154",
+      "before_fields": {
+        "set_code": null,
+        "number": null,
+        "name": "Boss's Orders (Giovanni)",
+        "number_plain": null,
+        "set_id": "71ebdec9-9eeb-4adc-b8ef-1e6e23e6c5ec"
+      },
+      "target_parent_fields": {
+        "set_code": "swsh2",
+        "number": "154",
+        "name": "Boss's Orders (Giovanni)"
+      },
+      "expected_generated_readback": {
+        "number_plain": "154"
+      },
+      "rollback_parent_fields": {
+        "set_code": null,
+        "number": null,
+        "name": "Boss's Orders (Giovanni)"
+      },
+      "field_changes": {
+        "set_code": {
+          "before": null,
+          "after": "swsh2"
+        },
+        "number": {
+          "before": null,
+          "after": "154"
+        }
+      },
+      "supported_finishes": [
+        "holo",
+        "reverse"
+      ],
+      "target_printing_count": 2,
+      "before_child_printing_count": 2,
+      "dependency_counts": {
+        "external_mappings": 1,
+        "card_print_identity": 1,
+        "card_print_traits": 1,
+        "vault_items": 0
+      },
+      "evidence_sources": [
+        "tcgcsv_tcgplayer_catalog",
+        "tcgdex"
+      ],
+      "mutation_design_status": "approval_required_no_write"
+    }
+  ]
+}
