@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-08T21:08:21.970Z",
+  "generated_at": "2026-06-08T21:28:02.491Z",
   "version": "english_master_index_no_write_execution_plan_v1",
   "audit_only": true,
   "db_writes_performed": false,
@@ -76,8 +76,8 @@
     {
       "phase": "Phase 5",
       "name": "Write approval gate",
-      "status": "approval_packet_complete_approval_not_recorded_no_write",
-      "required_approval": "Founder/operator approval after reviewing exact approval packet rows."
+      "status": "approval_record_template_complete_approval_not_recorded_no_write",
+      "required_approval": "Founder/operator approval after reviewing exact approval packet rows and preserving the approval template package fingerprint."
     },
     {
       "phase": "Phase 6",
@@ -504,7 +504,7 @@
     {
       "package_id": "PKG-01",
       "name": "Physical missing-set recovery - master-verified subset",
-      "current_state": "operator_approval_packet_complete_approval_not_recorded_no_write",
+      "current_state": "approval_record_template_complete_approval_not_recorded_no_write",
       "future_write_allowed_after_approval": false,
       "evidence_ready_for_dry_run_design": true,
       "generated_dry_run_packages": {
@@ -738,6 +738,22 @@
         "pass": true,
         "write_ready_now": 0
       },
+      "physical_recovery_operator_approval_record_template": {
+        "exists": true,
+        "file": "english_master_index_operator_approval_record_template_v1.json",
+        "approval_status": "blank_template_no_approval_recorded",
+        "approval_recorded": false,
+        "card_print_rows_requiring_approval": 106,
+        "child_printing_rows_verified": 143,
+        "affected_set_count": 12,
+        "package_fingerprint_sha256": "34cc9acbb81bfadbe2115528a1339cb82afa71fa01fd0d52b62b83834a990b79",
+        "row_fingerprint_count": 106,
+        "unique_row_fingerprint_count": 106,
+        "blank_approval_entries": 106,
+        "stop_findings": 0,
+        "pass": true,
+        "write_ready_now": 0
+      },
       "candidate_card_prints": 106,
       "candidate_printing_rows": 143,
       "candidate_sets": [
@@ -892,6 +908,7 @@
       "blockers": [
         "Operator approval packet is a review artifact only and is not approval.",
         "Approval checkboxes remain false and approval_recorded is false.",
+        "Approval record template is blank and records no approval.",
         "No fresh pre-write production snapshot has been captured.",
         "No transactional execution artifact has been generated or approved.",
         "write_ready_now remains 0."

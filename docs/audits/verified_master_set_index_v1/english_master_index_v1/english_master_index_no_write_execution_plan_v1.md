@@ -20,7 +20,7 @@ This is the complete no-write execution plan required before any future write pr
 | Phase 2 | Rerun master index and exact-match audits | complete_for_current_master_index | updated master index facts; updated exact finish matrix; row-level master_verified status; conflict and manual review reports |
 | Phase 3 | Generate set-specific dry-run write packages | complete_no_write | exact row IDs; before/after snapshots; rollback artifact; post-apply verification query plan; operator approval checklist |
 | Phase 4 | Build consolidated apply design | complete_no_write_approval_required | consolidated mutation matrix; rollback design; post-apply verification plan; explicit non-executable status |
-| Phase 5 | Write approval gate | approval_packet_complete_approval_not_recorded_no_write | Founder/operator approval after reviewing exact approval packet rows. |
+| Phase 5 | Write approval gate | approval_record_template_complete_approval_not_recorded_no_write | Founder/operator approval after reviewing exact approval packet rows and preserving the approval template package fingerprint. |
 | Phase 6 | Fresh snapshot and guarded execution artifact | not_started | Only after explicit approval: capture fresh snapshot and create a separate dry-run-default transactional execution artifact. |
 
 ## Priority Dry-Run Package Targets
