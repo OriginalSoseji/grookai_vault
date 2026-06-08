@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-25T13:45:46.022Z",
+  "generated_at": "2026-06-08T19:45:00.563Z",
   "version": "english_master_index_write_readiness_v1",
   "audit_only": true,
   "db_writes_performed": false,
@@ -13,18 +13,17 @@
   "summary": {
     "write_ready_now": 0,
     "db_writes_allowed_from_this_plan": false,
-    "planning_ready_but_write_blocked": 5912,
-    "blocked_rows_counted": 60726,
+    "planning_ready_but_write_blocked": 36939,
+    "blocked_rows_counted": 30607,
     "grookai_printing_rows": 55266,
-    "index_printing_rows": 39034,
+    "index_printing_rows": 38846,
     "global_status_counts": {
-      "api_agreed_by_index": 21179,
-      "candidate_unconfirmed_by_index": 11606,
-      "master_verified_by_index": 620,
-      "missing_from_grookai": 6080,
-      "name_mismatch_needs_review": 196,
+      "human_source_verified_by_index": 1,
+      "master_verified_by_index": 31975,
+      "missing_from_grookai": 7317,
+      "name_mismatch_needs_review": 139,
       "set_unmapped": 11176,
-      "unsupported_by_current_index": 10489
+      "unsupported_by_current_index": 11975
     },
     "set_unmapped_categories": {
       "legacy_orphan": 16,
@@ -63,17 +62,20 @@
         "xyp": 61
       },
       "by_card_match_status": {
-        "exact_card_identity_match": 807
+        "exact_card_identity_match": 319,
+        "number_missing_from_index": 488
       },
       "by_finish_match_status": {
-        "partial_finishes_supported_by_index": 348,
-        "all_finishes_supported_but_not_master_verified": 455,
-        "no_finishes_supported_by_index": 4
+        "partial_finishes_supported_by_index": 210,
+        "blocked_until_card_identity_match": 488,
+        "all_finishes_master_verified_by_index": 106,
+        "no_finishes_supported_by_index": 3
       },
       "by_combined_status": {
-        "exact_card_identity_match / partial_finishes_supported_by_index": 348,
-        "exact_card_identity_match / all_finishes_supported_but_not_master_verified": 455,
-        "exact_card_identity_match / no_finishes_supported_by_index": 4
+        "exact_card_identity_match / partial_finishes_supported_by_index": 210,
+        "number_missing_from_index / blocked_until_card_identity_match": 488,
+        "exact_card_identity_match / all_finishes_master_verified_by_index": 106,
+        "exact_card_identity_match / no_finishes_supported_by_index": 3
       },
       "by_era_lane": {
         "legacy": 169,
@@ -81,59 +83,80 @@
         "modern": 426
       },
       "printing_rows_by_finish_status": {
-        "partial_finishes_supported_by_index": 963,
-        "all_finishes_supported_but_not_master_verified": 718,
-        "no_finishes_supported_by_index": 4
+        "partial_finishes_supported_by_index": 608,
+        "blocked_until_card_identity_match": 925,
+        "all_finishes_master_verified_by_index": 143,
+        "no_finishes_supported_by_index": 9
       }
     },
     "source_acquisition_queue": {
-      "total_queue_items": 482,
+      "total_queue_items": 161,
       "by_lane": {
-        "reverse_holo": 10238,
-        "holo": 8846,
-        "parallel": 691,
-        "promo": 4652,
-        "subset": 3512,
-        "legacy": 8160,
-        "alias_resolution": 6727
+        "reverse_holo": 1253,
+        "holo": 4274,
+        "parallel": 694,
+        "promo": 2862,
+        "subset": 1015,
+        "legacy": 0,
+        "alias_resolution": 6851
       },
       "by_work_type": {
-        "alias_governance": 10239,
-        "source_acquisition": 3371,
-        "second_source_evidence": 10246,
-        "finish_disproof_or_overgeneration_review": 5099,
-        "human_checklist_evidence": 12780,
-        "legacy_policy_evidence": 1091
+        "alias_governance": 7866,
+        "source_acquisition": 3556,
+        "finish_disproof_or_overgeneration_review": 5527
       },
       "by_mutation_authority_warning": {
-        "not mutation authority": 14701,
-        "not truth": 10246,
-        "not deletion authority": 5099,
-        "not master truth": 11940,
-        "not insertion authority": 840
+        "not mutation authority": 11422,
+        "not deletion authority": 5527
       }
     },
+    "finish_blocker_closure": {
+      "closure_status": "closed_to_blocker_boundary",
+      "remaining_finish_second_source_needed": 5,
+      "blocker_mapped_rows": 5,
+      "unmapped_queue_rows": 0,
+      "stale_blocker_rows": 0,
+      "promotion_safe_now": 0,
+      "by_finish": {
+        "holo": 1,
+        "normal": 3,
+        "stamped": 1
+      },
+      "by_blocker_type": {
+        "finish_label_conflict": 4,
+        "card_number_conflict": 1
+      },
+      "by_set": {
+        "bw8|Plasma Storm": 1,
+        "ex9|Emerald": 1,
+        "sm8|Lost Thunder": 1,
+        "sv03.5|151": 1,
+        "swsh3.5|Champion's Path": 1
+      },
+      "write_ready_now": 0
+    },
     "truth_readiness": {
-      "proof_ready": 1,
-      "moderate_confidence": 50,
-      "blocked": 125,
-      "source_limited": 66
+      "proof_ready": 8,
+      "high_confidence": 75,
+      "blocked": 124,
+      "source_limited": 29
     },
     "repair_priority": {
-      "total_ranked_sets": 242,
+      "total_ranked_sets": 236,
       "by_recommendation": {
-        "already_proven_monitor_only": 1,
-        "blocked": 20,
-        "source_acquisition_then_overgeneration_review": 59,
-        "source_acquisition_first": 148,
-        "alias_governance_first": 14
+        "already_proven_monitor_only": 8,
+        "controlled_proof_loop_candidate": 68,
+        "source_acquisition_first": 52,
+        "source_acquisition_then_overgeneration_review": 58,
+        "blocked": 38,
+        "alias_governance_first": 12
       }
     }
   },
   "global_buckets": [
     {
       "bucket": "master_verified_monitor_only",
-      "row_count": 620,
+      "row_count": 31975,
       "status": "proven_monitor_only",
       "mutation_ready": false,
       "reason": "Already verified by the current index. Monitor only unless a future drift audit finds divergence.",
@@ -141,7 +164,7 @@
     },
     {
       "bucket": "api_agreed_by_index",
-      "row_count": 21179,
+      "row_count": 0,
       "status": "blocked",
       "mutation_ready": false,
       "reason": "API agreement is not master truth for finish/printing rows.",
@@ -149,7 +172,7 @@
     },
     {
       "bucket": "candidate_unconfirmed_by_index",
-      "row_count": 11606,
+      "row_count": 0,
       "status": "blocked",
       "mutation_ready": false,
       "reason": "Single-source evidence is not canonical truth.",
@@ -157,7 +180,7 @@
     },
     {
       "bucket": "unsupported_by_current_index",
-      "row_count": 10489,
+      "row_count": 11975,
       "status": "blocked",
       "mutation_ready": false,
       "reason": "Unsupported by current index is not deletion authority.",
@@ -165,7 +188,7 @@
     },
     {
       "bucket": "missing_from_grookai",
-      "row_count": 6080,
+      "row_count": 7317,
       "status": "blocked",
       "mutation_ready": false,
       "reason": "Missing from Grookai is not insertion authority.",
@@ -173,7 +196,7 @@
     },
     {
       "bucket": "name_mismatch_needs_review",
-      "row_count": 196,
+      "row_count": 139,
       "status": "blocked",
       "mutation_ready": false,
       "reason": "Name mismatch is not identity rewrite authority.",
@@ -222,15 +245,15 @@
     },
     {
       "bucket": "source_acquisition_queue",
-      "row_count": 482,
+      "row_count": 161,
       "weighted_rows": {
-        "reverse_holo": 10238,
-        "holo": 8846,
-        "parallel": 691,
-        "promo": 4652,
-        "subset": 3512,
-        "legacy": 8160,
-        "alias_resolution": 6727
+        "reverse_holo": 1253,
+        "holo": 4274,
+        "parallel": 694,
+        "promo": 2862,
+        "subset": 1015,
+        "legacy": 0,
+        "alias_resolution": 6851
       },
       "status": "evidence_work_required",
       "mutation_ready": false,
@@ -238,13 +261,29 @@
       "next_action": "Prioritize human checklist evidence for high-volume physical recovery sets."
     },
     {
-      "bucket": "truth_readiness_sets",
-      "row_count": 242,
+      "bucket": "finish_blocker_boundary",
+      "row_count": 5,
+      "status": "manual_adjudication_required",
+      "mutation_ready": false,
+      "reason": "Remaining finish-second-source rows have exact finish-label or card-number conflicts and are not promotion safe.",
+      "next_action": "Resolve manually as finish-label/number adjudication before any future write package.",
       "detail": {
-        "proof_ready": 1,
-        "moderate_confidence": 50,
-        "blocked": 125,
-        "source_limited": 66
+        "closure_status": "closed_to_blocker_boundary",
+        "promotion_safe_now": 0,
+        "by_blocker_type": {
+          "finish_label_conflict": 4,
+          "card_number_conflict": 1
+        }
+      }
+    },
+    {
+      "bucket": "truth_readiness_sets",
+      "row_count": 236,
+      "detail": {
+        "proof_ready": 8,
+        "high_confidence": 75,
+        "blocked": 124,
+        "source_limited": 29
       },
       "status": "planning_only",
       "mutation_ready": false,
@@ -253,7 +292,7 @@
     },
     {
       "bucket": "repair_priority_sets",
-      "row_count": 242,
+      "row_count": 236,
       "status": "planning_only",
       "mutation_ready": false,
       "reason": "Repair priority is a future planning aid only.",
@@ -275,7 +314,7 @@
       "name": "Ascended Heroes monitor-only proof baseline",
       "current_state": "complete",
       "future_write_allowed_after_approval": false,
-      "candidate_rows": 620,
+      "candidate_rows": 31975,
       "blockers": [],
       "required_before_write": [
         "No write required unless future drift appears."
@@ -290,10 +329,10 @@
       "candidate_card_prints": 807,
       "candidate_printing_rows": 1685,
       "evidence_shape": {
-        "exact_card_identity_match": 807,
-        "all_finishes_supported_but_not_master_verified": 455,
-        "partial_finishes_supported_by_index": 348,
-        "no_finishes_supported_by_index": 4
+        "exact_card_identity_match": 319,
+        "all_finishes_supported_but_not_master_verified": 0,
+        "partial_finishes_supported_by_index": 210,
+        "no_finishes_supported_by_index": 3
       },
       "blockers": [
         "No candidate finish is currently master_verified.",
@@ -330,7 +369,7 @@
       "name": "Unsupported printings cleanup",
       "current_state": "blocked_by_index_maturity",
       "future_write_allowed_after_approval": false,
-      "candidate_printing_rows": 10489,
+      "candidate_printing_rows": 11975,
       "blockers": [
         "Unsupported by current index is not deletion authority.",
         "Many sets are API-only or source-limited."
@@ -347,7 +386,7 @@
       "name": "Missing-from-Grookai insertions",
       "current_state": "blocked_by_master_verification",
       "future_write_allowed_after_approval": false,
-      "candidate_printing_rows": 6080,
+      "candidate_printing_rows": 7317,
       "blockers": [
         "Missing from Grookai is not insertion authority.",
         "Only master_verified index rows may participate in future insertion."
@@ -364,7 +403,7 @@
       "name": "Name and alias governance",
       "current_state": "manual_governance_required",
       "future_write_allowed_after_approval": false,
-      "candidate_rows": 196,
+      "candidate_rows": 139,
       "blockers": [
         "Name mismatch is not identity rewrite authority.",
         "Alias and subset policies must be source-backed."

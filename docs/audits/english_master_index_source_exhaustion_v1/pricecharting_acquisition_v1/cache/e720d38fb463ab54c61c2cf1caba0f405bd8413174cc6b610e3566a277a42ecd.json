@@ -1,0 +1,43 @@
+{
+  "status": "no_validated_match",
+  "fact": {
+    "gap_type": "finish_human_checklist_evidence_needed",
+    "fact_type": "printing_finish",
+    "set_key": "smp",
+    "set_name": "SM Black Star Promos",
+    "card_number": "SM104a",
+    "card_name": "Solgaleo-GX",
+    "finish_key": "holo",
+    "status": "candidate_unconfirmed",
+    "sources": [
+      "pokemontcg_api"
+    ],
+    "source_authorities": [
+      "api.pokemontcg.io"
+    ],
+    "source_kinds": [
+      "structured_api"
+    ],
+    "evidence_urls": [],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "attempts": [
+    {
+      "query": "Pokemon SM Black Star Promos Solgaleo-GX SM104a holo",
+      "url": "https://www.pricecharting.com/search-products?q=Pokemon%20SM%20Black%20Star%20Promos%20Solgaleo-GX%20SM104a%20holo&type=prices",
+      "error": "Fetch failed 403 Forbidden: https://www.pricecharting.com/search-products?q=Pokemon%20SM%20Black%20Star%20Promos%20Solgaleo-GX%20SM104a%20holo&type=prices"
+    },
+    {
+      "query": "Pokemon SM Black Star Promos Solgaleo-GX SM104a holofoil",
+      "url": "https://www.pricecharting.com/search-products?q=Pokemon%20SM%20Black%20Star%20Promos%20Solgaleo-GX%20SM104a%20holofoil&type=prices",
+      "parsed": {
+        "title": "Pokemon SM Black Star Promos Solgaleo-GX SM104a Holofoil Prices | Pokemon SM Black Star Promos Solgaleo-GX SM104a Holofoil List",
+        "source_url": "https://www.pricecharting.com/search-products?q=pokemon+sm+black+star+promos+solgaleo-gx+sm104a+holofoil&type=prices"
+      },
+      "validation": {
+        "ok": false,
+        "reason": "title_pattern_not_supported"
+      }
+    }
+  ]
+}

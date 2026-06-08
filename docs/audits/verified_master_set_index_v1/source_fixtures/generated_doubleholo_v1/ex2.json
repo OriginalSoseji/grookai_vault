@@ -1,0 +1,31 @@
+{
+  "fixture_version": "VERIFIED_MASTER_SET_INDEX_V1_HUMAN_SOURCE_FIXTURE_GENERATED",
+  "source_key": "doubleholo_finish_ex2",
+  "source_kind": "marketplace_checklist",
+  "source_url": "https://doubleholo.com/sets/pokemon-sandstorm",
+  "source_status": "available_generated",
+  "set_key": "ex2",
+  "set_name": "Sandstorm",
+  "retrieved_at": "2026-05-27T16:29:37.798Z",
+  "raw_snapshot_ref": "generated_fixture:doubleholo:ex2:2026-05-27T16:29:37.798Z",
+  "generation_note": "Generated from Double Holo set checklist explicit bracketed finish labels only.",
+  "records": [
+    {
+      "source_key": "doubleholo_set_checklist",
+      "source_kind": "marketplace_checklist",
+      "source_url": "https://doubleholo.com/sets/pokemon-sandstorm",
+      "set_key": "ex2",
+      "set_name": "Sandstorm",
+      "card_number": "93",
+      "card_name": "Multi Energy",
+      "finish_key": "cosmos",
+      "rarity": null,
+      "evidence_type": "finish_presence",
+      "evidence_label": "Double Holo checklist row Multi Energy [Cosmos Holo] #93",
+      "language": "en",
+      "retrieved_at": "2026-05-27T16:29:37.798Z",
+      "raw_snapshot_ref": "doubleholo:ex2:93:cosmos",
+      "notes": "Generated only from explicit bracketed Double Holo finish labels."
+    }
+  ]
+}

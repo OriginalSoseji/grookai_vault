@@ -1,0 +1,62 @@
+{
+  "status": "validated",
+  "fact": {
+    "gap_type": "finish_second_source_needed",
+    "fact_type": "printing_finish",
+    "set_key": "sv07",
+    "set_name": "Stellar Crown",
+    "card_number": "135",
+    "card_name": "Glass Trumpet",
+    "finish_key": "stamped",
+    "status": "human_source_verified",
+    "sources": [
+      "thepricedex_price_list"
+    ],
+    "source_authorities": [
+      "thepricedex.com"
+    ],
+    "source_kinds": [
+      "marketplace_checklist"
+    ],
+    "evidence_urls": [
+      "https://www.thepricedex.com/set/sv7/stellar-crown/price-list"
+    ],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "query": "Pokemon Stellar Crown Glass Trumpet 135 stamped",
+  "search_url": "https://www.pricecharting.com/api/products?q=Pokemon%20Stellar%20Crown%20Glass%20Trumpet%20135%20stamped",
+  "source_url": "https://www.pricecharting.com/game/pokemon-stellar-crown/glass-trumpet-gym-stamp-135",
+  "title": "Glass Trumpet [Gym Stamp] #135 | Pokemon Stellar Crown",
+  "title_parts": {
+    "card_name": "Glass Trumpet",
+    "card_number": "135",
+    "variant_label": "Gym Stamp",
+    "set_name": "Pokemon Stellar Crown",
+    "pricecharting_product_id": "10028510"
+  },
+  "validation_source": "pricecharting_api_products",
+  "source_lane": "pricecharting_api",
+  "attempts": [
+    {
+      "query": "Pokemon Stellar Crown Glass Trumpet 135 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Stellar%20Crown%20Glass%20Trumpet%20135%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10028510",
+      "product_name": "Glass Trumpet [Gym Stamp] #135",
+      "console_name": "Pokemon Stellar Crown",
+      "validation": {
+        "ok": true,
+        "titleParts": {
+          "card_name": "Glass Trumpet",
+          "card_number": "135",
+          "variant_label": "Gym Stamp",
+          "set_name": "Pokemon Stellar Crown",
+          "pricecharting_product_id": "10028510"
+        },
+        "source_url": "https://www.pricecharting.com/game/pokemon-stellar-crown/glass-trumpet-gym-stamp-135",
+        "title": "Glass Trumpet [Gym Stamp] #135 | Pokemon Stellar Crown"
+      }
+    }
+  ]
+}

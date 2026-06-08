@@ -1,0 +1,549 @@
+{
+  "status": "api_no_validated_match",
+  "fact": {
+    "gap_type": "finish_second_source_needed",
+    "fact_type": "printing_finish",
+    "set_key": "cel25",
+    "set_name": "Celebrations",
+    "card_number": "24",
+    "card_name": "_____'s Pikachu",
+    "finish_key": "holo",
+    "status": "human_source_verified",
+    "sources": [
+      "thepricedex_price_list"
+    ],
+    "source_authorities": [
+      "thepricedex.com"
+    ],
+    "source_kinds": [
+      "marketplace_checklist"
+    ],
+    "evidence_urls": [
+      "https://www.thepricedex.com/set/cel25/celebrations/price-list"
+    ],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "attempts": [
+    {
+      "query": "Pokemon Celebrations _____'s Pikachu 24 holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Celebrations%20_____'s%20Pikachu%2024%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "2618178",
+      "product_name": "Pikachu Birthday #24",
+      "console_name": "Pokemon Celebrations",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Pikachu Birthday"
+      }
+    },
+    {
+      "query": "Pokemon Celebrations _____'s Pikachu 24 holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Celebrations%20_____'s%20Pikachu%2024%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "2618204",
+      "product_name": "Pikachu V #SWSH143",
+      "console_name": "Pokemon Celebrations",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:SWSH143"
+      }
+    },
+    {
+      "query": "Pokemon Celebrations _____'s Pikachu 24 holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Celebrations%20_____'s%20Pikachu%2024%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "2618210",
+      "product_name": "Pikachu V #SWSH145",
+      "console_name": "Pokemon Celebrations",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:SWSH145"
+      }
+    },
+    {
+      "query": "Pokemon Celebrations _____'s Pikachu 24 holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Celebrations%20_____'s%20Pikachu%2024%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5427273",
+      "product_name": "Pikachu [Jumbo] #58",
+      "console_name": "Pokemon Celebrations",
+      "validation": {
+        "ok": false,
+        "reason": "product_scope_jumbo_not_canonical_set_finish"
+      }
+    },
+    {
+      "query": "Pokemon Celebrations _____'s Pikachu 24 holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Celebrations%20_____'s%20Pikachu%2024%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "2618150",
+      "product_name": "Pikachu #5",
+      "console_name": "Pokemon Celebrations",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:5"
+      }
+    },
+    {
+      "query": "Pokemon Celebrations _____'s Pikachu 24 holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Celebrations%20_____'s%20Pikachu%2024%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "2618205",
+      "product_name": "Pikachu V Union #SWSH139",
+      "console_name": "Pokemon Celebrations",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:SWSH139"
+      }
+    },
+    {
+      "query": "Pokemon Celebrations _____'s Pikachu 24 holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Celebrations%20_____'s%20Pikachu%2024%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "2618206",
+      "product_name": "Pikachu V Union #SWSH140",
+      "console_name": "Pokemon Celebrations",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:SWSH140"
+      }
+    },
+    {
+      "query": "Pokemon Celebrations _____'s Pikachu 24 holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Celebrations%20_____'s%20Pikachu%2024%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "2618207",
+      "product_name": "Pikachu V Union #SWSH141",
+      "console_name": "Pokemon Celebrations",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:SWSH141"
+      }
+    },
+    {
+      "query": "Pokemon Celebrations _____'s Pikachu 24 holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Celebrations%20_____'s%20Pikachu%2024%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "2618208",
+      "product_name": "Pikachu V Union #SWSH142",
+      "console_name": "Pokemon Celebrations",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:SWSH142"
+      }
+    },
+    {
+      "query": "Pokemon Celebrations _____'s Pikachu 24 holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Celebrations%20_____'s%20Pikachu%2024%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "2618151",
+      "product_name": "Flying Pikachu V #6",
+      "console_name": "Pokemon Celebrations",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:6"
+      }
+    },
+    {
+      "query": "Pokemon Celebrations _____'s Pikachu 24 holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Celebrations%20_____'s%20Pikachu%2024%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "2618153",
+      "product_name": "Surfing Pikachu V #8",
+      "console_name": "Pokemon Celebrations",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:8"
+      }
+    },
+    {
+      "query": "Pokemon Celebrations _____'s Pikachu 24 holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Celebrations%20_____'s%20Pikachu%2024%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "2618196",
+      "product_name": "Pikachu VMAX #SWSH062",
+      "console_name": "Pokemon Celebrations",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:SWSH062"
+      }
+    },
+    {
+      "query": "Pokemon Celebrations _____'s Pikachu 24 holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Celebrations%20_____'s%20Pikachu%2024%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4953155",
+      "product_name": "Celebrations Premium Playmat Collection Box [Pikachu V-UNION]",
+      "console_name": "Pokemon Celebrations",
+      "validation": {
+        "ok": false,
+        "reason": "api_product_name_pattern_not_supported"
+      }
+    },
+    {
+      "query": "Pokemon Celebrations _____'s Pikachu 24 holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Celebrations%20_____'s%20Pikachu%2024%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "2618152",
+      "product_name": "Flying Pikachu VMAX #7",
+      "console_name": "Pokemon Celebrations",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:7"
+      }
+    },
+    {
+      "query": "Pokemon Celebrations _____'s Pikachu 24 holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Celebrations%20_____'s%20Pikachu%2024%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "2618154",
+      "product_name": "Surfing Pikachu VMAX #9",
+      "console_name": "Pokemon Celebrations",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:9"
+      }
+    },
+    {
+      "query": "Pokemon Celebrations _____'s Pikachu 24 holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Celebrations%20_____'s%20Pikachu%2024%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "2945367",
+      "product_name": "Pikachu [Ultra Premium Collection] #58",
+      "console_name": "Pokemon Celebrations",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:58"
+      }
+    },
+    {
+      "query": "Pokemon Celebrations _____'s Pikachu 24 holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Celebrations%20_____'s%20Pikachu%2024%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3398883",
+      "product_name": "Special Collection: Pikachu V-UNION Box",
+      "console_name": "Pokemon Celebrations",
+      "validation": {
+        "ok": false,
+        "reason": "api_product_name_pattern_not_supported"
+      }
+    },
+    {
+      "query": "Pokemon Celebrations _____'s Pikachu 24 holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Celebrations%20_____'s%20Pikachu%2024%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6666562",
+      "product_name": "Elekid & Pikachu [Holo] #24",
+      "console_name": "Pokemon Japanese 1999 Carddass",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Elekid & Pikachu"
+      }
+    },
+    {
+      "query": "Pokemon Celebrations _____'s Pikachu 24 holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Celebrations%20_____'s%20Pikachu%2024%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7287141",
+      "product_name": "_____'s Mew #13/PLAY",
+      "console_name": "Pokemon Japanese Player's Club",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:13/PLAY"
+      }
+    },
+    {
+      "query": "Pokemon Celebrations _____'s Pikachu 24 holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Celebrations%20_____'s%20Pikachu%2024%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "2618186",
+      "product_name": "Claydol [Holo] #15",
+      "console_name": "Pokemon Celebrations",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:15"
+      }
+    },
+    {
+      "query": "Pokemon Celebrations _____'s Pikachu 24 holofoil",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Celebrations%20_____'s%20Pikachu%2024%20holofoil",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "2618178",
+      "product_name": "Pikachu Birthday #24",
+      "console_name": "Pokemon Celebrations",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Pikachu Birthday"
+      }
+    },
+    {
+      "query": "Pokemon Celebrations _____'s Pikachu 24 holofoil",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Celebrations%20_____'s%20Pikachu%2024%20holofoil",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "2618204",
+      "product_name": "Pikachu V #SWSH143",
+      "console_name": "Pokemon Celebrations",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:SWSH143"
+      }
+    },
+    {
+      "query": "Pokemon Celebrations _____'s Pikachu 24 holofoil",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Celebrations%20_____'s%20Pikachu%2024%20holofoil",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "2618210",
+      "product_name": "Pikachu V #SWSH145",
+      "console_name": "Pokemon Celebrations",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:SWSH145"
+      }
+    },
+    {
+      "query": "Pokemon Celebrations _____'s Pikachu 24 holofoil",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Celebrations%20_____'s%20Pikachu%2024%20holofoil",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5427273",
+      "product_name": "Pikachu [Jumbo] #58",
+      "console_name": "Pokemon Celebrations",
+      "validation": {
+        "ok": false,
+        "reason": "product_scope_jumbo_not_canonical_set_finish"
+      }
+    },
+    {
+      "query": "Pokemon Celebrations _____'s Pikachu 24 holofoil",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Celebrations%20_____'s%20Pikachu%2024%20holofoil",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "2618150",
+      "product_name": "Pikachu #5",
+      "console_name": "Pokemon Celebrations",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:5"
+      }
+    },
+    {
+      "query": "Pokemon Celebrations _____'s Pikachu 24 holofoil",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Celebrations%20_____'s%20Pikachu%2024%20holofoil",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "2618205",
+      "product_name": "Pikachu V Union #SWSH139",
+      "console_name": "Pokemon Celebrations",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:SWSH139"
+      }
+    },
+    {
+      "query": "Pokemon Celebrations _____'s Pikachu 24 holofoil",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Celebrations%20_____'s%20Pikachu%2024%20holofoil",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "2618206",
+      "product_name": "Pikachu V Union #SWSH140",
+      "console_name": "Pokemon Celebrations",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:SWSH140"
+      }
+    },
+    {
+      "query": "Pokemon Celebrations _____'s Pikachu 24 holofoil",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Celebrations%20_____'s%20Pikachu%2024%20holofoil",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "2618207",
+      "product_name": "Pikachu V Union #SWSH141",
+      "console_name": "Pokemon Celebrations",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:SWSH141"
+      }
+    },
+    {
+      "query": "Pokemon Celebrations _____'s Pikachu 24 holofoil",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Celebrations%20_____'s%20Pikachu%2024%20holofoil",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "2618208",
+      "product_name": "Pikachu V Union #SWSH142",
+      "console_name": "Pokemon Celebrations",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:SWSH142"
+      }
+    },
+    {
+      "query": "Pokemon Celebrations _____'s Pikachu 24 holofoil",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Celebrations%20_____'s%20Pikachu%2024%20holofoil",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "2618151",
+      "product_name": "Flying Pikachu V #6",
+      "console_name": "Pokemon Celebrations",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:6"
+      }
+    },
+    {
+      "query": "Pokemon Celebrations _____'s Pikachu 24 holofoil",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Celebrations%20_____'s%20Pikachu%2024%20holofoil",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "2618153",
+      "product_name": "Surfing Pikachu V #8",
+      "console_name": "Pokemon Celebrations",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:8"
+      }
+    },
+    {
+      "query": "Pokemon Celebrations _____'s Pikachu 24 holofoil",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Celebrations%20_____'s%20Pikachu%2024%20holofoil",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "2618196",
+      "product_name": "Pikachu VMAX #SWSH062",
+      "console_name": "Pokemon Celebrations",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:SWSH062"
+      }
+    },
+    {
+      "query": "Pokemon Celebrations _____'s Pikachu 24 holofoil",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Celebrations%20_____'s%20Pikachu%2024%20holofoil",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4953155",
+      "product_name": "Celebrations Premium Playmat Collection Box [Pikachu V-UNION]",
+      "console_name": "Pokemon Celebrations",
+      "validation": {
+        "ok": false,
+        "reason": "api_product_name_pattern_not_supported"
+      }
+    },
+    {
+      "query": "Pokemon Celebrations _____'s Pikachu 24 holofoil",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Celebrations%20_____'s%20Pikachu%2024%20holofoil",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "2618152",
+      "product_name": "Flying Pikachu VMAX #7",
+      "console_name": "Pokemon Celebrations",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:7"
+      }
+    },
+    {
+      "query": "Pokemon Celebrations _____'s Pikachu 24 holofoil",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Celebrations%20_____'s%20Pikachu%2024%20holofoil",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "2618154",
+      "product_name": "Surfing Pikachu VMAX #9",
+      "console_name": "Pokemon Celebrations",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:9"
+      }
+    },
+    {
+      "query": "Pokemon Celebrations _____'s Pikachu 24 holofoil",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Celebrations%20_____'s%20Pikachu%2024%20holofoil",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "2945367",
+      "product_name": "Pikachu [Ultra Premium Collection] #58",
+      "console_name": "Pokemon Celebrations",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:58"
+      }
+    },
+    {
+      "query": "Pokemon Celebrations _____'s Pikachu 24 holofoil",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Celebrations%20_____'s%20Pikachu%2024%20holofoil",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3398883",
+      "product_name": "Special Collection: Pikachu V-UNION Box",
+      "console_name": "Pokemon Celebrations",
+      "validation": {
+        "ok": false,
+        "reason": "api_product_name_pattern_not_supported"
+      }
+    },
+    {
+      "query": "Pokemon Celebrations _____'s Pikachu 24 holofoil",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Celebrations%20_____'s%20Pikachu%2024%20holofoil",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6666562",
+      "product_name": "Elekid & Pikachu [Holo] #24",
+      "console_name": "Pokemon Japanese 1999 Carddass",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Elekid & Pikachu"
+      }
+    },
+    {
+      "query": "Pokemon Celebrations _____'s Pikachu 24 holofoil",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Celebrations%20_____'s%20Pikachu%2024%20holofoil",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7287141",
+      "product_name": "_____'s Mew #13/PLAY",
+      "console_name": "Pokemon Japanese Player's Club",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:13/PLAY"
+      }
+    },
+    {
+      "query": "Pokemon Celebrations _____'s Pikachu 24 holofoil",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Celebrations%20_____'s%20Pikachu%2024%20holofoil",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "2618186",
+      "product_name": "Claydol [Holo] #15",
+      "console_name": "Pokemon Celebrations",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:15"
+      }
+    }
+  ],
+  "source_lane": "pricecharting_api"
+}

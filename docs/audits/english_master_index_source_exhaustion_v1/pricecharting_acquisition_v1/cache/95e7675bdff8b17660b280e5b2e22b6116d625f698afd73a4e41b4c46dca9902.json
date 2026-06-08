@@ -1,0 +1,549 @@
+{
+  "status": "api_no_validated_match",
+  "fact": {
+    "gap_type": "finish_second_source_needed",
+    "fact_type": "printing_finish",
+    "set_key": "sv08.5",
+    "set_name": "Prismatic Evolutions",
+    "card_number": "122",
+    "card_name": "Professor's Research",
+    "finish_key": "stamped",
+    "status": "human_source_verified",
+    "sources": [
+      "thepricedex_price_list"
+    ],
+    "source_authorities": [
+      "thepricedex.com"
+    ],
+    "source_kinds": [
+      "marketplace_checklist"
+    ],
+    "evidence_urls": [
+      "https://www.thepricedex.com/set/sv8pt5/prismatic-evolutions/price-list"
+    ],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "attempts": [
+    {
+      "query": "Pokemon Prismatic Evolutions Professor's Research 122 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Prismatic%20Evolutions%20Professor's%20Research%20122%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8244566",
+      "product_name": "Professor's Research: Professor Oak #122",
+      "console_name": "Pokemon Prismatic Evolutions",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Professor's Research: Professor Oak"
+      }
+    },
+    {
+      "query": "Pokemon Prismatic Evolutions Professor's Research 122 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Prismatic%20Evolutions%20Professor's%20Research%20122%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8321784",
+      "product_name": "Professor's Research: Professor Oak [Reverse] #122",
+      "console_name": "Pokemon Prismatic Evolutions",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Professor's Research: Professor Oak"
+      }
+    },
+    {
+      "query": "Pokemon Prismatic Evolutions Professor's Research 122 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Prismatic%20Evolutions%20Professor's%20Research%20122%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8321689",
+      "product_name": "Professor's Research: Professor Oak [Poke Ball] #122",
+      "console_name": "Pokemon Prismatic Evolutions",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Professor's Research: Professor Oak"
+      }
+    },
+    {
+      "query": "Pokemon Prismatic Evolutions Professor's Research 122 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Prismatic%20Evolutions%20Professor's%20Research%20122%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8244567",
+      "product_name": "Professor's Research: Professor Elm #123",
+      "console_name": "Pokemon Prismatic Evolutions",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:123"
+      }
+    },
+    {
+      "query": "Pokemon Prismatic Evolutions Professor's Research 122 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Prismatic%20Evolutions%20Professor's%20Research%20122%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8244568",
+      "product_name": "Professor's Research: Professor Rowan #124",
+      "console_name": "Pokemon Prismatic Evolutions",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:124"
+      }
+    },
+    {
+      "query": "Pokemon Prismatic Evolutions Professor's Research 122 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Prismatic%20Evolutions%20Professor's%20Research%20122%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8244569",
+      "product_name": "Professor's Research: Professor Sycamore #125",
+      "console_name": "Pokemon Prismatic Evolutions",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:125"
+      }
+    },
+    {
+      "query": "Pokemon Prismatic Evolutions Professor's Research 122 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Prismatic%20Evolutions%20Professor's%20Research%20122%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8244721",
+      "product_name": "Professor's Research: Professor Elm [Reverse] #123",
+      "console_name": "Pokemon Prismatic Evolutions",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:123"
+      }
+    },
+    {
+      "query": "Pokemon Prismatic Evolutions Professor's Research 122 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Prismatic%20Evolutions%20Professor's%20Research%20122%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8329892",
+      "product_name": "Professor's Research: Professor Rowan [Poke Ball] #124",
+      "console_name": "Pokemon Prismatic Evolutions",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:124"
+      }
+    },
+    {
+      "query": "Pokemon Prismatic Evolutions Professor's Research 122 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Prismatic%20Evolutions%20Professor's%20Research%20122%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8329891",
+      "product_name": "Professor's Research: Professor Elm [Poke Ball] #123",
+      "console_name": "Pokemon Prismatic Evolutions",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:123"
+      }
+    },
+    {
+      "query": "Pokemon Prismatic Evolutions Professor's Research 122 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Prismatic%20Evolutions%20Professor's%20Research%20122%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8244723",
+      "product_name": "Professor's Research: Professor Sycamore [Reverse] #125",
+      "console_name": "Pokemon Prismatic Evolutions",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:125"
+      }
+    },
+    {
+      "query": "Pokemon Prismatic Evolutions Professor's Research 122 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Prismatic%20Evolutions%20Professor's%20Research%20122%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8244722",
+      "product_name": "Professor's Research: Professor Rowan [Reverse] #124",
+      "console_name": "Pokemon Prismatic Evolutions",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:124"
+      }
+    },
+    {
+      "query": "Pokemon Prismatic Evolutions Professor's Research 122 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Prismatic%20Evolutions%20Professor's%20Research%20122%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8329893",
+      "product_name": "Professor's Research: Professor Sycamore [Poke Ball] #125",
+      "console_name": "Pokemon Prismatic Evolutions",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:125"
+      }
+    },
+    {
+      "query": "Pokemon Prismatic Evolutions Professor's Research 122 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Prismatic%20Evolutions%20Professor's%20Research%20122%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12579938",
+      "product_name": "Professor's Research: Professor Sada [Event Organizer Stamp] #21/SV-P",
+      "console_name": "Pokemon Japanese Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:21/SV-P"
+      }
+    },
+    {
+      "query": "Pokemon Prismatic Evolutions Professor's Research 122 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Prismatic%20Evolutions%20Professor's%20Research%20122%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11047387",
+      "product_name": "Budew [Gym Stamp] #4",
+      "console_name": "Pokemon Prismatic Evolutions",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:4"
+      }
+    },
+    {
+      "query": "Pokemon Prismatic Evolutions Professor's Research 122 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Prismatic%20Evolutions%20Professor's%20Research%20122%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10491819",
+      "product_name": "Lucario [Stamped] #51",
+      "console_name": "Pokemon Prismatic Evolutions",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:51"
+      }
+    },
+    {
+      "query": "Pokemon Prismatic Evolutions Professor's Research 122 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Prismatic%20Evolutions%20Professor's%20Research%20122%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8576523",
+      "product_name": "Eevee Ex [Stamped] #75",
+      "console_name": "Pokemon Prismatic Evolutions",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:75"
+      }
+    },
+    {
+      "query": "Pokemon Prismatic Evolutions Professor's Research 122 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Prismatic%20Evolutions%20Professor's%20Research%20122%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10491823",
+      "product_name": "Tyranitar [Stamped] #64",
+      "console_name": "Pokemon Prismatic Evolutions",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:64"
+      }
+    },
+    {
+      "query": "Pokemon Prismatic Evolutions Professor's Research 122 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Prismatic%20Evolutions%20Professor's%20Research%20122%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11085989",
+      "product_name": "Lugia Ex [Stamped] #82",
+      "console_name": "Pokemon Prismatic Evolutions",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:82"
+      }
+    },
+    {
+      "query": "Pokemon Prismatic Evolutions Professor's Research 122 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Prismatic%20Evolutions%20Professor's%20Research%20122%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8624383",
+      "product_name": "Sylveon ex [Stamped] #41",
+      "console_name": "Pokemon Prismatic Evolutions",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:41"
+      }
+    },
+    {
+      "query": "Pokemon Prismatic Evolutions Professor's Research 122 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Prismatic%20Evolutions%20Professor's%20Research%20122%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8624384",
+      "product_name": "Umbreon ex [Stamped] #60",
+      "console_name": "Pokemon Prismatic Evolutions",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:60"
+      }
+    },
+    {
+      "query": "Pokemon Prismatic Evolutions Professor's Research 122 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Prismatic%20Evolutions%20Professor's%20Research%20122%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8244566",
+      "product_name": "Professor's Research: Professor Oak #122",
+      "console_name": "Pokemon Prismatic Evolutions",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Professor's Research: Professor Oak"
+      }
+    },
+    {
+      "query": "Pokemon Prismatic Evolutions Professor's Research 122 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Prismatic%20Evolutions%20Professor's%20Research%20122%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8321784",
+      "product_name": "Professor's Research: Professor Oak [Reverse] #122",
+      "console_name": "Pokemon Prismatic Evolutions",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Professor's Research: Professor Oak"
+      }
+    },
+    {
+      "query": "Pokemon Prismatic Evolutions Professor's Research 122 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Prismatic%20Evolutions%20Professor's%20Research%20122%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8321689",
+      "product_name": "Professor's Research: Professor Oak [Poke Ball] #122",
+      "console_name": "Pokemon Prismatic Evolutions",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Professor's Research: Professor Oak"
+      }
+    },
+    {
+      "query": "Pokemon Prismatic Evolutions Professor's Research 122 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Prismatic%20Evolutions%20Professor's%20Research%20122%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8244567",
+      "product_name": "Professor's Research: Professor Elm #123",
+      "console_name": "Pokemon Prismatic Evolutions",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:123"
+      }
+    },
+    {
+      "query": "Pokemon Prismatic Evolutions Professor's Research 122 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Prismatic%20Evolutions%20Professor's%20Research%20122%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8244568",
+      "product_name": "Professor's Research: Professor Rowan #124",
+      "console_name": "Pokemon Prismatic Evolutions",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:124"
+      }
+    },
+    {
+      "query": "Pokemon Prismatic Evolutions Professor's Research 122 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Prismatic%20Evolutions%20Professor's%20Research%20122%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8244569",
+      "product_name": "Professor's Research: Professor Sycamore #125",
+      "console_name": "Pokemon Prismatic Evolutions",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:125"
+      }
+    },
+    {
+      "query": "Pokemon Prismatic Evolutions Professor's Research 122 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Prismatic%20Evolutions%20Professor's%20Research%20122%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8244721",
+      "product_name": "Professor's Research: Professor Elm [Reverse] #123",
+      "console_name": "Pokemon Prismatic Evolutions",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:123"
+      }
+    },
+    {
+      "query": "Pokemon Prismatic Evolutions Professor's Research 122 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Prismatic%20Evolutions%20Professor's%20Research%20122%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8329892",
+      "product_name": "Professor's Research: Professor Rowan [Poke Ball] #124",
+      "console_name": "Pokemon Prismatic Evolutions",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:124"
+      }
+    },
+    {
+      "query": "Pokemon Prismatic Evolutions Professor's Research 122 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Prismatic%20Evolutions%20Professor's%20Research%20122%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8329891",
+      "product_name": "Professor's Research: Professor Elm [Poke Ball] #123",
+      "console_name": "Pokemon Prismatic Evolutions",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:123"
+      }
+    },
+    {
+      "query": "Pokemon Prismatic Evolutions Professor's Research 122 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Prismatic%20Evolutions%20Professor's%20Research%20122%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8244723",
+      "product_name": "Professor's Research: Professor Sycamore [Reverse] #125",
+      "console_name": "Pokemon Prismatic Evolutions",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:125"
+      }
+    },
+    {
+      "query": "Pokemon Prismatic Evolutions Professor's Research 122 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Prismatic%20Evolutions%20Professor's%20Research%20122%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8244722",
+      "product_name": "Professor's Research: Professor Rowan [Reverse] #124",
+      "console_name": "Pokemon Prismatic Evolutions",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:124"
+      }
+    },
+    {
+      "query": "Pokemon Prismatic Evolutions Professor's Research 122 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Prismatic%20Evolutions%20Professor's%20Research%20122%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8329893",
+      "product_name": "Professor's Research: Professor Sycamore [Poke Ball] #125",
+      "console_name": "Pokemon Prismatic Evolutions",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:125"
+      }
+    },
+    {
+      "query": "Pokemon Prismatic Evolutions Professor's Research 122 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Prismatic%20Evolutions%20Professor's%20Research%20122%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12579938",
+      "product_name": "Professor's Research: Professor Sada [Event Organizer Stamp] #21/SV-P",
+      "console_name": "Pokemon Japanese Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:21/SV-P"
+      }
+    },
+    {
+      "query": "Pokemon Prismatic Evolutions Professor's Research 122 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Prismatic%20Evolutions%20Professor's%20Research%20122%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11047387",
+      "product_name": "Budew [Gym Stamp] #4",
+      "console_name": "Pokemon Prismatic Evolutions",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:4"
+      }
+    },
+    {
+      "query": "Pokemon Prismatic Evolutions Professor's Research 122 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Prismatic%20Evolutions%20Professor's%20Research%20122%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10491819",
+      "product_name": "Lucario [Stamped] #51",
+      "console_name": "Pokemon Prismatic Evolutions",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:51"
+      }
+    },
+    {
+      "query": "Pokemon Prismatic Evolutions Professor's Research 122 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Prismatic%20Evolutions%20Professor's%20Research%20122%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8576523",
+      "product_name": "Eevee Ex [Stamped] #75",
+      "console_name": "Pokemon Prismatic Evolutions",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:75"
+      }
+    },
+    {
+      "query": "Pokemon Prismatic Evolutions Professor's Research 122 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Prismatic%20Evolutions%20Professor's%20Research%20122%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10491823",
+      "product_name": "Tyranitar [Stamped] #64",
+      "console_name": "Pokemon Prismatic Evolutions",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:64"
+      }
+    },
+    {
+      "query": "Pokemon Prismatic Evolutions Professor's Research 122 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Prismatic%20Evolutions%20Professor's%20Research%20122%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11085989",
+      "product_name": "Lugia Ex [Stamped] #82",
+      "console_name": "Pokemon Prismatic Evolutions",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:82"
+      }
+    },
+    {
+      "query": "Pokemon Prismatic Evolutions Professor's Research 122 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Prismatic%20Evolutions%20Professor's%20Research%20122%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8624383",
+      "product_name": "Sylveon ex [Stamped] #41",
+      "console_name": "Pokemon Prismatic Evolutions",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:41"
+      }
+    },
+    {
+      "query": "Pokemon Prismatic Evolutions Professor's Research 122 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Prismatic%20Evolutions%20Professor's%20Research%20122%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8624384",
+      "product_name": "Umbreon ex [Stamped] #60",
+      "console_name": "Pokemon Prismatic Evolutions",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:60"
+      }
+    }
+  ],
+  "source_lane": "pricecharting_api"
+}

@@ -1,0 +1,36 @@
+{
+  "status": "no_validated_match",
+  "fact": {
+    "gap_type": "finish_second_source_needed",
+    "fact_type": "printing_finish",
+    "set_key": "swsh45",
+    "set_name": "Shining Fates",
+    "card_number": "SV047",
+    "card_name": "Galarian Ponyta",
+    "finish_key": "holo",
+    "status": "human_source_verified",
+    "sources": [
+      "thepricedex_price_list"
+    ],
+    "source_authorities": [
+      "thepricedex.com"
+    ],
+    "source_kinds": [
+      "marketplace_checklist"
+    ],
+    "evidence_urls": [],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "attempts": [
+    {
+      "query": "Pokemon Shining Fates Galarian Ponyta SV047 holo",
+      "url": "https://www.pricecharting.com/search-products?q=Pokemon%20Shining%20Fates%20Galarian%20Ponyta%20SV047%20holo&type=prices",
+      "error": "Fetch failed 403 Forbidden: https://www.pricecharting.com/search-products?q=Pokemon%20Shining%20Fates%20Galarian%20Ponyta%20SV047%20holo&type=prices"
+    },
+    {
+      "query": "Pokemon Shining Fates Galarian Ponyta SV047 holofoil",
+      "url": "https://www.pricecharting.com/search-products?q=Pokemon%20Shining%20Fates%20Galarian%20Ponyta%20SV047%20holofoil&type=prices",
+      "error": "Fetch failed 403 Forbidden: https://www.pricecharting.com/search-products?q=Pokemon%20Shining%20Fates%20Galarian%20Ponyta%20SV047%20holofoil&type=prices"
+    }
+  ]
+}

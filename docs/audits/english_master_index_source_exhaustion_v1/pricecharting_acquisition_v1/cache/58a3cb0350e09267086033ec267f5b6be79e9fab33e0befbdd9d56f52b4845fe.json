@@ -1,0 +1,549 @@
+{
+  "status": "api_no_validated_match",
+  "fact": {
+    "gap_type": "finish_second_source_needed",
+    "fact_type": "printing_finish",
+    "set_key": "bw11",
+    "set_name": "Legendary Treasures",
+    "card_number": "97",
+    "card_name": "Deino",
+    "finish_key": "stamped",
+    "status": "human_source_verified",
+    "sources": [
+      "thepricedex_price_list"
+    ],
+    "source_authorities": [
+      "thepricedex.com"
+    ],
+    "source_kinds": [
+      "marketplace_checklist"
+    ],
+    "evidence_urls": [
+      "https://www.thepricedex.com/set/bw11/legendary-treasures/price-list"
+    ],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "attempts": [
+    {
+      "query": "Pokemon Legendary Treasures Deino 97 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Legendary%20Treasures%20Deino%2097%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "957591",
+      "product_name": "Deino #97",
+      "console_name": "Pokemon Legendary Treasures",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon Legendary Treasures Deino 97 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Legendary%20Treasures%20Deino%2097%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "957722",
+      "product_name": "Deino [Reverse Holo] #97",
+      "console_name": "Pokemon Legendary Treasures",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Reverse Holo"
+      }
+    },
+    {
+      "query": "Pokemon Legendary Treasures Deino 97 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Legendary%20Treasures%20Deino%2097%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10259738",
+      "product_name": "Deino [2nd Place League] #97",
+      "console_name": "Pokemon Legendary Treasures",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:2nd Place League"
+      }
+    },
+    {
+      "query": "Pokemon Legendary Treasures Deino 97 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Legendary%20Treasures%20Deino%2097%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11262595",
+      "product_name": "Deino [4th Place League] #97",
+      "console_name": "Pokemon Legendary Treasures",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:4th Place League"
+      }
+    },
+    {
+      "query": "Pokemon Legendary Treasures Deino 97 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Legendary%20Treasures%20Deino%2097%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10259737",
+      "product_name": "Deino [1st Place League] #97",
+      "console_name": "Pokemon Legendary Treasures",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:1st Place League"
+      }
+    },
+    {
+      "query": "Pokemon Legendary Treasures Deino 97 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Legendary%20Treasures%20Deino%2097%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10045693",
+      "product_name": "Deino [3rd Place League] #97",
+      "console_name": "Pokemon Legendary Treasures",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:3rd Place League"
+      }
+    },
+    {
+      "query": "Pokemon Legendary Treasures Deino 97 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Legendary%20Treasures%20Deino%2097%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "957549",
+      "product_name": "Natu #55",
+      "console_name": "Pokemon Legendary Treasures",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:55"
+      }
+    },
+    {
+      "query": "Pokemon Legendary Treasures Deino 97 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Legendary%20Treasures%20Deino%2097%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "957550",
+      "product_name": "Xatu #56",
+      "console_name": "Pokemon Legendary Treasures",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:56"
+      }
+    },
+    {
+      "query": "Pokemon Legendary Treasures Deino 97 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Legendary%20Treasures%20Deino%2097%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "957519",
+      "product_name": "Tepig #25",
+      "console_name": "Pokemon Legendary Treasures",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:25"
+      }
+    },
+    {
+      "query": "Pokemon Legendary Treasures Deino 97 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Legendary%20Treasures%20Deino%2097%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "957542",
+      "product_name": "Minun #48",
+      "console_name": "Pokemon Legendary Treasures",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:48"
+      }
+    },
+    {
+      "query": "Pokemon Legendary Treasures Deino 97 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Legendary%20Treasures%20Deino%2097%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "957573",
+      "product_name": "Riolu #79",
+      "console_name": "Pokemon Legendary Treasures",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:79"
+      }
+    },
+    {
+      "query": "Pokemon Legendary Treasures Deino 97 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Legendary%20Treasures%20Deino%2097%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "957583",
+      "product_name": "Zorua #89",
+      "console_name": "Pokemon Legendary Treasures",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:89"
+      }
+    },
+    {
+      "query": "Pokemon Legendary Treasures Deino 97 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Legendary%20Treasures%20Deino%2097%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "957588",
+      "product_name": "Gible #94",
+      "console_name": "Pokemon Legendary Treasures",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:94"
+      }
+    },
+    {
+      "query": "Pokemon Legendary Treasures Deino 97 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Legendary%20Treasures%20Deino%2097%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "957610",
+      "product_name": "Snivy #RC1",
+      "console_name": "Pokemon Legendary Treasures",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:RC1"
+      }
+    },
+    {
+      "query": "Pokemon Legendary Treasures Deino 97 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Legendary%20Treasures%20Deino%2097%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "957615",
+      "product_name": "Eevee #RC14",
+      "console_name": "Pokemon Legendary Treasures",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:RC14"
+      }
+    },
+    {
+      "query": "Pokemon Legendary Treasures Deino 97 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Legendary%20Treasures%20Deino%2097%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "957622",
+      "product_name": "Elesa #RC20",
+      "console_name": "Pokemon Legendary Treasures",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:RC20"
+      }
+    },
+    {
+      "query": "Pokemon Legendary Treasures Deino 97 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Legendary%20Treasures%20Deino%2097%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "957500",
+      "product_name": "Snivy #6",
+      "console_name": "Pokemon Legendary Treasures",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:6"
+      }
+    },
+    {
+      "query": "Pokemon Legendary Treasures Deino 97 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Legendary%20Treasures%20Deino%2097%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "957553",
+      "product_name": "Ralts #59",
+      "console_name": "Pokemon Legendary Treasures",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:59"
+      }
+    },
+    {
+      "query": "Pokemon Legendary Treasures Deino 97 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Legendary%20Treasures%20Deino%2097%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "957633",
+      "product_name": "Ralts #RC8",
+      "console_name": "Pokemon Legendary Treasures",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:RC8"
+      }
+    },
+    {
+      "query": "Pokemon Legendary Treasures Deino 97 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Legendary%20Treasures%20Deino%2097%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12316971",
+      "product_name": "Happiny [Snowflake Stamp] #52",
+      "console_name": "Pokemon Mysterious Treasures",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:52"
+      }
+    },
+    {
+      "query": "Pokemon Legendary Treasures Deino 97 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Legendary%20Treasures%20Deino%2097%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "957591",
+      "product_name": "Deino #97",
+      "console_name": "Pokemon Legendary Treasures",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon Legendary Treasures Deino 97 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Legendary%20Treasures%20Deino%2097%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "957722",
+      "product_name": "Deino [Reverse Holo] #97",
+      "console_name": "Pokemon Legendary Treasures",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Reverse Holo"
+      }
+    },
+    {
+      "query": "Pokemon Legendary Treasures Deino 97 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Legendary%20Treasures%20Deino%2097%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10259738",
+      "product_name": "Deino [2nd Place League] #97",
+      "console_name": "Pokemon Legendary Treasures",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:2nd Place League"
+      }
+    },
+    {
+      "query": "Pokemon Legendary Treasures Deino 97 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Legendary%20Treasures%20Deino%2097%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11262595",
+      "product_name": "Deino [4th Place League] #97",
+      "console_name": "Pokemon Legendary Treasures",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:4th Place League"
+      }
+    },
+    {
+      "query": "Pokemon Legendary Treasures Deino 97 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Legendary%20Treasures%20Deino%2097%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10259737",
+      "product_name": "Deino [1st Place League] #97",
+      "console_name": "Pokemon Legendary Treasures",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:1st Place League"
+      }
+    },
+    {
+      "query": "Pokemon Legendary Treasures Deino 97 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Legendary%20Treasures%20Deino%2097%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10045693",
+      "product_name": "Deino [3rd Place League] #97",
+      "console_name": "Pokemon Legendary Treasures",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:3rd Place League"
+      }
+    },
+    {
+      "query": "Pokemon Legendary Treasures Deino 97 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Legendary%20Treasures%20Deino%2097%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "957549",
+      "product_name": "Natu #55",
+      "console_name": "Pokemon Legendary Treasures",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:55"
+      }
+    },
+    {
+      "query": "Pokemon Legendary Treasures Deino 97 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Legendary%20Treasures%20Deino%2097%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "957550",
+      "product_name": "Xatu #56",
+      "console_name": "Pokemon Legendary Treasures",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:56"
+      }
+    },
+    {
+      "query": "Pokemon Legendary Treasures Deino 97 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Legendary%20Treasures%20Deino%2097%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "957519",
+      "product_name": "Tepig #25",
+      "console_name": "Pokemon Legendary Treasures",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:25"
+      }
+    },
+    {
+      "query": "Pokemon Legendary Treasures Deino 97 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Legendary%20Treasures%20Deino%2097%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "957542",
+      "product_name": "Minun #48",
+      "console_name": "Pokemon Legendary Treasures",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:48"
+      }
+    },
+    {
+      "query": "Pokemon Legendary Treasures Deino 97 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Legendary%20Treasures%20Deino%2097%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "957573",
+      "product_name": "Riolu #79",
+      "console_name": "Pokemon Legendary Treasures",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:79"
+      }
+    },
+    {
+      "query": "Pokemon Legendary Treasures Deino 97 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Legendary%20Treasures%20Deino%2097%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "957583",
+      "product_name": "Zorua #89",
+      "console_name": "Pokemon Legendary Treasures",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:89"
+      }
+    },
+    {
+      "query": "Pokemon Legendary Treasures Deino 97 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Legendary%20Treasures%20Deino%2097%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "957588",
+      "product_name": "Gible #94",
+      "console_name": "Pokemon Legendary Treasures",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:94"
+      }
+    },
+    {
+      "query": "Pokemon Legendary Treasures Deino 97 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Legendary%20Treasures%20Deino%2097%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "957610",
+      "product_name": "Snivy #RC1",
+      "console_name": "Pokemon Legendary Treasures",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:RC1"
+      }
+    },
+    {
+      "query": "Pokemon Legendary Treasures Deino 97 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Legendary%20Treasures%20Deino%2097%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "957615",
+      "product_name": "Eevee #RC14",
+      "console_name": "Pokemon Legendary Treasures",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:RC14"
+      }
+    },
+    {
+      "query": "Pokemon Legendary Treasures Deino 97 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Legendary%20Treasures%20Deino%2097%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "957622",
+      "product_name": "Elesa #RC20",
+      "console_name": "Pokemon Legendary Treasures",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:RC20"
+      }
+    },
+    {
+      "query": "Pokemon Legendary Treasures Deino 97 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Legendary%20Treasures%20Deino%2097%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "957500",
+      "product_name": "Snivy #6",
+      "console_name": "Pokemon Legendary Treasures",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:6"
+      }
+    },
+    {
+      "query": "Pokemon Legendary Treasures Deino 97 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Legendary%20Treasures%20Deino%2097%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "957553",
+      "product_name": "Ralts #59",
+      "console_name": "Pokemon Legendary Treasures",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:59"
+      }
+    },
+    {
+      "query": "Pokemon Legendary Treasures Deino 97 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Legendary%20Treasures%20Deino%2097%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "957633",
+      "product_name": "Ralts #RC8",
+      "console_name": "Pokemon Legendary Treasures",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:RC8"
+      }
+    },
+    {
+      "query": "Pokemon Legendary Treasures Deino 97 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Legendary%20Treasures%20Deino%2097%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12316971",
+      "product_name": "Happiny [Snowflake Stamp] #52",
+      "console_name": "Pokemon Mysterious Treasures",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:52"
+      }
+    }
+  ],
+  "source_lane": "pricecharting_api"
+}

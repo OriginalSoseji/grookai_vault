@@ -1,0 +1,43 @@
+{
+  "status": "no_validated_match",
+  "fact": {
+    "gap_type": "finish_second_source_needed",
+    "fact_type": "printing_finish",
+    "set_key": "swsh9",
+    "set_name": "Brilliant Stars",
+    "card_number": "132",
+    "card_name": "Boss's Orders",
+    "finish_key": "stamped",
+    "status": "human_source_verified",
+    "sources": [
+      "thepricedex_price_list"
+    ],
+    "source_authorities": [
+      "thepricedex.com"
+    ],
+    "source_kinds": [
+      "marketplace_checklist"
+    ],
+    "evidence_urls": [],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "attempts": [
+    {
+      "query": "Pokemon Brilliant Stars Boss's Orders 132 stamped",
+      "url": "https://www.pricecharting.com/search-products?q=Pokemon%20Brilliant%20Stars%20Boss's%20Orders%20132%20stamped&type=prices",
+      "parsed": {
+        "title": "Pokemon Brilliant Stars Boss'S Orders 132 Stamped Prices | Pokemon Brilliant Stars Boss'S Orders 132 Stamped List",
+        "source_url": "https://www.pricecharting.com/search-products?q=pokemon+brilliant+stars+boss%27s+orders+132+stamped&type=prices"
+      },
+      "validation": {
+        "ok": false,
+        "reason": "title_pattern_not_supported"
+      }
+    },
+    {
+      "query": "Pokemon Brilliant Stars Boss's Orders 132 stamp",
+      "url": "https://www.pricecharting.com/search-products?q=Pokemon%20Brilliant%20Stars%20Boss's%20Orders%20132%20stamp&type=prices",
+      "error": "Fetch failed 403 Forbidden: https://www.pricecharting.com/search-products?q=Pokemon%20Brilliant%20Stars%20Boss's%20Orders%20132%20stamp&type=prices"
+    }
+  ]
+}

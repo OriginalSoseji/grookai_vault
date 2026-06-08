@@ -1,0 +1,24 @@
+{
+  "products": [
+    {
+      "bgs-10-price": 32500,
+      "box-only-price": 2900,
+      "condition-17-price": 15000,
+      "condition-18-price": 15000,
+      "console-name": "Pokemon Scarlet & Violet 151",
+      "gamestop-price": 0,
+      "gamestop-trade-price": 0,
+      "genre": "Pokemon Card",
+      "graded-price": 2600,
+      "id": "11330243",
+      "loose-price": 636,
+      "manual-only-price": 25000,
+      "product-name": "Dragonite [Cosmos Holo] #149",
+      "retail-loose-buy": 140,
+      "retail-loose-sell": 699,
+      "sales-volume": "92",
+      "tcg-id": "662053"
+    }
+  ],
+  "status": "success"
+}

@@ -1,0 +1,549 @@
+{
+  "status": "api_no_validated_match",
+  "fact": {
+    "gap_type": "finish_second_source_needed",
+    "fact_type": "printing_finish",
+    "set_key": "ex3",
+    "set_name": "Dragon",
+    "card_number": "98",
+    "card_name": "Charmander",
+    "finish_key": "stamped",
+    "status": "human_source_verified",
+    "sources": [
+      "thepricedex_price_list"
+    ],
+    "source_authorities": [
+      "thepricedex.com"
+    ],
+    "source_kinds": [
+      "marketplace_checklist"
+    ],
+    "evidence_urls": [
+      "https://www.thepricedex.com/set/ex3/dragon/price-list"
+    ],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "attempts": [
+    {
+      "query": "Pokemon Dragon Charmander 98 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Charmander%2098%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "849477",
+      "product_name": "Charmander #98",
+      "console_name": "Pokemon Dragon",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Charmander 98 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Charmander%2098%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4126742",
+      "product_name": "Charmander [City Championships] #98",
+      "console_name": "Pokemon Dragon",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:City Championships"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Charmander 98 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Charmander%2098%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4895161",
+      "product_name": "Charmander [Stamped] #48",
+      "console_name": "Pokemon Power Keepers",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:48"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Charmander 98 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Charmander%2098%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "887917",
+      "product_name": "Charmander #98",
+      "console_name": "Pokemon Expedition",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon Expedition"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Charmander 98 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Charmander%2098%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "2266951",
+      "product_name": "Charmander [Reverse Holo] #98",
+      "console_name": "Pokemon Expedition",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon Expedition"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Charmander 98 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Charmander%2098%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11703201",
+      "product_name": "Charmander [FamilyMart Stamped] #232/SV-P",
+      "console_name": "Pokemon Chinese Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:232/SV-P"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Charmander 98 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Charmander%2098%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11748349",
+      "product_name": "Charmander #98/SV-P",
+      "console_name": "Pokemon Chinese Promo",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon Chinese Promo"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Charmander 98 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Charmander%2098%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5428228",
+      "product_name": "Shinx [Stamped] #98",
+      "console_name": "Pokemon Diamond & Pearl",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Shinx"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Charmander 98 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Charmander%2098%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "962313",
+      "product_name": "Charmander [Reverse Holo] #1",
+      "console_name": "Pokemon Dragon Majesty",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:1"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Charmander 98 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Charmander%2098%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "962235",
+      "product_name": "Charmander #1",
+      "console_name": "Pokemon Dragon Majesty",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:1"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Charmander 98 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Charmander%2098%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3445475",
+      "product_name": "Charmander #1",
+      "console_name": "Pokemon Japanese Dragon Storm",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:1"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Charmander 98 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Charmander%2098%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10561150",
+      "product_name": "Shinx [Snowflake Stamped] #98",
+      "console_name": "Pokemon Mysterious Treasures",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Shinx"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Charmander 98 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Charmander%2098%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5672134",
+      "product_name": "Haxorus [Stamped] #16",
+      "console_name": "Pokemon Dragon Vault",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:16"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Charmander 98 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Charmander%2098%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4997891",
+      "product_name": "Latios [Stamped] #10",
+      "console_name": "Pokemon Dragon Vault",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:10"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Charmander 98 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Charmander%2098%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6124274",
+      "product_name": "Latias [Stamped] #9",
+      "console_name": "Pokemon Dragon Vault",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:9"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Charmander 98 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Charmander%2098%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5962590",
+      "product_name": "Seel [Stamped] #62",
+      "console_name": "Pokemon Dragon Frontiers",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:62"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Charmander 98 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Charmander%2098%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4916992",
+      "product_name": "Horsea [Stamped] #31",
+      "console_name": "Pokemon Dragon Frontiers",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:31"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Charmander 98 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Charmander%2098%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9057142",
+      "product_name": "Ledian [Stamped] #18",
+      "console_name": "Pokemon Dragon Frontiers",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:18"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Charmander 98 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Charmander%2098%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5811201",
+      "product_name": "Rayquaza [Stamped] #11",
+      "console_name": "Pokemon Dragon Vault",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:11"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Charmander 98 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Charmander%2098%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4166491",
+      "product_name": "Dratini [Stamped] #35",
+      "console_name": "Pokemon Dragon Majesty",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:35"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Charmander 98 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Charmander%2098%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "849477",
+      "product_name": "Charmander #98",
+      "console_name": "Pokemon Dragon",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Charmander 98 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Charmander%2098%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4126742",
+      "product_name": "Charmander [City Championships] #98",
+      "console_name": "Pokemon Dragon",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:City Championships"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Charmander 98 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Charmander%2098%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4895161",
+      "product_name": "Charmander [Stamped] #48",
+      "console_name": "Pokemon Power Keepers",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:48"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Charmander 98 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Charmander%2098%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "887917",
+      "product_name": "Charmander #98",
+      "console_name": "Pokemon Expedition",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon Expedition"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Charmander 98 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Charmander%2098%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "2266951",
+      "product_name": "Charmander [Reverse Holo] #98",
+      "console_name": "Pokemon Expedition",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon Expedition"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Charmander 98 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Charmander%2098%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11703201",
+      "product_name": "Charmander [FamilyMart Stamped] #232/SV-P",
+      "console_name": "Pokemon Chinese Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:232/SV-P"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Charmander 98 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Charmander%2098%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11748349",
+      "product_name": "Charmander #98/SV-P",
+      "console_name": "Pokemon Chinese Promo",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon Chinese Promo"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Charmander 98 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Charmander%2098%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5428228",
+      "product_name": "Shinx [Stamped] #98",
+      "console_name": "Pokemon Diamond & Pearl",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Shinx"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Charmander 98 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Charmander%2098%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "962313",
+      "product_name": "Charmander [Reverse Holo] #1",
+      "console_name": "Pokemon Dragon Majesty",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:1"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Charmander 98 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Charmander%2098%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "962235",
+      "product_name": "Charmander #1",
+      "console_name": "Pokemon Dragon Majesty",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:1"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Charmander 98 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Charmander%2098%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3445475",
+      "product_name": "Charmander #1",
+      "console_name": "Pokemon Japanese Dragon Storm",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:1"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Charmander 98 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Charmander%2098%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10561150",
+      "product_name": "Shinx [Snowflake Stamped] #98",
+      "console_name": "Pokemon Mysterious Treasures",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Shinx"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Charmander 98 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Charmander%2098%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5672134",
+      "product_name": "Haxorus [Stamped] #16",
+      "console_name": "Pokemon Dragon Vault",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:16"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Charmander 98 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Charmander%2098%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4997891",
+      "product_name": "Latios [Stamped] #10",
+      "console_name": "Pokemon Dragon Vault",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:10"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Charmander 98 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Charmander%2098%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6124274",
+      "product_name": "Latias [Stamped] #9",
+      "console_name": "Pokemon Dragon Vault",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:9"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Charmander 98 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Charmander%2098%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5962590",
+      "product_name": "Seel [Stamped] #62",
+      "console_name": "Pokemon Dragon Frontiers",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:62"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Charmander 98 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Charmander%2098%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4916992",
+      "product_name": "Horsea [Stamped] #31",
+      "console_name": "Pokemon Dragon Frontiers",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:31"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Charmander 98 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Charmander%2098%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9057142",
+      "product_name": "Ledian [Stamped] #18",
+      "console_name": "Pokemon Dragon Frontiers",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:18"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Charmander 98 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Charmander%2098%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5811201",
+      "product_name": "Rayquaza [Stamped] #11",
+      "console_name": "Pokemon Dragon Vault",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:11"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Charmander 98 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Charmander%2098%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4166491",
+      "product_name": "Dratini [Stamped] #35",
+      "console_name": "Pokemon Dragon Majesty",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:35"
+      }
+    }
+  ],
+  "source_lane": "pricecharting_api"
+}

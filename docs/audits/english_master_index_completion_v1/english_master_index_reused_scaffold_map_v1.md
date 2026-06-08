@@ -16,6 +16,7 @@
 - english_master_index_repair_priority_v1.json
 - english_master_index_unsupported_triage_v1.json
 - english_master_index_missing_from_grookai_triage_v1.json
+- finish-blocker rows excluded by english_master_index_adjudicated_excluded_printings_v1.json
 
 ## Rule
 

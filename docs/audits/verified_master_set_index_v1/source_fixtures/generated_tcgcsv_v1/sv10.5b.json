@@ -1,0 +1,31 @@
+{
+  "fixture_version": "VERIFIED_MASTER_SET_INDEX_V1_HUMAN_SOURCE_FIXTURE_GENERATED",
+  "source_key": "tcgcsv_finish_sv10.5b",
+  "source_kind": "marketplace_checklist",
+  "source_url": "https://tcgcsv.com/docs",
+  "source_status": "available_generated",
+  "set_key": "sv10.5b",
+  "set_name": "Black Bolt",
+  "retrieved_at": "2026-06-08T03:01:25.402Z",
+  "raw_snapshot_ref": "generated_fixture:tcgcsv:sv10.5b:2026-06-08T03:01:25.402Z",
+  "generation_note": "Generated from TCGCSV TCGplayer catalog product and price subtype data. Exact finish evidence only.",
+  "records": [
+    {
+      "source_key": "tcgcsv_tcgplayer_catalog",
+      "source_kind": "marketplace_checklist",
+      "source_url": "https://www.tcgplayer.com/product/642696/pokemon-sv-black-bolt-snivy-poke-ball-pattern",
+      "set_key": "sv10.5b",
+      "set_name": "Black Bolt",
+      "card_number": "1",
+      "card_name": "Snivy",
+      "finish_key": "holo",
+      "rarity": "Common",
+      "evidence_type": "finish_presence",
+      "evidence_label": "TCGCSV/TCGplayer product 642696 price subtype Holofoil",
+      "language": "en",
+      "retrieved_at": "2026-06-08T03:01:25.402Z",
+      "raw_snapshot_ref": "tcgcsv:24325:642696:Holofoil",
+      "notes": "Generated from TCGCSV TCGplayer products joined to price subTypeName. Exact set, number, name, and finish match only."
+    }
+  ]
+}

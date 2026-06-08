@@ -1,0 +1,549 @@
+{
+  "status": "api_no_validated_match",
+  "fact": {
+    "gap_type": "finish_second_source_needed",
+    "fact_type": "printing_finish",
+    "set_key": "ex6",
+    "set_name": "FireRed & LeafGreen",
+    "card_number": "98",
+    "card_name": "Prof. Oak's Research",
+    "finish_key": "stamped",
+    "status": "human_source_verified",
+    "sources": [
+      "thepricedex_price_list"
+    ],
+    "source_authorities": [
+      "thepricedex.com"
+    ],
+    "source_kinds": [
+      "marketplace_checklist"
+    ],
+    "evidence_urls": [
+      "https://www.thepricedex.com/set/ex6/firered-and-leafgreen/price-list"
+    ],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "attempts": [
+    {
+      "query": "Pokemon FireRed & LeafGreen Prof. Oak's Research 98 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20FireRed%20%26%20LeafGreen%20Prof.%20Oak's%20Research%2098%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "850065",
+      "product_name": "Prof. Oak's Research #98",
+      "console_name": "Pokemon Fire Red & Leaf Green",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon Fire Red & Leaf Green"
+      }
+    },
+    {
+      "query": "Pokemon FireRed & LeafGreen Prof. Oak's Research 98 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20FireRed%20%26%20LeafGreen%20Prof.%20Oak's%20Research%2098%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "850180",
+      "product_name": "Prof. Oak's Research [Reverse Holo] #98",
+      "console_name": "Pokemon Fire Red & Leaf Green",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon Fire Red & Leaf Green"
+      }
+    },
+    {
+      "query": "Pokemon FireRed & LeafGreen Prof. Oak's Research 98 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20FireRed%20%26%20LeafGreen%20Prof.%20Oak's%20Research%2098%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4802201",
+      "product_name": "Pokemon Adventures Vol. 24: FireRed and LeafGreen (2014)",
+      "console_name": "Comic Books Pokemon Adventures",
+      "validation": {
+        "ok": false,
+        "reason": "api_product_name_pattern_not_supported"
+      }
+    },
+    {
+      "query": "Pokemon FireRed & LeafGreen Prof. Oak's Research 98 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20FireRed%20%26%20LeafGreen%20Prof.%20Oak's%20Research%2098%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4802200",
+      "product_name": "Pokemon Adventures Vol. 25: FireRed and LeafGreen (2014)",
+      "console_name": "Comic Books Pokemon Adventures",
+      "validation": {
+        "ok": false,
+        "reason": "api_product_name_pattern_not_supported"
+      }
+    },
+    {
+      "query": "Pokemon FireRed & LeafGreen Prof. Oak's Research 98 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20FireRed%20%26%20LeafGreen%20Prof.%20Oak's%20Research%2098%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4802203",
+      "product_name": "Pokemon Adventures Vol. 23: FireRed and LeafGreen (2014)",
+      "console_name": "Comic Books Pokemon Adventures",
+      "validation": {
+        "ok": false,
+        "reason": "api_product_name_pattern_not_supported"
+      }
+    },
+    {
+      "query": "Pokemon FireRed & LeafGreen Prof. Oak's Research 98 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20FireRed%20%26%20LeafGreen%20Prof.%20Oak's%20Research%2098%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "2184352",
+      "product_name": "Pokemon LeafGreen and FireRed [Prima]",
+      "console_name": "Strategy Guide",
+      "validation": {
+        "ok": false,
+        "reason": "api_product_name_pattern_not_supported"
+      }
+    },
+    {
+      "query": "Pokemon FireRed & LeafGreen Prof. Oak's Research 98 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20FireRed%20%26%20LeafGreen%20Prof.%20Oak's%20Research%2098%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "1972535",
+      "product_name": "Pokemon FireRed & LeafGreen Player's Guide",
+      "console_name": "Strategy Guide",
+      "validation": {
+        "ok": false,
+        "reason": "api_product_name_pattern_not_supported"
+      }
+    },
+    {
+      "query": "Pokemon FireRed & LeafGreen Prof. Oak's Research 98 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20FireRed%20%26%20LeafGreen%20Prof.%20Oak's%20Research%2098%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9821866",
+      "product_name": "Pokemon Pocket Trainers Guide: FireRed And LeafGreen",
+      "console_name": "Strategy Guide",
+      "validation": {
+        "ok": false,
+        "reason": "api_product_name_pattern_not_supported"
+      }
+    },
+    {
+      "query": "Pokemon FireRed & LeafGreen Prof. Oak's Research 98 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20FireRed%20%26%20LeafGreen%20Prof.%20Oak's%20Research%2098%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4802194",
+      "product_name": "Pokemon Adventures FireRed & LeafGreen & Emerald Box Set (2015)",
+      "console_name": "Comic Books Pokemon Adventures",
+      "validation": {
+        "ok": false,
+        "reason": "api_product_name_pattern_not_supported"
+      }
+    },
+    {
+      "query": "Pokemon FireRed & LeafGreen Prof. Oak's Research 98 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20FireRed%20%26%20LeafGreen%20Prof.%20Oak's%20Research%2098%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5768450",
+      "product_name": "Pikachu #A025",
+      "console_name": "Pokemon Japanese E-Battle Firered & Leafgreen",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:A025"
+      }
+    },
+    {
+      "query": "Pokemon FireRed & LeafGreen Prof. Oak's Research 98 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20FireRed%20%26%20LeafGreen%20Prof.%20Oak's%20Research%2098%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5768451",
+      "product_name": "Pikachu #A026",
+      "console_name": "Pokemon Japanese E-Battle Firered & Leafgreen",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:A026"
+      }
+    },
+    {
+      "query": "Pokemon FireRed & LeafGreen Prof. Oak's Research 98 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20FireRed%20%26%20LeafGreen%20Prof.%20Oak's%20Research%2098%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5768452",
+      "product_name": "Pikachu #A027",
+      "console_name": "Pokemon Japanese E-Battle Firered & Leafgreen",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:A027"
+      }
+    },
+    {
+      "query": "Pokemon FireRed & LeafGreen Prof. Oak's Research 98 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20FireRed%20%26%20LeafGreen%20Prof.%20Oak's%20Research%2098%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5768453",
+      "product_name": "Pikachu #A028",
+      "console_name": "Pokemon Japanese E-Battle Firered & Leafgreen",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:A028"
+      }
+    },
+    {
+      "query": "Pokemon FireRed & LeafGreen Prof. Oak's Research 98 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20FireRed%20%26%20LeafGreen%20Prof.%20Oak's%20Research%2098%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5768454",
+      "product_name": "Pikachu #A029",
+      "console_name": "Pokemon Japanese E-Battle Firered & Leafgreen",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:A029"
+      }
+    },
+    {
+      "query": "Pokemon FireRed & LeafGreen Prof. Oak's Research 98 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20FireRed%20%26%20LeafGreen%20Prof.%20Oak's%20Research%2098%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5768455",
+      "product_name": "Pikachu #A030",
+      "console_name": "Pokemon Japanese E-Battle Firered & Leafgreen",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:A030"
+      }
+    },
+    {
+      "query": "Pokemon FireRed & LeafGreen Prof. Oak's Research 98 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20FireRed%20%26%20LeafGreen%20Prof.%20Oak's%20Research%2098%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5768456",
+      "product_name": "Pikachu #A032",
+      "console_name": "Pokemon Japanese E-Battle Firered & Leafgreen",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:A032"
+      }
+    },
+    {
+      "query": "Pokemon FireRed & LeafGreen Prof. Oak's Research 98 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20FireRed%20%26%20LeafGreen%20Prof.%20Oak's%20Research%2098%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5768418",
+      "product_name": "Pikachu #A031",
+      "console_name": "Pokemon Japanese E-Battle Firered & Leafgreen",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:A031"
+      }
+    },
+    {
+      "query": "Pokemon FireRed & LeafGreen Prof. Oak's Research 98 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20FireRed%20%26%20LeafGreen%20Prof.%20Oak's%20Research%2098%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5768461",
+      "product_name": "Flareon #T005",
+      "console_name": "Pokemon Japanese E-Battle Firered & Leafgreen",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:T005"
+      }
+    },
+    {
+      "query": "Pokemon FireRed & LeafGreen Prof. Oak's Research 98 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20FireRed%20%26%20LeafGreen%20Prof.%20Oak's%20Research%2098%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5768460",
+      "product_name": "Pikachu #T004",
+      "console_name": "Pokemon Japanese E-Battle Firered & Leafgreen",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:T004"
+      }
+    },
+    {
+      "query": "Pokemon FireRed & LeafGreen Prof. Oak's Research 98 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20FireRed%20%26%20LeafGreen%20Prof.%20Oak's%20Research%2098%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5768434",
+      "product_name": "Venusaur #A009",
+      "console_name": "Pokemon Japanese E-Battle Firered & Leafgreen",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:A009"
+      }
+    },
+    {
+      "query": "Pokemon FireRed & LeafGreen Prof. Oak's Research 98 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20FireRed%20%26%20LeafGreen%20Prof.%20Oak's%20Research%2098%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "850065",
+      "product_name": "Prof. Oak's Research #98",
+      "console_name": "Pokemon Fire Red & Leaf Green",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon Fire Red & Leaf Green"
+      }
+    },
+    {
+      "query": "Pokemon FireRed & LeafGreen Prof. Oak's Research 98 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20FireRed%20%26%20LeafGreen%20Prof.%20Oak's%20Research%2098%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "850180",
+      "product_name": "Prof. Oak's Research [Reverse Holo] #98",
+      "console_name": "Pokemon Fire Red & Leaf Green",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon Fire Red & Leaf Green"
+      }
+    },
+    {
+      "query": "Pokemon FireRed & LeafGreen Prof. Oak's Research 98 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20FireRed%20%26%20LeafGreen%20Prof.%20Oak's%20Research%2098%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4802201",
+      "product_name": "Pokemon Adventures Vol. 24: FireRed and LeafGreen (2014)",
+      "console_name": "Comic Books Pokemon Adventures",
+      "validation": {
+        "ok": false,
+        "reason": "api_product_name_pattern_not_supported"
+      }
+    },
+    {
+      "query": "Pokemon FireRed & LeafGreen Prof. Oak's Research 98 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20FireRed%20%26%20LeafGreen%20Prof.%20Oak's%20Research%2098%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4802200",
+      "product_name": "Pokemon Adventures Vol. 25: FireRed and LeafGreen (2014)",
+      "console_name": "Comic Books Pokemon Adventures",
+      "validation": {
+        "ok": false,
+        "reason": "api_product_name_pattern_not_supported"
+      }
+    },
+    {
+      "query": "Pokemon FireRed & LeafGreen Prof. Oak's Research 98 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20FireRed%20%26%20LeafGreen%20Prof.%20Oak's%20Research%2098%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4802203",
+      "product_name": "Pokemon Adventures Vol. 23: FireRed and LeafGreen (2014)",
+      "console_name": "Comic Books Pokemon Adventures",
+      "validation": {
+        "ok": false,
+        "reason": "api_product_name_pattern_not_supported"
+      }
+    },
+    {
+      "query": "Pokemon FireRed & LeafGreen Prof. Oak's Research 98 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20FireRed%20%26%20LeafGreen%20Prof.%20Oak's%20Research%2098%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "2184352",
+      "product_name": "Pokemon LeafGreen and FireRed [Prima]",
+      "console_name": "Strategy Guide",
+      "validation": {
+        "ok": false,
+        "reason": "api_product_name_pattern_not_supported"
+      }
+    },
+    {
+      "query": "Pokemon FireRed & LeafGreen Prof. Oak's Research 98 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20FireRed%20%26%20LeafGreen%20Prof.%20Oak's%20Research%2098%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "1972535",
+      "product_name": "Pokemon FireRed & LeafGreen Player's Guide",
+      "console_name": "Strategy Guide",
+      "validation": {
+        "ok": false,
+        "reason": "api_product_name_pattern_not_supported"
+      }
+    },
+    {
+      "query": "Pokemon FireRed & LeafGreen Prof. Oak's Research 98 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20FireRed%20%26%20LeafGreen%20Prof.%20Oak's%20Research%2098%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9821866",
+      "product_name": "Pokemon Pocket Trainers Guide: FireRed And LeafGreen",
+      "console_name": "Strategy Guide",
+      "validation": {
+        "ok": false,
+        "reason": "api_product_name_pattern_not_supported"
+      }
+    },
+    {
+      "query": "Pokemon FireRed & LeafGreen Prof. Oak's Research 98 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20FireRed%20%26%20LeafGreen%20Prof.%20Oak's%20Research%2098%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4802194",
+      "product_name": "Pokemon Adventures FireRed & LeafGreen & Emerald Box Set (2015)",
+      "console_name": "Comic Books Pokemon Adventures",
+      "validation": {
+        "ok": false,
+        "reason": "api_product_name_pattern_not_supported"
+      }
+    },
+    {
+      "query": "Pokemon FireRed & LeafGreen Prof. Oak's Research 98 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20FireRed%20%26%20LeafGreen%20Prof.%20Oak's%20Research%2098%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5768450",
+      "product_name": "Pikachu #A025",
+      "console_name": "Pokemon Japanese E-Battle Firered & Leafgreen",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:A025"
+      }
+    },
+    {
+      "query": "Pokemon FireRed & LeafGreen Prof. Oak's Research 98 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20FireRed%20%26%20LeafGreen%20Prof.%20Oak's%20Research%2098%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5768451",
+      "product_name": "Pikachu #A026",
+      "console_name": "Pokemon Japanese E-Battle Firered & Leafgreen",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:A026"
+      }
+    },
+    {
+      "query": "Pokemon FireRed & LeafGreen Prof. Oak's Research 98 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20FireRed%20%26%20LeafGreen%20Prof.%20Oak's%20Research%2098%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5768452",
+      "product_name": "Pikachu #A027",
+      "console_name": "Pokemon Japanese E-Battle Firered & Leafgreen",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:A027"
+      }
+    },
+    {
+      "query": "Pokemon FireRed & LeafGreen Prof. Oak's Research 98 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20FireRed%20%26%20LeafGreen%20Prof.%20Oak's%20Research%2098%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5768453",
+      "product_name": "Pikachu #A028",
+      "console_name": "Pokemon Japanese E-Battle Firered & Leafgreen",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:A028"
+      }
+    },
+    {
+      "query": "Pokemon FireRed & LeafGreen Prof. Oak's Research 98 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20FireRed%20%26%20LeafGreen%20Prof.%20Oak's%20Research%2098%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5768454",
+      "product_name": "Pikachu #A029",
+      "console_name": "Pokemon Japanese E-Battle Firered & Leafgreen",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:A029"
+      }
+    },
+    {
+      "query": "Pokemon FireRed & LeafGreen Prof. Oak's Research 98 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20FireRed%20%26%20LeafGreen%20Prof.%20Oak's%20Research%2098%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5768455",
+      "product_name": "Pikachu #A030",
+      "console_name": "Pokemon Japanese E-Battle Firered & Leafgreen",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:A030"
+      }
+    },
+    {
+      "query": "Pokemon FireRed & LeafGreen Prof. Oak's Research 98 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20FireRed%20%26%20LeafGreen%20Prof.%20Oak's%20Research%2098%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5768456",
+      "product_name": "Pikachu #A032",
+      "console_name": "Pokemon Japanese E-Battle Firered & Leafgreen",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:A032"
+      }
+    },
+    {
+      "query": "Pokemon FireRed & LeafGreen Prof. Oak's Research 98 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20FireRed%20%26%20LeafGreen%20Prof.%20Oak's%20Research%2098%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5768418",
+      "product_name": "Pikachu #A031",
+      "console_name": "Pokemon Japanese E-Battle Firered & Leafgreen",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:A031"
+      }
+    },
+    {
+      "query": "Pokemon FireRed & LeafGreen Prof. Oak's Research 98 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20FireRed%20%26%20LeafGreen%20Prof.%20Oak's%20Research%2098%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5768461",
+      "product_name": "Flareon #T005",
+      "console_name": "Pokemon Japanese E-Battle Firered & Leafgreen",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:T005"
+      }
+    },
+    {
+      "query": "Pokemon FireRed & LeafGreen Prof. Oak's Research 98 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20FireRed%20%26%20LeafGreen%20Prof.%20Oak's%20Research%2098%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5768460",
+      "product_name": "Pikachu #T004",
+      "console_name": "Pokemon Japanese E-Battle Firered & Leafgreen",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:T004"
+      }
+    },
+    {
+      "query": "Pokemon FireRed & LeafGreen Prof. Oak's Research 98 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20FireRed%20%26%20LeafGreen%20Prof.%20Oak's%20Research%2098%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5768434",
+      "product_name": "Venusaur #A009",
+      "console_name": "Pokemon Japanese E-Battle Firered & Leafgreen",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:A009"
+      }
+    }
+  ],
+  "source_lane": "pricecharting_api"
+}

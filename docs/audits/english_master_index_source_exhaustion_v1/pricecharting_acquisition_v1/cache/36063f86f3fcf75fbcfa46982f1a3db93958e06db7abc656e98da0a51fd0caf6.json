@@ -1,0 +1,549 @@
+{
+  "status": "api_no_validated_match",
+  "fact": {
+    "gap_type": "finish_second_source_needed",
+    "fact_type": "printing_finish",
+    "set_key": "sv05",
+    "set_name": "Temporal Forces",
+    "card_number": "96",
+    "card_name": "Great Tusk",
+    "finish_key": "cosmos",
+    "status": "human_source_verified",
+    "sources": [
+      "thepricedex_price_list"
+    ],
+    "source_authorities": [
+      "thepricedex.com"
+    ],
+    "source_kinds": [
+      "marketplace_checklist"
+    ],
+    "evidence_urls": [
+      "https://www.thepricedex.com/set/sv5/temporal-forces/price-list"
+    ],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "attempts": [
+    {
+      "query": "Pokemon Temporal Forces Great Tusk 96 cosmos holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Temporal%20Forces%20Great%20Tusk%2096%20cosmos%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6495767",
+      "product_name": "Great Tusk [Reverse Holo] #96",
+      "console_name": "Pokemon Temporal Forces",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Reverse Holo"
+      }
+    },
+    {
+      "query": "Pokemon Temporal Forces Great Tusk 96 cosmos holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Temporal%20Forces%20Great%20Tusk%2096%20cosmos%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11440380",
+      "product_name": "Great Tusk [Stamped] #96",
+      "console_name": "Pokemon Temporal Forces",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Stamped"
+      }
+    },
+    {
+      "query": "Pokemon Temporal Forces Great Tusk 96 cosmos holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Temporal%20Forces%20Great%20Tusk%2096%20cosmos%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6495556",
+      "product_name": "Great Tusk #96",
+      "console_name": "Pokemon Temporal Forces",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon Temporal Forces Great Tusk 96 cosmos holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Temporal%20Forces%20Great%20Tusk%2096%20cosmos%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6495768",
+      "product_name": "Great Tusk [Reverse Holo] #97",
+      "console_name": "Pokemon Temporal Forces",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:97"
+      }
+    },
+    {
+      "query": "Pokemon Temporal Forces Great Tusk 96 cosmos holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Temporal%20Forces%20Great%20Tusk%2096%20cosmos%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6495557",
+      "product_name": "Great Tusk #97",
+      "console_name": "Pokemon Temporal Forces",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:97"
+      }
+    },
+    {
+      "query": "Pokemon Temporal Forces Great Tusk 96 cosmos holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Temporal%20Forces%20Great%20Tusk%2096%20cosmos%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9419790",
+      "product_name": "Great Tusk [Prize Pack] #97",
+      "console_name": "Pokemon Temporal Forces",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:97"
+      }
+    },
+    {
+      "query": "Pokemon Temporal Forces Great Tusk 96 cosmos holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Temporal%20Forces%20Great%20Tusk%2096%20cosmos%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7747651",
+      "product_name": "Miraidon [Cosmos Holo] #121",
+      "console_name": "Pokemon Temporal Forces",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:121"
+      }
+    },
+    {
+      "query": "Pokemon Temporal Forces Great Tusk 96 cosmos holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Temporal%20Forces%20Great%20Tusk%2096%20cosmos%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7747652",
+      "product_name": "Koraidon [Cosmos Holo] #119",
+      "console_name": "Pokemon Temporal Forces",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:119"
+      }
+    },
+    {
+      "query": "Pokemon Temporal Forces Great Tusk 96 cosmos holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Temporal%20Forces%20Great%20Tusk%2096%20cosmos%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7847740",
+      "product_name": "Hoothoot [Cosmos Holo] #126",
+      "console_name": "Pokemon Temporal Forces",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:126"
+      }
+    },
+    {
+      "query": "Pokemon Temporal Forces Great Tusk 96 cosmos holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Temporal%20Forces%20Great%20Tusk%2096%20cosmos%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7847741",
+      "product_name": "Noctowl [Cosmos Holo] #127",
+      "console_name": "Pokemon Temporal Forces",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:127"
+      }
+    },
+    {
+      "query": "Pokemon Temporal Forces Great Tusk 96 cosmos holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Temporal%20Forces%20Great%20Tusk%2096%20cosmos%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7854032",
+      "product_name": "Pikachu [Cosmos Holo] #51",
+      "console_name": "Pokemon Temporal Forces",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:51"
+      }
+    },
+    {
+      "query": "Pokemon Temporal Forces Great Tusk 96 cosmos holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Temporal%20Forces%20Great%20Tusk%2096%20cosmos%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11519132",
+      "product_name": "Great Tusk [Mirror Holo] #422",
+      "console_name": "Pokemon Japanese Start Deck 100 Battle Collection",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:422"
+      }
+    },
+    {
+      "query": "Pokemon Temporal Forces Great Tusk 96 cosmos holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Temporal%20Forces%20Great%20Tusk%2096%20cosmos%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6944346",
+      "product_name": "Iron Valiant [Cosmos Holo] #79",
+      "console_name": "Pokemon Temporal Forces",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:79"
+      }
+    },
+    {
+      "query": "Pokemon Temporal Forces Great Tusk 96 cosmos holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Temporal%20Forces%20Great%20Tusk%2096%20cosmos%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7747647",
+      "product_name": "Roaring Moon [Cosmos Holo] #109",
+      "console_name": "Pokemon Temporal Forces",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:109"
+      }
+    },
+    {
+      "query": "Pokemon Temporal Forces Great Tusk 96 cosmos holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Temporal%20Forces%20Great%20Tusk%2096%20cosmos%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7747649",
+      "product_name": "Iron Thorns [Cosmos Holo] #62",
+      "console_name": "Pokemon Temporal Forces",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:62"
+      }
+    },
+    {
+      "query": "Pokemon Temporal Forces Great Tusk 96 cosmos holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Temporal%20Forces%20Great%20Tusk%2096%20cosmos%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6944345",
+      "product_name": "Scream Tail [Cosmos Holo] #77",
+      "console_name": "Pokemon Temporal Forces",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:77"
+      }
+    },
+    {
+      "query": "Pokemon Temporal Forces Great Tusk 96 cosmos holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Temporal%20Forces%20Great%20Tusk%2096%20cosmos%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10951937",
+      "product_name": "Metang [Cosmos Holo Prize Pack] #114",
+      "console_name": "Pokemon Temporal Forces",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:114"
+      }
+    },
+    {
+      "query": "Pokemon Temporal Forces Great Tusk 96 cosmos holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Temporal%20Forces%20Great%20Tusk%2096%20cosmos%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10909877",
+      "product_name": "Mist Energy [Prize Pack Cosmos Holo] #161",
+      "console_name": "Pokemon Temporal Forces",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:161"
+      }
+    },
+    {
+      "query": "Pokemon Temporal Forces Great Tusk 96 cosmos holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Temporal%20Forces%20Great%20Tusk%2096%20cosmos%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7892010",
+      "product_name": "Roaring Moon [Prize Pack Cosmos Holo] #109",
+      "console_name": "Pokemon Temporal Forces",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:109"
+      }
+    },
+    {
+      "query": "Pokemon Temporal Forces Great Tusk 96 cosmos holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Temporal%20Forces%20Great%20Tusk%2096%20cosmos%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8205404",
+      "product_name": "Rescue Board [Prize Pack Cosmos Holo] #159",
+      "console_name": "Pokemon Temporal Forces",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:159"
+      }
+    },
+    {
+      "query": "Pokemon Temporal Forces Great Tusk 96 cosmos",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Temporal%20Forces%20Great%20Tusk%2096%20cosmos",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11440380",
+      "product_name": "Great Tusk [Stamped] #96",
+      "console_name": "Pokemon Temporal Forces",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Stamped"
+      }
+    },
+    {
+      "query": "Pokemon Temporal Forces Great Tusk 96 cosmos",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Temporal%20Forces%20Great%20Tusk%2096%20cosmos",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6495556",
+      "product_name": "Great Tusk #96",
+      "console_name": "Pokemon Temporal Forces",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon Temporal Forces Great Tusk 96 cosmos",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Temporal%20Forces%20Great%20Tusk%2096%20cosmos",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6495767",
+      "product_name": "Great Tusk [Reverse Holo] #96",
+      "console_name": "Pokemon Temporal Forces",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Reverse Holo"
+      }
+    },
+    {
+      "query": "Pokemon Temporal Forces Great Tusk 96 cosmos",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Temporal%20Forces%20Great%20Tusk%2096%20cosmos",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6495557",
+      "product_name": "Great Tusk #97",
+      "console_name": "Pokemon Temporal Forces",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:97"
+      }
+    },
+    {
+      "query": "Pokemon Temporal Forces Great Tusk 96 cosmos",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Temporal%20Forces%20Great%20Tusk%2096%20cosmos",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9419790",
+      "product_name": "Great Tusk [Prize Pack] #97",
+      "console_name": "Pokemon Temporal Forces",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:97"
+      }
+    },
+    {
+      "query": "Pokemon Temporal Forces Great Tusk 96 cosmos",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Temporal%20Forces%20Great%20Tusk%2096%20cosmos",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6495768",
+      "product_name": "Great Tusk [Reverse Holo] #97",
+      "console_name": "Pokemon Temporal Forces",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:97"
+      }
+    },
+    {
+      "query": "Pokemon Temporal Forces Great Tusk 96 cosmos",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Temporal%20Forces%20Great%20Tusk%2096%20cosmos",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8321734",
+      "product_name": "Great Tusk [Reverse] #55",
+      "console_name": "Pokemon Prismatic Evolutions",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:55"
+      }
+    },
+    {
+      "query": "Pokemon Temporal Forces Great Tusk 96 cosmos",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Temporal%20Forces%20Great%20Tusk%2096%20cosmos",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8321636",
+      "product_name": "Great Tusk [Poke Ball] #55",
+      "console_name": "Pokemon Prismatic Evolutions",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:55"
+      }
+    },
+    {
+      "query": "Pokemon Temporal Forces Great Tusk 96 cosmos",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Temporal%20Forces%20Great%20Tusk%2096%20cosmos",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5732823",
+      "product_name": "Great Tusk EX [Play] #123",
+      "console_name": "Pokemon Scarlet & Violet",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:123"
+      }
+    },
+    {
+      "query": "Pokemon Temporal Forces Great Tusk 96 cosmos",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Temporal%20Forces%20Great%20Tusk%2096%20cosmos",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11371403",
+      "product_name": "Great Tusk Ex [Stamped] #72",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:72"
+      }
+    },
+    {
+      "query": "Pokemon Temporal Forces Great Tusk 96 cosmos",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Temporal%20Forces%20Great%20Tusk%2096%20cosmos",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10809483",
+      "product_name": "Great Tusk ex [Jumbo] #72",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "product_scope_jumbo_not_canonical_set_finish"
+      }
+    },
+    {
+      "query": "Pokemon Temporal Forces Great Tusk 96 cosmos",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Temporal%20Forces%20Great%20Tusk%2096%20cosmos",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12843751",
+      "product_name": "Great Tusk [Poke Ball] #130",
+      "console_name": "Pokemon Chinese CSV7C",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:130"
+      }
+    },
+    {
+      "query": "Pokemon Temporal Forces Great Tusk 96 cosmos",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Temporal%20Forces%20Great%20Tusk%2096%20cosmos",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12843753",
+      "product_name": "Great Tusk [Poke Ball] #131",
+      "console_name": "Pokemon Chinese CSV7C",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:131"
+      }
+    },
+    {
+      "query": "Pokemon Temporal Forces Great Tusk 96 cosmos",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Temporal%20Forces%20Great%20Tusk%2096%20cosmos",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8321538",
+      "product_name": "Great Tusk [Master Ball] #55",
+      "console_name": "Pokemon Prismatic Evolutions",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:55"
+      }
+    },
+    {
+      "query": "Pokemon Temporal Forces Great Tusk 96 cosmos",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Temporal%20Forces%20Great%20Tusk%2096%20cosmos",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7980293",
+      "product_name": "Great Tusk [Poke Ball] #86",
+      "console_name": "Pokemon Japanese Terastal Festival",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:86"
+      }
+    },
+    {
+      "query": "Pokemon Temporal Forces Great Tusk 96 cosmos",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Temporal%20Forces%20Great%20Tusk%2096%20cosmos",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7847740",
+      "product_name": "Hoothoot [Cosmos Holo] #126",
+      "console_name": "Pokemon Temporal Forces",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:126"
+      }
+    },
+    {
+      "query": "Pokemon Temporal Forces Great Tusk 96 cosmos",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Temporal%20Forces%20Great%20Tusk%2096%20cosmos",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7847741",
+      "product_name": "Noctowl [Cosmos Holo] #127",
+      "console_name": "Pokemon Temporal Forces",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:127"
+      }
+    },
+    {
+      "query": "Pokemon Temporal Forces Great Tusk 96 cosmos",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Temporal%20Forces%20Great%20Tusk%2096%20cosmos",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7854032",
+      "product_name": "Pikachu [Cosmos Holo] #51",
+      "console_name": "Pokemon Temporal Forces",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:51"
+      }
+    },
+    {
+      "query": "Pokemon Temporal Forces Great Tusk 96 cosmos",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Temporal%20Forces%20Great%20Tusk%2096%20cosmos",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7747651",
+      "product_name": "Miraidon [Cosmos Holo] #121",
+      "console_name": "Pokemon Temporal Forces",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:121"
+      }
+    },
+    {
+      "query": "Pokemon Temporal Forces Great Tusk 96 cosmos",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Temporal%20Forces%20Great%20Tusk%2096%20cosmos",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7747652",
+      "product_name": "Koraidon [Cosmos Holo] #119",
+      "console_name": "Pokemon Temporal Forces",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:119"
+      }
+    }
+  ],
+  "source_lane": "pricecharting_api"
+}

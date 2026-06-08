@@ -1,0 +1,43 @@
+{
+  "status": "no_validated_match",
+  "fact": {
+    "gap_type": "finish_second_source_needed",
+    "fact_type": "printing_finish",
+    "set_key": "si1",
+    "set_name": "Southern Islands",
+    "card_number": "14",
+    "card_name": "Slowking",
+    "finish_key": "holo",
+    "status": "human_source_verified",
+    "sources": [
+      "thepricedex_price_list"
+    ],
+    "source_authorities": [
+      "thepricedex.com"
+    ],
+    "source_kinds": [
+      "marketplace_checklist"
+    ],
+    "evidence_urls": [],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "attempts": [
+    {
+      "query": "Pokemon Southern Islands Slowking 14 holo",
+      "url": "https://www.pricecharting.com/search-products?q=Pokemon%20Southern%20Islands%20Slowking%2014%20holo&type=prices",
+      "parsed": {
+        "title": "Pokemon Southern Islands Slowking 14 Holo Prices | Pokemon Southern Islands Slowking 14 Holo List",
+        "source_url": "https://www.pricecharting.com/search-products?q=pokemon+southern+islands+slowking+14+holo&type=prices"
+      },
+      "validation": {
+        "ok": false,
+        "reason": "title_pattern_not_supported"
+      }
+    },
+    {
+      "query": "Pokemon Southern Islands Slowking 14 holofoil",
+      "url": "https://www.pricecharting.com/search-products?q=Pokemon%20Southern%20Islands%20Slowking%2014%20holofoil&type=prices",
+      "error": "Fetch failed 403 Forbidden: https://www.pricecharting.com/search-products?q=Pokemon%20Southern%20Islands%20Slowking%2014%20holofoil&type=prices"
+    }
+  ]
+}

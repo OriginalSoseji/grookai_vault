@@ -1,0 +1,549 @@
+{
+  "status": "api_no_validated_match",
+  "fact": {
+    "gap_type": "finish_second_source_needed",
+    "fact_type": "printing_finish",
+    "set_key": "sv10",
+    "set_name": "Destined Rivals",
+    "card_number": "8",
+    "card_name": "Cynthia's Roserade",
+    "finish_key": "stamped",
+    "status": "human_source_verified",
+    "sources": [
+      "thepricedex_price_list"
+    ],
+    "source_authorities": [
+      "thepricedex.com"
+    ],
+    "source_kinds": [
+      "marketplace_checklist"
+    ],
+    "evidence_urls": [
+      "https://www.thepricedex.com/set/sv10/destined-rivals/price-list"
+    ],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "attempts": [
+    {
+      "query": "Pokemon Destined Rivals Cynthia's Roserade 8 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Destined%20Rivals%20Cynthia's%20Roserade%208%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9432716",
+      "product_name": "Cynthia's Roserade #8",
+      "console_name": "Pokemon Destined Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon Destined Rivals Cynthia's Roserade 8 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Destined%20Rivals%20Cynthia's%20Roserade%208%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12189294",
+      "product_name": "Cynthia's Roserade [Prize Pack] #8",
+      "console_name": "Pokemon Destined Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Prize Pack"
+      }
+    },
+    {
+      "query": "Pokemon Destined Rivals Cynthia's Roserade 8 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Destined%20Rivals%20Cynthia's%20Roserade%208%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9432958",
+      "product_name": "Cynthia's Roserade [Reverse Holo] #8",
+      "console_name": "Pokemon Destined Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Reverse Holo"
+      }
+    },
+    {
+      "query": "Pokemon Destined Rivals Cynthia's Roserade 8 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Destined%20Rivals%20Cynthia's%20Roserade%208%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9432891",
+      "product_name": "Cynthia's Roserade #184",
+      "console_name": "Pokemon Destined Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:184"
+      }
+    },
+    {
+      "query": "Pokemon Destined Rivals Cynthia's Roserade 8 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Destined%20Rivals%20Cynthia's%20Roserade%208%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12300055",
+      "product_name": "Cynthia's Roserade [Prize Pack Cosmos Holo] #8",
+      "console_name": "Pokemon Destined Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Prize Pack Cosmos Holo"
+      }
+    },
+    {
+      "query": "Pokemon Destined Rivals Cynthia's Roserade 8 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Destined%20Rivals%20Cynthia's%20Roserade%208%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9432810",
+      "product_name": "Cynthia's Gible #102",
+      "console_name": "Pokemon Destined Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:102"
+      }
+    },
+    {
+      "query": "Pokemon Destined Rivals Cynthia's Roserade 8 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Destined%20Rivals%20Cynthia's%20Roserade%208%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9432761",
+      "product_name": "Cynthia's Milotic #53",
+      "console_name": "Pokemon Destined Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:53"
+      }
+    },
+    {
+      "query": "Pokemon Destined Rivals Cynthia's Roserade 8 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Destined%20Rivals%20Cynthia's%20Roserade%208%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9432760",
+      "product_name": "Cynthia's Feebas #52",
+      "console_name": "Pokemon Destined Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:52"
+      }
+    },
+    {
+      "query": "Pokemon Destined Rivals Cynthia's Roserade 8 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Destined%20Rivals%20Cynthia's%20Roserade%208%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9432715",
+      "product_name": "Cynthia's Roselia #7",
+      "console_name": "Pokemon Destined Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:7"
+      }
+    },
+    {
+      "query": "Pokemon Destined Rivals Cynthia's Roserade 8 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Destined%20Rivals%20Cynthia's%20Roserade%208%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9432811",
+      "product_name": "Cynthia's Gabite #103",
+      "console_name": "Pokemon Destined Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:103"
+      }
+    },
+    {
+      "query": "Pokemon Destined Rivals Cynthia's Roserade 8 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Destined%20Rivals%20Cynthia's%20Roserade%208%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9432837",
+      "product_name": "Cynthia's Spiritomb #129",
+      "console_name": "Pokemon Destined Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:129"
+      }
+    },
+    {
+      "query": "Pokemon Destined Rivals Cynthia's Roserade 8 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Destined%20Rivals%20Cynthia's%20Roserade%208%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9432939",
+      "product_name": "Cynthia's Garchomp ex #232",
+      "console_name": "Pokemon Destined Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:232"
+      }
+    },
+    {
+      "query": "Pokemon Destined Rivals Cynthia's Roserade 8 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Destined%20Rivals%20Cynthia's%20Roserade%208%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9432948",
+      "product_name": "Cynthia's Garchomp ex #241",
+      "console_name": "Pokemon Destined Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:241"
+      }
+    },
+    {
+      "query": "Pokemon Destined Rivals Cynthia's Roserade 8 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Destined%20Rivals%20Cynthia's%20Roserade%208%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9432812",
+      "product_name": "Cynthia's Garchomp ex #104",
+      "console_name": "Pokemon Destined Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:104"
+      }
+    },
+    {
+      "query": "Pokemon Destined Rivals Cynthia's Roserade 8 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Destined%20Rivals%20Cynthia's%20Roserade%208%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9432922",
+      "product_name": "Cynthia's Garchomp ex #215",
+      "console_name": "Pokemon Destined Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:215"
+      }
+    },
+    {
+      "query": "Pokemon Destined Rivals Cynthia's Roserade 8 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Destined%20Rivals%20Cynthia's%20Roserade%208%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9432870",
+      "product_name": "Cynthia's Power Weight #162",
+      "console_name": "Pokemon Destined Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:162"
+      }
+    },
+    {
+      "query": "Pokemon Destined Rivals Cynthia's Roserade 8 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Destined%20Rivals%20Cynthia's%20Roserade%208%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8867743",
+      "product_name": "Cynthia's Roserade #65",
+      "console_name": "Pokemon Japanese Heat Wave Arena",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:65"
+      }
+    },
+    {
+      "query": "Pokemon Destined Rivals Cynthia's Roserade 8 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Destined%20Rivals%20Cynthia's%20Roserade%208%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8867710",
+      "product_name": "Cynthia's Roserade #5",
+      "console_name": "Pokemon Japanese Heat Wave Arena",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:5"
+      }
+    },
+    {
+      "query": "Pokemon Destined Rivals Cynthia's Roserade 8 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Destined%20Rivals%20Cynthia's%20Roserade%208%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11302377",
+      "product_name": "Cynthia's Roserade #10",
+      "console_name": "Pokemon Japanese Mega Dream ex",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:10"
+      }
+    },
+    {
+      "query": "Pokemon Destined Rivals Cynthia's Roserade 8 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Destined%20Rivals%20Cynthia's%20Roserade%208%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10741217",
+      "product_name": "Cynthia's Roserade #65",
+      "console_name": "Pokemon Korean Heat Wave Arena",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:65"
+      }
+    },
+    {
+      "query": "Pokemon Destined Rivals Cynthia's Roserade 8 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Destined%20Rivals%20Cynthia's%20Roserade%208%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9432716",
+      "product_name": "Cynthia's Roserade #8",
+      "console_name": "Pokemon Destined Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon Destined Rivals Cynthia's Roserade 8 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Destined%20Rivals%20Cynthia's%20Roserade%208%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12189294",
+      "product_name": "Cynthia's Roserade [Prize Pack] #8",
+      "console_name": "Pokemon Destined Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Prize Pack"
+      }
+    },
+    {
+      "query": "Pokemon Destined Rivals Cynthia's Roserade 8 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Destined%20Rivals%20Cynthia's%20Roserade%208%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9432958",
+      "product_name": "Cynthia's Roserade [Reverse Holo] #8",
+      "console_name": "Pokemon Destined Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Reverse Holo"
+      }
+    },
+    {
+      "query": "Pokemon Destined Rivals Cynthia's Roserade 8 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Destined%20Rivals%20Cynthia's%20Roserade%208%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9432891",
+      "product_name": "Cynthia's Roserade #184",
+      "console_name": "Pokemon Destined Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:184"
+      }
+    },
+    {
+      "query": "Pokemon Destined Rivals Cynthia's Roserade 8 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Destined%20Rivals%20Cynthia's%20Roserade%208%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12300055",
+      "product_name": "Cynthia's Roserade [Prize Pack Cosmos Holo] #8",
+      "console_name": "Pokemon Destined Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Prize Pack Cosmos Holo"
+      }
+    },
+    {
+      "query": "Pokemon Destined Rivals Cynthia's Roserade 8 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Destined%20Rivals%20Cynthia's%20Roserade%208%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9432810",
+      "product_name": "Cynthia's Gible #102",
+      "console_name": "Pokemon Destined Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:102"
+      }
+    },
+    {
+      "query": "Pokemon Destined Rivals Cynthia's Roserade 8 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Destined%20Rivals%20Cynthia's%20Roserade%208%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9432761",
+      "product_name": "Cynthia's Milotic #53",
+      "console_name": "Pokemon Destined Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:53"
+      }
+    },
+    {
+      "query": "Pokemon Destined Rivals Cynthia's Roserade 8 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Destined%20Rivals%20Cynthia's%20Roserade%208%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9432760",
+      "product_name": "Cynthia's Feebas #52",
+      "console_name": "Pokemon Destined Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:52"
+      }
+    },
+    {
+      "query": "Pokemon Destined Rivals Cynthia's Roserade 8 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Destined%20Rivals%20Cynthia's%20Roserade%208%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9432715",
+      "product_name": "Cynthia's Roselia #7",
+      "console_name": "Pokemon Destined Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:7"
+      }
+    },
+    {
+      "query": "Pokemon Destined Rivals Cynthia's Roserade 8 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Destined%20Rivals%20Cynthia's%20Roserade%208%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9432811",
+      "product_name": "Cynthia's Gabite #103",
+      "console_name": "Pokemon Destined Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:103"
+      }
+    },
+    {
+      "query": "Pokemon Destined Rivals Cynthia's Roserade 8 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Destined%20Rivals%20Cynthia's%20Roserade%208%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9432837",
+      "product_name": "Cynthia's Spiritomb #129",
+      "console_name": "Pokemon Destined Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:129"
+      }
+    },
+    {
+      "query": "Pokemon Destined Rivals Cynthia's Roserade 8 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Destined%20Rivals%20Cynthia's%20Roserade%208%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9432939",
+      "product_name": "Cynthia's Garchomp ex #232",
+      "console_name": "Pokemon Destined Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:232"
+      }
+    },
+    {
+      "query": "Pokemon Destined Rivals Cynthia's Roserade 8 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Destined%20Rivals%20Cynthia's%20Roserade%208%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9432948",
+      "product_name": "Cynthia's Garchomp ex #241",
+      "console_name": "Pokemon Destined Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:241"
+      }
+    },
+    {
+      "query": "Pokemon Destined Rivals Cynthia's Roserade 8 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Destined%20Rivals%20Cynthia's%20Roserade%208%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9432812",
+      "product_name": "Cynthia's Garchomp ex #104",
+      "console_name": "Pokemon Destined Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:104"
+      }
+    },
+    {
+      "query": "Pokemon Destined Rivals Cynthia's Roserade 8 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Destined%20Rivals%20Cynthia's%20Roserade%208%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9432922",
+      "product_name": "Cynthia's Garchomp ex #215",
+      "console_name": "Pokemon Destined Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:215"
+      }
+    },
+    {
+      "query": "Pokemon Destined Rivals Cynthia's Roserade 8 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Destined%20Rivals%20Cynthia's%20Roserade%208%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9432870",
+      "product_name": "Cynthia's Power Weight #162",
+      "console_name": "Pokemon Destined Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:162"
+      }
+    },
+    {
+      "query": "Pokemon Destined Rivals Cynthia's Roserade 8 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Destined%20Rivals%20Cynthia's%20Roserade%208%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8867743",
+      "product_name": "Cynthia's Roserade #65",
+      "console_name": "Pokemon Japanese Heat Wave Arena",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:65"
+      }
+    },
+    {
+      "query": "Pokemon Destined Rivals Cynthia's Roserade 8 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Destined%20Rivals%20Cynthia's%20Roserade%208%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8867710",
+      "product_name": "Cynthia's Roserade #5",
+      "console_name": "Pokemon Japanese Heat Wave Arena",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:5"
+      }
+    },
+    {
+      "query": "Pokemon Destined Rivals Cynthia's Roserade 8 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Destined%20Rivals%20Cynthia's%20Roserade%208%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11302377",
+      "product_name": "Cynthia's Roserade #10",
+      "console_name": "Pokemon Japanese Mega Dream ex",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:10"
+      }
+    },
+    {
+      "query": "Pokemon Destined Rivals Cynthia's Roserade 8 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Destined%20Rivals%20Cynthia's%20Roserade%208%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10741217",
+      "product_name": "Cynthia's Roserade #65",
+      "console_name": "Pokemon Korean Heat Wave Arena",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:65"
+      }
+    }
+  ],
+  "source_lane": "pricecharting_api"
+}

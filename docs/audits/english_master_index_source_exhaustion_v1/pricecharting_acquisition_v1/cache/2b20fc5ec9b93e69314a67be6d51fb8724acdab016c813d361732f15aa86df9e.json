@@ -1,0 +1,549 @@
+{
+  "status": "api_no_validated_match",
+  "fact": {
+    "gap_type": "finish_second_source_needed",
+    "fact_type": "printing_finish",
+    "set_key": "sv08.5",
+    "set_name": "Prismatic Evolutions",
+    "card_number": "116",
+    "card_name": "Max Rod",
+    "finish_key": "stamped",
+    "status": "human_source_verified",
+    "sources": [
+      "thepricedex_price_list"
+    ],
+    "source_authorities": [
+      "thepricedex.com"
+    ],
+    "source_kinds": [
+      "marketplace_checklist"
+    ],
+    "evidence_urls": [
+      "https://www.thepricedex.com/set/sv8pt5/prismatic-evolutions/price-list"
+    ],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "attempts": [
+    {
+      "query": "Pokemon Prismatic Evolutions Max Rod 116 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Prismatic%20Evolutions%20Max%20Rod%20116%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8244561",
+      "product_name": "Max Rod #116",
+      "console_name": "Pokemon Prismatic Evolutions",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon Prismatic Evolutions Max Rod 116 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Prismatic%20Evolutions%20Max%20Rod%20116%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10951962",
+      "product_name": "Max Rod [Prize Pack] #116",
+      "console_name": "Pokemon Prismatic Evolutions",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Prize Pack"
+      }
+    },
+    {
+      "query": "Pokemon Prismatic Evolutions Max Rod 116 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Prismatic%20Evolutions%20Max%20Rod%20116%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11047387",
+      "product_name": "Budew [Gym Stamp] #4",
+      "console_name": "Pokemon Prismatic Evolutions",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:4"
+      }
+    },
+    {
+      "query": "Pokemon Prismatic Evolutions Max Rod 116 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Prismatic%20Evolutions%20Max%20Rod%20116%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10491819",
+      "product_name": "Lucario [Stamped] #51",
+      "console_name": "Pokemon Prismatic Evolutions",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:51"
+      }
+    },
+    {
+      "query": "Pokemon Prismatic Evolutions Max Rod 116 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Prismatic%20Evolutions%20Max%20Rod%20116%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8576523",
+      "product_name": "Eevee Ex [Stamped] #75",
+      "console_name": "Pokemon Prismatic Evolutions",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:75"
+      }
+    },
+    {
+      "query": "Pokemon Prismatic Evolutions Max Rod 116 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Prismatic%20Evolutions%20Max%20Rod%20116%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10491823",
+      "product_name": "Tyranitar [Stamped] #64",
+      "console_name": "Pokemon Prismatic Evolutions",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:64"
+      }
+    },
+    {
+      "query": "Pokemon Prismatic Evolutions Max Rod 116 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Prismatic%20Evolutions%20Max%20Rod%20116%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11085989",
+      "product_name": "Lugia Ex [Stamped] #82",
+      "console_name": "Pokemon Prismatic Evolutions",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:82"
+      }
+    },
+    {
+      "query": "Pokemon Prismatic Evolutions Max Rod 116 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Prismatic%20Evolutions%20Max%20Rod%20116%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8624383",
+      "product_name": "Sylveon ex [Stamped] #41",
+      "console_name": "Pokemon Prismatic Evolutions",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:41"
+      }
+    },
+    {
+      "query": "Pokemon Prismatic Evolutions Max Rod 116 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Prismatic%20Evolutions%20Max%20Rod%20116%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8624384",
+      "product_name": "Umbreon ex [Stamped] #60",
+      "console_name": "Pokemon Prismatic Evolutions",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:60"
+      }
+    },
+    {
+      "query": "Pokemon Prismatic Evolutions Max Rod 116 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Prismatic%20Evolutions%20Max%20Rod%20116%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8576850",
+      "product_name": "Leafeon Ex [Stamped] #6",
+      "console_name": "Pokemon Prismatic Evolutions",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:6"
+      }
+    },
+    {
+      "query": "Pokemon Prismatic Evolutions Max Rod 116 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Prismatic%20Evolutions%20Max%20Rod%20116%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8624377",
+      "product_name": "Glaceon ex [Stamped] #26",
+      "console_name": "Pokemon Prismatic Evolutions",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:26"
+      }
+    },
+    {
+      "query": "Pokemon Prismatic Evolutions Max Rod 116 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Prismatic%20Evolutions%20Max%20Rod%20116%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8624379",
+      "product_name": "Jolteon ex [Stamped] #30",
+      "console_name": "Pokemon Prismatic Evolutions",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:30"
+      }
+    },
+    {
+      "query": "Pokemon Prismatic Evolutions Max Rod 116 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Prismatic%20Evolutions%20Max%20Rod%20116%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8624382",
+      "product_name": "Flareon ex [Stamped] #14",
+      "console_name": "Pokemon Prismatic Evolutions",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:14"
+      }
+    },
+    {
+      "query": "Pokemon Prismatic Evolutions Max Rod 116 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Prismatic%20Evolutions%20Max%20Rod%20116%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8624380",
+      "product_name": "Espeon ex [Stamped] #34",
+      "console_name": "Pokemon Prismatic Evolutions",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:34"
+      }
+    },
+    {
+      "query": "Pokemon Prismatic Evolutions Max Rod 116 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Prismatic%20Evolutions%20Max%20Rod%20116%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11444940",
+      "product_name": "Snorlax Ex [Stamped] #76",
+      "console_name": "Pokemon Prismatic Evolutions",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:76"
+      }
+    },
+    {
+      "query": "Pokemon Prismatic Evolutions Max Rod 116 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Prismatic%20Evolutions%20Max%20Rod%20116%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8624381",
+      "product_name": "Vaporeon ex [Stamped] #23",
+      "console_name": "Pokemon Prismatic Evolutions",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:23"
+      }
+    },
+    {
+      "query": "Pokemon Prismatic Evolutions Max Rod 116 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Prismatic%20Evolutions%20Max%20Rod%20116%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12671410",
+      "product_name": "Maxx C [Prismatic Secret Rare] LPST-JP007",
+      "console_name": "YuGiOh Japanese Limited Pack Stamp Edition",
+      "validation": {
+        "ok": false,
+        "reason": "api_product_name_pattern_not_supported"
+      }
+    },
+    {
+      "query": "Pokemon Prismatic Evolutions Max Rod 116 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Prismatic%20Evolutions%20Max%20Rod%20116%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8244579",
+      "product_name": "Eri #136",
+      "console_name": "Pokemon Prismatic Evolutions",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:136"
+      }
+    },
+    {
+      "query": "Pokemon Prismatic Evolutions Max Rod 116 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Prismatic%20Evolutions%20Max%20Rod%20116%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8244583",
+      "product_name": "Mela #140",
+      "console_name": "Pokemon Prismatic Evolutions",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:140"
+      }
+    },
+    {
+      "query": "Pokemon Prismatic Evolutions Max Rod 116 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Prismatic%20Evolutions%20Max%20Rod%20116%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8244586",
+      "product_name": "Tyme #143",
+      "console_name": "Pokemon Prismatic Evolutions",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:143"
+      }
+    },
+    {
+      "query": "Pokemon Prismatic Evolutions Max Rod 116 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Prismatic%20Evolutions%20Max%20Rod%20116%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8244561",
+      "product_name": "Max Rod #116",
+      "console_name": "Pokemon Prismatic Evolutions",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon Prismatic Evolutions Max Rod 116 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Prismatic%20Evolutions%20Max%20Rod%20116%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10951962",
+      "product_name": "Max Rod [Prize Pack] #116",
+      "console_name": "Pokemon Prismatic Evolutions",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Prize Pack"
+      }
+    },
+    {
+      "query": "Pokemon Prismatic Evolutions Max Rod 116 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Prismatic%20Evolutions%20Max%20Rod%20116%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11047387",
+      "product_name": "Budew [Gym Stamp] #4",
+      "console_name": "Pokemon Prismatic Evolutions",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:4"
+      }
+    },
+    {
+      "query": "Pokemon Prismatic Evolutions Max Rod 116 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Prismatic%20Evolutions%20Max%20Rod%20116%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10491819",
+      "product_name": "Lucario [Stamped] #51",
+      "console_name": "Pokemon Prismatic Evolutions",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:51"
+      }
+    },
+    {
+      "query": "Pokemon Prismatic Evolutions Max Rod 116 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Prismatic%20Evolutions%20Max%20Rod%20116%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8576523",
+      "product_name": "Eevee Ex [Stamped] #75",
+      "console_name": "Pokemon Prismatic Evolutions",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:75"
+      }
+    },
+    {
+      "query": "Pokemon Prismatic Evolutions Max Rod 116 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Prismatic%20Evolutions%20Max%20Rod%20116%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10491823",
+      "product_name": "Tyranitar [Stamped] #64",
+      "console_name": "Pokemon Prismatic Evolutions",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:64"
+      }
+    },
+    {
+      "query": "Pokemon Prismatic Evolutions Max Rod 116 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Prismatic%20Evolutions%20Max%20Rod%20116%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11085989",
+      "product_name": "Lugia Ex [Stamped] #82",
+      "console_name": "Pokemon Prismatic Evolutions",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:82"
+      }
+    },
+    {
+      "query": "Pokemon Prismatic Evolutions Max Rod 116 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Prismatic%20Evolutions%20Max%20Rod%20116%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8624383",
+      "product_name": "Sylveon ex [Stamped] #41",
+      "console_name": "Pokemon Prismatic Evolutions",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:41"
+      }
+    },
+    {
+      "query": "Pokemon Prismatic Evolutions Max Rod 116 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Prismatic%20Evolutions%20Max%20Rod%20116%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8624384",
+      "product_name": "Umbreon ex [Stamped] #60",
+      "console_name": "Pokemon Prismatic Evolutions",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:60"
+      }
+    },
+    {
+      "query": "Pokemon Prismatic Evolutions Max Rod 116 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Prismatic%20Evolutions%20Max%20Rod%20116%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8576850",
+      "product_name": "Leafeon Ex [Stamped] #6",
+      "console_name": "Pokemon Prismatic Evolutions",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:6"
+      }
+    },
+    {
+      "query": "Pokemon Prismatic Evolutions Max Rod 116 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Prismatic%20Evolutions%20Max%20Rod%20116%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8624377",
+      "product_name": "Glaceon ex [Stamped] #26",
+      "console_name": "Pokemon Prismatic Evolutions",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:26"
+      }
+    },
+    {
+      "query": "Pokemon Prismatic Evolutions Max Rod 116 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Prismatic%20Evolutions%20Max%20Rod%20116%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8624379",
+      "product_name": "Jolteon ex [Stamped] #30",
+      "console_name": "Pokemon Prismatic Evolutions",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:30"
+      }
+    },
+    {
+      "query": "Pokemon Prismatic Evolutions Max Rod 116 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Prismatic%20Evolutions%20Max%20Rod%20116%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8624382",
+      "product_name": "Flareon ex [Stamped] #14",
+      "console_name": "Pokemon Prismatic Evolutions",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:14"
+      }
+    },
+    {
+      "query": "Pokemon Prismatic Evolutions Max Rod 116 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Prismatic%20Evolutions%20Max%20Rod%20116%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8624380",
+      "product_name": "Espeon ex [Stamped] #34",
+      "console_name": "Pokemon Prismatic Evolutions",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:34"
+      }
+    },
+    {
+      "query": "Pokemon Prismatic Evolutions Max Rod 116 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Prismatic%20Evolutions%20Max%20Rod%20116%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11444940",
+      "product_name": "Snorlax Ex [Stamped] #76",
+      "console_name": "Pokemon Prismatic Evolutions",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:76"
+      }
+    },
+    {
+      "query": "Pokemon Prismatic Evolutions Max Rod 116 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Prismatic%20Evolutions%20Max%20Rod%20116%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8624381",
+      "product_name": "Vaporeon ex [Stamped] #23",
+      "console_name": "Pokemon Prismatic Evolutions",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:23"
+      }
+    },
+    {
+      "query": "Pokemon Prismatic Evolutions Max Rod 116 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Prismatic%20Evolutions%20Max%20Rod%20116%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12671410",
+      "product_name": "Maxx C [Prismatic Secret Rare] LPST-JP007",
+      "console_name": "YuGiOh Japanese Limited Pack Stamp Edition",
+      "validation": {
+        "ok": false,
+        "reason": "api_product_name_pattern_not_supported"
+      }
+    },
+    {
+      "query": "Pokemon Prismatic Evolutions Max Rod 116 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Prismatic%20Evolutions%20Max%20Rod%20116%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8244579",
+      "product_name": "Eri #136",
+      "console_name": "Pokemon Prismatic Evolutions",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:136"
+      }
+    },
+    {
+      "query": "Pokemon Prismatic Evolutions Max Rod 116 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Prismatic%20Evolutions%20Max%20Rod%20116%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8244583",
+      "product_name": "Mela #140",
+      "console_name": "Pokemon Prismatic Evolutions",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:140"
+      }
+    },
+    {
+      "query": "Pokemon Prismatic Evolutions Max Rod 116 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Prismatic%20Evolutions%20Max%20Rod%20116%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8244586",
+      "product_name": "Tyme #143",
+      "console_name": "Pokemon Prismatic Evolutions",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:143"
+      }
+    }
+  ],
+  "source_lane": "pricecharting_api"
+}

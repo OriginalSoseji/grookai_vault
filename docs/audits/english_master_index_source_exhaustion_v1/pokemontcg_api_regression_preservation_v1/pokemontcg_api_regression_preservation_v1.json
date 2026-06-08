@@ -1,0 +1,88 @@
+{
+  "version": "english_master_index_pokemontcg_api_regression_preservation_v1",
+  "generated_at": "2026-06-07T00:00:00.000Z",
+  "audit_only": true,
+  "db_writes_performed": false,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "dry_run": false,
+  "snapshot_file": "docs/audits/verified_master_set_index_v1/source_snapshots/pokemontcg_api_preservation_overrides_v1.json",
+  "rule": "PokemonTCG live evidence may add rows, but live availability must not delete or hide cached baseline PokemonTCG evidence. These rows use the existing pokemontcg_api source key only to preserve prior source evidence.",
+  "summary": {
+    "target_facts": 3,
+    "validated": 3,
+    "blocked": 0,
+    "by_source_key": {
+      "pokemontcg_api": 3
+    }
+  },
+  "results": [
+    {
+      "status": "validated",
+      "source_key": "pokemontcg_api",
+      "source_kind": "structured_api",
+      "source_url": "https://api.pokemontcg.io/v2/cards/ex6-113",
+      "fact": {
+        "set_key": "ex6",
+        "set_name": "FireRed & LeafGreen",
+        "card_number": "113",
+        "card_name": "Charmander",
+        "finish_key": "normal"
+      },
+      "validation": {
+        "ok": true,
+        "checks": {
+          "baseline_source_preserved": true,
+          "source_key_unchanged": true,
+          "not_new_independent_source": true,
+          "audit_only": true
+        }
+      }
+    },
+    {
+      "status": "validated",
+      "source_key": "pokemontcg_api",
+      "source_kind": "structured_api",
+      "source_url": "https://api.pokemontcg.io/v2/cards/pop8-6",
+      "fact": {
+        "set_key": "pop8",
+        "set_name": "POP Series 8",
+        "card_number": "6",
+        "card_name": "Cherrim",
+        "finish_key": "reverse"
+      },
+      "validation": {
+        "ok": true,
+        "checks": {
+          "baseline_source_preserved": true,
+          "source_key_unchanged": true,
+          "not_new_independent_source": true,
+          "audit_only": true
+        }
+      }
+    },
+    {
+      "status": "validated",
+      "source_key": "pokemontcg_api",
+      "source_kind": "structured_api",
+      "source_url": "https://api.pokemontcg.io/v2/cards/pop8-7",
+      "fact": {
+        "set_key": "pop8",
+        "set_name": "POP Series 8",
+        "card_number": "7",
+        "card_name": "Carnivine",
+        "finish_key": "reverse"
+      },
+      "validation": {
+        "ok": true,
+        "checks": {
+          "baseline_source_preserved": true,
+          "source_key_unchanged": true,
+          "not_new_independent_source": true,
+          "audit_only": true
+        }
+      }
+    }
+  ]
+}

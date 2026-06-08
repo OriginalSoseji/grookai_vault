@@ -1,0 +1,549 @@
+{
+  "status": "api_no_validated_match",
+  "fact": {
+    "gap_type": "finish_second_source_needed",
+    "fact_type": "printing_finish",
+    "set_key": "sm2",
+    "set_name": "Guardians Rising",
+    "card_number": "46",
+    "card_name": "Oricorio",
+    "finish_key": "stamped",
+    "status": "human_source_verified",
+    "sources": [
+      "thepricedex_price_list"
+    ],
+    "source_authorities": [
+      "thepricedex.com"
+    ],
+    "source_kinds": [
+      "marketplace_checklist"
+    ],
+    "evidence_urls": [
+      "https://www.thepricedex.com/set/sm2/guardians-rising/price-list"
+    ],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "attempts": [
+    {
+      "query": "Pokemon Guardians Rising Oricorio 46 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Guardians%20Rising%20Oricorio%2046%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "960543",
+      "product_name": "Oricorio #46",
+      "console_name": "Pokemon Guardians Rising",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon Guardians Rising Oricorio 46 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Guardians%20Rising%20Oricorio%2046%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "2358236",
+      "product_name": "Oricorio [Pokemon League] #46",
+      "console_name": "Pokemon Guardians Rising",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Pokemon League"
+      }
+    },
+    {
+      "query": "Pokemon Guardians Rising Oricorio 46 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Guardians%20Rising%20Oricorio%2046%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "960708",
+      "product_name": "Oricorio [Reverse Holo] #46",
+      "console_name": "Pokemon Guardians Rising",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Reverse Holo"
+      }
+    },
+    {
+      "query": "Pokemon Guardians Rising Oricorio 46 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Guardians%20Rising%20Oricorio%2046%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "960511",
+      "product_name": "Oricorio #14",
+      "console_name": "Pokemon Guardians Rising",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:14"
+      }
+    },
+    {
+      "query": "Pokemon Guardians Rising Oricorio 46 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Guardians%20Rising%20Oricorio%2046%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "960552",
+      "product_name": "Oricorio #55",
+      "console_name": "Pokemon Guardians Rising",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:55"
+      }
+    },
+    {
+      "query": "Pokemon Guardians Rising Oricorio 46 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Guardians%20Rising%20Oricorio%2046%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "960553",
+      "product_name": "Oricorio #56",
+      "console_name": "Pokemon Guardians Rising",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:56"
+      }
+    },
+    {
+      "query": "Pokemon Guardians Rising Oricorio 46 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Guardians%20Rising%20Oricorio%2046%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "2358209",
+      "product_name": "Oricorio [Pokemon League] #14",
+      "console_name": "Pokemon Guardians Rising",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:14"
+      }
+    },
+    {
+      "query": "Pokemon Guardians Rising Oricorio 46 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Guardians%20Rising%20Oricorio%2046%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "2358237",
+      "product_name": "Oricorio [Pokemon League] #56",
+      "console_name": "Pokemon Guardians Rising",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:56"
+      }
+    },
+    {
+      "query": "Pokemon Guardians Rising Oricorio 46 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Guardians%20Rising%20Oricorio%2046%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "960680",
+      "product_name": "Oricorio [Reverse Holo] #14",
+      "console_name": "Pokemon Guardians Rising",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:14"
+      }
+    },
+    {
+      "query": "Pokemon Guardians Rising Oricorio 46 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Guardians%20Rising%20Oricorio%2046%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "960716",
+      "product_name": "Oricorio [Reverse Holo] #55",
+      "console_name": "Pokemon Guardians Rising",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:55"
+      }
+    },
+    {
+      "query": "Pokemon Guardians Rising Oricorio 46 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Guardians%20Rising%20Oricorio%2046%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "960717",
+      "product_name": "Oricorio [Reverse Holo] #56",
+      "console_name": "Pokemon Guardians Rising",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:56"
+      }
+    },
+    {
+      "query": "Pokemon Guardians Rising Oricorio 46 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Guardians%20Rising%20Oricorio%2046%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5571584",
+      "product_name": "Oricorio [1st Place League] #55",
+      "console_name": "Pokemon Guardians Rising",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:55"
+      }
+    },
+    {
+      "query": "Pokemon Guardians Rising Oricorio 46 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Guardians%20Rising%20Oricorio%2046%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "960641",
+      "product_name": "Hau #144",
+      "console_name": "Pokemon Guardians Rising",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:144"
+      }
+    },
+    {
+      "query": "Pokemon Guardians Rising Oricorio 46 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Guardians%20Rising%20Oricorio%2046%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "960623",
+      "product_name": "Hala #126",
+      "console_name": "Pokemon Guardians Rising",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:126"
+      }
+    },
+    {
+      "query": "Pokemon Guardians Rising Oricorio 46 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Guardians%20Rising%20Oricorio%2046%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "960640",
+      "product_name": "Hala #143",
+      "console_name": "Pokemon Guardians Rising",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:143"
+      }
+    },
+    {
+      "query": "Pokemon Guardians Rising Oricorio 46 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Guardians%20Rising%20Oricorio%2046%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "960578",
+      "product_name": "Absol #81",
+      "console_name": "Pokemon Guardians Rising",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:81"
+      }
+    },
+    {
+      "query": "Pokemon Guardians Rising Oricorio 46 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Guardians%20Rising%20Oricorio%2046%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "960591",
+      "product_name": "Goomy #94",
+      "console_name": "Pokemon Guardians Rising",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:94"
+      }
+    },
+    {
+      "query": "Pokemon Guardians Rising Oricorio 46 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Guardians%20Rising%20Oricorio%2046%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "960505",
+      "product_name": "Wimpod #8",
+      "console_name": "Pokemon Guardians Rising",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:8"
+      }
+    },
+    {
+      "query": "Pokemon Guardians Rising Oricorio 46 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Guardians%20Rising%20Oricorio%2046%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "960642",
+      "product_name": "Mallow #145",
+      "console_name": "Pokemon Guardians Rising",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:145"
+      }
+    },
+    {
+      "query": "Pokemon Guardians Rising Oricorio 46 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Guardians%20Rising%20Oricorio%2046%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "960529",
+      "product_name": "Glalie #32",
+      "console_name": "Pokemon Guardians Rising",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:32"
+      }
+    },
+    {
+      "query": "Pokemon Guardians Rising Oricorio 46 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Guardians%20Rising%20Oricorio%2046%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "960543",
+      "product_name": "Oricorio #46",
+      "console_name": "Pokemon Guardians Rising",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon Guardians Rising Oricorio 46 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Guardians%20Rising%20Oricorio%2046%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "2358236",
+      "product_name": "Oricorio [Pokemon League] #46",
+      "console_name": "Pokemon Guardians Rising",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Pokemon League"
+      }
+    },
+    {
+      "query": "Pokemon Guardians Rising Oricorio 46 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Guardians%20Rising%20Oricorio%2046%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "960708",
+      "product_name": "Oricorio [Reverse Holo] #46",
+      "console_name": "Pokemon Guardians Rising",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Reverse Holo"
+      }
+    },
+    {
+      "query": "Pokemon Guardians Rising Oricorio 46 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Guardians%20Rising%20Oricorio%2046%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "960511",
+      "product_name": "Oricorio #14",
+      "console_name": "Pokemon Guardians Rising",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:14"
+      }
+    },
+    {
+      "query": "Pokemon Guardians Rising Oricorio 46 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Guardians%20Rising%20Oricorio%2046%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "960552",
+      "product_name": "Oricorio #55",
+      "console_name": "Pokemon Guardians Rising",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:55"
+      }
+    },
+    {
+      "query": "Pokemon Guardians Rising Oricorio 46 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Guardians%20Rising%20Oricorio%2046%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "960553",
+      "product_name": "Oricorio #56",
+      "console_name": "Pokemon Guardians Rising",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:56"
+      }
+    },
+    {
+      "query": "Pokemon Guardians Rising Oricorio 46 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Guardians%20Rising%20Oricorio%2046%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "2358209",
+      "product_name": "Oricorio [Pokemon League] #14",
+      "console_name": "Pokemon Guardians Rising",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:14"
+      }
+    },
+    {
+      "query": "Pokemon Guardians Rising Oricorio 46 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Guardians%20Rising%20Oricorio%2046%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "2358237",
+      "product_name": "Oricorio [Pokemon League] #56",
+      "console_name": "Pokemon Guardians Rising",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:56"
+      }
+    },
+    {
+      "query": "Pokemon Guardians Rising Oricorio 46 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Guardians%20Rising%20Oricorio%2046%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "960680",
+      "product_name": "Oricorio [Reverse Holo] #14",
+      "console_name": "Pokemon Guardians Rising",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:14"
+      }
+    },
+    {
+      "query": "Pokemon Guardians Rising Oricorio 46 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Guardians%20Rising%20Oricorio%2046%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "960716",
+      "product_name": "Oricorio [Reverse Holo] #55",
+      "console_name": "Pokemon Guardians Rising",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:55"
+      }
+    },
+    {
+      "query": "Pokemon Guardians Rising Oricorio 46 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Guardians%20Rising%20Oricorio%2046%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "960717",
+      "product_name": "Oricorio [Reverse Holo] #56",
+      "console_name": "Pokemon Guardians Rising",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:56"
+      }
+    },
+    {
+      "query": "Pokemon Guardians Rising Oricorio 46 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Guardians%20Rising%20Oricorio%2046%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5571584",
+      "product_name": "Oricorio [1st Place League] #55",
+      "console_name": "Pokemon Guardians Rising",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:55"
+      }
+    },
+    {
+      "query": "Pokemon Guardians Rising Oricorio 46 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Guardians%20Rising%20Oricorio%2046%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "960641",
+      "product_name": "Hau #144",
+      "console_name": "Pokemon Guardians Rising",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:144"
+      }
+    },
+    {
+      "query": "Pokemon Guardians Rising Oricorio 46 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Guardians%20Rising%20Oricorio%2046%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "960623",
+      "product_name": "Hala #126",
+      "console_name": "Pokemon Guardians Rising",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:126"
+      }
+    },
+    {
+      "query": "Pokemon Guardians Rising Oricorio 46 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Guardians%20Rising%20Oricorio%2046%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "960640",
+      "product_name": "Hala #143",
+      "console_name": "Pokemon Guardians Rising",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:143"
+      }
+    },
+    {
+      "query": "Pokemon Guardians Rising Oricorio 46 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Guardians%20Rising%20Oricorio%2046%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "960578",
+      "product_name": "Absol #81",
+      "console_name": "Pokemon Guardians Rising",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:81"
+      }
+    },
+    {
+      "query": "Pokemon Guardians Rising Oricorio 46 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Guardians%20Rising%20Oricorio%2046%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "960591",
+      "product_name": "Goomy #94",
+      "console_name": "Pokemon Guardians Rising",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:94"
+      }
+    },
+    {
+      "query": "Pokemon Guardians Rising Oricorio 46 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Guardians%20Rising%20Oricorio%2046%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "960505",
+      "product_name": "Wimpod #8",
+      "console_name": "Pokemon Guardians Rising",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:8"
+      }
+    },
+    {
+      "query": "Pokemon Guardians Rising Oricorio 46 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Guardians%20Rising%20Oricorio%2046%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "960642",
+      "product_name": "Mallow #145",
+      "console_name": "Pokemon Guardians Rising",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:145"
+      }
+    },
+    {
+      "query": "Pokemon Guardians Rising Oricorio 46 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Guardians%20Rising%20Oricorio%2046%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "960529",
+      "product_name": "Glalie #32",
+      "console_name": "Pokemon Guardians Rising",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:32"
+      }
+    }
+  ],
+  "source_lane": "pricecharting_api"
+}

@@ -1,0 +1,26 @@
+{
+  "products": [
+    {
+      "bgs-10-price": 7900,
+      "box-only-price": 1400,
+      "condition-17-price": 6900,
+      "condition-18-price": 3700,
+      "console-name": "Pokemon Scarlet & Violet 151",
+      "gamestop-price": 0,
+      "gamestop-trade-price": 0,
+      "genre": "Pokemon Card",
+      "graded-price": 1255,
+      "id": "7566540",
+      "loose-price": 195,
+      "manual-only-price": 6100,
+      "new-price": 1050,
+      "product-name": "Charmeleon [Cosmos Holo] #5",
+      "retail-loose-sell": 219,
+      "retail-new-buy": 300,
+      "retail-new-sell": 1199,
+      "sales-volume": "188",
+      "tcg-id": "586829"
+    }
+  ],
+  "status": "success"
+}

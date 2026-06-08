@@ -1,0 +1,38 @@
+{
+  "status": "no_validated_match",
+  "fact": {
+    "gap_type": "finish_second_source_needed",
+    "fact_type": "printing_finish",
+    "set_key": "swsh12.5",
+    "set_name": "Crown Zenith",
+    "card_number": "143",
+    "card_name": "Sky Seal Stone",
+    "finish_key": "stamped",
+    "status": "human_source_verified",
+    "sources": [
+      "thepricedex_price_list"
+    ],
+    "source_authorities": [
+      "thepricedex.com"
+    ],
+    "source_kinds": [
+      "marketplace_checklist"
+    ],
+    "evidence_urls": [
+      "https://www.thepricedex.com/set/swsh12pt5/crown-zenith/price-list"
+    ],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "attempts": [
+    {
+      "query": "Pokemon Crown Zenith Sky Seal Stone 143 stamped",
+      "url": "https://www.pricecharting.com/search-products?q=Pokemon%20Crown%20Zenith%20Sky%20Seal%20Stone%20143%20stamped&type=prices",
+      "error": "fetch failed"
+    },
+    {
+      "query": "Pokemon Crown Zenith Sky Seal Stone 143 stamp",
+      "url": "https://www.pricecharting.com/search-products?q=Pokemon%20Crown%20Zenith%20Sky%20Seal%20Stone%20143%20stamp&type=prices",
+      "error": "fetch failed"
+    }
+  ]
+}

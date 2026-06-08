@@ -1,0 +1,549 @@
+{
+  "status": "api_no_validated_match",
+  "fact": {
+    "gap_type": "finish_second_source_needed",
+    "fact_type": "printing_finish",
+    "set_key": "sv10",
+    "set_name": "Destined Rivals",
+    "card_number": "104",
+    "card_name": "Cynthia's Garchomp ex",
+    "finish_key": "stamped",
+    "status": "human_source_verified",
+    "sources": [
+      "thepricedex_price_list"
+    ],
+    "source_authorities": [
+      "thepricedex.com"
+    ],
+    "source_kinds": [
+      "marketplace_checklist"
+    ],
+    "evidence_urls": [
+      "https://www.thepricedex.com/set/sv10/destined-rivals/price-list"
+    ],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "attempts": [
+    {
+      "query": "Pokemon Destined Rivals Cynthia's Garchomp ex 104 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Destined%20Rivals%20Cynthia's%20Garchomp%20ex%20104%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9432812",
+      "product_name": "Cynthia's Garchomp ex #104",
+      "console_name": "Pokemon Destined Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon Destined Rivals Cynthia's Garchomp ex 104 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Destined%20Rivals%20Cynthia's%20Garchomp%20ex%20104%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12397375",
+      "product_name": "Cynthia's Garchomp Ex [Prize Pack] #104",
+      "console_name": "Pokemon Destined Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Prize Pack"
+      }
+    },
+    {
+      "query": "Pokemon Destined Rivals Cynthia's Garchomp ex 104 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Destined%20Rivals%20Cynthia's%20Garchomp%20ex%20104%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9432939",
+      "product_name": "Cynthia's Garchomp ex #232",
+      "console_name": "Pokemon Destined Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:232"
+      }
+    },
+    {
+      "query": "Pokemon Destined Rivals Cynthia's Garchomp ex 104 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Destined%20Rivals%20Cynthia's%20Garchomp%20ex%20104%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9432922",
+      "product_name": "Cynthia's Garchomp ex #215",
+      "console_name": "Pokemon Destined Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:215"
+      }
+    },
+    {
+      "query": "Pokemon Destined Rivals Cynthia's Garchomp ex 104 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Destined%20Rivals%20Cynthia's%20Garchomp%20ex%20104%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9432948",
+      "product_name": "Cynthia's Garchomp ex #241",
+      "console_name": "Pokemon Destined Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:241"
+      }
+    },
+    {
+      "query": "Pokemon Destined Rivals Cynthia's Garchomp ex 104 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Destined%20Rivals%20Cynthia's%20Garchomp%20ex%20104%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9739417",
+      "product_name": "Cynthia's Garchomp Ex #204",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:204"
+      }
+    },
+    {
+      "query": "Pokemon Destined Rivals Cynthia's Garchomp ex 104 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Destined%20Rivals%20Cynthia's%20Garchomp%20ex%20104%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11816043",
+      "product_name": "Cynthia's Garchomp ex #111",
+      "console_name": "Pokemon Ascended Heroes",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:111"
+      }
+    },
+    {
+      "query": "Pokemon Destined Rivals Cynthia's Garchomp ex 104 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Destined%20Rivals%20Cynthia's%20Garchomp%20ex%20104%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11302457",
+      "product_name": "Cynthia's Garchomp ex #90",
+      "console_name": "Pokemon Japanese Mega Dream ex",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:90"
+      }
+    },
+    {
+      "query": "Pokemon Destined Rivals Cynthia's Garchomp ex 104 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Destined%20Rivals%20Cynthia's%20Garchomp%20ex%20104%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8867730",
+      "product_name": "Cynthia's Garchomp ex #44",
+      "console_name": "Pokemon Japanese Heat Wave Arena",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:44"
+      }
+    },
+    {
+      "query": "Pokemon Destined Rivals Cynthia's Garchomp ex 104 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Destined%20Rivals%20Cynthia's%20Garchomp%20ex%20104%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8867751",
+      "product_name": "Cynthia's Garchomp ex #80",
+      "console_name": "Pokemon Japanese Heat Wave Arena",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:80"
+      }
+    },
+    {
+      "query": "Pokemon Destined Rivals Cynthia's Garchomp ex 104 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Destined%20Rivals%20Cynthia's%20Garchomp%20ex%20104%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8867756",
+      "product_name": "Cynthia's Garchomp ex #87",
+      "console_name": "Pokemon Japanese Heat Wave Arena",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:87"
+      }
+    },
+    {
+      "query": "Pokemon Destined Rivals Cynthia's Garchomp ex 104 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Destined%20Rivals%20Cynthia's%20Garchomp%20ex%20104%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8867759",
+      "product_name": "Cynthia's Garchomp ex #91",
+      "console_name": "Pokemon Japanese Heat Wave Arena",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:91"
+      }
+    },
+    {
+      "query": "Pokemon Destined Rivals Cynthia's Garchomp ex 104 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Destined%20Rivals%20Cynthia's%20Garchomp%20ex%20104%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "13014871",
+      "product_name": "Cynthia's Garchomp ex #90",
+      "console_name": "Pokemon Korean Mega Dream ex",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:90"
+      }
+    },
+    {
+      "query": "Pokemon Destined Rivals Cynthia's Garchomp ex 104 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Destined%20Rivals%20Cynthia's%20Garchomp%20ex%20104%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11355176",
+      "product_name": "Cynthia's Garchomp Ex #87",
+      "console_name": "Pokemon Korean Heat Wave Arena",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:87"
+      }
+    },
+    {
+      "query": "Pokemon Destined Rivals Cynthia's Garchomp ex 104 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Destined%20Rivals%20Cynthia's%20Garchomp%20ex%20104%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11319106",
+      "product_name": "Cynthia's Garchomp Ex #44",
+      "console_name": "Pokemon Korean Heat Wave Arena",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:44"
+      }
+    },
+    {
+      "query": "Pokemon Destined Rivals Cynthia's Garchomp ex 104 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Destined%20Rivals%20Cynthia's%20Garchomp%20ex%20104%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11533213",
+      "product_name": "Cynthia's Garchomp ex #80",
+      "console_name": "Pokemon Korean Heat Wave Arena",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:80"
+      }
+    },
+    {
+      "query": "Pokemon Destined Rivals Cynthia's Garchomp ex 104 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Destined%20Rivals%20Cynthia's%20Garchomp%20ex%20104%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11533222",
+      "product_name": "Cynthia's Garchomp ex #91",
+      "console_name": "Pokemon Korean Heat Wave Arena",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:91"
+      }
+    },
+    {
+      "query": "Pokemon Destined Rivals Cynthia's Garchomp ex 104 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Destined%20Rivals%20Cynthia's%20Garchomp%20ex%20104%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11462717",
+      "product_name": "Cynthia's Garchomp ex #378",
+      "console_name": "Pokemon Japanese Start Deck 100 Battle Collection",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:378"
+      }
+    },
+    {
+      "query": "Pokemon Destined Rivals Cynthia's Garchomp ex 104 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Destined%20Rivals%20Cynthia's%20Garchomp%20ex%20104%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11315067",
+      "product_name": "Team Rocket's Moltres ex [Stamped] #229",
+      "console_name": "Pokemon Destined Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:229"
+      }
+    },
+    {
+      "query": "Pokemon Destined Rivals Cynthia's Garchomp ex 104 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Destined%20Rivals%20Cynthia's%20Garchomp%20ex%20104%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11315057",
+      "product_name": "Team Rocket's Moltres ex [Stamped] #208",
+      "console_name": "Pokemon Destined Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:208"
+      }
+    },
+    {
+      "query": "Pokemon Destined Rivals Cynthia's Garchomp ex 104 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Destined%20Rivals%20Cynthia's%20Garchomp%20ex%20104%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9432812",
+      "product_name": "Cynthia's Garchomp ex #104",
+      "console_name": "Pokemon Destined Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon Destined Rivals Cynthia's Garchomp ex 104 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Destined%20Rivals%20Cynthia's%20Garchomp%20ex%20104%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12397375",
+      "product_name": "Cynthia's Garchomp Ex [Prize Pack] #104",
+      "console_name": "Pokemon Destined Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Prize Pack"
+      }
+    },
+    {
+      "query": "Pokemon Destined Rivals Cynthia's Garchomp ex 104 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Destined%20Rivals%20Cynthia's%20Garchomp%20ex%20104%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9432939",
+      "product_name": "Cynthia's Garchomp ex #232",
+      "console_name": "Pokemon Destined Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:232"
+      }
+    },
+    {
+      "query": "Pokemon Destined Rivals Cynthia's Garchomp ex 104 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Destined%20Rivals%20Cynthia's%20Garchomp%20ex%20104%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9432922",
+      "product_name": "Cynthia's Garchomp ex #215",
+      "console_name": "Pokemon Destined Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:215"
+      }
+    },
+    {
+      "query": "Pokemon Destined Rivals Cynthia's Garchomp ex 104 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Destined%20Rivals%20Cynthia's%20Garchomp%20ex%20104%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9432948",
+      "product_name": "Cynthia's Garchomp ex #241",
+      "console_name": "Pokemon Destined Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:241"
+      }
+    },
+    {
+      "query": "Pokemon Destined Rivals Cynthia's Garchomp ex 104 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Destined%20Rivals%20Cynthia's%20Garchomp%20ex%20104%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9739417",
+      "product_name": "Cynthia's Garchomp Ex #204",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:204"
+      }
+    },
+    {
+      "query": "Pokemon Destined Rivals Cynthia's Garchomp ex 104 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Destined%20Rivals%20Cynthia's%20Garchomp%20ex%20104%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11816043",
+      "product_name": "Cynthia's Garchomp ex #111",
+      "console_name": "Pokemon Ascended Heroes",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:111"
+      }
+    },
+    {
+      "query": "Pokemon Destined Rivals Cynthia's Garchomp ex 104 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Destined%20Rivals%20Cynthia's%20Garchomp%20ex%20104%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11302457",
+      "product_name": "Cynthia's Garchomp ex #90",
+      "console_name": "Pokemon Japanese Mega Dream ex",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:90"
+      }
+    },
+    {
+      "query": "Pokemon Destined Rivals Cynthia's Garchomp ex 104 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Destined%20Rivals%20Cynthia's%20Garchomp%20ex%20104%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8867730",
+      "product_name": "Cynthia's Garchomp ex #44",
+      "console_name": "Pokemon Japanese Heat Wave Arena",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:44"
+      }
+    },
+    {
+      "query": "Pokemon Destined Rivals Cynthia's Garchomp ex 104 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Destined%20Rivals%20Cynthia's%20Garchomp%20ex%20104%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8867751",
+      "product_name": "Cynthia's Garchomp ex #80",
+      "console_name": "Pokemon Japanese Heat Wave Arena",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:80"
+      }
+    },
+    {
+      "query": "Pokemon Destined Rivals Cynthia's Garchomp ex 104 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Destined%20Rivals%20Cynthia's%20Garchomp%20ex%20104%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8867756",
+      "product_name": "Cynthia's Garchomp ex #87",
+      "console_name": "Pokemon Japanese Heat Wave Arena",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:87"
+      }
+    },
+    {
+      "query": "Pokemon Destined Rivals Cynthia's Garchomp ex 104 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Destined%20Rivals%20Cynthia's%20Garchomp%20ex%20104%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8867759",
+      "product_name": "Cynthia's Garchomp ex #91",
+      "console_name": "Pokemon Japanese Heat Wave Arena",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:91"
+      }
+    },
+    {
+      "query": "Pokemon Destined Rivals Cynthia's Garchomp ex 104 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Destined%20Rivals%20Cynthia's%20Garchomp%20ex%20104%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "13014871",
+      "product_name": "Cynthia's Garchomp ex #90",
+      "console_name": "Pokemon Korean Mega Dream ex",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:90"
+      }
+    },
+    {
+      "query": "Pokemon Destined Rivals Cynthia's Garchomp ex 104 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Destined%20Rivals%20Cynthia's%20Garchomp%20ex%20104%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11355176",
+      "product_name": "Cynthia's Garchomp Ex #87",
+      "console_name": "Pokemon Korean Heat Wave Arena",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:87"
+      }
+    },
+    {
+      "query": "Pokemon Destined Rivals Cynthia's Garchomp ex 104 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Destined%20Rivals%20Cynthia's%20Garchomp%20ex%20104%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11319106",
+      "product_name": "Cynthia's Garchomp Ex #44",
+      "console_name": "Pokemon Korean Heat Wave Arena",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:44"
+      }
+    },
+    {
+      "query": "Pokemon Destined Rivals Cynthia's Garchomp ex 104 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Destined%20Rivals%20Cynthia's%20Garchomp%20ex%20104%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11533213",
+      "product_name": "Cynthia's Garchomp ex #80",
+      "console_name": "Pokemon Korean Heat Wave Arena",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:80"
+      }
+    },
+    {
+      "query": "Pokemon Destined Rivals Cynthia's Garchomp ex 104 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Destined%20Rivals%20Cynthia's%20Garchomp%20ex%20104%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11533222",
+      "product_name": "Cynthia's Garchomp ex #91",
+      "console_name": "Pokemon Korean Heat Wave Arena",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:91"
+      }
+    },
+    {
+      "query": "Pokemon Destined Rivals Cynthia's Garchomp ex 104 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Destined%20Rivals%20Cynthia's%20Garchomp%20ex%20104%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11462717",
+      "product_name": "Cynthia's Garchomp ex #378",
+      "console_name": "Pokemon Japanese Start Deck 100 Battle Collection",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:378"
+      }
+    },
+    {
+      "query": "Pokemon Destined Rivals Cynthia's Garchomp ex 104 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Destined%20Rivals%20Cynthia's%20Garchomp%20ex%20104%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11315067",
+      "product_name": "Team Rocket's Moltres ex [Stamped] #229",
+      "console_name": "Pokemon Destined Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:229"
+      }
+    },
+    {
+      "query": "Pokemon Destined Rivals Cynthia's Garchomp ex 104 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Destined%20Rivals%20Cynthia's%20Garchomp%20ex%20104%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11315057",
+      "product_name": "Team Rocket's Moltres ex [Stamped] #208",
+      "console_name": "Pokemon Destined Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:208"
+      }
+    }
+  ],
+  "source_lane": "pricecharting_api"
+}

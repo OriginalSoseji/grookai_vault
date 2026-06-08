@@ -1,0 +1,36 @@
+{
+  "status": "no_validated_match",
+  "fact": {
+    "gap_type": "finish_second_source_needed",
+    "fact_type": "printing_finish",
+    "set_key": "dp5",
+    "set_name": "Majestic Dawn",
+    "card_number": "68",
+    "card_name": "Munchlax",
+    "finish_key": "stamped",
+    "status": "human_source_verified",
+    "sources": [
+      "thepricedex_price_list"
+    ],
+    "source_authorities": [
+      "thepricedex.com"
+    ],
+    "source_kinds": [
+      "marketplace_checklist"
+    ],
+    "evidence_urls": [],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "attempts": [
+    {
+      "query": "Pokemon Majestic Dawn Munchlax 68 stamped",
+      "url": "https://www.pricecharting.com/search-products?q=Pokemon%20Majestic%20Dawn%20Munchlax%2068%20stamped&type=prices",
+      "error": "Fetch failed 403 Forbidden: https://www.pricecharting.com/search-products?q=Pokemon%20Majestic%20Dawn%20Munchlax%2068%20stamped&type=prices"
+    },
+    {
+      "query": "Pokemon Majestic Dawn Munchlax 68 stamp",
+      "url": "https://www.pricecharting.com/search-products?q=Pokemon%20Majestic%20Dawn%20Munchlax%2068%20stamp&type=prices",
+      "error": "Fetch failed 403 Forbidden: https://www.pricecharting.com/search-products?q=Pokemon%20Majestic%20Dawn%20Munchlax%2068%20stamp&type=prices"
+    }
+  ]
+}

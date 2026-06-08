@@ -1,0 +1,38 @@
+{
+  "status": "no_validated_match",
+  "fact": {
+    "gap_type": "finish_second_source_needed",
+    "fact_type": "printing_finish",
+    "set_key": "swsh4",
+    "set_name": "Vivid Voltage",
+    "card_number": "140",
+    "card_name": "Togekiss V",
+    "finish_key": "stamped",
+    "status": "human_source_verified",
+    "sources": [
+      "thepricedex_price_list"
+    ],
+    "source_authorities": [
+      "thepricedex.com"
+    ],
+    "source_kinds": [
+      "marketplace_checklist"
+    ],
+    "evidence_urls": [
+      "https://www.thepricedex.com/set/swsh4/vivid-voltage/price-list"
+    ],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "attempts": [
+    {
+      "query": "Pokemon Vivid Voltage Togekiss V 140 stamped",
+      "url": "https://www.pricecharting.com/search-products?q=Pokemon%20Vivid%20Voltage%20Togekiss%20V%20140%20stamped&type=prices",
+      "error": "fetch failed"
+    },
+    {
+      "query": "Pokemon Vivid Voltage Togekiss V 140 stamp",
+      "url": "https://www.pricecharting.com/search-products?q=Pokemon%20Vivid%20Voltage%20Togekiss%20V%20140%20stamp&type=prices",
+      "error": "fetch failed"
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "products": [
+    {
+      "bgs-10-price": 5500,
+      "box-only-price": 1800,
+      "condition-17-price": 2600,
+      "condition-18-price": 2600,
+      "console-name": "Pokemon Scarlet & Violet 151",
+      "epid": "27072209509",
+      "gamestop-price": 0,
+      "gamestop-trade-price": 0,
+      "genre": "Pokemon Card",
+      "graded-price": 1600,
+      "id": "7979089",
+      "loose-price": 269,
+      "manual-only-price": 4267,
+      "new-price": 1499,
+      "product-name": "Bulbasaur [Cosmos Holo] #1",
+      "retail-loose-sell": 299,
+      "retail-new-buy": 400,
+      "retail-new-sell": 1599,
+      "sales-volume": "37",
+      "tcg-id": "587935"
+    }
+  ],
+  "status": "success"
+}

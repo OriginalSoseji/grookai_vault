@@ -1,0 +1,549 @@
+{
+  "status": "api_no_validated_match",
+  "fact": {
+    "gap_type": "finish_second_source_needed",
+    "fact_type": "printing_finish",
+    "set_key": "me01",
+    "set_name": "Mega Evolution",
+    "card_number": "86",
+    "card_name": "Mega Absol ex",
+    "finish_key": "stamped",
+    "status": "human_source_verified",
+    "sources": [
+      "thepricedex_price_list"
+    ],
+    "source_authorities": [
+      "thepricedex.com"
+    ],
+    "source_kinds": [
+      "marketplace_checklist"
+    ],
+    "evidence_urls": [
+      "https://www.thepricedex.com/set/me1/mega-evolution/price-list"
+    ],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "attempts": [
+    {
+      "query": "Pokemon Mega Evolution Mega Absol ex 86 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Mega%20Evolution%20Mega%20Absol%20ex%2086%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10616192",
+      "product_name": "Mega Absol ex #86",
+      "console_name": "Pokemon Mega Evolution",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon Mega Evolution Mega Absol ex 86 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Mega%20Evolution%20Mega%20Absol%20ex%2086%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12164105",
+      "product_name": "Mega Absol Ex [Prize Pack] #86",
+      "console_name": "Pokemon Mega Evolution",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Prize Pack"
+      }
+    },
+    {
+      "query": "Pokemon Mega Evolution Mega Absol ex 86 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Mega%20Evolution%20Mega%20Absol%20ex%2086%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10669955",
+      "product_name": "Mega Absol Ex #161",
+      "console_name": "Pokemon Mega Evolution",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:161"
+      }
+    },
+    {
+      "query": "Pokemon Mega Evolution Mega Absol ex 86 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Mega%20Evolution%20Mega%20Absol%20ex%2086%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10669967",
+      "product_name": "Mega Absol Ex #180",
+      "console_name": "Pokemon Mega Evolution",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:180"
+      }
+    },
+    {
+      "query": "Pokemon Mega Evolution Mega Absol ex 86 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Mega%20Evolution%20Mega%20Absol%20ex%2086%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10085241",
+      "product_name": "Mega Absol ex #38",
+      "console_name": "Pokemon Japanese Mega Brave",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:38"
+      }
+    },
+    {
+      "query": "Pokemon Mega Evolution Mega Absol ex 86 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Mega%20Evolution%20Mega%20Absol%20ex%2086%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10117522",
+      "product_name": "Mega Absol Ex #89",
+      "console_name": "Pokemon Japanese Mega Brave",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:89"
+      }
+    },
+    {
+      "query": "Pokemon Mega Evolution Mega Absol ex 86 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Mega%20Evolution%20Mega%20Absol%20ex%2086%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10117520",
+      "product_name": "Mega Absol Ex #79",
+      "console_name": "Pokemon Japanese Mega Brave",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:79"
+      }
+    },
+    {
+      "query": "Pokemon Mega Evolution Mega Absol ex 86 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Mega%20Evolution%20Mega%20Absol%20ex%2086%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12163961",
+      "product_name": "Mega Absol Ex #38",
+      "console_name": "Pokemon Korean Mega Brave",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:38"
+      }
+    },
+    {
+      "query": "Pokemon Mega Evolution Mega Absol ex 86 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Mega%20Evolution%20Mega%20Absol%20ex%2086%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12986547",
+      "product_name": "Mega Absol Ex #79",
+      "console_name": "Pokemon Korean Mega Brave",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:79"
+      }
+    },
+    {
+      "query": "Pokemon Mega Evolution Mega Absol ex 86 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Mega%20Evolution%20Mega%20Absol%20ex%2086%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12986548",
+      "product_name": "Mega Absol Ex #89",
+      "console_name": "Pokemon Korean Mega Brave",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:89"
+      }
+    },
+    {
+      "query": "Pokemon Mega Evolution Mega Absol ex 86 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Mega%20Evolution%20Mega%20Absol%20ex%2086%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10515245",
+      "product_name": "Absol #7",
+      "console_name": "Pokemon Japanese Mega Starter Deck Gengar Ex",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:7"
+      }
+    },
+    {
+      "query": "Pokemon Mega Evolution Mega Absol ex 86 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Mega%20Evolution%20Mega%20Absol%20ex%2086%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10693500",
+      "product_name": "Xerneas [Stamped] #64",
+      "console_name": "Pokemon Mega Evolution",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:64"
+      }
+    },
+    {
+      "query": "Pokemon Mega Evolution Mega Absol ex 86 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Mega%20Evolution%20Mega%20Absol%20ex%2086%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "844728",
+      "product_name": "Mega Absol EX #XY63",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:XY63"
+      }
+    },
+    {
+      "query": "Pokemon Mega Evolution Mega Absol ex 86 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Mega%20Evolution%20Mega%20Absol%20ex%2086%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10616206",
+      "product_name": "Mega Latias ex #100",
+      "console_name": "Pokemon Mega Evolution",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:100"
+      }
+    },
+    {
+      "query": "Pokemon Mega Evolution Mega Absol ex 86 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Mega%20Evolution%20Mega%20Absol%20ex%2086%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10616256",
+      "product_name": "Mega Latias ex #163",
+      "console_name": "Pokemon Mega Evolution",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:163"
+      }
+    },
+    {
+      "query": "Pokemon Mega Evolution Mega Absol ex 86 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Mega%20Evolution%20Mega%20Absol%20ex%2086%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10616266",
+      "product_name": "Mega Latias ex #181",
+      "console_name": "Pokemon Mega Evolution",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:181"
+      }
+    },
+    {
+      "query": "Pokemon Mega Evolution Mega Absol ex 86 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Mega%20Evolution%20Mega%20Absol%20ex%2086%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10840192",
+      "product_name": "Yveltal [Stamped] #88",
+      "console_name": "Pokemon Mega Evolution",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:88"
+      }
+    },
+    {
+      "query": "Pokemon Mega Evolution Mega Absol ex 86 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Mega%20Evolution%20Mega%20Absol%20ex%2086%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10646415",
+      "product_name": "Bulbasaur [Stamped] #133",
+      "console_name": "Pokemon Mega Evolution",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:133"
+      }
+    },
+    {
+      "query": "Pokemon Mega Evolution Mega Absol ex 86 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Mega%20Evolution%20Mega%20Absol%20ex%2086%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10864874",
+      "product_name": "Spiritomb [Stamped] #87",
+      "console_name": "Pokemon Mega Evolution",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:87"
+      }
+    },
+    {
+      "query": "Pokemon Mega Evolution Mega Absol ex 86 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Mega%20Evolution%20Mega%20Absol%20ex%2086%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10669951",
+      "product_name": "Mega Manectric Ex #158",
+      "console_name": "Pokemon Mega Evolution",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:158"
+      }
+    },
+    {
+      "query": "Pokemon Mega Evolution Mega Absol ex 86 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Mega%20Evolution%20Mega%20Absol%20ex%2086%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10616192",
+      "product_name": "Mega Absol ex #86",
+      "console_name": "Pokemon Mega Evolution",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon Mega Evolution Mega Absol ex 86 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Mega%20Evolution%20Mega%20Absol%20ex%2086%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12164105",
+      "product_name": "Mega Absol Ex [Prize Pack] #86",
+      "console_name": "Pokemon Mega Evolution",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Prize Pack"
+      }
+    },
+    {
+      "query": "Pokemon Mega Evolution Mega Absol ex 86 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Mega%20Evolution%20Mega%20Absol%20ex%2086%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10669955",
+      "product_name": "Mega Absol Ex #161",
+      "console_name": "Pokemon Mega Evolution",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:161"
+      }
+    },
+    {
+      "query": "Pokemon Mega Evolution Mega Absol ex 86 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Mega%20Evolution%20Mega%20Absol%20ex%2086%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10669967",
+      "product_name": "Mega Absol Ex #180",
+      "console_name": "Pokemon Mega Evolution",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:180"
+      }
+    },
+    {
+      "query": "Pokemon Mega Evolution Mega Absol ex 86 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Mega%20Evolution%20Mega%20Absol%20ex%2086%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10085241",
+      "product_name": "Mega Absol ex #38",
+      "console_name": "Pokemon Japanese Mega Brave",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:38"
+      }
+    },
+    {
+      "query": "Pokemon Mega Evolution Mega Absol ex 86 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Mega%20Evolution%20Mega%20Absol%20ex%2086%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10117522",
+      "product_name": "Mega Absol Ex #89",
+      "console_name": "Pokemon Japanese Mega Brave",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:89"
+      }
+    },
+    {
+      "query": "Pokemon Mega Evolution Mega Absol ex 86 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Mega%20Evolution%20Mega%20Absol%20ex%2086%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10117520",
+      "product_name": "Mega Absol Ex #79",
+      "console_name": "Pokemon Japanese Mega Brave",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:79"
+      }
+    },
+    {
+      "query": "Pokemon Mega Evolution Mega Absol ex 86 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Mega%20Evolution%20Mega%20Absol%20ex%2086%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12163961",
+      "product_name": "Mega Absol Ex #38",
+      "console_name": "Pokemon Korean Mega Brave",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:38"
+      }
+    },
+    {
+      "query": "Pokemon Mega Evolution Mega Absol ex 86 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Mega%20Evolution%20Mega%20Absol%20ex%2086%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12986547",
+      "product_name": "Mega Absol Ex #79",
+      "console_name": "Pokemon Korean Mega Brave",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:79"
+      }
+    },
+    {
+      "query": "Pokemon Mega Evolution Mega Absol ex 86 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Mega%20Evolution%20Mega%20Absol%20ex%2086%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12986548",
+      "product_name": "Mega Absol Ex #89",
+      "console_name": "Pokemon Korean Mega Brave",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:89"
+      }
+    },
+    {
+      "query": "Pokemon Mega Evolution Mega Absol ex 86 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Mega%20Evolution%20Mega%20Absol%20ex%2086%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10515245",
+      "product_name": "Absol #7",
+      "console_name": "Pokemon Japanese Mega Starter Deck Gengar Ex",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:7"
+      }
+    },
+    {
+      "query": "Pokemon Mega Evolution Mega Absol ex 86 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Mega%20Evolution%20Mega%20Absol%20ex%2086%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10693500",
+      "product_name": "Xerneas [Stamped] #64",
+      "console_name": "Pokemon Mega Evolution",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:64"
+      }
+    },
+    {
+      "query": "Pokemon Mega Evolution Mega Absol ex 86 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Mega%20Evolution%20Mega%20Absol%20ex%2086%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "844728",
+      "product_name": "Mega Absol EX #XY63",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:XY63"
+      }
+    },
+    {
+      "query": "Pokemon Mega Evolution Mega Absol ex 86 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Mega%20Evolution%20Mega%20Absol%20ex%2086%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10616206",
+      "product_name": "Mega Latias ex #100",
+      "console_name": "Pokemon Mega Evolution",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:100"
+      }
+    },
+    {
+      "query": "Pokemon Mega Evolution Mega Absol ex 86 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Mega%20Evolution%20Mega%20Absol%20ex%2086%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10616256",
+      "product_name": "Mega Latias ex #163",
+      "console_name": "Pokemon Mega Evolution",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:163"
+      }
+    },
+    {
+      "query": "Pokemon Mega Evolution Mega Absol ex 86 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Mega%20Evolution%20Mega%20Absol%20ex%2086%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10616266",
+      "product_name": "Mega Latias ex #181",
+      "console_name": "Pokemon Mega Evolution",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:181"
+      }
+    },
+    {
+      "query": "Pokemon Mega Evolution Mega Absol ex 86 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Mega%20Evolution%20Mega%20Absol%20ex%2086%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10840192",
+      "product_name": "Yveltal [Stamped] #88",
+      "console_name": "Pokemon Mega Evolution",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:88"
+      }
+    },
+    {
+      "query": "Pokemon Mega Evolution Mega Absol ex 86 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Mega%20Evolution%20Mega%20Absol%20ex%2086%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10646415",
+      "product_name": "Bulbasaur [Stamped] #133",
+      "console_name": "Pokemon Mega Evolution",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:133"
+      }
+    },
+    {
+      "query": "Pokemon Mega Evolution Mega Absol ex 86 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Mega%20Evolution%20Mega%20Absol%20ex%2086%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10864874",
+      "product_name": "Spiritomb [Stamped] #87",
+      "console_name": "Pokemon Mega Evolution",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:87"
+      }
+    },
+    {
+      "query": "Pokemon Mega Evolution Mega Absol ex 86 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Mega%20Evolution%20Mega%20Absol%20ex%2086%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10669951",
+      "product_name": "Mega Manectric Ex #158",
+      "console_name": "Pokemon Mega Evolution",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:158"
+      }
+    }
+  ],
+  "source_lane": "pricecharting_api"
+}

@@ -1,0 +1,549 @@
+{
+  "status": "api_no_validated_match",
+  "fact": {
+    "gap_type": "finish_second_source_needed",
+    "fact_type": "printing_finish",
+    "set_key": "sv07",
+    "set_name": "Stellar Crown",
+    "card_number": "71",
+    "card_name": "Iron Boulder",
+    "finish_key": "stamped",
+    "status": "human_source_verified",
+    "sources": [
+      "thepricedex_price_list"
+    ],
+    "source_authorities": [
+      "thepricedex.com"
+    ],
+    "source_kinds": [
+      "marketplace_checklist"
+    ],
+    "evidence_urls": [
+      "https://www.thepricedex.com/set/sv7/stellar-crown/price-list"
+    ],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "attempts": [
+    {
+      "query": "Pokemon Stellar Crown Iron Boulder 71 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Stellar%20Crown%20Iron%20Boulder%2071%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7418556",
+      "product_name": "Iron Boulder #71",
+      "console_name": "Pokemon Stellar Crown",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon Stellar Crown Iron Boulder 71 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Stellar%20Crown%20Iron%20Boulder%2071%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9176040",
+      "product_name": "Iron Boulder [Prize Pack] #71",
+      "console_name": "Pokemon Stellar Crown",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Prize Pack"
+      }
+    },
+    {
+      "query": "Pokemon Stellar Crown Iron Boulder 71 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Stellar%20Crown%20Iron%20Boulder%2071%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7418724",
+      "product_name": "Iron Boulder [Reverse Holo] #71",
+      "console_name": "Pokemon Stellar Crown",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Reverse Holo"
+      }
+    },
+    {
+      "query": "Pokemon Stellar Crown Iron Boulder 71 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Stellar%20Crown%20Iron%20Boulder%2071%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11208049",
+      "product_name": "Iron Boulder [Prize Pack Cosmos Holo] #71",
+      "console_name": "Pokemon Stellar Crown",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Prize Pack Cosmos Holo"
+      }
+    },
+    {
+      "query": "Pokemon Stellar Crown Iron Boulder 71 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Stellar%20Crown%20Iron%20Boulder%2071%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7029884",
+      "product_name": "Iron Boulder #47",
+      "console_name": "Pokemon Japanese Stellar Miracle",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:47"
+      }
+    },
+    {
+      "query": "Pokemon Stellar Crown Iron Boulder 71 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Stellar%20Crown%20Iron%20Boulder%2071%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11580217",
+      "product_name": "Meltan [Stamped] #102",
+      "console_name": "Pokemon Stellar Crown",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:102"
+      }
+    },
+    {
+      "query": "Pokemon Stellar Crown Iron Boulder 71 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Stellar%20Crown%20Iron%20Boulder%2071%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11707178",
+      "product_name": "Iron Crown Ex [2024 Lunar New Year Stamped] #78/SV-P",
+      "console_name": "Pokemon Chinese Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:78/SV-P"
+      }
+    },
+    {
+      "query": "Pokemon Stellar Crown Iron Boulder 71 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Stellar%20Crown%20Iron%20Boulder%2071%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11370172",
+      "product_name": "Reshiram [Stamped] #22",
+      "console_name": "Pokemon Stellar Crown",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:22"
+      }
+    },
+    {
+      "query": "Pokemon Stellar Crown Iron Boulder 71 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Stellar%20Crown%20Iron%20Boulder%2071%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10028510",
+      "product_name": "Glass Trumpet [Gym Stamp] #135",
+      "console_name": "Pokemon Stellar Crown",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:135"
+      }
+    },
+    {
+      "query": "Pokemon Stellar Crown Iron Boulder 71 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Stellar%20Crown%20Iron%20Boulder%2071%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7442384",
+      "product_name": "Raging Bolt [Stamped] #111",
+      "console_name": "Pokemon Stellar Crown",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:111"
+      }
+    },
+    {
+      "query": "Pokemon Stellar Crown Iron Boulder 71 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Stellar%20Crown%20Iron%20Boulder%2071%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10212998",
+      "product_name": "Blastoise Ex [Stamped] #30",
+      "console_name": "Pokemon Stellar Crown",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:30"
+      }
+    },
+    {
+      "query": "Pokemon Stellar Crown Iron Boulder 71 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Stellar%20Crown%20Iron%20Boulder%2071%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11469116",
+      "product_name": "Melmetal Ex [Stamped] #105",
+      "console_name": "Pokemon Stellar Crown",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:105"
+      }
+    },
+    {
+      "query": "Pokemon Stellar Crown Iron Boulder 71 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Stellar%20Crown%20Iron%20Boulder%2071%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11321011",
+      "product_name": "Greninja EX [Stamped] #41",
+      "console_name": "Pokemon Stellar Crown",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:41"
+      }
+    },
+    {
+      "query": "Pokemon Stellar Crown Iron Boulder 71 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Stellar%20Crown%20Iron%20Boulder%2071%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10233481",
+      "product_name": "Venusaur Ex [Stamped] #1",
+      "console_name": "Pokemon Stellar Crown",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:1"
+      }
+    },
+    {
+      "query": "Pokemon Stellar Crown Iron Boulder 71 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Stellar%20Crown%20Iron%20Boulder%2071%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7445419",
+      "product_name": "Archaludon [Cosmos Holo Stamped] #107",
+      "console_name": "Pokemon Stellar Crown",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:107"
+      }
+    },
+    {
+      "query": "Pokemon Stellar Crown Iron Boulder 71 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Stellar%20Crown%20Iron%20Boulder%2071%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8165564",
+      "product_name": "Iron Thorns Blister Pack",
+      "console_name": "Pokemon Stellar Crown",
+      "validation": {
+        "ok": false,
+        "reason": "api_product_name_pattern_not_supported"
+      }
+    },
+    {
+      "query": "Pokemon Stellar Crown Iron Boulder 71 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Stellar%20Crown%20Iron%20Boulder%2071%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10366693",
+      "product_name": "Area Zero Underdepths [Gym Stamp Asia] #131",
+      "console_name": "Pokemon Stellar Crown",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:131"
+      }
+    },
+    {
+      "query": "Pokemon Stellar Crown Iron Boulder 71 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Stellar%20Crown%20Iron%20Boulder%2071%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8321726",
+      "product_name": "Iron Boulder [Reverse] #46",
+      "console_name": "Pokemon Prismatic Evolutions",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:46"
+      }
+    },
+    {
+      "query": "Pokemon Stellar Crown Iron Boulder 71 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Stellar%20Crown%20Iron%20Boulder%2071%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8321628",
+      "product_name": "Iron Boulder [Poke Ball] #46",
+      "console_name": "Pokemon Prismatic Evolutions",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:46"
+      }
+    },
+    {
+      "query": "Pokemon Stellar Crown Iron Boulder 71 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Stellar%20Crown%20Iron%20Boulder%2071%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10809490",
+      "product_name": "Iron Boulder ex [Jumbo] #147",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "product_scope_jumbo_not_canonical_set_finish"
+      }
+    },
+    {
+      "query": "Pokemon Stellar Crown Iron Boulder 71 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Stellar%20Crown%20Iron%20Boulder%2071%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7418556",
+      "product_name": "Iron Boulder #71",
+      "console_name": "Pokemon Stellar Crown",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon Stellar Crown Iron Boulder 71 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Stellar%20Crown%20Iron%20Boulder%2071%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9176040",
+      "product_name": "Iron Boulder [Prize Pack] #71",
+      "console_name": "Pokemon Stellar Crown",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Prize Pack"
+      }
+    },
+    {
+      "query": "Pokemon Stellar Crown Iron Boulder 71 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Stellar%20Crown%20Iron%20Boulder%2071%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7418724",
+      "product_name": "Iron Boulder [Reverse Holo] #71",
+      "console_name": "Pokemon Stellar Crown",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Reverse Holo"
+      }
+    },
+    {
+      "query": "Pokemon Stellar Crown Iron Boulder 71 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Stellar%20Crown%20Iron%20Boulder%2071%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11208049",
+      "product_name": "Iron Boulder [Prize Pack Cosmos Holo] #71",
+      "console_name": "Pokemon Stellar Crown",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Prize Pack Cosmos Holo"
+      }
+    },
+    {
+      "query": "Pokemon Stellar Crown Iron Boulder 71 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Stellar%20Crown%20Iron%20Boulder%2071%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7029884",
+      "product_name": "Iron Boulder #47",
+      "console_name": "Pokemon Japanese Stellar Miracle",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:47"
+      }
+    },
+    {
+      "query": "Pokemon Stellar Crown Iron Boulder 71 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Stellar%20Crown%20Iron%20Boulder%2071%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11580217",
+      "product_name": "Meltan [Stamped] #102",
+      "console_name": "Pokemon Stellar Crown",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:102"
+      }
+    },
+    {
+      "query": "Pokemon Stellar Crown Iron Boulder 71 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Stellar%20Crown%20Iron%20Boulder%2071%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11707178",
+      "product_name": "Iron Crown Ex [2024 Lunar New Year Stamped] #78/SV-P",
+      "console_name": "Pokemon Chinese Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:78/SV-P"
+      }
+    },
+    {
+      "query": "Pokemon Stellar Crown Iron Boulder 71 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Stellar%20Crown%20Iron%20Boulder%2071%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11370172",
+      "product_name": "Reshiram [Stamped] #22",
+      "console_name": "Pokemon Stellar Crown",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:22"
+      }
+    },
+    {
+      "query": "Pokemon Stellar Crown Iron Boulder 71 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Stellar%20Crown%20Iron%20Boulder%2071%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10028510",
+      "product_name": "Glass Trumpet [Gym Stamp] #135",
+      "console_name": "Pokemon Stellar Crown",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:135"
+      }
+    },
+    {
+      "query": "Pokemon Stellar Crown Iron Boulder 71 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Stellar%20Crown%20Iron%20Boulder%2071%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7442384",
+      "product_name": "Raging Bolt [Stamped] #111",
+      "console_name": "Pokemon Stellar Crown",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:111"
+      }
+    },
+    {
+      "query": "Pokemon Stellar Crown Iron Boulder 71 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Stellar%20Crown%20Iron%20Boulder%2071%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10212998",
+      "product_name": "Blastoise Ex [Stamped] #30",
+      "console_name": "Pokemon Stellar Crown",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:30"
+      }
+    },
+    {
+      "query": "Pokemon Stellar Crown Iron Boulder 71 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Stellar%20Crown%20Iron%20Boulder%2071%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11469116",
+      "product_name": "Melmetal Ex [Stamped] #105",
+      "console_name": "Pokemon Stellar Crown",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:105"
+      }
+    },
+    {
+      "query": "Pokemon Stellar Crown Iron Boulder 71 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Stellar%20Crown%20Iron%20Boulder%2071%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11321011",
+      "product_name": "Greninja EX [Stamped] #41",
+      "console_name": "Pokemon Stellar Crown",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:41"
+      }
+    },
+    {
+      "query": "Pokemon Stellar Crown Iron Boulder 71 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Stellar%20Crown%20Iron%20Boulder%2071%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10233481",
+      "product_name": "Venusaur Ex [Stamped] #1",
+      "console_name": "Pokemon Stellar Crown",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:1"
+      }
+    },
+    {
+      "query": "Pokemon Stellar Crown Iron Boulder 71 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Stellar%20Crown%20Iron%20Boulder%2071%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7445419",
+      "product_name": "Archaludon [Cosmos Holo Stamped] #107",
+      "console_name": "Pokemon Stellar Crown",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:107"
+      }
+    },
+    {
+      "query": "Pokemon Stellar Crown Iron Boulder 71 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Stellar%20Crown%20Iron%20Boulder%2071%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8165564",
+      "product_name": "Iron Thorns Blister Pack",
+      "console_name": "Pokemon Stellar Crown",
+      "validation": {
+        "ok": false,
+        "reason": "api_product_name_pattern_not_supported"
+      }
+    },
+    {
+      "query": "Pokemon Stellar Crown Iron Boulder 71 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Stellar%20Crown%20Iron%20Boulder%2071%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10366693",
+      "product_name": "Area Zero Underdepths [Gym Stamp Asia] #131",
+      "console_name": "Pokemon Stellar Crown",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:131"
+      }
+    },
+    {
+      "query": "Pokemon Stellar Crown Iron Boulder 71 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Stellar%20Crown%20Iron%20Boulder%2071%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8321726",
+      "product_name": "Iron Boulder [Reverse] #46",
+      "console_name": "Pokemon Prismatic Evolutions",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:46"
+      }
+    },
+    {
+      "query": "Pokemon Stellar Crown Iron Boulder 71 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Stellar%20Crown%20Iron%20Boulder%2071%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8321628",
+      "product_name": "Iron Boulder [Poke Ball] #46",
+      "console_name": "Pokemon Prismatic Evolutions",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:46"
+      }
+    },
+    {
+      "query": "Pokemon Stellar Crown Iron Boulder 71 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Stellar%20Crown%20Iron%20Boulder%2071%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10809490",
+      "product_name": "Iron Boulder ex [Jumbo] #147",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "product_scope_jumbo_not_canonical_set_finish"
+      }
+    }
+  ],
+  "source_lane": "pricecharting_api"
+}

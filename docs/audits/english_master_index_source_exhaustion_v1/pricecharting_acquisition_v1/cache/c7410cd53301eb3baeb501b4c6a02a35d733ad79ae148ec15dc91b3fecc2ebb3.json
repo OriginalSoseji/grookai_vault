@@ -1,0 +1,549 @@
+{
+  "status": "api_no_validated_match",
+  "fact": {
+    "gap_type": "finish_second_source_needed",
+    "fact_type": "printing_finish",
+    "set_key": "bw5",
+    "set_name": "Dark Explorers",
+    "card_number": "25",
+    "card_name": "Vaporeon",
+    "finish_key": "stamped",
+    "status": "human_source_verified",
+    "sources": [
+      "thepricedex_price_list"
+    ],
+    "source_authorities": [
+      "thepricedex.com"
+    ],
+    "source_kinds": [
+      "marketplace_checklist"
+    ],
+    "evidence_urls": [
+      "https://www.thepricedex.com/set/bw5/dark-explorers/price-list"
+    ],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "attempts": [
+    {
+      "query": "Pokemon Dark Explorers Vaporeon 25 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Vaporeon%2025%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "956071",
+      "product_name": "Vaporeon #25",
+      "console_name": "Pokemon Dark Explorers",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Vaporeon 25 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Vaporeon%2025%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5978476",
+      "product_name": "Vaporeon [Championship] #25",
+      "console_name": "Pokemon Dark Explorers",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Championship"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Vaporeon 25 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Vaporeon%2025%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "956182",
+      "product_name": "Vaporeon [Reverse Holo] #25",
+      "console_name": "Pokemon Dark Explorers",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Reverse Holo"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Vaporeon 25 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Vaporeon%2025%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3895932",
+      "product_name": "Vaporeon [Championship Staff] #25",
+      "console_name": "Pokemon Dark Explorers",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Championship Staff"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Vaporeon 25 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Vaporeon%2025%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8756946",
+      "product_name": "Vaporeon [Regional Championships] #25",
+      "console_name": "Pokemon Dark Explorers",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Regional Championships"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Vaporeon 25 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Vaporeon%2025%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9678142",
+      "product_name": "Vaporeon [Stamped] #211",
+      "console_name": "Pokemon Chinese Gem Pack 2",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:211"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Vaporeon 25 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Vaporeon%2025%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9678143",
+      "product_name": "Vaporeon [Stamped] #212",
+      "console_name": "Pokemon Chinese Gem Pack 2",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:212"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Vaporeon 25 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Vaporeon%2025%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8624381",
+      "product_name": "Vaporeon ex [Stamped] #23",
+      "console_name": "Pokemon Prismatic Evolutions",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:23"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Vaporeon 25 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Vaporeon%2025%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "956142",
+      "product_name": "N #96",
+      "console_name": "Pokemon Dark Explorers",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:96"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Vaporeon 25 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Vaporeon%2025%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "956086",
+      "product_name": "Minun #40",
+      "console_name": "Pokemon Dark Explorers",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:40"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Vaporeon 25 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Vaporeon%2025%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "956121",
+      "product_name": "Klink #75",
+      "console_name": "Pokemon Dark Explorers",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:75"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Vaporeon 25 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Vaporeon%2025%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "956115",
+      "product_name": "Zorua #69",
+      "console_name": "Pokemon Dark Explorers",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:69"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Vaporeon 25 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Vaporeon%2025%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "956116",
+      "product_name": "Zorua #70",
+      "console_name": "Pokemon Dark Explorers",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:70"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Vaporeon 25 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Vaporeon%2025%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "956122",
+      "product_name": "Klang #76",
+      "console_name": "Pokemon Dark Explorers",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:76"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Vaporeon 25 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Vaporeon%2025%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "956129",
+      "product_name": "Eevee #83",
+      "console_name": "Pokemon Dark Explorers",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:83"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Vaporeon 25 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Vaporeon%2025%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "956130",
+      "product_name": "Eevee #84",
+      "console_name": "Pokemon Dark Explorers",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:84"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Vaporeon 25 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Vaporeon%2025%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "956138",
+      "product_name": "Dark Claw #92",
+      "console_name": "Pokemon Dark Explorers",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:92"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Vaporeon 25 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Vaporeon%2025%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "956073",
+      "product_name": "Piplup #27",
+      "console_name": "Pokemon Dark Explorers",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:27"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Vaporeon 25 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Vaporeon%2025%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "956085",
+      "product_name": "Plusle #39",
+      "console_name": "Pokemon Dark Explorers",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:39"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Vaporeon 25 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Vaporeon%2025%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "956082",
+      "product_name": "Swanna #36",
+      "console_name": "Pokemon Dark Explorers",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:36"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Vaporeon 25 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Vaporeon%2025%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "956071",
+      "product_name": "Vaporeon #25",
+      "console_name": "Pokemon Dark Explorers",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Vaporeon 25 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Vaporeon%2025%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5978476",
+      "product_name": "Vaporeon [Championship] #25",
+      "console_name": "Pokemon Dark Explorers",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Championship"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Vaporeon 25 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Vaporeon%2025%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "956182",
+      "product_name": "Vaporeon [Reverse Holo] #25",
+      "console_name": "Pokemon Dark Explorers",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Reverse Holo"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Vaporeon 25 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Vaporeon%2025%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3895932",
+      "product_name": "Vaporeon [Championship Staff] #25",
+      "console_name": "Pokemon Dark Explorers",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Championship Staff"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Vaporeon 25 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Vaporeon%2025%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8756946",
+      "product_name": "Vaporeon [Regional Championships] #25",
+      "console_name": "Pokemon Dark Explorers",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Regional Championships"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Vaporeon 25 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Vaporeon%2025%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9678142",
+      "product_name": "Vaporeon [Stamped] #211",
+      "console_name": "Pokemon Chinese Gem Pack 2",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:211"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Vaporeon 25 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Vaporeon%2025%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9678143",
+      "product_name": "Vaporeon [Stamped] #212",
+      "console_name": "Pokemon Chinese Gem Pack 2",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:212"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Vaporeon 25 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Vaporeon%2025%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8624381",
+      "product_name": "Vaporeon ex [Stamped] #23",
+      "console_name": "Pokemon Prismatic Evolutions",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:23"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Vaporeon 25 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Vaporeon%2025%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "956142",
+      "product_name": "N #96",
+      "console_name": "Pokemon Dark Explorers",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:96"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Vaporeon 25 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Vaporeon%2025%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "956086",
+      "product_name": "Minun #40",
+      "console_name": "Pokemon Dark Explorers",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:40"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Vaporeon 25 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Vaporeon%2025%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "956121",
+      "product_name": "Klink #75",
+      "console_name": "Pokemon Dark Explorers",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:75"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Vaporeon 25 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Vaporeon%2025%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "956115",
+      "product_name": "Zorua #69",
+      "console_name": "Pokemon Dark Explorers",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:69"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Vaporeon 25 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Vaporeon%2025%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "956116",
+      "product_name": "Zorua #70",
+      "console_name": "Pokemon Dark Explorers",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:70"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Vaporeon 25 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Vaporeon%2025%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "956122",
+      "product_name": "Klang #76",
+      "console_name": "Pokemon Dark Explorers",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:76"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Vaporeon 25 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Vaporeon%2025%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "956129",
+      "product_name": "Eevee #83",
+      "console_name": "Pokemon Dark Explorers",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:83"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Vaporeon 25 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Vaporeon%2025%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "956130",
+      "product_name": "Eevee #84",
+      "console_name": "Pokemon Dark Explorers",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:84"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Vaporeon 25 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Vaporeon%2025%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "956138",
+      "product_name": "Dark Claw #92",
+      "console_name": "Pokemon Dark Explorers",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:92"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Vaporeon 25 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Vaporeon%2025%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "956073",
+      "product_name": "Piplup #27",
+      "console_name": "Pokemon Dark Explorers",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:27"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Vaporeon 25 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Vaporeon%2025%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "956085",
+      "product_name": "Plusle #39",
+      "console_name": "Pokemon Dark Explorers",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:39"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Vaporeon 25 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Vaporeon%2025%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "956082",
+      "product_name": "Swanna #36",
+      "console_name": "Pokemon Dark Explorers",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:36"
+      }
+    }
+  ],
+  "source_lane": "pricecharting_api"
+}

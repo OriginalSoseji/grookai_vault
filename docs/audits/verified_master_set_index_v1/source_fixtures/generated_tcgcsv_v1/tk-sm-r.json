@@ -1,0 +1,31 @@
+{
+  "fixture_version": "VERIFIED_MASTER_SET_INDEX_V1_HUMAN_SOURCE_FIXTURE_GENERATED",
+  "source_key": "tcgcsv_finish_tk-sm-r",
+  "source_kind": "marketplace_checklist",
+  "source_url": "https://tcgcsv.com/docs",
+  "source_status": "available_generated",
+  "set_key": "tk-sm-r",
+  "set_name": "SM trainer Kit (Alolan Raichu)",
+  "retrieved_at": "2026-06-08T03:01:25.402Z",
+  "raw_snapshot_ref": "generated_fixture:tcgcsv:tk-sm-r:2026-06-08T03:01:25.402Z",
+  "generation_note": "Generated from TCGCSV TCGplayer catalog product and price subtype data. Exact finish evidence only.",
+  "records": [
+    {
+      "source_key": "tcgcsv_tcgplayer_catalog",
+      "source_kind": "marketplace_checklist",
+      "source_url": "https://www.tcgplayer.com/product/152873/pokemon-sm-trainer-kit-lycanroc-and-alolan-raichu-alolan-raichu-30-holofoil",
+      "set_key": "tk-sm-r",
+      "set_name": "SM trainer Kit (Alolan Raichu)",
+      "card_number": "30",
+      "card_name": "Alolan Raichu",
+      "finish_key": "holo",
+      "rarity": "Uncommon",
+      "evidence_type": "finish_presence",
+      "evidence_label": "TCGCSV/TCGplayer product 152873 price subtype Holofoil",
+      "language": "en",
+      "retrieved_at": "2026-06-08T03:01:25.402Z",
+      "raw_snapshot_ref": "tcgcsv:2069:152873:Holofoil",
+      "notes": "Generated from TCGCSV TCGplayer products joined to price subTypeName. Exact set, number, name, and finish match only."
+    }
+  ]
+}

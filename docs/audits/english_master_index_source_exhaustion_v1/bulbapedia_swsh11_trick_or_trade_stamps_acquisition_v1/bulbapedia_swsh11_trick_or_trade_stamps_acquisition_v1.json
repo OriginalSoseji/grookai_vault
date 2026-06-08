@@ -1,0 +1,111 @@
+{
+  "version": "english_master_index_bulbapedia_swsh11_trick_or_trade_stamps_acquisition_v1",
+  "generated_at": "2026-06-07T00:00:00.000Z",
+  "audit_only": true,
+  "db_writes_performed": false,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "dry_run": false,
+  "fixture_file": "docs/audits/verified_master_set_index_v1/source_fixtures/generated_bulbapedia_swsh11_trick_or_trade_stamps_v1/swsh11.json",
+  "rule": "Only exact Bulbapedia card release pages naming Lost Origin card number, card name, Mirage Holofoil, and Pikachu jack-o'-lantern stamp are accepted. General Trick or Trade set presence is not enough. Lost Vacuum 162/196 was explicitly left blocked because this pass did not find an exact second source for a Lost Origin stamped printing.",
+  "summary": {
+    "target_facts": 4,
+    "validated": 3,
+    "blocked": 1,
+    "by_source_key": {
+      "bulbapedia_swsh11_trick_or_trade_stamps": 3
+    }
+  },
+  "results": [
+    {
+      "status": "validated",
+      "source_key": "bulbapedia_swsh11_trick_or_trade_stamps",
+      "source_kind": "human_readable_checklist",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Trevenant_(Lost_Origin_17)",
+      "fact": {
+        "set_key": "swsh11",
+        "set_name": "Lost Origin",
+        "card_number": "17",
+        "card_name": "Trevenant",
+        "finish_key": "stamped"
+      },
+      "validation": {
+        "ok": true,
+        "checks": {
+          "has_identity": true,
+          "has_card_number": true,
+          "has_exact_stamped_label": true,
+          "not_general_set_inference": true
+        }
+      }
+    },
+    {
+      "status": "validated",
+      "source_key": "bulbapedia_swsh11_trick_or_trade_stamps",
+      "source_kind": "human_readable_checklist",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Chandelure_(Lost_Origin_26)",
+      "fact": {
+        "set_key": "swsh11",
+        "set_name": "Lost Origin",
+        "card_number": "26",
+        "card_name": "Chandelure",
+        "finish_key": "stamped"
+      },
+      "validation": {
+        "ok": true,
+        "checks": {
+          "has_identity": true,
+          "has_card_number": true,
+          "has_exact_stamped_label": true,
+          "not_general_set_inference": true
+        }
+      }
+    },
+    {
+      "status": "validated",
+      "source_key": "bulbapedia_swsh11_trick_or_trade_stamps",
+      "source_kind": "human_readable_checklist",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Spectrier_(Lost_Origin_81)",
+      "fact": {
+        "set_key": "swsh11",
+        "set_name": "Lost Origin",
+        "card_number": "81",
+        "card_name": "Spectrier",
+        "finish_key": "stamped"
+      },
+      "validation": {
+        "ok": true,
+        "checks": {
+          "has_identity": true,
+          "has_card_number": true,
+          "has_exact_stamped_label": true,
+          "not_general_set_inference": true
+        }
+      }
+    },
+    {
+      "status": "blocked",
+      "source_key": "bulbapedia_swsh11_trick_or_trade_stamps",
+      "source_kind": "human_readable_checklist",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Lost_Vacuum_(SV-P_Promo_180)",
+      "fact": {
+        "set_key": "swsh11",
+        "set_name": "Lost Origin",
+        "card_number": "162",
+        "card_name": "Lost Vacuum",
+        "finish_key": "stamped"
+      },
+      "validation": {
+        "ok": false,
+        "checks": {
+          "has_identity": true,
+          "has_card_number": true,
+          "has_exact_stamped_label": false,
+          "not_general_set_inference": true
+        },
+        "blocked_reason": "The accessible Bulbapedia Lost Vacuum page confirms Lost Origin 162/196 identity but does not provide an exact stamped Lost Origin printing. Other visible search evidence points toward Prize Pack or Crown Zenith contexts, so this remains unpromoted."
+      }
+    }
+  ]
+}

@@ -1,0 +1,62 @@
+{
+  "status": "validated",
+  "fact": {
+    "gap_type": "finish_second_source_needed",
+    "fact_type": "printing_finish",
+    "set_key": "sv03.5",
+    "set_name": "151",
+    "card_number": "68",
+    "card_name": "Machamp",
+    "finish_key": "cosmos",
+    "status": "human_source_verified",
+    "sources": [
+      "thepricedex_price_list"
+    ],
+    "source_authorities": [
+      "thepricedex.com"
+    ],
+    "source_kinds": [
+      "marketplace_checklist"
+    ],
+    "evidence_urls": [
+      "https://www.thepricedex.com/set/sv3pt5/151/price-list"
+    ],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "query": "Pokemon 151 Machamp 68 cosmos holo",
+  "search_url": "https://www.pricecharting.com/api/products?q=Pokemon%20151%20Machamp%2068%20cosmos%20holo",
+  "source_url": "https://www.pricecharting.com/game/pokemon-scarlet-and-violet-151/machamp-cosmos-holo-68",
+  "title": "Machamp [Cosmos Holo] #68 | Pokemon Scarlet & Violet 151",
+  "title_parts": {
+    "card_name": "Machamp",
+    "card_number": "68",
+    "variant_label": "Cosmos Holo",
+    "set_name": "Pokemon Scarlet & Violet 151",
+    "pricecharting_product_id": "11330244"
+  },
+  "validation_source": "pricecharting_api_products",
+  "source_lane": "pricecharting_api",
+  "attempts": [
+    {
+      "query": "Pokemon 151 Machamp 68 cosmos holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20151%20Machamp%2068%20cosmos%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11330244",
+      "product_name": "Machamp [Cosmos Holo] #68",
+      "console_name": "Pokemon Scarlet & Violet 151",
+      "validation": {
+        "ok": true,
+        "titleParts": {
+          "card_name": "Machamp",
+          "card_number": "68",
+          "variant_label": "Cosmos Holo",
+          "set_name": "Pokemon Scarlet & Violet 151",
+          "pricecharting_product_id": "11330244"
+        },
+        "source_url": "https://www.pricecharting.com/game/pokemon-scarlet-and-violet-151/machamp-cosmos-holo-68",
+        "title": "Machamp [Cosmos Holo] #68 | Pokemon Scarlet & Violet 151"
+      }
+    }
+  ]
+}

@@ -1,0 +1,48 @@
+{
+  "fixture_version": "VERIFIED_MASTER_SET_INDEX_V1_HUMAN_SOURCE_FIXTURE_GENERATED",
+  "source_key": "bulbapedia_card_page_sm7",
+  "source_kind": "human_readable_checklist",
+  "source_url": "https://bulbapedia.bulbagarden.net/wiki/Category:Pokémon_cards",
+  "source_status": "available_generated",
+  "set_key": "sm7",
+  "set_name": "Celestial Storm",
+  "retrieved_at": "2026-05-26T17:20:44.468Z",
+  "raw_snapshot_ref": "generated_fixture:bulbapedia_card_page:sm7:2026-05-26T17:20:44.468Z",
+  "generation_note": "Generated from Bulbapedia individual card page expansion metadata and release-information text. Exact set/number match is required; finish truth is emitted only for explicit finish/stamp/logo wording.",
+  "records": [
+    {
+      "source_key": "bulbapedia_card_page_release_info",
+      "source_kind": "human_readable_checklist",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Groudon_(Celestial_Storm_81)",
+      "set_key": "sm7",
+      "set_name": "Celestial Storm",
+      "card_number": "81",
+      "card_name": "Groudon",
+      "finish_key": "cosmos",
+      "rarity": null,
+      "evidence_type": "finish_presence",
+      "evidence_label": "Bulbapedia card page release information Cosmos Holofoil version",
+      "language": "en",
+      "retrieved_at": "2026-05-26T17:20:44.468Z",
+      "raw_snapshot_ref": "bulbapedia_card_page:Groudon_(Celestial_Storm_81):sm7:81:cosmos",
+      "notes": "Release information explicitly documents an English-scoped Cosmos Holofoil version. Evidence: A Cosmos Holofoil variant was given to customers who purchased $25 worth of TCG products at participating and stores in and to celebrate the expansion's release."
+    },
+    {
+      "source_key": "bulbapedia_card_page_release_info",
+      "source_kind": "human_readable_checklist",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Celesteela_(Celestial_Storm_100)",
+      "set_key": "sm7",
+      "set_name": "Celestial Storm",
+      "card_number": "100",
+      "card_name": "Celesteela",
+      "finish_key": "stamped",
+      "rarity": null,
+      "evidence_type": "finish_presence",
+      "evidence_label": "Bulbapedia card page release information stamp/logo variant",
+      "language": "en",
+      "retrieved_at": "2026-05-26T17:20:44.468Z",
+      "raw_snapshot_ref": "bulbapedia_card_page:Celesteela_(Celestial_Storm_100):sm7:100:stamped",
+      "notes": "Release information explicitly documents an English-scoped stamp/logo variant. Evidence: A print with a gold foil \"Staff\" stamp was given to those overseeing the event."
+    }
+  ]
+}

@@ -1,0 +1,549 @@
+{
+  "status": "api_no_validated_match",
+  "fact": {
+    "gap_type": "finish_second_source_needed",
+    "fact_type": "printing_finish",
+    "set_key": "basep",
+    "set_name": "Wizards Black Star Promos",
+    "card_number": "52",
+    "card_name": "Ho-oh",
+    "finish_key": "stamped",
+    "status": "human_source_verified",
+    "sources": [
+      "thepricedex_price_list"
+    ],
+    "source_authorities": [
+      "thepricedex.com"
+    ],
+    "source_kinds": [
+      "marketplace_checklist"
+    ],
+    "evidence_urls": [
+      "https://www.thepricedex.com/set/basep/wizards-black-star-promos/price-list"
+    ],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "attempts": [
+    {
+      "query": "Pokemon Wizards Black Star Promos Ho-oh 52 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Wizards%20Black%20Star%20Promos%20Ho-oh%2052%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "643525",
+      "product_name": "Ho-Oh #52",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon Wizards Black Star Promos Ho-oh 52 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Wizards%20Black%20Star%20Promos%20Ho-oh%2052%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5830380",
+      "product_name": "Ho-oh [Pokemon Center NY] #52",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Pokemon Center NY"
+      }
+    },
+    {
+      "query": "Pokemon Wizards Black Star Promos Ho-oh 52 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Wizards%20Black%20Star%20Promos%20Ho-oh%2052%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "844526",
+      "product_name": "Ho-Oh #HGSS01",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:HGSS01"
+      }
+    },
+    {
+      "query": "Pokemon Wizards Black Star Promos Ho-oh 52 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Wizards%20Black%20Star%20Promos%20Ho-oh%2052%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "844620",
+      "product_name": "Ho-Oh #XY153",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:XY153"
+      }
+    },
+    {
+      "query": "Pokemon Wizards Black Star Promos Ho-oh 52 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Wizards%20Black%20Star%20Promos%20Ho-oh%2052%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "13077017",
+      "product_name": "Ho-Oh #10",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:10"
+      }
+    },
+    {
+      "query": "Pokemon Wizards Black Star Promos Ho-oh 52 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Wizards%20Black%20Star%20Promos%20Ho-oh%2052%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11783076",
+      "product_name": "Hop [#52 Cinderace Stamp] #165",
+      "console_name": "Pokemon 2022 Battle Academy",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:165"
+      }
+    },
+    {
+      "query": "Pokemon Wizards Black Star Promos Ho-oh 52 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Wizards%20Black%20Star%20Promos%20Ho-oh%2052%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "844960",
+      "product_name": "Ho-Oh GX #SM57",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:SM57"
+      }
+    },
+    {
+      "query": "Pokemon Wizards Black Star Promos Ho-oh 52 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Wizards%20Black%20Star%20Promos%20Ho-oh%2052%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "844983",
+      "product_name": "Ho-Oh GX #SM80",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:SM80"
+      }
+    },
+    {
+      "query": "Pokemon Wizards Black Star Promos Ho-oh 52 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Wizards%20Black%20Star%20Promos%20Ho-oh%2052%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10809764",
+      "product_name": "Ho-Oh [Jumbo] #155",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "product_scope_jumbo_not_canonical_set_finish"
+      }
+    },
+    {
+      "query": "Pokemon Wizards Black Star Promos Ho-oh 52 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Wizards%20Black%20Star%20Promos%20Ho-oh%2052%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "844621",
+      "product_name": "Ho-Oh BREAK #XY154",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:XY154"
+      }
+    },
+    {
+      "query": "Pokemon Wizards Black Star Promos Ho-oh 52 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Wizards%20Black%20Star%20Promos%20Ho-oh%2052%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "844973",
+      "product_name": "Shining Ho-Oh #SM70",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:SM70"
+      }
+    },
+    {
+      "query": "Pokemon Wizards Black Star Promos Ho-oh 52 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Wizards%20Black%20Star%20Promos%20Ho-oh%2052%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10809641",
+      "product_name": "Ho-Oh GX [Jumbo] #81",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "product_scope_jumbo_not_canonical_set_finish"
+      }
+    },
+    {
+      "query": "Pokemon Wizards Black Star Promos Ho-oh 52 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Wizards%20Black%20Star%20Promos%20Ho-oh%2052%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10809765",
+      "product_name": "Ho-Oh BREAK [Jumbo] #156",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "product_scope_jumbo_not_canonical_set_finish"
+      }
+    },
+    {
+      "query": "Pokemon Wizards Black Star Promos Ho-oh 52 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Wizards%20Black%20Star%20Promos%20Ho-oh%2052%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9715766",
+      "product_name": "Ho-Oh BREAK [Jumbo] #XY154",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "product_scope_jumbo_not_canonical_set_finish"
+      }
+    },
+    {
+      "query": "Pokemon Wizards Black Star Promos Ho-oh 52 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Wizards%20Black%20Star%20Promos%20Ho-oh%2052%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "13077018",
+      "product_name": "Ho-Oh [Gamestop Promo] #10",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:10"
+      }
+    },
+    {
+      "query": "Pokemon Wizards Black Star Promos Ho-oh 52 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Wizards%20Black%20Star%20Promos%20Ho-oh%2052%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9042116",
+      "product_name": "Trainer's Legendary Box: Ho-Oh",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "api_product_name_pattern_not_supported"
+      }
+    },
+    {
+      "query": "Pokemon Wizards Black Star Promos Ho-oh 52 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Wizards%20Black%20Star%20Promos%20Ho-oh%2052%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7899499",
+      "product_name": "SS Rose Goku Black, Unison of Extermination [Hot Stamped] P-212",
+      "console_name": "Dragon Ball Fusion World Promos",
+      "validation": {
+        "ok": false,
+        "reason": "api_product_name_pattern_not_supported"
+      }
+    },
+    {
+      "query": "Pokemon Wizards Black Star Promos Ho-oh 52 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Wizards%20Black%20Star%20Promos%20Ho-oh%2052%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12316971",
+      "product_name": "Happiny [Snowflake Stamp] #52",
+      "console_name": "Pokemon Mysterious Treasures",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Happiny"
+      }
+    },
+    {
+      "query": "Pokemon Wizards Black Star Promos Ho-oh 52 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Wizards%20Black%20Star%20Promos%20Ho-oh%2052%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5428223",
+      "product_name": "Happiny [Stamped] #52",
+      "console_name": "Pokemon Mysterious Treasures",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Happiny"
+      }
+    },
+    {
+      "query": "Pokemon Wizards Black Star Promos Ho-oh 52 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Wizards%20Black%20Star%20Promos%20Ho-oh%2052%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9081358",
+      "product_name": "Pikachu [No Stamp] #190",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:190"
+      }
+    },
+    {
+      "query": "Pokemon Wizards Black Star Promos Ho-oh 52 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Wizards%20Black%20Star%20Promos%20Ho-oh%2052%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "643525",
+      "product_name": "Ho-Oh #52",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon Wizards Black Star Promos Ho-oh 52 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Wizards%20Black%20Star%20Promos%20Ho-oh%2052%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5830380",
+      "product_name": "Ho-oh [Pokemon Center NY] #52",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Pokemon Center NY"
+      }
+    },
+    {
+      "query": "Pokemon Wizards Black Star Promos Ho-oh 52 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Wizards%20Black%20Star%20Promos%20Ho-oh%2052%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "844526",
+      "product_name": "Ho-Oh #HGSS01",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:HGSS01"
+      }
+    },
+    {
+      "query": "Pokemon Wizards Black Star Promos Ho-oh 52 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Wizards%20Black%20Star%20Promos%20Ho-oh%2052%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "844620",
+      "product_name": "Ho-Oh #XY153",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:XY153"
+      }
+    },
+    {
+      "query": "Pokemon Wizards Black Star Promos Ho-oh 52 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Wizards%20Black%20Star%20Promos%20Ho-oh%2052%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "13077017",
+      "product_name": "Ho-Oh #10",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:10"
+      }
+    },
+    {
+      "query": "Pokemon Wizards Black Star Promos Ho-oh 52 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Wizards%20Black%20Star%20Promos%20Ho-oh%2052%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11783076",
+      "product_name": "Hop [#52 Cinderace Stamp] #165",
+      "console_name": "Pokemon 2022 Battle Academy",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:165"
+      }
+    },
+    {
+      "query": "Pokemon Wizards Black Star Promos Ho-oh 52 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Wizards%20Black%20Star%20Promos%20Ho-oh%2052%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "844960",
+      "product_name": "Ho-Oh GX #SM57",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:SM57"
+      }
+    },
+    {
+      "query": "Pokemon Wizards Black Star Promos Ho-oh 52 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Wizards%20Black%20Star%20Promos%20Ho-oh%2052%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "844983",
+      "product_name": "Ho-Oh GX #SM80",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:SM80"
+      }
+    },
+    {
+      "query": "Pokemon Wizards Black Star Promos Ho-oh 52 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Wizards%20Black%20Star%20Promos%20Ho-oh%2052%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10809764",
+      "product_name": "Ho-Oh [Jumbo] #155",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "product_scope_jumbo_not_canonical_set_finish"
+      }
+    },
+    {
+      "query": "Pokemon Wizards Black Star Promos Ho-oh 52 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Wizards%20Black%20Star%20Promos%20Ho-oh%2052%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "844621",
+      "product_name": "Ho-Oh BREAK #XY154",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:XY154"
+      }
+    },
+    {
+      "query": "Pokemon Wizards Black Star Promos Ho-oh 52 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Wizards%20Black%20Star%20Promos%20Ho-oh%2052%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "844973",
+      "product_name": "Shining Ho-Oh #SM70",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:SM70"
+      }
+    },
+    {
+      "query": "Pokemon Wizards Black Star Promos Ho-oh 52 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Wizards%20Black%20Star%20Promos%20Ho-oh%2052%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10809641",
+      "product_name": "Ho-Oh GX [Jumbo] #81",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "product_scope_jumbo_not_canonical_set_finish"
+      }
+    },
+    {
+      "query": "Pokemon Wizards Black Star Promos Ho-oh 52 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Wizards%20Black%20Star%20Promos%20Ho-oh%2052%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10809765",
+      "product_name": "Ho-Oh BREAK [Jumbo] #156",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "product_scope_jumbo_not_canonical_set_finish"
+      }
+    },
+    {
+      "query": "Pokemon Wizards Black Star Promos Ho-oh 52 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Wizards%20Black%20Star%20Promos%20Ho-oh%2052%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9715766",
+      "product_name": "Ho-Oh BREAK [Jumbo] #XY154",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "product_scope_jumbo_not_canonical_set_finish"
+      }
+    },
+    {
+      "query": "Pokemon Wizards Black Star Promos Ho-oh 52 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Wizards%20Black%20Star%20Promos%20Ho-oh%2052%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "13077018",
+      "product_name": "Ho-Oh [Gamestop Promo] #10",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:10"
+      }
+    },
+    {
+      "query": "Pokemon Wizards Black Star Promos Ho-oh 52 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Wizards%20Black%20Star%20Promos%20Ho-oh%2052%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9042116",
+      "product_name": "Trainer's Legendary Box: Ho-Oh",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "api_product_name_pattern_not_supported"
+      }
+    },
+    {
+      "query": "Pokemon Wizards Black Star Promos Ho-oh 52 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Wizards%20Black%20Star%20Promos%20Ho-oh%2052%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7899499",
+      "product_name": "SS Rose Goku Black, Unison of Extermination [Hot Stamped] P-212",
+      "console_name": "Dragon Ball Fusion World Promos",
+      "validation": {
+        "ok": false,
+        "reason": "api_product_name_pattern_not_supported"
+      }
+    },
+    {
+      "query": "Pokemon Wizards Black Star Promos Ho-oh 52 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Wizards%20Black%20Star%20Promos%20Ho-oh%2052%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12316971",
+      "product_name": "Happiny [Snowflake Stamp] #52",
+      "console_name": "Pokemon Mysterious Treasures",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Happiny"
+      }
+    },
+    {
+      "query": "Pokemon Wizards Black Star Promos Ho-oh 52 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Wizards%20Black%20Star%20Promos%20Ho-oh%2052%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5428223",
+      "product_name": "Happiny [Stamped] #52",
+      "console_name": "Pokemon Mysterious Treasures",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Happiny"
+      }
+    },
+    {
+      "query": "Pokemon Wizards Black Star Promos Ho-oh 52 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Wizards%20Black%20Star%20Promos%20Ho-oh%2052%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9081358",
+      "product_name": "Pikachu [No Stamp] #190",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:190"
+      }
+    }
+  ],
+  "source_lane": "pricecharting_api"
+}

@@ -1,0 +1,549 @@
+{
+  "status": "api_no_validated_match",
+  "fact": {
+    "gap_type": "finish_second_source_needed",
+    "fact_type": "printing_finish",
+    "set_key": "bw1",
+    "set_name": "Black & White",
+    "card_number": "53",
+    "card_name": "Whirlipede",
+    "finish_key": "stamped",
+    "status": "human_source_verified",
+    "sources": [
+      "thepricedex_price_list"
+    ],
+    "source_authorities": [
+      "thepricedex.com"
+    ],
+    "source_kinds": [
+      "marketplace_checklist"
+    ],
+    "evidence_urls": [
+      "https://www.thepricedex.com/set/bw1/black-and-white/price-list"
+    ],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "attempts": [
+    {
+      "query": "Pokemon Black & White Whirlipede 53 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Whirlipede%2053%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "806363",
+      "product_name": "Whirlipede #53",
+      "console_name": "Pokemon Black & White",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Whirlipede 53 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Whirlipede%2053%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5809316",
+      "product_name": "Whirlipede [League Promo] #53",
+      "console_name": "Pokemon Black & White",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:League Promo"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Whirlipede 53 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Whirlipede%2053%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "806450",
+      "product_name": "Whirlipede [Reverse Holo] #53",
+      "console_name": "Pokemon Black & White",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Reverse Holo"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Whirlipede 53 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Whirlipede%2053%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3460419",
+      "product_name": "Whirlipede #22",
+      "console_name": "Pokemon Japanese White Collection",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:22"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Whirlipede 53 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Whirlipede%2053%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8454455",
+      "product_name": "Whirlipede [1st Edition] #22",
+      "console_name": "Pokemon Japanese White Collection",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:22"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Whirlipede 53 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Whirlipede%2053%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10031530",
+      "product_name": "Whirlipede [Reverse] #55",
+      "console_name": "Pokemon Black Bolt",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:55"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Whirlipede 53 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Whirlipede%2053%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9647506",
+      "product_name": "Whirlipede [Poke Ball] #58",
+      "console_name": "Pokemon Japanese Black Bolt",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:58"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Whirlipede 53 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Whirlipede%2053%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10031857",
+      "product_name": "Whirlipede [Poke Ball] #55",
+      "console_name": "Pokemon Black Bolt",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:55"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Whirlipede 53 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Whirlipede%2053%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9861779",
+      "product_name": "Whirlipede [Master Ball] #58",
+      "console_name": "Pokemon Japanese Black Bolt",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:58"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Whirlipede 53 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Whirlipede%2053%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10031714",
+      "product_name": "Whirlipede [Master Ball] #55",
+      "console_name": "Pokemon Black Bolt",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:55"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Whirlipede 53 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Whirlipede%2053%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10031581",
+      "product_name": "Whirlipede #55",
+      "console_name": "Pokemon Black Bolt",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:55"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Whirlipede 53 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Whirlipede%2053%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10031662",
+      "product_name": "Whirlipede #133",
+      "console_name": "Pokemon Black Bolt",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:133"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Whirlipede 53 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Whirlipede%2053%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9683023",
+      "product_name": "Whirlipede #139",
+      "console_name": "Pokemon Japanese Black Bolt",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:139"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Whirlipede 53 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Whirlipede%2053%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9647301",
+      "product_name": "Whirlipede #58",
+      "console_name": "Pokemon Japanese Black Bolt",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:58"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Whirlipede 53 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Whirlipede%2053%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7322448",
+      "product_name": "Cetoddle [Snowflake Stamp] #53",
+      "console_name": "Pokemon Paldea Evolved",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Cetoddle"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Whirlipede 53 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Whirlipede%2053%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6526236",
+      "product_name": "Unfair Stamp #53",
+      "console_name": "Pokemon Japanese Crimson Haze",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Unfair Stamp"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Whirlipede 53 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Whirlipede%2053%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11533108",
+      "product_name": "Unfair Stamp #53",
+      "console_name": "Pokemon Korean Crimson Haze",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Unfair Stamp"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Whirlipede 53 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Whirlipede%2053%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6795207",
+      "product_name": "Meowth [20th Anniversary Stamp] #53",
+      "console_name": "Pokemon Generations",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Meowth"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Whirlipede 53 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Whirlipede%2053%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11783077",
+      "product_name": "Blitzle [#15 Pikachu Stamp] #53",
+      "console_name": "Pokemon 2022 Battle Academy",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Blitzle"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Whirlipede 53 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Whirlipede%2053%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11748534",
+      "product_name": "Blitzle [#55 Pikachu Stamp] #53",
+      "console_name": "Pokemon 2022 Battle Academy",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Blitzle"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Whirlipede 53 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Whirlipede%2053%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "806363",
+      "product_name": "Whirlipede #53",
+      "console_name": "Pokemon Black & White",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Whirlipede 53 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Whirlipede%2053%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5809316",
+      "product_name": "Whirlipede [League Promo] #53",
+      "console_name": "Pokemon Black & White",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:League Promo"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Whirlipede 53 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Whirlipede%2053%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "806450",
+      "product_name": "Whirlipede [Reverse Holo] #53",
+      "console_name": "Pokemon Black & White",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Reverse Holo"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Whirlipede 53 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Whirlipede%2053%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3460419",
+      "product_name": "Whirlipede #22",
+      "console_name": "Pokemon Japanese White Collection",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:22"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Whirlipede 53 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Whirlipede%2053%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8454455",
+      "product_name": "Whirlipede [1st Edition] #22",
+      "console_name": "Pokemon Japanese White Collection",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:22"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Whirlipede 53 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Whirlipede%2053%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10031530",
+      "product_name": "Whirlipede [Reverse] #55",
+      "console_name": "Pokemon Black Bolt",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:55"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Whirlipede 53 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Whirlipede%2053%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9647506",
+      "product_name": "Whirlipede [Poke Ball] #58",
+      "console_name": "Pokemon Japanese Black Bolt",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:58"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Whirlipede 53 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Whirlipede%2053%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10031857",
+      "product_name": "Whirlipede [Poke Ball] #55",
+      "console_name": "Pokemon Black Bolt",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:55"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Whirlipede 53 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Whirlipede%2053%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9861779",
+      "product_name": "Whirlipede [Master Ball] #58",
+      "console_name": "Pokemon Japanese Black Bolt",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:58"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Whirlipede 53 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Whirlipede%2053%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10031714",
+      "product_name": "Whirlipede [Master Ball] #55",
+      "console_name": "Pokemon Black Bolt",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:55"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Whirlipede 53 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Whirlipede%2053%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10031581",
+      "product_name": "Whirlipede #55",
+      "console_name": "Pokemon Black Bolt",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:55"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Whirlipede 53 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Whirlipede%2053%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10031662",
+      "product_name": "Whirlipede #133",
+      "console_name": "Pokemon Black Bolt",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:133"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Whirlipede 53 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Whirlipede%2053%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9683023",
+      "product_name": "Whirlipede #139",
+      "console_name": "Pokemon Japanese Black Bolt",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:139"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Whirlipede 53 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Whirlipede%2053%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9647301",
+      "product_name": "Whirlipede #58",
+      "console_name": "Pokemon Japanese Black Bolt",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:58"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Whirlipede 53 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Whirlipede%2053%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7322448",
+      "product_name": "Cetoddle [Snowflake Stamp] #53",
+      "console_name": "Pokemon Paldea Evolved",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Cetoddle"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Whirlipede 53 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Whirlipede%2053%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6526236",
+      "product_name": "Unfair Stamp #53",
+      "console_name": "Pokemon Japanese Crimson Haze",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Unfair Stamp"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Whirlipede 53 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Whirlipede%2053%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11533108",
+      "product_name": "Unfair Stamp #53",
+      "console_name": "Pokemon Korean Crimson Haze",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Unfair Stamp"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Whirlipede 53 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Whirlipede%2053%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6795207",
+      "product_name": "Meowth [20th Anniversary Stamp] #53",
+      "console_name": "Pokemon Generations",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Meowth"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Whirlipede 53 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Whirlipede%2053%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11783077",
+      "product_name": "Blitzle [#15 Pikachu Stamp] #53",
+      "console_name": "Pokemon 2022 Battle Academy",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Blitzle"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Whirlipede 53 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Whirlipede%2053%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11748534",
+      "product_name": "Blitzle [#55 Pikachu Stamp] #53",
+      "console_name": "Pokemon 2022 Battle Academy",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Blitzle"
+      }
+    }
+  ],
+  "source_lane": "pricecharting_api"
+}

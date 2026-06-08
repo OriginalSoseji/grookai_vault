@@ -1,0 +1,549 @@
+{
+  "status": "api_no_validated_match",
+  "fact": {
+    "gap_type": "finish_second_source_needed",
+    "fact_type": "printing_finish",
+    "set_key": "bwp",
+    "set_name": "BW Black Star Promos",
+    "card_number": "BW75",
+    "card_name": "Metagross",
+    "finish_key": "stamped",
+    "status": "human_source_verified",
+    "sources": [
+      "thepricedex_price_list"
+    ],
+    "source_authorities": [
+      "thepricedex.com"
+    ],
+    "source_kinds": [
+      "marketplace_checklist"
+    ],
+    "evidence_urls": [
+      "https://www.thepricedex.com/set/bwp/bw-black-star-promos/price-list"
+    ],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "attempts": [
+    {
+      "query": "Pokemon BW Black Star Promos Metagross BW75 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20BW%20Black%20Star%20Promos%20Metagross%20BW75%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "1563470",
+      "product_name": "Metagross #BW75",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon BW Black Star Promos Metagross BW75 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20BW%20Black%20Star%20Promos%20Metagross%20BW75%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4118182",
+      "product_name": "Metagross [Prerelease Staff] #BW75",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Prerelease Staff"
+      }
+    },
+    {
+      "query": "Pokemon BW Black Star Promos Metagross BW75 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20BW%20Black%20Star%20Promos%20Metagross%20BW75%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10547396",
+      "product_name": "Metagross #197/BW-P",
+      "console_name": "Pokemon Japanese Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:197/BW-P"
+      }
+    },
+    {
+      "query": "Pokemon BW Black Star Promos Metagross BW75 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20BW%20Black%20Star%20Promos%20Metagross%20BW75%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "844699",
+      "product_name": "Metagross EX #XY34",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:XY34"
+      }
+    },
+    {
+      "query": "Pokemon BW Black Star Promos Metagross BW75 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20BW%20Black%20Star%20Promos%20Metagross%20BW75%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10809736",
+      "product_name": "M Metagross EX [Jumbo] #35",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "product_scope_jumbo_not_canonical_set_finish"
+      }
+    },
+    {
+      "query": "Pokemon BW Black Star Promos Metagross BW75 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20BW%20Black%20Star%20Promos%20Metagross%20BW75%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3472590",
+      "product_name": "Metagross V #49",
+      "console_name": "Pokemon Japanese Jet-Black Spirit",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:49"
+      }
+    },
+    {
+      "query": "Pokemon BW Black Star Promos Metagross BW75 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20BW%20Black%20Star%20Promos%20Metagross%20BW75%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3472618",
+      "product_name": "Metagross V #77",
+      "console_name": "Pokemon Japanese Jet-Black Spirit",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:77"
+      }
+    },
+    {
+      "query": "Pokemon BW Black Star Promos Metagross BW75 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20BW%20Black%20Star%20Promos%20Metagross%20BW75%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12645379",
+      "product_name": "Metagross V #49",
+      "console_name": "Pokemon Korean Jet Black Geist",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:49"
+      }
+    },
+    {
+      "query": "Pokemon BW Black Star Promos Metagross BW75 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20BW%20Black%20Star%20Promos%20Metagross%20BW75%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12645407",
+      "product_name": "Metagross V #77",
+      "console_name": "Pokemon Korean Jet Black Geist",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:77"
+      }
+    },
+    {
+      "query": "Pokemon BW Black Star Promos Metagross BW75 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20BW%20Black%20Star%20Promos%20Metagross%20BW75%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "844700",
+      "product_name": "Mega Metagross EX #XY35",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:XY35"
+      }
+    },
+    {
+      "query": "Pokemon BW Black Star Promos Metagross BW75 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20BW%20Black%20Star%20Promos%20Metagross%20BW75%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "888775",
+      "product_name": "Metagross [Gold Star] #113",
+      "console_name": "Pokemon Delta Species",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:113"
+      }
+    },
+    {
+      "query": "Pokemon BW Black Star Promos Metagross BW75 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20BW%20Black%20Star%20Promos%20Metagross%20BW75%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3472591",
+      "product_name": "Metagross VMAX #50",
+      "console_name": "Pokemon Japanese Jet-Black Spirit",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:50"
+      }
+    },
+    {
+      "query": "Pokemon BW Black Star Promos Metagross BW75 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20BW%20Black%20Star%20Promos%20Metagross%20BW75%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3472628",
+      "product_name": "Metagross VMAX #87",
+      "console_name": "Pokemon Japanese Jet-Black Spirit",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:87"
+      }
+    },
+    {
+      "query": "Pokemon BW Black Star Promos Metagross BW75 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20BW%20Black%20Star%20Promos%20Metagross%20BW75%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12645417",
+      "product_name": "Metagross VMAX #87",
+      "console_name": "Pokemon Korean Jet Black Geist",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:87"
+      }
+    },
+    {
+      "query": "Pokemon BW Black Star Promos Metagross BW75 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20BW%20Black%20Star%20Promos%20Metagross%20BW75%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12645380",
+      "product_name": "Metagross VMAX #50",
+      "console_name": "Pokemon Korean Jet Black Geist",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:50"
+      }
+    },
+    {
+      "query": "Pokemon BW Black Star Promos Metagross BW75 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20BW%20Black%20Star%20Promos%20Metagross%20BW75%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5067576",
+      "product_name": "Metagross [Gold Star 1st Edition] #75",
+      "console_name": "Pokemon Japanese Holon Research",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:75"
+      }
+    },
+    {
+      "query": "Pokemon BW Black Star Promos Metagross BW75 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20BW%20Black%20Star%20Promos%20Metagross%20BW75%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9081358",
+      "product_name": "Pikachu [No Stamp] #190",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:190"
+      }
+    },
+    {
+      "query": "Pokemon BW Black Star Promos Metagross BW75 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20BW%20Black%20Star%20Promos%20Metagross%20BW75%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6399270",
+      "product_name": "Black Kyurem [Cracked Ice] #216/BW-P",
+      "console_name": "Pokemon Japanese Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:216/BW-P"
+      }
+    },
+    {
+      "query": "Pokemon BW Black Star Promos Metagross BW75 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20BW%20Black%20Star%20Promos%20Metagross%20BW75%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7638523",
+      "product_name": "Metagross [Holo] #5",
+      "console_name": "Pokemon Japanese Leafeon VS Metagross Expert Deck",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:5"
+      }
+    },
+    {
+      "query": "Pokemon BW Black Star Promos Metagross BW75 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20BW%20Black%20Star%20Promos%20Metagross%20BW75%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10214835",
+      "product_name": "Eevee V [Stamped] #SWSH065",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:SWSH065"
+      }
+    },
+    {
+      "query": "Pokemon BW Black Star Promos Metagross BW75 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20BW%20Black%20Star%20Promos%20Metagross%20BW75%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "1563470",
+      "product_name": "Metagross #BW75",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon BW Black Star Promos Metagross BW75 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20BW%20Black%20Star%20Promos%20Metagross%20BW75%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4118182",
+      "product_name": "Metagross [Prerelease Staff] #BW75",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Prerelease Staff"
+      }
+    },
+    {
+      "query": "Pokemon BW Black Star Promos Metagross BW75 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20BW%20Black%20Star%20Promos%20Metagross%20BW75%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10547396",
+      "product_name": "Metagross #197/BW-P",
+      "console_name": "Pokemon Japanese Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:197/BW-P"
+      }
+    },
+    {
+      "query": "Pokemon BW Black Star Promos Metagross BW75 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20BW%20Black%20Star%20Promos%20Metagross%20BW75%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "844699",
+      "product_name": "Metagross EX #XY34",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:XY34"
+      }
+    },
+    {
+      "query": "Pokemon BW Black Star Promos Metagross BW75 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20BW%20Black%20Star%20Promos%20Metagross%20BW75%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10809736",
+      "product_name": "M Metagross EX [Jumbo] #35",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "product_scope_jumbo_not_canonical_set_finish"
+      }
+    },
+    {
+      "query": "Pokemon BW Black Star Promos Metagross BW75 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20BW%20Black%20Star%20Promos%20Metagross%20BW75%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3472590",
+      "product_name": "Metagross V #49",
+      "console_name": "Pokemon Japanese Jet-Black Spirit",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:49"
+      }
+    },
+    {
+      "query": "Pokemon BW Black Star Promos Metagross BW75 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20BW%20Black%20Star%20Promos%20Metagross%20BW75%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3472618",
+      "product_name": "Metagross V #77",
+      "console_name": "Pokemon Japanese Jet-Black Spirit",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:77"
+      }
+    },
+    {
+      "query": "Pokemon BW Black Star Promos Metagross BW75 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20BW%20Black%20Star%20Promos%20Metagross%20BW75%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12645379",
+      "product_name": "Metagross V #49",
+      "console_name": "Pokemon Korean Jet Black Geist",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:49"
+      }
+    },
+    {
+      "query": "Pokemon BW Black Star Promos Metagross BW75 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20BW%20Black%20Star%20Promos%20Metagross%20BW75%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12645407",
+      "product_name": "Metagross V #77",
+      "console_name": "Pokemon Korean Jet Black Geist",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:77"
+      }
+    },
+    {
+      "query": "Pokemon BW Black Star Promos Metagross BW75 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20BW%20Black%20Star%20Promos%20Metagross%20BW75%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "844700",
+      "product_name": "Mega Metagross EX #XY35",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:XY35"
+      }
+    },
+    {
+      "query": "Pokemon BW Black Star Promos Metagross BW75 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20BW%20Black%20Star%20Promos%20Metagross%20BW75%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "888775",
+      "product_name": "Metagross [Gold Star] #113",
+      "console_name": "Pokemon Delta Species",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:113"
+      }
+    },
+    {
+      "query": "Pokemon BW Black Star Promos Metagross BW75 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20BW%20Black%20Star%20Promos%20Metagross%20BW75%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3472591",
+      "product_name": "Metagross VMAX #50",
+      "console_name": "Pokemon Japanese Jet-Black Spirit",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:50"
+      }
+    },
+    {
+      "query": "Pokemon BW Black Star Promos Metagross BW75 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20BW%20Black%20Star%20Promos%20Metagross%20BW75%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3472628",
+      "product_name": "Metagross VMAX #87",
+      "console_name": "Pokemon Japanese Jet-Black Spirit",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:87"
+      }
+    },
+    {
+      "query": "Pokemon BW Black Star Promos Metagross BW75 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20BW%20Black%20Star%20Promos%20Metagross%20BW75%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12645417",
+      "product_name": "Metagross VMAX #87",
+      "console_name": "Pokemon Korean Jet Black Geist",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:87"
+      }
+    },
+    {
+      "query": "Pokemon BW Black Star Promos Metagross BW75 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20BW%20Black%20Star%20Promos%20Metagross%20BW75%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12645380",
+      "product_name": "Metagross VMAX #50",
+      "console_name": "Pokemon Korean Jet Black Geist",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:50"
+      }
+    },
+    {
+      "query": "Pokemon BW Black Star Promos Metagross BW75 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20BW%20Black%20Star%20Promos%20Metagross%20BW75%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5067576",
+      "product_name": "Metagross [Gold Star 1st Edition] #75",
+      "console_name": "Pokemon Japanese Holon Research",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:75"
+      }
+    },
+    {
+      "query": "Pokemon BW Black Star Promos Metagross BW75 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20BW%20Black%20Star%20Promos%20Metagross%20BW75%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9081358",
+      "product_name": "Pikachu [No Stamp] #190",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:190"
+      }
+    },
+    {
+      "query": "Pokemon BW Black Star Promos Metagross BW75 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20BW%20Black%20Star%20Promos%20Metagross%20BW75%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6399270",
+      "product_name": "Black Kyurem [Cracked Ice] #216/BW-P",
+      "console_name": "Pokemon Japanese Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:216/BW-P"
+      }
+    },
+    {
+      "query": "Pokemon BW Black Star Promos Metagross BW75 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20BW%20Black%20Star%20Promos%20Metagross%20BW75%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7638523",
+      "product_name": "Metagross [Holo] #5",
+      "console_name": "Pokemon Japanese Leafeon VS Metagross Expert Deck",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:5"
+      }
+    },
+    {
+      "query": "Pokemon BW Black Star Promos Metagross BW75 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20BW%20Black%20Star%20Promos%20Metagross%20BW75%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10214835",
+      "product_name": "Eevee V [Stamped] #SWSH065",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:SWSH065"
+      }
+    }
+  ],
+  "source_lane": "pricecharting_api"
+}

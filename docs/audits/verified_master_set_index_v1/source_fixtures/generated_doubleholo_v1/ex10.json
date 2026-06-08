@@ -1,0 +1,48 @@
+{
+  "fixture_version": "VERIFIED_MASTER_SET_INDEX_V1_HUMAN_SOURCE_FIXTURE_GENERATED",
+  "source_key": "doubleholo_finish_ex10",
+  "source_kind": "marketplace_checklist",
+  "source_url": "https://doubleholo.com/sets/pokemon-unseen-forces",
+  "source_status": "available_generated",
+  "set_key": "ex10",
+  "set_name": "Unseen Forces",
+  "retrieved_at": "2026-05-27T16:29:37.798Z",
+  "raw_snapshot_ref": "generated_fixture:doubleholo:ex10:2026-05-27T16:29:37.798Z",
+  "generation_note": "Generated from Double Holo set checklist explicit bracketed finish labels only.",
+  "records": [
+    {
+      "source_key": "doubleholo_set_checklist",
+      "source_kind": "marketplace_checklist",
+      "source_url": "https://doubleholo.com/sets/pokemon-unseen-forces",
+      "set_key": "ex10",
+      "set_name": "Unseen Forces",
+      "card_number": "21",
+      "card_name": "Cleffa",
+      "finish_key": "reverse",
+      "rarity": null,
+      "evidence_type": "finish_presence",
+      "evidence_label": "Double Holo checklist row Cleffa [Reverse Holo] #21",
+      "language": "en",
+      "retrieved_at": "2026-05-27T16:29:37.798Z",
+      "raw_snapshot_ref": "doubleholo:ex10:21:reverse",
+      "notes": "Generated only from explicit bracketed Double Holo finish labels."
+    },
+    {
+      "source_key": "doubleholo_set_checklist",
+      "source_kind": "marketplace_checklist",
+      "source_url": "https://doubleholo.com/sets/pokemon-unseen-forces",
+      "set_key": "ex10",
+      "set_name": "Unseen Forces",
+      "card_number": "27",
+      "card_name": "Ho-Oh",
+      "finish_key": "cosmos",
+      "rarity": null,
+      "evidence_type": "finish_presence",
+      "evidence_label": "Double Holo checklist row Ho-Oh [Cosmos Holo] #27",
+      "language": "en",
+      "retrieved_at": "2026-05-27T16:29:37.798Z",
+      "raw_snapshot_ref": "doubleholo:ex10:27:cosmos",
+      "notes": "Generated only from explicit bracketed Double Holo finish labels."
+    }
+  ]
+}

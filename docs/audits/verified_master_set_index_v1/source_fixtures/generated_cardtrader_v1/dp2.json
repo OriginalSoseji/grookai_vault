@@ -1,0 +1,31 @@
+{
+  "fixture_version": "VERIFIED_MASTER_SET_INDEX_V1_HUMAN_SOURCE_FIXTURE_GENERATED",
+  "source_key": "cardtrader_finish_dp2",
+  "source_kind": "marketplace_checklist",
+  "source_url": "https://www.cardtrader.com/en/manasearch/5/blueprints.json",
+  "source_status": "available_generated",
+  "set_key": "dp2",
+  "set_name": "Mysterious Treasures",
+  "retrieved_at": "2026-06-08T02:53:52.187Z",
+  "raw_snapshot_ref": "generated_fixture:cardtrader:dp2:2026-06-08T02:53:52.187Z",
+  "generation_note": "Generated from CardTrader Pokemon blueprint index. Exact card-number/name/finish matches only.",
+  "records": [
+    {
+      "source_key": "cardtrader_blueprint_index",
+      "source_kind": "marketplace_checklist",
+      "source_url": "https://www.cardtrader.com/en/cards/123398-bebe-s-search-holo-promo-109-123-mysterious-treasures-promos",
+      "set_key": "dp2",
+      "set_name": "Mysterious Treasures",
+      "card_number": "109",
+      "card_name": "Bebe's Search",
+      "finish_key": "holo",
+      "rarity": null,
+      "evidence_type": "finish_presence",
+      "evidence_label": "CardTrader blueprint row Bebe's Search - Holo Promo | 109/123",
+      "language": "en",
+      "retrieved_at": "2026-06-08T02:53:52.187Z",
+      "raw_snapshot_ref": "cardtrader_blueprint:123398-bebe-s-search-holo-promo-109-123-mysterious-treasures-promos",
+      "notes": "Generated only from an exact CardTrader Pokemon blueprint match on set, card number, card name, and finish label."
+    }
+  ]
+}

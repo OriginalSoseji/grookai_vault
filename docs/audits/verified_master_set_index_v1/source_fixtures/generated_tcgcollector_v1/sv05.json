@@ -1,0 +1,31 @@
+{
+  "fixture_version": "VERIFIED_MASTER_SET_INDEX_V1_HUMAN_SOURCE_FIXTURE_GENERATED",
+  "source_key": "tcgcollector_variants_sv05",
+  "source_kind": "collector_reference",
+  "source_url": "https://www.tcgcollector.com/sets/11605/temporal-forces?setCardCountMode=anyCardVariant",
+  "source_status": "available_generated",
+  "set_key": "sv05",
+  "set_name": "Temporal Forces",
+  "retrieved_at": "2026-05-29T03:46:18.529Z",
+  "raw_snapshot_ref": "generated_fixture:tcgcollector:sv05:2026-05-29T03:46:18.529Z",
+  "generation_note": "Generated from TCGCollector explicit card variant type IDs. No finish is inferred from set era, rarity, or card count.",
+  "records": [
+    {
+      "source_key": "tcgcollector_card_variants",
+      "source_kind": "collector_reference",
+      "source_url": "https://www.tcgcollector.com/cards/44619/dudunsparce-temporal-forces-129-162",
+      "set_key": "sv05",
+      "set_name": "Temporal Forces",
+      "card_number": "129",
+      "card_name": "Dudunsparce",
+      "finish_key": "normal",
+      "rarity": null,
+      "evidence_type": "finish_presence",
+      "evidence_label": "TCGCollector card variant Non-holo",
+      "language": "en",
+      "retrieved_at": "2026-05-29T03:46:18.529Z",
+      "raw_snapshot_ref": "tcgcollector:44619:46",
+      "notes": "Exact card-level finish evidence from TCGCollector card variant type map. Only explicit variant labels are emitted."
+    }
+  ]
+}

@@ -1,0 +1,62 @@
+{
+  "status": "validated",
+  "fact": {
+    "gap_type": "finish_second_source_needed",
+    "fact_type": "printing_finish",
+    "set_key": "smp",
+    "set_name": "SM Black Star Promos",
+    "card_number": "SM199",
+    "card_name": "Psyduck",
+    "finish_key": "stamped",
+    "status": "human_source_verified",
+    "sources": [
+      "thepricedex_price_list"
+    ],
+    "source_authorities": [
+      "thepricedex.com"
+    ],
+    "source_kinds": [
+      "marketplace_checklist"
+    ],
+    "evidence_urls": [
+      "https://www.thepricedex.com/set/smp/sm-black-star-promos/price-list"
+    ],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "query": "Pokemon SM Black Star Promos Psyduck SM199 stamped",
+  "search_url": "https://www.pricecharting.com/api/products?q=Pokemon%20SM%20Black%20Star%20Promos%20Psyduck%20SM199%20stamped",
+  "source_url": "https://www.pricecharting.com/game/pokemon-promo/psyduck-stamped-sm199",
+  "title": "Psyduck [Stamped] #SM199 | Pokemon Promo",
+  "title_parts": {
+    "card_name": "Psyduck",
+    "card_number": "SM199",
+    "variant_label": "Stamped",
+    "set_name": "Pokemon Promo",
+    "pricecharting_product_id": "5923782"
+  },
+  "validation_source": "pricecharting_api_products",
+  "source_lane": "pricecharting_api",
+  "attempts": [
+    {
+      "query": "Pokemon SM Black Star Promos Psyduck SM199 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20SM%20Black%20Star%20Promos%20Psyduck%20SM199%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5923782",
+      "product_name": "Psyduck [Stamped] #SM199",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": true,
+        "titleParts": {
+          "card_name": "Psyduck",
+          "card_number": "SM199",
+          "variant_label": "Stamped",
+          "set_name": "Pokemon Promo",
+          "pricecharting_product_id": "5923782"
+        },
+        "source_url": "https://www.pricecharting.com/game/pokemon-promo/psyduck-stamped-sm199",
+        "title": "Psyduck [Stamped] #SM199 | Pokemon Promo"
+      }
+    }
+  ]
+}

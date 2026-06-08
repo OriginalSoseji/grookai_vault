@@ -1,0 +1,3702 @@
+{
+  "version": "english_master_index_pricecharting_csv_acquisition_v1",
+  "generated_at": "2026-06-08T12:48:13.476Z",
+  "audit_only": true,
+  "db_writes_performed": false,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "dry_run": true,
+  "rule": "PriceCharting CSV evidence is accepted only when a product row exactly validates set, card number, card name, and finish label.",
+  "context_rule": "Rows that match card identity but not exact finish remain context only and do not become finish_presence fixtures.",
+  "raw_csv_cached_path": "tmp/pricecharting/pokemon_cards_pricecharting.csv",
+  "raw_csv_tracked": false,
+  "fixture_dir": null,
+  "fixture_files": [],
+  "summary": {
+    "csv_rows_read": 87674,
+    "pokemon_card_rows_parsed": 73149,
+    "attempted_facts": 53,
+    "by_status": {
+      "near_match_context": 48,
+      "no_exact_match": 5
+    },
+    "validated_by_set": {},
+    "near_match_context_by_set": {
+      "bw2|Emerging Powers": 1,
+      "bw3|Noble Victories": 1,
+      "bw5|Dark Explorers": 1,
+      "bw6|Dragons Exalted": 1,
+      "bw8|Plasma Storm": 1,
+      "bw9|Plasma Freeze": 1,
+      "col1|Call of Legends": 1,
+      "dp1|Diamond & Pearl": 1,
+      "dp3|Secret Wonders": 1,
+      "dp5|Majestic Dawn": 1,
+      "ecard2|Aquapolis": 1,
+      "ex1|Ruby & Sapphire": 1,
+      "ex14|Crystal Guardians": 1,
+      "ex6|FireRed & LeafGreen": 1,
+      "hgss1|HeartGold & SoulSilver": 2,
+      "hgss2|HS—Unleashed": 1,
+      "hgss4|HS—Triumphant": 1,
+      "neo1|Neo Genesis": 1,
+      "pl1|Platinum": 1,
+      "pl2|Rising Rivals": 2,
+      "sm1|Sun & Moon": 1,
+      "sm10|Unbroken Bonds": 1,
+      "sm2|Guardians Rising": 1,
+      "sm3|Burning Shadows": 1,
+      "sm4|Crimson Invasion": 1,
+      "sm7|Celestial Storm": 1,
+      "sm8|Lost Thunder": 2,
+      "smp|SM Black Star Promos": 3,
+      "sv03.5|151": 1,
+      "swsh1|Sword & Shield": 1,
+      "swsh10|Astral Radiance": 1,
+      "swsh11|Lost Origin": 1,
+      "swsh2|Rebel Clash": 1,
+      "swsh4|Vivid Voltage": 1,
+      "swsh7|Evolving Skies": 1,
+      "xy2|Flashfire": 1,
+      "xy3|Furious Fists": 1,
+      "xy4|Phantom Forces": 1,
+      "xy8|BREAKthrough": 1,
+      "xy9|BREAKpoint": 3,
+      "xyp|XY Black Star Promos": 1
+    },
+    "fixture_files_written": 0
+  },
+  "results": [
+    {
+      "status": "near_match_context",
+      "fact": {
+        "gap_type": "finish_second_source_needed",
+        "fact_type": "printing_finish",
+        "set_key": "bw2",
+        "set_name": "Emerging Powers",
+        "card_number": "40",
+        "card_name": "Scolipede",
+        "finish_key": "holo",
+        "status": "human_source_verified",
+        "sources": [
+          "thepricedex_price_list"
+        ],
+        "source_authorities": [
+          "thepricedex.com"
+        ],
+        "source_kinds": [
+          "marketplace_checklist"
+        ],
+        "evidence_urls": [
+          "https://www.thepricedex.com/set/bw2/emerging-powers/price-list"
+        ],
+        "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+      },
+      "source_url": "https://www.pricecharting.com/game/pokemon-emerging-powers/scolipede-40",
+      "product_id": null,
+      "console_name": null,
+      "title": "Scolipede #40",
+      "variant_labels": [],
+      "validation": {
+        "ok": false,
+        "reason": "card_found_but_finish_not_exactly_validated"
+      },
+      "reviewed_candidates": [
+        {
+          "source_url": "https://www.pricecharting.com/game/pokemon-emerging-powers/scolipede-40",
+          "product_id": "955466",
+          "console_name": "Pokemon Emerging Powers",
+          "product_name": "Scolipede #40",
+          "variant_labels": [],
+          "validation": {
+            "ok": false,
+            "reason": "product_title_has_no_variant_label"
+          }
+        },
+        {
+          "source_url": "https://www.pricecharting.com/game/pokemon-emerging-powers/scolipede-cracked-ice-40",
+          "product_id": "8136970",
+          "console_name": "Pokemon Emerging Powers",
+          "product_name": "Scolipede [Cracked Ice] #40",
+          "variant_labels": [
+            "Cracked Ice"
+          ],
+          "validation": {
+            "ok": false,
+            "reason": "generic_holo_not_promoted_from_specialized_variant_label"
+          }
+        },
+        {
+          "source_url": "https://www.pricecharting.com/game/pokemon-emerging-powers/scolipede-reverse-holo-40",
+          "product_id": "955563",
+          "console_name": "Pokemon Emerging Powers",
+          "product_name": "Scolipede [Reverse Holo] #40",
+          "variant_labels": [
+            "Reverse Holo"
+          ],
+          "validation": {
+            "ok": false,
+            "reason": "generic_holo_not_promoted_from_specialized_variant_label"
+          }
+        }
+      ]
+    },
+    {
+      "status": "near_match_context",
+      "fact": {
+        "gap_type": "finish_second_source_needed",
+        "fact_type": "printing_finish",
+        "set_key": "bw3",
+        "set_name": "Noble Victories",
+        "card_number": "91",
+        "card_name": "Eviolite",
+        "finish_key": "stamped",
+        "status": "human_source_verified",
+        "sources": [
+          "thepricedex_price_list"
+        ],
+        "source_authorities": [
+          "thepricedex.com"
+        ],
+        "source_kinds": [
+          "marketplace_checklist"
+        ],
+        "evidence_urls": [
+          "https://www.thepricedex.com/set/bw3/noble-victories/price-list"
+        ],
+        "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+      },
+      "source_url": "https://www.pricecharting.com/game/pokemon-noble-victories/eviolite-91",
+      "product_id": null,
+      "console_name": null,
+      "title": "Eviolite #91",
+      "variant_labels": [],
+      "validation": {
+        "ok": false,
+        "reason": "card_found_but_finish_not_exactly_validated"
+      },
+      "reviewed_candidates": [
+        {
+          "source_url": "https://www.pricecharting.com/game/pokemon-noble-victories/eviolite-91",
+          "product_id": "955745",
+          "console_name": "Pokemon Noble Victories",
+          "product_name": "Eviolite #91",
+          "variant_labels": [],
+          "validation": {
+            "ok": false,
+            "reason": "product_title_has_no_variant_label"
+          }
+        },
+        {
+          "source_url": "https://www.pricecharting.com/game/pokemon-noble-victories/eviolite-reverse-holo-91",
+          "product_id": "955848",
+          "console_name": "Pokemon Noble Victories",
+          "product_name": "Eviolite [Reverse Holo] #91",
+          "variant_labels": [
+            "Reverse Holo"
+          ],
+          "validation": {
+            "ok": false,
+            "reason": "finish_label_not_found:stamped"
+          }
+        },
+        {
+          "source_url": "https://www.pricecharting.com/game/pokemon-world-championships-2012/eviolite-shuto-itagaki-91",
+          "product_id": "12119688",
+          "console_name": "Pokemon World Championships 2012",
+          "product_name": "Eviolite [Shuto Itagaki] #91",
+          "variant_labels": [
+            "Shuto Itagaki"
+          ],
+          "validation": {
+            "ok": false,
+            "reason": "set_mismatch"
+          }
+        }
+      ]
+    },
+    {
+      "status": "near_match_context",
+      "fact": {
+        "gap_type": "finish_second_source_needed",
+        "fact_type": "printing_finish",
+        "set_key": "bw5",
+        "set_name": "Dark Explorers",
+        "card_number": "94",
+        "card_name": "Enhanced Hammer",
+        "finish_key": "stamped",
+        "status": "human_source_verified",
+        "sources": [
+          "thepricedex_price_list"
+        ],
+        "source_authorities": [
+          "thepricedex.com"
+        ],
+        "source_kinds": [
+          "marketplace_checklist"
+        ],
+        "evidence_urls": [
+          "https://www.thepricedex.com/set/bw5/dark-explorers/price-list"
+        ],
+        "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+      },
+      "source_url": "https://www.pricecharting.com/game/pokemon-dark-explorers/enhanced-hammer-94",
+      "product_id": null,
+      "console_name": null,
+      "title": "Enhanced Hammer #94",
+      "variant_labels": [],
+      "validation": {
+        "ok": false,
+        "reason": "card_found_but_finish_not_exactly_validated"
+      },
+      "reviewed_candidates": [
+        {
+          "source_url": "https://www.pricecharting.com/game/pokemon-dark-explorers/enhanced-hammer-94",
+          "product_id": "956140",
+          "console_name": "Pokemon Dark Explorers",
+          "product_name": "Enhanced Hammer #94",
+          "variant_labels": [],
+          "validation": {
+            "ok": false,
+            "reason": "product_title_has_no_variant_label"
+          }
+        },
+        {
+          "source_url": "https://www.pricecharting.com/game/pokemon-dark-explorers/enhanced-hammer-reverse-holo-94",
+          "product_id": "956246",
+          "console_name": "Pokemon Dark Explorers",
+          "product_name": "Enhanced Hammer [Reverse Holo] #94",
+          "variant_labels": [
+            "Reverse Holo"
+          ],
+          "validation": {
+            "ok": false,
+            "reason": "finish_label_not_found:stamped"
+          }
+        },
+        {
+          "source_url": "https://www.pricecharting.com/game/pokemon-phantom-forces/enhanced-hammer-94",
+          "product_id": "958287",
+          "console_name": "Pokemon Phantom Forces",
+          "product_name": "Enhanced Hammer #94",
+          "variant_labels": [],
+          "validation": {
+            "ok": false,
+            "reason": "set_mismatch"
+          }
+        },
+        {
+          "source_url": "https://www.pricecharting.com/game/pokemon-phantom-forces/enhanced-hammer-reverse-holo-94",
+          "product_id": "958401",
+          "console_name": "Pokemon Phantom Forces",
+          "product_name": "Enhanced Hammer [Reverse Holo] #94",
+          "variant_labels": [
+            "Reverse Holo"
+          ],
+          "validation": {
+            "ok": false,
+            "reason": "set_mismatch"
+          }
+        },
+        {
+          "source_url": "https://www.pricecharting.com/game/pokemon-world-championships-2014/enhanced-hammer-andrew-estrada-94",
+          "product_id": "12758242",
+          "console_name": "Pokemon World Championships 2014",
+          "product_name": "Enhanced Hammer [Andrew Estrada] #94",
+          "variant_labels": [
+            "Andrew Estrada"
+          ],
+          "validation": {
+            "ok": false,
+            "reason": "set_mismatch"
+          }
+        }
+      ]
+    },
+    {
+      "status": "near_match_context",
+      "fact": {
+        "gap_type": "finish_second_source_needed",
+        "fact_type": "printing_finish",
+        "set_key": "bw6",
+        "set_name": "Dragons Exalted",
+        "card_number": "98",
+        "card_name": "Hydreigon",
+        "finish_key": "holo",
+        "status": "human_source_verified",
+        "sources": [
+          "thepricedex_price_list"
+        ],
+        "source_authorities": [
+          "thepricedex.com"
+        ],
+        "source_kinds": [
+          "marketplace_checklist"
+        ],
+        "evidence_urls": [
+          "https://www.thepricedex.com/set/bw6/dragons-exalted/price-list"
+        ],
+        "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+      },
+      "source_url": "https://www.pricecharting.com/game/pokemon-dragons-exalted/hydreigon-98",
+      "product_id": null,
+      "console_name": null,
+      "title": "Hydreigon #98",
+      "variant_labels": [],
+      "validation": {
+        "ok": false,
+        "reason": "card_found_but_finish_not_exactly_validated"
+      },
+      "reviewed_candidates": [
+        {
+          "source_url": "https://www.pricecharting.com/game/pokemon-dragons-exalted/hydreigon-98",
+          "product_id": "956352",
+          "console_name": "Pokemon Dragons Exalted",
+          "product_name": "Hydreigon #98",
+          "variant_labels": [],
+          "validation": {
+            "ok": false,
+            "reason": "product_title_has_no_variant_label"
+          }
+        },
+        {
+          "source_url": "https://www.pricecharting.com/game/pokemon-dragons-exalted/hydreigon-cosmos-holo-98",
+          "product_id": "11709174",
+          "console_name": "Pokemon Dragons Exalted",
+          "product_name": "Hydreigon [Cosmos Holo] #98",
+          "variant_labels": [
+            "Cosmos Holo"
+          ],
+          "validation": {
+            "ok": false,
+            "reason": "generic_holo_not_promoted_from_specialized_variant_label"
+          }
+        },
+        {
+          "source_url": "https://www.pricecharting.com/game/pokemon-dragons-exalted/hydreigon-cracked-ice-holo-98",
+          "product_id": "4565990",
+          "console_name": "Pokemon Dragons Exalted",
+          "product_name": "Hydreigon [Cracked Ice Holo] #98",
+          "variant_labels": [
+            "Cracked Ice Holo"
+          ],
+          "validation": {
+            "ok": false,
+            "reason": "generic_holo_not_promoted_from_specialized_variant_label"
+          }
+        },
+        {
+          "source_url": "https://www.pricecharting.com/game/pokemon-dragons-exalted/hydreigon-reverse-holo-98",
+          "product_id": "956473",
+          "console_name": "Pokemon Dragons Exalted",
+          "product_name": "Hydreigon [Reverse Holo] #98",
+          "variant_labels": [
+            "Reverse Holo"
+          ],
+          "validation": {
+            "ok": false,
+            "reason": "generic_holo_not_promoted_from_specialized_variant_label"
+          }
+        }
+      ]
+    },
+    {
+      "status": "no_exact_match",
+      "fact": {
+        "gap_type": "finish_second_source_needed",
+        "fact_type": "printing_finish",
+        "set_key": "bw6",
+        "set_name": "Dragons Exalted",
+        "card_number": "117",
+        "card_name": "Blend Energy GrassFirePsychicDarkness",
+        "finish_key": "stamped",
+        "status": "human_source_verified",
+        "sources": [
+          "thepricedex_price_list"
+        ],
+        "source_authorities": [
+          "thepricedex.com"
+        ],
+        "source_kinds": [
+          "marketplace_checklist"
+        ],
+        "evidence_urls": [
+          "https://www.thepricedex.com/set/bw6/dragons-exalted/price-list"
+        ],
+        "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+      },
+      "source_url": null,
+      "product_id": null,
+      "console_name": null,
+      "title": null,
+      "variant_labels": [],
+      "validation": {
+        "ok": false,
+        "reason": "no_matching_set_card_name_number_row"
+      },
+      "reviewed_candidates": []
+    },
+    {
+      "status": "no_exact_match",
+      "fact": {
+        "gap_type": "finish_second_source_needed",
+        "fact_type": "printing_finish",
+        "set_key": "bw6",
+        "set_name": "Dragons Exalted",
+        "card_number": "118",
+        "card_name": "Blend Energy WaterLightningFightingMetal",
+        "finish_key": "stamped",
+        "status": "human_source_verified",
+        "sources": [
+          "thepricedex_price_list"
+        ],
+        "source_authorities": [
+          "thepricedex.com"
+        ],
+        "source_kinds": [
+          "marketplace_checklist"
+        ],
+        "evidence_urls": [
+          "https://www.thepricedex.com/set/bw6/dragons-exalted/price-list"
+        ],
+        "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+      },
+      "source_url": null,
+      "product_id": null,
+      "console_name": null,
+      "title": null,
+      "variant_labels": [],
+      "validation": {
+        "ok": false,
+        "reason": "no_matching_set_card_name_number_row"
+      },
+      "reviewed_candidates": []
+    },
+    {
+      "status": "near_match_context",
+      "fact": {
+        "gap_type": "finish_second_source_needed",
+        "fact_type": "printing_finish",
+        "set_key": "bw8",
+        "set_name": "Plasma Storm",
+        "card_number": "94",
+        "card_name": "Druddigon",
+        "finish_key": "holo",
+        "status": "human_source_verified",
+        "sources": [
+          "thepricedex_price_list"
+        ],
+        "source_authorities": [
+          "thepricedex.com"
+        ],
+        "source_kinds": [
+          "marketplace_checklist"
+        ],
+        "evidence_urls": [
+          "https://www.thepricedex.com/set/bw8/plasma-storm/price-list"
+        ],
+        "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+      },
+      "source_url": "https://www.pricecharting.com/game/pokemon-plasma-storm/druddigon-94",
+      "product_id": null,
+      "console_name": null,
+      "title": "Druddigon #94",
+      "variant_labels": [],
+      "validation": {
+        "ok": false,
+        "reason": "card_found_but_finish_not_exactly_validated"
+      },
+      "reviewed_candidates": [
+        {
+          "source_url": "https://www.pricecharting.com/game/pokemon-plasma-storm/druddigon-94",
+          "product_id": "956891",
+          "console_name": "Pokemon Plasma Storm",
+          "product_name": "Druddigon #94",
+          "variant_labels": [],
+          "validation": {
+            "ok": false,
+            "reason": "product_title_has_no_variant_label"
+          }
+        },
+        {
+          "source_url": "https://www.pricecharting.com/game/pokemon-plasma-storm/druddigon-cracked-ice-holo-94",
+          "product_id": "8166059",
+          "console_name": "Pokemon Plasma Storm",
+          "product_name": "Druddigon [Cracked Ice Holo] #94",
+          "variant_labels": [
+            "Cracked Ice Holo"
+          ],
+          "validation": {
+            "ok": false,
+            "reason": "generic_holo_not_promoted_from_specialized_variant_label"
+          }
+        },
+        {
+          "source_url": "https://www.pricecharting.com/game/pokemon-plasma-storm/druddigon-reverse-holo-94",
+          "product_id": "957024",
+          "console_name": "Pokemon Plasma Storm",
+          "product_name": "Druddigon [Reverse Holo] #94",
+          "variant_labels": [
+            "Reverse Holo"
+          ],
+          "validation": {
+            "ok": false,
+            "reason": "generic_holo_not_promoted_from_specialized_variant_label"
+          }
+        }
+      ]
+    },
+    {
+      "status": "near_match_context",
+      "fact": {
+        "gap_type": "finish_second_source_needed",
+        "fact_type": "printing_finish",
+        "set_key": "bw9",
+        "set_name": "Plasma Freeze",
+        "card_number": "106",
+        "card_name": "Plasma Energy",
+        "finish_key": "stamped",
+        "status": "human_source_verified",
+        "sources": [
+          "thepricedex_price_list"
+        ],
+        "source_authorities": [
+          "thepricedex.com"
+        ],
+        "source_kinds": [
+          "marketplace_checklist"
+        ],
+        "evidence_urls": [
+          "https://www.thepricedex.com/set/bw9/plasma-freeze/price-list"
+        ],
+        "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+      },
+      "source_url": "https://www.pricecharting.com/game/pokemon-plasma-freeze/plasma-energy-106",
+      "product_id": null,
+      "console_name": null,
+      "title": "Plasma Energy #106",
+      "variant_labels": [],
+      "validation": {
+        "ok": false,
+        "reason": "card_found_but_finish_not_exactly_validated"
+      },
+      "reviewed_candidates": [
+        {
+          "source_url": "https://www.pricecharting.com/game/pokemon-plasma-freeze/plasma-energy-106",
+          "product_id": "957160",
+          "console_name": "Pokemon Plasma Freeze",
+          "product_name": "Plasma Energy #106",
+          "variant_labels": [],
+          "validation": {
+            "ok": false,
+            "reason": "product_title_has_no_variant_label"
+          }
+        },
+        {
+          "source_url": "https://www.pricecharting.com/game/pokemon-plasma-freeze/plasma-energy-reverse-holo-106",
+          "product_id": "957275",
+          "console_name": "Pokemon Plasma Freeze",
+          "product_name": "Plasma Energy [Reverse Holo] #106",
+          "variant_labels": [
+            "Reverse Holo"
+          ],
+          "validation": {
+            "ok": false,
+            "reason": "finish_label_not_found:stamped"
+          }
+        }
+      ]
+    },
+    {
+      "status": "no_exact_match",
+      "fact": {
+        "gap_type": "finish_second_source_needed",
+        "fact_type": "printing_finish",
+        "set_key": "cel25",
+        "set_name": "Celebrations",
+        "card_number": "24",
+        "card_name": "_____'s Pikachu",
+        "finish_key": "holo",
+        "status": "human_source_verified",
+        "sources": [
+          "thepricedex_price_list"
+        ],
+        "source_authorities": [
+          "thepricedex.com"
+        ],
+        "source_kinds": [
+          "marketplace_checklist"
+        ],
+        "evidence_urls": [
+          "https://www.thepricedex.com/set/cel25/celebrations/price-list"
+        ],
+        "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+      },
+      "source_url": null,
+      "product_id": null,
+      "console_name": null,
+      "title": null,
+      "variant_labels": [],
+      "validation": {
+        "ok": false,
+        "reason": "no_matching_set_card_name_number_row"
+      },
+      "reviewed_candidates": []
+    },
+    {
+      "status": "near_match_context",
+      "fact": {
+        "gap_type": "finish_second_source_needed",
+        "fact_type": "printing_finish",
+        "set_key": "col1",
+        "set_name": "Call of Legends",
+        "card_number": "91",
+        "card_name": "Lightning Energy",
+        "finish_key": "stamped",
+        "status": "human_source_verified",
+        "sources": [
+          "thepricedex_price_list"
+        ],
+        "source_authorities": [
+          "thepricedex.com"
+        ],
+        "source_kinds": [
+          "marketplace_checklist"
+        ],
+        "evidence_urls": [
+          "https://www.thepricedex.com/set/col1/call-of-legends/price-list"
+        ],
+        "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+      },
+      "source_url": "https://www.pricecharting.com/game/pokemon-call-of-legends/lightning-energy-91",
+      "product_id": null,
+      "console_name": null,
+      "title": "Lightning Energy #91",
+      "variant_labels": [],
+      "validation": {
+        "ok": false,
+        "reason": "card_found_but_finish_not_exactly_validated"
+      },
+      "reviewed_candidates": [
+        {
+          "source_url": "https://www.pricecharting.com/game/pokemon-call-of-legends/lightning-energy-91",
+          "product_id": "926342",
+          "console_name": "Pokemon Call of Legends",
+          "product_name": "Lightning Energy #91",
+          "variant_labels": [],
+          "validation": {
+            "ok": false,
+            "reason": "product_title_has_no_variant_label"
+          }
+        }
+      ]
+    },
+    {
+      "status": "near_match_context",
+      "fact": {
+        "gap_type": "finish_second_source_needed",
+        "fact_type": "printing_finish",
+        "set_key": "dp1",
+        "set_name": "Diamond & Pearl",
+        "card_number": "112",
+        "card_name": "Professor Rowan",
+        "finish_key": "stamped",
+        "status": "human_source_verified",
+        "sources": [
+          "thepricedex_price_list"
+        ],
+        "source_authorities": [
+          "thepricedex.com"
+        ],
+        "source_kinds": [
+          "marketplace_checklist"
+        ],
+        "evidence_urls": [
+          "https://www.thepricedex.com/set/dp1/diamond-and-pearl/price-list"
+        ],
+        "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+      },
+      "source_url": "https://www.pricecharting.com/game/pokemon-diamond-and-pearl/professor-rowan-112",
+      "product_id": null,
+      "console_name": null,
+      "title": "Professor Rowan #112",
+      "variant_labels": [],
+      "validation": {
+        "ok": false,
+        "reason": "card_found_but_finish_not_exactly_validated"
+      },
+      "reviewed_candidates": [
+        {
+          "source_url": "https://www.pricecharting.com/game/pokemon-diamond-and-pearl/professor-rowan-112",
+          "product_id": "763148",
+          "console_name": "Pokemon Diamond & Pearl",
+          "product_name": "Professor Rowan #112",
+          "variant_labels": [],
+          "validation": {
+            "ok": false,
+            "reason": "product_title_has_no_variant_label"
+          }
+        },
+        {
+          "source_url": "https://www.pricecharting.com/game/pokemon-diamond-and-pearl/professor-rowan-reverse-holo-112",
+          "product_id": "763270",
+          "console_name": "Pokemon Diamond & Pearl",
+          "product_name": "Professor Rowan [Reverse Holo] #112",
+          "variant_labels": [
+            "Reverse Holo"
+          ],
+          "validation": {
+            "ok": false,
+            "reason": "finish_label_not_found:stamped"
+          }
+        }
+      ]
+    },
+    {
+      "status": "near_match_context",
+      "fact": {
+        "gap_type": "finish_second_source_needed",
+        "fact_type": "printing_finish",
+        "set_key": "dp3",
+        "set_name": "Secret Wonders",
+        "card_number": "106",
+        "card_name": "Shellos East Sea",
+        "finish_key": "stamped",
+        "status": "human_source_verified",
+        "sources": [
+          "thepricedex_price_list"
+        ],
+        "source_authorities": [
+          "thepricedex.com"
+        ],
+        "source_kinds": [
+          "marketplace_checklist"
+        ],
+        "evidence_urls": [
+          "https://www.thepricedex.com/set/dp3/secret-wonders/price-list"
+        ],
+        "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+      },
+      "source_url": "https://www.pricecharting.com/game/pokemon-secret-wonders/shellos-east-sea-106",
+      "product_id": null,
+      "console_name": null,
+      "title": "Shellos East Sea #106",
+      "variant_labels": [],
+      "validation": {
+        "ok": false,
+        "reason": "card_found_but_finish_not_exactly_validated"
+      },
+      "reviewed_candidates": [
+        {
+          "source_url": "https://www.pricecharting.com/game/pokemon-secret-wonders/shellos-east-sea-106",
+          "product_id": "920996",
+          "console_name": "Pokemon Secret Wonders",
+          "product_name": "Shellos East Sea #106",
+          "variant_labels": [],
+          "validation": {
+            "ok": false,
+            "reason": "product_title_has_no_variant_label"
+          }
+        },
+        {
+          "source_url": "https://www.pricecharting.com/game/pokemon-secret-wonders/shellos-east-sea-reverse-holo-106",
+          "product_id": "921128",
+          "console_name": "Pokemon Secret Wonders",
+          "product_name": "Shellos East Sea [Reverse Holo] #106",
+          "variant_labels": [
+            "Reverse Holo"
+          ],
+          "validation": {
+            "ok": false,
+            "reason": "finish_label_not_found:stamped"
+          }
+        }
+      ]
+    },
+    {
+      "status": "near_match_context",
+      "fact": {
+        "gap_type": "finish_second_source_needed",
+        "fact_type": "printing_finish",
+        "set_key": "dp5",
+        "set_name": "Majestic Dawn",
+        "card_number": "92",
+        "card_name": "Call Energy",
+        "finish_key": "stamped",
+        "status": "human_source_verified",
+        "sources": [
+          "thepricedex_price_list"
+        ],
+        "source_authorities": [
+          "thepricedex.com"
+        ],
+        "source_kinds": [
+          "marketplace_checklist"
+        ],
+        "evidence_urls": [
+          "https://www.thepricedex.com/set/dp5/majestic-dawn/price-list"
+        ],
+        "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+      },
+      "source_url": "https://www.pricecharting.com/game/pokemon-majestic-dawn/call-energy-92",
+      "product_id": null,
+      "console_name": null,
+      "title": "Call Energy #92",
+      "variant_labels": [],
+      "validation": {
+        "ok": false,
+        "reason": "card_found_but_finish_not_exactly_validated"
+      },
+      "reviewed_candidates": [
+        {
+          "source_url": "https://www.pricecharting.com/game/pokemon-majestic-dawn/call-energy-92",
+          "product_id": "921454",
+          "console_name": "Pokemon Majestic Dawn",
+          "product_name": "Call Energy #92",
+          "variant_labels": [],
+          "validation": {
+            "ok": false,
+            "reason": "product_title_has_no_variant_label"
+          }
+        },
+        {
+          "source_url": "https://www.pricecharting.com/game/pokemon-majestic-dawn/call-energy-reverse-holo-92",
+          "product_id": "921554",
+          "console_name": "Pokemon Majestic Dawn",
+          "product_name": "Call Energy [Reverse Holo] #92",
+          "variant_labels": [
+            "Reverse Holo"
+          ],
+          "validation": {
+            "ok": false,
+            "reason": "finish_label_not_found:stamped"
+          }
+        },
+        {
+          "source_url": "https://www.pricecharting.com/game/pokemon-world-championships-2008/call-energy-92",
+          "product_id": "11355247",
+          "console_name": "Pokemon World Championships 2008",
+          "product_name": "Call Energy #92",
+          "variant_labels": [],
+          "validation": {
+            "ok": false,
+            "reason": "set_mismatch"
+          }
+        }
+      ]
+    },
+    {
+      "status": "near_match_context",
+      "fact": {
+        "gap_type": "finish_second_source_needed",
+        "fact_type": "printing_finish",
+        "set_key": "ecard2",
+        "set_name": "Aquapolis",
+        "card_number": "103",
+        "card_name": "Porygon",
+        "finish_key": "reverse",
+        "status": "human_source_verified",
+        "sources": [
+          "thepricedex_price_list"
+        ],
+        "source_authorities": [
+          "thepricedex.com"
+        ],
+        "source_kinds": [
+          "marketplace_checklist"
+        ],
+        "evidence_urls": [
+          "https://www.thepricedex.com/set/ecard2/aquapolis/price-list"
+        ],
+        "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+      },
+      "source_url": "https://www.pricecharting.com/game/pokemon-burning-shadows/porygon-103",
+      "product_id": null,
+      "console_name": null,
+      "title": "Porygon #103",
+      "variant_labels": [],
+      "validation": {
+        "ok": false,
+        "reason": "card_found_but_finish_not_exactly_validated"
+      },
+      "reviewed_candidates": [
+        {
+          "source_url": "https://www.pricecharting.com/game/pokemon-burning-shadows/porygon-103",
+          "product_id": "960887",
+          "console_name": "Pokemon Burning Shadows",
+          "product_name": "Porygon #103",
+          "variant_labels": [],
+          "validation": {
+            "ok": false,
+            "reason": "set_mismatch"
+          }
+        },
+        {
+          "source_url": "https://www.pricecharting.com/game/pokemon-burning-shadows/porygon-reverse-holo-103",
+          "product_id": "961044",
+          "console_name": "Pokemon Burning Shadows",
+          "product_name": "Porygon [Reverse Holo] #103",
+          "variant_labels": [
+            "Reverse Holo"
+          ],
+          "validation": {
+            "ok": false,
+            "reason": "set_mismatch"
+          }
+        }
+      ]
+    },
+    {
+      "status": "near_match_context",
+      "fact": {
+        "gap_type": "finish_second_source_needed",
+        "fact_type": "printing_finish",
+        "set_key": "ex1",
+        "set_name": "Ruby & Sapphire",
+        "card_number": "93",
+        "card_name": "Darkness Energy",
+        "finish_key": "cosmos",
+        "status": "human_source_verified",
+        "sources": [
+          "thepricedex_price_list"
+        ],
+        "source_authorities": [
+          "thepricedex.com"
+        ],
+        "source_kinds": [
+          "marketplace_checklist"
+        ],
+        "evidence_urls": [
+          "https://www.thepricedex.com/set/ex1/ruby-and-sapphire/price-list"
+        ],
+        "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+      },
+      "source_url": "https://www.pricecharting.com/game/pokemon-majestic-dawn/darkness-energy-93",
+      "product_id": null,
+      "console_name": null,
+      "title": "Darkness Energy #93",
+      "variant_labels": [],
+      "validation": {
+        "ok": false,
+        "reason": "card_found_but_finish_not_exactly_validated"
+      },
+      "reviewed_candidates": [
+        {
+          "source_url": "https://www.pricecharting.com/game/pokemon-majestic-dawn/darkness-energy-93",
+          "product_id": "921455",
+          "console_name": "Pokemon Majestic Dawn",
+          "product_name": "Darkness Energy #93",
+          "variant_labels": [],
+          "validation": {
+            "ok": false,
+            "reason": "set_mismatch"
+          }
+        },
+        {
+          "source_url": "https://www.pricecharting.com/game/pokemon-majestic-dawn/darkness-energy-reverse-holo-93",
+          "product_id": "921555",
+          "console_name": "Pokemon Majestic Dawn",
+          "product_name": "Darkness Energy [Reverse Holo] #93",
+          "variant_labels": [
+            "Reverse Holo"
+          ],
+          "validation": {
+            "ok": false,
+            "reason": "set_mismatch"
+          }
+        },
+        {
+          "source_url": "https://www.pricecharting.com/game/pokemon-ruby-and-sapphire/darkness-energy-93",
+          "product_id": "762946",
+          "console_name": "Pokemon Ruby & Sapphire",
+          "product_name": "Darkness Energy #93",
+          "variant_labels": [],
+          "validation": {
+            "ok": false,
+            "reason": "product_title_has_no_variant_label"
+          }
+        },
+        {
+          "source_url": "https://www.pricecharting.com/game/pokemon-ruby-and-sapphire/darkness-energy-holo-93",
+          "product_id": "6985216",
+          "console_name": "Pokemon Ruby & Sapphire",
+          "product_name": "Darkness Energy [Holo] #93",
+          "variant_labels": [
+            "Holo"
+          ],
+          "validation": {
+            "ok": false,
+            "reason": "finish_label_not_found:cosmos"
+          }
+        },
+        {
+          "source_url": "https://www.pricecharting.com/game/pokemon-ruby-and-sapphire/darkness-energy-reverse-holo-93",
+          "product_id": "763028",
+          "console_name": "Pokemon Ruby & Sapphire",
+          "product_name": "Darkness Energy [Reverse Holo] #93",
+          "variant_labels": [
+            "Reverse Holo"
+          ],
+          "validation": {
+            "ok": false,
+            "reason": "finish_label_not_found:cosmos"
+          }
+        },
+        {
+          "source_url": "https://www.pricecharting.com/game/pokemon-ruby-and-sapphire/darkness-energy-winner-93",
+          "product_id": "5324999",
+          "console_name": "Pokemon Ruby & Sapphire",
+          "product_name": "Darkness Energy [Winner] #93",
+          "variant_labels": [
+            "Winner"
+          ],
+          "validation": {
+            "ok": false,
+            "reason": "finish_label_not_found:cosmos"
+          }
+        },
+        {
+          "source_url": "https://www.pricecharting.com/game/pokemon-world-championships-2004/darkness-energy-93",
+          "product_id": "7226083",
+          "console_name": "Pokemon World Championships 2004",
+          "product_name": "Darkness Energy #93",
+          "variant_labels": [],
+          "validation": {
+            "ok": false,
+            "reason": "set_mismatch"
+          }
+        }
+      ]
+    },
+    {
+      "status": "no_exact_match",
+      "fact": {
+        "gap_type": "finish_second_source_needed",
+        "fact_type": "printing_finish",
+        "set_key": "ex4",
+        "set_name": "Team Magma vs Team Aqua",
+        "card_number": "24",
+        "card_name": "Team Aqua's Cacnea",
+        "finish_key": "stamped",
+        "status": "human_source_verified",
+        "sources": [
+          "thepricedex_price_list"
+        ],
+        "source_authorities": [
+          "thepricedex.com"
+        ],
+        "source_kinds": [
+          "marketplace_checklist"
+        ],
+        "evidence_urls": [
+          "https://www.thepricedex.com/set/ex4/team-magma-vs-team-aqua/price-list"
+        ],
+        "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+      },
+      "source_url": null,
+      "product_id": null,
+      "console_name": null,
+      "title": null,
+      "variant_labels": [],
+      "validation": {
+        "ok": false,
+        "reason": "no_matching_set_card_name_number_row"
+      },
+      "reviewed_candidates": []
+    },
+    {
+      "status": "near_match_context",
+      "fact": {
+        "gap_type": "finish_second_source_needed",
+        "fact_type": "printing_finish",
+        "set_key": "ex6",
+        "set_name": "FireRed & LeafGreen",
+        "card_number": "98",
+        "card_name": "Prof. Oak's Research",
+        "finish_key": "stamped",
+        "status": "human_source_verified",
+        "sources": [
+          "thepricedex_price_list"
+        ],
+        "source_authorities": [
+          "thepricedex.com"
+        ],
+        "source_kinds": [
+          "marketplace_checklist"
+        ],
+        "evidence_urls": [
+          "https://www.thepricedex.com/set/ex6/firered-and-leafgreen/price-list"
+        ],
+        "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+      },
+      "source_url": "https://www.pricecharting.com/game/pokemon-fire-red-and-leaf-green/prof-oaks-research-98",
+      "product_id": null,
+      "console_name": null,
+      "title": "Prof. Oak's Research #98",
+      "variant_labels": [],
+      "validation": {
+        "ok": false,
+        "reason": "card_found_but_finish_not_exactly_validated"
+      },
+      "reviewed_candidates": [
+        {
+          "source_url": "https://www.pricecharting.com/game/pokemon-fire-red-and-leaf-green/prof-oaks-research-98",
+          "product_id": "850065",
+          "console_name": "Pokemon Fire Red & Leaf Green",
+          "product_name": "Prof. Oak's Research #98",
+          "variant_labels": [],
+          "validation": {
+            "ok": false,
+            "reason": "product_title_has_no_variant_label"
+          }
+        },
+        {
+          "source_url": "https://www.pricecharting.com/game/pokemon-fire-red-and-leaf-green/prof-oaks-research-reverse-holo-98",
+          "product_id": "850180",
+          "console_name": "Pokemon Fire Red & Leaf Green",
+          "product_name": "Prof. Oak's Research [Reverse Holo] #98",
+          "variant_labels": [
+            "Reverse Holo"
+          ],
+          "validation": {
+            "ok": false,
+            "reason": "finish_label_not_found:stamped"
+          }
+        }
+      ]
+    },
+    {
+      "status": "near_match_context",
+      "fact": {
+        "gap_type": "finish_second_source_needed",
+        "fact_type": "printing_finish",
+        "set_key": "ex14",
+        "set_name": "Crystal Guardians",
+        "card_number": "42",
+        "card_name": "Wartortle",
+        "finish_key": "stamped",
+        "status": "human_source_verified",
+        "sources": [
+          "thepricedex_price_list"
+        ],
+        "source_authorities": [
+          "thepricedex.com"
+        ],
+        "source_kinds": [
+          "marketplace_checklist"
+        ],
+        "evidence_urls": [
+          "https://www.thepricedex.com/set/ex14/crystal-guardians/price-list"
+        ],
+        "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+      },
+      "source_url": "https://www.pricecharting.com/game/pokemon-base-set/wartortle-42",
+      "product_id": null,
+      "console_name": null,
+      "title": "Wartortle #42",
+      "variant_labels": [],
+      "validation": {
+        "ok": false,
+        "reason": "card_found_but_finish_not_exactly_validated"
+      },
+      "reviewed_candidates": [
+        {
+          "source_url": "https://www.pricecharting.com/game/pokemon-base-set/wartortle-42",
+          "product_id": "630455",
+          "console_name": "Pokemon Base Set",
+          "product_name": "Wartortle #42",
+          "variant_labels": [],
+          "validation": {
+            "ok": false,
+            "reason": "set_mismatch"
+          }
+        },
+        {
+          "source_url": "https://www.pricecharting.com/game/pokemon-base-set/wartortle-1999-2000-42",
+          "product_id": "6944489",
+          "console_name": "Pokemon Base Set",
+          "product_name": "Wartortle [1999-2000] #42",
+          "variant_labels": [
+            "1999-2000"
+          ],
+          "validation": {
+            "ok": false,
+            "reason": "set_mismatch"
+          }
+        },
+        {
+          "source_url": "https://www.pricecharting.com/game/pokemon-base-set/wartortle-1st-edition-42",
+          "product_id": "715631",
+          "console_name": "Pokemon Base Set",
+          "product_name": "Wartortle [1st Edition] #42",
+          "variant_labels": [
+            "1st Edition"
+          ],
+          "validation": {
+            "ok": false,
+            "reason": "set_mismatch"
+          }
+        },
+        {
+          "source_url": "https://www.pricecharting.com/game/pokemon-base-set/wartortle-evolution-box-error-42",
+          "product_id": "4360783",
+          "console_name": "Pokemon Base Set",
+          "product_name": "Wartortle [Evolution Box Error] #42",
+          "variant_labels": [
+            "Evolution Box Error"
+          ],
+          "validation": {
+            "ok": false,
+            "reason": "set_mismatch"
+          }
+        },
+        {
+          "source_url": "https://www.pricecharting.com/game/pokemon-base-set/wartortle-shadowless-42",
+          "product_id": "715733",
+          "console_name": "Pokemon Base Set",
+          "product_name": "Wartortle [Shadowless] #42",
+          "variant_labels": [
+            "Shadowless"
+          ],
+          "validation": {
+            "ok": false,
+            "reason": "set_mismatch"
+          }
+        },
+        {
+          "source_url": "https://www.pricecharting.com/game/pokemon-base-set/wartortle-trainer-deck-b-42",
+          "product_id": "2365262",
+          "console_name": "Pokemon Base Set",
+          "product_name": "Wartortle [Trainer Deck B] #42",
+          "variant_labels": [
+            "Trainer Deck B"
+          ],
+          "validation": {
+            "ok": false,
+            "reason": "set_mismatch"
+          }
+        },
+        {
+          "source_url": "https://www.pricecharting.com/game/pokemon-crystal-guardians/wartortle-42",
+          "product_id": "889329",
+          "console_name": "Pokemon Crystal Guardians",
+          "product_name": "Wartortle #42",
+          "variant_labels": [],
+          "validation": {
+            "ok": false,
+            "reason": "product_title_has_no_variant_label"
+          }
+        },
+        {
+          "source_url": "https://www.pricecharting.com/game/pokemon-crystal-guardians/wartortle-reverse-holo-42",
+          "product_id": "889429",
+          "console_name": "Pokemon Crystal Guardians",
+          "product_name": "Wartortle [Reverse Holo] #42",
+          "variant_labels": [
+            "Reverse Holo"
+          ],
+          "validation": {
+            "ok": false,
+            "reason": "finish_label_not_found:stamped"
+          }
+        },
+        {
+          "source_url": "https://www.pricecharting.com/game/pokemon-unleashed/wartortle-42",
+          "product_id": "1287384",
+          "console_name": "Pokemon Unleashed",
+          "product_name": "Wartortle #42",
+          "variant_labels": [],
+          "validation": {
+            "ok": false,
+            "reason": "set_mismatch"
+          }
+        },
+        {
+          "source_url": "https://www.pricecharting.com/game/pokemon-unleashed/wartortle-reverse-holo-42",
+          "product_id": "1287480",
+          "console_name": "Pokemon Unleashed",
+          "product_name": "Wartortle [Reverse Holo] #42",
+          "variant_labels": [
+            "Reverse Holo"
+          ],
+          "validation": {
+            "ok": false,
+            "reason": "set_mismatch"
+          }
+        }
+      ]
+    },
+    {
+      "status": "near_match_context",
+      "fact": {
+        "gap_type": "finish_second_source_needed",
+        "fact_type": "printing_finish",
+        "set_key": "hgss1",
+        "set_name": "HeartGold & SoulSilver",
+        "card_number": "98",
+        "card_name": "Pokémon Communication",
+        "finish_key": "stamped",
+        "status": "human_source_verified",
+        "sources": [
+          "thepricedex_price_list"
+        ],
+        "source_authorities": [
+          "thepricedex.com"
+        ],
+        "source_kinds": [
+          "marketplace_checklist"
+        ],
+        "evidence_urls": [
+          "https://www.thepricedex.com/set/hgss1/heartgold-and-soulsilver/price-list"
+        ],
+        "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+      },
+      "source_url": "https://www.pricecharting.com/game/pokemon-heartgold-and-soulsilver/pokemon-communication-98",
+      "product_id": null,
+      "console_name": null,
+      "title": "Pokemon Communication #98",
+      "variant_labels": [],
+      "validation": {
+        "ok": false,
+        "reason": "card_found_but_finish_not_exactly_validated"
+      },
+      "reviewed_candidates": [
+        {
+          "source_url": "https://www.pricecharting.com/game/pokemon-heartgold-and-soulsilver/pokemon-communication-98",
+          "product_id": "806209",
+          "console_name": "Pokemon HeartGold & SoulSilver",
+          "product_name": "Pokemon Communication #98",
+          "variant_labels": [],
+          "validation": {
+            "ok": false,
+            "reason": "product_title_has_no_variant_label"
+          }
+        },
+        {
+          "source_url": "https://www.pricecharting.com/game/pokemon-heartgold-and-soulsilver/pokemon-communication-reverse-holo-98",
+          "product_id": "806316",
+          "console_name": "Pokemon HeartGold & SoulSilver",
+          "product_name": "Pokemon Communication [Reverse Holo] #98",
+          "variant_labels": [
+            "Reverse Holo"
+          ],
+          "validation": {
+            "ok": false,
+            "reason": "finish_label_not_found:stamped"
+          }
+        },
+        {
+          "source_url": "https://www.pricecharting.com/game/pokemon-world-championships-2010/pokemon-communication-98",
+          "product_id": "13091398",
+          "console_name": "Pokemon World Championships 2010",
+          "product_name": "Pokemon Communication #98",
+          "variant_labels": [],
+          "validation": {
+            "ok": false,
+            "reason": "set_mismatch"
+          }
+        }
+      ]
+    },
+    {
+      "status": "near_match_context",
+      "fact": {
+        "gap_type": "finish_second_source_needed",
+        "fact_type": "printing_finish",
+        "set_key": "hgss1",
+        "set_name": "HeartGold & SoulSilver",
+        "card_number": "104",
+        "card_name": "Rainbow Energy",
+        "finish_key": "stamped",
+        "status": "human_source_verified",
+        "sources": [
+          "thepricedex_price_list"
+        ],
+        "source_authorities": [
+          "thepricedex.com"
+        ],
+        "source_kinds": [
+          "marketplace_checklist"
+        ],
+        "evidence_urls": [
+          "https://www.thepricedex.com/set/hgss1/heartgold-and-soulsilver/price-list"
+        ],
+        "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+      },
+      "source_url": "https://www.pricecharting.com/game/pokemon-heartgold-and-soulsilver/rainbow-energy-104",
+      "product_id": null,
+      "console_name": null,
+      "title": "Rainbow Energy #104",
+      "variant_labels": [],
+      "validation": {
+        "ok": false,
+        "reason": "card_found_but_finish_not_exactly_validated"
+      },
+      "reviewed_candidates": [
+        {
+          "source_url": "https://www.pricecharting.com/game/pokemon-heartgold-and-soulsilver/rainbow-energy-104",
+          "product_id": "806215",
+          "console_name": "Pokemon HeartGold & SoulSilver",
+          "product_name": "Rainbow Energy #104",
+          "variant_labels": [],
+          "validation": {
+            "ok": false,
+            "reason": "product_title_has_no_variant_label"
+          }
+        },
+        {
+          "source_url": "https://www.pricecharting.com/game/pokemon-heartgold-and-soulsilver/rainbow-energy-reverse-holo-104",
+          "product_id": "806322",
+          "console_name": "Pokemon HeartGold & SoulSilver",
+          "product_name": "Rainbow Energy [Reverse Holo] #104",
+          "variant_labels": [
+            "Reverse Holo"
+          ],
+          "validation": {
+            "ok": false,
+            "reason": "finish_label_not_found:stamped"
+          }
+        }
+      ]
+    },
+    {
+      "status": "near_match_context",
+      "fact": {
+        "gap_type": "finish_second_source_needed",
+        "fact_type": "printing_finish",
+        "set_key": "hgss2",
+        "set_name": "HS—Unleashed",
+        "card_number": "83",
+        "card_name": "Super Scoop Up",
+        "finish_key": "stamped",
+        "status": "human_source_verified",
+        "sources": [
+          "thepricedex_price_list"
+        ],
+        "source_authorities": [
+          "thepricedex.com"
+        ],
+        "source_kinds": [
+          "marketplace_checklist"
+        ],
+        "evidence_urls": [
+          "https://www.thepricedex.com/set/hgss2/hs-unleashed/price-list"
+        ],
+        "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+      },
+      "source_url": "https://www.pricecharting.com/game/pokemon-unleashed/super-scoop-up-83",
+      "product_id": null,
+      "console_name": null,
+      "title": "Super Scoop Up #83",
+      "variant_labels": [],
+      "validation": {
+        "ok": false,
+        "reason": "card_found_but_finish_not_exactly_validated"
+      },
+      "reviewed_candidates": [
+        {
+          "source_url": "https://www.pricecharting.com/game/pokemon-unleashed/super-scoop-up-83",
+          "product_id": "1287425",
+          "console_name": "Pokemon Unleashed",
+          "product_name": "Super Scoop Up #83",
+          "variant_labels": [],
+          "validation": {
+            "ok": false,
+            "reason": "product_title_has_no_variant_label"
+          }
+        },
+        {
+          "source_url": "https://www.pricecharting.com/game/pokemon-unleashed/super-scoop-up-reverse-holo-83",
+          "product_id": "1287521",
+          "console_name": "Pokemon Unleashed",
+          "product_name": "Super Scoop Up [Reverse Holo] #83",
+          "variant_labels": [
+            "Reverse Holo"
+          ],
+          "validation": {
+            "ok": false,
+            "reason": "finish_label_not_found:stamped"
+          }
+        }
+      ]
+    },
+    {
+      "status": "near_match_context",
+      "fact": {
+        "gap_type": "finish_second_source_needed",
+        "fact_type": "printing_finish",
+        "set_key": "hgss4",
+        "set_name": "HS—Triumphant",
+        "card_number": "87",
+        "card_name": "Junk Arm",
+        "finish_key": "stamped",
+        "status": "human_source_verified",
+        "sources": [
+          "thepricedex_price_list"
+        ],
+        "source_authorities": [
+          "thepricedex.com"
+        ],
+        "source_kinds": [
+          "marketplace_checklist"
+        ],
+        "evidence_urls": [
+          "https://www.thepricedex.com/set/hgss4/hs-triumphant/price-list"
+        ],
+        "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+      },
+      "source_url": "https://www.pricecharting.com/game/pokemon-triumphant/junk-arm-87",
+      "product_id": null,
+      "console_name": null,
+      "title": "Junk Arm #87",
+      "variant_labels": [],
+      "validation": {
+        "ok": false,
+        "reason": "card_found_but_finish_not_exactly_validated"
+      },
+      "reviewed_candidates": [
+        {
+          "source_url": "https://www.pricecharting.com/game/pokemon-triumphant/junk-arm-87",
+          "product_id": "926144",
+          "console_name": "Pokemon Triumphant",
+          "product_name": "Junk Arm #87",
+          "variant_labels": [],
+          "validation": {
+            "ok": false,
+            "reason": "product_title_has_no_variant_label"
+          }
+        },
+        {
+          "source_url": "https://www.pricecharting.com/game/pokemon-triumphant/junk-arm-reverse-holo-87",
+          "product_id": "926247",
+          "console_name": "Pokemon Triumphant",
+          "product_name": "Junk Arm [Reverse Holo] #87",
+          "variant_labels": [
+            "Reverse Holo"
+          ],
+          "validation": {
+            "ok": false,
+            "reason": "finish_label_not_found:stamped"
+          }
+        },
+        {
+          "source_url": "https://www.pricecharting.com/game/pokemon-world-championships-2012/junk-arm-shuto-itagaki-87",
+          "product_id": "12228838",
+          "console_name": "Pokemon World Championships 2012",
+          "product_name": "Junk Arm [Shuto Itagaki] #87",
+          "variant_labels": [
+            "Shuto Itagaki"
+          ],
+          "validation": {
+            "ok": false,
+            "reason": "set_mismatch"
+          }
+        }
+      ]
+    },
+    {
+      "status": "near_match_context",
+      "fact": {
+        "gap_type": "finish_second_source_needed",
+        "fact_type": "printing_finish",
+        "set_key": "neo1",
+        "set_name": "Neo Genesis",
+        "card_number": "105",
+        "card_name": "Recycle Energy",
+        "finish_key": "holo",
+        "status": "human_source_verified",
+        "sources": [
+          "thepricedex_price_list"
+        ],
+        "source_authorities": [
+          "thepricedex.com"
+        ],
+        "source_kinds": [
+          "marketplace_checklist"
+        ],
+        "evidence_urls": [
+          "https://www.thepricedex.com/set/neo1/neo-genesis/price-list"
+        ],
+        "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+      },
+      "source_url": "https://www.pricecharting.com/game/pokemon-neo-genesis/recycle-energy-105",
+      "product_id": null,
+      "console_name": null,
+      "title": "Recycle Energy #105",
+      "variant_labels": [],
+      "validation": {
+        "ok": false,
+        "reason": "card_found_but_finish_not_exactly_validated"
+      },
+      "reviewed_candidates": [
+        {
+          "source_url": "https://www.pricecharting.com/game/pokemon-neo-genesis/recycle-energy-105",
+          "product_id": "2183444",
+          "console_name": "Pokemon Neo Genesis",
+          "product_name": "Recycle Energy #105",
+          "variant_labels": [],
+          "validation": {
+            "ok": false,
+            "reason": "product_title_has_no_variant_label"
+          }
+        },
+        {
+          "source_url": "https://www.pricecharting.com/game/pokemon-neo-genesis/recycle-energy-1st-edition-105",
+          "product_id": "2324912",
+          "console_name": "Pokemon Neo Genesis",
+          "product_name": "Recycle Energy [1st Edition] #105",
+          "variant_labels": [
+            "1st Edition"
+          ],
+          "validation": {
+            "ok": false,
+            "reason": "generic_holo_not_promoted_from_specialized_variant_label"
+          }
+        }
+      ]
+    },
+    {
+      "status": "near_match_context",
+      "fact": {
+        "gap_type": "finish_second_source_needed",
+        "fact_type": "printing_finish",
+        "set_key": "pl1",
+        "set_name": "Platinum",
+        "card_number": "112",
+        "card_name": "PlusPower",
+        "finish_key": "stamped",
+        "status": "human_source_verified",
+        "sources": [
+          "thepricedex_price_list"
+        ],
+        "source_authorities": [
+          "thepricedex.com"
+        ],
+        "source_kinds": [
+          "marketplace_checklist"
+        ],
+        "evidence_urls": [
+          "https://www.thepricedex.com/set/pl1/platinum/price-list"
+        ],
+        "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+      },
+      "source_url": "https://www.pricecharting.com/game/pokemon-platinum/pluspower-112",
+      "product_id": null,
+      "console_name": null,
+      "title": "Pluspower #112",
+      "variant_labels": [],
+      "validation": {
+        "ok": false,
+        "reason": "card_found_but_finish_not_exactly_validated"
+      },
+      "reviewed_candidates": [
+        {
+          "source_url": "https://www.pricecharting.com/game/pokemon-platinum/pluspower-112",
+          "product_id": "806030",
+          "console_name": "Pokemon Platinum",
+          "product_name": "Pluspower #112",
+          "variant_labels": [],
+          "validation": {
+            "ok": false,
+            "reason": "product_title_has_no_variant_label"
+          }
+        },
+        {
+          "source_url": "https://www.pricecharting.com/game/pokemon-platinum/pluspower-reverse-holo-112",
+          "product_id": "806031",
+          "console_name": "Pokemon Platinum",
+          "product_name": "Pluspower [Reverse Holo] #112",
+          "variant_labels": [
+            "Reverse Holo"
+          ],
+          "validation": {
+            "ok": false,
+            "reason": "finish_label_not_found:stamped"
+          }
+        }
+      ]
+    },
+    {
+      "status": "near_match_context",
+      "fact": {
+        "gap_type": "finish_second_source_needed",
+        "fact_type": "printing_finish",
+        "set_key": "pl2",
+        "set_name": "Rising Rivals",
+        "card_number": "92",
+        "card_name": "Lucian's Assignment",
+        "finish_key": "stamped",
+        "status": "human_source_verified",
+        "sources": [
+          "thepricedex_price_list"
+        ],
+        "source_authorities": [
+          "thepricedex.com"
+        ],
+        "source_kinds": [
+          "marketplace_checklist"
+        ],
+        "evidence_urls": [
+          "https://www.thepricedex.com/set/pl2/rising-rivals/price-list"
+        ],
+        "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+      },
+      "source_url": "https://www.pricecharting.com/game/pokemon-rising-rivals/lucians-assignment-92",
+      "product_id": null,
+      "console_name": null,
+      "title": "Lucian's Assignment #92",
+      "variant_labels": [],
+      "validation": {
+        "ok": false,
+        "reason": "card_found_but_finish_not_exactly_validated"
+      },
+      "reviewed_candidates": [
+        {
+          "source_url": "https://www.pricecharting.com/game/pokemon-rising-rivals/lucians-assignment-92",
+          "product_id": "925488",
+          "console_name": "Pokemon Rising Rivals",
+          "product_name": "Lucian's Assignment #92",
+          "variant_labels": [],
+          "validation": {
+            "ok": false,
+            "reason": "product_title_has_no_variant_label"
+          }
+        },
+        {
+          "source_url": "https://www.pricecharting.com/game/pokemon-rising-rivals/lucians-assignment-reverse-holo-92",
+          "product_id": "925607",
+          "console_name": "Pokemon Rising Rivals",
+          "product_name": "Lucian's Assignment [Reverse Holo] #92",
+          "variant_labels": [
+            "Reverse Holo"
+          ],
+          "validation": {
+            "ok": false,
+            "reason": "finish_label_not_found:stamped"
+          }
+        }
+      ]
+    },
+    {
+      "status": "near_match_context",
+      "fact": {
+        "gap_type": "finish_second_source_needed",
+        "fact_type": "printing_finish",
+        "set_key": "pl2",
+        "set_name": "Rising Rivals",
+        "card_number": "102",
+        "card_name": "Upper Energy",
+        "finish_key": "stamped",
+        "status": "human_source_verified",
+        "sources": [
+          "thepricedex_price_list"
+        ],
+        "source_authorities": [
+          "thepricedex.com"
+        ],
+        "source_kinds": [
+          "marketplace_checklist"
+        ],
+        "evidence_urls": [
+          "https://www.thepricedex.com/set/pl2/rising-rivals/price-list"
+        ],
+        "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+      },
+      "source_url": "https://www.pricecharting.com/game/pokemon-rising-rivals/upper-energy-102",
+      "product_id": null,
+      "console_name": null,
+      "title": "Upper Energy #102",
+      "variant_labels": [],
+      "validation": {
+        "ok": false,
+        "reason": "card_found_but_finish_not_exactly_validated"
+      },
+      "reviewed_candidates": [
+        {
+          "source_url": "https://www.pricecharting.com/game/pokemon-rising-rivals/upper-energy-102",
+          "product_id": "925498",
+          "console_name": "Pokemon Rising Rivals",
+          "product_name": "Upper Energy #102",
+          "variant_labels": [],
+          "validation": {
+            "ok": false,
+            "reason": "product_title_has_no_variant_label"
+          }
+        },
+        {
+          "source_url": "https://www.pricecharting.com/game/pokemon-rising-rivals/upper-energy-david-cohen-102",
+          "product_id": "4895144",
+          "console_name": "Pokemon Rising Rivals",
+          "product_name": "Upper Energy [David Cohen] #102",
+          "variant_labels": [
+            "David Cohen"
+          ],
+          "validation": {
+            "ok": false,
+            "reason": "finish_label_not_found:stamped"
+          }
+        },
+        {
+          "source_url": "https://www.pricecharting.com/game/pokemon-rising-rivals/upper-energy-reverse-holo-102",
+          "product_id": "925617",
+          "console_name": "Pokemon Rising Rivals",
+          "product_name": "Upper Energy [Reverse Holo] #102",
+          "variant_labels": [
+            "Reverse Holo"
+          ],
+          "validation": {
+            "ok": false,
+            "reason": "finish_label_not_found:stamped"
+          }
+        }
+      ]
+    },
+    {
+      "status": "near_match_context",
+      "fact": {
+        "gap_type": "finish_second_source_needed",
+        "fact_type": "printing_finish",
+        "set_key": "sm1",
+        "set_name": "Sun & Moon",
+        "card_number": "90",
+        "card_name": "Snubbull",
+        "finish_key": "stamped",
+        "status": "human_source_verified",
+        "sources": [
+          "thepricedex_price_list"
+        ],
+        "source_authorities": [
+          "thepricedex.com"
+        ],
+        "source_kinds": [
+          "marketplace_checklist"
+        ],
+        "evidence_urls": [
+          "https://www.thepricedex.com/set/sm1/sun-and-moon/price-list"
+        ],
+        "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+      },
+      "source_url": "https://www.pricecharting.com/game/pokemon-promo/snubbull-build-a-bear-90",
+      "product_id": null,
+      "console_name": null,
+      "title": "Snubbull [Build-A-Bear] #90",
+      "variant_labels": [],
+      "validation": {
+        "ok": false,
+        "reason": "card_found_but_finish_not_exactly_validated"
+      },
+      "reviewed_candidates": [
+        {
+          "source_url": "https://www.pricecharting.com/game/pokemon-promo/snubbull-build-a-bear-90",
+          "product_id": "4388089",
+          "console_name": "Pokemon Promo",
+          "product_name": "Snubbull [Build-A-Bear] #90",
+          "variant_labels": [
+            "Build-A-Bear"
+          ],
+          "validation": {
+            "ok": false,
+            "reason": "set_mismatch"
+          }
+        },
+        {
+          "source_url": "https://www.pricecharting.com/game/pokemon-sun-and-moon/snubbull-90",
+          "product_id": "806834",
+          "console_name": "Pokemon Sun & Moon",
+          "product_name": "Snubbull #90",
+          "variant_labels": [],
+          "validation": {
+            "ok": false,
+            "reason": "product_title_has_no_variant_label"
+          }
+        },
+        {
+          "source_url": "https://www.pricecharting.com/game/pokemon-sun-and-moon/snubbull-reverse-holo-90",
+          "product_id": "806965",
+          "console_name": "Pokemon Sun & Moon",
+          "product_name": "Snubbull [Reverse Holo] #90",
+          "variant_labels": [
+            "Reverse Holo"
+          ],
+          "validation": {
+            "ok": false,
+            "reason": "finish_label_not_found:stamped"
+          }
+        }
+      ]
+    },
+    {
+      "status": "near_match_context",
+      "fact": {
+        "gap_type": "finish_second_source_needed",
+        "fact_type": "printing_finish",
+        "set_key": "sm2",
+        "set_name": "Guardians Rising",
+        "card_number": "126",
+        "card_name": "Hala",
+        "finish_key": "stamped",
+        "status": "human_source_verified",
+        "sources": [
+          "thepricedex_price_list"
+        ],
+        "source_authorities": [
+          "thepricedex.com"
+        ],
+        "source_kinds": [
+          "marketplace_checklist"
+        ],
+        "evidence_urls": [
+          "https://www.thepricedex.com/set/sm2/guardians-rising/price-list"
+        ],
+        "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+      },
+      "source_url": "https://www.pricecharting.com/game/pokemon-guardians-rising/hala-126",
+      "product_id": null,
+      "console_name": null,
+      "title": "Hala #126",
+      "variant_labels": [],
+      "validation": {
+        "ok": false,
+        "reason": "card_found_but_finish_not_exactly_validated"
+      },
+      "reviewed_candidates": [
+        {
+          "source_url": "https://www.pricecharting.com/game/pokemon-guardians-rising/hala-126",
+          "product_id": "960623",
+          "console_name": "Pokemon Guardians Rising",
+          "product_name": "Hala #126",
+          "variant_labels": [],
+          "validation": {
+            "ok": false,
+            "reason": "product_title_has_no_variant_label"
+          }
+        },
+        {
+          "source_url": "https://www.pricecharting.com/game/pokemon-guardians-rising/hala-reverse-holo-126",
+          "product_id": "960780",
+          "console_name": "Pokemon Guardians Rising",
+          "product_name": "Hala [Reverse Holo] #126",
+          "variant_labels": [
+            "Reverse Holo"
+          ],
+          "validation": {
+            "ok": false,
+            "reason": "finish_label_not_found:stamped"
+          }
+        }
+      ]
+    },
+    {
+      "status": "near_match_context",
+      "fact": {
+        "gap_type": "finish_second_source_needed",
+        "fact_type": "printing_finish",
+        "set_key": "sm3",
+        "set_name": "Burning Shadows",
+        "card_number": "28",
+        "card_name": "Alolan Ninetales",
+        "finish_key": "holo",
+        "status": "human_source_verified",
+        "sources": [
+          "thepricedex_price_list"
+        ],
+        "source_authorities": [
+          "thepricedex.com"
+        ],
+        "source_kinds": [
+          "marketplace_checklist"
+        ],
+        "evidence_urls": [
+          "https://www.thepricedex.com/set/sm3/burning-shadows/price-list"
+        ],
+        "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+      },
+      "source_url": "https://www.pricecharting.com/game/pokemon-burning-shadows/alolan-ninetales-28",
+      "product_id": null,
+      "console_name": null,
+      "title": "Alolan Ninetales #28",
+      "variant_labels": [],
+      "validation": {
+        "ok": false,
+        "reason": "card_found_but_finish_not_exactly_validated"
+      },
+      "reviewed_candidates": [
+        {
+          "source_url": "https://www.pricecharting.com/game/pokemon-burning-shadows/alolan-ninetales-28",
+          "product_id": "960812",
+          "console_name": "Pokemon Burning Shadows",
+          "product_name": "Alolan Ninetales #28",
+          "variant_labels": [],
+          "validation": {
+            "ok": false,
+            "reason": "product_title_has_no_variant_label"
+          }
+        },
+        {
+          "source_url": "https://www.pricecharting.com/game/pokemon-burning-shadows/alolan-ninetales-cracked-ice-28",
+          "product_id": "4017903",
+          "console_name": "Pokemon Burning Shadows",
+          "product_name": "Alolan Ninetales [Cracked Ice] #28",
+          "variant_labels": [
+            "Cracked Ice"
+          ],
+          "validation": {
+            "ok": false,
+            "reason": "generic_holo_not_promoted_from_specialized_variant_label"
+          }
+        },
+        {
+          "source_url": "https://www.pricecharting.com/game/pokemon-burning-shadows/alolan-ninetales-reverse-holo-28",
+          "product_id": "960977",
+          "console_name": "Pokemon Burning Shadows",
+          "product_name": "Alolan Ninetales [Reverse Holo] #28",
+          "variant_labels": [
+            "Reverse Holo"
+          ],
+          "validation": {
+            "ok": false,
+            "reason": "generic_holo_not_promoted_from_specialized_variant_label"
+          }
+        }
+      ]
+    },
+    {
+      "status": "near_match_context",
+      "fact": {
+        "gap_type": "finish_second_source_needed",
+        "fact_type": "printing_finish",
+        "set_key": "sm4",
+        "set_name": "Crimson Invasion",
+        "card_number": "75",
+        "card_name": "Jangmo-o",
+        "finish_key": "cosmos",
+        "status": "human_source_verified",
+        "sources": [
+          "thepricedex_price_list"
+        ],
+        "source_authorities": [
+          "thepricedex.com"
+        ],
+        "source_kinds": [
+          "marketplace_checklist"
+        ],
+        "evidence_urls": [
+          "https://www.thepricedex.com/set/sm4/crimson-invasion/price-list"
+        ],
+        "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+      },
+      "source_url": "https://www.pricecharting.com/game/pokemon-crimson-invasion/jangmo-o-eb-games-75",
+      "product_id": null,
+      "console_name": null,
+      "title": "Jangmo-O [EB Games] #75",
+      "variant_labels": [],
+      "validation": {
+        "ok": false,
+        "reason": "card_found_but_finish_not_exactly_validated"
+      },
+      "reviewed_candidates": [
+        {
+          "source_url": "https://www.pricecharting.com/game/pokemon-crimson-invasion/jangmo-o-eb-games-75",
+          "product_id": "8756535",
+          "console_name": "Pokemon Crimson Invasion",
+          "product_name": "Jangmo-O [EB Games] #75",
+          "variant_labels": [
+            "EB Games"
+          ],
+          "validation": {
+            "ok": false,
+            "reason": "finish_label_not_found:cosmos"
+          }
+        },
+        {
+          "source_url": "https://www.pricecharting.com/game/pokemon-crimson-invasion/jangmo-o-75",
+          "product_id": "961221",
+          "console_name": "Pokemon Crimson Invasion",
+          "product_name": "Jangmo-o #75",
+          "variant_labels": [],
+          "validation": {
+            "ok": false,
+            "reason": "product_title_has_no_variant_label"
+          }
+        },
+        {
+          "source_url": "https://www.pricecharting.com/game/pokemon-crimson-invasion/jangmo-o-holo-75",
+          "product_id": "2355365",
+          "console_name": "Pokemon Crimson Invasion",
+          "product_name": "Jangmo-o [Holo] #75",
+          "variant_labels": [
+            "Holo"
+          ],
+          "validation": {
+            "ok": false,
+            "reason": "finish_label_not_found:cosmos"
+          }
+        },
+        {
+          "source_url": "https://www.pricecharting.com/game/pokemon-crimson-invasion/jangmo-o-reverse-holo-75",
+          "product_id": "961338",
+          "console_name": "Pokemon Crimson Invasion",
+          "product_name": "Jangmo-o [Reverse Holo] #75",
+          "variant_labels": [
+            "Reverse Holo"
+          ],
+          "validation": {
+            "ok": false,
+            "reason": "finish_label_not_found:cosmos"
+          }
+        },
+        {
+          "source_url": "https://www.pricecharting.com/game/pokemon-crimson-invasion/jangmo-o-toys-r-us-75",
+          "product_id": "2423662",
+          "console_name": "Pokemon Crimson Invasion",
+          "product_name": "Jangmo-o [Toys R Us] #75",
+          "variant_labels": [
+            "Toys R Us"
+          ],
+          "validation": {
+            "ok": false,
+            "reason": "finish_label_not_found:cosmos"
+          }
+        }
+      ]
+    },
+    {
+      "status": "near_match_context",
+      "fact": {
+        "gap_type": "finish_second_source_needed",
+        "fact_type": "printing_finish",
+        "set_key": "sm7",
+        "set_name": "Celestial Storm",
+        "card_number": "127",
+        "card_name": "Copycat",
+        "finish_key": "stamped",
+        "status": "human_source_verified",
+        "sources": [
+          "thepricedex_price_list"
+        ],
+        "source_authorities": [
+          "thepricedex.com"
+        ],
+        "source_kinds": [
+          "marketplace_checklist"
+        ],
+        "evidence_urls": [
+          "https://www.thepricedex.com/set/sm7/celestial-storm/price-list"
+        ],
+        "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+      },
+      "source_url": "https://www.pricecharting.com/game/pokemon-celestial-storm/copycat-127",
+      "product_id": null,
+      "console_name": null,
+      "title": "Copycat #127",
+      "variant_labels": [],
+      "validation": {
+        "ok": false,
+        "reason": "card_found_but_finish_not_exactly_validated"
+      },
+      "reviewed_candidates": [
+        {
+          "source_url": "https://www.pricecharting.com/game/pokemon-celestial-storm/copycat-127",
+          "product_id": "962041",
+          "console_name": "Pokemon Celestial Storm",
+          "product_name": "Copycat #127",
+          "variant_labels": [],
+          "validation": {
+            "ok": false,
+            "reason": "product_title_has_no_variant_label"
+          }
+        },
+        {
+          "source_url": "https://www.pricecharting.com/game/pokemon-celestial-storm/copycat-reverse-holo-127",
+          "product_id": "962208",
+          "console_name": "Pokemon Celestial Storm",
+          "product_name": "Copycat [Reverse Holo] #127",
+          "variant_labels": [
+            "Reverse Holo"
+          ],
+          "validation": {
+            "ok": false,
+            "reason": "finish_label_not_found:stamped"
+          }
+        }
+      ]
+    },
+    {
+      "status": "near_match_context",
+      "fact": {
+        "gap_type": "finish_second_source_needed",
+        "fact_type": "printing_finish",
+        "set_key": "sm8",
+        "set_name": "Lost Thunder",
+        "card_number": "187",
+        "card_name": "Net Ball",
+        "finish_key": "stamped",
+        "status": "human_source_verified",
+        "sources": [
+          "thepricedex_price_list"
+        ],
+        "source_authorities": [
+          "thepricedex.com"
+        ],
+        "source_kinds": [
+          "marketplace_checklist"
+        ],
+        "evidence_urls": [
+          "https://www.thepricedex.com/set/sm8/lost-thunder/price-list"
+        ],
+        "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+      },
+      "source_url": "https://www.pricecharting.com/game/pokemon-lost-thunder/net-ball-187",
+      "product_id": null,
+      "console_name": null,
+      "title": "Net Ball #187",
+      "variant_labels": [],
+      "validation": {
+        "ok": false,
+        "reason": "card_found_but_finish_not_exactly_validated"
+      },
+      "reviewed_candidates": [
+        {
+          "source_url": "https://www.pricecharting.com/game/pokemon-lost-thunder/net-ball-187",
+          "product_id": "962575",
+          "console_name": "Pokemon Lost Thunder",
+          "product_name": "Net Ball #187",
+          "variant_labels": [],
+          "validation": {
+            "ok": false,
+            "reason": "product_title_has_no_variant_label"
+          }
+        },
+        {
+          "source_url": "https://www.pricecharting.com/game/pokemon-lost-thunder/net-ball-reverse-holo-187",
+          "product_id": "962791",
+          "console_name": "Pokemon Lost Thunder",
+          "product_name": "Net Ball [Reverse Holo] #187",
+          "variant_labels": [
+            "Reverse Holo"
+          ],
+          "validation": {
+            "ok": false,
+            "reason": "finish_label_not_found:stamped"
+          }
+        }
+      ]
+    },
+    {
+      "status": "near_match_context",
+      "fact": {
+        "gap_type": "finish_second_source_needed",
+        "fact_type": "printing_finish",
+        "set_key": "sm8",
+        "set_name": "Lost Thunder",
+        "card_number": "188",
+        "card_name": "Professor Elm's Lecture",
+        "finish_key": "stamped",
+        "status": "human_source_verified",
+        "sources": [
+          "thepricedex_price_list"
+        ],
+        "source_authorities": [
+          "thepricedex.com"
+        ],
+        "source_kinds": [
+          "marketplace_checklist"
+        ],
+        "evidence_urls": [
+          "https://www.thepricedex.com/set/sm8/lost-thunder/price-list"
+        ],
+        "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+      },
+      "source_url": "https://www.pricecharting.com/game/pokemon-lost-thunder/professor-elms-lecture-188",
+      "product_id": null,
+      "console_name": null,
+      "title": "Professor Elm's Lecture #188",
+      "variant_labels": [],
+      "validation": {
+        "ok": false,
+        "reason": "card_found_but_finish_not_exactly_validated"
+      },
+      "reviewed_candidates": [
+        {
+          "source_url": "https://www.pricecharting.com/game/pokemon-lost-thunder/professor-elms-lecture-188",
+          "product_id": "962576",
+          "console_name": "Pokemon Lost Thunder",
+          "product_name": "Professor Elm's Lecture #188",
+          "variant_labels": [],
+          "validation": {
+            "ok": false,
+            "reason": "product_title_has_no_variant_label"
+          }
+        },
+        {
+          "source_url": "https://www.pricecharting.com/game/pokemon-lost-thunder/professor-elms-lecture-reverse-holo-188",
+          "product_id": "962792",
+          "console_name": "Pokemon Lost Thunder",
+          "product_name": "Professor Elm's Lecture [Reverse Holo] #188",
+          "variant_labels": [
+            "Reverse Holo"
+          ],
+          "validation": {
+            "ok": false,
+            "reason": "finish_label_not_found:stamped"
+          }
+        }
+      ]
+    },
+    {
+      "status": "near_match_context",
+      "fact": {
+        "gap_type": "finish_second_source_needed",
+        "fact_type": "printing_finish",
+        "set_key": "sm10",
+        "set_name": "Unbroken Bonds",
+        "card_number": "60",
+        "card_name": "Zeraora",
+        "finish_key": "holo",
+        "status": "human_source_verified",
+        "sources": [
+          "thepricedex_price_list"
+        ],
+        "source_authorities": [
+          "thepricedex.com"
+        ],
+        "source_kinds": [
+          "marketplace_checklist"
+        ],
+        "evidence_urls": [
+          "https://www.thepricedex.com/set/sm10/unbroken-bonds/price-list"
+        ],
+        "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+      },
+      "source_url": "https://www.pricecharting.com/game/pokemon-unbroken-bonds/zeraora-60",
+      "product_id": null,
+      "console_name": null,
+      "title": "Zeraora #60",
+      "variant_labels": [],
+      "validation": {
+        "ok": false,
+        "reason": "card_found_but_finish_not_exactly_validated"
+      },
+      "reviewed_candidates": [
+        {
+          "source_url": "https://www.pricecharting.com/game/pokemon-unbroken-bonds/zeraora-60",
+          "product_id": "963216",
+          "console_name": "Pokemon Unbroken Bonds",
+          "product_name": "Zeraora #60",
+          "variant_labels": [],
+          "validation": {
+            "ok": false,
+            "reason": "product_title_has_no_variant_label"
+          }
+        },
+        {
+          "source_url": "https://www.pricecharting.com/game/pokemon-unbroken-bonds/zeraora-reverse-holo-60",
+          "product_id": "963445",
+          "console_name": "Pokemon Unbroken Bonds",
+          "product_name": "Zeraora [Reverse Holo] #60",
+          "variant_labels": [
+            "Reverse Holo"
+          ],
+          "validation": {
+            "ok": false,
+            "reason": "generic_holo_not_promoted_from_specialized_variant_label"
+          }
+        }
+      ]
+    },
+    {
+      "status": "near_match_context",
+      "fact": {
+        "gap_type": "finish_second_source_needed",
+        "fact_type": "printing_finish",
+        "set_key": "smp",
+        "set_name": "SM Black Star Promos",
+        "card_number": "SM198",
+        "card_name": "Bulbasaur",
+        "finish_key": "cosmos",
+        "status": "human_source_verified",
+        "sources": [
+          "thepricedex_price_list"
+        ],
+        "source_authorities": [
+          "thepricedex.com"
+        ],
+        "source_kinds": [
+          "marketplace_checklist"
+        ],
+        "evidence_urls": [
+          "https://www.thepricedex.com/set/smp/sm-black-star-promos/price-list"
+        ],
+        "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+      },
+      "source_url": "https://www.pricecharting.com/game/pokemon-promo/bulbasaur-sm198",
+      "product_id": null,
+      "console_name": null,
+      "title": "Bulbasaur #SM198",
+      "variant_labels": [],
+      "validation": {
+        "ok": false,
+        "reason": "card_found_but_finish_not_exactly_validated"
+      },
+      "reviewed_candidates": [
+        {
+          "source_url": "https://www.pricecharting.com/game/pokemon-promo/bulbasaur-sm198",
+          "product_id": "844887",
+          "console_name": "Pokemon Promo",
+          "product_name": "Bulbasaur #SM198",
+          "variant_labels": [],
+          "validation": {
+            "ok": false,
+            "reason": "product_title_has_no_variant_label"
+          }
+        },
+        {
+          "source_url": "https://www.pricecharting.com/game/pokemon-promo/bulbasaur-stamped-sm198",
+          "product_id": "6266571",
+          "console_name": "Pokemon Promo",
+          "product_name": "Bulbasaur [Stamped] #SM198",
+          "variant_labels": [
+            "Stamped"
+          ],
+          "validation": {
+            "ok": false,
+            "reason": "finish_label_not_found:cosmos"
+          }
+        }
+      ]
+    },
+    {
+      "status": "near_match_context",
+      "fact": {
+        "gap_type": "finish_second_source_needed",
+        "fact_type": "printing_finish",
+        "set_key": "smp",
+        "set_name": "SM Black Star Promos",
+        "card_number": "SM199",
+        "card_name": "Psyduck",
+        "finish_key": "cosmos",
+        "status": "human_source_verified",
+        "sources": [
+          "thepricedex_price_list"
+        ],
+        "source_authorities": [
+          "thepricedex.com"
+        ],
+        "source_kinds": [
+          "marketplace_checklist"
+        ],
+        "evidence_urls": [
+          "https://www.thepricedex.com/set/smp/sm-black-star-promos/price-list"
+        ],
+        "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+      },
+      "source_url": "https://www.pricecharting.com/game/pokemon-promo/psyduck-sm199",
+      "product_id": null,
+      "console_name": null,
+      "title": "Psyduck #SM199",
+      "variant_labels": [],
+      "validation": {
+        "ok": false,
+        "reason": "card_found_but_finish_not_exactly_validated"
+      },
+      "reviewed_candidates": [
+        {
+          "source_url": "https://www.pricecharting.com/game/pokemon-promo/psyduck-sm199",
+          "product_id": "844888",
+          "console_name": "Pokemon Promo",
+          "product_name": "Psyduck #SM199",
+          "variant_labels": [],
+          "validation": {
+            "ok": false,
+            "reason": "product_title_has_no_variant_label"
+          }
+        },
+        {
+          "source_url": "https://www.pricecharting.com/game/pokemon-promo/psyduck-stamped-sm199",
+          "product_id": "5923782",
+          "console_name": "Pokemon Promo",
+          "product_name": "Psyduck [Stamped] #SM199",
+          "variant_labels": [
+            "Stamped"
+          ],
+          "validation": {
+            "ok": false,
+            "reason": "finish_label_not_found:cosmos"
+          }
+        }
+      ]
+    },
+    {
+      "status": "near_match_context",
+      "fact": {
+        "gap_type": "finish_second_source_needed",
+        "fact_type": "printing_finish",
+        "set_key": "smp",
+        "set_name": "SM Black Star Promos",
+        "card_number": "SM200",
+        "card_name": "Snubbull",
+        "finish_key": "cosmos",
+        "status": "human_source_verified",
+        "sources": [
+          "thepricedex_price_list"
+        ],
+        "source_authorities": [
+          "thepricedex.com"
+        ],
+        "source_kinds": [
+          "marketplace_checklist"
+        ],
+        "evidence_urls": [
+          "https://www.thepricedex.com/set/smp/sm-black-star-promos/price-list"
+        ],
+        "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+      },
+      "source_url": "https://www.pricecharting.com/game/pokemon-promo/snubbull-sm200",
+      "product_id": null,
+      "console_name": null,
+      "title": "Snubbull #SM200",
+      "variant_labels": [],
+      "validation": {
+        "ok": false,
+        "reason": "card_found_but_finish_not_exactly_validated"
+      },
+      "reviewed_candidates": [
+        {
+          "source_url": "https://www.pricecharting.com/game/pokemon-promo/snubbull-sm200",
+          "product_id": "844890",
+          "console_name": "Pokemon Promo",
+          "product_name": "Snubbull #SM200",
+          "variant_labels": [],
+          "validation": {
+            "ok": false,
+            "reason": "product_title_has_no_variant_label"
+          }
+        },
+        {
+          "source_url": "https://www.pricecharting.com/game/pokemon-promo/snubbull-stamped-sm200",
+          "product_id": "6266573",
+          "console_name": "Pokemon Promo",
+          "product_name": "Snubbull [Stamped] #SM200",
+          "variant_labels": [
+            "Stamped"
+          ],
+          "validation": {
+            "ok": false,
+            "reason": "finish_label_not_found:cosmos"
+          }
+        }
+      ]
+    },
+    {
+      "status": "near_match_context",
+      "fact": {
+        "gap_type": "finish_second_source_needed",
+        "fact_type": "printing_finish",
+        "set_key": "sv03.5",
+        "set_name": "151",
+        "card_number": "7",
+        "card_name": "Squirtle",
+        "finish_key": "stamped",
+        "status": "human_source_verified",
+        "sources": [
+          "thepricedex_price_list"
+        ],
+        "source_authorities": [
+          "thepricedex.com"
+        ],
+        "source_kinds": [
+          "marketplace_checklist"
+        ],
+        "evidence_urls": [
+          "https://www.thepricedex.com/set/sv3pt5/151/price-list"
+        ],
+        "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+      },
+      "source_url": "https://www.pricecharting.com/game/pokemon-1999-topps-movie-die-cut/squirtle-7",
+      "product_id": null,
+      "console_name": null,
+      "title": "Squirtle #7",
+      "variant_labels": [],
+      "validation": {
+        "ok": false,
+        "reason": "card_found_but_finish_not_exactly_validated"
+      },
+      "reviewed_candidates": [
+        {
+          "source_url": "https://www.pricecharting.com/game/pokemon-1999-topps-movie-die-cut/squirtle-7",
+          "product_id": "8279233",
+          "console_name": "Pokemon 1999 Topps Movie Die Cut",
+          "product_name": "Squirtle #7",
+          "variant_labels": [],
+          "validation": {
+            "ok": false,
+            "reason": "set_mismatch"
+          }
+        },
+        {
+          "source_url": "https://www.pricecharting.com/game/pokemon-1999-topps-tv/squirtle-7",
+          "product_id": "3560974",
+          "console_name": "Pokemon 1999 Topps TV",
+          "product_name": "Squirtle #7",
+          "variant_labels": [],
+          "validation": {
+            "ok": false,
+            "reason": "set_mismatch"
+          }
+        },
+        {
+          "source_url": "https://www.pricecharting.com/game/pokemon-1999-topps-tv/squirtle-foil-7",
+          "product_id": "3560975",
+          "console_name": "Pokemon 1999 Topps TV",
+          "product_name": "Squirtle [Foil] #7",
+          "variant_labels": [
+            "Foil"
+          ],
+          "validation": {
+            "ok": false,
+            "reason": "set_mismatch"
+          }
+        },
+        {
+          "source_url": "https://www.pricecharting.com/game/pokemon-1999-topps-tv/squirtle-rainbow-foil-7",
+          "product_id": "3560976",
+          "console_name": "Pokemon 1999 Topps TV",
+          "product_name": "Squirtle [Rainbow Foil] #7",
+          "variant_labels": [
+            "Rainbow Foil"
+          ],
+          "validation": {
+            "ok": false,
+            "reason": "set_mismatch"
+          }
+        },
+        {
+          "source_url": "https://www.pricecharting.com/game/pokemon-1999-topps-tv/squirtle-tin-topper-7",
+          "product_id": "9572130",
+          "console_name": "Pokemon 1999 Topps TV",
+          "product_name": "Squirtle [Tin Topper] #7",
+          "variant_labels": [
+            "Tin Topper"
+          ],
+          "validation": {
+            "ok": false,
+            "reason": "set_mismatch"
+          }
+        },
+        {
+          "source_url": "https://www.pricecharting.com/game/pokemon-2000-dunkin-boomer/squirtle-7",
+          "product_id": "8651855",
+          "console_name": "Pokemon 2000 Dunkin Boomer",
+          "product_name": "Squirtle #7",
+          "variant_labels": [],
+          "validation": {
+            "ok": false,
+            "reason": "set_mismatch"
+          }
+        },
+        {
+          "source_url": "https://www.pricecharting.com/game/pokemon-2000-topps-chrome/squirtle-7",
+          "product_id": "3561211",
+          "console_name": "Pokemon 2000 Topps Chrome",
+          "product_name": "Squirtle #7",
+          "variant_labels": [],
+          "validation": {
+            "ok": false,
+            "reason": "set_mismatch"
+          }
+        },
+        {
+          "source_url": "https://www.pricecharting.com/game/pokemon-2000-topps-chrome/squirtle-sparkle-7",
+          "product_id": "3561212",
+          "console_name": "Pokemon 2000 Topps Chrome",
+          "product_name": "Squirtle [Sparkle] #7",
+          "variant_labels": [
+            "Sparkle"
+          ],
+          "validation": {
+            "ok": false,
+            "reason": "set_mismatch"
+          }
+        },
+        {
+          "source_url": "https://www.pricecharting.com/game/pokemon-2000-topps-chrome/squirtle-spectra-7",
+          "product_id": "3561213",
+          "console_name": "Pokemon 2000 Topps Chrome",
+          "product_name": "Squirtle [Spectra] #7",
+          "variant_labels": [
+            "Spectra"
+          ],
+          "validation": {
+            "ok": false,
+            "reason": "set_mismatch"
+          }
+        },
+        {
+          "source_url": "https://www.pricecharting.com/game/pokemon-2000-topps-chrome/squirtle-tekno-7",
+          "product_id": "3561214",
+          "console_name": "Pokemon 2000 Topps Chrome",
+          "product_name": "Squirtle [Tekno] #7",
+          "variant_labels": [
+            "Tekno"
+          ],
+          "validation": {
+            "ok": false,
+            "reason": "set_mismatch"
+          }
+        }
+      ]
+    },
+    {
+      "status": "near_match_context",
+      "fact": {
+        "gap_type": "finish_second_source_needed",
+        "fact_type": "printing_finish",
+        "set_key": "swsh1",
+        "set_name": "Sword & Shield",
+        "card_number": "31",
+        "card_name": "Scorbunny",
+        "finish_key": "holo",
+        "status": "human_source_verified",
+        "sources": [
+          "thepricedex_price_list"
+        ],
+        "source_authorities": [
+          "thepricedex.com"
+        ],
+        "source_kinds": [
+          "marketplace_checklist"
+        ],
+        "evidence_urls": [
+          "https://www.thepricedex.com/set/swsh1/sword-and-shield/price-list"
+        ],
+        "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+      },
+      "source_url": "https://www.pricecharting.com/game/pokemon-sword-and-shield/scorbunny-31",
+      "product_id": null,
+      "console_name": null,
+      "title": "Scorbunny #31",
+      "variant_labels": [],
+      "validation": {
+        "ok": false,
+        "reason": "card_found_but_finish_not_exactly_validated"
+      },
+      "reviewed_candidates": [
+        {
+          "source_url": "https://www.pricecharting.com/game/pokemon-sword-and-shield/scorbunny-31",
+          "product_id": "1384428",
+          "console_name": "Pokemon Sword & Shield",
+          "product_name": "Scorbunny #31",
+          "variant_labels": [],
+          "validation": {
+            "ok": false,
+            "reason": "product_title_has_no_variant_label"
+          }
+        },
+        {
+          "source_url": "https://www.pricecharting.com/game/pokemon-sword-and-shield/scorbunny-reverse-holo-31",
+          "product_id": "1663045",
+          "console_name": "Pokemon Sword & Shield",
+          "product_name": "Scorbunny [Reverse Holo] #31",
+          "variant_labels": [
+            "Reverse Holo"
+          ],
+          "validation": {
+            "ok": false,
+            "reason": "generic_holo_not_promoted_from_specialized_variant_label"
+          }
+        }
+      ]
+    },
+    {
+      "status": "no_exact_match",
+      "fact": {
+        "gap_type": "finish_second_source_needed",
+        "fact_type": "printing_finish",
+        "set_key": "swsh1",
+        "set_name": "Sword & Shield",
+        "card_number": "178",
+        "card_name": "Professor's Research (Professor Magnolia)",
+        "finish_key": "stamped",
+        "status": "human_source_verified",
+        "sources": [
+          "thepricedex_price_list"
+        ],
+        "source_authorities": [
+          "thepricedex.com"
+        ],
+        "source_kinds": [
+          "marketplace_checklist"
+        ],
+        "evidence_urls": [
+          "https://www.thepricedex.com/set/swsh1/sword-and-shield/price-list"
+        ],
+        "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+      },
+      "source_url": null,
+      "product_id": null,
+      "console_name": null,
+      "title": null,
+      "variant_labels": [],
+      "validation": {
+        "ok": false,
+        "reason": "no_matching_set_card_name_number_row"
+      },
+      "reviewed_candidates": []
+    },
+    {
+      "status": "near_match_context",
+      "fact": {
+        "gap_type": "finish_second_source_needed",
+        "fact_type": "printing_finish",
+        "set_key": "swsh2",
+        "set_name": "Rebel Clash",
+        "card_number": "39",
+        "card_name": "Magikarp",
+        "finish_key": "cosmos",
+        "status": "human_source_verified",
+        "sources": [
+          "thepricedex_price_list"
+        ],
+        "source_authorities": [
+          "thepricedex.com"
+        ],
+        "source_kinds": [
+          "marketplace_checklist"
+        ],
+        "evidence_urls": [
+          "https://www.thepricedex.com/set/swsh2/rebel-clash/price-list"
+        ],
+        "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+      },
+      "source_url": "https://www.pricecharting.com/game/pokemon-danone-pokemon-stadium/magikarp-39",
+      "product_id": null,
+      "console_name": null,
+      "title": "Magikarp #39",
+      "variant_labels": [],
+      "validation": {
+        "ok": false,
+        "reason": "card_found_but_finish_not_exactly_validated"
+      },
+      "reviewed_candidates": [
+        {
+          "source_url": "https://www.pricecharting.com/game/pokemon-danone-pokemon-stadium/magikarp-39",
+          "product_id": "6995211",
+          "console_name": "Pokemon Danone Pokemon Stadium",
+          "product_name": "Magikarp #39",
+          "variant_labels": [],
+          "validation": {
+            "ok": false,
+            "reason": "set_mismatch"
+          }
+        },
+        {
+          "source_url": "https://www.pricecharting.com/game/pokemon-danone-stadium-tip/magikarp-39",
+          "product_id": "6778654",
+          "console_name": "Pokemon Danone Stadium Tip",
+          "product_name": "Magikarp #39",
+          "variant_labels": [],
+          "validation": {
+            "ok": false,
+            "reason": "set_mismatch"
+          }
+        },
+        {
+          "source_url": "https://www.pricecharting.com/game/pokemon-rebel-clash/magikarp-39",
+          "product_id": "886771",
+          "console_name": "Pokemon Rebel Clash",
+          "product_name": "Magikarp #39",
+          "variant_labels": [],
+          "validation": {
+            "ok": false,
+            "reason": "product_title_has_no_variant_label"
+          }
+        },
+        {
+          "source_url": "https://www.pricecharting.com/game/pokemon-rebel-clash/magikarp-reverse-holo-39",
+          "product_id": "886967",
+          "console_name": "Pokemon Rebel Clash",
+          "product_name": "Magikarp [Reverse Holo] #39",
+          "variant_labels": [
+            "Reverse Holo"
+          ],
+          "validation": {
+            "ok": false,
+            "reason": "finish_label_not_found:cosmos"
+          }
+        }
+      ]
+    },
+    {
+      "status": "near_match_context",
+      "fact": {
+        "gap_type": "finish_second_source_needed",
+        "fact_type": "printing_finish",
+        "set_key": "swsh4",
+        "set_name": "Vivid Voltage",
+        "card_number": "71",
+        "card_name": "Dusknoir",
+        "finish_key": "stamped",
+        "status": "human_source_verified",
+        "sources": [
+          "thepricedex_price_list"
+        ],
+        "source_authorities": [
+          "thepricedex.com"
+        ],
+        "source_kinds": [
+          "marketplace_checklist"
+        ],
+        "evidence_urls": [
+          "https://www.thepricedex.com/set/swsh4/vivid-voltage/price-list"
+        ],
+        "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+      },
+      "source_url": "https://www.pricecharting.com/game/pokemon-trick-or-trade-2023/dusknoir-holo-71",
+      "product_id": null,
+      "console_name": null,
+      "title": "Dusknoir [Holo] #71",
+      "variant_labels": [],
+      "validation": {
+        "ok": false,
+        "reason": "card_found_but_finish_not_exactly_validated"
+      },
+      "reviewed_candidates": [
+        {
+          "source_url": "https://www.pricecharting.com/game/pokemon-trick-or-trade-2023/dusknoir-holo-71",
+          "product_id": "5732692",
+          "console_name": "Pokemon Trick or Trade 2023",
+          "product_name": "Dusknoir [Holo] #71",
+          "variant_labels": [
+            "Holo"
+          ],
+          "validation": {
+            "ok": false,
+            "reason": "set_mismatch"
+          }
+        },
+        {
+          "source_url": "https://www.pricecharting.com/game/pokemon-vivid-voltage/dusknoir-71",
+          "product_id": "887622",
+          "console_name": "Pokemon Vivid Voltage",
+          "product_name": "Dusknoir #71",
+          "variant_labels": [],
+          "validation": {
+            "ok": false,
+            "reason": "product_title_has_no_variant_label"
+          }
+        },
+        {
+          "source_url": "https://www.pricecharting.com/game/pokemon-vivid-voltage/dusknoir-reverse-holo-71",
+          "product_id": "887795",
+          "console_name": "Pokemon Vivid Voltage",
+          "product_name": "Dusknoir [Reverse Holo] #71",
+          "variant_labels": [
+            "Reverse Holo"
+          ],
+          "validation": {
+            "ok": false,
+            "reason": "finish_label_not_found:stamped"
+          }
+        }
+      ]
+    },
+    {
+      "status": "near_match_context",
+      "fact": {
+        "gap_type": "finish_second_source_needed",
+        "fact_type": "printing_finish",
+        "set_key": "swsh7",
+        "set_name": "Evolving Skies",
+        "card_number": "80",
+        "card_name": "Marshadow",
+        "finish_key": "stamped",
+        "status": "human_source_verified",
+        "sources": [
+          "thepricedex_price_list"
+        ],
+        "source_authorities": [
+          "thepricedex.com"
+        ],
+        "source_kinds": [
+          "marketplace_checklist"
+        ],
+        "evidence_urls": [
+          "https://www.thepricedex.com/set/swsh7/evolving-skies/price-list"
+        ],
+        "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+      },
+      "source_url": "https://www.pricecharting.com/game/pokemon-evolving-skies/marshadow-cosmos-holo-80",
+      "product_id": null,
+      "console_name": null,
+      "title": "Marshadow [Cosmos Holo] #80",
+      "variant_labels": [],
+      "validation": {
+        "ok": false,
+        "reason": "card_found_but_finish_not_exactly_validated"
+      },
+      "reviewed_candidates": [
+        {
+          "source_url": "https://www.pricecharting.com/game/pokemon-evolving-skies/marshadow-cosmos-holo-80",
+          "product_id": "8331018",
+          "console_name": "Pokemon Evolving Skies",
+          "product_name": "Marshadow [Cosmos Holo] #80",
+          "variant_labels": [
+            "Cosmos Holo"
+          ],
+          "validation": {
+            "ok": false,
+            "reason": "finish_label_not_found:stamped"
+          }
+        },
+        {
+          "source_url": "https://www.pricecharting.com/game/pokemon-evolving-skies/marshadow-holo-80",
+          "product_id": "2512891",
+          "console_name": "Pokemon Evolving Skies",
+          "product_name": "Marshadow [Holo] #80",
+          "variant_labels": [
+            "Holo"
+          ],
+          "validation": {
+            "ok": false,
+            "reason": "finish_label_not_found:stamped"
+          }
+        },
+        {
+          "source_url": "https://www.pricecharting.com/game/pokemon-evolving-skies/marshadow-reverse-holo-80",
+          "product_id": "2513105",
+          "console_name": "Pokemon Evolving Skies",
+          "product_name": "Marshadow [Reverse Holo] #80",
+          "variant_labels": [
+            "Reverse Holo"
+          ],
+          "validation": {
+            "ok": false,
+            "reason": "finish_label_not_found:stamped"
+          }
+        },
+        {
+          "source_url": "https://www.pricecharting.com/game/pokemon-trick-or-trade-2023/marshadow-holo-80",
+          "product_id": "5732695",
+          "console_name": "Pokemon Trick or Trade 2023",
+          "product_name": "Marshadow [Holo] #80",
+          "variant_labels": [
+            "Holo"
+          ],
+          "validation": {
+            "ok": false,
+            "reason": "set_mismatch"
+          }
+        }
+      ]
+    },
+    {
+      "status": "near_match_context",
+      "fact": {
+        "gap_type": "finish_second_source_needed",
+        "fact_type": "printing_finish",
+        "set_key": "swsh10",
+        "set_name": "Astral Radiance",
+        "card_number": "156",
+        "card_name": "Trekking Shoes",
+        "finish_key": "stamped",
+        "status": "human_source_verified",
+        "sources": [
+          "thepricedex_price_list"
+        ],
+        "source_authorities": [
+          "thepricedex.com"
+        ],
+        "source_kinds": [
+          "marketplace_checklist"
+        ],
+        "evidence_urls": [
+          "https://www.thepricedex.com/set/swsh10/astral-radiance/price-list"
+        ],
+        "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+      },
+      "source_url": "https://www.pricecharting.com/game/pokemon-astral-radiance/trekking-shoes-156",
+      "product_id": null,
+      "console_name": null,
+      "title": "Trekking Shoes #156",
+      "variant_labels": [],
+      "validation": {
+        "ok": false,
+        "reason": "card_found_but_finish_not_exactly_validated"
+      },
+      "reviewed_candidates": [
+        {
+          "source_url": "https://www.pricecharting.com/game/pokemon-astral-radiance/trekking-shoes-156",
+          "product_id": "3489655",
+          "console_name": "Pokemon Astral Radiance",
+          "product_name": "Trekking Shoes #156",
+          "variant_labels": [],
+          "validation": {
+            "ok": false,
+            "reason": "product_title_has_no_variant_label"
+          }
+        },
+        {
+          "source_url": "https://www.pricecharting.com/game/pokemon-astral-radiance/trekking-shoes-reverse-holo-156",
+          "product_id": "3489849",
+          "console_name": "Pokemon Astral Radiance",
+          "product_name": "Trekking Shoes [Reverse Holo] #156",
+          "variant_labels": [
+            "Reverse Holo"
+          ],
+          "validation": {
+            "ok": false,
+            "reason": "finish_label_not_found:stamped"
+          }
+        }
+      ]
+    },
+    {
+      "status": "near_match_context",
+      "fact": {
+        "gap_type": "finish_second_source_needed",
+        "fact_type": "printing_finish",
+        "set_key": "swsh11",
+        "set_name": "Lost Origin",
+        "card_number": "162",
+        "card_name": "Lost Vacuum",
+        "finish_key": "stamped",
+        "status": "human_source_verified",
+        "sources": [
+          "thepricedex_price_list"
+        ],
+        "source_authorities": [
+          "thepricedex.com"
+        ],
+        "source_kinds": [
+          "marketplace_checklist"
+        ],
+        "evidence_urls": [
+          "https://www.thepricedex.com/set/swsh11/lost-origin/price-list"
+        ],
+        "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+      },
+      "source_url": "https://www.pricecharting.com/game/pokemon-lost-origin/lost-vacuum-162",
+      "product_id": null,
+      "console_name": null,
+      "title": "Lost Vacuum #162",
+      "variant_labels": [],
+      "validation": {
+        "ok": false,
+        "reason": "card_found_but_finish_not_exactly_validated"
+      },
+      "reviewed_candidates": [
+        {
+          "source_url": "https://www.pricecharting.com/game/pokemon-lost-origin/lost-vacuum-162",
+          "product_id": "4050079",
+          "console_name": "Pokemon Lost Origin",
+          "product_name": "Lost Vacuum #162",
+          "variant_labels": [],
+          "validation": {
+            "ok": false,
+            "reason": "product_title_has_no_variant_label"
+          }
+        },
+        {
+          "source_url": "https://www.pricecharting.com/game/pokemon-lost-origin/lost-vacuum-reverse-holo-162",
+          "product_id": "4050280",
+          "console_name": "Pokemon Lost Origin",
+          "product_name": "Lost Vacuum [Reverse Holo] #162",
+          "variant_labels": [
+            "Reverse Holo"
+          ],
+          "validation": {
+            "ok": false,
+            "reason": "finish_label_not_found:stamped"
+          }
+        },
+        {
+          "source_url": "https://www.pricecharting.com/game/pokemon-world-championships-2023/lost-vacuum-162",
+          "product_id": "10604824",
+          "console_name": "Pokemon World Championships 2023",
+          "product_name": "Lost Vacuum #162",
+          "variant_labels": [],
+          "validation": {
+            "ok": false,
+            "reason": "set_mismatch"
+          }
+        }
+      ]
+    },
+    {
+      "status": "near_match_context",
+      "fact": {
+        "gap_type": "finish_second_source_needed",
+        "fact_type": "printing_finish",
+        "set_key": "xy2",
+        "set_name": "Flashfire",
+        "card_number": "31",
+        "card_name": "Avalugg",
+        "finish_key": "stamped",
+        "status": "human_source_verified",
+        "sources": [
+          "thepricedex_price_list"
+        ],
+        "source_authorities": [
+          "thepricedex.com"
+        ],
+        "source_kinds": [
+          "marketplace_checklist"
+        ],
+        "evidence_urls": [
+          "https://www.thepricedex.com/set/xy2/flashfire/price-list"
+        ],
+        "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+      },
+      "source_url": "https://www.pricecharting.com/game/pokemon-flashfire/avalugg-31",
+      "product_id": null,
+      "console_name": null,
+      "title": "Avalugg #31",
+      "variant_labels": [],
+      "validation": {
+        "ok": false,
+        "reason": "card_found_but_finish_not_exactly_validated"
+      },
+      "reviewed_candidates": [
+        {
+          "source_url": "https://www.pricecharting.com/game/pokemon-flashfire/avalugg-31",
+          "product_id": "957778",
+          "console_name": "Pokemon Flashfire",
+          "product_name": "Avalugg #31",
+          "variant_labels": [],
+          "validation": {
+            "ok": false,
+            "reason": "product_title_has_no_variant_label"
+          }
+        },
+        {
+          "source_url": "https://www.pricecharting.com/game/pokemon-flashfire/avalugg-reverse-holo-31",
+          "product_id": "957884",
+          "console_name": "Pokemon Flashfire",
+          "product_name": "Avalugg [Reverse Holo] #31",
+          "variant_labels": [
+            "Reverse Holo"
+          ],
+          "validation": {
+            "ok": false,
+            "reason": "finish_label_not_found:stamped"
+          }
+        }
+      ]
+    },
+    {
+      "status": "near_match_context",
+      "fact": {
+        "gap_type": "finish_second_source_needed",
+        "fact_type": "printing_finish",
+        "set_key": "xy3",
+        "set_name": "Furious Fists",
+        "card_number": "102",
+        "card_name": "Training Center",
+        "finish_key": "stamped",
+        "status": "human_source_verified",
+        "sources": [
+          "thepricedex_price_list"
+        ],
+        "source_authorities": [
+          "thepricedex.com"
+        ],
+        "source_kinds": [
+          "marketplace_checklist"
+        ],
+        "evidence_urls": [
+          "https://www.thepricedex.com/set/xy3/furious-fists/price-list"
+        ],
+        "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+      },
+      "source_url": "https://www.pricecharting.com/game/pokemon-furious-fists/training-center-102",
+      "product_id": null,
+      "console_name": null,
+      "title": "Training Center #102",
+      "variant_labels": [],
+      "validation": {
+        "ok": false,
+        "reason": "card_found_but_finish_not_exactly_validated"
+      },
+      "reviewed_candidates": [
+        {
+          "source_url": "https://www.pricecharting.com/game/pokemon-furious-fists/training-center-102",
+          "product_id": "958085",
+          "console_name": "Pokemon Furious Fists",
+          "product_name": "Training Center #102",
+          "variant_labels": [],
+          "validation": {
+            "ok": false,
+            "reason": "product_title_has_no_variant_label"
+          }
+        },
+        {
+          "source_url": "https://www.pricecharting.com/game/pokemon-furious-fists/training-center-reverse-holo-102",
+          "product_id": "958191",
+          "console_name": "Pokemon Furious Fists",
+          "product_name": "Training Center [Reverse Holo] #102",
+          "variant_labels": [
+            "Reverse Holo"
+          ],
+          "validation": {
+            "ok": false,
+            "reason": "finish_label_not_found:stamped"
+          }
+        }
+      ]
+    },
+    {
+      "status": "near_match_context",
+      "fact": {
+        "gap_type": "finish_second_source_needed",
+        "fact_type": "printing_finish",
+        "set_key": "xy4",
+        "set_name": "Phantom Forces",
+        "card_number": "93",
+        "card_name": "Dimension Valley",
+        "finish_key": "stamped",
+        "status": "human_source_verified",
+        "sources": [
+          "thepricedex_price_list"
+        ],
+        "source_authorities": [
+          "thepricedex.com"
+        ],
+        "source_kinds": [
+          "marketplace_checklist"
+        ],
+        "evidence_urls": [
+          "https://www.thepricedex.com/set/xy4/phantom-forces/price-list"
+        ],
+        "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+      },
+      "source_url": "https://www.pricecharting.com/game/pokemon-phantom-forces/dimension-valley-93",
+      "product_id": null,
+      "console_name": null,
+      "title": "Dimension Valley #93",
+      "variant_labels": [],
+      "validation": {
+        "ok": false,
+        "reason": "card_found_but_finish_not_exactly_validated"
+      },
+      "reviewed_candidates": [
+        {
+          "source_url": "https://www.pricecharting.com/game/pokemon-phantom-forces/dimension-valley-93",
+          "product_id": "958286",
+          "console_name": "Pokemon Phantom Forces",
+          "product_name": "Dimension Valley #93",
+          "variant_labels": [],
+          "validation": {
+            "ok": false,
+            "reason": "product_title_has_no_variant_label"
+          }
+        },
+        {
+          "source_url": "https://www.pricecharting.com/game/pokemon-phantom-forces/dimension-valley-reverse-holo-93",
+          "product_id": "958400",
+          "console_name": "Pokemon Phantom Forces",
+          "product_name": "Dimension Valley [Reverse Holo] #93",
+          "variant_labels": [
+            "Reverse Holo"
+          ],
+          "validation": {
+            "ok": false,
+            "reason": "finish_label_not_found:stamped"
+          }
+        }
+      ]
+    },
+    {
+      "status": "near_match_context",
+      "fact": {
+        "gap_type": "finish_second_source_needed",
+        "fact_type": "printing_finish",
+        "set_key": "xy8",
+        "set_name": "BREAKthrough",
+        "card_number": "103",
+        "card_name": "Florges",
+        "finish_key": "stamped",
+        "status": "human_source_verified",
+        "sources": [
+          "thepricedex_price_list"
+        ],
+        "source_authorities": [
+          "thepricedex.com"
+        ],
+        "source_kinds": [
+          "marketplace_checklist"
+        ],
+        "evidence_urls": [
+          "https://www.thepricedex.com/set/xy8/breakthrough/price-list"
+        ],
+        "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+      },
+      "source_url": "https://www.pricecharting.com/game/pokemon-breakthrough/florges-103",
+      "product_id": null,
+      "console_name": null,
+      "title": "Florges #103",
+      "variant_labels": [],
+      "validation": {
+        "ok": false,
+        "reason": "card_found_but_finish_not_exactly_validated"
+      },
+      "reviewed_candidates": [
+        {
+          "source_url": "https://www.pricecharting.com/game/pokemon-breakthrough/florges-103",
+          "product_id": "959292",
+          "console_name": "Pokemon BREAKthrough",
+          "product_name": "Florges #103",
+          "variant_labels": [],
+          "validation": {
+            "ok": false,
+            "reason": "product_title_has_no_variant_label"
+          }
+        },
+        {
+          "source_url": "https://www.pricecharting.com/game/pokemon-breakthrough/florges-reverse-holo-103",
+          "product_id": "959444",
+          "console_name": "Pokemon BREAKthrough",
+          "product_name": "Florges [Reverse Holo] #103",
+          "variant_labels": [
+            "Reverse Holo"
+          ],
+          "validation": {
+            "ok": false,
+            "reason": "finish_label_not_found:stamped"
+          }
+        }
+      ]
+    },
+    {
+      "status": "near_match_context",
+      "fact": {
+        "gap_type": "finish_second_source_needed",
+        "fact_type": "printing_finish",
+        "set_key": "xy9",
+        "set_name": "BREAKpoint",
+        "card_number": "104",
+        "card_name": "Misty's Determination",
+        "finish_key": "stamped",
+        "status": "human_source_verified",
+        "sources": [
+          "thepricedex_price_list"
+        ],
+        "source_authorities": [
+          "thepricedex.com"
+        ],
+        "source_kinds": [
+          "marketplace_checklist"
+        ],
+        "evidence_urls": [
+          "https://www.thepricedex.com/set/xy9/breakpoint/price-list"
+        ],
+        "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+      },
+      "source_url": "https://www.pricecharting.com/game/pokemon-breakpoint/mistys-determination-104",
+      "product_id": null,
+      "console_name": null,
+      "title": "Misty's Determination #104",
+      "variant_labels": [],
+      "validation": {
+        "ok": false,
+        "reason": "card_found_but_finish_not_exactly_validated"
+      },
+      "reviewed_candidates": [
+        {
+          "source_url": "https://www.pricecharting.com/game/pokemon-breakpoint/mistys-determination-104",
+          "product_id": "959595",
+          "console_name": "Pokemon BREAKpoint",
+          "product_name": "Misty's Determination #104",
+          "variant_labels": [],
+          "validation": {
+            "ok": false,
+            "reason": "product_title_has_no_variant_label"
+          }
+        },
+        {
+          "source_url": "https://www.pricecharting.com/game/pokemon-breakpoint/mistys-determination-reverse-holo-104",
+          "product_id": "959703",
+          "console_name": "Pokemon BREAKpoint",
+          "product_name": "Misty's Determination [Reverse Holo] #104",
+          "variant_labels": [
+            "Reverse Holo"
+          ],
+          "validation": {
+            "ok": false,
+            "reason": "finish_label_not_found:stamped"
+          }
+        }
+      ]
+    },
+    {
+      "status": "near_match_context",
+      "fact": {
+        "gap_type": "finish_second_source_needed",
+        "fact_type": "printing_finish",
+        "set_key": "xy9",
+        "set_name": "BREAKpoint",
+        "card_number": "110",
+        "card_name": "Reverse Valley",
+        "finish_key": "stamped",
+        "status": "human_source_verified",
+        "sources": [
+          "thepricedex_price_list"
+        ],
+        "source_authorities": [
+          "thepricedex.com"
+        ],
+        "source_kinds": [
+          "marketplace_checklist"
+        ],
+        "evidence_urls": [
+          "https://www.thepricedex.com/set/xy9/breakpoint/price-list"
+        ],
+        "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+      },
+      "source_url": "https://www.pricecharting.com/game/pokemon-breakpoint/reverse-valley-110",
+      "product_id": null,
+      "console_name": null,
+      "title": "Reverse Valley #110",
+      "variant_labels": [],
+      "validation": {
+        "ok": false,
+        "reason": "card_found_but_finish_not_exactly_validated"
+      },
+      "reviewed_candidates": [
+        {
+          "source_url": "https://www.pricecharting.com/game/pokemon-breakpoint/reverse-valley-110",
+          "product_id": "959601",
+          "console_name": "Pokemon BREAKpoint",
+          "product_name": "Reverse Valley #110",
+          "variant_labels": [],
+          "validation": {
+            "ok": false,
+            "reason": "product_title_has_no_variant_label"
+          }
+        },
+        {
+          "source_url": "https://www.pricecharting.com/game/pokemon-breakpoint/reverse-valley-reverse-holo-110",
+          "product_id": "959709",
+          "console_name": "Pokemon BREAKpoint",
+          "product_name": "Reverse Valley [Reverse Holo] #110",
+          "variant_labels": [
+            "Reverse Holo"
+          ],
+          "validation": {
+            "ok": false,
+            "reason": "finish_label_not_found:stamped"
+          }
+        }
+      ]
+    },
+    {
+      "status": "near_match_context",
+      "fact": {
+        "gap_type": "finish_second_source_needed",
+        "fact_type": "printing_finish",
+        "set_key": "xy9",
+        "set_name": "BREAKpoint",
+        "card_number": "113",
+        "card_name": "Splash Energy",
+        "finish_key": "stamped",
+        "status": "human_source_verified",
+        "sources": [
+          "thepricedex_price_list"
+        ],
+        "source_authorities": [
+          "thepricedex.com"
+        ],
+        "source_kinds": [
+          "marketplace_checklist"
+        ],
+        "evidence_urls": [
+          "https://www.thepricedex.com/set/xy9/breakpoint/price-list"
+        ],
+        "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+      },
+      "source_url": "https://www.pricecharting.com/game/pokemon-breakpoint/splash-energy-113",
+      "product_id": null,
+      "console_name": null,
+      "title": "Splash Energy #113",
+      "variant_labels": [],
+      "validation": {
+        "ok": false,
+        "reason": "card_found_but_finish_not_exactly_validated"
+      },
+      "reviewed_candidates": [
+        {
+          "source_url": "https://www.pricecharting.com/game/pokemon-breakpoint/splash-energy-113",
+          "product_id": "959604",
+          "console_name": "Pokemon BREAKpoint",
+          "product_name": "Splash Energy #113",
+          "variant_labels": [],
+          "validation": {
+            "ok": false,
+            "reason": "product_title_has_no_variant_label"
+          }
+        },
+        {
+          "source_url": "https://www.pricecharting.com/game/pokemon-breakpoint/splash-energy-reverse-holo-113",
+          "product_id": "959712",
+          "console_name": "Pokemon BREAKpoint",
+          "product_name": "Splash Energy [Reverse Holo] #113",
+          "variant_labels": [
+            "Reverse Holo"
+          ],
+          "validation": {
+            "ok": false,
+            "reason": "finish_label_not_found:stamped"
+          }
+        }
+      ]
+    },
+    {
+      "status": "near_match_context",
+      "fact": {
+        "gap_type": "finish_second_source_needed",
+        "fact_type": "printing_finish",
+        "set_key": "xyp",
+        "set_name": "XY Black Star Promos",
+        "card_number": "XY202",
+        "card_name": "Pikachu",
+        "finish_key": "holo",
+        "status": "human_source_verified",
+        "sources": [
+          "thepricedex_price_list"
+        ],
+        "source_authorities": [
+          "thepricedex.com"
+        ],
+        "source_kinds": [
+          "marketplace_checklist"
+        ],
+        "evidence_urls": [
+          "https://www.thepricedex.com/set/xyp/xy-black-star-promos/price-list"
+        ],
+        "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+      },
+      "source_url": "https://www.pricecharting.com/game/pokemon-promo/pikachu-xy202",
+      "product_id": null,
+      "console_name": null,
+      "title": "Pikachu #XY202",
+      "variant_labels": [],
+      "validation": {
+        "ok": false,
+        "reason": "card_found_but_finish_not_exactly_validated"
+      },
+      "reviewed_candidates": [
+        {
+          "source_url": "https://www.pricecharting.com/game/pokemon-promo/pikachu-xy202",
+          "product_id": "844676",
+          "console_name": "Pokemon Promo",
+          "product_name": "Pikachu #XY202",
+          "variant_labels": [],
+          "validation": {
+            "ok": false,
+            "reason": "product_title_has_no_variant_label"
+          }
+        }
+      ]
+    }
+  ]
+}

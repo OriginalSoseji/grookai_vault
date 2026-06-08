@@ -1,0 +1,62 @@
+{
+  "status": "validated",
+  "fact": {
+    "gap_type": "finish_second_source_needed",
+    "fact_type": "printing_finish",
+    "set_key": "sv07",
+    "set_name": "Stellar Crown",
+    "card_number": "131",
+    "card_name": "Area Zero Underdepths",
+    "finish_key": "stamped",
+    "status": "human_source_verified",
+    "sources": [
+      "thepricedex_price_list"
+    ],
+    "source_authorities": [
+      "thepricedex.com"
+    ],
+    "source_kinds": [
+      "marketplace_checklist"
+    ],
+    "evidence_urls": [
+      "https://www.thepricedex.com/set/sv7/stellar-crown/price-list"
+    ],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "query": "Pokemon Stellar Crown Area Zero Underdepths 131 stamped",
+  "search_url": "https://www.pricecharting.com/api/products?q=Pokemon%20Stellar%20Crown%20Area%20Zero%20Underdepths%20131%20stamped",
+  "source_url": "https://www.pricecharting.com/game/pokemon-stellar-crown/area-zero-underdepths-gym-stamp-asia-131",
+  "title": "Area Zero Underdepths [Gym Stamp Asia] #131 | Pokemon Stellar Crown",
+  "title_parts": {
+    "card_name": "Area Zero Underdepths",
+    "card_number": "131",
+    "variant_label": "Gym Stamp Asia",
+    "set_name": "Pokemon Stellar Crown",
+    "pricecharting_product_id": "10366693"
+  },
+  "validation_source": "pricecharting_api_products",
+  "source_lane": "pricecharting_api",
+  "attempts": [
+    {
+      "query": "Pokemon Stellar Crown Area Zero Underdepths 131 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Stellar%20Crown%20Area%20Zero%20Underdepths%20131%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10366693",
+      "product_name": "Area Zero Underdepths [Gym Stamp Asia] #131",
+      "console_name": "Pokemon Stellar Crown",
+      "validation": {
+        "ok": true,
+        "titleParts": {
+          "card_name": "Area Zero Underdepths",
+          "card_number": "131",
+          "variant_label": "Gym Stamp Asia",
+          "set_name": "Pokemon Stellar Crown",
+          "pricecharting_product_id": "10366693"
+        },
+        "source_url": "https://www.pricecharting.com/game/pokemon-stellar-crown/area-zero-underdepths-gym-stamp-asia-131",
+        "title": "Area Zero Underdepths [Gym Stamp Asia] #131 | Pokemon Stellar Crown"
+      }
+    }
+  ]
+}

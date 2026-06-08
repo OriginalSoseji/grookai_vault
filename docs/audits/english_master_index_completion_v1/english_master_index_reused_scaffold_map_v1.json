@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-25T17:37:24.740Z",
+  "generated_at": "2026-06-08T19:44:32.664Z",
   "contract": "ENGLISH_MASTER_INDEX_COMPLETION_V1",
   "audit_only": true,
   "db_writes_performed": false,
@@ -21,7 +21,8 @@
     "english_master_index_write_readiness_v1.json",
     "english_master_index_repair_priority_v1.json",
     "english_master_index_unsupported_triage_v1.json",
-    "english_master_index_missing_from_grookai_triage_v1.json"
+    "english_master_index_missing_from_grookai_triage_v1.json",
+    "finish-blocker rows excluded by english_master_index_adjudicated_excluded_printings_v1.json"
   ],
   "rule": "Existing reconciliation outputs are not Master Index completion authority."
 }

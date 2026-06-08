@@ -1,0 +1,23 @@
+{
+  "source_key": "pricecharting_csv_sv08.5",
+  "source_kind": "marketplace_checklist",
+  "source_url": "https://www.pricecharting.com/",
+  "set_key": "sv08.5",
+  "set_name": "Prismatic Evolutions",
+  "retrieved_at": "2026-05-30T18:34:00.603Z",
+  "raw_snapshot_ref": "pricecharting_csv:sv08.5:2026-05-30T18:34:00.603Z",
+  "records": [
+    {
+      "source_key": "pricecharting_csv_product",
+      "source_kind": "marketplace_checklist",
+      "source_url": "https://www.pricecharting.com/game/pokemon-prismatic-evolutions/sylveon-pokemon-day-2025-40",
+      "set_name": "Prismatic Evolutions",
+      "card_number": "40",
+      "card_name": "Sylveon",
+      "finish_key": "stamped",
+      "evidence_type": "finish_presence",
+      "evidence_label": "PriceCharting CSV product 8710279: Sylveon [Pokemon Day 2025] #40",
+      "notes": "Exact finish evidence accepted only because the PriceCharting CSV product row matched set, card number, card name, and finish label."
+    }
+  ]
+}

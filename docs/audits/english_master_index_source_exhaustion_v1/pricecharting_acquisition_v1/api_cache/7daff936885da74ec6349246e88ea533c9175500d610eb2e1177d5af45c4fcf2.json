@@ -1,0 +1,23 @@
+{
+  "products": [
+    {
+      "bgs-10-price": 52000,
+      "box-only-price": 1900,
+      "condition-17-price": 24000,
+      "condition-18-price": 24000,
+      "console-name": "Pokemon Scarlet & Violet 151",
+      "gamestop-price": 0,
+      "gamestop-trade-price": 0,
+      "genre": "Pokemon Card",
+      "graded-price": 1725,
+      "id": "11330244",
+      "loose-price": 100,
+      "manual-only-price": 40000,
+      "product-name": "Machamp [Cosmos Holo] #68",
+      "retail-loose-sell": 109,
+      "sales-volume": "77",
+      "tcg-id": "662070"
+    }
+  ],
+  "status": "success"
+}

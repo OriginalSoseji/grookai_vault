@@ -1,0 +1,549 @@
+{
+  "status": "api_no_validated_match",
+  "fact": {
+    "gap_type": "finish_second_source_needed",
+    "fact_type": "printing_finish",
+    "set_key": "dp7",
+    "set_name": "Stormfront",
+    "card_number": "45",
+    "card_name": "Pichu",
+    "finish_key": "stamped",
+    "status": "human_source_verified",
+    "sources": [
+      "thepricedex_price_list"
+    ],
+    "source_authorities": [
+      "thepricedex.com"
+    ],
+    "source_kinds": [
+      "marketplace_checklist"
+    ],
+    "evidence_urls": [
+      "https://www.thepricedex.com/set/dp7/stormfront/price-list"
+    ],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "attempts": [
+    {
+      "query": "Pokemon Stormfront Pichu 45 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Stormfront%20Pichu%2045%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "925258",
+      "product_name": "Pichu #45",
+      "console_name": "Pokemon Stormfront",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon Stormfront Pichu 45 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Stormfront%20Pichu%2045%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4384631",
+      "product_name": "Pichu [Platinum] #45",
+      "console_name": "Pokemon Stormfront",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Platinum"
+      }
+    },
+    {
+      "query": "Pokemon Stormfront Pichu 45 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Stormfront%20Pichu%2045%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "925344",
+      "product_name": "Pichu [Reverse Holo] #45",
+      "console_name": "Pokemon Stormfront",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Reverse Holo"
+      }
+    },
+    {
+      "query": "Pokemon Stormfront Pichu 45 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Stormfront%20Pichu%2045%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3459426",
+      "product_name": "Pichu #23",
+      "console_name": "Pokemon Japanese Intense Fight in the Destroyed Sky",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:23"
+      }
+    },
+    {
+      "query": "Pokemon Stormfront Pichu 45 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Stormfront%20Pichu%2045%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8749256",
+      "product_name": "Pichu #45/P",
+      "console_name": "Pokemon Japanese Promo",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon Japanese Promo"
+      }
+    },
+    {
+      "query": "Pokemon Stormfront Pichu 45 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Stormfront%20Pichu%2045%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10802079",
+      "product_name": "Pichu [1st Edition] #23",
+      "console_name": "Pokemon Japanese Intense Fight in the Destroyed Sky",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:23"
+      }
+    },
+    {
+      "query": "Pokemon Stormfront Pichu 45 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Stormfront%20Pichu%2045%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7322447",
+      "product_name": "Vanilluxe [Snowflake Stamp] #45",
+      "console_name": "Pokemon Paradox Rift",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Vanilluxe"
+      }
+    },
+    {
+      "query": "Pokemon Stormfront Pichu 45 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Stormfront%20Pichu%2045%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3459448",
+      "product_name": "Drifblim #45",
+      "console_name": "Pokemon Japanese Intense Fight in the Destroyed Sky",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Drifblim"
+      }
+    },
+    {
+      "query": "Pokemon Stormfront Pichu 45 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Stormfront%20Pichu%2045%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "762728",
+      "product_name": "Pichu Bros. #16",
+      "console_name": "Pokemon POP Series 3",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:16"
+      }
+    },
+    {
+      "query": "Pokemon Stormfront Pichu 45 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Stormfront%20Pichu%2045%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9432779",
+      "product_name": "Ethan's Pichu #71",
+      "console_name": "Pokemon Destined Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:71"
+      }
+    },
+    {
+      "query": "Pokemon Stormfront Pichu 45 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Stormfront%20Pichu%2045%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8867726",
+      "product_name": "Ethan's Pichu #36",
+      "console_name": "Pokemon Japanese Heat Wave Arena",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:36"
+      }
+    },
+    {
+      "query": "Pokemon Stormfront Pichu 45 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Stormfront%20Pichu%2045%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7136200",
+      "product_name": "Pichu M #10",
+      "console_name": "Pokemon Japanese Movie Commemoration Random",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:10"
+      }
+    },
+    {
+      "query": "Pokemon Stormfront Pichu 45 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Stormfront%20Pichu%2045%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8270968",
+      "product_name": "Pichu M #11",
+      "console_name": "Pokemon Japanese Movie Commemoration Random",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:11"
+      }
+    },
+    {
+      "query": "Pokemon Stormfront Pichu 45 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Stormfront%20Pichu%2045%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11533184",
+      "product_name": "Ethan's Pichu #36",
+      "console_name": "Pokemon Korean Heat Wave Arena",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:36"
+      }
+    },
+    {
+      "query": "Pokemon Stormfront Pichu 45 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Stormfront%20Pichu%2045%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11462580",
+      "product_name": "Ethan's Pichu #241",
+      "console_name": "Pokemon Japanese Start Deck 100 Battle Collection",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:241"
+      }
+    },
+    {
+      "query": "Pokemon Stormfront Pichu 45 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Stormfront%20Pichu%2045%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4442256",
+      "product_name": "Ice Rider Calyrex V [Snowflake Stamp] #45",
+      "console_name": "Pokemon Chilling Reign",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Ice Rider Calyrex V"
+      }
+    },
+    {
+      "query": "Pokemon Stormfront Pichu 45 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Stormfront%20Pichu%2045%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5768757",
+      "product_name": "Pichu [Holo] #172",
+      "console_name": "Pokemon 2001 Topps Johto Champions",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:172"
+      }
+    },
+    {
+      "query": "Pokemon Stormfront Pichu 45 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Stormfront%20Pichu%2045%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4557428",
+      "product_name": "Pichu [Nintendo World 2005] #59",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:59"
+      }
+    },
+    {
+      "query": "Pokemon Stormfront Pichu 45 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Stormfront%20Pichu%2045%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4928114",
+      "product_name": "Pichu [Prerelease] #28",
+      "console_name": "Pokemon HeartGold & SoulSilver",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:28"
+      }
+    },
+    {
+      "query": "Pokemon Stormfront Pichu 45 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Stormfront%20Pichu%2045%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "925755",
+      "product_name": "Pichu [Reverse Holo] #25",
+      "console_name": "Pokemon Arceus",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:25"
+      }
+    },
+    {
+      "query": "Pokemon Stormfront Pichu 45 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Stormfront%20Pichu%2045%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "925258",
+      "product_name": "Pichu #45",
+      "console_name": "Pokemon Stormfront",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon Stormfront Pichu 45 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Stormfront%20Pichu%2045%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4384631",
+      "product_name": "Pichu [Platinum] #45",
+      "console_name": "Pokemon Stormfront",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Platinum"
+      }
+    },
+    {
+      "query": "Pokemon Stormfront Pichu 45 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Stormfront%20Pichu%2045%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "925344",
+      "product_name": "Pichu [Reverse Holo] #45",
+      "console_name": "Pokemon Stormfront",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Reverse Holo"
+      }
+    },
+    {
+      "query": "Pokemon Stormfront Pichu 45 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Stormfront%20Pichu%2045%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3459426",
+      "product_name": "Pichu #23",
+      "console_name": "Pokemon Japanese Intense Fight in the Destroyed Sky",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:23"
+      }
+    },
+    {
+      "query": "Pokemon Stormfront Pichu 45 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Stormfront%20Pichu%2045%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8749256",
+      "product_name": "Pichu #45/P",
+      "console_name": "Pokemon Japanese Promo",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon Japanese Promo"
+      }
+    },
+    {
+      "query": "Pokemon Stormfront Pichu 45 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Stormfront%20Pichu%2045%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10802079",
+      "product_name": "Pichu [1st Edition] #23",
+      "console_name": "Pokemon Japanese Intense Fight in the Destroyed Sky",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:23"
+      }
+    },
+    {
+      "query": "Pokemon Stormfront Pichu 45 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Stormfront%20Pichu%2045%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7322447",
+      "product_name": "Vanilluxe [Snowflake Stamp] #45",
+      "console_name": "Pokemon Paradox Rift",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Vanilluxe"
+      }
+    },
+    {
+      "query": "Pokemon Stormfront Pichu 45 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Stormfront%20Pichu%2045%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3459448",
+      "product_name": "Drifblim #45",
+      "console_name": "Pokemon Japanese Intense Fight in the Destroyed Sky",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Drifblim"
+      }
+    },
+    {
+      "query": "Pokemon Stormfront Pichu 45 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Stormfront%20Pichu%2045%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "762728",
+      "product_name": "Pichu Bros. #16",
+      "console_name": "Pokemon POP Series 3",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:16"
+      }
+    },
+    {
+      "query": "Pokemon Stormfront Pichu 45 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Stormfront%20Pichu%2045%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9432779",
+      "product_name": "Ethan's Pichu #71",
+      "console_name": "Pokemon Destined Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:71"
+      }
+    },
+    {
+      "query": "Pokemon Stormfront Pichu 45 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Stormfront%20Pichu%2045%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8867726",
+      "product_name": "Ethan's Pichu #36",
+      "console_name": "Pokemon Japanese Heat Wave Arena",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:36"
+      }
+    },
+    {
+      "query": "Pokemon Stormfront Pichu 45 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Stormfront%20Pichu%2045%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7136200",
+      "product_name": "Pichu M #10",
+      "console_name": "Pokemon Japanese Movie Commemoration Random",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:10"
+      }
+    },
+    {
+      "query": "Pokemon Stormfront Pichu 45 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Stormfront%20Pichu%2045%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8270968",
+      "product_name": "Pichu M #11",
+      "console_name": "Pokemon Japanese Movie Commemoration Random",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:11"
+      }
+    },
+    {
+      "query": "Pokemon Stormfront Pichu 45 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Stormfront%20Pichu%2045%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11533184",
+      "product_name": "Ethan's Pichu #36",
+      "console_name": "Pokemon Korean Heat Wave Arena",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:36"
+      }
+    },
+    {
+      "query": "Pokemon Stormfront Pichu 45 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Stormfront%20Pichu%2045%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11462580",
+      "product_name": "Ethan's Pichu #241",
+      "console_name": "Pokemon Japanese Start Deck 100 Battle Collection",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:241"
+      }
+    },
+    {
+      "query": "Pokemon Stormfront Pichu 45 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Stormfront%20Pichu%2045%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4442256",
+      "product_name": "Ice Rider Calyrex V [Snowflake Stamp] #45",
+      "console_name": "Pokemon Chilling Reign",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Ice Rider Calyrex V"
+      }
+    },
+    {
+      "query": "Pokemon Stormfront Pichu 45 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Stormfront%20Pichu%2045%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5768757",
+      "product_name": "Pichu [Holo] #172",
+      "console_name": "Pokemon 2001 Topps Johto Champions",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:172"
+      }
+    },
+    {
+      "query": "Pokemon Stormfront Pichu 45 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Stormfront%20Pichu%2045%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4557428",
+      "product_name": "Pichu [Nintendo World 2005] #59",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:59"
+      }
+    },
+    {
+      "query": "Pokemon Stormfront Pichu 45 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Stormfront%20Pichu%2045%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4928114",
+      "product_name": "Pichu [Prerelease] #28",
+      "console_name": "Pokemon HeartGold & SoulSilver",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:28"
+      }
+    },
+    {
+      "query": "Pokemon Stormfront Pichu 45 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Stormfront%20Pichu%2045%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "925755",
+      "product_name": "Pichu [Reverse Holo] #25",
+      "console_name": "Pokemon Arceus",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:25"
+      }
+    }
+  ],
+  "source_lane": "pricecharting_api"
+}

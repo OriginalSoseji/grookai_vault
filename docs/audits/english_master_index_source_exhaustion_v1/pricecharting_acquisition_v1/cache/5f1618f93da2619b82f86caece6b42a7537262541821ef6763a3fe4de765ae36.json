@@ -1,0 +1,549 @@
+{
+  "status": "api_no_validated_match",
+  "fact": {
+    "gap_type": "finish_second_source_needed",
+    "fact_type": "printing_finish",
+    "set_key": "me01",
+    "set_name": "Mega Evolution",
+    "card_number": "22",
+    "card_name": "Mega Camerupt ex",
+    "finish_key": "stamped",
+    "status": "human_source_verified",
+    "sources": [
+      "thepricedex_price_list"
+    ],
+    "source_authorities": [
+      "thepricedex.com"
+    ],
+    "source_kinds": [
+      "marketplace_checklist"
+    ],
+    "evidence_urls": [
+      "https://www.thepricedex.com/set/me1/mega-evolution/price-list"
+    ],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "attempts": [
+    {
+      "query": "Pokemon Mega Evolution Mega Camerupt ex 22 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Mega%20Evolution%20Mega%20Camerupt%20ex%2022%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10616131",
+      "product_name": "Mega Camerupt ex #22",
+      "console_name": "Pokemon Mega Evolution",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon Mega Evolution Mega Camerupt ex 22 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Mega%20Evolution%20Mega%20Camerupt%20ex%2022%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12189301",
+      "product_name": "Mega Camerupt ex [Prize Pack] #22",
+      "console_name": "Pokemon Mega Evolution",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Prize Pack"
+      }
+    },
+    {
+      "query": "Pokemon Mega Evolution Mega Camerupt ex 22 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Mega%20Evolution%20Mega%20Camerupt%20ex%2022%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10669948",
+      "product_name": "Mega Camerupt Ex #156",
+      "console_name": "Pokemon Mega Evolution",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:156"
+      }
+    },
+    {
+      "query": "Pokemon Mega Evolution Mega Camerupt ex 22 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Mega%20Evolution%20Mega%20Camerupt%20ex%2022%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10085219",
+      "product_name": "Mega Camerupt ex #13",
+      "console_name": "Pokemon Japanese Mega Brave",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:13"
+      }
+    },
+    {
+      "query": "Pokemon Mega Evolution Mega Camerupt ex 22 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Mega%20Evolution%20Mega%20Camerupt%20ex%2022%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10117518",
+      "product_name": "Mega Camerupt Ex #77",
+      "console_name": "Pokemon Japanese Mega Brave",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:77"
+      }
+    },
+    {
+      "query": "Pokemon Mega Evolution Mega Camerupt ex 22 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Mega%20Evolution%20Mega%20Camerupt%20ex%2022%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12986549",
+      "product_name": "Mega Camerupt ex #13",
+      "console_name": "Pokemon Korean Mega Brave",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:13"
+      }
+    },
+    {
+      "query": "Pokemon Mega Evolution Mega Camerupt ex 22 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Mega%20Evolution%20Mega%20Camerupt%20ex%2022%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12810432",
+      "product_name": "Mega Camerupt Ex #77",
+      "console_name": "Pokemon Korean Mega Brave",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:77"
+      }
+    },
+    {
+      "query": "Pokemon Mega Evolution Mega Camerupt ex 22 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Mega%20Evolution%20Mega%20Camerupt%20ex%2022%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11326125",
+      "product_name": "Camerupt [Ball] #23",
+      "console_name": "Pokemon Japanese Mega Dream ex",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:23"
+      }
+    },
+    {
+      "query": "Pokemon Mega Evolution Mega Camerupt ex 22 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Mega%20Evolution%20Mega%20Camerupt%20ex%2022%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "13014796",
+      "product_name": "Camerupt [Ball] #23",
+      "console_name": "Pokemon Korean Mega Dream ex",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:23"
+      }
+    },
+    {
+      "query": "Pokemon Mega Evolution Mega Camerupt ex 22 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Mega%20Evolution%20Mega%20Camerupt%20ex%2022%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11302390",
+      "product_name": "Camerupt #23",
+      "console_name": "Pokemon Japanese Mega Dream ex",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:23"
+      }
+    },
+    {
+      "query": "Pokemon Mega Evolution Mega Camerupt ex 22 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Mega%20Evolution%20Mega%20Camerupt%20ex%2022%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11325824",
+      "product_name": "Camerupt [Energy] #23",
+      "console_name": "Pokemon Japanese Mega Dream ex",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:23"
+      }
+    },
+    {
+      "query": "Pokemon Mega Evolution Mega Camerupt ex 22 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Mega%20Evolution%20Mega%20Camerupt%20ex%2022%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "13014799",
+      "product_name": "Camerupt [Energy] #23",
+      "console_name": "Pokemon Korean Mega Dream ex",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:23"
+      }
+    },
+    {
+      "query": "Pokemon Mega Evolution Mega Camerupt ex 22 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Mega%20Evolution%20Mega%20Camerupt%20ex%2022%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "13025577",
+      "product_name": "Mega Greninja ex #22",
+      "console_name": "Pokemon Chaos Rising",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Mega Greninja ex"
+      }
+    },
+    {
+      "query": "Pokemon Mega Evolution Mega Camerupt ex 22 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Mega%20Evolution%20Mega%20Camerupt%20ex%2022%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "13014794",
+      "product_name": "Camerupt #23",
+      "console_name": "Pokemon Korean Mega Dream ex",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:23"
+      }
+    },
+    {
+      "query": "Pokemon Mega Evolution Mega Camerupt ex 22 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Mega%20Evolution%20Mega%20Camerupt%20ex%2022%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10693500",
+      "product_name": "Xerneas [Stamped] #64",
+      "console_name": "Pokemon Mega Evolution",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:64"
+      }
+    },
+    {
+      "query": "Pokemon Mega Evolution Mega Camerupt ex 22 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Mega%20Evolution%20Mega%20Camerupt%20ex%2022%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "844670",
+      "product_name": "Mega Camerupt EX #XY198a",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:XY198a"
+      }
+    },
+    {
+      "query": "Pokemon Mega Evolution Mega Camerupt ex 22 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Mega%20Evolution%20Mega%20Camerupt%20ex%2022%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "844669",
+      "product_name": "Mega Camerupt EX #XY198",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:XY198"
+      }
+    },
+    {
+      "query": "Pokemon Mega Evolution Mega Camerupt ex 22 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Mega%20Evolution%20Mega%20Camerupt%20ex%2022%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10616206",
+      "product_name": "Mega Latias ex #100",
+      "console_name": "Pokemon Mega Evolution",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:100"
+      }
+    },
+    {
+      "query": "Pokemon Mega Evolution Mega Camerupt ex 22 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Mega%20Evolution%20Mega%20Camerupt%20ex%2022%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10616256",
+      "product_name": "Mega Latias ex #163",
+      "console_name": "Pokemon Mega Evolution",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:163"
+      }
+    },
+    {
+      "query": "Pokemon Mega Evolution Mega Camerupt ex 22 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Mega%20Evolution%20Mega%20Camerupt%20ex%2022%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10616266",
+      "product_name": "Mega Latias ex #181",
+      "console_name": "Pokemon Mega Evolution",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:181"
+      }
+    },
+    {
+      "query": "Pokemon Mega Evolution Mega Camerupt ex 22 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Mega%20Evolution%20Mega%20Camerupt%20ex%2022%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10616131",
+      "product_name": "Mega Camerupt ex #22",
+      "console_name": "Pokemon Mega Evolution",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon Mega Evolution Mega Camerupt ex 22 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Mega%20Evolution%20Mega%20Camerupt%20ex%2022%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12189301",
+      "product_name": "Mega Camerupt ex [Prize Pack] #22",
+      "console_name": "Pokemon Mega Evolution",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Prize Pack"
+      }
+    },
+    {
+      "query": "Pokemon Mega Evolution Mega Camerupt ex 22 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Mega%20Evolution%20Mega%20Camerupt%20ex%2022%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10669948",
+      "product_name": "Mega Camerupt Ex #156",
+      "console_name": "Pokemon Mega Evolution",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:156"
+      }
+    },
+    {
+      "query": "Pokemon Mega Evolution Mega Camerupt ex 22 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Mega%20Evolution%20Mega%20Camerupt%20ex%2022%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10085219",
+      "product_name": "Mega Camerupt ex #13",
+      "console_name": "Pokemon Japanese Mega Brave",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:13"
+      }
+    },
+    {
+      "query": "Pokemon Mega Evolution Mega Camerupt ex 22 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Mega%20Evolution%20Mega%20Camerupt%20ex%2022%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10117518",
+      "product_name": "Mega Camerupt Ex #77",
+      "console_name": "Pokemon Japanese Mega Brave",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:77"
+      }
+    },
+    {
+      "query": "Pokemon Mega Evolution Mega Camerupt ex 22 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Mega%20Evolution%20Mega%20Camerupt%20ex%2022%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12986549",
+      "product_name": "Mega Camerupt ex #13",
+      "console_name": "Pokemon Korean Mega Brave",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:13"
+      }
+    },
+    {
+      "query": "Pokemon Mega Evolution Mega Camerupt ex 22 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Mega%20Evolution%20Mega%20Camerupt%20ex%2022%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12810432",
+      "product_name": "Mega Camerupt Ex #77",
+      "console_name": "Pokemon Korean Mega Brave",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:77"
+      }
+    },
+    {
+      "query": "Pokemon Mega Evolution Mega Camerupt ex 22 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Mega%20Evolution%20Mega%20Camerupt%20ex%2022%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11326125",
+      "product_name": "Camerupt [Ball] #23",
+      "console_name": "Pokemon Japanese Mega Dream ex",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:23"
+      }
+    },
+    {
+      "query": "Pokemon Mega Evolution Mega Camerupt ex 22 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Mega%20Evolution%20Mega%20Camerupt%20ex%2022%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "13014796",
+      "product_name": "Camerupt [Ball] #23",
+      "console_name": "Pokemon Korean Mega Dream ex",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:23"
+      }
+    },
+    {
+      "query": "Pokemon Mega Evolution Mega Camerupt ex 22 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Mega%20Evolution%20Mega%20Camerupt%20ex%2022%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11302390",
+      "product_name": "Camerupt #23",
+      "console_name": "Pokemon Japanese Mega Dream ex",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:23"
+      }
+    },
+    {
+      "query": "Pokemon Mega Evolution Mega Camerupt ex 22 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Mega%20Evolution%20Mega%20Camerupt%20ex%2022%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11325824",
+      "product_name": "Camerupt [Energy] #23",
+      "console_name": "Pokemon Japanese Mega Dream ex",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:23"
+      }
+    },
+    {
+      "query": "Pokemon Mega Evolution Mega Camerupt ex 22 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Mega%20Evolution%20Mega%20Camerupt%20ex%2022%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "13014799",
+      "product_name": "Camerupt [Energy] #23",
+      "console_name": "Pokemon Korean Mega Dream ex",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:23"
+      }
+    },
+    {
+      "query": "Pokemon Mega Evolution Mega Camerupt ex 22 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Mega%20Evolution%20Mega%20Camerupt%20ex%2022%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "13025577",
+      "product_name": "Mega Greninja ex #22",
+      "console_name": "Pokemon Chaos Rising",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Mega Greninja ex"
+      }
+    },
+    {
+      "query": "Pokemon Mega Evolution Mega Camerupt ex 22 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Mega%20Evolution%20Mega%20Camerupt%20ex%2022%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "13014794",
+      "product_name": "Camerupt #23",
+      "console_name": "Pokemon Korean Mega Dream ex",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:23"
+      }
+    },
+    {
+      "query": "Pokemon Mega Evolution Mega Camerupt ex 22 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Mega%20Evolution%20Mega%20Camerupt%20ex%2022%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10693500",
+      "product_name": "Xerneas [Stamped] #64",
+      "console_name": "Pokemon Mega Evolution",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:64"
+      }
+    },
+    {
+      "query": "Pokemon Mega Evolution Mega Camerupt ex 22 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Mega%20Evolution%20Mega%20Camerupt%20ex%2022%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "844670",
+      "product_name": "Mega Camerupt EX #XY198a",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:XY198a"
+      }
+    },
+    {
+      "query": "Pokemon Mega Evolution Mega Camerupt ex 22 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Mega%20Evolution%20Mega%20Camerupt%20ex%2022%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "844669",
+      "product_name": "Mega Camerupt EX #XY198",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:XY198"
+      }
+    },
+    {
+      "query": "Pokemon Mega Evolution Mega Camerupt ex 22 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Mega%20Evolution%20Mega%20Camerupt%20ex%2022%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10616206",
+      "product_name": "Mega Latias ex #100",
+      "console_name": "Pokemon Mega Evolution",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:100"
+      }
+    },
+    {
+      "query": "Pokemon Mega Evolution Mega Camerupt ex 22 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Mega%20Evolution%20Mega%20Camerupt%20ex%2022%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10616256",
+      "product_name": "Mega Latias ex #163",
+      "console_name": "Pokemon Mega Evolution",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:163"
+      }
+    },
+    {
+      "query": "Pokemon Mega Evolution Mega Camerupt ex 22 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Mega%20Evolution%20Mega%20Camerupt%20ex%2022%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10616266",
+      "product_name": "Mega Latias ex #181",
+      "console_name": "Pokemon Mega Evolution",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:181"
+      }
+    }
+  ],
+  "source_lane": "pricecharting_api"
+}

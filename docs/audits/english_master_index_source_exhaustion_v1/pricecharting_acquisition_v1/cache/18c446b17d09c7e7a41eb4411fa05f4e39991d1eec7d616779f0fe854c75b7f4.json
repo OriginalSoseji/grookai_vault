@@ -1,0 +1,50 @@
+{
+  "status": "no_validated_match",
+  "fact": {
+    "gap_type": "finish_second_source_needed",
+    "fact_type": "printing_finish",
+    "set_key": "smp",
+    "set_name": "SM Black Star Promos",
+    "card_number": "SM96",
+    "card_name": "Heatran",
+    "finish_key": "stamped",
+    "status": "human_source_verified",
+    "sources": [
+      "thepricedex_price_list"
+    ],
+    "source_authorities": [
+      "thepricedex.com"
+    ],
+    "source_kinds": [
+      "marketplace_checklist"
+    ],
+    "evidence_urls": [],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "attempts": [
+    {
+      "query": "Pokemon SM Black Star Promos Heatran SM96 stamped",
+      "url": "https://www.pricecharting.com/search-products?q=Pokemon%20SM%20Black%20Star%20Promos%20Heatran%20SM96%20stamped&type=prices",
+      "parsed": {
+        "title": "Pokemon SM Black Star Promos Heatran SM96 Stamped Prices | Pokemon SM Black Star Promos Heatran SM96 Stamped List",
+        "source_url": "https://www.pricecharting.com/search-products?q=pokemon+sm+black+star+promos+heatran+sm96+stamped&type=prices"
+      },
+      "validation": {
+        "ok": false,
+        "reason": "title_pattern_not_supported"
+      }
+    },
+    {
+      "query": "Pokemon SM Black Star Promos Heatran SM96 stamp",
+      "url": "https://www.pricecharting.com/search-products?q=Pokemon%20SM%20Black%20Star%20Promos%20Heatran%20SM96%20stamp&type=prices",
+      "parsed": {
+        "title": "Pokemon SM Black Star Promos Heatran SM96 Stamp Prices | Pokemon SM Black Star Promos Heatran SM96 Stamp List",
+        "source_url": "https://www.pricecharting.com/search-products?q=pokemon+sm+black+star+promos+heatran+sm96+stamp&type=prices"
+      },
+      "validation": {
+        "ok": false,
+        "reason": "title_pattern_not_supported"
+      }
+    }
+  ]
+}

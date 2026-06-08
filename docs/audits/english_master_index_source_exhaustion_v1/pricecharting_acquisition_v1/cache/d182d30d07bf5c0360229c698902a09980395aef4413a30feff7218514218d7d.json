@@ -1,0 +1,43 @@
+{
+  "status": "no_validated_match",
+  "fact": {
+    "gap_type": "finish_second_source_needed",
+    "fact_type": "printing_finish",
+    "set_key": "me4",
+    "set_name": "Chaos Rising",
+    "card_number": "122",
+    "card_name": "Mega Greninja ex",
+    "finish_key": "holo",
+    "status": "human_source_verified",
+    "sources": [
+      "thepricedex_price_list"
+    ],
+    "source_authorities": [
+      "thepricedex.com"
+    ],
+    "source_kinds": [
+      "marketplace_checklist"
+    ],
+    "evidence_urls": [],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "attempts": [
+    {
+      "query": "Pokemon Chaos Rising Mega Greninja ex 122 holo",
+      "url": "https://www.pricecharting.com/search-products?q=Pokemon%20Chaos%20Rising%20Mega%20Greninja%20ex%20122%20holo&type=prices",
+      "parsed": {
+        "title": "Pokemon Chaos Rising Mega Greninja Ex 122 Holo Prices | Pokemon Chaos Rising Mega Greninja Ex 122 Holo List",
+        "source_url": "https://www.pricecharting.com/search-products?q=pokemon+chaos+rising+mega+greninja+ex+122+holo&type=prices"
+      },
+      "validation": {
+        "ok": false,
+        "reason": "title_pattern_not_supported"
+      }
+    },
+    {
+      "query": "Pokemon Chaos Rising Mega Greninja ex 122 holofoil",
+      "url": "https://www.pricecharting.com/search-products?q=Pokemon%20Chaos%20Rising%20Mega%20Greninja%20ex%20122%20holofoil&type=prices",
+      "error": "Fetch failed 403 Forbidden: https://www.pricecharting.com/search-products?q=Pokemon%20Chaos%20Rising%20Mega%20Greninja%20ex%20122%20holofoil&type=prices"
+    }
+  ]
+}

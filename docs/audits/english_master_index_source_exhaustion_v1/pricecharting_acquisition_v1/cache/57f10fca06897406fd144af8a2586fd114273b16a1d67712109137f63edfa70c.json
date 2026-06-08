@@ -1,0 +1,549 @@
+{
+  "status": "api_no_validated_match",
+  "fact": {
+    "gap_type": "finish_second_source_needed",
+    "fact_type": "printing_finish",
+    "set_key": "sm115",
+    "set_name": "Hidden Fates",
+    "card_number": "49",
+    "card_name": "Eevee",
+    "finish_key": "stamped",
+    "status": "human_source_verified",
+    "sources": [
+      "thepricedex_price_list"
+    ],
+    "source_authorities": [
+      "thepricedex.com"
+    ],
+    "source_kinds": [
+      "marketplace_checklist"
+    ],
+    "evidence_urls": [
+      "https://www.thepricedex.com/set/sm115/hidden-fates/price-list"
+    ],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "attempts": [
+    {
+      "query": "Pokemon Hidden Fates Eevee 49 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Hidden%20Fates%20Eevee%2049%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "964069",
+      "product_name": "Eevee #49",
+      "console_name": "Pokemon Hidden Fates",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon Hidden Fates Eevee 49 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Hidden%20Fates%20Eevee%2049%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "964223",
+      "product_name": "Eevee [Reverse Holo] #49",
+      "console_name": "Pokemon Hidden Fates",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Reverse Holo"
+      }
+    },
+    {
+      "query": "Pokemon Hidden Fates Eevee 49 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Hidden%20Fates%20Eevee%2049%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "964068",
+      "product_name": "Eevee #48",
+      "console_name": "Pokemon Hidden Fates",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:48"
+      }
+    },
+    {
+      "query": "Pokemon Hidden Fates Eevee 49 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Hidden%20Fates%20Eevee%2049%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "964125",
+      "product_name": "Eevee #SV41",
+      "console_name": "Pokemon Hidden Fates",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:SV41"
+      }
+    },
+    {
+      "query": "Pokemon Hidden Fates Eevee 49 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Hidden%20Fates%20Eevee%2049%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "964222",
+      "product_name": "Eevee [Reverse Holo] #48",
+      "console_name": "Pokemon Hidden Fates",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:48"
+      }
+    },
+    {
+      "query": "Pokemon Hidden Fates Eevee 49 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Hidden%20Fates%20Eevee%2049%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "1341529",
+      "product_name": "Eevee #52",
+      "console_name": "Pokemon Shining Fates",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:52"
+      }
+    },
+    {
+      "query": "Pokemon Hidden Fates Eevee 49 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Hidden%20Fates%20Eevee%2049%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10021272",
+      "product_name": "Eevee [Gym Stamp] #143",
+      "console_name": "Pokemon Surging Sparks",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:143"
+      }
+    },
+    {
+      "query": "Pokemon Hidden Fates Eevee 49 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Hidden%20Fates%20Eevee%2049%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10214835",
+      "product_name": "Eevee V [Stamped] #SWSH065",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:SWSH065"
+      }
+    },
+    {
+      "query": "Pokemon Hidden Fates Eevee 49 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Hidden%20Fates%20Eevee%2049%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4786026",
+      "product_name": "Eevee [Jr Stamp Rally] #11",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:11"
+      }
+    },
+    {
+      "query": "Pokemon Hidden Fates Eevee 49 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Hidden%20Fates%20Eevee%2049%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "1341714",
+      "product_name": "Eevee [Reverse Holo] #52",
+      "console_name": "Pokemon Shining Fates",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:52"
+      }
+    },
+    {
+      "query": "Pokemon Hidden Fates Eevee 49 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Hidden%20Fates%20Eevee%2049%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5419572",
+      "product_name": "Eevee [Stamped] #62",
+      "console_name": "Pokemon Majestic Dawn",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:62"
+      }
+    },
+    {
+      "query": "Pokemon Hidden Fates Eevee 49 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Hidden%20Fates%20Eevee%2049%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9677762",
+      "product_name": "Eevee [Stamped] #111",
+      "console_name": "Pokemon Chinese Gem Pack 2",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:111"
+      }
+    },
+    {
+      "query": "Pokemon Hidden Fates Eevee 49 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Hidden%20Fates%20Eevee%2049%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9677763",
+      "product_name": "Eevee [Stamped] #112",
+      "console_name": "Pokemon Chinese Gem Pack 2",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:112"
+      }
+    },
+    {
+      "query": "Pokemon Hidden Fates Eevee 49 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Hidden%20Fates%20Eevee%2049%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8576523",
+      "product_name": "Eevee Ex [Stamped] #75",
+      "console_name": "Pokemon Prismatic Evolutions",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:75"
+      }
+    },
+    {
+      "query": "Pokemon Hidden Fates Eevee 49 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Hidden%20Fates%20Eevee%2049%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5769249",
+      "product_name": "Galarian Obstagoon [No Eevee Stamp] #SWSH193",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:SWSH193"
+      }
+    },
+    {
+      "query": "Pokemon Hidden Fates Eevee 49 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Hidden%20Fates%20Eevee%2049%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "964052",
+      "product_name": "Mew #32",
+      "console_name": "Pokemon Hidden Fates",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:32"
+      }
+    },
+    {
+      "query": "Pokemon Hidden Fates Eevee 49 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Hidden%20Fates%20Eevee%2049%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8270953",
+      "product_name": "Eevee [Gym Stamped] #31/SV-P",
+      "console_name": "Pokemon Japanese Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:31/SV-P"
+      }
+    },
+    {
+      "query": "Pokemon Hidden Fates Eevee 49 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Hidden%20Fates%20Eevee%2049%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "964050",
+      "product_name": "Jynx #30",
+      "console_name": "Pokemon Hidden Fates",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:30"
+      }
+    },
+    {
+      "query": "Pokemon Hidden Fates Eevee 49 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Hidden%20Fates%20Eevee%2049%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "964174",
+      "product_name": "Lady #SV86",
+      "console_name": "Pokemon Hidden Fates",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:SV86"
+      }
+    },
+    {
+      "query": "Pokemon Hidden Fates Eevee 49 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Hidden%20Fates%20Eevee%2049%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4928289",
+      "product_name": "Eevee #49",
+      "console_name": "Pokemon 2020 Battle Academy",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon 2020 Battle Academy"
+      }
+    },
+    {
+      "query": "Pokemon Hidden Fates Eevee 49 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Hidden%20Fates%20Eevee%2049%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "964069",
+      "product_name": "Eevee #49",
+      "console_name": "Pokemon Hidden Fates",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon Hidden Fates Eevee 49 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Hidden%20Fates%20Eevee%2049%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "964223",
+      "product_name": "Eevee [Reverse Holo] #49",
+      "console_name": "Pokemon Hidden Fates",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Reverse Holo"
+      }
+    },
+    {
+      "query": "Pokemon Hidden Fates Eevee 49 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Hidden%20Fates%20Eevee%2049%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "964068",
+      "product_name": "Eevee #48",
+      "console_name": "Pokemon Hidden Fates",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:48"
+      }
+    },
+    {
+      "query": "Pokemon Hidden Fates Eevee 49 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Hidden%20Fates%20Eevee%2049%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "964125",
+      "product_name": "Eevee #SV41",
+      "console_name": "Pokemon Hidden Fates",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:SV41"
+      }
+    },
+    {
+      "query": "Pokemon Hidden Fates Eevee 49 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Hidden%20Fates%20Eevee%2049%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "964222",
+      "product_name": "Eevee [Reverse Holo] #48",
+      "console_name": "Pokemon Hidden Fates",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:48"
+      }
+    },
+    {
+      "query": "Pokemon Hidden Fates Eevee 49 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Hidden%20Fates%20Eevee%2049%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "1341529",
+      "product_name": "Eevee #52",
+      "console_name": "Pokemon Shining Fates",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:52"
+      }
+    },
+    {
+      "query": "Pokemon Hidden Fates Eevee 49 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Hidden%20Fates%20Eevee%2049%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10021272",
+      "product_name": "Eevee [Gym Stamp] #143",
+      "console_name": "Pokemon Surging Sparks",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:143"
+      }
+    },
+    {
+      "query": "Pokemon Hidden Fates Eevee 49 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Hidden%20Fates%20Eevee%2049%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10214835",
+      "product_name": "Eevee V [Stamped] #SWSH065",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:SWSH065"
+      }
+    },
+    {
+      "query": "Pokemon Hidden Fates Eevee 49 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Hidden%20Fates%20Eevee%2049%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4786026",
+      "product_name": "Eevee [Jr Stamp Rally] #11",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:11"
+      }
+    },
+    {
+      "query": "Pokemon Hidden Fates Eevee 49 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Hidden%20Fates%20Eevee%2049%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "1341714",
+      "product_name": "Eevee [Reverse Holo] #52",
+      "console_name": "Pokemon Shining Fates",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:52"
+      }
+    },
+    {
+      "query": "Pokemon Hidden Fates Eevee 49 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Hidden%20Fates%20Eevee%2049%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5419572",
+      "product_name": "Eevee [Stamped] #62",
+      "console_name": "Pokemon Majestic Dawn",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:62"
+      }
+    },
+    {
+      "query": "Pokemon Hidden Fates Eevee 49 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Hidden%20Fates%20Eevee%2049%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9677762",
+      "product_name": "Eevee [Stamped] #111",
+      "console_name": "Pokemon Chinese Gem Pack 2",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:111"
+      }
+    },
+    {
+      "query": "Pokemon Hidden Fates Eevee 49 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Hidden%20Fates%20Eevee%2049%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9677763",
+      "product_name": "Eevee [Stamped] #112",
+      "console_name": "Pokemon Chinese Gem Pack 2",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:112"
+      }
+    },
+    {
+      "query": "Pokemon Hidden Fates Eevee 49 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Hidden%20Fates%20Eevee%2049%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8576523",
+      "product_name": "Eevee Ex [Stamped] #75",
+      "console_name": "Pokemon Prismatic Evolutions",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:75"
+      }
+    },
+    {
+      "query": "Pokemon Hidden Fates Eevee 49 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Hidden%20Fates%20Eevee%2049%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5769249",
+      "product_name": "Galarian Obstagoon [No Eevee Stamp] #SWSH193",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:SWSH193"
+      }
+    },
+    {
+      "query": "Pokemon Hidden Fates Eevee 49 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Hidden%20Fates%20Eevee%2049%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "964052",
+      "product_name": "Mew #32",
+      "console_name": "Pokemon Hidden Fates",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:32"
+      }
+    },
+    {
+      "query": "Pokemon Hidden Fates Eevee 49 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Hidden%20Fates%20Eevee%2049%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8270953",
+      "product_name": "Eevee [Gym Stamped] #31/SV-P",
+      "console_name": "Pokemon Japanese Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:31/SV-P"
+      }
+    },
+    {
+      "query": "Pokemon Hidden Fates Eevee 49 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Hidden%20Fates%20Eevee%2049%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "964050",
+      "product_name": "Jynx #30",
+      "console_name": "Pokemon Hidden Fates",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:30"
+      }
+    },
+    {
+      "query": "Pokemon Hidden Fates Eevee 49 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Hidden%20Fates%20Eevee%2049%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "964174",
+      "product_name": "Lady #SV86",
+      "console_name": "Pokemon Hidden Fates",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:SV86"
+      }
+    },
+    {
+      "query": "Pokemon Hidden Fates Eevee 49 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Hidden%20Fates%20Eevee%2049%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4928289",
+      "product_name": "Eevee #49",
+      "console_name": "Pokemon 2020 Battle Academy",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon 2020 Battle Academy"
+      }
+    }
+  ],
+  "source_lane": "pricecharting_api"
+}

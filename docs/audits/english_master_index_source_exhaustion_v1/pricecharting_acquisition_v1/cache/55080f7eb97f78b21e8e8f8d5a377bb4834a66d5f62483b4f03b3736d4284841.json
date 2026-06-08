@@ -1,0 +1,43 @@
+{
+  "status": "no_validated_match",
+  "fact": {
+    "gap_type": "finish_second_source_needed",
+    "fact_type": "printing_finish",
+    "set_key": "col1",
+    "set_name": "Call of Legends",
+    "card_number": "SL9",
+    "card_name": "Raikou",
+    "finish_key": "holo",
+    "status": "human_source_verified",
+    "sources": [
+      "thepricedex_price_list"
+    ],
+    "source_authorities": [
+      "thepricedex.com"
+    ],
+    "source_kinds": [
+      "marketplace_checklist"
+    ],
+    "evidence_urls": [],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "attempts": [
+    {
+      "query": "Pokemon Call of Legends Raikou SL9 holo",
+      "url": "https://www.pricecharting.com/search-products?q=Pokemon%20Call%20of%20Legends%20Raikou%20SL9%20holo&type=prices",
+      "parsed": {
+        "title": "Pokemon Call Of Legends Raikou SL9 Holo Prices | Pokemon Call Of Legends Raikou SL9 Holo List",
+        "source_url": "https://www.pricecharting.com/search-products?q=pokemon+call+of+legends+raikou+sl9+holo&type=prices"
+      },
+      "validation": {
+        "ok": false,
+        "reason": "title_pattern_not_supported"
+      }
+    },
+    {
+      "query": "Pokemon Call of Legends Raikou SL9 holofoil",
+      "url": "https://www.pricecharting.com/search-products?q=Pokemon%20Call%20of%20Legends%20Raikou%20SL9%20holofoil&type=prices",
+      "error": "Fetch failed 403 Forbidden: https://www.pricecharting.com/search-products?q=Pokemon%20Call%20of%20Legends%20Raikou%20SL9%20holofoil&type=prices"
+    }
+  ]
+}

@@ -1,0 +1,549 @@
+{
+  "status": "api_no_validated_match",
+  "fact": {
+    "gap_type": "finish_second_source_needed",
+    "fact_type": "printing_finish",
+    "set_key": "sv09",
+    "set_name": "Journey Together",
+    "card_number": "79",
+    "card_name": "Mamoswine ex",
+    "finish_key": "stamped",
+    "status": "human_source_verified",
+    "sources": [
+      "thepricedex_price_list"
+    ],
+    "source_authorities": [
+      "thepricedex.com"
+    ],
+    "source_kinds": [
+      "marketplace_checklist"
+    ],
+    "evidence_urls": [
+      "https://www.thepricedex.com/set/sv9/journey-together/price-list"
+    ],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "attempts": [
+    {
+      "query": "Pokemon Journey Together Mamoswine ex 79 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Journey%20Together%20Mamoswine%20ex%2079%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8871295",
+      "product_name": "Mamoswine ex #79",
+      "console_name": "Pokemon Journey Together",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon Journey Together Mamoswine ex 79 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Journey%20Together%20Mamoswine%20ex%2079%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10951935",
+      "product_name": "Mamoswine Ex [Prize Pack] #79",
+      "console_name": "Pokemon Journey Together",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Prize Pack"
+      }
+    },
+    {
+      "query": "Pokemon Journey Together Mamoswine ex 79 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Journey%20Together%20Mamoswine%20ex%2079%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8871322",
+      "product_name": "Mamoswine ex #174",
+      "console_name": "Pokemon Journey Together",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:174"
+      }
+    },
+    {
+      "query": "Pokemon Journey Together Mamoswine ex 79 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Journey%20Together%20Mamoswine%20ex%2079%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11266312",
+      "product_name": "Alcremie Ex [Stamped] #75",
+      "console_name": "Pokemon Journey Together",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:75"
+      }
+    },
+    {
+      "query": "Pokemon Journey Together Mamoswine ex 79 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Journey%20Together%20Mamoswine%20ex%2079%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11105548",
+      "product_name": "Salamence Ex [Stamped] #114",
+      "console_name": "Pokemon Journey Together",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:114"
+      }
+    },
+    {
+      "query": "Pokemon Journey Together Mamoswine ex 79 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Journey%20Together%20Mamoswine%20ex%2079%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11105547",
+      "product_name": "Reshiram Ex [Stamped] #30",
+      "console_name": "Pokemon Journey Together",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:30"
+      }
+    },
+    {
+      "query": "Pokemon Journey Together Mamoswine ex 79 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Journey%20Together%20Mamoswine%20ex%2079%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10025682",
+      "product_name": "Levincia [Gym Stamp] #150",
+      "console_name": "Pokemon Journey Together",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:150"
+      }
+    },
+    {
+      "query": "Pokemon Journey Together Mamoswine ex 79 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Journey%20Together%20Mamoswine%20ex%2079%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11266308",
+      "product_name": "Mimikyu [Stamped] #69",
+      "console_name": "Pokemon Journey Together",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:69"
+      }
+    },
+    {
+      "query": "Pokemon Journey Together Mamoswine ex 79 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Journey%20Together%20Mamoswine%20ex%2079%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9029005",
+      "product_name": "Hop's Dubwool [Stamped] #136",
+      "console_name": "Pokemon Journey Together",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:136"
+      }
+    },
+    {
+      "query": "Pokemon Journey Together Mamoswine ex 79 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Journey%20Together%20Mamoswine%20ex%2079%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8924046",
+      "product_name": "N's Reshiram [Stamped] #167",
+      "console_name": "Pokemon Journey Together",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:167"
+      }
+    },
+    {
+      "query": "Pokemon Journey Together Mamoswine ex 79 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Journey%20Together%20Mamoswine%20ex%2079%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8871207",
+      "product_name": "Veluza ex #43",
+      "console_name": "Pokemon Journey Together",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:43"
+      }
+    },
+    {
+      "query": "Pokemon Journey Together Mamoswine ex 79 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Journey%20Together%20Mamoswine%20ex%2079%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8871273",
+      "product_name": "Mimikyu ex #69",
+      "console_name": "Pokemon Journey Together",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:69"
+      }
+    },
+    {
+      "query": "Pokemon Journey Together Mamoswine ex 79 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Journey%20Together%20Mamoswine%20ex%2079%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8871179",
+      "product_name": "Reshiram ex #30",
+      "console_name": "Pokemon Journey Together",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:30"
+      }
+    },
+    {
+      "query": "Pokemon Journey Together Mamoswine ex 79 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Journey%20Together%20Mamoswine%20ex%2079%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8871286",
+      "product_name": "Alcremie ex #75",
+      "console_name": "Pokemon Journey Together",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:75"
+      }
+    },
+    {
+      "query": "Pokemon Journey Together Mamoswine ex 79 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Journey%20Together%20Mamoswine%20ex%2079%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8871163",
+      "product_name": "Blaziken ex #24",
+      "console_name": "Pokemon Journey Together",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:24"
+      }
+    },
+    {
+      "query": "Pokemon Journey Together Mamoswine ex 79 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Journey%20Together%20Mamoswine%20ex%2079%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8871083",
+      "product_name": "Amoonguss ex #11",
+      "console_name": "Pokemon Journey Together",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:11"
+      }
+    },
+    {
+      "query": "Pokemon Journey Together Mamoswine ex 79 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Journey%20Together%20Mamoswine%20ex%2079%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8871181",
+      "product_name": "Volcanion ex #31",
+      "console_name": "Pokemon Journey Together",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:31"
+      }
+    },
+    {
+      "query": "Pokemon Journey Together Mamoswine ex 79 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Journey%20Together%20Mamoswine%20ex%2079%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8871329",
+      "product_name": "Salamence ex #177",
+      "console_name": "Pokemon Journey Together",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:177"
+      }
+    },
+    {
+      "query": "Pokemon Journey Together Mamoswine ex 79 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Journey%20Together%20Mamoswine%20ex%2079%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8871334",
+      "product_name": "Volcanion ex #182",
+      "console_name": "Pokemon Journey Together",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:182"
+      }
+    },
+    {
+      "query": "Pokemon Journey Together Mamoswine ex 79 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Journey%20Together%20Mamoswine%20ex%2079%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8871342",
+      "product_name": "Salamence ex #187",
+      "console_name": "Pokemon Journey Together",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:187"
+      }
+    },
+    {
+      "query": "Pokemon Journey Together Mamoswine ex 79 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Journey%20Together%20Mamoswine%20ex%2079%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8871295",
+      "product_name": "Mamoswine ex #79",
+      "console_name": "Pokemon Journey Together",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon Journey Together Mamoswine ex 79 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Journey%20Together%20Mamoswine%20ex%2079%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10951935",
+      "product_name": "Mamoswine Ex [Prize Pack] #79",
+      "console_name": "Pokemon Journey Together",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Prize Pack"
+      }
+    },
+    {
+      "query": "Pokemon Journey Together Mamoswine ex 79 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Journey%20Together%20Mamoswine%20ex%2079%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8871322",
+      "product_name": "Mamoswine ex #174",
+      "console_name": "Pokemon Journey Together",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:174"
+      }
+    },
+    {
+      "query": "Pokemon Journey Together Mamoswine ex 79 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Journey%20Together%20Mamoswine%20ex%2079%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11266312",
+      "product_name": "Alcremie Ex [Stamped] #75",
+      "console_name": "Pokemon Journey Together",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:75"
+      }
+    },
+    {
+      "query": "Pokemon Journey Together Mamoswine ex 79 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Journey%20Together%20Mamoswine%20ex%2079%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11105548",
+      "product_name": "Salamence Ex [Stamped] #114",
+      "console_name": "Pokemon Journey Together",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:114"
+      }
+    },
+    {
+      "query": "Pokemon Journey Together Mamoswine ex 79 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Journey%20Together%20Mamoswine%20ex%2079%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11105547",
+      "product_name": "Reshiram Ex [Stamped] #30",
+      "console_name": "Pokemon Journey Together",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:30"
+      }
+    },
+    {
+      "query": "Pokemon Journey Together Mamoswine ex 79 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Journey%20Together%20Mamoswine%20ex%2079%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10025682",
+      "product_name": "Levincia [Gym Stamp] #150",
+      "console_name": "Pokemon Journey Together",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:150"
+      }
+    },
+    {
+      "query": "Pokemon Journey Together Mamoswine ex 79 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Journey%20Together%20Mamoswine%20ex%2079%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11266308",
+      "product_name": "Mimikyu [Stamped] #69",
+      "console_name": "Pokemon Journey Together",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:69"
+      }
+    },
+    {
+      "query": "Pokemon Journey Together Mamoswine ex 79 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Journey%20Together%20Mamoswine%20ex%2079%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9029005",
+      "product_name": "Hop's Dubwool [Stamped] #136",
+      "console_name": "Pokemon Journey Together",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:136"
+      }
+    },
+    {
+      "query": "Pokemon Journey Together Mamoswine ex 79 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Journey%20Together%20Mamoswine%20ex%2079%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8924046",
+      "product_name": "N's Reshiram [Stamped] #167",
+      "console_name": "Pokemon Journey Together",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:167"
+      }
+    },
+    {
+      "query": "Pokemon Journey Together Mamoswine ex 79 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Journey%20Together%20Mamoswine%20ex%2079%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8871207",
+      "product_name": "Veluza ex #43",
+      "console_name": "Pokemon Journey Together",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:43"
+      }
+    },
+    {
+      "query": "Pokemon Journey Together Mamoswine ex 79 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Journey%20Together%20Mamoswine%20ex%2079%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8871273",
+      "product_name": "Mimikyu ex #69",
+      "console_name": "Pokemon Journey Together",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:69"
+      }
+    },
+    {
+      "query": "Pokemon Journey Together Mamoswine ex 79 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Journey%20Together%20Mamoswine%20ex%2079%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8871179",
+      "product_name": "Reshiram ex #30",
+      "console_name": "Pokemon Journey Together",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:30"
+      }
+    },
+    {
+      "query": "Pokemon Journey Together Mamoswine ex 79 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Journey%20Together%20Mamoswine%20ex%2079%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8871286",
+      "product_name": "Alcremie ex #75",
+      "console_name": "Pokemon Journey Together",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:75"
+      }
+    },
+    {
+      "query": "Pokemon Journey Together Mamoswine ex 79 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Journey%20Together%20Mamoswine%20ex%2079%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8871163",
+      "product_name": "Blaziken ex #24",
+      "console_name": "Pokemon Journey Together",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:24"
+      }
+    },
+    {
+      "query": "Pokemon Journey Together Mamoswine ex 79 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Journey%20Together%20Mamoswine%20ex%2079%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8871083",
+      "product_name": "Amoonguss ex #11",
+      "console_name": "Pokemon Journey Together",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:11"
+      }
+    },
+    {
+      "query": "Pokemon Journey Together Mamoswine ex 79 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Journey%20Together%20Mamoswine%20ex%2079%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8871181",
+      "product_name": "Volcanion ex #31",
+      "console_name": "Pokemon Journey Together",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:31"
+      }
+    },
+    {
+      "query": "Pokemon Journey Together Mamoswine ex 79 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Journey%20Together%20Mamoswine%20ex%2079%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8871329",
+      "product_name": "Salamence ex #177",
+      "console_name": "Pokemon Journey Together",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:177"
+      }
+    },
+    {
+      "query": "Pokemon Journey Together Mamoswine ex 79 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Journey%20Together%20Mamoswine%20ex%2079%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8871334",
+      "product_name": "Volcanion ex #182",
+      "console_name": "Pokemon Journey Together",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:182"
+      }
+    },
+    {
+      "query": "Pokemon Journey Together Mamoswine ex 79 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Journey%20Together%20Mamoswine%20ex%2079%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8871342",
+      "product_name": "Salamence ex #187",
+      "console_name": "Pokemon Journey Together",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:187"
+      }
+    }
+  ],
+  "source_lane": "pricecharting_api"
+}

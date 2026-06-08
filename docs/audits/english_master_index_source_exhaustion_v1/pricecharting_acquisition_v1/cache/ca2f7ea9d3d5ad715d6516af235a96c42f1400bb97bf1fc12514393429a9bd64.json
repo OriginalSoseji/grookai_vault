@@ -1,0 +1,549 @@
+{
+  "status": "api_no_validated_match",
+  "fact": {
+    "gap_type": "finish_second_source_needed",
+    "fact_type": "printing_finish",
+    "set_key": "sm8",
+    "set_name": "Lost Thunder",
+    "card_number": "81",
+    "card_name": "Blitzle",
+    "finish_key": "stamped",
+    "status": "human_source_verified",
+    "sources": [
+      "thepricedex_price_list"
+    ],
+    "source_authorities": [
+      "thepricedex.com"
+    ],
+    "source_kinds": [
+      "marketplace_checklist"
+    ],
+    "evidence_urls": [
+      "https://www.thepricedex.com/set/sm8/lost-thunder/price-list"
+    ],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "attempts": [
+    {
+      "query": "Pokemon Lost Thunder Blitzle 81 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Lost%20Thunder%20Blitzle%2081%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "962469",
+      "product_name": "Blitzle #81",
+      "console_name": "Pokemon Lost Thunder",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon Lost Thunder Blitzle 81 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Lost%20Thunder%20Blitzle%2081%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "962697",
+      "product_name": "Blitzle [Reverse Holo] #81",
+      "console_name": "Pokemon Lost Thunder",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Reverse Holo"
+      }
+    },
+    {
+      "query": "Pokemon Lost Thunder Blitzle 81 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Lost%20Thunder%20Blitzle%2081%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4166493",
+      "product_name": "Mareep [Stamped] #75",
+      "console_name": "Pokemon Lost Thunder",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:75"
+      }
+    },
+    {
+      "query": "Pokemon Lost Thunder Blitzle 81 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Lost%20Thunder%20Blitzle%2081%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6883922",
+      "product_name": "Suicune [Stamped] #59",
+      "console_name": "Pokemon Lost Thunder",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:59"
+      }
+    },
+    {
+      "query": "Pokemon Lost Thunder Blitzle 81 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Lost%20Thunder%20Blitzle%2081%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11783077",
+      "product_name": "Blitzle [#15 Pikachu Stamp] #53",
+      "console_name": "Pokemon 2022 Battle Academy",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:53"
+      }
+    },
+    {
+      "query": "Pokemon Lost Thunder Blitzle 81 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Lost%20Thunder%20Blitzle%2081%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11748534",
+      "product_name": "Blitzle [#55 Pikachu Stamp] #53",
+      "console_name": "Pokemon 2022 Battle Academy",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:53"
+      }
+    },
+    {
+      "query": "Pokemon Lost Thunder Blitzle 81 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Lost%20Thunder%20Blitzle%2081%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12754165",
+      "product_name": "Blitzle [Pikachu 45] #81",
+      "console_name": "Pokemon 2020 Battle Academy",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon 2020 Battle Academy"
+      }
+    },
+    {
+      "query": "Pokemon Lost Thunder Blitzle 81 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Lost%20Thunder%20Blitzle%2081%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12754164",
+      "product_name": "Blitzle [Pikachu 19] #81",
+      "console_name": "Pokemon 2020 Battle Academy",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon 2020 Battle Academy"
+      }
+    },
+    {
+      "query": "Pokemon Lost Thunder Blitzle 81 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Lost%20Thunder%20Blitzle%2081%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "962475",
+      "product_name": "Natu #87",
+      "console_name": "Pokemon Lost Thunder",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:87"
+      }
+    },
+    {
+      "query": "Pokemon Lost Thunder Blitzle 81 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Lost%20Thunder%20Blitzle%2081%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "962476",
+      "product_name": "Xatu #88",
+      "console_name": "Pokemon Lost Thunder",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:88"
+      }
+    },
+    {
+      "query": "Pokemon Lost Thunder Blitzle 81 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Lost%20Thunder%20Blitzle%2081%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "962497",
+      "product_name": "Onix #109",
+      "console_name": "Pokemon Lost Thunder",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:109"
+      }
+    },
+    {
+      "query": "Pokemon Lost Thunder Blitzle 81 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Lost%20Thunder%20Blitzle%2081%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "962561",
+      "product_name": "Faba #173",
+      "console_name": "Pokemon Lost Thunder",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:173"
+      }
+    },
+    {
+      "query": "Pokemon Lost Thunder Blitzle 81 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Lost%20Thunder%20Blitzle%2081%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "962571",
+      "product_name": "Mina #183",
+      "console_name": "Pokemon Lost Thunder",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:183"
+      }
+    },
+    {
+      "query": "Pokemon Lost Thunder Blitzle 81 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Lost%20Thunder%20Blitzle%2081%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "962596",
+      "product_name": "Faba #208",
+      "console_name": "Pokemon Lost Thunder",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:208"
+      }
+    },
+    {
+      "query": "Pokemon Lost Thunder Blitzle 81 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Lost%20Thunder%20Blitzle%2081%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "962599",
+      "product_name": "Mina #211",
+      "console_name": "Pokemon Lost Thunder",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:211"
+      }
+    },
+    {
+      "query": "Pokemon Lost Thunder Blitzle 81 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Lost%20Thunder%20Blitzle%2081%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "962435",
+      "product_name": "Entei #47",
+      "console_name": "Pokemon Lost Thunder",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:47"
+      }
+    },
+    {
+      "query": "Pokemon Lost Thunder Blitzle 81 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Lost%20Thunder%20Blitzle%2081%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "962479",
+      "product_name": "Unown #91",
+      "console_name": "Pokemon Lost Thunder",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:91"
+      }
+    },
+    {
+      "query": "Pokemon Lost Thunder Blitzle 81 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Lost%20Thunder%20Blitzle%2081%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "962478",
+      "product_name": "Unown #90",
+      "console_name": "Pokemon Lost Thunder",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:90"
+      }
+    },
+    {
+      "query": "Pokemon Lost Thunder Blitzle 81 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Lost%20Thunder%20Blitzle%2081%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "962480",
+      "product_name": "Unown #92",
+      "console_name": "Pokemon Lost Thunder",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:92"
+      }
+    },
+    {
+      "query": "Pokemon Lost Thunder Blitzle 81 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Lost%20Thunder%20Blitzle%2081%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "962542",
+      "product_name": "Ditto #154",
+      "console_name": "Pokemon Lost Thunder",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:154"
+      }
+    },
+    {
+      "query": "Pokemon Lost Thunder Blitzle 81 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Lost%20Thunder%20Blitzle%2081%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "962469",
+      "product_name": "Blitzle #81",
+      "console_name": "Pokemon Lost Thunder",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon Lost Thunder Blitzle 81 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Lost%20Thunder%20Blitzle%2081%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "962697",
+      "product_name": "Blitzle [Reverse Holo] #81",
+      "console_name": "Pokemon Lost Thunder",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Reverse Holo"
+      }
+    },
+    {
+      "query": "Pokemon Lost Thunder Blitzle 81 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Lost%20Thunder%20Blitzle%2081%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4166493",
+      "product_name": "Mareep [Stamped] #75",
+      "console_name": "Pokemon Lost Thunder",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:75"
+      }
+    },
+    {
+      "query": "Pokemon Lost Thunder Blitzle 81 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Lost%20Thunder%20Blitzle%2081%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6883922",
+      "product_name": "Suicune [Stamped] #59",
+      "console_name": "Pokemon Lost Thunder",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:59"
+      }
+    },
+    {
+      "query": "Pokemon Lost Thunder Blitzle 81 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Lost%20Thunder%20Blitzle%2081%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11783077",
+      "product_name": "Blitzle [#15 Pikachu Stamp] #53",
+      "console_name": "Pokemon 2022 Battle Academy",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:53"
+      }
+    },
+    {
+      "query": "Pokemon Lost Thunder Blitzle 81 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Lost%20Thunder%20Blitzle%2081%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11748534",
+      "product_name": "Blitzle [#55 Pikachu Stamp] #53",
+      "console_name": "Pokemon 2022 Battle Academy",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:53"
+      }
+    },
+    {
+      "query": "Pokemon Lost Thunder Blitzle 81 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Lost%20Thunder%20Blitzle%2081%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12754165",
+      "product_name": "Blitzle [Pikachu 45] #81",
+      "console_name": "Pokemon 2020 Battle Academy",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon 2020 Battle Academy"
+      }
+    },
+    {
+      "query": "Pokemon Lost Thunder Blitzle 81 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Lost%20Thunder%20Blitzle%2081%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12754164",
+      "product_name": "Blitzle [Pikachu 19] #81",
+      "console_name": "Pokemon 2020 Battle Academy",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon 2020 Battle Academy"
+      }
+    },
+    {
+      "query": "Pokemon Lost Thunder Blitzle 81 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Lost%20Thunder%20Blitzle%2081%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "962475",
+      "product_name": "Natu #87",
+      "console_name": "Pokemon Lost Thunder",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:87"
+      }
+    },
+    {
+      "query": "Pokemon Lost Thunder Blitzle 81 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Lost%20Thunder%20Blitzle%2081%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "962476",
+      "product_name": "Xatu #88",
+      "console_name": "Pokemon Lost Thunder",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:88"
+      }
+    },
+    {
+      "query": "Pokemon Lost Thunder Blitzle 81 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Lost%20Thunder%20Blitzle%2081%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "962497",
+      "product_name": "Onix #109",
+      "console_name": "Pokemon Lost Thunder",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:109"
+      }
+    },
+    {
+      "query": "Pokemon Lost Thunder Blitzle 81 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Lost%20Thunder%20Blitzle%2081%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "962561",
+      "product_name": "Faba #173",
+      "console_name": "Pokemon Lost Thunder",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:173"
+      }
+    },
+    {
+      "query": "Pokemon Lost Thunder Blitzle 81 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Lost%20Thunder%20Blitzle%2081%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "962571",
+      "product_name": "Mina #183",
+      "console_name": "Pokemon Lost Thunder",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:183"
+      }
+    },
+    {
+      "query": "Pokemon Lost Thunder Blitzle 81 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Lost%20Thunder%20Blitzle%2081%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "962596",
+      "product_name": "Faba #208",
+      "console_name": "Pokemon Lost Thunder",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:208"
+      }
+    },
+    {
+      "query": "Pokemon Lost Thunder Blitzle 81 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Lost%20Thunder%20Blitzle%2081%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "962599",
+      "product_name": "Mina #211",
+      "console_name": "Pokemon Lost Thunder",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:211"
+      }
+    },
+    {
+      "query": "Pokemon Lost Thunder Blitzle 81 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Lost%20Thunder%20Blitzle%2081%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "962435",
+      "product_name": "Entei #47",
+      "console_name": "Pokemon Lost Thunder",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:47"
+      }
+    },
+    {
+      "query": "Pokemon Lost Thunder Blitzle 81 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Lost%20Thunder%20Blitzle%2081%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "962479",
+      "product_name": "Unown #91",
+      "console_name": "Pokemon Lost Thunder",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:91"
+      }
+    },
+    {
+      "query": "Pokemon Lost Thunder Blitzle 81 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Lost%20Thunder%20Blitzle%2081%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "962478",
+      "product_name": "Unown #90",
+      "console_name": "Pokemon Lost Thunder",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:90"
+      }
+    },
+    {
+      "query": "Pokemon Lost Thunder Blitzle 81 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Lost%20Thunder%20Blitzle%2081%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "962480",
+      "product_name": "Unown #92",
+      "console_name": "Pokemon Lost Thunder",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:92"
+      }
+    },
+    {
+      "query": "Pokemon Lost Thunder Blitzle 81 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Lost%20Thunder%20Blitzle%2081%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "962542",
+      "product_name": "Ditto #154",
+      "console_name": "Pokemon Lost Thunder",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:154"
+      }
+    }
+  ],
+  "source_lane": "pricecharting_api"
+}

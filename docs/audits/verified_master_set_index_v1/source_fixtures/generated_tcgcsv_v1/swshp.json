@@ -1,0 +1,48 @@
+{
+  "fixture_version": "VERIFIED_MASTER_SET_INDEX_V1_HUMAN_SOURCE_FIXTURE_GENERATED",
+  "source_key": "tcgcsv_finish_swshp",
+  "source_kind": "marketplace_checklist",
+  "source_url": "https://tcgcsv.com/docs",
+  "source_status": "available_generated",
+  "set_key": "swshp",
+  "set_name": "SWSH Black Star Promos",
+  "retrieved_at": "2026-06-08T03:01:25.402Z",
+  "raw_snapshot_ref": "generated_fixture:tcgcsv:swshp:2026-06-08T03:01:25.402Z",
+  "generation_note": "Generated from TCGCSV TCGplayer catalog product and price subtype data. Exact finish evidence only.",
+  "records": [
+    {
+      "source_key": "tcgcsv_tcgplayer_catalog",
+      "source_kind": "marketplace_checklist",
+      "source_url": "https://www.tcgplayer.com/product/246275/pokemon-swsh-sword-and-shield-promo-cards-professors-research-swsh178-with-pokemon-go-code",
+      "set_key": "swshp",
+      "set_name": "SWSH Black Star Promos",
+      "card_number": "SWSH178",
+      "card_name": "Professor's Research",
+      "finish_key": "normal",
+      "rarity": "Promo",
+      "evidence_type": "finish_presence",
+      "evidence_label": "TCGCSV/TCGplayer product 246275 price subtype Normal",
+      "language": "en",
+      "retrieved_at": "2026-06-08T03:01:25.402Z",
+      "raw_snapshot_ref": "tcgcsv:2545:246275:Normal",
+      "notes": "Generated from TCGCSV TCGplayer products joined to price subTypeName. Exact set, number, name, and finish match only."
+    },
+    {
+      "source_key": "tcgcsv_tcgplayer_catalog",
+      "source_kind": "marketplace_checklist",
+      "source_url": "https://www.tcgplayer.com/product/505996/pokemon-swsh-sword-and-shield-promo-cards-lugia-v-swsh301",
+      "set_key": "swshp",
+      "set_name": "SWSH Black Star Promos",
+      "card_number": "SWSH301",
+      "card_name": "Lugia V",
+      "finish_key": "holo",
+      "rarity": "Promo",
+      "evidence_type": "finish_presence",
+      "evidence_label": "TCGCSV/TCGplayer product 505996 price subtype Holofoil",
+      "language": "en",
+      "retrieved_at": "2026-06-08T03:01:25.402Z",
+      "raw_snapshot_ref": "tcgcsv:2545:505996:Holofoil",
+      "notes": "Generated from TCGCSV TCGplayer products joined to price subTypeName. Exact set, number, name, and finish match only."
+    }
+  ]
+}

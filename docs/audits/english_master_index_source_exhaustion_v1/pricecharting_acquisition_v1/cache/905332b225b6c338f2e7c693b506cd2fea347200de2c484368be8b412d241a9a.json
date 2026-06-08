@@ -1,0 +1,549 @@
+{
+  "status": "api_no_validated_match",
+  "fact": {
+    "gap_type": "finish_second_source_needed",
+    "fact_type": "printing_finish",
+    "set_key": "sv10",
+    "set_name": "Destined Rivals",
+    "card_number": "3",
+    "card_name": "Yanmega ex",
+    "finish_key": "stamped",
+    "status": "human_source_verified",
+    "sources": [
+      "thepricedex_price_list"
+    ],
+    "source_authorities": [
+      "thepricedex.com"
+    ],
+    "source_kinds": [
+      "marketplace_checklist"
+    ],
+    "evidence_urls": [
+      "https://www.thepricedex.com/set/sv10/destined-rivals/price-list"
+    ],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "attempts": [
+    {
+      "query": "Pokemon Destined Rivals Yanmega ex 3 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Destined%20Rivals%20Yanmega%20ex%203%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9432711",
+      "product_name": "Yanmega ex #3",
+      "console_name": "Pokemon Destined Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon Destined Rivals Yanmega ex 3 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Destined%20Rivals%20Yanmega%20ex%203%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12397378",
+      "product_name": "Yanmega Ex [Prize Pack] #3",
+      "console_name": "Pokemon Destined Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Prize Pack"
+      }
+    },
+    {
+      "query": "Pokemon Destined Rivals Yanmega ex 3 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Destined%20Rivals%20Yanmega%20ex%203%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9432935",
+      "product_name": "Yanmega ex #228",
+      "console_name": "Pokemon Destined Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:228"
+      }
+    },
+    {
+      "query": "Pokemon Destined Rivals Yanmega ex 3 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Destined%20Rivals%20Yanmega%20ex%203%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9432913",
+      "product_name": "Yanmega ex #206",
+      "console_name": "Pokemon Destined Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:206"
+      }
+    },
+    {
+      "query": "Pokemon Destined Rivals Yanmega ex 3 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Destined%20Rivals%20Yanmega%20ex%203%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11315067",
+      "product_name": "Team Rocket's Moltres ex [Stamped] #229",
+      "console_name": "Pokemon Destined Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:229"
+      }
+    },
+    {
+      "query": "Pokemon Destined Rivals Yanmega ex 3 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Destined%20Rivals%20Yanmega%20ex%203%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11315057",
+      "product_name": "Team Rocket's Moltres ex [Stamped] #208",
+      "console_name": "Pokemon Destined Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:208"
+      }
+    },
+    {
+      "query": "Pokemon Destined Rivals Yanmega ex 3 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Destined%20Rivals%20Yanmega%20ex%203%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11315071",
+      "product_name": "Team Rocket's Moltres ex [Stamped] #31",
+      "console_name": "Pokemon Destined Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:31"
+      }
+    },
+    {
+      "query": "Pokemon Destined Rivals Yanmega ex 3 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Destined%20Rivals%20Yanmega%20ex%203%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9432733",
+      "product_name": "Rabsca ex #25",
+      "console_name": "Pokemon Destined Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:25"
+      }
+    },
+    {
+      "query": "Pokemon Destined Rivals Yanmega ex 3 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Destined%20Rivals%20Yanmega%20ex%203%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9432774",
+      "product_name": "Dondozo ex #66",
+      "console_name": "Pokemon Destined Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:66"
+      }
+    },
+    {
+      "query": "Pokemon Destined Rivals Yanmega ex 3 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Destined%20Rivals%20Yanmega%20ex%203%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9432773",
+      "product_name": "Cetitan ex #65",
+      "console_name": "Pokemon Destined Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:65"
+      }
+    },
+    {
+      "query": "Pokemon Destined Rivals Yanmega ex 3 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Destined%20Rivals%20Yanmega%20ex%203%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9432917",
+      "product_name": "Cetitan ex #210",
+      "console_name": "Pokemon Destined Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:210"
+      }
+    },
+    {
+      "query": "Pokemon Destined Rivals Yanmega ex 3 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Destined%20Rivals%20Yanmega%20ex%203%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9432918",
+      "product_name": "Dondozo ex #211",
+      "console_name": "Pokemon Destined Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:211"
+      }
+    },
+    {
+      "query": "Pokemon Destined Rivals Yanmega ex 3 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Destined%20Rivals%20Yanmega%20ex%203%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9432731",
+      "product_name": "Arboliva ex #23",
+      "console_name": "Pokemon Destined Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:23"
+      }
+    },
+    {
+      "query": "Pokemon Destined Rivals Yanmega ex 3 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Destined%20Rivals%20Yanmega%20ex%203%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9432809",
+      "product_name": "Regirock ex #101",
+      "console_name": "Pokemon Destined Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:101"
+      }
+    },
+    {
+      "query": "Pokemon Destined Rivals Yanmega ex 3 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Destined%20Rivals%20Yanmega%20ex%203%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9432914",
+      "product_name": "Arboliva ex #207",
+      "console_name": "Pokemon Destined Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:207"
+      }
+    },
+    {
+      "query": "Pokemon Destined Rivals Yanmega ex 3 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Destined%20Rivals%20Yanmega%20ex%203%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9432921",
+      "product_name": "Regirock ex #214",
+      "console_name": "Pokemon Destined Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:214"
+      }
+    },
+    {
+      "query": "Pokemon Destined Rivals Yanmega ex 3 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Destined%20Rivals%20Yanmega%20ex%203%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9432777",
+      "product_name": "Electivire ex #69",
+      "console_name": "Pokemon Destined Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:69"
+      }
+    },
+    {
+      "query": "Pokemon Destined Rivals Yanmega ex 3 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Destined%20Rivals%20Yanmega%20ex%203%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9432919",
+      "product_name": "Electivire ex #212",
+      "console_name": "Pokemon Destined Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:212"
+      }
+    },
+    {
+      "query": "Pokemon Destined Rivals Yanmega ex 3 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Destined%20Rivals%20Yanmega%20ex%203%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9572257",
+      "product_name": "Misty's Gyarados [Stamped] #49",
+      "console_name": "Pokemon Destined Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:49"
+      }
+    },
+    {
+      "query": "Pokemon Destined Rivals Yanmega ex 3 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Destined%20Rivals%20Yanmega%20ex%203%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11302370",
+      "product_name": "Yanmega ex #3",
+      "console_name": "Pokemon Japanese Mega Dream ex",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon Japanese Mega Dream ex"
+      }
+    },
+    {
+      "query": "Pokemon Destined Rivals Yanmega ex 3 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Destined%20Rivals%20Yanmega%20ex%203%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9432711",
+      "product_name": "Yanmega ex #3",
+      "console_name": "Pokemon Destined Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon Destined Rivals Yanmega ex 3 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Destined%20Rivals%20Yanmega%20ex%203%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12397378",
+      "product_name": "Yanmega Ex [Prize Pack] #3",
+      "console_name": "Pokemon Destined Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Prize Pack"
+      }
+    },
+    {
+      "query": "Pokemon Destined Rivals Yanmega ex 3 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Destined%20Rivals%20Yanmega%20ex%203%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9432935",
+      "product_name": "Yanmega ex #228",
+      "console_name": "Pokemon Destined Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:228"
+      }
+    },
+    {
+      "query": "Pokemon Destined Rivals Yanmega ex 3 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Destined%20Rivals%20Yanmega%20ex%203%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9432913",
+      "product_name": "Yanmega ex #206",
+      "console_name": "Pokemon Destined Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:206"
+      }
+    },
+    {
+      "query": "Pokemon Destined Rivals Yanmega ex 3 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Destined%20Rivals%20Yanmega%20ex%203%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11315067",
+      "product_name": "Team Rocket's Moltres ex [Stamped] #229",
+      "console_name": "Pokemon Destined Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:229"
+      }
+    },
+    {
+      "query": "Pokemon Destined Rivals Yanmega ex 3 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Destined%20Rivals%20Yanmega%20ex%203%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11315057",
+      "product_name": "Team Rocket's Moltres ex [Stamped] #208",
+      "console_name": "Pokemon Destined Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:208"
+      }
+    },
+    {
+      "query": "Pokemon Destined Rivals Yanmega ex 3 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Destined%20Rivals%20Yanmega%20ex%203%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11315071",
+      "product_name": "Team Rocket's Moltres ex [Stamped] #31",
+      "console_name": "Pokemon Destined Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:31"
+      }
+    },
+    {
+      "query": "Pokemon Destined Rivals Yanmega ex 3 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Destined%20Rivals%20Yanmega%20ex%203%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9432733",
+      "product_name": "Rabsca ex #25",
+      "console_name": "Pokemon Destined Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:25"
+      }
+    },
+    {
+      "query": "Pokemon Destined Rivals Yanmega ex 3 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Destined%20Rivals%20Yanmega%20ex%203%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9432774",
+      "product_name": "Dondozo ex #66",
+      "console_name": "Pokemon Destined Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:66"
+      }
+    },
+    {
+      "query": "Pokemon Destined Rivals Yanmega ex 3 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Destined%20Rivals%20Yanmega%20ex%203%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9432773",
+      "product_name": "Cetitan ex #65",
+      "console_name": "Pokemon Destined Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:65"
+      }
+    },
+    {
+      "query": "Pokemon Destined Rivals Yanmega ex 3 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Destined%20Rivals%20Yanmega%20ex%203%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9432917",
+      "product_name": "Cetitan ex #210",
+      "console_name": "Pokemon Destined Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:210"
+      }
+    },
+    {
+      "query": "Pokemon Destined Rivals Yanmega ex 3 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Destined%20Rivals%20Yanmega%20ex%203%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9432918",
+      "product_name": "Dondozo ex #211",
+      "console_name": "Pokemon Destined Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:211"
+      }
+    },
+    {
+      "query": "Pokemon Destined Rivals Yanmega ex 3 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Destined%20Rivals%20Yanmega%20ex%203%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9432731",
+      "product_name": "Arboliva ex #23",
+      "console_name": "Pokemon Destined Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:23"
+      }
+    },
+    {
+      "query": "Pokemon Destined Rivals Yanmega ex 3 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Destined%20Rivals%20Yanmega%20ex%203%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9432809",
+      "product_name": "Regirock ex #101",
+      "console_name": "Pokemon Destined Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:101"
+      }
+    },
+    {
+      "query": "Pokemon Destined Rivals Yanmega ex 3 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Destined%20Rivals%20Yanmega%20ex%203%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9432914",
+      "product_name": "Arboliva ex #207",
+      "console_name": "Pokemon Destined Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:207"
+      }
+    },
+    {
+      "query": "Pokemon Destined Rivals Yanmega ex 3 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Destined%20Rivals%20Yanmega%20ex%203%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9432921",
+      "product_name": "Regirock ex #214",
+      "console_name": "Pokemon Destined Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:214"
+      }
+    },
+    {
+      "query": "Pokemon Destined Rivals Yanmega ex 3 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Destined%20Rivals%20Yanmega%20ex%203%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9432777",
+      "product_name": "Electivire ex #69",
+      "console_name": "Pokemon Destined Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:69"
+      }
+    },
+    {
+      "query": "Pokemon Destined Rivals Yanmega ex 3 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Destined%20Rivals%20Yanmega%20ex%203%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9432919",
+      "product_name": "Electivire ex #212",
+      "console_name": "Pokemon Destined Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:212"
+      }
+    },
+    {
+      "query": "Pokemon Destined Rivals Yanmega ex 3 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Destined%20Rivals%20Yanmega%20ex%203%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9572257",
+      "product_name": "Misty's Gyarados [Stamped] #49",
+      "console_name": "Pokemon Destined Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:49"
+      }
+    },
+    {
+      "query": "Pokemon Destined Rivals Yanmega ex 3 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Destined%20Rivals%20Yanmega%20ex%203%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11302370",
+      "product_name": "Yanmega ex #3",
+      "console_name": "Pokemon Japanese Mega Dream ex",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon Japanese Mega Dream ex"
+      }
+    }
+  ],
+  "source_lane": "pricecharting_api"
+}

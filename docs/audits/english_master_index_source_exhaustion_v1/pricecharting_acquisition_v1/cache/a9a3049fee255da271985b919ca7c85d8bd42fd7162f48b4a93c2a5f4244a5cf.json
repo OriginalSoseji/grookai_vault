@@ -1,0 +1,549 @@
+{
+  "status": "api_no_validated_match",
+  "fact": {
+    "gap_type": "finish_second_source_needed",
+    "fact_type": "printing_finish",
+    "set_key": "pl2",
+    "set_name": "Rising Rivals",
+    "card_number": "32",
+    "card_name": "Rhyperior E4",
+    "finish_key": "holo",
+    "status": "human_source_verified",
+    "sources": [
+      "thepricedex_price_list"
+    ],
+    "source_authorities": [
+      "thepricedex.com"
+    ],
+    "source_kinds": [
+      "marketplace_checklist"
+    ],
+    "evidence_urls": [
+      "https://www.thepricedex.com/set/pl2/rising-rivals/price-list"
+    ],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "attempts": [
+    {
+      "query": "Pokemon Rising Rivals Rhyperior E4 32 holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Rising%20Rivals%20Rhyperior%20E4%2032%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "925547",
+      "product_name": "Rhyperior [Reverse Holo] #32",
+      "console_name": "Pokemon Rising Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Rhyperior"
+      }
+    },
+    {
+      "query": "Pokemon Rising Rivals Rhyperior E4 32 holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Rising%20Rivals%20Rhyperior%20E4%2032%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "925428",
+      "product_name": "Rhyperior #32",
+      "console_name": "Pokemon Rising Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Rhyperior"
+      }
+    },
+    {
+      "query": "Pokemon Rising Rivals Rhyperior E4 32 holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Rising%20Rivals%20Rhyperior%20E4%2032%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5436408",
+      "product_name": "Gallade [Holo] #20",
+      "console_name": "Pokemon Rising Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:20"
+      }
+    },
+    {
+      "query": "Pokemon Rising Rivals Rhyperior E4 32 holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Rising%20Rivals%20Rhyperior%20E4%2032%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "925572",
+      "product_name": "Aron [Reverse Holo] #57",
+      "console_name": "Pokemon Rising Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:57"
+      }
+    },
+    {
+      "query": "Pokemon Rising Rivals Rhyperior E4 32 holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Rising%20Rivals%20Rhyperior%20E4%2032%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "925521",
+      "product_name": "Flygon [Reverse Holo] #5",
+      "console_name": "Pokemon Rising Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:5"
+      }
+    },
+    {
+      "query": "Pokemon Rising Rivals Rhyperior E4 32 holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Rising%20Rivals%20Rhyperior%20E4%2032%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "925538",
+      "product_name": "Golem [Reverse Holo] #23",
+      "console_name": "Pokemon Rising Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:23"
+      }
+    },
+    {
+      "query": "Pokemon Rising Rivals Rhyperior E4 32 holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Rising%20Rivals%20Rhyperior%20E4%2032%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "925559",
+      "product_name": "Lairon [Reverse Holo] #44",
+      "console_name": "Pokemon Rising Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:44"
+      }
+    },
+    {
+      "query": "Pokemon Rising Rivals Rhyperior E4 32 holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Rising%20Rivals%20Rhyperior%20E4%2032%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "925563",
+      "product_name": "Scizor [Reverse Holo] #48",
+      "console_name": "Pokemon Rising Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:48"
+      }
+    },
+    {
+      "query": "Pokemon Rising Rivals Rhyperior E4 32 holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Rising%20Rivals%20Rhyperior%20E4%2032%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "925581",
+      "product_name": "Kakuna [Reverse Holo] #66",
+      "console_name": "Pokemon Rising Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:66"
+      }
+    },
+    {
+      "query": "Pokemon Rising Rivals Rhyperior E4 32 holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Rising%20Rivals%20Rhyperior%20E4%2032%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "925574",
+      "product_name": "Eevee [Reverse Holo] #59",
+      "console_name": "Pokemon Rising Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:59"
+      }
+    },
+    {
+      "query": "Pokemon Rising Rivals Rhyperior E4 32 holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Rising%20Rivals%20Rhyperior%20E4%2032%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "925597",
+      "product_name": "Spheal [Reverse Holo] #82",
+      "console_name": "Pokemon Rising Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:82"
+      }
+    },
+    {
+      "query": "Pokemon Rising Rivals Rhyperior E4 32 holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Rising%20Rivals%20Rhyperior%20E4%2032%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "925592",
+      "product_name": "Sealeo [Reverse Holo] #77",
+      "console_name": "Pokemon Rising Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:77"
+      }
+    },
+    {
+      "query": "Pokemon Rising Rivals Rhyperior E4 32 holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Rising%20Rivals%20Rhyperior%20E4%2032%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "925598",
+      "product_name": "Staryu [Reverse Holo] #83",
+      "console_name": "Pokemon Rising Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:83"
+      }
+    },
+    {
+      "query": "Pokemon Rising Rivals Rhyperior E4 32 holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Rising%20Rivals%20Rhyperior%20E4%2032%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "925593",
+      "product_name": "Seedot [Reverse Holo] #78",
+      "console_name": "Pokemon Rising Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:78"
+      }
+    },
+    {
+      "query": "Pokemon Rising Rivals Rhyperior E4 32 holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Rising%20Rivals%20Rhyperior%20E4%2032%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "925530",
+      "product_name": "Aggron [Reverse Holo] #14",
+      "console_name": "Pokemon Rising Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:14"
+      }
+    },
+    {
+      "query": "Pokemon Rising Rivals Rhyperior E4 32 holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Rising%20Rivals%20Rhyperior%20E4%2032%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "925601",
+      "product_name": "Weedle [Reverse Holo] #86",
+      "console_name": "Pokemon Rising Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:86"
+      }
+    },
+    {
+      "query": "Pokemon Rising Rivals Rhyperior E4 32 holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Rising%20Rivals%20Rhyperior%20E4%2032%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "925534",
+      "product_name": "Espeon [Reverse Holo] #18",
+      "console_name": "Pokemon Rising Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:18"
+      }
+    },
+    {
+      "query": "Pokemon Rising Rivals Rhyperior E4 32 holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Rising%20Rivals%20Rhyperior%20E4%2032%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12319325",
+      "product_name": "Rhyperior [Cosmos Holo] #62",
+      "console_name": "Pokemon XY",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:62"
+      }
+    },
+    {
+      "query": "Pokemon Rising Rivals Rhyperior E4 32 holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Rising%20Rivals%20Rhyperior%20E4%2032%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "925567",
+      "product_name": "Tropius [Reverse Holo] #52",
+      "console_name": "Pokemon Rising Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:52"
+      }
+    },
+    {
+      "query": "Pokemon Rising Rivals Rhyperior E4 32 holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Rising%20Rivals%20Rhyperior%20E4%2032%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "925523",
+      "product_name": "Jirachi [Reverse Holo] #7",
+      "console_name": "Pokemon Rising Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:7"
+      }
+    },
+    {
+      "query": "Pokemon Rising Rivals Rhyperior E4 32 holofoil",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Rising%20Rivals%20Rhyperior%20E4%2032%20holofoil",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "925547",
+      "product_name": "Rhyperior [Reverse Holo] #32",
+      "console_name": "Pokemon Rising Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Rhyperior"
+      }
+    },
+    {
+      "query": "Pokemon Rising Rivals Rhyperior E4 32 holofoil",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Rising%20Rivals%20Rhyperior%20E4%2032%20holofoil",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "925428",
+      "product_name": "Rhyperior #32",
+      "console_name": "Pokemon Rising Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Rhyperior"
+      }
+    },
+    {
+      "query": "Pokemon Rising Rivals Rhyperior E4 32 holofoil",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Rising%20Rivals%20Rhyperior%20E4%2032%20holofoil",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5436408",
+      "product_name": "Gallade [Holo] #20",
+      "console_name": "Pokemon Rising Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:20"
+      }
+    },
+    {
+      "query": "Pokemon Rising Rivals Rhyperior E4 32 holofoil",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Rising%20Rivals%20Rhyperior%20E4%2032%20holofoil",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "925572",
+      "product_name": "Aron [Reverse Holo] #57",
+      "console_name": "Pokemon Rising Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:57"
+      }
+    },
+    {
+      "query": "Pokemon Rising Rivals Rhyperior E4 32 holofoil",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Rising%20Rivals%20Rhyperior%20E4%2032%20holofoil",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "925521",
+      "product_name": "Flygon [Reverse Holo] #5",
+      "console_name": "Pokemon Rising Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:5"
+      }
+    },
+    {
+      "query": "Pokemon Rising Rivals Rhyperior E4 32 holofoil",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Rising%20Rivals%20Rhyperior%20E4%2032%20holofoil",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "925538",
+      "product_name": "Golem [Reverse Holo] #23",
+      "console_name": "Pokemon Rising Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:23"
+      }
+    },
+    {
+      "query": "Pokemon Rising Rivals Rhyperior E4 32 holofoil",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Rising%20Rivals%20Rhyperior%20E4%2032%20holofoil",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "925559",
+      "product_name": "Lairon [Reverse Holo] #44",
+      "console_name": "Pokemon Rising Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:44"
+      }
+    },
+    {
+      "query": "Pokemon Rising Rivals Rhyperior E4 32 holofoil",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Rising%20Rivals%20Rhyperior%20E4%2032%20holofoil",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "925563",
+      "product_name": "Scizor [Reverse Holo] #48",
+      "console_name": "Pokemon Rising Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:48"
+      }
+    },
+    {
+      "query": "Pokemon Rising Rivals Rhyperior E4 32 holofoil",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Rising%20Rivals%20Rhyperior%20E4%2032%20holofoil",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "925581",
+      "product_name": "Kakuna [Reverse Holo] #66",
+      "console_name": "Pokemon Rising Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:66"
+      }
+    },
+    {
+      "query": "Pokemon Rising Rivals Rhyperior E4 32 holofoil",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Rising%20Rivals%20Rhyperior%20E4%2032%20holofoil",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "925574",
+      "product_name": "Eevee [Reverse Holo] #59",
+      "console_name": "Pokemon Rising Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:59"
+      }
+    },
+    {
+      "query": "Pokemon Rising Rivals Rhyperior E4 32 holofoil",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Rising%20Rivals%20Rhyperior%20E4%2032%20holofoil",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "925597",
+      "product_name": "Spheal [Reverse Holo] #82",
+      "console_name": "Pokemon Rising Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:82"
+      }
+    },
+    {
+      "query": "Pokemon Rising Rivals Rhyperior E4 32 holofoil",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Rising%20Rivals%20Rhyperior%20E4%2032%20holofoil",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "925592",
+      "product_name": "Sealeo [Reverse Holo] #77",
+      "console_name": "Pokemon Rising Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:77"
+      }
+    },
+    {
+      "query": "Pokemon Rising Rivals Rhyperior E4 32 holofoil",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Rising%20Rivals%20Rhyperior%20E4%2032%20holofoil",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "925598",
+      "product_name": "Staryu [Reverse Holo] #83",
+      "console_name": "Pokemon Rising Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:83"
+      }
+    },
+    {
+      "query": "Pokemon Rising Rivals Rhyperior E4 32 holofoil",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Rising%20Rivals%20Rhyperior%20E4%2032%20holofoil",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "925593",
+      "product_name": "Seedot [Reverse Holo] #78",
+      "console_name": "Pokemon Rising Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:78"
+      }
+    },
+    {
+      "query": "Pokemon Rising Rivals Rhyperior E4 32 holofoil",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Rising%20Rivals%20Rhyperior%20E4%2032%20holofoil",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "925530",
+      "product_name": "Aggron [Reverse Holo] #14",
+      "console_name": "Pokemon Rising Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:14"
+      }
+    },
+    {
+      "query": "Pokemon Rising Rivals Rhyperior E4 32 holofoil",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Rising%20Rivals%20Rhyperior%20E4%2032%20holofoil",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "925601",
+      "product_name": "Weedle [Reverse Holo] #86",
+      "console_name": "Pokemon Rising Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:86"
+      }
+    },
+    {
+      "query": "Pokemon Rising Rivals Rhyperior E4 32 holofoil",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Rising%20Rivals%20Rhyperior%20E4%2032%20holofoil",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "925534",
+      "product_name": "Espeon [Reverse Holo] #18",
+      "console_name": "Pokemon Rising Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:18"
+      }
+    },
+    {
+      "query": "Pokemon Rising Rivals Rhyperior E4 32 holofoil",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Rising%20Rivals%20Rhyperior%20E4%2032%20holofoil",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12319325",
+      "product_name": "Rhyperior [Cosmos Holo] #62",
+      "console_name": "Pokemon XY",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:62"
+      }
+    },
+    {
+      "query": "Pokemon Rising Rivals Rhyperior E4 32 holofoil",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Rising%20Rivals%20Rhyperior%20E4%2032%20holofoil",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "925567",
+      "product_name": "Tropius [Reverse Holo] #52",
+      "console_name": "Pokemon Rising Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:52"
+      }
+    },
+    {
+      "query": "Pokemon Rising Rivals Rhyperior E4 32 holofoil",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Rising%20Rivals%20Rhyperior%20E4%2032%20holofoil",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "925523",
+      "product_name": "Jirachi [Reverse Holo] #7",
+      "console_name": "Pokemon Rising Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:7"
+      }
+    }
+  ],
+  "source_lane": "pricecharting_api"
+}

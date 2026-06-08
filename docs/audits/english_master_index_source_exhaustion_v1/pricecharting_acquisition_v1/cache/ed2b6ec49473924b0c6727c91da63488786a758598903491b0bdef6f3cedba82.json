@@ -1,0 +1,549 @@
+{
+  "status": "api_no_validated_match",
+  "fact": {
+    "gap_type": "finish_second_source_needed",
+    "fact_type": "printing_finish",
+    "set_key": "sv07",
+    "set_name": "Stellar Crown",
+    "card_number": "51",
+    "card_name": "Galvantula ex",
+    "finish_key": "stamped",
+    "status": "human_source_verified",
+    "sources": [
+      "thepricedex_price_list"
+    ],
+    "source_authorities": [
+      "thepricedex.com"
+    ],
+    "source_kinds": [
+      "marketplace_checklist"
+    ],
+    "evidence_urls": [
+      "https://www.thepricedex.com/set/sv7/stellar-crown/price-list"
+    ],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "attempts": [
+    {
+      "query": "Pokemon Stellar Crown Galvantula ex 51 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Stellar%20Crown%20Galvantula%20ex%2051%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7418536",
+      "product_name": "Galvantula ex #51",
+      "console_name": "Pokemon Stellar Crown",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon Stellar Crown Galvantula ex 51 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Stellar%20Crown%20Galvantula%20ex%2051%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9912689",
+      "product_name": "Galvantula Ex [Prize Pack] #51",
+      "console_name": "Pokemon Stellar Crown",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Prize Pack"
+      }
+    },
+    {
+      "query": "Pokemon Stellar Crown Galvantula ex 51 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Stellar%20Crown%20Galvantula%20ex%2051%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7418644",
+      "product_name": "Galvantula ex #159",
+      "console_name": "Pokemon Stellar Crown",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:159"
+      }
+    },
+    {
+      "query": "Pokemon Stellar Crown Galvantula ex 51 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Stellar%20Crown%20Galvantula%20ex%2051%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7418653",
+      "product_name": "Galvantula ex #168",
+      "console_name": "Pokemon Stellar Crown",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:168"
+      }
+    },
+    {
+      "query": "Pokemon Stellar Crown Galvantula ex 51 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Stellar%20Crown%20Galvantula%20ex%2051%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11469116",
+      "product_name": "Melmetal Ex [Stamped] #105",
+      "console_name": "Pokemon Stellar Crown",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:105"
+      }
+    },
+    {
+      "query": "Pokemon Stellar Crown Galvantula ex 51 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Stellar%20Crown%20Galvantula%20ex%2051%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11321011",
+      "product_name": "Greninja EX [Stamped] #41",
+      "console_name": "Pokemon Stellar Crown",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:41"
+      }
+    },
+    {
+      "query": "Pokemon Stellar Crown Galvantula ex 51 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Stellar%20Crown%20Galvantula%20ex%2051%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10233481",
+      "product_name": "Venusaur Ex [Stamped] #1",
+      "console_name": "Pokemon Stellar Crown",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:1"
+      }
+    },
+    {
+      "query": "Pokemon Stellar Crown Galvantula ex 51 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Stellar%20Crown%20Galvantula%20ex%2051%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10212998",
+      "product_name": "Blastoise Ex [Stamped] #30",
+      "console_name": "Pokemon Stellar Crown",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:30"
+      }
+    },
+    {
+      "query": "Pokemon Stellar Crown Galvantula ex 51 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Stellar%20Crown%20Galvantula%20ex%2051%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7029870",
+      "product_name": "Galvantula ex #33",
+      "console_name": "Pokemon Japanese Stellar Miracle",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:33"
+      }
+    },
+    {
+      "query": "Pokemon Stellar Crown Galvantula ex 51 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Stellar%20Crown%20Galvantula%20ex%2051%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7029954",
+      "product_name": "Galvantula ex #118",
+      "console_name": "Pokemon Japanese Stellar Miracle",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:118"
+      }
+    },
+    {
+      "query": "Pokemon Stellar Crown Galvantula ex 51 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Stellar%20Crown%20Galvantula%20ex%2051%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7029964",
+      "product_name": "Galvantula ex #128",
+      "console_name": "Pokemon Japanese Stellar Miracle",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:128"
+      }
+    },
+    {
+      "query": "Pokemon Stellar Crown Galvantula ex 51 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Stellar%20Crown%20Galvantula%20ex%2051%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11580217",
+      "product_name": "Meltan [Stamped] #102",
+      "console_name": "Pokemon Stellar Crown",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:102"
+      }
+    },
+    {
+      "query": "Pokemon Stellar Crown Galvantula ex 51 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Stellar%20Crown%20Galvantula%20ex%2051%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11370172",
+      "product_name": "Reshiram [Stamped] #22",
+      "console_name": "Pokemon Stellar Crown",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:22"
+      }
+    },
+    {
+      "query": "Pokemon Stellar Crown Galvantula ex 51 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Stellar%20Crown%20Galvantula%20ex%2051%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7418643",
+      "product_name": "Lapras ex #158",
+      "console_name": "Pokemon Stellar Crown",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:158"
+      }
+    },
+    {
+      "query": "Pokemon Stellar Crown Galvantula ex 51 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Stellar%20Crown%20Galvantula%20ex%2051%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7418517",
+      "product_name": "Lapras ex #32",
+      "console_name": "Pokemon Stellar Crown",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:32"
+      }
+    },
+    {
+      "query": "Pokemon Stellar Crown Galvantula ex 51 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Stellar%20Crown%20Galvantula%20ex%2051%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7418567",
+      "product_name": "Lucario ex #82",
+      "console_name": "Pokemon Stellar Crown",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:82"
+      }
+    },
+    {
+      "query": "Pokemon Stellar Crown Galvantula ex 51 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Stellar%20Crown%20Galvantula%20ex%2051%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10028510",
+      "product_name": "Glass Trumpet [Gym Stamp] #135",
+      "console_name": "Pokemon Stellar Crown",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:135"
+      }
+    },
+    {
+      "query": "Pokemon Stellar Crown Galvantula ex 51 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Stellar%20Crown%20Galvantula%20ex%2051%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7418655",
+      "product_name": "Terapagos ex #170",
+      "console_name": "Pokemon Stellar Crown",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:170"
+      }
+    },
+    {
+      "query": "Pokemon Stellar Crown Galvantula ex 51 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Stellar%20Crown%20Galvantula%20ex%2051%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7418658",
+      "product_name": "Terapagos ex #173",
+      "console_name": "Pokemon Stellar Crown",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:173"
+      }
+    },
+    {
+      "query": "Pokemon Stellar Crown Galvantula ex 51 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Stellar%20Crown%20Galvantula%20ex%2051%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7418613",
+      "product_name": "Terapagos ex #128",
+      "console_name": "Pokemon Stellar Crown",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:128"
+      }
+    },
+    {
+      "query": "Pokemon Stellar Crown Galvantula ex 51 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Stellar%20Crown%20Galvantula%20ex%2051%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7418536",
+      "product_name": "Galvantula ex #51",
+      "console_name": "Pokemon Stellar Crown",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon Stellar Crown Galvantula ex 51 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Stellar%20Crown%20Galvantula%20ex%2051%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9912689",
+      "product_name": "Galvantula Ex [Prize Pack] #51",
+      "console_name": "Pokemon Stellar Crown",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Prize Pack"
+      }
+    },
+    {
+      "query": "Pokemon Stellar Crown Galvantula ex 51 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Stellar%20Crown%20Galvantula%20ex%2051%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7418644",
+      "product_name": "Galvantula ex #159",
+      "console_name": "Pokemon Stellar Crown",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:159"
+      }
+    },
+    {
+      "query": "Pokemon Stellar Crown Galvantula ex 51 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Stellar%20Crown%20Galvantula%20ex%2051%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7418653",
+      "product_name": "Galvantula ex #168",
+      "console_name": "Pokemon Stellar Crown",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:168"
+      }
+    },
+    {
+      "query": "Pokemon Stellar Crown Galvantula ex 51 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Stellar%20Crown%20Galvantula%20ex%2051%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11469116",
+      "product_name": "Melmetal Ex [Stamped] #105",
+      "console_name": "Pokemon Stellar Crown",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:105"
+      }
+    },
+    {
+      "query": "Pokemon Stellar Crown Galvantula ex 51 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Stellar%20Crown%20Galvantula%20ex%2051%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11321011",
+      "product_name": "Greninja EX [Stamped] #41",
+      "console_name": "Pokemon Stellar Crown",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:41"
+      }
+    },
+    {
+      "query": "Pokemon Stellar Crown Galvantula ex 51 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Stellar%20Crown%20Galvantula%20ex%2051%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10233481",
+      "product_name": "Venusaur Ex [Stamped] #1",
+      "console_name": "Pokemon Stellar Crown",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:1"
+      }
+    },
+    {
+      "query": "Pokemon Stellar Crown Galvantula ex 51 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Stellar%20Crown%20Galvantula%20ex%2051%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10212998",
+      "product_name": "Blastoise Ex [Stamped] #30",
+      "console_name": "Pokemon Stellar Crown",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:30"
+      }
+    },
+    {
+      "query": "Pokemon Stellar Crown Galvantula ex 51 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Stellar%20Crown%20Galvantula%20ex%2051%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7029870",
+      "product_name": "Galvantula ex #33",
+      "console_name": "Pokemon Japanese Stellar Miracle",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:33"
+      }
+    },
+    {
+      "query": "Pokemon Stellar Crown Galvantula ex 51 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Stellar%20Crown%20Galvantula%20ex%2051%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7029954",
+      "product_name": "Galvantula ex #118",
+      "console_name": "Pokemon Japanese Stellar Miracle",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:118"
+      }
+    },
+    {
+      "query": "Pokemon Stellar Crown Galvantula ex 51 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Stellar%20Crown%20Galvantula%20ex%2051%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7029964",
+      "product_name": "Galvantula ex #128",
+      "console_name": "Pokemon Japanese Stellar Miracle",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:128"
+      }
+    },
+    {
+      "query": "Pokemon Stellar Crown Galvantula ex 51 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Stellar%20Crown%20Galvantula%20ex%2051%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11580217",
+      "product_name": "Meltan [Stamped] #102",
+      "console_name": "Pokemon Stellar Crown",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:102"
+      }
+    },
+    {
+      "query": "Pokemon Stellar Crown Galvantula ex 51 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Stellar%20Crown%20Galvantula%20ex%2051%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11370172",
+      "product_name": "Reshiram [Stamped] #22",
+      "console_name": "Pokemon Stellar Crown",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:22"
+      }
+    },
+    {
+      "query": "Pokemon Stellar Crown Galvantula ex 51 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Stellar%20Crown%20Galvantula%20ex%2051%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7418643",
+      "product_name": "Lapras ex #158",
+      "console_name": "Pokemon Stellar Crown",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:158"
+      }
+    },
+    {
+      "query": "Pokemon Stellar Crown Galvantula ex 51 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Stellar%20Crown%20Galvantula%20ex%2051%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7418517",
+      "product_name": "Lapras ex #32",
+      "console_name": "Pokemon Stellar Crown",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:32"
+      }
+    },
+    {
+      "query": "Pokemon Stellar Crown Galvantula ex 51 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Stellar%20Crown%20Galvantula%20ex%2051%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7418567",
+      "product_name": "Lucario ex #82",
+      "console_name": "Pokemon Stellar Crown",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:82"
+      }
+    },
+    {
+      "query": "Pokemon Stellar Crown Galvantula ex 51 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Stellar%20Crown%20Galvantula%20ex%2051%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10028510",
+      "product_name": "Glass Trumpet [Gym Stamp] #135",
+      "console_name": "Pokemon Stellar Crown",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:135"
+      }
+    },
+    {
+      "query": "Pokemon Stellar Crown Galvantula ex 51 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Stellar%20Crown%20Galvantula%20ex%2051%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7418655",
+      "product_name": "Terapagos ex #170",
+      "console_name": "Pokemon Stellar Crown",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:170"
+      }
+    },
+    {
+      "query": "Pokemon Stellar Crown Galvantula ex 51 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Stellar%20Crown%20Galvantula%20ex%2051%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7418658",
+      "product_name": "Terapagos ex #173",
+      "console_name": "Pokemon Stellar Crown",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:173"
+      }
+    },
+    {
+      "query": "Pokemon Stellar Crown Galvantula ex 51 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Stellar%20Crown%20Galvantula%20ex%2051%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7418613",
+      "product_name": "Terapagos ex #128",
+      "console_name": "Pokemon Stellar Crown",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:128"
+      }
+    }
+  ],
+  "source_lane": "pricecharting_api"
+}

@@ -1,0 +1,43 @@
+{
+  "status": "no_validated_match",
+  "fact": {
+    "gap_type": "finish_human_checklist_evidence_needed",
+    "fact_type": "printing_finish",
+    "set_key": "ex12",
+    "set_name": "Legend Maker",
+    "card_number": "90",
+    "card_name": "Regice Star",
+    "finish_key": "holo",
+    "status": "candidate_unconfirmed",
+    "sources": [
+      "tcgdex"
+    ],
+    "source_authorities": [
+      "api.tcgdex.net"
+    ],
+    "source_kinds": [
+      "structured_api"
+    ],
+    "evidence_urls": [],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "attempts": [
+    {
+      "query": "Pokemon Legend Maker Regice Star 90 holo",
+      "url": "https://www.pricecharting.com/search-products?q=Pokemon%20Legend%20Maker%20Regice%20Star%2090%20holo&type=prices",
+      "parsed": {
+        "title": "Pokemon Legend Maker Regice Star 90 Holo Prices | Pokemon Legend Maker Regice Star 90 Holo List",
+        "source_url": "https://www.pricecharting.com/search-products?q=pokemon+legend+maker+regice+star+90+holo&type=prices"
+      },
+      "validation": {
+        "ok": false,
+        "reason": "title_pattern_not_supported"
+      }
+    },
+    {
+      "query": "Pokemon Legend Maker Regice Star 90 holofoil",
+      "url": "https://www.pricecharting.com/search-products?q=Pokemon%20Legend%20Maker%20Regice%20Star%2090%20holofoil&type=prices",
+      "error": "Fetch failed 403 Forbidden: https://www.pricecharting.com/search-products?q=Pokemon%20Legend%20Maker%20Regice%20Star%2090%20holofoil&type=prices"
+    }
+  ]
+}

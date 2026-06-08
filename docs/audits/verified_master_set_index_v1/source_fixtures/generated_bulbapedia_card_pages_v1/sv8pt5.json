@@ -1,0 +1,31 @@
+{
+  "fixture_version": "VERIFIED_MASTER_SET_INDEX_V1_HUMAN_SOURCE_FIXTURE_GENERATED",
+  "source_key": "bulbapedia_card_page_sv8pt5",
+  "source_kind": "human_readable_checklist",
+  "source_url": "https://bulbapedia.bulbagarden.net/wiki/Category:Pokémon_cards",
+  "source_status": "available_generated",
+  "set_key": "sv8pt5",
+  "set_name": "Prismatic Evolutions",
+  "retrieved_at": "2026-05-26T17:20:44.468Z",
+  "raw_snapshot_ref": "generated_fixture:bulbapedia_card_page:sv8pt5:2026-05-26T17:20:44.468Z",
+  "generation_note": "Generated from Bulbapedia individual card page expansion metadata and release-information text. Exact set/number match is required; finish truth is emitted only for explicit finish/stamp/logo wording.",
+  "records": [
+    {
+      "source_key": "bulbapedia_card_page_release_info",
+      "source_kind": "human_readable_checklist",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Eevee_(Surging_Sparks_143)",
+      "set_key": "sv8pt5",
+      "set_name": "Prismatic Evolutions",
+      "card_number": "74",
+      "card_name": "Eevee",
+      "finish_key": "stamped",
+      "rarity": null,
+      "evidence_type": "finish_presence",
+      "evidence_label": "Bulbapedia card page release information stamp/logo variant",
+      "language": "en",
+      "retrieved_at": "2026-05-26T17:20:44.468Z",
+      "raw_snapshot_ref": "bulbapedia_card_page:Eevee_(Surging_Sparks_143):sv8pt5:74:stamped",
+      "notes": "Release information explicitly documents an English-scoped stamp/logo variant. Evidence: A variant of the SVP Black Star Promo print with the logo above the Retreat Cost was also available in es from the same day."
+    }
+  ]
+}

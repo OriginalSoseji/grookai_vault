@@ -1,0 +1,549 @@
+{
+  "status": "api_no_validated_match",
+  "fact": {
+    "gap_type": "finish_second_source_needed",
+    "fact_type": "printing_finish",
+    "set_key": "sv05",
+    "set_name": "Temporal Forces",
+    "card_number": "145",
+    "card_name": "Ciphermaniac's Codebreaking",
+    "finish_key": "stamped",
+    "status": "human_source_verified",
+    "sources": [
+      "thepricedex_price_list"
+    ],
+    "source_authorities": [
+      "thepricedex.com"
+    ],
+    "source_kinds": [
+      "marketplace_checklist"
+    ],
+    "evidence_urls": [
+      "https://www.thepricedex.com/set/sv5/temporal-forces/price-list"
+    ],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "attempts": [
+    {
+      "query": "Pokemon Temporal Forces Ciphermaniac's Codebreaking 145 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Temporal%20Forces%20Ciphermaniac's%20Codebreaking%20145%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6495605",
+      "product_name": "Ciphermaniac's Codebreaking #145",
+      "console_name": "Pokemon Temporal Forces",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon Temporal Forces Ciphermaniac's Codebreaking 145 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Temporal%20Forces%20Ciphermaniac's%20Codebreaking%20145%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6495809",
+      "product_name": "Ciphermaniac's Codebreaking [Reverse Holo] #145",
+      "console_name": "Pokemon Temporal Forces",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Reverse Holo"
+      }
+    },
+    {
+      "query": "Pokemon Temporal Forces Ciphermaniac's Codebreaking 145 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Temporal%20Forces%20Ciphermaniac's%20Codebreaking%20145%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8805224",
+      "product_name": "Ciphermaniac's Codebreaking [Prize Pack] #145",
+      "console_name": "Pokemon Temporal Forces",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Prize Pack"
+      }
+    },
+    {
+      "query": "Pokemon Temporal Forces Ciphermaniac's Codebreaking 145 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Temporal%20Forces%20Ciphermaniac's%20Codebreaking%20145%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6495658",
+      "product_name": "Ciphermaniac's Codebreaking #198",
+      "console_name": "Pokemon Temporal Forces",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:198"
+      }
+    },
+    {
+      "query": "Pokemon Temporal Forces Ciphermaniac's Codebreaking 145 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Temporal%20Forces%20Ciphermaniac's%20Codebreaking%20145%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10909868",
+      "product_name": "Ciphermaniac's Codebreaking [Prize Pack Cosmos Holo] #145",
+      "console_name": "Pokemon Temporal Forces",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Prize Pack Cosmos Holo"
+      }
+    },
+    {
+      "query": "Pokemon Temporal Forces Ciphermaniac's Codebreaking 145 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Temporal%20Forces%20Ciphermaniac's%20Codebreaking%20145%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8244549",
+      "product_name": "Ciphermaniac's Codebreaking #104",
+      "console_name": "Pokemon Prismatic Evolutions",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:104"
+      }
+    },
+    {
+      "query": "Pokemon Temporal Forces Ciphermaniac's Codebreaking 145 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Temporal%20Forces%20Ciphermaniac's%20Codebreaking%20145%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7980178",
+      "product_name": "Ciphermaniac's Codebreaking #165",
+      "console_name": "Pokemon Japanese Terastal Festival",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:165"
+      }
+    },
+    {
+      "query": "Pokemon Temporal Forces Ciphermaniac's Codebreaking 145 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Temporal%20Forces%20Ciphermaniac's%20Codebreaking%20145%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12843823",
+      "product_name": "Ciphermaniac's Codebreaking #191",
+      "console_name": "Pokemon Chinese CSV7C",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:191"
+      }
+    },
+    {
+      "query": "Pokemon Temporal Forces Ciphermaniac's Codebreaking 145 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Temporal%20Forces%20Ciphermaniac's%20Codebreaking%20145%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12317375",
+      "product_name": "Ciphermaniac's Codebreaking #245",
+      "console_name": "Pokemon Chinese CSV7C",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:245"
+      }
+    },
+    {
+      "query": "Pokemon Temporal Forces Ciphermaniac's Codebreaking 145 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Temporal%20Forces%20Ciphermaniac's%20Codebreaking%20145%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12843964",
+      "product_name": "Ciphermaniac's Codebreaking #228",
+      "console_name": "Pokemon Chinese CSV7C",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:228"
+      }
+    },
+    {
+      "query": "Pokemon Temporal Forces Ciphermaniac's Codebreaking 145 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Temporal%20Forces%20Ciphermaniac's%20Codebreaking%20145%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12030832",
+      "product_name": "Ciphermaniac's Codebreaking #165",
+      "console_name": "Pokemon Korean Terastal Festival ex",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:165"
+      }
+    },
+    {
+      "query": "Pokemon Temporal Forces Ciphermaniac's Codebreaking 145 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Temporal%20Forces%20Ciphermaniac's%20Codebreaking%20145%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10761320",
+      "product_name": "Ciphermaniac's Codebreaking #31",
+      "console_name": "Pokemon Japanese Battle Partners Deck Build Box",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:31"
+      }
+    },
+    {
+      "query": "Pokemon Temporal Forces Ciphermaniac's Codebreaking 145 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Temporal%20Forces%20Ciphermaniac's%20Codebreaking%20145%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11463060",
+      "product_name": "Ciphermaniac's Codebreaking #698",
+      "console_name": "Pokemon Japanese Start Deck 100 Battle Collection",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:698"
+      }
+    },
+    {
+      "query": "Pokemon Temporal Forces Ciphermaniac's Codebreaking 145 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Temporal%20Forces%20Ciphermaniac's%20Codebreaking%20145%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8321768",
+      "product_name": "Ciphermaniac's Codebreaking [Reverse] #104",
+      "console_name": "Pokemon Prismatic Evolutions",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:104"
+      }
+    },
+    {
+      "query": "Pokemon Temporal Forces Ciphermaniac's Codebreaking 145 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Temporal%20Forces%20Ciphermaniac's%20Codebreaking%20145%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7980358",
+      "product_name": "Ciphermaniac's Codebreaking [Poke Ball] #165",
+      "console_name": "Pokemon Japanese Terastal Festival",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:165"
+      }
+    },
+    {
+      "query": "Pokemon Temporal Forces Ciphermaniac's Codebreaking 145 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Temporal%20Forces%20Ciphermaniac's%20Codebreaking%20145%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8321671",
+      "product_name": "Ciphermaniac's Codebreaking [Poke Ball] #104",
+      "console_name": "Pokemon Prismatic Evolutions",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:104"
+      }
+    },
+    {
+      "query": "Pokemon Temporal Forces Ciphermaniac's Codebreaking 145 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Temporal%20Forces%20Ciphermaniac's%20Codebreaking%20145%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12843841",
+      "product_name": "Ciphermaniac's Codebreaking [Poke Ball] #191",
+      "console_name": "Pokemon Chinese CSV7C",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:191"
+      }
+    },
+    {
+      "query": "Pokemon Temporal Forces Ciphermaniac's Codebreaking 145 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Temporal%20Forces%20Ciphermaniac's%20Codebreaking%20145%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12030836",
+      "product_name": "Ciphermaniac's Codebreaking [Poke Ball] #165",
+      "console_name": "Pokemon Korean Terastal Festival ex",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:165"
+      }
+    },
+    {
+      "query": "Pokemon Temporal Forces Ciphermaniac's Codebreaking 145 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Temporal%20Forces%20Ciphermaniac's%20Codebreaking%20145%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6582717",
+      "product_name": "Miraidon [Stamped] #121",
+      "console_name": "Pokemon Temporal Forces",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:121"
+      }
+    },
+    {
+      "query": "Pokemon Temporal Forces Ciphermaniac's Codebreaking 145 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Temporal%20Forces%20Ciphermaniac's%20Codebreaking%20145%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6659921",
+      "product_name": "Koraidon [Stamped] #119",
+      "console_name": "Pokemon Temporal Forces",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:119"
+      }
+    },
+    {
+      "query": "Pokemon Temporal Forces Ciphermaniac's Codebreaking 145 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Temporal%20Forces%20Ciphermaniac's%20Codebreaking%20145%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6495605",
+      "product_name": "Ciphermaniac's Codebreaking #145",
+      "console_name": "Pokemon Temporal Forces",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon Temporal Forces Ciphermaniac's Codebreaking 145 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Temporal%20Forces%20Ciphermaniac's%20Codebreaking%20145%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6495809",
+      "product_name": "Ciphermaniac's Codebreaking [Reverse Holo] #145",
+      "console_name": "Pokemon Temporal Forces",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Reverse Holo"
+      }
+    },
+    {
+      "query": "Pokemon Temporal Forces Ciphermaniac's Codebreaking 145 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Temporal%20Forces%20Ciphermaniac's%20Codebreaking%20145%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8805224",
+      "product_name": "Ciphermaniac's Codebreaking [Prize Pack] #145",
+      "console_name": "Pokemon Temporal Forces",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Prize Pack"
+      }
+    },
+    {
+      "query": "Pokemon Temporal Forces Ciphermaniac's Codebreaking 145 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Temporal%20Forces%20Ciphermaniac's%20Codebreaking%20145%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6495658",
+      "product_name": "Ciphermaniac's Codebreaking #198",
+      "console_name": "Pokemon Temporal Forces",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:198"
+      }
+    },
+    {
+      "query": "Pokemon Temporal Forces Ciphermaniac's Codebreaking 145 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Temporal%20Forces%20Ciphermaniac's%20Codebreaking%20145%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10909868",
+      "product_name": "Ciphermaniac's Codebreaking [Prize Pack Cosmos Holo] #145",
+      "console_name": "Pokemon Temporal Forces",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Prize Pack Cosmos Holo"
+      }
+    },
+    {
+      "query": "Pokemon Temporal Forces Ciphermaniac's Codebreaking 145 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Temporal%20Forces%20Ciphermaniac's%20Codebreaking%20145%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8244549",
+      "product_name": "Ciphermaniac's Codebreaking #104",
+      "console_name": "Pokemon Prismatic Evolutions",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:104"
+      }
+    },
+    {
+      "query": "Pokemon Temporal Forces Ciphermaniac's Codebreaking 145 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Temporal%20Forces%20Ciphermaniac's%20Codebreaking%20145%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7980178",
+      "product_name": "Ciphermaniac's Codebreaking #165",
+      "console_name": "Pokemon Japanese Terastal Festival",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:165"
+      }
+    },
+    {
+      "query": "Pokemon Temporal Forces Ciphermaniac's Codebreaking 145 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Temporal%20Forces%20Ciphermaniac's%20Codebreaking%20145%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12843823",
+      "product_name": "Ciphermaniac's Codebreaking #191",
+      "console_name": "Pokemon Chinese CSV7C",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:191"
+      }
+    },
+    {
+      "query": "Pokemon Temporal Forces Ciphermaniac's Codebreaking 145 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Temporal%20Forces%20Ciphermaniac's%20Codebreaking%20145%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12317375",
+      "product_name": "Ciphermaniac's Codebreaking #245",
+      "console_name": "Pokemon Chinese CSV7C",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:245"
+      }
+    },
+    {
+      "query": "Pokemon Temporal Forces Ciphermaniac's Codebreaking 145 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Temporal%20Forces%20Ciphermaniac's%20Codebreaking%20145%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12843964",
+      "product_name": "Ciphermaniac's Codebreaking #228",
+      "console_name": "Pokemon Chinese CSV7C",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:228"
+      }
+    },
+    {
+      "query": "Pokemon Temporal Forces Ciphermaniac's Codebreaking 145 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Temporal%20Forces%20Ciphermaniac's%20Codebreaking%20145%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12030832",
+      "product_name": "Ciphermaniac's Codebreaking #165",
+      "console_name": "Pokemon Korean Terastal Festival ex",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:165"
+      }
+    },
+    {
+      "query": "Pokemon Temporal Forces Ciphermaniac's Codebreaking 145 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Temporal%20Forces%20Ciphermaniac's%20Codebreaking%20145%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10761320",
+      "product_name": "Ciphermaniac's Codebreaking #31",
+      "console_name": "Pokemon Japanese Battle Partners Deck Build Box",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:31"
+      }
+    },
+    {
+      "query": "Pokemon Temporal Forces Ciphermaniac's Codebreaking 145 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Temporal%20Forces%20Ciphermaniac's%20Codebreaking%20145%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11463060",
+      "product_name": "Ciphermaniac's Codebreaking #698",
+      "console_name": "Pokemon Japanese Start Deck 100 Battle Collection",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:698"
+      }
+    },
+    {
+      "query": "Pokemon Temporal Forces Ciphermaniac's Codebreaking 145 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Temporal%20Forces%20Ciphermaniac's%20Codebreaking%20145%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8321768",
+      "product_name": "Ciphermaniac's Codebreaking [Reverse] #104",
+      "console_name": "Pokemon Prismatic Evolutions",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:104"
+      }
+    },
+    {
+      "query": "Pokemon Temporal Forces Ciphermaniac's Codebreaking 145 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Temporal%20Forces%20Ciphermaniac's%20Codebreaking%20145%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7980358",
+      "product_name": "Ciphermaniac's Codebreaking [Poke Ball] #165",
+      "console_name": "Pokemon Japanese Terastal Festival",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:165"
+      }
+    },
+    {
+      "query": "Pokemon Temporal Forces Ciphermaniac's Codebreaking 145 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Temporal%20Forces%20Ciphermaniac's%20Codebreaking%20145%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8321671",
+      "product_name": "Ciphermaniac's Codebreaking [Poke Ball] #104",
+      "console_name": "Pokemon Prismatic Evolutions",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:104"
+      }
+    },
+    {
+      "query": "Pokemon Temporal Forces Ciphermaniac's Codebreaking 145 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Temporal%20Forces%20Ciphermaniac's%20Codebreaking%20145%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12843841",
+      "product_name": "Ciphermaniac's Codebreaking [Poke Ball] #191",
+      "console_name": "Pokemon Chinese CSV7C",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:191"
+      }
+    },
+    {
+      "query": "Pokemon Temporal Forces Ciphermaniac's Codebreaking 145 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Temporal%20Forces%20Ciphermaniac's%20Codebreaking%20145%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12030836",
+      "product_name": "Ciphermaniac's Codebreaking [Poke Ball] #165",
+      "console_name": "Pokemon Korean Terastal Festival ex",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:165"
+      }
+    },
+    {
+      "query": "Pokemon Temporal Forces Ciphermaniac's Codebreaking 145 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Temporal%20Forces%20Ciphermaniac's%20Codebreaking%20145%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6582717",
+      "product_name": "Miraidon [Stamped] #121",
+      "console_name": "Pokemon Temporal Forces",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:121"
+      }
+    },
+    {
+      "query": "Pokemon Temporal Forces Ciphermaniac's Codebreaking 145 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Temporal%20Forces%20Ciphermaniac's%20Codebreaking%20145%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6659921",
+      "product_name": "Koraidon [Stamped] #119",
+      "console_name": "Pokemon Temporal Forces",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:119"
+      }
+    }
+  ],
+  "source_lane": "pricecharting_api"
+}

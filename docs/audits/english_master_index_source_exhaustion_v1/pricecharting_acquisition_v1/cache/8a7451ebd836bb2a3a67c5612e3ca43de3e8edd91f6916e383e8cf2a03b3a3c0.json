@@ -1,0 +1,549 @@
+{
+  "status": "api_no_validated_match",
+  "fact": {
+    "gap_type": "finish_second_source_needed",
+    "fact_type": "printing_finish",
+    "set_key": "bw5",
+    "set_name": "Dark Explorers",
+    "card_number": "4",
+    "card_name": "Scyther",
+    "finish_key": "stamped",
+    "status": "human_source_verified",
+    "sources": [
+      "thepricedex_price_list"
+    ],
+    "source_authorities": [
+      "thepricedex.com"
+    ],
+    "source_kinds": [
+      "marketplace_checklist"
+    ],
+    "evidence_urls": [
+      "https://www.thepricedex.com/set/bw5/dark-explorers/price-list"
+    ],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "attempts": [
+    {
+      "query": "Pokemon Dark Explorers Scyther 4 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Scyther%204%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "956050",
+      "product_name": "Scyther #4",
+      "console_name": "Pokemon Dark Explorers",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Scyther 4 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Scyther%204%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "956162",
+      "product_name": "Scyther [Reverse Holo] #4",
+      "console_name": "Pokemon Dark Explorers",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Reverse Holo"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Scyther 4 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Scyther%204%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10021295",
+      "product_name": "Scyther [2nd Place League] #4",
+      "console_name": "Pokemon Dark Explorers",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:2nd Place League"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Scyther 4 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Scyther%204%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6073272",
+      "product_name": "Scyther [4th Place League] #4",
+      "console_name": "Pokemon Dark Explorers",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:4th Place League"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Scyther 4 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Scyther%204%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5790304",
+      "product_name": "Scyther [1st Place League] #4",
+      "console_name": "Pokemon Dark Explorers",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:1st Place League"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Scyther 4 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Scyther%204%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6244328",
+      "product_name": "Scyther [3rd Place League Challenge] #4",
+      "console_name": "Pokemon Dark Explorers",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:3rd Place League Challenge"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Scyther 4 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Scyther%204%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "956142",
+      "product_name": "N #96",
+      "console_name": "Pokemon Dark Explorers",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:96"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Scyther 4 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Scyther%204%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "956086",
+      "product_name": "Minun #40",
+      "console_name": "Pokemon Dark Explorers",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:40"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Scyther 4 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Scyther%204%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "956121",
+      "product_name": "Klink #75",
+      "console_name": "Pokemon Dark Explorers",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:75"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Scyther 4 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Scyther%204%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "956115",
+      "product_name": "Zorua #69",
+      "console_name": "Pokemon Dark Explorers",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:69"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Scyther 4 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Scyther%204%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "956116",
+      "product_name": "Zorua #70",
+      "console_name": "Pokemon Dark Explorers",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:70"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Scyther 4 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Scyther%204%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "956122",
+      "product_name": "Klang #76",
+      "console_name": "Pokemon Dark Explorers",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:76"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Scyther 4 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Scyther%204%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "956129",
+      "product_name": "Eevee #83",
+      "console_name": "Pokemon Dark Explorers",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:83"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Scyther 4 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Scyther%204%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "956130",
+      "product_name": "Eevee #84",
+      "console_name": "Pokemon Dark Explorers",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:84"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Scyther 4 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Scyther%204%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "956138",
+      "product_name": "Dark Claw #92",
+      "console_name": "Pokemon Dark Explorers",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:92"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Scyther 4 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Scyther%204%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "956139",
+      "product_name": "Dark Patch #93",
+      "console_name": "Pokemon Dark Explorers",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:93"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Scyther 4 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Scyther%204%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "956073",
+      "product_name": "Piplup #27",
+      "console_name": "Pokemon Dark Explorers",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:27"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Scyther 4 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Scyther%204%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "956085",
+      "product_name": "Plusle #39",
+      "console_name": "Pokemon Dark Explorers",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:39"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Scyther 4 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Scyther%204%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "956082",
+      "product_name": "Swanna #36",
+      "console_name": "Pokemon Dark Explorers",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:36"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Scyther 4 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Scyther%204%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "956088",
+      "product_name": "Joltik #42",
+      "console_name": "Pokemon Dark Explorers",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:42"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Scyther 4 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Scyther%204%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "956050",
+      "product_name": "Scyther #4",
+      "console_name": "Pokemon Dark Explorers",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Scyther 4 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Scyther%204%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "956162",
+      "product_name": "Scyther [Reverse Holo] #4",
+      "console_name": "Pokemon Dark Explorers",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Reverse Holo"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Scyther 4 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Scyther%204%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10021295",
+      "product_name": "Scyther [2nd Place League] #4",
+      "console_name": "Pokemon Dark Explorers",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:2nd Place League"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Scyther 4 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Scyther%204%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6073272",
+      "product_name": "Scyther [4th Place League] #4",
+      "console_name": "Pokemon Dark Explorers",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:4th Place League"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Scyther 4 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Scyther%204%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5790304",
+      "product_name": "Scyther [1st Place League] #4",
+      "console_name": "Pokemon Dark Explorers",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:1st Place League"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Scyther 4 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Scyther%204%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6244328",
+      "product_name": "Scyther [3rd Place League Challenge] #4",
+      "console_name": "Pokemon Dark Explorers",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:3rd Place League Challenge"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Scyther 4 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Scyther%204%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "956142",
+      "product_name": "N #96",
+      "console_name": "Pokemon Dark Explorers",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:96"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Scyther 4 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Scyther%204%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "956086",
+      "product_name": "Minun #40",
+      "console_name": "Pokemon Dark Explorers",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:40"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Scyther 4 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Scyther%204%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "956121",
+      "product_name": "Klink #75",
+      "console_name": "Pokemon Dark Explorers",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:75"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Scyther 4 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Scyther%204%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "956115",
+      "product_name": "Zorua #69",
+      "console_name": "Pokemon Dark Explorers",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:69"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Scyther 4 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Scyther%204%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "956116",
+      "product_name": "Zorua #70",
+      "console_name": "Pokemon Dark Explorers",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:70"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Scyther 4 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Scyther%204%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "956122",
+      "product_name": "Klang #76",
+      "console_name": "Pokemon Dark Explorers",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:76"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Scyther 4 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Scyther%204%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "956129",
+      "product_name": "Eevee #83",
+      "console_name": "Pokemon Dark Explorers",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:83"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Scyther 4 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Scyther%204%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "956130",
+      "product_name": "Eevee #84",
+      "console_name": "Pokemon Dark Explorers",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:84"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Scyther 4 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Scyther%204%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "956138",
+      "product_name": "Dark Claw #92",
+      "console_name": "Pokemon Dark Explorers",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:92"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Scyther 4 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Scyther%204%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "956139",
+      "product_name": "Dark Patch #93",
+      "console_name": "Pokemon Dark Explorers",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:93"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Scyther 4 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Scyther%204%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "956073",
+      "product_name": "Piplup #27",
+      "console_name": "Pokemon Dark Explorers",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:27"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Scyther 4 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Scyther%204%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "956085",
+      "product_name": "Plusle #39",
+      "console_name": "Pokemon Dark Explorers",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:39"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Scyther 4 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Scyther%204%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "956082",
+      "product_name": "Swanna #36",
+      "console_name": "Pokemon Dark Explorers",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:36"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Scyther 4 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Scyther%204%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "956088",
+      "product_name": "Joltik #42",
+      "console_name": "Pokemon Dark Explorers",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:42"
+      }
+    }
+  ],
+  "source_lane": "pricecharting_api"
+}

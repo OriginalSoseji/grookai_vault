@@ -1,0 +1,549 @@
+{
+  "status": "api_no_validated_match",
+  "fact": {
+    "gap_type": "finish_second_source_needed",
+    "fact_type": "printing_finish",
+    "set_key": "ex8",
+    "set_name": "Deoxys",
+    "card_number": "38",
+    "card_name": "Manectric",
+    "finish_key": "stamped",
+    "status": "human_source_verified",
+    "sources": [
+      "thepricedex_price_list"
+    ],
+    "source_authorities": [
+      "thepricedex.com"
+    ],
+    "source_kinds": [
+      "marketplace_checklist"
+    ],
+    "evidence_urls": [
+      "https://www.thepricedex.com/set/ex8/deoxys/price-list"
+    ],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "attempts": [
+    {
+      "query": "Pokemon Deoxys Manectric 38 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Deoxys%20Manectric%2038%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "888058",
+      "product_name": "Manectric #38",
+      "console_name": "Pokemon Deoxys",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon Deoxys Manectric 38 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Deoxys%20Manectric%2038%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6073929",
+      "product_name": "Manectric [Prerelease] #38",
+      "console_name": "Pokemon Deoxys",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Prerelease"
+      }
+    },
+    {
+      "query": "Pokemon Deoxys Manectric 38 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Deoxys%20Manectric%2038%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "888166",
+      "product_name": "Manectric [Reverse Holo] #38",
+      "console_name": "Pokemon Deoxys",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Reverse Holo"
+      }
+    },
+    {
+      "query": "Pokemon Deoxys Manectric 38 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Deoxys%20Manectric%2038%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "888121",
+      "product_name": "Manectric EX #101",
+      "console_name": "Pokemon Deoxys",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:101"
+      }
+    },
+    {
+      "query": "Pokemon Deoxys Manectric 38 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Deoxys%20Manectric%2038%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8830666",
+      "product_name": "Manectric #38",
+      "console_name": "Pokemon Japanese Heat Wave Arena",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon Japanese Heat Wave Arena"
+      }
+    },
+    {
+      "query": "Pokemon Deoxys Manectric 38 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Deoxys%20Manectric%2038%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11533186",
+      "product_name": "Manectric #38",
+      "console_name": "Pokemon Korean Heat Wave Arena",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon Korean Heat Wave Arena"
+      }
+    },
+    {
+      "query": "Pokemon Deoxys Manectric 38 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Deoxys%20Manectric%2038%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3459550",
+      "product_name": "Manectric [1st Edition] #38",
+      "console_name": "Pokemon Japanese Galactic's Conquest",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon Japanese Galactic's Conquest"
+      }
+    },
+    {
+      "query": "Pokemon Deoxys Manectric 38 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Deoxys%20Manectric%2038%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3439320",
+      "product_name": "Manectric ex #33",
+      "console_name": "Pokemon Japanese Clash of the Blue Sky",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:33"
+      }
+    },
+    {
+      "query": "Pokemon Deoxys Manectric 38 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Deoxys%20Manectric%2038%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8453444",
+      "product_name": "Manectric ex [1st Edition] #33",
+      "console_name": "Pokemon Japanese Clash of the Blue Sky",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:33"
+      }
+    },
+    {
+      "query": "Pokemon Deoxys Manectric 38 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Deoxys%20Manectric%2038%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3439325",
+      "product_name": "Shedinja #38",
+      "console_name": "Pokemon Japanese Clash of the Blue Sky",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Shedinja"
+      }
+    },
+    {
+      "query": "Pokemon Deoxys Manectric 38 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Deoxys%20Manectric%2038%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "13077438",
+      "product_name": "Manectric #86",
+      "console_name": "Pokemon Japanese Abyss Eye",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:86"
+      }
+    },
+    {
+      "query": "Pokemon Deoxys Manectric 38 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Deoxys%20Manectric%2038%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "958217",
+      "product_name": "M Manectric EX #24",
+      "console_name": "Pokemon Phantom Forces",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:24"
+      }
+    },
+    {
+      "query": "Pokemon Deoxys Manectric 38 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Deoxys%20Manectric%2038%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "958313",
+      "product_name": "M Manectric EX #120",
+      "console_name": "Pokemon Phantom Forces",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:120"
+      }
+    },
+    {
+      "query": "Pokemon Deoxys Manectric 38 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Deoxys%20Manectric%2038%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "2418321",
+      "product_name": "M Manectric EX #24a",
+      "console_name": "Pokemon Phantom Forces",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:24a"
+      }
+    },
+    {
+      "query": "Pokemon Deoxys Manectric 38 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Deoxys%20Manectric%2038%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5769813",
+      "product_name": "Manectric [Foil] #42",
+      "console_name": "Pokemon 2004 Topps Advanced Challenge",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:42"
+      }
+    },
+    {
+      "query": "Pokemon Deoxys Manectric 38 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Deoxys%20Manectric%2038%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5921939",
+      "product_name": "M Manectric EX #43",
+      "console_name": "Pokemon Japanese Premium Champion Pack",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:43"
+      }
+    },
+    {
+      "query": "Pokemon Deoxys Manectric 38 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Deoxys%20Manectric%2038%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5095714",
+      "product_name": "Maria Hill #VS-38",
+      "console_name": "Marvel 2022 Ultra Avengers Value Stamp Relics",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:VS-38"
+      }
+    },
+    {
+      "query": "Pokemon Deoxys Manectric 38 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Deoxys%20Manectric%2038%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3473560",
+      "product_name": "M Manectric EX #35",
+      "console_name": "Pokemon Japanese Best of XY",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:35"
+      }
+    },
+    {
+      "query": "Pokemon Deoxys Manectric 38 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Deoxys%20Manectric%2038%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3473699",
+      "product_name": "M Manectric EX #174",
+      "console_name": "Pokemon Japanese Best of XY",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:174"
+      }
+    },
+    {
+      "query": "Pokemon Deoxys Manectric 38 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Deoxys%20Manectric%2038%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3438987",
+      "product_name": "Team Aqua's Manectric #39",
+      "console_name": "Pokemon Japanese Magma VS Aqua: Two Ambitions",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:39"
+      }
+    },
+    {
+      "query": "Pokemon Deoxys Manectric 38 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Deoxys%20Manectric%2038%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "888058",
+      "product_name": "Manectric #38",
+      "console_name": "Pokemon Deoxys",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon Deoxys Manectric 38 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Deoxys%20Manectric%2038%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6073929",
+      "product_name": "Manectric [Prerelease] #38",
+      "console_name": "Pokemon Deoxys",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Prerelease"
+      }
+    },
+    {
+      "query": "Pokemon Deoxys Manectric 38 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Deoxys%20Manectric%2038%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "888166",
+      "product_name": "Manectric [Reverse Holo] #38",
+      "console_name": "Pokemon Deoxys",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Reverse Holo"
+      }
+    },
+    {
+      "query": "Pokemon Deoxys Manectric 38 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Deoxys%20Manectric%2038%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "888121",
+      "product_name": "Manectric EX #101",
+      "console_name": "Pokemon Deoxys",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:101"
+      }
+    },
+    {
+      "query": "Pokemon Deoxys Manectric 38 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Deoxys%20Manectric%2038%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8830666",
+      "product_name": "Manectric #38",
+      "console_name": "Pokemon Japanese Heat Wave Arena",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon Japanese Heat Wave Arena"
+      }
+    },
+    {
+      "query": "Pokemon Deoxys Manectric 38 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Deoxys%20Manectric%2038%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11533186",
+      "product_name": "Manectric #38",
+      "console_name": "Pokemon Korean Heat Wave Arena",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon Korean Heat Wave Arena"
+      }
+    },
+    {
+      "query": "Pokemon Deoxys Manectric 38 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Deoxys%20Manectric%2038%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3459550",
+      "product_name": "Manectric [1st Edition] #38",
+      "console_name": "Pokemon Japanese Galactic's Conquest",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon Japanese Galactic's Conquest"
+      }
+    },
+    {
+      "query": "Pokemon Deoxys Manectric 38 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Deoxys%20Manectric%2038%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3439320",
+      "product_name": "Manectric ex #33",
+      "console_name": "Pokemon Japanese Clash of the Blue Sky",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:33"
+      }
+    },
+    {
+      "query": "Pokemon Deoxys Manectric 38 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Deoxys%20Manectric%2038%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8453444",
+      "product_name": "Manectric ex [1st Edition] #33",
+      "console_name": "Pokemon Japanese Clash of the Blue Sky",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:33"
+      }
+    },
+    {
+      "query": "Pokemon Deoxys Manectric 38 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Deoxys%20Manectric%2038%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3439325",
+      "product_name": "Shedinja #38",
+      "console_name": "Pokemon Japanese Clash of the Blue Sky",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Shedinja"
+      }
+    },
+    {
+      "query": "Pokemon Deoxys Manectric 38 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Deoxys%20Manectric%2038%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "13077438",
+      "product_name": "Manectric #86",
+      "console_name": "Pokemon Japanese Abyss Eye",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:86"
+      }
+    },
+    {
+      "query": "Pokemon Deoxys Manectric 38 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Deoxys%20Manectric%2038%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "958217",
+      "product_name": "M Manectric EX #24",
+      "console_name": "Pokemon Phantom Forces",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:24"
+      }
+    },
+    {
+      "query": "Pokemon Deoxys Manectric 38 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Deoxys%20Manectric%2038%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "958313",
+      "product_name": "M Manectric EX #120",
+      "console_name": "Pokemon Phantom Forces",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:120"
+      }
+    },
+    {
+      "query": "Pokemon Deoxys Manectric 38 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Deoxys%20Manectric%2038%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "2418321",
+      "product_name": "M Manectric EX #24a",
+      "console_name": "Pokemon Phantom Forces",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:24a"
+      }
+    },
+    {
+      "query": "Pokemon Deoxys Manectric 38 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Deoxys%20Manectric%2038%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5769813",
+      "product_name": "Manectric [Foil] #42",
+      "console_name": "Pokemon 2004 Topps Advanced Challenge",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:42"
+      }
+    },
+    {
+      "query": "Pokemon Deoxys Manectric 38 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Deoxys%20Manectric%2038%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5921939",
+      "product_name": "M Manectric EX #43",
+      "console_name": "Pokemon Japanese Premium Champion Pack",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:43"
+      }
+    },
+    {
+      "query": "Pokemon Deoxys Manectric 38 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Deoxys%20Manectric%2038%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5095714",
+      "product_name": "Maria Hill #VS-38",
+      "console_name": "Marvel 2022 Ultra Avengers Value Stamp Relics",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:VS-38"
+      }
+    },
+    {
+      "query": "Pokemon Deoxys Manectric 38 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Deoxys%20Manectric%2038%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3473560",
+      "product_name": "M Manectric EX #35",
+      "console_name": "Pokemon Japanese Best of XY",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:35"
+      }
+    },
+    {
+      "query": "Pokemon Deoxys Manectric 38 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Deoxys%20Manectric%2038%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3473699",
+      "product_name": "M Manectric EX #174",
+      "console_name": "Pokemon Japanese Best of XY",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:174"
+      }
+    },
+    {
+      "query": "Pokemon Deoxys Manectric 38 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Deoxys%20Manectric%2038%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3438987",
+      "product_name": "Team Aqua's Manectric #39",
+      "console_name": "Pokemon Japanese Magma VS Aqua: Two Ambitions",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:39"
+      }
+    }
+  ],
+  "source_lane": "pricecharting_api"
+}

@@ -1,0 +1,549 @@
+{
+  "status": "api_no_validated_match",
+  "fact": {
+    "gap_type": "finish_second_source_needed",
+    "fact_type": "printing_finish",
+    "set_key": "sv05",
+    "set_name": "Temporal Forces",
+    "card_number": "109",
+    "card_name": "Roaring Moon",
+    "finish_key": "stamped",
+    "status": "human_source_verified",
+    "sources": [
+      "thepricedex_price_list"
+    ],
+    "source_authorities": [
+      "thepricedex.com"
+    ],
+    "source_kinds": [
+      "marketplace_checklist"
+    ],
+    "evidence_urls": [
+      "https://www.thepricedex.com/set/sv5/temporal-forces/price-list"
+    ],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "attempts": [
+    {
+      "query": "Pokemon Temporal Forces Roaring Moon 109 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Temporal%20Forces%20Roaring%20Moon%20109%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6495569",
+      "product_name": "Roaring Moon #109",
+      "console_name": "Pokemon Temporal Forces",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon Temporal Forces Roaring Moon 109 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Temporal%20Forces%20Roaring%20Moon%20109%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7465404",
+      "product_name": "Roaring Moon [Misprint] #109",
+      "console_name": "Pokemon Temporal Forces",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Misprint"
+      }
+    },
+    {
+      "query": "Pokemon Temporal Forces Roaring Moon 109 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Temporal%20Forces%20Roaring%20Moon%20109%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7747647",
+      "product_name": "Roaring Moon [Cosmos Holo] #109",
+      "console_name": "Pokemon Temporal Forces",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Cosmos Holo"
+      }
+    },
+    {
+      "query": "Pokemon Temporal Forces Roaring Moon 109 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Temporal%20Forces%20Roaring%20Moon%20109%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7891977",
+      "product_name": "Roaring Moon [Prize Pack] #109",
+      "console_name": "Pokemon Temporal Forces",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Prize Pack"
+      }
+    },
+    {
+      "query": "Pokemon Temporal Forces Roaring Moon 109 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Temporal%20Forces%20Roaring%20Moon%20109%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6495777",
+      "product_name": "Roaring Moon [Reverse Holo] #109",
+      "console_name": "Pokemon Temporal Forces",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Reverse Holo"
+      }
+    },
+    {
+      "query": "Pokemon Temporal Forces Roaring Moon 109 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Temporal%20Forces%20Roaring%20Moon%20109%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7892010",
+      "product_name": "Roaring Moon [Prize Pack Cosmos Holo] #109",
+      "console_name": "Pokemon Temporal Forces",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Prize Pack Cosmos Holo"
+      }
+    },
+    {
+      "query": "Pokemon Temporal Forces Roaring Moon 109 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Temporal%20Forces%20Roaring%20Moon%20109%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6582717",
+      "product_name": "Miraidon [Stamped] #121",
+      "console_name": "Pokemon Temporal Forces",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:121"
+      }
+    },
+    {
+      "query": "Pokemon Temporal Forces Roaring Moon 109 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Temporal%20Forces%20Roaring%20Moon%20109%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6659921",
+      "product_name": "Koraidon [Stamped] #119",
+      "console_name": "Pokemon Temporal Forces",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:119"
+      }
+    },
+    {
+      "query": "Pokemon Temporal Forces Roaring Moon 109 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Temporal%20Forces%20Roaring%20Moon%20109%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11440379",
+      "product_name": "Iron Treads [Stamped] #118",
+      "console_name": "Pokemon Temporal Forces",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:118"
+      }
+    },
+    {
+      "query": "Pokemon Temporal Forces Roaring Moon 109 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Temporal%20Forces%20Roaring%20Moon%20109%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11440380",
+      "product_name": "Great Tusk [Stamped] #96",
+      "console_name": "Pokemon Temporal Forces",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:96"
+      }
+    },
+    {
+      "query": "Pokemon Temporal Forces Roaring Moon 109 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Temporal%20Forces%20Roaring%20Moon%20109%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8321739",
+      "product_name": "Roaring Moon [Reverse] #65",
+      "console_name": "Pokemon Prismatic Evolutions",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:65"
+      }
+    },
+    {
+      "query": "Pokemon Temporal Forces Roaring Moon 109 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Temporal%20Forces%20Roaring%20Moon%20109%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8321642",
+      "product_name": "Roaring Moon [Poke Ball] #65",
+      "console_name": "Pokemon Prismatic Evolutions",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:65"
+      }
+    },
+    {
+      "query": "Pokemon Temporal Forces Roaring Moon 109 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Temporal%20Forces%20Roaring%20Moon%20109%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "958932",
+      "product_name": "Energy Switch #109",
+      "console_name": "Pokemon Roaring Skies",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Energy Switch"
+      }
+    },
+    {
+      "query": "Pokemon Temporal Forces Roaring Moon 109 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Temporal%20Forces%20Roaring%20Moon%20109%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6148329",
+      "product_name": "Roaring Moon ex [Jumbo] #67",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "product_scope_jumbo_not_canonical_set_finish"
+      }
+    },
+    {
+      "query": "Pokemon Temporal Forces Roaring Moon 109 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Temporal%20Forces%20Roaring%20Moon%20109%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7980304",
+      "product_name": "Roaring Moon [Poke Ball] #100",
+      "console_name": "Pokemon Japanese Terastal Festival",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:100"
+      }
+    },
+    {
+      "query": "Pokemon Temporal Forces Roaring Moon 109 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Temporal%20Forces%20Roaring%20Moon%20109%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8321544",
+      "product_name": "Roaring Moon [Master Ball] #65",
+      "console_name": "Pokemon Prismatic Evolutions",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:65"
+      }
+    },
+    {
+      "query": "Pokemon Temporal Forces Roaring Moon 109 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Temporal%20Forces%20Roaring%20Moon%20109%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12843861",
+      "product_name": "Roaring Moon [Poke Ball] #143",
+      "console_name": "Pokemon Chinese CSV7C",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:143"
+      }
+    },
+    {
+      "query": "Pokemon Temporal Forces Roaring Moon 109 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Temporal%20Forces%20Roaring%20Moon%20109%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6495606",
+      "product_name": "Eri #146",
+      "console_name": "Pokemon Temporal Forces",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:146"
+      }
+    },
+    {
+      "query": "Pokemon Temporal Forces Roaring Moon 109 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Temporal%20Forces%20Roaring%20Moon%20109%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6495659",
+      "product_name": "Eri #199",
+      "console_name": "Pokemon Temporal Forces",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:199"
+      }
+    },
+    {
+      "query": "Pokemon Temporal Forces Roaring Moon 109 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Temporal%20Forces%20Roaring%20Moon%20109%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6495670",
+      "product_name": "Eri #210",
+      "console_name": "Pokemon Temporal Forces",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:210"
+      }
+    },
+    {
+      "query": "Pokemon Temporal Forces Roaring Moon 109 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Temporal%20Forces%20Roaring%20Moon%20109%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6495569",
+      "product_name": "Roaring Moon #109",
+      "console_name": "Pokemon Temporal Forces",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon Temporal Forces Roaring Moon 109 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Temporal%20Forces%20Roaring%20Moon%20109%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7465404",
+      "product_name": "Roaring Moon [Misprint] #109",
+      "console_name": "Pokemon Temporal Forces",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Misprint"
+      }
+    },
+    {
+      "query": "Pokemon Temporal Forces Roaring Moon 109 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Temporal%20Forces%20Roaring%20Moon%20109%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7747647",
+      "product_name": "Roaring Moon [Cosmos Holo] #109",
+      "console_name": "Pokemon Temporal Forces",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Cosmos Holo"
+      }
+    },
+    {
+      "query": "Pokemon Temporal Forces Roaring Moon 109 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Temporal%20Forces%20Roaring%20Moon%20109%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7891977",
+      "product_name": "Roaring Moon [Prize Pack] #109",
+      "console_name": "Pokemon Temporal Forces",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Prize Pack"
+      }
+    },
+    {
+      "query": "Pokemon Temporal Forces Roaring Moon 109 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Temporal%20Forces%20Roaring%20Moon%20109%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6495777",
+      "product_name": "Roaring Moon [Reverse Holo] #109",
+      "console_name": "Pokemon Temporal Forces",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Reverse Holo"
+      }
+    },
+    {
+      "query": "Pokemon Temporal Forces Roaring Moon 109 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Temporal%20Forces%20Roaring%20Moon%20109%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7892010",
+      "product_name": "Roaring Moon [Prize Pack Cosmos Holo] #109",
+      "console_name": "Pokemon Temporal Forces",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Prize Pack Cosmos Holo"
+      }
+    },
+    {
+      "query": "Pokemon Temporal Forces Roaring Moon 109 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Temporal%20Forces%20Roaring%20Moon%20109%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6582717",
+      "product_name": "Miraidon [Stamped] #121",
+      "console_name": "Pokemon Temporal Forces",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:121"
+      }
+    },
+    {
+      "query": "Pokemon Temporal Forces Roaring Moon 109 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Temporal%20Forces%20Roaring%20Moon%20109%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6659921",
+      "product_name": "Koraidon [Stamped] #119",
+      "console_name": "Pokemon Temporal Forces",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:119"
+      }
+    },
+    {
+      "query": "Pokemon Temporal Forces Roaring Moon 109 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Temporal%20Forces%20Roaring%20Moon%20109%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11440379",
+      "product_name": "Iron Treads [Stamped] #118",
+      "console_name": "Pokemon Temporal Forces",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:118"
+      }
+    },
+    {
+      "query": "Pokemon Temporal Forces Roaring Moon 109 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Temporal%20Forces%20Roaring%20Moon%20109%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11440380",
+      "product_name": "Great Tusk [Stamped] #96",
+      "console_name": "Pokemon Temporal Forces",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:96"
+      }
+    },
+    {
+      "query": "Pokemon Temporal Forces Roaring Moon 109 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Temporal%20Forces%20Roaring%20Moon%20109%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8321739",
+      "product_name": "Roaring Moon [Reverse] #65",
+      "console_name": "Pokemon Prismatic Evolutions",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:65"
+      }
+    },
+    {
+      "query": "Pokemon Temporal Forces Roaring Moon 109 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Temporal%20Forces%20Roaring%20Moon%20109%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8321642",
+      "product_name": "Roaring Moon [Poke Ball] #65",
+      "console_name": "Pokemon Prismatic Evolutions",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:65"
+      }
+    },
+    {
+      "query": "Pokemon Temporal Forces Roaring Moon 109 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Temporal%20Forces%20Roaring%20Moon%20109%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "958932",
+      "product_name": "Energy Switch #109",
+      "console_name": "Pokemon Roaring Skies",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Energy Switch"
+      }
+    },
+    {
+      "query": "Pokemon Temporal Forces Roaring Moon 109 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Temporal%20Forces%20Roaring%20Moon%20109%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6148329",
+      "product_name": "Roaring Moon ex [Jumbo] #67",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "product_scope_jumbo_not_canonical_set_finish"
+      }
+    },
+    {
+      "query": "Pokemon Temporal Forces Roaring Moon 109 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Temporal%20Forces%20Roaring%20Moon%20109%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7980304",
+      "product_name": "Roaring Moon [Poke Ball] #100",
+      "console_name": "Pokemon Japanese Terastal Festival",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:100"
+      }
+    },
+    {
+      "query": "Pokemon Temporal Forces Roaring Moon 109 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Temporal%20Forces%20Roaring%20Moon%20109%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8321544",
+      "product_name": "Roaring Moon [Master Ball] #65",
+      "console_name": "Pokemon Prismatic Evolutions",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:65"
+      }
+    },
+    {
+      "query": "Pokemon Temporal Forces Roaring Moon 109 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Temporal%20Forces%20Roaring%20Moon%20109%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12843861",
+      "product_name": "Roaring Moon [Poke Ball] #143",
+      "console_name": "Pokemon Chinese CSV7C",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:143"
+      }
+    },
+    {
+      "query": "Pokemon Temporal Forces Roaring Moon 109 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Temporal%20Forces%20Roaring%20Moon%20109%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6495606",
+      "product_name": "Eri #146",
+      "console_name": "Pokemon Temporal Forces",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:146"
+      }
+    },
+    {
+      "query": "Pokemon Temporal Forces Roaring Moon 109 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Temporal%20Forces%20Roaring%20Moon%20109%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6495659",
+      "product_name": "Eri #199",
+      "console_name": "Pokemon Temporal Forces",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:199"
+      }
+    },
+    {
+      "query": "Pokemon Temporal Forces Roaring Moon 109 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Temporal%20Forces%20Roaring%20Moon%20109%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6495670",
+      "product_name": "Eri #210",
+      "console_name": "Pokemon Temporal Forces",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:210"
+      }
+    }
+  ],
+  "source_lane": "pricecharting_api"
+}

@@ -1,0 +1,31 @@
+{
+  "fixture_version": "VERIFIED_MASTER_SET_INDEX_V1_HUMAN_SOURCE_FIXTURE_GENERATED",
+  "source_key": "bulbapedia_card_page_xy5",
+  "source_kind": "human_readable_checklist",
+  "source_url": "https://bulbapedia.bulbagarden.net/wiki/Category:Pokémon_cards",
+  "source_status": "available_generated",
+  "set_key": "xy5",
+  "set_name": "Primal Clash",
+  "retrieved_at": "2026-05-26T17:20:44.468Z",
+  "raw_snapshot_ref": "generated_fixture:bulbapedia_card_page:xy5:2026-05-26T17:20:44.468Z",
+  "generation_note": "Generated from Bulbapedia individual card page expansion metadata and release-information text. Exact set/number match is required; finish truth is emitted only for explicit finish/stamp/logo wording.",
+  "records": [
+    {
+      "source_key": "bulbapedia_card_page_release_info",
+      "source_kind": "human_readable_checklist",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Vulpix_(Primal_Clash_20)",
+      "set_key": "xy5",
+      "set_name": "Primal Clash",
+      "card_number": "20",
+      "card_name": "Vulpix",
+      "finish_key": "stamped",
+      "rarity": null,
+      "evidence_type": "finish_presence",
+      "evidence_label": "Bulbapedia card page release information stamp/logo variant",
+      "language": "en",
+      "retrieved_at": "2026-05-26T17:20:44.468Z",
+      "raw_snapshot_ref": "bulbapedia_card_page:Vulpix_(Primal_Clash_20):xy5:20:stamped",
+      "notes": "Release information explicitly documents an English-scoped stamp/logo variant. Evidence: A Confetti Holofoil version of the Primal Clash print was released as part of the and a Non Holofoil version featuring a stamp in the bottom right corner of the illustration was given to customers who bought a Vulpix Build-A-Bear online or in stores starting O"
+    }
+  ]
+}

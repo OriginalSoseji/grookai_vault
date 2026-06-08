@@ -1,0 +1,59 @@
+{
+  "source_key": "pricecharting_swsh10",
+  "source_kind": "marketplace_checklist",
+  "source_url": "https://www.pricecharting.com/",
+  "set_key": "swsh10",
+  "set_name": "Astral Radiance",
+  "retrieved_at": "2026-05-28T04:20:24.359Z",
+  "raw_snapshot_ref": "pricecharting_acquisition:swsh10:2026-05-28T04:20:24.359Z",
+  "records": [
+    {
+      "source_key": "pricecharting_api_product",
+      "source_kind": "marketplace_checklist",
+      "source_url": "https://www.pricecharting.com/game/pokemon-astral-radiance/stantler-snowflake-stamp-125",
+      "set_name": "Astral Radiance",
+      "card_number": "125",
+      "card_name": "Stantler",
+      "finish_key": "stamped",
+      "evidence_type": "finish_presence",
+      "evidence_label": "PriceCharting API product: Stantler [Snowflake Stamp] #125 | Pokemon Astral Radiance",
+      "notes": "Exact finish evidence accepted only because PriceCharting evidence matched set, card number, card name, and finish label."
+    },
+    {
+      "source_key": "pricecharting_product_page",
+      "source_kind": "marketplace_checklist",
+      "source_url": "https://www.pricecharting.com/game/pokemon-astral-radiance/hisuian-sneasel-cosmos-holo-92",
+      "set_name": "Astral Radiance",
+      "card_number": "92",
+      "card_name": "Hisuian Sneasel",
+      "finish_key": "cosmos",
+      "evidence_type": "finish_presence",
+      "evidence_label": "PriceCharting product title: Hisuian Sneasel [Cosmos Holo] #92 Prices | Pokemon Astral Radiance | Pokemon Cards",
+      "notes": "Exact finish evidence accepted only because PriceCharting evidence matched set, card number, card name, and finish label."
+    },
+    {
+      "source_key": "pricecharting_product_page",
+      "source_kind": "marketplace_checklist",
+      "source_url": "https://www.pricecharting.com/game/pokemon-astral-radiance/starmie-v-stamped-30",
+      "set_name": "Astral Radiance",
+      "card_number": "30",
+      "card_name": "Starmie V",
+      "finish_key": "stamped",
+      "evidence_type": "finish_presence",
+      "evidence_label": "PriceCharting product title: Starmie V [Stamped] #30 Prices | Pokemon Astral Radiance | Pokemon Cards",
+      "notes": "Exact finish evidence accepted only because PriceCharting evidence matched set, card number, card name, and finish label."
+    },
+    {
+      "source_key": "pricecharting_product_page",
+      "source_kind": "marketplace_checklist",
+      "source_url": "https://www.pricecharting.com/game/pokemon-astral-radiance/cyllene-league-stamp-138",
+      "set_name": "Astral Radiance",
+      "card_number": "138",
+      "card_name": "Cyllene",
+      "finish_key": "stamped",
+      "evidence_type": "finish_presence",
+      "evidence_label": "PriceCharting product title: Cyllene [League Stamp] #138 Prices | Pokemon Astral Radiance | Pokemon Cards",
+      "notes": "Exact finish evidence accepted only because PriceCharting evidence matched set, card number, card name, and finish label."
+    }
+  ]
+}

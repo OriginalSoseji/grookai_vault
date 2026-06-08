@@ -1,0 +1,31 @@
+{
+  "fixture_version": "VERIFIED_MASTER_SET_INDEX_V1_HUMAN_SOURCE_FIXTURE_GENERATED",
+  "source_key": "tcgcollector_variants_me01",
+  "source_kind": "collector_reference",
+  "source_url": "https://www.tcgcollector.com/sets/11662/mega-evolution?setCardCountMode=anyCardVariant",
+  "source_status": "available_generated",
+  "set_key": "me01",
+  "set_name": "Mega Evolution",
+  "retrieved_at": "2026-06-08T03:01:12.901Z",
+  "raw_snapshot_ref": "generated_fixture:tcgcollector:me01:2026-06-08T03:01:12.901Z",
+  "generation_note": "Generated from TCGCollector explicit card variant type IDs. No finish is inferred from set era, rarity, or card count.",
+  "records": [
+    {
+      "source_key": "tcgcollector_card_variants",
+      "source_kind": "collector_reference",
+      "source_url": "https://www.tcgcollector.com/cards/51138/lunatone-mega-evolution-074-132",
+      "set_key": "me01",
+      "set_name": "Mega Evolution",
+      "card_number": "074",
+      "card_name": "Lunatone",
+      "finish_key": "normal",
+      "rarity": null,
+      "evidence_type": "needs_manual_review",
+      "evidence_label": "TCGCollector card variant Non-holo",
+      "language": "en",
+      "retrieved_at": "2026-06-08T03:01:12.901Z",
+      "raw_snapshot_ref": "tcgcollector:51138:46",
+      "notes": "Review-only evidence. Source delta audit classified this fact as suppressed_claim_review_evidence because the current Master Index treated the structured normal finish claim as structured_only_unsupported_by_exact_checklist."
+    }
+  ]
+}

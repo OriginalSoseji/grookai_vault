@@ -1,0 +1,62 @@
+{
+  "status": "validated",
+  "fact": {
+    "gap_type": "finish_second_source_needed",
+    "fact_type": "printing_finish",
+    "set_key": "bw8",
+    "set_name": "Plasma Storm",
+    "card_number": "94",
+    "card_name": "Druddigon",
+    "finish_key": "holo",
+    "status": "human_source_verified",
+    "sources": [
+      "thepricedex_price_list"
+    ],
+    "source_authorities": [
+      "thepricedex.com"
+    ],
+    "source_kinds": [
+      "marketplace_checklist"
+    ],
+    "evidence_urls": [
+      "https://www.thepricedex.com/set/bw8/plasma-storm/price-list"
+    ],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "query": "Pokemon Plasma Storm Druddigon 94 holo",
+  "search_url": "https://www.pricecharting.com/api/products?q=Pokemon%20Plasma%20Storm%20Druddigon%2094%20holo",
+  "source_url": "https://www.pricecharting.com/game/pokemon-plasma-storm/druddigon-cracked-ice-holo-94",
+  "title": "Druddigon [Cracked Ice Holo] #94 | Pokemon Plasma Storm",
+  "title_parts": {
+    "card_name": "Druddigon",
+    "card_number": "94",
+    "variant_label": "Cracked Ice Holo",
+    "set_name": "Pokemon Plasma Storm",
+    "pricecharting_product_id": "8166059"
+  },
+  "validation_source": "pricecharting_api_products",
+  "source_lane": "pricecharting_api",
+  "attempts": [
+    {
+      "query": "Pokemon Plasma Storm Druddigon 94 holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Plasma%20Storm%20Druddigon%2094%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8166059",
+      "product_name": "Druddigon [Cracked Ice Holo] #94",
+      "console_name": "Pokemon Plasma Storm",
+      "validation": {
+        "ok": true,
+        "titleParts": {
+          "card_name": "Druddigon",
+          "card_number": "94",
+          "variant_label": "Cracked Ice Holo",
+          "set_name": "Pokemon Plasma Storm",
+          "pricecharting_product_id": "8166059"
+        },
+        "source_url": "https://www.pricecharting.com/game/pokemon-plasma-storm/druddigon-cracked-ice-holo-94",
+        "title": "Druddigon [Cracked Ice Holo] #94 | Pokemon Plasma Storm"
+      }
+    }
+  ]
+}

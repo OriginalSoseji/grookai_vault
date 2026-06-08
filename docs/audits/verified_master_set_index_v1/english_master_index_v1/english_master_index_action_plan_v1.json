@@ -1,6 +1,6 @@
 {
   "version": "ENGLISH_MASTER_INDEX_ACTION_PLAN_V1",
-  "generated_at": "2026-05-24T14:39:53.479Z",
+  "generated_at": "2026-06-08T19:45:00.417Z",
   "audit_only": true,
   "db_writes_performed": false,
   "migrations_created": false,
@@ -33,28 +33,116 @@
     "maintenance_mutation_code_touched": false
   },
   "summary": {
-    "master_index_sets": 202,
-    "master_index_evidence_rows": 102732,
+    "master_index_sets": 201,
+    "master_index_evidence_rows": 232649,
     "grookai_printing_rows": 55266,
-    "index_printing_rows": 39034,
+    "index_printing_rows": 38846,
     "readiness_by_classification": {
-      "proof_ready": 1,
-      "moderate_confidence": 50,
-      "blocked": 125,
-      "source_limited": 66
+      "proof_ready": 8,
+      "high_confidence": 75,
+      "blocked": 124,
+      "source_limited": 29
     },
     "global_status_counts": {
-      "api_agreed_by_index": 21179,
-      "candidate_unconfirmed_by_index": 11606,
-      "master_verified_by_index": 620,
-      "missing_from_grookai": 6080,
-      "name_mismatch_needs_review": 196,
+      "human_source_verified_by_index": 1,
+      "master_verified_by_index": 31975,
+      "missing_from_grookai": 7317,
+      "name_mismatch_needs_review": 139,
       "set_unmapped": 11176,
-      "unsupported_by_current_index": 10489
+      "unsupported_by_current_index": 11975
+    },
+    "finish_blocker_closure": {
+      "closure_status": "closed_to_blocker_boundary",
+      "remaining_finish_second_source_needed": 5,
+      "blocker_mapped_rows": 5,
+      "unmapped_queue_rows": 0,
+      "stale_blocker_rows": 0,
+      "promotion_safe_now": 0,
+      "by_finish": {
+        "holo": 1,
+        "normal": 3,
+        "stamped": 1
+      },
+      "by_blocker_type": {
+        "finish_label_conflict": 4,
+        "card_number_conflict": 1
+      },
+      "by_set": {
+        "bw8|Plasma Storm": 1,
+        "ex9|Emerald": 1,
+        "sm8|Lost Thunder": 1,
+        "sv03.5|151": 1,
+        "swsh3.5|Champion's Path": 1
+      },
+      "write_ready_now": 0
     }
   },
   "sections": {
     "already_proven": [
+      {
+        "set": "base6",
+        "set_name": null,
+        "verified_printings": 223,
+        "verified_percent": 100,
+        "supported_finish_profiles": [
+          "normal",
+          "holo",
+          "reverse",
+          "pokeball",
+          "cosmos",
+          "rocket_reverse"
+        ],
+        "apply_status": "proof_ready_no_apply_record_in_global_artifacts",
+        "rollback_artifact_exists": "unknown"
+      },
+      {
+        "set": "ecard1",
+        "set_name": "Expedition Base Set",
+        "verified_printings": 330,
+        "verified_percent": 100,
+        "supported_finish_profiles": [
+          "normal",
+          "holo",
+          "reverse",
+          "pokeball",
+          "cosmos",
+          "rocket_reverse"
+        ],
+        "apply_status": "proof_ready_no_apply_record_in_global_artifacts",
+        "rollback_artifact_exists": "unknown"
+      },
+      {
+        "set": "ex5.5",
+        "set_name": "Poké Card Creator Pack",
+        "verified_printings": 5,
+        "verified_percent": 100,
+        "supported_finish_profiles": [
+          "normal",
+          "holo",
+          "reverse",
+          "pokeball",
+          "cosmos",
+          "rocket_reverse"
+        ],
+        "apply_status": "proof_ready_no_apply_record_in_global_artifacts",
+        "rollback_artifact_exists": "unknown"
+      },
+      {
+        "set": "mcd21",
+        "set_name": null,
+        "verified_printings": 25,
+        "verified_percent": 100,
+        "supported_finish_profiles": [
+          "normal",
+          "holo",
+          "reverse",
+          "pokeball",
+          "cosmos",
+          "rocket_reverse"
+        ],
+        "apply_status": "proof_ready_no_apply_record_in_global_artifacts",
+        "rollback_artifact_exists": "unknown"
+      },
       {
         "set": "me02.5",
         "set_name": "Ascended Heroes",
@@ -70,6 +158,54 @@
         ],
         "apply_status": "controlled_apply_completed_and_post_apply_verified",
         "rollback_artifact_exists": "not_verified_by_this_action_plan"
+      },
+      {
+        "set": "sv04.5",
+        "set_name": "Paldean Fates",
+        "verified_printings": 178,
+        "verified_percent": 100,
+        "supported_finish_profiles": [
+          "normal",
+          "holo",
+          "reverse",
+          "pokeball",
+          "cosmos",
+          "rocket_reverse"
+        ],
+        "apply_status": "proof_ready_no_apply_record_in_global_artifacts",
+        "rollback_artifact_exists": "unknown"
+      },
+      {
+        "set": "sv4pt5",
+        "set_name": null,
+        "verified_printings": 326,
+        "verified_percent": 100,
+        "supported_finish_profiles": [
+          "normal",
+          "holo",
+          "reverse",
+          "pokeball",
+          "cosmos",
+          "rocket_reverse"
+        ],
+        "apply_status": "proof_ready_no_apply_record_in_global_artifacts",
+        "rollback_artifact_exists": "unknown"
+      },
+      {
+        "set": "sv6pt5",
+        "set_name": null,
+        "verified_printings": 154,
+        "verified_percent": 100,
+        "supported_finish_profiles": [
+          "normal",
+          "holo",
+          "reverse",
+          "pokeball",
+          "cosmos",
+          "rocket_reverse"
+        ],
+        "apply_status": "proof_ready_no_apply_record_in_global_artifacts",
+        "rollback_artifact_exists": "unknown"
       }
     ],
     "do_not_touch": {
@@ -83,13 +219,12 @@
         "api_agreed_by_index"
       ],
       "counts": {
-        "api_agreed_by_index": 21179,
-        "candidate_unconfirmed_by_index": 11606,
-        "master_verified_by_index": 620,
-        "missing_from_grookai": 6080,
-        "name_mismatch_needs_review": 196,
+        "human_source_verified_by_index": 1,
+        "master_verified_by_index": 31975,
+        "missing_from_grookai": 7317,
+        "name_mismatch_needs_review": 139,
         "set_unmapped": 11176,
-        "unsupported_by_current_index": 10489
+        "unsupported_by_current_index": 11975
       }
     },
     "needs_source_acquisition": {
@@ -99,7 +234,7 @@
           "reverse_holo_single_source",
           "api_agreed_reverse_holo_needs_human_source"
         ],
-        "total_rows": 9818
+        "total_rows": 1253
       },
       "holo": {
         "categories": [
@@ -107,14 +242,14 @@
           "holo_single_source",
           "api_agreed_holo_needs_human_source"
         ],
-        "total_rows": 8426
+        "total_rows": 4274
       },
       "parallel": {
         "categories": [
           "modern_parallel_exact_finish_needs_source",
           "modern_parallel_set_review"
         ],
-        "total_rows": 691
+        "total_rows": 694
       },
       "promo": {
         "categories": [
@@ -123,7 +258,7 @@
           "promo_family_single_source",
           "api_agreed_promo_family_needs_human_source"
         ],
-        "total_rows": 4652
+        "total_rows": 2862
       },
       "subset": {
         "categories": [
@@ -132,7 +267,7 @@
           "subset_alias_single_source",
           "api_agreed_subset_alias_needs_human_source"
         ],
-        "total_rows": 3512
+        "total_rows": 1015
       },
       "legacy": {
         "categories": [
@@ -140,7 +275,7 @@
           "legacy_or_old_era_single_source",
           "api_agreed_legacy_or_old_era_needs_human_source"
         ],
-        "total_rows": 8160
+        "total_rows": 0
       }
     },
     "needs_alias_resolution": {
@@ -193,31 +328,7 @@
           "set_key": "swsh45sv",
           "set_name": "Shining Fates Shiny Vault",
           "alias_risk_count": 0,
-          "subset_source_need_count": 488
-        },
-        {
-          "set_key": "pl3",
-          "set_name": "Supreme Victors",
-          "alias_risk_count": 1,
-          "subset_source_need_count": 414
-        },
-        {
-          "set_key": "bw11",
-          "set_name": "Legendary Treasures",
-          "alias_risk_count": 11,
-          "subset_source_need_count": 391
-        },
-        {
-          "set_key": "g1",
-          "set_name": "Generations",
-          "alias_risk_count": 66,
-          "subset_source_need_count": 322
-        },
-        {
-          "set_key": "swsh12.5",
-          "set_name": null,
-          "alias_risk_count": 25,
-          "subset_source_need_count": 317
+          "subset_source_need_count": 366
         },
         {
           "set_key": "A2b",
@@ -238,28 +349,10 @@
           "subset_source_need_count": 0
         },
         {
-          "set_key": "col1",
-          "set_name": "Call of Legends",
-          "alias_risk_count": 15,
-          "subset_source_need_count": 298
-        },
-        {
           "set_key": "A2a",
           "set_name": null,
           "alias_risk_count": 288,
           "subset_source_need_count": 0
-        },
-        {
-          "set_key": "pl2",
-          "set_name": "Rising Rivals",
-          "alias_risk_count": 8,
-          "subset_source_need_count": 262
-        },
-        {
-          "set_key": "pl1",
-          "set_name": "Platinum",
-          "alias_risk_count": 2,
-          "subset_source_need_count": 258
         },
         {
           "set_key": "A1a",
@@ -268,58 +361,64 @@
           "subset_source_need_count": 0
         },
         {
-          "set_key": "dp7",
-          "set_name": "Stormfront",
-          "alias_risk_count": 4,
-          "subset_source_need_count": 208
+          "set_key": "g1",
+          "set_name": "Generations",
+          "alias_risk_count": 52,
+          "subset_source_need_count": 143
         },
         {
-          "set_key": "pl4",
-          "set_name": "Arceus",
-          "alias_risk_count": 9,
-          "subset_source_need_count": 195
+          "set_key": "bw11",
+          "set_name": "Legendary Treasures",
+          "alias_risk_count": 10,
+          "subset_source_need_count": 108
+        },
+        {
+          "set_key": "col1",
+          "set_name": "Call of Legends",
+          "alias_risk_count": 12,
+          "subset_source_need_count": 90
+        },
+        {
+          "set_key": "pl3",
+          "set_name": "Supreme Victors",
+          "alias_risk_count": 1,
+          "subset_source_need_count": 86
+        },
+        {
+          "set_key": "swsh12.5",
+          "set_name": "Crown Zenith",
+          "alias_risk_count": 25,
+          "subset_source_need_count": 45
         },
         {
           "set_key": "swsh12tg",
           "set_name": "Silver Tempest Trainer Gallery",
           "alias_risk_count": 0,
-          "subset_source_need_count": 77
+          "subset_source_need_count": 47
         },
         {
           "set_key": "swsh9tg",
           "set_name": "Brilliant Stars Trainer Gallery",
           "alias_risk_count": 0,
-          "subset_source_need_count": 76
-        },
-        {
-          "set_key": "cel25",
-          "set_name": "Celebrations",
-          "alias_risk_count": 8,
-          "subset_source_need_count": 61
+          "subset_source_need_count": 46
         },
         {
           "set_key": "swsh10tg",
           "set_name": "Astral Radiance Trainer Gallery",
           "alias_risk_count": 0,
-          "subset_source_need_count": 60
+          "subset_source_need_count": 30
         },
         {
           "set_key": "swsh11tg",
           "set_name": "Lost Origin Trainer Gallery",
           "alias_risk_count": 0,
-          "subset_source_need_count": 60
+          "subset_source_need_count": 30
         },
         {
-          "set_key": "cel25c",
-          "set_name": "Celebrations: Classic Collection",
+          "set_key": "cel25",
+          "set_name": "Celebrations",
           "alias_risk_count": 0,
-          "subset_source_need_count": 25
-        },
-        {
-          "set_key": "sve",
-          "set_name": "Scarlet & Violet Energies",
-          "alias_risk_count": 16,
-          "subset_source_need_count": 0
+          "subset_source_need_count": 22
         },
         {
           "set_key": "legacy_orphan",
@@ -328,63 +427,57 @@
           "subset_source_need_count": 0
         },
         {
-          "set_key": "dp2",
-          "set_name": "Mysterious Treasures",
-          "alias_risk_count": 6,
+          "set_key": "pl4",
+          "set_name": "Arceus",
+          "alias_risk_count": 9,
           "subset_source_need_count": 0
         },
         {
-          "set_key": "dp1",
-          "set_name": "Diamond & Pearl",
-          "alias_risk_count": 6,
-          "subset_source_need_count": 0
+          "set_key": "pl2",
+          "set_name": "Rising Rivals",
+          "alias_risk_count": 7,
+          "subset_source_need_count": 1
         },
         {
           "set_key": "sv01",
-          "set_name": null,
+          "set_name": "Scarlet & Violet",
+          "alias_risk_count": 4,
+          "subset_source_need_count": 0
+        },
+        {
+          "set_key": "dp7",
+          "set_name": "Stormfront",
           "alias_risk_count": 4,
           "subset_source_need_count": 0
         },
         {
           "set_key": "sv02",
-          "set_name": null,
+          "set_name": "Paldea Evolved",
           "alias_risk_count": 4,
           "subset_source_need_count": 0
         },
         {
-          "set_key": "ex16",
-          "set_name": "Power Keepers",
+          "set_key": "pl1",
+          "set_name": "Platinum",
+          "alias_risk_count": 2,
+          "subset_source_need_count": 1
+        },
+        {
+          "set_key": "dp2",
+          "set_name": "Mysterious Treasures",
+          "alias_risk_count": 3,
+          "subset_source_need_count": 0
+        },
+        {
+          "set_key": "dp1",
+          "set_name": "Diamond & Pearl",
           "alias_risk_count": 3,
           "subset_source_need_count": 0
         },
         {
           "set_key": "me03",
-          "set_name": null,
+          "set_name": "Perfect Order",
           "alias_risk_count": 3,
-          "subset_source_need_count": 0
-        },
-        {
-          "set_key": "ex8",
-          "set_name": "Deoxys",
-          "alias_risk_count": 2,
-          "subset_source_need_count": 0
-        },
-        {
-          "set_key": "dp3",
-          "set_name": "Secret Wonders",
-          "alias_risk_count": 1,
-          "subset_source_need_count": 0
-        },
-        {
-          "set_key": "ex7",
-          "set_name": "Team Rocket Returns",
-          "alias_risk_count": 1,
-          "subset_source_need_count": 0
-        },
-        {
-          "set_key": "neo4",
-          "set_name": "Neo Destiny",
-          "alias_risk_count": 1,
           "subset_source_need_count": 0
         }
       ]
@@ -400,235 +493,283 @@
         "known_card_unsupported_finish_review",
         "invalid_or_unknown_card_number_review"
       ],
-      "total_rows": 5804,
+      "total_rows": 6966,
       "top_sets": [
         {
+          "set_key": "sm12",
+          "set_name": "Cosmic Eclipse",
+          "likely_generation_bug_count": 269,
+          "unsupported_count": 269
+        },
+        {
           "set_key": "sv10.5w",
-          "set_name": null,
+          "set_name": "White Flare",
+          "likely_generation_bug_count": 264,
+          "unsupported_count": 264
+        },
+        {
+          "set_key": "sv10.5b",
+          "set_name": "Black Bolt",
           "likely_generation_bug_count": 263,
           "unsupported_count": 263
         },
         {
-          "set_key": "sv10.5b",
-          "set_name": null,
-          "likely_generation_bug_count": 261,
-          "unsupported_count": 261
-        },
-        {
-          "set_key": "sm12",
-          "set_name": "Cosmic Eclipse",
-          "likely_generation_bug_count": 249,
-          "unsupported_count": 249
-        },
-        {
           "set_key": "sm11",
           "set_name": "Unified Minds",
-          "likely_generation_bug_count": 237,
-          "unsupported_count": 237
+          "likely_generation_bug_count": 253,
+          "unsupported_count": 253
         },
         {
           "set_key": "sm8",
           "set_name": "Lost Thunder",
-          "likely_generation_bug_count": 215,
-          "unsupported_count": 215
+          "likely_generation_bug_count": 241,
+          "unsupported_count": 241
         },
         {
           "set_key": "sm10",
           "set_name": "Unbroken Bonds",
-          "likely_generation_bug_count": 212,
-          "unsupported_count": 212
+          "likely_generation_bug_count": 227,
+          "unsupported_count": 227
         },
         {
           "set_key": "sm9",
           "set_name": "Team Up",
-          "likely_generation_bug_count": 177,
-          "unsupported_count": 177
-        },
-        {
-          "set_key": "sv8pt5",
-          "set_name": "Prismatic Evolutions",
-          "likely_generation_bug_count": 167,
-          "unsupported_count": 167
+          "likely_generation_bug_count": 196,
+          "unsupported_count": 196
         },
         {
           "set_key": "sm7",
           "set_name": "Celestial Storm",
-          "likely_generation_bug_count": 165,
-          "unsupported_count": 165
-        },
-        {
-          "set_key": "sm1",
-          "set_name": "Sun & Moon",
-          "likely_generation_bug_count": 165,
-          "unsupported_count": 165
+          "likely_generation_bug_count": 184,
+          "unsupported_count": 184
         },
         {
           "set_key": "sm5",
           "set_name": "Ultra Prism",
-          "likely_generation_bug_count": 160,
-          "unsupported_count": 160
+          "likely_generation_bug_count": 178,
+          "unsupported_count": 178
         },
         {
-          "set_key": "sm3",
-          "set_name": "Burning Shadows",
-          "likely_generation_bug_count": 156,
-          "unsupported_count": 156
-        },
-        {
-          "set_key": "sm2",
-          "set_name": "Guardians Rising",
-          "likely_generation_bug_count": 154,
-          "unsupported_count": 154
-        },
-        {
-          "set_key": "xy8",
-          "set_name": "BREAKthrough",
-          "likely_generation_bug_count": 148,
-          "unsupported_count": 148
+          "set_key": "sm1",
+          "set_name": "Sun & Moon",
+          "likely_generation_bug_count": 177,
+          "unsupported_count": 177
         },
         {
           "set_key": "xy5",
           "set_name": "Primal Clash",
-          "likely_generation_bug_count": 146,
-          "unsupported_count": 146
+          "likely_generation_bug_count": 173,
+          "unsupported_count": 173
         },
         {
-          "set_key": "xy1",
-          "set_name": "XY",
-          "likely_generation_bug_count": 139,
-          "unsupported_count": 139
+          "set_key": "xy8",
+          "set_name": "BREAKthrough",
+          "likely_generation_bug_count": 172,
+          "unsupported_count": 172
+        },
+        {
+          "set_key": "sv8pt5",
+          "set_name": null,
+          "likely_generation_bug_count": 167,
+          "unsupported_count": 167
+        },
+        {
+          "set_key": "sm2",
+          "set_name": "Guardians Rising",
+          "likely_generation_bug_count": 166,
+          "unsupported_count": 166
+        },
+        {
+          "set_key": "sm3",
+          "set_name": "Burning Shadows",
+          "likely_generation_bug_count": 161,
+          "unsupported_count": 161
         },
         {
           "set_key": "bw7",
           "set_name": "Boundaries Crossed",
-          "likely_generation_bug_count": 135,
-          "unsupported_count": 135
+          "likely_generation_bug_count": 161,
+          "unsupported_count": 161
+        },
+        {
+          "set_key": "xy1",
+          "set_name": "XY",
+          "likely_generation_bug_count": 156,
+          "unsupported_count": 156
         },
         {
           "set_key": "sm6",
           "set_name": "Forbidden Light",
-          "likely_generation_bug_count": 134,
-          "unsupported_count": 134
-        },
-        {
-          "set_key": "bw8",
-          "set_name": "Plasma Storm",
-          "likely_generation_bug_count": 128,
-          "unsupported_count": 128
+          "likely_generation_bug_count": 151,
+          "unsupported_count": 151
         },
         {
           "set_key": "xy10",
           "set_name": "Fates Collide",
-          "likely_generation_bug_count": 121,
-          "unsupported_count": 121
-        },
-        {
-          "set_key": "bw6",
-          "set_name": "Dragons Exalted",
-          "likely_generation_bug_count": 118,
-          "unsupported_count": 118
+          "likely_generation_bug_count": 141,
+          "unsupported_count": 141
         },
         {
           "set_key": "xy9",
           "set_name": "BREAKpoint",
-          "likely_generation_bug_count": 118,
-          "unsupported_count": 118
+          "likely_generation_bug_count": 141,
+          "unsupported_count": 141
         },
         {
-          "set_key": "sm4",
-          "set_name": "Crimson Invasion",
-          "likely_generation_bug_count": 112,
-          "unsupported_count": 112
-        },
-        {
-          "set_key": "bw1",
-          "set_name": "Black & White",
-          "likely_generation_bug_count": 111,
-          "unsupported_count": 111
+          "set_key": "bw8",
+          "set_name": "Plasma Storm",
+          "likely_generation_bug_count": 140,
+          "unsupported_count": 140
         },
         {
           "set_key": "xy4",
           "set_name": "Phantom Forces",
-          "likely_generation_bug_count": 111,
-          "unsupported_count": 111
+          "likely_generation_bug_count": 131,
+          "unsupported_count": 131
         },
         {
-          "set_key": "bw9",
-          "set_name": "Plasma Freeze",
-          "likely_generation_bug_count": 108,
-          "unsupported_count": 108
-        },
-        {
-          "set_key": "xy11",
-          "set_name": "Steam Siege",
-          "likely_generation_bug_count": 107,
-          "unsupported_count": 107
-        },
-        {
-          "set_key": "xy3",
-          "set_name": "Furious Fists",
-          "likely_generation_bug_count": 105,
-          "unsupported_count": 105
+          "set_key": "bw6",
+          "set_name": "Dragons Exalted",
+          "likely_generation_bug_count": 130,
+          "unsupported_count": 130
         },
         {
           "set_key": "xy12",
           "set_name": "Evolutions",
-          "likely_generation_bug_count": 105,
-          "unsupported_count": 105
+          "likely_generation_bug_count": 127,
+          "unsupported_count": 127
         },
         {
-          "set_key": "bw5",
-          "set_name": "Dark Explorers",
-          "likely_generation_bug_count": 102,
-          "unsupported_count": 102
+          "set_key": "xy11",
+          "set_name": "Steam Siege",
+          "likely_generation_bug_count": 126,
+          "unsupported_count": 126
+        },
+        {
+          "set_key": "bw9",
+          "set_name": "Plasma Freeze",
+          "likely_generation_bug_count": 123,
+          "unsupported_count": 123
         },
         {
           "set_key": "xy6",
           "set_name": "Roaring Skies",
-          "likely_generation_bug_count": 102,
-          "unsupported_count": 102
+          "likely_generation_bug_count": 120,
+          "unsupported_count": 120
+        },
+        {
+          "set_key": "sm4",
+          "set_name": "Crimson Invasion",
+          "likely_generation_bug_count": 119,
+          "unsupported_count": 119
+        },
+        {
+          "set_key": "xy3",
+          "set_name": "Furious Fists",
+          "likely_generation_bug_count": 119,
+          "unsupported_count": 119
+        },
+        {
+          "set_key": "bw1",
+          "set_name": "Black & White",
+          "likely_generation_bug_count": 118,
+          "unsupported_count": 118
         },
         {
           "set_key": "xy2",
           "set_name": "Flashfire",
-          "likely_generation_bug_count": 101,
-          "unsupported_count": 101
+          "likely_generation_bug_count": 114,
+          "unsupported_count": 114
+        },
+        {
+          "set_key": "bw5",
+          "set_name": "Dark Explorers",
+          "likely_generation_bug_count": 114,
+          "unsupported_count": 114
         },
         {
           "set_key": "bw10",
           "set_name": "Plasma Blast",
-          "likely_generation_bug_count": 94,
-          "unsupported_count": 94
-        },
-        {
-          "set_key": "bw4",
-          "set_name": "Next Destinies",
-          "likely_generation_bug_count": 93,
-          "unsupported_count": 93
+          "likely_generation_bug_count": 112,
+          "unsupported_count": 112
         },
         {
           "set_key": "xy7",
           "set_name": "Ancient Origins",
-          "likely_generation_bug_count": 92,
-          "unsupported_count": 92
-        },
-        {
-          "set_key": "bw3",
-          "set_name": "Noble Victories",
-          "likely_generation_bug_count": 89,
-          "unsupported_count": 89
-        },
-        {
-          "set_key": "bw2",
-          "set_name": "Emerging Powers",
-          "likely_generation_bug_count": 89,
-          "unsupported_count": 89
+          "likely_generation_bug_count": 111,
+          "unsupported_count": 111
         },
         {
           "set_key": "ex3",
           "set_name": "Dragon",
-          "likely_generation_bug_count": 88,
-          "unsupported_count": 88
+          "likely_generation_bug_count": 109,
+          "unsupported_count": 109
+        },
+        {
+          "set_key": "bw4",
+          "set_name": "Next Destinies",
+          "likely_generation_bug_count": 105,
+          "unsupported_count": 105
+        },
+        {
+          "set_key": "bw3",
+          "set_name": "Noble Victories",
+          "likely_generation_bug_count": 98,
+          "unsupported_count": 98
+        },
+        {
+          "set_key": "bw2",
+          "set_name": "Emerging Powers",
+          "likely_generation_bug_count": 97,
+          "unsupported_count": 97
+        },
+        {
+          "set_key": "ex6",
+          "set_name": "FireRed & LeafGreen",
+          "likely_generation_bug_count": 86,
+          "unsupported_count": 86
+        },
+        {
+          "set_key": "sm75",
+          "set_name": null,
+          "likely_generation_bug_count": 79,
+          "unsupported_count": 79
+        },
+        {
+          "set_key": "sm3.5",
+          "set_name": "Shining Legends",
+          "likely_generation_bug_count": 79,
+          "unsupported_count": 79
+        },
+        {
+          "set_key": "ex7",
+          "set_name": "Team Rocket Returns",
+          "likely_generation_bug_count": 79,
+          "unsupported_count": 79
+        },
+        {
+          "set_key": "ex8",
+          "set_name": "Deoxys",
+          "likely_generation_bug_count": 79,
+          "unsupported_count": 79
+        },
+        {
+          "set_key": "ex9",
+          "set_name": "Emerald",
+          "likely_generation_bug_count": 77,
+          "unsupported_count": 77
+        },
+        {
+          "set_key": "ex5",
+          "set_name": "Hidden Legends",
+          "likely_generation_bug_count": 76,
+          "unsupported_count": 76
+        },
+        {
+          "set_key": "sm115",
+          "set_name": "Hidden Fates",
+          "likely_generation_bug_count": 69,
+          "unsupported_count": 69
         },
         {
           "set_key": "xy0",
@@ -637,70 +778,22 @@
           "unsupported_count": 69
         },
         {
-          "set_key": "sm75",
-          "set_name": "Dragon Majesty",
-          "likely_generation_bug_count": 68,
-          "unsupported_count": 68
-        },
-        {
-          "set_key": "sm3.5",
-          "set_name": null,
-          "likely_generation_bug_count": 66,
-          "unsupported_count": 66
-        },
-        {
-          "set_key": "sm115",
-          "set_name": "Hidden Fates",
-          "likely_generation_bug_count": 63,
-          "unsupported_count": 63
-        },
-        {
-          "set_key": "dc1",
-          "set_name": "Double Crisis",
-          "likely_generation_bug_count": 28,
-          "unsupported_count": 28
-        },
-        {
           "set_key": "dv1",
           "set_name": "Dragon Vault",
-          "likely_generation_bug_count": 21,
-          "unsupported_count": 21
+          "likely_generation_bug_count": 42,
+          "unsupported_count": 42
         },
         {
           "set_key": "det1",
           "set_name": "Detective Pikachu",
-          "likely_generation_bug_count": 18,
-          "unsupported_count": 18
+          "likely_generation_bug_count": 36,
+          "unsupported_count": 36
         },
         {
-          "set_key": "swsh8",
-          "set_name": "Fusion Strike",
-          "likely_generation_bug_count": 13,
-          "unsupported_count": 13
-        },
-        {
-          "set_key": "swsh12",
-          "set_name": "Silver Tempest",
-          "likely_generation_bug_count": 13,
-          "unsupported_count": 13
-        },
-        {
-          "set_key": "ecard2",
-          "set_name": "Aquapolis",
-          "likely_generation_bug_count": 13,
-          "unsupported_count": 31
-        },
-        {
-          "set_key": "ecard3",
-          "set_name": "Skyridge",
-          "likely_generation_bug_count": 11,
-          "unsupported_count": 19
-        },
-        {
-          "set_key": "fut20",
-          "set_name": "Pokémon Futsal Collection",
-          "likely_generation_bug_count": 9,
-          "unsupported_count": 9
+          "set_key": "dc1",
+          "set_name": "Double Crisis",
+          "likely_generation_bug_count": 34,
+          "unsupported_count": 34
         }
       ]
     },
@@ -728,40 +821,19 @@
       {
         "set_key": "smp",
         "set_name": "SM Black Star Promos",
-        "readiness_score": 41.67,
+        "readiness_score": 39.61,
         "reasons": [
           "unsupported_by_current_index",
           "missing_from_grookai_not_insertion_authority",
           "no_master_verified_coverage"
         ],
         "counts": {
-          "total_rows_considered": 1215,
+          "total_rows_considered": 1052,
           "master_verified_by_index": 0,
           "api_agreed_by_index": 0,
           "candidate_unconfirmed_by_index": 0,
           "unsupported_by_current_index": 736,
-          "missing_from_grookai": 479,
-          "name_mismatch_needs_review": 0,
-          "set_unmapped": 0,
-          "likely_generation_bug_count": 0
-        }
-      },
-      {
-        "set_key": "xyp",
-        "set_name": "XY Black Star Promos",
-        "readiness_score": 41.62,
-        "reasons": [
-          "unsupported_by_current_index",
-          "missing_from_grookai_not_insertion_authority",
-          "no_master_verified_coverage"
-        ],
-        "counts": {
-          "total_rows_considered": 1056,
-          "master_verified_by_index": 0,
-          "api_agreed_by_index": 0,
-          "candidate_unconfirmed_by_index": 0,
-          "unsupported_by_current_index": 642,
-          "missing_from_grookai": 414,
+          "missing_from_grookai": 316,
           "name_mismatch_needs_review": 0,
           "set_unmapped": 0,
           "likely_generation_bug_count": 0
@@ -788,21 +860,42 @@
         }
       },
       {
-        "set_key": "swshp",
-        "set_name": "SWSH Black Star Promos",
-        "readiness_score": 43.05,
+        "set_key": "xyp",
+        "set_name": "XY Black Star Promos",
+        "readiness_score": 38.8,
         "reasons": [
           "unsupported_by_current_index",
           "missing_from_grookai_not_insertion_authority",
           "no_master_verified_coverage"
         ],
         "counts": {
-          "total_rows_considered": 930,
+          "total_rows_considered": 872,
+          "master_verified_by_index": 0,
+          "api_agreed_by_index": 0,
+          "candidate_unconfirmed_by_index": 0,
+          "unsupported_by_current_index": 642,
+          "missing_from_grookai": 230,
+          "name_mismatch_needs_review": 0,
+          "set_unmapped": 0,
+          "likely_generation_bug_count": 0
+        }
+      },
+      {
+        "set_key": "swshp",
+        "set_name": "SWSH Black Star Promos",
+        "readiness_score": 42.11,
+        "reasons": [
+          "unsupported_by_current_index",
+          "missing_from_grookai_not_insertion_authority",
+          "no_master_verified_coverage"
+        ],
+        "counts": {
+          "total_rows_considered": 862,
           "master_verified_by_index": 0,
           "api_agreed_by_index": 0,
           "candidate_unconfirmed_by_index": 0,
           "unsupported_by_current_index": 505,
-          "missing_from_grookai": 425,
+          "missing_from_grookai": 357,
           "name_mismatch_needs_review": 0,
           "set_unmapped": 0,
           "likely_generation_bug_count": 0
@@ -831,45 +924,61 @@
       {
         "set_key": "sm12",
         "set_name": "Cosmic Eclipse",
-        "readiness_score": 55.96,
+        "readiness_score": 81.81,
         "reasons": [
           "unsupported_by_current_index",
-          "candidate_unconfirmed",
-          "api_agreed_not_master_truth",
-          "no_master_verified_coverage"
+          "missing_from_grookai_not_insertion_authority"
         ],
         "counts": {
-          "total_rows_considered": 813,
-          "master_verified_by_index": 0,
-          "api_agreed_by_index": 171,
-          "candidate_unconfirmed_by_index": 393,
-          "unsupported_by_current_index": 249,
-          "missing_from_grookai": 0,
+          "total_rows_considered": 819,
+          "master_verified_by_index": 544,
+          "api_agreed_by_index": 0,
+          "candidate_unconfirmed_by_index": 0,
+          "unsupported_by_current_index": 269,
+          "missing_from_grookai": 6,
           "name_mismatch_needs_review": 0,
           "set_unmapped": 0,
-          "likely_generation_bug_count": 249
+          "likely_generation_bug_count": 269
         }
       },
       {
         "set_key": "sm11",
         "set_name": "Unified Minds",
-        "readiness_score": 56.16,
+        "readiness_score": 81.77,
         "reasons": [
           "unsupported_by_current_index",
-          "candidate_unconfirmed",
-          "api_agreed_not_master_truth",
-          "no_master_verified_coverage"
+          "missing_from_grookai_not_insertion_authority"
         ],
         "counts": {
-          "total_rows_considered": 774,
-          "master_verified_by_index": 0,
-          "api_agreed_by_index": 175,
-          "candidate_unconfirmed_by_index": 362,
-          "unsupported_by_current_index": 237,
-          "missing_from_grookai": 0,
+          "total_rows_considered": 785,
+          "master_verified_by_index": 521,
+          "api_agreed_by_index": 0,
+          "candidate_unconfirmed_by_index": 0,
+          "unsupported_by_current_index": 253,
+          "missing_from_grookai": 11,
           "name_mismatch_needs_review": 0,
           "set_unmapped": 0,
-          "likely_generation_bug_count": 237
+          "likely_generation_bug_count": 253
+        }
+      },
+      {
+        "set_key": "sm8",
+        "set_name": "Lost Thunder",
+        "readiness_score": 80.36,
+        "reasons": [
+          "unsupported_by_current_index",
+          "missing_from_grookai_not_insertion_authority"
+        ],
+        "counts": {
+          "total_rows_considered": 731,
+          "master_verified_by_index": 467,
+          "api_agreed_by_index": 0,
+          "candidate_unconfirmed_by_index": 0,
+          "unsupported_by_current_index": 241,
+          "missing_from_grookai": 23,
+          "name_mismatch_needs_review": 0,
+          "set_unmapped": 0,
+          "likely_generation_bug_count": 241
         }
       },
       {
@@ -913,47 +1022,43 @@
         }
       },
       {
-        "set_key": "sm8",
-        "set_name": "Lost Thunder",
-        "readiness_score": 56.11,
+        "set_key": "sm10",
+        "set_name": "Unbroken Bonds",
+        "readiness_score": 82.17,
         "reasons": [
           "unsupported_by_current_index",
-          "candidate_unconfirmed",
-          "api_agreed_not_master_truth",
-          "no_master_verified_coverage"
+          "missing_from_grookai_not_insertion_authority"
         ],
         "counts": {
           "total_rows_considered": 708,
-          "master_verified_by_index": 0,
-          "api_agreed_by_index": 153,
-          "candidate_unconfirmed_by_index": 340,
-          "unsupported_by_current_index": 215,
-          "missing_from_grookai": 0,
+          "master_verified_by_index": 475,
+          "api_agreed_by_index": 0,
+          "candidate_unconfirmed_by_index": 0,
+          "unsupported_by_current_index": 227,
+          "missing_from_grookai": 6,
           "name_mismatch_needs_review": 0,
           "set_unmapped": 0,
-          "likely_generation_bug_count": 215
+          "likely_generation_bug_count": 227
         }
       },
       {
-        "set_key": "sm10",
-        "set_name": "Unbroken Bonds",
-        "readiness_score": 56.2,
+        "set_key": "svp",
+        "set_name": "Scarlet & Violet Black Star Promos",
+        "readiness_score": 66.69,
         "reasons": [
           "unsupported_by_current_index",
-          "candidate_unconfirmed",
-          "api_agreed_not_master_truth",
-          "no_master_verified_coverage"
+          "missing_from_grookai_not_insertion_authority"
         ],
         "counts": {
-          "total_rows_considered": 702,
-          "master_verified_by_index": 0,
-          "api_agreed_by_index": 154,
-          "candidate_unconfirmed_by_index": 336,
-          "unsupported_by_current_index": 212,
-          "missing_from_grookai": 0,
+          "total_rows_considered": 695,
+          "master_verified_by_index": 217,
+          "api_agreed_by_index": 0,
+          "candidate_unconfirmed_by_index": 0,
+          "unsupported_by_current_index": 390,
+          "missing_from_grookai": 88,
           "name_mismatch_needs_review": 0,
           "set_unmapped": 0,
-          "likely_generation_bug_count": 212
+          "likely_generation_bug_count": 0
         }
       },
       {
@@ -977,274 +1082,230 @@
         }
       },
       {
-        "set_key": "svp",
-        "set_name": "Scarlet & Violet Black Star Promos",
-        "readiness_score": 56.14,
+        "set_key": "sm9",
+        "set_name": "Team Up",
+        "readiness_score": 81.63,
         "reasons": [
           "unsupported_by_current_index",
-          "candidate_unconfirmed",
-          "api_agreed_not_master_truth",
-          "missing_from_grookai_not_insertion_authority",
-          "no_master_verified_coverage"
+          "missing_from_grookai_not_insertion_authority"
         ],
         "counts": {
-          "total_rows_considered": 615,
-          "master_verified_by_index": 0,
-          "api_agreed_by_index": 7,
-          "candidate_unconfirmed_by_index": 388,
-          "unsupported_by_current_index": 212,
-          "missing_from_grookai": 8,
+          "total_rows_considered": 593,
+          "master_verified_by_index": 392,
+          "api_agreed_by_index": 0,
+          "candidate_unconfirmed_by_index": 0,
+          "unsupported_by_current_index": 196,
+          "missing_from_grookai": 5,
           "name_mismatch_needs_review": 0,
           "set_unmapped": 0,
-          "likely_generation_bug_count": 0
+          "likely_generation_bug_count": 196
         }
       },
       {
-        "set_key": "sm9",
-        "set_name": "Team Up",
-        "readiness_score": 56.12,
+        "set_key": "sm7",
+        "set_name": "Celestial Storm",
+        "readiness_score": 81.03,
         "reasons": [
           "unsupported_by_current_index",
-          "candidate_unconfirmed",
-          "api_agreed_not_master_truth",
-          "no_master_verified_coverage"
+          "missing_from_grookai_not_insertion_authority"
         ],
         "counts": {
-          "total_rows_considered": 588,
-          "master_verified_by_index": 0,
-          "api_agreed_by_index": 124,
-          "candidate_unconfirmed_by_index": 287,
+          "total_rows_considered": 561,
+          "master_verified_by_index": 365,
+          "api_agreed_by_index": 0,
+          "candidate_unconfirmed_by_index": 0,
+          "unsupported_by_current_index": 184,
+          "missing_from_grookai": 12,
+          "name_mismatch_needs_review": 0,
+          "set_unmapped": 0,
+          "likely_generation_bug_count": 184
+        }
+      },
+      {
+        "set_key": "sm1",
+        "set_name": "Sun & Moon",
+        "readiness_score": 79.2,
+        "reasons": [
+          "unsupported_by_current_index",
+          "missing_from_grookai_not_insertion_authority"
+        ],
+        "counts": {
+          "total_rows_considered": 548,
+          "master_verified_by_index": 339,
+          "api_agreed_by_index": 0,
+          "candidate_unconfirmed_by_index": 0,
           "unsupported_by_current_index": 177,
-          "missing_from_grookai": 0,
+          "missing_from_grookai": 32,
           "name_mismatch_needs_review": 0,
           "set_unmapped": 0,
           "likely_generation_bug_count": 177
         }
       },
       {
-        "set_key": "sm7",
-        "set_name": "Celestial Storm",
-        "readiness_score": 56.21,
+        "set_key": "sm5",
+        "set_name": "Ultra Prism",
+        "readiness_score": 80.49,
         "reasons": [
           "unsupported_by_current_index",
-          "candidate_unconfirmed",
-          "api_agreed_not_master_truth",
-          "no_master_verified_coverage"
+          "missing_from_grookai_not_insertion_authority"
         ],
         "counts": {
-          "total_rows_considered": 549,
-          "master_verified_by_index": 0,
-          "api_agreed_by_index": 119,
-          "candidate_unconfirmed_by_index": 265,
-          "unsupported_by_current_index": 165,
-          "missing_from_grookai": 0,
+          "total_rows_considered": 532,
+          "master_verified_by_index": 341,
+          "api_agreed_by_index": 0,
+          "candidate_unconfirmed_by_index": 0,
+          "unsupported_by_current_index": 178,
+          "missing_from_grookai": 13,
           "name_mismatch_needs_review": 0,
           "set_unmapped": 0,
-          "likely_generation_bug_count": 165
+          "likely_generation_bug_count": 178
         }
       },
       {
-        "set_key": "sm5",
-        "set_name": "Ultra Prism",
-        "readiness_score": 55.97,
+        "set_key": "sv02",
+        "set_name": "Paldea Evolved",
+        "readiness_score": 93.48,
         "reasons": [
+          "name_mismatch_needs_review",
           "unsupported_by_current_index",
-          "candidate_unconfirmed",
-          "api_agreed_not_master_truth",
-          "no_master_verified_coverage"
+          "missing_from_grookai_not_insertion_authority"
         ],
         "counts": {
-          "total_rows_considered": 519,
-          "master_verified_by_index": 0,
-          "api_agreed_by_index": 112,
-          "candidate_unconfirmed_by_index": 247,
-          "unsupported_by_current_index": 160,
-          "missing_from_grookai": 0,
-          "name_mismatch_needs_review": 0,
+          "total_rows_considered": 525,
+          "master_verified_by_index": 451,
+          "api_agreed_by_index": 0,
+          "candidate_unconfirmed_by_index": 0,
+          "unsupported_by_current_index": 4,
+          "missing_from_grookai": 66,
+          "name_mismatch_needs_review": 4,
           "set_unmapped": 0,
-          "likely_generation_bug_count": 160
+          "likely_generation_bug_count": 4
         }
       },
       {
         "set_key": "sv10.5w",
-        "set_name": null,
-        "readiness_score": 55.15,
+        "set_name": "White Flare",
+        "readiness_score": 72.4,
         "reasons": [
           "unsupported_by_current_index",
-          "candidate_unconfirmed",
-          "api_agreed_not_master_truth",
-          "no_master_verified_coverage"
+          "missing_from_grookai_not_insertion_authority"
+        ],
+        "counts": {
+          "total_rows_considered": 520,
+          "master_verified_by_index": 255,
+          "api_agreed_by_index": 0,
+          "candidate_unconfirmed_by_index": 0,
+          "unsupported_by_current_index": 264,
+          "missing_from_grookai": 1,
+          "name_mismatch_needs_review": 0,
+          "set_unmapped": 0,
+          "likely_generation_bug_count": 264
+        }
+      },
+      {
+        "set_key": "sm3",
+        "set_name": "Burning Shadows",
+        "readiness_score": 81.92,
+        "reasons": [
+          "unsupported_by_current_index",
+          "missing_from_grookai_not_insertion_authority"
         ],
         "counts": {
           "total_rows_considered": 519,
-          "master_verified_by_index": 0,
-          "api_agreed_by_index": 254,
-          "candidate_unconfirmed_by_index": 2,
+          "master_verified_by_index": 346,
+          "api_agreed_by_index": 0,
+          "candidate_unconfirmed_by_index": 0,
+          "unsupported_by_current_index": 161,
+          "missing_from_grookai": 12,
+          "name_mismatch_needs_review": 0,
+          "set_unmapped": 0,
+          "likely_generation_bug_count": 161
+        }
+      },
+      {
+        "set_key": "sm2",
+        "set_name": "Guardians Rising",
+        "readiness_score": 81.46,
+        "reasons": [
+          "unsupported_by_current_index",
+          "missing_from_grookai_not_insertion_authority"
+        ],
+        "counts": {
+          "total_rows_considered": 518,
+          "master_verified_by_index": 341,
+          "api_agreed_by_index": 0,
+          "candidate_unconfirmed_by_index": 0,
+          "unsupported_by_current_index": 166,
+          "missing_from_grookai": 11,
+          "name_mismatch_needs_review": 0,
+          "set_unmapped": 0,
+          "likely_generation_bug_count": 166
+        }
+      },
+      {
+        "set_key": "sv10.5b",
+        "set_name": "Black Bolt",
+        "readiness_score": 72.26,
+        "reasons": [
+          "unsupported_by_current_index",
+          "missing_from_grookai_not_insertion_authority"
+        ],
+        "counts": {
+          "total_rows_considered": 518,
+          "master_verified_by_index": 253,
+          "api_agreed_by_index": 0,
+          "candidate_unconfirmed_by_index": 0,
           "unsupported_by_current_index": 263,
-          "missing_from_grookai": 0,
+          "missing_from_grookai": 2,
           "name_mismatch_needs_review": 0,
           "set_unmapped": 0,
           "likely_generation_bug_count": 263
         }
       },
       {
-        "set_key": "sm1",
-        "set_name": "Sun & Moon",
-        "readiness_score": 55.59,
-        "reasons": [
-          "unsupported_by_current_index",
-          "candidate_unconfirmed",
-          "api_agreed_not_master_truth",
-          "no_master_verified_coverage"
-        ],
-        "counts": {
-          "total_rows_considered": 516,
-          "master_verified_by_index": 0,
-          "api_agreed_by_index": 110,
-          "candidate_unconfirmed_by_index": 241,
-          "unsupported_by_current_index": 165,
-          "missing_from_grookai": 0,
-          "name_mismatch_needs_review": 0,
-          "set_unmapped": 0,
-          "likely_generation_bug_count": 165
-        }
-      },
-      {
-        "set_key": "sv10.5b",
-        "set_name": null,
-        "readiness_score": 55.08,
-        "reasons": [
-          "unsupported_by_current_index",
-          "candidate_unconfirmed",
-          "api_agreed_not_master_truth",
-          "no_master_verified_coverage"
-        ],
-        "counts": {
-          "total_rows_considered": 516,
-          "master_verified_by_index": 0,
-          "api_agreed_by_index": 250,
-          "candidate_unconfirmed_by_index": 5,
-          "unsupported_by_current_index": 261,
-          "missing_from_grookai": 0,
-          "name_mismatch_needs_review": 0,
-          "set_unmapped": 0,
-          "likely_generation_bug_count": 261
-        }
-      },
-      {
-        "set_key": "sm2",
-        "set_name": "Guardians Rising",
-        "readiness_score": 55.94,
-        "reasons": [
-          "unsupported_by_current_index",
-          "candidate_unconfirmed",
-          "api_agreed_not_master_truth",
-          "no_master_verified_coverage"
-        ],
-        "counts": {
-          "total_rows_considered": 507,
-          "master_verified_by_index": 0,
-          "api_agreed_by_index": 103,
-          "candidate_unconfirmed_by_index": 250,
-          "unsupported_by_current_index": 154,
-          "missing_from_grookai": 0,
-          "name_mismatch_needs_review": 0,
-          "set_unmapped": 0,
-          "likely_generation_bug_count": 154
-        }
-      },
-      {
-        "set_key": "sm3",
-        "set_name": "Burning Shadows",
-        "readiness_score": 55.83,
-        "reasons": [
-          "unsupported_by_current_index",
-          "candidate_unconfirmed",
-          "api_agreed_not_master_truth",
-          "no_master_verified_coverage"
-        ],
-        "counts": {
-          "total_rows_considered": 507,
-          "master_verified_by_index": 0,
-          "api_agreed_by_index": 103,
-          "candidate_unconfirmed_by_index": 248,
-          "unsupported_by_current_index": 156,
-          "missing_from_grookai": 0,
-          "name_mismatch_needs_review": 0,
-          "set_unmapped": 0,
-          "likely_generation_bug_count": 156
-        }
-      },
-      {
         "set_key": "xy8",
         "set_name": "BREAKthrough",
-        "readiness_score": 56.58,
+        "readiness_score": 79.79,
         "reasons": [
           "unsupported_by_current_index",
-          "candidate_unconfirmed",
-          "api_agreed_not_master_truth",
-          "missing_from_grookai_not_insertion_authority",
-          "no_master_verified_coverage"
+          "missing_from_grookai_not_insertion_authority"
         ],
         "counts": {
-          "total_rows_considered": 493,
-          "master_verified_by_index": 0,
-          "api_agreed_by_index": 122,
-          "candidate_unconfirmed_by_index": 222,
-          "unsupported_by_current_index": 148,
-          "missing_from_grookai": 1,
+          "total_rows_considered": 509,
+          "master_verified_by_index": 320,
+          "api_agreed_by_index": 0,
+          "candidate_unconfirmed_by_index": 0,
+          "unsupported_by_current_index": 172,
+          "missing_from_grookai": 17,
           "name_mismatch_needs_review": 0,
           "set_unmapped": 0,
-          "likely_generation_bug_count": 148
+          "likely_generation_bug_count": 172
         }
       },
       {
         "set_key": "xy5",
         "set_name": "Primal Clash",
-        "readiness_score": 56.51,
+        "readiness_score": 80.58,
         "reasons": [
           "unsupported_by_current_index",
-          "candidate_unconfirmed",
-          "api_agreed_not_master_truth",
-          "no_master_verified_coverage"
+          "missing_from_grookai_not_insertion_authority"
         ],
         "counts": {
-          "total_rows_considered": 492,
-          "master_verified_by_index": 0,
-          "api_agreed_by_index": 114,
-          "candidate_unconfirmed_by_index": 232,
-          "unsupported_by_current_index": 146,
-          "missing_from_grookai": 0,
-          "name_mismatch_needs_review": 0,
-          "set_unmapped": 0,
-          "likely_generation_bug_count": 146
-        }
-      },
-      {
-        "set_key": "bwp",
-        "set_name": "BW Black Star Promos",
-        "readiness_score": 41.4,
-        "reasons": [
-          "unsupported_by_current_index",
-          "missing_from_grookai_not_insertion_authority",
-          "no_master_verified_coverage"
-        ],
-        "counts": {
-          "total_rows_considered": 490,
-          "master_verified_by_index": 0,
+          "total_rows_considered": 497,
+          "master_verified_by_index": 319,
           "api_agreed_by_index": 0,
           "candidate_unconfirmed_by_index": 0,
-          "unsupported_by_current_index": 303,
-          "missing_from_grookai": 187,
+          "unsupported_by_current_index": 173,
+          "missing_from_grookai": 5,
           "name_mismatch_needs_review": 0,
           "set_unmapped": 0,
-          "likely_generation_bug_count": 0
+          "likely_generation_bug_count": 173
         }
       },
       {
         "set_key": "swsh45sv",
         "set_name": "Shining Fates Shiny Vault",
-        "readiness_score": 18.5,
+        "readiness_score": 23.5,
         "reasons": [
           "unsupported_by_current_index",
           "missing_from_grookai_not_insertion_authority",
@@ -1260,6 +1321,26 @@
           "name_mismatch_needs_review": 0,
           "set_unmapped": 0,
           "likely_generation_bug_count": 0
+        }
+      },
+      {
+        "set_key": "bw7",
+        "set_name": "Boundaries Crossed",
+        "readiness_score": 80.11,
+        "reasons": [
+          "unsupported_by_current_index",
+          "missing_from_grookai_not_insertion_authority"
+        ],
+        "counts": {
+          "total_rows_considered": 470,
+          "master_verified_by_index": 298,
+          "api_agreed_by_index": 0,
+          "candidate_unconfirmed_by_index": 0,
+          "unsupported_by_current_index": 161,
+          "missing_from_grookai": 11,
+          "name_mismatch_needs_review": 0,
+          "set_unmapped": 0,
+          "likely_generation_bug_count": 161
         }
       },
       {
@@ -1284,157 +1365,143 @@
         }
       },
       {
-        "set_key": "sv02",
-        "set_name": null,
-        "readiness_score": 66.1,
-        "reasons": [
-          "name_mismatch_needs_review",
-          "unsupported_by_current_index",
-          "candidate_unconfirmed",
-          "api_agreed_not_master_truth",
-          "no_master_verified_coverage"
-        ],
-        "counts": {
-          "total_rows_considered": 459,
-          "master_verified_by_index": 0,
-          "api_agreed_by_index": 151,
-          "candidate_unconfirmed_by_index": 300,
-          "unsupported_by_current_index": 4,
-          "missing_from_grookai": 0,
-          "name_mismatch_needs_review": 4,
-          "set_unmapped": 0,
-          "likely_generation_bug_count": 4
-        }
-      },
-      {
-        "set_key": "bw7",
-        "set_name": "Boundaries Crossed",
-        "readiness_score": 56.72,
-        "reasons": [
-          "unsupported_by_current_index",
-          "candidate_unconfirmed",
-          "api_agreed_not_master_truth",
-          "no_master_verified_coverage"
-        ],
-        "counts": {
-          "total_rows_considered": 459,
-          "master_verified_by_index": 0,
-          "api_agreed_by_index": 111,
-          "candidate_unconfirmed_by_index": 213,
-          "unsupported_by_current_index": 135,
-          "missing_from_grookai": 0,
-          "name_mismatch_needs_review": 0,
-          "set_unmapped": 0,
-          "likely_generation_bug_count": 135
-        }
-      },
-      {
-        "set_key": "sv8pt5",
-        "set_name": "Prismatic Evolutions",
-        "readiness_score": 59.73,
-        "reasons": [
-          "unsupported_by_current_index",
-          "api_agreed_not_master_truth",
-          "missing_from_grookai_not_insertion_authority",
-          "no_master_verified_coverage"
-        ],
-        "counts": {
-          "total_rows_considered": 448,
-          "master_verified_by_index": 0,
-          "api_agreed_by_index": 280,
-          "candidate_unconfirmed_by_index": 0,
-          "unsupported_by_current_index": 167,
-          "missing_from_grookai": 1,
-          "name_mismatch_needs_review": 0,
-          "set_unmapped": 0,
-          "likely_generation_bug_count": 167
-        }
-      },
-      {
         "set_key": "xy1",
         "set_name": "XY",
-        "readiness_score": 56.32,
+        "readiness_score": 78.97,
         "reasons": [
           "unsupported_by_current_index",
-          "candidate_unconfirmed",
-          "api_agreed_not_master_truth",
-          "no_master_verified_coverage"
+          "missing_from_grookai_not_insertion_authority"
         ],
         "counts": {
-          "total_rows_considered": 438,
-          "master_verified_by_index": 0,
-          "api_agreed_by_index": 116,
-          "candidate_unconfirmed_by_index": 183,
-          "unsupported_by_current_index": 139,
-          "missing_from_grookai": 0,
+          "total_rows_considered": 459,
+          "master_verified_by_index": 282,
+          "api_agreed_by_index": 0,
+          "candidate_unconfirmed_by_index": 0,
+          "unsupported_by_current_index": 156,
+          "missing_from_grookai": 21,
           "name_mismatch_needs_review": 0,
           "set_unmapped": 0,
-          "likely_generation_bug_count": 139
-        }
-      },
-      {
-        "set_key": "sm6",
-        "set_name": "Forbidden Light",
-        "readiness_score": 56,
-        "reasons": [
-          "unsupported_by_current_index",
-          "candidate_unconfirmed",
-          "api_agreed_not_master_truth",
-          "no_master_verified_coverage"
-        ],
-        "counts": {
-          "total_rows_considered": 438,
-          "master_verified_by_index": 0,
-          "api_agreed_by_index": 93,
-          "candidate_unconfirmed_by_index": 211,
-          "unsupported_by_current_index": 134,
-          "missing_from_grookai": 0,
-          "name_mismatch_needs_review": 0,
-          "set_unmapped": 0,
-          "likely_generation_bug_count": 134
+          "likely_generation_bug_count": 156
         }
       },
       {
         "set_key": "sv01",
-        "set_name": null,
-        "readiness_score": 66.93,
+        "set_name": "Scarlet & Violet",
+        "readiness_score": 97.32,
         "reasons": [
           "name_mismatch_needs_review",
-          "candidate_unconfirmed",
-          "api_agreed_not_master_truth",
-          "no_master_verified_coverage"
+          "missing_from_grookai_not_insertion_authority"
         ],
         "counts": {
-          "total_rows_considered": 428,
-          "master_verified_by_index": 0,
-          "api_agreed_by_index": 169,
-          "candidate_unconfirmed_by_index": 255,
+          "total_rows_considered": 450,
+          "master_verified_by_index": 424,
+          "api_agreed_by_index": 0,
+          "candidate_unconfirmed_by_index": 0,
           "unsupported_by_current_index": 0,
-          "missing_from_grookai": 0,
+          "missing_from_grookai": 22,
           "name_mismatch_needs_review": 4,
           "set_unmapped": 0,
           "likely_generation_bug_count": 0
         }
       },
       {
+        "set_key": "sm6",
+        "set_name": "Forbidden Light",
+        "readiness_score": 80.39,
+        "reasons": [
+          "unsupported_by_current_index",
+          "missing_from_grookai_not_insertion_authority"
+        ],
+        "counts": {
+          "total_rows_considered": 449,
+          "master_verified_by_index": 287,
+          "api_agreed_by_index": 0,
+          "candidate_unconfirmed_by_index": 0,
+          "unsupported_by_current_index": 151,
+          "missing_from_grookai": 11,
+          "name_mismatch_needs_review": 0,
+          "set_unmapped": 0,
+          "likely_generation_bug_count": 151
+        }
+      },
+      {
+        "set_key": "sv8pt5",
+        "set_name": null,
+        "readiness_score": 79.79,
+        "reasons": [
+          "unsupported_by_current_index"
+        ],
+        "counts": {
+          "total_rows_considered": 447,
+          "master_verified_by_index": 280,
+          "api_agreed_by_index": 0,
+          "candidate_unconfirmed_by_index": 0,
+          "unsupported_by_current_index": 167,
+          "missing_from_grookai": 0,
+          "name_mismatch_needs_review": 0,
+          "set_unmapped": 0,
+          "likely_generation_bug_count": 167
+        }
+      },
+      {
         "set_key": "pl3",
         "set_name": "Supreme Victors",
-        "readiness_score": 44.83,
+        "readiness_score": 71.08,
         "reasons": [
           "name_mismatch_needs_review",
-          "candidate_unconfirmed",
-          "api_agreed_not_master_truth",
+          "unsupported_by_current_index",
+          "missing_from_grookai_not_insertion_authority"
+        ],
+        "counts": {
+          "total_rows_considered": 436,
+          "master_verified_by_index": 208,
+          "api_agreed_by_index": 0,
+          "candidate_unconfirmed_by_index": 0,
+          "unsupported_by_current_index": 86,
+          "missing_from_grookai": 141,
+          "name_mismatch_needs_review": 1,
+          "set_unmapped": 0,
+          "likely_generation_bug_count": 0
+        }
+      },
+      {
+        "set_key": "swsh12.5",
+        "set_name": "Crown Zenith",
+        "readiness_score": 80.5,
+        "reasons": [
+          "name_mismatch_needs_review",
+          "unsupported_by_current_index",
+          "missing_from_grookai_not_insertion_authority"
+        ],
+        "counts": {
+          "total_rows_considered": 426,
+          "master_verified_by_index": 272,
+          "api_agreed_by_index": 0,
+          "candidate_unconfirmed_by_index": 0,
+          "unsupported_by_current_index": 45,
+          "missing_from_grookai": 84,
+          "name_mismatch_needs_review": 25,
+          "set_unmapped": 0,
+          "likely_generation_bug_count": 0
+        }
+      },
+      {
+        "set_key": "bwp",
+        "set_name": "BW Black Star Promos",
+        "readiness_score": 39.35,
+        "reasons": [
+          "unsupported_by_current_index",
           "missing_from_grookai_not_insertion_authority",
           "no_master_verified_coverage"
         ],
         "counts": {
-          "total_rows_considered": 418,
+          "total_rows_considered": 426,
           "master_verified_by_index": 0,
-          "api_agreed_by_index": 169,
-          "candidate_unconfirmed_by_index": 125,
-          "unsupported_by_current_index": 0,
+          "api_agreed_by_index": 0,
+          "candidate_unconfirmed_by_index": 0,
+          "unsupported_by_current_index": 303,
           "missing_from_grookai": 123,
-          "name_mismatch_needs_review": 1,
+          "name_mismatch_needs_review": 0,
           "set_unmapped": 0,
           "likely_generation_bug_count": 0
         }
@@ -1442,364 +1509,323 @@
       {
         "set_key": "bw8",
         "set_name": "Plasma Storm",
-        "readiness_score": 56.54,
+        "readiness_score": 81.2,
         "reasons": [
           "unsupported_by_current_index",
-          "candidate_unconfirmed",
-          "api_agreed_not_master_truth",
-          "no_master_verified_coverage"
+          "missing_from_grookai_not_insertion_authority"
         ],
         "counts": {
-          "total_rows_considered": 414,
-          "master_verified_by_index": 0,
-          "api_agreed_by_index": 109,
-          "candidate_unconfirmed_by_index": 177,
-          "unsupported_by_current_index": 128,
-          "missing_from_grookai": 0,
+          "total_rows_considered": 418,
+          "master_verified_by_index": 273,
+          "api_agreed_by_index": 0,
+          "candidate_unconfirmed_by_index": 0,
+          "unsupported_by_current_index": 140,
+          "missing_from_grookai": 5,
           "name_mismatch_needs_review": 0,
           "set_unmapped": 0,
-          "likely_generation_bug_count": 128
-        }
-      },
-      {
-        "set_key": "bw11",
-        "set_name": "Legendary Treasures",
-        "readiness_score": 39.16,
-        "reasons": [
-          "name_mismatch_needs_review",
-          "unsupported_by_current_index",
-          "candidate_unconfirmed",
-          "api_agreed_not_master_truth",
-          "missing_from_grookai_not_insertion_authority",
-          "no_master_verified_coverage"
-        ],
-        "counts": {
-          "total_rows_considered": 406,
-          "master_verified_by_index": 0,
-          "api_agreed_by_index": 67,
-          "candidate_unconfirmed_by_index": 182,
-          "unsupported_by_current_index": 85,
-          "missing_from_grookai": 61,
-          "name_mismatch_needs_review": 11,
-          "set_unmapped": 0,
-          "likely_generation_bug_count": 0
-        }
-      },
-      {
-        "set_key": "g1",
-        "set_name": "Generations",
-        "readiness_score": 36.7,
-        "reasons": [
-          "name_mismatch_needs_review",
-          "unsupported_by_current_index",
-          "candidate_unconfirmed",
-          "api_agreed_not_master_truth",
-          "missing_from_grookai_not_insertion_authority",
-          "no_master_verified_coverage"
-        ],
-        "counts": {
-          "total_rows_considered": 401,
-          "master_verified_by_index": 0,
-          "api_agreed_by_index": 64,
-          "candidate_unconfirmed_by_index": 109,
-          "unsupported_by_current_index": 109,
-          "missing_from_grookai": 53,
-          "name_mismatch_needs_review": 66,
-          "set_unmapped": 0,
-          "likely_generation_bug_count": 0
+          "likely_generation_bug_count": 140
         }
       },
       {
         "set_key": "bw6",
         "set_name": "Dragons Exalted",
-        "readiness_score": 56.43,
+        "readiness_score": 80.6,
         "reasons": [
           "unsupported_by_current_index",
-          "candidate_unconfirmed",
-          "api_agreed_not_master_truth",
-          "missing_from_grookai_not_insertion_authority",
-          "no_master_verified_coverage"
+          "missing_from_grookai_not_insertion_authority"
         ],
         "counts": {
-          "total_rows_considered": 386,
-          "master_verified_by_index": 0,
-          "api_agreed_by_index": 97,
-          "candidate_unconfirmed_by_index": 169,
-          "unsupported_by_current_index": 118,
-          "missing_from_grookai": 2,
+          "total_rows_considered": 395,
+          "master_verified_by_index": 254,
+          "api_agreed_by_index": 0,
+          "candidate_unconfirmed_by_index": 0,
+          "unsupported_by_current_index": 130,
+          "missing_from_grookai": 11,
           "name_mismatch_needs_review": 0,
           "set_unmapped": 0,
-          "likely_generation_bug_count": 118
+          "likely_generation_bug_count": 130
         }
       },
       {
         "set_key": "xy10",
         "set_name": "Fates Collide",
-        "readiness_score": 55.93,
+        "readiness_score": 78.53,
         "reasons": [
           "unsupported_by_current_index",
-          "candidate_unconfirmed",
-          "api_agreed_not_master_truth",
-          "missing_from_grookai_not_insertion_authority",
-          "no_master_verified_coverage"
+          "missing_from_grookai_not_insertion_authority"
         ],
         "counts": {
-          "total_rows_considered": 382,
-          "master_verified_by_index": 0,
-          "api_agreed_by_index": 93,
-          "candidate_unconfirmed_by_index": 164,
-          "unsupported_by_current_index": 121,
-          "missing_from_grookai": 4,
+          "total_rows_considered": 391,
+          "master_verified_by_index": 237,
+          "api_agreed_by_index": 0,
+          "candidate_unconfirmed_by_index": 0,
+          "unsupported_by_current_index": 141,
+          "missing_from_grookai": 13,
           "name_mismatch_needs_review": 0,
           "set_unmapped": 0,
-          "likely_generation_bug_count": 121
+          "likely_generation_bug_count": 141
         }
       },
       {
         "set_key": "xy9",
         "set_name": "BREAKpoint",
-        "readiness_score": 56.1,
+        "readiness_score": 78.17,
         "reasons": [
           "unsupported_by_current_index",
-          "candidate_unconfirmed",
-          "api_agreed_not_master_truth",
-          "missing_from_grookai_not_insertion_authority",
-          "no_master_verified_coverage"
+          "missing_from_grookai_not_insertion_authority"
         ],
         "counts": {
-          "total_rows_considered": 378,
-          "master_verified_by_index": 0,
-          "api_agreed_by_index": 92,
-          "candidate_unconfirmed_by_index": 165,
+          "total_rows_considered": 390,
+          "master_verified_by_index": 234,
+          "api_agreed_by_index": 0,
+          "candidate_unconfirmed_by_index": 0,
+          "unsupported_by_current_index": 141,
+          "missing_from_grookai": 15,
+          "name_mismatch_needs_review": 0,
+          "set_unmapped": 0,
+          "likely_generation_bug_count": 141
+        }
+      },
+      {
+        "set_key": "g1",
+        "set_name": "Generations",
+        "readiness_score": 62.66,
+        "reasons": [
+          "name_mismatch_needs_review",
+          "unsupported_by_current_index",
+          "missing_from_grookai_not_insertion_authority"
+        ],
+        "counts": {
+          "total_rows_considered": 390,
+          "master_verified_by_index": 153,
+          "api_agreed_by_index": 0,
+          "candidate_unconfirmed_by_index": 0,
+          "unsupported_by_current_index": 143,
+          "missing_from_grookai": 42,
+          "name_mismatch_needs_review": 52,
+          "set_unmapped": 0,
+          "likely_generation_bug_count": 0
+        }
+      },
+      {
+        "set_key": "sm4",
+        "set_name": "Crimson Invasion",
+        "readiness_score": 81.19,
+        "reasons": [
+          "unsupported_by_current_index",
+          "missing_from_grookai_not_insertion_authority"
+        ],
+        "counts": {
+          "total_rows_considered": 387,
+          "master_verified_by_index": 253,
+          "api_agreed_by_index": 0,
+          "candidate_unconfirmed_by_index": 0,
+          "unsupported_by_current_index": 119,
+          "missing_from_grookai": 15,
+          "name_mismatch_needs_review": 0,
+          "set_unmapped": 0,
+          "likely_generation_bug_count": 119
+        }
+      },
+      {
+        "set_key": "bw11",
+        "set_name": "Legendary Treasures",
+        "readiness_score": 75.33,
+        "reasons": [
+          "name_mismatch_needs_review",
+          "unsupported_by_current_index",
+          "missing_from_grookai_not_insertion_authority"
+        ],
+        "counts": {
+          "total_rows_considered": 386,
+          "master_verified_by_index": 227,
+          "api_agreed_by_index": 0,
+          "candidate_unconfirmed_by_index": 0,
+          "unsupported_by_current_index": 108,
+          "missing_from_grookai": 41,
+          "name_mismatch_needs_review": 10,
+          "set_unmapped": 0,
+          "likely_generation_bug_count": 0
+        }
+      },
+      {
+        "set_key": "xy4",
+        "set_name": "Phantom Forces",
+        "readiness_score": 79.47,
+        "reasons": [
+          "unsupported_by_current_index",
+          "missing_from_grookai_not_insertion_authority"
+        ],
+        "counts": {
+          "total_rows_considered": 382,
+          "master_verified_by_index": 238,
+          "api_agreed_by_index": 0,
+          "candidate_unconfirmed_by_index": 0,
+          "unsupported_by_current_index": 131,
+          "missing_from_grookai": 13,
+          "name_mismatch_needs_review": 0,
+          "set_unmapped": 0,
+          "likely_generation_bug_count": 131
+        }
+      },
+      {
+        "set_key": "bw1",
+        "set_name": "Black & White",
+        "readiness_score": 78.11,
+        "reasons": [
+          "unsupported_by_current_index",
+          "missing_from_grookai_not_insertion_authority"
+        ],
+        "counts": {
+          "total_rows_considered": 379,
+          "master_verified_by_index": 227,
+          "api_agreed_by_index": 0,
+          "candidate_unconfirmed_by_index": 0,
           "unsupported_by_current_index": 118,
-          "missing_from_grookai": 3,
+          "missing_from_grookai": 34,
           "name_mismatch_needs_review": 0,
           "set_unmapped": 0,
           "likely_generation_bug_count": 118
         }
       },
       {
-        "set_key": "sm4",
-        "set_name": "Crimson Invasion",
-        "readiness_score": 56.16,
+        "set_key": "bw9",
+        "set_name": "Plasma Freeze",
+        "readiness_score": 81.08,
         "reasons": [
           "unsupported_by_current_index",
-          "candidate_unconfirmed",
-          "api_agreed_not_master_truth",
-          "missing_from_grookai_not_insertion_authority",
-          "no_master_verified_coverage"
+          "missing_from_grookai_not_insertion_authority"
         ],
         "counts": {
           "total_rows_considered": 373,
-          "master_verified_by_index": 0,
-          "api_agreed_by_index": 80,
-          "candidate_unconfirmed_by_index": 180,
-          "unsupported_by_current_index": 112,
-          "missing_from_grookai": 1,
+          "master_verified_by_index": 243,
+          "api_agreed_by_index": 0,
+          "candidate_unconfirmed_by_index": 0,
+          "unsupported_by_current_index": 123,
+          "missing_from_grookai": 7,
           "name_mismatch_needs_review": 0,
           "set_unmapped": 0,
-          "likely_generation_bug_count": 112
-        }
-      },
-      {
-        "set_key": "xy4",
-        "set_name": "Phantom Forces",
-        "readiness_score": 56.51,
-        "reasons": [
-          "unsupported_by_current_index",
-          "candidate_unconfirmed",
-          "api_agreed_not_master_truth",
-          "missing_from_grookai_not_insertion_authority",
-          "no_master_verified_coverage"
-        ],
-        "counts": {
-          "total_rows_considered": 371,
-          "master_verified_by_index": 0,
-          "api_agreed_by_index": 90,
-          "candidate_unconfirmed_by_index": 168,
-          "unsupported_by_current_index": 111,
-          "missing_from_grookai": 2,
-          "name_mismatch_needs_review": 0,
-          "set_unmapped": 0,
-          "likely_generation_bug_count": 111
-        }
-      },
-      {
-        "set_key": "bw9",
-        "set_name": "Plasma Freeze",
-        "readiness_score": 56.6,
-        "reasons": [
-          "unsupported_by_current_index",
-          "candidate_unconfirmed",
-          "api_agreed_not_master_truth",
-          "no_master_verified_coverage"
-        ],
-        "counts": {
-          "total_rows_considered": 366,
-          "master_verified_by_index": 0,
-          "api_agreed_by_index": 86,
-          "candidate_unconfirmed_by_index": 172,
-          "unsupported_by_current_index": 108,
-          "missing_from_grookai": 0,
-          "name_mismatch_needs_review": 0,
-          "set_unmapped": 0,
-          "likely_generation_bug_count": 108
-        }
-      },
-      {
-        "set_key": "xy11",
-        "set_name": "Steam Siege",
-        "readiness_score": 56.31,
-        "reasons": [
-          "unsupported_by_current_index",
-          "candidate_unconfirmed",
-          "api_agreed_not_master_truth",
-          "no_master_verified_coverage"
-        ],
-        "counts": {
-          "total_rows_considered": 348,
-          "master_verified_by_index": 0,
-          "api_agreed_by_index": 84,
-          "candidate_unconfirmed_by_index": 157,
-          "unsupported_by_current_index": 107,
-          "missing_from_grookai": 0,
-          "name_mismatch_needs_review": 0,
-          "set_unmapped": 0,
-          "likely_generation_bug_count": 107
-        }
-      },
-      {
-        "set_key": "bw1",
-        "set_name": "Black & White",
-        "readiness_score": 56.52,
-        "reasons": [
-          "unsupported_by_current_index",
-          "candidate_unconfirmed",
-          "api_agreed_not_master_truth",
-          "no_master_verified_coverage"
-        ],
-        "counts": {
-          "total_rows_considered": 345,
-          "master_verified_by_index": 0,
-          "api_agreed_by_index": 100,
-          "candidate_unconfirmed_by_index": 134,
-          "unsupported_by_current_index": 111,
-          "missing_from_grookai": 0,
-          "name_mismatch_needs_review": 0,
-          "set_unmapped": 0,
-          "likely_generation_bug_count": 111
+          "likely_generation_bug_count": 123
         }
       },
       {
         "set_key": "xy3",
         "set_name": "Furious Fists",
-        "readiness_score": 56.51,
+        "readiness_score": 79.25,
         "reasons": [
           "unsupported_by_current_index",
-          "candidate_unconfirmed",
-          "api_agreed_not_master_truth",
-          "missing_from_grookai_not_insertion_authority",
-          "no_master_verified_coverage"
+          "missing_from_grookai_not_insertion_authority"
         ],
         "counts": {
-          "total_rows_considered": 343,
-          "master_verified_by_index": 0,
-          "api_agreed_by_index": 88,
-          "candidate_unconfirmed_by_index": 149,
-          "unsupported_by_current_index": 105,
-          "missing_from_grookai": 1,
+          "total_rows_considered": 360,
+          "master_verified_by_index": 223,
+          "api_agreed_by_index": 0,
+          "candidate_unconfirmed_by_index": 0,
+          "unsupported_by_current_index": 119,
+          "missing_from_grookai": 18,
           "name_mismatch_needs_review": 0,
           "set_unmapped": 0,
-          "likely_generation_bug_count": 105
+          "likely_generation_bug_count": 119
         }
       },
       {
-        "set_key": "swsh12.5",
-        "set_name": null,
-        "readiness_score": 48.65,
+        "set_key": "xy11",
+        "set_name": "Steam Siege",
+        "readiness_score": 79.43,
         "reasons": [
-          "name_mismatch_needs_review",
           "unsupported_by_current_index",
-          "api_agreed_not_master_truth",
-          "no_master_verified_coverage"
+          "missing_from_grookai_not_insertion_authority"
         ],
         "counts": {
-          "total_rows_considered": 342,
-          "master_verified_by_index": 0,
-          "api_agreed_by_index": 272,
+          "total_rows_considered": 357,
+          "master_verified_by_index": 222,
+          "api_agreed_by_index": 0,
           "candidate_unconfirmed_by_index": 0,
-          "unsupported_by_current_index": 45,
-          "missing_from_grookai": 0,
-          "name_mismatch_needs_review": 25,
+          "unsupported_by_current_index": 126,
+          "missing_from_grookai": 9,
+          "name_mismatch_needs_review": 0,
           "set_unmapped": 0,
-          "likely_generation_bug_count": 0
+          "likely_generation_bug_count": 126
         }
       },
       {
         "set_key": "xy12",
         "set_name": "Evolutions",
-        "readiness_score": 55.99,
+        "readiness_score": 78.72,
         "reasons": [
           "unsupported_by_current_index",
-          "candidate_unconfirmed",
-          "api_agreed_not_master_truth",
-          "no_master_verified_coverage"
+          "missing_from_grookai_not_insertion_authority"
         ],
         "counts": {
-          "total_rows_considered": 339,
-          "master_verified_by_index": 0,
-          "api_agreed_by_index": 75,
-          "candidate_unconfirmed_by_index": 159,
-          "unsupported_by_current_index": 105,
-          "missing_from_grookai": 0,
+          "total_rows_considered": 348,
+          "master_verified_by_index": 212,
+          "api_agreed_by_index": 0,
+          "candidate_unconfirmed_by_index": 0,
+          "unsupported_by_current_index": 127,
+          "missing_from_grookai": 9,
           "name_mismatch_needs_review": 0,
           "set_unmapped": 0,
-          "likely_generation_bug_count": 105
-        }
-      },
-      {
-        "set_key": "xy6",
-        "set_name": "Roaring Skies",
-        "readiness_score": 56.24,
-        "reasons": [
-          "unsupported_by_current_index",
-          "candidate_unconfirmed",
-          "api_agreed_not_master_truth",
-          "missing_from_grookai_not_insertion_authority",
-          "no_master_verified_coverage"
-        ],
-        "counts": {
-          "total_rows_considered": 338,
-          "master_verified_by_index": 0,
-          "api_agreed_by_index": 77,
-          "candidate_unconfirmed_by_index": 157,
-          "unsupported_by_current_index": 102,
-          "missing_from_grookai": 2,
-          "name_mismatch_needs_review": 0,
-          "set_unmapped": 0,
-          "likely_generation_bug_count": 102
+          "likely_generation_bug_count": 127
         }
       },
       {
         "set_key": "bw5",
         "set_name": "Dark Explorers",
-        "readiness_score": 56.6,
+        "readiness_score": 79.92,
         "reasons": [
           "unsupported_by_current_index",
-          "candidate_unconfirmed",
-          "api_agreed_not_master_truth",
-          "no_master_verified_coverage"
+          "missing_from_grookai_not_insertion_authority"
         ],
         "counts": {
-          "total_rows_considered": 333,
-          "master_verified_by_index": 0,
-          "api_agreed_by_index": 87,
-          "candidate_unconfirmed_by_index": 144,
-          "unsupported_by_current_index": 102,
-          "missing_from_grookai": 0,
+          "total_rows_considered": 347,
+          "master_verified_by_index": 219,
+          "api_agreed_by_index": 0,
+          "candidate_unconfirmed_by_index": 0,
+          "unsupported_by_current_index": 114,
+          "missing_from_grookai": 14,
           "name_mismatch_needs_review": 0,
           "set_unmapped": 0,
-          "likely_generation_bug_count": 102
+          "likely_generation_bug_count": 114
+        }
+      },
+      {
+        "set_key": "xy6",
+        "set_name": "Roaring Skies",
+        "readiness_score": 79.88,
+        "reasons": [
+          "unsupported_by_current_index",
+          "missing_from_grookai_not_insertion_authority"
+        ],
+        "counts": {
+          "total_rows_considered": 343,
+          "master_verified_by_index": 216,
+          "api_agreed_by_index": 0,
+          "candidate_unconfirmed_by_index": 0,
+          "unsupported_by_current_index": 120,
+          "missing_from_grookai": 7,
+          "name_mismatch_needs_review": 0,
+          "set_unmapped": 0,
+          "likely_generation_bug_count": 120
+        }
+      },
+      {
+        "set_key": "xy2",
+        "set_name": "Flashfire",
+        "readiness_score": 80.1,
+        "reasons": [
+          "unsupported_by_current_index",
+          "missing_from_grookai_not_insertion_authority"
+        ],
+        "counts": {
+          "total_rows_considered": 336,
+          "master_verified_by_index": 213,
+          "api_agreed_by_index": 0,
+          "candidate_unconfirmed_by_index": 0,
+          "unsupported_by_current_index": 114,
+          "missing_from_grookai": 9,
+          "name_mismatch_needs_review": 0,
+          "set_unmapped": 0,
+          "likely_generation_bug_count": 114
         }
       },
       {
@@ -1823,26 +1849,64 @@
         }
       },
       {
-        "set_key": "xy2",
-        "set_name": "Flashfire",
-        "readiness_score": 56.41,
+        "set_key": "col1",
+        "set_name": "Call of Legends",
+        "readiness_score": 73.59,
         "reasons": [
+          "name_mismatch_needs_review",
           "unsupported_by_current_index",
-          "candidate_unconfirmed",
-          "api_agreed_not_master_truth",
-          "missing_from_grookai_not_insertion_authority",
-          "no_master_verified_coverage"
+          "missing_from_grookai_not_insertion_authority"
         ],
         "counts": {
-          "total_rows_considered": 328,
-          "master_verified_by_index": 0,
-          "api_agreed_by_index": 83,
-          "candidate_unconfirmed_by_index": 143,
-          "unsupported_by_current_index": 101,
-          "missing_from_grookai": 1,
+          "total_rows_considered": 329,
+          "master_verified_by_index": 183,
+          "api_agreed_by_index": 0,
+          "candidate_unconfirmed_by_index": 0,
+          "unsupported_by_current_index": 90,
+          "missing_from_grookai": 44,
+          "name_mismatch_needs_review": 12,
+          "set_unmapped": 0,
+          "likely_generation_bug_count": 0
+        }
+      },
+      {
+        "set_key": "bw4",
+        "set_name": "Next Destinies",
+        "readiness_score": 80.17,
+        "reasons": [
+          "unsupported_by_current_index",
+          "missing_from_grookai_not_insertion_authority"
+        ],
+        "counts": {
+          "total_rows_considered": 321,
+          "master_verified_by_index": 204,
+          "api_agreed_by_index": 0,
+          "candidate_unconfirmed_by_index": 0,
+          "unsupported_by_current_index": 105,
+          "missing_from_grookai": 12,
           "name_mismatch_needs_review": 0,
           "set_unmapped": 0,
-          "likely_generation_bug_count": 101
+          "likely_generation_bug_count": 105
+        }
+      },
+      {
+        "set_key": "bw10",
+        "set_name": "Plasma Blast",
+        "readiness_score": 80.03,
+        "reasons": [
+          "unsupported_by_current_index",
+          "missing_from_grookai_not_insertion_authority"
+        ],
+        "counts": {
+          "total_rows_considered": 321,
+          "master_verified_by_index": 203,
+          "api_agreed_by_index": 0,
+          "candidate_unconfirmed_by_index": 0,
+          "unsupported_by_current_index": 112,
+          "missing_from_grookai": 6,
+          "name_mismatch_needs_review": 0,
+          "set_unmapped": 0,
+          "likely_generation_bug_count": 112
         }
       },
       {
@@ -1866,25 +1930,23 @@
         }
       },
       {
-        "set_key": "bw10",
-        "set_name": "Plasma Blast",
-        "readiness_score": 56.5,
+        "set_key": "bw3",
+        "set_name": "Noble Victories",
+        "readiness_score": 81.09,
         "reasons": [
           "unsupported_by_current_index",
-          "candidate_unconfirmed",
-          "api_agreed_not_master_truth",
-          "no_master_verified_coverage"
+          "missing_from_grookai_not_insertion_authority"
         ],
         "counts": {
-          "total_rows_considered": 315,
-          "master_verified_by_index": 0,
-          "api_agreed_by_index": 74,
-          "candidate_unconfirmed_by_index": 147,
-          "unsupported_by_current_index": 94,
-          "missing_from_grookai": 0,
+          "total_rows_considered": 319,
+          "master_verified_by_index": 208,
+          "api_agreed_by_index": 0,
+          "candidate_unconfirmed_by_index": 0,
+          "unsupported_by_current_index": 98,
+          "missing_from_grookai": 13,
           "name_mismatch_needs_review": 0,
           "set_unmapped": 0,
-          "likely_generation_bug_count": 94
+          "likely_generation_bug_count": 98
         }
       },
       {
@@ -1908,184 +1970,164 @@
         }
       },
       {
-        "set_key": "col1",
-        "set_name": "Call of Legends",
-        "readiness_score": 39.65,
+        "set_key": "xy7",
+        "set_name": "Ancient Origins",
+        "readiness_score": 78.37,
         "reasons": [
-          "name_mismatch_needs_review",
           "unsupported_by_current_index",
-          "candidate_unconfirmed",
-          "api_agreed_not_master_truth",
-          "missing_from_grookai_not_insertion_authority",
-          "no_master_verified_coverage"
+          "missing_from_grookai_not_insertion_authority"
         ],
         "counts": {
           "total_rows_considered": 313,
-          "master_verified_by_index": 0,
-          "api_agreed_by_index": 72,
-          "candidate_unconfirmed_by_index": 124,
-          "unsupported_by_current_index": 74,
-          "missing_from_grookai": 28,
-          "name_mismatch_needs_review": 15,
-          "set_unmapped": 0,
-          "likely_generation_bug_count": 0
-        }
-      },
-      {
-        "set_key": "bw4",
-        "set_name": "Next Destinies",
-        "readiness_score": 56.61,
-        "reasons": [
-          "unsupported_by_current_index",
-          "candidate_unconfirmed",
-          "api_agreed_not_master_truth",
-          "no_master_verified_coverage"
-        ],
-        "counts": {
-          "total_rows_considered": 309,
-          "master_verified_by_index": 0,
-          "api_agreed_by_index": 77,
-          "candidate_unconfirmed_by_index": 139,
-          "unsupported_by_current_index": 93,
-          "missing_from_grookai": 0,
+          "master_verified_by_index": 189,
+          "api_agreed_by_index": 0,
+          "candidate_unconfirmed_by_index": 0,
+          "unsupported_by_current_index": 111,
+          "missing_from_grookai": 13,
           "name_mismatch_needs_review": 0,
           "set_unmapped": 0,
-          "likely_generation_bug_count": 93
+          "likely_generation_bug_count": 111
         }
       },
       {
-        "set_key": "ex8",
-        "set_name": "Deoxys",
-        "readiness_score": 63.25,
-        "reasons": [
-          "name_mismatch_needs_review",
-          "candidate_unconfirmed",
-          "api_agreed_not_master_truth",
-          "missing_from_grookai_not_insertion_authority",
-          "no_master_verified_coverage"
-        ],
-        "counts": {
-          "total_rows_considered": 306,
-          "master_verified_by_index": 0,
-          "api_agreed_by_index": 105,
-          "candidate_unconfirmed_by_index": 84,
-          "unsupported_by_current_index": 0,
-          "missing_from_grookai": 115,
-          "name_mismatch_needs_review": 2,
-          "set_unmapped": 0,
-          "likely_generation_bug_count": 0
-        }
-      },
-      {
-        "set_key": "bw3",
-        "set_name": "Noble Victories",
-        "readiness_score": 57.18,
+        "set_key": "sm115",
+        "set_name": "Hidden Fates",
+        "readiness_score": 70.63,
         "reasons": [
           "unsupported_by_current_index",
-          "candidate_unconfirmed",
-          "api_agreed_not_master_truth",
-          "no_master_verified_coverage"
+          "missing_from_grookai_not_insertion_authority"
         ],
         "counts": {
-          "total_rows_considered": 306,
-          "master_verified_by_index": 0,
-          "api_agreed_by_index": 83,
-          "candidate_unconfirmed_by_index": 134,
-          "unsupported_by_current_index": 89,
-          "missing_from_grookai": 0,
+          "total_rows_considered": 310,
+          "master_verified_by_index": 138,
+          "api_agreed_by_index": 0,
+          "candidate_unconfirmed_by_index": 0,
+          "unsupported_by_current_index": 69,
+          "missing_from_grookai": 103,
           "name_mismatch_needs_review": 0,
           "set_unmapped": 0,
-          "likely_generation_bug_count": 89
-        }
-      },
-      {
-        "set_key": "ex7",
-        "set_name": "Team Rocket Returns",
-        "readiness_score": 63.61,
-        "reasons": [
-          "name_mismatch_needs_review",
-          "candidate_unconfirmed",
-          "api_agreed_not_master_truth",
-          "missing_from_grookai_not_insertion_authority",
-          "no_master_verified_coverage"
-        ],
-        "counts": {
-          "total_rows_considered": 304,
-          "master_verified_by_index": 0,
-          "api_agreed_by_index": 109,
-          "candidate_unconfirmed_by_index": 84,
-          "unsupported_by_current_index": 0,
-          "missing_from_grookai": 110,
-          "name_mismatch_needs_review": 1,
-          "set_unmapped": 0,
-          "likely_generation_bug_count": 0
-        }
-      },
-      {
-        "set_key": "xy7",
-        "set_name": "Ancient Origins",
-        "readiness_score": 55.97,
-        "reasons": [
-          "unsupported_by_current_index",
-          "candidate_unconfirmed",
-          "api_agreed_not_master_truth",
-          "missing_from_grookai_not_insertion_authority",
-          "no_master_verified_coverage"
-        ],
-        "counts": {
-          "total_rows_considered": 301,
-          "master_verified_by_index": 0,
-          "api_agreed_by_index": 64,
-          "candidate_unconfirmed_by_index": 144,
-          "unsupported_by_current_index": 92,
-          "missing_from_grookai": 1,
-          "name_mismatch_needs_review": 0,
-          "set_unmapped": 0,
-          "likely_generation_bug_count": 92
+          "likely_generation_bug_count": 69
         }
       },
       {
         "set_key": "ex3",
         "set_name": "Dragon",
-        "readiness_score": 56.89,
+        "readiness_score": 79.21,
         "reasons": [
           "unsupported_by_current_index",
-          "candidate_unconfirmed",
-          "api_agreed_not_master_truth",
-          "no_master_verified_coverage"
+          "missing_from_grookai_not_insertion_authority"
         ],
         "counts": {
-          "total_rows_considered": 300,
-          "master_verified_by_index": 0,
-          "api_agreed_by_index": 76,
-          "candidate_unconfirmed_by_index": 136,
-          "unsupported_by_current_index": 88,
-          "missing_from_grookai": 0,
+          "total_rows_considered": 309,
+          "master_verified_by_index": 191,
+          "api_agreed_by_index": 0,
+          "candidate_unconfirmed_by_index": 0,
+          "unsupported_by_current_index": 109,
+          "missing_from_grookai": 9,
           "name_mismatch_needs_review": 0,
           "set_unmapped": 0,
-          "likely_generation_bug_count": 88
+          "likely_generation_bug_count": 109
+        }
+      },
+      {
+        "set_key": "ex6",
+        "set_name": "FireRed & LeafGreen",
+        "readiness_score": 66.02,
+        "reasons": [
+          "unsupported_by_current_index",
+          "missing_from_grookai_not_insertion_authority"
+        ],
+        "counts": {
+          "total_rows_considered": 309,
+          "master_verified_by_index": 116,
+          "api_agreed_by_index": 0,
+          "candidate_unconfirmed_by_index": 0,
+          "unsupported_by_current_index": 86,
+          "missing_from_grookai": 107,
+          "name_mismatch_needs_review": 0,
+          "set_unmapped": 0,
+          "likely_generation_bug_count": 86
         }
       },
       {
         "set_key": "bw2",
         "set_name": "Emerging Powers",
-        "readiness_score": 57.1,
+        "readiness_score": 80.87,
         "reasons": [
           "unsupported_by_current_index",
-          "candidate_unconfirmed",
-          "api_agreed_not_master_truth",
-          "no_master_verified_coverage"
+          "missing_from_grookai_not_insertion_authority"
         ],
         "counts": {
-          "total_rows_considered": 294,
-          "master_verified_by_index": 0,
-          "api_agreed_by_index": 86,
-          "candidate_unconfirmed_by_index": 119,
-          "unsupported_by_current_index": 89,
-          "missing_from_grookai": 0,
+          "total_rows_considered": 304,
+          "master_verified_by_index": 197,
+          "api_agreed_by_index": 0,
+          "candidate_unconfirmed_by_index": 0,
+          "unsupported_by_current_index": 97,
+          "missing_from_grookai": 10,
           "name_mismatch_needs_review": 0,
           "set_unmapped": 0,
-          "likely_generation_bug_count": 89
+          "likely_generation_bug_count": 97
+        }
+      },
+      {
+        "set_key": "dp1",
+        "set_name": "Diamond & Pearl",
+        "readiness_score": 94.17,
+        "reasons": [
+          "name_mismatch_needs_review",
+          "unsupported_by_current_index",
+          "missing_from_grookai_not_insertion_authority"
+        ],
+        "counts": {
+          "total_rows_considered": 293,
+          "master_verified_by_index": 257,
+          "api_agreed_by_index": 0,
+          "candidate_unconfirmed_by_index": 0,
+          "unsupported_by_current_index": 5,
+          "missing_from_grookai": 28,
+          "name_mismatch_needs_review": 3,
+          "set_unmapped": 0,
+          "likely_generation_bug_count": 5
+        }
+      },
+      {
+        "set_key": "ex7",
+        "set_name": "Team Rocket Returns",
+        "readiness_score": 67.21,
+        "reasons": [
+          "unsupported_by_current_index",
+          "missing_from_grookai_not_insertion_authority"
+        ],
+        "counts": {
+          "total_rows_considered": 291,
+          "master_verified_by_index": 115,
+          "api_agreed_by_index": 0,
+          "candidate_unconfirmed_by_index": 0,
+          "unsupported_by_current_index": 79,
+          "missing_from_grookai": 97,
+          "name_mismatch_needs_review": 0,
+          "set_unmapped": 0,
+          "likely_generation_bug_count": 79
+        }
+      },
+      {
+        "set_key": "ex8",
+        "set_name": "Deoxys",
+        "readiness_score": 66.65,
+        "reasons": [
+          "unsupported_by_current_index",
+          "missing_from_grookai_not_insertion_authority"
+        ],
+        "counts": {
+          "total_rows_considered": 291,
+          "master_verified_by_index": 112,
+          "api_agreed_by_index": 0,
+          "candidate_unconfirmed_by_index": 0,
+          "unsupported_by_current_index": 79,
+          "missing_from_grookai": 100,
+          "name_mismatch_needs_review": 0,
+          "set_unmapped": 0,
+          "likely_generation_bug_count": 79
         }
       },
       {
@@ -2109,70 +2151,62 @@
         }
       },
       {
-        "set_key": "pl2",
-        "set_name": "Rising Rivals",
-        "readiness_score": 47.27,
+        "set_key": "ex9",
+        "set_name": "Emerald",
+        "readiness_score": 67.05,
         "reasons": [
-          "name_mismatch_needs_review",
-          "candidate_unconfirmed",
-          "api_agreed_not_master_truth",
-          "missing_from_grookai_not_insertion_authority",
-          "no_master_verified_coverage"
+          "unsupported_by_current_index",
+          "missing_from_grookai_not_insertion_authority"
         ],
         "counts": {
-          "total_rows_considered": 282,
-          "master_verified_by_index": 0,
-          "api_agreed_by_index": 159,
-          "candidate_unconfirmed_by_index": 51,
-          "unsupported_by_current_index": 0,
-          "missing_from_grookai": 64,
-          "name_mismatch_needs_review": 8,
+          "total_rows_considered": 286,
+          "master_verified_by_index": 112,
+          "api_agreed_by_index": 0,
+          "candidate_unconfirmed_by_index": 0,
+          "unsupported_by_current_index": 77,
+          "missing_from_grookai": 97,
+          "name_mismatch_needs_review": 0,
           "set_unmapped": 0,
-          "likely_generation_bug_count": 0
+          "likely_generation_bug_count": 77
         }
       },
       {
-        "set_key": "dp1",
-        "set_name": "Diamond & Pearl",
-        "readiness_score": 70.76,
+        "set_key": "ex5",
+        "set_name": "Hidden Legends",
+        "readiness_score": 66.42,
+        "reasons": [
+          "unsupported_by_current_index",
+          "missing_from_grookai_not_insertion_authority"
+        ],
+        "counts": {
+          "total_rows_considered": 278,
+          "master_verified_by_index": 106,
+          "api_agreed_by_index": 0,
+          "candidate_unconfirmed_by_index": 0,
+          "unsupported_by_current_index": 76,
+          "missing_from_grookai": 96,
+          "name_mismatch_needs_review": 0,
+          "set_unmapped": 0,
+          "likely_generation_bug_count": 76
+        }
+      },
+      {
+        "set_key": "pl2",
+        "set_name": "Rising Rivals",
+        "readiness_score": 89.07,
         "reasons": [
           "name_mismatch_needs_review",
-          "candidate_unconfirmed",
-          "api_agreed_not_master_truth",
-          "missing_from_grookai_not_insertion_authority",
-          "no_master_verified_coverage"
+          "unsupported_by_current_index",
+          "missing_from_grookai_not_insertion_authority"
         ],
         "counts": {
           "total_rows_considered": 274,
-          "master_verified_by_index": 0,
-          "api_agreed_by_index": 246,
-          "candidate_unconfirmed_by_index": 13,
-          "unsupported_by_current_index": 0,
-          "missing_from_grookai": 9,
-          "name_mismatch_needs_review": 6,
-          "set_unmapped": 0,
-          "likely_generation_bug_count": 0
-        }
-      },
-      {
-        "set_key": "dp3",
-        "set_name": "Secret Wonders",
-        "readiness_score": 71.99,
-        "reasons": [
-          "name_mismatch_needs_review",
-          "candidate_unconfirmed",
-          "api_agreed_not_master_truth",
-          "missing_from_grookai_not_insertion_authority",
-          "no_master_verified_coverage"
-        ],
-        "counts": {
-          "total_rows_considered": 270,
-          "master_verified_by_index": 0,
-          "api_agreed_by_index": 260,
-          "candidate_unconfirmed_by_index": 6,
-          "unsupported_by_current_index": 0,
-          "missing_from_grookai": 3,
-          "name_mismatch_needs_review": 1,
+          "master_verified_by_index": 210,
+          "api_agreed_by_index": 0,
+          "candidate_unconfirmed_by_index": 0,
+          "unsupported_by_current_index": 1,
+          "missing_from_grookai": 56,
+          "name_mismatch_needs_review": 7,
           "set_unmapped": 0,
           "likely_generation_bug_count": 0
         }
@@ -2180,21 +2214,19 @@
       {
         "set_key": "pl1",
         "set_name": "Platinum",
-        "readiness_score": 51.72,
+        "readiness_score": 96.54,
         "reasons": [
           "name_mismatch_needs_review",
-          "candidate_unconfirmed",
-          "api_agreed_not_master_truth",
-          "missing_from_grookai_not_insertion_authority",
-          "no_master_verified_coverage"
+          "unsupported_by_current_index",
+          "missing_from_grookai_not_insertion_authority"
         ],
         "counts": {
-          "total_rows_considered": 265,
-          "master_verified_by_index": 0,
-          "api_agreed_by_index": 242,
-          "candidate_unconfirmed_by_index": 10,
-          "unsupported_by_current_index": 0,
-          "missing_from_grookai": 11,
+          "total_rows_considered": 271,
+          "master_verified_by_index": 251,
+          "api_agreed_by_index": 0,
+          "candidate_unconfirmed_by_index": 0,
+          "unsupported_by_current_index": 1,
+          "missing_from_grookai": 17,
           "name_mismatch_needs_review": 2,
           "set_unmapped": 0,
           "likely_generation_bug_count": 0
@@ -2203,24 +2235,22 @@
       {
         "set_key": "dp2",
         "set_name": "Mysterious Treasures",
-        "readiness_score": 70.91,
+        "readiness_score": 95.17,
         "reasons": [
           "name_mismatch_needs_review",
-          "candidate_unconfirmed",
-          "api_agreed_not_master_truth",
-          "missing_from_grookai_not_insertion_authority",
-          "no_master_verified_coverage"
+          "unsupported_by_current_index",
+          "missing_from_grookai_not_insertion_authority"
         ],
         "counts": {
-          "total_rows_considered": 260,
-          "master_verified_by_index": 0,
-          "api_agreed_by_index": 240,
-          "candidate_unconfirmed_by_index": 4,
-          "unsupported_by_current_index": 0,
-          "missing_from_grookai": 10,
-          "name_mismatch_needs_review": 6,
+          "total_rows_considered": 269,
+          "master_verified_by_index": 242,
+          "api_agreed_by_index": 0,
+          "candidate_unconfirmed_by_index": 0,
+          "unsupported_by_current_index": 5,
+          "missing_from_grookai": 19,
+          "name_mismatch_needs_review": 3,
           "set_unmapped": 0,
-          "likely_generation_bug_count": 0
+          "likely_generation_bug_count": 5
         }
       },
       {
@@ -2244,307 +2274,168 @@
         }
       },
       {
-        "set_key": "neo4",
-        "set_name": "Neo Destiny",
-        "readiness_score": 58.95,
-        "reasons": [
-          "name_mismatch_needs_review",
-          "candidate_unconfirmed",
-          "missing_from_grookai_not_insertion_authority",
-          "no_master_verified_coverage"
-        ],
-        "counts": {
-          "total_rows_considered": 241,
-          "master_verified_by_index": 0,
-          "api_agreed_by_index": 0,
-          "candidate_unconfirmed_by_index": 112,
-          "unsupported_by_current_index": 0,
-          "missing_from_grookai": 128,
-          "name_mismatch_needs_review": 1,
-          "set_unmapped": 0,
-          "likely_generation_bug_count": 0
-        }
-      },
-      {
         "set_key": "sm3.5",
-        "set_name": null,
-        "readiness_score": 56.63,
+        "set_name": "Shining Legends",
+        "readiness_score": 81.24,
         "reasons": [
           "unsupported_by_current_index",
-          "candidate_unconfirmed",
-          "api_agreed_not_master_truth",
-          "no_master_verified_coverage"
+          "missing_from_grookai_not_insertion_authority"
         ],
         "counts": {
-          "total_rows_considered": 234,
-          "master_verified_by_index": 0,
-          "api_agreed_by_index": 48,
-          "candidate_unconfirmed_by_index": 120,
-          "unsupported_by_current_index": 66,
-          "missing_from_grookai": 0,
+          "total_rows_considered": 237,
+          "master_verified_by_index": 155,
+          "api_agreed_by_index": 0,
+          "candidate_unconfirmed_by_index": 0,
+          "unsupported_by_current_index": 79,
+          "missing_from_grookai": 3,
           "name_mismatch_needs_review": 0,
           "set_unmapped": 0,
-          "likely_generation_bug_count": 66
+          "likely_generation_bug_count": 79
         }
       },
       {
         "set_key": "sm75",
-        "set_name": "Dragon Majesty",
-        "readiness_score": 56.27,
+        "set_name": null,
+        "readiness_score": 81.74,
         "reasons": [
-          "unsupported_by_current_index",
-          "candidate_unconfirmed",
-          "api_agreed_not_master_truth",
-          "no_master_verified_coverage"
+          "unsupported_by_current_index"
         ],
         "counts": {
           "total_rows_considered": 234,
-          "master_verified_by_index": 0,
-          "api_agreed_by_index": 46,
-          "candidate_unconfirmed_by_index": 120,
-          "unsupported_by_current_index": 68,
+          "master_verified_by_index": 155,
+          "api_agreed_by_index": 0,
+          "candidate_unconfirmed_by_index": 0,
+          "unsupported_by_current_index": 79,
           "missing_from_grookai": 0,
           "name_mismatch_needs_review": 0,
           "set_unmapped": 0,
-          "likely_generation_bug_count": 68
-        }
-      },
-      {
-        "set_key": "ex16",
-        "set_name": "Power Keepers",
-        "readiness_score": 62.6,
-        "reasons": [
-          "name_mismatch_needs_review",
-          "candidate_unconfirmed",
-          "api_agreed_not_master_truth",
-          "missing_from_grookai_not_insertion_authority",
-          "no_master_verified_coverage"
-        ],
-        "counts": {
-          "total_rows_considered": 224,
-          "master_verified_by_index": 0,
-          "api_agreed_by_index": 92,
-          "candidate_unconfirmed_by_index": 19,
-          "unsupported_by_current_index": 0,
-          "missing_from_grookai": 110,
-          "name_mismatch_needs_review": 3,
-          "set_unmapped": 0,
-          "likely_generation_bug_count": 0
-        }
-      },
-      {
-        "set_key": "pl4",
-        "set_name": "Arceus",
-        "readiness_score": 51.13,
-        "reasons": [
-          "name_mismatch_needs_review",
-          "candidate_unconfirmed",
-          "api_agreed_not_master_truth",
-          "missing_from_grookai_not_insertion_authority",
-          "no_master_verified_coverage"
-        ],
-        "counts": {
-          "total_rows_considered": 222,
-          "master_verified_by_index": 0,
-          "api_agreed_by_index": 180,
-          "candidate_unconfirmed_by_index": 6,
-          "unsupported_by_current_index": 0,
-          "missing_from_grookai": 27,
-          "name_mismatch_needs_review": 9,
-          "set_unmapped": 0,
-          "likely_generation_bug_count": 0
+          "likely_generation_bug_count": 79
         }
       }
     ],
+    "finish_blocker_boundary": {
+      "explanation": "These rows are not normal source-acquisition gaps. Current exact evidence indicates finish-label or card-number conflicts, so they require manual adjudication and are not mutation-safe.",
+      "closure_status": "closed_to_blocker_boundary",
+      "total_rows": 5,
+      "promotion_safe_now": 0,
+      "by_blocker_type": {
+        "finish_label_conflict": 4,
+        "card_number_conflict": 1
+      },
+      "rows": [
+        {
+          "set_key": "bw8",
+          "set_name": "Plasma Storm",
+          "card_number": "94",
+          "card_name": "Druddigon",
+          "finish_key": "holo",
+          "blocker_type": "finish_label_conflict",
+          "reason_not_promoted": "Evidence distinguishes cracked ice holo from the base card; this audit does not collapse cracked_ice into holo.",
+          "next_action": "Classify as finish-label conflict unless an exact plain holo source is found."
+        },
+        {
+          "set_key": "ex9",
+          "set_name": "Emerald",
+          "card_number": "107",
+          "card_name": "Farfetch'd",
+          "finish_key": "normal",
+          "blocker_type": "finish_label_conflict",
+          "reason_not_promoted": "Available exact source context does not support normal finish.",
+          "next_action": "Classify as possible unsupported normal unless an exact normal-source record is found."
+        },
+        {
+          "set_key": "sm8",
+          "set_name": "Lost Thunder",
+          "card_number": "187",
+          "card_name": "Net Ball",
+          "finish_key": "stamped",
+          "blocker_type": "card_number_conflict",
+          "reason_not_promoted": "Exact league/stamped evidence points to 187a/214, not exact card number 187/214.",
+          "next_action": "Resolve numbering/alias identity before any promotion."
+        },
+        {
+          "set_key": "sv03.5",
+          "set_name": "151",
+          "card_number": "146",
+          "card_name": "Moltres",
+          "finish_key": "normal",
+          "blocker_type": "finish_label_conflict",
+          "reason_not_promoted": "Available exact source does not list normal finish.",
+          "next_action": "Classify as possible unsupported normal unless exact normal evidence is found."
+        },
+        {
+          "set_key": "swsh3.5",
+          "set_name": "Champion's Path",
+          "card_number": "62",
+          "card_name": "Professor's Research (Professor Magnolia)",
+          "finish_key": "normal",
+          "blocker_type": "finish_label_conflict",
+          "reason_not_promoted": "Available exact source context does not support normal finish.",
+          "next_action": "Classify as possible unsupported normal unless exact normal evidence is found."
+        }
+      ]
+    },
     "controlled_set_repair_candidates": [
       {
-        "set_key": "sv04",
-        "set_name": null,
-        "priority_score": 63.4,
-        "recommendation": "blocked",
-        "readiness_classification": "moderate_confidence",
-        "readiness_score": 72.5,
-        "source_maturity_score": 70,
+        "set_key": "sv08",
+        "set_name": "Surging Sparks",
+        "priority_score": 86.59,
+        "recommendation": "controlled_proof_loop_candidate",
+        "readiness_classification": "high_confidence",
+        "readiness_score": 99.68,
+        "source_maturity_score": 99.29,
         "repair_safety_score": 100,
         "unsupported_count": 0,
         "candidate_count": 0,
-        "missing_count": 0,
+        "missing_count": 3,
         "alias_blocked_count": 0,
         "likely_generation_bug_count": 0,
         "expected_repair_safety": "higher"
       },
       {
-        "set_key": "sv04.5",
-        "set_name": null,
-        "priority_score": 63.4,
-        "recommendation": "blocked",
-        "readiness_classification": "moderate_confidence",
-        "readiness_score": 72.5,
-        "source_maturity_score": 70,
+        "set_key": "sv03",
+        "set_name": "Obsidian Flames",
+        "priority_score": 86.56,
+        "recommendation": "controlled_proof_loop_candidate",
+        "readiness_classification": "high_confidence",
+        "readiness_score": 99.22,
+        "source_maturity_score": 100,
+        "repair_safety_score": 99.1,
+        "unsupported_count": 6,
+        "candidate_count": 0,
+        "missing_count": 0,
+        "alias_blocked_count": 0,
+        "likely_generation_bug_count": 6,
+        "expected_repair_safety": "higher"
+      },
+      {
+        "set_key": "base4",
+        "set_name": "Base Set 2",
+        "priority_score": 86.12,
+        "recommendation": "controlled_proof_loop_candidate",
+        "readiness_classification": "high_confidence",
+        "readiness_score": 99.32,
+        "source_maturity_score": 98.48,
         "repair_safety_score": 100,
         "unsupported_count": 0,
         "candidate_count": 0,
-        "missing_count": 0,
+        "missing_count": 2,
         "alias_blocked_count": 0,
         "likely_generation_bug_count": 0,
         "expected_repair_safety": "higher"
       },
       {
         "set_key": "sv06",
-        "set_name": null,
-        "priority_score": 63.4,
-        "recommendation": "blocked",
-        "readiness_classification": "moderate_confidence",
-        "readiness_score": 72.5,
-        "source_maturity_score": 70,
+        "set_name": "Twilight Masquerade",
+        "priority_score": 86.08,
+        "recommendation": "controlled_proof_loop_candidate",
+        "readiness_classification": "high_confidence",
+        "readiness_score": 99.29,
+        "source_maturity_score": 98.42,
         "repair_safety_score": 100,
         "unsupported_count": 0,
         "candidate_count": 0,
-        "missing_count": 0,
-        "alias_blocked_count": 0,
-        "likely_generation_bug_count": 0,
-        "expected_repair_safety": "higher"
-      },
-      {
-        "set_key": "sv08",
-        "set_name": null,
-        "priority_score": 63.4,
-        "recommendation": "blocked",
-        "readiness_classification": "moderate_confidence",
-        "readiness_score": 72.5,
-        "source_maturity_score": 70,
-        "repair_safety_score": 100,
-        "unsupported_count": 0,
-        "candidate_count": 0,
-        "missing_count": 0,
-        "alias_blocked_count": 0,
-        "likely_generation_bug_count": 0,
-        "expected_repair_safety": "higher"
-      },
-      {
-        "set_key": "swsh10.5",
-        "set_name": null,
-        "priority_score": 63.4,
-        "recommendation": "blocked",
-        "readiness_classification": "moderate_confidence",
-        "readiness_score": 72.5,
-        "source_maturity_score": 70,
-        "repair_safety_score": 100,
-        "unsupported_count": 0,
-        "candidate_count": 0,
-        "missing_count": 0,
-        "alias_blocked_count": 0,
-        "likely_generation_bug_count": 0,
-        "expected_repair_safety": "higher"
-      },
-      {
-        "set_key": "swsh3",
-        "set_name": "Darkness Ablaze",
-        "priority_score": 63.4,
-        "recommendation": "blocked",
-        "readiness_classification": "moderate_confidence",
-        "readiness_score": 72.5,
-        "source_maturity_score": 70,
-        "repair_safety_score": 100,
-        "unsupported_count": 0,
-        "candidate_count": 0,
-        "missing_count": 0,
-        "alias_blocked_count": 0,
-        "likely_generation_bug_count": 0,
-        "expected_repair_safety": "higher"
-      },
-      {
-        "set_key": "swsh3.5",
-        "set_name": null,
-        "priority_score": 63.4,
-        "recommendation": "blocked",
-        "readiness_classification": "moderate_confidence",
-        "readiness_score": 72.5,
-        "source_maturity_score": 70,
-        "repair_safety_score": 100,
-        "unsupported_count": 0,
-        "candidate_count": 0,
-        "missing_count": 0,
-        "alias_blocked_count": 0,
-        "likely_generation_bug_count": 0,
-        "expected_repair_safety": "higher"
-      },
-      {
-        "set_key": "swsh4",
-        "set_name": "Vivid Voltage",
-        "priority_score": 63.4,
-        "recommendation": "blocked",
-        "readiness_classification": "moderate_confidence",
-        "readiness_score": 72.5,
-        "source_maturity_score": 70,
-        "repair_safety_score": 100,
-        "unsupported_count": 0,
-        "candidate_count": 0,
-        "missing_count": 0,
-        "alias_blocked_count": 0,
-        "likely_generation_bug_count": 0,
-        "expected_repair_safety": "higher"
-      },
-      {
-        "set_key": "swsh5",
-        "set_name": "Battle Styles",
-        "priority_score": 63.4,
-        "recommendation": "blocked",
-        "readiness_classification": "moderate_confidence",
-        "readiness_score": 72.5,
-        "source_maturity_score": 70,
-        "repair_safety_score": 100,
-        "unsupported_count": 0,
-        "candidate_count": 0,
-        "missing_count": 0,
-        "alias_blocked_count": 0,
-        "likely_generation_bug_count": 0,
-        "expected_repair_safety": "higher"
-      },
-      {
-        "set_key": "sv03.5",
-        "set_name": null,
-        "priority_score": 63.36,
-        "recommendation": "source_acquisition_then_overgeneration_review",
-        "readiness_classification": "moderate_confidence",
-        "readiness_score": 72.41,
-        "source_maturity_score": 70,
-        "repair_safety_score": 99.83,
-        "unsupported_count": 1,
-        "candidate_count": 0,
-        "missing_count": 0,
-        "alias_blocked_count": 0,
-        "likely_generation_bug_count": 1,
-        "expected_repair_safety": "higher"
-      },
-      {
-        "set_key": "sv07",
-        "set_name": null,
-        "priority_score": 63.32,
-        "recommendation": "source_acquisition_first",
-        "readiness_classification": "moderate_confidence",
-        "readiness_score": 72.47,
-        "source_maturity_score": 69.88,
-        "repair_safety_score": 100,
-        "unsupported_count": 0,
-        "candidate_count": 1,
-        "missing_count": 0,
-        "alias_blocked_count": 0,
-        "likely_generation_bug_count": 0,
-        "expected_repair_safety": "higher"
-      },
-      {
-        "set_key": "swsh1",
-        "set_name": "Sword & Shield",
-        "priority_score": 63.31,
-        "recommendation": "source_acquisition_first",
-        "readiness_classification": "moderate_confidence",
-        "readiness_score": 72.45,
-        "source_maturity_score": 69.82,
-        "repair_safety_score": 100,
-        "unsupported_count": 0,
-        "candidate_count": 0,
-        "missing_count": 1,
+        "missing_count": 6,
         "alias_blocked_count": 0,
         "likely_generation_bug_count": 0,
         "expected_repair_safety": "higher"
@@ -2552,95 +2443,351 @@
       {
         "set_key": "ex2",
         "set_name": "Sandstorm",
-        "priority_score": 63.28,
-        "recommendation": "source_acquisition_first",
-        "readiness_classification": "moderate_confidence",
-        "readiness_score": 72.45,
-        "source_maturity_score": 69.82,
+        "priority_score": 85.96,
+        "recommendation": "controlled_proof_loop_candidate",
+        "readiness_classification": "high_confidence",
+        "readiness_score": 99.04,
+        "source_maturity_score": 98.47,
+        "repair_safety_score": 99.68,
+        "unsupported_count": 1,
+        "candidate_count": 0,
+        "missing_count": 3,
+        "alias_blocked_count": 0,
+        "likely_generation_bug_count": 1,
+        "expected_repair_safety": "higher"
+      },
+      {
+        "set_key": "swsh10.5",
+        "set_name": "Pokémon GO",
+        "priority_score": 84.34,
+        "recommendation": "controlled_proof_loop_candidate",
+        "readiness_classification": "high_confidence",
+        "readiness_score": 97.93,
+        "source_maturity_score": 95.41,
         "repair_safety_score": 100,
         "unsupported_count": 0,
-        "candidate_count": 1,
-        "missing_count": 0,
+        "candidate_count": 0,
+        "missing_count": 5,
         "alias_blocked_count": 0,
         "likely_generation_bug_count": 0,
         "expected_repair_safety": "higher"
       },
       {
-        "set_key": "sv4pt5",
-        "set_name": "Paldean Fates",
-        "priority_score": 63.12,
-        "recommendation": "source_acquisition_first",
-        "readiness_classification": "moderate_confidence",
-        "readiness_score": 72.37,
-        "source_maturity_score": 69.47,
+        "set_key": "swsh3.5",
+        "set_name": "Champion's Path",
+        "priority_score": 83.73,
+        "recommendation": "controlled_proof_loop_candidate",
+        "readiness_classification": "high_confidence",
+        "readiness_score": 97.47,
+        "source_maturity_score": 94.37,
         "repair_safety_score": 100,
         "unsupported_count": 0,
-        "candidate_count": 1,
-        "missing_count": 2,
+        "candidate_count": 0,
+        "missing_count": 8,
         "alias_blocked_count": 0,
         "likely_generation_bug_count": 0,
+        "expected_repair_safety": "higher"
+      },
+      {
+        "set_key": "sv01",
+        "set_name": "Scarlet & Violet",
+        "priority_score": 83.62,
+        "recommendation": "source_acquisition_first",
+        "readiness_classification": "blocked",
+        "readiness_score": 97.32,
+        "source_maturity_score": 95.07,
+        "repair_safety_score": 99.47,
+        "unsupported_count": 0,
+        "candidate_count": 0,
+        "missing_count": 22,
+        "alias_blocked_count": 4,
+        "likely_generation_bug_count": 0,
+        "expected_repair_safety": "higher"
+      },
+      {
+        "set_key": "sv04",
+        "set_name": "Paradox Rift",
+        "priority_score": 83.61,
+        "recommendation": "controlled_proof_loop_candidate",
+        "readiness_classification": "high_confidence",
+        "readiness_score": 97.37,
+        "source_maturity_score": 94.16,
+        "repair_safety_score": 100,
+        "unsupported_count": 0,
+        "candidate_count": 0,
+        "missing_count": 25,
+        "alias_blocked_count": 0,
+        "likely_generation_bug_count": 0,
+        "expected_repair_safety": "higher"
+      },
+      {
+        "set_key": "sv03.5",
+        "set_name": "151",
+        "priority_score": 83.3,
+        "recommendation": "controlled_proof_loop_candidate",
+        "readiness_classification": "high_confidence",
+        "readiness_score": 97.04,
+        "source_maturity_score": 93.73,
+        "repair_safety_score": 99.84,
+        "unsupported_count": 1,
+        "candidate_count": 0,
+        "missing_count": 24,
+        "alias_blocked_count": 0,
+        "likely_generation_bug_count": 1,
+        "expected_repair_safety": "higher"
+      },
+      {
+        "set_key": "ex4",
+        "set_name": "Team Magma vs Team Aqua",
+        "priority_score": 83.25,
+        "recommendation": "controlled_proof_loop_candidate",
+        "readiness_classification": "high_confidence",
+        "readiness_score": 96.49,
+        "source_maturity_score": 94.5,
+        "repair_safety_score": 98.78,
+        "unsupported_count": 4,
+        "candidate_count": 0,
+        "missing_count": 11,
+        "alias_blocked_count": 0,
+        "likely_generation_bug_count": 4,
+        "expected_repair_safety": "higher"
+      },
+      {
+        "set_key": "swsh3",
+        "set_name": "Darkness Ablaze",
+        "priority_score": 82.08,
+        "recommendation": "controlled_proof_loop_candidate",
+        "readiness_classification": "high_confidence",
+        "readiness_score": 96.18,
+        "source_maturity_score": 91.52,
+        "repair_safety_score": 100,
+        "unsupported_count": 0,
+        "candidate_count": 0,
+        "missing_count": 33,
+        "alias_blocked_count": 0,
+        "likely_generation_bug_count": 0,
+        "expected_repair_safety": "higher"
+      },
+      {
+        "set_key": "swsh4",
+        "set_name": "Vivid Voltage",
+        "priority_score": 82.08,
+        "recommendation": "controlled_proof_loop_candidate",
+        "readiness_classification": "high_confidence",
+        "readiness_score": 96.18,
+        "source_maturity_score": 91.51,
+        "repair_safety_score": 100,
+        "unsupported_count": 0,
+        "candidate_count": 0,
+        "missing_count": 32,
+        "alias_blocked_count": 0,
+        "likely_generation_bug_count": 0,
+        "expected_repair_safety": "higher"
+      },
+      {
+        "set_key": "sv07",
+        "set_name": "Stellar Crown",
+        "priority_score": 82.05,
+        "recommendation": "controlled_proof_loop_candidate",
+        "readiness_classification": "high_confidence",
+        "readiness_score": 96.16,
+        "source_maturity_score": 91.46,
+        "repair_safety_score": 100,
+        "unsupported_count": 0,
+        "candidate_count": 0,
+        "missing_count": 28,
+        "alias_blocked_count": 0,
+        "likely_generation_bug_count": 0,
+        "expected_repair_safety": "higher"
+      },
+      {
+        "set_key": "ex1",
+        "set_name": "Ruby & Sapphire",
+        "priority_score": 81.6,
+        "recommendation": "controlled_proof_loop_candidate",
+        "readiness_classification": "high_confidence",
+        "readiness_score": 94.65,
+        "source_maturity_score": 92.54,
+        "repair_safety_score": 97.64,
+        "unsupported_count": 9,
+        "candidate_count": 0,
+        "missing_count": 17,
+        "alias_blocked_count": 0,
+        "likely_generation_bug_count": 9,
         "expected_repair_safety": "higher"
       },
       {
         "set_key": "sv09",
-        "set_name": null,
-        "priority_score": 62.99,
-        "recommendation": "source_acquisition_first",
-        "readiness_classification": "moderate_confidence",
-        "readiness_score": 72.34,
-        "source_maturity_score": 69.38,
+        "set_name": "Journey Together",
+        "priority_score": 81.5,
+        "recommendation": "controlled_proof_loop_candidate",
+        "readiness_classification": "high_confidence",
+        "readiness_score": 95.4,
+        "source_maturity_score": 91.03,
+        "repair_safety_score": 99.33,
+        "unsupported_count": 4,
+        "candidate_count": 0,
+        "missing_count": 33,
+        "alias_blocked_count": 0,
+        "likely_generation_bug_count": 4,
+        "expected_repair_safety": "higher"
+      },
+      {
+        "set_key": "swsh2",
+        "set_name": "Rebel Clash",
+        "priority_score": 81.41,
+        "recommendation": "controlled_proof_loop_candidate",
+        "readiness_classification": "high_confidence",
+        "readiness_score": 95.66,
+        "source_maturity_score": 90.36,
         "repair_safety_score": 100,
         "unsupported_count": 0,
-        "candidate_count": 6,
-        "missing_count": 0,
+        "candidate_count": 0,
+        "missing_count": 38,
         "alias_blocked_count": 0,
         "likely_generation_bug_count": 0,
         "expected_repair_safety": "higher"
       },
       {
-        "set_key": "base4",
-        "set_name": "Base Set 2",
-        "priority_score": 62.96,
-        "recommendation": "source_acquisition_first",
-        "readiness_classification": "moderate_confidence",
-        "readiness_score": 72.3,
-        "source_maturity_score": 69.2,
-        "repair_safety_score": 100,
-        "unsupported_count": 0,
-        "candidate_count": 1,
-        "missing_count": 1,
-        "alias_blocked_count": 0,
-        "likely_generation_bug_count": 0,
-        "expected_repair_safety": "higher"
-      },
-      {
-        "set_key": "sv03",
-        "set_name": null,
-        "priority_score": 62.93,
+        "set_key": "swsh8",
+        "set_name": "Fusion Strike",
+        "priority_score": 81.32,
         "recommendation": "source_acquisition_then_overgeneration_review",
-        "readiness_classification": "moderate_confidence",
-        "readiness_score": 72.19,
-        "source_maturity_score": 69.41,
-        "repair_safety_score": 99.7,
-        "unsupported_count": 2,
-        "candidate_count": 7,
-        "missing_count": 0,
+        "readiness_classification": "high_confidence",
+        "readiness_score": 94.9,
+        "source_maturity_score": 91.3,
+        "repair_safety_score": 98.6,
+        "unsupported_count": 13,
+        "candidate_count": 0,
+        "missing_count": 49,
         "alias_blocked_count": 0,
-        "likely_generation_bug_count": 2,
+        "likely_generation_bug_count": 13,
         "expected_repair_safety": "higher"
       },
       {
-        "set_key": "ecard1",
-        "set_name": "Expedition Base Set",
-        "priority_score": 62.91,
-        "recommendation": "source_acquisition_first",
-        "readiness_classification": "moderate_confidence",
-        "readiness_score": 72.31,
-        "source_maturity_score": 69.26,
+        "set_key": "sv10",
+        "set_name": "Destined Rivals",
+        "priority_score": 80.55,
+        "recommendation": "controlled_proof_loop_candidate",
+        "readiness_classification": "high_confidence",
+        "readiness_score": 94.6,
+        "source_maturity_score": 89.5,
+        "repair_safety_score": 99.2,
+        "unsupported_count": 6,
+        "candidate_count": 0,
+        "missing_count": 48,
+        "alias_blocked_count": 0,
+        "likely_generation_bug_count": 6,
+        "expected_repair_safety": "higher"
+      },
+      {
+        "set_key": "swsh5",
+        "set_name": "Battle Styles",
+        "priority_score": 80,
+        "recommendation": "controlled_proof_loop_candidate",
+        "readiness_classification": "high_confidence",
+        "readiness_score": 94.57,
+        "source_maturity_score": 87.93,
         "repair_safety_score": 100,
         "unsupported_count": 0,
-        "candidate_count": 7,
+        "candidate_count": 0,
+        "missing_count": 42,
+        "alias_blocked_count": 0,
+        "likely_generation_bug_count": 0,
+        "expected_repair_safety": "higher"
+      },
+      {
+        "set_key": "pgo",
+        "set_name": null,
+        "priority_score": 79.8,
+        "recommendation": "controlled_proof_loop_candidate",
+        "readiness_classification": "high_confidence",
+        "readiness_score": 99.63,
+        "source_maturity_score": 100,
+        "repair_safety_score": 99.58,
+        "unsupported_count": 1,
+        "candidate_count": 0,
         "missing_count": 0,
+        "alias_blocked_count": 0,
+        "likely_generation_bug_count": 1,
+        "expected_repair_safety": "higher"
+      },
+      {
+        "set_key": "tk2a",
+        "set_name": null,
+        "priority_score": 79.78,
+        "recommendation": "controlled_proof_loop_candidate",
+        "readiness_classification": "high_confidence",
+        "readiness_score": 96.5,
+        "source_maturity_score": 100,
+        "repair_safety_score": 96.67,
+        "unsupported_count": 1,
+        "candidate_count": 0,
+        "missing_count": 0,
+        "alias_blocked_count": 0,
+        "likely_generation_bug_count": 0,
+        "expected_repair_safety": "higher"
+      },
+      {
+        "set_key": "tk2b",
+        "set_name": null,
+        "priority_score": 79.78,
+        "recommendation": "controlled_proof_loop_candidate",
+        "readiness_classification": "high_confidence",
+        "readiness_score": 96.5,
+        "source_maturity_score": 100,
+        "repair_safety_score": 96.67,
+        "unsupported_count": 1,
+        "candidate_count": 0,
+        "missing_count": 0,
+        "alias_blocked_count": 0,
+        "likely_generation_bug_count": 0,
+        "expected_repair_safety": "higher"
+      },
+      {
+        "set_key": "tk1a",
+        "set_name": null,
+        "priority_score": 79.74,
+        "recommendation": "controlled_proof_loop_candidate",
+        "readiness_classification": "high_confidence",
+        "readiness_score": 95.8,
+        "source_maturity_score": 100,
+        "repair_safety_score": 96,
+        "unsupported_count": 1,
+        "candidate_count": 0,
+        "missing_count": 0,
+        "alias_blocked_count": 0,
+        "likely_generation_bug_count": 0,
+        "expected_repair_safety": "higher"
+      },
+      {
+        "set_key": "tk1b",
+        "set_name": null,
+        "priority_score": 79.74,
+        "recommendation": "controlled_proof_loop_candidate",
+        "readiness_classification": "high_confidence",
+        "readiness_score": 95.8,
+        "source_maturity_score": 100,
+        "repair_safety_score": 96,
+        "unsupported_count": 1,
+        "candidate_count": 0,
+        "missing_count": 0,
+        "alias_blocked_count": 0,
+        "likely_generation_bug_count": 0,
+        "expected_repair_safety": "higher"
+      },
+      {
+        "set_key": "sv06.5",
+        "set_name": "Shrouded Fable",
+        "priority_score": 79.3,
+        "recommendation": "controlled_proof_loop_candidate",
+        "readiness_classification": "high_confidence",
+        "readiness_score": 94.03,
+        "source_maturity_score": 86.73,
+        "repair_safety_score": 100,
+        "unsupported_count": 0,
+        "candidate_count": 0,
+        "missing_count": 13,
         "alias_blocked_count": 0,
         "likely_generation_bug_count": 0,
         "expected_repair_safety": "higher"
@@ -2648,333 +2795,45 @@
       {
         "set_key": "swsh6",
         "set_name": "Chilling Reign",
-        "priority_score": 62.84,
-        "recommendation": "source_acquisition_first",
-        "readiness_classification": "moderate_confidence",
-        "readiness_score": 72.22,
-        "source_maturity_score": 68.86,
+        "priority_score": 79.25,
+        "recommendation": "controlled_proof_loop_candidate",
+        "readiness_classification": "high_confidence",
+        "readiness_score": 93.98,
+        "source_maturity_score": 86.63,
         "repair_safety_score": 100,
         "unsupported_count": 0,
         "candidate_count": 0,
-        "missing_count": 6,
+        "missing_count": 56,
         "alias_blocked_count": 0,
         "likely_generation_bug_count": 0,
-        "expected_repair_safety": "higher"
-      },
-      {
-        "set_key": "swsh4.5",
-        "set_name": null,
-        "priority_score": 62.62,
-        "recommendation": "source_acquisition_first",
-        "readiness_classification": "moderate_confidence",
-        "readiness_score": 72.2,
-        "source_maturity_score": 68.82,
-        "repair_safety_score": 100,
-        "unsupported_count": 0,
-        "candidate_count": 4,
-        "missing_count": 0,
-        "alias_blocked_count": 0,
-        "likely_generation_bug_count": 0,
-        "expected_repair_safety": "higher"
-      },
-      {
-        "set_key": "sv10",
-        "set_name": "Destined Rivals",
-        "priority_score": 62.6,
-        "recommendation": "source_acquisition_then_overgeneration_review",
-        "readiness_classification": "moderate_confidence",
-        "readiness_score": 71.8,
-        "source_maturity_score": 68.82,
-        "repair_safety_score": 99.26,
-        "unsupported_count": 5,
-        "candidate_count": 2,
-        "missing_count": 6,
-        "alias_blocked_count": 0,
-        "likely_generation_bug_count": 5,
-        "expected_repair_safety": "higher"
-      },
-      {
-        "set_key": "swsh2",
-        "set_name": "Rebel Clash",
-        "priority_score": 62.45,
-        "recommendation": "source_acquisition_first",
-        "readiness_classification": "moderate_confidence",
-        "readiness_score": 72.04,
-        "source_maturity_score": 68.17,
-        "repair_safety_score": 100,
-        "unsupported_count": 0,
-        "candidate_count": 3,
-        "missing_count": 8,
-        "alias_blocked_count": 0,
-        "likely_generation_bug_count": 0,
-        "expected_repair_safety": "higher"
-      },
-      {
-        "set_key": "base6",
-        "set_name": "Legendary Collection",
-        "priority_score": 62.15,
-        "recommendation": "source_acquisition_first",
-        "readiness_classification": "moderate_confidence",
-        "readiness_score": 72.03,
-        "source_maturity_score": 68.12,
-        "repair_safety_score": 100,
-        "unsupported_count": 0,
-        "candidate_count": 12,
-        "missing_count": 0,
-        "alias_blocked_count": 0,
-        "likely_generation_bug_count": 0,
-        "expected_repair_safety": "higher"
-      },
-      {
-        "set_key": "sv05",
-        "set_name": null,
-        "priority_score": 61.89,
-        "recommendation": "source_acquisition_then_overgeneration_review",
-        "readiness_classification": "moderate_confidence",
-        "readiness_score": 71.41,
-        "source_maturity_score": 68.14,
-        "repair_safety_score": 98.87,
-        "unsupported_count": 7,
-        "candidate_count": 20,
-        "missing_count": 0,
-        "alias_blocked_count": 0,
-        "likely_generation_bug_count": 7,
-        "expected_repair_safety": "higher"
-      },
-      {
-        "set_key": "swsh8",
-        "set_name": "Fusion Strike",
-        "priority_score": 61.85,
-        "recommendation": "source_acquisition_then_overgeneration_review",
-        "readiness_classification": "moderate_confidence",
-        "readiness_score": 71.21,
-        "source_maturity_score": 68.23,
-        "repair_safety_score": 98.47,
-        "unsupported_count": 13,
-        "candidate_count": 26,
-        "missing_count": 0,
-        "alias_blocked_count": 0,
-        "likely_generation_bug_count": 13,
-        "expected_repair_safety": "higher"
-      },
-      {
-        "set_key": "bp",
-        "set_name": "Best of Game",
-        "priority_score": 60.85,
-        "recommendation": "blocked",
-        "readiness_classification": "blocked",
-        "readiness_score": 60.28,
-        "source_maturity_score": 70,
-        "repair_safety_score": 77.78,
-        "unsupported_count": 5,
-        "candidate_count": 0,
-        "missing_count": 0,
-        "alias_blocked_count": 0,
-        "likely_generation_bug_count": 0,
-        "expected_repair_safety": "higher"
-      },
-      {
-        "set_key": "swsh10",
-        "set_name": "Astral Radiance",
-        "priority_score": 60.64,
-        "recommendation": "source_acquisition_first",
-        "readiness_classification": "moderate_confidence",
-        "readiness_score": 71.1,
-        "source_maturity_score": 64.39,
-        "repair_safety_score": 100,
-        "unsupported_count": 0,
-        "candidate_count": 0,
-        "missing_count": 30,
-        "alias_blocked_count": 0,
-        "likely_generation_bug_count": 0,
-        "expected_repair_safety": "higher"
-      },
-      {
-        "set_key": "swsh11",
-        "set_name": "Lost Origin",
-        "priority_score": 60.42,
-        "recommendation": "source_acquisition_then_overgeneration_review",
-        "readiness_classification": "moderate_confidence",
-        "readiness_score": 70.74,
-        "source_maturity_score": 64.31,
-        "repair_safety_score": 99.39,
-        "unsupported_count": 4,
-        "candidate_count": 2,
-        "missing_count": 32,
-        "alias_blocked_count": 0,
-        "likely_generation_bug_count": 4,
-        "expected_repair_safety": "higher"
-      },
-      {
-        "set_key": "ex1",
-        "set_name": "Ruby & Sapphire",
-        "priority_score": 60.36,
-        "recommendation": "source_acquisition_first",
-        "readiness_classification": "moderate_confidence",
-        "readiness_score": 71.19,
-        "source_maturity_score": 64.78,
-        "repair_safety_score": 100,
-        "unsupported_count": 0,
-        "candidate_count": 18,
-        "missing_count": 8,
-        "alias_blocked_count": 0,
-        "likely_generation_bug_count": 0,
-        "expected_repair_safety": "higher"
-      },
-      {
-        "set_key": "swsh12",
-        "set_name": "Silver Tempest",
-        "priority_score": 60.24,
-        "recommendation": "source_acquisition_then_overgeneration_review",
-        "readiness_classification": "moderate_confidence",
-        "readiness_score": 70.03,
-        "source_maturity_score": 64.57,
-        "repair_safety_score": 97.98,
-        "unsupported_count": 13,
-        "candidate_count": 0,
-        "missing_count": 30,
-        "alias_blocked_count": 0,
-        "likely_generation_bug_count": 13,
-        "expected_repair_safety": "higher"
-      },
-      {
-        "set_key": "swsh9",
-        "set_name": "Brilliant Stars",
-        "priority_score": 60,
-        "recommendation": "source_acquisition_then_overgeneration_review",
-        "readiness_classification": "moderate_confidence",
-        "readiness_score": 70.25,
-        "source_maturity_score": 63.74,
-        "repair_safety_score": 98.75,
-        "unsupported_count": 7,
-        "candidate_count": 1,
-        "missing_count": 30,
-        "alias_blocked_count": 0,
-        "likely_generation_bug_count": 7,
-        "expected_repair_safety": "higher"
-      },
-      {
-        "set_key": "ex4",
-        "set_name": "Team Magma vs Team Aqua",
-        "priority_score": 59.53,
-        "recommendation": "source_acquisition_first",
-        "readiness_classification": "moderate_confidence",
-        "readiness_score": 70.82,
-        "source_maturity_score": 63.28,
-        "repair_safety_score": 100,
-        "unsupported_count": 0,
-        "candidate_count": 19,
-        "missing_count": 10,
-        "alias_blocked_count": 0,
-        "likely_generation_bug_count": 0,
-        "expected_repair_safety": "higher"
-      },
-      {
-        "set_key": "swsh7",
-        "set_name": "Evolving Skies",
-        "priority_score": 58.31,
-        "recommendation": "source_acquisition_then_overgeneration_review",
-        "readiness_classification": "moderate_confidence",
-        "readiness_score": 69.85,
-        "source_maturity_score": 59.78,
-        "repair_safety_score": 99.83,
-        "unsupported_count": 1,
-        "candidate_count": 2,
-        "missing_count": 53,
-        "alias_blocked_count": 0,
-        "likely_generation_bug_count": 1,
         "expected_repair_safety": "higher"
       },
       {
         "set_key": "basep",
         "set_name": "Wizards Black Star Promos",
-        "priority_score": 58.23,
-        "recommendation": "source_acquisition_first",
-        "readiness_classification": "moderate_confidence",
-        "readiness_score": 70.24,
-        "source_maturity_score": 60.95,
-        "repair_safety_score": 100,
-        "unsupported_count": 0,
-        "candidate_count": 7,
-        "missing_count": 4,
+        "priority_score": 79.06,
+        "recommendation": "controlled_proof_loop_candidate",
+        "readiness_classification": "high_confidence",
+        "readiness_score": 91.26,
+        "source_maturity_score": 86.21,
+        "repair_safety_score": 97.42,
+        "unsupported_count": 4,
+        "candidate_count": 0,
+        "missing_count": 8,
         "alias_blocked_count": 0,
         "likely_generation_bug_count": 0,
         "expected_repair_safety": "higher"
       },
       {
-        "set_key": "pop2",
-        "set_name": "POP Series 2",
-        "priority_score": 58.11,
-        "recommendation": "source_acquisition_first",
-        "readiness_classification": "blocked",
-        "readiness_score": 62.65,
-        "source_maturity_score": 63.91,
-        "repair_safety_score": 84.86,
-        "unsupported_count": 14,
-        "candidate_count": 0,
-        "missing_count": 2,
-        "alias_blocked_count": 0,
-        "likely_generation_bug_count": 0,
-        "expected_repair_safety": "higher"
-      },
-      {
-        "set_key": "sv8pt5",
-        "set_name": "Prismatic Evolutions",
-        "priority_score": 57.3,
-        "recommendation": "source_acquisition_then_overgeneration_review",
-        "readiness_classification": "blocked",
-        "readiness_score": 59.73,
-        "source_maturity_score": 69.75,
-        "repair_safety_score": 76.89,
-        "unsupported_count": 167,
-        "candidate_count": 0,
-        "missing_count": 1,
-        "alias_blocked_count": 0,
-        "likely_generation_bug_count": 167,
-        "expected_repair_safety": "higher"
-      },
-      {
-        "set_key": "ecard3",
-        "set_name": "Skyridge",
-        "priority_score": 56.88,
-        "recommendation": "source_acquisition_then_overgeneration_review",
-        "readiness_classification": "moderate_confidence",
-        "readiness_score": 68.13,
-        "source_maturity_score": 58.57,
-        "repair_safety_score": 97.25,
-        "unsupported_count": 19,
-        "candidate_count": 47,
-        "missing_count": 33,
-        "alias_blocked_count": 0,
-        "likely_generation_bug_count": 11,
-        "expected_repair_safety": "higher"
-      },
-      {
-        "set_key": "mcd11",
-        "set_name": "McDonald's Collection 2011",
-        "priority_score": 56.87,
-        "recommendation": "source_acquisition_first",
-        "readiness_classification": "blocked",
-        "readiness_score": 58.58,
-        "source_maturity_score": 58.33,
-        "repair_safety_score": 80,
-        "unsupported_count": 12,
-        "candidate_count": 0,
-        "missing_count": 2,
-        "alias_blocked_count": 0,
-        "likely_generation_bug_count": 0,
-        "expected_repair_safety": "higher"
-      },
-      {
-        "set_key": "bog",
+        "set_key": "mcd22",
         "set_name": null,
-        "priority_score": 56.4,
+        "priority_score": 78.96,
         "recommendation": "blocked",
-        "readiness_classification": "moderate_confidence",
-        "readiness_score": 72.5,
-        "source_maturity_score": 70,
-        "repair_safety_score": 100,
-        "unsupported_count": 0,
+        "readiness_classification": "blocked",
+        "readiness_score": 83.2,
+        "source_maturity_score": 100,
+        "repair_safety_score": 84,
+        "unsupported_count": 6,
         "candidate_count": 0,
         "missing_count": 0,
         "alias_blocked_count": 0,
@@ -2982,15 +2841,95 @@
         "expected_repair_safety": "higher"
       },
       {
-        "set_key": "si1",
-        "set_name": "Southern Islands",
-        "priority_score": 56.4,
-        "recommendation": "blocked",
-        "readiness_classification": "moderate_confidence",
-        "readiness_score": 72.5,
-        "source_maturity_score": 70,
+        "set_key": "sv02",
+        "set_name": "Paldea Evolved",
+        "priority_score": 78.96,
+        "recommendation": "source_acquisition_first",
+        "readiness_classification": "blocked",
+        "readiness_score": 93.48,
+        "source_maturity_score": 87.23,
+        "repair_safety_score": 99.07,
+        "unsupported_count": 4,
+        "candidate_count": 0,
+        "missing_count": 66,
+        "alias_blocked_count": 4,
+        "likely_generation_bug_count": 4,
+        "expected_repair_safety": "higher"
+      },
+      {
+        "set_key": "swsh1",
+        "set_name": "Sword & Shield",
+        "priority_score": 78.86,
+        "recommendation": "controlled_proof_loop_candidate",
+        "readiness_classification": "high_confidence",
+        "readiness_score": 93.69,
+        "source_maturity_score": 85.97,
         "repair_safety_score": 100,
         "unsupported_count": 0,
+        "candidate_count": 0,
+        "missing_count": 62,
+        "alias_blocked_count": 0,
+        "likely_generation_bug_count": 0,
+        "expected_repair_safety": "higher"
+      },
+      {
+        "set_key": "me02",
+        "set_name": "Phantasmal Flames",
+        "priority_score": 78.81,
+        "recommendation": "controlled_proof_loop_candidate",
+        "readiness_classification": "high_confidence",
+        "readiness_score": 98.94,
+        "source_maturity_score": 98.19,
+        "repair_safety_score": 99.72,
+        "unsupported_count": 1,
+        "candidate_count": 0,
+        "missing_count": 4,
+        "alias_blocked_count": 0,
+        "likely_generation_bug_count": 1,
+        "expected_repair_safety": "higher"
+      },
+      {
+        "set_key": "ecard3",
+        "set_name": "Skyridge",
+        "priority_score": 78.77,
+        "recommendation": "source_acquisition_then_overgeneration_review",
+        "readiness_classification": "high_confidence",
+        "readiness_score": 92.05,
+        "source_maturity_score": 88.17,
+        "repair_safety_score": 96.85,
+        "unsupported_count": 19,
+        "candidate_count": 0,
+        "missing_count": 42,
+        "alias_blocked_count": 0,
+        "likely_generation_bug_count": 19,
+        "expected_repair_safety": "higher"
+      },
+      {
+        "set_key": "sv05",
+        "set_name": "Temporal Forces",
+        "priority_score": 78.75,
+        "recommendation": "source_acquisition_then_overgeneration_review",
+        "readiness_classification": "high_confidence",
+        "readiness_score": 92.18,
+        "source_maturity_score": 87.92,
+        "repair_safety_score": 97.14,
+        "unsupported_count": 20,
+        "candidate_count": 0,
+        "missing_count": 50,
+        "alias_blocked_count": 0,
+        "likely_generation_bug_count": 20,
+        "expected_repair_safety": "higher"
+      },
+      {
+        "set_key": "mcd14",
+        "set_name": null,
+        "priority_score": 78.2,
+        "recommendation": "blocked",
+        "readiness_classification": "blocked",
+        "readiness_score": 79,
+        "source_maturity_score": 100,
+        "repair_safety_score": 80,
+        "unsupported_count": 12,
         "candidate_count": 0,
         "missing_count": 0,
         "alias_blocked_count": 0,
@@ -3000,95 +2939,47 @@
       {
         "set_key": "ecard2",
         "set_name": "Aquapolis",
-        "priority_score": 56.33,
+        "priority_score": 77.88,
         "recommendation": "source_acquisition_then_overgeneration_review",
-        "readiness_classification": "moderate_confidence",
-        "readiness_score": 67.04,
-        "source_maturity_score": 56.72,
-        "repair_safety_score": 96.11,
-        "unsupported_count": 31,
-        "candidate_count": 47,
-        "missing_count": 45,
+        "readiness_classification": "high_confidence",
+        "readiness_score": 91.3,
+        "source_maturity_score": 86.7,
+        "repair_safety_score": 96.72,
+        "unsupported_count": 21,
+        "candidate_count": 0,
+        "missing_count": 50,
+        "alias_blocked_count": 0,
+        "likely_generation_bug_count": 21,
+        "expected_repair_safety": "higher"
+      },
+      {
+        "set_key": "swsh12",
+        "set_name": "Silver Tempest",
+        "priority_score": 77.62,
+        "recommendation": "source_acquisition_then_overgeneration_review",
+        "readiness_classification": "high_confidence",
+        "readiness_score": 91.8,
+        "source_maturity_score": 85.2,
+        "repair_safety_score": 98.13,
+        "unsupported_count": 13,
+        "candidate_count": 0,
+        "missing_count": 62,
         "alias_blocked_count": 0,
         "likely_generation_bug_count": 13,
         "expected_repair_safety": "higher"
       },
       {
-        "set_key": "pgo",
-        "set_name": "Pokémon GO",
-        "priority_score": 56.24,
-        "recommendation": "source_acquisition_first",
-        "readiness_classification": "moderate_confidence",
-        "readiness_score": 72.44,
-        "source_maturity_score": 69.76,
-        "repair_safety_score": 100,
-        "unsupported_count": 0,
-        "candidate_count": 1,
-        "missing_count": 0,
-        "alias_blocked_count": 0,
-        "likely_generation_bug_count": 0,
-        "expected_repair_safety": "higher"
-      },
-      {
-        "set_key": "pop1",
-        "set_name": "POP Series 1",
-        "priority_score": 55.88,
-        "recommendation": "source_acquisition_first",
-        "readiness_classification": "blocked",
-        "readiness_score": 57.76,
-        "source_maturity_score": 59.35,
-        "repair_safety_score": 78.04,
-        "unsupported_count": 28,
-        "candidate_count": 7,
-        "missing_count": 0,
-        "alias_blocked_count": 0,
-        "likely_generation_bug_count": 0,
-        "expected_repair_safety": "higher"
-      },
-      {
-        "set_key": "me02",
+        "set_key": "mcd18",
         "set_name": null,
-        "priority_score": 55.87,
-        "recommendation": "source_acquisition_first",
-        "readiness_classification": "moderate_confidence",
-        "readiness_score": 72.3,
-        "source_maturity_score": 69.2,
-        "repair_safety_score": 100,
-        "unsupported_count": 0,
-        "candidate_count": 5,
+        "priority_score": 77.6,
+        "recommendation": "blocked",
+        "readiness_classification": "blocked",
+        "readiness_score": 78.09,
+        "source_maturity_score": 100,
+        "repair_safety_score": 79.13,
+        "unsupported_count": 12,
+        "candidate_count": 0,
         "missing_count": 0,
-        "alias_blocked_count": 0,
-        "likely_generation_bug_count": 0,
-        "expected_repair_safety": "higher"
-      },
-      {
-        "set_key": "hgss2",
-        "set_name": "HS—Unleashed",
-        "priority_score": 55.52,
-        "recommendation": "source_acquisition_first",
-        "readiness_classification": "moderate_confidence",
-        "readiness_score": 72.12,
-        "source_maturity_score": 68.47,
-        "repair_safety_score": 100,
-        "unsupported_count": 0,
-        "candidate_count": 4,
-        "missing_count": 2,
-        "alias_blocked_count": 0,
-        "likely_generation_bug_count": 0,
-        "expected_repair_safety": "higher"
-      },
-      {
-        "set_key": "hgss3",
-        "set_name": "HS—Undaunted",
-        "priority_score": 55.42,
-        "recommendation": "source_acquisition_first",
-        "readiness_classification": "moderate_confidence",
-        "readiness_score": 72.11,
-        "source_maturity_score": 68.42,
-        "repair_safety_score": 100,
-        "unsupported_count": 0,
-        "candidate_count": 6,
-        "missing_count": 1,
         "alias_blocked_count": 0,
         "likely_generation_bug_count": 0,
         "expected_repair_safety": "higher"
@@ -3096,465 +2987,593 @@
       {
         "set_key": "dp3",
         "set_name": "Secret Wonders",
-        "priority_score": 55.33,
-        "recommendation": "source_acquisition_first",
-        "readiness_classification": "blocked",
-        "readiness_score": 71.99,
-        "source_maturity_score": 68.44,
+        "priority_score": 77.39,
+        "recommendation": "controlled_proof_loop_candidate",
+        "readiness_classification": "high_confidence",
+        "readiness_score": 97.86,
+        "source_maturity_score": 95.68,
         "repair_safety_score": 99.78,
-        "unsupported_count": 0,
-        "candidate_count": 6,
-        "missing_count": 3,
-        "alias_blocked_count": 1,
+        "unsupported_count": 1,
+        "candidate_count": 0,
+        "missing_count": 12,
+        "alias_blocked_count": 0,
+        "likely_generation_bug_count": 1,
+        "expected_repair_safety": "higher"
+      },
+      {
+        "set_key": "pop1",
+        "set_name": "POP Series 1",
+        "priority_score": 77.39,
+        "recommendation": "blocked",
+        "readiness_classification": "blocked",
+        "readiness_score": 77.77,
+        "source_maturity_score": 100,
+        "repair_safety_score": 78.82,
+        "unsupported_count": 27,
+        "candidate_count": 0,
+        "missing_count": 0,
+        "alias_blocked_count": 0,
         "likely_generation_bug_count": 0,
         "expected_repair_safety": "higher"
       },
       {
-        "set_key": "me01",
-        "set_name": null,
-        "priority_score": 55.01,
-        "recommendation": "source_acquisition_then_overgeneration_review",
-        "readiness_classification": "moderate_confidence",
-        "readiness_score": 71.64,
-        "source_maturity_score": 68.06,
-        "repair_safety_score": 99.31,
-        "unsupported_count": 4,
-        "candidate_count": 18,
-        "missing_count": 0,
+        "set_key": "hgss3",
+        "set_name": "HS—Undaunted",
+        "priority_score": 77.31,
+        "recommendation": "controlled_proof_loop_candidate",
+        "readiness_classification": "high_confidence",
+        "readiness_score": 97.74,
+        "source_maturity_score": 95.63,
+        "repair_safety_score": 99.66,
+        "unsupported_count": 1,
+        "candidate_count": 0,
+        "missing_count": 8,
         "alias_blocked_count": 0,
-        "likely_generation_bug_count": 3,
+        "likely_generation_bug_count": 1,
         "expected_repair_safety": "higher"
       },
       {
-        "set_key": "pop7",
-        "set_name": "POP Series 7",
-        "priority_score": 54.91,
-        "recommendation": "source_acquisition_first",
-        "readiness_classification": "moderate_confidence",
-        "readiness_score": 71.74,
-        "source_maturity_score": 66.96,
+        "set_key": "swsh11",
+        "set_name": "Lost Origin",
+        "priority_score": 77.19,
+        "recommendation": "controlled_proof_loop_candidate",
+        "readiness_classification": "high_confidence",
+        "readiness_score": 92.12,
+        "source_maturity_score": 83.48,
+        "repair_safety_score": 99.45,
+        "unsupported_count": 4,
+        "candidate_count": 0,
+        "missing_count": 74,
+        "alias_blocked_count": 0,
+        "likely_generation_bug_count": 4,
+        "expected_repair_safety": "higher"
+      },
+      {
+        "set_key": "mcd11",
+        "set_name": null,
+        "priority_score": 76.94,
+        "recommendation": "blocked",
+        "readiness_classification": "blocked",
+        "readiness_score": 77.09,
+        "source_maturity_score": 100,
+        "repair_safety_score": 78.18,
+        "unsupported_count": 12,
+        "candidate_count": 0,
+        "missing_count": 0,
+        "alias_blocked_count": 0,
+        "likely_generation_bug_count": 0,
+        "expected_repair_safety": "higher"
+      },
+      {
+        "set_key": "sm75",
+        "set_name": null,
+        "priority_score": 76.85,
+        "recommendation": "source_acquisition_then_overgeneration_review",
+        "readiness_classification": "blocked",
+        "readiness_score": 81.74,
+        "source_maturity_score": 100,
+        "repair_safety_score": 79.07,
+        "unsupported_count": 79,
+        "candidate_count": 0,
+        "missing_count": 0,
+        "alias_blocked_count": 0,
+        "likely_generation_bug_count": 79,
+        "expected_repair_safety": "higher"
+      },
+      {
+        "set_key": "sm10",
+        "set_name": "Unbroken Bonds",
+        "priority_score": 76.74,
+        "recommendation": "source_acquisition_then_overgeneration_review",
+        "readiness_classification": "blocked",
+        "readiness_score": 82.17,
+        "source_maturity_score": 98.75,
+        "repair_safety_score": 80.12,
+        "unsupported_count": 227,
+        "candidate_count": 0,
+        "missing_count": 6,
+        "alias_blocked_count": 0,
+        "likely_generation_bug_count": 227,
+        "expected_repair_safety": "higher"
+      },
+      {
+        "set_key": "dp6",
+        "set_name": "Legends Awakened",
+        "priority_score": 76.73,
+        "recommendation": "controlled_proof_loop_candidate",
+        "readiness_classification": "high_confidence",
+        "readiness_score": 97.36,
+        "source_maturity_score": 94.52,
+        "repair_safety_score": 99.8,
+        "unsupported_count": 1,
+        "candidate_count": 0,
+        "missing_count": 17,
+        "alias_blocked_count": 0,
+        "likely_generation_bug_count": 1,
+        "expected_repair_safety": "higher"
+      },
+      {
+        "set_key": "bp",
+        "set_name": null,
+        "priority_score": 76.67,
+        "recommendation": "blocked",
+        "readiness_classification": "blocked",
+        "readiness_score": 76.66,
+        "source_maturity_score": 100,
+        "repair_safety_score": 77.78,
+        "unsupported_count": 5,
+        "candidate_count": 0,
+        "missing_count": 0,
+        "alias_blocked_count": 0,
+        "likely_generation_bug_count": 0,
+        "expected_repair_safety": "higher"
+      },
+      {
+        "set_key": "sm12",
+        "set_name": "Cosmic Eclipse",
+        "priority_score": 76.58,
+        "recommendation": "source_acquisition_then_overgeneration_review",
+        "readiness_classification": "blocked",
+        "readiness_score": 81.81,
+        "source_maturity_score": 98.91,
+        "repair_safety_score": 79.64,
+        "unsupported_count": 269,
+        "candidate_count": 0,
+        "missing_count": 6,
+        "alias_blocked_count": 0,
+        "likely_generation_bug_count": 269,
+        "expected_repair_safety": "higher"
+      },
+      {
+        "set_key": "sm9",
+        "set_name": "Team Up",
+        "priority_score": 76.43,
+        "recommendation": "source_acquisition_then_overgeneration_review",
+        "readiness_classification": "blocked",
+        "readiness_score": 81.63,
+        "source_maturity_score": 98.74,
+        "repair_safety_score": 79.51,
+        "unsupported_count": 196,
+        "candidate_count": 0,
+        "missing_count": 5,
+        "alias_blocked_count": 0,
+        "likely_generation_bug_count": 196,
+        "expected_repair_safety": "higher"
+      },
+      {
+        "set_key": "swsh10",
+        "set_name": "Astral Radiance",
+        "priority_score": 76.39,
+        "recommendation": "controlled_proof_loop_candidate",
+        "readiness_classification": "high_confidence",
+        "readiness_score": 91.77,
+        "source_maturity_score": 81.71,
         "repair_safety_score": 100,
         "unsupported_count": 0,
         "candidate_count": 0,
-        "missing_count": 1,
+        "missing_count": 77,
         "alias_blocked_count": 0,
         "likely_generation_bug_count": 0,
         "expected_repair_safety": "higher"
       },
       {
-        "set_key": "hgss1",
-        "set_name": "HeartGold & SoulSilver",
-        "priority_score": 54.9,
-        "recommendation": "source_acquisition_first",
-        "readiness_classification": "moderate_confidence",
-        "readiness_score": 71.84,
-        "source_maturity_score": 67.36,
-        "repair_safety_score": 100,
-        "unsupported_count": 0,
-        "candidate_count": 8,
-        "missing_count": 5,
+        "set_key": "sm11",
+        "set_name": "Unified Minds",
+        "priority_score": 76.28,
+        "recommendation": "source_acquisition_then_overgeneration_review",
+        "readiness_classification": "blocked",
+        "readiness_score": 81.77,
+        "source_maturity_score": 97.93,
+        "repair_safety_score": 80.02,
+        "unsupported_count": 253,
+        "candidate_count": 0,
+        "missing_count": 11,
         "alias_blocked_count": 0,
-        "likely_generation_bug_count": 0,
-        "expected_repair_safety": "higher"
-      },
-      {
-        "set_key": "dp5",
-        "set_name": "Majestic Dawn",
-        "priority_score": 54.81,
-        "recommendation": "source_acquisition_first",
-        "readiness_classification": "moderate_confidence",
-        "readiness_score": 71.81,
-        "source_maturity_score": 67.25,
-        "repair_safety_score": 100,
-        "unsupported_count": 0,
-        "candidate_count": 8,
-        "missing_count": 4,
-        "alias_blocked_count": 0,
-        "likely_generation_bug_count": 0,
+        "likely_generation_bug_count": 253,
         "expected_repair_safety": "higher"
       },
       {
         "set_key": "dp4",
         "set_name": "Great Encounters",
-        "priority_score": 54.8,
-        "recommendation": "source_acquisition_first",
-        "readiness_classification": "moderate_confidence",
-        "readiness_score": 71.81,
-        "source_maturity_score": 67.26,
-        "repair_safety_score": 100,
-        "unsupported_count": 0,
-        "candidate_count": 9,
-        "missing_count": 4,
+        "priority_score": 76.24,
+        "recommendation": "controlled_proof_loop_candidate",
+        "readiness_classification": "high_confidence",
+        "readiness_score": 96.67,
+        "source_maturity_score": 94.17,
+        "repair_safety_score": 99.18,
+        "unsupported_count": 3,
+        "candidate_count": 0,
+        "missing_count": 13,
+        "alias_blocked_count": 0,
+        "likely_generation_bug_count": 3,
+        "expected_repair_safety": "higher"
+      },
+      {
+        "set_key": "mcd15",
+        "set_name": null,
+        "priority_score": 76.23,
+        "recommendation": "blocked",
+        "readiness_classification": "blocked",
+        "readiness_score": 76,
+        "source_maturity_score": 100,
+        "repair_safety_score": 77.14,
+        "unsupported_count": 12,
+        "candidate_count": 0,
+        "missing_count": 0,
         "alias_blocked_count": 0,
         "likely_generation_bug_count": 0,
         "expected_repair_safety": "higher"
       },
       {
-        "set_key": "sv10.5w",
-        "set_name": null,
-        "priority_score": 54.45,
+        "set_key": "sm3.5",
+        "set_name": "Shining Legends",
+        "priority_score": 76.04,
         "recommendation": "source_acquisition_then_overgeneration_review",
         "readiness_classification": "blocked",
-        "readiness_score": 55.15,
-        "source_maturity_score": 69.73,
-        "repair_safety_score": 68.58,
-        "unsupported_count": 263,
-        "candidate_count": 2,
-        "missing_count": 0,
+        "readiness_score": 81.24,
+        "source_maturity_score": 98.1,
+        "repair_safety_score": 79.34,
+        "unsupported_count": 79,
+        "candidate_count": 0,
+        "missing_count": 3,
         "alias_blocked_count": 0,
-        "likely_generation_bug_count": 263,
-        "expected_repair_safety": "moderate"
+        "likely_generation_bug_count": 79,
+        "expected_repair_safety": "higher"
       },
       {
-        "set_key": "hgss4",
-        "set_name": "HS—Triumphant",
-        "priority_score": 54.44,
-        "recommendation": "source_acquisition_first",
-        "readiness_classification": "moderate_confidence",
-        "readiness_score": 71.5,
-        "source_maturity_score": 66.01,
-        "repair_safety_score": 100,
-        "unsupported_count": 0,
+        "set_key": "sm3",
+        "set_name": "Burning Shadows",
+        "priority_score": 76,
+        "recommendation": "source_acquisition_then_overgeneration_review",
+        "readiness_classification": "blocked",
+        "readiness_score": 81.92,
+        "source_maturity_score": 96.65,
+        "repair_safety_score": 80.77,
+        "unsupported_count": 161,
+        "candidate_count": 0,
+        "missing_count": 12,
+        "alias_blocked_count": 0,
+        "likely_generation_bug_count": 161,
+        "expected_repair_safety": "higher"
+      },
+      {
+        "set_key": "sm2",
+        "set_name": "Guardians Rising",
+        "priority_score": 75.81,
+        "recommendation": "source_acquisition_then_overgeneration_review",
+        "readiness_classification": "blocked",
+        "readiness_score": 81.46,
+        "source_maturity_score": 96.88,
+        "repair_safety_score": 80.13,
+        "unsupported_count": 166,
         "candidate_count": 0,
         "missing_count": 11,
         "alias_blocked_count": 0,
+        "likely_generation_bug_count": 166,
+        "expected_repair_safety": "higher"
+      },
+      {
+        "set_key": "xy5",
+        "set_name": "Primal Clash",
+        "priority_score": 75.77,
+        "recommendation": "source_acquisition_then_overgeneration_review",
+        "readiness_classification": "blocked",
+        "readiness_score": 80.58,
+        "source_maturity_score": 98.46,
+        "repair_safety_score": 78.42,
+        "unsupported_count": 173,
+        "candidate_count": 0,
+        "missing_count": 5,
+        "alias_blocked_count": 0,
+        "likely_generation_bug_count": 173,
+        "expected_repair_safety": "higher"
+      },
+      {
+        "set_key": "sv8pt5",
+        "set_name": null,
+        "priority_score": 75.76,
+        "recommendation": "source_acquisition_then_overgeneration_review",
+        "readiness_classification": "blocked",
+        "readiness_score": 79.79,
+        "source_maturity_score": 100,
+        "repair_safety_score": 76.84,
+        "unsupported_count": 167,
+        "candidate_count": 0,
+        "missing_count": 0,
+        "alias_blocked_count": 0,
+        "likely_generation_bug_count": 167,
+        "expected_repair_safety": "higher"
+      },
+      {
+        "set_key": "pl1",
+        "set_name": "Platinum",
+        "priority_score": 75.74,
+        "recommendation": "source_acquisition_first",
+        "readiness_classification": "blocked",
+        "readiness_score": 96.54,
+        "source_maturity_score": 93.66,
+        "repair_safety_score": 99.24,
+        "unsupported_count": 1,
+        "candidate_count": 0,
+        "missing_count": 17,
+        "alias_blocked_count": 3,
         "likely_generation_bug_count": 0,
         "expected_repair_safety": "higher"
       },
       {
-        "set_key": "sv10.5b",
-        "set_name": null,
-        "priority_score": 54.28,
+        "set_key": "sm7",
+        "set_name": "Celestial Storm",
+        "priority_score": 75.56,
         "recommendation": "source_acquisition_then_overgeneration_review",
         "readiness_classification": "blocked",
-        "readiness_score": 55.08,
-        "source_maturity_score": 69.31,
-        "repair_safety_score": 68.64,
-        "unsupported_count": 261,
-        "candidate_count": 5,
-        "missing_count": 0,
+        "readiness_score": 81.03,
+        "source_maturity_score": 96.82,
+        "repair_safety_score": 79.66,
+        "unsupported_count": 184,
+        "candidate_count": 0,
+        "missing_count": 12,
         "alias_blocked_count": 0,
-        "likely_generation_bug_count": 261,
-        "expected_repair_safety": "moderate"
+        "likely_generation_bug_count": 184,
+        "expected_repair_safety": "higher"
       },
       {
-        "set_key": "dp6",
-        "set_name": "Legends Awakened",
-        "priority_score": 53.98,
-        "recommendation": "source_acquisition_first",
-        "readiness_classification": "moderate_confidence",
-        "readiness_score": 71.48,
-        "source_maturity_score": 65.93,
+        "set_key": "pop7",
+        "set_name": "POP Series 7",
+        "priority_score": 75.17,
+        "recommendation": "controlled_proof_loop_candidate",
+        "readiness_classification": "high_confidence",
+        "readiness_score": 96.25,
+        "source_maturity_score": 91.67,
         "repair_safety_score": 100,
         "unsupported_count": 0,
-        "candidate_count": 21,
-        "missing_count": 7,
+        "candidate_count": 0,
+        "missing_count": 2,
         "alias_blocked_count": 0,
         "likely_generation_bug_count": 0,
+        "expected_repair_safety": "higher"
+      },
+      {
+        "set_key": "sm5",
+        "set_name": "Ultra Prism",
+        "priority_score": 75.12,
+        "recommendation": "source_acquisition_then_overgeneration_review",
+        "readiness_classification": "blocked",
+        "readiness_score": 80.49,
+        "source_maturity_score": 96.33,
+        "repair_safety_score": 79.26,
+        "unsupported_count": 178,
+        "candidate_count": 0,
+        "missing_count": 13,
+        "alias_blocked_count": 0,
+        "likely_generation_bug_count": 178,
+        "expected_repair_safety": "higher"
+      },
+      {
+        "set_key": "sm6",
+        "set_name": "Forbidden Light",
+        "priority_score": 75.07,
+        "recommendation": "source_acquisition_then_overgeneration_review",
+        "readiness_classification": "blocked",
+        "readiness_score": 80.39,
+        "source_maturity_score": 96.31,
+        "repair_safety_score": 79.15,
+        "unsupported_count": 151,
+        "candidate_count": 0,
+        "missing_count": 11,
+        "alias_blocked_count": 0,
+        "likely_generation_bug_count": 151,
+        "expected_repair_safety": "higher"
+      },
+      {
+        "set_key": "sm4",
+        "set_name": "Crimson Invasion",
+        "priority_score": 74.95,
+        "recommendation": "source_acquisition_then_overgeneration_review",
+        "readiness_classification": "blocked",
+        "readiness_score": 81.19,
+        "source_maturity_score": 94.4,
+        "repair_safety_score": 80.94,
+        "unsupported_count": 119,
+        "candidate_count": 0,
+        "missing_count": 15,
+        "alias_blocked_count": 0,
+        "likely_generation_bug_count": 119,
+        "expected_repair_safety": "higher"
+      },
+      {
+        "set_key": "xy6",
+        "set_name": "Roaring Skies",
+        "priority_score": 74.94,
+        "recommendation": "source_acquisition_then_overgeneration_review",
+        "readiness_classification": "blocked",
+        "readiness_score": 79.88,
+        "source_maturity_score": 96.86,
+        "repair_safety_score": 78.31,
+        "unsupported_count": 120,
+        "candidate_count": 0,
+        "missing_count": 7,
+        "alias_blocked_count": 0,
+        "likely_generation_bug_count": 120,
+        "expected_repair_safety": "higher"
+      },
+      {
+        "set_key": "dp5",
+        "set_name": "Majestic Dawn",
+        "priority_score": 74.81,
+        "recommendation": "controlled_proof_loop_candidate",
+        "readiness_classification": "high_confidence",
+        "readiness_score": 95.84,
+        "source_maturity_score": 91.28,
+        "repair_safety_score": 99.72,
+        "unsupported_count": 1,
+        "candidate_count": 0,
+        "missing_count": 19,
+        "alias_blocked_count": 0,
+        "likely_generation_bug_count": 1,
+        "expected_repair_safety": "higher"
+      },
+      {
+        "set_key": "xy2",
+        "set_name": "Flashfire",
+        "priority_score": 74.8,
+        "recommendation": "source_acquisition_then_overgeneration_review",
+        "readiness_classification": "blocked",
+        "readiness_score": 80.1,
+        "source_maturity_score": 95.95,
+        "repair_safety_score": 78.96,
+        "unsupported_count": 114,
+        "candidate_count": 0,
+        "missing_count": 9,
+        "alias_blocked_count": 0,
+        "likely_generation_bug_count": 114,
+        "expected_repair_safety": "higher"
+      },
+      {
+        "set_key": "sm8",
+        "set_name": "Lost Thunder",
+        "priority_score": 74.76,
+        "recommendation": "source_acquisition_then_overgeneration_review",
+        "readiness_classification": "blocked",
+        "readiness_score": 80.36,
+        "source_maturity_score": 95.31,
+        "repair_safety_score": 79.56,
+        "unsupported_count": 241,
+        "candidate_count": 0,
+        "missing_count": 23,
+        "alias_blocked_count": 0,
+        "likely_generation_bug_count": 241,
         "expected_repair_safety": "higher"
       },
       {
         "set_key": "dp2",
         "set_name": "Mysterious Treasures",
-        "priority_score": 53.65,
+        "priority_score": 74.61,
         "recommendation": "source_acquisition_first",
         "readiness_classification": "blocked",
-        "readiness_score": 70.91,
-        "source_maturity_score": 66.69,
-        "repair_safety_score": 98.61,
-        "unsupported_count": 0,
-        "candidate_count": 4,
-        "missing_count": 10,
-        "alias_blocked_count": 6,
-        "likely_generation_bug_count": 0,
-        "expected_repair_safety": "higher"
-      },
-      {
-        "set_key": "dp1",
-        "set_name": "Diamond & Pearl",
-        "priority_score": 53.15,
-        "recommendation": "source_acquisition_first",
-        "readiness_classification": "blocked",
-        "readiness_score": 70.76,
-        "source_maturity_score": 65.95,
-        "repair_safety_score": 98.69,
-        "unsupported_count": 0,
-        "candidate_count": 13,
-        "missing_count": 9,
-        "alias_blocked_count": 6,
-        "likely_generation_bug_count": 0,
-        "expected_repair_safety": "higher"
-      },
-      {
-        "set_key": "pop9",
-        "set_name": "POP Series 9",
-        "priority_score": 50.14,
-        "recommendation": "source_acquisition_first",
-        "readiness_classification": "moderate_confidence",
-        "readiness_score": 69.32,
-        "source_maturity_score": 57.27,
-        "repair_safety_score": 100,
-        "unsupported_count": 0,
+        "readiness_score": 95.17,
+        "source_maturity_score": 92.72,
+        "repair_safety_score": 98.18,
+        "unsupported_count": 5,
         "candidate_count": 0,
-        "missing_count": 4,
+        "missing_count": 19,
+        "alias_blocked_count": 3,
+        "likely_generation_bug_count": 5,
+        "expected_repair_safety": "higher"
+      },
+      {
+        "set_key": "hgss2",
+        "set_name": "HS—Unleashed",
+        "priority_score": 74.59,
+        "recommendation": "controlled_proof_loop_candidate",
+        "readiness_classification": "high_confidence",
+        "readiness_score": 95.65,
+        "source_maturity_score": 90.91,
+        "repair_safety_score": 99.69,
+        "unsupported_count": 1,
+        "candidate_count": 0,
+        "missing_count": 18,
         "alias_blocked_count": 0,
-        "likely_generation_bug_count": 0,
+        "likely_generation_bug_count": 1,
         "expected_repair_safety": "higher"
       },
       {
         "set_key": "mcd12",
-        "set_name": "McDonald's Collection 2012",
-        "priority_score": 49.77,
-        "recommendation": "source_acquisition_first",
+        "set_name": null,
+        "priority_score": 74.57,
+        "recommendation": "blocked",
         "readiness_classification": "blocked",
-        "readiness_score": 54.21,
-        "source_maturity_score": 40.83,
-        "repair_safety_score": 80,
+        "readiness_score": 73.47,
+        "source_maturity_score": 100,
+        "repair_safety_score": 74.74,
         "unsupported_count": 12,
         "candidate_count": 0,
-        "missing_count": 5,
-        "alias_blocked_count": 0,
-        "likely_generation_bug_count": 0,
-        "expected_repair_safety": "higher"
-      },
-      {
-        "set_key": "sv06.5",
-        "set_name": null,
-        "priority_score": 49.48,
-        "recommendation": "source_acquisition_first",
-        "readiness_classification": "source_limited",
-        "readiness_score": 67.25,
-        "source_maturity_score": 49,
-        "repair_safety_score": 100,
-        "unsupported_count": 0,
-        "candidate_count": 51,
         "missing_count": 0,
         "alias_blocked_count": 0,
         "likely_generation_bug_count": 0,
-        "expected_repair_safety": "higher"
-      },
-      {
-        "set_key": "sv01",
-        "set_name": null,
-        "priority_score": 49.09,
-        "recommendation": "source_acquisition_first",
-        "readiness_classification": "blocked",
-        "readiness_score": 66.93,
-        "source_maturity_score": 48.95,
-        "repair_safety_score": 99.44,
-        "unsupported_count": 0,
-        "candidate_count": 255,
-        "missing_count": 0,
-        "alias_blocked_count": 4,
-        "likely_generation_bug_count": 0,
-        "expected_repair_safety": "higher"
-      },
-      {
-        "set_key": "svp",
-        "set_name": "Scarlet & Violet Black Star Promos",
-        "priority_score": 48.38,
-        "recommendation": "source_acquisition_first",
-        "readiness_classification": "blocked",
-        "readiness_score": 56.14,
-        "source_maturity_score": 34.91,
-        "repair_safety_score": 86.21,
-        "unsupported_count": 212,
-        "candidate_count": 388,
-        "missing_count": 8,
-        "alias_blocked_count": 0,
-        "likely_generation_bug_count": 0,
-        "expected_repair_safety": "higher"
-      },
-      {
-        "set_key": "xy0",
-        "set_name": "Kalos Starter Set",
-        "priority_score": 48.15,
-        "recommendation": "source_acquisition_then_overgeneration_review",
-        "readiness_classification": "blocked",
-        "readiness_score": 50.75,
-        "source_maturity_score": 63.44,
-        "repair_safety_score": 63.44,
-        "unsupported_count": 69,
-        "candidate_count": 9,
-        "missing_count": 0,
-        "alias_blocked_count": 0,
-        "likely_generation_bug_count": 69,
         "expected_repair_safety": "moderate"
       },
       {
-        "set_key": "sv02",
-        "set_name": null,
-        "priority_score": 47.58,
-        "recommendation": "source_acquisition_first",
-        "readiness_classification": "blocked",
-        "readiness_score": 66.1,
-        "source_maturity_score": 46.72,
-        "repair_safety_score": 98.94,
-        "unsupported_count": 4,
-        "candidate_count": 300,
-        "missing_count": 0,
-        "alias_blocked_count": 4,
-        "likely_generation_bug_count": 4,
-        "expected_repair_safety": "higher"
-      },
-      {
-        "set_key": "sv6pt5",
-        "set_name": "Shrouded Fable",
-        "priority_score": 47.43,
-        "recommendation": "source_acquisition_first",
-        "readiness_classification": "source_limited",
-        "readiness_score": 66.48,
-        "source_maturity_score": 45.91,
-        "repair_safety_score": 100,
-        "unsupported_count": 0,
-        "candidate_count": 106,
-        "missing_count": 0,
+        "set_key": "hgss1",
+        "set_name": "HeartGold & SoulSilver",
+        "priority_score": 74.55,
+        "recommendation": "controlled_proof_loop_candidate",
+        "readiness_classification": "high_confidence",
+        "readiness_score": 95.53,
+        "source_maturity_score": 90.98,
+        "repair_safety_score": 99.52,
+        "unsupported_count": 2,
+        "candidate_count": 0,
+        "missing_count": 23,
         "alias_blocked_count": 0,
-        "likely_generation_bug_count": 0,
+        "likely_generation_bug_count": 2,
         "expected_repair_safety": "higher"
       },
       {
-        "set_key": "ru1",
-        "set_name": "Pokémon Rumble",
-        "priority_score": 47.3,
-        "recommendation": "source_acquisition_first",
-        "readiness_classification": "moderate_confidence",
-        "readiness_score": 68.36,
-        "source_maturity_score": 53.42,
-        "repair_safety_score": 100,
-        "unsupported_count": 0,
-        "candidate_count": 3,
-        "missing_count": 3,
-        "alias_blocked_count": 0,
-        "likely_generation_bug_count": 0,
-        "expected_repair_safety": "higher"
-      },
-      {
-        "set_key": "np",
-        "set_name": "Nintendo Black Star Promos",
-        "priority_score": 47.23,
-        "recommendation": "source_acquisition_first",
-        "readiness_classification": "blocked",
-        "readiness_score": 55.57,
-        "source_maturity_score": 41.89,
-        "repair_safety_score": 82,
-        "unsupported_count": 54,
-        "candidate_count": 53,
-        "missing_count": 0,
-        "alias_blocked_count": 0,
-        "likely_generation_bug_count": 0,
-        "expected_repair_safety": "higher"
-      },
-      {
-        "set_key": "ex15",
-        "set_name": "Dragon Frontiers",
-        "priority_score": 46.85,
-        "recommendation": "source_acquisition_first",
-        "readiness_classification": "source_limited",
-        "readiness_score": 64.12,
-        "source_maturity_score": 36.46,
-        "repair_safety_score": 100,
-        "unsupported_count": 0,
-        "candidate_count": 2,
-        "missing_count": 91,
-        "alias_blocked_count": 0,
-        "likely_generation_bug_count": 0,
-        "expected_repair_safety": "higher"
-      },
-      {
-        "set_key": "ex14",
-        "set_name": "Crystal Guardians",
-        "priority_score": 46.69,
-        "recommendation": "source_acquisition_first",
-        "readiness_classification": "source_limited",
-        "readiness_score": 64.11,
-        "source_maturity_score": 36.44,
-        "repair_safety_score": 100,
-        "unsupported_count": 0,
-        "candidate_count": 7,
-        "missing_count": 90,
-        "alias_blocked_count": 0,
-        "likely_generation_bug_count": 0,
-        "expected_repair_safety": "higher"
-      },
-      {
-        "set_key": "ex12",
-        "set_name": "Legend Maker",
-        "priority_score": 46.58,
-        "recommendation": "source_acquisition_first",
-        "readiness_classification": "source_limited",
-        "readiness_score": 63.99,
-        "source_maturity_score": 35.98,
-        "repair_safety_score": 100,
-        "unsupported_count": 0,
-        "candidate_count": 3,
-        "missing_count": 85,
-        "alias_blocked_count": 0,
-        "likely_generation_bug_count": 0,
-        "expected_repair_safety": "higher"
-      },
-      {
-        "set_key": "xy1",
-        "set_name": "XY",
-        "priority_score": 46.42,
+        "set_key": "xy11",
+        "set_name": "Steam Siege",
+        "priority_score": 74.48,
         "recommendation": "source_acquisition_then_overgeneration_review",
         "readiness_classification": "blocked",
-        "readiness_score": 56.32,
-        "source_maturity_score": 48.58,
-        "repair_safety_score": 80.32,
-        "unsupported_count": 139,
-        "candidate_count": 183,
-        "missing_count": 0,
+        "readiness_score": 79.43,
+        "source_maturity_score": 96.1,
+        "repair_safety_score": 78.12,
+        "unsupported_count": 126,
+        "candidate_count": 0,
+        "missing_count": 9,
         "alias_blocked_count": 0,
-        "likely_generation_bug_count": 139,
+        "likely_generation_bug_count": 126,
         "expected_repair_safety": "higher"
       },
       {
-        "set_key": "ex13",
-        "set_name": "Holon Phantoms",
-        "priority_score": 46.4,
-        "recommendation": "source_acquisition_first",
-        "readiness_classification": "source_limited",
-        "readiness_score": 63.95,
-        "source_maturity_score": 35.81,
-        "repair_safety_score": 100,
-        "unsupported_count": 0,
-        "candidate_count": 7,
-        "missing_count": 102,
-        "alias_blocked_count": 0,
-        "likely_generation_bug_count": 0,
-        "expected_repair_safety": "higher"
-      },
-      {
-        "set_key": "ex11",
-        "set_name": "Delta Species",
-        "priority_score": 46.22,
-        "recommendation": "source_acquisition_first",
-        "readiness_classification": "source_limited",
-        "readiness_score": 63.83,
-        "source_maturity_score": 35.31,
-        "repair_safety_score": 100,
-        "unsupported_count": 0,
-        "candidate_count": 5,
-        "missing_count": 109,
-        "alias_blocked_count": 0,
-        "likely_generation_bug_count": 0,
-        "expected_repair_safety": "higher"
-      },
-      {
-        "set_key": "xy3",
-        "set_name": "Furious Fists",
-        "priority_score": 46.12,
+        "set_key": "xy8",
+        "set_name": "BREAKthrough",
+        "priority_score": 74.36,
         "recommendation": "source_acquisition_then_overgeneration_review",
         "readiness_classification": "blocked",
-        "readiness_score": 56.51,
-        "source_maturity_score": 47.79,
-        "repair_safety_score": 81.02,
-        "unsupported_count": 105,
-        "candidate_count": 149,
-        "missing_count": 1,
+        "readiness_score": 79.79,
+        "source_maturity_score": 94.96,
+        "repair_safety_score": 79.05,
+        "unsupported_count": 172,
+        "candidate_count": 0,
+        "missing_count": 17,
         "alias_blocked_count": 0,
-        "likely_generation_bug_count": 105,
+        "likely_generation_bug_count": 172,
+        "expected_repair_safety": "higher"
+      },
+      {
+        "set_key": "ex3",
+        "set_name": "Dragon",
+        "priority_score": 74.19,
+        "recommendation": "source_acquisition_then_overgeneration_review",
+        "readiness_classification": "blocked",
+        "readiness_score": 79.21,
+        "source_maturity_score": 95.5,
+        "repair_safety_score": 78.13,
+        "unsupported_count": 109,
+        "candidate_count": 0,
+        "missing_count": 9,
+        "alias_blocked_count": 0,
+        "likely_generation_bug_count": 109,
         "expected_repair_safety": "higher"
       }
     ]

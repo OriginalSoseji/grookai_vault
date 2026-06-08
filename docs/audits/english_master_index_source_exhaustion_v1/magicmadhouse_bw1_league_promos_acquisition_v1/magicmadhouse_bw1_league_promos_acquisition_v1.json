@@ -1,0 +1,88 @@
+{
+  "version": "english_master_index_magicmadhouse_bw1_league_promos_acquisition_v1",
+  "generated_at": "2026-06-08T00:00:00.000Z",
+  "audit_only": true,
+  "db_writes_performed": false,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "dry_run": false,
+  "fixture_file": "docs/audits/verified_master_set_index_v1/source_fixtures/generated_magicmadhouse_bw1_league_promos_v1/bw1.json",
+  "rule": "Only exact Magic Madhouse Black & White product titles naming target card number, card name, and Play! Pokemon League Promo label are accepted. No set-wide League Promo inference is allowed.",
+  "summary": {
+    "target_facts": 3,
+    "validated": 3,
+    "blocked": 0,
+    "by_source_key": {
+      "magicmadhouse_bw1_league_promos": 3
+    }
+  },
+  "results": [
+    {
+      "status": "validated",
+      "source_key": "magicmadhouse_bw1_league_promos",
+      "source_kind": "marketplace_checklist",
+      "source_url": "https://magicmadhouse.co.uk/pokemon-black-white-105-114-grass-energy-play-pokemon-league-promo",
+      "fact": {
+        "set_key": "bw1",
+        "set_name": "Black & White",
+        "card_number": "105",
+        "card_name": "Grass Energy",
+        "finish_key": "stamped"
+      },
+      "validation": {
+        "ok": true,
+        "checks": {
+          "has_identity": true,
+          "has_card_number": true,
+          "has_exact_league_promo_label": true,
+          "not_general_set_inference": true
+        }
+      }
+    },
+    {
+      "status": "validated",
+      "source_key": "magicmadhouse_bw1_league_promos",
+      "source_kind": "marketplace_checklist",
+      "source_url": "https://magicmadhouse.co.uk/pokemon-black-white-106-114-fire-energy-play-pokemon-league-promo",
+      "fact": {
+        "set_key": "bw1",
+        "set_name": "Black & White",
+        "card_number": "106",
+        "card_name": "Fire Energy",
+        "finish_key": "stamped"
+      },
+      "validation": {
+        "ok": true,
+        "checks": {
+          "has_identity": true,
+          "has_card_number": true,
+          "has_exact_league_promo_label": true,
+          "not_general_set_inference": true
+        }
+      }
+    },
+    {
+      "status": "validated",
+      "source_key": "magicmadhouse_bw1_league_promos",
+      "source_kind": "marketplace_checklist",
+      "source_url": "https://magicmadhouse.co.uk/pokemon-black-white-111-114-darkness-energy-play-pokemon-league-promo",
+      "fact": {
+        "set_key": "bw1",
+        "set_name": "Black & White",
+        "card_number": "111",
+        "card_name": "Darkness Energy",
+        "finish_key": "stamped"
+      },
+      "validation": {
+        "ok": true,
+        "checks": {
+          "has_identity": true,
+          "has_card_number": true,
+          "has_exact_league_promo_label": true,
+          "not_general_set_inference": true
+        }
+      }
+    }
+  ]
+}

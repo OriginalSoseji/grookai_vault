@@ -1,0 +1,549 @@
+{
+  "status": "api_no_validated_match",
+  "fact": {
+    "gap_type": "finish_second_source_needed",
+    "fact_type": "printing_finish",
+    "set_key": "smp",
+    "set_name": "SM Black Star Promos",
+    "card_number": "SM231",
+    "card_name": "Champions Festival",
+    "finish_key": "stamped",
+    "status": "human_source_verified",
+    "sources": [
+      "thepricedex_price_list"
+    ],
+    "source_authorities": [
+      "thepricedex.com"
+    ],
+    "source_kinds": [
+      "marketplace_checklist"
+    ],
+    "evidence_urls": [
+      "https://www.thepricedex.com/set/smp/sm-black-star-promos/price-list"
+    ],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "attempts": [
+    {
+      "query": "Pokemon SM Black Star Promos Champions Festival SM231 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20SM%20Black%20Star%20Promos%20Champions%20Festival%20SM231%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5944594",
+      "product_name": "Champions Festival [Staff] #SM231",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Staff"
+      }
+    },
+    {
+      "query": "Pokemon SM Black Star Promos Champions Festival SM231 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20SM%20Black%20Star%20Promos%20Champions%20Festival%20SM231%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "844921",
+      "product_name": "Champions Festival #SM231",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon SM Black Star Promos Champions Festival SM231 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20SM%20Black%20Star%20Promos%20Champions%20Festival%20SM231%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6775546",
+      "product_name": "Champions Festival [Semi-Finalist] #SM231",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Semi-Finalist"
+      }
+    },
+    {
+      "query": "Pokemon SM Black Star Promos Champions Festival SM231 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20SM%20Black%20Star%20Promos%20Champions%20Festival%20SM231%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6775537",
+      "product_name": "Champions Festival [Top Sixteen] #SM231",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Top Sixteen"
+      }
+    },
+    {
+      "query": "Pokemon SM Black Star Promos Champions Festival SM231 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20SM%20Black%20Star%20Promos%20Champions%20Festival%20SM231%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4388132",
+      "product_name": "Champions Festival [Quarter Finalist] #SM231",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Quarter Finalist"
+      }
+    },
+    {
+      "query": "Pokemon SM Black Star Promos Champions Festival SM231 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20SM%20Black%20Star%20Promos%20Champions%20Festival%20SM231%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6055359",
+      "product_name": "Champions Festival [Top Thirty-Two] #SM231",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Top Thirty-Two"
+      }
+    },
+    {
+      "query": "Pokemon SM Black Star Promos Champions Festival SM231 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20SM%20Black%20Star%20Promos%20Champions%20Festival%20SM231%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5325522",
+      "product_name": "Champion's Festival [World Champions 2019] #SM-P",
+      "console_name": "Pokemon Japanese Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:SM-P"
+      }
+    },
+    {
+      "query": "Pokemon SM Black Star Promos Champions Festival SM231 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20SM%20Black%20Star%20Promos%20Champions%20Festival%20SM231%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5325677",
+      "product_name": "Champion's Festival [World Champions 2017] #SM-P",
+      "console_name": "Pokemon Japanese Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:SM-P"
+      }
+    },
+    {
+      "query": "Pokemon SM Black Star Promos Champions Festival SM231 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20SM%20Black%20Star%20Promos%20Champions%20Festival%20SM231%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5285470",
+      "product_name": "Champion's Festival [World Champions 2018] #SM-P",
+      "console_name": "Pokemon Japanese Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:SM-P"
+      }
+    },
+    {
+      "query": "Pokemon SM Black Star Promos Champions Festival SM231 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20SM%20Black%20Star%20Promos%20Champions%20Festival%20SM231%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5042926",
+      "product_name": "Champion's Festival #SM-P",
+      "console_name": "Pokemon Japanese Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:SM-P"
+      }
+    },
+    {
+      "query": "Pokemon SM Black Star Promos Champions Festival SM231 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20SM%20Black%20Star%20Promos%20Champions%20Festival%20SM231%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9455851",
+      "product_name": "Champions Festival [Staff] #BW95",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:BW95"
+      }
+    },
+    {
+      "query": "Pokemon SM Black Star Promos Champions Festival SM231 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20SM%20Black%20Star%20Promos%20Champions%20Festival%20SM231%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5975653",
+      "product_name": "Champions Festival [Staff] #XY176",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:XY176"
+      }
+    },
+    {
+      "query": "Pokemon SM Black Star Promos Champions Festival SM231 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20SM%20Black%20Star%20Promos%20Champions%20Festival%20SM231%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6115140",
+      "product_name": "Champions Festival [Staff] #XY91",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:XY91"
+      }
+    },
+    {
+      "query": "Pokemon SM Black Star Promos Champions Festival SM231 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20SM%20Black%20Star%20Promos%20Champions%20Festival%20SM231%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6124419",
+      "product_name": "Champions Festival [Staff] #XY27",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:XY27"
+      }
+    },
+    {
+      "query": "Pokemon SM Black Star Promos Champions Festival SM231 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20SM%20Black%20Star%20Promos%20Champions%20Festival%20SM231%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6385905",
+      "product_name": "Champions Festival [Staff] #SWSH296",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:SWSH296"
+      }
+    },
+    {
+      "query": "Pokemon SM Black Star Promos Champions Festival SM231 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20SM%20Black%20Star%20Promos%20Champions%20Festival%20SM231%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6776361",
+      "product_name": "Champions Festival [Staff] #SM148",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:SM148"
+      }
+    },
+    {
+      "query": "Pokemon SM Black Star Promos Champions Festival SM231 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20SM%20Black%20Star%20Promos%20Champions%20Festival%20SM231%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6143182",
+      "product_name": "Champion's Festival #SWSH296",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:SWSH296"
+      }
+    },
+    {
+      "query": "Pokemon SM Black Star Promos Champions Festival SM231 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20SM%20Black%20Star%20Promos%20Champions%20Festival%20SM231%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "844645",
+      "product_name": "Champion's Festival #XY176",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:XY176"
+      }
+    },
+    {
+      "query": "Pokemon SM Black Star Promos Champions Festival SM231 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20SM%20Black%20Star%20Promos%20Champions%20Festival%20SM231%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10306225",
+      "product_name": "Champions Festival [Finalist] #XY176",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:XY176"
+      }
+    },
+    {
+      "query": "Pokemon SM Black Star Promos Champions Festival SM231 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20SM%20Black%20Star%20Promos%20Champions%20Festival%20SM231%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6682368",
+      "product_name": "Champions Festival [Finalist] #SM78",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:SM78"
+      }
+    },
+    {
+      "query": "Pokemon SM Black Star Promos Champions Festival SM231 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20SM%20Black%20Star%20Promos%20Champions%20Festival%20SM231%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5944594",
+      "product_name": "Champions Festival [Staff] #SM231",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Staff"
+      }
+    },
+    {
+      "query": "Pokemon SM Black Star Promos Champions Festival SM231 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20SM%20Black%20Star%20Promos%20Champions%20Festival%20SM231%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "844921",
+      "product_name": "Champions Festival #SM231",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon SM Black Star Promos Champions Festival SM231 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20SM%20Black%20Star%20Promos%20Champions%20Festival%20SM231%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6775546",
+      "product_name": "Champions Festival [Semi-Finalist] #SM231",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Semi-Finalist"
+      }
+    },
+    {
+      "query": "Pokemon SM Black Star Promos Champions Festival SM231 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20SM%20Black%20Star%20Promos%20Champions%20Festival%20SM231%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6775537",
+      "product_name": "Champions Festival [Top Sixteen] #SM231",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Top Sixteen"
+      }
+    },
+    {
+      "query": "Pokemon SM Black Star Promos Champions Festival SM231 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20SM%20Black%20Star%20Promos%20Champions%20Festival%20SM231%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4388132",
+      "product_name": "Champions Festival [Quarter Finalist] #SM231",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Quarter Finalist"
+      }
+    },
+    {
+      "query": "Pokemon SM Black Star Promos Champions Festival SM231 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20SM%20Black%20Star%20Promos%20Champions%20Festival%20SM231%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6055359",
+      "product_name": "Champions Festival [Top Thirty-Two] #SM231",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Top Thirty-Two"
+      }
+    },
+    {
+      "query": "Pokemon SM Black Star Promos Champions Festival SM231 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20SM%20Black%20Star%20Promos%20Champions%20Festival%20SM231%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5325522",
+      "product_name": "Champion's Festival [World Champions 2019] #SM-P",
+      "console_name": "Pokemon Japanese Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:SM-P"
+      }
+    },
+    {
+      "query": "Pokemon SM Black Star Promos Champions Festival SM231 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20SM%20Black%20Star%20Promos%20Champions%20Festival%20SM231%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5325677",
+      "product_name": "Champion's Festival [World Champions 2017] #SM-P",
+      "console_name": "Pokemon Japanese Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:SM-P"
+      }
+    },
+    {
+      "query": "Pokemon SM Black Star Promos Champions Festival SM231 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20SM%20Black%20Star%20Promos%20Champions%20Festival%20SM231%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5285470",
+      "product_name": "Champion's Festival [World Champions 2018] #SM-P",
+      "console_name": "Pokemon Japanese Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:SM-P"
+      }
+    },
+    {
+      "query": "Pokemon SM Black Star Promos Champions Festival SM231 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20SM%20Black%20Star%20Promos%20Champions%20Festival%20SM231%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5042926",
+      "product_name": "Champion's Festival #SM-P",
+      "console_name": "Pokemon Japanese Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:SM-P"
+      }
+    },
+    {
+      "query": "Pokemon SM Black Star Promos Champions Festival SM231 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20SM%20Black%20Star%20Promos%20Champions%20Festival%20SM231%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9455851",
+      "product_name": "Champions Festival [Staff] #BW95",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:BW95"
+      }
+    },
+    {
+      "query": "Pokemon SM Black Star Promos Champions Festival SM231 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20SM%20Black%20Star%20Promos%20Champions%20Festival%20SM231%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5975653",
+      "product_name": "Champions Festival [Staff] #XY176",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:XY176"
+      }
+    },
+    {
+      "query": "Pokemon SM Black Star Promos Champions Festival SM231 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20SM%20Black%20Star%20Promos%20Champions%20Festival%20SM231%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6115140",
+      "product_name": "Champions Festival [Staff] #XY91",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:XY91"
+      }
+    },
+    {
+      "query": "Pokemon SM Black Star Promos Champions Festival SM231 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20SM%20Black%20Star%20Promos%20Champions%20Festival%20SM231%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6124419",
+      "product_name": "Champions Festival [Staff] #XY27",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:XY27"
+      }
+    },
+    {
+      "query": "Pokemon SM Black Star Promos Champions Festival SM231 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20SM%20Black%20Star%20Promos%20Champions%20Festival%20SM231%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6385905",
+      "product_name": "Champions Festival [Staff] #SWSH296",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:SWSH296"
+      }
+    },
+    {
+      "query": "Pokemon SM Black Star Promos Champions Festival SM231 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20SM%20Black%20Star%20Promos%20Champions%20Festival%20SM231%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6776361",
+      "product_name": "Champions Festival [Staff] #SM148",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:SM148"
+      }
+    },
+    {
+      "query": "Pokemon SM Black Star Promos Champions Festival SM231 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20SM%20Black%20Star%20Promos%20Champions%20Festival%20SM231%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6143182",
+      "product_name": "Champion's Festival #SWSH296",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:SWSH296"
+      }
+    },
+    {
+      "query": "Pokemon SM Black Star Promos Champions Festival SM231 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20SM%20Black%20Star%20Promos%20Champions%20Festival%20SM231%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "844645",
+      "product_name": "Champion's Festival #XY176",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:XY176"
+      }
+    },
+    {
+      "query": "Pokemon SM Black Star Promos Champions Festival SM231 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20SM%20Black%20Star%20Promos%20Champions%20Festival%20SM231%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10306225",
+      "product_name": "Champions Festival [Finalist] #XY176",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:XY176"
+      }
+    },
+    {
+      "query": "Pokemon SM Black Star Promos Champions Festival SM231 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20SM%20Black%20Star%20Promos%20Champions%20Festival%20SM231%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6682368",
+      "product_name": "Champions Festival [Finalist] #SM78",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:SM78"
+      }
+    }
+  ],
+  "source_lane": "pricecharting_api"
+}

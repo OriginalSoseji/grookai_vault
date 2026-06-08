@@ -1,0 +1,58 @@
+{
+  "status": "validated",
+  "fact": {
+    "gap_type": "finish_second_source_needed",
+    "fact_type": "printing_finish",
+    "set_key": "swsh11",
+    "set_name": "Lost Origin",
+    "card_number": "76",
+    "card_name": "Hisuian Zoroark",
+    "finish_key": "stamped",
+    "status": "human_source_verified",
+    "sources": [
+      "thepricedex_price_list"
+    ],
+    "source_authorities": [
+      "thepricedex.com"
+    ],
+    "source_kinds": [
+      "marketplace_checklist"
+    ],
+    "evidence_urls": [],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "query": "Pokemon Lost Origin Hisuian Zoroark 76 stamp",
+  "search_url": "https://www.pricecharting.com/search-products?q=Pokemon%20Lost%20Origin%20Hisuian%20Zoroark%2076%20stamp&type=prices",
+  "source_url": "https://www.pricecharting.com/game/pokemon-lost-origin/hisuian-zoroark-stamped-76",
+  "title": "Hisuian Zoroark [Stamped] #76 Prices | Pokemon Lost Origin | Pokemon Cards",
+  "title_parts": {
+    "card_name": "Hisuian Zoroark",
+    "variant_label": "Stamped",
+    "card_number": "76",
+    "set_name": "Lost Origin"
+  },
+  "attempts": [
+    {
+      "query": "Pokemon Lost Origin Hisuian Zoroark 76 stamped",
+      "url": "https://www.pricecharting.com/search-products?q=Pokemon%20Lost%20Origin%20Hisuian%20Zoroark%2076%20stamped&type=prices",
+      "error": "Fetch failed 403 Forbidden: https://www.pricecharting.com/search-products?q=Pokemon%20Lost%20Origin%20Hisuian%20Zoroark%2076%20stamped&type=prices"
+    },
+    {
+      "query": "Pokemon Lost Origin Hisuian Zoroark 76 stamp",
+      "url": "https://www.pricecharting.com/search-products?q=Pokemon%20Lost%20Origin%20Hisuian%20Zoroark%2076%20stamp&type=prices",
+      "parsed": {
+        "title": "Hisuian Zoroark [Stamped] #76 Prices | Pokemon Lost Origin | Pokemon Cards",
+        "source_url": "https://www.pricecharting.com/game/pokemon-lost-origin/hisuian-zoroark-stamped-76"
+      },
+      "validation": {
+        "ok": true,
+        "titleParts": {
+          "card_name": "Hisuian Zoroark",
+          "variant_label": "Stamped",
+          "card_number": "76",
+          "set_name": "Lost Origin"
+        }
+      }
+    }
+  ]
+}

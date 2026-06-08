@@ -1,0 +1,549 @@
+{
+  "status": "api_no_validated_match",
+  "fact": {
+    "gap_type": "finish_second_source_needed",
+    "fact_type": "printing_finish",
+    "set_key": "pl1",
+    "set_name": "Platinum",
+    "card_number": "104",
+    "card_name": "Broken Time-Space",
+    "finish_key": "stamped",
+    "status": "human_source_verified",
+    "sources": [
+      "thepricedex_price_list"
+    ],
+    "source_authorities": [
+      "thepricedex.com"
+    ],
+    "source_kinds": [
+      "marketplace_checklist"
+    ],
+    "evidence_urls": [
+      "https://www.thepricedex.com/set/pl1/platinum/price-list"
+    ],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "attempts": [
+    {
+      "query": "Pokemon Platinum Broken Time-Space 104 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Platinum%20Broken%20Time-Space%20104%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "805897",
+      "product_name": "Broken Time-Space #104",
+      "console_name": "Pokemon Platinum",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon Platinum Broken Time-Space 104 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Platinum%20Broken%20Time-Space%20104%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8597943",
+      "product_name": "Broken Time-Space [League] #104",
+      "console_name": "Pokemon Platinum",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:League"
+      }
+    },
+    {
+      "query": "Pokemon Platinum Broken Time-Space 104 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Platinum%20Broken%20Time-Space%20104%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "805898",
+      "product_name": "Broken Time-Space [Reverse Holo] #104",
+      "console_name": "Pokemon Platinum",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Reverse Holo"
+      }
+    },
+    {
+      "query": "Pokemon Platinum Broken Time-Space 104 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Platinum%20Broken%20Time-Space%20104%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3459604",
+      "product_name": "Broken Time-Space [1st Edition] #92",
+      "console_name": "Pokemon Japanese Galactic's Conquest",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:92"
+      }
+    },
+    {
+      "query": "Pokemon Platinum Broken Time-Space 104 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Platinum%20Broken%20Time-Space%20104%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3462569",
+      "product_name": "Puzzle of Time #71",
+      "console_name": "Pokemon Japanese Rage of the Broken Heavens",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:71"
+      }
+    },
+    {
+      "query": "Pokemon Platinum Broken Time-Space 104 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Platinum%20Broken%20Time-Space%20104%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3458335",
+      "product_name": "Onix",
+      "console_name": "Pokemon Japanese Space-Time",
+      "validation": {
+        "ok": false,
+        "reason": "api_product_name_pattern_not_supported"
+      }
+    },
+    {
+      "query": "Pokemon Platinum Broken Time-Space 104 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Platinum%20Broken%20Time-Space%20104%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3458310",
+      "product_name": "Shinx",
+      "console_name": "Pokemon Japanese Space-Time",
+      "validation": {
+        "ok": false,
+        "reason": "api_product_name_pattern_not_supported"
+      }
+    },
+    {
+      "query": "Pokemon Platinum Broken Time-Space 104 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Platinum%20Broken%20Time-Space%20104%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3458311",
+      "product_name": "Luxio",
+      "console_name": "Pokemon Japanese Space-Time",
+      "validation": {
+        "ok": false,
+        "reason": "api_product_name_pattern_not_supported"
+      }
+    },
+    {
+      "query": "Pokemon Platinum Broken Time-Space 104 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Platinum%20Broken%20Time-Space%20104%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3458341",
+      "product_name": "Riolu",
+      "console_name": "Pokemon Japanese Space-Time",
+      "validation": {
+        "ok": false,
+        "reason": "api_product_name_pattern_not_supported"
+      }
+    },
+    {
+      "query": "Pokemon Platinum Broken Time-Space 104 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Platinum%20Broken%20Time-Space%20104%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3458385",
+      "product_name": "Rival",
+      "console_name": "Pokemon Japanese Space-Time",
+      "validation": {
+        "ok": false,
+        "reason": "api_product_name_pattern_not_supported"
+      }
+    },
+    {
+      "query": "Pokemon Platinum Broken Time-Space 104 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Platinum%20Broken%20Time-Space%20104%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3458277",
+      "product_name": "Budew",
+      "console_name": "Pokemon Japanese Space-Time",
+      "validation": {
+        "ok": false,
+        "reason": "api_product_name_pattern_not_supported"
+      }
+    },
+    {
+      "query": "Pokemon Platinum Broken Time-Space 104 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Platinum%20Broken%20Time-Space%20104%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3458316",
+      "product_name": "Gengar",
+      "console_name": "Pokemon Japanese Space-Time",
+      "validation": {
+        "ok": false,
+        "reason": "api_product_name_pattern_not_supported"
+      }
+    },
+    {
+      "query": "Pokemon Platinum Broken Time-Space 104 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Platinum%20Broken%20Time-Space%20104%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3458314",
+      "product_name": "Gastly",
+      "console_name": "Pokemon Japanese Space-Time",
+      "validation": {
+        "ok": false,
+        "reason": "api_product_name_pattern_not_supported"
+      }
+    },
+    {
+      "query": "Pokemon Platinum Broken Time-Space 104 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Platinum%20Broken%20Time-Space%20104%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3458337",
+      "product_name": "Rhydon",
+      "console_name": "Pokemon Japanese Space-Time",
+      "validation": {
+        "ok": false,
+        "reason": "api_product_name_pattern_not_supported"
+      }
+    },
+    {
+      "query": "Pokemon Platinum Broken Time-Space 104 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Platinum%20Broken%20Time-Space%20104%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3458332",
+      "product_name": "Machop",
+      "console_name": "Pokemon Japanese Space-Time",
+      "validation": {
+        "ok": false,
+        "reason": "api_product_name_pattern_not_supported"
+      }
+    },
+    {
+      "query": "Pokemon Platinum Broken Time-Space 104 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Platinum%20Broken%20Time-Space%20104%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3458355",
+      "product_name": "Dialga",
+      "console_name": "Pokemon Japanese Space-Time",
+      "validation": {
+        "ok": false,
+        "reason": "api_product_name_pattern_not_supported"
+      }
+    },
+    {
+      "query": "Pokemon Platinum Broken Time-Space 104 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Platinum%20Broken%20Time-Space%20104%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3458356",
+      "product_name": "Cleffa",
+      "console_name": "Pokemon Japanese Space-Time",
+      "validation": {
+        "ok": false,
+        "reason": "api_product_name_pattern_not_supported"
+      }
+    },
+    {
+      "query": "Pokemon Platinum Broken Time-Space 104 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Platinum%20Broken%20Time-Space%20104%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3458371",
+      "product_name": "Chatot",
+      "console_name": "Pokemon Japanese Space-Time",
+      "validation": {
+        "ok": false,
+        "reason": "api_product_name_pattern_not_supported"
+      }
+    },
+    {
+      "query": "Pokemon Platinum Broken Time-Space 104 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Platinum%20Broken%20Time-Space%20104%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3458375",
+      "product_name": "Potion",
+      "console_name": "Pokemon Japanese Space-Time",
+      "validation": {
+        "ok": false,
+        "reason": "api_product_name_pattern_not_supported"
+      }
+    },
+    {
+      "query": "Pokemon Platinum Broken Time-Space 104 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Platinum%20Broken%20Time-Space%20104%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3458307",
+      "product_name": "Elekid",
+      "console_name": "Pokemon Japanese Space-Time",
+      "validation": {
+        "ok": false,
+        "reason": "api_product_name_pattern_not_supported"
+      }
+    },
+    {
+      "query": "Pokemon Platinum Broken Time-Space 104 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Platinum%20Broken%20Time-Space%20104%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "805897",
+      "product_name": "Broken Time-Space #104",
+      "console_name": "Pokemon Platinum",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon Platinum Broken Time-Space 104 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Platinum%20Broken%20Time-Space%20104%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8597943",
+      "product_name": "Broken Time-Space [League] #104",
+      "console_name": "Pokemon Platinum",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:League"
+      }
+    },
+    {
+      "query": "Pokemon Platinum Broken Time-Space 104 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Platinum%20Broken%20Time-Space%20104%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "805898",
+      "product_name": "Broken Time-Space [Reverse Holo] #104",
+      "console_name": "Pokemon Platinum",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Reverse Holo"
+      }
+    },
+    {
+      "query": "Pokemon Platinum Broken Time-Space 104 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Platinum%20Broken%20Time-Space%20104%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3459604",
+      "product_name": "Broken Time-Space [1st Edition] #92",
+      "console_name": "Pokemon Japanese Galactic's Conquest",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:92"
+      }
+    },
+    {
+      "query": "Pokemon Platinum Broken Time-Space 104 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Platinum%20Broken%20Time-Space%20104%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3462569",
+      "product_name": "Puzzle of Time #71",
+      "console_name": "Pokemon Japanese Rage of the Broken Heavens",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:71"
+      }
+    },
+    {
+      "query": "Pokemon Platinum Broken Time-Space 104 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Platinum%20Broken%20Time-Space%20104%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3458335",
+      "product_name": "Onix",
+      "console_name": "Pokemon Japanese Space-Time",
+      "validation": {
+        "ok": false,
+        "reason": "api_product_name_pattern_not_supported"
+      }
+    },
+    {
+      "query": "Pokemon Platinum Broken Time-Space 104 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Platinum%20Broken%20Time-Space%20104%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3458310",
+      "product_name": "Shinx",
+      "console_name": "Pokemon Japanese Space-Time",
+      "validation": {
+        "ok": false,
+        "reason": "api_product_name_pattern_not_supported"
+      }
+    },
+    {
+      "query": "Pokemon Platinum Broken Time-Space 104 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Platinum%20Broken%20Time-Space%20104%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3458311",
+      "product_name": "Luxio",
+      "console_name": "Pokemon Japanese Space-Time",
+      "validation": {
+        "ok": false,
+        "reason": "api_product_name_pattern_not_supported"
+      }
+    },
+    {
+      "query": "Pokemon Platinum Broken Time-Space 104 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Platinum%20Broken%20Time-Space%20104%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3458341",
+      "product_name": "Riolu",
+      "console_name": "Pokemon Japanese Space-Time",
+      "validation": {
+        "ok": false,
+        "reason": "api_product_name_pattern_not_supported"
+      }
+    },
+    {
+      "query": "Pokemon Platinum Broken Time-Space 104 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Platinum%20Broken%20Time-Space%20104%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3458385",
+      "product_name": "Rival",
+      "console_name": "Pokemon Japanese Space-Time",
+      "validation": {
+        "ok": false,
+        "reason": "api_product_name_pattern_not_supported"
+      }
+    },
+    {
+      "query": "Pokemon Platinum Broken Time-Space 104 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Platinum%20Broken%20Time-Space%20104%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3458277",
+      "product_name": "Budew",
+      "console_name": "Pokemon Japanese Space-Time",
+      "validation": {
+        "ok": false,
+        "reason": "api_product_name_pattern_not_supported"
+      }
+    },
+    {
+      "query": "Pokemon Platinum Broken Time-Space 104 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Platinum%20Broken%20Time-Space%20104%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3458316",
+      "product_name": "Gengar",
+      "console_name": "Pokemon Japanese Space-Time",
+      "validation": {
+        "ok": false,
+        "reason": "api_product_name_pattern_not_supported"
+      }
+    },
+    {
+      "query": "Pokemon Platinum Broken Time-Space 104 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Platinum%20Broken%20Time-Space%20104%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3458314",
+      "product_name": "Gastly",
+      "console_name": "Pokemon Japanese Space-Time",
+      "validation": {
+        "ok": false,
+        "reason": "api_product_name_pattern_not_supported"
+      }
+    },
+    {
+      "query": "Pokemon Platinum Broken Time-Space 104 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Platinum%20Broken%20Time-Space%20104%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3458337",
+      "product_name": "Rhydon",
+      "console_name": "Pokemon Japanese Space-Time",
+      "validation": {
+        "ok": false,
+        "reason": "api_product_name_pattern_not_supported"
+      }
+    },
+    {
+      "query": "Pokemon Platinum Broken Time-Space 104 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Platinum%20Broken%20Time-Space%20104%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3458332",
+      "product_name": "Machop",
+      "console_name": "Pokemon Japanese Space-Time",
+      "validation": {
+        "ok": false,
+        "reason": "api_product_name_pattern_not_supported"
+      }
+    },
+    {
+      "query": "Pokemon Platinum Broken Time-Space 104 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Platinum%20Broken%20Time-Space%20104%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3458355",
+      "product_name": "Dialga",
+      "console_name": "Pokemon Japanese Space-Time",
+      "validation": {
+        "ok": false,
+        "reason": "api_product_name_pattern_not_supported"
+      }
+    },
+    {
+      "query": "Pokemon Platinum Broken Time-Space 104 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Platinum%20Broken%20Time-Space%20104%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3458356",
+      "product_name": "Cleffa",
+      "console_name": "Pokemon Japanese Space-Time",
+      "validation": {
+        "ok": false,
+        "reason": "api_product_name_pattern_not_supported"
+      }
+    },
+    {
+      "query": "Pokemon Platinum Broken Time-Space 104 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Platinum%20Broken%20Time-Space%20104%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3458371",
+      "product_name": "Chatot",
+      "console_name": "Pokemon Japanese Space-Time",
+      "validation": {
+        "ok": false,
+        "reason": "api_product_name_pattern_not_supported"
+      }
+    },
+    {
+      "query": "Pokemon Platinum Broken Time-Space 104 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Platinum%20Broken%20Time-Space%20104%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3458375",
+      "product_name": "Potion",
+      "console_name": "Pokemon Japanese Space-Time",
+      "validation": {
+        "ok": false,
+        "reason": "api_product_name_pattern_not_supported"
+      }
+    },
+    {
+      "query": "Pokemon Platinum Broken Time-Space 104 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Platinum%20Broken%20Time-Space%20104%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3458307",
+      "product_name": "Elekid",
+      "console_name": "Pokemon Japanese Space-Time",
+      "validation": {
+        "ok": false,
+        "reason": "api_product_name_pattern_not_supported"
+      }
+    }
+  ],
+  "source_lane": "pricecharting_api"
+}

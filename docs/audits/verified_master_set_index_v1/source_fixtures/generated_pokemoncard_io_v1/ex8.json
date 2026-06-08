@@ -1,0 +1,30 @@
+{
+  "fixture_version": "VERIFIED_MASTER_SET_INDEX_V1_HUMAN_SOURCE_FIXTURE_GENERATED",
+  "source_key": "pokemoncard_io_finish_ex8",
+  "source_kind": "marketplace_checklist",
+  "source_url": "https://pokemoncard.io/",
+  "source_status": "available_generated",
+  "set_key": "ex8",
+  "set_name": "Deoxys",
+  "retrieved_at": "2026-05-27T01:42:33.118Z",
+  "raw_snapshot_ref": "generated_fixture:pokemoncard_io_finish:ex8:2026-05-27T01:42:33.118Z",
+  "generation_note": "Generated from PokemonCard.io TCGplayer price breakdown print rows. Rarity text alone is ignored.",
+  "records": [
+    {
+      "source_key": "pokemoncard_io_price_breakdown",
+      "source_kind": "marketplace_checklist",
+      "source_url": "https://pokemoncard.io/card/latias-star-ex8-105",
+      "set_name": "Deoxys",
+      "card_number": "105",
+      "card_name": "Latias Star",
+      "finish_key": "holo",
+      "rarity": null,
+      "evidence_type": "finish_presence",
+      "evidence_label": "PokemonCard.io TCGplayer price breakdown row: Latias Star holo",
+      "language": "en",
+      "retrieved_at": "2026-05-27T01:42:33.118Z",
+      "raw_snapshot_ref": "pokemoncard_io:ex8:105:holo",
+      "notes": "Exact finish evidence accepted only from a PokemonCard.io TCGplayer price breakdown print row. Rarity text alone is not used."
+    }
+  ]
+}

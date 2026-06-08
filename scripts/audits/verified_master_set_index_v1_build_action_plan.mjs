@@ -131,6 +131,15 @@ async function readJson(fileName) {
   return JSON.parse(await fs.readFile(path.join(OUTPUT_DIR, fileName), 'utf8'));
 }
 
+async function readOptionalJson(fileName, fallback) {
+  try {
+    return await readJson(fileName);
+  } catch (error) {
+    if (error?.code === 'ENOENT') return fallback;
+    throw error;
+  }
+}
+
 function collectStatusCounts(setMap, grookaiAudit) {
   for (const [key, count] of Object.entries(grookaiAudit.summary?.by_set_status ?? {})) {
     const separatorIndex = key.lastIndexOf('|');
@@ -335,7 +344,7 @@ function blockedReasons(row) {
   return reasons;
 }
 
-function buildActionPlan({ generatedAt, masterIndex, grookaiAudit, triages, readinessRows, repairRows }) {
+function buildActionPlan({ generatedAt, masterIndex, grookaiAudit, triages, readinessRows, repairRows, finishBlockerClosure }) {
   const alreadyProven = buildAlreadyProven(readinessRows);
   const blockedRows = readinessRows
     .filter((row) => row.classification === 'blocked')
@@ -393,6 +402,7 @@ function buildActionPlan({ generatedAt, masterIndex, grookaiAudit, triages, read
       index_printing_rows: grookaiAudit.summary?.index_printing_rows ?? null,
       readiness_by_classification: summarizeReadiness(readinessRows),
       global_status_counts: grookaiAudit.summary?.by_status ?? {},
+      finish_blocker_closure: finishBlockerClosure.summary ?? {},
     },
     sections: {
       already_proven: alreadyProven,
@@ -446,6 +456,23 @@ function buildActionPlan({ generatedAt, masterIndex, grookaiAudit, triages, read
           })),
       },
       blocked_from_apply: blockedRows,
+      finish_blocker_boundary: {
+        explanation: 'These rows are not normal source-acquisition gaps. Current exact evidence indicates finish-label or card-number conflicts, so they require manual adjudication and are not mutation-safe.',
+        closure_status: finishBlockerClosure.summary?.closure_status ?? 'not_available',
+        total_rows: finishBlockerClosure.summary?.blocker_mapped_rows ?? 0,
+        promotion_safe_now: finishBlockerClosure.summary?.promotion_safe_now ?? 0,
+        by_blocker_type: finishBlockerClosure.summary?.by_blocker_type ?? {},
+        rows: (finishBlockerClosure.mapped_blockers ?? []).map((row) => ({
+          set_key: row.set_key,
+          set_name: row.set_name,
+          card_number: row.card_number,
+          card_name: row.card_name,
+          finish_key: row.finish_key,
+          blocker_type: row.blocker_type,
+          reason_not_promoted: row.reason_not_promoted,
+          next_action: row.next_action,
+        })),
+      },
       controlled_set_repair_candidates: controlledCandidates,
     },
   };
@@ -550,6 +577,14 @@ function buildActionPlanMarkdown(actionPlan) {
     row.reasons.join(', '),
     row.counts.total_rows_considered,
   ]);
+  const finishBlockerRows = (actionPlan.sections.finish_blocker_boundary.rows ?? []).map((row) => [
+    row.set_key,
+    row.card_number,
+    row.card_name,
+    row.finish_key,
+    row.blocker_type,
+    row.next_action,
+  ]);
   const repairRows = actionPlan.sections.controlled_set_repair_candidates.slice(0, 25).map((row) => [
     row.set_key,
     row.set_name ?? '',
@@ -614,6 +649,12 @@ function buildActionPlanMarkdown(actionPlan) {
     '## 6. Blocked From Apply',
     '',
     markdownTable(['set', 'name', 'readiness_score', 'reasons', 'rows'], blockedRows),
+    '',
+    '## 6a. Finish Blocker Boundary',
+    '',
+    actionPlan.sections.finish_blocker_boundary.explanation,
+    '',
+    markdownTable(['set', 'number', 'name', 'finish', 'blocker_type', 'next_action'], finishBlockerRows),
     '',
     '## 7. Controlled Set Repair Candidates',
     '',
@@ -730,6 +771,7 @@ async function main() {
     missing,
     candidate,
     apiAgreed,
+    finishBlockerClosure,
   ] = await Promise.all([
     readJson('english_master_index_v1.json'),
     readJson('english_master_index_grookai_audit_v1.json'),
@@ -740,6 +782,7 @@ async function main() {
     readJson('english_master_index_missing_from_grookai_triage_v1.json'),
     readJson('english_master_index_candidate_unconfirmed_triage_v1.json'),
     readJson('english_master_index_api_agreed_triage_v1.json'),
+    readOptionalJson('english_master_index_finish_blocker_closure_v1.json', { mapped_blockers: [], summary: {} }),
   ]);
 
   const triages = {
@@ -783,6 +826,7 @@ async function main() {
     triages,
     readinessRows,
     repairRows,
+    finishBlockerClosure,
   });
   const truthReadiness = buildTruthReadinessReport(generatedAt, readinessRows);
   const repairPriority = buildRepairPriorityReport(generatedAt, repairRows);

@@ -1,0 +1,549 @@
+{
+  "status": "api_no_validated_match",
+  "fact": {
+    "gap_type": "finish_second_source_needed",
+    "fact_type": "printing_finish",
+    "set_key": "sv09",
+    "set_name": "Journey Together",
+    "card_number": "152",
+    "card_name": "N's Castle",
+    "finish_key": "stamped",
+    "status": "human_source_verified",
+    "sources": [
+      "thepricedex_price_list"
+    ],
+    "source_authorities": [
+      "thepricedex.com"
+    ],
+    "source_kinds": [
+      "marketplace_checklist"
+    ],
+    "evidence_urls": [
+      "https://www.thepricedex.com/set/sv9/journey-together/price-list"
+    ],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "attempts": [
+    {
+      "query": "Pokemon Journey Together N's Castle 152 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Journey%20Together%20N's%20Castle%20152%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8871254",
+      "product_name": "N's Castle #152",
+      "console_name": "Pokemon Journey Together",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon Journey Together N's Castle 152 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Journey%20Together%20N's%20Castle%20152%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10951965",
+      "product_name": "N's Castle [Prize Pack] #152",
+      "console_name": "Pokemon Journey Together",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Prize Pack"
+      }
+    },
+    {
+      "query": "Pokemon Journey Together N's Castle 152 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Journey%20Together%20N's%20Castle%20152%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8871223",
+      "product_name": "N's Castle [Reverse Holo] #152",
+      "console_name": "Pokemon Journey Together",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Reverse Holo"
+      }
+    },
+    {
+      "query": "Pokemon Journey Together N's Castle 152 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Journey%20Together%20N's%20Castle%20152%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8924046",
+      "product_name": "N's Reshiram [Stamped] #167",
+      "console_name": "Pokemon Journey Together",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:167"
+      }
+    },
+    {
+      "query": "Pokemon Journey Together N's Castle 152 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Journey%20Together%20N's%20Castle%20152%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8871081",
+      "product_name": "N's Klink #103",
+      "console_name": "Pokemon Journey Together",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:103"
+      }
+    },
+    {
+      "query": "Pokemon Journey Together N's Castle 152 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Journey%20Together%20N's%20Castle%20152%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8871084",
+      "product_name": "N's Klang #104",
+      "console_name": "Pokemon Journey Together",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:104"
+      }
+    },
+    {
+      "query": "Pokemon Journey Together N's Castle 152 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Journey%20Together%20N's%20Castle%20152%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8871059",
+      "product_name": "N's Zorua #97",
+      "console_name": "Pokemon Journey Together",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:97"
+      }
+    },
+    {
+      "query": "Pokemon Journey Together N's Castle 152 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Journey%20Together%20N's%20Castle%20152%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8871226",
+      "product_name": "N's Joltik #49",
+      "console_name": "Pokemon Journey Together",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:49"
+      }
+    },
+    {
+      "query": "Pokemon Journey Together N's Castle 152 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Journey%20Together%20N's%20Castle%20152%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8871256",
+      "product_name": "N's PP Up #153",
+      "console_name": "Pokemon Journey Together",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:153"
+      }
+    },
+    {
+      "query": "Pokemon Journey Together N's Castle 152 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Journey%20Together%20N's%20Castle%20152%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8871262",
+      "product_name": "N's Sigilyph #64",
+      "console_name": "Pokemon Journey Together",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:64"
+      }
+    },
+    {
+      "query": "Pokemon Journey Together N's Castle 152 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Journey%20Together%20N's%20Castle%20152%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8871057",
+      "product_name": "N's Purrloin #96",
+      "console_name": "Pokemon Journey Together",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:96"
+      }
+    },
+    {
+      "query": "Pokemon Journey Together N's Castle 152 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Journey%20Together%20N's%20Castle%20152%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8871169",
+      "product_name": "N's Darumaka #26",
+      "console_name": "Pokemon Journey Together",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:26"
+      }
+    },
+    {
+      "query": "Pokemon Journey Together N's Castle 152 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Journey%20Together%20N's%20Castle%20152%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8871121",
+      "product_name": "N's Reshiram #116",
+      "console_name": "Pokemon Journey Together",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:116"
+      }
+    },
+    {
+      "query": "Pokemon Journey Together N's Castle 152 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Journey%20Together%20N's%20Castle%20152%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8871296",
+      "product_name": "N's Reshiram #167",
+      "console_name": "Pokemon Journey Together",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:167"
+      }
+    },
+    {
+      "query": "Pokemon Journey Together N's Castle 152 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Journey%20Together%20N's%20Castle%20152%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8871085",
+      "product_name": "N's Klinklang #105",
+      "console_name": "Pokemon Journey Together",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:105"
+      }
+    },
+    {
+      "query": "Pokemon Journey Together N's Castle 152 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Journey%20Together%20N's%20Castle%20152%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8871171",
+      "product_name": "N's Darmanitan #27",
+      "console_name": "Pokemon Journey Together",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:27"
+      }
+    },
+    {
+      "query": "Pokemon Journey Together N's Castle 152 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Journey%20Together%20N's%20Castle%20152%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10025682",
+      "product_name": "Levincia [Gym Stamp] #150",
+      "console_name": "Pokemon Journey Together",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:150"
+      }
+    },
+    {
+      "query": "Pokemon Journey Together N's Castle 152 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Journey%20Together%20N's%20Castle%20152%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8871061",
+      "product_name": "N's Zoroark ex #98",
+      "console_name": "Pokemon Journey Together",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:98"
+      }
+    },
+    {
+      "query": "Pokemon Journey Together N's Castle 152 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Journey%20Together%20N's%20Castle%20152%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8883288",
+      "product_name": "N's Zoroark Ex #185",
+      "console_name": "Pokemon Journey Together",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:185"
+      }
+    },
+    {
+      "query": "Pokemon Journey Together N's Castle 152 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Journey%20Together%20N's%20Castle%20152%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8883274",
+      "product_name": "N's Zoroark Ex #189",
+      "console_name": "Pokemon Journey Together",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:189"
+      }
+    },
+    {
+      "query": "Pokemon Journey Together N's Castle 152 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Journey%20Together%20N's%20Castle%20152%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8871254",
+      "product_name": "N's Castle #152",
+      "console_name": "Pokemon Journey Together",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon Journey Together N's Castle 152 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Journey%20Together%20N's%20Castle%20152%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10951965",
+      "product_name": "N's Castle [Prize Pack] #152",
+      "console_name": "Pokemon Journey Together",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Prize Pack"
+      }
+    },
+    {
+      "query": "Pokemon Journey Together N's Castle 152 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Journey%20Together%20N's%20Castle%20152%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8871223",
+      "product_name": "N's Castle [Reverse Holo] #152",
+      "console_name": "Pokemon Journey Together",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Reverse Holo"
+      }
+    },
+    {
+      "query": "Pokemon Journey Together N's Castle 152 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Journey%20Together%20N's%20Castle%20152%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8924046",
+      "product_name": "N's Reshiram [Stamped] #167",
+      "console_name": "Pokemon Journey Together",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:167"
+      }
+    },
+    {
+      "query": "Pokemon Journey Together N's Castle 152 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Journey%20Together%20N's%20Castle%20152%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8871081",
+      "product_name": "N's Klink #103",
+      "console_name": "Pokemon Journey Together",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:103"
+      }
+    },
+    {
+      "query": "Pokemon Journey Together N's Castle 152 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Journey%20Together%20N's%20Castle%20152%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8871084",
+      "product_name": "N's Klang #104",
+      "console_name": "Pokemon Journey Together",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:104"
+      }
+    },
+    {
+      "query": "Pokemon Journey Together N's Castle 152 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Journey%20Together%20N's%20Castle%20152%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8871059",
+      "product_name": "N's Zorua #97",
+      "console_name": "Pokemon Journey Together",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:97"
+      }
+    },
+    {
+      "query": "Pokemon Journey Together N's Castle 152 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Journey%20Together%20N's%20Castle%20152%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8871226",
+      "product_name": "N's Joltik #49",
+      "console_name": "Pokemon Journey Together",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:49"
+      }
+    },
+    {
+      "query": "Pokemon Journey Together N's Castle 152 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Journey%20Together%20N's%20Castle%20152%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8871256",
+      "product_name": "N's PP Up #153",
+      "console_name": "Pokemon Journey Together",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:153"
+      }
+    },
+    {
+      "query": "Pokemon Journey Together N's Castle 152 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Journey%20Together%20N's%20Castle%20152%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8871262",
+      "product_name": "N's Sigilyph #64",
+      "console_name": "Pokemon Journey Together",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:64"
+      }
+    },
+    {
+      "query": "Pokemon Journey Together N's Castle 152 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Journey%20Together%20N's%20Castle%20152%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8871057",
+      "product_name": "N's Purrloin #96",
+      "console_name": "Pokemon Journey Together",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:96"
+      }
+    },
+    {
+      "query": "Pokemon Journey Together N's Castle 152 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Journey%20Together%20N's%20Castle%20152%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8871169",
+      "product_name": "N's Darumaka #26",
+      "console_name": "Pokemon Journey Together",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:26"
+      }
+    },
+    {
+      "query": "Pokemon Journey Together N's Castle 152 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Journey%20Together%20N's%20Castle%20152%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8871121",
+      "product_name": "N's Reshiram #116",
+      "console_name": "Pokemon Journey Together",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:116"
+      }
+    },
+    {
+      "query": "Pokemon Journey Together N's Castle 152 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Journey%20Together%20N's%20Castle%20152%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8871296",
+      "product_name": "N's Reshiram #167",
+      "console_name": "Pokemon Journey Together",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:167"
+      }
+    },
+    {
+      "query": "Pokemon Journey Together N's Castle 152 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Journey%20Together%20N's%20Castle%20152%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8871085",
+      "product_name": "N's Klinklang #105",
+      "console_name": "Pokemon Journey Together",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:105"
+      }
+    },
+    {
+      "query": "Pokemon Journey Together N's Castle 152 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Journey%20Together%20N's%20Castle%20152%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8871171",
+      "product_name": "N's Darmanitan #27",
+      "console_name": "Pokemon Journey Together",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:27"
+      }
+    },
+    {
+      "query": "Pokemon Journey Together N's Castle 152 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Journey%20Together%20N's%20Castle%20152%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10025682",
+      "product_name": "Levincia [Gym Stamp] #150",
+      "console_name": "Pokemon Journey Together",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:150"
+      }
+    },
+    {
+      "query": "Pokemon Journey Together N's Castle 152 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Journey%20Together%20N's%20Castle%20152%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8871061",
+      "product_name": "N's Zoroark ex #98",
+      "console_name": "Pokemon Journey Together",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:98"
+      }
+    },
+    {
+      "query": "Pokemon Journey Together N's Castle 152 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Journey%20Together%20N's%20Castle%20152%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8883288",
+      "product_name": "N's Zoroark Ex #185",
+      "console_name": "Pokemon Journey Together",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:185"
+      }
+    },
+    {
+      "query": "Pokemon Journey Together N's Castle 152 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Journey%20Together%20N's%20Castle%20152%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8883274",
+      "product_name": "N's Zoroark Ex #189",
+      "console_name": "Pokemon Journey Together",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:189"
+      }
+    }
+  ],
+  "source_lane": "pricecharting_api"
+}

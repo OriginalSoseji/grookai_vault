@@ -1,0 +1,36 @@
+{
+  "fixture_version": "VERIFIED_MASTER_SET_INDEX_V1_HUMAN_SOURCE_FIXTURE_GENERATED",
+  "source_key": "pokemoncard_io_price_breakdown_accepted_delta_v1",
+  "source_kind": "marketplace_checklist",
+  "source_url": "https://pokemoncard.io/card/chimchar-pop8-12",
+  "source_status": "available_generated_accepted_delta",
+  "set_key": "accepted_delta",
+  "set_name": "pokemoncard_io_price_breakdown accepted delta",
+  "retrieved_at": "2026-06-08T03:04:20.790Z",
+  "raw_snapshot_ref": "generated_fixture:accepted_delta:pokemoncard_io_price_breakdown:2026-06-08T03:04:20.790Z",
+  "audit_only": true,
+  "db_writes_performed": false,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "generation_note": "Generated from source delta audit useful matches only. Existing accepted delta rows are preserved to avoid source-reset evidence loss.",
+  "records": [
+    {
+      "source_key": "pokemoncard_io_price_breakdown",
+      "source_kind": "marketplace_checklist",
+      "source_url": "https://pokemoncard.io/card/chimchar-pop8-12",
+      "set_key": "pop8",
+      "set_name": "POP Series 8",
+      "card_number": "12",
+      "card_name": "Chimchar",
+      "finish_key": "reverse",
+      "rarity": null,
+      "evidence_type": "finish_presence",
+      "evidence_label": "PokemonCard.io TCGplayer price breakdown row: Chimchar reverse",
+      "language": "en",
+      "retrieved_at": "2026-06-08T03:04:20.790Z",
+      "raw_snapshot_ref": "accepted_delta:pokemoncard_io_price_breakdown_source_delta_audit_v1.json:pokemoncard_io_price_breakdown:pop8:12:reverse",
+      "notes": "Accepted from source delta audit with status candidate_second_finish_source. This is exact gap-matched evidence only; broad source fixture rows remain excluded from direct promotion."
+    }
+  ]
+}

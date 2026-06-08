@@ -1,0 +1,549 @@
+{
+  "status": "api_no_validated_match",
+  "fact": {
+    "gap_type": "finish_second_source_needed",
+    "fact_type": "printing_finish",
+    "set_key": "sv09",
+    "set_name": "Journey Together",
+    "card_number": "149",
+    "card_name": "Iris's Fighting Spirit",
+    "finish_key": "stamped",
+    "status": "human_source_verified",
+    "sources": [
+      "thepricedex_price_list"
+    ],
+    "source_authorities": [
+      "thepricedex.com"
+    ],
+    "source_kinds": [
+      "marketplace_checklist"
+    ],
+    "evidence_urls": [
+      "https://www.thepricedex.com/set/sv9/journey-together/price-list"
+    ],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "attempts": [
+    {
+      "query": "Pokemon Journey Together Iris's Fighting Spirit 149 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Journey%20Together%20Iris's%20Fighting%20Spirit%20149%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8871244",
+      "product_name": "Iris's Fighting Spirit #149",
+      "console_name": "Pokemon Journey Together",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon Journey Together Iris's Fighting Spirit 149 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Journey%20Together%20Iris's%20Fighting%20Spirit%20149%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10951959",
+      "product_name": "Iris's Fighting Spirit [Prize Pack] #149",
+      "console_name": "Pokemon Journey Together",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Prize Pack"
+      }
+    },
+    {
+      "query": "Pokemon Journey Together Iris's Fighting Spirit 149 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Journey%20Together%20Iris's%20Fighting%20Spirit%20149%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8871214",
+      "product_name": "Iris's Fighting Spirit [Reverse Holo] #149",
+      "console_name": "Pokemon Journey Together",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Reverse Holo"
+      }
+    },
+    {
+      "query": "Pokemon Journey Together Iris's Fighting Spirit 149 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Journey%20Together%20Iris's%20Fighting%20Spirit%20149%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10025668",
+      "product_name": "Iris's Fighting Spirit [Ultra Ball League] #149",
+      "console_name": "Pokemon Journey Together",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Ultra Ball League"
+      }
+    },
+    {
+      "query": "Pokemon Journey Together Iris's Fighting Spirit 149 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Journey%20Together%20Iris's%20Fighting%20Spirit%20149%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8883285",
+      "product_name": "Iris's Fighting Spirit #180",
+      "console_name": "Pokemon Journey Together",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:180"
+      }
+    },
+    {
+      "query": "Pokemon Journey Together Iris's Fighting Spirit 149 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Journey%20Together%20Iris's%20Fighting%20Spirit%20149%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11783183",
+      "product_name": "Iris's Fighting Spirit [Regional Championships] #149",
+      "console_name": "Pokemon Journey Together",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Regional Championships"
+      }
+    },
+    {
+      "query": "Pokemon Journey Together Iris's Fighting Spirit 149 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Journey%20Together%20Iris's%20Fighting%20Spirit%20149%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8437172",
+      "product_name": "Iris's Fighting Spirit #94",
+      "console_name": "Pokemon Japanese Battle Partners",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:94"
+      }
+    },
+    {
+      "query": "Pokemon Journey Together Iris's Fighting Spirit 149 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Journey%20Together%20Iris's%20Fighting%20Spirit%20149%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8437199",
+      "product_name": "Iris's Fighting Spirit #121",
+      "console_name": "Pokemon Japanese Battle Partners",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:121"
+      }
+    },
+    {
+      "query": "Pokemon Journey Together Iris's Fighting Spirit 149 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Journey%20Together%20Iris's%20Fighting%20Spirit%20149%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11816120",
+      "product_name": "Iris's Fighting Spirit #190",
+      "console_name": "Pokemon Ascended Heroes",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:190"
+      }
+    },
+    {
+      "query": "Pokemon Journey Together Iris's Fighting Spirit 149 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Journey%20Together%20Iris's%20Fighting%20Spirit%20149%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11816199",
+      "product_name": "Iris's Fighting Spirit #292",
+      "console_name": "Pokemon Ascended Heroes",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:292"
+      }
+    },
+    {
+      "query": "Pokemon Journey Together Iris's Fighting Spirit 149 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Journey%20Together%20Iris's%20Fighting%20Spirit%20149%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "13014845",
+      "product_name": "Iris's Fighting Spirit #247",
+      "console_name": "Pokemon Korean Mega Dream ex",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:247"
+      }
+    },
+    {
+      "query": "Pokemon Journey Together Iris's Fighting Spirit 149 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Journey%20Together%20Iris's%20Fighting%20Spirit%20149%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "13014855",
+      "product_name": "Iris's Fighting Spirit #168",
+      "console_name": "Pokemon Korean Mega Dream ex",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:168"
+      }
+    },
+    {
+      "query": "Pokemon Journey Together Iris's Fighting Spirit 149 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Journey%20Together%20Iris's%20Fighting%20Spirit%20149%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11302534",
+      "product_name": "Iris's Fighting Spirit #168",
+      "console_name": "Pokemon Japanese Mega Dream ex",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:168"
+      }
+    },
+    {
+      "query": "Pokemon Journey Together Iris's Fighting Spirit 149 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Journey%20Together%20Iris's%20Fighting%20Spirit%20149%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11302613",
+      "product_name": "Iris's Fighting Spirit #247",
+      "console_name": "Pokemon Japanese Mega Dream ex",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:247"
+      }
+    },
+    {
+      "query": "Pokemon Journey Together Iris's Fighting Spirit 149 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Journey%20Together%20Iris's%20Fighting%20Spirit%20149%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11463054",
+      "product_name": "Iris's Fighting Spirit #694",
+      "console_name": "Pokemon Japanese Start Deck 100 Battle Collection",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:694"
+      }
+    },
+    {
+      "query": "Pokemon Journey Together Iris's Fighting Spirit 149 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Journey%20Together%20Iris's%20Fighting%20Spirit%20149%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10515257",
+      "product_name": "Iris's Fighting Spirit #19",
+      "console_name": "Pokemon Japanese Mega Starter Deck Gengar Ex",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:19"
+      }
+    },
+    {
+      "query": "Pokemon Journey Together Iris's Fighting Spirit 149 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Journey%20Together%20Iris's%20Fighting%20Spirit%20149%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10515231",
+      "product_name": "Iris's Fighting Spirit #18",
+      "console_name": "Pokemon Japanese Mega Starter Deck Diancie Ex",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:18"
+      }
+    },
+    {
+      "query": "Pokemon Journey Together Iris's Fighting Spirit 149 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Journey%20Together%20Iris's%20Fighting%20Spirit%20149%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11675085",
+      "product_name": "Iris's Fighting Spirit #18",
+      "console_name": "Pokemon Japanese Start Deck 100 Battle Collection CoroCiao",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:18"
+      }
+    },
+    {
+      "query": "Pokemon Journey Together Iris's Fighting Spirit 149 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Journey%20Together%20Iris's%20Fighting%20Spirit%20149%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11971829",
+      "product_name": "Iris's Fighting Spirit [Reverse Holo] #190",
+      "console_name": "Pokemon Ascended Heroes",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:190"
+      }
+    },
+    {
+      "query": "Pokemon Journey Together Iris's Fighting Spirit 149 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Journey%20Together%20Iris's%20Fighting%20Spirit%20149%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11519186",
+      "product_name": "Iris's Fighting Spirit [Mirror Holo] #694",
+      "console_name": "Pokemon Japanese Start Deck 100 Battle Collection",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:694"
+      }
+    },
+    {
+      "query": "Pokemon Journey Together Iris's Fighting Spirit 149 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Journey%20Together%20Iris's%20Fighting%20Spirit%20149%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8871244",
+      "product_name": "Iris's Fighting Spirit #149",
+      "console_name": "Pokemon Journey Together",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon Journey Together Iris's Fighting Spirit 149 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Journey%20Together%20Iris's%20Fighting%20Spirit%20149%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10951959",
+      "product_name": "Iris's Fighting Spirit [Prize Pack] #149",
+      "console_name": "Pokemon Journey Together",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Prize Pack"
+      }
+    },
+    {
+      "query": "Pokemon Journey Together Iris's Fighting Spirit 149 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Journey%20Together%20Iris's%20Fighting%20Spirit%20149%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8871214",
+      "product_name": "Iris's Fighting Spirit [Reverse Holo] #149",
+      "console_name": "Pokemon Journey Together",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Reverse Holo"
+      }
+    },
+    {
+      "query": "Pokemon Journey Together Iris's Fighting Spirit 149 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Journey%20Together%20Iris's%20Fighting%20Spirit%20149%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10025668",
+      "product_name": "Iris's Fighting Spirit [Ultra Ball League] #149",
+      "console_name": "Pokemon Journey Together",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Ultra Ball League"
+      }
+    },
+    {
+      "query": "Pokemon Journey Together Iris's Fighting Spirit 149 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Journey%20Together%20Iris's%20Fighting%20Spirit%20149%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8883285",
+      "product_name": "Iris's Fighting Spirit #180",
+      "console_name": "Pokemon Journey Together",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:180"
+      }
+    },
+    {
+      "query": "Pokemon Journey Together Iris's Fighting Spirit 149 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Journey%20Together%20Iris's%20Fighting%20Spirit%20149%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11783183",
+      "product_name": "Iris's Fighting Spirit [Regional Championships] #149",
+      "console_name": "Pokemon Journey Together",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Regional Championships"
+      }
+    },
+    {
+      "query": "Pokemon Journey Together Iris's Fighting Spirit 149 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Journey%20Together%20Iris's%20Fighting%20Spirit%20149%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8437172",
+      "product_name": "Iris's Fighting Spirit #94",
+      "console_name": "Pokemon Japanese Battle Partners",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:94"
+      }
+    },
+    {
+      "query": "Pokemon Journey Together Iris's Fighting Spirit 149 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Journey%20Together%20Iris's%20Fighting%20Spirit%20149%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8437199",
+      "product_name": "Iris's Fighting Spirit #121",
+      "console_name": "Pokemon Japanese Battle Partners",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:121"
+      }
+    },
+    {
+      "query": "Pokemon Journey Together Iris's Fighting Spirit 149 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Journey%20Together%20Iris's%20Fighting%20Spirit%20149%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11816120",
+      "product_name": "Iris's Fighting Spirit #190",
+      "console_name": "Pokemon Ascended Heroes",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:190"
+      }
+    },
+    {
+      "query": "Pokemon Journey Together Iris's Fighting Spirit 149 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Journey%20Together%20Iris's%20Fighting%20Spirit%20149%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11816199",
+      "product_name": "Iris's Fighting Spirit #292",
+      "console_name": "Pokemon Ascended Heroes",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:292"
+      }
+    },
+    {
+      "query": "Pokemon Journey Together Iris's Fighting Spirit 149 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Journey%20Together%20Iris's%20Fighting%20Spirit%20149%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "13014845",
+      "product_name": "Iris's Fighting Spirit #247",
+      "console_name": "Pokemon Korean Mega Dream ex",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:247"
+      }
+    },
+    {
+      "query": "Pokemon Journey Together Iris's Fighting Spirit 149 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Journey%20Together%20Iris's%20Fighting%20Spirit%20149%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "13014855",
+      "product_name": "Iris's Fighting Spirit #168",
+      "console_name": "Pokemon Korean Mega Dream ex",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:168"
+      }
+    },
+    {
+      "query": "Pokemon Journey Together Iris's Fighting Spirit 149 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Journey%20Together%20Iris's%20Fighting%20Spirit%20149%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11302534",
+      "product_name": "Iris's Fighting Spirit #168",
+      "console_name": "Pokemon Japanese Mega Dream ex",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:168"
+      }
+    },
+    {
+      "query": "Pokemon Journey Together Iris's Fighting Spirit 149 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Journey%20Together%20Iris's%20Fighting%20Spirit%20149%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11302613",
+      "product_name": "Iris's Fighting Spirit #247",
+      "console_name": "Pokemon Japanese Mega Dream ex",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:247"
+      }
+    },
+    {
+      "query": "Pokemon Journey Together Iris's Fighting Spirit 149 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Journey%20Together%20Iris's%20Fighting%20Spirit%20149%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11463054",
+      "product_name": "Iris's Fighting Spirit #694",
+      "console_name": "Pokemon Japanese Start Deck 100 Battle Collection",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:694"
+      }
+    },
+    {
+      "query": "Pokemon Journey Together Iris's Fighting Spirit 149 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Journey%20Together%20Iris's%20Fighting%20Spirit%20149%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10515257",
+      "product_name": "Iris's Fighting Spirit #19",
+      "console_name": "Pokemon Japanese Mega Starter Deck Gengar Ex",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:19"
+      }
+    },
+    {
+      "query": "Pokemon Journey Together Iris's Fighting Spirit 149 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Journey%20Together%20Iris's%20Fighting%20Spirit%20149%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10515231",
+      "product_name": "Iris's Fighting Spirit #18",
+      "console_name": "Pokemon Japanese Mega Starter Deck Diancie Ex",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:18"
+      }
+    },
+    {
+      "query": "Pokemon Journey Together Iris's Fighting Spirit 149 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Journey%20Together%20Iris's%20Fighting%20Spirit%20149%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11675085",
+      "product_name": "Iris's Fighting Spirit #18",
+      "console_name": "Pokemon Japanese Start Deck 100 Battle Collection CoroCiao",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:18"
+      }
+    },
+    {
+      "query": "Pokemon Journey Together Iris's Fighting Spirit 149 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Journey%20Together%20Iris's%20Fighting%20Spirit%20149%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11971829",
+      "product_name": "Iris's Fighting Spirit [Reverse Holo] #190",
+      "console_name": "Pokemon Ascended Heroes",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:190"
+      }
+    },
+    {
+      "query": "Pokemon Journey Together Iris's Fighting Spirit 149 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Journey%20Together%20Iris's%20Fighting%20Spirit%20149%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11519186",
+      "product_name": "Iris's Fighting Spirit [Mirror Holo] #694",
+      "console_name": "Pokemon Japanese Start Deck 100 Battle Collection",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:694"
+      }
+    }
+  ],
+  "source_lane": "pricecharting_api"
+}

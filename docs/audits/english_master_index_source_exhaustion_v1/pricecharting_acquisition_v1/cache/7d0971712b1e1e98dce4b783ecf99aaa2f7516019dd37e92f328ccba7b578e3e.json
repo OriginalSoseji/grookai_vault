@@ -1,0 +1,62 @@
+{
+  "status": "validated",
+  "fact": {
+    "gap_type": "finish_second_source_needed",
+    "fact_type": "printing_finish",
+    "set_key": "sm10",
+    "set_name": "Unbroken Bonds",
+    "card_number": "60",
+    "card_name": "Zeraora",
+    "finish_key": "holo",
+    "status": "human_source_verified",
+    "sources": [
+      "thepricedex_price_list"
+    ],
+    "source_authorities": [
+      "thepricedex.com"
+    ],
+    "source_kinds": [
+      "marketplace_checklist"
+    ],
+    "evidence_urls": [
+      "https://www.thepricedex.com/set/sm10/unbroken-bonds/price-list"
+    ],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "query": "Pokemon Unbroken Bonds Zeraora 60 holo",
+  "search_url": "https://www.pricecharting.com/api/products?q=Pokemon%20Unbroken%20Bonds%20Zeraora%2060%20holo",
+  "source_url": "https://www.pricecharting.com/game/pokemon-unbroken-bonds/zeraora-reverse-holo-60",
+  "title": "Zeraora [Reverse Holo] #60 | Pokemon Unbroken Bonds",
+  "title_parts": {
+    "card_name": "Zeraora",
+    "card_number": "60",
+    "variant_label": "Reverse Holo",
+    "set_name": "Pokemon Unbroken Bonds",
+    "pricecharting_product_id": "963445"
+  },
+  "validation_source": "pricecharting_api_products",
+  "source_lane": "pricecharting_api",
+  "attempts": [
+    {
+      "query": "Pokemon Unbroken Bonds Zeraora 60 holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Unbroken%20Bonds%20Zeraora%2060%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "963445",
+      "product_name": "Zeraora [Reverse Holo] #60",
+      "console_name": "Pokemon Unbroken Bonds",
+      "validation": {
+        "ok": true,
+        "titleParts": {
+          "card_name": "Zeraora",
+          "card_number": "60",
+          "variant_label": "Reverse Holo",
+          "set_name": "Pokemon Unbroken Bonds",
+          "pricecharting_product_id": "963445"
+        },
+        "source_url": "https://www.pricecharting.com/game/pokemon-unbroken-bonds/zeraora-reverse-holo-60",
+        "title": "Zeraora [Reverse Holo] #60 | Pokemon Unbroken Bonds"
+      }
+    }
+  ]
+}

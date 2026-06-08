@@ -1,0 +1,549 @@
+{
+  "status": "api_no_validated_match",
+  "fact": {
+    "gap_type": "finish_human_checklist_evidence_needed",
+    "fact_type": "printing_finish",
+    "set_key": "pl2",
+    "set_name": "Rising Rivals",
+    "card_number": "95",
+    "card_name": "Team Galactic's Invention G-107 Technical Machine",
+    "finish_key": "reverse",
+    "status": "candidate_unconfirmed",
+    "sources": [
+      "tcgdex"
+    ],
+    "source_authorities": [
+      "api.tcgdex.net"
+    ],
+    "source_kinds": [
+      "structured_api"
+    ],
+    "evidence_urls": [
+      "https://api.tcgdex.net/v2/en/cards/pl2-95"
+    ],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "attempts": [
+    {
+      "query": "Pokemon Rising Rivals Team Galactic's Invention G-107 Technical Machine 95 reverse holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Rising%20Rivals%20Team%20Galactic's%20Invention%20G-107%20Technical%20Machine%2095%20reverse%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "925610",
+      "product_name": "Technical Machine G [Reverse Holo] #95",
+      "console_name": "Pokemon Rising Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Technical Machine G"
+      }
+    },
+    {
+      "query": "Pokemon Rising Rivals Team Galactic's Invention G-107 Technical Machine 95 reverse holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Rising%20Rivals%20Team%20Galactic's%20Invention%20G-107%20Technical%20Machine%2095%20reverse%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12649625",
+      "product_name": "Team Galactic's Invention G-107 #14",
+      "console_name": "Pokemon Japanese Garchomp vs Charizard SP",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:14"
+      }
+    },
+    {
+      "query": "Pokemon Rising Rivals Team Galactic's Invention G-107 Technical Machine 95 reverse holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Rising%20Rivals%20Team%20Galactic's%20Invention%20G-107%20Technical%20Machine%2095%20reverse%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "925491",
+      "product_name": "Technical Machine G #95",
+      "console_name": "Pokemon Rising Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Technical Machine G"
+      }
+    },
+    {
+      "query": "Pokemon Rising Rivals Team Galactic's Invention G-107 Technical Machine 95 reverse holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Rising%20Rivals%20Team%20Galactic's%20Invention%20G-107%20Technical%20Machine%2095%20reverse%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "849746",
+      "product_name": "Technical Machine 01 [Reverse Holo] #79",
+      "console_name": "Pokemon Team Magma & Team Aqua",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:79"
+      }
+    },
+    {
+      "query": "Pokemon Rising Rivals Team Galactic's Invention G-107 Technical Machine 95 reverse holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Rising%20Rivals%20Team%20Galactic's%20Invention%20G-107%20Technical%20Machine%2095%20reverse%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "849750",
+      "product_name": "Technical Machine 01 [Reverse Holo] #84",
+      "console_name": "Pokemon Team Magma & Team Aqua",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:84"
+      }
+    },
+    {
+      "query": "Pokemon Rising Rivals Team Galactic's Invention G-107 Technical Machine 95 reverse holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Rising%20Rivals%20Team%20Galactic's%20Invention%20G-107%20Technical%20Machine%2095%20reverse%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12120381",
+      "product_name": "Team Galactic's Invention G-103 Power Spray [Tsubasa Nakamura] #117",
+      "console_name": "Pokemon World Championships 2009",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:117"
+      }
+    },
+    {
+      "query": "Pokemon Rising Rivals Team Galactic's Invention G-107 Technical Machine 95 reverse holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Rising%20Rivals%20Team%20Galactic's%20Invention%20G-107%20Technical%20Machine%2095%20reverse%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12120311",
+      "product_name": "Team Galactic's Invention G-105 Poke Turn [Tsubasa Nakamura] #118",
+      "console_name": "Pokemon World Championships 2009",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:118"
+      }
+    },
+    {
+      "query": "Pokemon Rising Rivals Team Galactic's Invention G-107 Technical Machine 95 reverse holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Rising%20Rivals%20Team%20Galactic's%20Invention%20G-107%20Technical%20Machine%2095%20reverse%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12120312",
+      "product_name": "Team Galactic's Invention G-109 SP Radar [Tsubasa Nakamura] #96",
+      "console_name": "Pokemon World Championships 2009",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:96"
+      }
+    },
+    {
+      "query": "Pokemon Rising Rivals Team Galactic's Invention G-107 Technical Machine 95 reverse holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Rising%20Rivals%20Team%20Galactic's%20Invention%20G-107%20Technical%20Machine%2095%20reverse%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12289517",
+      "product_name": "Team Galactic's Invention G-103 Power Spray [Yuta Komatsuda] #117",
+      "console_name": "Pokemon World Championships 2010",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:117"
+      }
+    },
+    {
+      "query": "Pokemon Rising Rivals Team Galactic's Invention G-107 Technical Machine 95 reverse holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Rising%20Rivals%20Team%20Galactic's%20Invention%20G-107%20Technical%20Machine%2095%20reverse%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "925519",
+      "product_name": "Darkrai G [Reverse Holo] #3",
+      "console_name": "Pokemon Rising Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:3"
+      }
+    },
+    {
+      "query": "Pokemon Rising Rivals Team Galactic's Invention G-107 Technical Machine 95 reverse holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Rising%20Rivals%20Team%20Galactic's%20Invention%20G-107%20Technical%20Machine%2095%20reverse%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "925571",
+      "product_name": "Ambipom G [Reverse Holo] #56",
+      "console_name": "Pokemon Rising Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:56"
+      }
+    },
+    {
+      "query": "Pokemon Rising Rivals Team Galactic's Invention G-107 Technical Machine 95 reverse holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Rising%20Rivals%20Team%20Galactic's%20Invention%20G-107%20Technical%20Machine%2095%20reverse%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "925576",
+      "product_name": "Forretress G [Reverse Holo] #61",
+      "console_name": "Pokemon Rising Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:61"
+      }
+    },
+    {
+      "query": "Pokemon Rising Rivals Team Galactic's Invention G-107 Technical Machine 95 reverse holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Rising%20Rivals%20Team%20Galactic's%20Invention%20G-107%20Technical%20Machine%2095%20reverse%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "925554",
+      "product_name": "Electrode G [Reverse Holo] #39",
+      "console_name": "Pokemon Rising Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:39"
+      }
+    },
+    {
+      "query": "Pokemon Rising Rivals Team Galactic's Invention G-107 Technical Machine 95 reverse holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Rising%20Rivals%20Team%20Galactic's%20Invention%20G-107%20Technical%20Machine%2095%20reverse%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "2266997",
+      "product_name": "Multi Technical Machine 01 [Reverse Holo] #144",
+      "console_name": "Pokemon Expedition",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:144"
+      }
+    },
+    {
+      "query": "Pokemon Rising Rivals Team Galactic's Invention G-107 Technical Machine 95 reverse holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Rising%20Rivals%20Team%20Galactic's%20Invention%20G-107%20Technical%20Machine%2095%20reverse%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "925211",
+      "product_name": "Technical Machine TS-2 [Reverse Holo] #137",
+      "console_name": "Pokemon Legends Awakened",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:137"
+      }
+    },
+    {
+      "query": "Pokemon Rising Rivals Team Galactic's Invention G-107 Technical Machine 95 reverse holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Rising%20Rivals%20Team%20Galactic's%20Invention%20G-107%20Technical%20Machine%2095%20reverse%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "925210",
+      "product_name": "Technical Machine TS-1 [Reverse Holo] #136",
+      "console_name": "Pokemon Legends Awakened",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:136"
+      }
+    },
+    {
+      "query": "Pokemon Rising Rivals Team Galactic's Invention G-107 Technical Machine 95 reverse holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Rising%20Rivals%20Team%20Galactic's%20Invention%20G-107%20Technical%20Machine%2095%20reverse%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "849653",
+      "product_name": "Technical Machine 01 #84",
+      "console_name": "Pokemon Team Magma & Team Aqua",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:84"
+      }
+    },
+    {
+      "query": "Pokemon Rising Rivals Team Galactic's Invention G-107 Technical Machine 95 reverse holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Rising%20Rivals%20Team%20Galactic's%20Invention%20G-107%20Technical%20Machine%2095%20reverse%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "849648",
+      "product_name": "Technical Machine 01 #79",
+      "console_name": "Pokemon Team Magma & Team Aqua",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:79"
+      }
+    },
+    {
+      "query": "Pokemon Rising Rivals Team Galactic's Invention G-107 Technical Machine 95 reverse holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Rising%20Rivals%20Team%20Galactic's%20Invention%20G-107%20Technical%20Machine%2095%20reverse%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6277245",
+      "product_name": "Technical Machine: Crisis Punch [Reverse Holo] #90",
+      "console_name": "Pokemon Paldean Fates",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:90"
+      }
+    },
+    {
+      "query": "Pokemon Rising Rivals Team Galactic's Invention G-107 Technical Machine 95 reverse holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Rising%20Rivals%20Team%20Galactic's%20Invention%20G-107%20Technical%20Machine%2095%20reverse%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9433036",
+      "product_name": "Team Rocket's Pupitar [Reverse Holo] #95",
+      "console_name": "Pokemon Destined Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Team Rocket's Pupitar"
+      }
+    },
+    {
+      "query": "Pokemon Rising Rivals Team Galactic's Invention G-107 Technical Machine 95 reverse holofoil",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Rising%20Rivals%20Team%20Galactic's%20Invention%20G-107%20Technical%20Machine%2095%20reverse%20holofoil",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "925610",
+      "product_name": "Technical Machine G [Reverse Holo] #95",
+      "console_name": "Pokemon Rising Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Technical Machine G"
+      }
+    },
+    {
+      "query": "Pokemon Rising Rivals Team Galactic's Invention G-107 Technical Machine 95 reverse holofoil",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Rising%20Rivals%20Team%20Galactic's%20Invention%20G-107%20Technical%20Machine%2095%20reverse%20holofoil",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12649625",
+      "product_name": "Team Galactic's Invention G-107 #14",
+      "console_name": "Pokemon Japanese Garchomp vs Charizard SP",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:14"
+      }
+    },
+    {
+      "query": "Pokemon Rising Rivals Team Galactic's Invention G-107 Technical Machine 95 reverse holofoil",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Rising%20Rivals%20Team%20Galactic's%20Invention%20G-107%20Technical%20Machine%2095%20reverse%20holofoil",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "925491",
+      "product_name": "Technical Machine G #95",
+      "console_name": "Pokemon Rising Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Technical Machine G"
+      }
+    },
+    {
+      "query": "Pokemon Rising Rivals Team Galactic's Invention G-107 Technical Machine 95 reverse holofoil",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Rising%20Rivals%20Team%20Galactic's%20Invention%20G-107%20Technical%20Machine%2095%20reverse%20holofoil",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "849746",
+      "product_name": "Technical Machine 01 [Reverse Holo] #79",
+      "console_name": "Pokemon Team Magma & Team Aqua",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:79"
+      }
+    },
+    {
+      "query": "Pokemon Rising Rivals Team Galactic's Invention G-107 Technical Machine 95 reverse holofoil",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Rising%20Rivals%20Team%20Galactic's%20Invention%20G-107%20Technical%20Machine%2095%20reverse%20holofoil",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "849750",
+      "product_name": "Technical Machine 01 [Reverse Holo] #84",
+      "console_name": "Pokemon Team Magma & Team Aqua",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:84"
+      }
+    },
+    {
+      "query": "Pokemon Rising Rivals Team Galactic's Invention G-107 Technical Machine 95 reverse holofoil",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Rising%20Rivals%20Team%20Galactic's%20Invention%20G-107%20Technical%20Machine%2095%20reverse%20holofoil",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12120381",
+      "product_name": "Team Galactic's Invention G-103 Power Spray [Tsubasa Nakamura] #117",
+      "console_name": "Pokemon World Championships 2009",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:117"
+      }
+    },
+    {
+      "query": "Pokemon Rising Rivals Team Galactic's Invention G-107 Technical Machine 95 reverse holofoil",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Rising%20Rivals%20Team%20Galactic's%20Invention%20G-107%20Technical%20Machine%2095%20reverse%20holofoil",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12120311",
+      "product_name": "Team Galactic's Invention G-105 Poke Turn [Tsubasa Nakamura] #118",
+      "console_name": "Pokemon World Championships 2009",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:118"
+      }
+    },
+    {
+      "query": "Pokemon Rising Rivals Team Galactic's Invention G-107 Technical Machine 95 reverse holofoil",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Rising%20Rivals%20Team%20Galactic's%20Invention%20G-107%20Technical%20Machine%2095%20reverse%20holofoil",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12120312",
+      "product_name": "Team Galactic's Invention G-109 SP Radar [Tsubasa Nakamura] #96",
+      "console_name": "Pokemon World Championships 2009",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:96"
+      }
+    },
+    {
+      "query": "Pokemon Rising Rivals Team Galactic's Invention G-107 Technical Machine 95 reverse holofoil",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Rising%20Rivals%20Team%20Galactic's%20Invention%20G-107%20Technical%20Machine%2095%20reverse%20holofoil",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12289517",
+      "product_name": "Team Galactic's Invention G-103 Power Spray [Yuta Komatsuda] #117",
+      "console_name": "Pokemon World Championships 2010",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:117"
+      }
+    },
+    {
+      "query": "Pokemon Rising Rivals Team Galactic's Invention G-107 Technical Machine 95 reverse holofoil",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Rising%20Rivals%20Team%20Galactic's%20Invention%20G-107%20Technical%20Machine%2095%20reverse%20holofoil",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "925519",
+      "product_name": "Darkrai G [Reverse Holo] #3",
+      "console_name": "Pokemon Rising Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:3"
+      }
+    },
+    {
+      "query": "Pokemon Rising Rivals Team Galactic's Invention G-107 Technical Machine 95 reverse holofoil",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Rising%20Rivals%20Team%20Galactic's%20Invention%20G-107%20Technical%20Machine%2095%20reverse%20holofoil",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "925571",
+      "product_name": "Ambipom G [Reverse Holo] #56",
+      "console_name": "Pokemon Rising Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:56"
+      }
+    },
+    {
+      "query": "Pokemon Rising Rivals Team Galactic's Invention G-107 Technical Machine 95 reverse holofoil",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Rising%20Rivals%20Team%20Galactic's%20Invention%20G-107%20Technical%20Machine%2095%20reverse%20holofoil",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "925576",
+      "product_name": "Forretress G [Reverse Holo] #61",
+      "console_name": "Pokemon Rising Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:61"
+      }
+    },
+    {
+      "query": "Pokemon Rising Rivals Team Galactic's Invention G-107 Technical Machine 95 reverse holofoil",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Rising%20Rivals%20Team%20Galactic's%20Invention%20G-107%20Technical%20Machine%2095%20reverse%20holofoil",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "925554",
+      "product_name": "Electrode G [Reverse Holo] #39",
+      "console_name": "Pokemon Rising Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:39"
+      }
+    },
+    {
+      "query": "Pokemon Rising Rivals Team Galactic's Invention G-107 Technical Machine 95 reverse holofoil",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Rising%20Rivals%20Team%20Galactic's%20Invention%20G-107%20Technical%20Machine%2095%20reverse%20holofoil",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "2266997",
+      "product_name": "Multi Technical Machine 01 [Reverse Holo] #144",
+      "console_name": "Pokemon Expedition",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:144"
+      }
+    },
+    {
+      "query": "Pokemon Rising Rivals Team Galactic's Invention G-107 Technical Machine 95 reverse holofoil",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Rising%20Rivals%20Team%20Galactic's%20Invention%20G-107%20Technical%20Machine%2095%20reverse%20holofoil",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "925211",
+      "product_name": "Technical Machine TS-2 [Reverse Holo] #137",
+      "console_name": "Pokemon Legends Awakened",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:137"
+      }
+    },
+    {
+      "query": "Pokemon Rising Rivals Team Galactic's Invention G-107 Technical Machine 95 reverse holofoil",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Rising%20Rivals%20Team%20Galactic's%20Invention%20G-107%20Technical%20Machine%2095%20reverse%20holofoil",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "925210",
+      "product_name": "Technical Machine TS-1 [Reverse Holo] #136",
+      "console_name": "Pokemon Legends Awakened",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:136"
+      }
+    },
+    {
+      "query": "Pokemon Rising Rivals Team Galactic's Invention G-107 Technical Machine 95 reverse holofoil",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Rising%20Rivals%20Team%20Galactic's%20Invention%20G-107%20Technical%20Machine%2095%20reverse%20holofoil",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "849653",
+      "product_name": "Technical Machine 01 #84",
+      "console_name": "Pokemon Team Magma & Team Aqua",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:84"
+      }
+    },
+    {
+      "query": "Pokemon Rising Rivals Team Galactic's Invention G-107 Technical Machine 95 reverse holofoil",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Rising%20Rivals%20Team%20Galactic's%20Invention%20G-107%20Technical%20Machine%2095%20reverse%20holofoil",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "849648",
+      "product_name": "Technical Machine 01 #79",
+      "console_name": "Pokemon Team Magma & Team Aqua",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:79"
+      }
+    },
+    {
+      "query": "Pokemon Rising Rivals Team Galactic's Invention G-107 Technical Machine 95 reverse holofoil",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Rising%20Rivals%20Team%20Galactic's%20Invention%20G-107%20Technical%20Machine%2095%20reverse%20holofoil",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6277245",
+      "product_name": "Technical Machine: Crisis Punch [Reverse Holo] #90",
+      "console_name": "Pokemon Paldean Fates",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:90"
+      }
+    },
+    {
+      "query": "Pokemon Rising Rivals Team Galactic's Invention G-107 Technical Machine 95 reverse holofoil",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Rising%20Rivals%20Team%20Galactic's%20Invention%20G-107%20Technical%20Machine%2095%20reverse%20holofoil",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9433036",
+      "product_name": "Team Rocket's Pupitar [Reverse Holo] #95",
+      "console_name": "Pokemon Destined Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Team Rocket's Pupitar"
+      }
+    }
+  ],
+  "source_lane": "pricecharting_api"
+}

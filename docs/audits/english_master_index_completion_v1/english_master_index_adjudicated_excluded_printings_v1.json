@@ -1,0 +1,188 @@
+{
+  "generated_at": "2026-06-08T19:44:32.664Z",
+  "contract": "ENGLISH_MASTER_INDEX_COMPLETION_V1",
+  "audit_only": true,
+  "db_writes_performed": false,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "grookai_reconciliation_performed": false,
+  "version": "english_master_index_adjudicated_excluded_printings_v1",
+  "rule": "These printing facts were reviewed at the finish-blocker boundary and excluded from working Master Index truth. They are preserved as audit evidence, not publishable printings and not mutation authority.",
+  "summary": {
+    "excluded_printing_facts": 5,
+    "by_set": {
+      "bw8": 1,
+      "sm8": 1,
+      "swsh3.5": 1,
+      "sv03.5": 1,
+      "ex9": 1
+    },
+    "by_finish": {
+      "holo": 1,
+      "stamped": 1,
+      "normal": 3
+    },
+    "by_blocker_type": {
+      "finish_label_conflict": 4,
+      "card_number_conflict": 1
+    }
+  },
+  "printings": [
+    {
+      "set_key": "bw8",
+      "set_name": "Plasma Storm",
+      "card_number": "94",
+      "card_name": "Druddigon",
+      "finish_key": "holo",
+      "language": "en",
+      "source_count": 1,
+      "sources": [
+        "thepricedex_price_list"
+      ],
+      "source_kinds": [
+        "marketplace_checklist"
+      ],
+      "status": "human_source_verified",
+      "evidence_urls": [
+        "https://www.thepricedex.com/set/bw8/plasma-storm/price-list"
+      ],
+      "blocker_type": "finish_label_conflict",
+      "reason_not_promoted": "Evidence distinguishes cracked ice holo from the base card; this audit does not collapse cracked_ice into holo.",
+      "next_action": "Classify as finish-label conflict unless an exact plain holo source is found.",
+      "adjudication_evidence_urls": [
+        "https://bulbapedia.bulbagarden.net/wiki/Druddigon_%28Plasma_Storm_94%29",
+        "https://www.pricecharting.com/game/pokemon-plasma-storm/druddigon-cracked-ice-holo-94",
+        "https://www.pricecharting.com/game/pokemon-plasma-storm/druddigon-94"
+      ],
+      "adjudication_evidence_labels": [
+        "Bulbapedia release info identifies a Cracked Ice Holofoil version in the Plasma Claw Theme Deck.",
+        "PriceCharting tracks Druddigon [Cracked Ice Holo] #94 as a separate product.",
+        "PriceCharting base Druddigon #94 product includes non-holo/regular-sale context."
+      ],
+      "exclusion_status": "excluded_from_master_index_working_truth"
+    },
+    {
+      "set_key": "sm8",
+      "set_name": "Lost Thunder",
+      "card_number": "187",
+      "card_name": "Net Ball",
+      "finish_key": "stamped",
+      "language": "en",
+      "source_count": 1,
+      "sources": [
+        "thepricedex_price_list"
+      ],
+      "source_kinds": [
+        "marketplace_checklist"
+      ],
+      "status": "human_source_verified",
+      "evidence_urls": [
+        "https://www.thepricedex.com/set/sm8/lost-thunder/price-list"
+      ],
+      "blocker_type": "card_number_conflict",
+      "reason_not_promoted": "Exact league/stamped evidence points to 187a/214, not exact card number 187/214.",
+      "next_action": "Resolve numbering/alias identity before any promotion.",
+      "adjudication_evidence_urls": [
+        "https://bulbapedia.bulbagarden.net/wiki/Net_Ball_%28TCG%29",
+        "https://pkmncards.com/card/net-ball-lost-thunder-lot-187a/",
+        "https://www.magicstronghold.com/store/item/89283"
+      ],
+      "adjudication_evidence_labels": [
+        "Bulbapedia release info identifies the Pokémon League Yellow A Alternate card as English card no. 187a/214.",
+        "PkmnCards identifies Net Ball Lost Thunder #187a/214 as Alternate.",
+        "Magic Stronghold product page identifies Net Ball (Pokemon League) #187a/214 Reverse Holofoil."
+      ],
+      "exclusion_status": "excluded_from_master_index_working_truth"
+    },
+    {
+      "set_key": "swsh3.5",
+      "set_name": "Champion's Path",
+      "card_number": "62",
+      "card_name": "Professor's Research (Professor Magnolia)",
+      "finish_key": "normal",
+      "language": "en",
+      "source_count": 1,
+      "sources": [
+        "thepricedex_price_list"
+      ],
+      "source_kinds": [
+        "marketplace_checklist"
+      ],
+      "status": "human_source_verified",
+      "evidence_urls": [
+        "https://www.thepricedex.com/set/swsh35/champions-path/price-list"
+      ],
+      "blocker_type": "finish_label_conflict",
+      "reason_not_promoted": "Available exact source context does not support normal finish.",
+      "next_action": "Classify as possible unsupported normal unless exact normal evidence is found.",
+      "adjudication_evidence_urls": [
+        "https://www.tcgplayer.com/categories/trading-and-collectible-card-games/pokemon/price-guides/champions-path",
+        "https://guardiantcg.app/pokemon/champion-s-path/professor-s-research"
+      ],
+      "adjudication_evidence_labels": [
+        "TCGplayer Champion's Path price guide lists Professor's Research #62/73 with Holofoil and Reverse Holofoil printings.",
+        "Guardian TCG card page describes Professor's Research #62/73 as Holo Rare / Reverse Holofoil context."
+      ],
+      "exclusion_status": "excluded_from_master_index_working_truth"
+    },
+    {
+      "set_key": "sv03.5",
+      "set_name": "151",
+      "card_number": "146",
+      "card_name": "Moltres",
+      "finish_key": "normal",
+      "language": "en",
+      "source_count": 1,
+      "sources": [
+        "thepricedex_price_list"
+      ],
+      "source_kinds": [
+        "marketplace_checklist"
+      ],
+      "status": "human_source_verified",
+      "evidence_urls": [
+        "https://www.thepricedex.com/set/sv3pt5/151/price-list"
+      ],
+      "blocker_type": "finish_label_conflict",
+      "reason_not_promoted": "Available exact source does not list normal finish.",
+      "next_action": "Classify as possible unsupported normal unless exact normal evidence is found.",
+      "adjudication_evidence_urls": [
+        "https://pokescope.app/card/sv3pt5-146/"
+      ],
+      "adjudication_evidence_labels": [
+        "PokeScope exact card page lists Reverse Holofoil and Holofoil variants for 151 #146/165 Moltres."
+      ],
+      "exclusion_status": "excluded_from_master_index_working_truth"
+    },
+    {
+      "set_key": "ex9",
+      "set_name": "Emerald",
+      "card_number": "107",
+      "card_name": "Farfetch'd",
+      "finish_key": "normal",
+      "language": "en",
+      "source_count": 1,
+      "sources": [
+        "cardtrader_blueprint_index"
+      ],
+      "source_kinds": [
+        "marketplace_checklist"
+      ],
+      "status": "human_source_verified",
+      "evidence_urls": [
+        "https://www.cardtrader.com/en/cards/115934-farfetch-d-secret-rare-107-106-ex-emerald"
+      ],
+      "blocker_type": "finish_label_conflict",
+      "reason_not_promoted": "Available exact source context does not support normal finish.",
+      "next_action": "Classify as possible unsupported normal unless an exact normal-source record is found.",
+      "adjudication_evidence_urls": [
+        "https://pokescope.app/card/ex9-107/"
+      ],
+      "adjudication_evidence_labels": [
+        "PokeScope exact card page identifies Emerald #107/106 Farfetch'd as Rare Secret with Market Price (TCG holofoil)."
+      ],
+      "exclusion_status": "excluded_from_master_index_working_truth"
+    }
+  ]
+}

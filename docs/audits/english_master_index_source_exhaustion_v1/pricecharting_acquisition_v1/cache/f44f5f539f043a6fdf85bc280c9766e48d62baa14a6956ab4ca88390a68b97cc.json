@@ -1,0 +1,549 @@
+{
+  "status": "api_no_validated_match",
+  "fact": {
+    "gap_type": "finish_second_source_needed",
+    "fact_type": "printing_finish",
+    "set_key": "bw1",
+    "set_name": "Black & White",
+    "card_number": "112",
+    "card_name": "Metal Energy",
+    "finish_key": "stamped",
+    "status": "human_source_verified",
+    "sources": [
+      "thepricedex_price_list"
+    ],
+    "source_authorities": [
+      "thepricedex.com"
+    ],
+    "source_kinds": [
+      "marketplace_checklist"
+    ],
+    "evidence_urls": [
+      "https://www.thepricedex.com/set/bw1/black-and-white/price-list"
+    ],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "attempts": [
+    {
+      "query": "Pokemon Black & White Metal Energy 112 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Metal%20Energy%20112%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8597954",
+      "product_name": "Metal Energy [Play] #112",
+      "console_name": "Pokemon Black & White",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Play"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Metal Energy 112 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Metal%20Energy%20112%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "2677903",
+      "product_name": "Metal Energy #112",
+      "console_name": "Pokemon Black & White",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Metal Energy 112 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Metal%20Energy%20112%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10932246",
+      "product_name": "Metal Energy [Stamped] #2005",
+      "console_name": "Pokemon Chinese Gem Pack 3",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:2005"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Metal Energy 112 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Metal%20Energy%20112%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11169700",
+      "product_name": "Luke's Resistance [Metal] #112",
+      "console_name": "Star Wars 2020 Return of the Jedi Black & White",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Luke's Resistance"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Metal Energy 112 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Metal%20Energy%20112%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "2677911",
+      "product_name": "Grass Energy #105",
+      "console_name": "Pokemon Black & White",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:105"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Metal Energy 112 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Metal%20Energy%20112%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "2677907",
+      "product_name": "Darkness Energy #111",
+      "console_name": "Pokemon Black & White",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:111"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Metal Energy 112 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Metal%20Energy%20112%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8597957",
+      "product_name": "Psychic Energy [Play] #109",
+      "console_name": "Pokemon Black & White",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:109"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Metal Energy 112 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Metal%20Energy%20112%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "2677917",
+      "product_name": "Fire Energy #106",
+      "console_name": "Pokemon Black & White",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:106"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Metal Energy 112 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Metal%20Energy%20112%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "2677928",
+      "product_name": "Water Energy #107",
+      "console_name": "Pokemon Black & White",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:107"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Metal Energy 112 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Metal%20Energy%20112%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7047617",
+      "product_name": "Lightning Energy [Holo] #108",
+      "console_name": "Pokemon Black & White",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:108"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Metal Energy 112 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Metal%20Energy%20112%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7047618",
+      "product_name": "Fighting Energy [Holo] #110",
+      "console_name": "Pokemon Black & White",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:110"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Metal Energy 112 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Metal%20Energy%20112%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8597958",
+      "product_name": "Lightning Energy [Play] #108",
+      "console_name": "Pokemon Black & White",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:108"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Metal Energy 112 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Metal%20Energy%20112%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "806400",
+      "product_name": "Energy Switch #94",
+      "console_name": "Pokemon Black & White",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:94"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Metal Energy 112 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Metal%20Energy%20112%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "806399",
+      "product_name": "Energy Search #93",
+      "console_name": "Pokemon Black & White",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:93"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Metal Energy 112 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Metal%20Energy%20112%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "2677913",
+      "product_name": "Psychic Energy #109",
+      "console_name": "Pokemon Black & White",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:109"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Metal Energy 112 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Metal%20Energy%20112%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "806398",
+      "product_name": "Energy Retrieval #92",
+      "console_name": "Pokemon Black & White",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:92"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Metal Energy 112 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Metal%20Energy%20112%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "2677930",
+      "product_name": "Lightning Energy #108",
+      "console_name": "Pokemon Black & White",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:108"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Metal Energy 112 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Metal%20Energy%20112%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "2677920",
+      "product_name": "Fighting Energy #110",
+      "console_name": "Pokemon Black & White",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:110"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Metal Energy 112 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Metal%20Energy%20112%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10264403",
+      "product_name": "Water Energy [League Play] #107",
+      "console_name": "Pokemon Black & White",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:107"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Metal Energy 112 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Metal%20Energy%20112%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "806485",
+      "product_name": "Energy Retrieval [Reverse Holo] #92",
+      "console_name": "Pokemon Black & White",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:92"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Metal Energy 112 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Metal%20Energy%20112%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8597954",
+      "product_name": "Metal Energy [Play] #112",
+      "console_name": "Pokemon Black & White",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Play"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Metal Energy 112 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Metal%20Energy%20112%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "2677903",
+      "product_name": "Metal Energy #112",
+      "console_name": "Pokemon Black & White",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Metal Energy 112 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Metal%20Energy%20112%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10932246",
+      "product_name": "Metal Energy [Stamped] #2005",
+      "console_name": "Pokemon Chinese Gem Pack 3",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:2005"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Metal Energy 112 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Metal%20Energy%20112%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11169700",
+      "product_name": "Luke's Resistance [Metal] #112",
+      "console_name": "Star Wars 2020 Return of the Jedi Black & White",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Luke's Resistance"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Metal Energy 112 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Metal%20Energy%20112%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "2677911",
+      "product_name": "Grass Energy #105",
+      "console_name": "Pokemon Black & White",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:105"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Metal Energy 112 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Metal%20Energy%20112%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "2677907",
+      "product_name": "Darkness Energy #111",
+      "console_name": "Pokemon Black & White",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:111"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Metal Energy 112 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Metal%20Energy%20112%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8597957",
+      "product_name": "Psychic Energy [Play] #109",
+      "console_name": "Pokemon Black & White",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:109"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Metal Energy 112 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Metal%20Energy%20112%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "2677917",
+      "product_name": "Fire Energy #106",
+      "console_name": "Pokemon Black & White",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:106"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Metal Energy 112 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Metal%20Energy%20112%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "2677928",
+      "product_name": "Water Energy #107",
+      "console_name": "Pokemon Black & White",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:107"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Metal Energy 112 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Metal%20Energy%20112%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7047617",
+      "product_name": "Lightning Energy [Holo] #108",
+      "console_name": "Pokemon Black & White",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:108"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Metal Energy 112 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Metal%20Energy%20112%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7047618",
+      "product_name": "Fighting Energy [Holo] #110",
+      "console_name": "Pokemon Black & White",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:110"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Metal Energy 112 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Metal%20Energy%20112%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8597958",
+      "product_name": "Lightning Energy [Play] #108",
+      "console_name": "Pokemon Black & White",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:108"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Metal Energy 112 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Metal%20Energy%20112%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "806400",
+      "product_name": "Energy Switch #94",
+      "console_name": "Pokemon Black & White",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:94"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Metal Energy 112 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Metal%20Energy%20112%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "806399",
+      "product_name": "Energy Search #93",
+      "console_name": "Pokemon Black & White",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:93"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Metal Energy 112 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Metal%20Energy%20112%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "2677913",
+      "product_name": "Psychic Energy #109",
+      "console_name": "Pokemon Black & White",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:109"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Metal Energy 112 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Metal%20Energy%20112%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "806398",
+      "product_name": "Energy Retrieval #92",
+      "console_name": "Pokemon Black & White",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:92"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Metal Energy 112 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Metal%20Energy%20112%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "2677930",
+      "product_name": "Lightning Energy #108",
+      "console_name": "Pokemon Black & White",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:108"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Metal Energy 112 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Metal%20Energy%20112%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "2677920",
+      "product_name": "Fighting Energy #110",
+      "console_name": "Pokemon Black & White",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:110"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Metal Energy 112 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Metal%20Energy%20112%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10264403",
+      "product_name": "Water Energy [League Play] #107",
+      "console_name": "Pokemon Black & White",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:107"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Metal Energy 112 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Metal%20Energy%20112%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "806485",
+      "product_name": "Energy Retrieval [Reverse Holo] #92",
+      "console_name": "Pokemon Black & White",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:92"
+      }
+    }
+  ],
+  "source_lane": "pricecharting_api"
+}

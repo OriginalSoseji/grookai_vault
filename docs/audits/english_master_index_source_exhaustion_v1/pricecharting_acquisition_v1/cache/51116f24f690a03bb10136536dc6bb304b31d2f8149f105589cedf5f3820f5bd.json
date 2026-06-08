@@ -1,0 +1,549 @@
+{
+  "status": "api_no_validated_match",
+  "fact": {
+    "gap_type": "finish_second_source_needed",
+    "fact_type": "printing_finish",
+    "set_key": "me01",
+    "set_name": "Mega Evolution",
+    "card_number": "50",
+    "card_name": "Mega Manectric ex",
+    "finish_key": "stamped",
+    "status": "human_source_verified",
+    "sources": [
+      "thepricedex_price_list"
+    ],
+    "source_authorities": [
+      "thepricedex.com"
+    ],
+    "source_kinds": [
+      "marketplace_checklist"
+    ],
+    "evidence_urls": [
+      "https://www.thepricedex.com/set/me1/mega-evolution/price-list"
+    ],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "attempts": [
+    {
+      "query": "Pokemon Mega Evolution Mega Manectric ex 50 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Mega%20Evolution%20Mega%20Manectric%20ex%2050%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10616158",
+      "product_name": "Mega Manectric ex #50",
+      "console_name": "Pokemon Mega Evolution",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon Mega Evolution Mega Manectric ex 50 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Mega%20Evolution%20Mega%20Manectric%20ex%2050%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10669951",
+      "product_name": "Mega Manectric Ex #158",
+      "console_name": "Pokemon Mega Evolution",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:158"
+      }
+    },
+    {
+      "query": "Pokemon Mega Evolution Mega Manectric ex 50 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Mega%20Evolution%20Mega%20Manectric%20ex%2050%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10085305",
+      "product_name": "Mega Manectric ex #32",
+      "console_name": "Pokemon Japanese Mega Symphonia",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:32"
+      }
+    },
+    {
+      "query": "Pokemon Mega Evolution Mega Manectric ex 50 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Mega%20Evolution%20Mega%20Manectric%20ex%2050%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10117536",
+      "product_name": "Mega Manectric Ex #77",
+      "console_name": "Pokemon Japanese Mega Symphonia",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:77"
+      }
+    },
+    {
+      "query": "Pokemon Mega Evolution Mega Manectric ex 50 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Mega%20Evolution%20Mega%20Manectric%20ex%2050%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12834053",
+      "product_name": "Mega Manectric ex #32",
+      "console_name": "Pokemon Korean Mega Symphonia",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:32"
+      }
+    },
+    {
+      "query": "Pokemon Mega Evolution Mega Manectric ex 50 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Mega%20Evolution%20Mega%20Manectric%20ex%2050%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12834052",
+      "product_name": "Mega Manectric Ex #77",
+      "console_name": "Pokemon Korean Mega Symphonia",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:77"
+      }
+    },
+    {
+      "query": "Pokemon Mega Evolution Mega Manectric ex 50 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Mega%20Evolution%20Mega%20Manectric%20ex%2050%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3462008",
+      "product_name": "Mega Manectric EX #96",
+      "console_name": "Pokemon Japanese Phantom Gate",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:96"
+      }
+    },
+    {
+      "query": "Pokemon Mega Evolution Mega Manectric ex 50 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Mega%20Evolution%20Mega%20Manectric%20ex%2050%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3461936",
+      "product_name": "Mega Manectric EX #24",
+      "console_name": "Pokemon Japanese Phantom Gate",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:24"
+      }
+    },
+    {
+      "query": "Pokemon Mega Evolution Mega Manectric ex 50 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Mega%20Evolution%20Mega%20Manectric%20ex%2050%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3507603",
+      "product_name": "Mega Manectric EX [1st Edition] #24",
+      "console_name": "Pokemon Japanese Phantom Gate",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:24"
+      }
+    },
+    {
+      "query": "Pokemon Mega Evolution Mega Manectric ex 50 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Mega%20Evolution%20Mega%20Manectric%20ex%2050%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3507604",
+      "product_name": "Mega Manectric EX [1st Edition] #96",
+      "console_name": "Pokemon Japanese Phantom Gate",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:96"
+      }
+    },
+    {
+      "query": "Pokemon Mega Evolution Mega Manectric ex 50 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Mega%20Evolution%20Mega%20Manectric%20ex%2050%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10693500",
+      "product_name": "Xerneas [Stamped] #64",
+      "console_name": "Pokemon Mega Evolution",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:64"
+      }
+    },
+    {
+      "query": "Pokemon Mega Evolution Mega Manectric ex 50 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Mega%20Evolution%20Mega%20Manectric%20ex%2050%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4765620",
+      "product_name": "Manectric #3",
+      "console_name": "Pokemon Japanese Rayquaza-EX Mega Battle Deck",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:3"
+      }
+    },
+    {
+      "query": "Pokemon Mega Evolution Mega Manectric ex 50 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Mega%20Evolution%20Mega%20Manectric%20ex%2050%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10616206",
+      "product_name": "Mega Latias ex #100",
+      "console_name": "Pokemon Mega Evolution",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:100"
+      }
+    },
+    {
+      "query": "Pokemon Mega Evolution Mega Manectric ex 50 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Mega%20Evolution%20Mega%20Manectric%20ex%2050%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10616256",
+      "product_name": "Mega Latias ex #163",
+      "console_name": "Pokemon Mega Evolution",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:163"
+      }
+    },
+    {
+      "query": "Pokemon Mega Evolution Mega Manectric ex 50 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Mega%20Evolution%20Mega%20Manectric%20ex%2050%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10616266",
+      "product_name": "Mega Latias ex #181",
+      "console_name": "Pokemon Mega Evolution",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:181"
+      }
+    },
+    {
+      "query": "Pokemon Mega Evolution Mega Manectric ex 50 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Mega%20Evolution%20Mega%20Manectric%20ex%2050%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10840192",
+      "product_name": "Yveltal [Stamped] #88",
+      "console_name": "Pokemon Mega Evolution",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:88"
+      }
+    },
+    {
+      "query": "Pokemon Mega Evolution Mega Manectric ex 50 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Mega%20Evolution%20Mega%20Manectric%20ex%2050%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10646415",
+      "product_name": "Bulbasaur [Stamped] #133",
+      "console_name": "Pokemon Mega Evolution",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:133"
+      }
+    },
+    {
+      "query": "Pokemon Mega Evolution Mega Manectric ex 50 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Mega%20Evolution%20Mega%20Manectric%20ex%2050%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10864874",
+      "product_name": "Spiritomb [Stamped] #87",
+      "console_name": "Pokemon Mega Evolution",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:87"
+      }
+    },
+    {
+      "query": "Pokemon Mega Evolution Mega Manectric ex 50 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Mega%20Evolution%20Mega%20Manectric%20ex%2050%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10669955",
+      "product_name": "Mega Absol Ex #161",
+      "console_name": "Pokemon Mega Evolution",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:161"
+      }
+    },
+    {
+      "query": "Pokemon Mega Evolution Mega Manectric ex 50 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Mega%20Evolution%20Mega%20Manectric%20ex%2050%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10669967",
+      "product_name": "Mega Absol Ex #180",
+      "console_name": "Pokemon Mega Evolution",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:180"
+      }
+    },
+    {
+      "query": "Pokemon Mega Evolution Mega Manectric ex 50 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Mega%20Evolution%20Mega%20Manectric%20ex%2050%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10616158",
+      "product_name": "Mega Manectric ex #50",
+      "console_name": "Pokemon Mega Evolution",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon Mega Evolution Mega Manectric ex 50 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Mega%20Evolution%20Mega%20Manectric%20ex%2050%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10669951",
+      "product_name": "Mega Manectric Ex #158",
+      "console_name": "Pokemon Mega Evolution",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:158"
+      }
+    },
+    {
+      "query": "Pokemon Mega Evolution Mega Manectric ex 50 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Mega%20Evolution%20Mega%20Manectric%20ex%2050%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10085305",
+      "product_name": "Mega Manectric ex #32",
+      "console_name": "Pokemon Japanese Mega Symphonia",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:32"
+      }
+    },
+    {
+      "query": "Pokemon Mega Evolution Mega Manectric ex 50 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Mega%20Evolution%20Mega%20Manectric%20ex%2050%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10117536",
+      "product_name": "Mega Manectric Ex #77",
+      "console_name": "Pokemon Japanese Mega Symphonia",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:77"
+      }
+    },
+    {
+      "query": "Pokemon Mega Evolution Mega Manectric ex 50 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Mega%20Evolution%20Mega%20Manectric%20ex%2050%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12834053",
+      "product_name": "Mega Manectric ex #32",
+      "console_name": "Pokemon Korean Mega Symphonia",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:32"
+      }
+    },
+    {
+      "query": "Pokemon Mega Evolution Mega Manectric ex 50 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Mega%20Evolution%20Mega%20Manectric%20ex%2050%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12834052",
+      "product_name": "Mega Manectric Ex #77",
+      "console_name": "Pokemon Korean Mega Symphonia",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:77"
+      }
+    },
+    {
+      "query": "Pokemon Mega Evolution Mega Manectric ex 50 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Mega%20Evolution%20Mega%20Manectric%20ex%2050%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3462008",
+      "product_name": "Mega Manectric EX #96",
+      "console_name": "Pokemon Japanese Phantom Gate",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:96"
+      }
+    },
+    {
+      "query": "Pokemon Mega Evolution Mega Manectric ex 50 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Mega%20Evolution%20Mega%20Manectric%20ex%2050%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3461936",
+      "product_name": "Mega Manectric EX #24",
+      "console_name": "Pokemon Japanese Phantom Gate",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:24"
+      }
+    },
+    {
+      "query": "Pokemon Mega Evolution Mega Manectric ex 50 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Mega%20Evolution%20Mega%20Manectric%20ex%2050%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3507603",
+      "product_name": "Mega Manectric EX [1st Edition] #24",
+      "console_name": "Pokemon Japanese Phantom Gate",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:24"
+      }
+    },
+    {
+      "query": "Pokemon Mega Evolution Mega Manectric ex 50 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Mega%20Evolution%20Mega%20Manectric%20ex%2050%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3507604",
+      "product_name": "Mega Manectric EX [1st Edition] #96",
+      "console_name": "Pokemon Japanese Phantom Gate",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:96"
+      }
+    },
+    {
+      "query": "Pokemon Mega Evolution Mega Manectric ex 50 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Mega%20Evolution%20Mega%20Manectric%20ex%2050%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10693500",
+      "product_name": "Xerneas [Stamped] #64",
+      "console_name": "Pokemon Mega Evolution",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:64"
+      }
+    },
+    {
+      "query": "Pokemon Mega Evolution Mega Manectric ex 50 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Mega%20Evolution%20Mega%20Manectric%20ex%2050%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4765620",
+      "product_name": "Manectric #3",
+      "console_name": "Pokemon Japanese Rayquaza-EX Mega Battle Deck",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:3"
+      }
+    },
+    {
+      "query": "Pokemon Mega Evolution Mega Manectric ex 50 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Mega%20Evolution%20Mega%20Manectric%20ex%2050%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10616206",
+      "product_name": "Mega Latias ex #100",
+      "console_name": "Pokemon Mega Evolution",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:100"
+      }
+    },
+    {
+      "query": "Pokemon Mega Evolution Mega Manectric ex 50 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Mega%20Evolution%20Mega%20Manectric%20ex%2050%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10616256",
+      "product_name": "Mega Latias ex #163",
+      "console_name": "Pokemon Mega Evolution",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:163"
+      }
+    },
+    {
+      "query": "Pokemon Mega Evolution Mega Manectric ex 50 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Mega%20Evolution%20Mega%20Manectric%20ex%2050%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10616266",
+      "product_name": "Mega Latias ex #181",
+      "console_name": "Pokemon Mega Evolution",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:181"
+      }
+    },
+    {
+      "query": "Pokemon Mega Evolution Mega Manectric ex 50 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Mega%20Evolution%20Mega%20Manectric%20ex%2050%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10840192",
+      "product_name": "Yveltal [Stamped] #88",
+      "console_name": "Pokemon Mega Evolution",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:88"
+      }
+    },
+    {
+      "query": "Pokemon Mega Evolution Mega Manectric ex 50 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Mega%20Evolution%20Mega%20Manectric%20ex%2050%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10646415",
+      "product_name": "Bulbasaur [Stamped] #133",
+      "console_name": "Pokemon Mega Evolution",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:133"
+      }
+    },
+    {
+      "query": "Pokemon Mega Evolution Mega Manectric ex 50 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Mega%20Evolution%20Mega%20Manectric%20ex%2050%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10864874",
+      "product_name": "Spiritomb [Stamped] #87",
+      "console_name": "Pokemon Mega Evolution",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:87"
+      }
+    },
+    {
+      "query": "Pokemon Mega Evolution Mega Manectric ex 50 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Mega%20Evolution%20Mega%20Manectric%20ex%2050%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10669955",
+      "product_name": "Mega Absol Ex #161",
+      "console_name": "Pokemon Mega Evolution",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:161"
+      }
+    },
+    {
+      "query": "Pokemon Mega Evolution Mega Manectric ex 50 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Mega%20Evolution%20Mega%20Manectric%20ex%2050%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10669967",
+      "product_name": "Mega Absol Ex #180",
+      "console_name": "Pokemon Mega Evolution",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:180"
+      }
+    }
+  ],
+  "source_lane": "pricecharting_api"
+}

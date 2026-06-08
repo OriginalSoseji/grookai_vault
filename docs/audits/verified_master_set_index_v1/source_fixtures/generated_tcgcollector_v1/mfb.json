@@ -1,0 +1,31 @@
+{
+  "fixture_version": "VERIFIED_MASTER_SET_INDEX_V1_HUMAN_SOURCE_FIXTURE_GENERATED",
+  "source_key": "tcgcollector_variants_mfb",
+  "source_kind": "collector_reference",
+  "source_url": "https://www.tcgcollector.com/sets/11587/my-first-battle-bulbasaur?setCardCountMode=anyCardVariant ; https://www.tcgcollector.com/sets/11589/my-first-battle-charmander?setCardCountMode=anyCardVariant ; https://www.tcgcollector.com/sets/11588/my-first-battle-pikachu?setCardCountMode=anyCardVariant ; https://www.tcgcollector.com/sets/11590/my-first-battle-squirtle?setCardCountMode=anyCardVariant",
+  "source_status": "available_generated",
+  "set_key": "mfb",
+  "set_name": "My First Battle",
+  "retrieved_at": "2026-05-28T15:35:32.787Z",
+  "raw_snapshot_ref": "generated_fixture:tcgcollector:mfb:2026-05-28T15:35:32.787Z",
+  "generation_note": "Generated from TCGCollector explicit card variant type IDs. No finish is inferred from set era, rarity, or card count.",
+  "records": [
+    {
+      "source_key": "tcgcollector_card_variants",
+      "source_kind": "collector_reference",
+      "source_url": "https://www.tcgcollector.com/cards/42763/bulbasaur-my-first-battle-bulbasaur-no-001",
+      "set_key": "mfb",
+      "set_name": "My First Battle",
+      "card_number": "1",
+      "card_name": "Bulbasaur",
+      "finish_key": "normal",
+      "rarity": null,
+      "evidence_type": "finish_presence",
+      "evidence_label": "TCGCollector card variant Normal",
+      "language": "en",
+      "retrieved_at": "2026-05-28T15:35:32.787Z",
+      "raw_snapshot_ref": "tcgcollector:42763:1",
+      "notes": "Exact card-level finish evidence from TCGCollector card variant type map. Only explicit variant labels are emitted."
+    }
+  ]
+}

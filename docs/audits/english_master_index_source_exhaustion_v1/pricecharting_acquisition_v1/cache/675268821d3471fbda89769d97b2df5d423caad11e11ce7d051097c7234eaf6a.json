@@ -1,0 +1,549 @@
+{
+  "status": "api_no_validated_match",
+  "fact": {
+    "gap_type": "finish_second_source_needed",
+    "fact_type": "printing_finish",
+    "set_key": "hgss2",
+    "set_name": "HS—Unleashed",
+    "card_number": "78",
+    "card_name": "Judge",
+    "finish_key": "stamped",
+    "status": "human_source_verified",
+    "sources": [
+      "thepricedex_price_list"
+    ],
+    "source_authorities": [
+      "thepricedex.com"
+    ],
+    "source_kinds": [
+      "marketplace_checklist"
+    ],
+    "evidence_urls": [
+      "https://www.thepricedex.com/set/hgss2/hs-unleashed/price-list"
+    ],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "attempts": [
+    {
+      "query": "Pokemon HS—Unleashed Judge 78 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Judge%2078%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "1287420",
+      "product_name": "Judge #78",
+      "console_name": "Pokemon Unleashed",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Judge 78 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Judge%2078%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "1287516",
+      "product_name": "Judge [Reverse Holo] #78",
+      "console_name": "Pokemon Unleashed",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Reverse Holo"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Judge 78 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Judge%2078%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6469322",
+      "product_name": "Judge [League Promo] #78",
+      "console_name": "Pokemon Unleashed",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:League Promo"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Judge 78 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Judge%2078%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6302864",
+      "product_name": "Cutiefly #78",
+      "console_name": "Pokemon Japanese Cyber Judge",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Cutiefly"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Judge 78 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Judge%2078%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12241649",
+      "product_name": "Cutiefly #78",
+      "console_name": "Pokemon Korean Cyber Judge",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Cutiefly"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Judge 78 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Judge%2078%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3468765",
+      "product_name": "Judge Whistle #78",
+      "console_name": "Pokemon Japanese Tag Bolt",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Judge Whistle"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Judge 78 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Judge%2078%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12119644",
+      "product_name": "Dormant Potential Unleashed [Judge Pack Vol.16 Foil] BT10-088",
+      "console_name": "Dragon Ball Super Judge Promotion",
+      "validation": {
+        "ok": false,
+        "reason": "api_product_name_pattern_not_supported"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Judge 78 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Judge%2078%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8464160",
+      "product_name": "Turtwig [Snowflake Stamped] #78",
+      "console_name": "Pokemon Majestic Dawn",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Turtwig"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Judge 78 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Judge%2078%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3666601",
+      "product_name": "Judge Dredd: The Megazine #78 (1995)",
+      "console_name": "Comic Books Judge Dredd: Megazine",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Judge Dredd: The Megazine"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Judge 78 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Judge%2078%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3666277",
+      "product_name": "Judge Dredd Megazine #78 (2001)",
+      "console_name": "Comic Books Judge Dredd: Megazine",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Judge Dredd Megazine"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Judge 78 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Judge%2078%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11707178",
+      "product_name": "Iron Crown Ex [2024 Lunar New Year Stamped] #78/SV-P",
+      "console_name": "Pokemon Chinese Promo",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Iron Crown Ex"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Judge 78 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Judge%2078%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12794953",
+      "product_name": "Sprite Fountain #78",
+      "console_name": "Riftbound Unleashed",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Sprite Fountain"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Judge 78 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Judge%2078%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3313212",
+      "product_name": "Number 78: Number Archive DRL3-EN026",
+      "console_name": "YuGiOh Dragons of Legend Unleashed",
+      "validation": {
+        "ok": false,
+        "reason": "api_product_name_pattern_not_supported"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Judge 78 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Judge%2078%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7911045",
+      "product_name": "Bardock, Fully Unleashed [Gold Stamped Foil] P-067",
+      "console_name": "Dragon Ball Super Mythic Booster",
+      "validation": {
+        "ok": false,
+        "reason": "api_product_name_pattern_not_supported"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Judge 78 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Judge%2078%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12791128",
+      "product_name": "Sprite Fountain [Foil] #78",
+      "console_name": "Riftbound Unleashed",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Sprite Fountain"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Judge 78 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Judge%2078%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7912955",
+      "product_name": "His Wrath Unleashed #35",
+      "console_name": "Marvel 2003 Topps X2 - X-Men United",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:35"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Judge 78 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Judge%2078%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5810580",
+      "product_name": "Star Wars: The Force Unleashed [VHS Edition]",
+      "console_name": "Nintendo Switch",
+      "validation": {
+        "ok": false,
+        "reason": "api_product_name_pattern_not_supported"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Judge 78 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Judge%2078%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7908847",
+      "product_name": "Son Gohan, Might Unleashed [Winner Stamped Foil] P-349",
+      "console_name": "Dragon Ball Super Divine Multiverse Release Promos",
+      "validation": {
+        "ok": false,
+        "reason": "api_product_name_pattern_not_supported"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Judge 78 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Judge%2078%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7909147",
+      "product_name": "Dormant Potential Unleashed [Unison-Stamped Foil] BT10-088",
+      "console_name": "Dragon Ball Super Divine Multiverse Release Promos",
+      "validation": {
+        "ok": false,
+        "reason": "api_product_name_pattern_not_supported"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Judge 78 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Judge%2078%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "1287353",
+      "product_name": "Xatu #11",
+      "console_name": "Pokemon Unleashed",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:11"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Judge 78 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Judge%2078%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "1287420",
+      "product_name": "Judge #78",
+      "console_name": "Pokemon Unleashed",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Judge 78 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Judge%2078%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "1287516",
+      "product_name": "Judge [Reverse Holo] #78",
+      "console_name": "Pokemon Unleashed",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Reverse Holo"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Judge 78 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Judge%2078%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6469322",
+      "product_name": "Judge [League Promo] #78",
+      "console_name": "Pokemon Unleashed",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:League Promo"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Judge 78 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Judge%2078%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6302864",
+      "product_name": "Cutiefly #78",
+      "console_name": "Pokemon Japanese Cyber Judge",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Cutiefly"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Judge 78 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Judge%2078%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12241649",
+      "product_name": "Cutiefly #78",
+      "console_name": "Pokemon Korean Cyber Judge",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Cutiefly"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Judge 78 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Judge%2078%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3468765",
+      "product_name": "Judge Whistle #78",
+      "console_name": "Pokemon Japanese Tag Bolt",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Judge Whistle"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Judge 78 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Judge%2078%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12119644",
+      "product_name": "Dormant Potential Unleashed [Judge Pack Vol.16 Foil] BT10-088",
+      "console_name": "Dragon Ball Super Judge Promotion",
+      "validation": {
+        "ok": false,
+        "reason": "api_product_name_pattern_not_supported"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Judge 78 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Judge%2078%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8464160",
+      "product_name": "Turtwig [Snowflake Stamped] #78",
+      "console_name": "Pokemon Majestic Dawn",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Turtwig"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Judge 78 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Judge%2078%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3666601",
+      "product_name": "Judge Dredd: The Megazine #78 (1995)",
+      "console_name": "Comic Books Judge Dredd: Megazine",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Judge Dredd: The Megazine"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Judge 78 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Judge%2078%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3666277",
+      "product_name": "Judge Dredd Megazine #78 (2001)",
+      "console_name": "Comic Books Judge Dredd: Megazine",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Judge Dredd Megazine"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Judge 78 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Judge%2078%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11707178",
+      "product_name": "Iron Crown Ex [2024 Lunar New Year Stamped] #78/SV-P",
+      "console_name": "Pokemon Chinese Promo",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Iron Crown Ex"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Judge 78 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Judge%2078%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12794953",
+      "product_name": "Sprite Fountain #78",
+      "console_name": "Riftbound Unleashed",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Sprite Fountain"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Judge 78 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Judge%2078%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3313212",
+      "product_name": "Number 78: Number Archive DRL3-EN026",
+      "console_name": "YuGiOh Dragons of Legend Unleashed",
+      "validation": {
+        "ok": false,
+        "reason": "api_product_name_pattern_not_supported"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Judge 78 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Judge%2078%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7911045",
+      "product_name": "Bardock, Fully Unleashed [Gold Stamped Foil] P-067",
+      "console_name": "Dragon Ball Super Mythic Booster",
+      "validation": {
+        "ok": false,
+        "reason": "api_product_name_pattern_not_supported"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Judge 78 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Judge%2078%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12791128",
+      "product_name": "Sprite Fountain [Foil] #78",
+      "console_name": "Riftbound Unleashed",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Sprite Fountain"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Judge 78 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Judge%2078%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7912955",
+      "product_name": "His Wrath Unleashed #35",
+      "console_name": "Marvel 2003 Topps X2 - X-Men United",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:35"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Judge 78 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Judge%2078%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5810580",
+      "product_name": "Star Wars: The Force Unleashed [VHS Edition]",
+      "console_name": "Nintendo Switch",
+      "validation": {
+        "ok": false,
+        "reason": "api_product_name_pattern_not_supported"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Judge 78 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Judge%2078%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7908847",
+      "product_name": "Son Gohan, Might Unleashed [Winner Stamped Foil] P-349",
+      "console_name": "Dragon Ball Super Divine Multiverse Release Promos",
+      "validation": {
+        "ok": false,
+        "reason": "api_product_name_pattern_not_supported"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Judge 78 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Judge%2078%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7909147",
+      "product_name": "Dormant Potential Unleashed [Unison-Stamped Foil] BT10-088",
+      "console_name": "Dragon Ball Super Divine Multiverse Release Promos",
+      "validation": {
+        "ok": false,
+        "reason": "api_product_name_pattern_not_supported"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Judge 78 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Judge%2078%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "1287353",
+      "product_name": "Xatu #11",
+      "console_name": "Pokemon Unleashed",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:11"
+      }
+    }
+  ],
+  "source_lane": "pricecharting_api"
+}

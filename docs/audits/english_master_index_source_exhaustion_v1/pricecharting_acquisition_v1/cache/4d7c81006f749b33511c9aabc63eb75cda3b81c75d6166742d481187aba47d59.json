@@ -1,0 +1,549 @@
+{
+  "status": "api_no_validated_match",
+  "fact": {
+    "gap_type": "finish_second_source_needed",
+    "fact_type": "printing_finish",
+    "set_key": "sv07",
+    "set_name": "Stellar Crown",
+    "card_number": "50",
+    "card_name": "Joltik",
+    "finish_key": "stamped",
+    "status": "human_source_verified",
+    "sources": [
+      "thepricedex_price_list"
+    ],
+    "source_authorities": [
+      "thepricedex.com"
+    ],
+    "source_kinds": [
+      "marketplace_checklist"
+    ],
+    "evidence_urls": [
+      "https://www.thepricedex.com/set/sv7/stellar-crown/price-list"
+    ],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "attempts": [
+    {
+      "query": "Pokemon Stellar Crown Joltik 50 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Stellar%20Crown%20Joltik%2050%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7418535",
+      "product_name": "Joltik #50",
+      "console_name": "Pokemon Stellar Crown",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon Stellar Crown Joltik 50 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Stellar%20Crown%20Joltik%2050%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7418705",
+      "product_name": "Joltik [Reverse Holo] #50",
+      "console_name": "Pokemon Stellar Crown",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Reverse Holo"
+      }
+    },
+    {
+      "query": "Pokemon Stellar Crown Joltik 50 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Stellar%20Crown%20Joltik%2050%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10340106",
+      "product_name": "Joltik [Prize Pack Series 7] #50",
+      "console_name": "Pokemon Stellar Crown",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Prize Pack Series 7"
+      }
+    },
+    {
+      "query": "Pokemon Stellar Crown Joltik 50 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Stellar%20Crown%20Joltik%2050%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7418635",
+      "product_name": "Joltik #150",
+      "console_name": "Pokemon Stellar Crown",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:150"
+      }
+    },
+    {
+      "query": "Pokemon Stellar Crown Joltik 50 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Stellar%20Crown%20Joltik%2050%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11580217",
+      "product_name": "Meltan [Stamped] #102",
+      "console_name": "Pokemon Stellar Crown",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:102"
+      }
+    },
+    {
+      "query": "Pokemon Stellar Crown Joltik 50 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Stellar%20Crown%20Joltik%2050%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11370172",
+      "product_name": "Reshiram [Stamped] #22",
+      "console_name": "Pokemon Stellar Crown",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:22"
+      }
+    },
+    {
+      "query": "Pokemon Stellar Crown Joltik 50 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Stellar%20Crown%20Joltik%2050%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10028510",
+      "product_name": "Glass Trumpet [Gym Stamp] #135",
+      "console_name": "Pokemon Stellar Crown",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:135"
+      }
+    },
+    {
+      "query": "Pokemon Stellar Crown Joltik 50 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Stellar%20Crown%20Joltik%2050%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11469116",
+      "product_name": "Melmetal Ex [Stamped] #105",
+      "console_name": "Pokemon Stellar Crown",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:105"
+      }
+    },
+    {
+      "query": "Pokemon Stellar Crown Joltik 50 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Stellar%20Crown%20Joltik%2050%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11321011",
+      "product_name": "Greninja EX [Stamped] #41",
+      "console_name": "Pokemon Stellar Crown",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:41"
+      }
+    },
+    {
+      "query": "Pokemon Stellar Crown Joltik 50 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Stellar%20Crown%20Joltik%2050%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10233481",
+      "product_name": "Venusaur Ex [Stamped] #1",
+      "console_name": "Pokemon Stellar Crown",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:1"
+      }
+    },
+    {
+      "query": "Pokemon Stellar Crown Joltik 50 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Stellar%20Crown%20Joltik%2050%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10212998",
+      "product_name": "Blastoise Ex [Stamped] #30",
+      "console_name": "Pokemon Stellar Crown",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:30"
+      }
+    },
+    {
+      "query": "Pokemon Stellar Crown Joltik 50 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Stellar%20Crown%20Joltik%2050%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7442384",
+      "product_name": "Raging Bolt [Stamped] #111",
+      "console_name": "Pokemon Stellar Crown",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:111"
+      }
+    },
+    {
+      "query": "Pokemon Stellar Crown Joltik 50 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Stellar%20Crown%20Joltik%2050%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7445419",
+      "product_name": "Archaludon [Cosmos Holo Stamped] #107",
+      "console_name": "Pokemon Stellar Crown",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:107"
+      }
+    },
+    {
+      "query": "Pokemon Stellar Crown Joltik 50 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Stellar%20Crown%20Joltik%2050%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10366693",
+      "product_name": "Area Zero Underdepths [Gym Stamp Asia] #131",
+      "console_name": "Pokemon Stellar Crown",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:131"
+      }
+    },
+    {
+      "query": "Pokemon Stellar Crown Joltik 50 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Stellar%20Crown%20Joltik%2050%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7029869",
+      "product_name": "Joltik #32",
+      "console_name": "Pokemon Japanese Stellar Miracle",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:32"
+      }
+    },
+    {
+      "query": "Pokemon Stellar Crown Joltik 50 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Stellar%20Crown%20Joltik%2050%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7029944",
+      "product_name": "Joltik #108",
+      "console_name": "Pokemon Japanese Stellar Miracle",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:108"
+      }
+    },
+    {
+      "query": "Pokemon Stellar Crown Joltik 50 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Stellar%20Crown%20Joltik%2050%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7418623",
+      "product_name": "Kofu #138",
+      "console_name": "Pokemon Stellar Crown",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:138"
+      }
+    },
+    {
+      "query": "Pokemon Stellar Crown Joltik 50 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Stellar%20Crown%20Joltik%2050%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7418650",
+      "product_name": "Kofu #165",
+      "console_name": "Pokemon Stellar Crown",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:165"
+      }
+    },
+    {
+      "query": "Pokemon Stellar Crown Joltik 50 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Stellar%20Crown%20Joltik%2050%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "956848",
+      "product_name": "Joltik #50",
+      "console_name": "Pokemon Plasma Storm",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon Plasma Storm"
+      }
+    },
+    {
+      "query": "Pokemon Stellar Crown Joltik 50 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Stellar%20Crown%20Joltik%2050%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "956981",
+      "product_name": "Joltik [Reverse Holo] #50",
+      "console_name": "Pokemon Plasma Storm",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon Plasma Storm"
+      }
+    },
+    {
+      "query": "Pokemon Stellar Crown Joltik 50 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Stellar%20Crown%20Joltik%2050%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7418535",
+      "product_name": "Joltik #50",
+      "console_name": "Pokemon Stellar Crown",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon Stellar Crown Joltik 50 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Stellar%20Crown%20Joltik%2050%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7418705",
+      "product_name": "Joltik [Reverse Holo] #50",
+      "console_name": "Pokemon Stellar Crown",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Reverse Holo"
+      }
+    },
+    {
+      "query": "Pokemon Stellar Crown Joltik 50 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Stellar%20Crown%20Joltik%2050%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10340106",
+      "product_name": "Joltik [Prize Pack Series 7] #50",
+      "console_name": "Pokemon Stellar Crown",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Prize Pack Series 7"
+      }
+    },
+    {
+      "query": "Pokemon Stellar Crown Joltik 50 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Stellar%20Crown%20Joltik%2050%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7418635",
+      "product_name": "Joltik #150",
+      "console_name": "Pokemon Stellar Crown",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:150"
+      }
+    },
+    {
+      "query": "Pokemon Stellar Crown Joltik 50 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Stellar%20Crown%20Joltik%2050%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11580217",
+      "product_name": "Meltan [Stamped] #102",
+      "console_name": "Pokemon Stellar Crown",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:102"
+      }
+    },
+    {
+      "query": "Pokemon Stellar Crown Joltik 50 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Stellar%20Crown%20Joltik%2050%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11370172",
+      "product_name": "Reshiram [Stamped] #22",
+      "console_name": "Pokemon Stellar Crown",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:22"
+      }
+    },
+    {
+      "query": "Pokemon Stellar Crown Joltik 50 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Stellar%20Crown%20Joltik%2050%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10028510",
+      "product_name": "Glass Trumpet [Gym Stamp] #135",
+      "console_name": "Pokemon Stellar Crown",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:135"
+      }
+    },
+    {
+      "query": "Pokemon Stellar Crown Joltik 50 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Stellar%20Crown%20Joltik%2050%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11469116",
+      "product_name": "Melmetal Ex [Stamped] #105",
+      "console_name": "Pokemon Stellar Crown",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:105"
+      }
+    },
+    {
+      "query": "Pokemon Stellar Crown Joltik 50 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Stellar%20Crown%20Joltik%2050%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11321011",
+      "product_name": "Greninja EX [Stamped] #41",
+      "console_name": "Pokemon Stellar Crown",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:41"
+      }
+    },
+    {
+      "query": "Pokemon Stellar Crown Joltik 50 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Stellar%20Crown%20Joltik%2050%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10233481",
+      "product_name": "Venusaur Ex [Stamped] #1",
+      "console_name": "Pokemon Stellar Crown",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:1"
+      }
+    },
+    {
+      "query": "Pokemon Stellar Crown Joltik 50 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Stellar%20Crown%20Joltik%2050%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10212998",
+      "product_name": "Blastoise Ex [Stamped] #30",
+      "console_name": "Pokemon Stellar Crown",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:30"
+      }
+    },
+    {
+      "query": "Pokemon Stellar Crown Joltik 50 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Stellar%20Crown%20Joltik%2050%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7442384",
+      "product_name": "Raging Bolt [Stamped] #111",
+      "console_name": "Pokemon Stellar Crown",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:111"
+      }
+    },
+    {
+      "query": "Pokemon Stellar Crown Joltik 50 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Stellar%20Crown%20Joltik%2050%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7445419",
+      "product_name": "Archaludon [Cosmos Holo Stamped] #107",
+      "console_name": "Pokemon Stellar Crown",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:107"
+      }
+    },
+    {
+      "query": "Pokemon Stellar Crown Joltik 50 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Stellar%20Crown%20Joltik%2050%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10366693",
+      "product_name": "Area Zero Underdepths [Gym Stamp Asia] #131",
+      "console_name": "Pokemon Stellar Crown",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:131"
+      }
+    },
+    {
+      "query": "Pokemon Stellar Crown Joltik 50 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Stellar%20Crown%20Joltik%2050%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7029869",
+      "product_name": "Joltik #32",
+      "console_name": "Pokemon Japanese Stellar Miracle",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:32"
+      }
+    },
+    {
+      "query": "Pokemon Stellar Crown Joltik 50 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Stellar%20Crown%20Joltik%2050%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7029944",
+      "product_name": "Joltik #108",
+      "console_name": "Pokemon Japanese Stellar Miracle",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:108"
+      }
+    },
+    {
+      "query": "Pokemon Stellar Crown Joltik 50 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Stellar%20Crown%20Joltik%2050%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7418623",
+      "product_name": "Kofu #138",
+      "console_name": "Pokemon Stellar Crown",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:138"
+      }
+    },
+    {
+      "query": "Pokemon Stellar Crown Joltik 50 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Stellar%20Crown%20Joltik%2050%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7418650",
+      "product_name": "Kofu #165",
+      "console_name": "Pokemon Stellar Crown",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:165"
+      }
+    },
+    {
+      "query": "Pokemon Stellar Crown Joltik 50 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Stellar%20Crown%20Joltik%2050%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "956848",
+      "product_name": "Joltik #50",
+      "console_name": "Pokemon Plasma Storm",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon Plasma Storm"
+      }
+    },
+    {
+      "query": "Pokemon Stellar Crown Joltik 50 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Stellar%20Crown%20Joltik%2050%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "956981",
+      "product_name": "Joltik [Reverse Holo] #50",
+      "console_name": "Pokemon Plasma Storm",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon Plasma Storm"
+      }
+    }
+  ],
+  "source_lane": "pricecharting_api"
+}

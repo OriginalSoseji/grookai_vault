@@ -1,0 +1,549 @@
+{
+  "status": "api_no_validated_match",
+  "fact": {
+    "gap_type": "finish_second_source_needed",
+    "fact_type": "printing_finish",
+    "set_key": "sm3",
+    "set_name": "Burning Shadows",
+    "card_number": "87",
+    "card_name": "Darkrai",
+    "finish_key": "stamped",
+    "status": "human_source_verified",
+    "sources": [
+      "thepricedex_price_list"
+    ],
+    "source_authorities": [
+      "thepricedex.com"
+    ],
+    "source_kinds": [
+      "marketplace_checklist"
+    ],
+    "evidence_urls": [
+      "https://www.thepricedex.com/set/sm3/burning-shadows/price-list"
+    ],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "attempts": [
+    {
+      "query": "Pokemon Burning Shadows Darkrai 87 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Burning%20Shadows%20Darkrai%2087%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "960871",
+      "product_name": "Darkrai #87",
+      "console_name": "Pokemon Burning Shadows",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon Burning Shadows Darkrai 87 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Burning%20Shadows%20Darkrai%2087%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7628974",
+      "product_name": "Darkrai [Pokemon League] #87",
+      "console_name": "Pokemon Burning Shadows",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Pokemon League"
+      }
+    },
+    {
+      "query": "Pokemon Burning Shadows Darkrai 87 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Burning%20Shadows%20Darkrai%2087%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "961031",
+      "product_name": "Darkrai [Reverse Holo] #87",
+      "console_name": "Pokemon Burning Shadows",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Reverse Holo"
+      }
+    },
+    {
+      "query": "Pokemon Burning Shadows Darkrai 87 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Burning%20Shadows%20Darkrai%2087%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9351796",
+      "product_name": "Darkrai GX [Jumbo] #88A",
+      "console_name": "Pokemon Burning Shadows",
+      "validation": {
+        "ok": false,
+        "reason": "product_scope_jumbo_not_canonical_set_finish"
+      }
+    },
+    {
+      "query": "Pokemon Burning Shadows Darkrai 87 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Burning%20Shadows%20Darkrai%2087%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "960872",
+      "product_name": "Darkrai GX #88",
+      "console_name": "Pokemon Burning Shadows",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:88"
+      }
+    },
+    {
+      "query": "Pokemon Burning Shadows Darkrai 87 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Burning%20Shadows%20Darkrai%2087%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "960923",
+      "product_name": "Darkrai GX #139",
+      "console_name": "Pokemon Burning Shadows",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:139"
+      }
+    },
+    {
+      "query": "Pokemon Burning Shadows Darkrai 87 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Burning%20Shadows%20Darkrai%2087%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "960942",
+      "product_name": "Darkrai GX #158",
+      "console_name": "Pokemon Burning Shadows",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:158"
+      }
+    },
+    {
+      "query": "Pokemon Burning Shadows Darkrai 87 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Burning%20Shadows%20Darkrai%2087%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "2390424",
+      "product_name": "Darkrai GX #88a",
+      "console_name": "Pokemon Burning Shadows",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:88a"
+      }
+    },
+    {
+      "query": "Pokemon Burning Shadows Darkrai 87 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Burning%20Shadows%20Darkrai%2087%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10932210",
+      "product_name": "Darkrai [Stamped] #1006",
+      "console_name": "Pokemon Chinese Gem Pack 3",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:1006"
+      }
+    },
+    {
+      "query": "Pokemon Burning Shadows Darkrai 87 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Burning%20Shadows%20Darkrai%2087%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "960856",
+      "product_name": "Sawk #72",
+      "console_name": "Pokemon Burning Shadows",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:72"
+      }
+    },
+    {
+      "query": "Pokemon Burning Shadows Darkrai 87 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Burning%20Shadows%20Darkrai%2087%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "960901",
+      "product_name": "Lana #117",
+      "console_name": "Pokemon Burning Shadows",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:117"
+      }
+    },
+    {
+      "query": "Pokemon Burning Shadows Darkrai 87 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Burning%20Shadows%20Darkrai%2087%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "960854",
+      "product_name": "Riolu #70",
+      "console_name": "Pokemon Burning Shadows",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:70"
+      }
+    },
+    {
+      "query": "Pokemon Burning Shadows Darkrai 87 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Burning%20Shadows%20Darkrai%2087%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "960873",
+      "product_name": "Inkay #89",
+      "console_name": "Pokemon Burning Shadows",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:89"
+      }
+    },
+    {
+      "query": "Pokemon Burning Shadows Darkrai 87 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Burning%20Shadows%20Darkrai%2087%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "960899",
+      "product_name": "Guzma #115",
+      "console_name": "Pokemon Burning Shadows",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:115"
+      }
+    },
+    {
+      "query": "Pokemon Burning Shadows Darkrai 87 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Burning%20Shadows%20Darkrai%2087%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "960900",
+      "product_name": "Kiawe #116",
+      "console_name": "Pokemon Burning Shadows",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:116"
+      }
+    },
+    {
+      "query": "Pokemon Burning Shadows Darkrai 87 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Burning%20Shadows%20Darkrai%2087%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "960911",
+      "product_name": "Wicke #127",
+      "console_name": "Pokemon Burning Shadows",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:127"
+      }
+    },
+    {
+      "query": "Pokemon Burning Shadows Darkrai 87 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Burning%20Shadows%20Darkrai%2087%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "960927",
+      "product_name": "Guzma #143",
+      "console_name": "Pokemon Burning Shadows",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:143"
+      }
+    },
+    {
+      "query": "Pokemon Burning Shadows Darkrai 87 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Burning%20Shadows%20Darkrai%2087%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "960928",
+      "product_name": "Kiawe #144",
+      "console_name": "Pokemon Burning Shadows",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:144"
+      }
+    },
+    {
+      "query": "Pokemon Burning Shadows Darkrai 87 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Burning%20Shadows%20Darkrai%2087%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "960931",
+      "product_name": "Wicke #147",
+      "console_name": "Pokemon Burning Shadows",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:147"
+      }
+    },
+    {
+      "query": "Pokemon Burning Shadows Darkrai 87 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Burning%20Shadows%20Darkrai%2087%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "960789",
+      "product_name": "Gloom #5",
+      "console_name": "Pokemon Burning Shadows",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:5"
+      }
+    },
+    {
+      "query": "Pokemon Burning Shadows Darkrai 87 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Burning%20Shadows%20Darkrai%2087%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "960871",
+      "product_name": "Darkrai #87",
+      "console_name": "Pokemon Burning Shadows",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon Burning Shadows Darkrai 87 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Burning%20Shadows%20Darkrai%2087%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7628974",
+      "product_name": "Darkrai [Pokemon League] #87",
+      "console_name": "Pokemon Burning Shadows",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Pokemon League"
+      }
+    },
+    {
+      "query": "Pokemon Burning Shadows Darkrai 87 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Burning%20Shadows%20Darkrai%2087%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "961031",
+      "product_name": "Darkrai [Reverse Holo] #87",
+      "console_name": "Pokemon Burning Shadows",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Reverse Holo"
+      }
+    },
+    {
+      "query": "Pokemon Burning Shadows Darkrai 87 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Burning%20Shadows%20Darkrai%2087%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9351796",
+      "product_name": "Darkrai GX [Jumbo] #88A",
+      "console_name": "Pokemon Burning Shadows",
+      "validation": {
+        "ok": false,
+        "reason": "product_scope_jumbo_not_canonical_set_finish"
+      }
+    },
+    {
+      "query": "Pokemon Burning Shadows Darkrai 87 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Burning%20Shadows%20Darkrai%2087%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "960872",
+      "product_name": "Darkrai GX #88",
+      "console_name": "Pokemon Burning Shadows",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:88"
+      }
+    },
+    {
+      "query": "Pokemon Burning Shadows Darkrai 87 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Burning%20Shadows%20Darkrai%2087%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "960923",
+      "product_name": "Darkrai GX #139",
+      "console_name": "Pokemon Burning Shadows",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:139"
+      }
+    },
+    {
+      "query": "Pokemon Burning Shadows Darkrai 87 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Burning%20Shadows%20Darkrai%2087%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "960942",
+      "product_name": "Darkrai GX #158",
+      "console_name": "Pokemon Burning Shadows",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:158"
+      }
+    },
+    {
+      "query": "Pokemon Burning Shadows Darkrai 87 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Burning%20Shadows%20Darkrai%2087%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "2390424",
+      "product_name": "Darkrai GX #88a",
+      "console_name": "Pokemon Burning Shadows",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:88a"
+      }
+    },
+    {
+      "query": "Pokemon Burning Shadows Darkrai 87 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Burning%20Shadows%20Darkrai%2087%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10932210",
+      "product_name": "Darkrai [Stamped] #1006",
+      "console_name": "Pokemon Chinese Gem Pack 3",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:1006"
+      }
+    },
+    {
+      "query": "Pokemon Burning Shadows Darkrai 87 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Burning%20Shadows%20Darkrai%2087%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "960856",
+      "product_name": "Sawk #72",
+      "console_name": "Pokemon Burning Shadows",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:72"
+      }
+    },
+    {
+      "query": "Pokemon Burning Shadows Darkrai 87 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Burning%20Shadows%20Darkrai%2087%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "960901",
+      "product_name": "Lana #117",
+      "console_name": "Pokemon Burning Shadows",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:117"
+      }
+    },
+    {
+      "query": "Pokemon Burning Shadows Darkrai 87 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Burning%20Shadows%20Darkrai%2087%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "960854",
+      "product_name": "Riolu #70",
+      "console_name": "Pokemon Burning Shadows",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:70"
+      }
+    },
+    {
+      "query": "Pokemon Burning Shadows Darkrai 87 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Burning%20Shadows%20Darkrai%2087%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "960873",
+      "product_name": "Inkay #89",
+      "console_name": "Pokemon Burning Shadows",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:89"
+      }
+    },
+    {
+      "query": "Pokemon Burning Shadows Darkrai 87 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Burning%20Shadows%20Darkrai%2087%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "960899",
+      "product_name": "Guzma #115",
+      "console_name": "Pokemon Burning Shadows",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:115"
+      }
+    },
+    {
+      "query": "Pokemon Burning Shadows Darkrai 87 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Burning%20Shadows%20Darkrai%2087%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "960900",
+      "product_name": "Kiawe #116",
+      "console_name": "Pokemon Burning Shadows",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:116"
+      }
+    },
+    {
+      "query": "Pokemon Burning Shadows Darkrai 87 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Burning%20Shadows%20Darkrai%2087%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "960911",
+      "product_name": "Wicke #127",
+      "console_name": "Pokemon Burning Shadows",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:127"
+      }
+    },
+    {
+      "query": "Pokemon Burning Shadows Darkrai 87 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Burning%20Shadows%20Darkrai%2087%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "960927",
+      "product_name": "Guzma #143",
+      "console_name": "Pokemon Burning Shadows",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:143"
+      }
+    },
+    {
+      "query": "Pokemon Burning Shadows Darkrai 87 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Burning%20Shadows%20Darkrai%2087%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "960928",
+      "product_name": "Kiawe #144",
+      "console_name": "Pokemon Burning Shadows",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:144"
+      }
+    },
+    {
+      "query": "Pokemon Burning Shadows Darkrai 87 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Burning%20Shadows%20Darkrai%2087%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "960931",
+      "product_name": "Wicke #147",
+      "console_name": "Pokemon Burning Shadows",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:147"
+      }
+    },
+    {
+      "query": "Pokemon Burning Shadows Darkrai 87 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Burning%20Shadows%20Darkrai%2087%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "960789",
+      "product_name": "Gloom #5",
+      "console_name": "Pokemon Burning Shadows",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:5"
+      }
+    }
+  ],
+  "source_lane": "pricecharting_api"
+}

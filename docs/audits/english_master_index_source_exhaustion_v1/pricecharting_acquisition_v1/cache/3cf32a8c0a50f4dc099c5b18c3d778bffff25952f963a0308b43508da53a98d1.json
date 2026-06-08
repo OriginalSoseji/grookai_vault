@@ -1,0 +1,549 @@
+{
+  "status": "api_no_validated_match",
+  "fact": {
+    "gap_type": "finish_second_source_needed",
+    "fact_type": "printing_finish",
+    "set_key": "sv06.5",
+    "set_name": "Shrouded Fable",
+    "card_number": "60",
+    "card_name": "Neutralization Zone",
+    "finish_key": "stamped",
+    "status": "human_source_verified",
+    "sources": [
+      "thepricedex_price_list"
+    ],
+    "source_authorities": [
+      "thepricedex.com"
+    ],
+    "source_kinds": [
+      "marketplace_checklist"
+    ],
+    "evidence_urls": [
+      "https://www.thepricedex.com/set/sv6pt5/shrouded-fable/price-list"
+    ],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "attempts": [
+    {
+      "query": "Pokemon Shrouded Fable Neutralization Zone 60 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Shrouded%20Fable%20Neutralization%20Zone%2060%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7108717",
+      "product_name": "Neutralization Zone #60",
+      "console_name": "Pokemon Shrouded Fable",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon Shrouded Fable Neutralization Zone 60 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Shrouded%20Fable%20Neutralization%20Zone%2060%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11321012",
+      "product_name": "Kingdra EX [Stamped] #12",
+      "console_name": "Pokemon Shrouded Fable",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:12"
+      }
+    },
+    {
+      "query": "Pokemon Shrouded Fable Neutralization Zone 60 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Shrouded%20Fable%20Neutralization%20Zone%2060%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7980197",
+      "product_name": "Neutralization Zone #184",
+      "console_name": "Pokemon Japanese Terastal Festival",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:184"
+      }
+    },
+    {
+      "query": "Pokemon Shrouded Fable Neutralization Zone 60 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Shrouded%20Fable%20Neutralization%20Zone%2060%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12031189",
+      "product_name": "Neutralization Zone #184",
+      "console_name": "Pokemon Korean Terastal Festival ex",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:184"
+      }
+    },
+    {
+      "query": "Pokemon Shrouded Fable Neutralization Zone 60 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Shrouded%20Fable%20Neutralization%20Zone%2060%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7108701",
+      "product_name": "Axew #44",
+      "console_name": "Pokemon Shrouded Fable",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:44"
+      }
+    },
+    {
+      "query": "Pokemon Shrouded Fable Neutralization Zone 60 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Shrouded%20Fable%20Neutralization%20Zone%2060%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7108674",
+      "product_name": "Hypno #17",
+      "console_name": "Pokemon Shrouded Fable",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:17"
+      }
+    },
+    {
+      "query": "Pokemon Shrouded Fable Neutralization Zone 60 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Shrouded%20Fable%20Neutralization%20Zone%2060%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7108684",
+      "product_name": "Zubat #27",
+      "console_name": "Pokemon Shrouded Fable",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:27"
+      }
+    },
+    {
+      "query": "Pokemon Shrouded Fable Neutralization Zone 60 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Shrouded%20Fable%20Neutralization%20Zone%2060%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7108687",
+      "product_name": "Absol #30",
+      "console_name": "Pokemon Shrouded Fable",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:30"
+      }
+    },
+    {
+      "query": "Pokemon Shrouded Fable Neutralization Zone 60 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Shrouded%20Fable%20Neutralization%20Zone%2060%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7108688",
+      "product_name": "Zorua #31",
+      "console_name": "Pokemon Shrouded Fable",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:31"
+      }
+    },
+    {
+      "query": "Pokemon Shrouded Fable Neutralization Zone 60 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Shrouded%20Fable%20Neutralization%20Zone%2060%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7108690",
+      "product_name": "Inkay #33",
+      "console_name": "Pokemon Shrouded Fable",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:33"
+      }
+    },
+    {
+      "query": "Pokemon Shrouded Fable Neutralization Zone 60 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Shrouded%20Fable%20Neutralization%20Zone%2060%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7108707",
+      "product_name": "Eevee #50",
+      "console_name": "Pokemon Shrouded Fable",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:50"
+      }
+    },
+    {
+      "query": "Pokemon Shrouded Fable Neutralization Zone 60 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Shrouded%20Fable%20Neutralization%20Zone%2060%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7108732",
+      "product_name": "Zorua #75",
+      "console_name": "Pokemon Shrouded Fable",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:75"
+      }
+    },
+    {
+      "query": "Pokemon Shrouded Fable Neutralization Zone 60 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Shrouded%20Fable%20Neutralization%20Zone%2060%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7108724",
+      "product_name": "Horsea #67",
+      "console_name": "Pokemon Shrouded Fable",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:67"
+      }
+    },
+    {
+      "query": "Pokemon Shrouded Fable Neutralization Zone 60 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Shrouded%20Fable%20Neutralization%20Zone%2060%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7108667",
+      "product_name": "Horsea #10",
+      "console_name": "Pokemon Shrouded Fable",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:10"
+      }
+    },
+    {
+      "query": "Pokemon Shrouded Fable Neutralization Zone 60 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Shrouded%20Fable%20Neutralization%20Zone%2060%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7108668",
+      "product_name": "Seadra #11",
+      "console_name": "Pokemon Shrouded Fable",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:11"
+      }
+    },
+    {
+      "query": "Pokemon Shrouded Fable Neutralization Zone 60 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Shrouded%20Fable%20Neutralization%20Zone%2060%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7108685",
+      "product_name": "Golbat #28",
+      "console_name": "Pokemon Shrouded Fable",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:28"
+      }
+    },
+    {
+      "query": "Pokemon Shrouded Fable Neutralization Zone 60 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Shrouded%20Fable%20Neutralization%20Zone%2060%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7108686",
+      "product_name": "Crobat #29",
+      "console_name": "Pokemon Shrouded Fable",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:29"
+      }
+    },
+    {
+      "query": "Pokemon Shrouded Fable Neutralization Zone 60 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Shrouded%20Fable%20Neutralization%20Zone%2060%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7108736",
+      "product_name": "Bewear #79",
+      "console_name": "Pokemon Shrouded Fable",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:79"
+      }
+    },
+    {
+      "query": "Pokemon Shrouded Fable Neutralization Zone 60 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Shrouded%20Fable%20Neutralization%20Zone%2060%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7108710",
+      "product_name": "Bewear #53",
+      "console_name": "Pokemon Shrouded Fable",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:53"
+      }
+    },
+    {
+      "query": "Pokemon Shrouded Fable Neutralization Zone 60 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Shrouded%20Fable%20Neutralization%20Zone%2060%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7108658",
+      "product_name": "Joltik #1",
+      "console_name": "Pokemon Shrouded Fable",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:1"
+      }
+    },
+    {
+      "query": "Pokemon Shrouded Fable Neutralization Zone 60 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Shrouded%20Fable%20Neutralization%20Zone%2060%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7108717",
+      "product_name": "Neutralization Zone #60",
+      "console_name": "Pokemon Shrouded Fable",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon Shrouded Fable Neutralization Zone 60 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Shrouded%20Fable%20Neutralization%20Zone%2060%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11321012",
+      "product_name": "Kingdra EX [Stamped] #12",
+      "console_name": "Pokemon Shrouded Fable",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:12"
+      }
+    },
+    {
+      "query": "Pokemon Shrouded Fable Neutralization Zone 60 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Shrouded%20Fable%20Neutralization%20Zone%2060%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7980197",
+      "product_name": "Neutralization Zone #184",
+      "console_name": "Pokemon Japanese Terastal Festival",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:184"
+      }
+    },
+    {
+      "query": "Pokemon Shrouded Fable Neutralization Zone 60 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Shrouded%20Fable%20Neutralization%20Zone%2060%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12031189",
+      "product_name": "Neutralization Zone #184",
+      "console_name": "Pokemon Korean Terastal Festival ex",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:184"
+      }
+    },
+    {
+      "query": "Pokemon Shrouded Fable Neutralization Zone 60 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Shrouded%20Fable%20Neutralization%20Zone%2060%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7108701",
+      "product_name": "Axew #44",
+      "console_name": "Pokemon Shrouded Fable",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:44"
+      }
+    },
+    {
+      "query": "Pokemon Shrouded Fable Neutralization Zone 60 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Shrouded%20Fable%20Neutralization%20Zone%2060%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7108674",
+      "product_name": "Hypno #17",
+      "console_name": "Pokemon Shrouded Fable",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:17"
+      }
+    },
+    {
+      "query": "Pokemon Shrouded Fable Neutralization Zone 60 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Shrouded%20Fable%20Neutralization%20Zone%2060%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7108684",
+      "product_name": "Zubat #27",
+      "console_name": "Pokemon Shrouded Fable",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:27"
+      }
+    },
+    {
+      "query": "Pokemon Shrouded Fable Neutralization Zone 60 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Shrouded%20Fable%20Neutralization%20Zone%2060%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7108687",
+      "product_name": "Absol #30",
+      "console_name": "Pokemon Shrouded Fable",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:30"
+      }
+    },
+    {
+      "query": "Pokemon Shrouded Fable Neutralization Zone 60 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Shrouded%20Fable%20Neutralization%20Zone%2060%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7108688",
+      "product_name": "Zorua #31",
+      "console_name": "Pokemon Shrouded Fable",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:31"
+      }
+    },
+    {
+      "query": "Pokemon Shrouded Fable Neutralization Zone 60 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Shrouded%20Fable%20Neutralization%20Zone%2060%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7108690",
+      "product_name": "Inkay #33",
+      "console_name": "Pokemon Shrouded Fable",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:33"
+      }
+    },
+    {
+      "query": "Pokemon Shrouded Fable Neutralization Zone 60 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Shrouded%20Fable%20Neutralization%20Zone%2060%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7108707",
+      "product_name": "Eevee #50",
+      "console_name": "Pokemon Shrouded Fable",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:50"
+      }
+    },
+    {
+      "query": "Pokemon Shrouded Fable Neutralization Zone 60 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Shrouded%20Fable%20Neutralization%20Zone%2060%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7108732",
+      "product_name": "Zorua #75",
+      "console_name": "Pokemon Shrouded Fable",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:75"
+      }
+    },
+    {
+      "query": "Pokemon Shrouded Fable Neutralization Zone 60 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Shrouded%20Fable%20Neutralization%20Zone%2060%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7108724",
+      "product_name": "Horsea #67",
+      "console_name": "Pokemon Shrouded Fable",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:67"
+      }
+    },
+    {
+      "query": "Pokemon Shrouded Fable Neutralization Zone 60 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Shrouded%20Fable%20Neutralization%20Zone%2060%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7108667",
+      "product_name": "Horsea #10",
+      "console_name": "Pokemon Shrouded Fable",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:10"
+      }
+    },
+    {
+      "query": "Pokemon Shrouded Fable Neutralization Zone 60 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Shrouded%20Fable%20Neutralization%20Zone%2060%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7108668",
+      "product_name": "Seadra #11",
+      "console_name": "Pokemon Shrouded Fable",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:11"
+      }
+    },
+    {
+      "query": "Pokemon Shrouded Fable Neutralization Zone 60 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Shrouded%20Fable%20Neutralization%20Zone%2060%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7108685",
+      "product_name": "Golbat #28",
+      "console_name": "Pokemon Shrouded Fable",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:28"
+      }
+    },
+    {
+      "query": "Pokemon Shrouded Fable Neutralization Zone 60 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Shrouded%20Fable%20Neutralization%20Zone%2060%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7108686",
+      "product_name": "Crobat #29",
+      "console_name": "Pokemon Shrouded Fable",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:29"
+      }
+    },
+    {
+      "query": "Pokemon Shrouded Fable Neutralization Zone 60 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Shrouded%20Fable%20Neutralization%20Zone%2060%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7108736",
+      "product_name": "Bewear #79",
+      "console_name": "Pokemon Shrouded Fable",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:79"
+      }
+    },
+    {
+      "query": "Pokemon Shrouded Fable Neutralization Zone 60 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Shrouded%20Fable%20Neutralization%20Zone%2060%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7108710",
+      "product_name": "Bewear #53",
+      "console_name": "Pokemon Shrouded Fable",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:53"
+      }
+    },
+    {
+      "query": "Pokemon Shrouded Fable Neutralization Zone 60 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Shrouded%20Fable%20Neutralization%20Zone%2060%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7108658",
+      "product_name": "Joltik #1",
+      "console_name": "Pokemon Shrouded Fable",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:1"
+      }
+    }
+  ],
+  "source_lane": "pricecharting_api"
+}

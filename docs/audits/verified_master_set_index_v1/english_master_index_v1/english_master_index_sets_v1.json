@@ -1,6 +1,6 @@
 {
   "version": "ENGLISH_MASTER_INDEX_SETS_V1",
-  "generated_at": "2026-05-25T17:31:46.407Z",
+  "generated_at": "2026-06-08T18:24:41.247Z",
   "audit_only": true,
   "db_writes": false,
   "sets": [
@@ -565,46 +565,6 @@
       }
     },
     {
-      "key": "rc",
-      "set_name": "Radiant Collection",
-      "pokemontcg": null,
-      "tcgdex": "rc",
-      "manual_aliases": [],
-      "release_date": null,
-      "source_aliases": {
-        "pokemontcg_api": null,
-        "tcgdex": "rc",
-        "official_checklist_pdf": null,
-        "official_pokemon_checklist": null,
-        "thepricedex": "rc",
-        "thepricedex_price_list": "rc",
-        "pkmncards": "radiant-collection",
-        "bulbapedia": "Radiant_Collection_(TCG)",
-        "bulbapedia_set_list": "Radiant_Collection_(TCG)"
-      },
-      "source_status": {
-        "pokemontcg_api": "unavailable",
-        "tcgdex": "available",
-        "official_checklist_pdf": "unavailable",
-        "official_pokemon_checklist": "unavailable",
-        "thepricedex": "candidate_url",
-        "thepricedex_price_list": "candidate_url",
-        "pkmncards": "candidate_url",
-        "bulbapedia": "candidate_url",
-        "bulbapedia_set_list": "candidate_url"
-      },
-      "source_totals": {
-        "pokemontcg_api": {
-          "printed_total": null,
-          "total": null
-        },
-        "tcgdex": {
-          "official": 25,
-          "total": 25
-        }
-      }
-    },
-    {
       "key": "sp",
       "set_name": "Sample",
       "pokemontcg": null,
@@ -619,8 +579,8 @@
         "thepricedex": "sp",
         "thepricedex_price_list": "sp",
         "pkmncards": "sample",
-        "bulbapedia": "Sample_(TCG)",
-        "bulbapedia_set_list": "Sample_(TCG)"
+        "bulbapedia": "Sample_Set_(TCG)",
+        "bulbapedia_set_list": "Sample_Set_(TCG)"
       },
       "source_status": {
         "pokemontcg_api": "unavailable",
@@ -779,8 +739,8 @@
         "thepricedex": "wp",
         "thepricedex_price_list": "wp",
         "pkmncards": "w-promotional",
-        "bulbapedia": "W_Promotional_(TCG)",
-        "bulbapedia_set_list": "W_Promotional_(TCG)"
+        "bulbapedia": "W_Promotional_cards",
+        "bulbapedia_set_list": "W_Promotional_cards"
       },
       "source_status": {
         "pokemontcg_api": "unavailable",
@@ -1685,7 +1645,7 @@
       }
     },
     {
-      "key": "base6",
+      "key": "lc",
       "set_name": "Legendary Collection",
       "pokemontcg": "base6",
       "tcgdex": "lc",
@@ -1765,7 +1725,7 @@
       }
     },
     {
-      "key": "bp",
+      "key": "bog",
       "set_name": "Best of Game",
       "pokemontcg": "bp",
       "tcgdex": "bog",
@@ -2085,7 +2045,7 @@
       }
     },
     {
-      "key": "tk1a",
+      "key": "tk-ex-latia",
       "set_name": "EX Trainer Kit Latias",
       "pokemontcg": "tk1a",
       "tcgdex": "tk-ex-latia",
@@ -2125,7 +2085,7 @@
       }
     },
     {
-      "key": "tk1b",
+      "key": "tk-ex-latio",
       "set_name": "EX Trainer Kit Latios",
       "pokemontcg": "tk1b",
       "tcgdex": "tk-ex-latio",
@@ -2565,7 +2525,7 @@
       }
     },
     {
-      "key": "tk2b",
+      "key": "tk-ex-m",
       "set_name": "EX Trainer Kit 2 Minun",
       "pokemontcg": "tk2b",
       "tcgdex": "tk-ex-m",
@@ -2605,7 +2565,7 @@
       }
     },
     {
-      "key": "tk2a",
+      "key": "tk-ex-p",
       "set_name": "EX Trainer Kit 2 Plusle",
       "pokemontcg": "tk2a",
       "tcgdex": "tk-ex-p",
@@ -3645,7 +3605,7 @@
       }
     },
     {
-      "key": "hsp",
+      "key": "hgssp",
       "set_name": "HGSS Black Star Promos",
       "pokemontcg": "hsp",
       "tcgdex": "hgssp",
@@ -3925,7 +3885,7 @@
       }
     },
     {
-      "key": "mcd11",
+      "key": "2011bw",
       "set_name": "McDonald's Collection 2011",
       "pokemontcg": "mcd11",
       "tcgdex": "2011bw",
@@ -4125,7 +4085,7 @@
       }
     },
     {
-      "key": "mcd12",
+      "key": "2012bw",
       "set_name": "McDonald's Collection 2012",
       "pokemontcg": "mcd12",
       "tcgdex": "2012bw",
@@ -4605,7 +4565,7 @@
       }
     },
     {
-      "key": "mcd14",
+      "key": "2014xy",
       "set_name": "McDonald's Collection 2014",
       "pokemontcg": "mcd14",
       "tcgdex": "2014xy",
@@ -4925,7 +4885,7 @@
       }
     },
     {
-      "key": "mcd15",
+      "key": "2015xy",
       "set_name": "McDonald's Collection 2015",
       "pokemontcg": "mcd15",
       "tcgdex": "2015xy",
@@ -5125,7 +5085,7 @@
       }
     },
     {
-      "key": "mcd16",
+      "key": "2016xy",
       "set_name": "McDonald's Collection 2016",
       "pokemontcg": "mcd16",
       "tcgdex": "2016xy",
@@ -5365,7 +5325,7 @@
       }
     },
     {
-      "key": "sm35",
+      "key": "sm3.5",
       "set_name": "Shining Legends",
       "pokemontcg": "sm35",
       "tcgdex": "sm3.5",
@@ -5445,7 +5405,7 @@
       }
     },
     {
-      "key": "mcd17",
+      "key": "2017sm",
       "set_name": "McDonald's Collection 2017",
       "pokemontcg": "mcd17",
       "tcgdex": "2017sm",
@@ -5605,7 +5565,7 @@
       }
     },
     {
-      "key": "sm75",
+      "key": "sm7.5",
       "set_name": "Dragon Majesty",
       "pokemontcg": "sm75",
       "tcgdex": "sm7.5",
@@ -5645,7 +5605,7 @@
       }
     },
     {
-      "key": "mcd18",
+      "key": "2018sm",
       "set_name": "McDonald's Collection 2018",
       "pokemontcg": "mcd18",
       "tcgdex": "2018sm",
@@ -5965,7 +5925,7 @@
       }
     },
     {
-      "key": "mcd19",
+      "key": "2019sm",
       "set_name": "McDonald's Collection 2019",
       "pokemontcg": "mcd19",
       "tcgdex": "2019sm",
@@ -6245,7 +6205,7 @@
       }
     },
     {
-      "key": "swsh35",
+      "key": "swsh3.5",
       "set_name": "Champion's Path",
       "pokemontcg": "swsh35",
       "tcgdex": "swsh3.5",
@@ -6325,7 +6285,7 @@
       }
     },
     {
-      "key": "mcd21",
+      "key": "2021swsh",
       "set_name": "McDonald's Collection 2021",
       "pokemontcg": "mcd21",
       "tcgdex": "2021swsh",
@@ -6365,7 +6325,7 @@
       }
     },
     {
-      "key": "swsh45",
+      "key": "swsh4.5",
       "set_name": "Shining Fates",
       "pokemontcg": "swsh45",
       "tcgdex": "swsh4.5",
@@ -6845,7 +6805,7 @@
       }
     },
     {
-      "key": "pgo",
+      "key": "swsh10.5",
       "set_name": "Pokémon GO",
       "pokemontcg": "pgo",
       "tcgdex": "swsh10.5",
@@ -6885,7 +6845,7 @@
       }
     },
     {
-      "key": "mcd22",
+      "key": "2022swsh",
       "set_name": "McDonald's Collection 2022",
       "pokemontcg": "mcd22",
       "tcgdex": "2022swsh",
@@ -7125,7 +7085,7 @@
       }
     },
     {
-      "key": "swsh12pt5",
+      "key": "swsh12.5",
       "set_name": "Crown Zenith",
       "pokemontcg": "swsh12pt5",
       "tcgdex": "swsh12.5",
@@ -7205,7 +7165,7 @@
       }
     },
     {
-      "key": "sv1",
+      "key": "sv01",
       "set_name": "Scarlet & Violet",
       "pokemontcg": "sv1",
       "tcgdex": "sv01",
@@ -7285,7 +7245,7 @@
       }
     },
     {
-      "key": "sv2",
+      "key": "sv02",
       "set_name": "Paldea Evolved",
       "pokemontcg": "sv2",
       "tcgdex": "sv02",
@@ -7325,7 +7285,7 @@
       }
     },
     {
-      "key": "sv3",
+      "key": "sv03",
       "set_name": "Obsidian Flames",
       "pokemontcg": "sv3",
       "tcgdex": "sv03",
@@ -7365,7 +7325,7 @@
       }
     },
     {
-      "key": "sv3pt5",
+      "key": "sv03.5",
       "set_name": "151",
       "pokemontcg": "sv3pt5",
       "tcgdex": "sv03.5",
@@ -7405,7 +7365,7 @@
       }
     },
     {
-      "key": "sv4",
+      "key": "sv04",
       "set_name": "Paradox Rift",
       "pokemontcg": "sv4",
       "tcgdex": "sv04",
@@ -7445,7 +7405,7 @@
       }
     },
     {
-      "key": "sv4pt5",
+      "key": "sv04.5",
       "set_name": "Paldean Fates",
       "pokemontcg": "sv4pt5",
       "tcgdex": "sv04.5",
@@ -7485,7 +7445,7 @@
       }
     },
     {
-      "key": "sv5",
+      "key": "sv05",
       "set_name": "Temporal Forces",
       "pokemontcg": "sv5",
       "tcgdex": "sv05",
@@ -7525,7 +7485,7 @@
       }
     },
     {
-      "key": "sv6",
+      "key": "sv06",
       "set_name": "Twilight Masquerade",
       "pokemontcg": "sv6",
       "tcgdex": "sv06",
@@ -7565,7 +7525,7 @@
       }
     },
     {
-      "key": "sv6pt5",
+      "key": "sv06.5",
       "set_name": "Shrouded Fable",
       "pokemontcg": "sv6pt5",
       "tcgdex": "sv06.5",
@@ -7605,7 +7565,7 @@
       }
     },
     {
-      "key": "sv7",
+      "key": "sv07",
       "set_name": "Stellar Crown",
       "pokemontcg": "sv7",
       "tcgdex": "sv07",
@@ -7645,7 +7605,7 @@
       }
     },
     {
-      "key": "sv8",
+      "key": "sv08",
       "set_name": "Surging Sparks",
       "pokemontcg": "sv8",
       "tcgdex": "sv08",
@@ -7685,7 +7645,7 @@
       }
     },
     {
-      "key": "sv8pt5",
+      "key": "sv08.5",
       "set_name": "Prismatic Evolutions",
       "pokemontcg": "sv8pt5",
       "tcgdex": "sv08.5",
@@ -7725,7 +7685,7 @@
       }
     },
     {
-      "key": "sv9",
+      "key": "sv09",
       "set_name": "Journey Together",
       "pokemontcg": "sv9",
       "tcgdex": "sv09",
@@ -7805,7 +7765,7 @@
       }
     },
     {
-      "key": "zsv10pt5",
+      "key": "sv10.5b",
       "set_name": "Black Bolt",
       "pokemontcg": "zsv10pt5",
       "tcgdex": "sv10.5b",
@@ -7845,7 +7805,7 @@
       }
     },
     {
-      "key": "rsv10pt5",
+      "key": "sv10.5w",
       "set_name": "White Flare",
       "pokemontcg": "rsv10pt5",
       "tcgdex": "sv10.5w",
@@ -7885,7 +7845,7 @@
       }
     },
     {
-      "key": "me1",
+      "key": "me01",
       "set_name": "Mega Evolution",
       "pokemontcg": "me1",
       "tcgdex": "me01",
@@ -7925,7 +7885,7 @@
       }
     },
     {
-      "key": "me2",
+      "key": "me02",
       "set_name": "Phantasmal Flames",
       "pokemontcg": "me2",
       "tcgdex": "me02",
@@ -8009,7 +7969,7 @@
       }
     },
     {
-      "key": "me3",
+      "key": "me03",
       "set_name": "Perfect Order",
       "pokemontcg": "me3",
       "tcgdex": "me03",
@@ -8049,7 +8009,7 @@
       }
     },
     {
-      "key": "me4",
+      "key": "me04",
       "set_name": "Chaos Rising",
       "pokemontcg": "me4",
       "tcgdex": "me04",

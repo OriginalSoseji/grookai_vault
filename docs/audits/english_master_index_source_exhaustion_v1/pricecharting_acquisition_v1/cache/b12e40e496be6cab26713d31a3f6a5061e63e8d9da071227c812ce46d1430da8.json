@@ -1,0 +1,62 @@
+{
+  "status": "validated",
+  "fact": {
+    "gap_type": "finish_second_source_needed",
+    "fact_type": "printing_finish",
+    "set_key": "sv08.5",
+    "set_name": "Prismatic Evolutions",
+    "card_number": "4",
+    "card_name": "Budew",
+    "finish_key": "stamped",
+    "status": "human_source_verified",
+    "sources": [
+      "thepricedex_price_list"
+    ],
+    "source_authorities": [
+      "thepricedex.com"
+    ],
+    "source_kinds": [
+      "marketplace_checklist"
+    ],
+    "evidence_urls": [
+      "https://www.thepricedex.com/set/sv8pt5/prismatic-evolutions/price-list"
+    ],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "query": "Pokemon Prismatic Evolutions Budew 4 stamped",
+  "search_url": "https://www.pricecharting.com/api/products?q=Pokemon%20Prismatic%20Evolutions%20Budew%204%20stamped",
+  "source_url": "https://www.pricecharting.com/game/pokemon-prismatic-evolutions/budew-gym-stamp-4",
+  "title": "Budew [Gym Stamp] #4 | Pokemon Prismatic Evolutions",
+  "title_parts": {
+    "card_name": "Budew",
+    "card_number": "4",
+    "variant_label": "Gym Stamp",
+    "set_name": "Pokemon Prismatic Evolutions",
+    "pricecharting_product_id": "11047387"
+  },
+  "validation_source": "pricecharting_api_products",
+  "source_lane": "pricecharting_api",
+  "attempts": [
+    {
+      "query": "Pokemon Prismatic Evolutions Budew 4 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Prismatic%20Evolutions%20Budew%204%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11047387",
+      "product_name": "Budew [Gym Stamp] #4",
+      "console_name": "Pokemon Prismatic Evolutions",
+      "validation": {
+        "ok": true,
+        "titleParts": {
+          "card_name": "Budew",
+          "card_number": "4",
+          "variant_label": "Gym Stamp",
+          "set_name": "Pokemon Prismatic Evolutions",
+          "pricecharting_product_id": "11047387"
+        },
+        "source_url": "https://www.pricecharting.com/game/pokemon-prismatic-evolutions/budew-gym-stamp-4",
+        "title": "Budew [Gym Stamp] #4 | Pokemon Prismatic Evolutions"
+      }
+    }
+  ]
+}

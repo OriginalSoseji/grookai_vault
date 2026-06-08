@@ -1,0 +1,48 @@
+{
+  "fixture_version": "VERIFIED_MASTER_SET_INDEX_V1_HUMAN_SOURCE_FIXTURE_GENERATED",
+  "source_key": "doubleholo_finish_dp4",
+  "source_kind": "marketplace_checklist",
+  "source_url": "https://doubleholo.com/sets/pokemon-great-encounters",
+  "source_status": "available_generated",
+  "set_key": "dp4",
+  "set_name": "Great Encounters",
+  "retrieved_at": "2026-05-27T16:29:37.798Z",
+  "raw_snapshot_ref": "generated_fixture:doubleholo:dp4:2026-05-27T16:29:37.798Z",
+  "generation_note": "Generated from Double Holo set checklist explicit bracketed finish labels only.",
+  "records": [
+    {
+      "source_key": "doubleholo_set_checklist",
+      "source_kind": "marketplace_checklist",
+      "source_url": "https://doubleholo.com/sets/pokemon-great-encounters",
+      "set_key": "dp4",
+      "set_name": "Great Encounters",
+      "card_number": "15",
+      "card_name": "Claydol",
+      "finish_key": "holo",
+      "rarity": null,
+      "evidence_type": "finish_presence",
+      "evidence_label": "Double Holo checklist row Claydol [Crosshatch Holo] #15",
+      "language": "en",
+      "retrieved_at": "2026-05-27T16:29:37.798Z",
+      "raw_snapshot_ref": "doubleholo:dp4:15:holo",
+      "notes": "Generated only from explicit bracketed Double Holo finish labels."
+    },
+    {
+      "source_key": "doubleholo_set_checklist",
+      "source_kind": "marketplace_checklist",
+      "source_url": "https://doubleholo.com/sets/pokemon-great-encounters",
+      "set_key": "dp4",
+      "set_name": "Great Encounters",
+      "card_number": "26",
+      "card_name": "Palkia",
+      "finish_key": "stamped",
+      "rarity": null,
+      "evidence_type": "finish_presence",
+      "evidence_label": "Double Holo checklist row Palkia [Stamped] #26",
+      "language": "en",
+      "retrieved_at": "2026-05-27T16:29:37.798Z",
+      "raw_snapshot_ref": "doubleholo:dp4:26:stamped",
+      "notes": "Generated only from explicit bracketed Double Holo finish labels."
+    }
+  ]
+}

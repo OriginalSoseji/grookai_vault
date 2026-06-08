@@ -1,0 +1,549 @@
+{
+  "status": "api_no_validated_match",
+  "fact": {
+    "gap_type": "finish_second_source_needed",
+    "fact_type": "printing_finish",
+    "set_key": "swsh10",
+    "set_name": "Astral Radiance",
+    "card_number": "114",
+    "card_name": "Origin Forme Dialga VSTAR",
+    "finish_key": "stamped",
+    "status": "human_source_verified",
+    "sources": [
+      "thepricedex_price_list"
+    ],
+    "source_authorities": [
+      "thepricedex.com"
+    ],
+    "source_kinds": [
+      "marketplace_checklist"
+    ],
+    "evidence_urls": [
+      "https://www.thepricedex.com/set/swsh10/astral-radiance/price-list"
+    ],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "attempts": [
+    {
+      "query": "Pokemon Astral Radiance Origin Forme Dialga VSTAR 114 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Astral%20Radiance%20Origin%20Forme%20Dialga%20VSTAR%20114%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9056514",
+      "product_name": "Origin Forme Dialga VSTAR [Prize Pack] #114",
+      "console_name": "Pokemon Astral Radiance",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Prize Pack"
+      }
+    },
+    {
+      "query": "Pokemon Astral Radiance Origin Forme Dialga VSTAR 114 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Astral%20Radiance%20Origin%20Forme%20Dialga%20VSTAR%20114%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3489613",
+      "product_name": "Origin Forme Dialga VSTAR #114",
+      "console_name": "Pokemon Astral Radiance",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon Astral Radiance Origin Forme Dialga VSTAR 114 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Astral%20Radiance%20Origin%20Forme%20Dialga%20VSTAR%20114%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3489698",
+      "product_name": "Origin Forme Dialga VSTAR #198",
+      "console_name": "Pokemon Astral Radiance",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:198"
+      }
+    },
+    {
+      "query": "Pokemon Astral Radiance Origin Forme Dialga VSTAR 114 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Astral%20Radiance%20Origin%20Forme%20Dialga%20VSTAR%20114%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3489710",
+      "product_name": "Origin Forme Dialga VSTAR #210",
+      "console_name": "Pokemon Astral Radiance",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:210"
+      }
+    },
+    {
+      "query": "Pokemon Astral Radiance Origin Forme Dialga VSTAR 114 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Astral%20Radiance%20Origin%20Forme%20Dialga%20VSTAR%20114%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3489612",
+      "product_name": "Origin Forme Dialga V #113",
+      "console_name": "Pokemon Astral Radiance",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:113"
+      }
+    },
+    {
+      "query": "Pokemon Astral Radiance Origin Forme Dialga VSTAR 114 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Astral%20Radiance%20Origin%20Forme%20Dialga%20VSTAR%20114%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3489676",
+      "product_name": "Origin Forme Dialga V #177",
+      "console_name": "Pokemon Astral Radiance",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:177"
+      }
+    },
+    {
+      "query": "Pokemon Astral Radiance Origin Forme Dialga VSTAR 114 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Astral%20Radiance%20Origin%20Forme%20Dialga%20VSTAR%20114%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9056513",
+      "product_name": "Origin Forme Dialga V [Prize Pack] #113",
+      "console_name": "Pokemon Astral Radiance",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:113"
+      }
+    },
+    {
+      "query": "Pokemon Astral Radiance Origin Forme Dialga VSTAR 114 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Astral%20Radiance%20Origin%20Forme%20Dialga%20VSTAR%20114%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3489538",
+      "product_name": "Origin Forme Palkia VSTAR #40",
+      "console_name": "Pokemon Astral Radiance",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:40"
+      }
+    },
+    {
+      "query": "Pokemon Astral Radiance Origin Forme Dialga VSTAR 114 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Astral%20Radiance%20Origin%20Forme%20Dialga%20VSTAR%20114%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3489691",
+      "product_name": "Origin Forme Palkia VSTAR #192",
+      "console_name": "Pokemon Astral Radiance",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:192"
+      }
+    },
+    {
+      "query": "Pokemon Astral Radiance Origin Forme Dialga VSTAR 114 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Astral%20Radiance%20Origin%20Forme%20Dialga%20VSTAR%20114%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3489708",
+      "product_name": "Origin Forme Palkia VSTAR #208",
+      "console_name": "Pokemon Astral Radiance",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:208"
+      }
+    },
+    {
+      "query": "Pokemon Astral Radiance Origin Forme Dialga VSTAR 114 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Astral%20Radiance%20Origin%20Forme%20Dialga%20VSTAR%20114%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5917432",
+      "product_name": "Origin Forme Dialga VStar [Jumbo] #swsh256",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "product_scope_jumbo_not_canonical_set_finish"
+      }
+    },
+    {
+      "query": "Pokemon Astral Radiance Origin Forme Dialga VSTAR 114 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Astral%20Radiance%20Origin%20Forme%20Dialga%20VSTAR%20114%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10809599",
+      "product_name": "Origin Forme Dialga VSTAR [Jumbo] #256",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "product_scope_jumbo_not_canonical_set_finish"
+      }
+    },
+    {
+      "query": "Pokemon Astral Radiance Origin Forme Dialga VSTAR 114 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Astral%20Radiance%20Origin%20Forme%20Dialga%20VSTAR%20114%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4447575",
+      "product_name": "Origin Forme Dialga V #100",
+      "console_name": "Pokemon Japanese VSTAR Universe",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:100"
+      }
+    },
+    {
+      "query": "Pokemon Astral Radiance Origin Forme Dialga VSTAR 114 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Astral%20Radiance%20Origin%20Forme%20Dialga%20VSTAR%20114%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3489537",
+      "product_name": "Origin Forme Palkia V #39",
+      "console_name": "Pokemon Astral Radiance",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:39"
+      }
+    },
+    {
+      "query": "Pokemon Astral Radiance Origin Forme Dialga VSTAR 114 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Astral%20Radiance%20Origin%20Forme%20Dialga%20VSTAR%20114%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3489666",
+      "product_name": "Origin Forme Palkia V #167",
+      "console_name": "Pokemon Astral Radiance",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:167"
+      }
+    },
+    {
+      "query": "Pokemon Astral Radiance Origin Forme Dialga VSTAR 114 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Astral%20Radiance%20Origin%20Forme%20Dialga%20VSTAR%20114%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4447734",
+      "product_name": "Origin Forme Dialga VSTAR #260",
+      "console_name": "Pokemon Japanese VSTAR Universe",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:260"
+      }
+    },
+    {
+      "query": "Pokemon Astral Radiance Origin Forme Dialga VSTAR 114 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Astral%20Radiance%20Origin%20Forme%20Dialga%20VSTAR%20114%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4447576",
+      "product_name": "Origin Forme Dialga VSTAR #101",
+      "console_name": "Pokemon Japanese VSTAR Universe",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:101"
+      }
+    },
+    {
+      "query": "Pokemon Astral Radiance Origin Forme Dialga VSTAR 114 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Astral%20Radiance%20Origin%20Forme%20Dialga%20VSTAR%20114%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4175987",
+      "product_name": "Origin Forme Dialga VSTAR #SWSH256",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:SWSH256"
+      }
+    },
+    {
+      "query": "Pokemon Astral Radiance Origin Forme Dialga VSTAR 114 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Astral%20Radiance%20Origin%20Forme%20Dialga%20VSTAR%20114%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4637124",
+      "product_name": "Origin Forme Dialga VSTAR #GG68",
+      "console_name": "Pokemon Crown Zenith",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:GG68"
+      }
+    },
+    {
+      "query": "Pokemon Astral Radiance Origin Forme Dialga VSTAR 114 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Astral%20Radiance%20Origin%20Forme%20Dialga%20VSTAR%20114%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3491719",
+      "product_name": "Origin Forme Dialga VSTAR #49",
+      "console_name": "Pokemon Japanese Time Gazer",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:49"
+      }
+    },
+    {
+      "query": "Pokemon Astral Radiance Origin Forme Dialga VSTAR 114 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Astral%20Radiance%20Origin%20Forme%20Dialga%20VSTAR%20114%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9056514",
+      "product_name": "Origin Forme Dialga VSTAR [Prize Pack] #114",
+      "console_name": "Pokemon Astral Radiance",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Prize Pack"
+      }
+    },
+    {
+      "query": "Pokemon Astral Radiance Origin Forme Dialga VSTAR 114 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Astral%20Radiance%20Origin%20Forme%20Dialga%20VSTAR%20114%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3489613",
+      "product_name": "Origin Forme Dialga VSTAR #114",
+      "console_name": "Pokemon Astral Radiance",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon Astral Radiance Origin Forme Dialga VSTAR 114 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Astral%20Radiance%20Origin%20Forme%20Dialga%20VSTAR%20114%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3489698",
+      "product_name": "Origin Forme Dialga VSTAR #198",
+      "console_name": "Pokemon Astral Radiance",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:198"
+      }
+    },
+    {
+      "query": "Pokemon Astral Radiance Origin Forme Dialga VSTAR 114 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Astral%20Radiance%20Origin%20Forme%20Dialga%20VSTAR%20114%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3489710",
+      "product_name": "Origin Forme Dialga VSTAR #210",
+      "console_name": "Pokemon Astral Radiance",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:210"
+      }
+    },
+    {
+      "query": "Pokemon Astral Radiance Origin Forme Dialga VSTAR 114 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Astral%20Radiance%20Origin%20Forme%20Dialga%20VSTAR%20114%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3489612",
+      "product_name": "Origin Forme Dialga V #113",
+      "console_name": "Pokemon Astral Radiance",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:113"
+      }
+    },
+    {
+      "query": "Pokemon Astral Radiance Origin Forme Dialga VSTAR 114 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Astral%20Radiance%20Origin%20Forme%20Dialga%20VSTAR%20114%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3489676",
+      "product_name": "Origin Forme Dialga V #177",
+      "console_name": "Pokemon Astral Radiance",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:177"
+      }
+    },
+    {
+      "query": "Pokemon Astral Radiance Origin Forme Dialga VSTAR 114 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Astral%20Radiance%20Origin%20Forme%20Dialga%20VSTAR%20114%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9056513",
+      "product_name": "Origin Forme Dialga V [Prize Pack] #113",
+      "console_name": "Pokemon Astral Radiance",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:113"
+      }
+    },
+    {
+      "query": "Pokemon Astral Radiance Origin Forme Dialga VSTAR 114 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Astral%20Radiance%20Origin%20Forme%20Dialga%20VSTAR%20114%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3489538",
+      "product_name": "Origin Forme Palkia VSTAR #40",
+      "console_name": "Pokemon Astral Radiance",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:40"
+      }
+    },
+    {
+      "query": "Pokemon Astral Radiance Origin Forme Dialga VSTAR 114 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Astral%20Radiance%20Origin%20Forme%20Dialga%20VSTAR%20114%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3489691",
+      "product_name": "Origin Forme Palkia VSTAR #192",
+      "console_name": "Pokemon Astral Radiance",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:192"
+      }
+    },
+    {
+      "query": "Pokemon Astral Radiance Origin Forme Dialga VSTAR 114 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Astral%20Radiance%20Origin%20Forme%20Dialga%20VSTAR%20114%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3489708",
+      "product_name": "Origin Forme Palkia VSTAR #208",
+      "console_name": "Pokemon Astral Radiance",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:208"
+      }
+    },
+    {
+      "query": "Pokemon Astral Radiance Origin Forme Dialga VSTAR 114 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Astral%20Radiance%20Origin%20Forme%20Dialga%20VSTAR%20114%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5917432",
+      "product_name": "Origin Forme Dialga VStar [Jumbo] #swsh256",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "product_scope_jumbo_not_canonical_set_finish"
+      }
+    },
+    {
+      "query": "Pokemon Astral Radiance Origin Forme Dialga VSTAR 114 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Astral%20Radiance%20Origin%20Forme%20Dialga%20VSTAR%20114%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10809599",
+      "product_name": "Origin Forme Dialga VSTAR [Jumbo] #256",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "product_scope_jumbo_not_canonical_set_finish"
+      }
+    },
+    {
+      "query": "Pokemon Astral Radiance Origin Forme Dialga VSTAR 114 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Astral%20Radiance%20Origin%20Forme%20Dialga%20VSTAR%20114%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4447575",
+      "product_name": "Origin Forme Dialga V #100",
+      "console_name": "Pokemon Japanese VSTAR Universe",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:100"
+      }
+    },
+    {
+      "query": "Pokemon Astral Radiance Origin Forme Dialga VSTAR 114 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Astral%20Radiance%20Origin%20Forme%20Dialga%20VSTAR%20114%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3489537",
+      "product_name": "Origin Forme Palkia V #39",
+      "console_name": "Pokemon Astral Radiance",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:39"
+      }
+    },
+    {
+      "query": "Pokemon Astral Radiance Origin Forme Dialga VSTAR 114 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Astral%20Radiance%20Origin%20Forme%20Dialga%20VSTAR%20114%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3489666",
+      "product_name": "Origin Forme Palkia V #167",
+      "console_name": "Pokemon Astral Radiance",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:167"
+      }
+    },
+    {
+      "query": "Pokemon Astral Radiance Origin Forme Dialga VSTAR 114 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Astral%20Radiance%20Origin%20Forme%20Dialga%20VSTAR%20114%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4447734",
+      "product_name": "Origin Forme Dialga VSTAR #260",
+      "console_name": "Pokemon Japanese VSTAR Universe",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:260"
+      }
+    },
+    {
+      "query": "Pokemon Astral Radiance Origin Forme Dialga VSTAR 114 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Astral%20Radiance%20Origin%20Forme%20Dialga%20VSTAR%20114%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4447576",
+      "product_name": "Origin Forme Dialga VSTAR #101",
+      "console_name": "Pokemon Japanese VSTAR Universe",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:101"
+      }
+    },
+    {
+      "query": "Pokemon Astral Radiance Origin Forme Dialga VSTAR 114 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Astral%20Radiance%20Origin%20Forme%20Dialga%20VSTAR%20114%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4175987",
+      "product_name": "Origin Forme Dialga VSTAR #SWSH256",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:SWSH256"
+      }
+    },
+    {
+      "query": "Pokemon Astral Radiance Origin Forme Dialga VSTAR 114 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Astral%20Radiance%20Origin%20Forme%20Dialga%20VSTAR%20114%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4637124",
+      "product_name": "Origin Forme Dialga VSTAR #GG68",
+      "console_name": "Pokemon Crown Zenith",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:GG68"
+      }
+    },
+    {
+      "query": "Pokemon Astral Radiance Origin Forme Dialga VSTAR 114 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Astral%20Radiance%20Origin%20Forme%20Dialga%20VSTAR%20114%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3491719",
+      "product_name": "Origin Forme Dialga VSTAR #49",
+      "console_name": "Pokemon Japanese Time Gazer",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:49"
+      }
+    }
+  ],
+  "source_lane": "pricecharting_api"
+}

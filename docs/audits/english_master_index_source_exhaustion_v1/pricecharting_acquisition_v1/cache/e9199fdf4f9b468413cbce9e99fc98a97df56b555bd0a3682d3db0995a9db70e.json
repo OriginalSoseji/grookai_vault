@@ -1,0 +1,549 @@
+{
+  "status": "api_no_validated_match",
+  "fact": {
+    "gap_type": "finish_second_source_needed",
+    "fact_type": "printing_finish",
+    "set_key": "ex3",
+    "set_name": "Dragon",
+    "card_number": "50",
+    "card_name": "Bagon",
+    "finish_key": "stamped",
+    "status": "human_source_verified",
+    "sources": [
+      "thepricedex_price_list"
+    ],
+    "source_authorities": [
+      "thepricedex.com"
+    ],
+    "source_kinds": [
+      "marketplace_checklist"
+    ],
+    "evidence_urls": [
+      "https://www.thepricedex.com/set/ex3/dragon/price-list"
+    ],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "attempts": [
+    {
+      "query": "Pokemon Dragon Bagon 50 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Bagon%2050%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "849430",
+      "product_name": "Bagon #50",
+      "console_name": "Pokemon Dragon",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Bagon 50 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Bagon%2050%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "849529",
+      "product_name": "Bagon [Reverse Holo] #50",
+      "console_name": "Pokemon Dragon",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Reverse Holo"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Bagon 50 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Bagon%2050%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10455293",
+      "product_name": "Bagon [Stamped] #57",
+      "console_name": "Pokemon Delta Species",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:57"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Bagon 50 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Bagon%2050%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3233017",
+      "product_name": "Bagon [Scyre] #50",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon Promo"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Bagon 50 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Bagon%2050%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3233015",
+      "product_name": "Bagon [Gencon] #50",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon Promo"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Bagon 50 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Bagon%2050%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3233018",
+      "product_name": "Bagon [Inquest] #50",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon Promo"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Bagon 50 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Bagon%2050%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "849403",
+      "product_name": "Bagon #23",
+      "console_name": "Pokemon Dragon",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:23"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Bagon 50 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Bagon%2050%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "849429",
+      "product_name": "Bagon #49",
+      "console_name": "Pokemon Dragon",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:49"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Bagon 50 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Bagon%2050%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "849502",
+      "product_name": "Bagon [Reverse Holo] #23",
+      "console_name": "Pokemon Dragon",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:23"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Bagon 50 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Bagon%2050%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "849528",
+      "product_name": "Bagon [Reverse Holo] #49",
+      "console_name": "Pokemon Dragon",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:49"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Bagon 50 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Bagon%2050%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "956499",
+      "product_name": "Bagon #6",
+      "console_name": "Pokemon Dragon Vault",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:6"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Bagon 50 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Bagon%2050%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "889517",
+      "product_name": "Bagon #43",
+      "console_name": "Pokemon Dragon Frontiers",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:43"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Bagon 50 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Bagon%2050%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "962276",
+      "product_name": "Bagon #42",
+      "console_name": "Pokemon Dragon Majesty",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:42"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Bagon 50 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Bagon%2050%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "889618",
+      "product_name": "Bagon [Reverse Holo] #43",
+      "console_name": "Pokemon Dragon Frontiers",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:43"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Bagon 50 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Bagon%2050%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "962349",
+      "product_name": "Bagon [Reverse Holo] #42",
+      "console_name": "Pokemon Dragon Majesty",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:42"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Bagon 50 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Bagon%2050%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3445138",
+      "product_name": "Bagon #6",
+      "console_name": "Pokemon Japanese Dragon Selection",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:6"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Bagon 50 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Bagon%2050%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5672119",
+      "product_name": "Bagon [Regional Championships] #6",
+      "console_name": "Pokemon Dragon Vault",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:6"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Bagon 50 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Bagon%2050%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3506933",
+      "product_name": "Bagon [1st Edition] #6",
+      "console_name": "Pokemon Japanese Dragon Selection",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:6"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Bagon 50 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Bagon%2050%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3438936",
+      "product_name": "Bagon #44",
+      "console_name": "Pokemon Japanese Rulers of the Heavens",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:44"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Bagon 50 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Bagon%2050%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10802750",
+      "product_name": "Bagon [1st Edition] #44",
+      "console_name": "Pokemon Japanese Rulers of the Heavens",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:44"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Bagon 50 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Bagon%2050%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "849430",
+      "product_name": "Bagon #50",
+      "console_name": "Pokemon Dragon",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Bagon 50 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Bagon%2050%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "849529",
+      "product_name": "Bagon [Reverse Holo] #50",
+      "console_name": "Pokemon Dragon",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Reverse Holo"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Bagon 50 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Bagon%2050%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10455293",
+      "product_name": "Bagon [Stamped] #57",
+      "console_name": "Pokemon Delta Species",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:57"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Bagon 50 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Bagon%2050%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3233017",
+      "product_name": "Bagon [Scyre] #50",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon Promo"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Bagon 50 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Bagon%2050%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3233015",
+      "product_name": "Bagon [Gencon] #50",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon Promo"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Bagon 50 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Bagon%2050%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3233018",
+      "product_name": "Bagon [Inquest] #50",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon Promo"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Bagon 50 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Bagon%2050%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "849403",
+      "product_name": "Bagon #23",
+      "console_name": "Pokemon Dragon",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:23"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Bagon 50 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Bagon%2050%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "849429",
+      "product_name": "Bagon #49",
+      "console_name": "Pokemon Dragon",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:49"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Bagon 50 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Bagon%2050%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "849502",
+      "product_name": "Bagon [Reverse Holo] #23",
+      "console_name": "Pokemon Dragon",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:23"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Bagon 50 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Bagon%2050%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "849528",
+      "product_name": "Bagon [Reverse Holo] #49",
+      "console_name": "Pokemon Dragon",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:49"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Bagon 50 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Bagon%2050%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "956499",
+      "product_name": "Bagon #6",
+      "console_name": "Pokemon Dragon Vault",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:6"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Bagon 50 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Bagon%2050%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "889517",
+      "product_name": "Bagon #43",
+      "console_name": "Pokemon Dragon Frontiers",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:43"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Bagon 50 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Bagon%2050%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "962276",
+      "product_name": "Bagon #42",
+      "console_name": "Pokemon Dragon Majesty",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:42"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Bagon 50 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Bagon%2050%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "889618",
+      "product_name": "Bagon [Reverse Holo] #43",
+      "console_name": "Pokemon Dragon Frontiers",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:43"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Bagon 50 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Bagon%2050%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "962349",
+      "product_name": "Bagon [Reverse Holo] #42",
+      "console_name": "Pokemon Dragon Majesty",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:42"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Bagon 50 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Bagon%2050%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3445138",
+      "product_name": "Bagon #6",
+      "console_name": "Pokemon Japanese Dragon Selection",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:6"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Bagon 50 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Bagon%2050%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5672119",
+      "product_name": "Bagon [Regional Championships] #6",
+      "console_name": "Pokemon Dragon Vault",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:6"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Bagon 50 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Bagon%2050%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3506933",
+      "product_name": "Bagon [1st Edition] #6",
+      "console_name": "Pokemon Japanese Dragon Selection",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:6"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Bagon 50 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Bagon%2050%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3438936",
+      "product_name": "Bagon #44",
+      "console_name": "Pokemon Japanese Rulers of the Heavens",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:44"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Bagon 50 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Bagon%2050%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10802750",
+      "product_name": "Bagon [1st Edition] #44",
+      "console_name": "Pokemon Japanese Rulers of the Heavens",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:44"
+      }
+    }
+  ],
+  "source_lane": "pricecharting_api"
+}

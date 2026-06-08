@@ -1,0 +1,549 @@
+{
+  "status": "api_no_validated_match",
+  "fact": {
+    "gap_type": "finish_second_source_needed",
+    "fact_type": "printing_finish",
+    "set_key": "sv08.5",
+    "set_name": "Prismatic Evolutions",
+    "card_number": "40",
+    "card_name": "Sylveon",
+    "finish_key": "stamped",
+    "status": "human_source_verified",
+    "sources": [
+      "thepricedex_price_list"
+    ],
+    "source_authorities": [
+      "thepricedex.com"
+    ],
+    "source_kinds": [
+      "marketplace_checklist"
+    ],
+    "evidence_urls": [
+      "https://www.thepricedex.com/set/sv8pt5/prismatic-evolutions/price-list"
+    ],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "attempts": [
+    {
+      "query": "Pokemon Prismatic Evolutions Sylveon 40 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Prismatic%20Evolutions%20Sylveon%2040%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8624383",
+      "product_name": "Sylveon ex [Stamped] #41",
+      "console_name": "Pokemon Prismatic Evolutions",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:41"
+      }
+    },
+    {
+      "query": "Pokemon Prismatic Evolutions Sylveon 40 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Prismatic%20Evolutions%20Sylveon%2040%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8244484",
+      "product_name": "Sylveon #40",
+      "console_name": "Pokemon Prismatic Evolutions",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon Prismatic Evolutions Sylveon 40 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Prismatic%20Evolutions%20Sylveon%2040%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8321722",
+      "product_name": "Sylveon [Reverse] #40",
+      "console_name": "Pokemon Prismatic Evolutions",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Reverse"
+      }
+    },
+    {
+      "query": "Pokemon Prismatic Evolutions Sylveon 40 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Prismatic%20Evolutions%20Sylveon%2040%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8321624",
+      "product_name": "Sylveon [Poke Ball] #40",
+      "console_name": "Pokemon Prismatic Evolutions",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Poke Ball"
+      }
+    },
+    {
+      "query": "Pokemon Prismatic Evolutions Sylveon 40 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Prismatic%20Evolutions%20Sylveon%2040%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8321526",
+      "product_name": "Sylveon [Master Ball] #40",
+      "console_name": "Pokemon Prismatic Evolutions",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Master Ball"
+      }
+    },
+    {
+      "query": "Pokemon Prismatic Evolutions Sylveon 40 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Prismatic%20Evolutions%20Sylveon%2040%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10854381",
+      "product_name": "Sylveon [Cosmos Holo] #40",
+      "console_name": "Pokemon Prismatic Evolutions",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Cosmos Holo"
+      }
+    },
+    {
+      "query": "Pokemon Prismatic Evolutions Sylveon 40 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Prismatic%20Evolutions%20Sylveon%2040%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8710279",
+      "product_name": "Sylveon [Pokemon Day 2025] #40",
+      "console_name": "Pokemon Prismatic Evolutions",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Pokemon Day 2025"
+      }
+    },
+    {
+      "query": "Pokemon Prismatic Evolutions Sylveon 40 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Prismatic%20Evolutions%20Sylveon%2040%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8256658",
+      "product_name": "Mini Tin [Sylveon]",
+      "console_name": "Pokemon Prismatic Evolutions",
+      "validation": {
+        "ok": false,
+        "reason": "api_product_name_pattern_not_supported"
+      }
+    },
+    {
+      "query": "Pokemon Prismatic Evolutions Sylveon 40 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Prismatic%20Evolutions%20Sylveon%2040%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8244485",
+      "product_name": "Sylveon ex #41",
+      "console_name": "Pokemon Prismatic Evolutions",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:41"
+      }
+    },
+    {
+      "query": "Pokemon Prismatic Evolutions Sylveon 40 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Prismatic%20Evolutions%20Sylveon%2040%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8244599",
+      "product_name": "Sylveon ex #156",
+      "console_name": "Pokemon Prismatic Evolutions",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:156"
+      }
+    },
+    {
+      "query": "Pokemon Prismatic Evolutions Sylveon 40 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Prismatic%20Evolutions%20Sylveon%2040%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11047387",
+      "product_name": "Budew [Gym Stamp] #4",
+      "console_name": "Pokemon Prismatic Evolutions",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:4"
+      }
+    },
+    {
+      "query": "Pokemon Prismatic Evolutions Sylveon 40 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Prismatic%20Evolutions%20Sylveon%2040%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8256653",
+      "product_name": "Tech Sticker Collection [Sylveon]",
+      "console_name": "Pokemon Prismatic Evolutions",
+      "validation": {
+        "ok": false,
+        "reason": "api_product_name_pattern_not_supported"
+      }
+    },
+    {
+      "query": "Pokemon Prismatic Evolutions Sylveon 40 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Prismatic%20Evolutions%20Sylveon%2040%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10491819",
+      "product_name": "Lucario [Stamped] #51",
+      "console_name": "Pokemon Prismatic Evolutions",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:51"
+      }
+    },
+    {
+      "query": "Pokemon Prismatic Evolutions Sylveon 40 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Prismatic%20Evolutions%20Sylveon%2040%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10491823",
+      "product_name": "Tyranitar [Stamped] #64",
+      "console_name": "Pokemon Prismatic Evolutions",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:64"
+      }
+    },
+    {
+      "query": "Pokemon Prismatic Evolutions Sylveon 40 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Prismatic%20Evolutions%20Sylveon%2040%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11085989",
+      "product_name": "Lugia Ex [Stamped] #82",
+      "console_name": "Pokemon Prismatic Evolutions",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:82"
+      }
+    },
+    {
+      "query": "Pokemon Prismatic Evolutions Sylveon 40 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Prismatic%20Evolutions%20Sylveon%2040%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8576523",
+      "product_name": "Eevee Ex [Stamped] #75",
+      "console_name": "Pokemon Prismatic Evolutions",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:75"
+      }
+    },
+    {
+      "query": "Pokemon Prismatic Evolutions Sylveon 40 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Prismatic%20Evolutions%20Sylveon%2040%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11444940",
+      "product_name": "Snorlax Ex [Stamped] #76",
+      "console_name": "Pokemon Prismatic Evolutions",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:76"
+      }
+    },
+    {
+      "query": "Pokemon Prismatic Evolutions Sylveon 40 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Prismatic%20Evolutions%20Sylveon%2040%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8624384",
+      "product_name": "Umbreon ex [Stamped] #60",
+      "console_name": "Pokemon Prismatic Evolutions",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:60"
+      }
+    },
+    {
+      "query": "Pokemon Prismatic Evolutions Sylveon 40 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Prismatic%20Evolutions%20Sylveon%2040%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8576850",
+      "product_name": "Leafeon Ex [Stamped] #6",
+      "console_name": "Pokemon Prismatic Evolutions",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:6"
+      }
+    },
+    {
+      "query": "Pokemon Prismatic Evolutions Sylveon 40 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Prismatic%20Evolutions%20Sylveon%2040%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8624377",
+      "product_name": "Glaceon ex [Stamped] #26",
+      "console_name": "Pokemon Prismatic Evolutions",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:26"
+      }
+    },
+    {
+      "query": "Pokemon Prismatic Evolutions Sylveon 40 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Prismatic%20Evolutions%20Sylveon%2040%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8624383",
+      "product_name": "Sylveon ex [Stamped] #41",
+      "console_name": "Pokemon Prismatic Evolutions",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:41"
+      }
+    },
+    {
+      "query": "Pokemon Prismatic Evolutions Sylveon 40 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Prismatic%20Evolutions%20Sylveon%2040%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8244484",
+      "product_name": "Sylveon #40",
+      "console_name": "Pokemon Prismatic Evolutions",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon Prismatic Evolutions Sylveon 40 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Prismatic%20Evolutions%20Sylveon%2040%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8321722",
+      "product_name": "Sylveon [Reverse] #40",
+      "console_name": "Pokemon Prismatic Evolutions",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Reverse"
+      }
+    },
+    {
+      "query": "Pokemon Prismatic Evolutions Sylveon 40 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Prismatic%20Evolutions%20Sylveon%2040%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8321624",
+      "product_name": "Sylveon [Poke Ball] #40",
+      "console_name": "Pokemon Prismatic Evolutions",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Poke Ball"
+      }
+    },
+    {
+      "query": "Pokemon Prismatic Evolutions Sylveon 40 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Prismatic%20Evolutions%20Sylveon%2040%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8321526",
+      "product_name": "Sylveon [Master Ball] #40",
+      "console_name": "Pokemon Prismatic Evolutions",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Master Ball"
+      }
+    },
+    {
+      "query": "Pokemon Prismatic Evolutions Sylveon 40 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Prismatic%20Evolutions%20Sylveon%2040%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10854381",
+      "product_name": "Sylveon [Cosmos Holo] #40",
+      "console_name": "Pokemon Prismatic Evolutions",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Cosmos Holo"
+      }
+    },
+    {
+      "query": "Pokemon Prismatic Evolutions Sylveon 40 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Prismatic%20Evolutions%20Sylveon%2040%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8710279",
+      "product_name": "Sylveon [Pokemon Day 2025] #40",
+      "console_name": "Pokemon Prismatic Evolutions",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Pokemon Day 2025"
+      }
+    },
+    {
+      "query": "Pokemon Prismatic Evolutions Sylveon 40 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Prismatic%20Evolutions%20Sylveon%2040%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8256658",
+      "product_name": "Mini Tin [Sylveon]",
+      "console_name": "Pokemon Prismatic Evolutions",
+      "validation": {
+        "ok": false,
+        "reason": "api_product_name_pattern_not_supported"
+      }
+    },
+    {
+      "query": "Pokemon Prismatic Evolutions Sylveon 40 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Prismatic%20Evolutions%20Sylveon%2040%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8244485",
+      "product_name": "Sylveon ex #41",
+      "console_name": "Pokemon Prismatic Evolutions",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:41"
+      }
+    },
+    {
+      "query": "Pokemon Prismatic Evolutions Sylveon 40 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Prismatic%20Evolutions%20Sylveon%2040%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8244599",
+      "product_name": "Sylveon ex #156",
+      "console_name": "Pokemon Prismatic Evolutions",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:156"
+      }
+    },
+    {
+      "query": "Pokemon Prismatic Evolutions Sylveon 40 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Prismatic%20Evolutions%20Sylveon%2040%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11047387",
+      "product_name": "Budew [Gym Stamp] #4",
+      "console_name": "Pokemon Prismatic Evolutions",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:4"
+      }
+    },
+    {
+      "query": "Pokemon Prismatic Evolutions Sylveon 40 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Prismatic%20Evolutions%20Sylveon%2040%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8256653",
+      "product_name": "Tech Sticker Collection [Sylveon]",
+      "console_name": "Pokemon Prismatic Evolutions",
+      "validation": {
+        "ok": false,
+        "reason": "api_product_name_pattern_not_supported"
+      }
+    },
+    {
+      "query": "Pokemon Prismatic Evolutions Sylveon 40 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Prismatic%20Evolutions%20Sylveon%2040%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10491819",
+      "product_name": "Lucario [Stamped] #51",
+      "console_name": "Pokemon Prismatic Evolutions",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:51"
+      }
+    },
+    {
+      "query": "Pokemon Prismatic Evolutions Sylveon 40 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Prismatic%20Evolutions%20Sylveon%2040%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10491823",
+      "product_name": "Tyranitar [Stamped] #64",
+      "console_name": "Pokemon Prismatic Evolutions",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:64"
+      }
+    },
+    {
+      "query": "Pokemon Prismatic Evolutions Sylveon 40 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Prismatic%20Evolutions%20Sylveon%2040%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11085989",
+      "product_name": "Lugia Ex [Stamped] #82",
+      "console_name": "Pokemon Prismatic Evolutions",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:82"
+      }
+    },
+    {
+      "query": "Pokemon Prismatic Evolutions Sylveon 40 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Prismatic%20Evolutions%20Sylveon%2040%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8576523",
+      "product_name": "Eevee Ex [Stamped] #75",
+      "console_name": "Pokemon Prismatic Evolutions",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:75"
+      }
+    },
+    {
+      "query": "Pokemon Prismatic Evolutions Sylveon 40 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Prismatic%20Evolutions%20Sylveon%2040%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11444940",
+      "product_name": "Snorlax Ex [Stamped] #76",
+      "console_name": "Pokemon Prismatic Evolutions",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:76"
+      }
+    },
+    {
+      "query": "Pokemon Prismatic Evolutions Sylveon 40 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Prismatic%20Evolutions%20Sylveon%2040%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8624384",
+      "product_name": "Umbreon ex [Stamped] #60",
+      "console_name": "Pokemon Prismatic Evolutions",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:60"
+      }
+    },
+    {
+      "query": "Pokemon Prismatic Evolutions Sylveon 40 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Prismatic%20Evolutions%20Sylveon%2040%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8576850",
+      "product_name": "Leafeon Ex [Stamped] #6",
+      "console_name": "Pokemon Prismatic Evolutions",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:6"
+      }
+    },
+    {
+      "query": "Pokemon Prismatic Evolutions Sylveon 40 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Prismatic%20Evolutions%20Sylveon%2040%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8624377",
+      "product_name": "Glaceon ex [Stamped] #26",
+      "console_name": "Pokemon Prismatic Evolutions",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:26"
+      }
+    }
+  ],
+  "source_lane": "pricecharting_api"
+}

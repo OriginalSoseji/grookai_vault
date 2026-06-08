@@ -1,0 +1,549 @@
+{
+  "status": "api_no_validated_match",
+  "fact": {
+    "gap_type": "finish_second_source_needed",
+    "fact_type": "printing_finish",
+    "set_key": "bw1",
+    "set_name": "Black & White",
+    "card_number": "42",
+    "card_name": "Zebstrika",
+    "finish_key": "stamped",
+    "status": "human_source_verified",
+    "sources": [
+      "thepricedex_price_list"
+    ],
+    "source_authorities": [
+      "thepricedex.com"
+    ],
+    "source_kinds": [
+      "marketplace_checklist"
+    ],
+    "evidence_urls": [
+      "https://www.thepricedex.com/set/bw1/black-and-white/price-list"
+    ],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "attempts": [
+    {
+      "query": "Pokemon Black & White Zebstrika 42 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Zebstrika%2042%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "806354",
+      "product_name": "Zebstrika #42",
+      "console_name": "Pokemon Black & White",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Zebstrika 42 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Zebstrika%2042%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6137161",
+      "product_name": "Zebstrika [Pokemon League] #42",
+      "console_name": "Pokemon Black & White",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Pokemon League"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Zebstrika 42 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Zebstrika%2042%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "886713",
+      "product_name": "Zebstrika [Reverse Holo] #42",
+      "console_name": "Pokemon Black & White",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Reverse Holo"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Zebstrika 42 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Zebstrika%2042%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "886692",
+      "product_name": "Zebstrika #43",
+      "console_name": "Pokemon Black & White",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:43"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Zebstrika 42 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Zebstrika%2042%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "806441",
+      "product_name": "Zebstrika [Reverse Holo] #43",
+      "console_name": "Pokemon Black & White",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:43"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Zebstrika 42 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Zebstrika%2042%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10026788",
+      "product_name": "Zebstrika [Reverse] #32",
+      "console_name": "Pokemon White Flare",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:32"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Zebstrika 42 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Zebstrika%2042%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10026919",
+      "product_name": "Zebstrika [Poke Ball] #32",
+      "console_name": "Pokemon White Flare",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:32"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Zebstrika 42 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Zebstrika%2042%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9647559",
+      "product_name": "Zebstrika [Poke Ball] #29",
+      "console_name": "Pokemon Japanese White Flare",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:29"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Zebstrika 42 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Zebstrika%2042%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12755292",
+      "product_name": "Zebstrika [Poke Ball] #29",
+      "console_name": "Pokemon Korean White Flare",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:29"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Zebstrika 42 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Zebstrika%2042%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10027015",
+      "product_name": "Zebstrika [Master Ball] #32",
+      "console_name": "Pokemon White Flare",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:32"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Zebstrika 42 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Zebstrika%2042%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9861742",
+      "product_name": "Zebstrika [Master Ball] #29",
+      "console_name": "Pokemon Japanese White Flare",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:29"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Zebstrika 42 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Zebstrika%2042%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10026650",
+      "product_name": "Zebstrika #32",
+      "console_name": "Pokemon White Flare",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:32"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Zebstrika 42 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Zebstrika%2042%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10026741",
+      "product_name": "Zebstrika #115",
+      "console_name": "Pokemon White Flare",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:115"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Zebstrika 42 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Zebstrika%2042%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12755289",
+      "product_name": "Zebstrika [Master Ball] #29",
+      "console_name": "Pokemon Korean White Flare",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:29"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Zebstrika 42 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Zebstrika%2042%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9647370",
+      "product_name": "Zebstrika #29",
+      "console_name": "Pokemon Japanese White Flare",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:29"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Zebstrika 42 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Zebstrika%2042%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9683095",
+      "product_name": "Zebstrika #112",
+      "console_name": "Pokemon Japanese White Flare",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:112"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Zebstrika 42 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Zebstrika%2042%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12755439",
+      "product_name": "Zebstrika #112",
+      "console_name": "Pokemon Korean White Flare",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:112"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Zebstrika 42 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Zebstrika%2042%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12755286",
+      "product_name": "Zebstrika #29",
+      "console_name": "Pokemon Korean White Flare",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:29"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Zebstrika 42 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Zebstrika%2042%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3506896",
+      "product_name": "Zebstrika [1st Edition] #20",
+      "console_name": "Pokemon Japanese Black Collection",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:20"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Zebstrika 42 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Zebstrika%2042%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3460341",
+      "product_name": "Zebstrika #20",
+      "console_name": "Pokemon Japanese Black Collection",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:20"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Zebstrika 42 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Zebstrika%2042%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "806354",
+      "product_name": "Zebstrika #42",
+      "console_name": "Pokemon Black & White",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Zebstrika 42 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Zebstrika%2042%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6137161",
+      "product_name": "Zebstrika [Pokemon League] #42",
+      "console_name": "Pokemon Black & White",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Pokemon League"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Zebstrika 42 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Zebstrika%2042%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "886713",
+      "product_name": "Zebstrika [Reverse Holo] #42",
+      "console_name": "Pokemon Black & White",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Reverse Holo"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Zebstrika 42 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Zebstrika%2042%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "886692",
+      "product_name": "Zebstrika #43",
+      "console_name": "Pokemon Black & White",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:43"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Zebstrika 42 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Zebstrika%2042%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "806441",
+      "product_name": "Zebstrika [Reverse Holo] #43",
+      "console_name": "Pokemon Black & White",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:43"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Zebstrika 42 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Zebstrika%2042%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10026788",
+      "product_name": "Zebstrika [Reverse] #32",
+      "console_name": "Pokemon White Flare",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:32"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Zebstrika 42 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Zebstrika%2042%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10026919",
+      "product_name": "Zebstrika [Poke Ball] #32",
+      "console_name": "Pokemon White Flare",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:32"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Zebstrika 42 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Zebstrika%2042%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9647559",
+      "product_name": "Zebstrika [Poke Ball] #29",
+      "console_name": "Pokemon Japanese White Flare",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:29"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Zebstrika 42 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Zebstrika%2042%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12755292",
+      "product_name": "Zebstrika [Poke Ball] #29",
+      "console_name": "Pokemon Korean White Flare",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:29"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Zebstrika 42 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Zebstrika%2042%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10027015",
+      "product_name": "Zebstrika [Master Ball] #32",
+      "console_name": "Pokemon White Flare",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:32"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Zebstrika 42 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Zebstrika%2042%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9861742",
+      "product_name": "Zebstrika [Master Ball] #29",
+      "console_name": "Pokemon Japanese White Flare",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:29"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Zebstrika 42 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Zebstrika%2042%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10026650",
+      "product_name": "Zebstrika #32",
+      "console_name": "Pokemon White Flare",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:32"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Zebstrika 42 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Zebstrika%2042%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10026741",
+      "product_name": "Zebstrika #115",
+      "console_name": "Pokemon White Flare",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:115"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Zebstrika 42 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Zebstrika%2042%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12755289",
+      "product_name": "Zebstrika [Master Ball] #29",
+      "console_name": "Pokemon Korean White Flare",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:29"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Zebstrika 42 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Zebstrika%2042%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9647370",
+      "product_name": "Zebstrika #29",
+      "console_name": "Pokemon Japanese White Flare",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:29"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Zebstrika 42 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Zebstrika%2042%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9683095",
+      "product_name": "Zebstrika #112",
+      "console_name": "Pokemon Japanese White Flare",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:112"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Zebstrika 42 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Zebstrika%2042%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12755439",
+      "product_name": "Zebstrika #112",
+      "console_name": "Pokemon Korean White Flare",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:112"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Zebstrika 42 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Zebstrika%2042%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12755286",
+      "product_name": "Zebstrika #29",
+      "console_name": "Pokemon Korean White Flare",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:29"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Zebstrika 42 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Zebstrika%2042%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3506896",
+      "product_name": "Zebstrika [1st Edition] #20",
+      "console_name": "Pokemon Japanese Black Collection",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:20"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Zebstrika 42 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Zebstrika%2042%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3460341",
+      "product_name": "Zebstrika #20",
+      "console_name": "Pokemon Japanese Black Collection",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:20"
+      }
+    }
+  ],
+  "source_lane": "pricecharting_api"
+}

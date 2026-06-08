@@ -1,0 +1,549 @@
+{
+  "status": "api_no_validated_match",
+  "fact": {
+    "gap_type": "finish_second_source_needed",
+    "fact_type": "printing_finish",
+    "set_key": "bw6",
+    "set_name": "Dragons Exalted",
+    "card_number": "117",
+    "card_name": "Blend Energy GrassFirePsychicDarkness",
+    "finish_key": "stamped",
+    "status": "human_source_verified",
+    "sources": [
+      "thepricedex_price_list"
+    ],
+    "source_authorities": [
+      "thepricedex.com"
+    ],
+    "source_kinds": [
+      "marketplace_checklist"
+    ],
+    "evidence_urls": [
+      "https://www.thepricedex.com/set/bw6/dragons-exalted/price-list"
+    ],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "attempts": [
+    {
+      "query": "Pokemon Dragons Exalted Blend Energy GrassFirePsychicDarkness 117 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragons%20Exalted%20Blend%20Energy%20GrassFirePsychicDarkness%20117%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "956371",
+      "product_name": "Blend Energy #117",
+      "console_name": "Pokemon Dragons Exalted",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Blend Energy"
+      }
+    },
+    {
+      "query": "Pokemon Dragons Exalted Blend Energy GrassFirePsychicDarkness 117 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragons%20Exalted%20Blend%20Energy%20GrassFirePsychicDarkness%20117%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "956492",
+      "product_name": "Blend Energy [Reverse Holo] #117",
+      "console_name": "Pokemon Dragons Exalted",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Blend Energy"
+      }
+    },
+    {
+      "query": "Pokemon Dragons Exalted Blend Energy GrassFirePsychicDarkness 117 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragons%20Exalted%20Blend%20Energy%20GrassFirePsychicDarkness%20117%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6042254",
+      "product_name": "Blend Energy [Crosshatch League Promo] #117",
+      "console_name": "Pokemon Dragons Exalted",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Blend Energy"
+      }
+    },
+    {
+      "query": "Pokemon Dragons Exalted Blend Energy GrassFirePsychicDarkness 117 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragons%20Exalted%20Blend%20Energy%20GrassFirePsychicDarkness%20117%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "956372",
+      "product_name": "Blend Energy #118",
+      "console_name": "Pokemon Dragons Exalted",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:118"
+      }
+    },
+    {
+      "query": "Pokemon Dragons Exalted Blend Energy GrassFirePsychicDarkness 117 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragons%20Exalted%20Blend%20Energy%20GrassFirePsychicDarkness%20117%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "956493",
+      "product_name": "Blend Energy [Reverse Holo] #118",
+      "console_name": "Pokemon Dragons Exalted",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:118"
+      }
+    },
+    {
+      "query": "Pokemon Dragons Exalted Blend Energy GrassFirePsychicDarkness 117 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragons%20Exalted%20Blend%20Energy%20GrassFirePsychicDarkness%20117%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6234389",
+      "product_name": "Blend Energy [Crosshatch League Promo] #118",
+      "console_name": "Pokemon Dragons Exalted",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:118"
+      }
+    },
+    {
+      "query": "Pokemon Dragons Exalted Blend Energy GrassFirePsychicDarkness 117 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragons%20Exalted%20Blend%20Energy%20GrassFirePsychicDarkness%20117%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8453566",
+      "product_name": "Blend Energy [1st Edition] #50",
+      "console_name": "Pokemon Japanese Dragon Blast",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:50"
+      }
+    },
+    {
+      "query": "Pokemon Dragons Exalted Blend Energy GrassFirePsychicDarkness 117 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragons%20Exalted%20Blend%20Energy%20GrassFirePsychicDarkness%20117%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10801407",
+      "product_name": "Blend Energy [1st Edition] #50",
+      "console_name": "Pokemon Japanese Dragon Blade",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:50"
+      }
+    },
+    {
+      "query": "Pokemon Dragons Exalted Blend Energy GrassFirePsychicDarkness 117 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragons%20Exalted%20Blend%20Energy%20GrassFirePsychicDarkness%20117%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "956323",
+      "product_name": "Sawk #69",
+      "console_name": "Pokemon Dragons Exalted",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:69"
+      }
+    },
+    {
+      "query": "Pokemon Dragons Exalted Blend Energy GrassFirePsychicDarkness 117 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragons%20Exalted%20Blend%20Energy%20GrassFirePsychicDarkness%20117%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "956332",
+      "product_name": "Aron #78",
+      "console_name": "Pokemon Dragons Exalted",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:78"
+      }
+    },
+    {
+      "query": "Pokemon Dragons Exalted Blend Energy GrassFirePsychicDarkness 117 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragons%20Exalted%20Blend%20Energy%20GrassFirePsychicDarkness%20117%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "956258",
+      "product_name": "Yanma #4",
+      "console_name": "Pokemon Dragons Exalted",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:4"
+      }
+    },
+    {
+      "query": "Pokemon Dragons Exalted Blend Energy GrassFirePsychicDarkness 117 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragons%20Exalted%20Blend%20Energy%20GrassFirePsychicDarkness%20117%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "956322",
+      "product_name": "Throh #68",
+      "console_name": "Pokemon Dragons Exalted",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:68"
+      }
+    },
+    {
+      "query": "Pokemon Dragons Exalted Blend Energy GrassFirePsychicDarkness 117 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragons%20Exalted%20Blend%20Energy%20GrassFirePsychicDarkness%20117%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "956341",
+      "product_name": "Gible #87",
+      "console_name": "Pokemon Dragons Exalted",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:87"
+      }
+    },
+    {
+      "query": "Pokemon Dragons Exalted Blend Energy GrassFirePsychicDarkness 117 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragons%20Exalted%20Blend%20Energy%20GrassFirePsychicDarkness%20117%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "956340",
+      "product_name": "Gible #86",
+      "console_name": "Pokemon Dragons Exalted",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:86"
+      }
+    },
+    {
+      "query": "Pokemon Dragons Exalted Blend Energy GrassFirePsychicDarkness 117 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragons%20Exalted%20Blend%20Energy%20GrassFirePsychicDarkness%20117%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "956353",
+      "product_name": "Aipom #99",
+      "console_name": "Pokemon Dragons Exalted",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:99"
+      }
+    },
+    {
+      "query": "Pokemon Dragons Exalted Blend Energy GrassFirePsychicDarkness 117 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragons%20Exalted%20Blend%20Energy%20GrassFirePsychicDarkness%20117%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "956348",
+      "product_name": "Deino #94",
+      "console_name": "Pokemon Dragons Exalted",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:94"
+      }
+    },
+    {
+      "query": "Pokemon Dragons Exalted Blend Energy GrassFirePsychicDarkness 117 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragons%20Exalted%20Blend%20Energy%20GrassFirePsychicDarkness%20117%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "956347",
+      "product_name": "Deino #93",
+      "console_name": "Pokemon Dragons Exalted",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:93"
+      }
+    },
+    {
+      "query": "Pokemon Dragons Exalted Blend Energy GrassFirePsychicDarkness 117 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragons%20Exalted%20Blend%20Energy%20GrassFirePsychicDarkness%20117%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "956255",
+      "product_name": "Hoppip #1",
+      "console_name": "Pokemon Dragons Exalted",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:1"
+      }
+    },
+    {
+      "query": "Pokemon Dragons Exalted Blend Energy GrassFirePsychicDarkness 117 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragons%20Exalted%20Blend%20Energy%20GrassFirePsychicDarkness%20117%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "956272",
+      "product_name": "Vulpix #18",
+      "console_name": "Pokemon Dragons Exalted",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:18"
+      }
+    },
+    {
+      "query": "Pokemon Dragons Exalted Blend Energy GrassFirePsychicDarkness 117 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragons%20Exalted%20Blend%20Energy%20GrassFirePsychicDarkness%20117%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "956274",
+      "product_name": "Magmar #20",
+      "console_name": "Pokemon Dragons Exalted",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:20"
+      }
+    },
+    {
+      "query": "Pokemon Dragons Exalted Blend Energy GrassFirePsychicDarkness 117 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragons%20Exalted%20Blend%20Energy%20GrassFirePsychicDarkness%20117%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "956371",
+      "product_name": "Blend Energy #117",
+      "console_name": "Pokemon Dragons Exalted",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Blend Energy"
+      }
+    },
+    {
+      "query": "Pokemon Dragons Exalted Blend Energy GrassFirePsychicDarkness 117 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragons%20Exalted%20Blend%20Energy%20GrassFirePsychicDarkness%20117%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "956492",
+      "product_name": "Blend Energy [Reverse Holo] #117",
+      "console_name": "Pokemon Dragons Exalted",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Blend Energy"
+      }
+    },
+    {
+      "query": "Pokemon Dragons Exalted Blend Energy GrassFirePsychicDarkness 117 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragons%20Exalted%20Blend%20Energy%20GrassFirePsychicDarkness%20117%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6042254",
+      "product_name": "Blend Energy [Crosshatch League Promo] #117",
+      "console_name": "Pokemon Dragons Exalted",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Blend Energy"
+      }
+    },
+    {
+      "query": "Pokemon Dragons Exalted Blend Energy GrassFirePsychicDarkness 117 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragons%20Exalted%20Blend%20Energy%20GrassFirePsychicDarkness%20117%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "956372",
+      "product_name": "Blend Energy #118",
+      "console_name": "Pokemon Dragons Exalted",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:118"
+      }
+    },
+    {
+      "query": "Pokemon Dragons Exalted Blend Energy GrassFirePsychicDarkness 117 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragons%20Exalted%20Blend%20Energy%20GrassFirePsychicDarkness%20117%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "956493",
+      "product_name": "Blend Energy [Reverse Holo] #118",
+      "console_name": "Pokemon Dragons Exalted",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:118"
+      }
+    },
+    {
+      "query": "Pokemon Dragons Exalted Blend Energy GrassFirePsychicDarkness 117 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragons%20Exalted%20Blend%20Energy%20GrassFirePsychicDarkness%20117%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6234389",
+      "product_name": "Blend Energy [Crosshatch League Promo] #118",
+      "console_name": "Pokemon Dragons Exalted",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:118"
+      }
+    },
+    {
+      "query": "Pokemon Dragons Exalted Blend Energy GrassFirePsychicDarkness 117 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragons%20Exalted%20Blend%20Energy%20GrassFirePsychicDarkness%20117%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8453566",
+      "product_name": "Blend Energy [1st Edition] #50",
+      "console_name": "Pokemon Japanese Dragon Blast",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:50"
+      }
+    },
+    {
+      "query": "Pokemon Dragons Exalted Blend Energy GrassFirePsychicDarkness 117 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragons%20Exalted%20Blend%20Energy%20GrassFirePsychicDarkness%20117%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10801407",
+      "product_name": "Blend Energy [1st Edition] #50",
+      "console_name": "Pokemon Japanese Dragon Blade",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:50"
+      }
+    },
+    {
+      "query": "Pokemon Dragons Exalted Blend Energy GrassFirePsychicDarkness 117 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragons%20Exalted%20Blend%20Energy%20GrassFirePsychicDarkness%20117%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "956323",
+      "product_name": "Sawk #69",
+      "console_name": "Pokemon Dragons Exalted",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:69"
+      }
+    },
+    {
+      "query": "Pokemon Dragons Exalted Blend Energy GrassFirePsychicDarkness 117 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragons%20Exalted%20Blend%20Energy%20GrassFirePsychicDarkness%20117%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "956332",
+      "product_name": "Aron #78",
+      "console_name": "Pokemon Dragons Exalted",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:78"
+      }
+    },
+    {
+      "query": "Pokemon Dragons Exalted Blend Energy GrassFirePsychicDarkness 117 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragons%20Exalted%20Blend%20Energy%20GrassFirePsychicDarkness%20117%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "956258",
+      "product_name": "Yanma #4",
+      "console_name": "Pokemon Dragons Exalted",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:4"
+      }
+    },
+    {
+      "query": "Pokemon Dragons Exalted Blend Energy GrassFirePsychicDarkness 117 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragons%20Exalted%20Blend%20Energy%20GrassFirePsychicDarkness%20117%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "956322",
+      "product_name": "Throh #68",
+      "console_name": "Pokemon Dragons Exalted",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:68"
+      }
+    },
+    {
+      "query": "Pokemon Dragons Exalted Blend Energy GrassFirePsychicDarkness 117 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragons%20Exalted%20Blend%20Energy%20GrassFirePsychicDarkness%20117%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "956341",
+      "product_name": "Gible #87",
+      "console_name": "Pokemon Dragons Exalted",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:87"
+      }
+    },
+    {
+      "query": "Pokemon Dragons Exalted Blend Energy GrassFirePsychicDarkness 117 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragons%20Exalted%20Blend%20Energy%20GrassFirePsychicDarkness%20117%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "956340",
+      "product_name": "Gible #86",
+      "console_name": "Pokemon Dragons Exalted",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:86"
+      }
+    },
+    {
+      "query": "Pokemon Dragons Exalted Blend Energy GrassFirePsychicDarkness 117 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragons%20Exalted%20Blend%20Energy%20GrassFirePsychicDarkness%20117%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "956353",
+      "product_name": "Aipom #99",
+      "console_name": "Pokemon Dragons Exalted",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:99"
+      }
+    },
+    {
+      "query": "Pokemon Dragons Exalted Blend Energy GrassFirePsychicDarkness 117 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragons%20Exalted%20Blend%20Energy%20GrassFirePsychicDarkness%20117%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "956348",
+      "product_name": "Deino #94",
+      "console_name": "Pokemon Dragons Exalted",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:94"
+      }
+    },
+    {
+      "query": "Pokemon Dragons Exalted Blend Energy GrassFirePsychicDarkness 117 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragons%20Exalted%20Blend%20Energy%20GrassFirePsychicDarkness%20117%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "956347",
+      "product_name": "Deino #93",
+      "console_name": "Pokemon Dragons Exalted",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:93"
+      }
+    },
+    {
+      "query": "Pokemon Dragons Exalted Blend Energy GrassFirePsychicDarkness 117 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragons%20Exalted%20Blend%20Energy%20GrassFirePsychicDarkness%20117%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "956255",
+      "product_name": "Hoppip #1",
+      "console_name": "Pokemon Dragons Exalted",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:1"
+      }
+    },
+    {
+      "query": "Pokemon Dragons Exalted Blend Energy GrassFirePsychicDarkness 117 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragons%20Exalted%20Blend%20Energy%20GrassFirePsychicDarkness%20117%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "956272",
+      "product_name": "Vulpix #18",
+      "console_name": "Pokemon Dragons Exalted",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:18"
+      }
+    },
+    {
+      "query": "Pokemon Dragons Exalted Blend Energy GrassFirePsychicDarkness 117 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragons%20Exalted%20Blend%20Energy%20GrassFirePsychicDarkness%20117%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "956274",
+      "product_name": "Magmar #20",
+      "console_name": "Pokemon Dragons Exalted",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:20"
+      }
+    }
+  ],
+  "source_lane": "pricecharting_api"
+}

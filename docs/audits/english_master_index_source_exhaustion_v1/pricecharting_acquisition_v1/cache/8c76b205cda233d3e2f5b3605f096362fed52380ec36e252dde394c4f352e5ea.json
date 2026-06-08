@@ -1,0 +1,549 @@
+{
+  "status": "api_no_validated_match",
+  "fact": {
+    "gap_type": "finish_second_source_needed",
+    "fact_type": "printing_finish",
+    "set_key": "me01",
+    "set_name": "Mega Evolution",
+    "card_number": "118",
+    "card_name": "Iron Defender",
+    "finish_key": "stamped",
+    "status": "human_source_verified",
+    "sources": [
+      "thepricedex_price_list"
+    ],
+    "source_authorities": [
+      "thepricedex.com"
+    ],
+    "source_kinds": [
+      "marketplace_checklist"
+    ],
+    "evidence_urls": [
+      "https://www.thepricedex.com/set/me1/mega-evolution/price-list"
+    ],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "attempts": [
+    {
+      "query": "Pokemon Mega Evolution Iron Defender 118 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Mega%20Evolution%20Iron%20Defender%20118%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10616222",
+      "product_name": "Iron Defender #118",
+      "console_name": "Pokemon Mega Evolution",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon Mega Evolution Iron Defender 118 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Mega%20Evolution%20Iron%20Defender%20118%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12326190",
+      "product_name": "Iron Defender [Prize Pack] #118",
+      "console_name": "Pokemon Mega Evolution",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Prize Pack"
+      }
+    },
+    {
+      "query": "Pokemon Mega Evolution Iron Defender 118 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Mega%20Evolution%20Iron%20Defender%20118%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10616430",
+      "product_name": "Iron Defender [Reverse Holo] #118",
+      "console_name": "Pokemon Mega Evolution",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Reverse Holo"
+      }
+    },
+    {
+      "query": "Pokemon Mega Evolution Iron Defender 118 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Mega%20Evolution%20Iron%20Defender%20118%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12326191",
+      "product_name": "Iron Defender [Prize Pack Cosmos Holo] #118",
+      "console_name": "Pokemon Mega Evolution",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Prize Pack Cosmos Holo"
+      }
+    },
+    {
+      "query": "Pokemon Mega Evolution Iron Defender 118 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Mega%20Evolution%20Iron%20Defender%20118%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11440379",
+      "product_name": "Iron Treads [Stamped] #118",
+      "console_name": "Pokemon Temporal Forces",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Iron Treads"
+      }
+    },
+    {
+      "query": "Pokemon Mega Evolution Iron Defender 118 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Mega%20Evolution%20Iron%20Defender%20118%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10693500",
+      "product_name": "Xerneas [Stamped] #64",
+      "console_name": "Pokemon Mega Evolution",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:64"
+      }
+    },
+    {
+      "query": "Pokemon Mega Evolution Iron Defender 118 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Mega%20Evolution%20Iron%20Defender%20118%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10840192",
+      "product_name": "Yveltal [Stamped] #88",
+      "console_name": "Pokemon Mega Evolution",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:88"
+      }
+    },
+    {
+      "query": "Pokemon Mega Evolution Iron Defender 118 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Mega%20Evolution%20Iron%20Defender%20118%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10646415",
+      "product_name": "Bulbasaur [Stamped] #133",
+      "console_name": "Pokemon Mega Evolution",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:133"
+      }
+    },
+    {
+      "query": "Pokemon Mega Evolution Iron Defender 118 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Mega%20Evolution%20Iron%20Defender%20118%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10864874",
+      "product_name": "Spiritomb [Stamped] #87",
+      "console_name": "Pokemon Mega Evolution",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:87"
+      }
+    },
+    {
+      "query": "Pokemon Mega Evolution Iron Defender 118 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Mega%20Evolution%20Iron%20Defender%20118%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10694872",
+      "product_name": "Xerneas [Stamped Asia Promo] #64",
+      "console_name": "Pokemon Mega Evolution",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:64"
+      }
+    },
+    {
+      "query": "Pokemon Mega Evolution Iron Defender 118 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Mega%20Evolution%20Iron%20Defender%20118%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "13025573",
+      "product_name": "Mega Dragalge ex #118",
+      "console_name": "Pokemon Chaos Rising",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Mega Dragalge ex"
+      }
+    },
+    {
+      "query": "Pokemon Mega Evolution Iron Defender 118 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Mega%20Evolution%20Iron%20Defender%20118%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "13067665",
+      "product_name": "Keldeo [Stamped] #19",
+      "console_name": "Pokemon Chaos Rising",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:19"
+      }
+    },
+    {
+      "query": "Pokemon Mega Evolution Iron Defender 118 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Mega%20Evolution%20Iron%20Defender%20118%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6342613",
+      "product_name": "Iron Moth [Stamp] #28",
+      "console_name": "Pokemon Paradox Rift",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:28"
+      }
+    },
+    {
+      "query": "Pokemon Mega Evolution Iron Defender 118 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Mega%20Evolution%20Iron%20Defender%20118%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "13067663",
+      "product_name": "Delphox [Stamped] #13",
+      "console_name": "Pokemon Chaos Rising",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:13"
+      }
+    },
+    {
+      "query": "Pokemon Mega Evolution Iron Defender 118 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Mega%20Evolution%20Iron%20Defender%20118%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11519191",
+      "product_name": "Iron Defender [Mirror Holo] #631",
+      "console_name": "Pokemon Japanese Start Deck 100 Battle Collection",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:631"
+      }
+    },
+    {
+      "query": "Pokemon Mega Evolution Iron Defender 118 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Mega%20Evolution%20Iron%20Defender%20118%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12384636",
+      "product_name": "Gengar [EB Games Stamped] #50",
+      "console_name": "Pokemon Perfect Order",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:50"
+      }
+    },
+    {
+      "query": "Pokemon Mega Evolution Iron Defender 118 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Mega%20Evolution%20Iron%20Defender%20118%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11371404",
+      "product_name": "Iron Treads Ex [Stamped] #73",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:73"
+      }
+    },
+    {
+      "query": "Pokemon Mega Evolution Iron Defender 118 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Mega%20Evolution%20Iron%20Defender%20118%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7322445",
+      "product_name": "Iron Bundle [Snowflake Stamp] #62",
+      "console_name": "Pokemon Twilight Masquerade",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:62"
+      }
+    },
+    {
+      "query": "Pokemon Mega Evolution Iron Defender 118 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Mega%20Evolution%20Iron%20Defender%20118%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6495578",
+      "product_name": "Iron Treads #118",
+      "console_name": "Pokemon Temporal Forces",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Iron Treads"
+      }
+    },
+    {
+      "query": "Pokemon Mega Evolution Iron Defender 118 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Mega%20Evolution%20Iron%20Defender%20118%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "13077403",
+      "product_name": "Iron Defender #102",
+      "console_name": "Pokemon Japanese Abyss Eye",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:102"
+      }
+    },
+    {
+      "query": "Pokemon Mega Evolution Iron Defender 118 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Mega%20Evolution%20Iron%20Defender%20118%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10616222",
+      "product_name": "Iron Defender #118",
+      "console_name": "Pokemon Mega Evolution",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon Mega Evolution Iron Defender 118 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Mega%20Evolution%20Iron%20Defender%20118%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12326190",
+      "product_name": "Iron Defender [Prize Pack] #118",
+      "console_name": "Pokemon Mega Evolution",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Prize Pack"
+      }
+    },
+    {
+      "query": "Pokemon Mega Evolution Iron Defender 118 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Mega%20Evolution%20Iron%20Defender%20118%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10616430",
+      "product_name": "Iron Defender [Reverse Holo] #118",
+      "console_name": "Pokemon Mega Evolution",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Reverse Holo"
+      }
+    },
+    {
+      "query": "Pokemon Mega Evolution Iron Defender 118 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Mega%20Evolution%20Iron%20Defender%20118%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12326191",
+      "product_name": "Iron Defender [Prize Pack Cosmos Holo] #118",
+      "console_name": "Pokemon Mega Evolution",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Prize Pack Cosmos Holo"
+      }
+    },
+    {
+      "query": "Pokemon Mega Evolution Iron Defender 118 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Mega%20Evolution%20Iron%20Defender%20118%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11440379",
+      "product_name": "Iron Treads [Stamped] #118",
+      "console_name": "Pokemon Temporal Forces",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Iron Treads"
+      }
+    },
+    {
+      "query": "Pokemon Mega Evolution Iron Defender 118 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Mega%20Evolution%20Iron%20Defender%20118%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10693500",
+      "product_name": "Xerneas [Stamped] #64",
+      "console_name": "Pokemon Mega Evolution",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:64"
+      }
+    },
+    {
+      "query": "Pokemon Mega Evolution Iron Defender 118 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Mega%20Evolution%20Iron%20Defender%20118%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10840192",
+      "product_name": "Yveltal [Stamped] #88",
+      "console_name": "Pokemon Mega Evolution",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:88"
+      }
+    },
+    {
+      "query": "Pokemon Mega Evolution Iron Defender 118 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Mega%20Evolution%20Iron%20Defender%20118%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10646415",
+      "product_name": "Bulbasaur [Stamped] #133",
+      "console_name": "Pokemon Mega Evolution",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:133"
+      }
+    },
+    {
+      "query": "Pokemon Mega Evolution Iron Defender 118 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Mega%20Evolution%20Iron%20Defender%20118%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10864874",
+      "product_name": "Spiritomb [Stamped] #87",
+      "console_name": "Pokemon Mega Evolution",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:87"
+      }
+    },
+    {
+      "query": "Pokemon Mega Evolution Iron Defender 118 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Mega%20Evolution%20Iron%20Defender%20118%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10694872",
+      "product_name": "Xerneas [Stamped Asia Promo] #64",
+      "console_name": "Pokemon Mega Evolution",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:64"
+      }
+    },
+    {
+      "query": "Pokemon Mega Evolution Iron Defender 118 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Mega%20Evolution%20Iron%20Defender%20118%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "13025573",
+      "product_name": "Mega Dragalge ex #118",
+      "console_name": "Pokemon Chaos Rising",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Mega Dragalge ex"
+      }
+    },
+    {
+      "query": "Pokemon Mega Evolution Iron Defender 118 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Mega%20Evolution%20Iron%20Defender%20118%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "13067665",
+      "product_name": "Keldeo [Stamped] #19",
+      "console_name": "Pokemon Chaos Rising",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:19"
+      }
+    },
+    {
+      "query": "Pokemon Mega Evolution Iron Defender 118 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Mega%20Evolution%20Iron%20Defender%20118%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6342613",
+      "product_name": "Iron Moth [Stamp] #28",
+      "console_name": "Pokemon Paradox Rift",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:28"
+      }
+    },
+    {
+      "query": "Pokemon Mega Evolution Iron Defender 118 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Mega%20Evolution%20Iron%20Defender%20118%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "13067663",
+      "product_name": "Delphox [Stamped] #13",
+      "console_name": "Pokemon Chaos Rising",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:13"
+      }
+    },
+    {
+      "query": "Pokemon Mega Evolution Iron Defender 118 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Mega%20Evolution%20Iron%20Defender%20118%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11519191",
+      "product_name": "Iron Defender [Mirror Holo] #631",
+      "console_name": "Pokemon Japanese Start Deck 100 Battle Collection",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:631"
+      }
+    },
+    {
+      "query": "Pokemon Mega Evolution Iron Defender 118 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Mega%20Evolution%20Iron%20Defender%20118%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12384636",
+      "product_name": "Gengar [EB Games Stamped] #50",
+      "console_name": "Pokemon Perfect Order",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:50"
+      }
+    },
+    {
+      "query": "Pokemon Mega Evolution Iron Defender 118 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Mega%20Evolution%20Iron%20Defender%20118%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11371404",
+      "product_name": "Iron Treads Ex [Stamped] #73",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:73"
+      }
+    },
+    {
+      "query": "Pokemon Mega Evolution Iron Defender 118 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Mega%20Evolution%20Iron%20Defender%20118%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7322445",
+      "product_name": "Iron Bundle [Snowflake Stamp] #62",
+      "console_name": "Pokemon Twilight Masquerade",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:62"
+      }
+    },
+    {
+      "query": "Pokemon Mega Evolution Iron Defender 118 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Mega%20Evolution%20Iron%20Defender%20118%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6495578",
+      "product_name": "Iron Treads #118",
+      "console_name": "Pokemon Temporal Forces",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Iron Treads"
+      }
+    },
+    {
+      "query": "Pokemon Mega Evolution Iron Defender 118 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Mega%20Evolution%20Iron%20Defender%20118%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "13077403",
+      "product_name": "Iron Defender #102",
+      "console_name": "Pokemon Japanese Abyss Eye",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:102"
+      }
+    }
+  ],
+  "source_lane": "pricecharting_api"
+}

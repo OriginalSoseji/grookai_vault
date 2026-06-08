@@ -1,0 +1,62 @@
+{
+  "status": "validated",
+  "fact": {
+    "gap_type": "finish_second_source_needed",
+    "fact_type": "printing_finish",
+    "set_key": "sv03.5",
+    "set_name": "151",
+    "card_number": "94",
+    "card_name": "Gengar",
+    "finish_key": "cosmos",
+    "status": "human_source_verified",
+    "sources": [
+      "thepricedex_price_list"
+    ],
+    "source_authorities": [
+      "thepricedex.com"
+    ],
+    "source_kinds": [
+      "marketplace_checklist"
+    ],
+    "evidence_urls": [
+      "https://www.thepricedex.com/set/sv3pt5/151/price-list"
+    ],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "query": "Pokemon 151 Gengar 94 cosmos holo",
+  "search_url": "https://www.pricecharting.com/api/products?q=Pokemon%20151%20Gengar%2094%20cosmos%20holo",
+  "source_url": "https://www.pricecharting.com/game/pokemon-scarlet-and-violet-151/gengar-cosmos-holo-94",
+  "title": "Gengar [Cosmos Holo] #94 | Pokemon Scarlet & Violet 151",
+  "title_parts": {
+    "card_name": "Gengar",
+    "card_number": "94",
+    "variant_label": "Cosmos Holo",
+    "set_name": "Pokemon Scarlet & Violet 151",
+    "pricecharting_product_id": "11330241"
+  },
+  "validation_source": "pricecharting_api_products",
+  "source_lane": "pricecharting_api",
+  "attempts": [
+    {
+      "query": "Pokemon 151 Gengar 94 cosmos holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20151%20Gengar%2094%20cosmos%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11330241",
+      "product_name": "Gengar [Cosmos Holo] #94",
+      "console_name": "Pokemon Scarlet & Violet 151",
+      "validation": {
+        "ok": true,
+        "titleParts": {
+          "card_name": "Gengar",
+          "card_number": "94",
+          "variant_label": "Cosmos Holo",
+          "set_name": "Pokemon Scarlet & Violet 151",
+          "pricecharting_product_id": "11330241"
+        },
+        "source_url": "https://www.pricecharting.com/game/pokemon-scarlet-and-violet-151/gengar-cosmos-holo-94",
+        "title": "Gengar [Cosmos Holo] #94 | Pokemon Scarlet & Violet 151"
+      }
+    }
+  ]
+}

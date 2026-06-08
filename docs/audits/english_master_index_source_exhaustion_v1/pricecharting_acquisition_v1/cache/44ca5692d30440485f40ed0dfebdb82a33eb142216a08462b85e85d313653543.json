@@ -1,0 +1,43 @@
+{
+  "status": "no_validated_match",
+  "fact": {
+    "gap_type": "finish_second_source_needed",
+    "fact_type": "printing_finish",
+    "set_key": "tk1a",
+    "set_name": "EX Trainer Kit Latias",
+    "card_number": "4",
+    "card_name": "Latias",
+    "finish_key": "holo",
+    "status": "human_source_verified",
+    "sources": [
+      "thepricedex_price_list"
+    ],
+    "source_authorities": [
+      "thepricedex.com"
+    ],
+    "source_kinds": [
+      "marketplace_checklist"
+    ],
+    "evidence_urls": [],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "attempts": [
+    {
+      "query": "Pokemon EX Trainer Kit Latias Latias 4 holo",
+      "url": "https://www.pricecharting.com/search-products?q=Pokemon%20EX%20Trainer%20Kit%20Latias%20Latias%204%20holo&type=prices",
+      "error": "Fetch failed 403 Forbidden: https://www.pricecharting.com/search-products?q=Pokemon%20EX%20Trainer%20Kit%20Latias%20Latias%204%20holo&type=prices"
+    },
+    {
+      "query": "Pokemon EX Trainer Kit Latias Latias 4 holofoil",
+      "url": "https://www.pricecharting.com/search-products?q=Pokemon%20EX%20Trainer%20Kit%20Latias%20Latias%204%20holofoil&type=prices",
+      "parsed": {
+        "title": "Pokemon EX Trainer Kit Latias Latias 4 Holofoil Prices | Pokemon EX Trainer Kit Latias Latias 4 Holofoil List",
+        "source_url": "https://www.pricecharting.com/search-products?q=pokemon+ex+trainer+kit+latias+latias+4+holofoil&type=prices"
+      },
+      "validation": {
+        "ok": false,
+        "reason": "title_pattern_not_supported"
+      }
+    }
+  ]
+}

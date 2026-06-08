@@ -1,0 +1,31 @@
+{
+  "fixture_version": "VERIFIED_MASTER_SET_INDEX_V1_HUMAN_SOURCE_FIXTURE_GENERATED",
+  "source_key": "cardtrader_finish_ex9",
+  "source_kind": "marketplace_checklist",
+  "source_url": "https://www.cardtrader.com/en/manasearch/5/blueprints.json",
+  "source_status": "available_generated",
+  "set_key": "ex9",
+  "set_name": "Emerald",
+  "retrieved_at": "2026-06-08T12:50:58.458Z",
+  "raw_snapshot_ref": "generated_fixture:cardtrader:ex9:2026-06-08T12:50:58.458Z",
+  "generation_note": "Generated from CardTrader Pokemon blueprint index. Exact card-number/name/finish matches only.",
+  "records": [
+    {
+      "source_key": "cardtrader_blueprint_index",
+      "source_kind": "marketplace_checklist",
+      "source_url": "https://www.cardtrader.com/en/cards/115934-farfetch-d-secret-rare-107-106-ex-emerald",
+      "set_key": "ex9",
+      "set_name": "Emerald",
+      "card_number": "107",
+      "card_name": "Farfetch'd",
+      "finish_key": "normal",
+      "rarity": null,
+      "evidence_type": "finish_presence",
+      "evidence_label": "CardTrader blueprint row Farfetch'd - Secret Rare | 107/106",
+      "language": "en",
+      "retrieved_at": "2026-06-08T12:50:58.458Z",
+      "raw_snapshot_ref": "cardtrader_blueprint:115934-farfetch-d-secret-rare-107-106-ex-emerald",
+      "notes": "Generated only from an exact CardTrader Pokemon blueprint match on set, card number, card name, and finish label."
+    }
+  ]
+}

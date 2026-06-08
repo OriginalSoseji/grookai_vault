@@ -1,6 +1,6 @@
 # English Master Index Name Mismatch Triage V1
 
-Generated: 2026-05-25T17:31:46.407Z
+Generated: 2026-06-08T18:24:41.247Z
 
 Audit only. No DB writes, migrations, cleanup, quarantine, or public hiding were performed.
 
@@ -10,8 +10,8 @@ Name mismatches are review classifications only. Do not rewrite identity or prin
 
 | category | count |
 | --- | --- |
-| diacritic_punctuation_only | 7 |
-| lvx_suffix_style | 14 |
+| diacritic_punctuation_only | 3 |
+| lvx_suffix_style | 6 |
 | parenthetical_qualifier | 8 |
 | subset_number_collision_arceus_ar_subset | 9 |
 | subset_number_collision_call_of_legends_shiny | 12 |
@@ -29,16 +29,13 @@ Name mismatches are review classifications only. Do not rewrite identity or prin
 | --- | --- |
 | bw11 | 10 |
 | col1 | 12 |
-| dp1 | 6 |
-| dp2 | 6 |
-| dp3 | 1 |
+| dp1 | 3 |
+| dp2 | 3 |
 | dp7 | 4 |
-| ex16 | 3 |
-| ex8 | 1 |
 | g1 | 52 |
 | me03 | 3 |
 | pl1 | 2 |
-| pl2 | 8 |
+| pl2 | 7 |
 | pl3 | 1 |
 | pl4 | 9 |
 | sv01 | 4 |
@@ -50,7 +47,7 @@ Name mismatches are review classifications only. Do not rewrite identity or prin
 | finish | count |
 | --- | --- |
 | holo | 62 |
-| normal | 38 |
+| normal | 26 |
 | reverse | 51 |
 
 ## Review Rows
@@ -60,24 +57,12 @@ Name mismatches are review classifications only. Do not rewrite identity or prin
 | diacritic_punctuation_only | me03 | 080 | reverse | Poke Ball | Poké Ball |
 | diacritic_punctuation_only | me03 | 081 | reverse | Poke Pad | Poké Pad |
 | diacritic_punctuation_only | me03 | 082 | reverse | Pokemon Catcher | Pokémon Catcher |
-| diacritic_punctuation_only | ex16 | 101 | normal | Jolteon ★ | Jolteon Star |
-| diacritic_punctuation_only | ex16 | 100 | normal | Flareon ★ | Flareon Star |
-| diacritic_punctuation_only | ex16 | 102 | normal | Vaporeon ★ | Vaporeon Star |
-| diacritic_punctuation_only | ex8 | 105 | normal | Latias ★ | Latias Star |
-| lvx_suffix_style | dp1 | 120 | normal | Empoleon LV.X | Empoleon |
 | lvx_suffix_style | dp2 | 121 | reverse | Electivire LV.X | Electivire |
 | lvx_suffix_style | dp1 | 120 | reverse | Empoleon LV.X | Empoleon |
-| lvx_suffix_style | dp1 | 121 | normal | Infernape LV.X | Infernape |
 | lvx_suffix_style | dp1 | 121 | reverse | Infernape LV.X | Infernape |
-| lvx_suffix_style | dp1 | 122 | normal | Torterra LV.X | Torterra |
 | lvx_suffix_style | dp1 | 122 | reverse | Torterra LV.X | Torterra |
-| lvx_suffix_style | dp2 | 121 | normal | Electivire LV.X | Electivire |
-| lvx_suffix_style | dp2 | 122 | normal | Lucario LV.X | Lucario |
 | lvx_suffix_style | dp2 | 122 | reverse | Lucario LV.X | Lucario |
-| lvx_suffix_style | dp2 | 123 | normal | Magmortar LV.X | Magmortar |
 | lvx_suffix_style | dp2 | 123 | reverse | Magmortar LV.X | Magmortar |
-| lvx_suffix_style | dp3 | 131 | normal | Gardevoir LV.X | Gardevoir |
-| lvx_suffix_style | pl2 | 109 | normal | Luxray GL LV.X | Luxray GL |
 | parenthetical_qualifier | sv01 | 189 | holo | Professor's Research | Professor's Research (Professor Sada) |
 | parenthetical_qualifier | sv02 | 172 | holo | Boss's Orders | Boss's Orders (Ghetsis) |
 | parenthetical_qualifier | sv02 | 265 | holo | Boss's Orders | Boss's Orders (Ghetsis) |

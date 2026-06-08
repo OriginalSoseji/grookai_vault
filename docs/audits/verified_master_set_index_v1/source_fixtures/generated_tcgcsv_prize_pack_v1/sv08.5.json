@@ -1,0 +1,35 @@
+{
+  "fixture_version": "VERIFIED_MASTER_SET_INDEX_V1_HUMAN_SOURCE_FIXTURE_GENERATED",
+  "source_key": "tcgcsv_prize_pack_catalog",
+  "source_kind": "marketplace_checklist",
+  "source_url": "https://tcgcsv.com/tcgplayer/3/22880/products",
+  "source_status": "available_generated_exact_prize_pack_rows",
+  "set_key": "sv08.5",
+  "set_name": "Prismatic Evolutions",
+  "retrieved_at": "2026-06-06T19:48:34.675Z",
+  "raw_snapshot_ref": "generated_fixture:tcgcsv_prize_pack_catalog:sv08.5:2026-06-06T19:48:34.675Z",
+  "audit_only": true,
+  "db_writes_performed": false,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "records": [
+    {
+      "source_key": "tcgcsv_prize_pack_catalog",
+      "source_kind": "marketplace_checklist",
+      "source_url": "https://www.tcgplayer.com/product/677397/pokemon-prize-pack-series-cards-sparkling-crystal-129-131",
+      "set_key": "sv08.5",
+      "set_name": "Prismatic Evolutions",
+      "card_number": "129",
+      "card_name": "Sparkling Crystal",
+      "finish_key": "stamped",
+      "rarity": "ACE SPEC Rare",
+      "evidence_type": "finish_presence",
+      "evidence_label": "TCGCSV/TCGplayer Prize Pack product 677397: Sparkling Crystal - 129/131 (129/131)",
+      "language": "en",
+      "retrieved_at": "2026-06-06T19:48:34.675Z",
+      "raw_snapshot_ref": "tcgcsv_prize_pack:22880:677397",
+      "notes": "Exact stamped finish evidence from the TCGplayer Prize Pack Series Cards catalog. Expansion-set rows require exact card name, card number, and printed-total denominator match; promo rows require exact promo number and name."
+    }
+  ]
+}

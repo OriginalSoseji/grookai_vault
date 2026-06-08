@@ -1,0 +1,17 @@
+{
+  "products": [
+    {
+      "console-name": "Pokemon Stellar Crown",
+      "gamestop-price": 0,
+      "gamestop-trade-price": 0,
+      "genre": "Pokemon Card",
+      "id": "10366693",
+      "loose-price": 2340,
+      "product-name": "Area Zero Underdepths [Gym Stamp Asia] #131",
+      "retail-loose-buy": 780,
+      "retail-loose-sell": 2599,
+      "sales-volume": "6"
+    }
+  ],
+  "status": "success"
+}

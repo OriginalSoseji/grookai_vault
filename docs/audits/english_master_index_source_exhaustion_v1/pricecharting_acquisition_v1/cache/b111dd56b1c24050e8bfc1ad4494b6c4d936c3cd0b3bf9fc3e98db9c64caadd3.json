@@ -1,0 +1,549 @@
+{
+  "status": "api_no_validated_match",
+  "fact": {
+    "gap_type": "finish_human_checklist_evidence_needed",
+    "fact_type": "printing_finish",
+    "set_key": "ex4",
+    "set_name": "Team Magma vs Team Aqua",
+    "card_number": "84",
+    "card_name": "Team Magma's Technical Machine 01",
+    "finish_key": "reverse",
+    "status": "candidate_unconfirmed",
+    "sources": [
+      "tcgdex"
+    ],
+    "source_authorities": [
+      "api.tcgdex.net"
+    ],
+    "source_kinds": [
+      "structured_api"
+    ],
+    "evidence_urls": [
+      "https://api.tcgdex.net/v2/en/cards/ex4-84"
+    ],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "attempts": [
+    {
+      "query": "Pokemon Team Magma vs Team Aqua Team Magma's Technical Machine 01 84 reverse holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Team%20Magma%20vs%20Team%20Aqua%20Team%20Magma's%20Technical%20Machine%2001%2084%20reverse%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "849750",
+      "product_name": "Technical Machine 01 [Reverse Holo] #84",
+      "console_name": "Pokemon Team Magma & Team Aqua",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Technical Machine 01"
+      }
+    },
+    {
+      "query": "Pokemon Team Magma vs Team Aqua Team Magma's Technical Machine 01 84 reverse holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Team%20Magma%20vs%20Team%20Aqua%20Team%20Magma's%20Technical%20Machine%2001%2084%20reverse%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "849746",
+      "product_name": "Technical Machine 01 [Reverse Holo] #79",
+      "console_name": "Pokemon Team Magma & Team Aqua",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:79"
+      }
+    },
+    {
+      "query": "Pokemon Team Magma vs Team Aqua Team Magma's Technical Machine 01 84 reverse holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Team%20Magma%20vs%20Team%20Aqua%20Team%20Magma's%20Technical%20Machine%2001%2084%20reverse%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "849653",
+      "product_name": "Technical Machine 01 #84",
+      "console_name": "Pokemon Team Magma & Team Aqua",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Technical Machine 01"
+      }
+    },
+    {
+      "query": "Pokemon Team Magma vs Team Aqua Team Magma's Technical Machine 01 84 reverse holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Team%20Magma%20vs%20Team%20Aqua%20Team%20Magma's%20Technical%20Machine%2001%2084%20reverse%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3439024",
+      "product_name": "Team Magma Technical Machine 01 #76",
+      "console_name": "Pokemon Japanese Magma VS Aqua: Two Ambitions",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:76"
+      }
+    },
+    {
+      "query": "Pokemon Team Magma vs Team Aqua Team Magma's Technical Machine 01 84 reverse holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Team%20Magma%20vs%20Team%20Aqua%20Team%20Magma's%20Technical%20Machine%2001%2084%20reverse%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3439025",
+      "product_name": "Team Aqua Technical Machine 01 #77",
+      "console_name": "Pokemon Japanese Magma VS Aqua: Two Ambitions",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:77"
+      }
+    },
+    {
+      "query": "Pokemon Team Magma vs Team Aqua Team Magma's Technical Machine 01 84 reverse holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Team%20Magma%20vs%20Team%20Aqua%20Team%20Magma's%20Technical%20Machine%2001%2084%20reverse%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "849648",
+      "product_name": "Technical Machine 01 #79",
+      "console_name": "Pokemon Team Magma & Team Aqua",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:79"
+      }
+    },
+    {
+      "query": "Pokemon Team Magma vs Team Aqua Team Magma's Technical Machine 01 84 reverse holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Team%20Magma%20vs%20Team%20Aqua%20Team%20Magma's%20Technical%20Machine%2001%2084%20reverse%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8453802",
+      "product_name": "Team Aqua Technical Machine 01 [1st Edition] #77",
+      "console_name": "Pokemon Japanese Magma VS Aqua: Two Ambitions",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:77"
+      }
+    },
+    {
+      "query": "Pokemon Team Magma vs Team Aqua Team Magma's Technical Machine 01 84 reverse holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Team%20Magma%20vs%20Team%20Aqua%20Team%20Magma's%20Technical%20Machine%2001%2084%20reverse%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8453814",
+      "product_name": "Team Magma Technical Machine 01 [1st Edition] #76",
+      "console_name": "Pokemon Japanese Magma VS Aqua: Two Ambitions",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:76"
+      }
+    },
+    {
+      "query": "Pokemon Team Magma vs Team Aqua Team Magma's Technical Machine 01 84 reverse holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Team%20Magma%20vs%20Team%20Aqua%20Team%20Magma's%20Technical%20Machine%2001%2084%20reverse%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3438969",
+      "product_name": "Team Magma's Torkoal #21",
+      "console_name": "Pokemon Japanese Magma VS Aqua: Two Ambitions",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:21"
+      }
+    },
+    {
+      "query": "Pokemon Team Magma vs Team Aqua Team Magma's Technical Machine 01 84 reverse holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Team%20Magma%20vs%20Team%20Aqua%20Team%20Magma's%20Technical%20Machine%2001%2084%20reverse%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3438993",
+      "product_name": "Team Magma's Claydol #45",
+      "console_name": "Pokemon Japanese Magma VS Aqua: Two Ambitions",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:45"
+      }
+    },
+    {
+      "query": "Pokemon Team Magma vs Team Aqua Team Magma's Technical Machine 01 84 reverse holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Team%20Magma%20vs%20Team%20Aqua%20Team%20Magma's%20Technical%20Machine%2001%2084%20reverse%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3438992",
+      "product_name": "Team Magma's Baltoy #44",
+      "console_name": "Pokemon Japanese Magma VS Aqua: Two Ambitions",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:44"
+      }
+    },
+    {
+      "query": "Pokemon Team Magma vs Team Aqua Team Magma's Technical Machine 01 84 reverse holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Team%20Magma%20vs%20Team%20Aqua%20Team%20Magma's%20Technical%20Machine%2001%2084%20reverse%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3439000",
+      "product_name": "Team Magma's Rhyhorn #52",
+      "console_name": "Pokemon Japanese Magma VS Aqua: Two Ambitions",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:52"
+      }
+    },
+    {
+      "query": "Pokemon Team Magma vs Team Aqua Team Magma's Technical Machine 01 84 reverse holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Team%20Magma%20vs%20Team%20Aqua%20Team%20Magma's%20Technical%20Machine%2001%2084%20reverse%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3439001",
+      "product_name": "Team Magma's Rhydon #53",
+      "console_name": "Pokemon Japanese Magma VS Aqua: Two Ambitions",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:53"
+      }
+    },
+    {
+      "query": "Pokemon Team Magma vs Team Aqua Team Magma's Technical Machine 01 84 reverse holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Team%20Magma%20vs%20Team%20Aqua%20Team%20Magma's%20Technical%20Machine%2001%2084%20reverse%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3438967",
+      "product_name": "Team Magma's Houndour #19",
+      "console_name": "Pokemon Japanese Magma VS Aqua: Two Ambitions",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:19"
+      }
+    },
+    {
+      "query": "Pokemon Team Magma vs Team Aqua Team Magma's Technical Machine 01 84 reverse holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Team%20Magma%20vs%20Team%20Aqua%20Team%20Magma's%20Technical%20Machine%2001%2084%20reverse%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3438968",
+      "product_name": "Team Magma's Houndoom #20",
+      "console_name": "Pokemon Japanese Magma VS Aqua: Two Ambitions",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:20"
+      }
+    },
+    {
+      "query": "Pokemon Team Magma vs Team Aqua Team Magma's Technical Machine 01 84 reverse holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Team%20Magma%20vs%20Team%20Aqua%20Team%20Magma's%20Technical%20Machine%2001%2084%20reverse%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3439009",
+      "product_name": "Team Magma's Zangoose #61",
+      "console_name": "Pokemon Japanese Magma VS Aqua: Two Ambitions",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:61"
+      }
+    },
+    {
+      "query": "Pokemon Team Magma vs Team Aqua Team Magma's Technical Machine 01 84 reverse holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Team%20Magma%20vs%20Team%20Aqua%20Team%20Magma's%20Technical%20Machine%2001%2084%20reverse%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "849667",
+      "product_name": "Cacturne [Reverse Holo] #1",
+      "console_name": "Pokemon Team Magma & Team Aqua",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:1"
+      }
+    },
+    {
+      "query": "Pokemon Team Magma vs Team Aqua Team Magma's Technical Machine 01 84 reverse holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Team%20Magma%20vs%20Team%20Aqua%20Team%20Magma's%20Technical%20Machine%2001%2084%20reverse%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "2978714",
+      "product_name": "Team Magma's Numel [Reverse Holo] #1",
+      "console_name": "Pokemon Double Crisis",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:1"
+      }
+    },
+    {
+      "query": "Pokemon Team Magma vs Team Aqua Team Magma's Technical Machine 01 84 reverse holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Team%20Magma%20vs%20Team%20Aqua%20Team%20Magma's%20Technical%20Machine%2001%2084%20reverse%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9906691",
+      "product_name": "Team Magma's Groudon #9",
+      "console_name": "Pokemon Team Magma & Team Aqua",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:9"
+      }
+    },
+    {
+      "query": "Pokemon Team Magma vs Team Aqua Team Magma's Technical Machine 01 84 reverse holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Team%20Magma%20vs%20Team%20Aqua%20Team%20Magma's%20Technical%20Machine%2001%2084%20reverse%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "849725",
+      "product_name": "Aron [Reverse Holo] #59",
+      "console_name": "Pokemon Team Magma & Team Aqua",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:59"
+      }
+    },
+    {
+      "query": "Pokemon Team Magma vs Team Aqua Team Magma's Technical Machine 01 84 reverse holofoil",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Team%20Magma%20vs%20Team%20Aqua%20Team%20Magma's%20Technical%20Machine%2001%2084%20reverse%20holofoil",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "849750",
+      "product_name": "Technical Machine 01 [Reverse Holo] #84",
+      "console_name": "Pokemon Team Magma & Team Aqua",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Technical Machine 01"
+      }
+    },
+    {
+      "query": "Pokemon Team Magma vs Team Aqua Team Magma's Technical Machine 01 84 reverse holofoil",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Team%20Magma%20vs%20Team%20Aqua%20Team%20Magma's%20Technical%20Machine%2001%2084%20reverse%20holofoil",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "849746",
+      "product_name": "Technical Machine 01 [Reverse Holo] #79",
+      "console_name": "Pokemon Team Magma & Team Aqua",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:79"
+      }
+    },
+    {
+      "query": "Pokemon Team Magma vs Team Aqua Team Magma's Technical Machine 01 84 reverse holofoil",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Team%20Magma%20vs%20Team%20Aqua%20Team%20Magma's%20Technical%20Machine%2001%2084%20reverse%20holofoil",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "849653",
+      "product_name": "Technical Machine 01 #84",
+      "console_name": "Pokemon Team Magma & Team Aqua",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Technical Machine 01"
+      }
+    },
+    {
+      "query": "Pokemon Team Magma vs Team Aqua Team Magma's Technical Machine 01 84 reverse holofoil",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Team%20Magma%20vs%20Team%20Aqua%20Team%20Magma's%20Technical%20Machine%2001%2084%20reverse%20holofoil",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3439024",
+      "product_name": "Team Magma Technical Machine 01 #76",
+      "console_name": "Pokemon Japanese Magma VS Aqua: Two Ambitions",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:76"
+      }
+    },
+    {
+      "query": "Pokemon Team Magma vs Team Aqua Team Magma's Technical Machine 01 84 reverse holofoil",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Team%20Magma%20vs%20Team%20Aqua%20Team%20Magma's%20Technical%20Machine%2001%2084%20reverse%20holofoil",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3439025",
+      "product_name": "Team Aqua Technical Machine 01 #77",
+      "console_name": "Pokemon Japanese Magma VS Aqua: Two Ambitions",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:77"
+      }
+    },
+    {
+      "query": "Pokemon Team Magma vs Team Aqua Team Magma's Technical Machine 01 84 reverse holofoil",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Team%20Magma%20vs%20Team%20Aqua%20Team%20Magma's%20Technical%20Machine%2001%2084%20reverse%20holofoil",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "849648",
+      "product_name": "Technical Machine 01 #79",
+      "console_name": "Pokemon Team Magma & Team Aqua",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:79"
+      }
+    },
+    {
+      "query": "Pokemon Team Magma vs Team Aqua Team Magma's Technical Machine 01 84 reverse holofoil",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Team%20Magma%20vs%20Team%20Aqua%20Team%20Magma's%20Technical%20Machine%2001%2084%20reverse%20holofoil",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8453802",
+      "product_name": "Team Aqua Technical Machine 01 [1st Edition] #77",
+      "console_name": "Pokemon Japanese Magma VS Aqua: Two Ambitions",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:77"
+      }
+    },
+    {
+      "query": "Pokemon Team Magma vs Team Aqua Team Magma's Technical Machine 01 84 reverse holofoil",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Team%20Magma%20vs%20Team%20Aqua%20Team%20Magma's%20Technical%20Machine%2001%2084%20reverse%20holofoil",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8453814",
+      "product_name": "Team Magma Technical Machine 01 [1st Edition] #76",
+      "console_name": "Pokemon Japanese Magma VS Aqua: Two Ambitions",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:76"
+      }
+    },
+    {
+      "query": "Pokemon Team Magma vs Team Aqua Team Magma's Technical Machine 01 84 reverse holofoil",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Team%20Magma%20vs%20Team%20Aqua%20Team%20Magma's%20Technical%20Machine%2001%2084%20reverse%20holofoil",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3438969",
+      "product_name": "Team Magma's Torkoal #21",
+      "console_name": "Pokemon Japanese Magma VS Aqua: Two Ambitions",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:21"
+      }
+    },
+    {
+      "query": "Pokemon Team Magma vs Team Aqua Team Magma's Technical Machine 01 84 reverse holofoil",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Team%20Magma%20vs%20Team%20Aqua%20Team%20Magma's%20Technical%20Machine%2001%2084%20reverse%20holofoil",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3438993",
+      "product_name": "Team Magma's Claydol #45",
+      "console_name": "Pokemon Japanese Magma VS Aqua: Two Ambitions",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:45"
+      }
+    },
+    {
+      "query": "Pokemon Team Magma vs Team Aqua Team Magma's Technical Machine 01 84 reverse holofoil",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Team%20Magma%20vs%20Team%20Aqua%20Team%20Magma's%20Technical%20Machine%2001%2084%20reverse%20holofoil",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3438992",
+      "product_name": "Team Magma's Baltoy #44",
+      "console_name": "Pokemon Japanese Magma VS Aqua: Two Ambitions",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:44"
+      }
+    },
+    {
+      "query": "Pokemon Team Magma vs Team Aqua Team Magma's Technical Machine 01 84 reverse holofoil",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Team%20Magma%20vs%20Team%20Aqua%20Team%20Magma's%20Technical%20Machine%2001%2084%20reverse%20holofoil",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3439000",
+      "product_name": "Team Magma's Rhyhorn #52",
+      "console_name": "Pokemon Japanese Magma VS Aqua: Two Ambitions",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:52"
+      }
+    },
+    {
+      "query": "Pokemon Team Magma vs Team Aqua Team Magma's Technical Machine 01 84 reverse holofoil",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Team%20Magma%20vs%20Team%20Aqua%20Team%20Magma's%20Technical%20Machine%2001%2084%20reverse%20holofoil",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3439001",
+      "product_name": "Team Magma's Rhydon #53",
+      "console_name": "Pokemon Japanese Magma VS Aqua: Two Ambitions",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:53"
+      }
+    },
+    {
+      "query": "Pokemon Team Magma vs Team Aqua Team Magma's Technical Machine 01 84 reverse holofoil",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Team%20Magma%20vs%20Team%20Aqua%20Team%20Magma's%20Technical%20Machine%2001%2084%20reverse%20holofoil",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3438967",
+      "product_name": "Team Magma's Houndour #19",
+      "console_name": "Pokemon Japanese Magma VS Aqua: Two Ambitions",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:19"
+      }
+    },
+    {
+      "query": "Pokemon Team Magma vs Team Aqua Team Magma's Technical Machine 01 84 reverse holofoil",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Team%20Magma%20vs%20Team%20Aqua%20Team%20Magma's%20Technical%20Machine%2001%2084%20reverse%20holofoil",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3438968",
+      "product_name": "Team Magma's Houndoom #20",
+      "console_name": "Pokemon Japanese Magma VS Aqua: Two Ambitions",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:20"
+      }
+    },
+    {
+      "query": "Pokemon Team Magma vs Team Aqua Team Magma's Technical Machine 01 84 reverse holofoil",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Team%20Magma%20vs%20Team%20Aqua%20Team%20Magma's%20Technical%20Machine%2001%2084%20reverse%20holofoil",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3439009",
+      "product_name": "Team Magma's Zangoose #61",
+      "console_name": "Pokemon Japanese Magma VS Aqua: Two Ambitions",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:61"
+      }
+    },
+    {
+      "query": "Pokemon Team Magma vs Team Aqua Team Magma's Technical Machine 01 84 reverse holofoil",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Team%20Magma%20vs%20Team%20Aqua%20Team%20Magma's%20Technical%20Machine%2001%2084%20reverse%20holofoil",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "849667",
+      "product_name": "Cacturne [Reverse Holo] #1",
+      "console_name": "Pokemon Team Magma & Team Aqua",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:1"
+      }
+    },
+    {
+      "query": "Pokemon Team Magma vs Team Aqua Team Magma's Technical Machine 01 84 reverse holofoil",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Team%20Magma%20vs%20Team%20Aqua%20Team%20Magma's%20Technical%20Machine%2001%2084%20reverse%20holofoil",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "2978714",
+      "product_name": "Team Magma's Numel [Reverse Holo] #1",
+      "console_name": "Pokemon Double Crisis",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:1"
+      }
+    },
+    {
+      "query": "Pokemon Team Magma vs Team Aqua Team Magma's Technical Machine 01 84 reverse holofoil",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Team%20Magma%20vs%20Team%20Aqua%20Team%20Magma's%20Technical%20Machine%2001%2084%20reverse%20holofoil",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9906691",
+      "product_name": "Team Magma's Groudon #9",
+      "console_name": "Pokemon Team Magma & Team Aqua",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:9"
+      }
+    },
+    {
+      "query": "Pokemon Team Magma vs Team Aqua Team Magma's Technical Machine 01 84 reverse holofoil",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Team%20Magma%20vs%20Team%20Aqua%20Team%20Magma's%20Technical%20Machine%2001%2084%20reverse%20holofoil",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "849725",
+      "product_name": "Aron [Reverse Holo] #59",
+      "console_name": "Pokemon Team Magma & Team Aqua",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:59"
+      }
+    }
+  ],
+  "source_lane": "pricecharting_api"
+}

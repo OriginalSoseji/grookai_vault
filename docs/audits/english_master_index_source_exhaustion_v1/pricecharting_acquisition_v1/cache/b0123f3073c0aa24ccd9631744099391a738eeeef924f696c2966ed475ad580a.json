@@ -1,0 +1,549 @@
+{
+  "status": "api_no_validated_match",
+  "fact": {
+    "gap_type": "finish_second_source_needed",
+    "fact_type": "printing_finish",
+    "set_key": "hgss3",
+    "set_name": "HS—Undaunted",
+    "card_number": "17",
+    "card_name": "Leafeon",
+    "finish_key": "stamped",
+    "status": "human_source_verified",
+    "sources": [
+      "thepricedex_price_list"
+    ],
+    "source_authorities": [
+      "thepricedex.com"
+    ],
+    "source_kinds": [
+      "marketplace_checklist"
+    ],
+    "evidence_urls": [
+      "https://www.thepricedex.com/set/hgss3/hs-undaunted/price-list"
+    ],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "attempts": [
+    {
+      "query": "Pokemon HS—Undaunted Leafeon 17 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Undaunted%20Leafeon%2017%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "925904",
+      "product_name": "Leafeon #17",
+      "console_name": "Pokemon Undaunted",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon HS—Undaunted Leafeon 17 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Undaunted%20Leafeon%2017%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4913528",
+      "product_name": "Leafeon [Prerelease] #17",
+      "console_name": "Pokemon Undaunted",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Prerelease"
+      }
+    },
+    {
+      "query": "Pokemon HS—Undaunted Leafeon 17 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Undaunted%20Leafeon%2017%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "925995",
+      "product_name": "Leafeon [Reverse Holo] #17",
+      "console_name": "Pokemon Undaunted",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Reverse Holo"
+      }
+    },
+    {
+      "query": "Pokemon HS—Undaunted Leafeon 17 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Undaunted%20Leafeon%2017%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4913530",
+      "product_name": "Leafeon [Prerelease Staff] #17",
+      "console_name": "Pokemon Undaunted",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Prerelease Staff"
+      }
+    },
+    {
+      "query": "Pokemon HS—Undaunted Leafeon 17 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Undaunted%20Leafeon%2017%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9378127",
+      "product_name": "Leafeon [Stamped] #24",
+      "console_name": "Pokemon Majestic Dawn",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:24"
+      }
+    },
+    {
+      "query": "Pokemon HS—Undaunted Leafeon 17 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Undaunted%20Leafeon%2017%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9680296",
+      "product_name": "Leafeon [Stamped] #711",
+      "console_name": "Pokemon Chinese Gem Pack 2",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:711"
+      }
+    },
+    {
+      "query": "Pokemon HS—Undaunted Leafeon 17 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Undaunted%20Leafeon%2017%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9680297",
+      "product_name": "Leafeon [Stamped] #712",
+      "console_name": "Pokemon Chinese Gem Pack 2",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:712"
+      }
+    },
+    {
+      "query": "Pokemon HS—Undaunted Leafeon 17 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Undaunted%20Leafeon%2017%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8576850",
+      "product_name": "Leafeon Ex [Stamped] #6",
+      "console_name": "Pokemon Prismatic Evolutions",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:6"
+      }
+    },
+    {
+      "query": "Pokemon HS—Undaunted Leafeon 17 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Undaunted%20Leafeon%2017%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3671505",
+      "product_name": "Leafeon V #17",
+      "console_name": "Pokemon Japanese Start Deck 100",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Leafeon V"
+      }
+    },
+    {
+      "query": "Pokemon HS—Undaunted Leafeon 17 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Undaunted%20Leafeon%2017%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "13020614",
+      "product_name": "Leafeon V #17",
+      "console_name": "Pokemon Chinese Start Deck 100",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Leafeon V"
+      }
+    },
+    {
+      "query": "Pokemon HS—Undaunted Leafeon 17 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Undaunted%20Leafeon%2017%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "13020938",
+      "product_name": "Leafeon V #17",
+      "console_name": "Pokemon Korean Start Deck 100",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Leafeon V"
+      }
+    },
+    {
+      "query": "Pokemon HS—Undaunted Leafeon 17 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Undaunted%20Leafeon%2017%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4835869",
+      "product_name": "Blitzle #17",
+      "console_name": "Pokemon Japanese Beginning Set HS",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Blitzle"
+      }
+    },
+    {
+      "query": "Pokemon HS—Undaunted Leafeon 17 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Undaunted%20Leafeon%2017%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7913570",
+      "product_name": "Android 17, Supporting His Sister [Gold Stamped Foil] BT20-045",
+      "console_name": "Dragon Ball Super Power Absorbed",
+      "validation": {
+        "ok": false,
+        "reason": "api_product_name_pattern_not_supported"
+      }
+    },
+    {
+      "query": "Pokemon HS—Undaunted Leafeon 17 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Undaunted%20Leafeon%2017%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11069135",
+      "product_name": "Reshiram [Stamped] #17",
+      "console_name": "Pokemon Phantasmal Flames",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Reshiram"
+      }
+    },
+    {
+      "query": "Pokemon HS—Undaunted Leafeon 17 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Undaunted%20Leafeon%2017%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11210390",
+      "product_name": "Toxtricity [Stamped] #17",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Toxtricity"
+      }
+    },
+    {
+      "query": "Pokemon HS—Undaunted Leafeon 17 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Undaunted%20Leafeon%2017%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5923746",
+      "product_name": "Druddigon [Stamped] #17",
+      "console_name": "Pokemon Dragon Vault",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Druddigon"
+      }
+    },
+    {
+      "query": "Pokemon HS—Undaunted Leafeon 17 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Undaunted%20Leafeon%2017%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12579940",
+      "product_name": "Switch [Event Organizer Stamp] #17/SV-P",
+      "console_name": "Pokemon Japanese Promo",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Switch"
+      }
+    },
+    {
+      "query": "Pokemon HS—Undaunted Leafeon 17 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Undaunted%20Leafeon%2017%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7638508",
+      "product_name": "Leafeon [Holo] #4",
+      "console_name": "Pokemon Japanese Leafeon VS Metagross Expert Deck",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:4"
+      }
+    },
+    {
+      "query": "Pokemon HS—Undaunted Leafeon 17 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Undaunted%20Leafeon%2017%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7638507",
+      "product_name": "Leafeon #4",
+      "console_name": "Pokemon Japanese Leafeon VS Metagross Expert Deck",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:4"
+      }
+    },
+    {
+      "query": "Pokemon HS—Undaunted Leafeon 17 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Undaunted%20Leafeon%2017%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12093550",
+      "product_name": "Leafeon LV.X",
+      "console_name": "Pokemon Japanese Dawn Dash",
+      "validation": {
+        "ok": false,
+        "reason": "api_product_name_pattern_not_supported"
+      }
+    },
+    {
+      "query": "Pokemon HS—Undaunted Leafeon 17 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Undaunted%20Leafeon%2017%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "925904",
+      "product_name": "Leafeon #17",
+      "console_name": "Pokemon Undaunted",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon HS—Undaunted Leafeon 17 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Undaunted%20Leafeon%2017%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4913528",
+      "product_name": "Leafeon [Prerelease] #17",
+      "console_name": "Pokemon Undaunted",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Prerelease"
+      }
+    },
+    {
+      "query": "Pokemon HS—Undaunted Leafeon 17 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Undaunted%20Leafeon%2017%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "925995",
+      "product_name": "Leafeon [Reverse Holo] #17",
+      "console_name": "Pokemon Undaunted",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Reverse Holo"
+      }
+    },
+    {
+      "query": "Pokemon HS—Undaunted Leafeon 17 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Undaunted%20Leafeon%2017%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4913530",
+      "product_name": "Leafeon [Prerelease Staff] #17",
+      "console_name": "Pokemon Undaunted",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Prerelease Staff"
+      }
+    },
+    {
+      "query": "Pokemon HS—Undaunted Leafeon 17 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Undaunted%20Leafeon%2017%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9378127",
+      "product_name": "Leafeon [Stamped] #24",
+      "console_name": "Pokemon Majestic Dawn",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:24"
+      }
+    },
+    {
+      "query": "Pokemon HS—Undaunted Leafeon 17 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Undaunted%20Leafeon%2017%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9680296",
+      "product_name": "Leafeon [Stamped] #711",
+      "console_name": "Pokemon Chinese Gem Pack 2",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:711"
+      }
+    },
+    {
+      "query": "Pokemon HS—Undaunted Leafeon 17 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Undaunted%20Leafeon%2017%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9680297",
+      "product_name": "Leafeon [Stamped] #712",
+      "console_name": "Pokemon Chinese Gem Pack 2",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:712"
+      }
+    },
+    {
+      "query": "Pokemon HS—Undaunted Leafeon 17 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Undaunted%20Leafeon%2017%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8576850",
+      "product_name": "Leafeon Ex [Stamped] #6",
+      "console_name": "Pokemon Prismatic Evolutions",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:6"
+      }
+    },
+    {
+      "query": "Pokemon HS—Undaunted Leafeon 17 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Undaunted%20Leafeon%2017%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3671505",
+      "product_name": "Leafeon V #17",
+      "console_name": "Pokemon Japanese Start Deck 100",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Leafeon V"
+      }
+    },
+    {
+      "query": "Pokemon HS—Undaunted Leafeon 17 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Undaunted%20Leafeon%2017%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "13020614",
+      "product_name": "Leafeon V #17",
+      "console_name": "Pokemon Chinese Start Deck 100",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Leafeon V"
+      }
+    },
+    {
+      "query": "Pokemon HS—Undaunted Leafeon 17 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Undaunted%20Leafeon%2017%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "13020938",
+      "product_name": "Leafeon V #17",
+      "console_name": "Pokemon Korean Start Deck 100",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Leafeon V"
+      }
+    },
+    {
+      "query": "Pokemon HS—Undaunted Leafeon 17 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Undaunted%20Leafeon%2017%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4835869",
+      "product_name": "Blitzle #17",
+      "console_name": "Pokemon Japanese Beginning Set HS",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Blitzle"
+      }
+    },
+    {
+      "query": "Pokemon HS—Undaunted Leafeon 17 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Undaunted%20Leafeon%2017%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7913570",
+      "product_name": "Android 17, Supporting His Sister [Gold Stamped Foil] BT20-045",
+      "console_name": "Dragon Ball Super Power Absorbed",
+      "validation": {
+        "ok": false,
+        "reason": "api_product_name_pattern_not_supported"
+      }
+    },
+    {
+      "query": "Pokemon HS—Undaunted Leafeon 17 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Undaunted%20Leafeon%2017%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11069135",
+      "product_name": "Reshiram [Stamped] #17",
+      "console_name": "Pokemon Phantasmal Flames",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Reshiram"
+      }
+    },
+    {
+      "query": "Pokemon HS—Undaunted Leafeon 17 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Undaunted%20Leafeon%2017%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11210390",
+      "product_name": "Toxtricity [Stamped] #17",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Toxtricity"
+      }
+    },
+    {
+      "query": "Pokemon HS—Undaunted Leafeon 17 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Undaunted%20Leafeon%2017%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5923746",
+      "product_name": "Druddigon [Stamped] #17",
+      "console_name": "Pokemon Dragon Vault",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Druddigon"
+      }
+    },
+    {
+      "query": "Pokemon HS—Undaunted Leafeon 17 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Undaunted%20Leafeon%2017%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12579940",
+      "product_name": "Switch [Event Organizer Stamp] #17/SV-P",
+      "console_name": "Pokemon Japanese Promo",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Switch"
+      }
+    },
+    {
+      "query": "Pokemon HS—Undaunted Leafeon 17 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Undaunted%20Leafeon%2017%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7638508",
+      "product_name": "Leafeon [Holo] #4",
+      "console_name": "Pokemon Japanese Leafeon VS Metagross Expert Deck",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:4"
+      }
+    },
+    {
+      "query": "Pokemon HS—Undaunted Leafeon 17 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Undaunted%20Leafeon%2017%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7638507",
+      "product_name": "Leafeon #4",
+      "console_name": "Pokemon Japanese Leafeon VS Metagross Expert Deck",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:4"
+      }
+    },
+    {
+      "query": "Pokemon HS—Undaunted Leafeon 17 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Undaunted%20Leafeon%2017%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12093550",
+      "product_name": "Leafeon LV.X",
+      "console_name": "Pokemon Japanese Dawn Dash",
+      "validation": {
+        "ok": false,
+        "reason": "api_product_name_pattern_not_supported"
+      }
+    }
+  ],
+  "source_lane": "pricecharting_api"
+}

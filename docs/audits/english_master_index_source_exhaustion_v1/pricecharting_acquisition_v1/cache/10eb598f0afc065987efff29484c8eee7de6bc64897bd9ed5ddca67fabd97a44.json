@@ -1,0 +1,549 @@
+{
+  "status": "api_no_validated_match",
+  "fact": {
+    "gap_type": "finish_second_source_needed",
+    "fact_type": "printing_finish",
+    "set_key": "ex1",
+    "set_name": "Ruby & Sapphire",
+    "card_number": "94",
+    "card_name": "Metal Energy",
+    "finish_key": "stamped",
+    "status": "human_source_verified",
+    "sources": [
+      "thepricedex_price_list"
+    ],
+    "source_authorities": [
+      "thepricedex.com"
+    ],
+    "source_kinds": [
+      "marketplace_checklist"
+    ],
+    "evidence_urls": [
+      "https://www.thepricedex.com/set/ex1/ruby-and-sapphire/price-list"
+    ],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "attempts": [
+    {
+      "query": "Pokemon Ruby & Sapphire Metal Energy 94 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ruby%20%26%20Sapphire%20Metal%20Energy%2094%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10809797",
+      "product_name": "Metal Energy [Jumbo] #94",
+      "console_name": "Pokemon Ruby & Sapphire",
+      "validation": {
+        "ok": false,
+        "reason": "product_scope_jumbo_not_canonical_set_finish"
+      }
+    },
+    {
+      "query": "Pokemon Ruby & Sapphire Metal Energy 94 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ruby%20%26%20Sapphire%20Metal%20Energy%2094%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6303786",
+      "product_name": "Metal Energy [Winner] #94",
+      "console_name": "Pokemon Ruby & Sapphire",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Winner"
+      }
+    },
+    {
+      "query": "Pokemon Ruby & Sapphire Metal Energy 94 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ruby%20%26%20Sapphire%20Metal%20Energy%2094%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "762947",
+      "product_name": "Metal Energy #94",
+      "console_name": "Pokemon Ruby & Sapphire",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon Ruby & Sapphire Metal Energy 94 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ruby%20%26%20Sapphire%20Metal%20Energy%2094%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "763029",
+      "product_name": "Metal Energy [Reverse Holo] #94",
+      "console_name": "Pokemon Ruby & Sapphire",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Reverse Holo"
+      }
+    },
+    {
+      "query": "Pokemon Ruby & Sapphire Metal Energy 94 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ruby%20%26%20Sapphire%20Metal%20Energy%2094%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6160297",
+      "product_name": "Grass energy [2004] #104",
+      "console_name": "Pokemon Ruby & Sapphire",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:104"
+      }
+    },
+    {
+      "query": "Pokemon Ruby & Sapphire Metal Energy 94 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ruby%20%26%20Sapphire%20Metal%20Energy%2094%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6160301",
+      "product_name": "Grass Energy [2005] #104",
+      "console_name": "Pokemon Ruby & Sapphire",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:104"
+      }
+    },
+    {
+      "query": "Pokemon Ruby & Sapphire Metal Energy 94 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ruby%20%26%20Sapphire%20Metal%20Energy%2094%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "762957",
+      "product_name": "Grass Energy #104",
+      "console_name": "Pokemon Ruby & Sapphire",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:104"
+      }
+    },
+    {
+      "query": "Pokemon Ruby & Sapphire Metal Energy 94 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ruby%20%26%20Sapphire%20Metal%20Energy%2094%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "762946",
+      "product_name": "Darkness Energy #93",
+      "console_name": "Pokemon Ruby & Sapphire",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:93"
+      }
+    },
+    {
+      "query": "Pokemon Ruby & Sapphire Metal Energy 94 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ruby%20%26%20Sapphire%20Metal%20Energy%2094%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "762933",
+      "product_name": "Energy Removal 2 #80",
+      "console_name": "Pokemon Ruby & Sapphire",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:80"
+      }
+    },
+    {
+      "query": "Pokemon Ruby & Sapphire Metal Energy 94 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ruby%20%26%20Sapphire%20Metal%20Energy%2094%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "762961",
+      "product_name": "Fire Energy #108",
+      "console_name": "Pokemon Ruby & Sapphire",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:108"
+      }
+    },
+    {
+      "query": "Pokemon Ruby & Sapphire Metal Energy 94 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ruby%20%26%20Sapphire%20Metal%20Energy%2094%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "762959",
+      "product_name": "Water Energy #106",
+      "console_name": "Pokemon Ruby & Sapphire",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:106"
+      }
+    },
+    {
+      "query": "Pokemon Ruby & Sapphire Metal Energy 94 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ruby%20%26%20Sapphire%20Metal%20Energy%2094%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "762935",
+      "product_name": "Energy Switch #82",
+      "console_name": "Pokemon Ruby & Sapphire",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:82"
+      }
+    },
+    {
+      "query": "Pokemon Ruby & Sapphire Metal Energy 94 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ruby%20%26%20Sapphire%20Metal%20Energy%2094%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "762943",
+      "product_name": "Energy Search #90",
+      "console_name": "Pokemon Ruby & Sapphire",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:90"
+      }
+    },
+    {
+      "query": "Pokemon Ruby & Sapphire Metal Energy 94 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ruby%20%26%20Sapphire%20Metal%20Energy%2094%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6985216",
+      "product_name": "Darkness Energy [Holo] #93",
+      "console_name": "Pokemon Ruby & Sapphire",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:93"
+      }
+    },
+    {
+      "query": "Pokemon Ruby & Sapphire Metal Energy 94 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ruby%20%26%20Sapphire%20Metal%20Energy%2094%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "762934",
+      "product_name": "Energy Restore #81",
+      "console_name": "Pokemon Ruby & Sapphire",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:81"
+      }
+    },
+    {
+      "query": "Pokemon Ruby & Sapphire Metal Energy 94 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ruby%20%26%20Sapphire%20Metal%20Energy%2094%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "762948",
+      "product_name": "Rainbow Energy #95",
+      "console_name": "Pokemon Ruby & Sapphire",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:95"
+      }
+    },
+    {
+      "query": "Pokemon Ruby & Sapphire Metal Energy 94 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ruby%20%26%20Sapphire%20Metal%20Energy%2094%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "762960",
+      "product_name": "Psychic Energy #107",
+      "console_name": "Pokemon Ruby & Sapphire",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:107"
+      }
+    },
+    {
+      "query": "Pokemon Ruby & Sapphire Metal Energy 94 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ruby%20%26%20Sapphire%20Metal%20Energy%2094%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "762958",
+      "product_name": "Fighting Energy #105",
+      "console_name": "Pokemon Ruby & Sapphire",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:105"
+      }
+    },
+    {
+      "query": "Pokemon Ruby & Sapphire Metal Energy 94 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ruby%20%26%20Sapphire%20Metal%20Energy%2094%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "762962",
+      "product_name": "Lightning Energy #109",
+      "console_name": "Pokemon Ruby & Sapphire",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:109"
+      }
+    },
+    {
+      "query": "Pokemon Ruby & Sapphire Metal Energy 94 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ruby%20%26%20Sapphire%20Metal%20Energy%2094%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5324999",
+      "product_name": "Darkness Energy [Winner] #93",
+      "console_name": "Pokemon Ruby & Sapphire",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:93"
+      }
+    },
+    {
+      "query": "Pokemon Ruby & Sapphire Metal Energy 94 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ruby%20%26%20Sapphire%20Metal%20Energy%2094%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10809797",
+      "product_name": "Metal Energy [Jumbo] #94",
+      "console_name": "Pokemon Ruby & Sapphire",
+      "validation": {
+        "ok": false,
+        "reason": "product_scope_jumbo_not_canonical_set_finish"
+      }
+    },
+    {
+      "query": "Pokemon Ruby & Sapphire Metal Energy 94 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ruby%20%26%20Sapphire%20Metal%20Energy%2094%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6303786",
+      "product_name": "Metal Energy [Winner] #94",
+      "console_name": "Pokemon Ruby & Sapphire",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Winner"
+      }
+    },
+    {
+      "query": "Pokemon Ruby & Sapphire Metal Energy 94 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ruby%20%26%20Sapphire%20Metal%20Energy%2094%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "762947",
+      "product_name": "Metal Energy #94",
+      "console_name": "Pokemon Ruby & Sapphire",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon Ruby & Sapphire Metal Energy 94 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ruby%20%26%20Sapphire%20Metal%20Energy%2094%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "763029",
+      "product_name": "Metal Energy [Reverse Holo] #94",
+      "console_name": "Pokemon Ruby & Sapphire",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Reverse Holo"
+      }
+    },
+    {
+      "query": "Pokemon Ruby & Sapphire Metal Energy 94 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ruby%20%26%20Sapphire%20Metal%20Energy%2094%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6160297",
+      "product_name": "Grass energy [2004] #104",
+      "console_name": "Pokemon Ruby & Sapphire",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:104"
+      }
+    },
+    {
+      "query": "Pokemon Ruby & Sapphire Metal Energy 94 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ruby%20%26%20Sapphire%20Metal%20Energy%2094%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6160301",
+      "product_name": "Grass Energy [2005] #104",
+      "console_name": "Pokemon Ruby & Sapphire",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:104"
+      }
+    },
+    {
+      "query": "Pokemon Ruby & Sapphire Metal Energy 94 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ruby%20%26%20Sapphire%20Metal%20Energy%2094%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "762957",
+      "product_name": "Grass Energy #104",
+      "console_name": "Pokemon Ruby & Sapphire",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:104"
+      }
+    },
+    {
+      "query": "Pokemon Ruby & Sapphire Metal Energy 94 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ruby%20%26%20Sapphire%20Metal%20Energy%2094%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "762946",
+      "product_name": "Darkness Energy #93",
+      "console_name": "Pokemon Ruby & Sapphire",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:93"
+      }
+    },
+    {
+      "query": "Pokemon Ruby & Sapphire Metal Energy 94 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ruby%20%26%20Sapphire%20Metal%20Energy%2094%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "762933",
+      "product_name": "Energy Removal 2 #80",
+      "console_name": "Pokemon Ruby & Sapphire",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:80"
+      }
+    },
+    {
+      "query": "Pokemon Ruby & Sapphire Metal Energy 94 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ruby%20%26%20Sapphire%20Metal%20Energy%2094%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "762961",
+      "product_name": "Fire Energy #108",
+      "console_name": "Pokemon Ruby & Sapphire",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:108"
+      }
+    },
+    {
+      "query": "Pokemon Ruby & Sapphire Metal Energy 94 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ruby%20%26%20Sapphire%20Metal%20Energy%2094%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "762959",
+      "product_name": "Water Energy #106",
+      "console_name": "Pokemon Ruby & Sapphire",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:106"
+      }
+    },
+    {
+      "query": "Pokemon Ruby & Sapphire Metal Energy 94 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ruby%20%26%20Sapphire%20Metal%20Energy%2094%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "762935",
+      "product_name": "Energy Switch #82",
+      "console_name": "Pokemon Ruby & Sapphire",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:82"
+      }
+    },
+    {
+      "query": "Pokemon Ruby & Sapphire Metal Energy 94 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ruby%20%26%20Sapphire%20Metal%20Energy%2094%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "762943",
+      "product_name": "Energy Search #90",
+      "console_name": "Pokemon Ruby & Sapphire",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:90"
+      }
+    },
+    {
+      "query": "Pokemon Ruby & Sapphire Metal Energy 94 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ruby%20%26%20Sapphire%20Metal%20Energy%2094%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6985216",
+      "product_name": "Darkness Energy [Holo] #93",
+      "console_name": "Pokemon Ruby & Sapphire",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:93"
+      }
+    },
+    {
+      "query": "Pokemon Ruby & Sapphire Metal Energy 94 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ruby%20%26%20Sapphire%20Metal%20Energy%2094%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "762934",
+      "product_name": "Energy Restore #81",
+      "console_name": "Pokemon Ruby & Sapphire",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:81"
+      }
+    },
+    {
+      "query": "Pokemon Ruby & Sapphire Metal Energy 94 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ruby%20%26%20Sapphire%20Metal%20Energy%2094%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "762948",
+      "product_name": "Rainbow Energy #95",
+      "console_name": "Pokemon Ruby & Sapphire",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:95"
+      }
+    },
+    {
+      "query": "Pokemon Ruby & Sapphire Metal Energy 94 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ruby%20%26%20Sapphire%20Metal%20Energy%2094%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "762960",
+      "product_name": "Psychic Energy #107",
+      "console_name": "Pokemon Ruby & Sapphire",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:107"
+      }
+    },
+    {
+      "query": "Pokemon Ruby & Sapphire Metal Energy 94 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ruby%20%26%20Sapphire%20Metal%20Energy%2094%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "762958",
+      "product_name": "Fighting Energy #105",
+      "console_name": "Pokemon Ruby & Sapphire",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:105"
+      }
+    },
+    {
+      "query": "Pokemon Ruby & Sapphire Metal Energy 94 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ruby%20%26%20Sapphire%20Metal%20Energy%2094%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "762962",
+      "product_name": "Lightning Energy #109",
+      "console_name": "Pokemon Ruby & Sapphire",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:109"
+      }
+    },
+    {
+      "query": "Pokemon Ruby & Sapphire Metal Energy 94 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ruby%20%26%20Sapphire%20Metal%20Energy%2094%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5324999",
+      "product_name": "Darkness Energy [Winner] #93",
+      "console_name": "Pokemon Ruby & Sapphire",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:93"
+      }
+    }
+  ],
+  "source_lane": "pricecharting_api"
+}

@@ -1,0 +1,36 @@
+{
+  "status": "no_validated_match",
+  "fact": {
+    "gap_type": "finish_second_source_needed",
+    "fact_type": "printing_finish",
+    "set_key": "col1",
+    "set_name": "Call of Legends",
+    "card_number": "SL3",
+    "card_name": "Entei",
+    "finish_key": "holo",
+    "status": "human_source_verified",
+    "sources": [
+      "thepricedex_price_list"
+    ],
+    "source_authorities": [
+      "thepricedex.com"
+    ],
+    "source_kinds": [
+      "marketplace_checklist"
+    ],
+    "evidence_urls": [],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "attempts": [
+    {
+      "query": "Pokemon Call of Legends Entei SL3 holo",
+      "url": "https://www.pricecharting.com/search-products?q=Pokemon%20Call%20of%20Legends%20Entei%20SL3%20holo&type=prices",
+      "error": "Fetch failed 403 Forbidden: https://www.pricecharting.com/search-products?q=Pokemon%20Call%20of%20Legends%20Entei%20SL3%20holo&type=prices"
+    },
+    {
+      "query": "Pokemon Call of Legends Entei SL3 holofoil",
+      "url": "https://www.pricecharting.com/search-products?q=Pokemon%20Call%20of%20Legends%20Entei%20SL3%20holofoil&type=prices",
+      "error": "Fetch failed 403 Forbidden: https://www.pricecharting.com/search-products?q=Pokemon%20Call%20of%20Legends%20Entei%20SL3%20holofoil&type=prices"
+    }
+  ]
+}

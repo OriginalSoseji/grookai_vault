@@ -1,0 +1,53 @@
+{
+  "fixture_version": "VERIFIED_MASTER_SET_INDEX_V1_HUMAN_SOURCE_FIXTURE_GENERATED",
+  "source_key": "pricecharting_csv_product_accepted_delta_v1",
+  "source_kind": "marketplace_checklist",
+  "source_url": "https://www.pricecharting.com/game/pokemon-secret-wonders/shellos-west-sea-san-diego-comic-con-107",
+  "source_status": "available_generated_accepted_delta",
+  "set_key": "accepted_delta",
+  "set_name": "pricecharting_csv_product accepted delta",
+  "retrieved_at": "2026-05-30T18:34:28.015Z",
+  "raw_snapshot_ref": "generated_fixture:accepted_delta:pricecharting_csv_product:2026-05-30T18:34:28.015Z",
+  "audit_only": true,
+  "db_writes_performed": false,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "generation_note": "Generated from source delta audit useful matches only. This fixture intentionally excludes broad source rows that were not current-gap useful matches.",
+  "records": [
+    {
+      "source_key": "pricecharting_csv_product",
+      "source_kind": "marketplace_checklist",
+      "source_url": "https://www.pricecharting.com/game/pokemon-secret-wonders/shellos-west-sea-san-diego-comic-con-107",
+      "set_key": "dp3",
+      "set_name": "Secret Wonders",
+      "card_number": "107",
+      "card_name": "Shellos West Sea",
+      "finish_key": "stamped",
+      "rarity": null,
+      "evidence_type": "finish_presence",
+      "evidence_label": "PriceCharting CSV product 5530238: Shellos West Sea [San Diego Comic Con] #107",
+      "language": "en",
+      "retrieved_at": "2026-05-30T18:34:28.015Z",
+      "raw_snapshot_ref": "accepted_delta:pricecharting_csv_product_source_delta_audit_v1.json:pricecharting_csv_product:dp3:107:stamped",
+      "notes": "Accepted from source delta audit with status candidate_second_finish_source. This is exact gap-matched evidence only; broad source fixture rows remain excluded from direct promotion."
+    },
+    {
+      "source_key": "pricecharting_csv_product",
+      "source_kind": "marketplace_checklist",
+      "source_url": "https://www.pricecharting.com/game/pokemon-prismatic-evolutions/sylveon-pokemon-day-2025-40",
+      "set_key": "sv08.5",
+      "set_name": "Prismatic Evolutions",
+      "card_number": "40",
+      "card_name": "Sylveon",
+      "finish_key": "stamped",
+      "rarity": null,
+      "evidence_type": "finish_presence",
+      "evidence_label": "PriceCharting CSV product 8710279: Sylveon [Pokemon Day 2025] #40",
+      "language": "en",
+      "retrieved_at": "2026-05-30T18:34:28.015Z",
+      "raw_snapshot_ref": "accepted_delta:pricecharting_csv_product_source_delta_audit_v1.json:pricecharting_csv_product:sv08.5:40:stamped",
+      "notes": "Accepted from source delta audit with status candidate_second_finish_source. This is exact gap-matched evidence only; broad source fixture rows remain excluded from direct promotion."
+    }
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "fixture_version": "VERIFIED_MASTER_SET_INDEX_V1_HUMAN_SOURCE_FIXTURE_GENERATED",
+  "source_key": "tcgcsv_finish_ex16",
+  "source_kind": "marketplace_checklist",
+  "source_url": "https://tcgcsv.com/docs",
+  "source_status": "available_generated",
+  "set_key": "ex16",
+  "set_name": "Power Keepers",
+  "retrieved_at": "2026-06-08T03:01:25.402Z",
+  "raw_snapshot_ref": "generated_fixture:tcgcsv:ex16:2026-06-08T03:01:25.402Z",
+  "generation_note": "Generated from TCGCSV TCGplayer catalog product and price subtype data. Exact finish evidence only.",
+  "records": [
+    {
+      "source_key": "tcgcsv_tcgplayer_catalog",
+      "source_kind": "marketplace_checklist",
+      "source_url": "https://www.tcgplayer.com/product/86351/pokemon-power-keepers-jolteon-star",
+      "set_key": "ex16",
+      "set_name": "Power Keepers",
+      "card_number": "101",
+      "card_name": "Jolteon ★",
+      "finish_key": "holo",
+      "rarity": "Ultra Rare",
+      "evidence_type": "finish_presence",
+      "evidence_label": "TCGCSV/TCGplayer product 86351 price subtype Holofoil",
+      "language": "en",
+      "retrieved_at": "2026-06-08T03:01:25.402Z",
+      "raw_snapshot_ref": "tcgcsv:1383:86351:Holofoil",
+      "notes": "Generated from TCGCSV TCGplayer products joined to price subTypeName. Exact set, number, name, and finish match only."
+    }
+  ]
+}

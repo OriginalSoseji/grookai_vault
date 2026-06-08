@@ -1,0 +1,17 @@
+{
+  "version": "tcgcsv_candidate_unconfirmed_alternate_finish_review_v1",
+  "generated_at": "2026-06-08T12:46:55.588Z",
+  "audit_only": true,
+  "db_writes_performed": false,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "rule": "These rows are manual-review conflict signals only. They do not authorize deletion, cleanup, hiding, quarantine, or promotion.",
+  "summary": {
+    "candidate_unconfirmed_alternate_finish_rows": 0,
+    "by_target_finish": {},
+    "by_observed_finish": {},
+    "affected_sets": 0
+  },
+  "rows": []
+}

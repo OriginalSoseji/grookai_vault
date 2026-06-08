@@ -1,0 +1,43 @@
+{
+  "status": "no_validated_match",
+  "fact": {
+    "gap_type": "finish_second_source_needed",
+    "fact_type": "printing_finish",
+    "set_key": "swsh5",
+    "set_name": "Battle Styles",
+    "card_number": "136",
+    "card_name": "Tool Jammer",
+    "finish_key": "stamped",
+    "status": "human_source_verified",
+    "sources": [
+      "thepricedex_price_list"
+    ],
+    "source_authorities": [
+      "thepricedex.com"
+    ],
+    "source_kinds": [
+      "marketplace_checklist"
+    ],
+    "evidence_urls": [],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "attempts": [
+    {
+      "query": "Pokemon Battle Styles Tool Jammer 136 stamped",
+      "url": "https://www.pricecharting.com/search-products?q=Pokemon%20Battle%20Styles%20Tool%20Jammer%20136%20stamped&type=prices",
+      "error": "Fetch failed 403 Forbidden: https://www.pricecharting.com/search-products?q=Pokemon%20Battle%20Styles%20Tool%20Jammer%20136%20stamped&type=prices"
+    },
+    {
+      "query": "Pokemon Battle Styles Tool Jammer 136 stamp",
+      "url": "https://www.pricecharting.com/search-products?q=Pokemon%20Battle%20Styles%20Tool%20Jammer%20136%20stamp&type=prices",
+      "parsed": {
+        "title": "Pokemon Battle Styles Tool Jammer 136 Stamp Prices | Pokemon Battle Styles Tool Jammer 136 Stamp List",
+        "source_url": "https://www.pricecharting.com/search-products?q=pokemon+battle+styles+tool+jammer+136+stamp&type=prices"
+      },
+      "validation": {
+        "ok": false,
+        "reason": "title_pattern_not_supported"
+      }
+    }
+  ]
+}

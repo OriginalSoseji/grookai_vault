@@ -1,0 +1,549 @@
+{
+  "status": "api_no_validated_match",
+  "fact": {
+    "gap_type": "finish_second_source_needed",
+    "fact_type": "printing_finish",
+    "set_key": "ex14",
+    "set_name": "Crystal Guardians",
+    "card_number": "63",
+    "card_name": "Squirtle",
+    "finish_key": "stamped",
+    "status": "human_source_verified",
+    "sources": [
+      "thepricedex_price_list"
+    ],
+    "source_authorities": [
+      "thepricedex.com"
+    ],
+    "source_kinds": [
+      "marketplace_checklist"
+    ],
+    "evidence_urls": [
+      "https://www.thepricedex.com/set/ex14/crystal-guardians/price-list"
+    ],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "attempts": [
+    {
+      "query": "Pokemon Crystal Guardians Squirtle 63 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Crystal%20Guardians%20Squirtle%2063%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "889350",
+      "product_name": "Squirtle #63",
+      "console_name": "Pokemon Crystal Guardians",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon Crystal Guardians Squirtle 63 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Crystal%20Guardians%20Squirtle%2063%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "889450",
+      "product_name": "Squirtle [Reverse Holo] #63",
+      "console_name": "Pokemon Crystal Guardians",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Reverse Holo"
+      }
+    },
+    {
+      "query": "Pokemon Crystal Guardians Squirtle 63 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Crystal%20Guardians%20Squirtle%2063%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5861892",
+      "product_name": "Squirtle [City Championships] #63",
+      "console_name": "Pokemon Crystal Guardians",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:City Championships"
+      }
+    },
+    {
+      "query": "Pokemon Crystal Guardians Squirtle 63 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Crystal%20Guardians%20Squirtle%2063%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "889351",
+      "product_name": "Squirtle #64",
+      "console_name": "Pokemon Crystal Guardians",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:64"
+      }
+    },
+    {
+      "query": "Pokemon Crystal Guardians Squirtle 63 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Crystal%20Guardians%20Squirtle%2063%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "889451",
+      "product_name": "Squirtle [Reverse Holo] #64",
+      "console_name": "Pokemon Crystal Guardians",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:64"
+      }
+    },
+    {
+      "query": "Pokemon Crystal Guardians Squirtle 63 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Crystal%20Guardians%20Squirtle%2063%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3439731",
+      "product_name": "Squirtle #18",
+      "console_name": "Pokemon Japanese Miracle Crystal",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:18"
+      }
+    },
+    {
+      "query": "Pokemon Crystal Guardians Squirtle 63 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Crystal%20Guardians%20Squirtle%2063%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4916970",
+      "product_name": "Meditite [Stamped] #56",
+      "console_name": "Pokemon Crystal Guardians",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:56"
+      }
+    },
+    {
+      "query": "Pokemon Crystal Guardians Squirtle 63 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Crystal%20Guardians%20Squirtle%2063%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4916943",
+      "product_name": "Swampert [Stamped] #27",
+      "console_name": "Pokemon Crystal Guardians",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:27"
+      }
+    },
+    {
+      "query": "Pokemon Crystal Guardians Squirtle 63 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Crystal%20Guardians%20Squirtle%2063%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4916999",
+      "product_name": "Diglett [Stamped] #50",
+      "console_name": "Pokemon Crystal Guardians",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:50"
+      }
+    },
+    {
+      "query": "Pokemon Crystal Guardians Squirtle 63 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Crystal%20Guardians%20Squirtle%2063%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4894839",
+      "product_name": "Ivysaur [Stamped] #34",
+      "console_name": "Pokemon Crystal Guardians",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:34"
+      }
+    },
+    {
+      "query": "Pokemon Crystal Guardians Squirtle 63 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Crystal%20Guardians%20Squirtle%2063%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5172319",
+      "product_name": "Wigglytuff [Stamped] #13",
+      "console_name": "Pokemon Crystal Guardians",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:13"
+      }
+    },
+    {
+      "query": "Pokemon Crystal Guardians Squirtle 63 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Crystal%20Guardians%20Squirtle%2063%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4894838",
+      "product_name": "Combusken [Stamped] #16",
+      "console_name": "Pokemon Crystal Guardians",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:16"
+      }
+    },
+    {
+      "query": "Pokemon Crystal Guardians Squirtle 63 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Crystal%20Guardians%20Squirtle%2063%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4928886",
+      "product_name": "Squirtle [1st Edition] #18",
+      "console_name": "Pokemon Japanese Miracle Crystal",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:18"
+      }
+    },
+    {
+      "query": "Pokemon Crystal Guardians Squirtle 63 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Crystal%20Guardians%20Squirtle%2063%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5134671",
+      "product_name": "Spearow [Stamped Holo] #61",
+      "console_name": "Pokemon Crystal Guardians",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:61"
+      }
+    },
+    {
+      "query": "Pokemon Crystal Guardians Squirtle 63 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Crystal%20Guardians%20Squirtle%2063%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3439776",
+      "product_name": "Mawile #63",
+      "console_name": "Pokemon Japanese Miracle Crystal",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Mawile"
+      }
+    },
+    {
+      "query": "Pokemon Crystal Guardians Squirtle 63 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Crystal%20Guardians%20Squirtle%2063%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "889448",
+      "product_name": "Spearow [Stamped Reverse Holo] #61",
+      "console_name": "Pokemon Crystal Guardians",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:61"
+      }
+    },
+    {
+      "query": "Pokemon Crystal Guardians Squirtle 63 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Crystal%20Guardians%20Squirtle%2063%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7374474",
+      "product_name": "Squirtle [1999-2000] #63",
+      "console_name": "Pokemon Base Set",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon Base Set"
+      }
+    },
+    {
+      "query": "Pokemon Crystal Guardians Squirtle 63 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Crystal%20Guardians%20Squirtle%2063%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5917171",
+      "product_name": "Squirtle [Jumbo] #63",
+      "console_name": "Pokemon Celebrations",
+      "validation": {
+        "ok": false,
+        "reason": "product_scope_jumbo_not_canonical_set_finish"
+      }
+    },
+    {
+      "query": "Pokemon Crystal Guardians Squirtle 63 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Crystal%20Guardians%20Squirtle%2063%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4928869",
+      "product_name": "Mawile [1st Edition] #63",
+      "console_name": "Pokemon Japanese Miracle Crystal",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Mawile"
+      }
+    },
+    {
+      "query": "Pokemon Crystal Guardians Squirtle 63 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Crystal%20Guardians%20Squirtle%2063%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "715754",
+      "product_name": "Squirtle [Shadowless] #63",
+      "console_name": "Pokemon Base Set",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon Base Set"
+      }
+    },
+    {
+      "query": "Pokemon Crystal Guardians Squirtle 63 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Crystal%20Guardians%20Squirtle%2063%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "889350",
+      "product_name": "Squirtle #63",
+      "console_name": "Pokemon Crystal Guardians",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon Crystal Guardians Squirtle 63 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Crystal%20Guardians%20Squirtle%2063%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "889450",
+      "product_name": "Squirtle [Reverse Holo] #63",
+      "console_name": "Pokemon Crystal Guardians",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Reverse Holo"
+      }
+    },
+    {
+      "query": "Pokemon Crystal Guardians Squirtle 63 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Crystal%20Guardians%20Squirtle%2063%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5861892",
+      "product_name": "Squirtle [City Championships] #63",
+      "console_name": "Pokemon Crystal Guardians",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:City Championships"
+      }
+    },
+    {
+      "query": "Pokemon Crystal Guardians Squirtle 63 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Crystal%20Guardians%20Squirtle%2063%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "889351",
+      "product_name": "Squirtle #64",
+      "console_name": "Pokemon Crystal Guardians",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:64"
+      }
+    },
+    {
+      "query": "Pokemon Crystal Guardians Squirtle 63 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Crystal%20Guardians%20Squirtle%2063%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "889451",
+      "product_name": "Squirtle [Reverse Holo] #64",
+      "console_name": "Pokemon Crystal Guardians",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:64"
+      }
+    },
+    {
+      "query": "Pokemon Crystal Guardians Squirtle 63 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Crystal%20Guardians%20Squirtle%2063%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3439731",
+      "product_name": "Squirtle #18",
+      "console_name": "Pokemon Japanese Miracle Crystal",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:18"
+      }
+    },
+    {
+      "query": "Pokemon Crystal Guardians Squirtle 63 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Crystal%20Guardians%20Squirtle%2063%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4916970",
+      "product_name": "Meditite [Stamped] #56",
+      "console_name": "Pokemon Crystal Guardians",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:56"
+      }
+    },
+    {
+      "query": "Pokemon Crystal Guardians Squirtle 63 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Crystal%20Guardians%20Squirtle%2063%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4916943",
+      "product_name": "Swampert [Stamped] #27",
+      "console_name": "Pokemon Crystal Guardians",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:27"
+      }
+    },
+    {
+      "query": "Pokemon Crystal Guardians Squirtle 63 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Crystal%20Guardians%20Squirtle%2063%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4916999",
+      "product_name": "Diglett [Stamped] #50",
+      "console_name": "Pokemon Crystal Guardians",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:50"
+      }
+    },
+    {
+      "query": "Pokemon Crystal Guardians Squirtle 63 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Crystal%20Guardians%20Squirtle%2063%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4894839",
+      "product_name": "Ivysaur [Stamped] #34",
+      "console_name": "Pokemon Crystal Guardians",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:34"
+      }
+    },
+    {
+      "query": "Pokemon Crystal Guardians Squirtle 63 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Crystal%20Guardians%20Squirtle%2063%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5172319",
+      "product_name": "Wigglytuff [Stamped] #13",
+      "console_name": "Pokemon Crystal Guardians",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:13"
+      }
+    },
+    {
+      "query": "Pokemon Crystal Guardians Squirtle 63 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Crystal%20Guardians%20Squirtle%2063%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4894838",
+      "product_name": "Combusken [Stamped] #16",
+      "console_name": "Pokemon Crystal Guardians",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:16"
+      }
+    },
+    {
+      "query": "Pokemon Crystal Guardians Squirtle 63 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Crystal%20Guardians%20Squirtle%2063%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4928886",
+      "product_name": "Squirtle [1st Edition] #18",
+      "console_name": "Pokemon Japanese Miracle Crystal",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:18"
+      }
+    },
+    {
+      "query": "Pokemon Crystal Guardians Squirtle 63 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Crystal%20Guardians%20Squirtle%2063%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5134671",
+      "product_name": "Spearow [Stamped Holo] #61",
+      "console_name": "Pokemon Crystal Guardians",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:61"
+      }
+    },
+    {
+      "query": "Pokemon Crystal Guardians Squirtle 63 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Crystal%20Guardians%20Squirtle%2063%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3439776",
+      "product_name": "Mawile #63",
+      "console_name": "Pokemon Japanese Miracle Crystal",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Mawile"
+      }
+    },
+    {
+      "query": "Pokemon Crystal Guardians Squirtle 63 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Crystal%20Guardians%20Squirtle%2063%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "889448",
+      "product_name": "Spearow [Stamped Reverse Holo] #61",
+      "console_name": "Pokemon Crystal Guardians",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:61"
+      }
+    },
+    {
+      "query": "Pokemon Crystal Guardians Squirtle 63 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Crystal%20Guardians%20Squirtle%2063%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7374474",
+      "product_name": "Squirtle [1999-2000] #63",
+      "console_name": "Pokemon Base Set",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon Base Set"
+      }
+    },
+    {
+      "query": "Pokemon Crystal Guardians Squirtle 63 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Crystal%20Guardians%20Squirtle%2063%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5917171",
+      "product_name": "Squirtle [Jumbo] #63",
+      "console_name": "Pokemon Celebrations",
+      "validation": {
+        "ok": false,
+        "reason": "product_scope_jumbo_not_canonical_set_finish"
+      }
+    },
+    {
+      "query": "Pokemon Crystal Guardians Squirtle 63 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Crystal%20Guardians%20Squirtle%2063%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4928869",
+      "product_name": "Mawile [1st Edition] #63",
+      "console_name": "Pokemon Japanese Miracle Crystal",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Mawile"
+      }
+    },
+    {
+      "query": "Pokemon Crystal Guardians Squirtle 63 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Crystal%20Guardians%20Squirtle%2063%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "715754",
+      "product_name": "Squirtle [Shadowless] #63",
+      "console_name": "Pokemon Base Set",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon Base Set"
+      }
+    }
+  ],
+  "source_lane": "pricecharting_api"
+}

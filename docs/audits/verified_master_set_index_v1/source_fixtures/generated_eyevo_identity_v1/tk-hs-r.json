@@ -1,0 +1,31 @@
+{
+  "fixture_version": "VERIFIED_MASTER_SET_INDEX_V1_HUMAN_SOURCE_FIXTURE_GENERATED",
+  "source_key": "eyevo_identity_tk-hs-r",
+  "source_kind": "collector_reference",
+  "source_url": "https://eyevotcg.com/sets/hs-trainer-kit-raichu/",
+  "source_status": "available_generated",
+  "set_key": "tk-hs-r",
+  "set_name": "HS trainer Kit (Raichu)",
+  "retrieved_at": "2026-05-27T00:23:49.640Z",
+  "raw_snapshot_ref": "generated_fixture:eyevo_identity:tk-hs-r:2026-05-27T00:23:49.640Z",
+  "generation_note": "Generated from Eyevo set checklist rows. Card identity only; no finish evidence is emitted.",
+  "records": [
+    {
+      "source_key": "eyevo_set_checklist",
+      "source_kind": "collector_reference",
+      "source_url": "https://eyevotcg.com/sets/hs-trainer-kit-raichu/",
+      "set_key": "tk-hs-r",
+      "set_name": "HS trainer Kit (Raichu)",
+      "card_number": "19",
+      "card_name": "Raichu",
+      "finish_key": null,
+      "rarity": null,
+      "evidence_type": "card_identity",
+      "evidence_label": "Eyevo checklist row #19 - Raichu",
+      "language": "en",
+      "retrieved_at": "2026-05-27T00:23:49.640Z",
+      "raw_snapshot_ref": "eyevo:tk-hs-r:19",
+      "notes": "Eyevo checklist card identity evidence only. This fixture does not assert finish or printing truth. Eyevo pages disclose Pokemon TCG API as an upstream data provider."
+    }
+  ]
+}

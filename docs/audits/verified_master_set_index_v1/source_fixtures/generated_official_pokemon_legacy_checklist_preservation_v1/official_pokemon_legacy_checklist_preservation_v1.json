@@ -1,0 +1,18 @@
+{
+  "fixture_version": "VERIFIED_MASTER_SET_INDEX_V1_HUMAN_SOURCE_FIXTURE_GENERATED",
+  "source_key": "official_pokemon_legacy_checklist_preservation_v1",
+  "source_kind": "official_gallery",
+  "source_url": "https://www.pokemon.com/us/pokemon-tcg",
+  "source_status": "available_generated_preservation",
+  "set_key": "source_preservation",
+  "set_name": "official_pokemon_legacy_checklist preservation",
+  "retrieved_at": "2026-05-30T03:32:07.817Z",
+  "raw_snapshot_ref": "generated_fixture:source_preservation:official_pokemon_legacy_checklist:2026-05-30T00:16:49.484Z:2026-05-30T03:32:07.817Z",
+  "audit_only": true,
+  "db_writes_performed": false,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "generation_note": "Generated from the last promoted English Master Index to preserve official_pokemon_legacy_checklist evidence against broad fixture volatility. Rows intentionally retain source_key official_pokemon_legacy_checklist; they are not new independent evidence.",
+  "records": []
+}

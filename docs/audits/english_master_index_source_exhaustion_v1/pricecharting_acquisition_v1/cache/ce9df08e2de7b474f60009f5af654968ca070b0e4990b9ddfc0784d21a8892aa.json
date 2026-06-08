@@ -1,0 +1,43 @@
+{
+  "status": "no_validated_match",
+  "fact": {
+    "gap_type": "finish_second_source_needed",
+    "fact_type": "printing_finish",
+    "set_key": "xy4",
+    "set_name": "Phantom Forces",
+    "card_number": "93",
+    "card_name": "Dimension Valley",
+    "finish_key": "stamped",
+    "status": "human_source_verified",
+    "sources": [
+      "thepricedex_price_list"
+    ],
+    "source_authorities": [
+      "thepricedex.com"
+    ],
+    "source_kinds": [
+      "marketplace_checklist"
+    ],
+    "evidence_urls": [],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "attempts": [
+    {
+      "query": "Pokemon Phantom Forces Dimension Valley 93 stamped",
+      "url": "https://www.pricecharting.com/search-products?q=Pokemon%20Phantom%20Forces%20Dimension%20Valley%2093%20stamped&type=prices",
+      "parsed": {
+        "title": "Pokemon Phantom Forces Dimension Valley 93 Stamped Prices | Pokemon Phantom Forces Dimension Valley 93 Stamped List",
+        "source_url": "https://www.pricecharting.com/search-products?q=pokemon+phantom+forces+dimension+valley+93+stamped&type=prices"
+      },
+      "validation": {
+        "ok": false,
+        "reason": "title_pattern_not_supported"
+      }
+    },
+    {
+      "query": "Pokemon Phantom Forces Dimension Valley 93 stamp",
+      "url": "https://www.pricecharting.com/search-products?q=Pokemon%20Phantom%20Forces%20Dimension%20Valley%2093%20stamp&type=prices",
+      "error": "Fetch failed 403 Forbidden: https://www.pricecharting.com/search-products?q=Pokemon%20Phantom%20Forces%20Dimension%20Valley%2093%20stamp&type=prices"
+    }
+  ]
+}

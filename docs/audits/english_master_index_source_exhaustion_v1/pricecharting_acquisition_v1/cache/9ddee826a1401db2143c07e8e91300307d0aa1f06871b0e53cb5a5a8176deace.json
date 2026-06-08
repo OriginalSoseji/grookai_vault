@@ -1,0 +1,549 @@
+{
+  "status": "api_no_validated_match",
+  "fact": {
+    "gap_type": "finish_second_source_needed",
+    "fact_type": "printing_finish",
+    "set_key": "me01",
+    "set_name": "Mega Evolution",
+    "card_number": "119",
+    "card_name": "Lillie's Determination",
+    "finish_key": "stamped",
+    "status": "human_source_verified",
+    "sources": [
+      "thepricedex_price_list"
+    ],
+    "source_authorities": [
+      "thepricedex.com"
+    ],
+    "source_kinds": [
+      "marketplace_checklist"
+    ],
+    "evidence_urls": [
+      "https://www.thepricedex.com/set/me1/mega-evolution/price-list"
+    ],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "attempts": [
+    {
+      "query": "Pokemon Mega Evolution Lillie's Determination 119 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Mega%20Evolution%20Lillie's%20Determination%20119%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10616273",
+      "product_name": "Lillie's Determination #119",
+      "console_name": "Pokemon Mega Evolution",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon Mega Evolution Lillie's Determination 119 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Mega%20Evolution%20Lillie's%20Determination%20119%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12510980",
+      "product_name": "Lillie's Determination [Prize Pack] #119",
+      "console_name": "Pokemon Mega Evolution",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Prize Pack"
+      }
+    },
+    {
+      "query": "Pokemon Mega Evolution Lillie's Determination 119 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Mega%20Evolution%20Lillie's%20Determination%20119%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10616431",
+      "product_name": "Lillie's Determination [Reverse Holo] #119",
+      "console_name": "Pokemon Mega Evolution",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Reverse Holo"
+      }
+    },
+    {
+      "query": "Pokemon Mega Evolution Lillie's Determination 119 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Mega%20Evolution%20Lillie's%20Determination%20119%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10616258",
+      "product_name": "Lillie's Determination #169",
+      "console_name": "Pokemon Mega Evolution",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:169"
+      }
+    },
+    {
+      "query": "Pokemon Mega Evolution Lillie's Determination 119 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Mega%20Evolution%20Lillie's%20Determination%20119%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10669971",
+      "product_name": "Lillie's Determination #184",
+      "console_name": "Pokemon Mega Evolution",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:184"
+      }
+    },
+    {
+      "query": "Pokemon Mega Evolution Lillie's Determination 119 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Mega%20Evolution%20Lillie's%20Determination%20119%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10085265",
+      "product_name": "Lillie's Determination #62",
+      "console_name": "Pokemon Japanese Mega Brave",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:62"
+      }
+    },
+    {
+      "query": "Pokemon Mega Evolution Lillie's Determination 119 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Mega%20Evolution%20Lillie's%20Determination%20119%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10117204",
+      "product_name": "Lillie's Determination #91",
+      "console_name": "Pokemon Japanese Mega Brave",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:91"
+      }
+    },
+    {
+      "query": "Pokemon Mega Evolution Lillie's Determination 119 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Mega%20Evolution%20Lillie's%20Determination%20119%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10181529",
+      "product_name": "Lillie's Determination #86",
+      "console_name": "Pokemon Japanese Mega Brave",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:86"
+      }
+    },
+    {
+      "query": "Pokemon Mega Evolution Lillie's Determination 119 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Mega%20Evolution%20Lillie's%20Determination%20119%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "13014882",
+      "product_name": "Lillie's Determination #175",
+      "console_name": "Pokemon Korean Mega Dream ex",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:175"
+      }
+    },
+    {
+      "query": "Pokemon Mega Evolution Lillie's Determination 119 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Mega%20Evolution%20Lillie's%20Determination%20119%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11463337",
+      "product_name": "Lillie's Determination #90",
+      "console_name": "Pokemon Korean Mega Brave",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:90"
+      }
+    },
+    {
+      "query": "Pokemon Mega Evolution Lillie's Determination 119 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Mega%20Evolution%20Lillie's%20Determination%20119%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11302542",
+      "product_name": "Lillie's Determination #175",
+      "console_name": "Pokemon Japanese Mega Dream ex",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:175"
+      }
+    },
+    {
+      "query": "Pokemon Mega Evolution Lillie's Determination 119 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Mega%20Evolution%20Lillie's%20Determination%20119%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12986539",
+      "product_name": "Lillie's Determination #85",
+      "console_name": "Pokemon Korean Mega Brave",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:85"
+      }
+    },
+    {
+      "query": "Pokemon Mega Evolution Lillie's Determination 119 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Mega%20Evolution%20Lillie's%20Determination%20119%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12986537",
+      "product_name": "Lillie's Determination #61",
+      "console_name": "Pokemon Korean Mega Brave",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:61"
+      }
+    },
+    {
+      "query": "Pokemon Mega Evolution Lillie's Determination 119 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Mega%20Evolution%20Lillie's%20Determination%20119%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10515260",
+      "product_name": "Lillie's Determination #21",
+      "console_name": "Pokemon Japanese Mega Starter Deck Gengar Ex",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:21"
+      }
+    },
+    {
+      "query": "Pokemon Mega Evolution Lillie's Determination 119 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Mega%20Evolution%20Lillie's%20Determination%20119%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10515233",
+      "product_name": "Lillie's Determination #20",
+      "console_name": "Pokemon Japanese Mega Starter Deck Diancie Ex",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:20"
+      }
+    },
+    {
+      "query": "Pokemon Mega Evolution Lillie's Determination 119 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Mega%20Evolution%20Lillie's%20Determination%20119%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "13011962",
+      "product_name": "Lillie's Determination SAR #91",
+      "console_name": "Pokemon Chinese m1BF",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:91"
+      }
+    },
+    {
+      "query": "Pokemon Mega Evolution Lillie's Determination 119 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Mega%20Evolution%20Lillie's%20Determination%20119%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11816118",
+      "product_name": "Lillie's Determination #192",
+      "console_name": "Pokemon Ascended Heroes",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:192"
+      }
+    },
+    {
+      "query": "Pokemon Mega Evolution Lillie's Determination 119 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Mega%20Evolution%20Lillie's%20Determination%20119%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11463062",
+      "product_name": "Lillie's Determination #729",
+      "console_name": "Pokemon Japanese Start Deck 100 Battle Collection",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:729"
+      }
+    },
+    {
+      "query": "Pokemon Mega Evolution Lillie's Determination 119 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Mega%20Evolution%20Lillie's%20Determination%20119%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11817175",
+      "product_name": "Lillie's Determination [Gym] #7/M-P",
+      "console_name": "Pokemon Japanese Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:7/M-P"
+      }
+    },
+    {
+      "query": "Pokemon Mega Evolution Lillie's Determination 119 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Mega%20Evolution%20Lillie's%20Determination%20119%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11675092",
+      "product_name": "Lillie's Determination #23",
+      "console_name": "Pokemon Japanese Start Deck 100 Battle Collection CoroCiao",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:23"
+      }
+    },
+    {
+      "query": "Pokemon Mega Evolution Lillie's Determination 119 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Mega%20Evolution%20Lillie's%20Determination%20119%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10616273",
+      "product_name": "Lillie's Determination #119",
+      "console_name": "Pokemon Mega Evolution",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon Mega Evolution Lillie's Determination 119 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Mega%20Evolution%20Lillie's%20Determination%20119%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12510980",
+      "product_name": "Lillie's Determination [Prize Pack] #119",
+      "console_name": "Pokemon Mega Evolution",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Prize Pack"
+      }
+    },
+    {
+      "query": "Pokemon Mega Evolution Lillie's Determination 119 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Mega%20Evolution%20Lillie's%20Determination%20119%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10616431",
+      "product_name": "Lillie's Determination [Reverse Holo] #119",
+      "console_name": "Pokemon Mega Evolution",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Reverse Holo"
+      }
+    },
+    {
+      "query": "Pokemon Mega Evolution Lillie's Determination 119 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Mega%20Evolution%20Lillie's%20Determination%20119%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10616258",
+      "product_name": "Lillie's Determination #169",
+      "console_name": "Pokemon Mega Evolution",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:169"
+      }
+    },
+    {
+      "query": "Pokemon Mega Evolution Lillie's Determination 119 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Mega%20Evolution%20Lillie's%20Determination%20119%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10669971",
+      "product_name": "Lillie's Determination #184",
+      "console_name": "Pokemon Mega Evolution",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:184"
+      }
+    },
+    {
+      "query": "Pokemon Mega Evolution Lillie's Determination 119 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Mega%20Evolution%20Lillie's%20Determination%20119%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10085265",
+      "product_name": "Lillie's Determination #62",
+      "console_name": "Pokemon Japanese Mega Brave",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:62"
+      }
+    },
+    {
+      "query": "Pokemon Mega Evolution Lillie's Determination 119 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Mega%20Evolution%20Lillie's%20Determination%20119%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10117204",
+      "product_name": "Lillie's Determination #91",
+      "console_name": "Pokemon Japanese Mega Brave",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:91"
+      }
+    },
+    {
+      "query": "Pokemon Mega Evolution Lillie's Determination 119 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Mega%20Evolution%20Lillie's%20Determination%20119%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10181529",
+      "product_name": "Lillie's Determination #86",
+      "console_name": "Pokemon Japanese Mega Brave",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:86"
+      }
+    },
+    {
+      "query": "Pokemon Mega Evolution Lillie's Determination 119 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Mega%20Evolution%20Lillie's%20Determination%20119%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "13014882",
+      "product_name": "Lillie's Determination #175",
+      "console_name": "Pokemon Korean Mega Dream ex",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:175"
+      }
+    },
+    {
+      "query": "Pokemon Mega Evolution Lillie's Determination 119 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Mega%20Evolution%20Lillie's%20Determination%20119%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11463337",
+      "product_name": "Lillie's Determination #90",
+      "console_name": "Pokemon Korean Mega Brave",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:90"
+      }
+    },
+    {
+      "query": "Pokemon Mega Evolution Lillie's Determination 119 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Mega%20Evolution%20Lillie's%20Determination%20119%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11302542",
+      "product_name": "Lillie's Determination #175",
+      "console_name": "Pokemon Japanese Mega Dream ex",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:175"
+      }
+    },
+    {
+      "query": "Pokemon Mega Evolution Lillie's Determination 119 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Mega%20Evolution%20Lillie's%20Determination%20119%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12986539",
+      "product_name": "Lillie's Determination #85",
+      "console_name": "Pokemon Korean Mega Brave",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:85"
+      }
+    },
+    {
+      "query": "Pokemon Mega Evolution Lillie's Determination 119 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Mega%20Evolution%20Lillie's%20Determination%20119%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12986537",
+      "product_name": "Lillie's Determination #61",
+      "console_name": "Pokemon Korean Mega Brave",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:61"
+      }
+    },
+    {
+      "query": "Pokemon Mega Evolution Lillie's Determination 119 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Mega%20Evolution%20Lillie's%20Determination%20119%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10515260",
+      "product_name": "Lillie's Determination #21",
+      "console_name": "Pokemon Japanese Mega Starter Deck Gengar Ex",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:21"
+      }
+    },
+    {
+      "query": "Pokemon Mega Evolution Lillie's Determination 119 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Mega%20Evolution%20Lillie's%20Determination%20119%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10515233",
+      "product_name": "Lillie's Determination #20",
+      "console_name": "Pokemon Japanese Mega Starter Deck Diancie Ex",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:20"
+      }
+    },
+    {
+      "query": "Pokemon Mega Evolution Lillie's Determination 119 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Mega%20Evolution%20Lillie's%20Determination%20119%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "13011962",
+      "product_name": "Lillie's Determination SAR #91",
+      "console_name": "Pokemon Chinese m1BF",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:91"
+      }
+    },
+    {
+      "query": "Pokemon Mega Evolution Lillie's Determination 119 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Mega%20Evolution%20Lillie's%20Determination%20119%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11816118",
+      "product_name": "Lillie's Determination #192",
+      "console_name": "Pokemon Ascended Heroes",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:192"
+      }
+    },
+    {
+      "query": "Pokemon Mega Evolution Lillie's Determination 119 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Mega%20Evolution%20Lillie's%20Determination%20119%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11463062",
+      "product_name": "Lillie's Determination #729",
+      "console_name": "Pokemon Japanese Start Deck 100 Battle Collection",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:729"
+      }
+    },
+    {
+      "query": "Pokemon Mega Evolution Lillie's Determination 119 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Mega%20Evolution%20Lillie's%20Determination%20119%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11817175",
+      "product_name": "Lillie's Determination [Gym] #7/M-P",
+      "console_name": "Pokemon Japanese Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:7/M-P"
+      }
+    },
+    {
+      "query": "Pokemon Mega Evolution Lillie's Determination 119 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Mega%20Evolution%20Lillie's%20Determination%20119%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11675092",
+      "product_name": "Lillie's Determination #23",
+      "console_name": "Pokemon Japanese Start Deck 100 Battle Collection CoroCiao",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:23"
+      }
+    }
+  ],
+  "source_lane": "pricecharting_api"
+}

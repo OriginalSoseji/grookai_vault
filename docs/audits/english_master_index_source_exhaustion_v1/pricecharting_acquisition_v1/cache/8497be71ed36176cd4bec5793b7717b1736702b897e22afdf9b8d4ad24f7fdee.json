@@ -1,0 +1,549 @@
+{
+  "status": "api_no_validated_match",
+  "fact": {
+    "gap_type": "finish_second_source_needed",
+    "fact_type": "printing_finish",
+    "set_key": "sv05",
+    "set_name": "Temporal Forces",
+    "card_number": "12",
+    "card_name": "Torterra ex",
+    "finish_key": "stamped",
+    "status": "human_source_verified",
+    "sources": [
+      "thepricedex_price_list"
+    ],
+    "source_authorities": [
+      "thepricedex.com"
+    ],
+    "source_kinds": [
+      "marketplace_checklist"
+    ],
+    "evidence_urls": [
+      "https://www.thepricedex.com/set/sv5/temporal-forces/price-list"
+    ],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "attempts": [
+    {
+      "query": "Pokemon Temporal Forces Torterra ex 12 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Temporal%20Forces%20Torterra%20ex%2012%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6495472",
+      "product_name": "Torterra ex #12",
+      "console_name": "Pokemon Temporal Forces",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon Temporal Forces Torterra ex 12 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Temporal%20Forces%20Torterra%20ex%2012%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9370494",
+      "product_name": "Torterra Ex [Prize Pack] #12",
+      "console_name": "Pokemon Temporal Forces",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Prize Pack"
+      }
+    },
+    {
+      "query": "Pokemon Temporal Forces Torterra ex 12 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Temporal%20Forces%20Torterra%20ex%2012%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6495645",
+      "product_name": "Torterra ex #185",
+      "console_name": "Pokemon Temporal Forces",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:185"
+      }
+    },
+    {
+      "query": "Pokemon Temporal Forces Torterra ex 12 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Temporal%20Forces%20Torterra%20ex%2012%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6659921",
+      "product_name": "Koraidon [Stamped] #119",
+      "console_name": "Pokemon Temporal Forces",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:119"
+      }
+    },
+    {
+      "query": "Pokemon Temporal Forces Torterra ex 12 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Temporal%20Forces%20Torterra%20ex%2012%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6582717",
+      "product_name": "Miraidon [Stamped] #121",
+      "console_name": "Pokemon Temporal Forces",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:121"
+      }
+    },
+    {
+      "query": "Pokemon Temporal Forces Torterra ex 12 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Temporal%20Forces%20Torterra%20ex%2012%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6495655",
+      "product_name": "Scizor ex #195",
+      "console_name": "Pokemon Temporal Forces",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:195"
+      }
+    },
+    {
+      "query": "Pokemon Temporal Forces Torterra ex 12 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Temporal%20Forces%20Torterra%20ex%2012%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6495653",
+      "product_name": "Gengar ex #193",
+      "console_name": "Pokemon Temporal Forces",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:193"
+      }
+    },
+    {
+      "query": "Pokemon Temporal Forces Torterra ex 12 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Temporal%20Forces%20Torterra%20ex%2012%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6495564",
+      "product_name": "Gengar ex #104",
+      "console_name": "Pokemon Temporal Forces",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:104"
+      }
+    },
+    {
+      "query": "Pokemon Temporal Forces Torterra ex 12 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Temporal%20Forces%20Torterra%20ex%2012%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6495571",
+      "product_name": "Scizor ex #111",
+      "console_name": "Pokemon Temporal Forces",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:111"
+      }
+    },
+    {
+      "query": "Pokemon Temporal Forces Torterra ex 12 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Temporal%20Forces%20Torterra%20ex%2012%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11440379",
+      "product_name": "Iron Treads [Stamped] #118",
+      "console_name": "Pokemon Temporal Forces",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:118"
+      }
+    },
+    {
+      "query": "Pokemon Temporal Forces Torterra ex 12 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Temporal%20Forces%20Torterra%20ex%2012%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6495650",
+      "product_name": "Wugtrio ex #190",
+      "console_name": "Pokemon Temporal Forces",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:190"
+      }
+    },
+    {
+      "query": "Pokemon Temporal Forces Torterra ex 12 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Temporal%20Forces%20Torterra%20ex%2012%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6495520",
+      "product_name": "Wugtrio ex #60",
+      "console_name": "Pokemon Temporal Forces",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:60"
+      }
+    },
+    {
+      "query": "Pokemon Temporal Forces Torterra ex 12 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Temporal%20Forces%20Torterra%20ex%2012%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11440380",
+      "product_name": "Great Tusk [Stamped] #96",
+      "console_name": "Pokemon Temporal Forces",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:96"
+      }
+    },
+    {
+      "query": "Pokemon Temporal Forces Torterra ex 12 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Temporal%20Forces%20Torterra%20ex%2012%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6495580",
+      "product_name": "Koraidon ex #120",
+      "console_name": "Pokemon Temporal Forces",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:120"
+      }
+    },
+    {
+      "query": "Pokemon Temporal Forces Torterra ex 12 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Temporal%20Forces%20Torterra%20ex%2012%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6495582",
+      "product_name": "Miraidon ex #122",
+      "console_name": "Pokemon Temporal Forces",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:122"
+      }
+    },
+    {
+      "query": "Pokemon Temporal Forces Torterra ex 12 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Temporal%20Forces%20Torterra%20ex%2012%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6495654",
+      "product_name": "Farigiraf ex #194",
+      "console_name": "Pokemon Temporal Forces",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:194"
+      }
+    },
+    {
+      "query": "Pokemon Temporal Forces Torterra ex 12 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Temporal%20Forces%20Torterra%20ex%2012%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6495568",
+      "product_name": "Farigiraf ex #108",
+      "console_name": "Pokemon Temporal Forces",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:108"
+      }
+    },
+    {
+      "query": "Pokemon Temporal Forces Torterra ex 12 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Temporal%20Forces%20Torterra%20ex%2012%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6495647",
+      "product_name": "Incineroar ex #187",
+      "console_name": "Pokemon Temporal Forces",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:187"
+      }
+    },
+    {
+      "query": "Pokemon Temporal Forces Torterra ex 12 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Temporal%20Forces%20Torterra%20ex%2012%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6495482",
+      "product_name": "Scovillain ex #22",
+      "console_name": "Pokemon Temporal Forces",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:22"
+      }
+    },
+    {
+      "query": "Pokemon Temporal Forces Torterra ex 12 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Temporal%20Forces%20Torterra%20ex%2012%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6495494",
+      "product_name": "Incineroar ex #34",
+      "console_name": "Pokemon Temporal Forces",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:34"
+      }
+    },
+    {
+      "query": "Pokemon Temporal Forces Torterra ex 12 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Temporal%20Forces%20Torterra%20ex%2012%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6495472",
+      "product_name": "Torterra ex #12",
+      "console_name": "Pokemon Temporal Forces",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon Temporal Forces Torterra ex 12 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Temporal%20Forces%20Torterra%20ex%2012%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9370494",
+      "product_name": "Torterra Ex [Prize Pack] #12",
+      "console_name": "Pokemon Temporal Forces",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Prize Pack"
+      }
+    },
+    {
+      "query": "Pokemon Temporal Forces Torterra ex 12 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Temporal%20Forces%20Torterra%20ex%2012%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6495645",
+      "product_name": "Torterra ex #185",
+      "console_name": "Pokemon Temporal Forces",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:185"
+      }
+    },
+    {
+      "query": "Pokemon Temporal Forces Torterra ex 12 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Temporal%20Forces%20Torterra%20ex%2012%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6659921",
+      "product_name": "Koraidon [Stamped] #119",
+      "console_name": "Pokemon Temporal Forces",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:119"
+      }
+    },
+    {
+      "query": "Pokemon Temporal Forces Torterra ex 12 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Temporal%20Forces%20Torterra%20ex%2012%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6582717",
+      "product_name": "Miraidon [Stamped] #121",
+      "console_name": "Pokemon Temporal Forces",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:121"
+      }
+    },
+    {
+      "query": "Pokemon Temporal Forces Torterra ex 12 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Temporal%20Forces%20Torterra%20ex%2012%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6495655",
+      "product_name": "Scizor ex #195",
+      "console_name": "Pokemon Temporal Forces",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:195"
+      }
+    },
+    {
+      "query": "Pokemon Temporal Forces Torterra ex 12 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Temporal%20Forces%20Torterra%20ex%2012%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6495653",
+      "product_name": "Gengar ex #193",
+      "console_name": "Pokemon Temporal Forces",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:193"
+      }
+    },
+    {
+      "query": "Pokemon Temporal Forces Torterra ex 12 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Temporal%20Forces%20Torterra%20ex%2012%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6495564",
+      "product_name": "Gengar ex #104",
+      "console_name": "Pokemon Temporal Forces",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:104"
+      }
+    },
+    {
+      "query": "Pokemon Temporal Forces Torterra ex 12 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Temporal%20Forces%20Torterra%20ex%2012%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6495571",
+      "product_name": "Scizor ex #111",
+      "console_name": "Pokemon Temporal Forces",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:111"
+      }
+    },
+    {
+      "query": "Pokemon Temporal Forces Torterra ex 12 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Temporal%20Forces%20Torterra%20ex%2012%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11440379",
+      "product_name": "Iron Treads [Stamped] #118",
+      "console_name": "Pokemon Temporal Forces",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:118"
+      }
+    },
+    {
+      "query": "Pokemon Temporal Forces Torterra ex 12 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Temporal%20Forces%20Torterra%20ex%2012%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6495650",
+      "product_name": "Wugtrio ex #190",
+      "console_name": "Pokemon Temporal Forces",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:190"
+      }
+    },
+    {
+      "query": "Pokemon Temporal Forces Torterra ex 12 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Temporal%20Forces%20Torterra%20ex%2012%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6495520",
+      "product_name": "Wugtrio ex #60",
+      "console_name": "Pokemon Temporal Forces",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:60"
+      }
+    },
+    {
+      "query": "Pokemon Temporal Forces Torterra ex 12 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Temporal%20Forces%20Torterra%20ex%2012%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11440380",
+      "product_name": "Great Tusk [Stamped] #96",
+      "console_name": "Pokemon Temporal Forces",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:96"
+      }
+    },
+    {
+      "query": "Pokemon Temporal Forces Torterra ex 12 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Temporal%20Forces%20Torterra%20ex%2012%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6495580",
+      "product_name": "Koraidon ex #120",
+      "console_name": "Pokemon Temporal Forces",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:120"
+      }
+    },
+    {
+      "query": "Pokemon Temporal Forces Torterra ex 12 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Temporal%20Forces%20Torterra%20ex%2012%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6495582",
+      "product_name": "Miraidon ex #122",
+      "console_name": "Pokemon Temporal Forces",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:122"
+      }
+    },
+    {
+      "query": "Pokemon Temporal Forces Torterra ex 12 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Temporal%20Forces%20Torterra%20ex%2012%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6495654",
+      "product_name": "Farigiraf ex #194",
+      "console_name": "Pokemon Temporal Forces",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:194"
+      }
+    },
+    {
+      "query": "Pokemon Temporal Forces Torterra ex 12 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Temporal%20Forces%20Torterra%20ex%2012%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6495568",
+      "product_name": "Farigiraf ex #108",
+      "console_name": "Pokemon Temporal Forces",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:108"
+      }
+    },
+    {
+      "query": "Pokemon Temporal Forces Torterra ex 12 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Temporal%20Forces%20Torterra%20ex%2012%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6495647",
+      "product_name": "Incineroar ex #187",
+      "console_name": "Pokemon Temporal Forces",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:187"
+      }
+    },
+    {
+      "query": "Pokemon Temporal Forces Torterra ex 12 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Temporal%20Forces%20Torterra%20ex%2012%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6495482",
+      "product_name": "Scovillain ex #22",
+      "console_name": "Pokemon Temporal Forces",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:22"
+      }
+    },
+    {
+      "query": "Pokemon Temporal Forces Torterra ex 12 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Temporal%20Forces%20Torterra%20ex%2012%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6495494",
+      "product_name": "Incineroar ex #34",
+      "console_name": "Pokemon Temporal Forces",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:34"
+      }
+    }
+  ],
+  "source_lane": "pricecharting_api"
+}

@@ -1,0 +1,53 @@
+{
+  "status": "validated",
+  "fact": {
+    "gap_type": "finish_second_source_needed",
+    "fact_type": "printing_finish",
+    "set_key": "swsh10",
+    "set_name": "Astral Radiance",
+    "card_number": "30",
+    "card_name": "Starmie V",
+    "finish_key": "stamped",
+    "status": "human_source_verified",
+    "sources": [
+      "thepricedex_price_list"
+    ],
+    "source_authorities": [
+      "thepricedex.com"
+    ],
+    "source_kinds": [
+      "marketplace_checklist"
+    ],
+    "evidence_urls": [],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "query": "Pokemon Astral Radiance Starmie V 30 stamped",
+  "search_url": "https://www.pricecharting.com/search-products?q=Pokemon%20Astral%20Radiance%20Starmie%20V%2030%20stamped&type=prices",
+  "source_url": "https://www.pricecharting.com/game/pokemon-astral-radiance/starmie-v-stamped-30",
+  "title": "Starmie V [Stamped] #30 Prices | Pokemon Astral Radiance | Pokemon Cards",
+  "title_parts": {
+    "card_name": "Starmie V",
+    "variant_label": "Stamped",
+    "card_number": "30",
+    "set_name": "Astral Radiance"
+  },
+  "attempts": [
+    {
+      "query": "Pokemon Astral Radiance Starmie V 30 stamped",
+      "url": "https://www.pricecharting.com/search-products?q=Pokemon%20Astral%20Radiance%20Starmie%20V%2030%20stamped&type=prices",
+      "parsed": {
+        "title": "Starmie V [Stamped] #30 Prices | Pokemon Astral Radiance | Pokemon Cards",
+        "source_url": "https://www.pricecharting.com/game/pokemon-astral-radiance/starmie-v-stamped-30"
+      },
+      "validation": {
+        "ok": true,
+        "titleParts": {
+          "card_name": "Starmie V",
+          "variant_label": "Stamped",
+          "card_number": "30",
+          "set_name": "Astral Radiance"
+        }
+      }
+    }
+  ]
+}

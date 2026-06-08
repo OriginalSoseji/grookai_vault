@@ -1,0 +1,31 @@
+{
+  "fixture_version": "VERIFIED_MASTER_SET_INDEX_V1_HUMAN_SOURCE_FIXTURE_GENERATED",
+  "source_key": "bulbapedia_card_page_me1",
+  "source_kind": "human_readable_checklist",
+  "source_url": "https://bulbapedia.bulbagarden.net/wiki/Category:Pokémon_cards",
+  "source_status": "available_generated",
+  "set_key": "me1",
+  "set_name": "Mega Evolution",
+  "retrieved_at": "2026-05-26T17:20:44.468Z",
+  "raw_snapshot_ref": "generated_fixture:bulbapedia_card_page:me1:2026-05-26T17:20:44.468Z",
+  "generation_note": "Generated from Bulbapedia individual card page expansion metadata and release-information text. Exact set/number match is required; finish truth is emitted only for explicit finish/stamp/logo wording.",
+  "records": [
+    {
+      "source_key": "bulbapedia_card_page_release_info",
+      "source_kind": "human_readable_checklist",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Lunatone_(Mega_Evolution_74)",
+      "set_key": "me1",
+      "set_name": "Mega Evolution",
+      "card_number": "74",
+      "card_name": "Lunatone",
+      "finish_key": "stamped",
+      "rarity": null,
+      "evidence_type": "finish_presence",
+      "evidence_label": "Bulbapedia card page release information stamp/logo variant",
+      "language": "en",
+      "retrieved_at": "2026-05-26T17:20:44.468Z",
+      "raw_snapshot_ref": "bulbapedia_card_page:Lunatone_(Mega_Evolution_74):me1:74:stamped",
+      "notes": "Release information explicitly documents an English-scoped stamp/logo variant. Evidence: A print with a gold foil \"Staff\" stamp was given to those overseeing s."
+    }
+  ]
+}

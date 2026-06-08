@@ -1,0 +1,23 @@
+{
+  "source_key": "pricecharting_sm7",
+  "source_kind": "marketplace_checklist",
+  "source_url": "https://www.pricecharting.com/",
+  "set_key": "sm7",
+  "set_name": "Celestial Storm",
+  "retrieved_at": "2026-05-28T04:20:24.359Z",
+  "raw_snapshot_ref": "pricecharting_acquisition:sm7:2026-05-28T04:20:24.359Z",
+  "records": [
+    {
+      "source_key": "pricecharting_product_page",
+      "source_kind": "marketplace_checklist",
+      "source_url": "https://www.pricecharting.com/game/pokemon-celestial-storm/sceptile-cracked-ice-10",
+      "set_name": "Celestial Storm",
+      "card_number": "10",
+      "card_name": "Sceptile",
+      "finish_key": "cracked_ice",
+      "evidence_type": "finish_presence",
+      "evidence_label": "PriceCharting product title: Sceptile [Cracked Ice] #10 Prices | Pokemon Celestial Storm | Pokemon Cards",
+      "notes": "Exact finish evidence accepted only because PriceCharting evidence matched set, card number, card name, and finish label."
+    }
+  ]
+}

@@ -1,0 +1,549 @@
+{
+  "status": "api_no_validated_match",
+  "fact": {
+    "gap_type": "finish_second_source_needed",
+    "fact_type": "printing_finish",
+    "set_key": "hgss2",
+    "set_name": "HS—Unleashed",
+    "card_number": "82",
+    "card_name": "Rare Candy",
+    "finish_key": "stamped",
+    "status": "human_source_verified",
+    "sources": [
+      "thepricedex_price_list"
+    ],
+    "source_authorities": [
+      "thepricedex.com"
+    ],
+    "source_kinds": [
+      "marketplace_checklist"
+    ],
+    "evidence_urls": [
+      "https://www.thepricedex.com/set/hgss2/hs-unleashed/price-list"
+    ],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "attempts": [
+    {
+      "query": "Pokemon HS—Unleashed Rare Candy 82 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Rare%20Candy%2082%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "1287424",
+      "product_name": "Rare Candy #82",
+      "console_name": "Pokemon Unleashed",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Rare Candy 82 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Rare%20Candy%2082%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "1287520",
+      "product_name": "Rare Candy [Reverse Holo] #82",
+      "console_name": "Pokemon Unleashed",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Reverse Holo"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Rare Candy 82 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Rare%20Candy%2082%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8692813",
+      "product_name": "Rare Candy [League Promo] #82",
+      "console_name": "Pokemon Unleashed",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:League Promo"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Rare Candy 82 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Rare%20Candy%2082%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3469526",
+      "product_name": "Rare Candy #82",
+      "console_name": "Pokemon Japanese Double Blaze",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon Japanese Double Blaze"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Rare Candy 82 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Rare%20Candy%2082%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10085340",
+      "product_name": "Rare Candy #82",
+      "console_name": "Pokemon Japanese Mega Symphonia",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon Japanese Mega Symphonia"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Rare Candy 82 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Rare%20Candy%2082%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3468536",
+      "product_name": "Rare Candy #82",
+      "console_name": "Pokemon Japanese Sky-Splitting Charisma",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon Japanese Sky-Splitting Charisma"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Rare Candy 82 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Rare%20Candy%2082%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12834066",
+      "product_name": "Rare Candy #82",
+      "console_name": "Pokemon Korean Mega Symphonia",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon Korean Mega Symphonia"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Rare Candy 82 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Rare%20Candy%2082%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11812210",
+      "product_name": "Rare Candy [Gym] #159/SV-P",
+      "console_name": "Pokemon Japanese Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:159/SV-P"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Rare Candy 82 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Rare%20Candy%2082%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "849376",
+      "product_name": "Rare Candy [Reverse Holo] #88",
+      "console_name": "Pokemon Sandstorm",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:88"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Rare Candy 82 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Rare%20Candy%2082%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8136579",
+      "product_name": "Rare Candy [League Cup] #142",
+      "console_name": "Pokemon Celestial Storm",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:142"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Rare Candy 82 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Rare%20Candy%2082%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "888415",
+      "product_name": "Rare Candy [Reverse Holo] #83",
+      "console_name": "Pokemon Emerald",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:83"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Rare Candy 82 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Rare%20Candy%2082%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8370294",
+      "product_name": "Rare Candy [Prize Pack] #191",
+      "console_name": "Pokemon Scarlet & Violet",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:191"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Rare Candy 82 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Rare%20Candy%2082%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3667112",
+      "product_name": "Rare Candy [Reverse Holo] #69",
+      "console_name": "Pokemon Go",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:69"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Rare Candy 82 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Rare%20Candy%2082%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "807234",
+      "product_name": "Rare Candy [Reverse Holo] #180",
+      "console_name": "Pokemon Sword & Shield",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:180"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Rare Candy 82 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Rare%20Candy%2082%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "807002",
+      "product_name": "Rare Candy [Reverse Holo] #129",
+      "console_name": "Pokemon Sun & Moon",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:129"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Rare Candy 82 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Rare%20Candy%2082%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "956252",
+      "product_name": "Rare Candy [Reverse Holo] #100",
+      "console_name": "Pokemon Dark Explorers",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:100"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Rare Candy 82 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Rare%20Candy%2082%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10802183",
+      "product_name": "Rare Candy [1st Edition] #86",
+      "console_name": "Pokemon Japanese Megalo Cannon",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:86"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Rare Candy 82 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Rare%20Candy%2082%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "889279",
+      "product_name": "Rare Candy [Reverse Holo] #90",
+      "console_name": "Pokemon Holon Phantoms",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:90"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Rare Candy 82 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Rare%20Candy%2082%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "962223",
+      "product_name": "Rare Candy [Reverse Holo] #142",
+      "console_name": "Pokemon Celestial Storm",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:142"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Rare Candy 82 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Rare%20Candy%2082%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "921362",
+      "product_name": "Rare Candy [Reverse Holo] #102",
+      "console_name": "Pokemon Great Encounters",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:102"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Rare Candy 82 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Rare%20Candy%2082%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "1287424",
+      "product_name": "Rare Candy #82",
+      "console_name": "Pokemon Unleashed",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Rare Candy 82 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Rare%20Candy%2082%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "1287520",
+      "product_name": "Rare Candy [Reverse Holo] #82",
+      "console_name": "Pokemon Unleashed",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Reverse Holo"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Rare Candy 82 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Rare%20Candy%2082%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8692813",
+      "product_name": "Rare Candy [League Promo] #82",
+      "console_name": "Pokemon Unleashed",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:League Promo"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Rare Candy 82 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Rare%20Candy%2082%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3469526",
+      "product_name": "Rare Candy #82",
+      "console_name": "Pokemon Japanese Double Blaze",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon Japanese Double Blaze"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Rare Candy 82 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Rare%20Candy%2082%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10085340",
+      "product_name": "Rare Candy #82",
+      "console_name": "Pokemon Japanese Mega Symphonia",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon Japanese Mega Symphonia"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Rare Candy 82 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Rare%20Candy%2082%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3468536",
+      "product_name": "Rare Candy #82",
+      "console_name": "Pokemon Japanese Sky-Splitting Charisma",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon Japanese Sky-Splitting Charisma"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Rare Candy 82 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Rare%20Candy%2082%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12834066",
+      "product_name": "Rare Candy #82",
+      "console_name": "Pokemon Korean Mega Symphonia",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon Korean Mega Symphonia"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Rare Candy 82 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Rare%20Candy%2082%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11812210",
+      "product_name": "Rare Candy [Gym] #159/SV-P",
+      "console_name": "Pokemon Japanese Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:159/SV-P"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Rare Candy 82 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Rare%20Candy%2082%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "849376",
+      "product_name": "Rare Candy [Reverse Holo] #88",
+      "console_name": "Pokemon Sandstorm",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:88"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Rare Candy 82 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Rare%20Candy%2082%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8136579",
+      "product_name": "Rare Candy [League Cup] #142",
+      "console_name": "Pokemon Celestial Storm",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:142"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Rare Candy 82 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Rare%20Candy%2082%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "888415",
+      "product_name": "Rare Candy [Reverse Holo] #83",
+      "console_name": "Pokemon Emerald",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:83"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Rare Candy 82 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Rare%20Candy%2082%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8370294",
+      "product_name": "Rare Candy [Prize Pack] #191",
+      "console_name": "Pokemon Scarlet & Violet",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:191"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Rare Candy 82 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Rare%20Candy%2082%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3667112",
+      "product_name": "Rare Candy [Reverse Holo] #69",
+      "console_name": "Pokemon Go",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:69"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Rare Candy 82 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Rare%20Candy%2082%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "807234",
+      "product_name": "Rare Candy [Reverse Holo] #180",
+      "console_name": "Pokemon Sword & Shield",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:180"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Rare Candy 82 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Rare%20Candy%2082%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "807002",
+      "product_name": "Rare Candy [Reverse Holo] #129",
+      "console_name": "Pokemon Sun & Moon",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:129"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Rare Candy 82 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Rare%20Candy%2082%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "956252",
+      "product_name": "Rare Candy [Reverse Holo] #100",
+      "console_name": "Pokemon Dark Explorers",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:100"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Rare Candy 82 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Rare%20Candy%2082%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10802183",
+      "product_name": "Rare Candy [1st Edition] #86",
+      "console_name": "Pokemon Japanese Megalo Cannon",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:86"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Rare Candy 82 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Rare%20Candy%2082%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "889279",
+      "product_name": "Rare Candy [Reverse Holo] #90",
+      "console_name": "Pokemon Holon Phantoms",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:90"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Rare Candy 82 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Rare%20Candy%2082%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "962223",
+      "product_name": "Rare Candy [Reverse Holo] #142",
+      "console_name": "Pokemon Celestial Storm",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:142"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Rare Candy 82 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Rare%20Candy%2082%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "921362",
+      "product_name": "Rare Candy [Reverse Holo] #102",
+      "console_name": "Pokemon Great Encounters",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:102"
+      }
+    }
+  ],
+  "source_lane": "pricecharting_api"
+}

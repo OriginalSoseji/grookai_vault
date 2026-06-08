@@ -1,0 +1,35 @@
+{
+  "fixture_version": "VERIFIED_MASTER_SET_INDEX_V1_HUMAN_SOURCE_FIXTURE_GENERATED",
+  "source_key": "pricecharting_csv_product_stamp",
+  "source_kind": "marketplace_checklist",
+  "source_url": "https://www.pricecharting.com/console/pokemon-cards",
+  "source_status": "available_generated_explicit_product_stamp_rows",
+  "set_key": "swsh4",
+  "set_name": "Vivid Voltage",
+  "retrieved_at": "2026-05-31T11:07:14.387Z",
+  "raw_snapshot_ref": "generated_fixture:pricecharting_csv_product_stamp:swsh4:2026-05-31T11:07:14.387Z",
+  "audit_only": true,
+  "db_writes_performed": false,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "records": [
+    {
+      "source_key": "pricecharting_csv_product_stamp",
+      "source_kind": "marketplace_checklist",
+      "source_url": "https://www.pricecharting.com/game/pokemon-promo/league-staff-professor-program-153",
+      "set_key": "swsh4",
+      "set_name": "Vivid Voltage",
+      "card_number": "153",
+      "card_name": "League Staff",
+      "finish_key": "stamped",
+      "rarity": null,
+      "evidence_type": "finish_presence",
+      "evidence_label": "PriceCharting explicit stamped product 4507754: League Staff [Professor Program] #153",
+      "language": "en",
+      "retrieved_at": "2026-05-31T11:07:14.387Z",
+      "raw_snapshot_ref": "pricecharting_csv_product_stamp:4507754",
+      "notes": "Exact product-stamp evidence accepted only for allowed product families when the product title has one explicit stamped/staff/Professor Program/Pokemon Center label and exact card number/name match. It does not infer unstated deck variants."
+    }
+  ]
+}

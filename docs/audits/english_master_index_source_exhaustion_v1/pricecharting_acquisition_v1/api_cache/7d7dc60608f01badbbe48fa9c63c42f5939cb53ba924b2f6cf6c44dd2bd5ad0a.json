@@ -1,0 +1,42 @@
+{
+  "products": [
+    {
+      "bgs-10-price": 4800,
+      "box-only-price": 200,
+      "condition-17-price": 2200,
+      "condition-18-price": 2200,
+      "console-name": "Pokemon Paldea Evolved",
+      "gamestop-price": 0,
+      "gamestop-trade-price": 0,
+      "genre": "Pokemon Card",
+      "graded-price": 225,
+      "id": "6836321",
+      "loose-price": 186,
+      "manual-only-price": 3718,
+      "product-name": "Quaxly [Holo] #50",
+      "release-date": "2023-06-09",
+      "retail-loose-sell": 209,
+      "sales-volume": "19"
+    },
+    {
+      "bgs-10-price": 2300,
+      "box-only-price": 700,
+      "condition-17-price": 1100,
+      "condition-18-price": 1100,
+      "console-name": "Pokemon Paldea Evolved",
+      "gamestop-price": 0,
+      "gamestop-trade-price": 0,
+      "genre": "Pokemon Card",
+      "graded-price": 665,
+      "id": "5287613",
+      "loose-price": 40,
+      "manual-only-price": 1780,
+      "product-name": "Quaxly [Reverse Holo] #50",
+      "release-date": "2023-06-09",
+      "retail-loose-sell": 99,
+      "sales-volume": "81",
+      "tcg-id": "497461"
+    }
+  ],
+  "status": "success"
+}

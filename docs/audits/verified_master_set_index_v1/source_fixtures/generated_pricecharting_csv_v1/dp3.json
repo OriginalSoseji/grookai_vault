@@ -1,0 +1,23 @@
+{
+  "source_key": "pricecharting_csv_dp3",
+  "source_kind": "marketplace_checklist",
+  "source_url": "https://www.pricecharting.com/",
+  "set_key": "dp3",
+  "set_name": "Secret Wonders",
+  "retrieved_at": "2026-05-30T18:34:00.603Z",
+  "raw_snapshot_ref": "pricecharting_csv:dp3:2026-05-30T18:34:00.603Z",
+  "records": [
+    {
+      "source_key": "pricecharting_csv_product",
+      "source_kind": "marketplace_checklist",
+      "source_url": "https://www.pricecharting.com/game/pokemon-secret-wonders/shellos-west-sea-san-diego-comic-con-107",
+      "set_name": "Secret Wonders",
+      "card_number": "107",
+      "card_name": "Shellos West Sea",
+      "finish_key": "stamped",
+      "evidence_type": "finish_presence",
+      "evidence_label": "PriceCharting CSV product 5530238: Shellos West Sea [San Diego Comic Con] #107",
+      "notes": "Exact finish evidence accepted only because the PriceCharting CSV product row matched set, card number, card name, and finish label."
+    }
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "source_key": "pricecharting_xy4",
+  "source_kind": "marketplace_checklist",
+  "source_url": "https://www.pricecharting.com/",
+  "set_key": "xy4",
+  "set_name": "Phantom Forces",
+  "retrieved_at": "2026-05-28T04:20:24.359Z",
+  "raw_snapshot_ref": "pricecharting_acquisition:xy4:2026-05-28T04:20:24.359Z",
+  "records": [
+    {
+      "source_key": "pricecharting_product_page",
+      "source_kind": "marketplace_checklist",
+      "source_url": "https://www.pricecharting.com/game/pokemon-phantom-forces/blissey-cosmos-holo-81",
+      "set_name": "Phantom Forces",
+      "card_number": "81",
+      "card_name": "Blissey",
+      "finish_key": "cosmos",
+      "evidence_type": "finish_presence",
+      "evidence_label": "PriceCharting product title: Blissey [Cosmos Holo] #81 Prices | Pokemon Phantom Forces | Pokemon Cards",
+      "notes": "Exact finish evidence accepted only because PriceCharting evidence matched set, card number, card name, and finish label."
+    },
+    {
+      "source_key": "pricecharting_product_page",
+      "source_kind": "marketplace_checklist",
+      "source_url": "https://www.pricecharting.com/game/pokemon-phantom-forces/galvantula-cracked-ice-holo-27",
+      "set_name": "Phantom Forces",
+      "card_number": "27",
+      "card_name": "Galvantula",
+      "finish_key": "cracked_ice",
+      "evidence_type": "finish_presence",
+      "evidence_label": "PriceCharting product title: Galvantula [Cracked Ice Holo] #27 Prices | Pokemon Phantom Forces | Pokemon Cards",
+      "notes": "Exact finish evidence accepted only because PriceCharting evidence matched set, card number, card name, and finish label."
+    }
+  ]
+}

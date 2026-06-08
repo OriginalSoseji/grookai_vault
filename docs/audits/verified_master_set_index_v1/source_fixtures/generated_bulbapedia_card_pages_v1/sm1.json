@@ -1,0 +1,48 @@
+{
+  "fixture_version": "VERIFIED_MASTER_SET_INDEX_V1_HUMAN_SOURCE_FIXTURE_GENERATED",
+  "source_key": "bulbapedia_card_page_sm1",
+  "source_kind": "human_readable_checklist",
+  "source_url": "https://bulbapedia.bulbagarden.net/wiki/Category:Pokémon_cards",
+  "source_status": "available_generated",
+  "set_key": "sm1",
+  "set_name": "Sun & Moon",
+  "retrieved_at": "2026-05-26T17:20:44.468Z",
+  "raw_snapshot_ref": "generated_fixture:bulbapedia_card_page:sm1:2026-05-26T17:20:44.468Z",
+  "generation_note": "Generated from Bulbapedia individual card page expansion metadata and release-information text. Exact set/number match is required; finish truth is emitted only for explicit finish/stamp/logo wording.",
+  "records": [
+    {
+      "source_key": "bulbapedia_card_page_release_info",
+      "source_kind": "human_readable_checklist",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Incineroar_(Sun_%26_Moon_26)",
+      "set_key": "sm1",
+      "set_name": "Sun & Moon",
+      "card_number": "26",
+      "card_name": "Incineroar",
+      "finish_key": "stamped",
+      "rarity": null,
+      "evidence_type": "finish_presence",
+      "evidence_label": "Bulbapedia card page release information stamp/logo variant",
+      "language": "en",
+      "retrieved_at": "2026-05-26T17:20:44.468Z",
+      "raw_snapshot_ref": "bulbapedia_card_page:Incineroar_(Sun_&_Moon_26):sm1:26:stamped",
+      "notes": "Release information explicitly documents an English-scoped stamp/logo variant. Evidence: This print features the Pokémon Center logo in the bottom right corner of the artwork."
+    },
+    {
+      "source_key": "bulbapedia_card_page_release_info",
+      "source_kind": "human_readable_checklist",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Cosmog_(Sun_%26_Moon_64)",
+      "set_key": "sm1",
+      "set_name": "Sun & Moon",
+      "card_number": "64",
+      "card_name": "Cosmog",
+      "finish_key": "stamped",
+      "rarity": null,
+      "evidence_type": "finish_presence",
+      "evidence_label": "Bulbapedia card page release information stamp/logo variant",
+      "language": "en",
+      "retrieved_at": "2026-05-26T17:20:44.468Z",
+      "raw_snapshot_ref": "bulbapedia_card_page:Cosmog_(Sun_&_Moon_64):sm1:64:stamped",
+      "notes": "Release information explicitly documents an English-scoped stamp/logo variant. Evidence: It features the store logo in the bottom left corner of the artwork."
+    }
+  ]
+}

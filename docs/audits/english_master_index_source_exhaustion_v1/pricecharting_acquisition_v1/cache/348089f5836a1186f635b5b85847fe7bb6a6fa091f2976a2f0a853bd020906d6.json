@@ -1,0 +1,549 @@
+{
+  "status": "api_no_validated_match",
+  "fact": {
+    "gap_type": "finish_second_source_needed",
+    "fact_type": "printing_finish",
+    "set_key": "ex5",
+    "set_name": "Hidden Legends",
+    "card_number": "64",
+    "card_name": "Machop",
+    "finish_key": "stamped",
+    "status": "human_source_verified",
+    "sources": [
+      "thepricedex_price_list"
+    ],
+    "source_authorities": [
+      "thepricedex.com"
+    ],
+    "source_kinds": [
+      "marketplace_checklist"
+    ],
+    "evidence_urls": [
+      "https://www.thepricedex.com/set/ex5/hidden-legends/price-list"
+    ],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "attempts": [
+    {
+      "query": "Pokemon Hidden Legends Machop 64 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Hidden%20Legends%20Machop%2064%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "849837",
+      "product_name": "Machop #64",
+      "console_name": "Pokemon Hidden Legends",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon Hidden Legends Machop 64 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Hidden%20Legends%20Machop%2064%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "849939",
+      "product_name": "Machop [Reverse Holo] #64",
+      "console_name": "Pokemon Hidden Legends",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Reverse Holo"
+      }
+    },
+    {
+      "query": "Pokemon Hidden Legends Machop 64 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Hidden%20Legends%20Machop%2064%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4928507",
+      "product_name": "Machop [City Championships] #64",
+      "console_name": "Pokemon Hidden Legends",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:City Championships"
+      }
+    },
+    {
+      "query": "Pokemon Hidden Legends Machop 64 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Hidden%20Legends%20Machop%2064%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4916951",
+      "product_name": "Machop [Stamped] #57",
+      "console_name": "Pokemon Legend Maker",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:57"
+      }
+    },
+    {
+      "query": "Pokemon Hidden Legends Machop 64 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Hidden%20Legends%20Machop%2064%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "925274",
+      "product_name": "Machop #64",
+      "console_name": "Pokemon Stormfront",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon Stormfront"
+      }
+    },
+    {
+      "query": "Pokemon Hidden Legends Machop 64 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Hidden%20Legends%20Machop%2064%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "925363",
+      "product_name": "Machop [Reverse Holo] #64",
+      "console_name": "Pokemon Stormfront",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon Stormfront"
+      }
+    },
+    {
+      "query": "Pokemon Hidden Legends Machop 64 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Hidden%20Legends%20Machop%2064%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "849840",
+      "product_name": "Minun #67",
+      "console_name": "Pokemon Hidden Legends",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:67"
+      }
+    },
+    {
+      "query": "Pokemon Hidden Legends Machop 64 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Hidden%20Legends%20Machop%2064%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "849856",
+      "product_name": "Zubat #83",
+      "console_name": "Pokemon Hidden Legends",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:83"
+      }
+    },
+    {
+      "query": "Pokemon Hidden Legends Machop 64 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Hidden%20Legends%20Machop%2064%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "849808",
+      "product_name": "Gloom #35",
+      "console_name": "Pokemon Hidden Legends",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:35"
+      }
+    },
+    {
+      "query": "Pokemon Hidden Legends Machop 64 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Hidden%20Legends%20Machop%2064%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "849833",
+      "product_name": "Doduo #60",
+      "console_name": "Pokemon Hidden Legends",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:60"
+      }
+    },
+    {
+      "query": "Pokemon Hidden Legends Machop 64 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Hidden%20Legends%20Machop%2064%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "849786",
+      "product_name": "Pinsir #13",
+      "console_name": "Pokemon Hidden Legends",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:13"
+      }
+    },
+    {
+      "query": "Pokemon Hidden Legends Machop 64 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Hidden%20Legends%20Machop%2064%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "849801",
+      "product_name": "Beldum #28",
+      "console_name": "Pokemon Hidden Legends",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:28"
+      }
+    },
+    {
+      "query": "Pokemon Hidden Legends Machop 64 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Hidden%20Legends%20Machop%2064%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "849802",
+      "product_name": "Beldum #29",
+      "console_name": "Pokemon Hidden Legends",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:29"
+      }
+    },
+    {
+      "query": "Pokemon Hidden Legends Machop 64 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Hidden%20Legends%20Machop%2064%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "849806",
+      "product_name": "Dodrio #33",
+      "console_name": "Pokemon Hidden Legends",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:33"
+      }
+    },
+    {
+      "query": "Pokemon Hidden Legends Machop 64 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Hidden%20Legends%20Machop%2064%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "849816",
+      "product_name": "Metang #43",
+      "console_name": "Pokemon Hidden Legends",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:43"
+      }
+    },
+    {
+      "query": "Pokemon Hidden Legends Machop 64 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Hidden%20Legends%20Machop%2064%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "849817",
+      "product_name": "Metang #44",
+      "console_name": "Pokemon Hidden Legends",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:44"
+      }
+    },
+    {
+      "query": "Pokemon Hidden Legends Machop 64 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Hidden%20Legends%20Machop%2064%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "849823",
+      "product_name": "Swalot #50",
+      "console_name": "Pokemon Hidden Legends",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:50"
+      }
+    },
+    {
+      "query": "Pokemon Hidden Legends Machop 64 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Hidden%20Legends%20Machop%2064%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "849819",
+      "product_name": "Rhydon #46",
+      "console_name": "Pokemon Hidden Legends",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:46"
+      }
+    },
+    {
+      "query": "Pokemon Hidden Legends Machop 64 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Hidden%20Legends%20Machop%2064%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "849821",
+      "product_name": "Spinda #48",
+      "console_name": "Pokemon Hidden Legends",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:48"
+      }
+    },
+    {
+      "query": "Pokemon Hidden Legends Machop 64 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Hidden%20Legends%20Machop%2064%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "849820",
+      "product_name": "Sealeo #47",
+      "console_name": "Pokemon Hidden Legends",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:47"
+      }
+    },
+    {
+      "query": "Pokemon Hidden Legends Machop 64 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Hidden%20Legends%20Machop%2064%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "849837",
+      "product_name": "Machop #64",
+      "console_name": "Pokemon Hidden Legends",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon Hidden Legends Machop 64 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Hidden%20Legends%20Machop%2064%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "849939",
+      "product_name": "Machop [Reverse Holo] #64",
+      "console_name": "Pokemon Hidden Legends",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Reverse Holo"
+      }
+    },
+    {
+      "query": "Pokemon Hidden Legends Machop 64 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Hidden%20Legends%20Machop%2064%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4928507",
+      "product_name": "Machop [City Championships] #64",
+      "console_name": "Pokemon Hidden Legends",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:City Championships"
+      }
+    },
+    {
+      "query": "Pokemon Hidden Legends Machop 64 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Hidden%20Legends%20Machop%2064%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4916951",
+      "product_name": "Machop [Stamped] #57",
+      "console_name": "Pokemon Legend Maker",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:57"
+      }
+    },
+    {
+      "query": "Pokemon Hidden Legends Machop 64 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Hidden%20Legends%20Machop%2064%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "925274",
+      "product_name": "Machop #64",
+      "console_name": "Pokemon Stormfront",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon Stormfront"
+      }
+    },
+    {
+      "query": "Pokemon Hidden Legends Machop 64 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Hidden%20Legends%20Machop%2064%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "925363",
+      "product_name": "Machop [Reverse Holo] #64",
+      "console_name": "Pokemon Stormfront",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon Stormfront"
+      }
+    },
+    {
+      "query": "Pokemon Hidden Legends Machop 64 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Hidden%20Legends%20Machop%2064%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "849840",
+      "product_name": "Minun #67",
+      "console_name": "Pokemon Hidden Legends",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:67"
+      }
+    },
+    {
+      "query": "Pokemon Hidden Legends Machop 64 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Hidden%20Legends%20Machop%2064%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "849856",
+      "product_name": "Zubat #83",
+      "console_name": "Pokemon Hidden Legends",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:83"
+      }
+    },
+    {
+      "query": "Pokemon Hidden Legends Machop 64 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Hidden%20Legends%20Machop%2064%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "849808",
+      "product_name": "Gloom #35",
+      "console_name": "Pokemon Hidden Legends",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:35"
+      }
+    },
+    {
+      "query": "Pokemon Hidden Legends Machop 64 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Hidden%20Legends%20Machop%2064%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "849833",
+      "product_name": "Doduo #60",
+      "console_name": "Pokemon Hidden Legends",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:60"
+      }
+    },
+    {
+      "query": "Pokemon Hidden Legends Machop 64 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Hidden%20Legends%20Machop%2064%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "849786",
+      "product_name": "Pinsir #13",
+      "console_name": "Pokemon Hidden Legends",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:13"
+      }
+    },
+    {
+      "query": "Pokemon Hidden Legends Machop 64 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Hidden%20Legends%20Machop%2064%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "849801",
+      "product_name": "Beldum #28",
+      "console_name": "Pokemon Hidden Legends",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:28"
+      }
+    },
+    {
+      "query": "Pokemon Hidden Legends Machop 64 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Hidden%20Legends%20Machop%2064%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "849802",
+      "product_name": "Beldum #29",
+      "console_name": "Pokemon Hidden Legends",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:29"
+      }
+    },
+    {
+      "query": "Pokemon Hidden Legends Machop 64 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Hidden%20Legends%20Machop%2064%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "849806",
+      "product_name": "Dodrio #33",
+      "console_name": "Pokemon Hidden Legends",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:33"
+      }
+    },
+    {
+      "query": "Pokemon Hidden Legends Machop 64 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Hidden%20Legends%20Machop%2064%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "849816",
+      "product_name": "Metang #43",
+      "console_name": "Pokemon Hidden Legends",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:43"
+      }
+    },
+    {
+      "query": "Pokemon Hidden Legends Machop 64 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Hidden%20Legends%20Machop%2064%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "849817",
+      "product_name": "Metang #44",
+      "console_name": "Pokemon Hidden Legends",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:44"
+      }
+    },
+    {
+      "query": "Pokemon Hidden Legends Machop 64 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Hidden%20Legends%20Machop%2064%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "849823",
+      "product_name": "Swalot #50",
+      "console_name": "Pokemon Hidden Legends",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:50"
+      }
+    },
+    {
+      "query": "Pokemon Hidden Legends Machop 64 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Hidden%20Legends%20Machop%2064%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "849819",
+      "product_name": "Rhydon #46",
+      "console_name": "Pokemon Hidden Legends",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:46"
+      }
+    },
+    {
+      "query": "Pokemon Hidden Legends Machop 64 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Hidden%20Legends%20Machop%2064%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "849821",
+      "product_name": "Spinda #48",
+      "console_name": "Pokemon Hidden Legends",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:48"
+      }
+    },
+    {
+      "query": "Pokemon Hidden Legends Machop 64 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Hidden%20Legends%20Machop%2064%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "849820",
+      "product_name": "Sealeo #47",
+      "console_name": "Pokemon Hidden Legends",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:47"
+      }
+    }
+  ],
+  "source_lane": "pricecharting_api"
+}

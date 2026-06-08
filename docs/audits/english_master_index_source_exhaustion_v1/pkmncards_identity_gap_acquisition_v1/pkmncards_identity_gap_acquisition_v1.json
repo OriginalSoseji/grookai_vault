@@ -1,0 +1,620 @@
+{
+  "version": "english_master_index_pkmncards_identity_gap_acquisition_v1",
+  "generated_at": "2026-05-30T07:14:09.823Z",
+  "audit_only": true,
+  "db_writes_performed": false,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "dry_run": false,
+  "tls_workaround_used": false,
+  "curl_tls_fallback_used": true,
+  "tls_workaround_note": "Node TLS fetch failed for pkmncards.com in this Windows environment; curl.exe --ssl-no-revoke was used as an audit-only fetch fallback. TLS verification behavior was not disabled in Node by default.",
+  "source_key": "pkmncards_identity_gap",
+  "fixture_dir": "docs/audits/verified_master_set_index_v1/source_fixtures/generated_pkmncards_identity_gap_v1",
+  "summary": {
+    "attempted_facts": 7,
+    "records_generated": 2,
+    "fixture_files_written": 1,
+    "by_status": {
+      "no_exact_match": 5,
+      "generated": 2
+    }
+  },
+  "results": [
+    {
+      "status": "no_exact_match",
+      "fact": {
+        "gap_type": "card_identity_second_source_needed",
+        "fact_type": "card_identity",
+        "set_key": "exu",
+        "set_name": "Unseen Forces Unown Collection",
+        "card_number": "%3F",
+        "card_name": "Unown",
+        "finish_key": null,
+        "status": "candidate_unconfirmed",
+        "sources": [
+          "tcgdex"
+        ],
+        "source_authorities": [
+          "api.tcgdex.net"
+        ],
+        "source_kinds": [
+          "structured_api"
+        ],
+        "evidence_urls": [
+          "https://api.tcgdex.net/v2/en/cards/exu-%253F"
+        ],
+        "required_next_evidence": "A second independent English source agreeing on set + number + card name."
+      },
+      "search_urls": [
+        "https://pkmncards.com/?s=Unown%20Unseen%20Forces%20Unown%20Collection%20%3F",
+        "https://pkmncards.com/?s=Unown%20Unseen%20Forces%20Unown%20Collection",
+        "https://pkmncards.com/?s=Unown%20%20%3F",
+        "https://pkmncards.com/?s=Unown%20%3F"
+      ],
+      "accepted": null,
+      "reviewed_candidates": [
+        {
+          "url": "https://pkmncards.com/card/monferno-majestic-dawn-md-41/",
+          "title": "Monferno · Majestic Dawn (MD) #41",
+          "parsed": {
+            "card_name": "Monferno",
+            "set_name": "Majestic Dawn",
+            "card_number": "41"
+          },
+          "validation": {
+            "ok": false,
+            "reason": "candidate_not_exact_identity_match",
+            "checks": {
+              "card_name": false,
+              "set_name": false,
+              "card_number": false
+            }
+          }
+        }
+      ]
+    },
+    {
+      "status": "no_exact_match",
+      "fact": {
+        "gap_type": "card_identity_second_source_needed",
+        "fact_type": "card_identity",
+        "set_key": "cel25",
+        "set_name": "Celebrations",
+        "card_number": "9A",
+        "card_name": "Team Magma's Groudon",
+        "finish_key": null,
+        "status": "candidate_unconfirmed",
+        "sources": [
+          "tcgdex"
+        ],
+        "source_authorities": [
+          "api.tcgdex.net"
+        ],
+        "source_kinds": [
+          "structured_api"
+        ],
+        "evidence_urls": [
+          "https://api.tcgdex.net/v2/en/cards/cel25-9A"
+        ],
+        "required_next_evidence": "A second independent English source agreeing on set + number + card name."
+      },
+      "search_urls": [
+        "https://pkmncards.com/?s=Team%20Magma's%20Groudon%20Celebrations%209A",
+        "https://pkmncards.com/?s=Team%20Magma's%20Groudon%20Celebrations",
+        "https://pkmncards.com/?s=Team%20Magma's%20Groudon%20CEL%209A",
+        "https://pkmncards.com/?s=Team%20Magma's%20Groudon%209A"
+      ],
+      "accepted": null,
+      "reviewed_candidates": [
+        {
+          "url": "https://pkmncards.com/card/flamigo-paldea-evolved-pal-227/",
+          "title": "Flamigo · Paldea Evolved (PAL) #227",
+          "parsed": {
+            "card_name": "Flamigo",
+            "set_name": "Paldea Evolved",
+            "card_number": "227"
+          },
+          "validation": {
+            "ok": false,
+            "reason": "candidate_not_exact_identity_match",
+            "checks": {
+              "card_name": false,
+              "set_name": false,
+              "card_number": false
+            }
+          }
+        },
+        {
+          "url": "https://pkmncards.com/card/team-magmas-groudon-celebrations-cel-9a/",
+          "title": "Not found",
+          "parsed": null,
+          "validation": {
+            "ok": false,
+            "reason": "title_unparseable"
+          }
+        },
+        {
+          "url": "https://pkmncards.com/card/team-magma-groudon-celebrations-cel-9a/",
+          "title": "Not found",
+          "parsed": null,
+          "validation": {
+            "ok": false,
+            "reason": "title_unparseable"
+          }
+        }
+      ]
+    },
+    {
+      "status": "no_exact_match",
+      "fact": {
+        "gap_type": "card_identity_second_source_needed",
+        "fact_type": "card_identity",
+        "set_key": "cel25",
+        "set_name": "Celebrations",
+        "card_number": "15A3",
+        "card_name": "Rocket's Zapdos",
+        "finish_key": null,
+        "status": "candidate_unconfirmed",
+        "sources": [
+          "tcgdex"
+        ],
+        "source_authorities": [
+          "api.tcgdex.net"
+        ],
+        "source_kinds": [
+          "structured_api"
+        ],
+        "evidence_urls": [
+          "https://api.tcgdex.net/v2/en/cards/cel25-15A3"
+        ],
+        "required_next_evidence": "A second independent English source agreeing on set + number + card name."
+      },
+      "search_urls": [
+        "https://pkmncards.com/?s=Rocket's%20Zapdos%20Celebrations%2015A3",
+        "https://pkmncards.com/?s=Rocket's%20Zapdos%20Celebrations",
+        "https://pkmncards.com/?s=Rocket's%20Zapdos%20CEL%2015A3",
+        "https://pkmncards.com/?s=Rocket's%20Zapdos%2015A3"
+      ],
+      "accepted": null,
+      "reviewed_candidates": [
+        {
+          "url": "https://pkmncards.com/card/nidoran-male-triumphant-tm-70/",
+          "title": "Nidoran Male · Triumphant (TM) #70",
+          "parsed": {
+            "card_name": "Nidoran Male",
+            "set_name": "Triumphant",
+            "card_number": "70"
+          },
+          "validation": {
+            "ok": false,
+            "reason": "candidate_not_exact_identity_match",
+            "checks": {
+              "card_name": false,
+              "set_name": false,
+              "card_number": false
+            }
+          }
+        },
+        {
+          "url": "https://pkmncards.com/card/rockets-zapdos-celebrations-cel-15a3/",
+          "title": "Not found",
+          "parsed": null,
+          "validation": {
+            "ok": false,
+            "reason": "title_unparseable"
+          }
+        }
+      ]
+    },
+    {
+      "status": "no_exact_match",
+      "fact": {
+        "gap_type": "card_identity_second_source_needed",
+        "fact_type": "card_identity",
+        "set_key": "cel25",
+        "set_name": "Celebrations",
+        "card_number": "24A",
+        "card_name": "_____'s Pikachu",
+        "finish_key": null,
+        "status": "candidate_unconfirmed",
+        "sources": [
+          "tcgdex"
+        ],
+        "source_authorities": [
+          "api.tcgdex.net"
+        ],
+        "source_kinds": [
+          "structured_api"
+        ],
+        "evidence_urls": [
+          "https://api.tcgdex.net/v2/en/cards/cel25-24A"
+        ],
+        "required_next_evidence": "A second independent English source agreeing on set + number + card name."
+      },
+      "search_urls": [
+        "https://pkmncards.com/?s='s%20Pikachu%20Celebrations%2024A",
+        "https://pkmncards.com/?s='s%20Pikachu%20Celebrations",
+        "https://pkmncards.com/?s='s%20Pikachu%20CEL%2024A",
+        "https://pkmncards.com/?s='s%20Pikachu%2024A"
+      ],
+      "accepted": null,
+      "reviewed_candidates": [
+        {
+          "url": "https://pkmncards.com/card/exeggcute-prismatic-evolutions-pre-001/",
+          "title": "Exeggcute · Prismatic Evolutions (PRE) #001",
+          "parsed": {
+            "card_name": "Exeggcute",
+            "set_name": "Prismatic Evolutions",
+            "card_number": "1"
+          },
+          "validation": {
+            "ok": false,
+            "reason": "candidate_not_exact_identity_match",
+            "checks": {
+              "card_name": false,
+              "set_name": false,
+              "card_number": false
+            }
+          }
+        },
+        {
+          "url": "https://pkmncards.com/card/s-pikachu-celebrations-cel-24a/",
+          "title": "Not found",
+          "parsed": null,
+          "validation": {
+            "ok": false,
+            "reason": "title_unparseable"
+          }
+        }
+      ]
+    },
+    {
+      "status": "no_exact_match",
+      "fact": {
+        "gap_type": "card_identity_second_source_needed",
+        "fact_type": "card_identity",
+        "set_key": "cel25",
+        "set_name": "Celebrations",
+        "card_number": "86A",
+        "card_name": "Rocket's Admin.",
+        "finish_key": null,
+        "status": "candidate_unconfirmed",
+        "sources": [
+          "tcgdex"
+        ],
+        "source_authorities": [
+          "api.tcgdex.net"
+        ],
+        "source_kinds": [
+          "structured_api"
+        ],
+        "evidence_urls": [
+          "https://api.tcgdex.net/v2/en/cards/cel25-86A"
+        ],
+        "required_next_evidence": "A second independent English source agreeing on set + number + card name."
+      },
+      "search_urls": [
+        "https://pkmncards.com/?s=Rocket's%20Admin.%20Celebrations%2086A",
+        "https://pkmncards.com/?s=Rocket's%20Admin.%20Celebrations",
+        "https://pkmncards.com/?s=Rocket's%20Admin.%20CEL%2086A",
+        "https://pkmncards.com/?s=Rocket's%20Admin.%2086A"
+      ],
+      "accepted": null,
+      "reviewed_candidates": [
+        {
+          "url": "https://pkmncards.com/card/mawile-lost-origin-lor-071/",
+          "title": "Mawile · Lost Origin (LOR) #071",
+          "parsed": {
+            "card_name": "Mawile",
+            "set_name": "Lost Origin",
+            "card_number": "71"
+          },
+          "validation": {
+            "ok": false,
+            "reason": "candidate_not_exact_identity_match",
+            "checks": {
+              "card_name": false,
+              "set_name": false,
+              "card_number": false
+            }
+          }
+        },
+        {
+          "url": "https://pkmncards.com/card/rockets-admin-celebrations-cel-86a/",
+          "title": "Not found",
+          "parsed": null,
+          "validation": {
+            "ok": false,
+            "reason": "title_unparseable"
+          }
+        }
+      ]
+    },
+    {
+      "status": "generated",
+      "fact": {
+        "gap_type": "card_identity_second_source_needed",
+        "fact_type": "card_identity",
+        "set_key": "pl2",
+        "set_name": "Rising Rivals",
+        "card_number": "106",
+        "card_name": "Gallade 4 LV. X",
+        "finish_key": null,
+        "status": "human_source_verified",
+        "sources": [
+          "pokellector_set_checklist"
+        ],
+        "source_authorities": [
+          "pokellector.com"
+        ],
+        "source_kinds": [
+          "collector_reference"
+        ],
+        "evidence_urls": [
+          "https://www.pokellector.com/Platinum-Rising-Rivals-Expansion/"
+        ],
+        "required_next_evidence": "A second independent English source agreeing on set + number + card name."
+      },
+      "search_urls": [
+        "https://pkmncards.com/?s=Gallade%204%20LV.%20X%20Rising%20Rivals%20106",
+        "https://pkmncards.com/?s=Gallade%204%20LV.%20X%20Rising%20Rivals",
+        "https://pkmncards.com/?s=Gallade%204%20LV.%20X%20RR%20PL2%20106",
+        "https://pkmncards.com/?s=Gallade%204%20LV.%20X%20106"
+      ],
+      "accepted": {
+        "url": "https://pkmncards.com/card/gallade-e4-lv-x-rising-rivals-rr-106/",
+        "title": "Gallade E4 LV.X · Rising Rivals (RR) #106",
+        "parsed": {
+          "card_name": "Gallade E4 LV.X",
+          "set_name": "Rising Rivals",
+          "card_number": "106"
+        },
+        "validation": {
+          "ok": true,
+          "reason": "exact_identity_validated",
+          "checks": {
+            "card_name": true,
+            "set_name": true,
+            "card_number": true
+          }
+        }
+      },
+      "reviewed_candidates": [
+        {
+          "url": "https://pkmncards.com/card/gallade-e4-lv-x-rising-rivals-rr-106/",
+          "title": "Gallade E4 LV.X · Rising Rivals (RR) #106",
+          "parsed": {
+            "card_name": "Gallade E4 LV.X",
+            "set_name": "Rising Rivals",
+            "card_number": "106"
+          },
+          "validation": {
+            "ok": true,
+            "reason": "exact_identity_validated",
+            "checks": {
+              "card_name": true,
+              "set_name": true,
+              "card_number": true
+            }
+          }
+        },
+        {
+          "url": "https://pkmncards.com/card/flygon-lv-x-rising-rivals-rr-105/",
+          "title": "Flygon LV.X · Rising Rivals (RR) #105",
+          "parsed": {
+            "card_name": "Flygon LV.X",
+            "set_name": "Rising Rivals",
+            "card_number": "105"
+          },
+          "validation": {
+            "ok": false,
+            "reason": "candidate_not_exact_identity_match",
+            "checks": {
+              "card_name": false,
+              "set_name": true,
+              "card_number": false
+            }
+          }
+        },
+        {
+          "url": "https://pkmncards.com/card/hippowdon-lv-x-rising-rivals-rr-107/",
+          "title": "Hippowdon LV.X · Rising Rivals (RR) #107",
+          "parsed": {
+            "card_name": "Hippowdon LV.X",
+            "set_name": "Rising Rivals",
+            "card_number": "107"
+          },
+          "validation": {
+            "ok": false,
+            "reason": "candidate_not_exact_identity_match",
+            "checks": {
+              "card_name": false,
+              "set_name": true,
+              "card_number": false
+            }
+          }
+        },
+        {
+          "url": "https://pkmncards.com/card/machamp-detective-pikachu-det-13/",
+          "title": "Machamp · Detective Pikachu (DET) #13",
+          "parsed": {
+            "card_name": "Machamp",
+            "set_name": "Detective Pikachu",
+            "card_number": "13"
+          },
+          "validation": {
+            "ok": false,
+            "reason": "candidate_not_exact_identity_match",
+            "checks": {
+              "card_name": false,
+              "set_name": false,
+              "card_number": false
+            }
+          }
+        },
+        {
+          "url": "https://pkmncards.com/card/gallade-4-lv-x-rising-rivals-rr-106/",
+          "title": "Gallade E4 LV.X · Rising Rivals (RR) #106",
+          "parsed": {
+            "card_name": "Gallade E4 LV.X",
+            "set_name": "Rising Rivals",
+            "card_number": "106"
+          },
+          "validation": {
+            "ok": true,
+            "reason": "exact_identity_validated",
+            "checks": {
+              "card_name": true,
+              "set_name": true,
+              "card_number": true
+            }
+          }
+        }
+      ]
+    },
+    {
+      "status": "generated",
+      "fact": {
+        "gap_type": "card_identity_second_source_needed",
+        "fact_type": "card_identity",
+        "set_key": "pl2",
+        "set_name": "Rising Rivals",
+        "card_number": "108",
+        "card_name": "Infernape 4 LV. X",
+        "finish_key": null,
+        "status": "human_source_verified",
+        "sources": [
+          "pokellector_set_checklist"
+        ],
+        "source_authorities": [
+          "pokellector.com"
+        ],
+        "source_kinds": [
+          "collector_reference"
+        ],
+        "evidence_urls": [
+          "https://www.pokellector.com/Platinum-Rising-Rivals-Expansion/"
+        ],
+        "required_next_evidence": "A second independent English source agreeing on set + number + card name."
+      },
+      "search_urls": [
+        "https://pkmncards.com/?s=Infernape%204%20LV.%20X%20Rising%20Rivals%20108",
+        "https://pkmncards.com/?s=Infernape%204%20LV.%20X%20Rising%20Rivals",
+        "https://pkmncards.com/?s=Infernape%204%20LV.%20X%20RR%20PL2%20108",
+        "https://pkmncards.com/?s=Infernape%204%20LV.%20X%20108"
+      ],
+      "accepted": {
+        "url": "https://pkmncards.com/card/infernape-e4-lv-x-rising-rivals-rr-108/",
+        "title": "Infernape E4 LV.X · Rising Rivals (RR) #108",
+        "parsed": {
+          "card_name": "Infernape E4 LV.X",
+          "set_name": "Rising Rivals",
+          "card_number": "108"
+        },
+        "validation": {
+          "ok": true,
+          "reason": "exact_identity_validated",
+          "checks": {
+            "card_name": true,
+            "set_name": true,
+            "card_number": true
+          }
+        }
+      },
+      "reviewed_candidates": [
+        {
+          "url": "https://pkmncards.com/card/infernape-e4-lv-x-rising-rivals-rr-108/",
+          "title": "Infernape E4 LV.X · Rising Rivals (RR) #108",
+          "parsed": {
+            "card_name": "Infernape E4 LV.X",
+            "set_name": "Rising Rivals",
+            "card_number": "108"
+          },
+          "validation": {
+            "ok": true,
+            "reason": "exact_identity_validated",
+            "checks": {
+              "card_name": true,
+              "set_name": true,
+              "card_number": true
+            }
+          }
+        },
+        {
+          "url": "https://pkmncards.com/card/hippowdon-lv-x-rising-rivals-rr-107/",
+          "title": "Hippowdon LV.X · Rising Rivals (RR) #107",
+          "parsed": {
+            "card_name": "Hippowdon LV.X",
+            "set_name": "Rising Rivals",
+            "card_number": "107"
+          },
+          "validation": {
+            "ok": false,
+            "reason": "candidate_not_exact_identity_match",
+            "checks": {
+              "card_name": false,
+              "set_name": true,
+              "card_number": false
+            }
+          }
+        },
+        {
+          "url": "https://pkmncards.com/card/luxray-gl-lv-x-rising-rivals-rr-109/",
+          "title": "Luxray GL LV.X · Rising Rivals (RR) #109",
+          "parsed": {
+            "card_name": "Luxray GL LV.X",
+            "set_name": "Rising Rivals",
+            "card_number": "109"
+          },
+          "validation": {
+            "ok": false,
+            "reason": "candidate_not_exact_identity_match",
+            "checks": {
+              "card_name": false,
+              "set_name": true,
+              "card_number": false
+            }
+          }
+        },
+        {
+          "url": "https://pkmncards.com/card/zapdos-sun-moon-promos-smp-sm159/",
+          "title": "Zapdos · Sun & Moon Promos (SMP) #SM159",
+          "parsed": {
+            "card_name": "Zapdos",
+            "set_name": "Sun & Moon Promos",
+            "card_number": "SM159"
+          },
+          "validation": {
+            "ok": false,
+            "reason": "candidate_not_exact_identity_match",
+            "checks": {
+              "card_name": false,
+              "set_name": false,
+              "card_number": false
+            }
+          }
+        },
+        {
+          "url": "https://pkmncards.com/card/infernape-4-lv-x-rising-rivals-rr-108/",
+          "title": "Infernape E4 LV.X · Rising Rivals (RR) #108",
+          "parsed": {
+            "card_name": "Infernape E4 LV.X",
+            "set_name": "Rising Rivals",
+            "card_number": "108"
+          },
+          "validation": {
+            "ok": true,
+            "reason": "exact_identity_validated",
+            "checks": {
+              "card_name": true,
+              "set_name": true,
+              "card_number": true
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

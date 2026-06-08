@@ -1,0 +1,549 @@
+{
+  "status": "api_no_validated_match",
+  "fact": {
+    "gap_type": "finish_second_source_needed",
+    "fact_type": "printing_finish",
+    "set_key": "sm5",
+    "set_name": "Ultra Prism",
+    "card_number": "122",
+    "card_name": "Escape Board",
+    "finish_key": "stamped",
+    "status": "human_source_verified",
+    "sources": [
+      "thepricedex_price_list"
+    ],
+    "source_authorities": [
+      "thepricedex.com"
+    ],
+    "source_kinds": [
+      "marketplace_checklist"
+    ],
+    "evidence_urls": [
+      "https://www.thepricedex.com/set/sm5/ultra-prism/price-list"
+    ],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "attempts": [
+    {
+      "query": "Pokemon Ultra Prism Escape Board 122 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ultra%20Prism%20Escape%20Board%20122%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "961485",
+      "product_name": "Escape Board #122",
+      "console_name": "Pokemon Ultra Prism",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon Ultra Prism Escape Board 122 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ultra%20Prism%20Escape%20Board%20122%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "961647",
+      "product_name": "Escape Board [Reverse Holo] #122",
+      "console_name": "Pokemon Ultra Prism",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Reverse Holo"
+      }
+    },
+    {
+      "query": "Pokemon Ultra Prism Escape Board 122 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ultra%20Prism%20Escape%20Board%20122%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6226362",
+      "product_name": "Escape Board [League Cup Staff] #122",
+      "console_name": "Pokemon Ultra Prism",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:League Cup Staff"
+      }
+    },
+    {
+      "query": "Pokemon Ultra Prism Escape Board 122 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ultra%20Prism%20Escape%20Board%20122%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5076784",
+      "product_name": "Escape Board [Reverse Foil League Cup] #122",
+      "console_name": "Pokemon Ultra Prism",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Reverse Foil League Cup"
+      }
+    },
+    {
+      "query": "Pokemon Ultra Prism Escape Board 122 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ultra%20Prism%20Escape%20Board%20122%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "961530",
+      "product_name": "Escape Board #167",
+      "console_name": "Pokemon Ultra Prism",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:167"
+      }
+    },
+    {
+      "query": "Pokemon Ultra Prism Escape Board 122 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ultra%20Prism%20Escape%20Board%20122%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3445670",
+      "product_name": "Escape Board #122",
+      "console_name": "Pokemon Japanese GX Ultra Shiny",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon Japanese GX Ultra Shiny"
+      }
+    },
+    {
+      "query": "Pokemon Ultra Prism Escape Board 122 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ultra%20Prism%20Escape%20Board%20122%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8329942",
+      "product_name": "Escape Board [Reverse Holo] #122",
+      "console_name": "Pokemon Japanese GX Ultra Shiny",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon Japanese GX Ultra Shiny"
+      }
+    },
+    {
+      "query": "Pokemon Ultra Prism Escape Board 122 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ultra%20Prism%20Escape%20Board%20122%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4877823",
+      "product_name": "Escape Board [Reverse Holo Pokemon League] #122a",
+      "console_name": "Pokemon Ultra Prism",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:122a"
+      }
+    },
+    {
+      "query": "Pokemon Ultra Prism Escape Board 122 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ultra%20Prism%20Escape%20Board%20122%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3468122",
+      "product_name": "Escape Board #77",
+      "console_name": "Pokemon Japanese Ultra Moon",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:77"
+      }
+    },
+    {
+      "query": "Pokemon Ultra Prism Escape Board 122 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ultra%20Prism%20Escape%20Board%20122%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3468105",
+      "product_name": "Escape Board #60",
+      "console_name": "Pokemon Japanese Ultra Moon",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:60"
+      }
+    },
+    {
+      "query": "Pokemon Ultra Prism Escape Board 122 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ultra%20Prism%20Escape%20Board%20122%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3399237",
+      "product_name": "Heatran [Ultra Prism Stamped] #88",
+      "console_name": "Pokemon Ultra Prism",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:88"
+      }
+    },
+    {
+      "query": "Pokemon Ultra Prism Escape Board 122 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ultra%20Prism%20Escape%20Board%20122%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3470118",
+      "product_name": "Escape Board #62",
+      "console_name": "Pokemon Japanese Remix Bout",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:62"
+      }
+    },
+    {
+      "query": "Pokemon Ultra Prism Escape Board 122 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ultra%20Prism%20Escape%20Board%20122%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9659886",
+      "product_name": "Escape Board #170/SM-P",
+      "console_name": "Pokemon Korean Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:170/SM-P"
+      }
+    },
+    {
+      "query": "Pokemon Ultra Prism Escape Board 122 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ultra%20Prism%20Escape%20Board%20122%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "961513",
+      "product_name": "Lana #150",
+      "console_name": "Pokemon Ultra Prism",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:150"
+      }
+    },
+    {
+      "query": "Pokemon Ultra Prism Escape Board 122 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ultra%20Prism%20Escape%20Board%20122%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "961491",
+      "product_name": "Mars #128",
+      "console_name": "Pokemon Ultra Prism",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:128"
+      }
+    },
+    {
+      "query": "Pokemon Ultra Prism Escape Board 122 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ultra%20Prism%20Escape%20Board%20122%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "961517",
+      "product_name": "Mars #154",
+      "console_name": "Pokemon Ultra Prism",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:154"
+      }
+    },
+    {
+      "query": "Pokemon Ultra Prism Escape Board 122 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ultra%20Prism%20Escape%20Board%20122%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "961413",
+      "product_name": "Rotom #50",
+      "console_name": "Pokemon Ultra Prism",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:50"
+      }
+    },
+    {
+      "query": "Pokemon Ultra Prism Escape Board 122 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ultra%20Prism%20Escape%20Board%20122%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "961410",
+      "product_name": "Luxio #47",
+      "console_name": "Pokemon Ultra Prism",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:47"
+      }
+    },
+    {
+      "query": "Pokemon Ultra Prism Escape Board 122 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ultra%20Prism%20Escape%20Board%20122%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "961429",
+      "product_name": "Riolu #66",
+      "console_name": "Pokemon Ultra Prism",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:66"
+      }
+    },
+    {
+      "query": "Pokemon Ultra Prism Escape Board 122 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ultra%20Prism%20Escape%20Board%20122%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "961467",
+      "product_name": "Eevee #104",
+      "console_name": "Pokemon Ultra Prism",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:104"
+      }
+    },
+    {
+      "query": "Pokemon Ultra Prism Escape Board 122 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ultra%20Prism%20Escape%20Board%20122%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "961485",
+      "product_name": "Escape Board #122",
+      "console_name": "Pokemon Ultra Prism",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon Ultra Prism Escape Board 122 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ultra%20Prism%20Escape%20Board%20122%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "961647",
+      "product_name": "Escape Board [Reverse Holo] #122",
+      "console_name": "Pokemon Ultra Prism",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Reverse Holo"
+      }
+    },
+    {
+      "query": "Pokemon Ultra Prism Escape Board 122 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ultra%20Prism%20Escape%20Board%20122%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6226362",
+      "product_name": "Escape Board [League Cup Staff] #122",
+      "console_name": "Pokemon Ultra Prism",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:League Cup Staff"
+      }
+    },
+    {
+      "query": "Pokemon Ultra Prism Escape Board 122 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ultra%20Prism%20Escape%20Board%20122%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5076784",
+      "product_name": "Escape Board [Reverse Foil League Cup] #122",
+      "console_name": "Pokemon Ultra Prism",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Reverse Foil League Cup"
+      }
+    },
+    {
+      "query": "Pokemon Ultra Prism Escape Board 122 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ultra%20Prism%20Escape%20Board%20122%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "961530",
+      "product_name": "Escape Board #167",
+      "console_name": "Pokemon Ultra Prism",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:167"
+      }
+    },
+    {
+      "query": "Pokemon Ultra Prism Escape Board 122 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ultra%20Prism%20Escape%20Board%20122%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3445670",
+      "product_name": "Escape Board #122",
+      "console_name": "Pokemon Japanese GX Ultra Shiny",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon Japanese GX Ultra Shiny"
+      }
+    },
+    {
+      "query": "Pokemon Ultra Prism Escape Board 122 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ultra%20Prism%20Escape%20Board%20122%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8329942",
+      "product_name": "Escape Board [Reverse Holo] #122",
+      "console_name": "Pokemon Japanese GX Ultra Shiny",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon Japanese GX Ultra Shiny"
+      }
+    },
+    {
+      "query": "Pokemon Ultra Prism Escape Board 122 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ultra%20Prism%20Escape%20Board%20122%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4877823",
+      "product_name": "Escape Board [Reverse Holo Pokemon League] #122a",
+      "console_name": "Pokemon Ultra Prism",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:122a"
+      }
+    },
+    {
+      "query": "Pokemon Ultra Prism Escape Board 122 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ultra%20Prism%20Escape%20Board%20122%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3468122",
+      "product_name": "Escape Board #77",
+      "console_name": "Pokemon Japanese Ultra Moon",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:77"
+      }
+    },
+    {
+      "query": "Pokemon Ultra Prism Escape Board 122 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ultra%20Prism%20Escape%20Board%20122%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3468105",
+      "product_name": "Escape Board #60",
+      "console_name": "Pokemon Japanese Ultra Moon",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:60"
+      }
+    },
+    {
+      "query": "Pokemon Ultra Prism Escape Board 122 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ultra%20Prism%20Escape%20Board%20122%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3399237",
+      "product_name": "Heatran [Ultra Prism Stamped] #88",
+      "console_name": "Pokemon Ultra Prism",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:88"
+      }
+    },
+    {
+      "query": "Pokemon Ultra Prism Escape Board 122 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ultra%20Prism%20Escape%20Board%20122%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3470118",
+      "product_name": "Escape Board #62",
+      "console_name": "Pokemon Japanese Remix Bout",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:62"
+      }
+    },
+    {
+      "query": "Pokemon Ultra Prism Escape Board 122 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ultra%20Prism%20Escape%20Board%20122%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9659886",
+      "product_name": "Escape Board #170/SM-P",
+      "console_name": "Pokemon Korean Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:170/SM-P"
+      }
+    },
+    {
+      "query": "Pokemon Ultra Prism Escape Board 122 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ultra%20Prism%20Escape%20Board%20122%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "961513",
+      "product_name": "Lana #150",
+      "console_name": "Pokemon Ultra Prism",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:150"
+      }
+    },
+    {
+      "query": "Pokemon Ultra Prism Escape Board 122 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ultra%20Prism%20Escape%20Board%20122%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "961491",
+      "product_name": "Mars #128",
+      "console_name": "Pokemon Ultra Prism",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:128"
+      }
+    },
+    {
+      "query": "Pokemon Ultra Prism Escape Board 122 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ultra%20Prism%20Escape%20Board%20122%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "961517",
+      "product_name": "Mars #154",
+      "console_name": "Pokemon Ultra Prism",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:154"
+      }
+    },
+    {
+      "query": "Pokemon Ultra Prism Escape Board 122 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ultra%20Prism%20Escape%20Board%20122%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "961413",
+      "product_name": "Rotom #50",
+      "console_name": "Pokemon Ultra Prism",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:50"
+      }
+    },
+    {
+      "query": "Pokemon Ultra Prism Escape Board 122 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ultra%20Prism%20Escape%20Board%20122%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "961410",
+      "product_name": "Luxio #47",
+      "console_name": "Pokemon Ultra Prism",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:47"
+      }
+    },
+    {
+      "query": "Pokemon Ultra Prism Escape Board 122 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ultra%20Prism%20Escape%20Board%20122%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "961429",
+      "product_name": "Riolu #66",
+      "console_name": "Pokemon Ultra Prism",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:66"
+      }
+    },
+    {
+      "query": "Pokemon Ultra Prism Escape Board 122 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ultra%20Prism%20Escape%20Board%20122%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "961467",
+      "product_name": "Eevee #104",
+      "console_name": "Pokemon Ultra Prism",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:104"
+      }
+    }
+  ],
+  "source_lane": "pricecharting_api"
+}

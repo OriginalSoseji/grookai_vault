@@ -1,0 +1,48 @@
+{
+  "fixture_version": "VERIFIED_MASTER_SET_INDEX_V1_HUMAN_SOURCE_FIXTURE_GENERATED",
+  "source_key": "tcgcollector_variants_swsh11",
+  "source_kind": "collector_reference",
+  "source_url": "https://www.tcgcollector.com/sets/11498/lost-origin?setCardCountMode=anyCardVariant",
+  "source_status": "available_generated",
+  "set_key": "swsh11",
+  "set_name": "Lost Origin",
+  "retrieved_at": "2026-05-26T04:41:18.789Z",
+  "raw_snapshot_ref": "generated_fixture:tcgcollector:swsh11:2026-05-26T04:41:18.789Z",
+  "generation_note": "Generated from TCGCollector explicit card variant type IDs. No finish is inferred from set era, rarity, or card count.",
+  "records": [
+    {
+      "source_key": "tcgcollector_card_variants",
+      "source_kind": "collector_reference",
+      "source_url": "https://www.tcgcollector.com/cards/38923/hisuian-zoroark-lost-origin-076-196",
+      "set_key": "swsh11",
+      "set_name": "Lost Origin",
+      "card_number": "76",
+      "card_name": "Hisuian Zoroark",
+      "finish_key": "stamped",
+      "rarity": null,
+      "evidence_type": "finish_presence",
+      "evidence_label": "TCGCollector card variant Lost Origin Stamp",
+      "language": "en",
+      "retrieved_at": "2026-05-26T04:41:18.789Z",
+      "raw_snapshot_ref": "tcgcollector:38923:393",
+      "notes": "Exact card-level finish evidence from TCGCollector card variant type map. Only explicit variant labels are emitted."
+    },
+    {
+      "source_key": "tcgcollector_card_variants",
+      "source_kind": "collector_reference",
+      "source_url": "https://www.tcgcollector.com/cards/38978/giratina-vstar-lost-origin-131-196",
+      "set_key": "swsh11",
+      "set_name": "Lost Origin",
+      "card_number": "131",
+      "card_name": "Giratina VSTAR",
+      "finish_key": "stamped",
+      "rarity": null,
+      "evidence_type": "finish_presence",
+      "evidence_label": "TCGCollector card variant Lost Origin Stamp, Jumbo Size",
+      "language": "en",
+      "retrieved_at": "2026-05-26T04:41:18.789Z",
+      "raw_snapshot_ref": "tcgcollector:38978:392",
+      "notes": "Exact card-level finish evidence from TCGCollector card variant type map. Only explicit variant labels are emitted."
+    }
+  ]
+}

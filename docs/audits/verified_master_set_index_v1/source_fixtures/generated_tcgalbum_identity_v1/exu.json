@@ -1,0 +1,36 @@
+{
+  "fixture_version": "VERIFIED_MASTER_SET_INDEX_V1_HUMAN_SOURCE_FIXTURE_GENERATED",
+  "source_key": "tcgalbum_card_page_exu",
+  "source_kind": "collector_reference",
+  "source_url": "https://tcgalbum.com/en/pokemon-card/unseen-forces-unown-collection/unown-3f",
+  "source_status": "available_generated_manual_reviewed",
+  "set_key": "exu",
+  "set_name": "Unseen Forces Unown Collection",
+  "retrieved_at": "2026-05-30T09:30:00.000Z",
+  "raw_snapshot_ref": "generated_fixture:tcgalbum_card_page:exu:%3F:2026-05-30T09:30:00.000Z",
+  "audit_only": true,
+  "db_writes_performed": false,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "generation_note": "Generated from manual review of the TCG Album card page. Evidence labels only; no copied page dump is stored.",
+  "records": [
+    {
+      "source_key": "tcgalbum_card_page",
+      "source_kind": "collector_reference",
+      "source_url": "https://tcgalbum.com/en/pokemon-card/unseen-forces-unown-collection/unown-3f",
+      "set_key": "exu",
+      "set_name": "Unseen Forces Unown Collection",
+      "card_number": "%3F",
+      "card_name": "Unown",
+      "finish_key": null,
+      "rarity": "Rare",
+      "evidence_type": "card_identity",
+      "evidence_label": "TCG Album card page: Unown #%3F, Unseen Forces Unown Collection, EX, 28 cards",
+      "language": "en",
+      "retrieved_at": "2026-05-30T09:30:00.000Z",
+      "raw_snapshot_ref": "tcgalbum_card_page:unseen-forces-unown-collection:unown-3f",
+      "notes": "Exact card identity evidence accepted because TCG Album page identifies Unown #%3F in Unseen Forces Unown Collection."
+    }
+  ]
+}

@@ -1,0 +1,549 @@
+{
+  "status": "api_no_validated_match",
+  "fact": {
+    "gap_type": "finish_second_source_needed",
+    "fact_type": "printing_finish",
+    "set_key": "swsh10",
+    "set_name": "Astral Radiance",
+    "card_number": "27",
+    "card_name": "Radiant Heatran",
+    "finish_key": "stamped",
+    "status": "human_source_verified",
+    "sources": [
+      "thepricedex_price_list"
+    ],
+    "source_authorities": [
+      "thepricedex.com"
+    ],
+    "source_kinds": [
+      "marketplace_checklist"
+    ],
+    "evidence_urls": [
+      "https://www.thepricedex.com/set/swsh10/astral-radiance/price-list"
+    ],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "attempts": [
+    {
+      "query": "Pokemon Astral Radiance Radiant Heatran 27 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Astral%20Radiance%20Radiant%20Heatran%2027%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3489525",
+      "product_name": "Radiant Heatran #27",
+      "console_name": "Pokemon Astral Radiance",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon Astral Radiance Radiant Heatran 27 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Astral%20Radiance%20Radiant%20Heatran%2027%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9913336",
+      "product_name": "Radiant Greninja [Gym Stamp] #46",
+      "console_name": "Pokemon Astral Radiance",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:46"
+      }
+    },
+    {
+      "query": "Pokemon Astral Radiance Radiant Heatran 27 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Astral%20Radiance%20Radiant%20Heatran%2027%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3489523",
+      "product_name": "Heatran V #25",
+      "console_name": "Pokemon Astral Radiance",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:25"
+      }
+    },
+    {
+      "query": "Pokemon Astral Radiance Radiant Heatran 27 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Astral%20Radiance%20Radiant%20Heatran%2027%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3489664",
+      "product_name": "Heatran V #165",
+      "console_name": "Pokemon Astral Radiance",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:165"
+      }
+    },
+    {
+      "query": "Pokemon Astral Radiance Radiant Heatran 27 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Astral%20Radiance%20Radiant%20Heatran%2027%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3489524",
+      "product_name": "Heatran VMAX #26",
+      "console_name": "Pokemon Astral Radiance",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:26"
+      }
+    },
+    {
+      "query": "Pokemon Astral Radiance Radiant Heatran 27 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Astral%20Radiance%20Radiant%20Heatran%2027%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3489690",
+      "product_name": "Heatran VMAX #191",
+      "console_name": "Pokemon Astral Radiance",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:191"
+      }
+    },
+    {
+      "query": "Pokemon Astral Radiance Radiant Heatran 27 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Astral%20Radiance%20Radiant%20Heatran%2027%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3489544",
+      "product_name": "Radiant Greninja #46",
+      "console_name": "Pokemon Astral Radiance",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:46"
+      }
+    },
+    {
+      "query": "Pokemon Astral Radiance Radiant Heatran 27 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Astral%20Radiance%20Radiant%20Heatran%2027%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3489579",
+      "product_name": "Radiant Hawlucha #81",
+      "console_name": "Pokemon Astral Radiance",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:81"
+      }
+    },
+    {
+      "query": "Pokemon Astral Radiance Radiant Heatran 27 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Astral%20Radiance%20Radiant%20Heatran%2027%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5769125",
+      "product_name": "Starmie V [Stamped] #30",
+      "console_name": "Pokemon Astral Radiance",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:30"
+      }
+    },
+    {
+      "query": "Pokemon Astral Radiance Radiant Heatran 27 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Astral%20Radiance%20Radiant%20Heatran%2027%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6658428",
+      "product_name": "Cyllene [League Stamp] #138",
+      "console_name": "Pokemon Astral Radiance",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:138"
+      }
+    },
+    {
+      "query": "Pokemon Astral Radiance Radiant Heatran 27 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Astral%20Radiance%20Radiant%20Heatran%2027%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6166529",
+      "product_name": "Radiant Greninja [Prize Pack] #46",
+      "console_name": "Pokemon Astral Radiance",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:46"
+      }
+    },
+    {
+      "query": "Pokemon Astral Radiance Radiant Heatran 27 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Astral%20Radiance%20Radiant%20Heatran%2027%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3489784",
+      "product_name": "Radiant Hawlucha [Reverse Holo] #81",
+      "console_name": "Pokemon Astral Radiance",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:81"
+      }
+    },
+    {
+      "query": "Pokemon Astral Radiance Radiant Heatran 27 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Astral%20Radiance%20Radiant%20Heatran%2027%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5810877",
+      "product_name": "Stantler [Snowflake Stamp] #125",
+      "console_name": "Pokemon Astral Radiance",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:125"
+      }
+    },
+    {
+      "query": "Pokemon Astral Radiance Radiant Heatran 27 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Astral%20Radiance%20Radiant%20Heatran%2027%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3508417",
+      "product_name": "Bea #TG25",
+      "console_name": "Pokemon Astral Radiance",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:TG25"
+      }
+    },
+    {
+      "query": "Pokemon Astral Radiance Radiant Heatran 27 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Astral%20Radiance%20Radiant%20Heatran%2027%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3489563",
+      "product_name": "Uxie #65",
+      "console_name": "Pokemon Astral Radiance",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:65"
+      }
+    },
+    {
+      "query": "Pokemon Astral Radiance Radiant Heatran 27 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Astral%20Radiance%20Radiant%20Heatran%2027%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3489636",
+      "product_name": "Choy #137",
+      "console_name": "Pokemon Astral Radiance",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:137"
+      }
+    },
+    {
+      "query": "Pokemon Astral Radiance Radiant Heatran 27 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Astral%20Radiance%20Radiant%20Heatran%2027%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3489681",
+      "product_name": "Choy #182",
+      "console_name": "Pokemon Astral Radiance",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:182"
+      }
+    },
+    {
+      "query": "Pokemon Astral Radiance Radiant Heatran 27 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Astral%20Radiance%20Radiant%20Heatran%2027%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3489707",
+      "product_name": "Zisu #207",
+      "console_name": "Pokemon Astral Radiance",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:207"
+      }
+    },
+    {
+      "query": "Pokemon Astral Radiance Radiant Heatran 27 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Astral%20Radiance%20Radiant%20Heatran%2027%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3489700",
+      "product_name": "Choy #200",
+      "console_name": "Pokemon Astral Radiance",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:200"
+      }
+    },
+    {
+      "query": "Pokemon Astral Radiance Radiant Heatran 27 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Astral%20Radiance%20Radiant%20Heatran%2027%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3489658",
+      "product_name": "Zisu #159",
+      "console_name": "Pokemon Astral Radiance",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:159"
+      }
+    },
+    {
+      "query": "Pokemon Astral Radiance Radiant Heatran 27 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Astral%20Radiance%20Radiant%20Heatran%2027%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3489525",
+      "product_name": "Radiant Heatran #27",
+      "console_name": "Pokemon Astral Radiance",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon Astral Radiance Radiant Heatran 27 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Astral%20Radiance%20Radiant%20Heatran%2027%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9913336",
+      "product_name": "Radiant Greninja [Gym Stamp] #46",
+      "console_name": "Pokemon Astral Radiance",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:46"
+      }
+    },
+    {
+      "query": "Pokemon Astral Radiance Radiant Heatran 27 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Astral%20Radiance%20Radiant%20Heatran%2027%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3489523",
+      "product_name": "Heatran V #25",
+      "console_name": "Pokemon Astral Radiance",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:25"
+      }
+    },
+    {
+      "query": "Pokemon Astral Radiance Radiant Heatran 27 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Astral%20Radiance%20Radiant%20Heatran%2027%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3489664",
+      "product_name": "Heatran V #165",
+      "console_name": "Pokemon Astral Radiance",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:165"
+      }
+    },
+    {
+      "query": "Pokemon Astral Radiance Radiant Heatran 27 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Astral%20Radiance%20Radiant%20Heatran%2027%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3489524",
+      "product_name": "Heatran VMAX #26",
+      "console_name": "Pokemon Astral Radiance",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:26"
+      }
+    },
+    {
+      "query": "Pokemon Astral Radiance Radiant Heatran 27 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Astral%20Radiance%20Radiant%20Heatran%2027%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3489690",
+      "product_name": "Heatran VMAX #191",
+      "console_name": "Pokemon Astral Radiance",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:191"
+      }
+    },
+    {
+      "query": "Pokemon Astral Radiance Radiant Heatran 27 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Astral%20Radiance%20Radiant%20Heatran%2027%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3489544",
+      "product_name": "Radiant Greninja #46",
+      "console_name": "Pokemon Astral Radiance",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:46"
+      }
+    },
+    {
+      "query": "Pokemon Astral Radiance Radiant Heatran 27 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Astral%20Radiance%20Radiant%20Heatran%2027%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3489579",
+      "product_name": "Radiant Hawlucha #81",
+      "console_name": "Pokemon Astral Radiance",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:81"
+      }
+    },
+    {
+      "query": "Pokemon Astral Radiance Radiant Heatran 27 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Astral%20Radiance%20Radiant%20Heatran%2027%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5769125",
+      "product_name": "Starmie V [Stamped] #30",
+      "console_name": "Pokemon Astral Radiance",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:30"
+      }
+    },
+    {
+      "query": "Pokemon Astral Radiance Radiant Heatran 27 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Astral%20Radiance%20Radiant%20Heatran%2027%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6658428",
+      "product_name": "Cyllene [League Stamp] #138",
+      "console_name": "Pokemon Astral Radiance",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:138"
+      }
+    },
+    {
+      "query": "Pokemon Astral Radiance Radiant Heatran 27 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Astral%20Radiance%20Radiant%20Heatran%2027%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6166529",
+      "product_name": "Radiant Greninja [Prize Pack] #46",
+      "console_name": "Pokemon Astral Radiance",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:46"
+      }
+    },
+    {
+      "query": "Pokemon Astral Radiance Radiant Heatran 27 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Astral%20Radiance%20Radiant%20Heatran%2027%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3489784",
+      "product_name": "Radiant Hawlucha [Reverse Holo] #81",
+      "console_name": "Pokemon Astral Radiance",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:81"
+      }
+    },
+    {
+      "query": "Pokemon Astral Radiance Radiant Heatran 27 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Astral%20Radiance%20Radiant%20Heatran%2027%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5810877",
+      "product_name": "Stantler [Snowflake Stamp] #125",
+      "console_name": "Pokemon Astral Radiance",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:125"
+      }
+    },
+    {
+      "query": "Pokemon Astral Radiance Radiant Heatran 27 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Astral%20Radiance%20Radiant%20Heatran%2027%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3508417",
+      "product_name": "Bea #TG25",
+      "console_name": "Pokemon Astral Radiance",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:TG25"
+      }
+    },
+    {
+      "query": "Pokemon Astral Radiance Radiant Heatran 27 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Astral%20Radiance%20Radiant%20Heatran%2027%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3489563",
+      "product_name": "Uxie #65",
+      "console_name": "Pokemon Astral Radiance",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:65"
+      }
+    },
+    {
+      "query": "Pokemon Astral Radiance Radiant Heatran 27 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Astral%20Radiance%20Radiant%20Heatran%2027%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3489636",
+      "product_name": "Choy #137",
+      "console_name": "Pokemon Astral Radiance",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:137"
+      }
+    },
+    {
+      "query": "Pokemon Astral Radiance Radiant Heatran 27 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Astral%20Radiance%20Radiant%20Heatran%2027%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3489681",
+      "product_name": "Choy #182",
+      "console_name": "Pokemon Astral Radiance",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:182"
+      }
+    },
+    {
+      "query": "Pokemon Astral Radiance Radiant Heatran 27 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Astral%20Radiance%20Radiant%20Heatran%2027%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3489707",
+      "product_name": "Zisu #207",
+      "console_name": "Pokemon Astral Radiance",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:207"
+      }
+    },
+    {
+      "query": "Pokemon Astral Radiance Radiant Heatran 27 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Astral%20Radiance%20Radiant%20Heatran%2027%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3489700",
+      "product_name": "Choy #200",
+      "console_name": "Pokemon Astral Radiance",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:200"
+      }
+    },
+    {
+      "query": "Pokemon Astral Radiance Radiant Heatran 27 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Astral%20Radiance%20Radiant%20Heatran%2027%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3489658",
+      "product_name": "Zisu #159",
+      "console_name": "Pokemon Astral Radiance",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:159"
+      }
+    }
+  ],
+  "source_lane": "pricecharting_api"
+}

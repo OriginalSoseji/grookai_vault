@@ -1,0 +1,62 @@
+{
+  "status": "validated",
+  "fact": {
+    "gap_type": "finish_second_source_needed",
+    "fact_type": "printing_finish",
+    "set_key": "hgss4",
+    "set_name": "HS—Triumphant",
+    "card_number": "85",
+    "card_name": "Black Belt",
+    "finish_key": "stamped",
+    "status": "human_source_verified",
+    "sources": [
+      "thepricedex_price_list"
+    ],
+    "source_authorities": [
+      "thepricedex.com"
+    ],
+    "source_kinds": [
+      "marketplace_checklist"
+    ],
+    "evidence_urls": [
+      "https://www.thepricedex.com/set/hgss4/hs-triumphant/price-list"
+    ],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "query": "Pokemon HS—Triumphant Black Belt 85 stamped",
+  "search_url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Triumphant%20Black%20Belt%2085%20stamped",
+  "source_url": "https://www.pricecharting.com/game/pokemon-triumphant/black-belt-league-stamp-85",
+  "title": "Black Belt [League Stamp] #85 | Pokemon Triumphant",
+  "title_parts": {
+    "card_name": "Black Belt",
+    "card_number": "85",
+    "variant_label": "League Stamp",
+    "set_name": "Pokemon Triumphant",
+    "pricecharting_product_id": "7532304"
+  },
+  "validation_source": "pricecharting_api_products",
+  "source_lane": "pricecharting_api",
+  "attempts": [
+    {
+      "query": "Pokemon HS—Triumphant Black Belt 85 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Triumphant%20Black%20Belt%2085%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7532304",
+      "product_name": "Black Belt [League Stamp] #85",
+      "console_name": "Pokemon Triumphant",
+      "validation": {
+        "ok": true,
+        "titleParts": {
+          "card_name": "Black Belt",
+          "card_number": "85",
+          "variant_label": "League Stamp",
+          "set_name": "Pokemon Triumphant",
+          "pricecharting_product_id": "7532304"
+        },
+        "source_url": "https://www.pricecharting.com/game/pokemon-triumphant/black-belt-league-stamp-85",
+        "title": "Black Belt [League Stamp] #85 | Pokemon Triumphant"
+      }
+    }
+  ]
+}

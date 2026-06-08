@@ -1,0 +1,549 @@
+{
+  "status": "api_no_validated_match",
+  "fact": {
+    "gap_type": "finish_second_source_needed",
+    "fact_type": "printing_finish",
+    "set_key": "sv02",
+    "set_name": "Paldea Evolved",
+    "card_number": "192",
+    "card_name": "Reversal Energy",
+    "finish_key": "stamped",
+    "status": "human_source_verified",
+    "sources": [
+      "thepricedex_price_list"
+    ],
+    "source_authorities": [
+      "thepricedex.com"
+    ],
+    "source_kinds": [
+      "marketplace_checklist"
+    ],
+    "evidence_urls": [
+      "https://www.thepricedex.com/set/sv2/paldea-evolved/price-list"
+    ],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "attempts": [
+    {
+      "query": "Pokemon Paldea Evolved Reversal Energy 192 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Paldea%20Evolved%20Reversal%20Energy%20192%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5287481",
+      "product_name": "Reversal Energy #192",
+      "console_name": "Pokemon Paldea Evolved",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon Paldea Evolved Reversal Energy 192 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Paldea%20Evolved%20Reversal%20Energy%20192%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7437050",
+      "product_name": "Reversal Energy [Prize Pack] #192",
+      "console_name": "Pokemon Paldea Evolved",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Prize Pack"
+      }
+    },
+    {
+      "query": "Pokemon Paldea Evolved Reversal Energy 192 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Paldea%20Evolved%20Reversal%20Energy%20192%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5287743",
+      "product_name": "Reversal Energy [Reverse Holo] #192",
+      "console_name": "Pokemon Paldea Evolved",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Reverse Holo"
+      }
+    },
+    {
+      "query": "Pokemon Paldea Evolved Reversal Energy 192 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Paldea%20Evolved%20Reversal%20Energy%20192%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10909858",
+      "product_name": "Reversal Energy [Prize Pack Cosmos Holo] #192",
+      "console_name": "Pokemon Paldea Evolved",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Prize Pack Cosmos Holo"
+      }
+    },
+    {
+      "query": "Pokemon Paldea Evolved Reversal Energy 192 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Paldea%20Evolved%20Reversal%20Energy%20192%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10604834",
+      "product_name": "Reversal Energy #192",
+      "console_name": "Pokemon World Championships 2023",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon World Championships 2023"
+      }
+    },
+    {
+      "query": "Pokemon Paldea Evolved Reversal Energy 192 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Paldea%20Evolved%20Reversal%20Energy%20192%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5287479",
+      "product_name": "Jet Energy #190",
+      "console_name": "Pokemon Paldea Evolved",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:190"
+      }
+    },
+    {
+      "query": "Pokemon Paldea Evolved Reversal Energy 192 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Paldea%20Evolved%20Reversal%20Energy%20192%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10491821",
+      "product_name": "Tyranitar [Stamped] #135",
+      "console_name": "Pokemon Paldea Evolved",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:135"
+      }
+    },
+    {
+      "query": "Pokemon Paldea Evolved Reversal Energy 192 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Paldea%20Evolved%20Reversal%20Energy%20192%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6392495",
+      "product_name": "Tinkaton [Stamped] #105",
+      "console_name": "Pokemon Paldea Evolved",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:105"
+      }
+    },
+    {
+      "query": "Pokemon Paldea Evolved Reversal Energy 192 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Paldea%20Evolved%20Reversal%20Energy%20192%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5287480",
+      "product_name": "Luminous Energy #191",
+      "console_name": "Pokemon Paldea Evolved",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:191"
+      }
+    },
+    {
+      "query": "Pokemon Paldea Evolved Reversal Energy 192 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Paldea%20Evolved%20Reversal%20Energy%20192%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7322444",
+      "product_name": "Frigibax [Snowflake Stamp] #58",
+      "console_name": "Pokemon Paldea Evolved",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:58"
+      }
+    },
+    {
+      "query": "Pokemon Paldea Evolved Reversal Energy 192 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Paldea%20Evolved%20Reversal%20Energy%20192%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7322448",
+      "product_name": "Cetoddle [Snowflake Stamp] #53",
+      "console_name": "Pokemon Paldea Evolved",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:53"
+      }
+    },
+    {
+      "query": "Pokemon Paldea Evolved Reversal Energy 192 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Paldea%20Evolved%20Reversal%20Energy%20192%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7322439",
+      "product_name": "Pikachu Ex [Snowflake Stamp] #63",
+      "console_name": "Pokemon Paldea Evolved",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:63"
+      }
+    },
+    {
+      "query": "Pokemon Paldea Evolved Reversal Energy 192 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Paldea%20Evolved%20Reversal%20Energy%20192%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5287567",
+      "product_name": "Basic Grass Energy #278",
+      "console_name": "Pokemon Paldea Evolved",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:278"
+      }
+    },
+    {
+      "query": "Pokemon Paldea Evolved Reversal Energy 192 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Paldea%20Evolved%20Reversal%20Energy%20192%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7322441",
+      "product_name": "Chien-Pao Ex [Snowflake Stamp] #61",
+      "console_name": "Pokemon Paldea Evolved",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:61"
+      }
+    },
+    {
+      "query": "Pokemon Paldea Evolved Reversal Energy 192 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Paldea%20Evolved%20Reversal%20Energy%20192%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5287482",
+      "product_name": "Therapeutic Energy #193",
+      "console_name": "Pokemon Paldea Evolved",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:193"
+      }
+    },
+    {
+      "query": "Pokemon Paldea Evolved Reversal Energy 192 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Paldea%20Evolved%20Reversal%20Energy%20192%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5287568",
+      "product_name": "Basic Water Energy #279",
+      "console_name": "Pokemon Paldea Evolved",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:279"
+      }
+    },
+    {
+      "query": "Pokemon Paldea Evolved Reversal Energy 192 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Paldea%20Evolved%20Reversal%20Energy%20192%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7322438",
+      "product_name": "Jet Energy [Prize Pack] #190",
+      "console_name": "Pokemon Paldea Evolved",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:190"
+      }
+    },
+    {
+      "query": "Pokemon Paldea Evolved Reversal Energy 192 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Paldea%20Evolved%20Reversal%20Energy%20192%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5287741",
+      "product_name": "Jet Energy [Reverse Holo] #190",
+      "console_name": "Pokemon Paldea Evolved",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:190"
+      }
+    },
+    {
+      "query": "Pokemon Paldea Evolved Reversal Energy 192 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Paldea%20Evolved%20Reversal%20Energy%20192%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10909643",
+      "product_name": "Luminous Energy [Prize Pack] #191",
+      "console_name": "Pokemon Paldea Evolved",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:191"
+      }
+    },
+    {
+      "query": "Pokemon Paldea Evolved Reversal Energy 192 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Paldea%20Evolved%20Reversal%20Energy%20192%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5287742",
+      "product_name": "Luminous Energy [Reverse Holo] #191",
+      "console_name": "Pokemon Paldea Evolved",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:191"
+      }
+    },
+    {
+      "query": "Pokemon Paldea Evolved Reversal Energy 192 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Paldea%20Evolved%20Reversal%20Energy%20192%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5287481",
+      "product_name": "Reversal Energy #192",
+      "console_name": "Pokemon Paldea Evolved",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon Paldea Evolved Reversal Energy 192 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Paldea%20Evolved%20Reversal%20Energy%20192%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7437050",
+      "product_name": "Reversal Energy [Prize Pack] #192",
+      "console_name": "Pokemon Paldea Evolved",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Prize Pack"
+      }
+    },
+    {
+      "query": "Pokemon Paldea Evolved Reversal Energy 192 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Paldea%20Evolved%20Reversal%20Energy%20192%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5287743",
+      "product_name": "Reversal Energy [Reverse Holo] #192",
+      "console_name": "Pokemon Paldea Evolved",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Reverse Holo"
+      }
+    },
+    {
+      "query": "Pokemon Paldea Evolved Reversal Energy 192 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Paldea%20Evolved%20Reversal%20Energy%20192%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10909858",
+      "product_name": "Reversal Energy [Prize Pack Cosmos Holo] #192",
+      "console_name": "Pokemon Paldea Evolved",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Prize Pack Cosmos Holo"
+      }
+    },
+    {
+      "query": "Pokemon Paldea Evolved Reversal Energy 192 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Paldea%20Evolved%20Reversal%20Energy%20192%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10604834",
+      "product_name": "Reversal Energy #192",
+      "console_name": "Pokemon World Championships 2023",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon World Championships 2023"
+      }
+    },
+    {
+      "query": "Pokemon Paldea Evolved Reversal Energy 192 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Paldea%20Evolved%20Reversal%20Energy%20192%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5287479",
+      "product_name": "Jet Energy #190",
+      "console_name": "Pokemon Paldea Evolved",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:190"
+      }
+    },
+    {
+      "query": "Pokemon Paldea Evolved Reversal Energy 192 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Paldea%20Evolved%20Reversal%20Energy%20192%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10491821",
+      "product_name": "Tyranitar [Stamped] #135",
+      "console_name": "Pokemon Paldea Evolved",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:135"
+      }
+    },
+    {
+      "query": "Pokemon Paldea Evolved Reversal Energy 192 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Paldea%20Evolved%20Reversal%20Energy%20192%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6392495",
+      "product_name": "Tinkaton [Stamped] #105",
+      "console_name": "Pokemon Paldea Evolved",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:105"
+      }
+    },
+    {
+      "query": "Pokemon Paldea Evolved Reversal Energy 192 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Paldea%20Evolved%20Reversal%20Energy%20192%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5287480",
+      "product_name": "Luminous Energy #191",
+      "console_name": "Pokemon Paldea Evolved",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:191"
+      }
+    },
+    {
+      "query": "Pokemon Paldea Evolved Reversal Energy 192 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Paldea%20Evolved%20Reversal%20Energy%20192%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7322444",
+      "product_name": "Frigibax [Snowflake Stamp] #58",
+      "console_name": "Pokemon Paldea Evolved",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:58"
+      }
+    },
+    {
+      "query": "Pokemon Paldea Evolved Reversal Energy 192 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Paldea%20Evolved%20Reversal%20Energy%20192%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7322448",
+      "product_name": "Cetoddle [Snowflake Stamp] #53",
+      "console_name": "Pokemon Paldea Evolved",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:53"
+      }
+    },
+    {
+      "query": "Pokemon Paldea Evolved Reversal Energy 192 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Paldea%20Evolved%20Reversal%20Energy%20192%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7322439",
+      "product_name": "Pikachu Ex [Snowflake Stamp] #63",
+      "console_name": "Pokemon Paldea Evolved",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:63"
+      }
+    },
+    {
+      "query": "Pokemon Paldea Evolved Reversal Energy 192 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Paldea%20Evolved%20Reversal%20Energy%20192%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5287567",
+      "product_name": "Basic Grass Energy #278",
+      "console_name": "Pokemon Paldea Evolved",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:278"
+      }
+    },
+    {
+      "query": "Pokemon Paldea Evolved Reversal Energy 192 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Paldea%20Evolved%20Reversal%20Energy%20192%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7322441",
+      "product_name": "Chien-Pao Ex [Snowflake Stamp] #61",
+      "console_name": "Pokemon Paldea Evolved",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:61"
+      }
+    },
+    {
+      "query": "Pokemon Paldea Evolved Reversal Energy 192 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Paldea%20Evolved%20Reversal%20Energy%20192%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5287482",
+      "product_name": "Therapeutic Energy #193",
+      "console_name": "Pokemon Paldea Evolved",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:193"
+      }
+    },
+    {
+      "query": "Pokemon Paldea Evolved Reversal Energy 192 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Paldea%20Evolved%20Reversal%20Energy%20192%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5287568",
+      "product_name": "Basic Water Energy #279",
+      "console_name": "Pokemon Paldea Evolved",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:279"
+      }
+    },
+    {
+      "query": "Pokemon Paldea Evolved Reversal Energy 192 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Paldea%20Evolved%20Reversal%20Energy%20192%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7322438",
+      "product_name": "Jet Energy [Prize Pack] #190",
+      "console_name": "Pokemon Paldea Evolved",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:190"
+      }
+    },
+    {
+      "query": "Pokemon Paldea Evolved Reversal Energy 192 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Paldea%20Evolved%20Reversal%20Energy%20192%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5287741",
+      "product_name": "Jet Energy [Reverse Holo] #190",
+      "console_name": "Pokemon Paldea Evolved",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:190"
+      }
+    },
+    {
+      "query": "Pokemon Paldea Evolved Reversal Energy 192 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Paldea%20Evolved%20Reversal%20Energy%20192%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10909643",
+      "product_name": "Luminous Energy [Prize Pack] #191",
+      "console_name": "Pokemon Paldea Evolved",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:191"
+      }
+    },
+    {
+      "query": "Pokemon Paldea Evolved Reversal Energy 192 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Paldea%20Evolved%20Reversal%20Energy%20192%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5287742",
+      "product_name": "Luminous Energy [Reverse Holo] #191",
+      "console_name": "Pokemon Paldea Evolved",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:191"
+      }
+    }
+  ],
+  "source_lane": "pricecharting_api"
+}

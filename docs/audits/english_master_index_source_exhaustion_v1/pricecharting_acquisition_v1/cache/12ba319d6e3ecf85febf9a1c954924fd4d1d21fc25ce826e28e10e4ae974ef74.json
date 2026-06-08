@@ -1,0 +1,549 @@
+{
+  "status": "api_no_validated_match",
+  "fact": {
+    "gap_type": "finish_second_source_needed",
+    "fact_type": "printing_finish",
+    "set_key": "bw1",
+    "set_name": "Black & White",
+    "card_number": "109",
+    "card_name": "Psychic Energy",
+    "finish_key": "stamped",
+    "status": "human_source_verified",
+    "sources": [
+      "thepricedex_price_list"
+    ],
+    "source_authorities": [
+      "thepricedex.com"
+    ],
+    "source_kinds": [
+      "marketplace_checklist"
+    ],
+    "evidence_urls": [
+      "https://www.thepricedex.com/set/bw1/black-and-white/price-list"
+    ],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "attempts": [
+    {
+      "query": "Pokemon Black & White Psychic Energy 109 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Psychic%20Energy%20109%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8597957",
+      "product_name": "Psychic Energy [Play] #109",
+      "console_name": "Pokemon Black & White",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Play"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Psychic Energy 109 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Psychic%20Energy%20109%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "2677913",
+      "product_name": "Psychic Energy #109",
+      "console_name": "Pokemon Black & White",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Psychic Energy 109 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Psychic%20Energy%20109%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "889189",
+      "product_name": "Psychic Energy [Holo] #109",
+      "console_name": "Pokemon Holon Phantoms",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon Holon Phantoms"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Psychic Energy 109 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Psychic%20Energy%20109%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9680423",
+      "product_name": "Psychic Energy [Stamped] #1105",
+      "console_name": "Pokemon Chinese Gem Pack 2",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:1105"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Psychic Energy 109 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Psychic%20Energy%20109%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12654474",
+      "product_name": "Psychic Energy [2013]",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "api_product_name_pattern_not_supported"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Psychic Energy 109 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Psychic%20Energy%20109%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6985251",
+      "product_name": "Psychic Energy [WOTC League]",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "api_product_name_pattern_not_supported"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Psychic Energy 109 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Psychic%20Energy%20109%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8597956",
+      "product_name": "Psychic Energy [Organized Play]",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "api_product_name_pattern_not_supported"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Psychic Energy 109 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Psychic%20Energy%20109%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3472636",
+      "product_name": "Psychic Energy #95",
+      "console_name": "Pokemon Japanese Jet-Black Spirit",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:95"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Psychic Energy 109 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Psychic%20Energy%20109%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12645424",
+      "product_name": "Psychic Energy #95",
+      "console_name": "Pokemon Korean Jet Black Geist",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:95"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Psychic Energy 109 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Psychic%20Energy%20109%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11918538",
+      "product_name": "Psychic Energy [1999-2000] #101",
+      "console_name": "Pokemon Base Set",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:101"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Psychic Energy 109 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Psychic%20Energy%20109%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "2677911",
+      "product_name": "Grass Energy #105",
+      "console_name": "Pokemon Black & White",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:105"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Psychic Energy 109 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Psychic%20Energy%20109%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8597954",
+      "product_name": "Metal Energy [Play] #112",
+      "console_name": "Pokemon Black & White",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:112"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Psychic Energy 109 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Psychic%20Energy%20109%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "2677907",
+      "product_name": "Darkness Energy #111",
+      "console_name": "Pokemon Black & White",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:111"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Psychic Energy 109 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Psychic%20Energy%20109%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3951778",
+      "product_name": "Psychic Energy [Shadowless] #101",
+      "console_name": "Pokemon Base Set",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:101"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Psychic Energy 109 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Psychic%20Energy%20109%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "889771",
+      "product_name": "Psychic Energy [Holo] #107",
+      "console_name": "Pokemon Power Keepers",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:107"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Psychic Energy 109 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Psychic%20Energy%20109%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4637052",
+      "product_name": "Psychic Energy [Holo] #156",
+      "console_name": "Pokemon Crown Zenith",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:156"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Psychic Energy 109 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Psychic%20Energy%20109%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "888330",
+      "product_name": "Psychic Energy [Holo] #105",
+      "console_name": "Pokemon Emerald",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:105"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Psychic Energy 109 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Psychic%20Energy%20109%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5278810",
+      "product_name": "Psychic Energy [Holo]",
+      "console_name": "Pokemon Japanese 2002 McDonald's",
+      "validation": {
+        "ok": false,
+        "reason": "api_product_name_pattern_not_supported"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Psychic Energy 109 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Psychic%20Energy%20109%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8330912",
+      "product_name": "Psychic Energy [Holo]",
+      "console_name": "Pokemon Japanese 25th Anniversary Collection",
+      "validation": {
+        "ok": false,
+        "reason": "api_product_name_pattern_not_supported"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Psychic Energy 109 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Psychic%20Energy%20109%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5442441",
+      "product_name": "Psychic Energy [Holo] #PSY",
+      "console_name": "Pokemon Japanese Go",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:PSY"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Psychic Energy 109 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Psychic%20Energy%20109%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8597957",
+      "product_name": "Psychic Energy [Play] #109",
+      "console_name": "Pokemon Black & White",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Play"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Psychic Energy 109 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Psychic%20Energy%20109%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "2677913",
+      "product_name": "Psychic Energy #109",
+      "console_name": "Pokemon Black & White",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Psychic Energy 109 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Psychic%20Energy%20109%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "889189",
+      "product_name": "Psychic Energy [Holo] #109",
+      "console_name": "Pokemon Holon Phantoms",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon Holon Phantoms"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Psychic Energy 109 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Psychic%20Energy%20109%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9680423",
+      "product_name": "Psychic Energy [Stamped] #1105",
+      "console_name": "Pokemon Chinese Gem Pack 2",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:1105"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Psychic Energy 109 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Psychic%20Energy%20109%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12654474",
+      "product_name": "Psychic Energy [2013]",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "api_product_name_pattern_not_supported"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Psychic Energy 109 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Psychic%20Energy%20109%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6985251",
+      "product_name": "Psychic Energy [WOTC League]",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "api_product_name_pattern_not_supported"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Psychic Energy 109 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Psychic%20Energy%20109%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8597956",
+      "product_name": "Psychic Energy [Organized Play]",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "api_product_name_pattern_not_supported"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Psychic Energy 109 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Psychic%20Energy%20109%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3472636",
+      "product_name": "Psychic Energy #95",
+      "console_name": "Pokemon Japanese Jet-Black Spirit",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:95"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Psychic Energy 109 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Psychic%20Energy%20109%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12645424",
+      "product_name": "Psychic Energy #95",
+      "console_name": "Pokemon Korean Jet Black Geist",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:95"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Psychic Energy 109 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Psychic%20Energy%20109%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11918538",
+      "product_name": "Psychic Energy [1999-2000] #101",
+      "console_name": "Pokemon Base Set",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:101"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Psychic Energy 109 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Psychic%20Energy%20109%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "2677911",
+      "product_name": "Grass Energy #105",
+      "console_name": "Pokemon Black & White",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:105"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Psychic Energy 109 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Psychic%20Energy%20109%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8597954",
+      "product_name": "Metal Energy [Play] #112",
+      "console_name": "Pokemon Black & White",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:112"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Psychic Energy 109 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Psychic%20Energy%20109%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "2677907",
+      "product_name": "Darkness Energy #111",
+      "console_name": "Pokemon Black & White",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:111"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Psychic Energy 109 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Psychic%20Energy%20109%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3951778",
+      "product_name": "Psychic Energy [Shadowless] #101",
+      "console_name": "Pokemon Base Set",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:101"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Psychic Energy 109 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Psychic%20Energy%20109%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "889771",
+      "product_name": "Psychic Energy [Holo] #107",
+      "console_name": "Pokemon Power Keepers",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:107"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Psychic Energy 109 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Psychic%20Energy%20109%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4637052",
+      "product_name": "Psychic Energy [Holo] #156",
+      "console_name": "Pokemon Crown Zenith",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:156"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Psychic Energy 109 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Psychic%20Energy%20109%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "888330",
+      "product_name": "Psychic Energy [Holo] #105",
+      "console_name": "Pokemon Emerald",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:105"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Psychic Energy 109 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Psychic%20Energy%20109%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5278810",
+      "product_name": "Psychic Energy [Holo]",
+      "console_name": "Pokemon Japanese 2002 McDonald's",
+      "validation": {
+        "ok": false,
+        "reason": "api_product_name_pattern_not_supported"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Psychic Energy 109 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Psychic%20Energy%20109%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8330912",
+      "product_name": "Psychic Energy [Holo]",
+      "console_name": "Pokemon Japanese 25th Anniversary Collection",
+      "validation": {
+        "ok": false,
+        "reason": "api_product_name_pattern_not_supported"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Psychic Energy 109 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Psychic%20Energy%20109%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5442441",
+      "product_name": "Psychic Energy [Holo] #PSY",
+      "console_name": "Pokemon Japanese Go",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:PSY"
+      }
+    }
+  ],
+  "source_lane": "pricecharting_api"
+}

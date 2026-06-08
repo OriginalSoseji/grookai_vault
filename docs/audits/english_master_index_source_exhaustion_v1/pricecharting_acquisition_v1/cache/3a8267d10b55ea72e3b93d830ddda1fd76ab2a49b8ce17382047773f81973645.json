@@ -1,0 +1,549 @@
+{
+  "status": "api_no_validated_match",
+  "fact": {
+    "gap_type": "finish_second_source_needed",
+    "fact_type": "printing_finish",
+    "set_key": "sv10",
+    "set_name": "Destined Rivals",
+    "card_number": "10",
+    "card_name": "Shaymin",
+    "finish_key": "stamped",
+    "status": "human_source_verified",
+    "sources": [
+      "thepricedex_price_list"
+    ],
+    "source_authorities": [
+      "thepricedex.com"
+    ],
+    "source_kinds": [
+      "marketplace_checklist"
+    ],
+    "evidence_urls": [
+      "https://www.thepricedex.com/set/sv10/destined-rivals/price-list"
+    ],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "attempts": [
+    {
+      "query": "Pokemon Destined Rivals Shaymin 10 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Destined%20Rivals%20Shaymin%2010%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9432718",
+      "product_name": "Shaymin #10",
+      "console_name": "Pokemon Destined Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon Destined Rivals Shaymin 10 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Destined%20Rivals%20Shaymin%2010%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12300056",
+      "product_name": "Shaymin [Prize Pack] #10",
+      "console_name": "Pokemon Destined Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Prize Pack"
+      }
+    },
+    {
+      "query": "Pokemon Destined Rivals Shaymin 10 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Destined%20Rivals%20Shaymin%2010%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9432960",
+      "product_name": "Shaymin [Reverse Holo] #10",
+      "console_name": "Pokemon Destined Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Reverse Holo"
+      }
+    },
+    {
+      "query": "Pokemon Destined Rivals Shaymin 10 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Destined%20Rivals%20Shaymin%2010%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9432892",
+      "product_name": "Shaymin #185",
+      "console_name": "Pokemon Destined Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:185"
+      }
+    },
+    {
+      "query": "Pokemon Destined Rivals Shaymin 10 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Destined%20Rivals%20Shaymin%2010%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9572257",
+      "product_name": "Misty's Gyarados [Stamped] #49",
+      "console_name": "Pokemon Destined Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:49"
+      }
+    },
+    {
+      "query": "Pokemon Destined Rivals Shaymin 10 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Destined%20Rivals%20Shaymin%2010%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9572255",
+      "product_name": "Ethan's Typhlosion [Stamped] #34",
+      "console_name": "Pokemon Destined Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:34"
+      }
+    },
+    {
+      "query": "Pokemon Destined Rivals Shaymin 10 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Destined%20Rivals%20Shaymin%2010%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9962541",
+      "product_name": "Team Rocket's Tyranitar [Stamped] #96",
+      "console_name": "Pokemon Destined Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:96"
+      }
+    },
+    {
+      "query": "Pokemon Destined Rivals Shaymin 10 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Destined%20Rivals%20Shaymin%2010%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9670337",
+      "product_name": "Team Rocket's Articuno [Stamped] #51",
+      "console_name": "Pokemon Destined Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:51"
+      }
+    },
+    {
+      "query": "Pokemon Destined Rivals Shaymin 10 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Destined%20Rivals%20Shaymin%2010%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10112145",
+      "product_name": "Team Rocket's Zapdos [Stamped] #70",
+      "console_name": "Pokemon Destined Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:70"
+      }
+    },
+    {
+      "query": "Pokemon Destined Rivals Shaymin 10 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Destined%20Rivals%20Shaymin%2010%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11315067",
+      "product_name": "Team Rocket's Moltres ex [Stamped] #229",
+      "console_name": "Pokemon Destined Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:229"
+      }
+    },
+    {
+      "query": "Pokemon Destined Rivals Shaymin 10 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Destined%20Rivals%20Shaymin%2010%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11315057",
+      "product_name": "Team Rocket's Moltres ex [Stamped] #208",
+      "console_name": "Pokemon Destined Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:208"
+      }
+    },
+    {
+      "query": "Pokemon Destined Rivals Shaymin 10 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Destined%20Rivals%20Shaymin%2010%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11315071",
+      "product_name": "Team Rocket's Moltres ex [Stamped] #31",
+      "console_name": "Pokemon Destined Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:31"
+      }
+    },
+    {
+      "query": "Pokemon Destined Rivals Shaymin 10 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Destined%20Rivals%20Shaymin%2010%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9432890",
+      "product_name": "Yanma #183",
+      "console_name": "Pokemon Destined Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:183"
+      }
+    },
+    {
+      "query": "Pokemon Destined Rivals Shaymin 10 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Destined%20Rivals%20Shaymin%2010%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9432875",
+      "product_name": "Judge #167",
+      "console_name": "Pokemon Destined Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:167"
+      }
+    },
+    {
+      "query": "Pokemon Destined Rivals Shaymin 10 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Destined%20Rivals%20Shaymin%2010%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9432785",
+      "product_name": "Rotom #77",
+      "console_name": "Pokemon Destined Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:77"
+      }
+    },
+    {
+      "query": "Pokemon Destined Rivals Shaymin 10 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Destined%20Rivals%20Shaymin%2010%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9432929",
+      "product_name": "Judge #222",
+      "console_name": "Pokemon Destined Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:222"
+      }
+    },
+    {
+      "query": "Pokemon Destined Rivals Shaymin 10 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Destined%20Rivals%20Shaymin%2010%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9432904",
+      "product_name": "Rotom #197",
+      "console_name": "Pokemon Destined Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:197"
+      }
+    },
+    {
+      "query": "Pokemon Destined Rivals Shaymin 10 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Destined%20Rivals%20Shaymin%2010%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9432710",
+      "product_name": "Yanma #2",
+      "console_name": "Pokemon Destined Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:2"
+      }
+    },
+    {
+      "query": "Pokemon Destined Rivals Shaymin 10 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Destined%20Rivals%20Shaymin%2010%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9432729",
+      "product_name": "Smoliv #21",
+      "console_name": "Pokemon Destined Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:21"
+      }
+    },
+    {
+      "query": "Pokemon Destined Rivals Shaymin 10 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Destined%20Rivals%20Shaymin%2010%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9432730",
+      "product_name": "Dolliv #22",
+      "console_name": "Pokemon Destined Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:22"
+      }
+    },
+    {
+      "query": "Pokemon Destined Rivals Shaymin 10 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Destined%20Rivals%20Shaymin%2010%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9432718",
+      "product_name": "Shaymin #10",
+      "console_name": "Pokemon Destined Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon Destined Rivals Shaymin 10 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Destined%20Rivals%20Shaymin%2010%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12300056",
+      "product_name": "Shaymin [Prize Pack] #10",
+      "console_name": "Pokemon Destined Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Prize Pack"
+      }
+    },
+    {
+      "query": "Pokemon Destined Rivals Shaymin 10 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Destined%20Rivals%20Shaymin%2010%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9432960",
+      "product_name": "Shaymin [Reverse Holo] #10",
+      "console_name": "Pokemon Destined Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Reverse Holo"
+      }
+    },
+    {
+      "query": "Pokemon Destined Rivals Shaymin 10 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Destined%20Rivals%20Shaymin%2010%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9432892",
+      "product_name": "Shaymin #185",
+      "console_name": "Pokemon Destined Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:185"
+      }
+    },
+    {
+      "query": "Pokemon Destined Rivals Shaymin 10 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Destined%20Rivals%20Shaymin%2010%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9572257",
+      "product_name": "Misty's Gyarados [Stamped] #49",
+      "console_name": "Pokemon Destined Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:49"
+      }
+    },
+    {
+      "query": "Pokemon Destined Rivals Shaymin 10 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Destined%20Rivals%20Shaymin%2010%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9572255",
+      "product_name": "Ethan's Typhlosion [Stamped] #34",
+      "console_name": "Pokemon Destined Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:34"
+      }
+    },
+    {
+      "query": "Pokemon Destined Rivals Shaymin 10 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Destined%20Rivals%20Shaymin%2010%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9962541",
+      "product_name": "Team Rocket's Tyranitar [Stamped] #96",
+      "console_name": "Pokemon Destined Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:96"
+      }
+    },
+    {
+      "query": "Pokemon Destined Rivals Shaymin 10 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Destined%20Rivals%20Shaymin%2010%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9670337",
+      "product_name": "Team Rocket's Articuno [Stamped] #51",
+      "console_name": "Pokemon Destined Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:51"
+      }
+    },
+    {
+      "query": "Pokemon Destined Rivals Shaymin 10 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Destined%20Rivals%20Shaymin%2010%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10112145",
+      "product_name": "Team Rocket's Zapdos [Stamped] #70",
+      "console_name": "Pokemon Destined Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:70"
+      }
+    },
+    {
+      "query": "Pokemon Destined Rivals Shaymin 10 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Destined%20Rivals%20Shaymin%2010%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11315067",
+      "product_name": "Team Rocket's Moltres ex [Stamped] #229",
+      "console_name": "Pokemon Destined Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:229"
+      }
+    },
+    {
+      "query": "Pokemon Destined Rivals Shaymin 10 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Destined%20Rivals%20Shaymin%2010%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11315057",
+      "product_name": "Team Rocket's Moltres ex [Stamped] #208",
+      "console_name": "Pokemon Destined Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:208"
+      }
+    },
+    {
+      "query": "Pokemon Destined Rivals Shaymin 10 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Destined%20Rivals%20Shaymin%2010%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11315071",
+      "product_name": "Team Rocket's Moltres ex [Stamped] #31",
+      "console_name": "Pokemon Destined Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:31"
+      }
+    },
+    {
+      "query": "Pokemon Destined Rivals Shaymin 10 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Destined%20Rivals%20Shaymin%2010%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9432890",
+      "product_name": "Yanma #183",
+      "console_name": "Pokemon Destined Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:183"
+      }
+    },
+    {
+      "query": "Pokemon Destined Rivals Shaymin 10 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Destined%20Rivals%20Shaymin%2010%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9432875",
+      "product_name": "Judge #167",
+      "console_name": "Pokemon Destined Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:167"
+      }
+    },
+    {
+      "query": "Pokemon Destined Rivals Shaymin 10 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Destined%20Rivals%20Shaymin%2010%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9432785",
+      "product_name": "Rotom #77",
+      "console_name": "Pokemon Destined Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:77"
+      }
+    },
+    {
+      "query": "Pokemon Destined Rivals Shaymin 10 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Destined%20Rivals%20Shaymin%2010%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9432929",
+      "product_name": "Judge #222",
+      "console_name": "Pokemon Destined Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:222"
+      }
+    },
+    {
+      "query": "Pokemon Destined Rivals Shaymin 10 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Destined%20Rivals%20Shaymin%2010%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9432904",
+      "product_name": "Rotom #197",
+      "console_name": "Pokemon Destined Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:197"
+      }
+    },
+    {
+      "query": "Pokemon Destined Rivals Shaymin 10 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Destined%20Rivals%20Shaymin%2010%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9432710",
+      "product_name": "Yanma #2",
+      "console_name": "Pokemon Destined Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:2"
+      }
+    },
+    {
+      "query": "Pokemon Destined Rivals Shaymin 10 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Destined%20Rivals%20Shaymin%2010%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9432729",
+      "product_name": "Smoliv #21",
+      "console_name": "Pokemon Destined Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:21"
+      }
+    },
+    {
+      "query": "Pokemon Destined Rivals Shaymin 10 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Destined%20Rivals%20Shaymin%2010%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9432730",
+      "product_name": "Dolliv #22",
+      "console_name": "Pokemon Destined Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:22"
+      }
+    }
+  ],
+  "source_lane": "pricecharting_api"
+}

@@ -1,0 +1,43 @@
+{
+  "status": "no_validated_match",
+  "fact": {
+    "gap_type": "finish_second_source_needed",
+    "fact_type": "printing_finish",
+    "set_key": "bw7",
+    "set_name": "Boundaries Crossed",
+    "card_number": "54",
+    "card_name": "Electivire",
+    "finish_key": "cosmos",
+    "status": "human_source_verified",
+    "sources": [
+      "thepricedex_price_list"
+    ],
+    "source_authorities": [
+      "thepricedex.com"
+    ],
+    "source_kinds": [
+      "marketplace_checklist"
+    ],
+    "evidence_urls": [],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "attempts": [
+    {
+      "query": "Pokemon Boundaries Crossed Electivire 54 cosmos holo",
+      "url": "https://www.pricecharting.com/search-products?q=Pokemon%20Boundaries%20Crossed%20Electivire%2054%20cosmos%20holo&type=prices",
+      "parsed": {
+        "title": "Pokemon Boundaries Crossed Electivire 54 Cosmos Holo Prices | Pokemon Boundaries Crossed Electivire 54 Cosmos Holo List",
+        "source_url": "https://www.pricecharting.com/search-products?q=pokemon+boundaries+crossed+electivire+54+cosmos+holo&type=prices"
+      },
+      "validation": {
+        "ok": false,
+        "reason": "title_pattern_not_supported"
+      }
+    },
+    {
+      "query": "Pokemon Boundaries Crossed Electivire 54 cosmos",
+      "url": "https://www.pricecharting.com/search-products?q=Pokemon%20Boundaries%20Crossed%20Electivire%2054%20cosmos&type=prices",
+      "error": "Fetch failed 403 Forbidden: https://www.pricecharting.com/search-products?q=Pokemon%20Boundaries%20Crossed%20Electivire%2054%20cosmos&type=prices"
+    }
+  ]
+}

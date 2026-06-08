@@ -1,0 +1,549 @@
+{
+  "status": "api_no_validated_match",
+  "fact": {
+    "gap_type": "finish_second_source_needed",
+    "fact_type": "printing_finish",
+    "set_key": "sv09",
+    "set_name": "Journey Together",
+    "card_number": "111",
+    "card_name": "Hop's Zacian ex",
+    "finish_key": "stamped",
+    "status": "human_source_verified",
+    "sources": [
+      "thepricedex_price_list"
+    ],
+    "source_authorities": [
+      "thepricedex.com"
+    ],
+    "source_kinds": [
+      "marketplace_checklist"
+    ],
+    "evidence_urls": [
+      "https://www.thepricedex.com/set/sv9/journey-together/price-list"
+    ],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "attempts": [
+    {
+      "query": "Pokemon Journey Together Hop's Zacian ex 111 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Journey%20Together%20Hop's%20Zacian%20ex%20111%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8871103",
+      "product_name": "Hop's Zacian ex #111",
+      "console_name": "Pokemon Journey Together",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon Journey Together Hop's Zacian ex 111 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Journey%20Together%20Hop's%20Zacian%20ex%20111%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10951926",
+      "product_name": "Hop's Zacian Ex [Prize Pack] #111",
+      "console_name": "Pokemon Journey Together",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Prize Pack"
+      }
+    },
+    {
+      "query": "Pokemon Journey Together Hop's Zacian ex 111 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Journey%20Together%20Hop's%20Zacian%20ex%20111%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8871327",
+      "product_name": "Hop's Zacian ex #176",
+      "console_name": "Pokemon Journey Together",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:176"
+      }
+    },
+    {
+      "query": "Pokemon Journey Together Hop's Zacian ex 111 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Journey%20Together%20Hop's%20Zacian%20ex%20111%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8871341",
+      "product_name": "Hop's Zacian ex #186",
+      "console_name": "Pokemon Journey Together",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:186"
+      }
+    },
+    {
+      "query": "Pokemon Journey Together Hop's Zacian ex 111 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Journey%20Together%20Hop's%20Zacian%20ex%20111%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9052286",
+      "product_name": "Hops Zacian Ex Sealed Box",
+      "console_name": "Pokemon Journey Together",
+      "validation": {
+        "ok": false,
+        "reason": "api_product_name_pattern_not_supported"
+      }
+    },
+    {
+      "query": "Pokemon Journey Together Hop's Zacian ex 111 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Journey%20Together%20Hop's%20Zacian%20ex%20111%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9029005",
+      "product_name": "Hop's Dubwool [Stamped] #136",
+      "console_name": "Pokemon Journey Together",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:136"
+      }
+    },
+    {
+      "query": "Pokemon Journey Together Hop's Zacian ex 111 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Journey%20Together%20Hop's%20Zacian%20ex%20111%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11266312",
+      "product_name": "Alcremie Ex [Stamped] #75",
+      "console_name": "Pokemon Journey Together",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:75"
+      }
+    },
+    {
+      "query": "Pokemon Journey Together Hop's Zacian ex 111 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Journey%20Together%20Hop's%20Zacian%20ex%20111%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11105548",
+      "product_name": "Salamence Ex [Stamped] #114",
+      "console_name": "Pokemon Journey Together",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:114"
+      }
+    },
+    {
+      "query": "Pokemon Journey Together Hop's Zacian ex 111 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Journey%20Together%20Hop's%20Zacian%20ex%20111%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11105547",
+      "product_name": "Reshiram Ex [Stamped] #30",
+      "console_name": "Pokemon Journey Together",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:30"
+      }
+    },
+    {
+      "query": "Pokemon Journey Together Hop's Zacian ex 111 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Journey%20Together%20Hop's%20Zacian%20ex%20111%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8928002",
+      "product_name": "Hop's Zacian Ex #193",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:193"
+      }
+    },
+    {
+      "query": "Pokemon Journey Together Hop's Zacian ex 111 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Journey%20Together%20Hop's%20Zacian%20ex%20111%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11302489",
+      "product_name": "Hop's Zacian ex #123",
+      "console_name": "Pokemon Japanese Mega Dream ex",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:123"
+      }
+    },
+    {
+      "query": "Pokemon Journey Together Hop's Zacian ex 111 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Journey%20Together%20Hop's%20Zacian%20ex%20111%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8437147",
+      "product_name": "Hop's Zacian ex #69",
+      "console_name": "Pokemon Japanese Battle Partners",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:69"
+      }
+    },
+    {
+      "query": "Pokemon Journey Together Hop's Zacian ex 111 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Journey%20Together%20Hop's%20Zacian%20ex%20111%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8437196",
+      "product_name": "Hop's Zacian ex #118",
+      "console_name": "Pokemon Japanese Battle Partners",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:118"
+      }
+    },
+    {
+      "query": "Pokemon Journey Together Hop's Zacian ex 111 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Journey%20Together%20Hop's%20Zacian%20ex%20111%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8437206",
+      "product_name": "Hop's Zacian ex #128",
+      "console_name": "Pokemon Japanese Battle Partners",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:128"
+      }
+    },
+    {
+      "query": "Pokemon Journey Together Hop's Zacian ex 111 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Journey%20Together%20Hop's%20Zacian%20ex%20111%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "13015074",
+      "product_name": "Hop's Zacian ex #123",
+      "console_name": "Pokemon Korean Mega Dream ex",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:123"
+      }
+    },
+    {
+      "query": "Pokemon Journey Together Hop's Zacian ex 111 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Journey%20Together%20Hop's%20Zacian%20ex%20111%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11462864",
+      "product_name": "Hop's Zacian ex #527",
+      "console_name": "Pokemon Japanese Start Deck 100 Battle Collection",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:527"
+      }
+    },
+    {
+      "query": "Pokemon Journey Together Hop's Zacian ex 111 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Journey%20Together%20Hop's%20Zacian%20ex%20111%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8957611",
+      "product_name": "Hop's Zacian EX [Jumbo] #193",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "product_scope_jumbo_not_canonical_set_finish"
+      }
+    },
+    {
+      "query": "Pokemon Journey Together Hop's Zacian ex 111 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Journey%20Together%20Hop's%20Zacian%20ex%20111%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8871237",
+      "product_name": "Hop's Bag #147",
+      "console_name": "Pokemon Journey Together",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:147"
+      }
+    },
+    {
+      "query": "Pokemon Journey Together Hop's Zacian ex 111 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Journey%20Together%20Hop's%20Zacian%20ex%20111%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11519675",
+      "product_name": "Hop's Zacian ex [Mirror Holo] #527",
+      "console_name": "Pokemon Japanese Start Deck 100 Battle Collection",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:527"
+      }
+    },
+    {
+      "query": "Pokemon Journey Together Hop's Zacian ex 111 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Journey%20Together%20Hop's%20Zacian%20ex%20111%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8871203",
+      "product_name": "Hop's Wooloo #135",
+      "console_name": "Pokemon Journey Together",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:135"
+      }
+    },
+    {
+      "query": "Pokemon Journey Together Hop's Zacian ex 111 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Journey%20Together%20Hop's%20Zacian%20ex%20111%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8871103",
+      "product_name": "Hop's Zacian ex #111",
+      "console_name": "Pokemon Journey Together",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon Journey Together Hop's Zacian ex 111 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Journey%20Together%20Hop's%20Zacian%20ex%20111%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10951926",
+      "product_name": "Hop's Zacian Ex [Prize Pack] #111",
+      "console_name": "Pokemon Journey Together",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Prize Pack"
+      }
+    },
+    {
+      "query": "Pokemon Journey Together Hop's Zacian ex 111 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Journey%20Together%20Hop's%20Zacian%20ex%20111%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8871327",
+      "product_name": "Hop's Zacian ex #176",
+      "console_name": "Pokemon Journey Together",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:176"
+      }
+    },
+    {
+      "query": "Pokemon Journey Together Hop's Zacian ex 111 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Journey%20Together%20Hop's%20Zacian%20ex%20111%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8871341",
+      "product_name": "Hop's Zacian ex #186",
+      "console_name": "Pokemon Journey Together",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:186"
+      }
+    },
+    {
+      "query": "Pokemon Journey Together Hop's Zacian ex 111 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Journey%20Together%20Hop's%20Zacian%20ex%20111%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9052286",
+      "product_name": "Hops Zacian Ex Sealed Box",
+      "console_name": "Pokemon Journey Together",
+      "validation": {
+        "ok": false,
+        "reason": "api_product_name_pattern_not_supported"
+      }
+    },
+    {
+      "query": "Pokemon Journey Together Hop's Zacian ex 111 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Journey%20Together%20Hop's%20Zacian%20ex%20111%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9029005",
+      "product_name": "Hop's Dubwool [Stamped] #136",
+      "console_name": "Pokemon Journey Together",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:136"
+      }
+    },
+    {
+      "query": "Pokemon Journey Together Hop's Zacian ex 111 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Journey%20Together%20Hop's%20Zacian%20ex%20111%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11266312",
+      "product_name": "Alcremie Ex [Stamped] #75",
+      "console_name": "Pokemon Journey Together",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:75"
+      }
+    },
+    {
+      "query": "Pokemon Journey Together Hop's Zacian ex 111 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Journey%20Together%20Hop's%20Zacian%20ex%20111%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11105548",
+      "product_name": "Salamence Ex [Stamped] #114",
+      "console_name": "Pokemon Journey Together",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:114"
+      }
+    },
+    {
+      "query": "Pokemon Journey Together Hop's Zacian ex 111 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Journey%20Together%20Hop's%20Zacian%20ex%20111%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11105547",
+      "product_name": "Reshiram Ex [Stamped] #30",
+      "console_name": "Pokemon Journey Together",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:30"
+      }
+    },
+    {
+      "query": "Pokemon Journey Together Hop's Zacian ex 111 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Journey%20Together%20Hop's%20Zacian%20ex%20111%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8928002",
+      "product_name": "Hop's Zacian Ex #193",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:193"
+      }
+    },
+    {
+      "query": "Pokemon Journey Together Hop's Zacian ex 111 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Journey%20Together%20Hop's%20Zacian%20ex%20111%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11302489",
+      "product_name": "Hop's Zacian ex #123",
+      "console_name": "Pokemon Japanese Mega Dream ex",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:123"
+      }
+    },
+    {
+      "query": "Pokemon Journey Together Hop's Zacian ex 111 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Journey%20Together%20Hop's%20Zacian%20ex%20111%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8437147",
+      "product_name": "Hop's Zacian ex #69",
+      "console_name": "Pokemon Japanese Battle Partners",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:69"
+      }
+    },
+    {
+      "query": "Pokemon Journey Together Hop's Zacian ex 111 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Journey%20Together%20Hop's%20Zacian%20ex%20111%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8437196",
+      "product_name": "Hop's Zacian ex #118",
+      "console_name": "Pokemon Japanese Battle Partners",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:118"
+      }
+    },
+    {
+      "query": "Pokemon Journey Together Hop's Zacian ex 111 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Journey%20Together%20Hop's%20Zacian%20ex%20111%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8437206",
+      "product_name": "Hop's Zacian ex #128",
+      "console_name": "Pokemon Japanese Battle Partners",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:128"
+      }
+    },
+    {
+      "query": "Pokemon Journey Together Hop's Zacian ex 111 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Journey%20Together%20Hop's%20Zacian%20ex%20111%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "13015074",
+      "product_name": "Hop's Zacian ex #123",
+      "console_name": "Pokemon Korean Mega Dream ex",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:123"
+      }
+    },
+    {
+      "query": "Pokemon Journey Together Hop's Zacian ex 111 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Journey%20Together%20Hop's%20Zacian%20ex%20111%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11462864",
+      "product_name": "Hop's Zacian ex #527",
+      "console_name": "Pokemon Japanese Start Deck 100 Battle Collection",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:527"
+      }
+    },
+    {
+      "query": "Pokemon Journey Together Hop's Zacian ex 111 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Journey%20Together%20Hop's%20Zacian%20ex%20111%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8957611",
+      "product_name": "Hop's Zacian EX [Jumbo] #193",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "product_scope_jumbo_not_canonical_set_finish"
+      }
+    },
+    {
+      "query": "Pokemon Journey Together Hop's Zacian ex 111 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Journey%20Together%20Hop's%20Zacian%20ex%20111%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8871237",
+      "product_name": "Hop's Bag #147",
+      "console_name": "Pokemon Journey Together",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:147"
+      }
+    },
+    {
+      "query": "Pokemon Journey Together Hop's Zacian ex 111 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Journey%20Together%20Hop's%20Zacian%20ex%20111%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11519675",
+      "product_name": "Hop's Zacian ex [Mirror Holo] #527",
+      "console_name": "Pokemon Japanese Start Deck 100 Battle Collection",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:527"
+      }
+    },
+    {
+      "query": "Pokemon Journey Together Hop's Zacian ex 111 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Journey%20Together%20Hop's%20Zacian%20ex%20111%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8871203",
+      "product_name": "Hop's Wooloo #135",
+      "console_name": "Pokemon Journey Together",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:135"
+      }
+    }
+  ],
+  "source_lane": "pricecharting_api"
+}

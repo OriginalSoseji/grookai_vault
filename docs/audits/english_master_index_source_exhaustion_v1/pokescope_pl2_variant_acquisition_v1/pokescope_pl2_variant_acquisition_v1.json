@@ -1,0 +1,117 @@
+{
+  "version": "english_master_index_pokescope_pl2_variant_acquisition_v1",
+  "generated_at": "2026-06-06T16:45:00.000Z",
+  "audit_only": true,
+  "db_writes_performed": false,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "dry_run": false,
+  "fixture_file": "docs/audits/verified_master_set_index_v1/source_fixtures/generated_pokescope_pl2_variant_v1/pl2.json",
+  "rule": "Only exact PL2 remaining queue rows are accepted. League Stamp maps to stamped only for exact card-level page evidence. No general set or rarity inference is used.",
+  "source_access_note": "Local curl access returned Access denied for some PokeScope pages, so this bounded fixture records URL/evidence labels verified through browser-indexed PokeScope text pages. No copyrighted page dump is stored.",
+  "summary": {
+    "target_facts": 5,
+    "validated": 3,
+    "blocked": 2,
+    "by_source_key": {
+      "pokescope_pl2_variant": 3
+    }
+  },
+  "results": [
+    {
+      "status": "validated",
+      "source_key": "pokescope_pl2_variant",
+      "source_kind": "marketplace_checklist",
+      "source_url": "https://pokescope.app/card/pl2-32/",
+      "fact": {
+        "set_key": "pl2",
+        "set_name": "Rising Rivals",
+        "card_number": "32",
+        "card_name": "Rhyperior E4",
+        "finish_key": "holo"
+      },
+      "validation": {
+        "ok": true,
+        "checks": {
+          "has_identity": true,
+          "has_identifier": true,
+          "has_exact_finish_variant": true,
+          "not_not_found": true
+        }
+      }
+    },
+    {
+      "status": "validated",
+      "source_key": "pokescope_pl2_variant",
+      "source_kind": "marketplace_checklist",
+      "source_url": "https://pokescope.app/card/pl2-96/",
+      "fact": {
+        "set_key": "pl2",
+        "set_name": "Rising Rivals",
+        "card_number": "96",
+        "card_name": "Team Galactic's Invention G-109 SP Radar",
+        "finish_key": "stamped"
+      },
+      "validation": {
+        "ok": true,
+        "checks": {
+          "has_identity": true,
+          "has_identifier": true,
+          "has_exact_finish_variant": true,
+          "not_not_found": true
+        }
+      }
+    },
+    {
+      "status": "validated",
+      "source_key": "pokescope_pl2_variant",
+      "source_kind": "marketplace_checklist",
+      "source_url": "https://pokescope.app/card/pl2-98/",
+      "fact": {
+        "set_key": "pl2",
+        "set_name": "Rising Rivals",
+        "card_number": "98",
+        "card_name": "Volkner's Philosophy",
+        "finish_key": "stamped"
+      },
+      "validation": {
+        "ok": true,
+        "checks": {
+          "has_identity": true,
+          "has_identifier": true,
+          "has_exact_finish_variant": true,
+          "not_not_found": true
+        }
+      }
+    },
+    {
+      "status": "blocked_no_exact_finish_evidence",
+      "source_key": "pokescope_pl2_variant",
+      "source_kind": "marketplace_checklist",
+      "source_url": "https://pokescope.app/card/pl2-92/",
+      "fact": {
+        "set_key": "pl2",
+        "set_name": "Rising Rivals",
+        "card_number": "92",
+        "card_name": "Lucian's Assignment",
+        "finish_key": "stamped"
+      },
+      "reason": "No usable exact PokeScope page evidence was found for the stamped finish."
+    },
+    {
+      "status": "blocked_finish_not_supported_by_source_page",
+      "source_key": "pokescope_pl2_variant",
+      "source_kind": "marketplace_checklist",
+      "source_url": "https://pokescope.app/card/pl2-102/",
+      "fact": {
+        "set_key": "pl2",
+        "set_name": "Rising Rivals",
+        "card_number": "102",
+        "card_name": "Upper Energy",
+        "finish_key": "stamped"
+      },
+      "reason": "PokeScope page identifies Upper Energy #102/111 but lists Reverse Holofoil and Normal variants, not League Stamp or stamped."
+    }
+  ]
+}

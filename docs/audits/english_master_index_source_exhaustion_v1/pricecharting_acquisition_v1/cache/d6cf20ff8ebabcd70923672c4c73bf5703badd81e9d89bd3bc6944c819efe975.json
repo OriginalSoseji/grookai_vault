@@ -1,0 +1,549 @@
+{
+  "status": "api_no_validated_match",
+  "fact": {
+    "gap_type": "finish_second_source_needed",
+    "fact_type": "printing_finish",
+    "set_key": "bw5",
+    "set_name": "Dark Explorers",
+    "card_number": "37",
+    "card_name": "Jolteon",
+    "finish_key": "stamped",
+    "status": "human_source_verified",
+    "sources": [
+      "thepricedex_price_list"
+    ],
+    "source_authorities": [
+      "thepricedex.com"
+    ],
+    "source_kinds": [
+      "marketplace_checklist"
+    ],
+    "evidence_urls": [
+      "https://www.thepricedex.com/set/bw5/dark-explorers/price-list"
+    ],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "attempts": [
+    {
+      "query": "Pokemon Dark Explorers Jolteon 37 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Jolteon%2037%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "956083",
+      "product_name": "Jolteon #37",
+      "console_name": "Pokemon Dark Explorers",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Jolteon 37 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Jolteon%2037%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "956193",
+      "product_name": "Jolteon [Reverse Holo] #37",
+      "console_name": "Pokemon Dark Explorers",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Reverse Holo"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Jolteon 37 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Jolteon%2037%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6739885",
+      "product_name": "Jolteon [Regional Championship] #37",
+      "console_name": "Pokemon Dark Explorers",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Regional Championship"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Jolteon 37 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Jolteon%2037%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7419323",
+      "product_name": "Jolteon [Staff Regional Championship] #37",
+      "console_name": "Pokemon Dark Explorers",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Staff Regional Championship"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Jolteon 37 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Jolteon%2037%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9678157",
+      "product_name": "Jolteon [Stamped] #311",
+      "console_name": "Pokemon Chinese Gem Pack 2",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:311"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Jolteon 37 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Jolteon%2037%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9678158",
+      "product_name": "Jolteon [Stamped] #312",
+      "console_name": "Pokemon Chinese Gem Pack 2",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:312"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Jolteon 37 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Jolteon%2037%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8624379",
+      "product_name": "Jolteon ex [Stamped] #30",
+      "console_name": "Pokemon Prismatic Evolutions",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:30"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Jolteon 37 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Jolteon%2037%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "956142",
+      "product_name": "N #96",
+      "console_name": "Pokemon Dark Explorers",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:96"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Jolteon 37 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Jolteon%2037%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5962547",
+      "product_name": "Jolteon #37",
+      "console_name": "Pokemon Japanese Split Earth",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon Japanese Split Earth"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Jolteon 37 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Jolteon%2037%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "956086",
+      "product_name": "Minun #40",
+      "console_name": "Pokemon Dark Explorers",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:40"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Jolteon 37 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Jolteon%2037%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "956121",
+      "product_name": "Klink #75",
+      "console_name": "Pokemon Dark Explorers",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:75"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Jolteon 37 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Jolteon%2037%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "956115",
+      "product_name": "Zorua #69",
+      "console_name": "Pokemon Dark Explorers",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:69"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Jolteon 37 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Jolteon%2037%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "956116",
+      "product_name": "Zorua #70",
+      "console_name": "Pokemon Dark Explorers",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:70"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Jolteon 37 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Jolteon%2037%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "956122",
+      "product_name": "Klang #76",
+      "console_name": "Pokemon Dark Explorers",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:76"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Jolteon 37 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Jolteon%2037%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "956129",
+      "product_name": "Eevee #83",
+      "console_name": "Pokemon Dark Explorers",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:83"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Jolteon 37 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Jolteon%2037%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "956130",
+      "product_name": "Eevee #84",
+      "console_name": "Pokemon Dark Explorers",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:84"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Jolteon 37 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Jolteon%2037%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "956138",
+      "product_name": "Dark Claw #92",
+      "console_name": "Pokemon Dark Explorers",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:92"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Jolteon 37 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Jolteon%2037%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "956139",
+      "product_name": "Dark Patch #93",
+      "console_name": "Pokemon Dark Explorers",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:93"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Jolteon 37 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Jolteon%2037%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "956073",
+      "product_name": "Piplup #27",
+      "console_name": "Pokemon Dark Explorers",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:27"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Jolteon 37 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Jolteon%2037%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "956085",
+      "product_name": "Plusle #39",
+      "console_name": "Pokemon Dark Explorers",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:39"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Jolteon 37 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Jolteon%2037%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "956083",
+      "product_name": "Jolteon #37",
+      "console_name": "Pokemon Dark Explorers",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Jolteon 37 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Jolteon%2037%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "956193",
+      "product_name": "Jolteon [Reverse Holo] #37",
+      "console_name": "Pokemon Dark Explorers",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Reverse Holo"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Jolteon 37 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Jolteon%2037%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6739885",
+      "product_name": "Jolteon [Regional Championship] #37",
+      "console_name": "Pokemon Dark Explorers",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Regional Championship"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Jolteon 37 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Jolteon%2037%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7419323",
+      "product_name": "Jolteon [Staff Regional Championship] #37",
+      "console_name": "Pokemon Dark Explorers",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Staff Regional Championship"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Jolteon 37 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Jolteon%2037%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9678157",
+      "product_name": "Jolteon [Stamped] #311",
+      "console_name": "Pokemon Chinese Gem Pack 2",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:311"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Jolteon 37 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Jolteon%2037%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9678158",
+      "product_name": "Jolteon [Stamped] #312",
+      "console_name": "Pokemon Chinese Gem Pack 2",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:312"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Jolteon 37 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Jolteon%2037%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8624379",
+      "product_name": "Jolteon ex [Stamped] #30",
+      "console_name": "Pokemon Prismatic Evolutions",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:30"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Jolteon 37 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Jolteon%2037%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "956142",
+      "product_name": "N #96",
+      "console_name": "Pokemon Dark Explorers",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:96"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Jolteon 37 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Jolteon%2037%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5962547",
+      "product_name": "Jolteon #37",
+      "console_name": "Pokemon Japanese Split Earth",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon Japanese Split Earth"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Jolteon 37 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Jolteon%2037%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "956086",
+      "product_name": "Minun #40",
+      "console_name": "Pokemon Dark Explorers",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:40"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Jolteon 37 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Jolteon%2037%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "956121",
+      "product_name": "Klink #75",
+      "console_name": "Pokemon Dark Explorers",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:75"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Jolteon 37 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Jolteon%2037%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "956115",
+      "product_name": "Zorua #69",
+      "console_name": "Pokemon Dark Explorers",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:69"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Jolteon 37 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Jolteon%2037%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "956116",
+      "product_name": "Zorua #70",
+      "console_name": "Pokemon Dark Explorers",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:70"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Jolteon 37 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Jolteon%2037%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "956122",
+      "product_name": "Klang #76",
+      "console_name": "Pokemon Dark Explorers",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:76"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Jolteon 37 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Jolteon%2037%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "956129",
+      "product_name": "Eevee #83",
+      "console_name": "Pokemon Dark Explorers",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:83"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Jolteon 37 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Jolteon%2037%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "956130",
+      "product_name": "Eevee #84",
+      "console_name": "Pokemon Dark Explorers",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:84"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Jolteon 37 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Jolteon%2037%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "956138",
+      "product_name": "Dark Claw #92",
+      "console_name": "Pokemon Dark Explorers",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:92"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Jolteon 37 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Jolteon%2037%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "956139",
+      "product_name": "Dark Patch #93",
+      "console_name": "Pokemon Dark Explorers",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:93"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Jolteon 37 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Jolteon%2037%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "956073",
+      "product_name": "Piplup #27",
+      "console_name": "Pokemon Dark Explorers",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:27"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Jolteon 37 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Jolteon%2037%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "956085",
+      "product_name": "Plusle #39",
+      "console_name": "Pokemon Dark Explorers",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:39"
+      }
+    }
+  ],
+  "source_lane": "pricecharting_api"
+}

@@ -1,0 +1,549 @@
+{
+  "status": "api_no_validated_match",
+  "fact": {
+    "gap_type": "finish_second_source_needed",
+    "fact_type": "printing_finish",
+    "set_key": "sv10",
+    "set_name": "Destined Rivals",
+    "card_number": "81",
+    "card_name": "Team Rocket's Mewtwo ex",
+    "finish_key": "stamped",
+    "status": "human_source_verified",
+    "sources": [
+      "thepricedex_price_list"
+    ],
+    "source_authorities": [
+      "thepricedex.com"
+    ],
+    "source_kinds": [
+      "marketplace_checklist"
+    ],
+    "evidence_urls": [
+      "https://www.thepricedex.com/set/sv10/destined-rivals/price-list"
+    ],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "attempts": [
+    {
+      "query": "Pokemon Destined Rivals Team Rocket's Mewtwo ex 81 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Destined%20Rivals%20Team%20Rocket's%20Mewtwo%20ex%2081%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9456110",
+      "product_name": "Team Rocket's Mewtwo Ex #81",
+      "console_name": "Pokemon Destined Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon Destined Rivals Team Rocket's Mewtwo ex 81 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Destined%20Rivals%20Team%20Rocket's%20Mewtwo%20ex%2081%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12397377",
+      "product_name": "Team Rocket's Mewtwo Ex [Prize Pack] #81",
+      "console_name": "Pokemon Destined Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Prize Pack"
+      }
+    },
+    {
+      "query": "Pokemon Destined Rivals Team Rocket's Mewtwo ex 81 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Destined%20Rivals%20Team%20Rocket's%20Mewtwo%20ex%2081%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9432938",
+      "product_name": "Team Rocket's Mewtwo ex #231",
+      "console_name": "Pokemon Destined Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:231"
+      }
+    },
+    {
+      "query": "Pokemon Destined Rivals Team Rocket's Mewtwo ex 81 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Destined%20Rivals%20Team%20Rocket's%20Mewtwo%20ex%2081%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9432920",
+      "product_name": "Team Rocket's Mewtwo ex #213",
+      "console_name": "Pokemon Destined Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:213"
+      }
+    },
+    {
+      "query": "Pokemon Destined Rivals Team Rocket's Mewtwo ex 81 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Destined%20Rivals%20Team%20Rocket's%20Mewtwo%20ex%2081%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9432947",
+      "product_name": "Team Rocket's Mewtwo ex #240",
+      "console_name": "Pokemon Destined Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:240"
+      }
+    },
+    {
+      "query": "Pokemon Destined Rivals Team Rocket's Mewtwo ex 81 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Destined%20Rivals%20Team%20Rocket's%20Mewtwo%20ex%2081%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11860014",
+      "product_name": "Team Rocket's Mewtwo Ex [Premier Ball League] #81",
+      "console_name": "Pokemon Destined Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Premier Ball League"
+      }
+    },
+    {
+      "query": "Pokemon Destined Rivals Team Rocket's Mewtwo ex 81 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Destined%20Rivals%20Team%20Rocket's%20Mewtwo%20ex%2081%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9914446",
+      "product_name": "Team Rocket's Mewtwo ex Box",
+      "console_name": "Pokemon Destined Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "api_product_name_pattern_not_supported"
+      }
+    },
+    {
+      "query": "Pokemon Destined Rivals Team Rocket's Mewtwo ex 81 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Destined%20Rivals%20Team%20Rocket's%20Mewtwo%20ex%2081%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11315067",
+      "product_name": "Team Rocket's Moltres ex [Stamped] #229",
+      "console_name": "Pokemon Destined Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:229"
+      }
+    },
+    {
+      "query": "Pokemon Destined Rivals Team Rocket's Mewtwo ex 81 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Destined%20Rivals%20Team%20Rocket's%20Mewtwo%20ex%2081%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11315057",
+      "product_name": "Team Rocket's Moltres ex [Stamped] #208",
+      "console_name": "Pokemon Destined Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:208"
+      }
+    },
+    {
+      "query": "Pokemon Destined Rivals Team Rocket's Mewtwo ex 81 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Destined%20Rivals%20Team%20Rocket's%20Mewtwo%20ex%2081%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11315071",
+      "product_name": "Team Rocket's Moltres ex [Stamped] #31",
+      "console_name": "Pokemon Destined Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:31"
+      }
+    },
+    {
+      "query": "Pokemon Destined Rivals Team Rocket's Mewtwo ex 81 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Destined%20Rivals%20Team%20Rocket's%20Mewtwo%20ex%2081%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10515203",
+      "product_name": "Team Rocket Tin: Mewtwo Ex",
+      "console_name": "Pokemon Destined Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "api_product_name_pattern_not_supported"
+      }
+    },
+    {
+      "query": "Pokemon Destined Rivals Team Rocket's Mewtwo ex 81 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Destined%20Rivals%20Team%20Rocket's%20Mewtwo%20ex%2081%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10112145",
+      "product_name": "Team Rocket's Zapdos [Stamped] #70",
+      "console_name": "Pokemon Destined Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:70"
+      }
+    },
+    {
+      "query": "Pokemon Destined Rivals Team Rocket's Mewtwo ex 81 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Destined%20Rivals%20Team%20Rocket's%20Mewtwo%20ex%2081%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9670337",
+      "product_name": "Team Rocket's Articuno [Stamped] #51",
+      "console_name": "Pokemon Destined Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:51"
+      }
+    },
+    {
+      "query": "Pokemon Destined Rivals Team Rocket's Mewtwo ex 81 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Destined%20Rivals%20Team%20Rocket's%20Mewtwo%20ex%2081%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9962541",
+      "product_name": "Team Rocket's Tyranitar [Stamped] #96",
+      "console_name": "Pokemon Destined Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:96"
+      }
+    },
+    {
+      "query": "Pokemon Destined Rivals Team Rocket's Mewtwo ex 81 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Destined%20Rivals%20Team%20Rocket's%20Mewtwo%20ex%2081%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9432941",
+      "product_name": "Team Rocket's Crobat ex #234",
+      "console_name": "Pokemon Destined Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:234"
+      }
+    },
+    {
+      "query": "Pokemon Destined Rivals Team Rocket's Mewtwo ex 81 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Destined%20Rivals%20Team%20Rocket's%20Mewtwo%20ex%2081%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9432924",
+      "product_name": "Team Rocket's Crobat ex #217",
+      "console_name": "Pokemon Destined Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:217"
+      }
+    },
+    {
+      "query": "Pokemon Destined Rivals Team Rocket's Mewtwo ex 81 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Destined%20Rivals%20Team%20Rocket's%20Mewtwo%20ex%2081%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9432949",
+      "product_name": "Team Rocket's Crobat ex #242",
+      "console_name": "Pokemon Destined Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:242"
+      }
+    },
+    {
+      "query": "Pokemon Destined Rivals Team Rocket's Mewtwo ex 81 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Destined%20Rivals%20Team%20Rocket's%20Mewtwo%20ex%2081%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9456122",
+      "product_name": "Team Rocket's Crobat ex #122",
+      "console_name": "Pokemon Destined Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:122"
+      }
+    },
+    {
+      "query": "Pokemon Destined Rivals Team Rocket's Mewtwo ex 81 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Destined%20Rivals%20Team%20Rocket's%20Mewtwo%20ex%2081%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9432936",
+      "product_name": "Team Rocket's Moltres ex #229",
+      "console_name": "Pokemon Destined Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:229"
+      }
+    },
+    {
+      "query": "Pokemon Destined Rivals Team Rocket's Mewtwo ex 81 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Destined%20Rivals%20Team%20Rocket's%20Mewtwo%20ex%2081%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9432940",
+      "product_name": "Team Rocket's Nidoking ex #233",
+      "console_name": "Pokemon Destined Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:233"
+      }
+    },
+    {
+      "query": "Pokemon Destined Rivals Team Rocket's Mewtwo ex 81 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Destined%20Rivals%20Team%20Rocket's%20Mewtwo%20ex%2081%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9456110",
+      "product_name": "Team Rocket's Mewtwo Ex #81",
+      "console_name": "Pokemon Destined Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon Destined Rivals Team Rocket's Mewtwo ex 81 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Destined%20Rivals%20Team%20Rocket's%20Mewtwo%20ex%2081%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12397377",
+      "product_name": "Team Rocket's Mewtwo Ex [Prize Pack] #81",
+      "console_name": "Pokemon Destined Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Prize Pack"
+      }
+    },
+    {
+      "query": "Pokemon Destined Rivals Team Rocket's Mewtwo ex 81 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Destined%20Rivals%20Team%20Rocket's%20Mewtwo%20ex%2081%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9432938",
+      "product_name": "Team Rocket's Mewtwo ex #231",
+      "console_name": "Pokemon Destined Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:231"
+      }
+    },
+    {
+      "query": "Pokemon Destined Rivals Team Rocket's Mewtwo ex 81 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Destined%20Rivals%20Team%20Rocket's%20Mewtwo%20ex%2081%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9432920",
+      "product_name": "Team Rocket's Mewtwo ex #213",
+      "console_name": "Pokemon Destined Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:213"
+      }
+    },
+    {
+      "query": "Pokemon Destined Rivals Team Rocket's Mewtwo ex 81 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Destined%20Rivals%20Team%20Rocket's%20Mewtwo%20ex%2081%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9432947",
+      "product_name": "Team Rocket's Mewtwo ex #240",
+      "console_name": "Pokemon Destined Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:240"
+      }
+    },
+    {
+      "query": "Pokemon Destined Rivals Team Rocket's Mewtwo ex 81 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Destined%20Rivals%20Team%20Rocket's%20Mewtwo%20ex%2081%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11860014",
+      "product_name": "Team Rocket's Mewtwo Ex [Premier Ball League] #81",
+      "console_name": "Pokemon Destined Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Premier Ball League"
+      }
+    },
+    {
+      "query": "Pokemon Destined Rivals Team Rocket's Mewtwo ex 81 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Destined%20Rivals%20Team%20Rocket's%20Mewtwo%20ex%2081%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9914446",
+      "product_name": "Team Rocket's Mewtwo ex Box",
+      "console_name": "Pokemon Destined Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "api_product_name_pattern_not_supported"
+      }
+    },
+    {
+      "query": "Pokemon Destined Rivals Team Rocket's Mewtwo ex 81 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Destined%20Rivals%20Team%20Rocket's%20Mewtwo%20ex%2081%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11315067",
+      "product_name": "Team Rocket's Moltres ex [Stamped] #229",
+      "console_name": "Pokemon Destined Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:229"
+      }
+    },
+    {
+      "query": "Pokemon Destined Rivals Team Rocket's Mewtwo ex 81 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Destined%20Rivals%20Team%20Rocket's%20Mewtwo%20ex%2081%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11315057",
+      "product_name": "Team Rocket's Moltres ex [Stamped] #208",
+      "console_name": "Pokemon Destined Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:208"
+      }
+    },
+    {
+      "query": "Pokemon Destined Rivals Team Rocket's Mewtwo ex 81 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Destined%20Rivals%20Team%20Rocket's%20Mewtwo%20ex%2081%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11315071",
+      "product_name": "Team Rocket's Moltres ex [Stamped] #31",
+      "console_name": "Pokemon Destined Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:31"
+      }
+    },
+    {
+      "query": "Pokemon Destined Rivals Team Rocket's Mewtwo ex 81 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Destined%20Rivals%20Team%20Rocket's%20Mewtwo%20ex%2081%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10515203",
+      "product_name": "Team Rocket Tin: Mewtwo Ex",
+      "console_name": "Pokemon Destined Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "api_product_name_pattern_not_supported"
+      }
+    },
+    {
+      "query": "Pokemon Destined Rivals Team Rocket's Mewtwo ex 81 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Destined%20Rivals%20Team%20Rocket's%20Mewtwo%20ex%2081%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10112145",
+      "product_name": "Team Rocket's Zapdos [Stamped] #70",
+      "console_name": "Pokemon Destined Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:70"
+      }
+    },
+    {
+      "query": "Pokemon Destined Rivals Team Rocket's Mewtwo ex 81 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Destined%20Rivals%20Team%20Rocket's%20Mewtwo%20ex%2081%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9670337",
+      "product_name": "Team Rocket's Articuno [Stamped] #51",
+      "console_name": "Pokemon Destined Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:51"
+      }
+    },
+    {
+      "query": "Pokemon Destined Rivals Team Rocket's Mewtwo ex 81 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Destined%20Rivals%20Team%20Rocket's%20Mewtwo%20ex%2081%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9962541",
+      "product_name": "Team Rocket's Tyranitar [Stamped] #96",
+      "console_name": "Pokemon Destined Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:96"
+      }
+    },
+    {
+      "query": "Pokemon Destined Rivals Team Rocket's Mewtwo ex 81 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Destined%20Rivals%20Team%20Rocket's%20Mewtwo%20ex%2081%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9432941",
+      "product_name": "Team Rocket's Crobat ex #234",
+      "console_name": "Pokemon Destined Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:234"
+      }
+    },
+    {
+      "query": "Pokemon Destined Rivals Team Rocket's Mewtwo ex 81 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Destined%20Rivals%20Team%20Rocket's%20Mewtwo%20ex%2081%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9432924",
+      "product_name": "Team Rocket's Crobat ex #217",
+      "console_name": "Pokemon Destined Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:217"
+      }
+    },
+    {
+      "query": "Pokemon Destined Rivals Team Rocket's Mewtwo ex 81 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Destined%20Rivals%20Team%20Rocket's%20Mewtwo%20ex%2081%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9432949",
+      "product_name": "Team Rocket's Crobat ex #242",
+      "console_name": "Pokemon Destined Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:242"
+      }
+    },
+    {
+      "query": "Pokemon Destined Rivals Team Rocket's Mewtwo ex 81 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Destined%20Rivals%20Team%20Rocket's%20Mewtwo%20ex%2081%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9456122",
+      "product_name": "Team Rocket's Crobat ex #122",
+      "console_name": "Pokemon Destined Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:122"
+      }
+    },
+    {
+      "query": "Pokemon Destined Rivals Team Rocket's Mewtwo ex 81 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Destined%20Rivals%20Team%20Rocket's%20Mewtwo%20ex%2081%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9432936",
+      "product_name": "Team Rocket's Moltres ex #229",
+      "console_name": "Pokemon Destined Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:229"
+      }
+    },
+    {
+      "query": "Pokemon Destined Rivals Team Rocket's Mewtwo ex 81 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Destined%20Rivals%20Team%20Rocket's%20Mewtwo%20ex%2081%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9432940",
+      "product_name": "Team Rocket's Nidoking ex #233",
+      "console_name": "Pokemon Destined Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:233"
+      }
+    }
+  ],
+  "source_lane": "pricecharting_api"
+}

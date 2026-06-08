@@ -1,0 +1,65 @@
+{
+  "status": "validated",
+  "fact": {
+    "gap_type": "finish_second_source_needed",
+    "fact_type": "printing_finish",
+    "set_key": "sm7",
+    "set_name": "Celestial Storm",
+    "card_number": "10",
+    "card_name": "Sceptile",
+    "finish_key": "cracked_ice",
+    "status": "human_source_verified",
+    "sources": [
+      "thepricedex_price_list"
+    ],
+    "source_authorities": [
+      "thepricedex.com"
+    ],
+    "source_kinds": [
+      "marketplace_checklist"
+    ],
+    "evidence_urls": [],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "query": "Pokemon Celestial Storm Sceptile 10 cracked ice",
+  "search_url": "https://www.pricecharting.com/search-products?q=Pokemon%20Celestial%20Storm%20Sceptile%2010%20cracked%20ice&type=prices",
+  "source_url": "https://www.pricecharting.com/game/pokemon-celestial-storm/sceptile-cracked-ice-10",
+  "title": "Sceptile [Cracked Ice] #10 Prices | Pokemon Celestial Storm | Pokemon Cards",
+  "title_parts": {
+    "card_name": "Sceptile",
+    "variant_label": "Cracked Ice",
+    "card_number": "10",
+    "set_name": "Celestial Storm"
+  },
+  "attempts": [
+    {
+      "query": "Pokemon Celestial Storm Sceptile 10 cracked ice holo",
+      "url": "https://www.pricecharting.com/search-products?q=Pokemon%20Celestial%20Storm%20Sceptile%2010%20cracked%20ice%20holo&type=prices",
+      "parsed": {
+        "title": "Pokemon Celestial Storm Sceptile 10 Cracked Ice Holo Prices | Pokemon Celestial Storm Sceptile 10 Cracked Ice Holo List",
+        "source_url": "https://www.pricecharting.com/search-products?q=pokemon+celestial+storm+sceptile+10+cracked+ice+holo&type=prices"
+      },
+      "validation": {
+        "ok": false,
+        "reason": "title_pattern_not_supported"
+      }
+    },
+    {
+      "query": "Pokemon Celestial Storm Sceptile 10 cracked ice",
+      "url": "https://www.pricecharting.com/search-products?q=Pokemon%20Celestial%20Storm%20Sceptile%2010%20cracked%20ice&type=prices",
+      "parsed": {
+        "title": "Sceptile [Cracked Ice] #10 Prices | Pokemon Celestial Storm | Pokemon Cards",
+        "source_url": "https://www.pricecharting.com/game/pokemon-celestial-storm/sceptile-cracked-ice-10"
+      },
+      "validation": {
+        "ok": true,
+        "titleParts": {
+          "card_name": "Sceptile",
+          "variant_label": "Cracked Ice",
+          "card_number": "10",
+          "set_name": "Celestial Storm"
+        }
+      }
+    }
+  ]
+}

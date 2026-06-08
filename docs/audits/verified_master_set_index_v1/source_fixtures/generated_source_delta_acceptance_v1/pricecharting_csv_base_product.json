@@ -1,0 +1,36 @@
+{
+  "fixture_version": "VERIFIED_MASTER_SET_INDEX_V1_HUMAN_SOURCE_FIXTURE_GENERATED",
+  "source_key": "pricecharting_csv_base_product_accepted_delta_v1",
+  "source_kind": "marketplace_checklist",
+  "source_url": "https://www.pricecharting.com/game/pokemon-roaring-skies/trainers-mail-92a",
+  "source_status": "available_generated_accepted_delta",
+  "set_key": "accepted_delta",
+  "set_name": "pricecharting_csv_base_product accepted delta",
+  "retrieved_at": "2026-05-29T22:16:13.252Z",
+  "raw_snapshot_ref": "generated_fixture:accepted_delta:pricecharting_csv_base_product:2026-05-29T22:16:13.252Z",
+  "audit_only": true,
+  "db_writes_performed": false,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "generation_note": "Generated from source delta audit useful matches only. This fixture intentionally excludes broad source rows that were not current-gap useful matches.",
+  "records": [
+    {
+      "source_key": "pricecharting_csv_base_product",
+      "source_kind": "marketplace_checklist",
+      "source_url": "https://www.pricecharting.com/game/pokemon-roaring-skies/trainers-mail-92a",
+      "set_key": "xy6",
+      "set_name": "Roaring Skies",
+      "card_number": "92a",
+      "card_name": "Trainers' Mail",
+      "finish_key": "normal",
+      "rarity": null,
+      "evidence_type": "finish_presence",
+      "evidence_label": "PriceCharting exact base product row: Trainer's Mail #92A",
+      "language": "en",
+      "retrieved_at": "2026-05-29T22:16:13.252Z",
+      "raw_snapshot_ref": "accepted_delta:pricecharting_csv_base_product_source_delta_audit_v1.json:pricecharting_csv_base_product:xy6:92a:normal",
+      "notes": "Accepted from source delta audit with status candidate_human_finish_evidence. This is exact gap-matched evidence only; broad source fixture rows remain excluded from direct promotion."
+    }
+  ]
+}

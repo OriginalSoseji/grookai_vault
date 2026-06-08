@@ -1,0 +1,48 @@
+{
+  "fixture_version": "VERIFIED_MASTER_SET_INDEX_V1_HUMAN_SOURCE_FIXTURE_GENERATED",
+  "source_key": "binderbuilder_ex3",
+  "source_kind": "collector_reference",
+  "source_url": "https://binderbuilder.app/sets/ex3",
+  "source_status": "available_generated",
+  "set_key": "ex3",
+  "set_name": "Dragon",
+  "retrieved_at": "2026-05-26T04:50:02.571Z",
+  "raw_snapshot_ref": "generated_fixture:binderbuilder:ex3:2026-05-26T04:50:02.571Z",
+  "generation_note": "Generated from Binder Builder exact visible variant labels. Unsupported/product-scope labels are excluded.",
+  "records": [
+    {
+      "source_key": "binderbuilder_set_variant",
+      "source_kind": "collector_reference",
+      "source_url": "https://binderbuilder.app/sets/ex3",
+      "set_key": "ex3",
+      "set_name": "Dragon",
+      "card_number": "15",
+      "card_name": "Flygon",
+      "finish_key": "cosmos",
+      "rarity": null,
+      "evidence_type": "finish_presence",
+      "evidence_label": "Binder Builder variant row #15 - Flygon - Cosmos Holofoil",
+      "language": "en",
+      "retrieved_at": "2026-05-26T04:50:02.571Z",
+      "raw_snapshot_ref": "binderbuilder:ex3:15:cosmos",
+      "notes": "Exact finish evidence from Binder Builder visible variant label. Shadowless, Jumbo, Metal, and unsupported labels are not emitted."
+    },
+    {
+      "source_key": "binderbuilder_set_variant",
+      "source_kind": "collector_reference",
+      "source_url": "https://binderbuilder.app/sets/ex3",
+      "set_key": "ex3",
+      "set_name": "Dragon",
+      "card_number": "19",
+      "card_name": "Salamence",
+      "finish_key": "cosmos",
+      "rarity": null,
+      "evidence_type": "finish_presence",
+      "evidence_label": "Binder Builder variant row #19 - Salamence - Cosmos Holofoil",
+      "language": "en",
+      "retrieved_at": "2026-05-26T04:50:02.571Z",
+      "raw_snapshot_ref": "binderbuilder:ex3:19:cosmos",
+      "notes": "Exact finish evidence from Binder Builder visible variant label. Shadowless, Jumbo, Metal, and unsupported labels are not emitted."
+    }
+  ]
+}

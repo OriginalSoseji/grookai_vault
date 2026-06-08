@@ -1,0 +1,549 @@
+{
+  "status": "api_no_validated_match",
+  "fact": {
+    "gap_type": "finish_second_source_needed",
+    "fact_type": "printing_finish",
+    "set_key": "sm10",
+    "set_name": "Unbroken Bonds",
+    "card_number": "189",
+    "card_name": "Welder",
+    "finish_key": "stamped",
+    "status": "human_source_verified",
+    "sources": [
+      "thepricedex_price_list"
+    ],
+    "source_authorities": [
+      "thepricedex.com"
+    ],
+    "source_kinds": [
+      "marketplace_checklist"
+    ],
+    "evidence_urls": [
+      "https://www.thepricedex.com/set/sm10/unbroken-bonds/price-list"
+    ],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "attempts": [
+    {
+      "query": "Pokemon Unbroken Bonds Welder 189 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Unbroken%20Bonds%20Welder%20189%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "963345",
+      "product_name": "Welder #189",
+      "console_name": "Pokemon Unbroken Bonds",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon Unbroken Bonds Welder 189 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Unbroken%20Bonds%20Welder%20189%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "963565",
+      "product_name": "Welder [Reverse Holo] #189",
+      "console_name": "Pokemon Unbroken Bonds",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Reverse Holo"
+      }
+    },
+    {
+      "query": "Pokemon Unbroken Bonds Welder 189 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Unbroken%20Bonds%20Welder%20189%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "963370",
+      "product_name": "Welder #214",
+      "console_name": "Pokemon Unbroken Bonds",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:214"
+      }
+    },
+    {
+      "query": "Pokemon Unbroken Bonds Welder 189 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Unbroken%20Bonds%20Welder%20189%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9913369",
+      "product_name": "Welder [Regional Championships] #189A",
+      "console_name": "Pokemon Unbroken Bonds",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:189A"
+      }
+    },
+    {
+      "query": "Pokemon Unbroken Bonds Welder 189 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Unbroken%20Bonds%20Welder%20189%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5732834",
+      "product_name": "Melmetal [Stamped] #129",
+      "console_name": "Pokemon Unbroken Bonds",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:129"
+      }
+    },
+    {
+      "query": "Pokemon Unbroken Bonds Welder 189 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Unbroken%20Bonds%20Welder%20189%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "963232",
+      "product_name": "Mew #76",
+      "console_name": "Pokemon Unbroken Bonds",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:76"
+      }
+    },
+    {
+      "query": "Pokemon Unbroken Bonds Welder 189 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Unbroken%20Bonds%20Welder%20189%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "963200",
+      "product_name": "Seel #44",
+      "console_name": "Pokemon Unbroken Bonds",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:44"
+      }
+    },
+    {
+      "query": "Pokemon Unbroken Bonds Welder 189 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Unbroken%20Bonds%20Welder%20189%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "963279",
+      "product_name": "Aron #123",
+      "console_name": "Pokemon Unbroken Bonds",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:123"
+      }
+    },
+    {
+      "query": "Pokemon Unbroken Bonds Welder 189 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Unbroken%20Bonds%20Welder%20189%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "963219",
+      "product_name": "Arbok #63",
+      "console_name": "Pokemon Unbroken Bonds",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:63"
+      }
+    },
+    {
+      "query": "Pokemon Unbroken Bonds Welder 189 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Unbroken%20Bonds%20Welder%20189%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "963220",
+      "product_name": "Zubat #64",
+      "console_name": "Pokemon Unbroken Bonds",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:64"
+      }
+    },
+    {
+      "query": "Pokemon Unbroken Bonds Welder 189 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Unbroken%20Bonds%20Welder%20189%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "963162",
+      "product_name": "Gloom #7",
+      "console_name": "Pokemon Unbroken Bonds",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:7"
+      }
+    },
+    {
+      "query": "Pokemon Unbroken Bonds Welder 189 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Unbroken%20Bonds%20Welder%20189%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "963228",
+      "product_name": "Hypno #72",
+      "console_name": "Pokemon Unbroken Bonds",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:72"
+      }
+    },
+    {
+      "query": "Pokemon Unbroken Bonds Welder 189 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Unbroken%20Bonds%20Welder%20189%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "963245",
+      "product_name": "Golem #89",
+      "console_name": "Pokemon Unbroken Bonds",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:89"
+      }
+    },
+    {
+      "query": "Pokemon Unbroken Bonds Welder 189 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Unbroken%20Bonds%20Welder%20189%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "963258",
+      "product_name": "Riolu #102",
+      "console_name": "Pokemon Unbroken Bonds",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:102"
+      }
+    },
+    {
+      "query": "Pokemon Unbroken Bonds Welder 189 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Unbroken%20Bonds%20Welder%20189%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "963274",
+      "product_name": "Inkay #118",
+      "console_name": "Pokemon Unbroken Bonds",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:118"
+      }
+    },
+    {
+      "query": "Pokemon Unbroken Bonds Welder 189 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Unbroken%20Bonds%20Welder%20189%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "963306",
+      "product_name": "Doduo #150",
+      "console_name": "Pokemon Unbroken Bonds",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:150"
+      }
+    },
+    {
+      "query": "Pokemon Unbroken Bonds Welder 189 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Unbroken%20Bonds%20Welder%20189%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "963218",
+      "product_name": "Ekans #62",
+      "console_name": "Pokemon Unbroken Bonds",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:62"
+      }
+    },
+    {
+      "query": "Pokemon Unbroken Bonds Welder 189 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Unbroken%20Bonds%20Welder%20189%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "963202",
+      "product_name": "Krabby #46",
+      "console_name": "Pokemon Unbroken Bonds",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:46"
+      }
+    },
+    {
+      "query": "Pokemon Unbroken Bonds Welder 189 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Unbroken%20Bonds%20Welder%20189%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "963222",
+      "product_name": "Crobat #66",
+      "console_name": "Pokemon Unbroken Bonds",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:66"
+      }
+    },
+    {
+      "query": "Pokemon Unbroken Bonds Welder 189 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Unbroken%20Bonds%20Welder%20189%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "963221",
+      "product_name": "Golbat #65",
+      "console_name": "Pokemon Unbroken Bonds",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:65"
+      }
+    },
+    {
+      "query": "Pokemon Unbroken Bonds Welder 189 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Unbroken%20Bonds%20Welder%20189%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "963345",
+      "product_name": "Welder #189",
+      "console_name": "Pokemon Unbroken Bonds",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon Unbroken Bonds Welder 189 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Unbroken%20Bonds%20Welder%20189%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "963565",
+      "product_name": "Welder [Reverse Holo] #189",
+      "console_name": "Pokemon Unbroken Bonds",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Reverse Holo"
+      }
+    },
+    {
+      "query": "Pokemon Unbroken Bonds Welder 189 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Unbroken%20Bonds%20Welder%20189%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "963370",
+      "product_name": "Welder #214",
+      "console_name": "Pokemon Unbroken Bonds",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:214"
+      }
+    },
+    {
+      "query": "Pokemon Unbroken Bonds Welder 189 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Unbroken%20Bonds%20Welder%20189%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9913369",
+      "product_name": "Welder [Regional Championships] #189A",
+      "console_name": "Pokemon Unbroken Bonds",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:189A"
+      }
+    },
+    {
+      "query": "Pokemon Unbroken Bonds Welder 189 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Unbroken%20Bonds%20Welder%20189%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5732834",
+      "product_name": "Melmetal [Stamped] #129",
+      "console_name": "Pokemon Unbroken Bonds",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:129"
+      }
+    },
+    {
+      "query": "Pokemon Unbroken Bonds Welder 189 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Unbroken%20Bonds%20Welder%20189%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "963232",
+      "product_name": "Mew #76",
+      "console_name": "Pokemon Unbroken Bonds",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:76"
+      }
+    },
+    {
+      "query": "Pokemon Unbroken Bonds Welder 189 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Unbroken%20Bonds%20Welder%20189%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "963200",
+      "product_name": "Seel #44",
+      "console_name": "Pokemon Unbroken Bonds",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:44"
+      }
+    },
+    {
+      "query": "Pokemon Unbroken Bonds Welder 189 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Unbroken%20Bonds%20Welder%20189%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "963279",
+      "product_name": "Aron #123",
+      "console_name": "Pokemon Unbroken Bonds",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:123"
+      }
+    },
+    {
+      "query": "Pokemon Unbroken Bonds Welder 189 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Unbroken%20Bonds%20Welder%20189%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "963219",
+      "product_name": "Arbok #63",
+      "console_name": "Pokemon Unbroken Bonds",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:63"
+      }
+    },
+    {
+      "query": "Pokemon Unbroken Bonds Welder 189 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Unbroken%20Bonds%20Welder%20189%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "963220",
+      "product_name": "Zubat #64",
+      "console_name": "Pokemon Unbroken Bonds",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:64"
+      }
+    },
+    {
+      "query": "Pokemon Unbroken Bonds Welder 189 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Unbroken%20Bonds%20Welder%20189%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "963162",
+      "product_name": "Gloom #7",
+      "console_name": "Pokemon Unbroken Bonds",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:7"
+      }
+    },
+    {
+      "query": "Pokemon Unbroken Bonds Welder 189 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Unbroken%20Bonds%20Welder%20189%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "963228",
+      "product_name": "Hypno #72",
+      "console_name": "Pokemon Unbroken Bonds",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:72"
+      }
+    },
+    {
+      "query": "Pokemon Unbroken Bonds Welder 189 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Unbroken%20Bonds%20Welder%20189%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "963245",
+      "product_name": "Golem #89",
+      "console_name": "Pokemon Unbroken Bonds",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:89"
+      }
+    },
+    {
+      "query": "Pokemon Unbroken Bonds Welder 189 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Unbroken%20Bonds%20Welder%20189%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "963258",
+      "product_name": "Riolu #102",
+      "console_name": "Pokemon Unbroken Bonds",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:102"
+      }
+    },
+    {
+      "query": "Pokemon Unbroken Bonds Welder 189 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Unbroken%20Bonds%20Welder%20189%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "963274",
+      "product_name": "Inkay #118",
+      "console_name": "Pokemon Unbroken Bonds",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:118"
+      }
+    },
+    {
+      "query": "Pokemon Unbroken Bonds Welder 189 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Unbroken%20Bonds%20Welder%20189%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "963306",
+      "product_name": "Doduo #150",
+      "console_name": "Pokemon Unbroken Bonds",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:150"
+      }
+    },
+    {
+      "query": "Pokemon Unbroken Bonds Welder 189 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Unbroken%20Bonds%20Welder%20189%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "963218",
+      "product_name": "Ekans #62",
+      "console_name": "Pokemon Unbroken Bonds",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:62"
+      }
+    },
+    {
+      "query": "Pokemon Unbroken Bonds Welder 189 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Unbroken%20Bonds%20Welder%20189%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "963202",
+      "product_name": "Krabby #46",
+      "console_name": "Pokemon Unbroken Bonds",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:46"
+      }
+    },
+    {
+      "query": "Pokemon Unbroken Bonds Welder 189 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Unbroken%20Bonds%20Welder%20189%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "963222",
+      "product_name": "Crobat #66",
+      "console_name": "Pokemon Unbroken Bonds",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:66"
+      }
+    },
+    {
+      "query": "Pokemon Unbroken Bonds Welder 189 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Unbroken%20Bonds%20Welder%20189%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "963221",
+      "product_name": "Golbat #65",
+      "console_name": "Pokemon Unbroken Bonds",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:65"
+      }
+    }
+  ],
+  "source_lane": "pricecharting_api"
+}

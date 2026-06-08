@@ -1,0 +1,549 @@
+{
+  "status": "api_no_validated_match",
+  "fact": {
+    "gap_type": "finish_second_source_needed",
+    "fact_type": "printing_finish",
+    "set_key": "bw2",
+    "set_name": "Emerging Powers",
+    "card_number": "95",
+    "card_name": "Pokémon Catcher",
+    "finish_key": "stamped",
+    "status": "human_source_verified",
+    "sources": [
+      "thepricedex_price_list"
+    ],
+    "source_authorities": [
+      "thepricedex.com"
+    ],
+    "source_kinds": [
+      "marketplace_checklist"
+    ],
+    "evidence_urls": [
+      "https://www.thepricedex.com/set/bw2/emerging-powers/price-list"
+    ],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "attempts": [
+    {
+      "query": "Pokemon Emerging Powers Pokémon Catcher 95 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Emerging%20Powers%20Pok%C3%A9mon%20Catcher%2095%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "955521",
+      "product_name": "Pokemon Catcher #95",
+      "console_name": "Pokemon Emerging Powers",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon Emerging Powers Pokémon Catcher 95 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Emerging%20Powers%20Pok%C3%A9mon%20Catcher%2095%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "955618",
+      "product_name": "Pokemon Catcher [Reverse Holo] #95",
+      "console_name": "Pokemon Emerging Powers",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Reverse Holo"
+      }
+    },
+    {
+      "query": "Pokemon Emerging Powers Pokémon Catcher 95 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Emerging%20Powers%20Pok%C3%A9mon%20Catcher%2095%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10223790",
+      "product_name": "Pokemon Catcher [Crosshatch Prize Pack] #95",
+      "console_name": "Pokemon Emerging Powers",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Crosshatch Prize Pack"
+      }
+    },
+    {
+      "query": "Pokemon Emerging Powers Pokémon Catcher 95 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Emerging%20Powers%20Pok%C3%A9mon%20Catcher%2095%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "955485",
+      "product_name": "Sawk #59",
+      "console_name": "Pokemon Emerging Powers",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:59"
+      }
+    },
+    {
+      "query": "Pokemon Emerging Powers Pokémon Catcher 95 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Emerging%20Powers%20Pok%C3%A9mon%20Catcher%2095%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "955484",
+      "product_name": "Throh #58",
+      "console_name": "Pokemon Emerging Powers",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:58"
+      }
+    },
+    {
+      "query": "Pokemon Emerging Powers Pokémon Catcher 95 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Emerging%20Powers%20Pok%C3%A9mon%20Catcher%2095%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "955492",
+      "product_name": "Zorua #66",
+      "console_name": "Pokemon Emerging Powers",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:66"
+      }
+    },
+    {
+      "query": "Pokemon Emerging Powers Pokémon Catcher 95 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Emerging%20Powers%20Pok%C3%A9mon%20Catcher%2095%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "955501",
+      "product_name": "Klang #75",
+      "console_name": "Pokemon Emerging Powers",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:75"
+      }
+    },
+    {
+      "query": "Pokemon Emerging Powers Pokémon Catcher 95 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Emerging%20Powers%20Pok%C3%A9mon%20Catcher%2095%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "955500",
+      "product_name": "Klink #74",
+      "console_name": "Pokemon Emerging Powers",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:74"
+      }
+    },
+    {
+      "query": "Pokemon Emerging Powers Pokémon Catcher 95 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Emerging%20Powers%20Pok%C3%A9mon%20Catcher%2095%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "955453",
+      "product_name": "Swanna #27",
+      "console_name": "Pokemon Emerging Powers",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:27"
+      }
+    },
+    {
+      "query": "Pokemon Emerging Powers Pokémon Catcher 95 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Emerging%20Powers%20Pok%C3%A9mon%20Catcher%2095%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "955459",
+      "product_name": "Joltik #33",
+      "console_name": "Pokemon Emerging Powers",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:33"
+      }
+    },
+    {
+      "query": "Pokemon Emerging Powers Pokémon Catcher 95 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Emerging%20Powers%20Pok%C3%A9mon%20Catcher%2095%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "955458",
+      "product_name": "Emolga #32",
+      "console_name": "Pokemon Emerging Powers",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:32"
+      }
+    },
+    {
+      "query": "Pokemon Emerging Powers Pokémon Catcher 95 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Emerging%20Powers%20Pok%C3%A9mon%20Catcher%2095%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "955462",
+      "product_name": "Woobat #36",
+      "console_name": "Pokemon Emerging Powers",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:36"
+      }
+    },
+    {
+      "query": "Pokemon Emerging Powers Pokémon Catcher 95 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Emerging%20Powers%20Pok%C3%A9mon%20Catcher%2095%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "955506",
+      "product_name": "Pidove #80",
+      "console_name": "Pokemon Emerging Powers",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:80"
+      }
+    },
+    {
+      "query": "Pokemon Emerging Powers Pokémon Catcher 95 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Emerging%20Powers%20Pok%C3%A9mon%20Catcher%2095%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "955504",
+      "product_name": "Patrat #78",
+      "console_name": "Pokemon Emerging Powers",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:78"
+      }
+    },
+    {
+      "query": "Pokemon Emerging Powers Pokémon Catcher 95 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Emerging%20Powers%20Pok%C3%A9mon%20Catcher%2095%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "955509",
+      "product_name": "Audino #83",
+      "console_name": "Pokemon Emerging Powers",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:83"
+      }
+    },
+    {
+      "query": "Pokemon Emerging Powers Pokémon Catcher 95 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Emerging%20Powers%20Pok%C3%A9mon%20Catcher%2095%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "955516",
+      "product_name": "Bianca #90",
+      "console_name": "Pokemon Emerging Powers",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:90"
+      }
+    },
+    {
+      "query": "Pokemon Emerging Powers Pokémon Catcher 95 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Emerging%20Powers%20Pok%C3%A9mon%20Catcher%2095%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "955517",
+      "product_name": "Cheren #91",
+      "console_name": "Pokemon Emerging Powers",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:91"
+      }
+    },
+    {
+      "query": "Pokemon Emerging Powers Pokémon Catcher 95 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Emerging%20Powers%20Pok%C3%A9mon%20Catcher%2095%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "955428",
+      "product_name": "Pansage #1",
+      "console_name": "Pokemon Emerging Powers",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:1"
+      }
+    },
+    {
+      "query": "Pokemon Emerging Powers Pokémon Catcher 95 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Emerging%20Powers%20Pok%C3%A9mon%20Catcher%2095%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "955440",
+      "product_name": "Petilil #13",
+      "console_name": "Pokemon Emerging Powers",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:13"
+      }
+    },
+    {
+      "query": "Pokemon Emerging Powers Pokémon Catcher 95 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Emerging%20Powers%20Pok%C3%A9mon%20Catcher%2095%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "955449",
+      "product_name": "Panpour #22",
+      "console_name": "Pokemon Emerging Powers",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:22"
+      }
+    },
+    {
+      "query": "Pokemon Emerging Powers Pokémon Catcher 95 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Emerging%20Powers%20Pok%C3%A9mon%20Catcher%2095%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "955521",
+      "product_name": "Pokemon Catcher #95",
+      "console_name": "Pokemon Emerging Powers",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon Emerging Powers Pokémon Catcher 95 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Emerging%20Powers%20Pok%C3%A9mon%20Catcher%2095%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "955618",
+      "product_name": "Pokemon Catcher [Reverse Holo] #95",
+      "console_name": "Pokemon Emerging Powers",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Reverse Holo"
+      }
+    },
+    {
+      "query": "Pokemon Emerging Powers Pokémon Catcher 95 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Emerging%20Powers%20Pok%C3%A9mon%20Catcher%2095%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10223790",
+      "product_name": "Pokemon Catcher [Crosshatch Prize Pack] #95",
+      "console_name": "Pokemon Emerging Powers",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Crosshatch Prize Pack"
+      }
+    },
+    {
+      "query": "Pokemon Emerging Powers Pokémon Catcher 95 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Emerging%20Powers%20Pok%C3%A9mon%20Catcher%2095%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "955485",
+      "product_name": "Sawk #59",
+      "console_name": "Pokemon Emerging Powers",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:59"
+      }
+    },
+    {
+      "query": "Pokemon Emerging Powers Pokémon Catcher 95 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Emerging%20Powers%20Pok%C3%A9mon%20Catcher%2095%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "955484",
+      "product_name": "Throh #58",
+      "console_name": "Pokemon Emerging Powers",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:58"
+      }
+    },
+    {
+      "query": "Pokemon Emerging Powers Pokémon Catcher 95 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Emerging%20Powers%20Pok%C3%A9mon%20Catcher%2095%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "955492",
+      "product_name": "Zorua #66",
+      "console_name": "Pokemon Emerging Powers",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:66"
+      }
+    },
+    {
+      "query": "Pokemon Emerging Powers Pokémon Catcher 95 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Emerging%20Powers%20Pok%C3%A9mon%20Catcher%2095%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "955501",
+      "product_name": "Klang #75",
+      "console_name": "Pokemon Emerging Powers",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:75"
+      }
+    },
+    {
+      "query": "Pokemon Emerging Powers Pokémon Catcher 95 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Emerging%20Powers%20Pok%C3%A9mon%20Catcher%2095%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "955500",
+      "product_name": "Klink #74",
+      "console_name": "Pokemon Emerging Powers",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:74"
+      }
+    },
+    {
+      "query": "Pokemon Emerging Powers Pokémon Catcher 95 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Emerging%20Powers%20Pok%C3%A9mon%20Catcher%2095%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "955453",
+      "product_name": "Swanna #27",
+      "console_name": "Pokemon Emerging Powers",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:27"
+      }
+    },
+    {
+      "query": "Pokemon Emerging Powers Pokémon Catcher 95 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Emerging%20Powers%20Pok%C3%A9mon%20Catcher%2095%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "955459",
+      "product_name": "Joltik #33",
+      "console_name": "Pokemon Emerging Powers",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:33"
+      }
+    },
+    {
+      "query": "Pokemon Emerging Powers Pokémon Catcher 95 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Emerging%20Powers%20Pok%C3%A9mon%20Catcher%2095%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "955458",
+      "product_name": "Emolga #32",
+      "console_name": "Pokemon Emerging Powers",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:32"
+      }
+    },
+    {
+      "query": "Pokemon Emerging Powers Pokémon Catcher 95 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Emerging%20Powers%20Pok%C3%A9mon%20Catcher%2095%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "955462",
+      "product_name": "Woobat #36",
+      "console_name": "Pokemon Emerging Powers",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:36"
+      }
+    },
+    {
+      "query": "Pokemon Emerging Powers Pokémon Catcher 95 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Emerging%20Powers%20Pok%C3%A9mon%20Catcher%2095%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "955506",
+      "product_name": "Pidove #80",
+      "console_name": "Pokemon Emerging Powers",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:80"
+      }
+    },
+    {
+      "query": "Pokemon Emerging Powers Pokémon Catcher 95 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Emerging%20Powers%20Pok%C3%A9mon%20Catcher%2095%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "955504",
+      "product_name": "Patrat #78",
+      "console_name": "Pokemon Emerging Powers",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:78"
+      }
+    },
+    {
+      "query": "Pokemon Emerging Powers Pokémon Catcher 95 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Emerging%20Powers%20Pok%C3%A9mon%20Catcher%2095%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "955509",
+      "product_name": "Audino #83",
+      "console_name": "Pokemon Emerging Powers",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:83"
+      }
+    },
+    {
+      "query": "Pokemon Emerging Powers Pokémon Catcher 95 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Emerging%20Powers%20Pok%C3%A9mon%20Catcher%2095%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "955516",
+      "product_name": "Bianca #90",
+      "console_name": "Pokemon Emerging Powers",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:90"
+      }
+    },
+    {
+      "query": "Pokemon Emerging Powers Pokémon Catcher 95 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Emerging%20Powers%20Pok%C3%A9mon%20Catcher%2095%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "955517",
+      "product_name": "Cheren #91",
+      "console_name": "Pokemon Emerging Powers",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:91"
+      }
+    },
+    {
+      "query": "Pokemon Emerging Powers Pokémon Catcher 95 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Emerging%20Powers%20Pok%C3%A9mon%20Catcher%2095%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "955428",
+      "product_name": "Pansage #1",
+      "console_name": "Pokemon Emerging Powers",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:1"
+      }
+    },
+    {
+      "query": "Pokemon Emerging Powers Pokémon Catcher 95 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Emerging%20Powers%20Pok%C3%A9mon%20Catcher%2095%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "955440",
+      "product_name": "Petilil #13",
+      "console_name": "Pokemon Emerging Powers",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:13"
+      }
+    },
+    {
+      "query": "Pokemon Emerging Powers Pokémon Catcher 95 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Emerging%20Powers%20Pok%C3%A9mon%20Catcher%2095%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "955449",
+      "product_name": "Panpour #22",
+      "console_name": "Pokemon Emerging Powers",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:22"
+      }
+    }
+  ],
+  "source_lane": "pricecharting_api"
+}

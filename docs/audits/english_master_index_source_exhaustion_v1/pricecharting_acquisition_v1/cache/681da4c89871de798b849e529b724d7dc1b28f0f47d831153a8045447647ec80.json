@@ -1,0 +1,58 @@
+{
+  "status": "validated",
+  "fact": {
+    "gap_type": "finish_second_source_needed",
+    "fact_type": "printing_finish",
+    "set_key": "sv8pt5",
+    "set_name": "Prismatic Evolutions",
+    "card_number": "6",
+    "card_name": "Leafeon ex",
+    "finish_key": "stamped",
+    "status": "human_source_verified",
+    "sources": [
+      "thepricedex_price_list"
+    ],
+    "source_authorities": [
+      "thepricedex.com"
+    ],
+    "source_kinds": [
+      "marketplace_checklist"
+    ],
+    "evidence_urls": [],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "query": "Pokemon Prismatic Evolutions Leafeon ex 6 stamp",
+  "search_url": "https://www.pricecharting.com/search-products?q=Pokemon%20Prismatic%20Evolutions%20Leafeon%20ex%206%20stamp&type=prices",
+  "source_url": "https://www.pricecharting.com/game/pokemon-prismatic-evolutions/leafeon-ex-stamped-6",
+  "title": "Leafeon Ex [Stamped] #6 Prices | Pokemon Prismatic Evolutions | Pokemon Cards",
+  "title_parts": {
+    "card_name": "Leafeon Ex",
+    "variant_label": "Stamped",
+    "card_number": "6",
+    "set_name": "Prismatic Evolutions"
+  },
+  "attempts": [
+    {
+      "query": "Pokemon Prismatic Evolutions Leafeon ex 6 stamped",
+      "url": "https://www.pricecharting.com/search-products?q=Pokemon%20Prismatic%20Evolutions%20Leafeon%20ex%206%20stamped&type=prices",
+      "error": "Fetch failed 403 Forbidden: https://www.pricecharting.com/search-products?q=Pokemon%20Prismatic%20Evolutions%20Leafeon%20ex%206%20stamped&type=prices"
+    },
+    {
+      "query": "Pokemon Prismatic Evolutions Leafeon ex 6 stamp",
+      "url": "https://www.pricecharting.com/search-products?q=Pokemon%20Prismatic%20Evolutions%20Leafeon%20ex%206%20stamp&type=prices",
+      "parsed": {
+        "title": "Leafeon Ex [Stamped] #6 Prices | Pokemon Prismatic Evolutions | Pokemon Cards",
+        "source_url": "https://www.pricecharting.com/game/pokemon-prismatic-evolutions/leafeon-ex-stamped-6"
+      },
+      "validation": {
+        "ok": true,
+        "titleParts": {
+          "card_name": "Leafeon Ex",
+          "variant_label": "Stamped",
+          "card_number": "6",
+          "set_name": "Prismatic Evolutions"
+        }
+      }
+    }
+  ]
+}

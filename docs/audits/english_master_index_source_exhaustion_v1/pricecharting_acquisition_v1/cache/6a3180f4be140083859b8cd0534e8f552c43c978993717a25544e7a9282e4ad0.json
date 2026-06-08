@@ -1,0 +1,549 @@
+{
+  "status": "api_no_validated_match",
+  "fact": {
+    "gap_type": "finish_second_source_needed",
+    "fact_type": "printing_finish",
+    "set_key": "sm5",
+    "set_name": "Ultra Prism",
+    "card_number": "119",
+    "card_name": "Cynthia",
+    "finish_key": "stamped",
+    "status": "human_source_verified",
+    "sources": [
+      "thepricedex_price_list"
+    ],
+    "source_authorities": [
+      "thepricedex.com"
+    ],
+    "source_kinds": [
+      "marketplace_checklist"
+    ],
+    "evidence_urls": [
+      "https://www.thepricedex.com/set/sm5/ultra-prism/price-list"
+    ],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "attempts": [
+    {
+      "query": "Pokemon Ultra Prism Cynthia 119 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ultra%20Prism%20Cynthia%20119%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "961482",
+      "product_name": "Cynthia #119",
+      "console_name": "Pokemon Ultra Prism",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon Ultra Prism Cynthia 119 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ultra%20Prism%20Cynthia%20119%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "961645",
+      "product_name": "Cynthia [Reverse Holo] #119",
+      "console_name": "Pokemon Ultra Prism",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Reverse Holo"
+      }
+    },
+    {
+      "query": "Pokemon Ultra Prism Cynthia 119 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ultra%20Prism%20Cynthia%20119%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4286164",
+      "product_name": "Cynthia [Regional Championship] #119",
+      "console_name": "Pokemon Ultra Prism",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Regional Championship"
+      }
+    },
+    {
+      "query": "Pokemon Ultra Prism Cynthia 119 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ultra%20Prism%20Cynthia%20119%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5608613",
+      "product_name": "Cynthia [Regional Championship Staff] #119",
+      "console_name": "Pokemon Ultra Prism",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Regional Championship Staff"
+      }
+    },
+    {
+      "query": "Pokemon Ultra Prism Cynthia 119 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ultra%20Prism%20Cynthia%20119%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "961511",
+      "product_name": "Cynthia #148",
+      "console_name": "Pokemon Ultra Prism",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:148"
+      }
+    },
+    {
+      "query": "Pokemon Ultra Prism Cynthia 119 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ultra%20Prism%20Cynthia%20119%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8306080",
+      "product_name": "Cynthia [Regional Championship] #119A",
+      "console_name": "Pokemon Ultra Prism",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:119A"
+      }
+    },
+    {
+      "query": "Pokemon Ultra Prism Cynthia 119 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ultra%20Prism%20Cynthia%20119%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3399237",
+      "product_name": "Heatran [Ultra Prism Stamped] #88",
+      "console_name": "Pokemon Ultra Prism",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:88"
+      }
+    },
+    {
+      "query": "Pokemon Ultra Prism Cynthia 119 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ultra%20Prism%20Cynthia%20119%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8306083",
+      "product_name": "Cynthia [Regional Championship Staff] #119A",
+      "console_name": "Pokemon Ultra Prism",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:119A"
+      }
+    },
+    {
+      "query": "Pokemon Ultra Prism Cynthia 119 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ultra%20Prism%20Cynthia%20119%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5421460",
+      "product_name": "Cynthia #119",
+      "console_name": "Pokemon 2020 Battle Academy",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon 2020 Battle Academy"
+      }
+    },
+    {
+      "query": "Pokemon Ultra Prism Cynthia 119 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ultra%20Prism%20Cynthia%20119%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3468115",
+      "product_name": "Cynthia #70",
+      "console_name": "Pokemon Japanese Ultra Moon",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:70"
+      }
+    },
+    {
+      "query": "Pokemon Ultra Prism Cynthia 119 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ultra%20Prism%20Cynthia%20119%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3468106",
+      "product_name": "Cynthia #61",
+      "console_name": "Pokemon Japanese Ultra Moon",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:61"
+      }
+    },
+    {
+      "query": "Pokemon Ultra Prism Cynthia 119 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ultra%20Prism%20Cynthia%20119%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3445680",
+      "product_name": "Cynthia #132",
+      "console_name": "Pokemon Japanese GX Ultra Shiny",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:132"
+      }
+    },
+    {
+      "query": "Pokemon Ultra Prism Cynthia 119 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ultra%20Prism%20Cynthia%20119%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3445701",
+      "product_name": "Cynthia #153",
+      "console_name": "Pokemon Japanese GX Ultra Shiny",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:153"
+      }
+    },
+    {
+      "query": "Pokemon Ultra Prism Cynthia 119 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ultra%20Prism%20Cynthia%20119%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6659921",
+      "product_name": "Koraidon [Stamped] #119",
+      "console_name": "Pokemon Temporal Forces",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Koraidon"
+      }
+    },
+    {
+      "query": "Pokemon Ultra Prism Cynthia 119 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ultra%20Prism%20Cynthia%20119%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12172675",
+      "product_name": "Fuecoco [Stamped] #119/SV-P",
+      "console_name": "Pokemon Chinese Promo",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Fuecoco"
+      }
+    },
+    {
+      "query": "Pokemon Ultra Prism Cynthia 119 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ultra%20Prism%20Cynthia%20119%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "961513",
+      "product_name": "Lana #150",
+      "console_name": "Pokemon Ultra Prism",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:150"
+      }
+    },
+    {
+      "query": "Pokemon Ultra Prism Cynthia 119 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ultra%20Prism%20Cynthia%20119%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "961491",
+      "product_name": "Mars #128",
+      "console_name": "Pokemon Ultra Prism",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:128"
+      }
+    },
+    {
+      "query": "Pokemon Ultra Prism Cynthia 119 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ultra%20Prism%20Cynthia%20119%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "961517",
+      "product_name": "Mars #154",
+      "console_name": "Pokemon Ultra Prism",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:154"
+      }
+    },
+    {
+      "query": "Pokemon Ultra Prism Cynthia 119 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ultra%20Prism%20Cynthia%20119%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "961413",
+      "product_name": "Rotom #50",
+      "console_name": "Pokemon Ultra Prism",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:50"
+      }
+    },
+    {
+      "query": "Pokemon Ultra Prism Cynthia 119 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ultra%20Prism%20Cynthia%20119%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "961410",
+      "product_name": "Luxio #47",
+      "console_name": "Pokemon Ultra Prism",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:47"
+      }
+    },
+    {
+      "query": "Pokemon Ultra Prism Cynthia 119 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ultra%20Prism%20Cynthia%20119%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "961482",
+      "product_name": "Cynthia #119",
+      "console_name": "Pokemon Ultra Prism",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon Ultra Prism Cynthia 119 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ultra%20Prism%20Cynthia%20119%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "961645",
+      "product_name": "Cynthia [Reverse Holo] #119",
+      "console_name": "Pokemon Ultra Prism",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Reverse Holo"
+      }
+    },
+    {
+      "query": "Pokemon Ultra Prism Cynthia 119 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ultra%20Prism%20Cynthia%20119%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4286164",
+      "product_name": "Cynthia [Regional Championship] #119",
+      "console_name": "Pokemon Ultra Prism",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Regional Championship"
+      }
+    },
+    {
+      "query": "Pokemon Ultra Prism Cynthia 119 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ultra%20Prism%20Cynthia%20119%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5608613",
+      "product_name": "Cynthia [Regional Championship Staff] #119",
+      "console_name": "Pokemon Ultra Prism",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Regional Championship Staff"
+      }
+    },
+    {
+      "query": "Pokemon Ultra Prism Cynthia 119 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ultra%20Prism%20Cynthia%20119%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "961511",
+      "product_name": "Cynthia #148",
+      "console_name": "Pokemon Ultra Prism",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:148"
+      }
+    },
+    {
+      "query": "Pokemon Ultra Prism Cynthia 119 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ultra%20Prism%20Cynthia%20119%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8306080",
+      "product_name": "Cynthia [Regional Championship] #119A",
+      "console_name": "Pokemon Ultra Prism",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:119A"
+      }
+    },
+    {
+      "query": "Pokemon Ultra Prism Cynthia 119 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ultra%20Prism%20Cynthia%20119%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3399237",
+      "product_name": "Heatran [Ultra Prism Stamped] #88",
+      "console_name": "Pokemon Ultra Prism",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:88"
+      }
+    },
+    {
+      "query": "Pokemon Ultra Prism Cynthia 119 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ultra%20Prism%20Cynthia%20119%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8306083",
+      "product_name": "Cynthia [Regional Championship Staff] #119A",
+      "console_name": "Pokemon Ultra Prism",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:119A"
+      }
+    },
+    {
+      "query": "Pokemon Ultra Prism Cynthia 119 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ultra%20Prism%20Cynthia%20119%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5421460",
+      "product_name": "Cynthia #119",
+      "console_name": "Pokemon 2020 Battle Academy",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon 2020 Battle Academy"
+      }
+    },
+    {
+      "query": "Pokemon Ultra Prism Cynthia 119 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ultra%20Prism%20Cynthia%20119%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3468115",
+      "product_name": "Cynthia #70",
+      "console_name": "Pokemon Japanese Ultra Moon",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:70"
+      }
+    },
+    {
+      "query": "Pokemon Ultra Prism Cynthia 119 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ultra%20Prism%20Cynthia%20119%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3468106",
+      "product_name": "Cynthia #61",
+      "console_name": "Pokemon Japanese Ultra Moon",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:61"
+      }
+    },
+    {
+      "query": "Pokemon Ultra Prism Cynthia 119 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ultra%20Prism%20Cynthia%20119%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3445680",
+      "product_name": "Cynthia #132",
+      "console_name": "Pokemon Japanese GX Ultra Shiny",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:132"
+      }
+    },
+    {
+      "query": "Pokemon Ultra Prism Cynthia 119 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ultra%20Prism%20Cynthia%20119%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3445701",
+      "product_name": "Cynthia #153",
+      "console_name": "Pokemon Japanese GX Ultra Shiny",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:153"
+      }
+    },
+    {
+      "query": "Pokemon Ultra Prism Cynthia 119 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ultra%20Prism%20Cynthia%20119%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6659921",
+      "product_name": "Koraidon [Stamped] #119",
+      "console_name": "Pokemon Temporal Forces",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Koraidon"
+      }
+    },
+    {
+      "query": "Pokemon Ultra Prism Cynthia 119 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ultra%20Prism%20Cynthia%20119%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12172675",
+      "product_name": "Fuecoco [Stamped] #119/SV-P",
+      "console_name": "Pokemon Chinese Promo",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Fuecoco"
+      }
+    },
+    {
+      "query": "Pokemon Ultra Prism Cynthia 119 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ultra%20Prism%20Cynthia%20119%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "961513",
+      "product_name": "Lana #150",
+      "console_name": "Pokemon Ultra Prism",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:150"
+      }
+    },
+    {
+      "query": "Pokemon Ultra Prism Cynthia 119 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ultra%20Prism%20Cynthia%20119%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "961491",
+      "product_name": "Mars #128",
+      "console_name": "Pokemon Ultra Prism",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:128"
+      }
+    },
+    {
+      "query": "Pokemon Ultra Prism Cynthia 119 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ultra%20Prism%20Cynthia%20119%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "961517",
+      "product_name": "Mars #154",
+      "console_name": "Pokemon Ultra Prism",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:154"
+      }
+    },
+    {
+      "query": "Pokemon Ultra Prism Cynthia 119 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ultra%20Prism%20Cynthia%20119%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "961413",
+      "product_name": "Rotom #50",
+      "console_name": "Pokemon Ultra Prism",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:50"
+      }
+    },
+    {
+      "query": "Pokemon Ultra Prism Cynthia 119 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ultra%20Prism%20Cynthia%20119%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "961410",
+      "product_name": "Luxio #47",
+      "console_name": "Pokemon Ultra Prism",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:47"
+      }
+    }
+  ],
+  "source_lane": "pricecharting_api"
+}

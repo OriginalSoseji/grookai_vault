@@ -1,0 +1,549 @@
+{
+  "status": "api_no_validated_match",
+  "fact": {
+    "gap_type": "finish_second_source_needed",
+    "fact_type": "printing_finish",
+    "set_key": "sv09",
+    "set_name": "Journey Together",
+    "card_number": "53",
+    "card_name": "Iono's Bellibolt ex",
+    "finish_key": "stamped",
+    "status": "human_source_verified",
+    "sources": [
+      "thepricedex_price_list"
+    ],
+    "source_authorities": [
+      "thepricedex.com"
+    ],
+    "source_kinds": [
+      "marketplace_checklist"
+    ],
+    "evidence_urls": [
+      "https://www.thepricedex.com/set/sv9/journey-together/price-list"
+    ],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "attempts": [
+    {
+      "query": "Pokemon Journey Together Iono's Bellibolt ex 53 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Journey%20Together%20Iono's%20Bellibolt%20ex%2053%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8871238",
+      "product_name": "Iono's Bellibolt ex #53",
+      "console_name": "Pokemon Journey Together",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon Journey Together Iono's Bellibolt ex 53 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Journey%20Together%20Iono's%20Bellibolt%20ex%2053%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10951927",
+      "product_name": "Iono's Bellibolt Ex [Prize Pack] #53",
+      "console_name": "Pokemon Journey Together",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Prize Pack"
+      }
+    },
+    {
+      "query": "Pokemon Journey Together Iono's Bellibolt ex 53 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Journey%20Together%20Iono's%20Bellibolt%20ex%2053%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8871337",
+      "product_name": "Iono's Bellibolt ex #183",
+      "console_name": "Pokemon Journey Together",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:183"
+      }
+    },
+    {
+      "query": "Pokemon Journey Together Iono's Bellibolt ex 53 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Journey%20Together%20Iono's%20Bellibolt%20ex%2053%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8871343",
+      "product_name": "Iono's Bellibolt ex #188",
+      "console_name": "Pokemon Journey Together",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:188"
+      }
+    },
+    {
+      "query": "Pokemon Journey Together Iono's Bellibolt ex 53 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Journey%20Together%20Iono's%20Bellibolt%20ex%2053%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8883281",
+      "product_name": "Iono's Bellibolt Ex #172",
+      "console_name": "Pokemon Journey Together",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:172"
+      }
+    },
+    {
+      "query": "Pokemon Journey Together Iono's Bellibolt ex 53 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Journey%20Together%20Iono's%20Bellibolt%20ex%2053%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9058587",
+      "product_name": "Iono's Bellibolt Ex #194",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:194"
+      }
+    },
+    {
+      "query": "Pokemon Journey Together Iono's Bellibolt ex 53 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Journey%20Together%20Iono's%20Bellibolt%20ex%2053%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11816007",
+      "product_name": "Iono's Bellibolt ex #70",
+      "console_name": "Pokemon Ascended Heroes",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:70"
+      }
+    },
+    {
+      "query": "Pokemon Journey Together Iono's Bellibolt ex 53 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Journey%20Together%20Iono's%20Bellibolt%20ex%2053%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11830153",
+      "product_name": "Iono's Bellibolt Ex #279",
+      "console_name": "Pokemon Ascended Heroes",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:279"
+      }
+    },
+    {
+      "query": "Pokemon Journey Together Iono's Bellibolt ex 53 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Journey%20Together%20Iono's%20Bellibolt%20ex%2053%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11302424",
+      "product_name": "Iono's Bellibolt ex #57",
+      "console_name": "Pokemon Japanese Mega Dream ex",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:57"
+      }
+    },
+    {
+      "query": "Pokemon Journey Together Iono's Bellibolt ex 53 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Journey%20Together%20Iono's%20Bellibolt%20ex%2053%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11302602",
+      "product_name": "Iono's Bellibolt ex #236",
+      "console_name": "Pokemon Japanese Mega Dream ex",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:236"
+      }
+    },
+    {
+      "query": "Pokemon Journey Together Iono's Bellibolt ex 53 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Journey%20Together%20Iono's%20Bellibolt%20ex%2053%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8437108",
+      "product_name": "Iono's Bellibolt ex #30",
+      "console_name": "Pokemon Japanese Battle Partners",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:30"
+      }
+    },
+    {
+      "query": "Pokemon Journey Together Iono's Bellibolt ex 53 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Journey%20Together%20Iono's%20Bellibolt%20ex%2053%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8437192",
+      "product_name": "Iono's Bellibolt ex #114",
+      "console_name": "Pokemon Japanese Battle Partners",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:114"
+      }
+    },
+    {
+      "query": "Pokemon Journey Together Iono's Bellibolt ex 53 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Journey%20Together%20Iono's%20Bellibolt%20ex%2053%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8437203",
+      "product_name": "Iono's Bellibolt ex #125",
+      "console_name": "Pokemon Japanese Battle Partners",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:125"
+      }
+    },
+    {
+      "query": "Pokemon Journey Together Iono's Bellibolt ex 53 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Journey%20Together%20Iono's%20Bellibolt%20ex%2053%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8437208",
+      "product_name": "Iono's Bellibolt ex #130",
+      "console_name": "Pokemon Japanese Battle Partners",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:130"
+      }
+    },
+    {
+      "query": "Pokemon Journey Together Iono's Bellibolt ex 53 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Journey%20Together%20Iono's%20Bellibolt%20ex%2053%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12094701",
+      "product_name": "Iono's Bellibolt  Ex #30",
+      "console_name": "Pokemon Korean Battle Partners",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:30"
+      }
+    },
+    {
+      "query": "Pokemon Journey Together Iono's Bellibolt ex 53 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Journey%20Together%20Iono's%20Bellibolt%20ex%2053%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11913909",
+      "product_name": "Iono's Bellibolt Ex #125",
+      "console_name": "Pokemon Korean Battle Partners",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:125"
+      }
+    },
+    {
+      "query": "Pokemon Journey Together Iono's Bellibolt ex 53 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Journey%20Together%20Iono's%20Bellibolt%20ex%2053%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "13015097",
+      "product_name": "Iono's Bellibolt ex #236",
+      "console_name": "Pokemon Korean Mega Dream ex",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:236"
+      }
+    },
+    {
+      "query": "Pokemon Journey Together Iono's Bellibolt ex 53 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Journey%20Together%20Iono's%20Bellibolt%20ex%2053%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "13015080",
+      "product_name": "Iono's Bellibolt ex #57",
+      "console_name": "Pokemon Korean Mega Dream ex",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:57"
+      }
+    },
+    {
+      "query": "Pokemon Journey Together Iono's Bellibolt ex 53 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Journey%20Together%20Iono's%20Bellibolt%20ex%2053%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11462627",
+      "product_name": "Iono's Bellibolt ex #274",
+      "console_name": "Pokemon Japanese Start Deck 100 Battle Collection",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:274"
+      }
+    },
+    {
+      "query": "Pokemon Journey Together Iono's Bellibolt ex 53 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Journey%20Together%20Iono's%20Bellibolt%20ex%2053%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11105548",
+      "product_name": "Salamence Ex [Stamped] #114",
+      "console_name": "Pokemon Journey Together",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:114"
+      }
+    },
+    {
+      "query": "Pokemon Journey Together Iono's Bellibolt ex 53 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Journey%20Together%20Iono's%20Bellibolt%20ex%2053%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8871238",
+      "product_name": "Iono's Bellibolt ex #53",
+      "console_name": "Pokemon Journey Together",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon Journey Together Iono's Bellibolt ex 53 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Journey%20Together%20Iono's%20Bellibolt%20ex%2053%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10951927",
+      "product_name": "Iono's Bellibolt Ex [Prize Pack] #53",
+      "console_name": "Pokemon Journey Together",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Prize Pack"
+      }
+    },
+    {
+      "query": "Pokemon Journey Together Iono's Bellibolt ex 53 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Journey%20Together%20Iono's%20Bellibolt%20ex%2053%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8871337",
+      "product_name": "Iono's Bellibolt ex #183",
+      "console_name": "Pokemon Journey Together",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:183"
+      }
+    },
+    {
+      "query": "Pokemon Journey Together Iono's Bellibolt ex 53 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Journey%20Together%20Iono's%20Bellibolt%20ex%2053%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8871343",
+      "product_name": "Iono's Bellibolt ex #188",
+      "console_name": "Pokemon Journey Together",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:188"
+      }
+    },
+    {
+      "query": "Pokemon Journey Together Iono's Bellibolt ex 53 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Journey%20Together%20Iono's%20Bellibolt%20ex%2053%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8883281",
+      "product_name": "Iono's Bellibolt Ex #172",
+      "console_name": "Pokemon Journey Together",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:172"
+      }
+    },
+    {
+      "query": "Pokemon Journey Together Iono's Bellibolt ex 53 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Journey%20Together%20Iono's%20Bellibolt%20ex%2053%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9058587",
+      "product_name": "Iono's Bellibolt Ex #194",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:194"
+      }
+    },
+    {
+      "query": "Pokemon Journey Together Iono's Bellibolt ex 53 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Journey%20Together%20Iono's%20Bellibolt%20ex%2053%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11816007",
+      "product_name": "Iono's Bellibolt ex #70",
+      "console_name": "Pokemon Ascended Heroes",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:70"
+      }
+    },
+    {
+      "query": "Pokemon Journey Together Iono's Bellibolt ex 53 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Journey%20Together%20Iono's%20Bellibolt%20ex%2053%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11830153",
+      "product_name": "Iono's Bellibolt Ex #279",
+      "console_name": "Pokemon Ascended Heroes",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:279"
+      }
+    },
+    {
+      "query": "Pokemon Journey Together Iono's Bellibolt ex 53 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Journey%20Together%20Iono's%20Bellibolt%20ex%2053%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11302424",
+      "product_name": "Iono's Bellibolt ex #57",
+      "console_name": "Pokemon Japanese Mega Dream ex",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:57"
+      }
+    },
+    {
+      "query": "Pokemon Journey Together Iono's Bellibolt ex 53 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Journey%20Together%20Iono's%20Bellibolt%20ex%2053%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11302602",
+      "product_name": "Iono's Bellibolt ex #236",
+      "console_name": "Pokemon Japanese Mega Dream ex",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:236"
+      }
+    },
+    {
+      "query": "Pokemon Journey Together Iono's Bellibolt ex 53 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Journey%20Together%20Iono's%20Bellibolt%20ex%2053%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8437108",
+      "product_name": "Iono's Bellibolt ex #30",
+      "console_name": "Pokemon Japanese Battle Partners",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:30"
+      }
+    },
+    {
+      "query": "Pokemon Journey Together Iono's Bellibolt ex 53 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Journey%20Together%20Iono's%20Bellibolt%20ex%2053%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8437192",
+      "product_name": "Iono's Bellibolt ex #114",
+      "console_name": "Pokemon Japanese Battle Partners",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:114"
+      }
+    },
+    {
+      "query": "Pokemon Journey Together Iono's Bellibolt ex 53 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Journey%20Together%20Iono's%20Bellibolt%20ex%2053%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8437203",
+      "product_name": "Iono's Bellibolt ex #125",
+      "console_name": "Pokemon Japanese Battle Partners",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:125"
+      }
+    },
+    {
+      "query": "Pokemon Journey Together Iono's Bellibolt ex 53 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Journey%20Together%20Iono's%20Bellibolt%20ex%2053%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8437208",
+      "product_name": "Iono's Bellibolt ex #130",
+      "console_name": "Pokemon Japanese Battle Partners",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:130"
+      }
+    },
+    {
+      "query": "Pokemon Journey Together Iono's Bellibolt ex 53 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Journey%20Together%20Iono's%20Bellibolt%20ex%2053%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12094701",
+      "product_name": "Iono's Bellibolt  Ex #30",
+      "console_name": "Pokemon Korean Battle Partners",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:30"
+      }
+    },
+    {
+      "query": "Pokemon Journey Together Iono's Bellibolt ex 53 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Journey%20Together%20Iono's%20Bellibolt%20ex%2053%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11913909",
+      "product_name": "Iono's Bellibolt Ex #125",
+      "console_name": "Pokemon Korean Battle Partners",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:125"
+      }
+    },
+    {
+      "query": "Pokemon Journey Together Iono's Bellibolt ex 53 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Journey%20Together%20Iono's%20Bellibolt%20ex%2053%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "13015097",
+      "product_name": "Iono's Bellibolt ex #236",
+      "console_name": "Pokemon Korean Mega Dream ex",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:236"
+      }
+    },
+    {
+      "query": "Pokemon Journey Together Iono's Bellibolt ex 53 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Journey%20Together%20Iono's%20Bellibolt%20ex%2053%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "13015080",
+      "product_name": "Iono's Bellibolt ex #57",
+      "console_name": "Pokemon Korean Mega Dream ex",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:57"
+      }
+    },
+    {
+      "query": "Pokemon Journey Together Iono's Bellibolt ex 53 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Journey%20Together%20Iono's%20Bellibolt%20ex%2053%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11462627",
+      "product_name": "Iono's Bellibolt ex #274",
+      "console_name": "Pokemon Japanese Start Deck 100 Battle Collection",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:274"
+      }
+    },
+    {
+      "query": "Pokemon Journey Together Iono's Bellibolt ex 53 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Journey%20Together%20Iono's%20Bellibolt%20ex%2053%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11105548",
+      "product_name": "Salamence Ex [Stamped] #114",
+      "console_name": "Pokemon Journey Together",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:114"
+      }
+    }
+  ],
+  "source_lane": "pricecharting_api"
+}

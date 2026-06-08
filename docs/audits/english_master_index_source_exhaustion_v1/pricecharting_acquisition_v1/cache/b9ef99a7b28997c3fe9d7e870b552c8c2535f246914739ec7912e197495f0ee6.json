@@ -1,0 +1,36 @@
+{
+  "status": "no_validated_match",
+  "fact": {
+    "gap_type": "finish_second_source_needed",
+    "fact_type": "printing_finish",
+    "set_key": "swsh4",
+    "set_name": "Vivid Voltage",
+    "card_number": "19",
+    "card_name": "Dhelmise",
+    "finish_key": "stamped",
+    "status": "human_source_verified",
+    "sources": [
+      "thepricedex_price_list"
+    ],
+    "source_authorities": [
+      "thepricedex.com"
+    ],
+    "source_kinds": [
+      "marketplace_checklist"
+    ],
+    "evidence_urls": [],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "attempts": [
+    {
+      "query": "Pokemon Vivid Voltage Dhelmise 19 stamped",
+      "url": "https://www.pricecharting.com/search-products?q=Pokemon%20Vivid%20Voltage%20Dhelmise%2019%20stamped&type=prices",
+      "error": "Fetch failed 403 Forbidden: https://www.pricecharting.com/search-products?q=Pokemon%20Vivid%20Voltage%20Dhelmise%2019%20stamped&type=prices"
+    },
+    {
+      "query": "Pokemon Vivid Voltage Dhelmise 19 stamp",
+      "url": "https://www.pricecharting.com/search-products?q=Pokemon%20Vivid%20Voltage%20Dhelmise%2019%20stamp&type=prices",
+      "error": "Fetch failed 403 Forbidden: https://www.pricecharting.com/search-products?q=Pokemon%20Vivid%20Voltage%20Dhelmise%2019%20stamp&type=prices"
+    }
+  ]
+}

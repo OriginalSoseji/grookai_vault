@@ -1,0 +1,24 @@
+{
+  "products": [
+    {
+      "bgs-10-price": 3900,
+      "box-only-price": 2300,
+      "condition-17-price": 1800,
+      "condition-18-price": 1800,
+      "console-name": "Pokemon Emerging Powers",
+      "gamestop-price": 0,
+      "gamestop-trade-price": 0,
+      "genre": "Pokemon Card",
+      "graded-price": 2067,
+      "id": "955563",
+      "loose-price": 199,
+      "manual-only-price": 3000,
+      "product-name": "Scolipede [Reverse Holo] #40",
+      "release-date": "2011-08-31",
+      "retail-loose-sell": 219,
+      "sales-volume": "9",
+      "tcg-id": "88969"
+    }
+  ],
+  "status": "success"
+}

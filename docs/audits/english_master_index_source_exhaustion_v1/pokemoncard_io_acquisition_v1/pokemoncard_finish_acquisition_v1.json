@@ -1,0 +1,707 @@
+{
+  "generated_at": "2026-06-08T12:45:13.794Z",
+  "version": "POKEMONCARD_IO_FINISH_ACQUISITION_V1",
+  "audit_only": true,
+  "db_writes_performed": false,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "dry_run": false,
+  "rule": "PokemonCard.io evidence is accepted only when the TCGplayer price breakdown table contains an exact print row matching set, card number, card name, and finish.",
+  "summary": {
+    "attempted_facts": 16,
+    "by_status": {
+      "no_exact_print_row": 9,
+      "no_tcgplayer_print_rows": 1,
+      "source_unavailable": 6
+    },
+    "validated_by_set": {},
+    "records_generated": 0,
+    "fixture_files_written": 0
+  },
+  "fixture_dir": "docs/audits/verified_master_set_index_v1/source_fixtures/generated_pokemoncard_io_v1",
+  "fixture_files": [],
+  "results": [
+    {
+      "status": "no_exact_print_row",
+      "fact": {
+        "gap_type": "finish_second_source_needed",
+        "fact_type": "printing_finish",
+        "set_key": "bw2",
+        "set_name": "Emerging Powers",
+        "card_number": "40",
+        "card_name": "Scolipede",
+        "finish_key": "holo",
+        "status": "human_source_verified",
+        "sources": [
+          "thepricedex_price_list"
+        ],
+        "source_authorities": [
+          "thepricedex.com"
+        ],
+        "source_kinds": [
+          "marketplace_checklist"
+        ],
+        "evidence_urls": [
+          "https://www.thepricedex.com/set/bw2/emerging-powers/price-list"
+        ],
+        "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+      },
+      "source_url": "https://pokemoncard.io/card/scolipede-bw2-40",
+      "attempted_urls": [
+        "https://pokemoncard.io/card/scolipede-bw2-40"
+      ],
+      "source_rows": 2,
+      "attempts": [
+        {
+          "status": "no_exact_print_row",
+          "source_url": "https://pokemoncard.io/card/scolipede-bw2-40",
+          "source_rows": 2,
+          "page_identity": {
+            "title": "Scolipede (bw2-40) - PokemonCard",
+            "heading": "",
+            "set_name": "",
+            "card_number": ""
+          }
+        }
+      ]
+    },
+    {
+      "status": "no_exact_print_row",
+      "fact": {
+        "gap_type": "finish_second_source_needed",
+        "fact_type": "printing_finish",
+        "set_key": "bw6",
+        "set_name": "Dragons Exalted",
+        "card_number": "98",
+        "card_name": "Hydreigon",
+        "finish_key": "holo",
+        "status": "human_source_verified",
+        "sources": [
+          "thepricedex_price_list"
+        ],
+        "source_authorities": [
+          "thepricedex.com"
+        ],
+        "source_kinds": [
+          "marketplace_checklist"
+        ],
+        "evidence_urls": [
+          "https://www.thepricedex.com/set/bw6/dragons-exalted/price-list"
+        ],
+        "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+      },
+      "source_url": "https://pokemoncard.io/card/hydreigon-bw6-98",
+      "attempted_urls": [
+        "https://pokemoncard.io/card/hydreigon-bw6-98"
+      ],
+      "source_rows": 2,
+      "attempts": [
+        {
+          "status": "no_exact_print_row",
+          "source_url": "https://pokemoncard.io/card/hydreigon-bw6-98",
+          "source_rows": 2,
+          "page_identity": {
+            "title": "Hydreigon (bw6-98) - PokemonCard",
+            "heading": "",
+            "set_name": "",
+            "card_number": ""
+          }
+        }
+      ]
+    },
+    {
+      "status": "no_exact_print_row",
+      "fact": {
+        "gap_type": "finish_second_source_needed",
+        "fact_type": "printing_finish",
+        "set_key": "bw8",
+        "set_name": "Plasma Storm",
+        "card_number": "94",
+        "card_name": "Druddigon",
+        "finish_key": "holo",
+        "status": "human_source_verified",
+        "sources": [
+          "thepricedex_price_list"
+        ],
+        "source_authorities": [
+          "thepricedex.com"
+        ],
+        "source_kinds": [
+          "marketplace_checklist"
+        ],
+        "evidence_urls": [
+          "https://www.thepricedex.com/set/bw8/plasma-storm/price-list"
+        ],
+        "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+      },
+      "source_url": "https://pokemoncard.io/card/druddigon-bw8-94",
+      "attempted_urls": [
+        "https://pokemoncard.io/card/druddigon-bw8-94"
+      ],
+      "source_rows": 2,
+      "attempts": [
+        {
+          "status": "no_exact_print_row",
+          "source_url": "https://pokemoncard.io/card/druddigon-bw8-94",
+          "source_rows": 2,
+          "page_identity": {
+            "title": "Druddigon (bw8-94) - PokemonCard",
+            "heading": "",
+            "set_name": "",
+            "card_number": ""
+          }
+        }
+      ]
+    },
+    {
+      "status": "source_unavailable",
+      "fact": {
+        "gap_type": "finish_second_source_needed",
+        "fact_type": "printing_finish",
+        "set_key": "cel25",
+        "set_name": "Celebrations",
+        "card_number": "24",
+        "card_name": "_____'s Pikachu",
+        "finish_key": "holo",
+        "status": "human_source_verified",
+        "sources": [
+          "thepricedex_price_list"
+        ],
+        "source_authorities": [
+          "thepricedex.com"
+        ],
+        "source_kinds": [
+          "marketplace_checklist"
+        ],
+        "evidence_urls": [
+          "https://www.thepricedex.com/set/cel25/celebrations/price-list"
+        ],
+        "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+      },
+      "source_url": "https://pokemoncard.io/card/s-pikachu-cel25-24",
+      "attempted_urls": [
+        "https://pokemoncard.io/card/s-pikachu-cel25-24"
+      ],
+      "source_rows": 0,
+      "attempts": [
+        {
+          "status": "source_unavailable",
+          "source_url": "https://pokemoncard.io/card/s-pikachu-cel25-24",
+          "source_rows": 0,
+          "error": "fetch failed"
+        }
+      ]
+    },
+    {
+      "status": "no_exact_print_row",
+      "fact": {
+        "gap_type": "finish_second_source_needed",
+        "fact_type": "printing_finish",
+        "set_key": "ecard2",
+        "set_name": "Aquapolis",
+        "card_number": "103",
+        "card_name": "Porygon",
+        "finish_key": "normal",
+        "status": "human_source_verified",
+        "sources": [
+          "thepricedex_price_list"
+        ],
+        "source_authorities": [
+          "thepricedex.com"
+        ],
+        "source_kinds": [
+          "marketplace_checklist"
+        ],
+        "evidence_urls": [
+          "https://www.thepricedex.com/set/ecard2/aquapolis/price-list"
+        ],
+        "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+      },
+      "source_url": "https://pokemoncard.io/card/porygon-ecard2-103",
+      "attempted_urls": [
+        "https://pokemoncard.io/card/porygon-ecard2-103"
+      ],
+      "source_rows": 4,
+      "attempts": [
+        {
+          "status": "no_exact_print_row",
+          "source_url": "https://pokemoncard.io/card/porygon-ecard2-103",
+          "source_rows": 4,
+          "page_identity": {
+            "title": "Porygon (ecard2-103) - PokemonCard",
+            "heading": "",
+            "set_name": "",
+            "card_number": ""
+          }
+        }
+      ]
+    },
+    {
+      "status": "no_exact_print_row",
+      "fact": {
+        "gap_type": "finish_second_source_needed",
+        "fact_type": "printing_finish",
+        "set_key": "ecard2",
+        "set_name": "Aquapolis",
+        "card_number": "103",
+        "card_name": "Porygon",
+        "finish_key": "reverse",
+        "status": "human_source_verified",
+        "sources": [
+          "thepricedex_price_list"
+        ],
+        "source_authorities": [
+          "thepricedex.com"
+        ],
+        "source_kinds": [
+          "marketplace_checklist"
+        ],
+        "evidence_urls": [
+          "https://www.thepricedex.com/set/ecard2/aquapolis/price-list"
+        ],
+        "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+      },
+      "source_url": "https://pokemoncard.io/card/porygon-ecard2-103",
+      "attempted_urls": [
+        "https://pokemoncard.io/card/porygon-ecard2-103"
+      ],
+      "source_rows": 4,
+      "attempts": [
+        {
+          "status": "no_exact_print_row",
+          "source_url": "https://pokemoncard.io/card/porygon-ecard2-103",
+          "source_rows": 4,
+          "page_identity": {
+            "title": "Porygon (ecard2-103) - PokemonCard",
+            "heading": "",
+            "set_name": "",
+            "card_number": ""
+          }
+        }
+      ]
+    },
+    {
+      "status": "source_unavailable",
+      "fact": {
+        "gap_type": "finish_second_source_needed",
+        "fact_type": "printing_finish",
+        "set_key": "ex9",
+        "set_name": "Emerald",
+        "card_number": "107",
+        "card_name": "Farfetch'd",
+        "finish_key": "normal",
+        "status": "human_source_verified",
+        "sources": [
+          "cardtrader_blueprint_index"
+        ],
+        "source_authorities": [
+          "cardtrader.com"
+        ],
+        "source_kinds": [
+          "marketplace_checklist"
+        ],
+        "evidence_urls": [
+          "https://www.cardtrader.com/en/cards/115934-farfetch-d-secret-rare-107-106-ex-emerald"
+        ],
+        "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+      },
+      "source_url": "https://pokemoncard.io/card/farfetchd-ex9-107",
+      "attempted_urls": [
+        "https://pokemoncard.io/card/farfetchd-ex9-107"
+      ],
+      "source_rows": 0,
+      "attempts": [
+        {
+          "status": "source_unavailable",
+          "source_url": "https://pokemoncard.io/card/farfetchd-ex9-107",
+          "source_rows": 0,
+          "error": "fetch failed"
+        }
+      ]
+    },
+    {
+      "status": "no_tcgplayer_print_rows",
+      "fact": {
+        "gap_type": "finish_second_source_needed",
+        "fact_type": "printing_finish",
+        "set_key": "neo1",
+        "set_name": "Neo Genesis",
+        "card_number": "105",
+        "card_name": "Recycle Energy",
+        "finish_key": "holo",
+        "status": "human_source_verified",
+        "sources": [
+          "thepricedex_price_list"
+        ],
+        "source_authorities": [
+          "thepricedex.com"
+        ],
+        "source_kinds": [
+          "marketplace_checklist"
+        ],
+        "evidence_urls": [
+          "https://www.thepricedex.com/set/neo1/neo-genesis/price-list"
+        ],
+        "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+      },
+      "source_url": "https://pokemoncard.io/card/recycle-energy-neo1-105",
+      "attempted_urls": [
+        "https://pokemoncard.io/card/recycle-energy-neo1-105",
+        "https://pokemoncard.io/card/basic-recycle-energy-neo1-105"
+      ],
+      "source_rows": 0,
+      "attempts": [
+        {
+          "status": "no_tcgplayer_print_rows",
+          "source_url": "https://pokemoncard.io/card/recycle-energy-neo1-105",
+          "source_rows": 0,
+          "page_identity": {
+            "title": "Recycle Energy (neo1-105) - PokemonCard",
+            "heading": "",
+            "set_name": "",
+            "card_number": ""
+          }
+        },
+        {
+          "status": "source_unavailable",
+          "source_url": "https://pokemoncard.io/card/basic-recycle-energy-neo1-105",
+          "source_rows": 0,
+          "error": "fetch failed"
+        }
+      ]
+    },
+    {
+      "status": "source_unavailable",
+      "fact": {
+        "gap_type": "finish_second_source_needed",
+        "fact_type": "printing_finish",
+        "set_key": "sm3",
+        "set_name": "Burning Shadows",
+        "card_number": "28",
+        "card_name": "Alolan Ninetales",
+        "finish_key": "holo",
+        "status": "human_source_verified",
+        "sources": [
+          "thepricedex_price_list"
+        ],
+        "source_authorities": [
+          "thepricedex.com"
+        ],
+        "source_kinds": [
+          "marketplace_checklist"
+        ],
+        "evidence_urls": [
+          "https://www.thepricedex.com/set/sm3/burning-shadows/price-list"
+        ],
+        "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+      },
+      "source_url": "https://pokemoncard.io/card/alolan-ninetales-sm3-28",
+      "attempted_urls": [
+        "https://pokemoncard.io/card/alolan-ninetales-sm3-28"
+      ],
+      "source_rows": 0,
+      "attempts": [
+        {
+          "status": "source_unavailable",
+          "source_url": "https://pokemoncard.io/card/alolan-ninetales-sm3-28",
+          "source_rows": 0,
+          "error": "fetch failed"
+        }
+      ]
+    },
+    {
+      "status": "no_exact_print_row",
+      "fact": {
+        "gap_type": "finish_second_source_needed",
+        "fact_type": "printing_finish",
+        "set_key": "sm10",
+        "set_name": "Unbroken Bonds",
+        "card_number": "60",
+        "card_name": "Zeraora",
+        "finish_key": "holo",
+        "status": "human_source_verified",
+        "sources": [
+          "thepricedex_price_list"
+        ],
+        "source_authorities": [
+          "thepricedex.com"
+        ],
+        "source_kinds": [
+          "marketplace_checklist"
+        ],
+        "evidence_urls": [
+          "https://www.thepricedex.com/set/sm10/unbroken-bonds/price-list"
+        ],
+        "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+      },
+      "source_url": "https://pokemoncard.io/card/zeraora-sm10-60",
+      "attempted_urls": [
+        "https://pokemoncard.io/card/zeraora-sm10-60"
+      ],
+      "source_rows": 2,
+      "attempts": [
+        {
+          "status": "no_exact_print_row",
+          "source_url": "https://pokemoncard.io/card/zeraora-sm10-60",
+          "source_rows": 2,
+          "page_identity": {
+            "title": "Zeraora (sm10-60) - PokemonCard",
+            "heading": "",
+            "set_name": "",
+            "card_number": ""
+          }
+        }
+      ]
+    },
+    {
+      "status": "no_exact_print_row",
+      "fact": {
+        "gap_type": "finish_second_source_needed",
+        "fact_type": "printing_finish",
+        "set_key": "sv03.5",
+        "set_name": "151",
+        "card_number": "45",
+        "card_name": "Vileplume",
+        "finish_key": "normal",
+        "status": "human_source_verified",
+        "sources": [
+          "thepricedex_price_list"
+        ],
+        "source_authorities": [
+          "thepricedex.com"
+        ],
+        "source_kinds": [
+          "marketplace_checklist"
+        ],
+        "evidence_urls": [
+          "https://www.thepricedex.com/set/sv3pt5/151/price-list"
+        ],
+        "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+      },
+      "source_url": "https://pokemoncard.io/card/vileplume-sv3pt5-45",
+      "attempted_urls": [
+        "https://pokemoncard.io/card/vileplume-sv3pt5-45"
+      ],
+      "source_rows": 2,
+      "attempts": [
+        {
+          "status": "no_exact_print_row",
+          "source_url": "https://pokemoncard.io/card/vileplume-sv3pt5-45",
+          "source_rows": 2,
+          "page_identity": {
+            "title": "Vileplume (sv3pt5-45) - PokemonCard",
+            "heading": "",
+            "set_name": "",
+            "card_number": ""
+          }
+        }
+      ]
+    },
+    {
+      "status": "no_exact_print_row",
+      "fact": {
+        "gap_type": "finish_second_source_needed",
+        "fact_type": "printing_finish",
+        "set_key": "sv03.5",
+        "set_name": "151",
+        "card_number": "146",
+        "card_name": "Moltres",
+        "finish_key": "normal",
+        "status": "human_source_verified",
+        "sources": [
+          "thepricedex_price_list"
+        ],
+        "source_authorities": [
+          "thepricedex.com"
+        ],
+        "source_kinds": [
+          "marketplace_checklist"
+        ],
+        "evidence_urls": [
+          "https://www.thepricedex.com/set/sv3pt5/151/price-list"
+        ],
+        "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+      },
+      "source_url": "https://pokemoncard.io/card/moltres-sv3pt5-146",
+      "attempted_urls": [
+        "https://pokemoncard.io/card/moltres-sv3pt5-146"
+      ],
+      "source_rows": 2,
+      "attempts": [
+        {
+          "status": "no_exact_print_row",
+          "source_url": "https://pokemoncard.io/card/moltres-sv3pt5-146",
+          "source_rows": 2,
+          "page_identity": {
+            "title": "Moltres (sv3pt5-146) - PokemonCard",
+            "heading": "",
+            "set_name": "",
+            "card_number": ""
+          }
+        }
+      ]
+    },
+    {
+      "status": "no_exact_print_row",
+      "fact": {
+        "gap_type": "finish_second_source_needed",
+        "fact_type": "printing_finish",
+        "set_key": "swsh1",
+        "set_name": "Sword & Shield",
+        "card_number": "31",
+        "card_name": "Scorbunny",
+        "finish_key": "holo",
+        "status": "human_source_verified",
+        "sources": [
+          "thepricedex_price_list"
+        ],
+        "source_authorities": [
+          "thepricedex.com"
+        ],
+        "source_kinds": [
+          "marketplace_checklist"
+        ],
+        "evidence_urls": [
+          "https://www.thepricedex.com/set/swsh1/sword-and-shield/price-list"
+        ],
+        "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+      },
+      "source_url": "https://pokemoncard.io/card/scorbunny-swsh1-31",
+      "attempted_urls": [
+        "https://pokemoncard.io/card/scorbunny-swsh1-31"
+      ],
+      "source_rows": 2,
+      "attempts": [
+        {
+          "status": "no_exact_print_row",
+          "source_url": "https://pokemoncard.io/card/scorbunny-swsh1-31",
+          "source_rows": 2,
+          "page_identity": {
+            "title": "Scorbunny (swsh1-31) - PokemonCard",
+            "heading": "",
+            "set_name": "",
+            "card_number": ""
+          }
+        }
+      ]
+    },
+    {
+      "status": "source_unavailable",
+      "fact": {
+        "gap_type": "finish_second_source_needed",
+        "fact_type": "printing_finish",
+        "set_key": "swsh3.5",
+        "set_name": "Champion's Path",
+        "card_number": "62",
+        "card_name": "Professor's Research (Professor Magnolia)",
+        "finish_key": "normal",
+        "status": "human_source_verified",
+        "sources": [
+          "thepricedex_price_list"
+        ],
+        "source_authorities": [
+          "thepricedex.com"
+        ],
+        "source_kinds": [
+          "marketplace_checklist"
+        ],
+        "evidence_urls": [
+          "https://www.thepricedex.com/set/swsh35/champions-path/price-list"
+        ],
+        "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+      },
+      "source_url": "https://pokemoncard.io/card/professors-research-professor-magnolia-swsh35-62",
+      "attempted_urls": [
+        "https://pokemoncard.io/card/professors-research-professor-magnolia-swsh35-62"
+      ],
+      "source_rows": 0,
+      "attempts": [
+        {
+          "status": "source_unavailable",
+          "source_url": "https://pokemoncard.io/card/professors-research-professor-magnolia-swsh35-62",
+          "source_rows": 0,
+          "error": "fetch failed"
+        }
+      ]
+    },
+    {
+      "status": "source_unavailable",
+      "fact": {
+        "gap_type": "finish_second_source_needed",
+        "fact_type": "printing_finish",
+        "set_key": "xyp",
+        "set_name": "XY Black Star Promos",
+        "card_number": "XY176",
+        "card_name": "Champions Festival",
+        "finish_key": "normal",
+        "status": "human_source_verified",
+        "sources": [
+          "thepricedex_price_list"
+        ],
+        "source_authorities": [
+          "thepricedex.com"
+        ],
+        "source_kinds": [
+          "marketplace_checklist"
+        ],
+        "evidence_urls": [
+          "https://www.thepricedex.com/set/xyp/xy-black-star-promos/price-list"
+        ],
+        "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+      },
+      "source_url": "https://pokemoncard.io/card/champions-festival-xyp-xy176",
+      "attempted_urls": [
+        "https://pokemoncard.io/card/champions-festival-xyp-xy176"
+      ],
+      "source_rows": 0,
+      "attempts": [
+        {
+          "status": "source_unavailable",
+          "source_url": "https://pokemoncard.io/card/champions-festival-xyp-xy176",
+          "source_rows": 0,
+          "error": "fetch failed"
+        }
+      ]
+    },
+    {
+      "status": "source_unavailable",
+      "fact": {
+        "gap_type": "finish_second_source_needed",
+        "fact_type": "printing_finish",
+        "set_key": "xyp",
+        "set_name": "XY Black Star Promos",
+        "card_number": "XY202",
+        "card_name": "Pikachu",
+        "finish_key": "holo",
+        "status": "human_source_verified",
+        "sources": [
+          "thepricedex_price_list"
+        ],
+        "source_authorities": [
+          "thepricedex.com"
+        ],
+        "source_kinds": [
+          "marketplace_checklist"
+        ],
+        "evidence_urls": [
+          "https://www.thepricedex.com/set/xyp/xy-black-star-promos/price-list"
+        ],
+        "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+      },
+      "source_url": "https://pokemoncard.io/card/pikachu-xyp-xy202",
+      "attempted_urls": [
+        "https://pokemoncard.io/card/pikachu-xyp-xy202"
+      ],
+      "source_rows": 0,
+      "attempts": [
+        {
+          "status": "source_unavailable",
+          "source_url": "https://pokemoncard.io/card/pikachu-xyp-xy202",
+          "source_rows": 0,
+          "error": "fetch failed"
+        }
+      ]
+    }
+  ]
+}

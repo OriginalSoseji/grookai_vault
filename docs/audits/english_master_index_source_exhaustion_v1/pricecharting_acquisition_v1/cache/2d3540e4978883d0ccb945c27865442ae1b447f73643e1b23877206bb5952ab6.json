@@ -1,0 +1,549 @@
+{
+  "status": "api_no_validated_match",
+  "fact": {
+    "gap_type": "finish_second_source_needed",
+    "fact_type": "printing_finish",
+    "set_key": "bw5",
+    "set_name": "Dark Explorers",
+    "card_number": "60",
+    "card_name": "Umbreon",
+    "finish_key": "stamped",
+    "status": "human_source_verified",
+    "sources": [
+      "thepricedex_price_list"
+    ],
+    "source_authorities": [
+      "thepricedex.com"
+    ],
+    "source_kinds": [
+      "marketplace_checklist"
+    ],
+    "evidence_urls": [
+      "https://www.thepricedex.com/set/bw5/dark-explorers/price-list"
+    ],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "attempts": [
+    {
+      "query": "Pokemon Dark Explorers Umbreon 60 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Umbreon%2060%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "956106",
+      "product_name": "Umbreon #60",
+      "console_name": "Pokemon Dark Explorers",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Umbreon 60 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Umbreon%2060%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10216113",
+      "product_name": "Umbreon [Regional] #60",
+      "console_name": "Pokemon Dark Explorers",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Regional"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Umbreon 60 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Umbreon%2060%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "956214",
+      "product_name": "Umbreon [Reverse Holo] #60",
+      "console_name": "Pokemon Dark Explorers",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Reverse Holo"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Umbreon 60 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Umbreon%2060%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10216107",
+      "product_name": "Umbreon [Regional Staff] #60",
+      "console_name": "Pokemon Dark Explorers",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Regional Staff"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Umbreon 60 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Umbreon%2060%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "956107",
+      "product_name": "Umbreon #61",
+      "console_name": "Pokemon Dark Explorers",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:61"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Umbreon 60 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Umbreon%2060%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "956215",
+      "product_name": "Umbreon [Reverse Holo] #61",
+      "console_name": "Pokemon Dark Explorers",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:61"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Umbreon 60 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Umbreon%2060%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8624384",
+      "product_name": "Umbreon ex [Stamped] #60",
+      "console_name": "Pokemon Prismatic Evolutions",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Umbreon ex"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Umbreon 60 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Umbreon%2060%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5964327",
+      "product_name": "Umbreon [Stamped] #130",
+      "console_name": "Pokemon Obsidian Flames",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:130"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Umbreon 60 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Umbreon%2060%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9679454",
+      "product_name": "Umbreon [Stamped] #611",
+      "console_name": "Pokemon Chinese Gem Pack 2",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:611"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Umbreon 60 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Umbreon%2060%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9679455",
+      "product_name": "Umbreon [Stamped] #612",
+      "console_name": "Pokemon Chinese Gem Pack 2",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:612"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Umbreon 60 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Umbreon%2060%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "956142",
+      "product_name": "N #96",
+      "console_name": "Pokemon Dark Explorers",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:96"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Umbreon 60 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Umbreon%2060%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8244503",
+      "product_name": "Umbreon ex #60",
+      "console_name": "Pokemon Prismatic Evolutions",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Umbreon ex"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Umbreon 60 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Umbreon%2060%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "956086",
+      "product_name": "Minun #40",
+      "console_name": "Pokemon Dark Explorers",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:40"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Umbreon 60 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Umbreon%2060%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "956121",
+      "product_name": "Klink #75",
+      "console_name": "Pokemon Dark Explorers",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:75"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Umbreon 60 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Umbreon%2060%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "956115",
+      "product_name": "Zorua #69",
+      "console_name": "Pokemon Dark Explorers",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:69"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Umbreon 60 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Umbreon%2060%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "956116",
+      "product_name": "Zorua #70",
+      "console_name": "Pokemon Dark Explorers",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:70"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Umbreon 60 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Umbreon%2060%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "956122",
+      "product_name": "Klang #76",
+      "console_name": "Pokemon Dark Explorers",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:76"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Umbreon 60 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Umbreon%2060%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "956129",
+      "product_name": "Eevee #83",
+      "console_name": "Pokemon Dark Explorers",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:83"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Umbreon 60 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Umbreon%2060%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "956130",
+      "product_name": "Eevee #84",
+      "console_name": "Pokemon Dark Explorers",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:84"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Umbreon 60 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Umbreon%2060%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "956138",
+      "product_name": "Dark Claw #92",
+      "console_name": "Pokemon Dark Explorers",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:92"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Umbreon 60 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Umbreon%2060%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "956106",
+      "product_name": "Umbreon #60",
+      "console_name": "Pokemon Dark Explorers",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Umbreon 60 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Umbreon%2060%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10216113",
+      "product_name": "Umbreon [Regional] #60",
+      "console_name": "Pokemon Dark Explorers",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Regional"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Umbreon 60 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Umbreon%2060%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "956214",
+      "product_name": "Umbreon [Reverse Holo] #60",
+      "console_name": "Pokemon Dark Explorers",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Reverse Holo"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Umbreon 60 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Umbreon%2060%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10216107",
+      "product_name": "Umbreon [Regional Staff] #60",
+      "console_name": "Pokemon Dark Explorers",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Regional Staff"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Umbreon 60 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Umbreon%2060%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "956107",
+      "product_name": "Umbreon #61",
+      "console_name": "Pokemon Dark Explorers",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:61"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Umbreon 60 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Umbreon%2060%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "956215",
+      "product_name": "Umbreon [Reverse Holo] #61",
+      "console_name": "Pokemon Dark Explorers",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:61"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Umbreon 60 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Umbreon%2060%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8624384",
+      "product_name": "Umbreon ex [Stamped] #60",
+      "console_name": "Pokemon Prismatic Evolutions",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Umbreon ex"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Umbreon 60 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Umbreon%2060%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5964327",
+      "product_name": "Umbreon [Stamped] #130",
+      "console_name": "Pokemon Obsidian Flames",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:130"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Umbreon 60 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Umbreon%2060%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9679454",
+      "product_name": "Umbreon [Stamped] #611",
+      "console_name": "Pokemon Chinese Gem Pack 2",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:611"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Umbreon 60 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Umbreon%2060%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9679455",
+      "product_name": "Umbreon [Stamped] #612",
+      "console_name": "Pokemon Chinese Gem Pack 2",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:612"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Umbreon 60 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Umbreon%2060%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "956142",
+      "product_name": "N #96",
+      "console_name": "Pokemon Dark Explorers",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:96"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Umbreon 60 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Umbreon%2060%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8244503",
+      "product_name": "Umbreon ex #60",
+      "console_name": "Pokemon Prismatic Evolutions",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Umbreon ex"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Umbreon 60 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Umbreon%2060%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "956086",
+      "product_name": "Minun #40",
+      "console_name": "Pokemon Dark Explorers",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:40"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Umbreon 60 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Umbreon%2060%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "956121",
+      "product_name": "Klink #75",
+      "console_name": "Pokemon Dark Explorers",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:75"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Umbreon 60 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Umbreon%2060%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "956115",
+      "product_name": "Zorua #69",
+      "console_name": "Pokemon Dark Explorers",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:69"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Umbreon 60 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Umbreon%2060%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "956116",
+      "product_name": "Zorua #70",
+      "console_name": "Pokemon Dark Explorers",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:70"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Umbreon 60 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Umbreon%2060%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "956122",
+      "product_name": "Klang #76",
+      "console_name": "Pokemon Dark Explorers",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:76"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Umbreon 60 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Umbreon%2060%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "956129",
+      "product_name": "Eevee #83",
+      "console_name": "Pokemon Dark Explorers",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:83"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Umbreon 60 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Umbreon%2060%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "956130",
+      "product_name": "Eevee #84",
+      "console_name": "Pokemon Dark Explorers",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:84"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Umbreon 60 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Umbreon%2060%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "956138",
+      "product_name": "Dark Claw #92",
+      "console_name": "Pokemon Dark Explorers",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:92"
+      }
+    }
+  ],
+  "source_lane": "pricecharting_api"
+}

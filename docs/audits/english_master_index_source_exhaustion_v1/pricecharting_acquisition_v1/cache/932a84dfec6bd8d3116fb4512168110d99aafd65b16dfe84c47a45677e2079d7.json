@@ -1,0 +1,549 @@
+{
+  "status": "api_no_validated_match",
+  "fact": {
+    "gap_type": "finish_second_source_needed",
+    "fact_type": "printing_finish",
+    "set_key": "ex7",
+    "set_name": "Team Rocket Returns",
+    "card_number": "107",
+    "card_name": "Mudkip ☆",
+    "finish_key": "holo",
+    "status": "human_source_verified",
+    "sources": [
+      "thepricedex_price_list"
+    ],
+    "source_authorities": [
+      "thepricedex.com"
+    ],
+    "source_kinds": [
+      "marketplace_checklist"
+    ],
+    "evidence_urls": [
+      "https://www.thepricedex.com/set/ex7/team-rocket-returns/price-list"
+    ],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "attempts": [
+    {
+      "query": "Pokemon Team Rocket Returns Mudkip ☆ 107 holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Team%20Rocket%20Returns%20Mudkip%20%E2%98%86%20107%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "886441",
+      "product_name": "Mudkip [Gold Star] #107",
+      "console_name": "Pokemon Team Rocket Returns",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Gold Star"
+      }
+    },
+    {
+      "query": "Pokemon Team Rocket Returns Mudkip ☆ 107 holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Team%20Rocket%20Returns%20Mudkip%20%E2%98%86%20107%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7590697",
+      "product_name": "Dark Marowak [Holo] #7",
+      "console_name": "Pokemon Team Rocket Returns",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:7"
+      }
+    },
+    {
+      "query": "Pokemon Team Rocket Returns Mudkip ☆ 107 holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Team%20Rocket%20Returns%20Mudkip%20%E2%98%86%20107%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "886514",
+      "product_name": "Onix [Reverse Holo] #69",
+      "console_name": "Pokemon Team Rocket Returns",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:69"
+      }
+    },
+    {
+      "query": "Pokemon Team Rocket Returns Mudkip ☆ 107 holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Team%20Rocket%20Returns%20Mudkip%20%E2%98%86%20107%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "886500",
+      "product_name": "Ekans [Reverse Holo] #55",
+      "console_name": "Pokemon Team Rocket Returns",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:55"
+      }
+    },
+    {
+      "query": "Pokemon Team Rocket Returns Mudkip ☆ 107 holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Team%20Rocket%20Returns%20Mudkip%20%E2%98%86%20107%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5167979",
+      "product_name": "Dark Dragonite [Holo] #15",
+      "console_name": "Pokemon Team Rocket Returns",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:15"
+      }
+    },
+    {
+      "query": "Pokemon Team Rocket Returns Mudkip ☆ 107 holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Team%20Rocket%20Returns%20Mudkip%20%E2%98%86%20107%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "886467",
+      "product_name": "Furret [Reverse Holo] #22",
+      "console_name": "Pokemon Team Rocket Returns",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:22"
+      }
+    },
+    {
+      "query": "Pokemon Team Rocket Returns Mudkip ☆ 107 holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Team%20Rocket%20Returns%20Mudkip%20%E2%98%86%20107%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "886468",
+      "product_name": "Ledian [Reverse Holo] #23",
+      "console_name": "Pokemon Team Rocket Returns",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:23"
+      }
+    },
+    {
+      "query": "Pokemon Team Rocket Returns Mudkip ☆ 107 holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Team%20Rocket%20Returns%20Mudkip%20%E2%98%86%20107%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "886469",
+      "product_name": "Magby [Reverse Holo] #24",
+      "console_name": "Pokemon Team Rocket Returns",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:24"
+      }
+    },
+    {
+      "query": "Pokemon Team Rocket Returns Mudkip ☆ 107 holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Team%20Rocket%20Returns%20Mudkip%20%E2%98%86%20107%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "886473",
+      "product_name": "Yanma [Reverse Holo] #28",
+      "console_name": "Pokemon Team Rocket Returns",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:28"
+      }
+    },
+    {
+      "query": "Pokemon Team Rocket Returns Mudkip ☆ 107 holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Team%20Rocket%20Returns%20Mudkip%20%E2%98%86%20107%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "886489",
+      "product_name": "Magmar [Reverse Holo] #44",
+      "console_name": "Pokemon Team Rocket Returns",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:44"
+      }
+    },
+    {
+      "query": "Pokemon Team Rocket Returns Mudkip ☆ 107 holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Team%20Rocket%20Returns%20Mudkip%20%E2%98%86%20107%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "886493",
+      "product_name": "Seadra [Reverse Holo] #48",
+      "console_name": "Pokemon Team Rocket Returns",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:48"
+      }
+    },
+    {
+      "query": "Pokemon Team Rocket Returns Mudkip ☆ 107 holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Team%20Rocket%20Returns%20Mudkip%20%E2%98%86%20107%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "886496",
+      "product_name": "Cubone [Reverse Holo] #51",
+      "console_name": "Pokemon Team Rocket Returns",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:51"
+      }
+    },
+    {
+      "query": "Pokemon Team Rocket Returns Mudkip ☆ 107 holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Team%20Rocket%20Returns%20Mudkip%20%E2%98%86%20107%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "886503",
+      "product_name": "Horsea [Reverse Holo] #58",
+      "console_name": "Pokemon Team Rocket Returns",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:58"
+      }
+    },
+    {
+      "query": "Pokemon Team Rocket Returns Mudkip ☆ 107 holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Team%20Rocket%20Returns%20Mudkip%20%E2%98%86%20107%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "886495",
+      "product_name": "Togepi [Reverse Holo] #50",
+      "console_name": "Pokemon Team Rocket Returns",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:50"
+      }
+    },
+    {
+      "query": "Pokemon Team Rocket Returns Mudkip ☆ 107 holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Team%20Rocket%20Returns%20Mudkip%20%E2%98%86%20107%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "886501",
+      "product_name": "Grimer [Reverse Holo] #56",
+      "console_name": "Pokemon Team Rocket Returns",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:56"
+      }
+    },
+    {
+      "query": "Pokemon Team Rocket Returns Mudkip ☆ 107 holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Team%20Rocket%20Returns%20Mudkip%20%E2%98%86%20107%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "886502",
+      "product_name": "Hoppip [Reverse Holo] #57",
+      "console_name": "Pokemon Team Rocket Returns",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:57"
+      }
+    },
+    {
+      "query": "Pokemon Team Rocket Returns Mudkip ☆ 107 holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Team%20Rocket%20Returns%20Mudkip%20%E2%98%86%20107%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "886509",
+      "product_name": "Ledyba [Reverse Holo] #64",
+      "console_name": "Pokemon Team Rocket Returns",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:64"
+      }
+    },
+    {
+      "query": "Pokemon Team Rocket Returns Mudkip ☆ 107 holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Team%20Rocket%20Returns%20Mudkip%20%E2%98%86%20107%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "886513",
+      "product_name": "Marill [Reverse Holo] #68",
+      "console_name": "Pokemon Team Rocket Returns",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:68"
+      }
+    },
+    {
+      "query": "Pokemon Team Rocket Returns Mudkip ☆ 107 holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Team%20Rocket%20Returns%20Mudkip%20%E2%98%86%20107%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "886512",
+      "product_name": "Mareep [Reverse Holo] #67",
+      "console_name": "Pokemon Team Rocket Returns",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:67"
+      }
+    },
+    {
+      "query": "Pokemon Team Rocket Returns Mudkip ☆ 107 holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Team%20Rocket%20Returns%20Mudkip%20%E2%98%86%20107%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "886522",
+      "product_name": "Slugma [Reverse Holo] #77",
+      "console_name": "Pokemon Team Rocket Returns",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:77"
+      }
+    },
+    {
+      "query": "Pokemon Team Rocket Returns Mudkip ☆ 107 holofoil",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Team%20Rocket%20Returns%20Mudkip%20%E2%98%86%20107%20holofoil",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "886441",
+      "product_name": "Mudkip [Gold Star] #107",
+      "console_name": "Pokemon Team Rocket Returns",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Gold Star"
+      }
+    },
+    {
+      "query": "Pokemon Team Rocket Returns Mudkip ☆ 107 holofoil",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Team%20Rocket%20Returns%20Mudkip%20%E2%98%86%20107%20holofoil",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7590697",
+      "product_name": "Dark Marowak [Holo] #7",
+      "console_name": "Pokemon Team Rocket Returns",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:7"
+      }
+    },
+    {
+      "query": "Pokemon Team Rocket Returns Mudkip ☆ 107 holofoil",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Team%20Rocket%20Returns%20Mudkip%20%E2%98%86%20107%20holofoil",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "886514",
+      "product_name": "Onix [Reverse Holo] #69",
+      "console_name": "Pokemon Team Rocket Returns",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:69"
+      }
+    },
+    {
+      "query": "Pokemon Team Rocket Returns Mudkip ☆ 107 holofoil",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Team%20Rocket%20Returns%20Mudkip%20%E2%98%86%20107%20holofoil",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "886500",
+      "product_name": "Ekans [Reverse Holo] #55",
+      "console_name": "Pokemon Team Rocket Returns",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:55"
+      }
+    },
+    {
+      "query": "Pokemon Team Rocket Returns Mudkip ☆ 107 holofoil",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Team%20Rocket%20Returns%20Mudkip%20%E2%98%86%20107%20holofoil",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5167979",
+      "product_name": "Dark Dragonite [Holo] #15",
+      "console_name": "Pokemon Team Rocket Returns",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:15"
+      }
+    },
+    {
+      "query": "Pokemon Team Rocket Returns Mudkip ☆ 107 holofoil",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Team%20Rocket%20Returns%20Mudkip%20%E2%98%86%20107%20holofoil",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "886467",
+      "product_name": "Furret [Reverse Holo] #22",
+      "console_name": "Pokemon Team Rocket Returns",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:22"
+      }
+    },
+    {
+      "query": "Pokemon Team Rocket Returns Mudkip ☆ 107 holofoil",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Team%20Rocket%20Returns%20Mudkip%20%E2%98%86%20107%20holofoil",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "886468",
+      "product_name": "Ledian [Reverse Holo] #23",
+      "console_name": "Pokemon Team Rocket Returns",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:23"
+      }
+    },
+    {
+      "query": "Pokemon Team Rocket Returns Mudkip ☆ 107 holofoil",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Team%20Rocket%20Returns%20Mudkip%20%E2%98%86%20107%20holofoil",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "886469",
+      "product_name": "Magby [Reverse Holo] #24",
+      "console_name": "Pokemon Team Rocket Returns",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:24"
+      }
+    },
+    {
+      "query": "Pokemon Team Rocket Returns Mudkip ☆ 107 holofoil",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Team%20Rocket%20Returns%20Mudkip%20%E2%98%86%20107%20holofoil",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "886473",
+      "product_name": "Yanma [Reverse Holo] #28",
+      "console_name": "Pokemon Team Rocket Returns",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:28"
+      }
+    },
+    {
+      "query": "Pokemon Team Rocket Returns Mudkip ☆ 107 holofoil",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Team%20Rocket%20Returns%20Mudkip%20%E2%98%86%20107%20holofoil",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "886489",
+      "product_name": "Magmar [Reverse Holo] #44",
+      "console_name": "Pokemon Team Rocket Returns",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:44"
+      }
+    },
+    {
+      "query": "Pokemon Team Rocket Returns Mudkip ☆ 107 holofoil",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Team%20Rocket%20Returns%20Mudkip%20%E2%98%86%20107%20holofoil",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "886493",
+      "product_name": "Seadra [Reverse Holo] #48",
+      "console_name": "Pokemon Team Rocket Returns",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:48"
+      }
+    },
+    {
+      "query": "Pokemon Team Rocket Returns Mudkip ☆ 107 holofoil",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Team%20Rocket%20Returns%20Mudkip%20%E2%98%86%20107%20holofoil",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "886496",
+      "product_name": "Cubone [Reverse Holo] #51",
+      "console_name": "Pokemon Team Rocket Returns",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:51"
+      }
+    },
+    {
+      "query": "Pokemon Team Rocket Returns Mudkip ☆ 107 holofoil",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Team%20Rocket%20Returns%20Mudkip%20%E2%98%86%20107%20holofoil",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "886503",
+      "product_name": "Horsea [Reverse Holo] #58",
+      "console_name": "Pokemon Team Rocket Returns",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:58"
+      }
+    },
+    {
+      "query": "Pokemon Team Rocket Returns Mudkip ☆ 107 holofoil",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Team%20Rocket%20Returns%20Mudkip%20%E2%98%86%20107%20holofoil",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "886495",
+      "product_name": "Togepi [Reverse Holo] #50",
+      "console_name": "Pokemon Team Rocket Returns",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:50"
+      }
+    },
+    {
+      "query": "Pokemon Team Rocket Returns Mudkip ☆ 107 holofoil",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Team%20Rocket%20Returns%20Mudkip%20%E2%98%86%20107%20holofoil",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "886501",
+      "product_name": "Grimer [Reverse Holo] #56",
+      "console_name": "Pokemon Team Rocket Returns",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:56"
+      }
+    },
+    {
+      "query": "Pokemon Team Rocket Returns Mudkip ☆ 107 holofoil",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Team%20Rocket%20Returns%20Mudkip%20%E2%98%86%20107%20holofoil",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "886502",
+      "product_name": "Hoppip [Reverse Holo] #57",
+      "console_name": "Pokemon Team Rocket Returns",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:57"
+      }
+    },
+    {
+      "query": "Pokemon Team Rocket Returns Mudkip ☆ 107 holofoil",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Team%20Rocket%20Returns%20Mudkip%20%E2%98%86%20107%20holofoil",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "886509",
+      "product_name": "Ledyba [Reverse Holo] #64",
+      "console_name": "Pokemon Team Rocket Returns",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:64"
+      }
+    },
+    {
+      "query": "Pokemon Team Rocket Returns Mudkip ☆ 107 holofoil",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Team%20Rocket%20Returns%20Mudkip%20%E2%98%86%20107%20holofoil",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "886513",
+      "product_name": "Marill [Reverse Holo] #68",
+      "console_name": "Pokemon Team Rocket Returns",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:68"
+      }
+    },
+    {
+      "query": "Pokemon Team Rocket Returns Mudkip ☆ 107 holofoil",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Team%20Rocket%20Returns%20Mudkip%20%E2%98%86%20107%20holofoil",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "886512",
+      "product_name": "Mareep [Reverse Holo] #67",
+      "console_name": "Pokemon Team Rocket Returns",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:67"
+      }
+    },
+    {
+      "query": "Pokemon Team Rocket Returns Mudkip ☆ 107 holofoil",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Team%20Rocket%20Returns%20Mudkip%20%E2%98%86%20107%20holofoil",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "886522",
+      "product_name": "Slugma [Reverse Holo] #77",
+      "console_name": "Pokemon Team Rocket Returns",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:77"
+      }
+    }
+  ],
+  "source_lane": "pricecharting_api"
+}

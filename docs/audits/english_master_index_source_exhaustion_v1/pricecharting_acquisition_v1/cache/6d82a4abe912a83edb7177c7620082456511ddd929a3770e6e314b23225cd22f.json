@@ -1,0 +1,53 @@
+{
+  "status": "validated",
+  "fact": {
+    "gap_type": "finish_second_source_needed",
+    "fact_type": "printing_finish",
+    "set_key": "swsh11",
+    "set_name": "Lost Origin",
+    "card_number": "51",
+    "card_name": "Glastrier",
+    "finish_key": "stamped",
+    "status": "human_source_verified",
+    "sources": [
+      "thepricedex_price_list"
+    ],
+    "source_authorities": [
+      "thepricedex.com"
+    ],
+    "source_kinds": [
+      "marketplace_checklist"
+    ],
+    "evidence_urls": [],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "query": "Pokemon Lost Origin Glastrier 51 stamped",
+  "search_url": "https://www.pricecharting.com/search-products?q=Pokemon%20Lost%20Origin%20Glastrier%2051%20stamped&type=prices",
+  "source_url": "https://www.pricecharting.com/game/pokemon-lost-origin/glastrier-snowflake-stamp-51",
+  "title": "Glastrier [Snowflake Stamp] #51 Prices | Pokemon Lost Origin | Pokemon Cards",
+  "title_parts": {
+    "card_name": "Glastrier",
+    "variant_label": "Snowflake Stamp",
+    "card_number": "51",
+    "set_name": "Lost Origin"
+  },
+  "attempts": [
+    {
+      "query": "Pokemon Lost Origin Glastrier 51 stamped",
+      "url": "https://www.pricecharting.com/search-products?q=Pokemon%20Lost%20Origin%20Glastrier%2051%20stamped&type=prices",
+      "parsed": {
+        "title": "Glastrier [Snowflake Stamp] #51 Prices | Pokemon Lost Origin | Pokemon Cards",
+        "source_url": "https://www.pricecharting.com/game/pokemon-lost-origin/glastrier-snowflake-stamp-51"
+      },
+      "validation": {
+        "ok": true,
+        "titleParts": {
+          "card_name": "Glastrier",
+          "variant_label": "Snowflake Stamp",
+          "card_number": "51",
+          "set_name": "Lost Origin"
+        }
+      }
+    }
+  ]
+}

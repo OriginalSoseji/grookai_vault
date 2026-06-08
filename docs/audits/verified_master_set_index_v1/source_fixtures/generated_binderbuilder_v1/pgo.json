@@ -1,0 +1,31 @@
+{
+  "fixture_version": "VERIFIED_MASTER_SET_INDEX_V1_HUMAN_SOURCE_FIXTURE_GENERATED",
+  "source_key": "binderbuilder_pgo",
+  "source_kind": "collector_reference",
+  "source_url": "https://binderbuilder.app/sets/pgo",
+  "source_status": "available_generated",
+  "set_key": "pgo",
+  "set_name": "Pokémon GO",
+  "retrieved_at": "2026-05-26T04:50:02.571Z",
+  "raw_snapshot_ref": "generated_fixture:binderbuilder:pgo:2026-05-26T04:50:02.571Z",
+  "generation_note": "Generated from Binder Builder exact visible variant labels. Unsupported/product-scope labels are excluded.",
+  "records": [
+    {
+      "source_key": "binderbuilder_set_variant",
+      "source_kind": "collector_reference",
+      "source_url": "https://binderbuilder.app/sets/pgo",
+      "set_key": "pgo",
+      "set_name": "Pokémon GO",
+      "card_number": "27",
+      "card_name": "Pikachu",
+      "finish_key": "holo",
+      "rarity": null,
+      "evidence_type": "finish_presence",
+      "evidence_label": "Binder Builder variant row #27 - Pikachu - Holofoil",
+      "language": "en",
+      "retrieved_at": "2026-05-26T04:50:02.571Z",
+      "raw_snapshot_ref": "binderbuilder:pgo:27:holo",
+      "notes": "Exact finish evidence from Binder Builder visible variant label. Shadowless, Jumbo, Metal, and unsupported labels are not emitted."
+    }
+  ]
+}

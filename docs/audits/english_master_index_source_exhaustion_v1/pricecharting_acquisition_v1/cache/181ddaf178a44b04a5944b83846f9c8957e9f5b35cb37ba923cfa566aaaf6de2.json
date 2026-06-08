@@ -1,0 +1,549 @@
+{
+  "status": "api_no_validated_match",
+  "fact": {
+    "gap_type": "finish_second_source_needed",
+    "fact_type": "printing_finish",
+    "set_key": "bw5",
+    "set_name": "Dark Explorers",
+    "card_number": "84",
+    "card_name": "Eevee",
+    "finish_key": "stamped",
+    "status": "human_source_verified",
+    "sources": [
+      "thepricedex_price_list"
+    ],
+    "source_authorities": [
+      "thepricedex.com"
+    ],
+    "source_kinds": [
+      "marketplace_checklist"
+    ],
+    "evidence_urls": [
+      "https://www.thepricedex.com/set/bw5/dark-explorers/price-list"
+    ],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "attempts": [
+    {
+      "query": "Pokemon Dark Explorers Eevee 84 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Eevee%2084%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "956130",
+      "product_name": "Eevee #84",
+      "console_name": "Pokemon Dark Explorers",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Eevee 84 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Eevee%2084%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "956237",
+      "product_name": "Eevee [Reverse Holo] #84",
+      "console_name": "Pokemon Dark Explorers",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Reverse Holo"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Eevee 84 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Eevee%2084%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5551217",
+      "product_name": "Eevee [City Championship] #84",
+      "console_name": "Pokemon Dark Explorers",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:City Championship"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Eevee 84 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Eevee%2084%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4127319",
+      "product_name": "Eevee [City Championship Staff] #84",
+      "console_name": "Pokemon Dark Explorers",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:City Championship Staff"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Eevee 84 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Eevee%2084%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "956129",
+      "product_name": "Eevee #83",
+      "console_name": "Pokemon Dark Explorers",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:83"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Eevee 84 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Eevee%2084%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "956236",
+      "product_name": "Eevee [Reverse Holo] #83",
+      "console_name": "Pokemon Dark Explorers",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:83"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Eevee 84 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Eevee%2084%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10021272",
+      "product_name": "Eevee [Gym Stamp] #143",
+      "console_name": "Pokemon Surging Sparks",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:143"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Eevee 84 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Eevee%2084%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10214835",
+      "product_name": "Eevee V [Stamped] #SWSH065",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:SWSH065"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Eevee 84 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Eevee%2084%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4786026",
+      "product_name": "Eevee [Jr Stamp Rally] #11",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:11"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Eevee 84 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Eevee%2084%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5419572",
+      "product_name": "Eevee [Stamped] #62",
+      "console_name": "Pokemon Majestic Dawn",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:62"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Eevee 84 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Eevee%2084%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9677762",
+      "product_name": "Eevee [Stamped] #111",
+      "console_name": "Pokemon Chinese Gem Pack 2",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:111"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Eevee 84 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Eevee%2084%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9677763",
+      "product_name": "Eevee [Stamped] #112",
+      "console_name": "Pokemon Chinese Gem Pack 2",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:112"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Eevee 84 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Eevee%2084%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8576523",
+      "product_name": "Eevee Ex [Stamped] #75",
+      "console_name": "Pokemon Prismatic Evolutions",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:75"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Eevee 84 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Eevee%2084%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5769249",
+      "product_name": "Galarian Obstagoon [No Eevee Stamp] #SWSH193",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:SWSH193"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Eevee 84 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Eevee%2084%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "956142",
+      "product_name": "N #96",
+      "console_name": "Pokemon Dark Explorers",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:96"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Eevee 84 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Eevee%2084%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8270953",
+      "product_name": "Eevee [Gym Stamped] #31/SV-P",
+      "console_name": "Pokemon Japanese Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:31/SV-P"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Eevee 84 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Eevee%2084%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "956086",
+      "product_name": "Minun #40",
+      "console_name": "Pokemon Dark Explorers",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:40"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Eevee 84 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Eevee%2084%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "956121",
+      "product_name": "Klink #75",
+      "console_name": "Pokemon Dark Explorers",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:75"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Eevee 84 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Eevee%2084%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "956115",
+      "product_name": "Zorua #69",
+      "console_name": "Pokemon Dark Explorers",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:69"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Eevee 84 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Eevee%2084%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "956116",
+      "product_name": "Zorua #70",
+      "console_name": "Pokemon Dark Explorers",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:70"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Eevee 84 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Eevee%2084%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "956130",
+      "product_name": "Eevee #84",
+      "console_name": "Pokemon Dark Explorers",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Eevee 84 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Eevee%2084%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "956237",
+      "product_name": "Eevee [Reverse Holo] #84",
+      "console_name": "Pokemon Dark Explorers",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Reverse Holo"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Eevee 84 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Eevee%2084%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5551217",
+      "product_name": "Eevee [City Championship] #84",
+      "console_name": "Pokemon Dark Explorers",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:City Championship"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Eevee 84 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Eevee%2084%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4127319",
+      "product_name": "Eevee [City Championship Staff] #84",
+      "console_name": "Pokemon Dark Explorers",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:City Championship Staff"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Eevee 84 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Eevee%2084%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "956129",
+      "product_name": "Eevee #83",
+      "console_name": "Pokemon Dark Explorers",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:83"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Eevee 84 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Eevee%2084%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "956236",
+      "product_name": "Eevee [Reverse Holo] #83",
+      "console_name": "Pokemon Dark Explorers",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:83"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Eevee 84 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Eevee%2084%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10021272",
+      "product_name": "Eevee [Gym Stamp] #143",
+      "console_name": "Pokemon Surging Sparks",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:143"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Eevee 84 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Eevee%2084%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10214835",
+      "product_name": "Eevee V [Stamped] #SWSH065",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:SWSH065"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Eevee 84 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Eevee%2084%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4786026",
+      "product_name": "Eevee [Jr Stamp Rally] #11",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:11"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Eevee 84 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Eevee%2084%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5419572",
+      "product_name": "Eevee [Stamped] #62",
+      "console_name": "Pokemon Majestic Dawn",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:62"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Eevee 84 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Eevee%2084%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9677762",
+      "product_name": "Eevee [Stamped] #111",
+      "console_name": "Pokemon Chinese Gem Pack 2",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:111"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Eevee 84 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Eevee%2084%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9677763",
+      "product_name": "Eevee [Stamped] #112",
+      "console_name": "Pokemon Chinese Gem Pack 2",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:112"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Eevee 84 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Eevee%2084%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8576523",
+      "product_name": "Eevee Ex [Stamped] #75",
+      "console_name": "Pokemon Prismatic Evolutions",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:75"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Eevee 84 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Eevee%2084%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5769249",
+      "product_name": "Galarian Obstagoon [No Eevee Stamp] #SWSH193",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:SWSH193"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Eevee 84 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Eevee%2084%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "956142",
+      "product_name": "N #96",
+      "console_name": "Pokemon Dark Explorers",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:96"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Eevee 84 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Eevee%2084%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8270953",
+      "product_name": "Eevee [Gym Stamped] #31/SV-P",
+      "console_name": "Pokemon Japanese Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:31/SV-P"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Eevee 84 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Eevee%2084%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "956086",
+      "product_name": "Minun #40",
+      "console_name": "Pokemon Dark Explorers",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:40"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Eevee 84 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Eevee%2084%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "956121",
+      "product_name": "Klink #75",
+      "console_name": "Pokemon Dark Explorers",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:75"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Eevee 84 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Eevee%2084%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "956115",
+      "product_name": "Zorua #69",
+      "console_name": "Pokemon Dark Explorers",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:69"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Eevee 84 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Eevee%2084%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "956116",
+      "product_name": "Zorua #70",
+      "console_name": "Pokemon Dark Explorers",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:70"
+      }
+    }
+  ],
+  "source_lane": "pricecharting_api"
+}

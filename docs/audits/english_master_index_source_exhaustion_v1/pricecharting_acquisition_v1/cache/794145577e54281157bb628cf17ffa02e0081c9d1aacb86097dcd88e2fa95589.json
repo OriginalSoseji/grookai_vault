@@ -1,0 +1,549 @@
+{
+  "status": "api_no_validated_match",
+  "fact": {
+    "gap_type": "finish_second_source_needed",
+    "fact_type": "printing_finish",
+    "set_key": "sm5",
+    "set_name": "Ultra Prism",
+    "card_number": "43",
+    "card_name": "Electabuzz",
+    "finish_key": "stamped",
+    "status": "human_source_verified",
+    "sources": [
+      "thepricedex_price_list"
+    ],
+    "source_authorities": [
+      "thepricedex.com"
+    ],
+    "source_kinds": [
+      "marketplace_checklist"
+    ],
+    "evidence_urls": [
+      "https://www.thepricedex.com/set/sm5/ultra-prism/price-list"
+    ],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "attempts": [
+    {
+      "query": "Pokemon Ultra Prism Electabuzz 43 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ultra%20Prism%20Electabuzz%2043%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "961406",
+      "product_name": "Electabuzz #43",
+      "console_name": "Pokemon Ultra Prism",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon Ultra Prism Electabuzz 43 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ultra%20Prism%20Electabuzz%2043%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "961578",
+      "product_name": "Electabuzz [Reverse Holo] #43",
+      "console_name": "Pokemon Ultra Prism",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Reverse Holo"
+      }
+    },
+    {
+      "query": "Pokemon Ultra Prism Electabuzz 43 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ultra%20Prism%20Electabuzz%2043%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3399237",
+      "product_name": "Heatran [Ultra Prism Stamped] #88",
+      "console_name": "Pokemon Ultra Prism",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:88"
+      }
+    },
+    {
+      "query": "Pokemon Ultra Prism Electabuzz 43 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ultra%20Prism%20Electabuzz%2043%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4894836",
+      "product_name": "Electabuzz [Stamped] #29",
+      "console_name": "Pokemon Dragon Frontiers",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:29"
+      }
+    },
+    {
+      "query": "Pokemon Ultra Prism Electabuzz 43 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ultra%20Prism%20Electabuzz%2043%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12675492",
+      "product_name": "Electabuzz [Inverted Stamp Error] #2",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:2"
+      }
+    },
+    {
+      "query": "Pokemon Ultra Prism Electabuzz 43 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ultra%20Prism%20Electabuzz%2043%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5095719",
+      "product_name": "Tigra #VS-43",
+      "console_name": "Marvel 2022 Ultra Avengers Value Stamp Relics",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:VS-43"
+      }
+    },
+    {
+      "query": "Pokemon Ultra Prism Electabuzz 43 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ultra%20Prism%20Electabuzz%2043%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3468007",
+      "product_name": "Solgaleo Prism Star #43",
+      "console_name": "Pokemon Japanese Ultra Sun",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Solgaleo Prism Star"
+      }
+    },
+    {
+      "query": "Pokemon Ultra Prism Electabuzz 43 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ultra%20Prism%20Electabuzz%2043%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3468060",
+      "product_name": "Electabuzz #15",
+      "console_name": "Pokemon Japanese Ultra Moon",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:15"
+      }
+    },
+    {
+      "query": "Pokemon Ultra Prism Electabuzz 43 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ultra%20Prism%20Electabuzz%2043%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "961513",
+      "product_name": "Lana #150",
+      "console_name": "Pokemon Ultra Prism",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:150"
+      }
+    },
+    {
+      "query": "Pokemon Ultra Prism Electabuzz 43 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ultra%20Prism%20Electabuzz%2043%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "961517",
+      "product_name": "Mars #154",
+      "console_name": "Pokemon Ultra Prism",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:154"
+      }
+    },
+    {
+      "query": "Pokemon Ultra Prism Electabuzz 43 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ultra%20Prism%20Electabuzz%2043%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "961491",
+      "product_name": "Mars #128",
+      "console_name": "Pokemon Ultra Prism",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:128"
+      }
+    },
+    {
+      "query": "Pokemon Ultra Prism Electabuzz 43 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ultra%20Prism%20Electabuzz%2043%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "961429",
+      "product_name": "Riolu #66",
+      "console_name": "Pokemon Ultra Prism",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:66"
+      }
+    },
+    {
+      "query": "Pokemon Ultra Prism Electabuzz 43 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ultra%20Prism%20Electabuzz%2043%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "961467",
+      "product_name": "Eevee #104",
+      "console_name": "Pokemon Ultra Prism",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:104"
+      }
+    },
+    {
+      "query": "Pokemon Ultra Prism Electabuzz 43 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ultra%20Prism%20Electabuzz%2043%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "961468",
+      "product_name": "Eevee #105",
+      "console_name": "Pokemon Ultra Prism",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:105"
+      }
+    },
+    {
+      "query": "Pokemon Ultra Prism Electabuzz 43 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ultra%20Prism%20Electabuzz%2043%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "961459",
+      "product_name": "Gible #96",
+      "console_name": "Pokemon Ultra Prism",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:96"
+      }
+    },
+    {
+      "query": "Pokemon Ultra Prism Electabuzz 43 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ultra%20Prism%20Electabuzz%2043%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "961460",
+      "product_name": "Gible #97",
+      "console_name": "Pokemon Ultra Prism",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:97"
+      }
+    },
+    {
+      "query": "Pokemon Ultra Prism Electabuzz 43 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ultra%20Prism%20Electabuzz%2043%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "961365",
+      "product_name": "Yanma #2",
+      "console_name": "Pokemon Ultra Prism",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:2"
+      }
+    },
+    {
+      "query": "Pokemon Ultra Prism Electabuzz 43 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ultra%20Prism%20Electabuzz%2043%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "961409",
+      "product_name": "Shinx #46",
+      "console_name": "Pokemon Ultra Prism",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:46"
+      }
+    },
+    {
+      "query": "Pokemon Ultra Prism Electabuzz 43 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ultra%20Prism%20Electabuzz%2043%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "961408",
+      "product_name": "Shinx #45",
+      "console_name": "Pokemon Ultra Prism",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:45"
+      }
+    },
+    {
+      "query": "Pokemon Ultra Prism Electabuzz 43 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ultra%20Prism%20Electabuzz%2043%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "961413",
+      "product_name": "Rotom #50",
+      "console_name": "Pokemon Ultra Prism",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:50"
+      }
+    },
+    {
+      "query": "Pokemon Ultra Prism Electabuzz 43 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ultra%20Prism%20Electabuzz%2043%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "961406",
+      "product_name": "Electabuzz #43",
+      "console_name": "Pokemon Ultra Prism",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon Ultra Prism Electabuzz 43 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ultra%20Prism%20Electabuzz%2043%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "961578",
+      "product_name": "Electabuzz [Reverse Holo] #43",
+      "console_name": "Pokemon Ultra Prism",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Reverse Holo"
+      }
+    },
+    {
+      "query": "Pokemon Ultra Prism Electabuzz 43 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ultra%20Prism%20Electabuzz%2043%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3399237",
+      "product_name": "Heatran [Ultra Prism Stamped] #88",
+      "console_name": "Pokemon Ultra Prism",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:88"
+      }
+    },
+    {
+      "query": "Pokemon Ultra Prism Electabuzz 43 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ultra%20Prism%20Electabuzz%2043%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4894836",
+      "product_name": "Electabuzz [Stamped] #29",
+      "console_name": "Pokemon Dragon Frontiers",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:29"
+      }
+    },
+    {
+      "query": "Pokemon Ultra Prism Electabuzz 43 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ultra%20Prism%20Electabuzz%2043%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12675492",
+      "product_name": "Electabuzz [Inverted Stamp Error] #2",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:2"
+      }
+    },
+    {
+      "query": "Pokemon Ultra Prism Electabuzz 43 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ultra%20Prism%20Electabuzz%2043%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5095719",
+      "product_name": "Tigra #VS-43",
+      "console_name": "Marvel 2022 Ultra Avengers Value Stamp Relics",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:VS-43"
+      }
+    },
+    {
+      "query": "Pokemon Ultra Prism Electabuzz 43 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ultra%20Prism%20Electabuzz%2043%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3468007",
+      "product_name": "Solgaleo Prism Star #43",
+      "console_name": "Pokemon Japanese Ultra Sun",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Solgaleo Prism Star"
+      }
+    },
+    {
+      "query": "Pokemon Ultra Prism Electabuzz 43 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ultra%20Prism%20Electabuzz%2043%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3468060",
+      "product_name": "Electabuzz #15",
+      "console_name": "Pokemon Japanese Ultra Moon",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:15"
+      }
+    },
+    {
+      "query": "Pokemon Ultra Prism Electabuzz 43 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ultra%20Prism%20Electabuzz%2043%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "961513",
+      "product_name": "Lana #150",
+      "console_name": "Pokemon Ultra Prism",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:150"
+      }
+    },
+    {
+      "query": "Pokemon Ultra Prism Electabuzz 43 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ultra%20Prism%20Electabuzz%2043%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "961517",
+      "product_name": "Mars #154",
+      "console_name": "Pokemon Ultra Prism",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:154"
+      }
+    },
+    {
+      "query": "Pokemon Ultra Prism Electabuzz 43 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ultra%20Prism%20Electabuzz%2043%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "961491",
+      "product_name": "Mars #128",
+      "console_name": "Pokemon Ultra Prism",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:128"
+      }
+    },
+    {
+      "query": "Pokemon Ultra Prism Electabuzz 43 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ultra%20Prism%20Electabuzz%2043%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "961429",
+      "product_name": "Riolu #66",
+      "console_name": "Pokemon Ultra Prism",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:66"
+      }
+    },
+    {
+      "query": "Pokemon Ultra Prism Electabuzz 43 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ultra%20Prism%20Electabuzz%2043%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "961467",
+      "product_name": "Eevee #104",
+      "console_name": "Pokemon Ultra Prism",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:104"
+      }
+    },
+    {
+      "query": "Pokemon Ultra Prism Electabuzz 43 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ultra%20Prism%20Electabuzz%2043%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "961468",
+      "product_name": "Eevee #105",
+      "console_name": "Pokemon Ultra Prism",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:105"
+      }
+    },
+    {
+      "query": "Pokemon Ultra Prism Electabuzz 43 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ultra%20Prism%20Electabuzz%2043%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "961459",
+      "product_name": "Gible #96",
+      "console_name": "Pokemon Ultra Prism",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:96"
+      }
+    },
+    {
+      "query": "Pokemon Ultra Prism Electabuzz 43 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ultra%20Prism%20Electabuzz%2043%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "961460",
+      "product_name": "Gible #97",
+      "console_name": "Pokemon Ultra Prism",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:97"
+      }
+    },
+    {
+      "query": "Pokemon Ultra Prism Electabuzz 43 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ultra%20Prism%20Electabuzz%2043%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "961365",
+      "product_name": "Yanma #2",
+      "console_name": "Pokemon Ultra Prism",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:2"
+      }
+    },
+    {
+      "query": "Pokemon Ultra Prism Electabuzz 43 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ultra%20Prism%20Electabuzz%2043%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "961409",
+      "product_name": "Shinx #46",
+      "console_name": "Pokemon Ultra Prism",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:46"
+      }
+    },
+    {
+      "query": "Pokemon Ultra Prism Electabuzz 43 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ultra%20Prism%20Electabuzz%2043%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "961408",
+      "product_name": "Shinx #45",
+      "console_name": "Pokemon Ultra Prism",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:45"
+      }
+    },
+    {
+      "query": "Pokemon Ultra Prism Electabuzz 43 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ultra%20Prism%20Electabuzz%2043%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "961413",
+      "product_name": "Rotom #50",
+      "console_name": "Pokemon Ultra Prism",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:50"
+      }
+    }
+  ],
+  "source_lane": "pricecharting_api"
+}

@@ -1,0 +1,549 @@
+{
+  "status": "api_no_validated_match",
+  "fact": {
+    "gap_type": "finish_second_source_needed",
+    "fact_type": "printing_finish",
+    "set_key": "col1",
+    "set_name": "Call of Legends",
+    "card_number": "94",
+    "card_name": "Darkness Energy",
+    "finish_key": "stamped",
+    "status": "human_source_verified",
+    "sources": [
+      "thepricedex_price_list"
+    ],
+    "source_authorities": [
+      "thepricedex.com"
+    ],
+    "source_kinds": [
+      "marketplace_checklist"
+    ],
+    "evidence_urls": [
+      "https://www.thepricedex.com/set/col1/call-of-legends/price-list"
+    ],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "attempts": [
+    {
+      "query": "Pokemon Call of Legends Darkness Energy 94 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Call%20of%20Legends%20Darkness%20Energy%2094%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "926345",
+      "product_name": "Darkness Energy #94",
+      "console_name": "Pokemon Call of Legends",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon Call of Legends Darkness Energy 94 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Call%20of%20Legends%20Darkness%20Energy%2094%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9709338",
+      "product_name": "Darkness Energy [Play] #94",
+      "console_name": "Pokemon Call of Legends",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Play"
+      }
+    },
+    {
+      "query": "Pokemon Call of Legends Darkness Energy 94 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Call%20of%20Legends%20Darkness%20Energy%2094%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "926337",
+      "product_name": "Darkness Energy #86",
+      "console_name": "Pokemon Call of Legends",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:86"
+      }
+    },
+    {
+      "query": "Pokemon Call of Legends Darkness Energy 94 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Call%20of%20Legends%20Darkness%20Energy%2094%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "926443",
+      "product_name": "Darkness Energy [Reverse Holo] #86",
+      "console_name": "Pokemon Call of Legends",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:86"
+      }
+    },
+    {
+      "query": "Pokemon Call of Legends Darkness Energy 94 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Call%20of%20Legends%20Darkness%20Energy%2094%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "889174",
+      "product_name": "Darkness Energy #94",
+      "console_name": "Pokemon Holon Phantoms",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon Holon Phantoms"
+      }
+    },
+    {
+      "query": "Pokemon Call of Legends Darkness Energy 94 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Call%20of%20Legends%20Darkness%20Energy%2094%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "926339",
+      "product_name": "Grass Energy #88",
+      "console_name": "Pokemon Call of Legends",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:88"
+      }
+    },
+    {
+      "query": "Pokemon Call of Legends Darkness Energy 94 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Call%20of%20Legends%20Darkness%20Energy%2094%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4677966",
+      "product_name": "Fire Energy [Play] #89",
+      "console_name": "Pokemon Call of Legends",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:89"
+      }
+    },
+    {
+      "query": "Pokemon Call of Legends Darkness Energy 94 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Call%20of%20Legends%20Darkness%20Energy%2094%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "889283",
+      "product_name": "Darkness Energy [Reverse Holo] #94",
+      "console_name": "Pokemon Holon Phantoms",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon Holon Phantoms"
+      }
+    },
+    {
+      "query": "Pokemon Call of Legends Darkness Energy 94 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Call%20of%20Legends%20Darkness%20Energy%2094%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6796116",
+      "product_name": "Water Energy [Play] #90",
+      "console_name": "Pokemon Call of Legends",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:90"
+      }
+    },
+    {
+      "query": "Pokemon Call of Legends Darkness Energy 94 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Call%20of%20Legends%20Darkness%20Energy%2094%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8879108",
+      "product_name": "Metal Energy [Play] #95",
+      "console_name": "Pokemon Call of Legends",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:95"
+      }
+    },
+    {
+      "query": "Pokemon Call of Legends Darkness Energy 94 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Call%20of%20Legends%20Darkness%20Energy%2094%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "926340",
+      "product_name": "Fire Energy #89",
+      "console_name": "Pokemon Call of Legends",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:89"
+      }
+    },
+    {
+      "query": "Pokemon Call of Legends Darkness Energy 94 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Call%20of%20Legends%20Darkness%20Energy%2094%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "926338",
+      "product_name": "Metal Energy #87",
+      "console_name": "Pokemon Call of Legends",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:87"
+      }
+    },
+    {
+      "query": "Pokemon Call of Legends Darkness Energy 94 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Call%20of%20Legends%20Darkness%20Energy%2094%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "926346",
+      "product_name": "Metal Energy #95",
+      "console_name": "Pokemon Call of Legends",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:95"
+      }
+    },
+    {
+      "query": "Pokemon Call of Legends Darkness Energy 94 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Call%20of%20Legends%20Darkness%20Energy%2094%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "926341",
+      "product_name": "Water Energy #90",
+      "console_name": "Pokemon Call of Legends",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:90"
+      }
+    },
+    {
+      "query": "Pokemon Call of Legends Darkness Energy 94 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Call%20of%20Legends%20Darkness%20Energy%2094%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6377622",
+      "product_name": "Fighting Energy [Play] #93",
+      "console_name": "Pokemon Call of Legends",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:93"
+      }
+    },
+    {
+      "query": "Pokemon Call of Legends Darkness Energy 94 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Call%20of%20Legends%20Darkness%20Energy%2094%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6142179",
+      "product_name": "Psychic Energy [Play] #92",
+      "console_name": "Pokemon Call of Legends",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:92"
+      }
+    },
+    {
+      "query": "Pokemon Call of Legends Darkness Energy 94 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Call%20of%20Legends%20Darkness%20Energy%2094%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3460162",
+      "product_name": "Darkness Energy #79",
+      "console_name": "Pokemon Japanese Reviving Legends",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:79"
+      }
+    },
+    {
+      "query": "Pokemon Call of Legends Darkness Energy 94 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Call%20of%20Legends%20Darkness%20Energy%2094%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "926344",
+      "product_name": "Fighting Energy #93",
+      "console_name": "Pokemon Call of Legends",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:93"
+      }
+    },
+    {
+      "query": "Pokemon Call of Legends Darkness Energy 94 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Call%20of%20Legends%20Darkness%20Energy%2094%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "926343",
+      "product_name": "Psychic Energy #92",
+      "console_name": "Pokemon Call of Legends",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:92"
+      }
+    },
+    {
+      "query": "Pokemon Call of Legends Darkness Energy 94 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Call%20of%20Legends%20Darkness%20Energy%2094%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "926342",
+      "product_name": "Lightning Energy #91",
+      "console_name": "Pokemon Call of Legends",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:91"
+      }
+    },
+    {
+      "query": "Pokemon Call of Legends Darkness Energy 94 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Call%20of%20Legends%20Darkness%20Energy%2094%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "926345",
+      "product_name": "Darkness Energy #94",
+      "console_name": "Pokemon Call of Legends",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon Call of Legends Darkness Energy 94 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Call%20of%20Legends%20Darkness%20Energy%2094%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9709338",
+      "product_name": "Darkness Energy [Play] #94",
+      "console_name": "Pokemon Call of Legends",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Play"
+      }
+    },
+    {
+      "query": "Pokemon Call of Legends Darkness Energy 94 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Call%20of%20Legends%20Darkness%20Energy%2094%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "926337",
+      "product_name": "Darkness Energy #86",
+      "console_name": "Pokemon Call of Legends",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:86"
+      }
+    },
+    {
+      "query": "Pokemon Call of Legends Darkness Energy 94 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Call%20of%20Legends%20Darkness%20Energy%2094%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "926443",
+      "product_name": "Darkness Energy [Reverse Holo] #86",
+      "console_name": "Pokemon Call of Legends",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:86"
+      }
+    },
+    {
+      "query": "Pokemon Call of Legends Darkness Energy 94 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Call%20of%20Legends%20Darkness%20Energy%2094%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "889174",
+      "product_name": "Darkness Energy #94",
+      "console_name": "Pokemon Holon Phantoms",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon Holon Phantoms"
+      }
+    },
+    {
+      "query": "Pokemon Call of Legends Darkness Energy 94 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Call%20of%20Legends%20Darkness%20Energy%2094%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "926339",
+      "product_name": "Grass Energy #88",
+      "console_name": "Pokemon Call of Legends",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:88"
+      }
+    },
+    {
+      "query": "Pokemon Call of Legends Darkness Energy 94 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Call%20of%20Legends%20Darkness%20Energy%2094%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4677966",
+      "product_name": "Fire Energy [Play] #89",
+      "console_name": "Pokemon Call of Legends",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:89"
+      }
+    },
+    {
+      "query": "Pokemon Call of Legends Darkness Energy 94 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Call%20of%20Legends%20Darkness%20Energy%2094%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "889283",
+      "product_name": "Darkness Energy [Reverse Holo] #94",
+      "console_name": "Pokemon Holon Phantoms",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon Holon Phantoms"
+      }
+    },
+    {
+      "query": "Pokemon Call of Legends Darkness Energy 94 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Call%20of%20Legends%20Darkness%20Energy%2094%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6796116",
+      "product_name": "Water Energy [Play] #90",
+      "console_name": "Pokemon Call of Legends",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:90"
+      }
+    },
+    {
+      "query": "Pokemon Call of Legends Darkness Energy 94 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Call%20of%20Legends%20Darkness%20Energy%2094%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8879108",
+      "product_name": "Metal Energy [Play] #95",
+      "console_name": "Pokemon Call of Legends",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:95"
+      }
+    },
+    {
+      "query": "Pokemon Call of Legends Darkness Energy 94 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Call%20of%20Legends%20Darkness%20Energy%2094%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "926340",
+      "product_name": "Fire Energy #89",
+      "console_name": "Pokemon Call of Legends",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:89"
+      }
+    },
+    {
+      "query": "Pokemon Call of Legends Darkness Energy 94 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Call%20of%20Legends%20Darkness%20Energy%2094%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "926338",
+      "product_name": "Metal Energy #87",
+      "console_name": "Pokemon Call of Legends",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:87"
+      }
+    },
+    {
+      "query": "Pokemon Call of Legends Darkness Energy 94 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Call%20of%20Legends%20Darkness%20Energy%2094%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "926346",
+      "product_name": "Metal Energy #95",
+      "console_name": "Pokemon Call of Legends",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:95"
+      }
+    },
+    {
+      "query": "Pokemon Call of Legends Darkness Energy 94 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Call%20of%20Legends%20Darkness%20Energy%2094%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "926341",
+      "product_name": "Water Energy #90",
+      "console_name": "Pokemon Call of Legends",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:90"
+      }
+    },
+    {
+      "query": "Pokemon Call of Legends Darkness Energy 94 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Call%20of%20Legends%20Darkness%20Energy%2094%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6377622",
+      "product_name": "Fighting Energy [Play] #93",
+      "console_name": "Pokemon Call of Legends",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:93"
+      }
+    },
+    {
+      "query": "Pokemon Call of Legends Darkness Energy 94 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Call%20of%20Legends%20Darkness%20Energy%2094%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6142179",
+      "product_name": "Psychic Energy [Play] #92",
+      "console_name": "Pokemon Call of Legends",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:92"
+      }
+    },
+    {
+      "query": "Pokemon Call of Legends Darkness Energy 94 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Call%20of%20Legends%20Darkness%20Energy%2094%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3460162",
+      "product_name": "Darkness Energy #79",
+      "console_name": "Pokemon Japanese Reviving Legends",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:79"
+      }
+    },
+    {
+      "query": "Pokemon Call of Legends Darkness Energy 94 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Call%20of%20Legends%20Darkness%20Energy%2094%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "926344",
+      "product_name": "Fighting Energy #93",
+      "console_name": "Pokemon Call of Legends",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:93"
+      }
+    },
+    {
+      "query": "Pokemon Call of Legends Darkness Energy 94 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Call%20of%20Legends%20Darkness%20Energy%2094%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "926343",
+      "product_name": "Psychic Energy #92",
+      "console_name": "Pokemon Call of Legends",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:92"
+      }
+    },
+    {
+      "query": "Pokemon Call of Legends Darkness Energy 94 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Call%20of%20Legends%20Darkness%20Energy%2094%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "926342",
+      "product_name": "Lightning Energy #91",
+      "console_name": "Pokemon Call of Legends",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:91"
+      }
+    }
+  ],
+  "source_lane": "pricecharting_api"
+}

@@ -1,0 +1,50 @@
+{
+  "status": "no_validated_match",
+  "fact": {
+    "gap_type": "finish_second_source_needed",
+    "fact_type": "printing_finish",
+    "set_key": "bw3",
+    "set_name": "Noble Victories",
+    "card_number": "43",
+    "card_name": "Victini",
+    "finish_key": "stamped",
+    "status": "human_source_verified",
+    "sources": [
+      "thepricedex_price_list"
+    ],
+    "source_authorities": [
+      "thepricedex.com"
+    ],
+    "source_kinds": [
+      "marketplace_checklist"
+    ],
+    "evidence_urls": [],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "attempts": [
+    {
+      "query": "Pokemon Noble Victories Victini 43 stamped",
+      "url": "https://www.pricecharting.com/search-products?q=Pokemon%20Noble%20Victories%20Victini%2043%20stamped&type=prices",
+      "parsed": {
+        "title": "Pokemon Noble Victories Victini 43 Stamped Prices | Pokemon Noble Victories Victini 43 Stamped List",
+        "source_url": "https://www.pricecharting.com/search-products?q=pokemon+noble+victories+victini+43+stamped&type=prices"
+      },
+      "validation": {
+        "ok": false,
+        "reason": "title_pattern_not_supported"
+      }
+    },
+    {
+      "query": "Pokemon Noble Victories Victini 43 stamp",
+      "url": "https://www.pricecharting.com/search-products?q=Pokemon%20Noble%20Victories%20Victini%2043%20stamp&type=prices",
+      "parsed": {
+        "title": "Pokemon Noble Victories Victini 43 Stamp Prices | Pokemon Noble Victories Victini 43 Stamp List",
+        "source_url": "https://www.pricecharting.com/search-products?q=pokemon+noble+victories+victini+43+stamp&type=prices"
+      },
+      "validation": {
+        "ok": false,
+        "reason": "title_pattern_not_supported"
+      }
+    }
+  ]
+}

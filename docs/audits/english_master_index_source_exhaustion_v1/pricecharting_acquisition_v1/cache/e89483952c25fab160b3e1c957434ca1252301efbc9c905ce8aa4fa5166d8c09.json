@@ -1,0 +1,549 @@
+{
+  "status": "api_no_validated_match",
+  "fact": {
+    "gap_type": "finish_second_source_needed",
+    "fact_type": "printing_finish",
+    "set_key": "sm2",
+    "set_name": "Guardians Rising",
+    "card_number": "126",
+    "card_name": "Hala",
+    "finish_key": "stamped",
+    "status": "human_source_verified",
+    "sources": [
+      "thepricedex_price_list"
+    ],
+    "source_authorities": [
+      "thepricedex.com"
+    ],
+    "source_kinds": [
+      "marketplace_checklist"
+    ],
+    "evidence_urls": [
+      "https://www.thepricedex.com/set/sm2/guardians-rising/price-list"
+    ],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "attempts": [
+    {
+      "query": "Pokemon Guardians Rising Hala 126 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Guardians%20Rising%20Hala%20126%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "960623",
+      "product_name": "Hala #126",
+      "console_name": "Pokemon Guardians Rising",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon Guardians Rising Hala 126 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Guardians%20Rising%20Hala%20126%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "960780",
+      "product_name": "Hala [Reverse Holo] #126",
+      "console_name": "Pokemon Guardians Rising",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Reverse Holo"
+      }
+    },
+    {
+      "query": "Pokemon Guardians Rising Hala 126 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Guardians%20Rising%20Hala%20126%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "960640",
+      "product_name": "Hala #143",
+      "console_name": "Pokemon Guardians Rising",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:143"
+      }
+    },
+    {
+      "query": "Pokemon Guardians Rising Hala 126 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Guardians%20Rising%20Hala%20126%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7515663",
+      "product_name": "Hala the Accuser #278",
+      "console_name": "Funko POP Games",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:278"
+      }
+    },
+    {
+      "query": "Pokemon Guardians Rising Hala 126 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Guardians%20Rising%20Hala%20126%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "960641",
+      "product_name": "Hau #144",
+      "console_name": "Pokemon Guardians Rising",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:144"
+      }
+    },
+    {
+      "query": "Pokemon Guardians Rising Hala 126 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Guardians%20Rising%20Hala%20126%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "960578",
+      "product_name": "Absol #81",
+      "console_name": "Pokemon Guardians Rising",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:81"
+      }
+    },
+    {
+      "query": "Pokemon Guardians Rising Hala 126 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Guardians%20Rising%20Hala%20126%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "960591",
+      "product_name": "Goomy #94",
+      "console_name": "Pokemon Guardians Rising",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:94"
+      }
+    },
+    {
+      "query": "Pokemon Guardians Rising Hala 126 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Guardians%20Rising%20Hala%20126%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "960505",
+      "product_name": "Wimpod #8",
+      "console_name": "Pokemon Guardians Rising",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:8"
+      }
+    },
+    {
+      "query": "Pokemon Guardians Rising Hala 126 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Guardians%20Rising%20Hala%20126%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "960642",
+      "product_name": "Mallow #145",
+      "console_name": "Pokemon Guardians Rising",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:145"
+      }
+    },
+    {
+      "query": "Pokemon Guardians Rising Hala 126 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Guardians%20Rising%20Hala%20126%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "960529",
+      "product_name": "Glalie #32",
+      "console_name": "Pokemon Guardians Rising",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:32"
+      }
+    },
+    {
+      "query": "Pokemon Guardians Rising Hala 126 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Guardians%20Rising%20Hala%20126%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "960558",
+      "product_name": "Lunala #61",
+      "console_name": "Pokemon Guardians Rising",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:61"
+      }
+    },
+    {
+      "query": "Pokemon Guardians Rising Hala 126 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Guardians%20Rising%20Hala%20126%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "960559",
+      "product_name": "Machop #62",
+      "console_name": "Pokemon Guardians Rising",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:62"
+      }
+    },
+    {
+      "query": "Pokemon Guardians Rising Hala 126 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Guardians%20Rising%20Hala%20126%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "960560",
+      "product_name": "Machop #63",
+      "console_name": "Pokemon Guardians Rising",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:63"
+      }
+    },
+    {
+      "query": "Pokemon Guardians Rising Hala 126 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Guardians%20Rising%20Hala%20126%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "960564",
+      "product_name": "Gligar #67",
+      "console_name": "Pokemon Guardians Rising",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:67"
+      }
+    },
+    {
+      "query": "Pokemon Guardians Rising Hala 126 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Guardians%20Rising%20Hala%20126%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "960580",
+      "product_name": "Beldum #83",
+      "console_name": "Pokemon Guardians Rising",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:83"
+      }
+    },
+    {
+      "query": "Pokemon Guardians Rising Hala 126 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Guardians%20Rising%20Hala%20126%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "960581",
+      "product_name": "Metang #84",
+      "console_name": "Pokemon Guardians Rising",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:84"
+      }
+    },
+    {
+      "query": "Pokemon Guardians Rising Hala 126 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Guardians%20Rising%20Hala%20126%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "960590",
+      "product_name": "Comfey #93",
+      "console_name": "Pokemon Guardians Rising",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:93"
+      }
+    },
+    {
+      "query": "Pokemon Guardians Rising Hala 126 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Guardians%20Rising%20Hala%20126%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "960593",
+      "product_name": "Goodra #96",
+      "console_name": "Pokemon Guardians Rising",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:96"
+      }
+    },
+    {
+      "query": "Pokemon Guardians Rising Hala 126 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Guardians%20Rising%20Hala%20126%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "960604",
+      "product_name": "Patrat #107",
+      "console_name": "Pokemon Guardians Rising",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:107"
+      }
+    },
+    {
+      "query": "Pokemon Guardians Rising Hala 126 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Guardians%20Rising%20Hala%20126%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "960611",
+      "product_name": "Komala #114",
+      "console_name": "Pokemon Guardians Rising",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:114"
+      }
+    },
+    {
+      "query": "Pokemon Guardians Rising Hala 126 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Guardians%20Rising%20Hala%20126%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "960623",
+      "product_name": "Hala #126",
+      "console_name": "Pokemon Guardians Rising",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon Guardians Rising Hala 126 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Guardians%20Rising%20Hala%20126%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "960780",
+      "product_name": "Hala [Reverse Holo] #126",
+      "console_name": "Pokemon Guardians Rising",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Reverse Holo"
+      }
+    },
+    {
+      "query": "Pokemon Guardians Rising Hala 126 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Guardians%20Rising%20Hala%20126%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "960640",
+      "product_name": "Hala #143",
+      "console_name": "Pokemon Guardians Rising",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:143"
+      }
+    },
+    {
+      "query": "Pokemon Guardians Rising Hala 126 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Guardians%20Rising%20Hala%20126%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7515663",
+      "product_name": "Hala the Accuser #278",
+      "console_name": "Funko POP Games",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:278"
+      }
+    },
+    {
+      "query": "Pokemon Guardians Rising Hala 126 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Guardians%20Rising%20Hala%20126%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "960641",
+      "product_name": "Hau #144",
+      "console_name": "Pokemon Guardians Rising",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:144"
+      }
+    },
+    {
+      "query": "Pokemon Guardians Rising Hala 126 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Guardians%20Rising%20Hala%20126%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "960578",
+      "product_name": "Absol #81",
+      "console_name": "Pokemon Guardians Rising",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:81"
+      }
+    },
+    {
+      "query": "Pokemon Guardians Rising Hala 126 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Guardians%20Rising%20Hala%20126%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "960591",
+      "product_name": "Goomy #94",
+      "console_name": "Pokemon Guardians Rising",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:94"
+      }
+    },
+    {
+      "query": "Pokemon Guardians Rising Hala 126 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Guardians%20Rising%20Hala%20126%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "960505",
+      "product_name": "Wimpod #8",
+      "console_name": "Pokemon Guardians Rising",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:8"
+      }
+    },
+    {
+      "query": "Pokemon Guardians Rising Hala 126 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Guardians%20Rising%20Hala%20126%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "960642",
+      "product_name": "Mallow #145",
+      "console_name": "Pokemon Guardians Rising",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:145"
+      }
+    },
+    {
+      "query": "Pokemon Guardians Rising Hala 126 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Guardians%20Rising%20Hala%20126%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "960529",
+      "product_name": "Glalie #32",
+      "console_name": "Pokemon Guardians Rising",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:32"
+      }
+    },
+    {
+      "query": "Pokemon Guardians Rising Hala 126 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Guardians%20Rising%20Hala%20126%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "960558",
+      "product_name": "Lunala #61",
+      "console_name": "Pokemon Guardians Rising",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:61"
+      }
+    },
+    {
+      "query": "Pokemon Guardians Rising Hala 126 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Guardians%20Rising%20Hala%20126%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "960559",
+      "product_name": "Machop #62",
+      "console_name": "Pokemon Guardians Rising",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:62"
+      }
+    },
+    {
+      "query": "Pokemon Guardians Rising Hala 126 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Guardians%20Rising%20Hala%20126%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "960560",
+      "product_name": "Machop #63",
+      "console_name": "Pokemon Guardians Rising",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:63"
+      }
+    },
+    {
+      "query": "Pokemon Guardians Rising Hala 126 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Guardians%20Rising%20Hala%20126%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "960564",
+      "product_name": "Gligar #67",
+      "console_name": "Pokemon Guardians Rising",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:67"
+      }
+    },
+    {
+      "query": "Pokemon Guardians Rising Hala 126 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Guardians%20Rising%20Hala%20126%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "960580",
+      "product_name": "Beldum #83",
+      "console_name": "Pokemon Guardians Rising",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:83"
+      }
+    },
+    {
+      "query": "Pokemon Guardians Rising Hala 126 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Guardians%20Rising%20Hala%20126%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "960581",
+      "product_name": "Metang #84",
+      "console_name": "Pokemon Guardians Rising",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:84"
+      }
+    },
+    {
+      "query": "Pokemon Guardians Rising Hala 126 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Guardians%20Rising%20Hala%20126%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "960590",
+      "product_name": "Comfey #93",
+      "console_name": "Pokemon Guardians Rising",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:93"
+      }
+    },
+    {
+      "query": "Pokemon Guardians Rising Hala 126 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Guardians%20Rising%20Hala%20126%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "960593",
+      "product_name": "Goodra #96",
+      "console_name": "Pokemon Guardians Rising",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:96"
+      }
+    },
+    {
+      "query": "Pokemon Guardians Rising Hala 126 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Guardians%20Rising%20Hala%20126%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "960604",
+      "product_name": "Patrat #107",
+      "console_name": "Pokemon Guardians Rising",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:107"
+      }
+    },
+    {
+      "query": "Pokemon Guardians Rising Hala 126 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Guardians%20Rising%20Hala%20126%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "960611",
+      "product_name": "Komala #114",
+      "console_name": "Pokemon Guardians Rising",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:114"
+      }
+    }
+  ],
+  "source_lane": "pricecharting_api"
+}

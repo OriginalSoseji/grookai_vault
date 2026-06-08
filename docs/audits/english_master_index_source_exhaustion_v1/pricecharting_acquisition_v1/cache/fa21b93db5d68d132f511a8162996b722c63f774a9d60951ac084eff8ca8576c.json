@@ -1,0 +1,62 @@
+{
+  "status": "validated",
+  "fact": {
+    "gap_type": "finish_second_source_needed",
+    "fact_type": "printing_finish",
+    "set_key": "dp6",
+    "set_name": "Legends Awakened",
+    "card_number": "106",
+    "card_name": "Meowth",
+    "finish_key": "stamped",
+    "status": "human_source_verified",
+    "sources": [
+      "thepricedex_price_list"
+    ],
+    "source_authorities": [
+      "thepricedex.com"
+    ],
+    "source_kinds": [
+      "marketplace_checklist"
+    ],
+    "evidence_urls": [
+      "https://www.thepricedex.com/set/dp6/legends-awakened/price-list"
+    ],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "query": "Pokemon Legends Awakened Meowth 106 stamped",
+  "search_url": "https://www.pricecharting.com/api/products?q=Pokemon%20Legends%20Awakened%20Meowth%20106%20stamped",
+  "source_url": "https://www.pricecharting.com/game/pokemon-legends-awakened/meowth-platinum-stamped-106",
+  "title": "Meowth [Platinum Stamped] #106 | Pokemon Legends Awakened",
+  "title_parts": {
+    "card_name": "Meowth",
+    "card_number": "106",
+    "variant_label": "Platinum Stamped",
+    "set_name": "Pokemon Legends Awakened",
+    "pricecharting_product_id": "7671877"
+  },
+  "validation_source": "pricecharting_api_products",
+  "source_lane": "pricecharting_api",
+  "attempts": [
+    {
+      "query": "Pokemon Legends Awakened Meowth 106 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Legends%20Awakened%20Meowth%20106%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7671877",
+      "product_name": "Meowth [Platinum Stamped] #106",
+      "console_name": "Pokemon Legends Awakened",
+      "validation": {
+        "ok": true,
+        "titleParts": {
+          "card_name": "Meowth",
+          "card_number": "106",
+          "variant_label": "Platinum Stamped",
+          "set_name": "Pokemon Legends Awakened",
+          "pricecharting_product_id": "7671877"
+        },
+        "source_url": "https://www.pricecharting.com/game/pokemon-legends-awakened/meowth-platinum-stamped-106",
+        "title": "Meowth [Platinum Stamped] #106 | Pokemon Legends Awakened"
+      }
+    }
+  ]
+}

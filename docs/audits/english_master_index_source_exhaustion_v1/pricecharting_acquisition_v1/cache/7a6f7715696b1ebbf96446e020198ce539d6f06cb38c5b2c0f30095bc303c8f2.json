@@ -1,0 +1,549 @@
+{
+  "status": "api_no_validated_match",
+  "fact": {
+    "gap_type": "finish_second_source_needed",
+    "fact_type": "printing_finish",
+    "set_key": "bw8",
+    "set_name": "Plasma Storm",
+    "card_number": "118",
+    "card_name": "Colress",
+    "finish_key": "stamped",
+    "status": "human_source_verified",
+    "sources": [
+      "thepricedex_price_list"
+    ],
+    "source_authorities": [
+      "thepricedex.com"
+    ],
+    "source_kinds": [
+      "marketplace_checklist"
+    ],
+    "evidence_urls": [
+      "https://www.thepricedex.com/set/bw8/plasma-storm/price-list"
+    ],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "attempts": [
+    {
+      "query": "Pokemon Plasma Storm Colress 118 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Plasma%20Storm%20Colress%20118%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "956915",
+      "product_name": "Colress #118",
+      "console_name": "Pokemon Plasma Storm",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon Plasma Storm Colress 118 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Plasma%20Storm%20Colress%20118%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6573160",
+      "product_name": "Colress [League Promo] #118",
+      "console_name": "Pokemon Plasma Storm",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:League Promo"
+      }
+    },
+    {
+      "query": "Pokemon Plasma Storm Colress 118 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Plasma%20Storm%20Colress%20118%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "957045",
+      "product_name": "Colress [Reverse Holo] #118",
+      "console_name": "Pokemon Plasma Storm",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Reverse Holo"
+      }
+    },
+    {
+      "query": "Pokemon Plasma Storm Colress 118 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Plasma%20Storm%20Colress%20118%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "956932",
+      "product_name": "Colress #135",
+      "console_name": "Pokemon Plasma Storm",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:135"
+      }
+    },
+    {
+      "query": "Pokemon Plasma Storm Colress 118 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Plasma%20Storm%20Colress%20118%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "956916",
+      "product_name": "Colress Machine #119",
+      "console_name": "Pokemon Plasma Storm",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:119"
+      }
+    },
+    {
+      "query": "Pokemon Plasma Storm Colress 118 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Plasma%20Storm%20Colress%20118%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "957046",
+      "product_name": "Colress Machine [Reverse Holo] #119",
+      "console_name": "Pokemon Plasma Storm",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:119"
+      }
+    },
+    {
+      "query": "Pokemon Plasma Storm Colress 118 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Plasma%20Storm%20Colress%20118%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9255255",
+      "product_name": "Colress #12",
+      "console_name": "Pokemon Japanese Team Plasma Battle Gift Set",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:12"
+      }
+    },
+    {
+      "query": "Pokemon Plasma Storm Colress 118 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Plasma%20Storm%20Colress%20118%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3461329",
+      "product_name": "Colress #64",
+      "console_name": "Pokemon Japanese Plasma Gale",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:64"
+      }
+    },
+    {
+      "query": "Pokemon Plasma Storm Colress 118 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Plasma%20Storm%20Colress%20118%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3461340",
+      "product_name": "Colress #75",
+      "console_name": "Pokemon Japanese Plasma Gale",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:75"
+      }
+    },
+    {
+      "query": "Pokemon Plasma Storm Colress 118 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Plasma%20Storm%20Colress%20118%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12119680",
+      "product_name": "Colress [Ian Whiton] #118",
+      "console_name": "Pokemon World Championships 2013",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon World Championships 2013"
+      }
+    },
+    {
+      "query": "Pokemon Plasma Storm Colress 118 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Plasma%20Storm%20Colress%20118%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9255252",
+      "product_name": "Colress Machine #9",
+      "console_name": "Pokemon Japanese Team Plasma Battle Gift Set",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:9"
+      }
+    },
+    {
+      "query": "Pokemon Plasma Storm Colress 118 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Plasma%20Storm%20Colress%20118%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8454044",
+      "product_name": "Colress [1st Edition] #75",
+      "console_name": "Pokemon Japanese Plasma Gale",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:75"
+      }
+    },
+    {
+      "query": "Pokemon Plasma Storm Colress 118 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Plasma%20Storm%20Colress%20118%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8454043",
+      "product_name": "Colress [1st Edition] #64",
+      "console_name": "Pokemon Japanese Plasma Gale",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:64"
+      }
+    },
+    {
+      "query": "Pokemon Plasma Storm Colress 118 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Plasma%20Storm%20Colress%20118%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3461327",
+      "product_name": "Colress Machine #62",
+      "console_name": "Pokemon Japanese Plasma Gale",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:62"
+      }
+    },
+    {
+      "query": "Pokemon Plasma Storm Colress 118 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Plasma%20Storm%20Colress%20118%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12758269",
+      "product_name": "Colress [Andrew Estrada] #118",
+      "console_name": "Pokemon World Championships 2014",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon World Championships 2014"
+      }
+    },
+    {
+      "query": "Pokemon Plasma Storm Colress 118 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Plasma%20Storm%20Colress%20118%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12764702",
+      "product_name": "Colress [Patrick Martinez] #118",
+      "console_name": "Pokemon World Championships 2015",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon World Championships 2015"
+      }
+    },
+    {
+      "query": "Pokemon Plasma Storm Colress 118 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Plasma%20Storm%20Colress%20118%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8454045",
+      "product_name": "Colress Machine [1st Edition] #62",
+      "console_name": "Pokemon Japanese Plasma Gale",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:62"
+      }
+    },
+    {
+      "query": "Pokemon Plasma Storm Colress 118 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Plasma%20Storm%20Colress%20118%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "957172",
+      "product_name": "Sigilyph #118",
+      "console_name": "Pokemon Plasma Freeze",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Sigilyph"
+      }
+    },
+    {
+      "query": "Pokemon Plasma Storm Colress 118 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Plasma%20Storm%20Colress%20118%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "956827",
+      "product_name": "Lotad #29",
+      "console_name": "Pokemon Plasma Storm",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:29"
+      }
+    },
+    {
+      "query": "Pokemon Plasma Storm Colress 118 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Plasma%20Storm%20Colress%20118%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "956847",
+      "product_name": "Rotom #49",
+      "console_name": "Pokemon Plasma Storm",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:49"
+      }
+    },
+    {
+      "query": "Pokemon Plasma Storm Colress 118 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Plasma%20Storm%20Colress%20118%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "956915",
+      "product_name": "Colress #118",
+      "console_name": "Pokemon Plasma Storm",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon Plasma Storm Colress 118 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Plasma%20Storm%20Colress%20118%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6573160",
+      "product_name": "Colress [League Promo] #118",
+      "console_name": "Pokemon Plasma Storm",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:League Promo"
+      }
+    },
+    {
+      "query": "Pokemon Plasma Storm Colress 118 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Plasma%20Storm%20Colress%20118%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "957045",
+      "product_name": "Colress [Reverse Holo] #118",
+      "console_name": "Pokemon Plasma Storm",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Reverse Holo"
+      }
+    },
+    {
+      "query": "Pokemon Plasma Storm Colress 118 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Plasma%20Storm%20Colress%20118%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "956932",
+      "product_name": "Colress #135",
+      "console_name": "Pokemon Plasma Storm",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:135"
+      }
+    },
+    {
+      "query": "Pokemon Plasma Storm Colress 118 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Plasma%20Storm%20Colress%20118%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "956916",
+      "product_name": "Colress Machine #119",
+      "console_name": "Pokemon Plasma Storm",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:119"
+      }
+    },
+    {
+      "query": "Pokemon Plasma Storm Colress 118 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Plasma%20Storm%20Colress%20118%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "957046",
+      "product_name": "Colress Machine [Reverse Holo] #119",
+      "console_name": "Pokemon Plasma Storm",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:119"
+      }
+    },
+    {
+      "query": "Pokemon Plasma Storm Colress 118 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Plasma%20Storm%20Colress%20118%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9255255",
+      "product_name": "Colress #12",
+      "console_name": "Pokemon Japanese Team Plasma Battle Gift Set",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:12"
+      }
+    },
+    {
+      "query": "Pokemon Plasma Storm Colress 118 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Plasma%20Storm%20Colress%20118%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3461329",
+      "product_name": "Colress #64",
+      "console_name": "Pokemon Japanese Plasma Gale",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:64"
+      }
+    },
+    {
+      "query": "Pokemon Plasma Storm Colress 118 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Plasma%20Storm%20Colress%20118%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3461340",
+      "product_name": "Colress #75",
+      "console_name": "Pokemon Japanese Plasma Gale",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:75"
+      }
+    },
+    {
+      "query": "Pokemon Plasma Storm Colress 118 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Plasma%20Storm%20Colress%20118%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12119680",
+      "product_name": "Colress [Ian Whiton] #118",
+      "console_name": "Pokemon World Championships 2013",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon World Championships 2013"
+      }
+    },
+    {
+      "query": "Pokemon Plasma Storm Colress 118 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Plasma%20Storm%20Colress%20118%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9255252",
+      "product_name": "Colress Machine #9",
+      "console_name": "Pokemon Japanese Team Plasma Battle Gift Set",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:9"
+      }
+    },
+    {
+      "query": "Pokemon Plasma Storm Colress 118 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Plasma%20Storm%20Colress%20118%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8454044",
+      "product_name": "Colress [1st Edition] #75",
+      "console_name": "Pokemon Japanese Plasma Gale",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:75"
+      }
+    },
+    {
+      "query": "Pokemon Plasma Storm Colress 118 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Plasma%20Storm%20Colress%20118%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8454043",
+      "product_name": "Colress [1st Edition] #64",
+      "console_name": "Pokemon Japanese Plasma Gale",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:64"
+      }
+    },
+    {
+      "query": "Pokemon Plasma Storm Colress 118 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Plasma%20Storm%20Colress%20118%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3461327",
+      "product_name": "Colress Machine #62",
+      "console_name": "Pokemon Japanese Plasma Gale",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:62"
+      }
+    },
+    {
+      "query": "Pokemon Plasma Storm Colress 118 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Plasma%20Storm%20Colress%20118%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12758269",
+      "product_name": "Colress [Andrew Estrada] #118",
+      "console_name": "Pokemon World Championships 2014",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon World Championships 2014"
+      }
+    },
+    {
+      "query": "Pokemon Plasma Storm Colress 118 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Plasma%20Storm%20Colress%20118%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12764702",
+      "product_name": "Colress [Patrick Martinez] #118",
+      "console_name": "Pokemon World Championships 2015",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon World Championships 2015"
+      }
+    },
+    {
+      "query": "Pokemon Plasma Storm Colress 118 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Plasma%20Storm%20Colress%20118%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8454045",
+      "product_name": "Colress Machine [1st Edition] #62",
+      "console_name": "Pokemon Japanese Plasma Gale",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:62"
+      }
+    },
+    {
+      "query": "Pokemon Plasma Storm Colress 118 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Plasma%20Storm%20Colress%20118%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "957172",
+      "product_name": "Sigilyph #118",
+      "console_name": "Pokemon Plasma Freeze",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Sigilyph"
+      }
+    },
+    {
+      "query": "Pokemon Plasma Storm Colress 118 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Plasma%20Storm%20Colress%20118%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "956827",
+      "product_name": "Lotad #29",
+      "console_name": "Pokemon Plasma Storm",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:29"
+      }
+    },
+    {
+      "query": "Pokemon Plasma Storm Colress 118 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Plasma%20Storm%20Colress%20118%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "956847",
+      "product_name": "Rotom #49",
+      "console_name": "Pokemon Plasma Storm",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:49"
+      }
+    }
+  ],
+  "source_lane": "pricecharting_api"
+}

@@ -1,0 +1,27 @@
+{
+  "products": [
+    {
+      "bgs-10-price": 6500,
+      "box-only-price": 3900,
+      "condition-17-price": 3000,
+      "condition-18-price": 3000,
+      "console-name": "Pokemon Burning Shadows",
+      "gamestop-price": 0,
+      "gamestop-trade-price": 0,
+      "genre": "Pokemon Card",
+      "graded-price": 3500,
+      "id": "960977",
+      "loose-price": 273,
+      "manual-only-price": 5000,
+      "new-price": 1599,
+      "product-name": "Alolan Ninetales [Reverse Holo] #28",
+      "release-date": "2017-08-04",
+      "retail-loose-sell": 299,
+      "retail-new-buy": 450,
+      "retail-new-sell": 1799,
+      "sales-volume": "231",
+      "tcg-id": "138508"
+    }
+  ],
+  "status": "success"
+}

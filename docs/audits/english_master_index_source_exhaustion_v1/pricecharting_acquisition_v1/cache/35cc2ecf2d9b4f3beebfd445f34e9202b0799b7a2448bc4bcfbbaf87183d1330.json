@@ -1,0 +1,549 @@
+{
+  "status": "api_no_validated_match",
+  "fact": {
+    "gap_type": "finish_second_source_needed",
+    "fact_type": "printing_finish",
+    "set_key": "bw1",
+    "set_name": "Black & White",
+    "card_number": "15",
+    "card_name": "Tepig",
+    "finish_key": "stamped",
+    "status": "human_source_verified",
+    "sources": [
+      "thepricedex_price_list"
+    ],
+    "source_authorities": [
+      "thepricedex.com"
+    ],
+    "source_kinds": [
+      "marketplace_checklist"
+    ],
+    "evidence_urls": [
+      "https://www.thepricedex.com/set/bw1/black-and-white/price-list"
+    ],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "attempts": [
+    {
+      "query": "Pokemon Black & White Tepig 15 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Tepig%2015%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "806336",
+      "product_name": "Tepig #15",
+      "console_name": "Pokemon Black & White",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Tepig 15 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Tepig%2015%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8209867",
+      "product_name": "Tepig [Cosmos Holo] #15",
+      "console_name": "Pokemon Black & White",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Cosmos Holo"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Tepig 15 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Tepig%2015%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "806423",
+      "product_name": "Tepig [Reverse Holo] #15",
+      "console_name": "Pokemon Black & White",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Reverse Holo"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Tepig 15 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Tepig%2015%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6390350",
+      "product_name": "Tepig [Crosshatch League Promo] #15",
+      "console_name": "Pokemon Black & White",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Crosshatch League Promo"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Tepig 15 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Tepig%2015%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "886683",
+      "product_name": "Tepig #16",
+      "console_name": "Pokemon Black & White",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:16"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Tepig 15 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Tepig%2015%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "886704",
+      "product_name": "Tepig [Reverse Holo] #16",
+      "console_name": "Pokemon Black & White",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:16"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Tepig 15 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Tepig%2015%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10026851",
+      "product_name": "Tepig [Reverse] #11",
+      "console_name": "Pokemon White Flare",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:11"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Tepig 15 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Tepig%2015%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10026900",
+      "product_name": "Tepig [Poke Ball] #11",
+      "console_name": "Pokemon White Flare",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:11"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Tepig 15 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Tepig%2015%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9647543",
+      "product_name": "Tepig [Poke Ball] #11",
+      "console_name": "Pokemon Japanese White Flare",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:11"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Tepig 15 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Tepig%2015%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10026993",
+      "product_name": "Tepig [Master Ball] #11",
+      "console_name": "Pokemon White Flare",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:11"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Tepig 15 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Tepig%2015%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9861844",
+      "product_name": "Tepig [Master Ball] #11",
+      "console_name": "Pokemon Japanese White Flare",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:11"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Tepig 15 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Tepig%2015%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12755063",
+      "product_name": "Tepig [Poke Ball] #11",
+      "console_name": "Pokemon Korean White Flare",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:11"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Tepig 15 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Tepig%2015%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10026629",
+      "product_name": "Tepig #11",
+      "console_name": "Pokemon White Flare",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:11"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Tepig 15 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Tepig%2015%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10026727",
+      "product_name": "Tepig #96",
+      "console_name": "Pokemon White Flare",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:96"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Tepig 15 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Tepig%2015%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9647429",
+      "product_name": "Tepig #96",
+      "console_name": "Pokemon Japanese White Flare",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:96"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Tepig 15 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Tepig%2015%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9647352",
+      "product_name": "Tepig #11",
+      "console_name": "Pokemon Japanese White Flare",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:11"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Tepig 15 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Tepig%2015%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10047340",
+      "product_name": "Tepig [Poster Holo] #11",
+      "console_name": "Pokemon White Flare",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:11"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Tepig 15 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Tepig%2015%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12755056",
+      "product_name": "Tepig [Master Ball] #11",
+      "console_name": "Pokemon Korean White Flare",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:11"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Tepig 15 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Tepig%2015%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12755423",
+      "product_name": "Tepig #96",
+      "console_name": "Pokemon Korean White Flare",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:96"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Tepig 15 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Tepig%2015%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12755051",
+      "product_name": "Tepig #11",
+      "console_name": "Pokemon Korean White Flare",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:11"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Tepig 15 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Tepig%2015%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "806336",
+      "product_name": "Tepig #15",
+      "console_name": "Pokemon Black & White",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Tepig 15 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Tepig%2015%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8209867",
+      "product_name": "Tepig [Cosmos Holo] #15",
+      "console_name": "Pokemon Black & White",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Cosmos Holo"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Tepig 15 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Tepig%2015%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "806423",
+      "product_name": "Tepig [Reverse Holo] #15",
+      "console_name": "Pokemon Black & White",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Reverse Holo"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Tepig 15 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Tepig%2015%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6390350",
+      "product_name": "Tepig [Crosshatch League Promo] #15",
+      "console_name": "Pokemon Black & White",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Crosshatch League Promo"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Tepig 15 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Tepig%2015%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "886683",
+      "product_name": "Tepig #16",
+      "console_name": "Pokemon Black & White",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:16"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Tepig 15 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Tepig%2015%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "886704",
+      "product_name": "Tepig [Reverse Holo] #16",
+      "console_name": "Pokemon Black & White",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:16"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Tepig 15 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Tepig%2015%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10026851",
+      "product_name": "Tepig [Reverse] #11",
+      "console_name": "Pokemon White Flare",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:11"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Tepig 15 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Tepig%2015%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10026900",
+      "product_name": "Tepig [Poke Ball] #11",
+      "console_name": "Pokemon White Flare",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:11"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Tepig 15 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Tepig%2015%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9647543",
+      "product_name": "Tepig [Poke Ball] #11",
+      "console_name": "Pokemon Japanese White Flare",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:11"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Tepig 15 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Tepig%2015%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10026993",
+      "product_name": "Tepig [Master Ball] #11",
+      "console_name": "Pokemon White Flare",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:11"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Tepig 15 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Tepig%2015%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9861844",
+      "product_name": "Tepig [Master Ball] #11",
+      "console_name": "Pokemon Japanese White Flare",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:11"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Tepig 15 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Tepig%2015%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12755063",
+      "product_name": "Tepig [Poke Ball] #11",
+      "console_name": "Pokemon Korean White Flare",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:11"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Tepig 15 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Tepig%2015%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10026629",
+      "product_name": "Tepig #11",
+      "console_name": "Pokemon White Flare",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:11"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Tepig 15 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Tepig%2015%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10026727",
+      "product_name": "Tepig #96",
+      "console_name": "Pokemon White Flare",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:96"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Tepig 15 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Tepig%2015%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9647429",
+      "product_name": "Tepig #96",
+      "console_name": "Pokemon Japanese White Flare",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:96"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Tepig 15 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Tepig%2015%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9647352",
+      "product_name": "Tepig #11",
+      "console_name": "Pokemon Japanese White Flare",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:11"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Tepig 15 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Tepig%2015%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10047340",
+      "product_name": "Tepig [Poster Holo] #11",
+      "console_name": "Pokemon White Flare",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:11"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Tepig 15 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Tepig%2015%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12755056",
+      "product_name": "Tepig [Master Ball] #11",
+      "console_name": "Pokemon Korean White Flare",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:11"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Tepig 15 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Tepig%2015%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12755423",
+      "product_name": "Tepig #96",
+      "console_name": "Pokemon Korean White Flare",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:96"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Tepig 15 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Tepig%2015%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12755051",
+      "product_name": "Tepig #11",
+      "console_name": "Pokemon Korean White Flare",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:11"
+      }
+    }
+  ],
+  "source_lane": "pricecharting_api"
+}

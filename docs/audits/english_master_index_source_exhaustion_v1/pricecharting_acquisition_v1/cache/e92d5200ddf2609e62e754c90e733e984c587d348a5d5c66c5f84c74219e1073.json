@@ -1,0 +1,549 @@
+{
+  "status": "api_no_validated_match",
+  "fact": {
+    "gap_type": "finish_second_source_needed",
+    "fact_type": "printing_finish",
+    "set_key": "dpp",
+    "set_name": "DP Black Star Promos",
+    "card_number": "DP05",
+    "card_name": "Tropical Wind",
+    "finish_key": "stamped",
+    "status": "human_source_verified",
+    "sources": [
+      "thepricedex_price_list"
+    ],
+    "source_authorities": [
+      "thepricedex.com"
+    ],
+    "source_kinds": [
+      "marketplace_checklist"
+    ],
+    "evidence_urls": [
+      "https://www.thepricedex.com/set/dpp/dp-black-star-promos/price-list"
+    ],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "attempts": [
+    {
+      "query": "Pokemon DP Black Star Promos Tropical Wind DP05 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20DP%20Black%20Star%20Promos%20Tropical%20Wind%20DP05%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5780488",
+      "product_name": "Tropical Wind [Staff] #DP05",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Staff"
+      }
+    },
+    {
+      "query": "Pokemon DP Black Star Promos Tropical Wind DP05 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20DP%20Black%20Star%20Promos%20Tropical%20Wind%20DP05%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "845047",
+      "product_name": "Tropical Wind #DP05",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon DP Black Star Promos Tropical Wind DP05 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20DP%20Black%20Star%20Promos%20Tropical%20Wind%20DP05%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7813248",
+      "product_name": "Tropical Wind [Top Sixteen] #DP05",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Top Sixteen"
+      }
+    },
+    {
+      "query": "Pokemon DP Black Star Promos Tropical Wind DP05 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20DP%20Black%20Star%20Promos%20Tropical%20Wind%20DP05%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7813250",
+      "product_name": "Tropical Wind [Quarter-Finalist] #DP05",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Quarter-Finalist"
+      }
+    },
+    {
+      "query": "Pokemon DP Black Star Promos Tropical Wind DP05 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20DP%20Black%20Star%20Promos%20Tropical%20Wind%20DP05%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9283048",
+      "product_name": "Tropical Wind [No Stamp] #26",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:26"
+      }
+    },
+    {
+      "query": "Pokemon DP Black Star Promos Tropical Wind DP05 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20DP%20Black%20Star%20Promos%20Tropical%20Wind%20DP05%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4125269",
+      "product_name": "Tropical Wind [Staff] #DP25",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:DP25"
+      }
+    },
+    {
+      "query": "Pokemon DP Black Star Promos Tropical Wind DP05 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20DP%20Black%20Star%20Promos%20Tropical%20Wind%20DP05%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8506636",
+      "product_name": "Tropical Wind [Staff] #DP48",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:DP48"
+      }
+    },
+    {
+      "query": "Pokemon DP Black Star Promos Tropical Wind DP05 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20DP%20Black%20Star%20Promos%20Tropical%20Wind%20DP05%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6791474",
+      "product_name": "Tropical Wind [Finalist] #DP25",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:DP25"
+      }
+    },
+    {
+      "query": "Pokemon DP Black Star Promos Tropical Wind DP05 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20DP%20Black%20Star%20Promos%20Tropical%20Wind%20DP05%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8506645",
+      "product_name": "Tropical Wind [Finalist] #DP48",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:DP48"
+      }
+    },
+    {
+      "query": "Pokemon DP Black Star Promos Tropical Wind DP05 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20DP%20Black%20Star%20Promos%20Tropical%20Wind%20DP05%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8506643",
+      "product_name": "Tropical Wind [Top Sixteen] #DP48",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:DP48"
+      }
+    },
+    {
+      "query": "Pokemon DP Black Star Promos Tropical Wind DP05 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20DP%20Black%20Star%20Promos%20Tropical%20Wind%20DP05%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6021699",
+      "product_name": "Tropical Wind [Quarter-Finalist] #DP25",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:DP25"
+      }
+    },
+    {
+      "query": "Pokemon DP Black Star Promos Tropical Wind DP05 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20DP%20Black%20Star%20Promos%20Tropical%20Wind%20DP05%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8506640",
+      "product_name": "Tropical Wind [Top Thirty Two] #DP48",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:DP48"
+      }
+    },
+    {
+      "query": "Pokemon DP Black Star Promos Tropical Wind DP05 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20DP%20Black%20Star%20Promos%20Tropical%20Wind%20DP05%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8506816",
+      "product_name": "Tropical Wind [Quarter Finalist] #DP48",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:DP48"
+      }
+    },
+    {
+      "query": "Pokemon DP Black Star Promos Tropical Wind DP05 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20DP%20Black%20Star%20Promos%20Tropical%20Wind%20DP05%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8506647",
+      "product_name": "Tropical Wind [Semi Finalist] #DP48",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:DP48"
+      }
+    },
+    {
+      "query": "Pokemon DP Black Star Promos Tropical Wind DP05 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20DP%20Black%20Star%20Promos%20Tropical%20Wind%20DP05%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "845028",
+      "product_name": "Tropical Wind #026",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:026"
+      }
+    },
+    {
+      "query": "Pokemon DP Black Star Promos Tropical Wind DP05 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20DP%20Black%20Star%20Promos%20Tropical%20Wind%20DP05%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "845067",
+      "product_name": "Tropical Wind #DP25",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:DP25"
+      }
+    },
+    {
+      "query": "Pokemon DP Black Star Promos Tropical Wind DP05 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20DP%20Black%20Star%20Promos%20Tropical%20Wind%20DP05%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "845090",
+      "product_name": "Tropical Wind #DP48",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:DP48"
+      }
+    },
+    {
+      "query": "Pokemon DP Black Star Promos Tropical Wind DP05 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20DP%20Black%20Star%20Promos%20Tropical%20Wind%20DP05%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10983405",
+      "product_name": "Tropical Wind [Worlds 07]",
+      "console_name": "Pokemon Japanese Promo",
+      "validation": {
+        "ok": false,
+        "reason": "api_product_name_pattern_not_supported"
+      }
+    },
+    {
+      "query": "Pokemon DP Black Star Promos Tropical Wind DP05 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20DP%20Black%20Star%20Promos%20Tropical%20Wind%20DP05%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6682376",
+      "product_name": "Tropical Wind [Worlds 04]",
+      "console_name": "Pokemon Japanese Promo",
+      "validation": {
+        "ok": false,
+        "reason": "api_product_name_pattern_not_supported"
+      }
+    },
+    {
+      "query": "Pokemon DP Black Star Promos Tropical Wind DP05 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20DP%20Black%20Star%20Promos%20Tropical%20Wind%20DP05%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5977920",
+      "product_name": "Tropical Wind [Worlds 08]",
+      "console_name": "Pokemon Japanese Promo",
+      "validation": {
+        "ok": false,
+        "reason": "api_product_name_pattern_not_supported"
+      }
+    },
+    {
+      "query": "Pokemon DP Black Star Promos Tropical Wind DP05 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20DP%20Black%20Star%20Promos%20Tropical%20Wind%20DP05%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5780488",
+      "product_name": "Tropical Wind [Staff] #DP05",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Staff"
+      }
+    },
+    {
+      "query": "Pokemon DP Black Star Promos Tropical Wind DP05 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20DP%20Black%20Star%20Promos%20Tropical%20Wind%20DP05%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "845047",
+      "product_name": "Tropical Wind #DP05",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon DP Black Star Promos Tropical Wind DP05 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20DP%20Black%20Star%20Promos%20Tropical%20Wind%20DP05%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7813248",
+      "product_name": "Tropical Wind [Top Sixteen] #DP05",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Top Sixteen"
+      }
+    },
+    {
+      "query": "Pokemon DP Black Star Promos Tropical Wind DP05 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20DP%20Black%20Star%20Promos%20Tropical%20Wind%20DP05%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7813250",
+      "product_name": "Tropical Wind [Quarter-Finalist] #DP05",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Quarter-Finalist"
+      }
+    },
+    {
+      "query": "Pokemon DP Black Star Promos Tropical Wind DP05 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20DP%20Black%20Star%20Promos%20Tropical%20Wind%20DP05%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9283048",
+      "product_name": "Tropical Wind [No Stamp] #26",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:26"
+      }
+    },
+    {
+      "query": "Pokemon DP Black Star Promos Tropical Wind DP05 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20DP%20Black%20Star%20Promos%20Tropical%20Wind%20DP05%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4125269",
+      "product_name": "Tropical Wind [Staff] #DP25",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:DP25"
+      }
+    },
+    {
+      "query": "Pokemon DP Black Star Promos Tropical Wind DP05 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20DP%20Black%20Star%20Promos%20Tropical%20Wind%20DP05%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8506636",
+      "product_name": "Tropical Wind [Staff] #DP48",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:DP48"
+      }
+    },
+    {
+      "query": "Pokemon DP Black Star Promos Tropical Wind DP05 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20DP%20Black%20Star%20Promos%20Tropical%20Wind%20DP05%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6791474",
+      "product_name": "Tropical Wind [Finalist] #DP25",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:DP25"
+      }
+    },
+    {
+      "query": "Pokemon DP Black Star Promos Tropical Wind DP05 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20DP%20Black%20Star%20Promos%20Tropical%20Wind%20DP05%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8506645",
+      "product_name": "Tropical Wind [Finalist] #DP48",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:DP48"
+      }
+    },
+    {
+      "query": "Pokemon DP Black Star Promos Tropical Wind DP05 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20DP%20Black%20Star%20Promos%20Tropical%20Wind%20DP05%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8506643",
+      "product_name": "Tropical Wind [Top Sixteen] #DP48",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:DP48"
+      }
+    },
+    {
+      "query": "Pokemon DP Black Star Promos Tropical Wind DP05 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20DP%20Black%20Star%20Promos%20Tropical%20Wind%20DP05%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6021699",
+      "product_name": "Tropical Wind [Quarter-Finalist] #DP25",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:DP25"
+      }
+    },
+    {
+      "query": "Pokemon DP Black Star Promos Tropical Wind DP05 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20DP%20Black%20Star%20Promos%20Tropical%20Wind%20DP05%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8506640",
+      "product_name": "Tropical Wind [Top Thirty Two] #DP48",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:DP48"
+      }
+    },
+    {
+      "query": "Pokemon DP Black Star Promos Tropical Wind DP05 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20DP%20Black%20Star%20Promos%20Tropical%20Wind%20DP05%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8506816",
+      "product_name": "Tropical Wind [Quarter Finalist] #DP48",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:DP48"
+      }
+    },
+    {
+      "query": "Pokemon DP Black Star Promos Tropical Wind DP05 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20DP%20Black%20Star%20Promos%20Tropical%20Wind%20DP05%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8506647",
+      "product_name": "Tropical Wind [Semi Finalist] #DP48",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:DP48"
+      }
+    },
+    {
+      "query": "Pokemon DP Black Star Promos Tropical Wind DP05 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20DP%20Black%20Star%20Promos%20Tropical%20Wind%20DP05%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "845028",
+      "product_name": "Tropical Wind #026",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:026"
+      }
+    },
+    {
+      "query": "Pokemon DP Black Star Promos Tropical Wind DP05 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20DP%20Black%20Star%20Promos%20Tropical%20Wind%20DP05%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "845067",
+      "product_name": "Tropical Wind #DP25",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:DP25"
+      }
+    },
+    {
+      "query": "Pokemon DP Black Star Promos Tropical Wind DP05 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20DP%20Black%20Star%20Promos%20Tropical%20Wind%20DP05%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "845090",
+      "product_name": "Tropical Wind #DP48",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:DP48"
+      }
+    },
+    {
+      "query": "Pokemon DP Black Star Promos Tropical Wind DP05 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20DP%20Black%20Star%20Promos%20Tropical%20Wind%20DP05%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10983405",
+      "product_name": "Tropical Wind [Worlds 07]",
+      "console_name": "Pokemon Japanese Promo",
+      "validation": {
+        "ok": false,
+        "reason": "api_product_name_pattern_not_supported"
+      }
+    },
+    {
+      "query": "Pokemon DP Black Star Promos Tropical Wind DP05 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20DP%20Black%20Star%20Promos%20Tropical%20Wind%20DP05%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6682376",
+      "product_name": "Tropical Wind [Worlds 04]",
+      "console_name": "Pokemon Japanese Promo",
+      "validation": {
+        "ok": false,
+        "reason": "api_product_name_pattern_not_supported"
+      }
+    },
+    {
+      "query": "Pokemon DP Black Star Promos Tropical Wind DP05 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20DP%20Black%20Star%20Promos%20Tropical%20Wind%20DP05%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5977920",
+      "product_name": "Tropical Wind [Worlds 08]",
+      "console_name": "Pokemon Japanese Promo",
+      "validation": {
+        "ok": false,
+        "reason": "api_product_name_pattern_not_supported"
+      }
+    }
+  ],
+  "source_lane": "pricecharting_api"
+}

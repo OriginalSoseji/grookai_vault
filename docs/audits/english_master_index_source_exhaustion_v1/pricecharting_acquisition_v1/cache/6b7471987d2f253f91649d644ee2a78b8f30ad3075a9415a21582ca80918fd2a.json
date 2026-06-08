@@ -1,0 +1,549 @@
+{
+  "status": "api_no_validated_match",
+  "fact": {
+    "gap_type": "finish_second_source_needed",
+    "fact_type": "printing_finish",
+    "set_key": "sm7",
+    "set_name": "Celestial Storm",
+    "card_number": "145",
+    "card_name": "Steven's Resolve",
+    "finish_key": "stamped",
+    "status": "human_source_verified",
+    "sources": [
+      "thepricedex_price_list"
+    ],
+    "source_authorities": [
+      "thepricedex.com"
+    ],
+    "source_kinds": [
+      "marketplace_checklist"
+    ],
+    "evidence_urls": [
+      "https://www.thepricedex.com/set/sm7/celestial-storm/price-list"
+    ],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "attempts": [
+    {
+      "query": "Pokemon Celestial Storm Steven's Resolve 145 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Celestial%20Storm%20Steven's%20Resolve%20145%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "962058",
+      "product_name": "Steven's Resolve #145",
+      "console_name": "Pokemon Celestial Storm",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon Celestial Storm Steven's Resolve 145 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Celestial%20Storm%20Steven's%20Resolve%20145%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5705714",
+      "product_name": "Steven’s Resolve [League] #145",
+      "console_name": "Pokemon Celestial Storm",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:League"
+      }
+    },
+    {
+      "query": "Pokemon Celestial Storm Steven's Resolve 145 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Celestial%20Storm%20Steven's%20Resolve%20145%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "962226",
+      "product_name": "Steven's Resolve [Reverse Holo] #145",
+      "console_name": "Pokemon Celestial Storm",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Reverse Holo"
+      }
+    },
+    {
+      "query": "Pokemon Celestial Storm Steven's Resolve 145 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Celestial%20Storm%20Steven's%20Resolve%20145%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "962078",
+      "product_name": "Steven's Resolve #165",
+      "console_name": "Pokemon Celestial Storm",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:165"
+      }
+    },
+    {
+      "query": "Pokemon Celestial Storm Steven's Resolve 145 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Celestial%20Storm%20Steven's%20Resolve%20145%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5427868",
+      "product_name": "Treecko [Stamped] #8",
+      "console_name": "Pokemon Celestial Storm",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:8"
+      }
+    },
+    {
+      "query": "Pokemon Celestial Storm Steven's Resolve 145 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Celestial%20Storm%20Steven's%20Resolve%20145%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3468556",
+      "product_name": "Steven's Resolve #102",
+      "console_name": "Pokemon Japanese Sky-Splitting Charisma",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:102"
+      }
+    },
+    {
+      "query": "Pokemon Celestial Storm Steven's Resolve 145 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Celestial%20Storm%20Steven's%20Resolve%20145%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3468542",
+      "product_name": "Steven's Resolve #88",
+      "console_name": "Pokemon Japanese Sky-Splitting Charisma",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:88"
+      }
+    },
+    {
+      "query": "Pokemon Celestial Storm Steven's Resolve 145 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Celestial%20Storm%20Steven's%20Resolve%20145%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "962046",
+      "product_name": "Hau #132",
+      "console_name": "Pokemon Celestial Storm",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:132"
+      }
+    },
+    {
+      "query": "Pokemon Celestial Storm Steven's Resolve 145 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Celestial%20Storm%20Steven's%20Resolve%20145%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "961985",
+      "product_name": "Onix #71",
+      "console_name": "Pokemon Celestial Storm",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:71"
+      }
+    },
+    {
+      "query": "Pokemon Celestial Storm Steven's Resolve 145 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Celestial%20Storm%20Steven's%20Resolve%20145%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "962047",
+      "product_name": "Hiker #133",
+      "console_name": "Pokemon Celestial Storm",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:133"
+      }
+    },
+    {
+      "query": "Pokemon Celestial Storm Steven's Resolve 145 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Celestial%20Storm%20Steven's%20Resolve%20145%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "962050",
+      "product_name": "Lisia #137",
+      "console_name": "Pokemon Celestial Storm",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:137"
+      }
+    },
+    {
+      "query": "Pokemon Celestial Storm Steven's Resolve 145 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Celestial%20Storm%20Steven's%20Resolve%20145%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "962077",
+      "product_name": "Lisia #164",
+      "console_name": "Pokemon Celestial Storm",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:164"
+      }
+    },
+    {
+      "query": "Pokemon Celestial Storm Steven's Resolve 145 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Celestial%20Storm%20Steven's%20Resolve%20145%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "961950",
+      "product_name": "Lotad #36",
+      "console_name": "Pokemon Celestial Storm",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:36"
+      }
+    },
+    {
+      "query": "Pokemon Celestial Storm Steven's Resolve 145 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Celestial%20Storm%20Steven's%20Resolve%20145%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "961968",
+      "product_name": "Minun #54",
+      "console_name": "Pokemon Celestial Storm",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:54"
+      }
+    },
+    {
+      "query": "Pokemon Celestial Storm Steven's Resolve 145 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Celestial%20Storm%20Steven's%20Resolve%20145%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "962017",
+      "product_name": "Bagon #103",
+      "console_name": "Pokemon Celestial Storm",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:103"
+      }
+    },
+    {
+      "query": "Pokemon Celestial Storm Steven's Resolve 145 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Celestial%20Storm%20Steven's%20Resolve%20145%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "962018",
+      "product_name": "Bagon #104",
+      "console_name": "Pokemon Celestial Storm",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:104"
+      }
+    },
+    {
+      "query": "Pokemon Celestial Storm Steven's Resolve 145 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Celestial%20Storm%20Steven's%20Resolve%20145%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "962034",
+      "product_name": "Skitty #120",
+      "console_name": "Pokemon Celestial Storm",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:120"
+      }
+    },
+    {
+      "query": "Pokemon Celestial Storm Steven's Resolve 145 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Celestial%20Storm%20Steven's%20Resolve%20145%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "962060",
+      "product_name": "Switch #147",
+      "console_name": "Pokemon Celestial Storm",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:147"
+      }
+    },
+    {
+      "query": "Pokemon Celestial Storm Steven's Resolve 145 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Celestial%20Storm%20Steven's%20Resolve%20145%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "961925",
+      "product_name": "Seedot #11",
+      "console_name": "Pokemon Celestial Storm",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:11"
+      }
+    },
+    {
+      "query": "Pokemon Celestial Storm Steven's Resolve 145 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Celestial%20Storm%20Steven's%20Resolve%20145%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "961926",
+      "product_name": "Seedot #12",
+      "console_name": "Pokemon Celestial Storm",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:12"
+      }
+    },
+    {
+      "query": "Pokemon Celestial Storm Steven's Resolve 145 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Celestial%20Storm%20Steven's%20Resolve%20145%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "962058",
+      "product_name": "Steven's Resolve #145",
+      "console_name": "Pokemon Celestial Storm",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon Celestial Storm Steven's Resolve 145 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Celestial%20Storm%20Steven's%20Resolve%20145%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5705714",
+      "product_name": "Steven’s Resolve [League] #145",
+      "console_name": "Pokemon Celestial Storm",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:League"
+      }
+    },
+    {
+      "query": "Pokemon Celestial Storm Steven's Resolve 145 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Celestial%20Storm%20Steven's%20Resolve%20145%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "962226",
+      "product_name": "Steven's Resolve [Reverse Holo] #145",
+      "console_name": "Pokemon Celestial Storm",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Reverse Holo"
+      }
+    },
+    {
+      "query": "Pokemon Celestial Storm Steven's Resolve 145 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Celestial%20Storm%20Steven's%20Resolve%20145%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "962078",
+      "product_name": "Steven's Resolve #165",
+      "console_name": "Pokemon Celestial Storm",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:165"
+      }
+    },
+    {
+      "query": "Pokemon Celestial Storm Steven's Resolve 145 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Celestial%20Storm%20Steven's%20Resolve%20145%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5427868",
+      "product_name": "Treecko [Stamped] #8",
+      "console_name": "Pokemon Celestial Storm",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:8"
+      }
+    },
+    {
+      "query": "Pokemon Celestial Storm Steven's Resolve 145 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Celestial%20Storm%20Steven's%20Resolve%20145%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3468556",
+      "product_name": "Steven's Resolve #102",
+      "console_name": "Pokemon Japanese Sky-Splitting Charisma",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:102"
+      }
+    },
+    {
+      "query": "Pokemon Celestial Storm Steven's Resolve 145 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Celestial%20Storm%20Steven's%20Resolve%20145%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3468542",
+      "product_name": "Steven's Resolve #88",
+      "console_name": "Pokemon Japanese Sky-Splitting Charisma",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:88"
+      }
+    },
+    {
+      "query": "Pokemon Celestial Storm Steven's Resolve 145 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Celestial%20Storm%20Steven's%20Resolve%20145%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "962046",
+      "product_name": "Hau #132",
+      "console_name": "Pokemon Celestial Storm",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:132"
+      }
+    },
+    {
+      "query": "Pokemon Celestial Storm Steven's Resolve 145 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Celestial%20Storm%20Steven's%20Resolve%20145%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "961985",
+      "product_name": "Onix #71",
+      "console_name": "Pokemon Celestial Storm",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:71"
+      }
+    },
+    {
+      "query": "Pokemon Celestial Storm Steven's Resolve 145 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Celestial%20Storm%20Steven's%20Resolve%20145%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "962047",
+      "product_name": "Hiker #133",
+      "console_name": "Pokemon Celestial Storm",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:133"
+      }
+    },
+    {
+      "query": "Pokemon Celestial Storm Steven's Resolve 145 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Celestial%20Storm%20Steven's%20Resolve%20145%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "962050",
+      "product_name": "Lisia #137",
+      "console_name": "Pokemon Celestial Storm",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:137"
+      }
+    },
+    {
+      "query": "Pokemon Celestial Storm Steven's Resolve 145 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Celestial%20Storm%20Steven's%20Resolve%20145%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "962077",
+      "product_name": "Lisia #164",
+      "console_name": "Pokemon Celestial Storm",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:164"
+      }
+    },
+    {
+      "query": "Pokemon Celestial Storm Steven's Resolve 145 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Celestial%20Storm%20Steven's%20Resolve%20145%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "961950",
+      "product_name": "Lotad #36",
+      "console_name": "Pokemon Celestial Storm",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:36"
+      }
+    },
+    {
+      "query": "Pokemon Celestial Storm Steven's Resolve 145 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Celestial%20Storm%20Steven's%20Resolve%20145%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "961968",
+      "product_name": "Minun #54",
+      "console_name": "Pokemon Celestial Storm",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:54"
+      }
+    },
+    {
+      "query": "Pokemon Celestial Storm Steven's Resolve 145 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Celestial%20Storm%20Steven's%20Resolve%20145%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "962017",
+      "product_name": "Bagon #103",
+      "console_name": "Pokemon Celestial Storm",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:103"
+      }
+    },
+    {
+      "query": "Pokemon Celestial Storm Steven's Resolve 145 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Celestial%20Storm%20Steven's%20Resolve%20145%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "962018",
+      "product_name": "Bagon #104",
+      "console_name": "Pokemon Celestial Storm",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:104"
+      }
+    },
+    {
+      "query": "Pokemon Celestial Storm Steven's Resolve 145 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Celestial%20Storm%20Steven's%20Resolve%20145%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "962034",
+      "product_name": "Skitty #120",
+      "console_name": "Pokemon Celestial Storm",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:120"
+      }
+    },
+    {
+      "query": "Pokemon Celestial Storm Steven's Resolve 145 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Celestial%20Storm%20Steven's%20Resolve%20145%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "962060",
+      "product_name": "Switch #147",
+      "console_name": "Pokemon Celestial Storm",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:147"
+      }
+    },
+    {
+      "query": "Pokemon Celestial Storm Steven's Resolve 145 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Celestial%20Storm%20Steven's%20Resolve%20145%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "961925",
+      "product_name": "Seedot #11",
+      "console_name": "Pokemon Celestial Storm",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:11"
+      }
+    },
+    {
+      "query": "Pokemon Celestial Storm Steven's Resolve 145 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Celestial%20Storm%20Steven's%20Resolve%20145%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "961926",
+      "product_name": "Seedot #12",
+      "console_name": "Pokemon Celestial Storm",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:12"
+      }
+    }
+  ],
+  "source_lane": "pricecharting_api"
+}

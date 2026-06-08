@@ -1,6 +1,6 @@
 # Suppressed Structured Finish Candidates V1
 
-Generated: 2026-05-25T17:31:46.407Z
+Generated: 2026-06-08T18:24:41.247Z
 
 Audit only. No DB writes, migrations, cleanup, quarantine, or public hiding were performed.
 
@@ -12,179 +12,155 @@ This is not deletion authority for Grookai. It is a source-quality control repor
 
 | metric | count |
 | --- | --- |
-| suppressed rows | 2800 |
+| suppressed rows | 1619 |
 
 ## By Set
 
 | set_key | count |
 | --- | --- |
-| swsh45 | 122 |
-| pl3 | 115 |
-| ex6 | 106 |
-| sm12 | 97 |
-| ex7 | 94 |
-| ex8 | 94 |
-| ex9 | 94 |
-| sma | 94 |
-| sm8 | 80 |
-| ex5 | 78 |
-| sm11 | 78 |
-| sm10 | 76 |
-| sm9 | 69 |
-| bw11 | 64 |
-| sm2 | 63 |
-| sm7 | 62 |
-| sm3 | 61 |
-| me4 | 58 |
-| sm5 | 58 |
-| sm6 | 52 |
-| sm1 | 49 |
-| xy5 | 47 |
-| sm4 | 39 |
-| bw7 | 38 |
+| ex6 | 104 |
+| swsh4.5 | 97 |
+| ex8 | 93 |
+| ex7 | 92 |
+| ex9 | 92 |
+| pl3 | 86 |
+| ex5 | 76 |
+| bw11 | 48 |
 | g1 | 38 |
-| xy8 | 36 |
-| xy7 | 34 |
-| xy9 | 32 |
-| xy10 | 31 |
-| xy12 | 31 |
-| xy6 | 31 |
-| bw9 | 30 |
-| sm35 | 30 |
-| sm75 | 30 |
-| xy11 | 30 |
-| bw10 | 29 |
-| col1 | 29 |
-| xy4 | 29 |
-| bw6 | 26 |
-| xy1 | 26 |
-| bw8 | 25 |
-| ex3 | 24 |
-| bw4 | 23 |
-| xy2 | 23 |
-| xy3 | 22 |
-| bw5 | 21 |
+| bw7 | 28 |
+| xy5 | 27 |
+| sm8 | 26 |
+| xy8 | 24 |
+| xy9 | 23 |
+| xy12 | 22 |
 | dv1 | 21 |
-| sm115 | 19 |
+| ex3 | 21 |
+| pl2 | 20 |
+| sm12 | 20 |
+| sm9 | 20 |
+| xy10 | 20 |
+| xy11 | 20 |
+| bw10 | 19 |
+| sm7 | 19 |
+| xy4 | 19 |
+| xy7 | 19 |
+| col1 | 18 |
 | det1 | 18 |
-| ex1 | 18 |
-| neo4 | 16 |
-| bw3 | 15 |
-| ex16 | 15 |
-| me1 | 15 |
-| sv5 | 15 |
-| sv9 | 14 |
-| swsh8 | 13 |
-| bw2 | 12 |
-| ex4 | 12 |
-| bw1 | 11 |
-| sv3 | 11 |
-| sv6 | 11 |
-| svp | 11 |
-| dp1 | 9 |
-| mcd22 | 9 |
-| dc1 | 8 |
-| pop8 | 8 |
-| ecard1 | 6 |
-| ecard2 | 6 |
-| hgss1 | 5 |
-| sv10 | 5 |
-| sv8 | 5 |
-| dp4 | 4 |
-| dp7 | 4 |
-| neo3 | 4 |
-| sv4 | 4 |
-| dp2 | 3 |
-| dp6 | 3 |
-| me2 | 3 |
-| mep | 3 |
-| ru1 | 3 |
-| sv7 | 3 |
-| base2 | 2 |
-| base5 | 2 |
-| basep | 2 |
-| dp5 | 2 |
+| ex16 | 18 |
+| sm10 | 18 |
+| sm5 | 18 |
+| xy6 | 18 |
+| sm11 | 17 |
+| sm6 | 17 |
+| xy1 | 17 |
+| bw6 | 16 |
+| bw9 | 16 |
+| me01 | 14 |
+| sv05 | 14 |
+| sv09 | 14 |
+| bw4 | 13 |
+| bw8 | 13 |
+| sm3.5 | 13 |
+| xy2 | 13 |
+| xy3 | 13 |
+| bw5 | 12 |
+| sm1 | 12 |
+| sm2 | 12 |
+| sm7.5 | 11 |
+| bw2 | 10 |
+| 2022swsh | 9 |
+| bw3 | 9 |
+| ex1 | 9 |
+| me04 | 9 |
+| neo4 | 9 |
+| bw1 | 8 |
+| sm3 | 8 |
+| sv03 | 8 |
+| sm4 | 7 |
+| dc1 | 6 |
+| sm115 | 6 |
+| dp1 | 5 |
+| dp2 | 5 |
+| sv06 | 5 |
+| ex4 | 4 |
+| sv04 | 4 |
+| dp4 | 3 |
+| hgss1 | 3 |
 | ex10 | 2 |
 | ex11 | 2 |
-| hgss2 | 2 |
-| hgss3 | 2 |
-| neo1 | 2 |
-| sv3pt5 | 2 |
-| sv4pt5 | 2 |
-| zsv10pt5 | 2 |
-| base1 | 1 |
+| neo3 | 2 |
+| pl4 | 2 |
+| sv03.5 | 2 |
+| sv04.5 | 2 |
+| sv08 | 2 |
+| sv10 | 2 |
+| sv10.5b | 2 |
+| base2 | 1 |
+| base5 | 1 |
+| basep | 1 |
+| dp3 | 1 |
+| dp5 | 1 |
+| dp6 | 1 |
 | ex13 | 1 |
 | ex14 | 1 |
 | ex2 | 1 |
-| pgo | 1 |
+| hgss2 | 1 |
+| hgss3 | 1 |
+| me02 | 1 |
+| neo1 | 1 |
 | pl1 | 1 |
+| sv07 | 1 |
+| sv10.5w | 1 |
+| swsh10.5 | 1 |
+| tk-bw-e | 1 |
+| tk-bw-z | 1 |
+| tk-dp-l | 1 |
+| tk-dp-m | 1 |
+| tk-ex-latia | 1 |
+| tk-ex-latio | 1 |
 
 ## Sample Rows
 
 | set_key | set_name | card_number | card_name | suppressed_finish | source | checklist_finishes |
 | --- | --- | --- | --- | --- | --- | --- |
-| mep | MEP Black Star Promos | 028 | Celebratory Fanfare | holo | tcgdex | stamped |
-| mep | MEP Black Star Promos | 068 | Makuhita | holo | tcgdex | cosmos |
-| mep | MEP Black Star Promos | 069 | Chikorita | holo | tcgdex | cosmos |
-| base1 | Base | 8 | Machamp | holo | tcgdex | first_edition_holo |
-| base2 | Jungle | 17 | Clefable | first_edition_holo | tcgdex | first_edition_normal, normal |
-| base2 | Jungle | 17 | Clefable | holo | tcgdex | first_edition_normal, normal |
+| tk-bw-e | BW trainer Kit (Excadrill) | 30 | Excadrill | normal | tcgdex | holo |
+| tk-bw-z | BW trainer Kit (Zoroark) | 30 | Zoroark | normal | tcgdex | holo |
+| tk-dp-l | DP trainer Kit (Lucario) | 3 | Lucario | normal | tcgdex | holo |
+| tk-dp-m | DP trainer Kit (Manaphy) | 4 | Manaphy | normal | tcgdex | holo |
+| tk-sm-r | SM trainer Kit (Alolan Raichu) | 30 | Alolan Raichu | normal | tcgdex | holo |
+| tk-sm-l | SM trainer Kit (Lycanroc) | 30 | Lycanroc | normal | tcgdex | holo |
+| tk-xy-b | XY trainer Kit (Bisharp) | 30 | Bisharp | normal | tcgdex | holo |
+| tk-xy-latia | XY trainer Kit (Latias) | 30 | Latias | normal | tcgdex | holo |
+| tk-xy-latio | XY trainer Kit (Latios) | 30 | Latios | normal | tcgdex | holo |
+| tk-xy-n | XY trainer Kit (Noivern) | 30 | Noivern | normal | tcgdex | holo |
+| tk-xy-p | XY trainer Kit (Pikachu Libre) | 30 | Pikachu Libre | normal | tcgdex | holo |
+| tk-xy-su | XY trainer Kit (Suicune) | 30 | Suicune | normal | tcgdex | holo |
+| tk-xy-sy | XY trainer Kit (Sylveon) | 30 | Sylveon | normal | tcgdex | holo |
+| tk-xy-w | XY trainer Kit (Wigglytuff) | 30 | Wigglytuff | normal | tcgdex | holo |
+| base2 | Jungle | 17 | Clefable | first_edition_holo | tcgdex | first_edition_normal, holo, normal |
 | basep | Wizards Black Star Promos | 18 | Team Rocket's Meowth | holo | tcgdex | normal |
-| basep | Wizards Black Star Promos | 33 | Scizor | reverse | tcgdex | normal |
-| base5 | Team Rocket | 83 | Dark Raichu | first_edition_normal | tcgdex | first_edition_holo, holo |
-| base5 | Team Rocket | 83 | Dark Raichu | normal | tcgdex | first_edition_holo, holo |
-| neo1 | Neo Genesis | 20 | Cleffa | first_edition_holo | tcgdex | first_edition_normal, normal |
-| neo1 | Neo Genesis | 20 | Cleffa | holo | tcgdex | first_edition_normal, normal |
-| neo3 | Neo Revelation | 65 | Shining Gyarados | first_edition_normal | tcgdex | first_edition_holo, holo |
-| neo3 | Neo Revelation | 65 | Shining Gyarados | normal | tcgdex | first_edition_holo, holo |
-| neo3 | Neo Revelation | 66 | Shining Magikarp | first_edition_normal | tcgdex | first_edition_holo, holo |
-| neo3 | Neo Revelation | 66 | Shining Magikarp | normal | tcgdex | first_edition_holo, holo |
-| neo4 | Neo Destiny | 106 | Shining Celebi | first_edition_normal | tcgdex | first_edition_holo, holo |
-| neo4 | Neo Destiny | 106 | Shining Celebi | normal | tcgdex | first_edition_holo, holo |
-| neo4 | Neo Destiny | 107 | Shining Charizard | first_edition_normal | tcgdex | first_edition_holo, holo |
-| neo4 | Neo Destiny | 107 | Shining Charizard | normal | tcgdex | first_edition_holo, holo |
-| neo4 | Neo Destiny | 108 | Shining Kabutops | first_edition_normal | tcgdex | first_edition_holo, holo |
-| neo4 | Neo Destiny | 108 | Shining Kabutops | normal | tcgdex | first_edition_holo, holo |
-| neo4 | Neo Destiny | 109 | Shining Mewtwo | first_edition_normal | tcgdex | first_edition_holo, holo |
-| neo4 | Neo Destiny | 109 | Shining Mewtwo | normal | tcgdex | first_edition_holo, holo |
-| neo4 | Neo Destiny | 110 | Shining Noctowl | first_edition_normal | tcgdex | first_edition_holo, holo |
-| neo4 | Neo Destiny | 110 | Shining Noctowl | normal | tcgdex | first_edition_holo, holo |
-| neo4 | Neo Destiny | 111 | Shining Raichu | first_edition_normal | tcgdex | first_edition_holo, holo |
-| neo4 | Neo Destiny | 111 | Shining Raichu | normal | tcgdex | first_edition_holo, holo |
-| neo4 | Neo Destiny | 112 | Shining Steelix | first_edition_normal | tcgdex | first_edition_holo, holo |
-| neo4 | Neo Destiny | 112 | Shining Steelix | normal | tcgdex | first_edition_holo, holo |
-| neo4 | Neo Destiny | 113 | Shining Tyranitar | first_edition_normal | tcgdex | first_edition_holo, holo |
-| neo4 | Neo Destiny | 113 | Shining Tyranitar | normal | tcgdex | first_edition_holo, holo |
-| ecard1 | Expedition Base Set | 160 | Fighting Energy | reverse | tcgdex | normal |
-| ecard1 | Expedition Base Set | 161 | Fire Energy | reverse | tcgdex | normal |
-| ecard1 | Expedition Base Set | 162 | Grass Energy | reverse | tcgdex | normal |
-| ecard1 | Expedition Base Set | 163 | Lightning Energy | reverse | tcgdex | normal |
-| ecard1 | Expedition Base Set | 164 | Psychic Energy | reverse | tcgdex | normal |
-| ecard1 | Expedition Base Set | 165 | Water Energy | reverse | tcgdex | normal |
-| ecard2 | Aquapolis | 148 | Kingdra | normal | tcgdex | holo |
-| ecard2 | Aquapolis | 148 | Kingdra | reverse | tcgdex | holo |
-| ecard2 | Aquapolis | 149 | Lugia | normal | tcgdex | holo |
-| ecard2 | Aquapolis | 149 | Lugia | reverse | tcgdex | holo |
-| ecard2 | Aquapolis | 150 | Nidoking | normal | tcgdex | holo |
-| ecard2 | Aquapolis | 150 | Nidoking | reverse | tcgdex | holo |
-| ex1 | Ruby & Sapphire | 93 | Darkness Energy | holo | tcgdex | cosmos, normal, reverse |
+| base5 | Team Rocket | 83 | Dark Raichu | first_edition_normal | tcgdex | first_edition_holo, holo, normal |
+| neo1 | Neo Genesis | 20 | Cleffa | first_edition_holo | tcgdex | first_edition_normal, holo, normal |
+| neo3 | Neo Revelation | 65 | Shining Gyarados | first_edition_normal | tcgdex | first_edition_holo, holo, normal |
+| neo3 | Neo Revelation | 66 | Shining Magikarp | first_edition_normal | tcgdex | first_edition_holo, holo, normal |
+| neo4 | Neo Destiny | 96 | Thought Wave Machine (Rocket's Secret Machine) | normal | tcgdex | first_edition_normal |
+| neo4 | Neo Destiny | 106 | Shining Celebi | first_edition_normal | tcgdex | first_edition_holo, holo, normal |
+| neo4 | Neo Destiny | 107 | Shining Charizard | first_edition_normal | tcgdex | first_edition_holo, holo, normal |
+| neo4 | Neo Destiny | 108 | Shining Kabutops | first_edition_normal | tcgdex | first_edition_holo, holo, normal |
+| neo4 | Neo Destiny | 109 | Shining Mewtwo | first_edition_normal | tcgdex | first_edition_holo, holo, normal |
+| neo4 | Neo Destiny | 110 | Shining Noctowl | first_edition_normal | tcgdex | first_edition_holo, holo, normal |
+| neo4 | Neo Destiny | 111 | Shining Raichu | first_edition_normal | tcgdex | first_edition_holo, holo, normal |
+| neo4 | Neo Destiny | 112 | Shining Steelix | first_edition_normal | tcgdex | first_edition_holo, holo, normal |
+| neo4 | Neo Destiny | 113 | Shining Tyranitar | first_edition_normal | tcgdex | first_edition_holo, holo, normal |
 | ex1 | Ruby & Sapphire | 94 | Metal Energy | holo | tcgdex | normal, reverse, stamped |
-| ex1 | Ruby & Sapphire | 96 | Chansey ex | normal | tcgdex | holo |
-| ex1 | Ruby & Sapphire | 96 | Chansey ex | reverse | tcgdex | holo |
-| ex1 | Ruby & Sapphire | 97 | Electabuzz ex | normal | tcgdex | holo |
-| ex1 | Ruby & Sapphire | 97 | Electabuzz ex | reverse | tcgdex | holo |
-| ex1 | Ruby & Sapphire | 98 | Hitmonchan ex | normal | tcgdex | holo |
-| ex1 | Ruby & Sapphire | 98 | Hitmonchan ex | reverse | tcgdex | holo |
-| ex1 | Ruby & Sapphire | 99 | Lapras ex | normal | tcgdex | holo |
-| ex1 | Ruby & Sapphire | 99 | Lapras ex | reverse | tcgdex | holo |
-| ex1 | Ruby & Sapphire | 100 | Magmar ex | normal | tcgdex | holo |
-| ex1 | Ruby & Sapphire | 100 | Magmar ex | reverse | tcgdex | holo |
-| ex1 | Ruby & Sapphire | 101 | Mewtwo ex | normal | tcgdex | holo |
-| ex1 | Ruby & Sapphire | 101 | Mewtwo ex | reverse | tcgdex | holo |
-| ex1 | Ruby & Sapphire | 102 | Scyther ex | normal | tcgdex | holo |
-| ex1 | Ruby & Sapphire | 102 | Scyther ex | reverse | tcgdex | holo |
-| ex1 | Ruby & Sapphire | 103 | Sneasel ex | normal | tcgdex | holo |
-| ex1 | Ruby & Sapphire | 103 | Sneasel ex | reverse | tcgdex | holo |
+| ex1 | Ruby & Sapphire | 96 | Chansey ex | normal | tcgdex | holo, reverse |
+| ex1 | Ruby & Sapphire | 97 | Electabuzz ex | normal | tcgdex | holo, reverse |
+| ex1 | Ruby & Sapphire | 98 | Hitmonchan ex | normal | tcgdex | holo, reverse |
+| ex1 | Ruby & Sapphire | 99 | Lapras ex | normal | tcgdex | holo, reverse |
+| ex1 | Ruby & Sapphire | 100 | Magmar ex | normal | tcgdex | holo, reverse |
+| ex1 | Ruby & Sapphire | 101 | Mewtwo ex | normal | tcgdex | holo, reverse |
+| ex1 | Ruby & Sapphire | 102 | Scyther ex | normal | tcgdex | holo, reverse |
+| ex1 | Ruby & Sapphire | 103 | Sneasel ex | normal | tcgdex | holo, reverse |
 | ex2 | Sandstorm | 93 | Multi Energy | holo | tcgdex | cosmos, normal, reverse, stamped |
 | ex3 | Dragon | 1 | Absol | normal | tcgdex | holo, reverse |
 | ex3 | Dragon | 2 | Altaria | normal | tcgdex | holo, reverse |
@@ -207,23 +183,12 @@ This is not deletion authority for Grookai. It is a source-quality control repor
 | ex3 | Dragon | 95 | Magcargo ex | normal | tcgdex | holo |
 | ex3 | Dragon | 96 | Muk ex | normal | tcgdex | holo |
 | ex3 | Dragon | 97 | Rayquaza ex | normal | tcgdex | holo |
-| ex3 | Dragon | 98 | Charmander | normal | tcgdex | holo, stamped |
-| ex3 | Dragon | 99 | Charmeleon | normal | tcgdex | holo, stamped |
-| ex3 | Dragon | 100 | Charizard | normal | tcgdex | holo, stamped |
-| ex4 | Team Magma vs Team Aqua | 90 | Cradily ex | normal | tcgdex | holo |
-| ex4 | Team Magma vs Team Aqua | 90 | Cradily ex | reverse | tcgdex | holo |
-| ex4 | Team Magma vs Team Aqua | 91 | Entei ex | normal | tcgdex | holo |
-| ex4 | Team Magma vs Team Aqua | 91 | Entei ex | reverse | tcgdex | holo |
-| ex4 | Team Magma vs Team Aqua | 92 | Raikou ex | normal | tcgdex | holo |
-| ex4 | Team Magma vs Team Aqua | 92 | Raikou ex | reverse | tcgdex | holo |
-| ex4 | Team Magma vs Team Aqua | 93 | Sceptile ex | normal | tcgdex | holo |
-| ex4 | Team Magma vs Team Aqua | 93 | Sceptile ex | reverse | tcgdex | holo |
-| ex4 | Team Magma vs Team Aqua | 96 | Absol | normal | tcgdex | holo |
-| ex4 | Team Magma vs Team Aqua | 96 | Absol | reverse | tcgdex | holo |
-| ex4 | Team Magma vs Team Aqua | 97 | Jirachi | normal | tcgdex | holo |
-| ex4 | Team Magma vs Team Aqua | 97 | Jirachi | reverse | tcgdex | holo |
-| tk1a | EX Trainer Kit Latias | 4 | Latias | normal | tcgdex | holo |
-| tk1b | EX Trainer Kit Latios | 2 | Latios | normal | tcgdex | holo |
+| ex4 | Team Magma vs Team Aqua | 90 | Cradily ex | normal | tcgdex | holo, reverse |
+| ex4 | Team Magma vs Team Aqua | 91 | Entei ex | normal | tcgdex | holo, reverse |
+| ex4 | Team Magma vs Team Aqua | 92 | Raikou ex | normal | tcgdex | holo, reverse |
+| ex4 | Team Magma vs Team Aqua | 93 | Sceptile ex | normal | tcgdex | holo, reverse |
+| tk-ex-latia | EX Trainer Kit Latias | 4 | Latias | normal | tcgdex | holo |
+| tk-ex-latio | EX Trainer Kit Latios | 2 | Latios | normal | tcgdex | holo |
 | ex5 | Hidden Legends | 9 | Machamp | normal | tcgdex | holo, reverse, stamped |
 | ex5 | Hidden Legends | 16 | Bellossom | holo | tcgdex | normal, reverse |
 | ex5 | Hidden Legends | 17 | Chimecho | holo | tcgdex | normal, reverse |
@@ -290,13 +255,11 @@ This is not deletion authority for Grookai. It is a source-quality control repor
 | ex5 | Hidden Legends | 78 | Togepi | holo | tcgdex | normal, reverse |
 | ex5 | Hidden Legends | 79 | Totodile | holo | tcgdex | normal, reverse |
 | ex5 | Hidden Legends | 80 | Voltorb | holo | tcgdex | normal, reverse |
-| ex5 | Hidden Legends | 81 | Vulpix | holo | tcgdex | normal, reverse |
 | ex5 | Hidden Legends | 82 | Whismur | holo | tcgdex | normal, reverse |
 | ex5 | Hidden Legends | 83 | Zubat | holo | tcgdex | normal, reverse |
 | ex5 | Hidden Legends | 84 | Ancient Technical Machine (Ice) | holo | tcgdex | normal, reverse |
 | ex5 | Hidden Legends | 85 | Ancient Technical Machine (Rock) | holo | tcgdex | normal, reverse |
 | ex5 | Hidden Legends | 86 | Ancient Technical Machine (Steel) | holo | tcgdex | normal, reverse |
-| ex5 | Hidden Legends | 87 | Ancient Tomb | holo | tcgdex | normal, reverse |
 | ex5 | Hidden Legends | 88 | Desert Ruins | holo | tcgdex | normal, reverse |
 | ex5 | Hidden Legends | 89 | Island Cave | holo | tcgdex | normal, reverse |
 | ex5 | Hidden Legends | 90 | Life Herb | holo | tcgdex | normal, reverse |
@@ -305,7 +268,6 @@ This is not deletion authority for Grookai. It is a source-quality control repor
 | ex6 | FireRed & LeafGreen | 1 | Beedrill | normal | pokemontcg_api | holo, reverse |
 | ex6 | FireRed & LeafGreen | 2 | Butterfree | normal | pokemontcg_api | holo, reverse |
 | ex6 | FireRed & LeafGreen | 3 | Dewgong | normal | pokemontcg_api | holo, reverse |
-| ex6 | FireRed & LeafGreen | 4 | Ditto | normal | pokemontcg_api | holo, reverse |
 | ex6 | FireRed & LeafGreen | 5 | Exeggutor | normal | pokemontcg_api | holo, reverse |
 | ex6 | FireRed & LeafGreen | 6 | Kangaskhan | normal | pokemontcg_api | holo, reverse |
 | ex6 | FireRed & LeafGreen | 7 | Marowak | normal | pokemontcg_api | holo, reverse |
@@ -321,7 +283,6 @@ This is not deletion authority for Grookai. It is a source-quality control repor
 | ex6 | FireRed & LeafGreen | 109 | Gyarados ex | normal | pokemontcg_api | holo |
 | ex6 | FireRed & LeafGreen | 110 | Mr. Mime ex | normal | pokemontcg_api | holo |
 | ex6 | FireRed & LeafGreen | 111 | Mr. Mime ex | normal | pokemontcg_api | holo |
-| ex6 | FireRed & LeafGreen | 113 | Charmander | normal | pokemontcg_api | holo |
 | ex6 | FireRed & LeafGreen | 18 | Arcanine | holo | tcgdex | normal, reverse |
 | ex6 | FireRed & LeafGreen | 19 | Chansey | holo | tcgdex | normal, reverse |
 | ex6 | FireRed & LeafGreen | 20 | Cloyster | holo | tcgdex | normal, reverse |
@@ -415,14 +376,12 @@ This is not deletion authority for Grookai. It is a source-quality control repor
 | ex7 | Team Rocket Returns | 10 | Dark Steelix | normal | pokemontcg_api | holo, reverse |
 | ex7 | Team Rocket Returns | 11 | Jumpluff | normal | pokemontcg_api | holo, reverse |
 | ex7 | Team Rocket Returns | 13 | Piloswine | normal | pokemontcg_api | holo, reverse |
-| ex7 | Team Rocket Returns | 14 | Togetic | normal | pokemontcg_api | holo, reverse |
 | ex7 | Team Rocket Returns | 97 | Rocket's Entei ex | normal | pokemontcg_api | holo |
-| ex7 | Team Rocket Returns | 99 | Rocket's Mewtwo ex | normal | pokemontcg_api | holo |
+| ex7 | Team Rocket Returns | 101 | Rocket's Scizor ex | normal | pokemontcg_api | holo |
 | ex7 | Team Rocket Returns | 102 | Rocket's Scyther ex | normal | pokemontcg_api | holo |
 | ex7 | Team Rocket Returns | 103 | Rocket's Sneasel ex | normal | pokemontcg_api | holo |
 | ex7 | Team Rocket Returns | 105 | Rocket's Suicune ex | normal | pokemontcg_api | holo |
 | ex7 | Team Rocket Returns | 107 | Mudkip ★ | normal | pokemontcg_api | holo |
-| ex7 | Team Rocket Returns | 15 | Dark Dragonite | holo | tcgdex | cosmos, normal, reverse |
 | ex7 | Team Rocket Returns | 16 | Dark Muk | holo | tcgdex | normal, reverse |
 | ex7 | Team Rocket Returns | 17 | Dark Raticate | holo | tcgdex | normal, reverse |
 | ex7 | Team Rocket Returns | 18 | Dark Sandslash | holo | tcgdex | normal, reverse |
@@ -512,7 +471,6 @@ This is not deletion authority for Grookai. It is a source-quality control repor
 | ex8 | Deoxys | 11 | Metagross | normal | pokemontcg_api | holo, reverse |
 | ex8 | Deoxys | 12 | Mightyena | normal | pokemontcg_api | holo, reverse |
 | ex8 | Deoxys | 13 | Ninjask | normal | pokemontcg_api | holo, reverse |
-| ex8 | Deoxys | 15 | Slaking | normal | pokemontcg_api | holo, reverse |
 | ex8 | Deoxys | 99 | Deoxys ex | normal | pokemontcg_api | holo |
 | ex8 | Deoxys | 100 | Hariyama ex | normal | pokemontcg_api | holo |
 | ex8 | Deoxys | 103 | Salamence ex | normal | pokemontcg_api | holo |
@@ -595,7 +553,7 @@ This is not deletion authority for Grookai. It is a source-quality control repor
 | ex8 | Deoxys | 93 | Boost Energy | holo | tcgdex | normal, reverse |
 | ex8 | Deoxys | 94 | Heal Energy | holo | tcgdex | normal, reverse |
 | ex8 | Deoxys | 95 | Scramble Energy | holo | tcgdex | normal, reverse |
-| ex8 | Deoxys | 101 | Manectric ex | normal | tcgdex | holo |
+| ex8 | Deoxys | 105 | Latias Star | normal | tcgdex | holo |
 | ex9 | Emerald | 2 | Deoxys | normal | pokemontcg_api | holo, reverse |
 | ex9 | Emerald | 3 | Exploud | normal | pokemontcg_api | holo, reverse, stamped |
 | ex9 | Emerald | 5 | Groudon | normal | pokemontcg_api | holo, reverse |
@@ -603,16 +561,14 @@ This is not deletion authority for Grookai. It is a source-quality control repor
 | ex9 | Emerald | 8 | Milotic | normal | pokemontcg_api | holo, reverse |
 | ex9 | Emerald | 9 | Rayquaza | normal | pokemontcg_api | holo, reverse |
 | ex9 | Emerald | 91 | Cacturne ex | normal | pokemontcg_api | holo |
-| ex9 | Emerald | 94 | Dusclops ex | normal | pokemontcg_api | holo |
+| ex9 | Emerald | 92 | Camerupt ex | normal | pokemontcg_api | holo |
 | ex9 | Emerald | 95 | Medicham ex | normal | pokemontcg_api | holo |
-| ex9 | Emerald | 99 | Regirock ex | normal | pokemontcg_api | holo |
 | ex9 | Emerald | 101 | Grass Energy | normal | pokemontcg_api | holo |
 | ex9 | Emerald | 102 | Fire Energy | normal | pokemontcg_api | holo |
 | ex9 | Emerald | 103 | Water Energy | normal | pokemontcg_api | holo |
 | ex9 | Emerald | 104 | Lightning Energy | normal | pokemontcg_api | holo |
 | ex9 | Emerald | 105 | Psychic Energy | normal | pokemontcg_api | holo |
 | ex9 | Emerald | 106 | Fighting Energy | normal | pokemontcg_api | holo |
-| ex9 | Emerald | 107 | Farfetch'd | normal | pokemontcg_api | holo |
 | ex9 | Emerald | 12 | Chimecho | holo | tcgdex | normal, reverse |
 | ex9 | Emerald | 13 | Glalie | holo | tcgdex | normal, reverse |
 | ex9 | Emerald | 14 | Groudon | holo | tcgdex | normal, reverse |
@@ -623,3 +579,47 @@ This is not deletion authority for Grookai. It is a source-quality control repor
 | ex9 | Emerald | 19 | Rhydon | holo | tcgdex | normal, reverse |
 | ex9 | Emerald | 20 | Seviper | holo | tcgdex | normal, reverse |
 | ex9 | Emerald | 21 | Zangoose | holo | tcgdex | normal, reverse |
+| ex9 | Emerald | 22 | Breloom | holo | tcgdex | normal, reverse |
+| ex9 | Emerald | 23 | Camerupt | holo | tcgdex | normal, reverse |
+| ex9 | Emerald | 24 | Claydol | holo | tcgdex | normal, reverse |
+| ex9 | Emerald | 25 | Combusken | holo | tcgdex | normal, reverse |
+| ex9 | Emerald | 26 | Dodrio | holo | tcgdex | normal, reverse |
+| ex9 | Emerald | 27 | Electrode | holo | tcgdex | normal, reverse |
+| ex9 | Emerald | 28 | Grovyle | holo | tcgdex | normal, reverse |
+| ex9 | Emerald | 29 | Grumpig | holo | tcgdex | normal, reverse, stamped |
+| ex9 | Emerald | 30 | Grumpig | holo | tcgdex | normal, reverse |
+| ex9 | Emerald | 31 | Hariyama | holo | tcgdex | normal, reverse |
+| ex9 | Emerald | 32 | Illumise | holo | tcgdex | normal, reverse |
+| ex9 | Emerald | 33 | Kirlia | holo | tcgdex | normal, reverse |
+| ex9 | Emerald | 34 | Linoone | holo | tcgdex | normal, reverse |
+| ex9 | Emerald | 35 | Loudred | holo | tcgdex | normal, reverse, stamped |
+| ex9 | Emerald | 36 | Marshtomp | holo | tcgdex | normal, reverse |
+| ex9 | Emerald | 37 | Minun | holo | tcgdex | normal, reverse |
+| ex9 | Emerald | 38 | Ninetales | holo | tcgdex | normal, reverse |
+| ex9 | Emerald | 39 | Plusle | holo | tcgdex | normal, reverse |
+| ex9 | Emerald | 40 | Swalot | holo | tcgdex | normal, reverse |
+| ex9 | Emerald | 41 | Swellow | holo | tcgdex | normal, reverse |
+| ex9 | Emerald | 42 | Volbeat | holo | tcgdex | normal, reverse |
+| ex9 | Emerald | 43 | Baltoy | holo | tcgdex | normal, reverse |
+| ex9 | Emerald | 44 | Cacnea | holo | tcgdex | normal, reverse |
+| ex9 | Emerald | 45 | Doduo | holo | tcgdex | normal, reverse |
+| ex9 | Emerald | 46 | Duskull | holo | tcgdex | normal, reverse |
+| ex9 | Emerald | 47 | Electrike | holo | tcgdex | normal, reverse |
+| ex9 | Emerald | 48 | Electrike | holo | tcgdex | normal, reverse |
+| ex9 | Emerald | 49 | Feebas | holo | tcgdex | normal, reverse |
+| ex9 | Emerald | 50 | Feebas | holo | tcgdex | normal, reverse |
+| ex9 | Emerald | 51 | Gulpin | holo | tcgdex | normal, reverse |
+| ex9 | Emerald | 52 | Larvitar | holo | tcgdex | normal, reverse |
+| ex9 | Emerald | 53 | Luvdisc | holo | tcgdex | normal, reverse |
+| ex9 | Emerald | 54 | Makuhita | holo | tcgdex | normal, reverse |
+| ex9 | Emerald | 56 | Mudkip | holo | tcgdex | normal, reverse |
+| ex9 | Emerald | 57 | Numel | holo | tcgdex | normal, reverse |
+| ex9 | Emerald | 58 | Numel | holo | tcgdex | normal, reverse |
+| ex9 | Emerald | 59 | Pichu | holo | tcgdex | normal, reverse |
+| ex9 | Emerald | 60 | Pikachu | holo | tcgdex | normal, reverse, stamped |
+| ex9 | Emerald | 61 | Ralts | holo | tcgdex | normal, reverse |
+| ex9 | Emerald | 62 | Rhyhorn | holo | tcgdex | normal, reverse |
+| ex9 | Emerald | 63 | Shroomish | holo | tcgdex | normal, reverse |
+| ex9 | Emerald | 64 | Snorunt | holo | tcgdex | normal, reverse |
+| ex9 | Emerald | 65 | Spoink | holo | tcgdex | normal, reverse |
+| ex9 | Emerald | 66 | Spoink | holo | tcgdex | normal, reverse |

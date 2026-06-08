@@ -1,0 +1,549 @@
+{
+  "status": "api_no_validated_match",
+  "fact": {
+    "gap_type": "finish_second_source_needed",
+    "fact_type": "printing_finish",
+    "set_key": "sm1",
+    "set_name": "Sun & Moon",
+    "card_number": "127",
+    "card_name": "Potion",
+    "finish_key": "stamped",
+    "status": "human_source_verified",
+    "sources": [
+      "thepricedex_price_list"
+    ],
+    "source_authorities": [
+      "thepricedex.com"
+    ],
+    "source_kinds": [
+      "marketplace_checklist"
+    ],
+    "evidence_urls": [
+      "https://www.thepricedex.com/set/sm1/sun-and-moon/price-list"
+    ],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "attempts": [
+    {
+      "query": "Pokemon Sun & Moon Potion 127 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Sun%20%26%20Moon%20Potion%20127%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "806871",
+      "product_name": "Potion #127",
+      "console_name": "Pokemon Sun & Moon",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon Sun & Moon Potion 127 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Sun%20%26%20Moon%20Potion%20127%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "807000",
+      "product_name": "Potion [Reverse Holo] #127",
+      "console_name": "Pokemon Sun & Moon",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Reverse Holo"
+      }
+    },
+    {
+      "query": "Pokemon Sun & Moon Potion 127 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Sun%20%26%20Moon%20Potion%20127%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3473788",
+      "product_name": "Max Potion #48",
+      "console_name": "Pokemon Japanese Strength Expansion Pack Sun & Moon",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:48"
+      }
+    },
+    {
+      "query": "Pokemon Sun & Moon Potion 127 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Sun%20%26%20Moon%20Potion%20127%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "962925",
+      "product_name": "Farfetch'd #127",
+      "console_name": "Pokemon Team Up",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Farfetch'd"
+      }
+    },
+    {
+      "query": "Pokemon Sun & Moon Potion 127 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Sun%20%26%20Moon%20Potion%20127%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5698777",
+      "product_name": "Moltres [Stamped] #19",
+      "console_name": "Pokemon Team Up",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:19"
+      }
+    },
+    {
+      "query": "Pokemon Sun & Moon Potion 127 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Sun%20%26%20Moon%20Potion%20127%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "921017",
+      "product_name": "Potion #127",
+      "console_name": "Pokemon Secret Wonders",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon Secret Wonders"
+      }
+    },
+    {
+      "query": "Pokemon Sun & Moon Potion 127 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Sun%20%26%20Moon%20Potion%20127%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11748533",
+      "product_name": "Potion [#42 Cinderace Stamp] #177",
+      "console_name": "Pokemon 2022 Battle Academy",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:177"
+      }
+    },
+    {
+      "query": "Pokemon Sun & Moon Potion 127 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Sun%20%26%20Moon%20Potion%20127%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5436959",
+      "product_name": "Potion #127",
+      "console_name": "Pokemon 2020 Battle Academy",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon 2020 Battle Academy"
+      }
+    },
+    {
+      "query": "Pokemon Sun & Moon Potion 127 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Sun%20%26%20Moon%20Potion%20127%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "921149",
+      "product_name": "Potion [Reverse Holo] #127",
+      "console_name": "Pokemon Secret Wonders",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon Secret Wonders"
+      }
+    },
+    {
+      "query": "Pokemon Sun & Moon Potion 127 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Sun%20%26%20Moon%20Potion%20127%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3468017",
+      "product_name": "Potion #53",
+      "console_name": "Pokemon Japanese Ultra Sun",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:53"
+      }
+    },
+    {
+      "query": "Pokemon Sun & Moon Potion 127 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Sun%20%26%20Moon%20Potion%20127%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "842777",
+      "product_name": "Hyper Potion #127",
+      "console_name": "Pokemon Skyridge",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Hyper Potion"
+      }
+    },
+    {
+      "query": "Pokemon Sun & Moon Potion 127 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Sun%20%26%20Moon%20Potion%20127%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6657595",
+      "product_name": "Pokemon Adventures: Sun & Moon #12 (2022)",
+      "console_name": "Comic Books Pokemon Adventures: Sun & Moon",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:12"
+      }
+    },
+    {
+      "query": "Pokemon Sun & Moon Potion 127 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Sun%20%26%20Moon%20Potion%20127%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "2252726",
+      "product_name": "Hyper Potion [Reverse Holo] #127",
+      "console_name": "Pokemon Skyridge",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Hyper Potion"
+      }
+    },
+    {
+      "query": "Pokemon Sun & Moon Potion 127 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Sun%20%26%20Moon%20Potion%20127%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4802151",
+      "product_name": "Pokemon Adventures: Sun & Moon Vol. 11 (2021)",
+      "console_name": "Comic Books Pokemon Adventures: Sun & Moon",
+      "validation": {
+        "ok": false,
+        "reason": "api_product_name_pattern_not_supported"
+      }
+    },
+    {
+      "query": "Pokemon Sun & Moon Potion 127 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Sun%20%26%20Moon%20Potion%20127%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4802152",
+      "product_name": "Pokemon Adventures: Sun & Moon Vol. 10 (2021)",
+      "console_name": "Comic Books Pokemon Adventures: Sun & Moon",
+      "validation": {
+        "ok": false,
+        "reason": "api_product_name_pattern_not_supported"
+      }
+    },
+    {
+      "query": "Pokemon Sun & Moon Potion 127 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Sun%20%26%20Moon%20Potion%20127%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4802154",
+      "product_name": "Pokemon Adventures: Sun & Moon Vol. 8 (2020)",
+      "console_name": "Comic Books Pokemon Adventures: Sun & Moon",
+      "validation": {
+        "ok": false,
+        "reason": "api_product_name_pattern_not_supported"
+      }
+    },
+    {
+      "query": "Pokemon Sun & Moon Potion 127 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Sun%20%26%20Moon%20Potion%20127%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4802156",
+      "product_name": "Pokemon Adventures: Sun & Moon Vol. 6 (2020)",
+      "console_name": "Comic Books Pokemon Adventures: Sun & Moon",
+      "validation": {
+        "ok": false,
+        "reason": "api_product_name_pattern_not_supported"
+      }
+    },
+    {
+      "query": "Pokemon Sun & Moon Potion 127 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Sun%20%26%20Moon%20Potion%20127%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4802155",
+      "product_name": "Pokemon Adventures: Sun & Moon Vol. 7 (2020)",
+      "console_name": "Comic Books Pokemon Adventures: Sun & Moon",
+      "validation": {
+        "ok": false,
+        "reason": "api_product_name_pattern_not_supported"
+      }
+    },
+    {
+      "query": "Pokemon Sun & Moon Potion 127 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Sun%20%26%20Moon%20Potion%20127%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4802159",
+      "product_name": "Pokemon Adventures: Sun & Moon Vol. 3 (2019)",
+      "console_name": "Comic Books Pokemon Adventures: Sun & Moon",
+      "validation": {
+        "ok": false,
+        "reason": "api_product_name_pattern_not_supported"
+      }
+    },
+    {
+      "query": "Pokemon Sun & Moon Potion 127 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Sun%20%26%20Moon%20Potion%20127%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4802157",
+      "product_name": "Pokemon Adventures: Sun & Moon Vol. 4 (2019)",
+      "console_name": "Comic Books Pokemon Adventures: Sun & Moon",
+      "validation": {
+        "ok": false,
+        "reason": "api_product_name_pattern_not_supported"
+      }
+    },
+    {
+      "query": "Pokemon Sun & Moon Potion 127 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Sun%20%26%20Moon%20Potion%20127%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "806871",
+      "product_name": "Potion #127",
+      "console_name": "Pokemon Sun & Moon",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon Sun & Moon Potion 127 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Sun%20%26%20Moon%20Potion%20127%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "807000",
+      "product_name": "Potion [Reverse Holo] #127",
+      "console_name": "Pokemon Sun & Moon",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Reverse Holo"
+      }
+    },
+    {
+      "query": "Pokemon Sun & Moon Potion 127 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Sun%20%26%20Moon%20Potion%20127%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3473788",
+      "product_name": "Max Potion #48",
+      "console_name": "Pokemon Japanese Strength Expansion Pack Sun & Moon",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:48"
+      }
+    },
+    {
+      "query": "Pokemon Sun & Moon Potion 127 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Sun%20%26%20Moon%20Potion%20127%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "962925",
+      "product_name": "Farfetch'd #127",
+      "console_name": "Pokemon Team Up",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Farfetch'd"
+      }
+    },
+    {
+      "query": "Pokemon Sun & Moon Potion 127 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Sun%20%26%20Moon%20Potion%20127%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5698777",
+      "product_name": "Moltres [Stamped] #19",
+      "console_name": "Pokemon Team Up",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:19"
+      }
+    },
+    {
+      "query": "Pokemon Sun & Moon Potion 127 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Sun%20%26%20Moon%20Potion%20127%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "921017",
+      "product_name": "Potion #127",
+      "console_name": "Pokemon Secret Wonders",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon Secret Wonders"
+      }
+    },
+    {
+      "query": "Pokemon Sun & Moon Potion 127 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Sun%20%26%20Moon%20Potion%20127%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11748533",
+      "product_name": "Potion [#42 Cinderace Stamp] #177",
+      "console_name": "Pokemon 2022 Battle Academy",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:177"
+      }
+    },
+    {
+      "query": "Pokemon Sun & Moon Potion 127 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Sun%20%26%20Moon%20Potion%20127%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5436959",
+      "product_name": "Potion #127",
+      "console_name": "Pokemon 2020 Battle Academy",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon 2020 Battle Academy"
+      }
+    },
+    {
+      "query": "Pokemon Sun & Moon Potion 127 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Sun%20%26%20Moon%20Potion%20127%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "921149",
+      "product_name": "Potion [Reverse Holo] #127",
+      "console_name": "Pokemon Secret Wonders",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon Secret Wonders"
+      }
+    },
+    {
+      "query": "Pokemon Sun & Moon Potion 127 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Sun%20%26%20Moon%20Potion%20127%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3468017",
+      "product_name": "Potion #53",
+      "console_name": "Pokemon Japanese Ultra Sun",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:53"
+      }
+    },
+    {
+      "query": "Pokemon Sun & Moon Potion 127 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Sun%20%26%20Moon%20Potion%20127%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "842777",
+      "product_name": "Hyper Potion #127",
+      "console_name": "Pokemon Skyridge",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Hyper Potion"
+      }
+    },
+    {
+      "query": "Pokemon Sun & Moon Potion 127 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Sun%20%26%20Moon%20Potion%20127%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6657595",
+      "product_name": "Pokemon Adventures: Sun & Moon #12 (2022)",
+      "console_name": "Comic Books Pokemon Adventures: Sun & Moon",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:12"
+      }
+    },
+    {
+      "query": "Pokemon Sun & Moon Potion 127 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Sun%20%26%20Moon%20Potion%20127%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "2252726",
+      "product_name": "Hyper Potion [Reverse Holo] #127",
+      "console_name": "Pokemon Skyridge",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Hyper Potion"
+      }
+    },
+    {
+      "query": "Pokemon Sun & Moon Potion 127 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Sun%20%26%20Moon%20Potion%20127%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4802151",
+      "product_name": "Pokemon Adventures: Sun & Moon Vol. 11 (2021)",
+      "console_name": "Comic Books Pokemon Adventures: Sun & Moon",
+      "validation": {
+        "ok": false,
+        "reason": "api_product_name_pattern_not_supported"
+      }
+    },
+    {
+      "query": "Pokemon Sun & Moon Potion 127 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Sun%20%26%20Moon%20Potion%20127%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4802152",
+      "product_name": "Pokemon Adventures: Sun & Moon Vol. 10 (2021)",
+      "console_name": "Comic Books Pokemon Adventures: Sun & Moon",
+      "validation": {
+        "ok": false,
+        "reason": "api_product_name_pattern_not_supported"
+      }
+    },
+    {
+      "query": "Pokemon Sun & Moon Potion 127 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Sun%20%26%20Moon%20Potion%20127%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4802154",
+      "product_name": "Pokemon Adventures: Sun & Moon Vol. 8 (2020)",
+      "console_name": "Comic Books Pokemon Adventures: Sun & Moon",
+      "validation": {
+        "ok": false,
+        "reason": "api_product_name_pattern_not_supported"
+      }
+    },
+    {
+      "query": "Pokemon Sun & Moon Potion 127 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Sun%20%26%20Moon%20Potion%20127%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4802156",
+      "product_name": "Pokemon Adventures: Sun & Moon Vol. 6 (2020)",
+      "console_name": "Comic Books Pokemon Adventures: Sun & Moon",
+      "validation": {
+        "ok": false,
+        "reason": "api_product_name_pattern_not_supported"
+      }
+    },
+    {
+      "query": "Pokemon Sun & Moon Potion 127 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Sun%20%26%20Moon%20Potion%20127%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4802155",
+      "product_name": "Pokemon Adventures: Sun & Moon Vol. 7 (2020)",
+      "console_name": "Comic Books Pokemon Adventures: Sun & Moon",
+      "validation": {
+        "ok": false,
+        "reason": "api_product_name_pattern_not_supported"
+      }
+    },
+    {
+      "query": "Pokemon Sun & Moon Potion 127 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Sun%20%26%20Moon%20Potion%20127%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4802159",
+      "product_name": "Pokemon Adventures: Sun & Moon Vol. 3 (2019)",
+      "console_name": "Comic Books Pokemon Adventures: Sun & Moon",
+      "validation": {
+        "ok": false,
+        "reason": "api_product_name_pattern_not_supported"
+      }
+    },
+    {
+      "query": "Pokemon Sun & Moon Potion 127 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Sun%20%26%20Moon%20Potion%20127%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4802157",
+      "product_name": "Pokemon Adventures: Sun & Moon Vol. 4 (2019)",
+      "console_name": "Comic Books Pokemon Adventures: Sun & Moon",
+      "validation": {
+        "ok": false,
+        "reason": "api_product_name_pattern_not_supported"
+      }
+    }
+  ],
+  "source_lane": "pricecharting_api"
+}

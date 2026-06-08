@@ -1,0 +1,43 @@
+{
+  "status": "no_validated_match",
+  "fact": {
+    "gap_type": "finish_second_source_needed",
+    "fact_type": "printing_finish",
+    "set_key": "swsh8",
+    "set_name": "Fusion Strike",
+    "card_number": "157",
+    "card_name": "Gengar VMAX",
+    "finish_key": "stamped",
+    "status": "human_source_verified",
+    "sources": [
+      "thepricedex_price_list"
+    ],
+    "source_authorities": [
+      "thepricedex.com"
+    ],
+    "source_kinds": [
+      "marketplace_checklist"
+    ],
+    "evidence_urls": [],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "attempts": [
+    {
+      "query": "Pokemon Fusion Strike Gengar VMAX 157 stamped",
+      "url": "https://www.pricecharting.com/search-products?q=Pokemon%20Fusion%20Strike%20Gengar%20VMAX%20157%20stamped&type=prices",
+      "error": "Fetch failed 403 Forbidden: https://www.pricecharting.com/search-products?q=Pokemon%20Fusion%20Strike%20Gengar%20VMAX%20157%20stamped&type=prices"
+    },
+    {
+      "query": "Pokemon Fusion Strike Gengar VMAX 157 stamp",
+      "url": "https://www.pricecharting.com/search-products?q=Pokemon%20Fusion%20Strike%20Gengar%20VMAX%20157%20stamp&type=prices",
+      "parsed": {
+        "title": "Pokemon Fusion Strike Gengar VMAX 157 Stamp Prices | Pokemon Fusion Strike Gengar VMAX 157 Stamp List",
+        "source_url": "https://www.pricecharting.com/search-products?q=pokemon+fusion+strike+gengar+vmax+157+stamp&type=prices"
+      },
+      "validation": {
+        "ok": false,
+        "reason": "title_pattern_not_supported"
+      }
+    }
+  ]
+}

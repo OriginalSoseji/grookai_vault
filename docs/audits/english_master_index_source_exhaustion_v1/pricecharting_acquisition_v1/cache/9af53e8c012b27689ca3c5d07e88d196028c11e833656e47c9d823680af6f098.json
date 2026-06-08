@@ -1,0 +1,36 @@
+{
+  "status": "no_validated_match",
+  "fact": {
+    "gap_type": "finish_second_source_needed",
+    "fact_type": "printing_finish",
+    "set_key": "sm8",
+    "set_name": "Lost Thunder",
+    "card_number": "97",
+    "card_name": "Giratina",
+    "finish_key": "cosmos",
+    "status": "human_source_verified",
+    "sources": [
+      "thepricedex_price_list"
+    ],
+    "source_authorities": [
+      "thepricedex.com"
+    ],
+    "source_kinds": [
+      "marketplace_checklist"
+    ],
+    "evidence_urls": [],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "attempts": [
+    {
+      "query": "Pokemon Lost Thunder Giratina 97 cosmos holo",
+      "url": "https://www.pricecharting.com/search-products?q=Pokemon%20Lost%20Thunder%20Giratina%2097%20cosmos%20holo&type=prices",
+      "error": "Fetch failed 403 Forbidden: https://www.pricecharting.com/search-products?q=Pokemon%20Lost%20Thunder%20Giratina%2097%20cosmos%20holo&type=prices"
+    },
+    {
+      "query": "Pokemon Lost Thunder Giratina 97 cosmos",
+      "url": "https://www.pricecharting.com/search-products?q=Pokemon%20Lost%20Thunder%20Giratina%2097%20cosmos&type=prices",
+      "error": "Fetch failed 403 Forbidden: https://www.pricecharting.com/search-products?q=Pokemon%20Lost%20Thunder%20Giratina%2097%20cosmos&type=prices"
+    }
+  ]
+}

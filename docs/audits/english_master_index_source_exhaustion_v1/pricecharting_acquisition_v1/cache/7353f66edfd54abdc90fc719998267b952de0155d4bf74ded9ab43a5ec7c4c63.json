@@ -1,0 +1,43 @@
+{
+  "status": "no_validated_match",
+  "fact": {
+    "gap_type": "finish_second_source_needed",
+    "fact_type": "printing_finish",
+    "set_key": "sm6",
+    "set_name": "Forbidden Light",
+    "card_number": "15",
+    "card_name": "Fennekin",
+    "finish_key": "stamped",
+    "status": "human_source_verified",
+    "sources": [
+      "thepricedex_price_list"
+    ],
+    "source_authorities": [
+      "thepricedex.com"
+    ],
+    "source_kinds": [
+      "marketplace_checklist"
+    ],
+    "evidence_urls": [],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "attempts": [
+    {
+      "query": "Pokemon Forbidden Light Fennekin 15 stamped",
+      "url": "https://www.pricecharting.com/search-products?q=Pokemon%20Forbidden%20Light%20Fennekin%2015%20stamped&type=prices",
+      "error": "Fetch failed 403 Forbidden: https://www.pricecharting.com/search-products?q=Pokemon%20Forbidden%20Light%20Fennekin%2015%20stamped&type=prices"
+    },
+    {
+      "query": "Pokemon Forbidden Light Fennekin 15 stamp",
+      "url": "https://www.pricecharting.com/search-products?q=Pokemon%20Forbidden%20Light%20Fennekin%2015%20stamp&type=prices",
+      "parsed": {
+        "title": "Pokemon Forbidden Light Fennekin 15 Stamp Prices | Pokemon Forbidden Light Fennekin 15 Stamp List",
+        "source_url": "https://www.pricecharting.com/search-products?q=pokemon+forbidden+light+fennekin+15+stamp&type=prices"
+      },
+      "validation": {
+        "ok": false,
+        "reason": "title_pattern_not_supported"
+      }
+    }
+  ]
+}

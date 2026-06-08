@@ -1,0 +1,62 @@
+{
+  "status": "validated",
+  "fact": {
+    "gap_type": "finish_second_source_needed",
+    "fact_type": "printing_finish",
+    "set_key": "basep",
+    "set_name": "Wizards Black Star Promos",
+    "card_number": "11",
+    "card_name": "Eevee",
+    "finish_key": "stamped",
+    "status": "human_source_verified",
+    "sources": [
+      "thepricedex_price_list"
+    ],
+    "source_authorities": [
+      "thepricedex.com"
+    ],
+    "source_kinds": [
+      "marketplace_checklist"
+    ],
+    "evidence_urls": [
+      "https://www.thepricedex.com/set/basep/wizards-black-star-promos/price-list"
+    ],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "query": "Pokemon Wizards Black Star Promos Eevee 11 stamped",
+  "search_url": "https://www.pricecharting.com/api/products?q=Pokemon%20Wizards%20Black%20Star%20Promos%20Eevee%2011%20stamped",
+  "source_url": "https://www.pricecharting.com/game/pokemon-promo/eevee-jr-stamp-rally-11",
+  "title": "Eevee [Jr Stamp Rally] #11 | Pokemon Promo",
+  "title_parts": {
+    "card_name": "Eevee",
+    "card_number": "11",
+    "variant_label": "Jr Stamp Rally",
+    "set_name": "Pokemon Promo",
+    "pricecharting_product_id": "4786026"
+  },
+  "validation_source": "pricecharting_api_products",
+  "source_lane": "pricecharting_api",
+  "attempts": [
+    {
+      "query": "Pokemon Wizards Black Star Promos Eevee 11 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Wizards%20Black%20Star%20Promos%20Eevee%2011%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4786026",
+      "product_name": "Eevee [Jr Stamp Rally] #11",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": true,
+        "titleParts": {
+          "card_name": "Eevee",
+          "card_number": "11",
+          "variant_label": "Jr Stamp Rally",
+          "set_name": "Pokemon Promo",
+          "pricecharting_product_id": "4786026"
+        },
+        "source_url": "https://www.pricecharting.com/game/pokemon-promo/eevee-jr-stamp-rally-11",
+        "title": "Eevee [Jr Stamp Rally] #11 | Pokemon Promo"
+      }
+    }
+  ]
+}

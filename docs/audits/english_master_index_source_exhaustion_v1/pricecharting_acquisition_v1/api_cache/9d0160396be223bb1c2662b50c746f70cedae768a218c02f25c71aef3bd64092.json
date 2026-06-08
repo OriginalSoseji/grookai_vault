@@ -1,0 +1,27 @@
+{
+  "products": [
+    {
+      "bgs-10-price": 224100,
+      "box-only-price": 11000,
+      "condition-17-price": 103400,
+      "condition-18-price": 103400,
+      "console-name": "Pokemon Scarlet & Violet 151",
+      "gamestop-price": 0,
+      "gamestop-trade-price": 0,
+      "genre": "Pokemon Card",
+      "graded-price": 10000,
+      "id": "11330241",
+      "loose-price": 2478,
+      "manual-only-price": 172400,
+      "new-price": 5000,
+      "product-name": "Gengar [Cosmos Holo] #94",
+      "retail-loose-buy": 810,
+      "retail-loose-sell": 2699,
+      "retail-new-buy": 2200,
+      "retail-new-sell": 5499,
+      "sales-volume": "234",
+      "tcg-id": "662072"
+    }
+  ],
+  "status": "success"
+}

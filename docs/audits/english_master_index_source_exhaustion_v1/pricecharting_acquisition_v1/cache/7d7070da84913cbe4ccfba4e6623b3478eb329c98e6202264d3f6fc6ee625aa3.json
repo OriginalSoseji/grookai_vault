@@ -1,0 +1,549 @@
+{
+  "status": "api_no_validated_match",
+  "fact": {
+    "gap_type": "finish_second_source_needed",
+    "fact_type": "printing_finish",
+    "set_key": "sv06.5",
+    "set_name": "Shrouded Fable",
+    "card_number": "55",
+    "card_name": "Binding Mochi",
+    "finish_key": "stamped",
+    "status": "human_source_verified",
+    "sources": [
+      "thepricedex_price_list"
+    ],
+    "source_authorities": [
+      "thepricedex.com"
+    ],
+    "source_kinds": [
+      "marketplace_checklist"
+    ],
+    "evidence_urls": [
+      "https://www.thepricedex.com/set/sv6pt5/shrouded-fable/price-list"
+    ],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "attempts": [
+    {
+      "query": "Pokemon Shrouded Fable Binding Mochi 55 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Shrouded%20Fable%20Binding%20Mochi%2055%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7108712",
+      "product_name": "Binding Mochi #55",
+      "console_name": "Pokemon Shrouded Fable",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon Shrouded Fable Binding Mochi 55 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Shrouded%20Fable%20Binding%20Mochi%2055%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10601613",
+      "product_name": "Binding Mochi [Prize Pack] #55",
+      "console_name": "Pokemon Shrouded Fable",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Prize Pack"
+      }
+    },
+    {
+      "query": "Pokemon Shrouded Fable Binding Mochi 55 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Shrouded%20Fable%20Binding%20Mochi%2055%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7108806",
+      "product_name": "Binding Mochi [Reverse Holo] #55",
+      "console_name": "Pokemon Shrouded Fable",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Reverse Holo"
+      }
+    },
+    {
+      "query": "Pokemon Shrouded Fable Binding Mochi 55 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Shrouded%20Fable%20Binding%20Mochi%2055%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10601614",
+      "product_name": "Binding Mochi [Prize Pack Cosmos Holo] #55",
+      "console_name": "Pokemon Shrouded Fable",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Prize Pack Cosmos Holo"
+      }
+    },
+    {
+      "query": "Pokemon Shrouded Fable Binding Mochi 55 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Shrouded%20Fable%20Binding%20Mochi%2055%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8321765",
+      "product_name": "Binding Mochi [Reverse] #95",
+      "console_name": "Pokemon Prismatic Evolutions",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:95"
+      }
+    },
+    {
+      "query": "Pokemon Shrouded Fable Binding Mochi 55 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Shrouded%20Fable%20Binding%20Mochi%2055%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7980347",
+      "product_name": "Binding Mochi [Poke Ball] #154",
+      "console_name": "Pokemon Japanese Terastal Festival",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:154"
+      }
+    },
+    {
+      "query": "Pokemon Shrouded Fable Binding Mochi 55 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Shrouded%20Fable%20Binding%20Mochi%2055%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8321666",
+      "product_name": "Binding Mochi [Poke Ball] #95",
+      "console_name": "Pokemon Prismatic Evolutions",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:95"
+      }
+    },
+    {
+      "query": "Pokemon Shrouded Fable Binding Mochi 55 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Shrouded%20Fable%20Binding%20Mochi%2055%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12030753",
+      "product_name": "Binding Mochi [Poke Ball] #154",
+      "console_name": "Pokemon Korean Terastal Festival ex",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:154"
+      }
+    },
+    {
+      "query": "Pokemon Shrouded Fable Binding Mochi 55 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Shrouded%20Fable%20Binding%20Mochi%2055%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12030752",
+      "product_name": "Binding Mochi [Master Ball] #154",
+      "console_name": "Pokemon Korean Terastal Festival ex",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:154"
+      }
+    },
+    {
+      "query": "Pokemon Shrouded Fable Binding Mochi 55 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Shrouded%20Fable%20Binding%20Mochi%2055%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11321012",
+      "product_name": "Kingdra EX [Stamped] #12",
+      "console_name": "Pokemon Shrouded Fable",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:12"
+      }
+    },
+    {
+      "query": "Pokemon Shrouded Fable Binding Mochi 55 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Shrouded%20Fable%20Binding%20Mochi%2055%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11518990",
+      "product_name": "Binding Mochi [Mirror Holo] #681",
+      "console_name": "Pokemon Japanese Start Deck 100 Battle Collection",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:681"
+      }
+    },
+    {
+      "query": "Pokemon Shrouded Fable Binding Mochi 55 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Shrouded%20Fable%20Binding%20Mochi%2055%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8244540",
+      "product_name": "Binding Mochi #95",
+      "console_name": "Pokemon Prismatic Evolutions",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:95"
+      }
+    },
+    {
+      "query": "Pokemon Shrouded Fable Binding Mochi 55 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Shrouded%20Fable%20Binding%20Mochi%2055%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7980167",
+      "product_name": "Binding Mochi #154",
+      "console_name": "Pokemon Japanese Terastal Festival",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:154"
+      }
+    },
+    {
+      "query": "Pokemon Shrouded Fable Binding Mochi 55 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Shrouded%20Fable%20Binding%20Mochi%2055%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6894100",
+      "product_name": "Binding Mochi #57",
+      "console_name": "Pokemon Japanese Night Wanderer",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:57"
+      }
+    },
+    {
+      "query": "Pokemon Shrouded Fable Binding Mochi 55 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Shrouded%20Fable%20Binding%20Mochi%2055%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11498641",
+      "product_name": "Binding Mochi #57",
+      "console_name": "Pokemon Korean Night Wanderer",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:57"
+      }
+    },
+    {
+      "query": "Pokemon Shrouded Fable Binding Mochi 55 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Shrouded%20Fable%20Binding%20Mochi%2055%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12030751",
+      "product_name": "Binding Mochi #154",
+      "console_name": "Pokemon Korean Terastal Festival ex",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:154"
+      }
+    },
+    {
+      "query": "Pokemon Shrouded Fable Binding Mochi 55 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Shrouded%20Fable%20Binding%20Mochi%2055%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11463026",
+      "product_name": "Binding Mochi #681",
+      "console_name": "Pokemon Japanese Start Deck 100 Battle Collection",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:681"
+      }
+    },
+    {
+      "query": "Pokemon Shrouded Fable Binding Mochi 55 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Shrouded%20Fable%20Binding%20Mochi%2055%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7108701",
+      "product_name": "Axew #44",
+      "console_name": "Pokemon Shrouded Fable",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:44"
+      }
+    },
+    {
+      "query": "Pokemon Shrouded Fable Binding Mochi 55 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Shrouded%20Fable%20Binding%20Mochi%2055%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7108674",
+      "product_name": "Hypno #17",
+      "console_name": "Pokemon Shrouded Fable",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:17"
+      }
+    },
+    {
+      "query": "Pokemon Shrouded Fable Binding Mochi 55 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Shrouded%20Fable%20Binding%20Mochi%2055%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7108684",
+      "product_name": "Zubat #27",
+      "console_name": "Pokemon Shrouded Fable",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:27"
+      }
+    },
+    {
+      "query": "Pokemon Shrouded Fable Binding Mochi 55 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Shrouded%20Fable%20Binding%20Mochi%2055%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7108712",
+      "product_name": "Binding Mochi #55",
+      "console_name": "Pokemon Shrouded Fable",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon Shrouded Fable Binding Mochi 55 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Shrouded%20Fable%20Binding%20Mochi%2055%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10601613",
+      "product_name": "Binding Mochi [Prize Pack] #55",
+      "console_name": "Pokemon Shrouded Fable",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Prize Pack"
+      }
+    },
+    {
+      "query": "Pokemon Shrouded Fable Binding Mochi 55 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Shrouded%20Fable%20Binding%20Mochi%2055%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7108806",
+      "product_name": "Binding Mochi [Reverse Holo] #55",
+      "console_name": "Pokemon Shrouded Fable",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Reverse Holo"
+      }
+    },
+    {
+      "query": "Pokemon Shrouded Fable Binding Mochi 55 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Shrouded%20Fable%20Binding%20Mochi%2055%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10601614",
+      "product_name": "Binding Mochi [Prize Pack Cosmos Holo] #55",
+      "console_name": "Pokemon Shrouded Fable",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Prize Pack Cosmos Holo"
+      }
+    },
+    {
+      "query": "Pokemon Shrouded Fable Binding Mochi 55 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Shrouded%20Fable%20Binding%20Mochi%2055%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8321765",
+      "product_name": "Binding Mochi [Reverse] #95",
+      "console_name": "Pokemon Prismatic Evolutions",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:95"
+      }
+    },
+    {
+      "query": "Pokemon Shrouded Fable Binding Mochi 55 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Shrouded%20Fable%20Binding%20Mochi%2055%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7980347",
+      "product_name": "Binding Mochi [Poke Ball] #154",
+      "console_name": "Pokemon Japanese Terastal Festival",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:154"
+      }
+    },
+    {
+      "query": "Pokemon Shrouded Fable Binding Mochi 55 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Shrouded%20Fable%20Binding%20Mochi%2055%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8321666",
+      "product_name": "Binding Mochi [Poke Ball] #95",
+      "console_name": "Pokemon Prismatic Evolutions",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:95"
+      }
+    },
+    {
+      "query": "Pokemon Shrouded Fable Binding Mochi 55 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Shrouded%20Fable%20Binding%20Mochi%2055%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12030753",
+      "product_name": "Binding Mochi [Poke Ball] #154",
+      "console_name": "Pokemon Korean Terastal Festival ex",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:154"
+      }
+    },
+    {
+      "query": "Pokemon Shrouded Fable Binding Mochi 55 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Shrouded%20Fable%20Binding%20Mochi%2055%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12030752",
+      "product_name": "Binding Mochi [Master Ball] #154",
+      "console_name": "Pokemon Korean Terastal Festival ex",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:154"
+      }
+    },
+    {
+      "query": "Pokemon Shrouded Fable Binding Mochi 55 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Shrouded%20Fable%20Binding%20Mochi%2055%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11321012",
+      "product_name": "Kingdra EX [Stamped] #12",
+      "console_name": "Pokemon Shrouded Fable",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:12"
+      }
+    },
+    {
+      "query": "Pokemon Shrouded Fable Binding Mochi 55 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Shrouded%20Fable%20Binding%20Mochi%2055%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11518990",
+      "product_name": "Binding Mochi [Mirror Holo] #681",
+      "console_name": "Pokemon Japanese Start Deck 100 Battle Collection",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:681"
+      }
+    },
+    {
+      "query": "Pokemon Shrouded Fable Binding Mochi 55 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Shrouded%20Fable%20Binding%20Mochi%2055%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8244540",
+      "product_name": "Binding Mochi #95",
+      "console_name": "Pokemon Prismatic Evolutions",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:95"
+      }
+    },
+    {
+      "query": "Pokemon Shrouded Fable Binding Mochi 55 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Shrouded%20Fable%20Binding%20Mochi%2055%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7980167",
+      "product_name": "Binding Mochi #154",
+      "console_name": "Pokemon Japanese Terastal Festival",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:154"
+      }
+    },
+    {
+      "query": "Pokemon Shrouded Fable Binding Mochi 55 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Shrouded%20Fable%20Binding%20Mochi%2055%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6894100",
+      "product_name": "Binding Mochi #57",
+      "console_name": "Pokemon Japanese Night Wanderer",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:57"
+      }
+    },
+    {
+      "query": "Pokemon Shrouded Fable Binding Mochi 55 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Shrouded%20Fable%20Binding%20Mochi%2055%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11498641",
+      "product_name": "Binding Mochi #57",
+      "console_name": "Pokemon Korean Night Wanderer",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:57"
+      }
+    },
+    {
+      "query": "Pokemon Shrouded Fable Binding Mochi 55 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Shrouded%20Fable%20Binding%20Mochi%2055%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12030751",
+      "product_name": "Binding Mochi #154",
+      "console_name": "Pokemon Korean Terastal Festival ex",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:154"
+      }
+    },
+    {
+      "query": "Pokemon Shrouded Fable Binding Mochi 55 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Shrouded%20Fable%20Binding%20Mochi%2055%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11463026",
+      "product_name": "Binding Mochi #681",
+      "console_name": "Pokemon Japanese Start Deck 100 Battle Collection",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:681"
+      }
+    },
+    {
+      "query": "Pokemon Shrouded Fable Binding Mochi 55 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Shrouded%20Fable%20Binding%20Mochi%2055%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7108701",
+      "product_name": "Axew #44",
+      "console_name": "Pokemon Shrouded Fable",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:44"
+      }
+    },
+    {
+      "query": "Pokemon Shrouded Fable Binding Mochi 55 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Shrouded%20Fable%20Binding%20Mochi%2055%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7108674",
+      "product_name": "Hypno #17",
+      "console_name": "Pokemon Shrouded Fable",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:17"
+      }
+    },
+    {
+      "query": "Pokemon Shrouded Fable Binding Mochi 55 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Shrouded%20Fable%20Binding%20Mochi%2055%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7108684",
+      "product_name": "Zubat #27",
+      "console_name": "Pokemon Shrouded Fable",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:27"
+      }
+    }
+  ],
+  "source_lane": "pricecharting_api"
+}

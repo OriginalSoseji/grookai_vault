@@ -1,0 +1,549 @@
+{
+  "status": "api_no_validated_match",
+  "fact": {
+    "gap_type": "finish_second_source_needed",
+    "fact_type": "printing_finish",
+    "set_key": "ex3",
+    "set_name": "Dragon",
+    "card_number": "19",
+    "card_name": "Salamence",
+    "finish_key": "stamped",
+    "status": "human_source_verified",
+    "sources": [
+      "thepricedex_price_list"
+    ],
+    "source_authorities": [
+      "thepricedex.com"
+    ],
+    "source_kinds": [
+      "marketplace_checklist"
+    ],
+    "evidence_urls": [
+      "https://www.thepricedex.com/set/ex3/dragon/price-list"
+    ],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "attempts": [
+    {
+      "query": "Pokemon Dragon Salamence 19 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Salamence%2019%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "849399",
+      "product_name": "Salamence #19",
+      "console_name": "Pokemon Dragon",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Salamence 19 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Salamence%2019%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10854849",
+      "product_name": "Salamence [Cosmos Holo] #19",
+      "console_name": "Pokemon Dragon",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Cosmos Holo"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Salamence 19 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Salamence%2019%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "849498",
+      "product_name": "Salamence [Reverse Holo] #19",
+      "console_name": "Pokemon Dragon",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Reverse Holo"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Salamence 19 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Salamence%2019%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11105548",
+      "product_name": "Salamence Ex [Stamped] #114",
+      "console_name": "Pokemon Journey Together",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:114"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Salamence 19 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Salamence%2019%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4135463",
+      "product_name": "Salamence [Winner] #19",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon Promo"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Salamence 19 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Salamence%2019%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10055667",
+      "product_name": "Salamence [Cosmic Holo] #8",
+      "console_name": "Pokemon Dragon Vault",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:8"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Salamence 19 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Salamence%2019%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "849489",
+      "product_name": "Salamence [Reverse Holo] #10",
+      "console_name": "Pokemon Dragon",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:10"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Salamence 19 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Salamence%2019%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "849390",
+      "product_name": "Salamence #10",
+      "console_name": "Pokemon Dragon",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:10"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Salamence 19 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Salamence%2019%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11675151",
+      "product_name": "High Pressure System #19",
+      "console_name": "Pokemon Japanese Salamence Starter Deck",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:High Pressure System"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Salamence 19 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Salamence%2019%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "956501",
+      "product_name": "Salamence #8",
+      "console_name": "Pokemon Dragon Vault",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:8"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Salamence 19 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Salamence%2019%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3445140",
+      "product_name": "Salamence #8",
+      "console_name": "Pokemon Japanese Dragon Selection",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:8"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Salamence 19 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Salamence%2019%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3506948",
+      "product_name": "Salamence [1st Edition] #8",
+      "console_name": "Pokemon Japanese Dragon Selection",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:8"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Salamence 19 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Salamence%2019%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6135051",
+      "product_name": "Salamence [Regional Championship] #8",
+      "console_name": "Pokemon Dragon Vault",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:8"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Salamence 19 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Salamence%2019%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "889572",
+      "product_name": "Salamence EX #98",
+      "console_name": "Pokemon Dragon Frontiers",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:98"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Salamence 19 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Salamence%2019%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "962278",
+      "product_name": "Salamence GX #44",
+      "console_name": "Pokemon Dragon Majesty",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:44"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Salamence 19 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Salamence%2019%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "962307",
+      "product_name": "Salamence GX #73",
+      "console_name": "Pokemon Dragon Majesty",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:73"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Salamence 19 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Salamence%2019%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9904093",
+      "product_name": "Salamence [Regional Championship Staff] #8",
+      "console_name": "Pokemon Dragon Vault",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:8"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Salamence 19 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Salamence%2019%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3438938",
+      "product_name": "Salamence #46",
+      "console_name": "Pokemon Japanese Rulers of the Heavens",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:46"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Salamence 19 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Salamence%2019%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10802807",
+      "product_name": "Salamence [1st Edition] #46",
+      "console_name": "Pokemon Japanese Rulers of the Heavens",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:46"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Salamence 19 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Salamence%2019%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5698777",
+      "product_name": "Moltres [Stamped] #19",
+      "console_name": "Pokemon Team Up",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Moltres"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Salamence 19 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Salamence%2019%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "849399",
+      "product_name": "Salamence #19",
+      "console_name": "Pokemon Dragon",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Salamence 19 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Salamence%2019%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10854849",
+      "product_name": "Salamence [Cosmos Holo] #19",
+      "console_name": "Pokemon Dragon",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Cosmos Holo"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Salamence 19 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Salamence%2019%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "849498",
+      "product_name": "Salamence [Reverse Holo] #19",
+      "console_name": "Pokemon Dragon",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Reverse Holo"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Salamence 19 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Salamence%2019%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11105548",
+      "product_name": "Salamence Ex [Stamped] #114",
+      "console_name": "Pokemon Journey Together",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:114"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Salamence 19 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Salamence%2019%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4135463",
+      "product_name": "Salamence [Winner] #19",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon Promo"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Salamence 19 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Salamence%2019%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10055667",
+      "product_name": "Salamence [Cosmic Holo] #8",
+      "console_name": "Pokemon Dragon Vault",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:8"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Salamence 19 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Salamence%2019%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "849489",
+      "product_name": "Salamence [Reverse Holo] #10",
+      "console_name": "Pokemon Dragon",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:10"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Salamence 19 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Salamence%2019%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "849390",
+      "product_name": "Salamence #10",
+      "console_name": "Pokemon Dragon",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:10"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Salamence 19 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Salamence%2019%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11675151",
+      "product_name": "High Pressure System #19",
+      "console_name": "Pokemon Japanese Salamence Starter Deck",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:High Pressure System"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Salamence 19 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Salamence%2019%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "956501",
+      "product_name": "Salamence #8",
+      "console_name": "Pokemon Dragon Vault",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:8"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Salamence 19 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Salamence%2019%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3445140",
+      "product_name": "Salamence #8",
+      "console_name": "Pokemon Japanese Dragon Selection",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:8"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Salamence 19 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Salamence%2019%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3506948",
+      "product_name": "Salamence [1st Edition] #8",
+      "console_name": "Pokemon Japanese Dragon Selection",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:8"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Salamence 19 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Salamence%2019%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6135051",
+      "product_name": "Salamence [Regional Championship] #8",
+      "console_name": "Pokemon Dragon Vault",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:8"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Salamence 19 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Salamence%2019%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "889572",
+      "product_name": "Salamence EX #98",
+      "console_name": "Pokemon Dragon Frontiers",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:98"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Salamence 19 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Salamence%2019%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "962278",
+      "product_name": "Salamence GX #44",
+      "console_name": "Pokemon Dragon Majesty",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:44"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Salamence 19 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Salamence%2019%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "962307",
+      "product_name": "Salamence GX #73",
+      "console_name": "Pokemon Dragon Majesty",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:73"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Salamence 19 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Salamence%2019%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9904093",
+      "product_name": "Salamence [Regional Championship Staff] #8",
+      "console_name": "Pokemon Dragon Vault",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:8"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Salamence 19 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Salamence%2019%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3438938",
+      "product_name": "Salamence #46",
+      "console_name": "Pokemon Japanese Rulers of the Heavens",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:46"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Salamence 19 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Salamence%2019%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10802807",
+      "product_name": "Salamence [1st Edition] #46",
+      "console_name": "Pokemon Japanese Rulers of the Heavens",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:46"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Salamence 19 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Salamence%2019%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5698777",
+      "product_name": "Moltres [Stamped] #19",
+      "console_name": "Pokemon Team Up",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Moltres"
+      }
+    }
+  ],
+  "source_lane": "pricecharting_api"
+}

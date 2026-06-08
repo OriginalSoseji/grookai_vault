@@ -1,0 +1,53 @@
+{
+  "status": "validated",
+  "fact": {
+    "gap_type": "finish_second_source_needed",
+    "fact_type": "printing_finish",
+    "set_key": "swsh10",
+    "set_name": "Astral Radiance",
+    "card_number": "92",
+    "card_name": "Hisuian Sneasel",
+    "finish_key": "cosmos",
+    "status": "human_source_verified",
+    "sources": [
+      "thepricedex_price_list"
+    ],
+    "source_authorities": [
+      "thepricedex.com"
+    ],
+    "source_kinds": [
+      "marketplace_checklist"
+    ],
+    "evidence_urls": [],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "query": "Pokemon Astral Radiance Hisuian Sneasel 92 cosmos holo",
+  "search_url": "https://www.pricecharting.com/search-products?q=Pokemon%20Astral%20Radiance%20Hisuian%20Sneasel%2092%20cosmos%20holo&type=prices",
+  "source_url": "https://www.pricecharting.com/game/pokemon-astral-radiance/hisuian-sneasel-cosmos-holo-92",
+  "title": "Hisuian Sneasel [Cosmos Holo] #92 Prices | Pokemon Astral Radiance | Pokemon Cards",
+  "title_parts": {
+    "card_name": "Hisuian Sneasel",
+    "variant_label": "Cosmos Holo",
+    "card_number": "92",
+    "set_name": "Astral Radiance"
+  },
+  "attempts": [
+    {
+      "query": "Pokemon Astral Radiance Hisuian Sneasel 92 cosmos holo",
+      "url": "https://www.pricecharting.com/search-products?q=Pokemon%20Astral%20Radiance%20Hisuian%20Sneasel%2092%20cosmos%20holo&type=prices",
+      "parsed": {
+        "title": "Hisuian Sneasel [Cosmos Holo] #92 Prices | Pokemon Astral Radiance | Pokemon Cards",
+        "source_url": "https://www.pricecharting.com/game/pokemon-astral-radiance/hisuian-sneasel-cosmos-holo-92"
+      },
+      "validation": {
+        "ok": true,
+        "titleParts": {
+          "card_name": "Hisuian Sneasel",
+          "variant_label": "Cosmos Holo",
+          "card_number": "92",
+          "set_name": "Astral Radiance"
+        }
+      }
+    }
+  ]
+}

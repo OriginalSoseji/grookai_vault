@@ -1,0 +1,50 @@
+{
+  "status": "no_validated_match",
+  "fact": {
+    "gap_type": "finish_second_source_needed",
+    "fact_type": "printing_finish",
+    "set_key": "swsh10",
+    "set_name": "Astral Radiance",
+    "card_number": "145",
+    "card_name": "Gutsy Pickaxe",
+    "finish_key": "stamped",
+    "status": "human_source_verified",
+    "sources": [
+      "thepricedex_price_list"
+    ],
+    "source_authorities": [
+      "thepricedex.com"
+    ],
+    "source_kinds": [
+      "marketplace_checklist"
+    ],
+    "evidence_urls": [],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "attempts": [
+    {
+      "query": "Pokemon Astral Radiance Gutsy Pickaxe 145 stamped",
+      "url": "https://www.pricecharting.com/search-products?q=Pokemon%20Astral%20Radiance%20Gutsy%20Pickaxe%20145%20stamped&type=prices",
+      "parsed": {
+        "title": "Pokemon Astral Radiance Gutsy Pickaxe 145 Stamped Prices | Pokemon Astral Radiance Gutsy Pickaxe 145 Stamped List",
+        "source_url": "https://www.pricecharting.com/search-products?q=pokemon+astral+radiance+gutsy+pickaxe+145+stamped&type=prices"
+      },
+      "validation": {
+        "ok": false,
+        "reason": "title_pattern_not_supported"
+      }
+    },
+    {
+      "query": "Pokemon Astral Radiance Gutsy Pickaxe 145 stamp",
+      "url": "https://www.pricecharting.com/search-products?q=Pokemon%20Astral%20Radiance%20Gutsy%20Pickaxe%20145%20stamp&type=prices",
+      "parsed": {
+        "title": "Pokemon Astral Radiance Gutsy Pickaxe 145 Stamp Prices | Pokemon Astral Radiance Gutsy Pickaxe 145 Stamp List",
+        "source_url": "https://www.pricecharting.com/search-products?q=pokemon+astral+radiance+gutsy+pickaxe+145+stamp&type=prices"
+      },
+      "validation": {
+        "ok": false,
+        "reason": "title_pattern_not_supported"
+      }
+    }
+  ]
+}

@@ -1,0 +1,2574 @@
+{
+  "version": "english_master_index_bulbapedia_build_battle_acquisition_v1",
+  "generated_at": "2026-06-08T12:45:03.766Z",
+  "audit_only": true,
+  "db_writes_performed": false,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "dry_run": false,
+  "source_key": "bulbapedia_build_battle_product",
+  "source_url": "https://bulbapedia.bulbagarden.net/wiki/Build_%26_Battle_Box_(TCG)",
+  "summary": {
+    "pages_attempted": 45,
+    "pages_with_usable_segments": 9,
+    "records_generated": 0,
+    "fixture_files_written": 0,
+    "by_status": {
+      "no_matching_remaining_gap_facts": 9,
+      "source_unavailable": 36
+    },
+    "by_finish": {},
+    "ignored_source_entries": 284
+  },
+  "safety": {
+    "exact_finish_only": true,
+    "ignored_deck_list_generalities": true,
+    "db_writes_performed": false,
+    "migrations_created": false,
+    "cleanup_performed": false,
+    "quarantine_performed": false
+  },
+  "fixture_dir": "docs/audits/verified_master_set_index_v1/source_fixtures/generated_bulbapedia_build_battle_v1",
+  "fixture_files": [],
+  "results": [
+    {
+      "source_set_key": "sv03.5",
+      "source_set_name": "151",
+      "title": "151 Build & Battle Box (TCG)",
+      "status": "source_unavailable",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/151_Build_%26_Battle_Box_(TCG)",
+      "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=151_Build_%26_Battle_Box_(TCG)&action=raw",
+      "from_cache": true,
+      "usable_segments": 0,
+      "records_generated": 0,
+      "ignored": []
+    },
+    {
+      "source_set_key": "ecard2",
+      "source_set_name": "Aquapolis",
+      "title": "Aquapolis Build & Battle Box (TCG)",
+      "status": "source_unavailable",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Aquapolis_Build_%26_Battle_Box_(TCG)",
+      "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Aquapolis_Build_%26_Battle_Box_(TCG)&action=raw",
+      "from_cache": true,
+      "usable_segments": 0,
+      "records_generated": 0,
+      "ignored": []
+    },
+    {
+      "source_set_key": "swsh10",
+      "source_set_name": "Astral Radiance",
+      "title": "Astral Radiance Build & Battle Box (TCG)",
+      "status": "no_matching_remaining_gap_facts",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Astral_Radiance_Build_%26_Battle_Box_(TCG)",
+      "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Astral_Radiance_Build_%26_Battle_Box_(TCG)&action=raw",
+      "from_cache": true,
+      "usable_segments": 2,
+      "records_generated": 0,
+      "ignored": [
+        {
+          "source_set_name": "SWSH Promo",
+          "card_number": "205",
+          "card_name": "Hisuian Basculegion",
+          "finish_key": "stamped",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "SWSH Promo",
+          "card_number": "206",
+          "card_name": "Wyrdeer",
+          "finish_key": "stamped",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "SWSH Promo",
+          "card_number": "207",
+          "card_name": "Hisuian Samurott",
+          "finish_key": "stamped",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "SWSH Promo",
+          "card_number": "208",
+          "card_name": "Magnezone",
+          "finish_key": "stamped",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Astral Radiance",
+          "card_number": "45",
+          "card_name": "Keldeo",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Astral Radiance",
+          "card_number": "69",
+          "card_name": "Wyrdeer",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Astral Radiance",
+          "card_number": "97",
+          "card_name": "Absol",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Astral Radiance",
+          "card_number": "100",
+          "card_name": "Hisuian Samurott",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Astral Radiance",
+          "card_number": "107",
+          "card_name": "Magnezone",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Astral Radiance",
+          "card_number": "135",
+          "card_name": "Adaman",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Astral Radiance",
+          "card_number": "147",
+          "card_name": "Irida",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Brilliant Stars",
+          "card_number": "147",
+          "card_name": "Professor's Research",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Astral Radiance",
+          "card_number": "43",
+          "card_name": "Hisuian Basculin",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Astral Radiance",
+          "card_number": "44",
+          "card_name": "Hisuian Basculegion",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Astral Radiance",
+          "card_number": "45",
+          "card_name": "Keldeo",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Sword & Shield",
+          "card_number": "163",
+          "card_name": "Evolution Incense",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Astral Radiance",
+          "card_number": "147",
+          "card_name": "Irida",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Brilliant Stars",
+          "card_number": "141",
+          "card_name": "Gloria",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Astral Radiance",
+          "card_number": "125",
+          "card_name": "Stantler",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Astral Radiance",
+          "card_number": "69",
+          "card_name": "Wyrdeer",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Astral Radiance",
+          "card_number": "6",
+          "card_name": "Yanma",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Astral Radiance",
+          "card_number": "7",
+          "card_name": "Yanmega",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Astral Radiance",
+          "card_number": "143",
+          "card_name": "Gardenia's Vigor",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Astral Radiance",
+          "card_number": "97",
+          "card_name": "Absol",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Astral Radiance",
+          "card_number": "41",
+          "card_name": "Oshawott",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Astral Radiance",
+          "card_number": "42",
+          "card_name": "Dewott",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Astral Radiance",
+          "card_number": "100",
+          "card_name": "Hisuian Samurott",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Astral Radiance",
+          "card_number": "139",
+          "card_name": "Dark Patch",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Brilliant Stars",
+          "card_number": "150",
+          "card_name": "Ultra Ball",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Astral Radiance",
+          "card_number": "105",
+          "card_name": "Magnemite",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Astral Radiance",
+          "card_number": "106",
+          "card_name": "Magneton",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Astral Radiance",
+          "card_number": "107",
+          "card_name": "Magnezone",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Astral Radiance",
+          "card_number": "108",
+          "card_name": "Registeel",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Astral Radiance",
+          "card_number": "135",
+          "card_name": "Adaman",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Evolving Skies",
+          "card_number": "143",
+          "card_name": "Copycat",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Fusion Strike",
+          "card_number": "237",
+          "card_name": "Quick Ball",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Brilliant Stars",
+          "card_number": "138",
+          "card_name": "Cynthia's Ambition",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Brilliant Stars",
+          "card_number": "147",
+          "card_name": "Professor's Research",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Astral Radiance",
+          "card_number": "137",
+          "card_name": "Choy",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Astral Radiance",
+          "card_number": "148",
+          "card_name": "Jubilife Village",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Astral Radiance",
+          "card_number": "149",
+          "card_name": "Kamado",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Astral Radiance",
+          "card_number": "159",
+          "card_name": "Zisu",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        }
+      ]
+    },
+    {
+      "source_set_key": "xy9",
+      "source_set_name": "BREAKpoint",
+      "title": "BREAKpoint Build & Battle Box (TCG)",
+      "status": "source_unavailable",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/BREAKpoint_Build_%26_Battle_Box_(TCG)",
+      "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=BREAKpoint_Build_%26_Battle_Box_(TCG)&action=raw",
+      "from_cache": true,
+      "usable_segments": 0,
+      "records_generated": 0,
+      "ignored": []
+    },
+    {
+      "source_set_key": "xy8",
+      "source_set_name": "BREAKthrough",
+      "title": "BREAKthrough Build & Battle Box (TCG)",
+      "status": "source_unavailable",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/BREAKthrough_Build_%26_Battle_Box_(TCG)",
+      "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=BREAKthrough_Build_%26_Battle_Box_(TCG)&action=raw",
+      "from_cache": true,
+      "usable_segments": 0,
+      "records_generated": 0,
+      "ignored": []
+    },
+    {
+      "source_set_key": "sm3",
+      "source_set_name": "Burning Shadows",
+      "title": "Burning Shadows Build & Battle Box (TCG)",
+      "status": "source_unavailable",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Burning_Shadows_Build_%26_Battle_Box_(TCG)",
+      "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Burning_Shadows_Build_%26_Battle_Box_(TCG)&action=raw",
+      "from_cache": true,
+      "usable_segments": 0,
+      "records_generated": 0,
+      "ignored": []
+    },
+    {
+      "source_set_key": "col1",
+      "source_set_name": "Call of Legends",
+      "title": "Call of Legends Build & Battle Box (TCG)",
+      "status": "source_unavailable",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Call_of_Legends_Build_%26_Battle_Box_(TCG)",
+      "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Call_of_Legends_Build_%26_Battle_Box_(TCG)&action=raw",
+      "from_cache": true,
+      "usable_segments": 0,
+      "records_generated": 0,
+      "ignored": []
+    },
+    {
+      "source_set_key": "cel25",
+      "source_set_name": "Celebrations",
+      "title": "Celebrations Build & Battle Box (TCG)",
+      "status": "source_unavailable",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Celebrations_Build_%26_Battle_Box_(TCG)",
+      "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Celebrations_Build_%26_Battle_Box_(TCG)&action=raw",
+      "from_cache": true,
+      "usable_segments": 0,
+      "records_generated": 0,
+      "ignored": []
+    },
+    {
+      "source_set_key": "sm7",
+      "source_set_name": "Celestial Storm",
+      "title": "Celestial Storm Build & Battle Box (TCG)",
+      "status": "no_matching_remaining_gap_facts",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Celestial_Storm_Build_%26_Battle_Box_(TCG)",
+      "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Celestial_Storm_Build_%26_Battle_Box_(TCG)&action=raw",
+      "from_cache": true,
+      "usable_segments": 2,
+      "records_generated": 0,
+      "ignored": [
+        {
+          "source_set_name": "SM Promo",
+          "card_number": "129",
+          "card_name": "Kyogre",
+          "finish_key": "stamped",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "SM Promo",
+          "card_number": "130",
+          "card_name": "Manectric",
+          "finish_key": "stamped",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "SM Promo",
+          "card_number": "132",
+          "card_name": "Delcatty",
+          "finish_key": "stamped",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "SM Promo",
+          "card_number": "131",
+          "card_name": "Celesteela",
+          "finish_key": "stamped",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Celestial Storm",
+          "card_number": "95",
+          "card_name": "Metagross",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Celestial Storm",
+          "card_number": "121",
+          "card_name": "Delcatty",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Celestial Storm",
+          "card_number": "32",
+          "card_name": "Mudkip",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Celestial Storm",
+          "card_number": "33",
+          "card_name": "Mudkip",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Celestial Storm",
+          "card_number": "34",
+          "card_name": "Marshtomp",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Celestial Storm",
+          "card_number": "35",
+          "card_name": "Swampert",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Celestial Storm",
+          "card_number": "139",
+          "card_name": "The Masked Royal",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Sun & Moon",
+          "card_number": "134",
+          "card_name": "Timer Ball",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Celestial Storm",
+          "card_number": "49",
+          "card_name": "Chinchou",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Celestial Storm",
+          "card_number": "50",
+          "card_name": "Lanturn",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Celestial Storm",
+          "card_number": "51",
+          "card_name": "Electrike",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Celestial Storm",
+          "card_number": "52",
+          "card_name": "Manectric",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Sun & Moon",
+          "card_number": "119",
+          "card_name": "Great Ball",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Sun & Moon",
+          "card_number": "123",
+          "card_name": "Nest Ball",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Celestial Storm",
+          "card_number": "57",
+          "card_name": "Gulpin",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Celestial Storm",
+          "card_number": "58",
+          "card_name": "Swalot",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Celestial Storm",
+          "card_number": "120",
+          "card_name": "Skitty",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Celestial Storm",
+          "card_number": "121",
+          "card_name": "Delcatty",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Celestial Storm",
+          "card_number": "124",
+          "card_name": "Apricorn Maker",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Sun & Moon",
+          "card_number": "119",
+          "card_name": "Great Ball",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Sun & Moon",
+          "card_number": "123",
+          "card_name": "Nest Ball",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Celestial Storm",
+          "card_number": "92",
+          "card_name": "Beldum",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Celestial Storm",
+          "card_number": "94",
+          "card_name": "Metang",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Celestial Storm",
+          "card_number": "95",
+          "card_name": "Metagross",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Celestial Storm",
+          "card_number": "147",
+          "card_name": "Switch",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Celestial Storm",
+          "card_number": "148",
+          "card_name": "Tate & Liza",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Sun & Moon",
+          "card_number": "134",
+          "card_name": "Timer Ball",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Celestial Storm",
+          "card_number": "126",
+          "card_name": "Bill's Maintenance",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Celestial Storm",
+          "card_number": "127",
+          "card_name": "Copycat",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Celestial Storm",
+          "card_number": "132",
+          "card_name": "Hau",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Celestial Storm",
+          "card_number": "149",
+          "card_name": "TV Reporter",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Celestial Storm",
+          "card_number": "150",
+          "card_name": "Underground Expedition",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        }
+      ]
+    },
+    {
+      "source_set_key": "swsh3.5",
+      "source_set_name": "Champion's Path",
+      "title": "Champion's Path Build & Battle Box (TCG)",
+      "status": "source_unavailable",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Champion's_Path_Build_%26_Battle_Box_(TCG)",
+      "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Champion's_Path_Build_%26_Battle_Box_(TCG)&action=raw",
+      "from_cache": true,
+      "usable_segments": 0,
+      "records_generated": 0,
+      "ignored": []
+    },
+    {
+      "source_set_key": "sm4",
+      "source_set_name": "Crimson Invasion",
+      "title": "Crimson Invasion Build & Battle Box (TCG)",
+      "status": "source_unavailable",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Crimson_Invasion_Build_%26_Battle_Box_(TCG)",
+      "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Crimson_Invasion_Build_%26_Battle_Box_(TCG)&action=raw",
+      "from_cache": true,
+      "usable_segments": 0,
+      "records_generated": 0,
+      "ignored": []
+    },
+    {
+      "source_set_key": "ex14",
+      "source_set_name": "Crystal Guardians",
+      "title": "Crystal Guardians Build & Battle Box (TCG)",
+      "status": "source_unavailable",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Crystal_Guardians_Build_%26_Battle_Box_(TCG)",
+      "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Crystal_Guardians_Build_%26_Battle_Box_(TCG)&action=raw",
+      "from_cache": true,
+      "usable_segments": 0,
+      "records_generated": 0,
+      "ignored": []
+    },
+    {
+      "source_set_key": "bw5",
+      "source_set_name": "Dark Explorers",
+      "title": "Dark Explorers Build & Battle Box (TCG)",
+      "status": "source_unavailable",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Dark_Explorers_Build_%26_Battle_Box_(TCG)",
+      "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Dark_Explorers_Build_%26_Battle_Box_(TCG)&action=raw",
+      "from_cache": true,
+      "usable_segments": 0,
+      "records_generated": 0,
+      "ignored": []
+    },
+    {
+      "source_set_key": "dp1",
+      "source_set_name": "Diamond & Pearl",
+      "title": "Diamond & Pearl Build & Battle Box (TCG)",
+      "status": "source_unavailable",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Diamond_%26_Pearl_Build_%26_Battle_Box_(TCG)",
+      "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Diamond_%26_Pearl_Build_%26_Battle_Box_(TCG)&action=raw",
+      "from_cache": true,
+      "usable_segments": 0,
+      "records_generated": 0,
+      "ignored": []
+    },
+    {
+      "source_set_key": "bw6",
+      "source_set_name": "Dragons Exalted",
+      "title": "Dragons Exalted Build & Battle Box (TCG)",
+      "status": "source_unavailable",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Dragons_Exalted_Build_%26_Battle_Box_(TCG)",
+      "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Dragons_Exalted_Build_%26_Battle_Box_(TCG)&action=raw",
+      "from_cache": true,
+      "usable_segments": 0,
+      "records_generated": 0,
+      "ignored": []
+    },
+    {
+      "source_set_key": "ex9",
+      "source_set_name": "Emerald",
+      "title": "Emerald Build & Battle Box (TCG)",
+      "status": "source_unavailable",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Emerald_Build_%26_Battle_Box_(TCG)",
+      "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Emerald_Build_%26_Battle_Box_(TCG)&action=raw",
+      "from_cache": true,
+      "usable_segments": 0,
+      "records_generated": 0,
+      "ignored": []
+    },
+    {
+      "source_set_key": "bw2",
+      "source_set_name": "Emerging Powers",
+      "title": "Emerging Powers Build & Battle Box (TCG)",
+      "status": "source_unavailable",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Emerging_Powers_Build_%26_Battle_Box_(TCG)",
+      "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Emerging_Powers_Build_%26_Battle_Box_(TCG)&action=raw",
+      "from_cache": true,
+      "usable_segments": 0,
+      "records_generated": 0,
+      "ignored": []
+    },
+    {
+      "source_set_key": "swsh7",
+      "source_set_name": "Evolving Skies",
+      "title": "Evolving Skies Build & Battle Box (TCG)",
+      "status": "no_matching_remaining_gap_facts",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Evolving_Skies_Build_%26_Battle_Box_(TCG)",
+      "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Evolving_Skies_Build_%26_Battle_Box_(TCG)&action=raw",
+      "from_cache": true,
+      "usable_segments": 2,
+      "records_generated": 0,
+      "ignored": [
+        {
+          "source_set_name": "SWSH Promo",
+          "card_number": "122",
+          "card_name": "Flaaffy",
+          "finish_key": "stamped",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "SWSH Promo",
+          "card_number": "123",
+          "card_name": "Galarian Articuno",
+          "finish_key": "stamped",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "SWSH Promo",
+          "card_number": "124",
+          "card_name": "Galarian Zapdos",
+          "finish_key": "stamped",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "SWSH Promo",
+          "card_number": "125",
+          "card_name": "Galarian Moltres",
+          "finish_key": "stamped",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Evolving Skies",
+          "card_number": "16",
+          "card_name": "Eldegoss",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Evolving Skies",
+          "card_number": "60",
+          "card_name": "Regieleki",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Evolving Skies",
+          "card_number": "103",
+          "card_name": "Zoroark",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Sword & Shield",
+          "card_number": "178",
+          "card_name": "Professor's Research",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Evolving Skies",
+          "card_number": "54",
+          "card_name": "Mareep",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Evolving Skies",
+          "card_number": "55",
+          "card_name": "Flaaffy",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Evolving Skies",
+          "card_number": "57",
+          "card_name": "Emolga",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Evolving Skies",
+          "card_number": "60",
+          "card_name": "Regieleki",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Evolving Skies",
+          "card_number": "161",
+          "card_name": "Stormy Mountains",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Evolving Skies",
+          "card_number": "138",
+          "card_name": "Fletchling",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Evolving Skies",
+          "card_number": "139",
+          "card_name": "Fletchinder",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Evolving Skies",
+          "card_number": "140",
+          "card_name": "Talonflame",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Sword & Shield",
+          "card_number": "163",
+          "card_name": "Evolution Incense",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Evolving Skies",
+          "card_number": "128",
+          "card_name": "Smeargle",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Evolving Skies",
+          "card_number": "6",
+          "card_name": "Tropius",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Evolving Skies",
+          "card_number": "15",
+          "card_name": "Gossifleur",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Evolving Skies",
+          "card_number": "16",
+          "card_name": "Eldegoss",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Battle Styles",
+          "card_number": "129",
+          "card_name": "Level Ball",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Evolving Skies",
+          "card_number": "152",
+          "card_name": "Raihan",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Evolving Skies",
+          "card_number": "102",
+          "card_name": "Zorua",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Evolving Skies",
+          "card_number": "103",
+          "card_name": "Zoroark",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Sword & Shield",
+          "card_number": "163",
+          "card_name": "Evolution Incense",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Sword & Shield",
+          "card_number": "179",
+          "card_name": "Quick Ball",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Sword & Shield",
+          "card_number": "173",
+          "card_name": "Poké Kid",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Sword & Shield",
+          "card_number": "178",
+          "card_name": "Professor's Research",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Rebel Clash",
+          "card_number": "161",
+          "card_name": "Milo",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Rebel Clash",
+          "card_number": "167",
+          "card_name": "Sonia",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Vivid Voltage",
+          "card_number": "146",
+          "card_name": "Allister",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Battle Styles",
+          "card_number": "121",
+          "card_name": "Bruno",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Battle Styles",
+          "card_number": "128",
+          "card_name": "Korrina's Focus",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Evolving Skies",
+          "card_number": "143",
+          "card_name": "Copycat",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Evolving Skies",
+          "card_number": "164",
+          "card_name": "Zinnia's Resolve",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        }
+      ]
+    },
+    {
+      "source_set_key": "ex6",
+      "source_set_name": "FireRed & LeafGreen",
+      "title": "FireRed & LeafGreen Build & Battle Box (TCG)",
+      "status": "source_unavailable",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/FireRed_%26_LeafGreen_Build_%26_Battle_Box_(TCG)",
+      "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=FireRed_%26_LeafGreen_Build_%26_Battle_Box_(TCG)&action=raw",
+      "from_cache": true,
+      "usable_segments": 0,
+      "records_generated": 0,
+      "ignored": []
+    },
+    {
+      "source_set_key": "xy2",
+      "source_set_name": "Flashfire",
+      "title": "Flashfire Build & Battle Box (TCG)",
+      "status": "source_unavailable",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Flashfire_Build_%26_Battle_Box_(TCG)",
+      "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Flashfire_Build_%26_Battle_Box_(TCG)&action=raw",
+      "from_cache": true,
+      "usable_segments": 0,
+      "records_generated": 0,
+      "ignored": []
+    },
+    {
+      "source_set_key": "xy3",
+      "source_set_name": "Furious Fists",
+      "title": "Furious Fists Build & Battle Box (TCG)",
+      "status": "source_unavailable",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Furious_Fists_Build_%26_Battle_Box_(TCG)",
+      "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Furious_Fists_Build_%26_Battle_Box_(TCG)&action=raw",
+      "from_cache": true,
+      "usable_segments": 0,
+      "records_generated": 0,
+      "ignored": []
+    },
+    {
+      "source_set_key": "sm2",
+      "source_set_name": "Guardians Rising",
+      "title": "Guardians Rising Build & Battle Box (TCG)",
+      "status": "source_unavailable",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Guardians_Rising_Build_%26_Battle_Box_(TCG)",
+      "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Guardians_Rising_Build_%26_Battle_Box_(TCG)&action=raw",
+      "from_cache": true,
+      "usable_segments": 0,
+      "records_generated": 0,
+      "ignored": []
+    },
+    {
+      "source_set_key": "hgss1",
+      "source_set_name": "HeartGold & SoulSilver",
+      "title": "HeartGold & SoulSilver Build & Battle Box (TCG)",
+      "status": "source_unavailable",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/HeartGold_%26_SoulSilver_Build_%26_Battle_Box_(TCG)",
+      "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=HeartGold_%26_SoulSilver_Build_%26_Battle_Box_(TCG)&action=raw",
+      "from_cache": true,
+      "usable_segments": 0,
+      "records_generated": 0,
+      "ignored": []
+    },
+    {
+      "source_set_key": "hgss4",
+      "source_set_name": "HS—Triumphant",
+      "title": "HS—Triumphant Build & Battle Box (TCG)",
+      "status": "source_unavailable",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/HS%E2%80%94Triumphant_Build_%26_Battle_Box_(TCG)",
+      "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=HS%E2%80%94Triumphant_Build_%26_Battle_Box_(TCG)&action=raw",
+      "from_cache": true,
+      "usable_segments": 0,
+      "records_generated": 0,
+      "ignored": []
+    },
+    {
+      "source_set_key": "hgss2",
+      "source_set_name": "HS—Unleashed",
+      "title": "HS—Unleashed Build & Battle Box (TCG)",
+      "status": "source_unavailable",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/HS%E2%80%94Unleashed_Build_%26_Battle_Box_(TCG)",
+      "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=HS%E2%80%94Unleashed_Build_%26_Battle_Box_(TCG)&action=raw",
+      "from_cache": true,
+      "usable_segments": 0,
+      "records_generated": 0,
+      "ignored": []
+    },
+    {
+      "source_set_key": "swsh11",
+      "source_set_name": "Lost Origin",
+      "title": "Lost Origin Build & Battle Box (TCG)",
+      "status": "no_matching_remaining_gap_facts",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Lost_Origin_Build_%26_Battle_Box_(TCG)",
+      "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Lost_Origin_Build_%26_Battle_Box_(TCG)&action=raw",
+      "from_cache": true,
+      "usable_segments": 1,
+      "records_generated": 0,
+      "ignored": [
+        {
+          "source_set_name": "Lost Origin",
+          "card_number": "37",
+          "card_name": "Kingdra",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Lost Origin",
+          "card_number": "66",
+          "card_name": "Gengar",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Lost Origin",
+          "card_number": "84",
+          "card_name": "Hisuian Arcanine",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Astral Radiance",
+          "card_number": "147",
+          "card_name": "Irida",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Brilliant Stars",
+          "card_number": "147",
+          "card_name": "Professor's Research",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Lost Origin",
+          "card_number": "35",
+          "card_name": "Horsea",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Lost Origin",
+          "card_number": "36",
+          "card_name": "Seadra",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Lost Origin",
+          "card_number": "37",
+          "card_name": "Kingdra",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Astral Radiance",
+          "card_number": "147",
+          "card_name": "Irida",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Battle Styles",
+          "card_number": "129",
+          "card_name": "Level Ball",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Lost Origin",
+          "card_number": "66",
+          "card_name": "Gengar",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Lost Origin",
+          "card_number": "83",
+          "card_name": "Hisuian Growlithe",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Lost Origin",
+          "card_number": "84",
+          "card_name": "Hisuian Arcanine",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Astral Radiance",
+          "card_number": "144",
+          "card_name": "Grant",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Lost Origin",
+          "card_number": "158",
+          "card_name": "Iscan",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Lost Origin",
+          "card_number": "6",
+          "card_name": "Wurmple",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Lost Origin",
+          "card_number": "9",
+          "card_name": "Cascoon",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Lost Origin",
+          "card_number": "10",
+          "card_name": "Dustox",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Lost Origin",
+          "card_number": "86",
+          "card_name": "Machop",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Lost Origin",
+          "card_number": "87",
+          "card_name": "Machoke",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Lost Origin",
+          "card_number": "95",
+          "card_name": "Gligar",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Lost Origin",
+          "card_number": "96",
+          "card_name": "Gliscor",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Brilliant Stars",
+          "card_number": "138",
+          "card_name": "Cynthia's Ambition",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Brilliant Stars",
+          "card_number": "141",
+          "card_name": "Gloria",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Brilliant Stars",
+          "card_number": "147",
+          "card_name": "Professor's Research",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Brilliant Stars",
+          "card_number": "150",
+          "card_name": "Ultra Ball",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Astral Radiance",
+          "card_number": "137",
+          "card_name": "Choy",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Astral Radiance",
+          "card_number": "159",
+          "card_name": "Zisu",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Lost Origin",
+          "card_number": "153",
+          "card_name": "Arezu",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        }
+      ]
+    },
+    {
+      "source_set_key": "sm8",
+      "source_set_name": "Lost Thunder",
+      "title": "Lost Thunder Build & Battle Box (TCG)",
+      "status": "no_matching_remaining_gap_facts",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Lost_Thunder_Build_%26_Battle_Box_(TCG)",
+      "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Lost_Thunder_Build_%26_Battle_Box_(TCG)&action=raw",
+      "from_cache": true,
+      "usable_segments": 2,
+      "records_generated": 0,
+      "ignored": [
+        {
+          "source_set_name": "SM Promo",
+          "card_number": "149",
+          "card_name": "Suicune",
+          "finish_key": "stamped",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "SM Promo",
+          "card_number": "150",
+          "card_name": "Raikou",
+          "finish_key": "stamped",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "SM Promo",
+          "card_number": "151",
+          "card_name": "Giratina",
+          "finish_key": "stamped",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "SM Promo",
+          "card_number": "152",
+          "card_name": "Tapu Lele",
+          "finish_key": "stamped",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Lost Thunder",
+          "card_number": "78",
+          "card_name": "Ampharos",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Lost Thunder",
+          "card_number": "108",
+          "card_name": "Naganadel",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Lost Thunder",
+          "card_number": "64",
+          "card_name": "Popplio",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Lost Thunder",
+          "card_number": "65",
+          "card_name": "Popplio",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Lost Thunder",
+          "card_number": "66",
+          "card_name": "Brionne",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Lost Thunder",
+          "card_number": "67",
+          "card_name": "Primarina",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Lost Thunder",
+          "card_number": "179",
+          "card_name": "Kahili",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Sun & Moon",
+          "card_number": "134",
+          "card_name": "Timer Ball",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Lost Thunder",
+          "card_number": "76",
+          "card_name": "Mareep",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Lost Thunder",
+          "card_number": "77",
+          "card_name": "Flaaffy",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Lost Thunder",
+          "card_number": "78",
+          "card_name": "Ampharos",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Lost Thunder",
+          "card_number": "188",
+          "card_name": "Professor Elm's Lecture",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Sun & Moon",
+          "card_number": "134",
+          "card_name": "Timer Ball",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Lost Thunder",
+          "card_number": "87",
+          "card_name": "Natu",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Lost Thunder",
+          "card_number": "88",
+          "card_name": "Xatu",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Lost Thunder",
+          "card_number": "107",
+          "card_name": "Poipole",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Lost Thunder",
+          "card_number": "108",
+          "card_name": "Naganadel",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Lost Thunder",
+          "card_number": "184",
+          "card_name": "Mixed Herbs",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Lost Thunder",
+          "card_number": "189",
+          "card_name": "Sightseer",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Sun & Moon",
+          "card_number": "123",
+          "card_name": "Nest Ball",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Lost Thunder",
+          "card_number": "133",
+          "card_name": "Jigglypuff",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Lost Thunder",
+          "card_number": "134",
+          "card_name": "Wigglytuff",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Lost Thunder",
+          "card_number": "174",
+          "card_name": "Fairy Charm G",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Lost Thunder",
+          "card_number": "175",
+          "card_name": "Fairy Charm P",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Lost Thunder",
+          "card_number": "183",
+          "card_name": "Mina",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Sun & Moon",
+          "card_number": "123",
+          "card_name": "Nest Ball",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Celestial Storm",
+          "card_number": "127",
+          "card_name": "Copycat",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Celestial Storm",
+          "card_number": "132",
+          "card_name": "Hau",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Ultra Prism",
+          "card_number": "125",
+          "card_name": "Lillie",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Ultra Prism",
+          "card_number": "126",
+          "card_name": "Looker",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Sun & Moon",
+          "card_number": "128",
+          "card_name": "Professor Kukui",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Celestial Storm",
+          "card_number": "148",
+          "card_name": "Tate & Liza",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Celestial Storm",
+          "card_number": "149",
+          "card_name": "TV Reporter",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Celestial Storm",
+          "card_number": "150",
+          "card_name": "Underground Expedition",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        }
+      ]
+    },
+    {
+      "source_set_key": "dp5",
+      "source_set_name": "Majestic Dawn",
+      "title": "Majestic Dawn Build & Battle Box (TCG)",
+      "status": "source_unavailable",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Majestic_Dawn_Build_%26_Battle_Box_(TCG)",
+      "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Majestic_Dawn_Build_%26_Battle_Box_(TCG)&action=raw",
+      "from_cache": true,
+      "usable_segments": 0,
+      "records_generated": 0,
+      "ignored": []
+    },
+    {
+      "source_set_key": "neo1",
+      "source_set_name": "Neo Genesis",
+      "title": "Neo Genesis Build & Battle Box (TCG)",
+      "status": "source_unavailable",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Neo_Genesis_Build_%26_Battle_Box_(TCG)",
+      "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Neo_Genesis_Build_%26_Battle_Box_(TCG)&action=raw",
+      "from_cache": true,
+      "usable_segments": 0,
+      "records_generated": 0,
+      "ignored": []
+    },
+    {
+      "source_set_key": "bw3",
+      "source_set_name": "Noble Victories",
+      "title": "Noble Victories Build & Battle Box (TCG)",
+      "status": "source_unavailable",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Noble_Victories_Build_%26_Battle_Box_(TCG)",
+      "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Noble_Victories_Build_%26_Battle_Box_(TCG)&action=raw",
+      "from_cache": true,
+      "usable_segments": 0,
+      "records_generated": 0,
+      "ignored": []
+    },
+    {
+      "source_set_key": "xy4",
+      "source_set_name": "Phantom Forces",
+      "title": "Phantom Forces Build & Battle Box (TCG)",
+      "status": "source_unavailable",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Phantom_Forces_Build_%26_Battle_Box_(TCG)",
+      "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Phantom_Forces_Build_%26_Battle_Box_(TCG)&action=raw",
+      "from_cache": true,
+      "usable_segments": 0,
+      "records_generated": 0,
+      "ignored": []
+    },
+    {
+      "source_set_key": "bw9",
+      "source_set_name": "Plasma Freeze",
+      "title": "Plasma Freeze Build & Battle Box (TCG)",
+      "status": "source_unavailable",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Plasma_Freeze_Build_%26_Battle_Box_(TCG)",
+      "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Plasma_Freeze_Build_%26_Battle_Box_(TCG)&action=raw",
+      "from_cache": true,
+      "usable_segments": 0,
+      "records_generated": 0,
+      "ignored": []
+    },
+    {
+      "source_set_key": "bw8",
+      "source_set_name": "Plasma Storm",
+      "title": "Plasma Storm Build & Battle Box (TCG)",
+      "status": "source_unavailable",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Plasma_Storm_Build_%26_Battle_Box_(TCG)",
+      "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Plasma_Storm_Build_%26_Battle_Box_(TCG)&action=raw",
+      "from_cache": true,
+      "usable_segments": 0,
+      "records_generated": 0,
+      "ignored": []
+    },
+    {
+      "source_set_key": "pl1",
+      "source_set_name": "Platinum",
+      "title": "Platinum Build & Battle Box (TCG)",
+      "status": "source_unavailable",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Platinum_Build_%26_Battle_Box_(TCG)",
+      "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Platinum_Build_%26_Battle_Box_(TCG)&action=raw",
+      "from_cache": true,
+      "usable_segments": 0,
+      "records_generated": 0,
+      "ignored": []
+    },
+    {
+      "source_set_key": "swsh2",
+      "source_set_name": "Rebel Clash",
+      "title": "Rebel Clash Build & Battle Box (TCG)",
+      "status": "no_matching_remaining_gap_facts",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Rebel_Clash_Build_%26_Battle_Box_(TCG)",
+      "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Rebel_Clash_Build_%26_Battle_Box_(TCG)&action=raw",
+      "from_cache": true,
+      "usable_segments": 2,
+      "records_generated": 0,
+      "ignored": [
+        {
+          "source_set_name": "SWSH Promo",
+          "card_number": "22",
+          "card_name": "Flapple",
+          "finish_key": "stamped",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "SWSH Promo",
+          "card_number": "23",
+          "card_name": "Luxray",
+          "finish_key": "stamped",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "SWSH Promo",
+          "card_number": "24",
+          "card_name": "Coalossal",
+          "finish_key": "stamped",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "SWSH Promo",
+          "card_number": "25",
+          "card_name": "Garbodor",
+          "finish_key": "stamped",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Rebel Clash",
+          "card_number": "62",
+          "card_name": "Luxray",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Rebel Clash",
+          "card_number": "125",
+          "card_name": "Grimmsnarl",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Sword & Shield",
+          "card_number": "178",
+          "card_name": "Professor's Research",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Rebel Clash",
+          "card_number": "20",
+          "card_name": "Applin",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Rebel Clash",
+          "card_number": "1",
+          "card_name": "Caterpie",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Rebel Clash",
+          "card_number": "2",
+          "card_name": "Metapod",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Rebel Clash",
+          "card_number": "3",
+          "card_name": "Butterfree",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Rebel Clash",
+          "card_number": "170",
+          "card_name": "Turffield Stadium",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Rebel Clash",
+          "card_number": "60",
+          "card_name": "Shinx",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Rebel Clash",
+          "card_number": "61",
+          "card_name": "Luxio",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Rebel Clash",
+          "card_number": "62",
+          "card_name": "Luxray",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Rebel Clash",
+          "card_number": "173",
+          "card_name": "Speed L Energy",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Rebel Clash",
+          "card_number": "105",
+          "card_name": "Rolycoly",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Rebel Clash",
+          "card_number": "106",
+          "card_name": "Carkol",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Rebel Clash",
+          "card_number": "99",
+          "card_name": "Barboach",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Rebel Clash",
+          "card_number": "100",
+          "card_name": "Whiscash",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Sword & Shield",
+          "card_number": "179",
+          "card_name": "Quick Ball",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Rebel Clash",
+          "card_number": "117",
+          "card_name": "Trubbish",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Rebel Clash",
+          "card_number": "123",
+          "card_name": "Impidimp",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Rebel Clash",
+          "card_number": "124",
+          "card_name": "Morgrem",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Rebel Clash",
+          "card_number": "125",
+          "card_name": "Grimmsnarl",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Sword & Shield",
+          "card_number": "163",
+          "card_name": "Evolution Incense",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Sword & Shield",
+          "card_number": "165",
+          "card_name": "Hop",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Sword & Shield",
+          "card_number": "178",
+          "card_name": "Professor's Research",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Rebel Clash",
+          "card_number": "158",
+          "card_name": "Dan",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Rebel Clash",
+          "card_number": "161",
+          "card_name": "Milo",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Rebel Clash",
+          "card_number": "167",
+          "card_name": "Sonia",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        }
+      ]
+    },
+    {
+      "source_set_key": "pl2",
+      "source_set_name": "Rising Rivals",
+      "title": "Rising Rivals Build & Battle Box (TCG)",
+      "status": "source_unavailable",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Rising_Rivals_Build_%26_Battle_Box_(TCG)",
+      "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Rising_Rivals_Build_%26_Battle_Box_(TCG)&action=raw",
+      "from_cache": true,
+      "usable_segments": 0,
+      "records_generated": 0,
+      "ignored": []
+    },
+    {
+      "source_set_key": "ex1",
+      "source_set_name": "Ruby & Sapphire",
+      "title": "Ruby & Sapphire Build & Battle Box (TCG)",
+      "status": "source_unavailable",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Ruby_%26_Sapphire_Build_%26_Battle_Box_(TCG)",
+      "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Ruby_%26_Sapphire_Build_%26_Battle_Box_(TCG)&action=raw",
+      "from_cache": true,
+      "usable_segments": 0,
+      "records_generated": 0,
+      "ignored": []
+    },
+    {
+      "source_set_key": "dp3",
+      "source_set_name": "Secret Wonders",
+      "title": "Secret Wonders Build & Battle Box (TCG)",
+      "status": "source_unavailable",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Secret_Wonders_Build_%26_Battle_Box_(TCG)",
+      "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Secret_Wonders_Build_%26_Battle_Box_(TCG)&action=raw",
+      "from_cache": true,
+      "usable_segments": 0,
+      "records_generated": 0,
+      "ignored": []
+    },
+    {
+      "source_set_key": "smp",
+      "source_set_name": "SM Black Star Promos",
+      "title": "SM Black Star Promos Build & Battle Box (TCG)",
+      "status": "source_unavailable",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/SM_Black_Star_Promos_Build_%26_Battle_Box_(TCG)",
+      "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=SM_Black_Star_Promos_Build_%26_Battle_Box_(TCG)&action=raw",
+      "from_cache": true,
+      "usable_segments": 0,
+      "records_generated": 0,
+      "ignored": []
+    },
+    {
+      "source_set_key": "sm1",
+      "source_set_name": "Sun & Moon",
+      "title": "Sun & Moon Build & Battle Box (TCG)",
+      "status": "source_unavailable",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Sun_%26_Moon_Build_%26_Battle_Box_(TCG)",
+      "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Sun_%26_Moon_Build_%26_Battle_Box_(TCG)&action=raw",
+      "from_cache": true,
+      "usable_segments": 0,
+      "records_generated": 0,
+      "ignored": []
+    },
+    {
+      "source_set_key": "swsh1",
+      "source_set_name": "Sword & Shield",
+      "title": "Sword & Shield Build & Battle Box (TCG)",
+      "status": "no_matching_remaining_gap_facts",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Sword_%26_Shield_Build_%26_Battle_Box_(TCG)",
+      "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Sword_%26_Shield_Build_%26_Battle_Box_(TCG)&action=raw",
+      "from_cache": true,
+      "usable_segments": 2,
+      "records_generated": 0,
+      "ignored": [
+        {
+          "source_set_name": "SWSH Promo",
+          "card_number": "6",
+          "card_name": "Rillaboom",
+          "finish_key": "stamped",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "SWSH Promo",
+          "card_number": "7",
+          "card_name": "Frosmoth",
+          "finish_key": "stamped",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "SWSH Promo",
+          "card_number": "8",
+          "card_name": "Galarian Perrserker",
+          "finish_key": "stamped",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "SWSH Promo",
+          "card_number": "9",
+          "card_name": "Cinccino",
+          "finish_key": "stamped",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Sword & Shield",
+          "card_number": "14",
+          "card_name": "Rillaboom",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Sword & Shield",
+          "card_number": "58",
+          "card_name": "Inteleon",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Sword & Shield",
+          "card_number": "119",
+          "card_name": "Galarian Obstagoon",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Sword & Shield",
+          "card_number": "169",
+          "card_name": "Marnie",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Sword & Shield",
+          "card_number": "178",
+          "card_name": "Professor's Research",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Sword & Shield",
+          "card_number": "11",
+          "card_name": "Grookey",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Sword & Shield",
+          "card_number": "13",
+          "card_name": "Thwackey",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Sword & Shield",
+          "card_number": "14",
+          "card_name": "Rillaboom",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Sword & Shield",
+          "card_number": "140",
+          "card_name": "Snorlax",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Sword & Shield",
+          "card_number": "163",
+          "card_name": "Evolution Incense",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Sword & Shield",
+          "card_number": "167",
+          "card_name": "Lucky Egg",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Sword & Shield",
+          "card_number": "55",
+          "card_name": "Sobble",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Sword & Shield",
+          "card_number": "57",
+          "card_name": "Drizzile",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Sword & Shield",
+          "card_number": "58",
+          "card_name": "Inteleon",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Sword & Shield",
+          "card_number": "63",
+          "card_name": "Snom",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Sword & Shield",
+          "card_number": "163",
+          "card_name": "Evolution Incense",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Sword & Shield",
+          "card_number": "164",
+          "card_name": "Great Ball",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Sword & Shield",
+          "card_number": "127",
+          "card_name": "Galarian Meowth",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Sword & Shield",
+          "card_number": "133",
+          "card_name": "Pawniard",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Sword & Shield",
+          "card_number": "134",
+          "card_name": "Bisharp",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Sword & Shield",
+          "card_number": "179",
+          "card_name": "Quick Ball",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Sword & Shield",
+          "card_number": "181",
+          "card_name": "Rotom Bike",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Sword & Shield",
+          "card_number": "145",
+          "card_name": "Minccino",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Sword & Shield",
+          "card_number": "117",
+          "card_name": "Galarian Zigzagoon",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Sword & Shield",
+          "card_number": "118",
+          "card_name": "Galarian Linoone",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Sword & Shield",
+          "card_number": "119",
+          "card_name": "Galarian Obstagoon",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Sword & Shield",
+          "card_number": "179",
+          "card_name": "Quick Ball",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Sword & Shield",
+          "card_number": "165",
+          "card_name": "Hop",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Sword & Shield",
+          "card_number": "169",
+          "card_name": "Marnie",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Sword & Shield",
+          "card_number": "173",
+          "card_name": "Poké Kid",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Sword & Shield",
+          "card_number": "178",
+          "card_name": "Professor's Research",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        }
+      ]
+    },
+    {
+      "source_set_key": "ex4",
+      "source_set_name": "Team Magma vs Team Aqua",
+      "title": "Team Magma vs Team Aqua Build & Battle Box (TCG)",
+      "status": "source_unavailable",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Team_Magma_vs_Team_Aqua_Build_%26_Battle_Box_(TCG)",
+      "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Team_Magma_vs_Team_Aqua_Build_%26_Battle_Box_(TCG)&action=raw",
+      "from_cache": true,
+      "usable_segments": 0,
+      "records_generated": 0,
+      "ignored": []
+    },
+    {
+      "source_set_key": "sm10",
+      "source_set_name": "Unbroken Bonds",
+      "title": "Unbroken Bonds Build & Battle Box (TCG)",
+      "status": "no_matching_remaining_gap_facts",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Unbroken_Bonds_Build_%26_Battle_Box_(TCG)",
+      "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Unbroken_Bonds_Build_%26_Battle_Box_(TCG)&action=raw",
+      "from_cache": true,
+      "usable_segments": 2,
+      "records_generated": 0,
+      "ignored": [
+        {
+          "source_set_name": "SM Promo",
+          "card_number": "179",
+          "card_name": "Volcanion",
+          "finish_key": "stamped",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "SM Promo",
+          "card_number": "182",
+          "card_name": "Persian",
+          "finish_key": "stamped",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "SM Promo",
+          "card_number": "180",
+          "card_name": "Stakataka",
+          "finish_key": "stamped",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "SM Promo",
+          "card_number": "181",
+          "card_name": "Melmetal",
+          "finish_key": "stamped",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Unbroken Bonds",
+          "card_number": "126",
+          "card_name": "Lucario",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Unbroken Bonds",
+          "card_number": "184",
+          "card_name": "Red's Challenge",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Unbroken Bonds",
+          "card_number": "27",
+          "card_name": "Litten",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Unbroken Bonds",
+          "card_number": "28",
+          "card_name": "Torracat",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Unbroken Bonds",
+          "card_number": "29",
+          "card_name": "Incineroar",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Unbroken Bonds",
+          "card_number": "189",
+          "card_name": "Welder",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Team Up",
+          "card_number": "152",
+          "card_name": "Pokémon Communication",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Unbroken Bonds",
+          "card_number": "48",
+          "card_name": "Goldeen",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Unbroken Bonds",
+          "card_number": "49",
+          "card_name": "Seaking",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Unbroken Bonds",
+          "card_number": "147",
+          "card_name": "Meowth",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Unbroken Bonds",
+          "card_number": "184",
+          "card_name": "Red's Challenge",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Ultra Prism",
+          "card_number": "122",
+          "card_name": "Escape Board",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Unbroken Bonds",
+          "card_number": "83",
+          "card_name": "Sandshrew",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Unbroken Bonds",
+          "card_number": "84",
+          "card_name": "Sandslash",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Unbroken Bonds",
+          "card_number": "104",
+          "card_name": "Crabrawler",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Unbroken Bonds",
+          "card_number": "105",
+          "card_name": "Crabominable",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Unbroken Bonds",
+          "card_number": "176",
+          "card_name": "Janine",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Unbroken Bonds",
+          "card_number": "102",
+          "card_name": "Riolu",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Unbroken Bonds",
+          "card_number": "126",
+          "card_name": "Lucario",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Unbroken Bonds",
+          "card_number": "128",
+          "card_name": "Meltan",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Unbroken Bonds",
+          "card_number": "175",
+          "card_name": "Green's Exploration",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Unbroken Bonds",
+          "card_number": "180",
+          "card_name": "Metal Core Barrier",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Celestial Storm",
+          "card_number": "127",
+          "card_name": "Copycat",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Ultra Prism",
+          "card_number": "119",
+          "card_name": "Cynthia",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Team Up",
+          "card_number": "140",
+          "card_name": "Erika's Hospitality",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Celestial Storm",
+          "card_number": "132",
+          "card_name": "Hau",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Lost Thunder",
+          "card_number": "179",
+          "card_name": "Kahili",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Ultra Prism",
+          "card_number": "125",
+          "card_name": "Lillie",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "Ultra Prism",
+          "card_number": "126",
+          "card_name": "Looker",
+          "finish_key": "normal",
+          "reason": "no_matching_remaining_gap_fact"
+        }
+      ]
+    },
+    {
+      "source_set_key": "swsh4",
+      "source_set_name": "Vivid Voltage",
+      "title": "Vivid Voltage Build & Battle Box (TCG)",
+      "status": "no_matching_remaining_gap_facts",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Vivid_Voltage_Build_%26_Battle_Box_(TCG)",
+      "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=Vivid_Voltage_Build_%26_Battle_Box_(TCG)&action=raw",
+      "from_cache": true,
+      "usable_segments": 1,
+      "records_generated": 0,
+      "ignored": [
+        {
+          "source_set_name": "SWSH Promo",
+          "card_number": "66",
+          "card_name": "Charizard",
+          "finish_key": "stamped",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "SWSH Promo",
+          "card_number": "67",
+          "card_name": "Donphan",
+          "finish_key": "stamped",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "SWSH Promo",
+          "card_number": "68",
+          "card_name": "Snorlax",
+          "finish_key": "stamped",
+          "reason": "no_matching_remaining_gap_fact"
+        },
+        {
+          "source_set_name": "SWSH Promo",
+          "card_number": "69",
+          "card_name": "Lugia",
+          "finish_key": "stamped",
+          "reason": "no_matching_remaining_gap_fact"
+        }
+      ]
+    },
+    {
+      "source_set_key": "xyp",
+      "source_set_name": "XY Black Star Promos",
+      "title": "XY Black Star Promos Build & Battle Box (TCG)",
+      "status": "source_unavailable",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/XY_Black_Star_Promos_Build_%26_Battle_Box_(TCG)",
+      "raw_url": "https://bulbapedia.bulbagarden.net/w/index.php?title=XY_Black_Star_Promos_Build_%26_Battle_Box_(TCG)&action=raw",
+      "from_cache": true,
+      "usable_segments": 0,
+      "records_generated": 0,
+      "ignored": []
+    }
+  ],
+  "records": []
+}

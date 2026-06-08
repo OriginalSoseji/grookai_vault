@@ -1,0 +1,43 @@
+{
+  "status": "no_validated_match",
+  "fact": {
+    "gap_type": "finish_second_source_needed",
+    "fact_type": "printing_finish",
+    "set_key": "xy3",
+    "set_name": "Furious Fists",
+    "card_number": "88",
+    "card_name": "Battle Reporter",
+    "finish_key": "stamped",
+    "status": "human_source_verified",
+    "sources": [
+      "thepricedex_price_list"
+    ],
+    "source_authorities": [
+      "thepricedex.com"
+    ],
+    "source_kinds": [
+      "marketplace_checklist"
+    ],
+    "evidence_urls": [],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "attempts": [
+    {
+      "query": "Pokemon Furious Fists Battle Reporter 88 stamped",
+      "url": "https://www.pricecharting.com/search-products?q=Pokemon%20Furious%20Fists%20Battle%20Reporter%2088%20stamped&type=prices",
+      "parsed": {
+        "title": "Pokemon Furious Fists Battle Reporter 88 Stamped Prices | Pokemon Furious Fists Battle Reporter 88 Stamped List",
+        "source_url": "https://www.pricecharting.com/search-products?q=pokemon+furious+fists+battle+reporter+88+stamped&type=prices"
+      },
+      "validation": {
+        "ok": false,
+        "reason": "title_pattern_not_supported"
+      }
+    },
+    {
+      "query": "Pokemon Furious Fists Battle Reporter 88 stamp",
+      "url": "https://www.pricecharting.com/search-products?q=Pokemon%20Furious%20Fists%20Battle%20Reporter%2088%20stamp&type=prices",
+      "error": "Fetch failed 403 Forbidden: https://www.pricecharting.com/search-products?q=Pokemon%20Furious%20Fists%20Battle%20Reporter%2088%20stamp&type=prices"
+    }
+  ]
+}

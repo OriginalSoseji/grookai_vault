@@ -1,0 +1,549 @@
+{
+  "status": "api_no_validated_match",
+  "fact": {
+    "gap_type": "finish_second_source_needed",
+    "fact_type": "printing_finish",
+    "set_key": "bw1",
+    "set_name": "Black & White",
+    "card_number": "81",
+    "card_name": "Lillipup",
+    "finish_key": "stamped",
+    "status": "human_source_verified",
+    "sources": [
+      "thepricedex_price_list"
+    ],
+    "source_authorities": [
+      "thepricedex.com"
+    ],
+    "source_kinds": [
+      "marketplace_checklist"
+    ],
+    "evidence_urls": [
+      "https://www.thepricedex.com/set/bw1/black-and-white/price-list"
+    ],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "attempts": [
+    {
+      "query": "Pokemon Black & White Lillipup 81 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Lillipup%2081%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "886696",
+      "product_name": "Lillipup #81",
+      "console_name": "Pokemon Black & White",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Lillipup 81 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Lillipup%2081%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7226347",
+      "product_name": "Lillipup [League Promo] #81",
+      "console_name": "Pokemon Black & White",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:League Promo"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Lillipup 81 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Lillipup%2081%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "886717",
+      "product_name": "Lillipup [Reverse Holo] #81",
+      "console_name": "Pokemon Black & White",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Reverse Holo"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Lillipup 81 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Lillipup%2081%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "806388",
+      "product_name": "Lillipup #80",
+      "console_name": "Pokemon Black & White",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:80"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Lillipup 81 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Lillipup%2081%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "806475",
+      "product_name": "Lillipup [Reverse Holo] #80",
+      "console_name": "Pokemon Black & White",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:80"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Lillipup 81 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Lillipup%2081%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3460439",
+      "product_name": "Lillipup #42",
+      "console_name": "Pokemon Japanese White Collection",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:42"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Lillipup 81 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Lillipup%2081%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10026691",
+      "product_name": "Lillipup #74",
+      "console_name": "Pokemon White Flare",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:74"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Lillipup 81 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Lillipup%2081%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10026794",
+      "product_name": "Lillipup #154",
+      "console_name": "Pokemon White Flare",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:154"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Lillipup 81 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Lillipup%2081%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9647413",
+      "product_name": "Lillipup #72",
+      "console_name": "Pokemon Japanese White Flare",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:72"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Lillipup 81 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Lillipup%2081%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9688434",
+      "product_name": "Lillipup #153",
+      "console_name": "Pokemon Japanese White Flare",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:153"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Lillipup 81 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Lillipup%2081%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10026867",
+      "product_name": "Lillipup [Reverse] #74",
+      "console_name": "Pokemon White Flare",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:74"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Lillipup 81 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Lillipup%2081%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12755479",
+      "product_name": "Lillipup #153",
+      "console_name": "Pokemon Korean White Flare",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:153"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Lillipup 81 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Lillipup%2081%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12755378",
+      "product_name": "Lillipup #72",
+      "console_name": "Pokemon Korean White Flare",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:72"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Lillipup 81 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Lillipup%2081%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8454425",
+      "product_name": "Lillipup [1st Edition] #42",
+      "console_name": "Pokemon Japanese White Collection",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:42"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Lillipup 81 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Lillipup%2081%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12755380",
+      "product_name": "Lillipup [Poke Ball] #72",
+      "console_name": "Pokemon Korean White Flare",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:72"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Lillipup 81 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Lillipup%2081%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10026959",
+      "product_name": "Lillipup [Poke Ball] #74",
+      "console_name": "Pokemon White Flare",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:74"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Lillipup 81 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Lillipup%2081%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9647600",
+      "product_name": "Lillipup [Poke Ball] #72",
+      "console_name": "Pokemon Japanese White Flare",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:72"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Lillipup 81 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Lillipup%2081%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12755379",
+      "product_name": "Lillipup [Master Ball] #72",
+      "console_name": "Pokemon Korean White Flare",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:72"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Lillipup 81 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Lillipup%2081%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10026976",
+      "product_name": "Lillipup [Master Ball] #74",
+      "console_name": "Pokemon White Flare",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:74"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Lillipup 81 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Lillipup%2081%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9861835",
+      "product_name": "Lillipup [Master Ball] #72",
+      "console_name": "Pokemon Japanese White Flare",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:72"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Lillipup 81 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Lillipup%2081%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "886696",
+      "product_name": "Lillipup #81",
+      "console_name": "Pokemon Black & White",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Lillipup 81 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Lillipup%2081%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7226347",
+      "product_name": "Lillipup [League Promo] #81",
+      "console_name": "Pokemon Black & White",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:League Promo"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Lillipup 81 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Lillipup%2081%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "886717",
+      "product_name": "Lillipup [Reverse Holo] #81",
+      "console_name": "Pokemon Black & White",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Reverse Holo"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Lillipup 81 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Lillipup%2081%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "806388",
+      "product_name": "Lillipup #80",
+      "console_name": "Pokemon Black & White",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:80"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Lillipup 81 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Lillipup%2081%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "806475",
+      "product_name": "Lillipup [Reverse Holo] #80",
+      "console_name": "Pokemon Black & White",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:80"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Lillipup 81 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Lillipup%2081%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3460439",
+      "product_name": "Lillipup #42",
+      "console_name": "Pokemon Japanese White Collection",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:42"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Lillipup 81 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Lillipup%2081%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10026691",
+      "product_name": "Lillipup #74",
+      "console_name": "Pokemon White Flare",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:74"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Lillipup 81 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Lillipup%2081%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10026794",
+      "product_name": "Lillipup #154",
+      "console_name": "Pokemon White Flare",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:154"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Lillipup 81 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Lillipup%2081%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9647413",
+      "product_name": "Lillipup #72",
+      "console_name": "Pokemon Japanese White Flare",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:72"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Lillipup 81 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Lillipup%2081%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9688434",
+      "product_name": "Lillipup #153",
+      "console_name": "Pokemon Japanese White Flare",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:153"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Lillipup 81 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Lillipup%2081%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10026867",
+      "product_name": "Lillipup [Reverse] #74",
+      "console_name": "Pokemon White Flare",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:74"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Lillipup 81 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Lillipup%2081%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12755479",
+      "product_name": "Lillipup #153",
+      "console_name": "Pokemon Korean White Flare",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:153"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Lillipup 81 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Lillipup%2081%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12755378",
+      "product_name": "Lillipup #72",
+      "console_name": "Pokemon Korean White Flare",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:72"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Lillipup 81 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Lillipup%2081%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8454425",
+      "product_name": "Lillipup [1st Edition] #42",
+      "console_name": "Pokemon Japanese White Collection",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:42"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Lillipup 81 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Lillipup%2081%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12755380",
+      "product_name": "Lillipup [Poke Ball] #72",
+      "console_name": "Pokemon Korean White Flare",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:72"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Lillipup 81 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Lillipup%2081%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10026959",
+      "product_name": "Lillipup [Poke Ball] #74",
+      "console_name": "Pokemon White Flare",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:74"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Lillipup 81 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Lillipup%2081%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9647600",
+      "product_name": "Lillipup [Poke Ball] #72",
+      "console_name": "Pokemon Japanese White Flare",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:72"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Lillipup 81 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Lillipup%2081%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12755379",
+      "product_name": "Lillipup [Master Ball] #72",
+      "console_name": "Pokemon Korean White Flare",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:72"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Lillipup 81 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Lillipup%2081%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10026976",
+      "product_name": "Lillipup [Master Ball] #74",
+      "console_name": "Pokemon White Flare",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:74"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Lillipup 81 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Lillipup%2081%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9861835",
+      "product_name": "Lillipup [Master Ball] #72",
+      "console_name": "Pokemon Japanese White Flare",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:72"
+      }
+    }
+  ],
+  "source_lane": "pricecharting_api"
+}

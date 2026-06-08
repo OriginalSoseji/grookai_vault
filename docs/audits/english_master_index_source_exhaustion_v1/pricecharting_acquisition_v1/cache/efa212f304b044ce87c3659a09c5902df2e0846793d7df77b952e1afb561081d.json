@@ -1,0 +1,549 @@
+{
+  "status": "api_no_validated_match",
+  "fact": {
+    "gap_type": "finish_second_source_needed",
+    "fact_type": "printing_finish",
+    "set_key": "pl2",
+    "set_name": "Rising Rivals",
+    "card_number": "97",
+    "card_name": "Underground Expedition",
+    "finish_key": "stamped",
+    "status": "human_source_verified",
+    "sources": [
+      "thepricedex_price_list"
+    ],
+    "source_authorities": [
+      "thepricedex.com"
+    ],
+    "source_kinds": [
+      "marketplace_checklist"
+    ],
+    "evidence_urls": [
+      "https://www.thepricedex.com/set/pl2/rising-rivals/price-list"
+    ],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "attempts": [
+    {
+      "query": "Pokemon Rising Rivals Underground Expedition 97 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Rising%20Rivals%20Underground%20Expedition%2097%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "925493",
+      "product_name": "Underground Expedition #97",
+      "console_name": "Pokemon Rising Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon Rising Rivals Underground Expedition 97 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Rising%20Rivals%20Underground%20Expedition%2097%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "925612",
+      "product_name": "Underground Expedition [Reverse Holo] #97",
+      "console_name": "Pokemon Rising Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Reverse Holo"
+      }
+    },
+    {
+      "query": "Pokemon Rising Rivals Underground Expedition 97 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Rising%20Rivals%20Underground%20Expedition%2097%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6777979",
+      "product_name": "Underground Expedition [Crosshatch Holo] #97",
+      "console_name": "Pokemon Rising Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Crosshatch Holo"
+      }
+    },
+    {
+      "query": "Pokemon Rising Rivals Underground Expedition 97 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Rising%20Rivals%20Underground%20Expedition%2097%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "2252739",
+      "product_name": "Underground Expedition [Reverse Holo] #140",
+      "console_name": "Pokemon Skyridge",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:140"
+      }
+    },
+    {
+      "query": "Pokemon Rising Rivals Underground Expedition 97 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Rising%20Rivals%20Underground%20Expedition%2097%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3438670",
+      "product_name": "Underground Expedition [1st Edition] #80",
+      "console_name": "Pokemon Japanese Split Earth",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:80"
+      }
+    },
+    {
+      "query": "Pokemon Rising Rivals Underground Expedition 97 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Rising%20Rivals%20Underground%20Expedition%2097%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "962231",
+      "product_name": "Underground Expedition [Reverse Holo] #150",
+      "console_name": "Pokemon Celestial Storm",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:150"
+      }
+    },
+    {
+      "query": "Pokemon Rising Rivals Underground Expedition 97 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Rising%20Rivals%20Underground%20Expedition%2097%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8453321",
+      "product_name": "Underground Expedition [1st Edition] #78",
+      "console_name": "Pokemon Japanese Bonds to the End of Time",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:78"
+      }
+    },
+    {
+      "query": "Pokemon Rising Rivals Underground Expedition 97 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Rising%20Rivals%20Underground%20Expedition%2097%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "842785",
+      "product_name": "Underground Expedition #140",
+      "console_name": "Pokemon Skyridge",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:140"
+      }
+    },
+    {
+      "query": "Pokemon Rising Rivals Underground Expedition 97 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Rising%20Rivals%20Underground%20Expedition%2097%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5962583",
+      "product_name": "Underground Expedition #80",
+      "console_name": "Pokemon Japanese Split Earth",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:80"
+      }
+    },
+    {
+      "query": "Pokemon Rising Rivals Underground Expedition 97 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Rising%20Rivals%20Underground%20Expedition%2097%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "962063",
+      "product_name": "Underground Expedition #150",
+      "console_name": "Pokemon Celestial Storm",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:150"
+      }
+    },
+    {
+      "query": "Pokemon Rising Rivals Underground Expedition 97 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Rising%20Rivals%20Underground%20Expedition%2097%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "962081",
+      "product_name": "Underground Expedition #168",
+      "console_name": "Pokemon Celestial Storm",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:168"
+      }
+    },
+    {
+      "query": "Pokemon Rising Rivals Underground Expedition 97 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Rising%20Rivals%20Underground%20Expedition%2097%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "842474",
+      "product_name": "Charmander #97",
+      "console_name": "Pokemon Expedition",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Charmander"
+      }
+    },
+    {
+      "query": "Pokemon Rising Rivals Underground Expedition 97 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Rising%20Rivals%20Underground%20Expedition%2097%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3438286",
+      "product_name": "Venusaur #97",
+      "console_name": "Pokemon Japanese Expedition Expansion Pack",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Venusaur"
+      }
+    },
+    {
+      "query": "Pokemon Rising Rivals Underground Expedition 97 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Rising%20Rivals%20Underground%20Expedition%2097%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3473237",
+      "product_name": "Underground Expedition #61",
+      "console_name": "Pokemon Japanese Champion Road",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:61"
+      }
+    },
+    {
+      "query": "Pokemon Rising Rivals Underground Expedition 97 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Rising%20Rivals%20Underground%20Expedition%2097%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3473249",
+      "product_name": "Underground Expedition #73",
+      "console_name": "Pokemon Japanese Champion Road",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:73"
+      }
+    },
+    {
+      "query": "Pokemon Rising Rivals Underground Expedition 97 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Rising%20Rivals%20Underground%20Expedition%2097%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3459709",
+      "product_name": "Underground Expedition #78",
+      "console_name": "Pokemon Japanese Bonds to the End of Time",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:78"
+      }
+    },
+    {
+      "query": "Pokemon Rising Rivals Underground Expedition 97 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Rising%20Rivals%20Underground%20Expedition%2097%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "925453",
+      "product_name": "Aron #57",
+      "console_name": "Pokemon Rising Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:57"
+      }
+    },
+    {
+      "query": "Pokemon Rising Rivals Underground Expedition 97 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Rising%20Rivals%20Underground%20Expedition%2097%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "925419",
+      "product_name": "Golem #23",
+      "console_name": "Pokemon Rising Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:23"
+      }
+    },
+    {
+      "query": "Pokemon Rising Rivals Underground Expedition 97 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Rising%20Rivals%20Underground%20Expedition%2097%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "925455",
+      "product_name": "Eevee #59",
+      "console_name": "Pokemon Rising Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:59"
+      }
+    },
+    {
+      "query": "Pokemon Rising Rivals Underground Expedition 97 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Rising%20Rivals%20Underground%20Expedition%2097%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "925401",
+      "product_name": "Flygon #5",
+      "console_name": "Pokemon Rising Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:5"
+      }
+    },
+    {
+      "query": "Pokemon Rising Rivals Underground Expedition 97 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Rising%20Rivals%20Underground%20Expedition%2097%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "925493",
+      "product_name": "Underground Expedition #97",
+      "console_name": "Pokemon Rising Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon Rising Rivals Underground Expedition 97 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Rising%20Rivals%20Underground%20Expedition%2097%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "925612",
+      "product_name": "Underground Expedition [Reverse Holo] #97",
+      "console_name": "Pokemon Rising Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Reverse Holo"
+      }
+    },
+    {
+      "query": "Pokemon Rising Rivals Underground Expedition 97 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Rising%20Rivals%20Underground%20Expedition%2097%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6777979",
+      "product_name": "Underground Expedition [Crosshatch Holo] #97",
+      "console_name": "Pokemon Rising Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Crosshatch Holo"
+      }
+    },
+    {
+      "query": "Pokemon Rising Rivals Underground Expedition 97 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Rising%20Rivals%20Underground%20Expedition%2097%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "2252739",
+      "product_name": "Underground Expedition [Reverse Holo] #140",
+      "console_name": "Pokemon Skyridge",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:140"
+      }
+    },
+    {
+      "query": "Pokemon Rising Rivals Underground Expedition 97 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Rising%20Rivals%20Underground%20Expedition%2097%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3438670",
+      "product_name": "Underground Expedition [1st Edition] #80",
+      "console_name": "Pokemon Japanese Split Earth",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:80"
+      }
+    },
+    {
+      "query": "Pokemon Rising Rivals Underground Expedition 97 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Rising%20Rivals%20Underground%20Expedition%2097%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "962231",
+      "product_name": "Underground Expedition [Reverse Holo] #150",
+      "console_name": "Pokemon Celestial Storm",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:150"
+      }
+    },
+    {
+      "query": "Pokemon Rising Rivals Underground Expedition 97 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Rising%20Rivals%20Underground%20Expedition%2097%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8453321",
+      "product_name": "Underground Expedition [1st Edition] #78",
+      "console_name": "Pokemon Japanese Bonds to the End of Time",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:78"
+      }
+    },
+    {
+      "query": "Pokemon Rising Rivals Underground Expedition 97 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Rising%20Rivals%20Underground%20Expedition%2097%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "842785",
+      "product_name": "Underground Expedition #140",
+      "console_name": "Pokemon Skyridge",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:140"
+      }
+    },
+    {
+      "query": "Pokemon Rising Rivals Underground Expedition 97 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Rising%20Rivals%20Underground%20Expedition%2097%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5962583",
+      "product_name": "Underground Expedition #80",
+      "console_name": "Pokemon Japanese Split Earth",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:80"
+      }
+    },
+    {
+      "query": "Pokemon Rising Rivals Underground Expedition 97 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Rising%20Rivals%20Underground%20Expedition%2097%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "962063",
+      "product_name": "Underground Expedition #150",
+      "console_name": "Pokemon Celestial Storm",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:150"
+      }
+    },
+    {
+      "query": "Pokemon Rising Rivals Underground Expedition 97 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Rising%20Rivals%20Underground%20Expedition%2097%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "962081",
+      "product_name": "Underground Expedition #168",
+      "console_name": "Pokemon Celestial Storm",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:168"
+      }
+    },
+    {
+      "query": "Pokemon Rising Rivals Underground Expedition 97 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Rising%20Rivals%20Underground%20Expedition%2097%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "842474",
+      "product_name": "Charmander #97",
+      "console_name": "Pokemon Expedition",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Charmander"
+      }
+    },
+    {
+      "query": "Pokemon Rising Rivals Underground Expedition 97 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Rising%20Rivals%20Underground%20Expedition%2097%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3438286",
+      "product_name": "Venusaur #97",
+      "console_name": "Pokemon Japanese Expedition Expansion Pack",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Venusaur"
+      }
+    },
+    {
+      "query": "Pokemon Rising Rivals Underground Expedition 97 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Rising%20Rivals%20Underground%20Expedition%2097%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3473237",
+      "product_name": "Underground Expedition #61",
+      "console_name": "Pokemon Japanese Champion Road",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:61"
+      }
+    },
+    {
+      "query": "Pokemon Rising Rivals Underground Expedition 97 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Rising%20Rivals%20Underground%20Expedition%2097%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3473249",
+      "product_name": "Underground Expedition #73",
+      "console_name": "Pokemon Japanese Champion Road",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:73"
+      }
+    },
+    {
+      "query": "Pokemon Rising Rivals Underground Expedition 97 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Rising%20Rivals%20Underground%20Expedition%2097%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3459709",
+      "product_name": "Underground Expedition #78",
+      "console_name": "Pokemon Japanese Bonds to the End of Time",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:78"
+      }
+    },
+    {
+      "query": "Pokemon Rising Rivals Underground Expedition 97 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Rising%20Rivals%20Underground%20Expedition%2097%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "925453",
+      "product_name": "Aron #57",
+      "console_name": "Pokemon Rising Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:57"
+      }
+    },
+    {
+      "query": "Pokemon Rising Rivals Underground Expedition 97 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Rising%20Rivals%20Underground%20Expedition%2097%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "925419",
+      "product_name": "Golem #23",
+      "console_name": "Pokemon Rising Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:23"
+      }
+    },
+    {
+      "query": "Pokemon Rising Rivals Underground Expedition 97 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Rising%20Rivals%20Underground%20Expedition%2097%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "925455",
+      "product_name": "Eevee #59",
+      "console_name": "Pokemon Rising Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:59"
+      }
+    },
+    {
+      "query": "Pokemon Rising Rivals Underground Expedition 97 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Rising%20Rivals%20Underground%20Expedition%2097%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "925401",
+      "product_name": "Flygon #5",
+      "console_name": "Pokemon Rising Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:5"
+      }
+    }
+  ],
+  "source_lane": "pricecharting_api"
+}

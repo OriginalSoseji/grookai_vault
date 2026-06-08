@@ -1,0 +1,36 @@
+{
+  "status": "no_validated_match",
+  "fact": {
+    "gap_type": "finish_human_checklist_evidence_needed",
+    "fact_type": "printing_finish",
+    "set_key": "ecard3",
+    "set_name": "Skyridge",
+    "card_number": "H04",
+    "card_name": "Beedrill",
+    "finish_key": "holo",
+    "status": "candidate_unconfirmed",
+    "sources": [
+      "tcgdex"
+    ],
+    "source_authorities": [
+      "api.tcgdex.net"
+    ],
+    "source_kinds": [
+      "structured_api"
+    ],
+    "evidence_urls": [],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "attempts": [
+    {
+      "query": "Pokemon Skyridge Beedrill H04 holo",
+      "url": "https://www.pricecharting.com/search-products?q=Pokemon%20Skyridge%20Beedrill%20H04%20holo&type=prices",
+      "error": "Fetch failed 403 Forbidden: https://www.pricecharting.com/search-products?q=Pokemon%20Skyridge%20Beedrill%20H04%20holo&type=prices"
+    },
+    {
+      "query": "Pokemon Skyridge Beedrill H04 holofoil",
+      "url": "https://www.pricecharting.com/search-products?q=Pokemon%20Skyridge%20Beedrill%20H04%20holofoil&type=prices",
+      "error": "Fetch failed 403 Forbidden: https://www.pricecharting.com/search-products?q=Pokemon%20Skyridge%20Beedrill%20H04%20holofoil&type=prices"
+    }
+  ]
+}

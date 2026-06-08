@@ -1,0 +1,50 @@
+{
+  "status": "no_validated_match",
+  "fact": {
+    "gap_type": "finish_second_source_needed",
+    "fact_type": "printing_finish",
+    "set_key": "pl3",
+    "set_name": "Supreme Victors",
+    "card_number": "70",
+    "card_name": "Milotic",
+    "finish_key": "stamped",
+    "status": "human_source_verified",
+    "sources": [
+      "thepricedex_price_list"
+    ],
+    "source_authorities": [
+      "thepricedex.com"
+    ],
+    "source_kinds": [
+      "marketplace_checklist"
+    ],
+    "evidence_urls": [],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "attempts": [
+    {
+      "query": "Pokemon Supreme Victors Milotic 70 stamped",
+      "url": "https://www.pricecharting.com/search-products?q=Pokemon%20Supreme%20Victors%20Milotic%2070%20stamped&type=prices",
+      "parsed": {
+        "title": "Pokemon Supreme Victors Milotic 70 Stamped Prices | Pokemon Supreme Victors Milotic 70 Stamped List",
+        "source_url": "https://www.pricecharting.com/search-products?q=pokemon+supreme+victors+milotic+70+stamped&type=prices"
+      },
+      "validation": {
+        "ok": false,
+        "reason": "title_pattern_not_supported"
+      }
+    },
+    {
+      "query": "Pokemon Supreme Victors Milotic 70 stamp",
+      "url": "https://www.pricecharting.com/search-products?q=Pokemon%20Supreme%20Victors%20Milotic%2070%20stamp&type=prices",
+      "parsed": {
+        "title": "Pokemon Supreme Victors Milotic 70 Stamp Prices | Pokemon Supreme Victors Milotic 70 Stamp List",
+        "source_url": "https://www.pricecharting.com/search-products?q=pokemon+supreme+victors+milotic+70+stamp&type=prices"
+      },
+      "validation": {
+        "ok": false,
+        "reason": "title_pattern_not_supported"
+      }
+    }
+  ]
+}

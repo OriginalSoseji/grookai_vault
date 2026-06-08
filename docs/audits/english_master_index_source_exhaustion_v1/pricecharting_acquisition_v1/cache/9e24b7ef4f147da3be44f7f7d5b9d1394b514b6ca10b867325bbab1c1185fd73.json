@@ -1,0 +1,36 @@
+{
+  "status": "no_validated_match",
+  "fact": {
+    "gap_type": "finish_second_source_needed",
+    "fact_type": "printing_finish",
+    "set_key": "sv7",
+    "set_name": "Stellar Crown",
+    "card_number": "76",
+    "card_name": "Rhyperior",
+    "finish_key": "cosmos",
+    "status": "human_source_verified",
+    "sources": [
+      "thepricedex_price_list"
+    ],
+    "source_authorities": [
+      "thepricedex.com"
+    ],
+    "source_kinds": [
+      "marketplace_checklist"
+    ],
+    "evidence_urls": [],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "attempts": [
+    {
+      "query": "Pokemon Stellar Crown Rhyperior 76 cosmos holo",
+      "url": "https://www.pricecharting.com/search-products?q=Pokemon%20Stellar%20Crown%20Rhyperior%2076%20cosmos%20holo&type=prices",
+      "error": "Fetch failed 403 Forbidden: https://www.pricecharting.com/search-products?q=Pokemon%20Stellar%20Crown%20Rhyperior%2076%20cosmos%20holo&type=prices"
+    },
+    {
+      "query": "Pokemon Stellar Crown Rhyperior 76 cosmos",
+      "url": "https://www.pricecharting.com/search-products?q=Pokemon%20Stellar%20Crown%20Rhyperior%2076%20cosmos&type=prices",
+      "error": "Fetch failed 403 Forbidden: https://www.pricecharting.com/search-products?q=Pokemon%20Stellar%20Crown%20Rhyperior%2076%20cosmos&type=prices"
+    }
+  ]
+}

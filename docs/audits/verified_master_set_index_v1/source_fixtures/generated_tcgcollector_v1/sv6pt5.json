@@ -1,0 +1,31 @@
+{
+  "fixture_version": "VERIFIED_MASTER_SET_INDEX_V1_HUMAN_SOURCE_FIXTURE_GENERATED",
+  "source_key": "tcgcollector_variants_sv6pt5",
+  "source_kind": "collector_reference",
+  "source_url": "https://www.tcgcollector.com/sets/11631/shrouded-fable?setCardCountMode=anyCardVariant",
+  "source_status": "available_generated",
+  "set_key": "sv6pt5",
+  "set_name": "Shrouded Fable",
+  "retrieved_at": "2026-05-26T04:41:18.789Z",
+  "raw_snapshot_ref": "generated_fixture:tcgcollector:sv6pt5:2026-05-26T04:41:18.789Z",
+  "generation_note": "Generated from TCGCollector explicit card variant type IDs. No finish is inferred from set era, rarity, or card count.",
+  "records": [
+    {
+      "source_key": "tcgcollector_card_variants",
+      "source_kind": "collector_reference",
+      "source_url": "https://www.tcgcollector.com/cards/45688/fezandipiti-ex-shrouded-fable-038-064",
+      "set_key": "sv6pt5",
+      "set_name": "Shrouded Fable",
+      "card_number": "38",
+      "card_name": "Fezandipiti ex",
+      "finish_key": "stamped",
+      "rarity": null,
+      "evidence_type": "finish_presence",
+      "evidence_label": "TCGCollector card variant Play! Pokémon Prize Pack (Right Stamp)",
+      "language": "en",
+      "retrieved_at": "2026-05-26T04:41:18.789Z",
+      "raw_snapshot_ref": "tcgcollector:45688:1269",
+      "notes": "Exact card-level finish evidence from TCGCollector card variant type map. Only explicit variant labels are emitted."
+    }
+  ]
+}

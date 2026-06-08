@@ -1,0 +1,48 @@
+{
+  "fixture_version": "VERIFIED_MASTER_SET_INDEX_V1_HUMAN_SOURCE_FIXTURE_GENERATED",
+  "source_key": "pokellector_identity_pl2",
+  "source_kind": "collector_reference",
+  "source_url": "https://www.pokellector.com/Platinum-Rising-Rivals-Expansion/",
+  "source_status": "available_generated",
+  "set_key": "pl2",
+  "set_name": "Rising Rivals",
+  "retrieved_at": "2026-05-30T02:17:27.567Z",
+  "raw_snapshot_ref": "generated_fixture:pokellector_identity:pl2:2026-05-30T02:17:27.567Z",
+  "generation_note": "Generated from Pokellector set checklist rows. Card identity only; no finish evidence is emitted.",
+  "records": [
+    {
+      "source_key": "pokellector_set_checklist",
+      "source_kind": "collector_reference",
+      "source_url": "https://www.pokellector.com/Platinum-Rising-Rivals-Expansion/",
+      "set_key": "pl2",
+      "set_name": "Rising Rivals",
+      "card_number": "106",
+      "card_name": "Gallade 4 LV. X",
+      "finish_key": null,
+      "rarity": null,
+      "evidence_type": "card_identity",
+      "evidence_label": "Pokellector checklist row #106 - Gallade 4 LV. X",
+      "language": "en",
+      "retrieved_at": "2026-05-30T02:17:27.567Z",
+      "raw_snapshot_ref": "pokellector:pl2:106",
+      "notes": "Collector checklist card identity evidence only. This fixture does not assert finish or printing truth."
+    },
+    {
+      "source_key": "pokellector_set_checklist",
+      "source_kind": "collector_reference",
+      "source_url": "https://www.pokellector.com/Platinum-Rising-Rivals-Expansion/",
+      "set_key": "pl2",
+      "set_name": "Rising Rivals",
+      "card_number": "108",
+      "card_name": "Infernape 4 LV. X",
+      "finish_key": null,
+      "rarity": null,
+      "evidence_type": "card_identity",
+      "evidence_label": "Pokellector checklist row #108 - Infernape 4 LV. X",
+      "language": "en",
+      "retrieved_at": "2026-05-30T02:17:27.567Z",
+      "raw_snapshot_ref": "pokellector:pl2:108",
+      "notes": "Collector checklist card identity evidence only. This fixture does not assert finish or printing truth."
+    }
+  ]
+}

@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-25T17:37:24.740Z",
+  "generated_at": "2026-06-08T19:44:32.664Z",
   "contract": "ENGLISH_MASTER_INDEX_COMPLETION_V1",
   "audit_only": true,
   "db_writes_performed": false,
@@ -10,40 +10,35 @@
   "version": "english_master_index_completion_v1",
   "purpose": "Completion-first Master Index report. This is not a Grookai reconciliation report.",
   "summary": {
-    "sets_in_registry": 203,
-    "complete_master_index_sets": 33,
-    "incomplete_sets": 170,
-    "working_card_identity_facts": 21586,
-    "master_admissible_card_identity_facts": 21051,
+    "sets_in_registry": 201,
+    "complete_master_index_sets": 199,
+    "incomplete_sets": 2,
+    "working_card_identity_facts": 21520,
+    "master_admissible_card_identity_facts": 21520,
     "printing_derived_card_identity_facts": 0,
-    "working_printing_facts": 37689,
-    "master_admissible_printing_facts": 34458,
-    "finish_absence_facts": 2,
+    "working_printing_facts": 38841,
+    "master_admissible_printing_facts": 38841,
+    "finish_absence_facts": 22,
+    "finish_blocker_boundary_facts": 0,
+    "adjudicated_excluded_printing_facts": 5,
     "by_completion_status": {
-      "card_identity_complete_finish_incomplete": 120,
-      "complete_master_index_set": 33,
-      "finish_evidence_missing": 16,
-      "source_agreed_card_identity": 29,
-      "source_limited": 1,
-      "source_unavailable": 4
+      "complete_master_index_set": 199,
+      "non_standard_single_source_reference": 2
     },
     "by_card_fact_status": {
-      "candidate_unconfirmed": 424,
-      "master_verified": 21042,
-      "human_source_verified": 111,
+      "master_verified": 21511,
       "api_agreed": 9
     },
     "by_printing_fact_status": {
-      "candidate_unconfirmed": 754,
-      "master_verified": 34458,
-      "human_source_verified": 2477
+      "master_verified": 38841
     },
-    "source_gap_queue_items": 214,
+    "source_gap_queue_items": 0,
     "grookai_reconciliation_performed": false
   },
   "source_standard": {
     "card_identity": "source_count >= 2 and independent agreement on set + card_number + card_name",
-    "printing_finish": "source_count >= 2 plus at least one human/checklist-style source supporting exact finish fact"
+    "printing_finish": "source_count >= 2 plus at least one human/checklist-style source supporting exact finish fact",
+    "finish_blocker_boundary": "Rows mapped by english_master_index_finish_blocker_closure_v1 require manual finish-label or card-number adjudication and are not broad source-acquisition gaps."
   },
   "set_completion_matrix_ref": "english_master_index_set_completion_matrix_v1.json",
   "source_gap_queue_ref": "english_master_index_source_gap_queue_v1.json",

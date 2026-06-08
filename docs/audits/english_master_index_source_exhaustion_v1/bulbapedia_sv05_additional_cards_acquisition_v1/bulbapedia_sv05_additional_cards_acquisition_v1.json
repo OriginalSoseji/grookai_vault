@@ -1,0 +1,89 @@
+{
+  "version": "english_master_index_bulbapedia_sv05_additional_cards_acquisition_v1",
+  "generated_at": "2026-06-06T18:25:00.000Z",
+  "audit_only": true,
+  "db_writes_performed": false,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "dry_run": false,
+  "fixture_file": "docs/audits/verified_master_set_index_v1/source_fixtures/generated_bulbapedia_sv05_additional_cards_v1/sv05.json",
+  "source_url": "https://bulbapedia.bulbagarden.net/wiki/Temporal_Forces_(TCG)",
+  "rule": "Only exact Temporal Forces Additional Cards rows naming the target card number, card name, and finish/promotion label are accepted. Generic Promotion markers are not finish truth.",
+  "summary": {
+    "target_facts": 3,
+    "validated": 3,
+    "blocked": 0,
+    "by_source_key": {
+      "bulbapedia_sv05_additional_cards": 3
+    }
+  },
+  "results": [
+    {
+      "status": "validated",
+      "source_key": "bulbapedia_sv05_additional_cards",
+      "source_kind": "human_readable_checklist",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Temporal_Forces_(TCG)",
+      "fact": {
+        "set_key": "sv05",
+        "set_name": "Temporal Forces",
+        "card_number": "77",
+        "card_name": "Scream Tail",
+        "finish_key": "stamped"
+      },
+      "validation": {
+        "ok": true,
+        "checks": {
+          "has_identity": true,
+          "has_card_number": true,
+          "has_exact_stamp_label": true,
+          "not_general_promotion_marker": true
+        }
+      }
+    },
+    {
+      "status": "validated",
+      "source_key": "bulbapedia_sv05_additional_cards",
+      "source_kind": "human_readable_checklist",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Temporal_Forces_(TCG)",
+      "fact": {
+        "set_key": "sv05",
+        "set_name": "Temporal Forces",
+        "card_number": "96",
+        "card_name": "Great Tusk",
+        "finish_key": "cosmos"
+      },
+      "validation": {
+        "ok": true,
+        "checks": {
+          "has_identity": true,
+          "has_card_number": true,
+          "has_exact_cosmos_label": true,
+          "not_general_promotion_marker": true
+        }
+      }
+    },
+    {
+      "status": "validated",
+      "source_key": "bulbapedia_sv05_additional_cards",
+      "source_kind": "human_readable_checklist",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Temporal_Forces_(TCG)",
+      "fact": {
+        "set_key": "sv05",
+        "set_name": "Temporal Forces",
+        "card_number": "118",
+        "card_name": "Iron Treads",
+        "finish_key": "cosmos"
+      },
+      "validation": {
+        "ok": true,
+        "checks": {
+          "has_identity": true,
+          "has_card_number": true,
+          "has_exact_cosmos_label": true,
+          "not_general_promotion_marker": true
+        }
+      }
+    }
+  ]
+}

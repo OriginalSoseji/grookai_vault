@@ -1,0 +1,27 @@
+{
+  "products": [
+    {
+      "box-only-price": 5900,
+      "cib-price": 3147,
+      "condition-17-price": 12000,
+      "console-name": "Pokemon Legends Awakened",
+      "gamestop-price": 0,
+      "gamestop-trade-price": 0,
+      "genre": "Pokemon Card",
+      "graded-price": 5399,
+      "id": "7671877",
+      "loose-price": 1075,
+      "new-price": 3400,
+      "product-name": "Meowth [Platinum Stamped] #106",
+      "retail-cib-buy": 1050,
+      "retail-cib-sell": 3499,
+      "retail-loose-buy": 300,
+      "retail-loose-sell": 1199,
+      "retail-new-buy": 1480,
+      "retail-new-sell": 3699,
+      "sales-volume": "44",
+      "tcg-id": "191913"
+    }
+  ],
+  "status": "success"
+}

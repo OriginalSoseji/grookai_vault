@@ -1,0 +1,31 @@
+{
+  "fixture_version": "VERIFIED_MASTER_SET_INDEX_V1_HUMAN_SOURCE_FIXTURE_GENERATED",
+  "source_key": "cardtrader_finish_ex7",
+  "source_kind": "marketplace_checklist",
+  "source_url": "https://www.cardtrader.com/en/manasearch/5/blueprints.json",
+  "source_status": "available_generated",
+  "set_key": "ex7",
+  "set_name": "Team Rocket Returns",
+  "retrieved_at": "2026-06-08T02:53:52.187Z",
+  "raw_snapshot_ref": "generated_fixture:cardtrader:ex7:2026-06-08T02:53:52.187Z",
+  "generation_note": "Generated from CardTrader Pokemon blueprint index. Exact card-number/name/finish matches only.",
+  "records": [
+    {
+      "source_key": "cardtrader_blueprint_index",
+      "source_kind": "marketplace_checklist",
+      "source_url": "https://www.cardtrader.com/en/cards/117643-dark-dragonite-non-holo-15-109-ex-team-rocket-returns",
+      "set_key": "ex7",
+      "set_name": "Team Rocket Returns",
+      "card_number": "15",
+      "card_name": "Dark Dragonite",
+      "finish_key": "holo",
+      "rarity": null,
+      "evidence_type": "finish_presence",
+      "evidence_label": "CardTrader blueprint row Dark Dragonite - Non-Holo | 15/109",
+      "language": "en",
+      "retrieved_at": "2026-06-08T02:53:52.187Z",
+      "raw_snapshot_ref": "cardtrader_blueprint:117643-dark-dragonite-non-holo-15-109-ex-team-rocket-returns",
+      "notes": "Generated only from an exact CardTrader Pokemon blueprint match on set, card number, card name, and finish label."
+    }
+  ]
+}

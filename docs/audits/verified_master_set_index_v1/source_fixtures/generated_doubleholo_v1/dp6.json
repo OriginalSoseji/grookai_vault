@@ -1,0 +1,48 @@
+{
+  "fixture_version": "VERIFIED_MASTER_SET_INDEX_V1_HUMAN_SOURCE_FIXTURE_GENERATED",
+  "source_key": "doubleholo_finish_dp6",
+  "source_kind": "marketplace_checklist",
+  "source_url": "https://doubleholo.com/sets/pokemon-legends-awakened",
+  "source_status": "available_generated",
+  "set_key": "dp6",
+  "set_name": "Legends Awakened",
+  "retrieved_at": "2026-05-27T16:29:37.798Z",
+  "raw_snapshot_ref": "generated_fixture:doubleholo:dp6:2026-05-27T16:29:37.798Z",
+  "generation_note": "Generated from Double Holo set checklist explicit bracketed finish labels only.",
+  "records": [
+    {
+      "source_key": "doubleholo_set_checklist",
+      "source_kind": "marketplace_checklist",
+      "source_url": "https://doubleholo.com/sets/pokemon-legends-awakened",
+      "set_key": "dp6",
+      "set_name": "Legends Awakened",
+      "card_number": "4",
+      "card_name": "Giratina",
+      "finish_key": "stamped",
+      "rarity": null,
+      "evidence_type": "finish_presence",
+      "evidence_label": "Double Holo checklist row Giratina [Stamped] #4",
+      "language": "en",
+      "retrieved_at": "2026-05-27T16:29:37.798Z",
+      "raw_snapshot_ref": "doubleholo:dp6:4:stamped",
+      "notes": "Generated only from explicit bracketed Double Holo finish labels."
+    },
+    {
+      "source_key": "doubleholo_set_checklist",
+      "source_kind": "marketplace_checklist",
+      "source_url": "https://doubleholo.com/sets/pokemon-legends-awakened",
+      "set_key": "dp6",
+      "set_name": "Legends Awakened",
+      "card_number": "19",
+      "card_name": "Azelf",
+      "finish_key": "holo",
+      "rarity": null,
+      "evidence_type": "finish_presence",
+      "evidence_label": "Double Holo checklist row Azelf [League Holo] #19",
+      "language": "en",
+      "retrieved_at": "2026-05-27T16:29:37.798Z",
+      "raw_snapshot_ref": "doubleholo:dp6:19:holo",
+      "notes": "Generated only from explicit bracketed Double Holo finish labels."
+    }
+  ]
+}

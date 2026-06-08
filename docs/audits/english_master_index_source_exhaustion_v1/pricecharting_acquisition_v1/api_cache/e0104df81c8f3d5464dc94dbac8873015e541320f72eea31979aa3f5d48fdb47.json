@@ -1,0 +1,24 @@
+{
+  "products": [
+    {
+      "bgs-10-price": 3900,
+      "box-only-price": 1400,
+      "condition-17-price": 1800,
+      "condition-18-price": 1800,
+      "console-name": "Pokemon Unbroken Bonds",
+      "gamestop-price": 0,
+      "gamestop-trade-price": 0,
+      "genre": "Pokemon Card",
+      "graded-price": 1299,
+      "id": "963445",
+      "loose-price": 79,
+      "manual-only-price": 3000,
+      "product-name": "Zeraora [Reverse Holo] #60",
+      "release-date": "2019-03-29",
+      "retail-loose-sell": 99,
+      "sales-volume": "40",
+      "tcg-id": "189161"
+    }
+  ],
+  "status": "success"
+}

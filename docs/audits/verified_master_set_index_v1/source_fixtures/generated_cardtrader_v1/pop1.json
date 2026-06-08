@@ -1,0 +1,31 @@
+{
+  "fixture_version": "VERIFIED_MASTER_SET_INDEX_V1_HUMAN_SOURCE_FIXTURE_GENERATED",
+  "source_key": "cardtrader_finish_pop1",
+  "source_kind": "marketplace_checklist",
+  "source_url": "https://www.cardtrader.com/en/manasearch/5/blueprints.json",
+  "source_status": "available_generated",
+  "set_key": "pop1",
+  "set_name": "POP Series 1",
+  "retrieved_at": "2026-06-08T02:53:52.187Z",
+  "raw_snapshot_ref": "generated_fixture:cardtrader:pop1:2026-06-08T02:53:52.187Z",
+  "generation_note": "Generated from CardTrader Pokemon blueprint index. Exact card-number/name/finish matches only.",
+  "records": [
+    {
+      "source_key": "cardtrader_blueprint_index",
+      "source_kind": "marketplace_checklist",
+      "source_url": "https://www.cardtrader.com/en/cards/124278-armaldo-ex-non-holo-promo-16-17-pop-series-1",
+      "set_key": "pop1",
+      "set_name": "POP Series 1",
+      "card_number": "16",
+      "card_name": "Armaldo ex",
+      "finish_key": "holo",
+      "rarity": null,
+      "evidence_type": "finish_presence",
+      "evidence_label": "CardTrader blueprint row Armaldo EX - Non-Holo Promo | 16/17",
+      "language": "en",
+      "retrieved_at": "2026-06-08T02:53:52.187Z",
+      "raw_snapshot_ref": "cardtrader_blueprint:124278-armaldo-ex-non-holo-promo-16-17-pop-series-1",
+      "notes": "Generated only from an exact CardTrader Pokemon blueprint match on set, card number, card name, and finish label."
+    }
+  ]
+}

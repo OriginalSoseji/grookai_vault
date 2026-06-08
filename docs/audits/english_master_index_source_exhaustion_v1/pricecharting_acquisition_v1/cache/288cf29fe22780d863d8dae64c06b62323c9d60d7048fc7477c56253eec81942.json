@@ -1,0 +1,549 @@
+{
+  "status": "api_no_validated_match",
+  "fact": {
+    "gap_type": "finish_second_source_needed",
+    "fact_type": "printing_finish",
+    "set_key": "pl4",
+    "set_name": "Arceus",
+    "card_number": "32",
+    "card_name": "Spiritomb",
+    "finish_key": "stamped",
+    "status": "human_source_verified",
+    "sources": [
+      "thepricedex_price_list"
+    ],
+    "source_authorities": [
+      "thepricedex.com"
+    ],
+    "source_kinds": [
+      "marketplace_checklist"
+    ],
+    "evidence_urls": [
+      "https://www.thepricedex.com/set/pl4/arceus/price-list"
+    ],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "attempts": [
+    {
+      "query": "Pokemon Arceus Spiritomb 32 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Arceus%20Spiritomb%2032%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8597932",
+      "product_name": "Spiritomb [League] #32",
+      "console_name": "Pokemon Arceus",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:League"
+      }
+    },
+    {
+      "query": "Pokemon Arceus Spiritomb 32 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Arceus%20Spiritomb%2032%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "925651",
+      "product_name": "Spiritomb #32",
+      "console_name": "Pokemon Arceus",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon Arceus Spiritomb 32 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Arceus%20Spiritomb%2032%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "925762",
+      "product_name": "Spiritomb [Reverse Holo] #32",
+      "console_name": "Pokemon Arceus",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Reverse Holo"
+      }
+    },
+    {
+      "query": "Pokemon Arceus Spiritomb 32 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Arceus%20Spiritomb%2032%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3459891",
+      "product_name": "Spiritomb #59",
+      "console_name": "Pokemon Japanese Advent of Arceus",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:59"
+      }
+    },
+    {
+      "query": "Pokemon Arceus Spiritomb 32 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Arceus%20Spiritomb%2032%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10864874",
+      "product_name": "Spiritomb [Stamped] #87",
+      "console_name": "Pokemon Mega Evolution",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:87"
+      }
+    },
+    {
+      "query": "Pokemon Arceus Spiritomb 32 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Arceus%20Spiritomb%2032%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3506634",
+      "product_name": "Spiritomb [1st Edition] #59",
+      "console_name": "Pokemon Japanese Advent of Arceus",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:59"
+      }
+    },
+    {
+      "query": "Pokemon Arceus Spiritomb 32 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Arceus%20Spiritomb%2032%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3459864",
+      "product_name": "Raichu #32",
+      "console_name": "Pokemon Japanese Advent of Arceus",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Raichu"
+      }
+    },
+    {
+      "query": "Pokemon Arceus Spiritomb 32 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Arceus%20Spiritomb%2032%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "2336238",
+      "product_name": "Dark Charmeleon [W Stamp] #32",
+      "console_name": "Pokemon Team Rocket",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Dark Charmeleon"
+      }
+    },
+    {
+      "query": "Pokemon Arceus Spiritomb 32 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Arceus%20Spiritomb%2032%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4441263",
+      "product_name": "Delibird [Snowflake Stamp] #32",
+      "console_name": "Pokemon Chilling Reign",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Delibird"
+      }
+    },
+    {
+      "query": "Pokemon Arceus Spiritomb 32 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Arceus%20Spiritomb%2032%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3506607",
+      "product_name": "Raichu [1st Edition] #32",
+      "console_name": "Pokemon Japanese Advent of Arceus",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Raichu"
+      }
+    },
+    {
+      "query": "Pokemon Arceus Spiritomb 32 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Arceus%20Spiritomb%2032%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9432837",
+      "product_name": "Cynthia's Spiritomb #129",
+      "console_name": "Pokemon Destined Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:129"
+      }
+    },
+    {
+      "query": "Pokemon Arceus Spiritomb 32 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Arceus%20Spiritomb%2032%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11816064",
+      "product_name": "Cynthia's Spiritomb #133",
+      "console_name": "Pokemon Ascended Heroes",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:133"
+      }
+    },
+    {
+      "query": "Pokemon Arceus Spiritomb 32 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Arceus%20Spiritomb%2032%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11816165",
+      "product_name": "Cynthia's Spiritomb #244",
+      "console_name": "Pokemon Ascended Heroes",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:244"
+      }
+    },
+    {
+      "query": "Pokemon Arceus Spiritomb 32 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Arceus%20Spiritomb%2032%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "1287131",
+      "product_name": "Spiritomb C #84",
+      "console_name": "Pokemon Supreme Victors",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:84"
+      }
+    },
+    {
+      "query": "Pokemon Arceus Spiritomb 32 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Arceus%20Spiritomb%2032%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8867732",
+      "product_name": "Cynthia's Spiritomb #50",
+      "console_name": "Pokemon Japanese Heat Wave Arena",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:50"
+      }
+    },
+    {
+      "query": "Pokemon Arceus Spiritomb 32 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Arceus%20Spiritomb%2032%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11302474",
+      "product_name": "Cynthia's Spiritomb #108",
+      "console_name": "Pokemon Japanese Mega Dream ex",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:108"
+      }
+    },
+    {
+      "query": "Pokemon Arceus Spiritomb 32 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Arceus%20Spiritomb%2032%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11302574",
+      "product_name": "Cynthia's Spiritomb #208",
+      "console_name": "Pokemon Japanese Mega Dream ex",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:208"
+      }
+    },
+    {
+      "query": "Pokemon Arceus Spiritomb 32 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Arceus%20Spiritomb%2032%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9210284",
+      "product_name": "Spiritomb [Holo] #112",
+      "console_name": "Pokemon Unbroken Bonds",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:112"
+      }
+    },
+    {
+      "query": "Pokemon Arceus Spiritomb 32 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Arceus%20Spiritomb%2032%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5164346",
+      "product_name": "Spiritomb [Holo] #22",
+      "console_name": "Pokemon Japanese Lost Link",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:22"
+      }
+    },
+    {
+      "query": "Pokemon Arceus Spiritomb 32 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Arceus%20Spiritomb%2032%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10456421",
+      "product_name": "Spiritomb C #3",
+      "console_name": "Pokemon Japanese Garchomp SP Half Deck",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:3"
+      }
+    },
+    {
+      "query": "Pokemon Arceus Spiritomb 32 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Arceus%20Spiritomb%2032%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8597932",
+      "product_name": "Spiritomb [League] #32",
+      "console_name": "Pokemon Arceus",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:League"
+      }
+    },
+    {
+      "query": "Pokemon Arceus Spiritomb 32 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Arceus%20Spiritomb%2032%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "925651",
+      "product_name": "Spiritomb #32",
+      "console_name": "Pokemon Arceus",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon Arceus Spiritomb 32 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Arceus%20Spiritomb%2032%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "925762",
+      "product_name": "Spiritomb [Reverse Holo] #32",
+      "console_name": "Pokemon Arceus",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Reverse Holo"
+      }
+    },
+    {
+      "query": "Pokemon Arceus Spiritomb 32 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Arceus%20Spiritomb%2032%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3459891",
+      "product_name": "Spiritomb #59",
+      "console_name": "Pokemon Japanese Advent of Arceus",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:59"
+      }
+    },
+    {
+      "query": "Pokemon Arceus Spiritomb 32 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Arceus%20Spiritomb%2032%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10864874",
+      "product_name": "Spiritomb [Stamped] #87",
+      "console_name": "Pokemon Mega Evolution",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:87"
+      }
+    },
+    {
+      "query": "Pokemon Arceus Spiritomb 32 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Arceus%20Spiritomb%2032%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3506634",
+      "product_name": "Spiritomb [1st Edition] #59",
+      "console_name": "Pokemon Japanese Advent of Arceus",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:59"
+      }
+    },
+    {
+      "query": "Pokemon Arceus Spiritomb 32 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Arceus%20Spiritomb%2032%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3459864",
+      "product_name": "Raichu #32",
+      "console_name": "Pokemon Japanese Advent of Arceus",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Raichu"
+      }
+    },
+    {
+      "query": "Pokemon Arceus Spiritomb 32 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Arceus%20Spiritomb%2032%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "2336238",
+      "product_name": "Dark Charmeleon [W Stamp] #32",
+      "console_name": "Pokemon Team Rocket",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Dark Charmeleon"
+      }
+    },
+    {
+      "query": "Pokemon Arceus Spiritomb 32 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Arceus%20Spiritomb%2032%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4441263",
+      "product_name": "Delibird [Snowflake Stamp] #32",
+      "console_name": "Pokemon Chilling Reign",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Delibird"
+      }
+    },
+    {
+      "query": "Pokemon Arceus Spiritomb 32 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Arceus%20Spiritomb%2032%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3506607",
+      "product_name": "Raichu [1st Edition] #32",
+      "console_name": "Pokemon Japanese Advent of Arceus",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Raichu"
+      }
+    },
+    {
+      "query": "Pokemon Arceus Spiritomb 32 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Arceus%20Spiritomb%2032%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9432837",
+      "product_name": "Cynthia's Spiritomb #129",
+      "console_name": "Pokemon Destined Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:129"
+      }
+    },
+    {
+      "query": "Pokemon Arceus Spiritomb 32 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Arceus%20Spiritomb%2032%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11816064",
+      "product_name": "Cynthia's Spiritomb #133",
+      "console_name": "Pokemon Ascended Heroes",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:133"
+      }
+    },
+    {
+      "query": "Pokemon Arceus Spiritomb 32 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Arceus%20Spiritomb%2032%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11816165",
+      "product_name": "Cynthia's Spiritomb #244",
+      "console_name": "Pokemon Ascended Heroes",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:244"
+      }
+    },
+    {
+      "query": "Pokemon Arceus Spiritomb 32 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Arceus%20Spiritomb%2032%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "1287131",
+      "product_name": "Spiritomb C #84",
+      "console_name": "Pokemon Supreme Victors",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:84"
+      }
+    },
+    {
+      "query": "Pokemon Arceus Spiritomb 32 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Arceus%20Spiritomb%2032%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8867732",
+      "product_name": "Cynthia's Spiritomb #50",
+      "console_name": "Pokemon Japanese Heat Wave Arena",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:50"
+      }
+    },
+    {
+      "query": "Pokemon Arceus Spiritomb 32 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Arceus%20Spiritomb%2032%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11302474",
+      "product_name": "Cynthia's Spiritomb #108",
+      "console_name": "Pokemon Japanese Mega Dream ex",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:108"
+      }
+    },
+    {
+      "query": "Pokemon Arceus Spiritomb 32 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Arceus%20Spiritomb%2032%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11302574",
+      "product_name": "Cynthia's Spiritomb #208",
+      "console_name": "Pokemon Japanese Mega Dream ex",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:208"
+      }
+    },
+    {
+      "query": "Pokemon Arceus Spiritomb 32 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Arceus%20Spiritomb%2032%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9210284",
+      "product_name": "Spiritomb [Holo] #112",
+      "console_name": "Pokemon Unbroken Bonds",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:112"
+      }
+    },
+    {
+      "query": "Pokemon Arceus Spiritomb 32 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Arceus%20Spiritomb%2032%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5164346",
+      "product_name": "Spiritomb [Holo] #22",
+      "console_name": "Pokemon Japanese Lost Link",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:22"
+      }
+    },
+    {
+      "query": "Pokemon Arceus Spiritomb 32 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Arceus%20Spiritomb%2032%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10456421",
+      "product_name": "Spiritomb C #3",
+      "console_name": "Pokemon Japanese Garchomp SP Half Deck",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:3"
+      }
+    }
+  ],
+  "source_lane": "pricecharting_api"
+}

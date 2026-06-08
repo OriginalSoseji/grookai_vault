@@ -1,0 +1,43 @@
+{
+  "status": "no_validated_match",
+  "fact": {
+    "gap_type": "finish_second_source_needed",
+    "fact_type": "printing_finish",
+    "set_key": "swsh7",
+    "set_name": "Evolving Skies",
+    "card_number": "82",
+    "card_name": "Galarian Zapdos",
+    "finish_key": "stamped",
+    "status": "human_source_verified",
+    "sources": [
+      "thepricedex_price_list"
+    ],
+    "source_authorities": [
+      "thepricedex.com"
+    ],
+    "source_kinds": [
+      "marketplace_checklist"
+    ],
+    "evidence_urls": [],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "attempts": [
+    {
+      "query": "Pokemon Evolving Skies Galarian Zapdos 82 stamped",
+      "url": "https://www.pricecharting.com/search-products?q=Pokemon%20Evolving%20Skies%20Galarian%20Zapdos%2082%20stamped&type=prices",
+      "error": "Fetch failed 403 Forbidden: https://www.pricecharting.com/search-products?q=Pokemon%20Evolving%20Skies%20Galarian%20Zapdos%2082%20stamped&type=prices"
+    },
+    {
+      "query": "Pokemon Evolving Skies Galarian Zapdos 82 stamp",
+      "url": "https://www.pricecharting.com/search-products?q=Pokemon%20Evolving%20Skies%20Galarian%20Zapdos%2082%20stamp&type=prices",
+      "parsed": {
+        "title": "Pokemon Evolving Skies Galarian Zapdos 82 Stamp Prices | Pokemon Evolving Skies Galarian Zapdos 82 Stamp List",
+        "source_url": "https://www.pricecharting.com/search-products?q=pokemon+evolving+skies+galarian+zapdos+82+stamp&type=prices"
+      },
+      "validation": {
+        "ok": false,
+        "reason": "title_pattern_not_supported"
+      }
+    }
+  ]
+}

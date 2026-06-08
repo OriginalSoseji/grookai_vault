@@ -1,0 +1,31 @@
+{
+  "fixture_version": "VERIFIED_MASTER_SET_INDEX_V1_HUMAN_SOURCE_FIXTURE_GENERATED",
+  "source_key": "bulbapedia_card_page_ex3",
+  "source_kind": "human_readable_checklist",
+  "source_url": "https://bulbapedia.bulbagarden.net/wiki/Category:Pokémon_cards",
+  "source_status": "available_generated",
+  "set_key": "ex3",
+  "set_name": "Dragon",
+  "retrieved_at": "2026-05-28T14:55:00.996Z",
+  "raw_snapshot_ref": "generated_fixture:bulbapedia_card_page:ex3:2026-05-28T14:55:00.996Z",
+  "generation_note": "Generated from Bulbapedia individual card page expansion metadata and release-information text. Exact set/number match is required; finish truth is emitted only for explicit finish/stamp/logo wording.",
+  "records": [
+    {
+      "source_key": "bulbapedia_card_page_release_info",
+      "source_kind": "human_readable_checklist",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Bagon_(EX_Dragon_50)",
+      "set_key": "ex3",
+      "set_name": "Dragon",
+      "card_number": "50",
+      "card_name": "Bagon",
+      "finish_key": "stamped",
+      "rarity": null,
+      "evidence_type": "finish_presence",
+      "evidence_label": "Bulbapedia card page release information stamp/logo variant",
+      "language": "en",
+      "retrieved_at": "2026-05-28T14:55:00.996Z",
+      "raw_snapshot_ref": "bulbapedia_card_page:Bagon_(EX_Dragon_50):ex3:50:stamped",
+      "notes": "Release information explicitly documents an English-scoped stamp/logo variant. Evidence: A GenCon stamped version was released at GenCon 2004 in August, and another version with no special stamp was released through various promotions during 2004."
+    }
+  ]
+}

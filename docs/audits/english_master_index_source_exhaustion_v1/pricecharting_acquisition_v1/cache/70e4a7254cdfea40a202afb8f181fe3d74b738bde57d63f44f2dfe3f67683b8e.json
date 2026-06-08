@@ -1,0 +1,549 @@
+{
+  "status": "api_no_validated_match",
+  "fact": {
+    "gap_type": "finish_second_source_needed",
+    "fact_type": "printing_finish",
+    "set_key": "bw8",
+    "set_name": "Plasma Storm",
+    "card_number": "120",
+    "card_name": "Escape Rope",
+    "finish_key": "stamped",
+    "status": "human_source_verified",
+    "sources": [
+      "thepricedex_price_list"
+    ],
+    "source_authorities": [
+      "thepricedex.com"
+    ],
+    "source_kinds": [
+      "marketplace_checklist"
+    ],
+    "evidence_urls": [
+      "https://www.thepricedex.com/set/bw8/plasma-storm/price-list"
+    ],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "attempts": [
+    {
+      "query": "Pokemon Plasma Storm Escape Rope 120 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Plasma%20Storm%20Escape%20Rope%20120%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "956917",
+      "product_name": "Escape Rope #120",
+      "console_name": "Pokemon Plasma Storm",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon Plasma Storm Escape Rope 120 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Plasma%20Storm%20Escape%20Rope%20120%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6249705",
+      "product_name": "Escape Rope [League Promo] #120",
+      "console_name": "Pokemon Plasma Storm",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:League Promo"
+      }
+    },
+    {
+      "query": "Pokemon Plasma Storm Escape Rope 120 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Plasma%20Storm%20Escape%20Rope%20120%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "957047",
+      "product_name": "Escape Rope [Reverse Holo] #120",
+      "console_name": "Pokemon Plasma Storm",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Reverse Holo"
+      }
+    },
+    {
+      "query": "Pokemon Plasma Storm Escape Rope 120 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Plasma%20Storm%20Escape%20Rope%20120%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8454346",
+      "product_name": "Escape Rope [1st Edition] #60",
+      "console_name": "Pokemon Japanese Tidal Storm",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:60"
+      }
+    },
+    {
+      "query": "Pokemon Plasma Storm Escape Rope 120 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Plasma%20Storm%20Escape%20Rope%20120%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3462152",
+      "product_name": "Escape Rope #60",
+      "console_name": "Pokemon Japanese Tidal Storm",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:60"
+      }
+    },
+    {
+      "query": "Pokemon Plasma Storm Escape Rope 120 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Plasma%20Storm%20Escape%20Rope%20120%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3507219",
+      "product_name": "Escape Rope [1st Edition] #54",
+      "console_name": "Pokemon Japanese Freeze Bolt",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:54"
+      }
+    },
+    {
+      "query": "Pokemon Plasma Storm Escape Rope 120 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Plasma%20Storm%20Escape%20Rope%20120%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "1725095",
+      "product_name": "Escape Rope [Reverse Holo] #125",
+      "console_name": "Pokemon Battle Styles",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:125"
+      }
+    },
+    {
+      "query": "Pokemon Plasma Storm Escape Rope 120 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Plasma%20Storm%20Escape%20Rope%20120%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "961055",
+      "product_name": "Escape Rope [Reverse Holo] #114",
+      "console_name": "Pokemon Burning Shadows",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:114"
+      }
+    },
+    {
+      "query": "Pokemon Plasma Storm Escape Rope 120 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Plasma%20Storm%20Escape%20Rope%20120%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "958735",
+      "product_name": "Escape Rope [Reverse Holo] #127",
+      "console_name": "Pokemon Primal Clash",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:127"
+      }
+    },
+    {
+      "query": "Pokemon Plasma Storm Escape Rope 120 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Plasma%20Storm%20Escape%20Rope%20120%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3468764",
+      "product_name": "Escape Rope #77",
+      "console_name": "Pokemon Japanese Tag Bolt",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:77"
+      }
+    },
+    {
+      "query": "Pokemon Plasma Storm Escape Rope 120 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Plasma%20Storm%20Escape%20Rope%20120%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3404764",
+      "product_name": "Escape Rope #130",
+      "console_name": "Pokemon Japanese VMAX Climax",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:130"
+      }
+    },
+    {
+      "query": "Pokemon Plasma Storm Escape Rope 120 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Plasma%20Storm%20Escape%20Rope%20120%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3461187",
+      "product_name": "Escape Rope #54",
+      "console_name": "Pokemon Japanese Freeze Bolt",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:54"
+      }
+    },
+    {
+      "query": "Pokemon Plasma Storm Escape Rope 120 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Plasma%20Storm%20Escape%20Rope%20120%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3469523",
+      "product_name": "Escape Rope #79",
+      "console_name": "Pokemon Japanese Double Blaze",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:79"
+      }
+    },
+    {
+      "query": "Pokemon Plasma Storm Escape Rope 120 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Plasma%20Storm%20Escape%20Rope%20120%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3469647",
+      "product_name": "Escape Rope #51",
+      "console_name": "Pokemon Japanese GG End",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:51"
+      }
+    },
+    {
+      "query": "Pokemon Plasma Storm Escape Rope 120 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Plasma%20Storm%20Escape%20Rope%20120%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3472794",
+      "product_name": "Escape Rope #56",
+      "console_name": "Pokemon Japanese Skyscraping Perfection",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:56"
+      }
+    },
+    {
+      "query": "Pokemon Plasma Storm Escape Rope 120 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Plasma%20Storm%20Escape%20Rope%20120%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "1673305",
+      "product_name": "Escape Rope #125",
+      "console_name": "Pokemon Battle Styles",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:125"
+      }
+    },
+    {
+      "query": "Pokemon Plasma Storm Escape Rope 120 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Plasma%20Storm%20Escape%20Rope%20120%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "960898",
+      "product_name": "Escape Rope #114",
+      "console_name": "Pokemon Burning Shadows",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:114"
+      }
+    },
+    {
+      "query": "Pokemon Plasma Storm Escape Rope 120 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Plasma%20Storm%20Escape%20Rope%20120%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "960947",
+      "product_name": "Escape Rope #163",
+      "console_name": "Pokemon Burning Shadows",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:163"
+      }
+    },
+    {
+      "query": "Pokemon Plasma Storm Escape Rope 120 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Plasma%20Storm%20Escape%20Rope%20120%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "958584",
+      "product_name": "Escape Rope #127",
+      "console_name": "Pokemon Primal Clash",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:127"
+      }
+    },
+    {
+      "query": "Pokemon Plasma Storm Escape Rope 120 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Plasma%20Storm%20Escape%20Rope%20120%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3465597",
+      "product_name": "Escape Rope #62",
+      "console_name": "Pokemon Japanese Battle Rainbow",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:62"
+      }
+    },
+    {
+      "query": "Pokemon Plasma Storm Escape Rope 120 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Plasma%20Storm%20Escape%20Rope%20120%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "956917",
+      "product_name": "Escape Rope #120",
+      "console_name": "Pokemon Plasma Storm",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon Plasma Storm Escape Rope 120 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Plasma%20Storm%20Escape%20Rope%20120%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6249705",
+      "product_name": "Escape Rope [League Promo] #120",
+      "console_name": "Pokemon Plasma Storm",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:League Promo"
+      }
+    },
+    {
+      "query": "Pokemon Plasma Storm Escape Rope 120 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Plasma%20Storm%20Escape%20Rope%20120%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "957047",
+      "product_name": "Escape Rope [Reverse Holo] #120",
+      "console_name": "Pokemon Plasma Storm",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Reverse Holo"
+      }
+    },
+    {
+      "query": "Pokemon Plasma Storm Escape Rope 120 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Plasma%20Storm%20Escape%20Rope%20120%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8454346",
+      "product_name": "Escape Rope [1st Edition] #60",
+      "console_name": "Pokemon Japanese Tidal Storm",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:60"
+      }
+    },
+    {
+      "query": "Pokemon Plasma Storm Escape Rope 120 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Plasma%20Storm%20Escape%20Rope%20120%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3462152",
+      "product_name": "Escape Rope #60",
+      "console_name": "Pokemon Japanese Tidal Storm",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:60"
+      }
+    },
+    {
+      "query": "Pokemon Plasma Storm Escape Rope 120 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Plasma%20Storm%20Escape%20Rope%20120%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3507219",
+      "product_name": "Escape Rope [1st Edition] #54",
+      "console_name": "Pokemon Japanese Freeze Bolt",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:54"
+      }
+    },
+    {
+      "query": "Pokemon Plasma Storm Escape Rope 120 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Plasma%20Storm%20Escape%20Rope%20120%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "1725095",
+      "product_name": "Escape Rope [Reverse Holo] #125",
+      "console_name": "Pokemon Battle Styles",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:125"
+      }
+    },
+    {
+      "query": "Pokemon Plasma Storm Escape Rope 120 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Plasma%20Storm%20Escape%20Rope%20120%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "961055",
+      "product_name": "Escape Rope [Reverse Holo] #114",
+      "console_name": "Pokemon Burning Shadows",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:114"
+      }
+    },
+    {
+      "query": "Pokemon Plasma Storm Escape Rope 120 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Plasma%20Storm%20Escape%20Rope%20120%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "958735",
+      "product_name": "Escape Rope [Reverse Holo] #127",
+      "console_name": "Pokemon Primal Clash",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:127"
+      }
+    },
+    {
+      "query": "Pokemon Plasma Storm Escape Rope 120 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Plasma%20Storm%20Escape%20Rope%20120%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3468764",
+      "product_name": "Escape Rope #77",
+      "console_name": "Pokemon Japanese Tag Bolt",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:77"
+      }
+    },
+    {
+      "query": "Pokemon Plasma Storm Escape Rope 120 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Plasma%20Storm%20Escape%20Rope%20120%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3404764",
+      "product_name": "Escape Rope #130",
+      "console_name": "Pokemon Japanese VMAX Climax",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:130"
+      }
+    },
+    {
+      "query": "Pokemon Plasma Storm Escape Rope 120 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Plasma%20Storm%20Escape%20Rope%20120%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3461187",
+      "product_name": "Escape Rope #54",
+      "console_name": "Pokemon Japanese Freeze Bolt",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:54"
+      }
+    },
+    {
+      "query": "Pokemon Plasma Storm Escape Rope 120 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Plasma%20Storm%20Escape%20Rope%20120%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3469523",
+      "product_name": "Escape Rope #79",
+      "console_name": "Pokemon Japanese Double Blaze",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:79"
+      }
+    },
+    {
+      "query": "Pokemon Plasma Storm Escape Rope 120 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Plasma%20Storm%20Escape%20Rope%20120%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3469647",
+      "product_name": "Escape Rope #51",
+      "console_name": "Pokemon Japanese GG End",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:51"
+      }
+    },
+    {
+      "query": "Pokemon Plasma Storm Escape Rope 120 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Plasma%20Storm%20Escape%20Rope%20120%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3472794",
+      "product_name": "Escape Rope #56",
+      "console_name": "Pokemon Japanese Skyscraping Perfection",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:56"
+      }
+    },
+    {
+      "query": "Pokemon Plasma Storm Escape Rope 120 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Plasma%20Storm%20Escape%20Rope%20120%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "1673305",
+      "product_name": "Escape Rope #125",
+      "console_name": "Pokemon Battle Styles",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:125"
+      }
+    },
+    {
+      "query": "Pokemon Plasma Storm Escape Rope 120 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Plasma%20Storm%20Escape%20Rope%20120%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "960898",
+      "product_name": "Escape Rope #114",
+      "console_name": "Pokemon Burning Shadows",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:114"
+      }
+    },
+    {
+      "query": "Pokemon Plasma Storm Escape Rope 120 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Plasma%20Storm%20Escape%20Rope%20120%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "960947",
+      "product_name": "Escape Rope #163",
+      "console_name": "Pokemon Burning Shadows",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:163"
+      }
+    },
+    {
+      "query": "Pokemon Plasma Storm Escape Rope 120 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Plasma%20Storm%20Escape%20Rope%20120%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "958584",
+      "product_name": "Escape Rope #127",
+      "console_name": "Pokemon Primal Clash",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:127"
+      }
+    },
+    {
+      "query": "Pokemon Plasma Storm Escape Rope 120 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Plasma%20Storm%20Escape%20Rope%20120%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3465597",
+      "product_name": "Escape Rope #62",
+      "console_name": "Pokemon Japanese Battle Rainbow",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:62"
+      }
+    }
+  ],
+  "source_lane": "pricecharting_api"
+}

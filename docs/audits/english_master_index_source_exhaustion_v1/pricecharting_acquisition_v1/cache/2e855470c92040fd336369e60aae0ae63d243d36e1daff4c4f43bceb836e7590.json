@@ -1,0 +1,549 @@
+{
+  "status": "api_no_validated_match",
+  "fact": {
+    "gap_type": "finish_second_source_needed",
+    "fact_type": "printing_finish",
+    "set_key": "sv02",
+    "set_name": "Paldea Evolved",
+    "card_number": "37",
+    "card_name": "Skeledirge ex",
+    "finish_key": "stamped",
+    "status": "human_source_verified",
+    "sources": [
+      "thepricedex_price_list"
+    ],
+    "source_authorities": [
+      "thepricedex.com"
+    ],
+    "source_kinds": [
+      "marketplace_checklist"
+    ],
+    "evidence_urls": [
+      "https://www.thepricedex.com/set/sv2/paldea-evolved/price-list"
+    ],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "attempts": [
+    {
+      "query": "Pokemon Paldea Evolved Skeledirge ex 37 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Paldea%20Evolved%20Skeledirge%20ex%2037%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5287326",
+      "product_name": "Skeledirge ex #37",
+      "console_name": "Pokemon Paldea Evolved",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon Paldea Evolved Skeledirge ex 37 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Paldea%20Evolved%20Skeledirge%20ex%2037%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10909573",
+      "product_name": "Skeledirge Ex [Prize Pack] #37",
+      "console_name": "Pokemon Paldea Evolved",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Prize Pack"
+      }
+    },
+    {
+      "query": "Pokemon Paldea Evolved Skeledirge ex 37 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Paldea%20Evolved%20Skeledirge%20ex%2037%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5287561",
+      "product_name": "Skeledirge ex #272",
+      "console_name": "Pokemon Paldea Evolved",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:272"
+      }
+    },
+    {
+      "query": "Pokemon Paldea Evolved Skeledirge ex 37 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Paldea%20Evolved%20Skeledirge%20ex%2037%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5287522",
+      "product_name": "Skeledirge ex #233",
+      "console_name": "Pokemon Paldea Evolved",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:233"
+      }
+    },
+    {
+      "query": "Pokemon Paldea Evolved Skeledirge ex 37 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Paldea%20Evolved%20Skeledirge%20ex%2037%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5287547",
+      "product_name": "Skeledirge ex #258",
+      "console_name": "Pokemon Paldea Evolved",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:258"
+      }
+    },
+    {
+      "query": "Pokemon Paldea Evolved Skeledirge ex 37 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Paldea%20Evolved%20Skeledirge%20ex%2037%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7322439",
+      "product_name": "Pikachu Ex [Snowflake Stamp] #63",
+      "console_name": "Pokemon Paldea Evolved",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:63"
+      }
+    },
+    {
+      "query": "Pokemon Paldea Evolved Skeledirge ex 37 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Paldea%20Evolved%20Skeledirge%20ex%2037%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7322441",
+      "product_name": "Chien-Pao Ex [Snowflake Stamp] #61",
+      "console_name": "Pokemon Paldea Evolved",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:61"
+      }
+    },
+    {
+      "query": "Pokemon Paldea Evolved Skeledirge ex 37 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Paldea%20Evolved%20Skeledirge%20ex%2037%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6392495",
+      "product_name": "Tinkaton [Stamped] #105",
+      "console_name": "Pokemon Paldea Evolved",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:105"
+      }
+    },
+    {
+      "query": "Pokemon Paldea Evolved Skeledirge ex 37 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Paldea%20Evolved%20Skeledirge%20ex%2037%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10491821",
+      "product_name": "Tyranitar [Stamped] #135",
+      "console_name": "Pokemon Paldea Evolved",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:135"
+      }
+    },
+    {
+      "query": "Pokemon Paldea Evolved Skeledirge ex 37 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Paldea%20Evolved%20Skeledirge%20ex%2037%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7322444",
+      "product_name": "Frigibax [Snowflake Stamp] #58",
+      "console_name": "Pokemon Paldea Evolved",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:58"
+      }
+    },
+    {
+      "query": "Pokemon Paldea Evolved Skeledirge ex 37 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Paldea%20Evolved%20Skeledirge%20ex%2037%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7322448",
+      "product_name": "Cetoddle [Snowflake Stamp] #53",
+      "console_name": "Pokemon Paldea Evolved",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:53"
+      }
+    },
+    {
+      "query": "Pokemon Paldea Evolved Skeledirge ex 37 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Paldea%20Evolved%20Skeledirge%20ex%2037%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5287523",
+      "product_name": "Chi-Yu ex #234",
+      "console_name": "Pokemon Paldea Evolved",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:234"
+      }
+    },
+    {
+      "query": "Pokemon Paldea Evolved Skeledirge ex 37 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Paldea%20Evolved%20Skeledirge%20ex%2037%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5287548",
+      "product_name": "Chi-Yu ex #259",
+      "console_name": "Pokemon Paldea Evolved",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:259"
+      }
+    },
+    {
+      "query": "Pokemon Paldea Evolved Skeledirge ex 37 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Paldea%20Evolved%20Skeledirge%20ex%2037%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5287329",
+      "product_name": "Chi-Yu ex #40",
+      "console_name": "Pokemon Paldea Evolved",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:40"
+      }
+    },
+    {
+      "query": "Pokemon Paldea Evolved Skeledirge ex 37 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Paldea%20Evolved%20Skeledirge%20ex%2037%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5287442",
+      "product_name": "Noivern ex #153",
+      "console_name": "Pokemon Paldea Evolved",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:153"
+      }
+    },
+    {
+      "query": "Pokemon Paldea Evolved Skeledirge ex 37 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Paldea%20Evolved%20Skeledirge%20ex%2037%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5287535",
+      "product_name": "Noivern ex #246",
+      "console_name": "Pokemon Paldea Evolved",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:246"
+      }
+    },
+    {
+      "query": "Pokemon Paldea Evolved Skeledirge ex 37 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Paldea%20Evolved%20Skeledirge%20ex%2037%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5287528",
+      "product_name": "Dedenne ex #239",
+      "console_name": "Pokemon Paldea Evolved",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:239"
+      }
+    },
+    {
+      "query": "Pokemon Paldea Evolved Skeledirge ex 37 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Paldea%20Evolved%20Skeledirge%20ex%2037%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5287352",
+      "product_name": "Pikachu ex #63",
+      "console_name": "Pokemon Paldea Evolved",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:63"
+      }
+    },
+    {
+      "query": "Pokemon Paldea Evolved Skeledirge ex 37 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Paldea%20Evolved%20Skeledirge%20ex%2037%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5287382",
+      "product_name": "Dedenne ex #93",
+      "console_name": "Pokemon Paldea Evolved",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:93"
+      }
+    },
+    {
+      "query": "Pokemon Paldea Evolved Skeledirge ex 37 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Paldea%20Evolved%20Skeledirge%20ex%2037%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5287532",
+      "product_name": "Ting-Lu ex #243",
+      "console_name": "Pokemon Paldea Evolved",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:243"
+      }
+    },
+    {
+      "query": "Pokemon Paldea Evolved Skeledirge ex 37 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Paldea%20Evolved%20Skeledirge%20ex%2037%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5287326",
+      "product_name": "Skeledirge ex #37",
+      "console_name": "Pokemon Paldea Evolved",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon Paldea Evolved Skeledirge ex 37 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Paldea%20Evolved%20Skeledirge%20ex%2037%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10909573",
+      "product_name": "Skeledirge Ex [Prize Pack] #37",
+      "console_name": "Pokemon Paldea Evolved",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Prize Pack"
+      }
+    },
+    {
+      "query": "Pokemon Paldea Evolved Skeledirge ex 37 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Paldea%20Evolved%20Skeledirge%20ex%2037%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5287561",
+      "product_name": "Skeledirge ex #272",
+      "console_name": "Pokemon Paldea Evolved",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:272"
+      }
+    },
+    {
+      "query": "Pokemon Paldea Evolved Skeledirge ex 37 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Paldea%20Evolved%20Skeledirge%20ex%2037%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5287522",
+      "product_name": "Skeledirge ex #233",
+      "console_name": "Pokemon Paldea Evolved",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:233"
+      }
+    },
+    {
+      "query": "Pokemon Paldea Evolved Skeledirge ex 37 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Paldea%20Evolved%20Skeledirge%20ex%2037%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5287547",
+      "product_name": "Skeledirge ex #258",
+      "console_name": "Pokemon Paldea Evolved",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:258"
+      }
+    },
+    {
+      "query": "Pokemon Paldea Evolved Skeledirge ex 37 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Paldea%20Evolved%20Skeledirge%20ex%2037%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7322439",
+      "product_name": "Pikachu Ex [Snowflake Stamp] #63",
+      "console_name": "Pokemon Paldea Evolved",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:63"
+      }
+    },
+    {
+      "query": "Pokemon Paldea Evolved Skeledirge ex 37 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Paldea%20Evolved%20Skeledirge%20ex%2037%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7322441",
+      "product_name": "Chien-Pao Ex [Snowflake Stamp] #61",
+      "console_name": "Pokemon Paldea Evolved",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:61"
+      }
+    },
+    {
+      "query": "Pokemon Paldea Evolved Skeledirge ex 37 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Paldea%20Evolved%20Skeledirge%20ex%2037%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6392495",
+      "product_name": "Tinkaton [Stamped] #105",
+      "console_name": "Pokemon Paldea Evolved",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:105"
+      }
+    },
+    {
+      "query": "Pokemon Paldea Evolved Skeledirge ex 37 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Paldea%20Evolved%20Skeledirge%20ex%2037%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10491821",
+      "product_name": "Tyranitar [Stamped] #135",
+      "console_name": "Pokemon Paldea Evolved",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:135"
+      }
+    },
+    {
+      "query": "Pokemon Paldea Evolved Skeledirge ex 37 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Paldea%20Evolved%20Skeledirge%20ex%2037%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7322444",
+      "product_name": "Frigibax [Snowflake Stamp] #58",
+      "console_name": "Pokemon Paldea Evolved",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:58"
+      }
+    },
+    {
+      "query": "Pokemon Paldea Evolved Skeledirge ex 37 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Paldea%20Evolved%20Skeledirge%20ex%2037%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7322448",
+      "product_name": "Cetoddle [Snowflake Stamp] #53",
+      "console_name": "Pokemon Paldea Evolved",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:53"
+      }
+    },
+    {
+      "query": "Pokemon Paldea Evolved Skeledirge ex 37 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Paldea%20Evolved%20Skeledirge%20ex%2037%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5287523",
+      "product_name": "Chi-Yu ex #234",
+      "console_name": "Pokemon Paldea Evolved",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:234"
+      }
+    },
+    {
+      "query": "Pokemon Paldea Evolved Skeledirge ex 37 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Paldea%20Evolved%20Skeledirge%20ex%2037%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5287548",
+      "product_name": "Chi-Yu ex #259",
+      "console_name": "Pokemon Paldea Evolved",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:259"
+      }
+    },
+    {
+      "query": "Pokemon Paldea Evolved Skeledirge ex 37 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Paldea%20Evolved%20Skeledirge%20ex%2037%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5287329",
+      "product_name": "Chi-Yu ex #40",
+      "console_name": "Pokemon Paldea Evolved",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:40"
+      }
+    },
+    {
+      "query": "Pokemon Paldea Evolved Skeledirge ex 37 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Paldea%20Evolved%20Skeledirge%20ex%2037%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5287442",
+      "product_name": "Noivern ex #153",
+      "console_name": "Pokemon Paldea Evolved",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:153"
+      }
+    },
+    {
+      "query": "Pokemon Paldea Evolved Skeledirge ex 37 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Paldea%20Evolved%20Skeledirge%20ex%2037%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5287535",
+      "product_name": "Noivern ex #246",
+      "console_name": "Pokemon Paldea Evolved",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:246"
+      }
+    },
+    {
+      "query": "Pokemon Paldea Evolved Skeledirge ex 37 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Paldea%20Evolved%20Skeledirge%20ex%2037%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5287528",
+      "product_name": "Dedenne ex #239",
+      "console_name": "Pokemon Paldea Evolved",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:239"
+      }
+    },
+    {
+      "query": "Pokemon Paldea Evolved Skeledirge ex 37 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Paldea%20Evolved%20Skeledirge%20ex%2037%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5287352",
+      "product_name": "Pikachu ex #63",
+      "console_name": "Pokemon Paldea Evolved",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:63"
+      }
+    },
+    {
+      "query": "Pokemon Paldea Evolved Skeledirge ex 37 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Paldea%20Evolved%20Skeledirge%20ex%2037%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5287382",
+      "product_name": "Dedenne ex #93",
+      "console_name": "Pokemon Paldea Evolved",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:93"
+      }
+    },
+    {
+      "query": "Pokemon Paldea Evolved Skeledirge ex 37 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Paldea%20Evolved%20Skeledirge%20ex%2037%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5287532",
+      "product_name": "Ting-Lu ex #243",
+      "console_name": "Pokemon Paldea Evolved",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:243"
+      }
+    }
+  ],
+  "source_lane": "pricecharting_api"
+}

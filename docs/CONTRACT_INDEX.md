@@ -57,6 +57,7 @@ If a contract is missing from this index, it is not authoritative.
 | PRINTING_TRUTH_CONTRACT_V1 | Active | docs/contracts/PRINTING_TRUTH_CONTRACT_V1.md — Card printings must be externally verifiable, fail closed when unknown, and quarantine before destructive cleanup |
 | VERIFIED_MASTER_SET_INDEX_V1 | Active | docs/contracts/VERIFIED_MASTER_SET_INDEX_V1.md — English-only external source agreement index for set cards and printings; audit-only and no DB writes |
 | ENGLISH_MASTER_INDEX_COMPLETION_V1 | Active | docs/contracts/ENGLISH_MASTER_INDEX_COMPLETION_V1.md — Completion-first authority for the English physical Pokemon TCG Master Index; admits card identity and printing/finish facts only under source-backed Master Index gates before any downstream Grookai comparison |
+| MASTER_INDEX_GOVERNANCE_CONTRACT_V1 | Active | docs/contracts/MASTER_INDEX_GOVERNANCE_CONTRACT_V1.md — Ongoing Master Index governance for future set intake, monthly drift detection, source preservation, guarded promotion, suppression, adjudication, and no-write maintenance boundaries |
 
 ---
 

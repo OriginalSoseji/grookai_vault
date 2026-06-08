@@ -1,0 +1,38 @@
+{
+  "status": "no_validated_match",
+  "fact": {
+    "gap_type": "finish_human_checklist_evidence_needed",
+    "fact_type": "printing_finish",
+    "set_key": "swsh2",
+    "set_name": "Rebel Clash",
+    "card_number": "154",
+    "card_name": "Boss's Orders (Giovanni)",
+    "finish_key": "reverse",
+    "status": "candidate_unconfirmed",
+    "sources": [
+      "tcgdex"
+    ],
+    "source_authorities": [
+      "api.tcgdex.net"
+    ],
+    "source_kinds": [
+      "structured_api"
+    ],
+    "evidence_urls": [
+      "https://api.tcgdex.net/v2/en/cards/swsh2-154"
+    ],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "attempts": [
+    {
+      "query": "Pokemon Rebel Clash Boss's Orders (Giovanni) 154 reverse holo",
+      "url": "https://www.pricecharting.com/search-products?q=Pokemon%20Rebel%20Clash%20Boss's%20Orders%20(Giovanni)%20154%20reverse%20holo&type=prices",
+      "error": "fetch failed"
+    },
+    {
+      "query": "Pokemon Rebel Clash Boss's Orders (Giovanni) 154 reverse holofoil",
+      "url": "https://www.pricecharting.com/search-products?q=Pokemon%20Rebel%20Clash%20Boss's%20Orders%20(Giovanni)%20154%20reverse%20holofoil&type=prices",
+      "error": "fetch failed"
+    }
+  ]
+}

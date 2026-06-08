@@ -1,0 +1,43 @@
+{
+  "status": "no_validated_match",
+  "fact": {
+    "gap_type": "finish_human_checklist_evidence_needed",
+    "fact_type": "printing_finish",
+    "set_key": "pl1",
+    "set_name": "Platinum",
+    "card_number": "124",
+    "card_name": "Giratina",
+    "finish_key": "holo",
+    "status": "candidate_unconfirmed",
+    "sources": [
+      "tcgdex"
+    ],
+    "source_authorities": [
+      "api.tcgdex.net"
+    ],
+    "source_kinds": [
+      "structured_api"
+    ],
+    "evidence_urls": [],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "attempts": [
+    {
+      "query": "Pokemon Platinum Giratina 124 holo",
+      "url": "https://www.pricecharting.com/search-products?q=Pokemon%20Platinum%20Giratina%20124%20holo&type=prices",
+      "parsed": {
+        "title": "Pokemon Platinum Giratina 124 Holo Prices | Pokemon Platinum Giratina 124 Holo List",
+        "source_url": "https://www.pricecharting.com/search-products?q=pokemon+platinum+giratina+124+holo&type=prices"
+      },
+      "validation": {
+        "ok": false,
+        "reason": "title_pattern_not_supported"
+      }
+    },
+    {
+      "query": "Pokemon Platinum Giratina 124 holofoil",
+      "url": "https://www.pricecharting.com/search-products?q=Pokemon%20Platinum%20Giratina%20124%20holofoil&type=prices",
+      "error": "Fetch failed 403 Forbidden: https://www.pricecharting.com/search-products?q=Pokemon%20Platinum%20Giratina%20124%20holofoil&type=prices"
+    }
+  ]
+}

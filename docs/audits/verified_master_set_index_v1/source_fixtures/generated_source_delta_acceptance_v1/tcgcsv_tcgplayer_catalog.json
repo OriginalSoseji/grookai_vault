@@ -1,0 +1,53 @@
+{
+  "fixture_version": "VERIFIED_MASTER_SET_INDEX_V1_HUMAN_SOURCE_FIXTURE_GENERATED",
+  "source_key": "tcgcsv_tcgplayer_catalog_accepted_delta_v1",
+  "source_kind": "marketplace_checklist",
+  "source_url": "https://www.tcgplayer.com/product/42552/pokemon-base-set-2-imposter-professor-oak",
+  "source_status": "available_generated_accepted_delta",
+  "set_key": "accepted_delta",
+  "set_name": "tcgcsv_tcgplayer_catalog accepted delta",
+  "retrieved_at": "2026-06-08T03:04:20.790Z",
+  "raw_snapshot_ref": "generated_fixture:accepted_delta:tcgcsv_tcgplayer_catalog:2026-06-08T03:04:20.790Z",
+  "audit_only": true,
+  "db_writes_performed": false,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "generation_note": "Generated from source delta audit useful matches only. Existing accepted delta rows are preserved to avoid source-reset evidence loss.",
+  "records": [
+    {
+      "source_key": "tcgcsv_tcgplayer_catalog",
+      "source_kind": "marketplace_checklist",
+      "source_url": "https://www.tcgplayer.com/product/42552/pokemon-base-set-2-imposter-professor-oak",
+      "set_key": "base4",
+      "set_name": "Base Set 2",
+      "card_number": "102",
+      "card_name": "Impostor Professor Oak",
+      "finish_key": "normal",
+      "rarity": null,
+      "evidence_type": "finish_presence",
+      "evidence_label": "TCGCSV/TCGplayer product 42552 price subtype Normal",
+      "language": "en",
+      "retrieved_at": "2026-05-30T10:52:47.766Z",
+      "raw_snapshot_ref": "accepted_delta:tcgcsv_tcgplayer_catalog_source_delta_audit_v1.json:tcgcsv_tcgplayer_catalog:base4:102:normal",
+      "notes": "Accepted from source delta audit with status candidate_human_finish_evidence. This is exact gap-matched evidence only; broad source fixture rows remain excluded from direct promotion."
+    },
+    {
+      "source_key": "tcgcsv_tcgplayer_catalog",
+      "source_kind": "marketplace_checklist",
+      "source_url": "https://www.tcgplayer.com/product/84287/pokemon-pop-series-8-chimchar",
+      "set_key": "pop8",
+      "set_name": "POP Series 8",
+      "card_number": "12",
+      "card_name": "Chimchar",
+      "finish_key": "reverse",
+      "rarity": null,
+      "evidence_type": "finish_presence",
+      "evidence_label": "TCGCSV/TCGplayer product 84287 price subtype Reverse Holofoil",
+      "language": "en",
+      "retrieved_at": "2026-06-08T03:04:20.790Z",
+      "raw_snapshot_ref": "accepted_delta:tcgcsv_tcgplayer_catalog_source_delta_audit_v1.json:tcgcsv_tcgplayer_catalog:pop8:12:reverse",
+      "notes": "Accepted from source delta audit with status candidate_second_finish_source. This is exact gap-matched evidence only; broad source fixture rows remain excluded from direct promotion."
+    }
+  ]
+}

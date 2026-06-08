@@ -1,0 +1,36 @@
+{
+  "status": "no_validated_match",
+  "fact": {
+    "gap_type": "finish_second_source_needed",
+    "fact_type": "printing_finish",
+    "set_key": "swshp",
+    "set_name": "SWSH Black Star Promos",
+    "card_number": "SWSH195",
+    "card_name": "Leafeon VSTAR",
+    "finish_key": "stamped",
+    "status": "human_source_verified",
+    "sources": [
+      "thepricedex_price_list"
+    ],
+    "source_authorities": [
+      "thepricedex.com"
+    ],
+    "source_kinds": [
+      "marketplace_checklist"
+    ],
+    "evidence_urls": [],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "attempts": [
+    {
+      "query": "Pokemon SWSH Black Star Promos Leafeon VSTAR SWSH195 stamped",
+      "url": "https://www.pricecharting.com/search-products?q=Pokemon%20SWSH%20Black%20Star%20Promos%20Leafeon%20VSTAR%20SWSH195%20stamped&type=prices",
+      "error": "Fetch failed 403 Forbidden: https://www.pricecharting.com/search-products?q=Pokemon%20SWSH%20Black%20Star%20Promos%20Leafeon%20VSTAR%20SWSH195%20stamped&type=prices"
+    },
+    {
+      "query": "Pokemon SWSH Black Star Promos Leafeon VSTAR SWSH195 stamp",
+      "url": "https://www.pricecharting.com/search-products?q=Pokemon%20SWSH%20Black%20Star%20Promos%20Leafeon%20VSTAR%20SWSH195%20stamp&type=prices",
+      "error": "Fetch failed 403 Forbidden: https://www.pricecharting.com/search-products?q=Pokemon%20SWSH%20Black%20Star%20Promos%20Leafeon%20VSTAR%20SWSH195%20stamp&type=prices"
+    }
+  ]
+}

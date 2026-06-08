@@ -1,0 +1,48 @@
+{
+  "fixture_version": "VERIFIED_MASTER_SET_INDEX_V1_HUMAN_SOURCE_FIXTURE_GENERATED",
+  "source_key": "tcgcollector_variants_sv07",
+  "source_kind": "collector_reference",
+  "source_url": "https://www.tcgcollector.com/sets/11632/stellar-crown?setCardCountMode=anyCardVariant",
+  "source_status": "available_generated",
+  "set_key": "sv07",
+  "set_name": "Stellar Crown",
+  "retrieved_at": "2026-05-29T03:46:18.529Z",
+  "raw_snapshot_ref": "generated_fixture:tcgcollector:sv07:2026-05-29T03:46:18.529Z",
+  "generation_note": "Generated from TCGCollector explicit card variant type IDs. No finish is inferred from set era, rarity, or card count.",
+  "records": [
+    {
+      "source_key": "tcgcollector_card_variants",
+      "source_kind": "collector_reference",
+      "source_url": "https://www.tcgcollector.com/cards/46081/grimmsnarl-stellar-crown-096-142",
+      "set_key": "sv07",
+      "set_name": "Stellar Crown",
+      "card_number": "096",
+      "card_name": "Grimmsnarl",
+      "finish_key": "normal",
+      "rarity": null,
+      "evidence_type": "finish_presence",
+      "evidence_label": "TCGCollector card variant Non-holo",
+      "language": "en",
+      "retrieved_at": "2026-05-29T03:46:18.529Z",
+      "raw_snapshot_ref": "tcgcollector:46081:46",
+      "notes": "Exact card-level finish evidence from TCGCollector card variant type map. Only explicit variant labels are emitted."
+    },
+    {
+      "source_key": "tcgcollector_card_variants",
+      "source_kind": "collector_reference",
+      "source_url": "https://www.tcgcollector.com/cards/46092/archaludon-stellar-crown-107-142",
+      "set_key": "sv07",
+      "set_name": "Stellar Crown",
+      "card_number": "107",
+      "card_name": "Archaludon",
+      "finish_key": "normal",
+      "rarity": null,
+      "evidence_type": "finish_presence",
+      "evidence_label": "TCGCollector card variant Non-holo",
+      "language": "en",
+      "retrieved_at": "2026-05-29T03:46:18.529Z",
+      "raw_snapshot_ref": "tcgcollector:46092:46",
+      "notes": "Exact card-level finish evidence from TCGCollector card variant type map. Only explicit variant labels are emitted."
+    }
+  ]
+}

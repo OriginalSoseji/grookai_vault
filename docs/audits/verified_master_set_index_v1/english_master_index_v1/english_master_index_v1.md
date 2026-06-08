@@ -1,38 +1,35 @@
 # English Verified Master Set Index V1
 
-Generated: 2026-05-25T17:31:46.407Z
+Generated: 2026-06-08T18:24:41.247Z
 
 Audit only. No DB writes, migrations, cleanup, quarantine, or public hiding were performed.
 
 This is the English Master Index build. API-agreed printings are useful reference facts, but they are not final master truth for finish cleanup without human-readable, official, or checklist-style evidence.
 
-Transport: Local run used NODE_TLS_REJECT_UNAUTHORIZED=0 because this Windows environment could not validate upstream API certificates. This is a command-level workaround only and is not encoded in the pipeline.
+Transport: Default Node TLS verification.
 
 ## Totals
 
 | metric | count |
 | --- | --- |
-| sets | 202 |
-| evidence rows | 197626 |
+| sets | 201 |
+| evidence rows | 232649 |
 | conflicts | 0 |
-| manual review | 1182 |
+| manual review | 5 |
 
 ## Cards By Status
 
 | status | count |
 | --- | --- |
 | api_agreed | 9 |
-| candidate_unconfirmed | 424 |
-| human_source_verified | 111 |
-| master_verified | 21042 |
+| master_verified | 21511 |
 
 ## Printings By Status
 
 | status | count |
 | --- | --- |
-| candidate_unconfirmed | 754 |
-| human_source_verified | 2477 |
-| master_verified | 34458 |
+| human_source_verified | 5 |
+| master_verified | 38841 |
 
 ## Source Evidence Rows
 
@@ -42,12 +39,27 @@ Transport: Local run used NODE_TLS_REJECT_UNAUTHORIZED=0 because this Windows en
 | big_orbit_ascended_heroes_bellsprout_004 | 1 |
 | big_orbit_ascended_heroes_honchkrow_127 | 1 |
 | big_orbit_ascended_heroes_victreebel_006 | 1 |
+| bigorbit_league_promo_exact | 1 |
+| binderbuilder_set_variant | 188 |
+| bulbapedia_battle_academy_product | 66 |
+| bulbapedia_build_battle_product | 107 |
+| bulbapedia_card_page_release_info | 317 |
+| bulbapedia_card_release_info | 3 |
+| bulbapedia_player_rewards_release_info | 4 |
+| bulbapedia_set_list | 11916 |
+| bulbapedia_sm_black_star_promos | 3 |
 | bulbapedia_sv01 | 8 |
+| bulbapedia_sv05_additional_cards | 3 |
+| bulbapedia_sv085_professor_program | 4 |
+| bulbapedia_swsh11_trick_or_trade_stamps | 3 |
+| bulbapedia_w_promotional_cards | 14 |
 | cardmarket_ascended_heroes | 1 |
+| cardmarket_w_promos | 14 |
 | cardtrader_ascended_heroes_exeggcute_077 | 1 |
 | cardtrader_ascended_heroes_meowth_161 | 1 |
 | cardtrader_ascended_heroes_mimikyu_097 | 1 |
 | cardtrader_ascended_heroes_weepinbell_005 | 1 |
+| cardtrader_blueprint_index | 1186 |
 | crazygamer_ascended_heroes_diglett_100 | 1 |
 | digitaltq_ascended_heroes_003 | 1 |
 | digitaltq_ascended_heroes_010 | 1 |
@@ -87,24 +99,67 @@ Transport: Local run used NODE_TLS_REJECT_UNAUTHORIZED=0 because this Windows en
 | digitaltq_ascended_heroes_167 | 1 |
 | digitaltq_ascended_heroes_172 | 1 |
 | digitaltq_ascended_heroes_179 | 1 |
+| doubleholo_set_checklist | 52 |
+| elitefourum_alternate_checklist | 50 |
+| eyevo_set_checklist | 169 |
+| facetofacegames_sve_reverse_product | 1 |
+| gengar_sve_reverse_variant | 10 |
 | lockett_labs_ascended_heroes_dugtrio_101 | 1 |
+| magicmadhouse_bw1_league_promos | 3 |
+| magicmadhouse_swsh9_stamps | 5 |
+| official_pokemon_checklist_pdf | 97 |
+| official_pokemon_legacy_checklist | 20 |
 | official_pokemon_svi_cardlist_en | 8 |
 | packmagik_ascended_heroes_team_rockets_great_ball_205 | 1 |
 | pkmncards | 19167 |
+| pkmncards_identity_gap | 17 |
+| pkmncollectors_futsal | 4 |
+| pkmncollectors_sm1_energy | 9 |
+| pkmncollectors_xya | 4 |
 | pokebeach_ascended_heroes_set_guide | 5 |
 | pokellector_ascended_heroes_murkrow_126 | 1 |
+| pokellector_set_checklist | 46 |
 | pokemasters_ascended_heroes | 7 |
-| pokemontcg_api | 51700 |
+| pokemoncard_io_price_breakdown | 17 |
+| pokemontcg_api | 51708 |
+| pokemonwizard_variant_exact | 1 |
 | pokescope_ascended_heroes_mimikyu_097 | 2 |
 | pokescope_ascended_heroes_tarountula_018 | 1 |
+| pokescope_me01_stamp | 6 |
+| pokescope_pl2_variant | 3 |
+| pokescope_sv02_stamp | 7 |
+| pokescope_svp_variant | 7 |
+| pokescope_variant_exact | 21 |
+| pokesov_sve_reverse_variant | 1 |
+| pokex_set_checklist | 1 |
+| pokumon_player_rewards_special_print | 8 |
+| pokumon_special_print | 1 |
+| pricecharting_api_product | 1 |
+| pricecharting_csv_base_product | 13 |
+| pricecharting_csv_mee_energy | 16 |
+| pricecharting_csv_product | 570 |
+| pricecharting_csv_product_stamp | 9 |
+| pricecharting_csv_promo_exact | 15 |
+| pricecharting_product_page | 18 |
+| pricecharting_svp_winner_variant | 1 |
+| pricecharting_variant_exact | 1 |
 | pricedex_ascended_heroes_price_list | 51 |
 | pricedex_ascended_heroes_variant_index | 620 |
 | psa_ascended_heroes_checklist | 5 |
+| reverseholo_set_checklist | 16549 |
+| scrydex_variant_exact | 1 |
 | sports_card_investor_ascended_heroes_exeggutor_078 | 1 |
 | sports_card_investor_ascended_heroes_gloom_002 | 1 |
 | sports_card_investor_ascended_heroes_mimikyu | 1 |
-| tcgdex | 45861 |
-| tcgplayer_price_guide | 21302 |
+| sports_card_investor_variant_exact | 1 |
+| tcdb_checklist | 5 |
+| tcgalbum_card_page | 1 |
+| tcgcollector_card_variants | 1493 |
+| tcgcsv_prize_pack_catalog | 122 |
+| tcgcsv_tcgplayer_catalog | 1034 |
+| tcgcsv_tcgplayer_catalog_identity | 9 |
+| tcgdex | 47032 |
+| tcgplayer_price_guide | 21354 |
 | tcgplayer_product_675813 | 1 |
 | tcgplayer_product_675814 | 1 |
 | tcgplayer_product_675815 | 1 |
@@ -687,22 +742,27 @@ Transport: Local run used NODE_TLS_REJECT_UNAUTHORIZED=0 because this Windows en
 | tcgplayer_product_680709 | 1 |
 | tcgplayer_product_680710 | 1 |
 | tcgplayer_product_681895 | 1 |
+| tcgsearch_card_page | 14 |
 | tcgstats_ascended_heroes_ns_zekrom | 2 |
-| thepricedex_price_list | 58212 |
+| tcgstats_mfb_price_guide | 33 |
+| thepricedex_price_list | 57709 |
 | vendortools_ascended_heroes_spidops_019 | 1 |
 
 ## Source Availability
 
 | source | runtime status | count |
 | --- | --- | --- |
+| bulbapedia_set_list | collected | 90 |
+| bulbapedia_set_list | error | 110 |
+| bulbapedia_set_list | unavailable | 1 |
 | human_fixtures | collected | 1 |
-| pkmncards | collected | 152 |
-| pkmncards | error | 50 |
-| pokemontcg_api | collected | 173 |
-| pokemontcg_api | unavailable | 29 |
+| pokemontcg_api | collected | 160 |
+| pokemontcg_api | collected_plus_cached_snapshot | 13 |
+| pokemontcg_api | unavailable | 28 |
 | tcgdex | collected | 190 |
-| tcgdex | unavailable | 12 |
-| tcgplayer_price_guide | collected | 145 |
-| tcgplayer_price_guide | unavailable | 57 |
-| thepricedex_price_list | collected | 174 |
+| tcgdex | unavailable | 11 |
+| tcgplayer_price_guide | collected | 139 |
+| tcgplayer_price_guide | collected_plus_cached_snapshot | 6 |
+| tcgplayer_price_guide | unavailable | 56 |
+| thepricedex_price_list | collected | 173 |
 | thepricedex_price_list | error | 28 |

@@ -1,0 +1,43 @@
+{
+  "status": "no_validated_match",
+  "fact": {
+    "gap_type": "finish_second_source_needed",
+    "fact_type": "printing_finish",
+    "set_key": "si1",
+    "set_name": "Southern Islands",
+    "card_number": "1",
+    "card_name": "Mew",
+    "finish_key": "holo",
+    "status": "human_source_verified",
+    "sources": [
+      "thepricedex_price_list"
+    ],
+    "source_authorities": [
+      "thepricedex.com"
+    ],
+    "source_kinds": [
+      "marketplace_checklist"
+    ],
+    "evidence_urls": [],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "attempts": [
+    {
+      "query": "Pokemon Southern Islands Mew 1 holo",
+      "url": "https://www.pricecharting.com/search-products?q=Pokemon%20Southern%20Islands%20Mew%201%20holo&type=prices",
+      "error": "Fetch failed 403 Forbidden: https://www.pricecharting.com/search-products?q=Pokemon%20Southern%20Islands%20Mew%201%20holo&type=prices"
+    },
+    {
+      "query": "Pokemon Southern Islands Mew 1 holofoil",
+      "url": "https://www.pricecharting.com/search-products?q=Pokemon%20Southern%20Islands%20Mew%201%20holofoil&type=prices",
+      "parsed": {
+        "title": "Pokemon Southern Islands Mew 1 Holofoil Prices | Pokemon Southern Islands Mew 1 Holofoil List",
+        "source_url": "https://www.pricecharting.com/search-products?q=pokemon+southern+islands+mew+1+holofoil&type=prices"
+      },
+      "validation": {
+        "ok": false,
+        "reason": "title_pattern_not_supported"
+      }
+    }
+  ]
+}

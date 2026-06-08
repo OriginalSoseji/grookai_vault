@@ -1,0 +1,23 @@
+{
+  "source_key": "pricecharting_swsh9",
+  "source_kind": "marketplace_checklist",
+  "source_url": "https://www.pricecharting.com/",
+  "set_key": "swsh9",
+  "set_name": "Brilliant Stars",
+  "retrieved_at": "2026-05-28T04:20:24.359Z",
+  "raw_snapshot_ref": "pricecharting_acquisition:swsh9:2026-05-28T04:20:24.359Z",
+  "records": [
+    {
+      "source_key": "pricecharting_product_page",
+      "source_kind": "marketplace_checklist",
+      "source_url": "https://www.pricecharting.com/game/pokemon-brilliant-stars/mewtwo-stamped-56",
+      "set_name": "Brilliant Stars",
+      "card_number": "56",
+      "card_name": "Mewtwo",
+      "finish_key": "stamped",
+      "evidence_type": "finish_presence",
+      "evidence_label": "PriceCharting product title: Mewtwo [Stamped] #56 Prices | Pokemon Brilliant Stars | Pokemon Cards",
+      "notes": "Exact finish evidence accepted only because PriceCharting evidence matched set, card number, card name, and finish label."
+    }
+  ]
+}

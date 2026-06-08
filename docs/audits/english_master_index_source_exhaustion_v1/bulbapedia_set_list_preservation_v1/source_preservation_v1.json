@@ -1,0 +1,21 @@
+{
+  "version": "english_master_index_preserve_source_from_index_v1",
+  "generated_at": "2026-05-29T22:48:41.733Z",
+  "source_index_generated_at": "2026-05-29T18:51:39.810Z",
+  "source_key": "bulbapedia_set_list",
+  "audit_only": true,
+  "db_writes_performed": false,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "dry_run": false,
+  "fixture_dir": "docs/audits/verified_master_set_index_v1/source_fixtures/generated_bulbapedia_set_list_preservation_v1",
+  "fixture_file": "docs\\audits\\verified_master_set_index_v1\\source_fixtures\\generated_bulbapedia_set_list_preservation_v1\\bulbapedia_set_list_preservation_v1.json",
+  "summary": {
+    "records_generated": 11916,
+    "card_identity_records": 11524,
+    "finish_presence_records": 392,
+    "source_key_preserved_as": "bulbapedia_set_list",
+    "source_authority_preserved_as": "bulbapedia.bulbagarden.net"
+  }
+}

@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-25T13:45:46.023Z",
+  "generated_at": "2026-06-08T19:45:00.564Z",
   "version": "english_master_index_no_write_execution_plan_v1",
   "audit_only": true,
   "db_writes_performed": false,
@@ -46,7 +46,7 @@
           "source_aliases": [
             "sv04.5"
           ],
-          "readiness_lane": "source_acquisition_required",
+          "readiness_lane": "proof_loop_candidate_after_card_match",
           "required_evidence": [
             "human-readable/checklist card identity evidence",
             "exact card-number finish matrix evidence",
@@ -66,47 +66,7 @@
           "source_aliases": [
             "sv06.5"
           ],
-          "readiness_lane": "source_acquisition_required",
-          "required_evidence": [
-            "human-readable/checklist card identity evidence",
-            "exact card-number finish matrix evidence",
-            "second-source confirmation for each finish fact"
-          ],
-          "stop_if": [
-            "source only gives general finish rule",
-            "card-level coverage is ambiguous",
-            "finish is unsupported or conflicts with index"
-          ]
-        },
-        {
-          "set_key": "sv8pt5",
-          "set_name": "Prismatic Evolutions",
-          "candidate_card_prints": 180,
-          "printing_rows": 440,
-          "source_aliases": [
-            "sv08.5"
-          ],
-          "readiness_lane": "source_acquisition_required",
-          "required_evidence": [
-            "human-readable/checklist card identity evidence",
-            "exact card-number finish matrix evidence",
-            "second-source confirmation for each finish fact"
-          ],
-          "stop_if": [
-            "source only gives general finish rule",
-            "card-level coverage is ambiguous",
-            "finish is unsupported or conflicts with index"
-          ]
-        },
-        {
-          "set_key": "swsh2",
-          "set_name": "Rebel Clash",
-          "candidate_card_prints": 1,
-          "printing_rows": 2,
-          "source_aliases": [
-            "swsh2"
-          ],
-          "readiness_lane": "source_acquisition_required",
+          "readiness_lane": "proof_loop_candidate_after_card_match",
           "required_evidence": [
             "human-readable/checklist card identity evidence",
             "exact card-number finish matrix evidence",
@@ -126,7 +86,27 @@
           "source_aliases": [
             "2021swsh"
           ],
-          "readiness_lane": "source_acquisition_required",
+          "readiness_lane": "proof_loop_candidate_after_card_match",
+          "required_evidence": [
+            "human-readable/checklist card identity evidence",
+            "exact card-number finish matrix evidence",
+            "second-source confirmation for each finish fact"
+          ],
+          "stop_if": [
+            "source only gives general finish rule",
+            "card-level coverage is ambiguous",
+            "finish is unsupported or conflicts with index"
+          ]
+        },
+        {
+          "set_key": "sv8pt5",
+          "set_name": "Prismatic Evolutions",
+          "candidate_card_prints": 180,
+          "printing_rows": 440,
+          "source_aliases": [
+            "sv08.5"
+          ],
+          "readiness_lane": "high_volume_recovery_candidate",
           "required_evidence": [
             "human-readable/checklist card identity evidence",
             "exact card-number finish matrix evidence",
@@ -146,7 +126,27 @@
           "source_aliases": [
             "swsh10.5"
           ],
-          "readiness_lane": "source_acquisition_required",
+          "readiness_lane": "proof_loop_candidate_after_card_match",
+          "required_evidence": [
+            "human-readable/checklist card identity evidence",
+            "exact card-number finish matrix evidence",
+            "second-source confirmation for each finish fact"
+          ],
+          "stop_if": [
+            "source only gives general finish rule",
+            "card-level coverage is ambiguous",
+            "finish is unsupported or conflicts with index"
+          ]
+        },
+        {
+          "set_key": "swsh2",
+          "set_name": "Rebel Clash",
+          "candidate_card_prints": 1,
+          "printing_rows": 2,
+          "source_aliases": [
+            "swsh2"
+          ],
+          "readiness_lane": "proof_loop_candidate_after_card_match",
           "required_evidence": [
             "human-readable/checklist card identity evidence",
             "exact card-number finish matrix evidence",
@@ -166,7 +166,7 @@
           "source_aliases": [
             "ecard3"
           ],
-          "readiness_lane": "source_acquisition_required",
+          "readiness_lane": "proof_loop_candidate_after_card_match",
           "required_evidence": [
             "human-readable/checklist card identity evidence",
             "exact card-number finish matrix evidence",
@@ -186,7 +186,47 @@
           "source_aliases": [
             "ecard2"
           ],
-          "readiness_lane": "source_acquisition_required",
+          "readiness_lane": "proof_loop_candidate_after_card_match",
+          "required_evidence": [
+            "human-readable/checklist card identity evidence",
+            "exact card-number finish matrix evidence",
+            "second-source confirmation for each finish fact"
+          ],
+          "stop_if": [
+            "source only gives general finish rule",
+            "card-level coverage is ambiguous",
+            "finish is unsupported or conflicts with index"
+          ]
+        },
+        {
+          "set_key": "dp7",
+          "set_name": "Stormfront",
+          "candidate_card_prints": 8,
+          "printing_rows": 10,
+          "source_aliases": [
+            "dp7"
+          ],
+          "readiness_lane": "proof_loop_candidate_after_card_match",
+          "required_evidence": [
+            "human-readable/checklist card identity evidence",
+            "exact card-number finish matrix evidence",
+            "second-source confirmation for each finish fact"
+          ],
+          "stop_if": [
+            "source only gives general finish rule",
+            "card-level coverage is ambiguous",
+            "finish is unsupported or conflicts with index"
+          ]
+        },
+        {
+          "set_key": "pl1",
+          "set_name": "Platinum",
+          "candidate_card_prints": 9,
+          "printing_rows": 10,
+          "source_aliases": [
+            "pl1"
+          ],
+          "readiness_lane": "proof_loop_candidate_after_card_match",
           "required_evidence": [
             "human-readable/checklist card identity evidence",
             "exact card-number finish matrix evidence",
@@ -206,7 +246,7 @@
           "source_aliases": [
             "svp"
           ],
-          "readiness_lane": "source_acquisition_required",
+          "readiness_lane": "promo_family_caution_review",
           "required_evidence": [
             "human-readable/checklist card identity evidence",
             "exact card-number finish matrix evidence",
@@ -219,54 +259,14 @@
           ]
         },
         {
-          "set_key": "me1",
-          "set_name": "Mega Evolution",
-          "candidate_card_prints": 83,
-          "printing_rows": 168,
+          "set_key": "pl2",
+          "set_name": "Rising Rivals",
+          "candidate_card_prints": 37,
+          "printing_rows": 64,
           "source_aliases": [
-            "me01"
+            "pl2"
           ],
-          "readiness_lane": "source_acquisition_required",
-          "required_evidence": [
-            "human-readable/checklist card identity evidence",
-            "exact card-number finish matrix evidence",
-            "second-source confirmation for each finish fact"
-          ],
-          "stop_if": [
-            "source only gives general finish rule",
-            "card-level coverage is ambiguous",
-            "finish is unsupported or conflicts with index"
-          ]
-        },
-        {
-          "set_key": "swsh45",
-          "set_name": "Shining Fates",
-          "candidate_card_prints": 2,
-          "printing_rows": 4,
-          "source_aliases": [
-            "swsh4.5"
-          ],
-          "readiness_lane": "source_acquisition_required",
-          "required_evidence": [
-            "human-readable/checklist card identity evidence",
-            "exact card-number finish matrix evidence",
-            "second-source confirmation for each finish fact"
-          ],
-          "stop_if": [
-            "source only gives general finish rule",
-            "card-level coverage is ambiguous",
-            "finish is unsupported or conflicts with index"
-          ]
-        },
-        {
-          "set_key": "xy4",
-          "set_name": "Phantom Forces",
-          "candidate_card_prints": 16,
-          "printing_rows": 48,
-          "source_aliases": [
-            "xy4"
-          ],
-          "readiness_lane": "source_acquisition_required",
+          "readiness_lane": "legacy_caution_review",
           "required_evidence": [
             "human-readable/checklist card identity evidence",
             "exact card-number finish matrix evidence",
@@ -311,11 +311,12 @@
     }
   ],
   "evidence_plan": {
-    "source_acquisition_queue_total": 482,
+    "source_acquisition_queue_total": 161,
     "physical_exact_match_status": {
-      "partial_finishes_supported_by_index": 348,
-      "all_finishes_supported_but_not_master_verified": 455,
-      "no_finishes_supported_by_index": 4
+      "partial_finishes_supported_by_index": 210,
+      "blocked_until_card_identity_match": 488,
+      "all_finishes_master_verified_by_index": 106,
+      "no_finishes_supported_by_index": 3
     },
     "priority_sets": [
       {
@@ -326,7 +327,7 @@
         "source_aliases": [
           "sv04.5"
         ],
-        "readiness_lane": "source_acquisition_required",
+        "readiness_lane": "proof_loop_candidate_after_card_match",
         "required_evidence": [
           "human-readable/checklist card identity evidence",
           "exact card-number finish matrix evidence",
@@ -346,47 +347,7 @@
         "source_aliases": [
           "sv06.5"
         ],
-        "readiness_lane": "source_acquisition_required",
-        "required_evidence": [
-          "human-readable/checklist card identity evidence",
-          "exact card-number finish matrix evidence",
-          "second-source confirmation for each finish fact"
-        ],
-        "stop_if": [
-          "source only gives general finish rule",
-          "card-level coverage is ambiguous",
-          "finish is unsupported or conflicts with index"
-        ]
-      },
-      {
-        "set_key": "sv8pt5",
-        "set_name": "Prismatic Evolutions",
-        "candidate_card_prints": 180,
-        "printing_rows": 440,
-        "source_aliases": [
-          "sv08.5"
-        ],
-        "readiness_lane": "source_acquisition_required",
-        "required_evidence": [
-          "human-readable/checklist card identity evidence",
-          "exact card-number finish matrix evidence",
-          "second-source confirmation for each finish fact"
-        ],
-        "stop_if": [
-          "source only gives general finish rule",
-          "card-level coverage is ambiguous",
-          "finish is unsupported or conflicts with index"
-        ]
-      },
-      {
-        "set_key": "swsh2",
-        "set_name": "Rebel Clash",
-        "candidate_card_prints": 1,
-        "printing_rows": 2,
-        "source_aliases": [
-          "swsh2"
-        ],
-        "readiness_lane": "source_acquisition_required",
+        "readiness_lane": "proof_loop_candidate_after_card_match",
         "required_evidence": [
           "human-readable/checklist card identity evidence",
           "exact card-number finish matrix evidence",
@@ -406,7 +367,27 @@
         "source_aliases": [
           "2021swsh"
         ],
-        "readiness_lane": "source_acquisition_required",
+        "readiness_lane": "proof_loop_candidate_after_card_match",
+        "required_evidence": [
+          "human-readable/checklist card identity evidence",
+          "exact card-number finish matrix evidence",
+          "second-source confirmation for each finish fact"
+        ],
+        "stop_if": [
+          "source only gives general finish rule",
+          "card-level coverage is ambiguous",
+          "finish is unsupported or conflicts with index"
+        ]
+      },
+      {
+        "set_key": "sv8pt5",
+        "set_name": "Prismatic Evolutions",
+        "candidate_card_prints": 180,
+        "printing_rows": 440,
+        "source_aliases": [
+          "sv08.5"
+        ],
+        "readiness_lane": "high_volume_recovery_candidate",
         "required_evidence": [
           "human-readable/checklist card identity evidence",
           "exact card-number finish matrix evidence",
@@ -426,7 +407,27 @@
         "source_aliases": [
           "swsh10.5"
         ],
-        "readiness_lane": "source_acquisition_required",
+        "readiness_lane": "proof_loop_candidate_after_card_match",
+        "required_evidence": [
+          "human-readable/checklist card identity evidence",
+          "exact card-number finish matrix evidence",
+          "second-source confirmation for each finish fact"
+        ],
+        "stop_if": [
+          "source only gives general finish rule",
+          "card-level coverage is ambiguous",
+          "finish is unsupported or conflicts with index"
+        ]
+      },
+      {
+        "set_key": "swsh2",
+        "set_name": "Rebel Clash",
+        "candidate_card_prints": 1,
+        "printing_rows": 2,
+        "source_aliases": [
+          "swsh2"
+        ],
+        "readiness_lane": "proof_loop_candidate_after_card_match",
         "required_evidence": [
           "human-readable/checklist card identity evidence",
           "exact card-number finish matrix evidence",
@@ -446,7 +447,7 @@
         "source_aliases": [
           "ecard3"
         ],
-        "readiness_lane": "source_acquisition_required",
+        "readiness_lane": "proof_loop_candidate_after_card_match",
         "required_evidence": [
           "human-readable/checklist card identity evidence",
           "exact card-number finish matrix evidence",
@@ -466,7 +467,47 @@
         "source_aliases": [
           "ecard2"
         ],
-        "readiness_lane": "source_acquisition_required",
+        "readiness_lane": "proof_loop_candidate_after_card_match",
+        "required_evidence": [
+          "human-readable/checklist card identity evidence",
+          "exact card-number finish matrix evidence",
+          "second-source confirmation for each finish fact"
+        ],
+        "stop_if": [
+          "source only gives general finish rule",
+          "card-level coverage is ambiguous",
+          "finish is unsupported or conflicts with index"
+        ]
+      },
+      {
+        "set_key": "dp7",
+        "set_name": "Stormfront",
+        "candidate_card_prints": 8,
+        "printing_rows": 10,
+        "source_aliases": [
+          "dp7"
+        ],
+        "readiness_lane": "proof_loop_candidate_after_card_match",
+        "required_evidence": [
+          "human-readable/checklist card identity evidence",
+          "exact card-number finish matrix evidence",
+          "second-source confirmation for each finish fact"
+        ],
+        "stop_if": [
+          "source only gives general finish rule",
+          "card-level coverage is ambiguous",
+          "finish is unsupported or conflicts with index"
+        ]
+      },
+      {
+        "set_key": "pl1",
+        "set_name": "Platinum",
+        "candidate_card_prints": 9,
+        "printing_rows": 10,
+        "source_aliases": [
+          "pl1"
+        ],
+        "readiness_lane": "proof_loop_candidate_after_card_match",
         "required_evidence": [
           "human-readable/checklist card identity evidence",
           "exact card-number finish matrix evidence",
@@ -486,7 +527,7 @@
         "source_aliases": [
           "svp"
         ],
-        "readiness_lane": "source_acquisition_required",
+        "readiness_lane": "promo_family_caution_review",
         "required_evidence": [
           "human-readable/checklist card identity evidence",
           "exact card-number finish matrix evidence",
@@ -499,54 +540,14 @@
         ]
       },
       {
-        "set_key": "me1",
-        "set_name": "Mega Evolution",
-        "candidate_card_prints": 83,
-        "printing_rows": 168,
+        "set_key": "pl2",
+        "set_name": "Rising Rivals",
+        "candidate_card_prints": 37,
+        "printing_rows": 64,
         "source_aliases": [
-          "me01"
+          "pl2"
         ],
-        "readiness_lane": "source_acquisition_required",
-        "required_evidence": [
-          "human-readable/checklist card identity evidence",
-          "exact card-number finish matrix evidence",
-          "second-source confirmation for each finish fact"
-        ],
-        "stop_if": [
-          "source only gives general finish rule",
-          "card-level coverage is ambiguous",
-          "finish is unsupported or conflicts with index"
-        ]
-      },
-      {
-        "set_key": "swsh45",
-        "set_name": "Shining Fates",
-        "candidate_card_prints": 2,
-        "printing_rows": 4,
-        "source_aliases": [
-          "swsh4.5"
-        ],
-        "readiness_lane": "source_acquisition_required",
-        "required_evidence": [
-          "human-readable/checklist card identity evidence",
-          "exact card-number finish matrix evidence",
-          "second-source confirmation for each finish fact"
-        ],
-        "stop_if": [
-          "source only gives general finish rule",
-          "card-level coverage is ambiguous",
-          "finish is unsupported or conflicts with index"
-        ]
-      },
-      {
-        "set_key": "xy4",
-        "set_name": "Phantom Forces",
-        "candidate_card_prints": 16,
-        "printing_rows": 48,
-        "source_aliases": [
-          "xy4"
-        ],
-        "readiness_lane": "source_acquisition_required",
+        "readiness_lane": "legacy_caution_review",
         "required_evidence": [
           "human-readable/checklist card identity evidence",
           "exact card-number finish matrix evidence",
@@ -572,7 +573,7 @@
       "name": "Ascended Heroes monitor-only proof baseline",
       "current_state": "complete",
       "future_write_allowed_after_approval": false,
-      "candidate_rows": 620,
+      "candidate_rows": 31975,
       "blockers": [],
       "required_before_write": [
         "No write required unless future drift appears."
@@ -587,10 +588,10 @@
       "candidate_card_prints": 807,
       "candidate_printing_rows": 1685,
       "evidence_shape": {
-        "exact_card_identity_match": 807,
-        "all_finishes_supported_but_not_master_verified": 455,
-        "partial_finishes_supported_by_index": 348,
-        "no_finishes_supported_by_index": 4
+        "exact_card_identity_match": 319,
+        "all_finishes_supported_but_not_master_verified": 0,
+        "partial_finishes_supported_by_index": 210,
+        "no_finishes_supported_by_index": 3
       },
       "blockers": [
         "No candidate finish is currently master_verified.",
@@ -627,7 +628,7 @@
       "name": "Unsupported printings cleanup",
       "current_state": "blocked_by_index_maturity",
       "future_write_allowed_after_approval": false,
-      "candidate_printing_rows": 10489,
+      "candidate_printing_rows": 11975,
       "blockers": [
         "Unsupported by current index is not deletion authority.",
         "Many sets are API-only or source-limited."
@@ -644,7 +645,7 @@
       "name": "Missing-from-Grookai insertions",
       "current_state": "blocked_by_master_verification",
       "future_write_allowed_after_approval": false,
-      "candidate_printing_rows": 6080,
+      "candidate_printing_rows": 7317,
       "blockers": [
         "Missing from Grookai is not insertion authority.",
         "Only master_verified index rows may participate in future insertion."
@@ -661,7 +662,7 @@
       "name": "Name and alias governance",
       "current_state": "manual_governance_required",
       "future_write_allowed_after_approval": false,
-      "candidate_rows": 196,
+      "candidate_rows": 139,
       "blockers": [
         "Name mismatch is not identity rewrite authority.",
         "Alias and subset policies must be source-backed."

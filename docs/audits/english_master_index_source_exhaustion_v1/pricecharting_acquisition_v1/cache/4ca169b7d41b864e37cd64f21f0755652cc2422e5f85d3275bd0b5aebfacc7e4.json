@@ -1,0 +1,50 @@
+{
+  "status": "no_validated_match",
+  "fact": {
+    "gap_type": "finish_second_source_needed",
+    "fact_type": "printing_finish",
+    "set_key": "sm5",
+    "set_name": "Ultra Prism",
+    "card_number": "32",
+    "card_name": "Piplup",
+    "finish_key": "stamped",
+    "status": "human_source_verified",
+    "sources": [
+      "thepricedex_price_list"
+    ],
+    "source_authorities": [
+      "thepricedex.com"
+    ],
+    "source_kinds": [
+      "marketplace_checklist"
+    ],
+    "evidence_urls": [],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "attempts": [
+    {
+      "query": "Pokemon Ultra Prism Piplup 32 stamped",
+      "url": "https://www.pricecharting.com/search-products?q=Pokemon%20Ultra%20Prism%20Piplup%2032%20stamped&type=prices",
+      "parsed": {
+        "title": "Pokemon Ultra Prism Piplup 32 Stamped Prices | Pokemon Ultra Prism Piplup 32 Stamped List",
+        "source_url": "https://www.pricecharting.com/search-products?q=pokemon+ultra+prism+piplup+32+stamped&type=prices"
+      },
+      "validation": {
+        "ok": false,
+        "reason": "title_pattern_not_supported"
+      }
+    },
+    {
+      "query": "Pokemon Ultra Prism Piplup 32 stamp",
+      "url": "https://www.pricecharting.com/search-products?q=Pokemon%20Ultra%20Prism%20Piplup%2032%20stamp&type=prices",
+      "parsed": {
+        "title": "Pokemon Ultra Prism Piplup 32 Stamp Prices | Pokemon Ultra Prism Piplup 32 Stamp List",
+        "source_url": "https://www.pricecharting.com/search-products?q=pokemon+ultra+prism+piplup+32+stamp&type=prices"
+      },
+      "validation": {
+        "ok": false,
+        "reason": "title_pattern_not_supported"
+      }
+    }
+  ]
+}

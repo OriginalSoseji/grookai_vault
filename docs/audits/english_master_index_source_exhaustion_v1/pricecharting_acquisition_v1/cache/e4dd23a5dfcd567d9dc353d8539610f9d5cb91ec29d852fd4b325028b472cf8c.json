@@ -1,0 +1,549 @@
+{
+  "status": "api_no_validated_match",
+  "fact": {
+    "gap_type": "finish_second_source_needed",
+    "fact_type": "printing_finish",
+    "set_key": "sv06.5",
+    "set_name": "Shrouded Fable",
+    "card_number": "37",
+    "card_name": "Munkidori ex",
+    "finish_key": "stamped",
+    "status": "human_source_verified",
+    "sources": [
+      "thepricedex_price_list"
+    ],
+    "source_authorities": [
+      "thepricedex.com"
+    ],
+    "source_kinds": [
+      "marketplace_checklist"
+    ],
+    "evidence_urls": [
+      "https://www.thepricedex.com/set/sv6pt5/shrouded-fable/price-list"
+    ],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "attempts": [
+    {
+      "query": "Pokemon Shrouded Fable Munkidori ex 37 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Shrouded%20Fable%20Munkidori%20ex%2037%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7108694",
+      "product_name": "Munkidori ex #37",
+      "console_name": "Pokemon Shrouded Fable",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon Shrouded Fable Munkidori ex 37 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Shrouded%20Fable%20Munkidori%20ex%2037%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7108740",
+      "product_name": "Munkidori ex #83",
+      "console_name": "Pokemon Shrouded Fable",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:83"
+      }
+    },
+    {
+      "query": "Pokemon Shrouded Fable Munkidori ex 37 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Shrouded%20Fable%20Munkidori%20ex%2037%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7108748",
+      "product_name": "Munkidori ex #91",
+      "console_name": "Pokemon Shrouded Fable",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:91"
+      }
+    },
+    {
+      "query": "Pokemon Shrouded Fable Munkidori ex 37 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Shrouded%20Fable%20Munkidori%20ex%2037%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10495905",
+      "product_name": "Munkidori [Prize Pack] #37",
+      "console_name": "Pokemon Shrouded Fable",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Munkidori"
+      }
+    },
+    {
+      "query": "Pokemon Shrouded Fable Munkidori ex 37 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Shrouded%20Fable%20Munkidori%20ex%2037%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11321012",
+      "product_name": "Kingdra EX [Stamped] #12",
+      "console_name": "Pokemon Shrouded Fable",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:12"
+      }
+    },
+    {
+      "query": "Pokemon Shrouded Fable Munkidori ex 37 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Shrouded%20Fable%20Munkidori%20ex%2037%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7108729",
+      "product_name": "Munkidori #72",
+      "console_name": "Pokemon Shrouded Fable",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:72"
+      }
+    },
+    {
+      "query": "Pokemon Shrouded Fable Munkidori ex 37 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Shrouded%20Fable%20Munkidori%20ex%2037%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9609230",
+      "product_name": "Mini Tin [Munkidori]",
+      "console_name": "Pokemon Shrouded Fable",
+      "validation": {
+        "ok": false,
+        "reason": "api_product_name_pattern_not_supported"
+      }
+    },
+    {
+      "query": "Pokemon Shrouded Fable Munkidori ex 37 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Shrouded%20Fable%20Munkidori%20ex%2037%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7108669",
+      "product_name": "Kingdra ex #12",
+      "console_name": "Pokemon Shrouded Fable",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:12"
+      }
+    },
+    {
+      "query": "Pokemon Shrouded Fable Munkidori ex 37 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Shrouded%20Fable%20Munkidori%20ex%2037%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7108693",
+      "product_name": "Okidogi ex #36",
+      "console_name": "Pokemon Shrouded Fable",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:36"
+      }
+    },
+    {
+      "query": "Pokemon Shrouded Fable Munkidori ex 37 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Shrouded%20Fable%20Munkidori%20ex%2037%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7108737",
+      "product_name": "Kingdra ex #80",
+      "console_name": "Pokemon Shrouded Fable",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:80"
+      }
+    },
+    {
+      "query": "Pokemon Shrouded Fable Munkidori ex 37 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Shrouded%20Fable%20Munkidori%20ex%2037%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7108739",
+      "product_name": "Okidogi ex #82",
+      "console_name": "Pokemon Shrouded Fable",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:82"
+      }
+    },
+    {
+      "query": "Pokemon Shrouded Fable Munkidori ex 37 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Shrouded%20Fable%20Munkidori%20ex%2037%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7108747",
+      "product_name": "Okidogi ex #90",
+      "console_name": "Pokemon Shrouded Fable",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:90"
+      }
+    },
+    {
+      "query": "Pokemon Shrouded Fable Munkidori ex 37 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Shrouded%20Fable%20Munkidori%20ex%2037%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7108672",
+      "product_name": "Revavroom ex #15",
+      "console_name": "Pokemon Shrouded Fable",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:15"
+      }
+    },
+    {
+      "query": "Pokemon Shrouded Fable Munkidori ex 37 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Shrouded%20Fable%20Munkidori%20ex%2037%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7108696",
+      "product_name": "Pecharunt ex #39",
+      "console_name": "Pokemon Shrouded Fable",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:39"
+      }
+    },
+    {
+      "query": "Pokemon Shrouded Fable Munkidori ex 37 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Shrouded%20Fable%20Munkidori%20ex%2037%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7108742",
+      "product_name": "Pecharunt ex #85",
+      "console_name": "Pokemon Shrouded Fable",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:85"
+      }
+    },
+    {
+      "query": "Pokemon Shrouded Fable Munkidori ex 37 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Shrouded%20Fable%20Munkidori%20ex%2037%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7108738",
+      "product_name": "Revavroom ex #81",
+      "console_name": "Pokemon Shrouded Fable",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:81"
+      }
+    },
+    {
+      "query": "Pokemon Shrouded Fable Munkidori ex 37 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Shrouded%20Fable%20Munkidori%20ex%2037%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7108750",
+      "product_name": "Pecharunt ex #93",
+      "console_name": "Pokemon Shrouded Fable",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:93"
+      }
+    },
+    {
+      "query": "Pokemon Shrouded Fable Munkidori ex 37 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Shrouded%20Fable%20Munkidori%20ex%2037%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7108752",
+      "product_name": "Pecharunt ex #95",
+      "console_name": "Pokemon Shrouded Fable",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:95"
+      }
+    },
+    {
+      "query": "Pokemon Shrouded Fable Munkidori ex 37 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Shrouded%20Fable%20Munkidori%20ex%2037%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6894080",
+      "product_name": "Munkidori ex #37",
+      "console_name": "Pokemon Japanese Night Wanderer",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon Japanese Night Wanderer"
+      }
+    },
+    {
+      "query": "Pokemon Shrouded Fable Munkidori ex 37 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Shrouded%20Fable%20Munkidori%20ex%2037%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11498619",
+      "product_name": "Munkidori ex #37",
+      "console_name": "Pokemon Korean Night Wanderer",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon Korean Night Wanderer"
+      }
+    },
+    {
+      "query": "Pokemon Shrouded Fable Munkidori ex 37 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Shrouded%20Fable%20Munkidori%20ex%2037%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7108694",
+      "product_name": "Munkidori ex #37",
+      "console_name": "Pokemon Shrouded Fable",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon Shrouded Fable Munkidori ex 37 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Shrouded%20Fable%20Munkidori%20ex%2037%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7108740",
+      "product_name": "Munkidori ex #83",
+      "console_name": "Pokemon Shrouded Fable",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:83"
+      }
+    },
+    {
+      "query": "Pokemon Shrouded Fable Munkidori ex 37 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Shrouded%20Fable%20Munkidori%20ex%2037%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7108748",
+      "product_name": "Munkidori ex #91",
+      "console_name": "Pokemon Shrouded Fable",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:91"
+      }
+    },
+    {
+      "query": "Pokemon Shrouded Fable Munkidori ex 37 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Shrouded%20Fable%20Munkidori%20ex%2037%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10495905",
+      "product_name": "Munkidori [Prize Pack] #37",
+      "console_name": "Pokemon Shrouded Fable",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Munkidori"
+      }
+    },
+    {
+      "query": "Pokemon Shrouded Fable Munkidori ex 37 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Shrouded%20Fable%20Munkidori%20ex%2037%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11321012",
+      "product_name": "Kingdra EX [Stamped] #12",
+      "console_name": "Pokemon Shrouded Fable",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:12"
+      }
+    },
+    {
+      "query": "Pokemon Shrouded Fable Munkidori ex 37 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Shrouded%20Fable%20Munkidori%20ex%2037%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7108729",
+      "product_name": "Munkidori #72",
+      "console_name": "Pokemon Shrouded Fable",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:72"
+      }
+    },
+    {
+      "query": "Pokemon Shrouded Fable Munkidori ex 37 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Shrouded%20Fable%20Munkidori%20ex%2037%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9609230",
+      "product_name": "Mini Tin [Munkidori]",
+      "console_name": "Pokemon Shrouded Fable",
+      "validation": {
+        "ok": false,
+        "reason": "api_product_name_pattern_not_supported"
+      }
+    },
+    {
+      "query": "Pokemon Shrouded Fable Munkidori ex 37 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Shrouded%20Fable%20Munkidori%20ex%2037%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7108669",
+      "product_name": "Kingdra ex #12",
+      "console_name": "Pokemon Shrouded Fable",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:12"
+      }
+    },
+    {
+      "query": "Pokemon Shrouded Fable Munkidori ex 37 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Shrouded%20Fable%20Munkidori%20ex%2037%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7108693",
+      "product_name": "Okidogi ex #36",
+      "console_name": "Pokemon Shrouded Fable",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:36"
+      }
+    },
+    {
+      "query": "Pokemon Shrouded Fable Munkidori ex 37 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Shrouded%20Fable%20Munkidori%20ex%2037%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7108737",
+      "product_name": "Kingdra ex #80",
+      "console_name": "Pokemon Shrouded Fable",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:80"
+      }
+    },
+    {
+      "query": "Pokemon Shrouded Fable Munkidori ex 37 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Shrouded%20Fable%20Munkidori%20ex%2037%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7108739",
+      "product_name": "Okidogi ex #82",
+      "console_name": "Pokemon Shrouded Fable",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:82"
+      }
+    },
+    {
+      "query": "Pokemon Shrouded Fable Munkidori ex 37 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Shrouded%20Fable%20Munkidori%20ex%2037%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7108747",
+      "product_name": "Okidogi ex #90",
+      "console_name": "Pokemon Shrouded Fable",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:90"
+      }
+    },
+    {
+      "query": "Pokemon Shrouded Fable Munkidori ex 37 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Shrouded%20Fable%20Munkidori%20ex%2037%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7108672",
+      "product_name": "Revavroom ex #15",
+      "console_name": "Pokemon Shrouded Fable",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:15"
+      }
+    },
+    {
+      "query": "Pokemon Shrouded Fable Munkidori ex 37 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Shrouded%20Fable%20Munkidori%20ex%2037%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7108696",
+      "product_name": "Pecharunt ex #39",
+      "console_name": "Pokemon Shrouded Fable",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:39"
+      }
+    },
+    {
+      "query": "Pokemon Shrouded Fable Munkidori ex 37 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Shrouded%20Fable%20Munkidori%20ex%2037%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7108742",
+      "product_name": "Pecharunt ex #85",
+      "console_name": "Pokemon Shrouded Fable",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:85"
+      }
+    },
+    {
+      "query": "Pokemon Shrouded Fable Munkidori ex 37 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Shrouded%20Fable%20Munkidori%20ex%2037%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7108738",
+      "product_name": "Revavroom ex #81",
+      "console_name": "Pokemon Shrouded Fable",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:81"
+      }
+    },
+    {
+      "query": "Pokemon Shrouded Fable Munkidori ex 37 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Shrouded%20Fable%20Munkidori%20ex%2037%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7108750",
+      "product_name": "Pecharunt ex #93",
+      "console_name": "Pokemon Shrouded Fable",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:93"
+      }
+    },
+    {
+      "query": "Pokemon Shrouded Fable Munkidori ex 37 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Shrouded%20Fable%20Munkidori%20ex%2037%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7108752",
+      "product_name": "Pecharunt ex #95",
+      "console_name": "Pokemon Shrouded Fable",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:95"
+      }
+    },
+    {
+      "query": "Pokemon Shrouded Fable Munkidori ex 37 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Shrouded%20Fable%20Munkidori%20ex%2037%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6894080",
+      "product_name": "Munkidori ex #37",
+      "console_name": "Pokemon Japanese Night Wanderer",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon Japanese Night Wanderer"
+      }
+    },
+    {
+      "query": "Pokemon Shrouded Fable Munkidori ex 37 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Shrouded%20Fable%20Munkidori%20ex%2037%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11498619",
+      "product_name": "Munkidori ex #37",
+      "console_name": "Pokemon Korean Night Wanderer",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon Korean Night Wanderer"
+      }
+    }
+  ],
+  "source_lane": "pricecharting_api"
+}

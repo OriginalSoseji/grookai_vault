@@ -1,0 +1,549 @@
+{
+  "status": "api_no_validated_match",
+  "fact": {
+    "gap_type": "finish_second_source_needed",
+    "fact_type": "printing_finish",
+    "set_key": "sve",
+    "set_name": "Scarlet & Violet Energies",
+    "card_number": "6",
+    "card_name": "Basic Fighting Energy",
+    "finish_key": "stamped",
+    "status": "human_source_verified",
+    "sources": [
+      "thepricedex_price_list"
+    ],
+    "source_authorities": [
+      "thepricedex.com"
+    ],
+    "source_kinds": [
+      "marketplace_checklist"
+    ],
+    "evidence_urls": [
+      "https://www.thepricedex.com/set/sve/scarlet-and-violet-energies/price-list"
+    ],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "attempts": [
+    {
+      "query": "Pokemon Scarlet & Violet Energies Basic Fighting Energy 6 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Scarlet%20%26%20Violet%20Energies%20Basic%20Fighting%20Energy%206%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5826824",
+      "product_name": "Basic Fighting Energy [Cosmos Holo] #6",
+      "console_name": "Pokemon Scarlet & Violet Energy",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon Scarlet & Violet Energy"
+      }
+    },
+    {
+      "query": "Pokemon Scarlet & Violet Energies Basic Fighting Energy 6 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Scarlet%20%26%20Violet%20Energies%20Basic%20Fighting%20Energy%206%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7211577",
+      "product_name": "Basic Fighting Energy [Prize Pack] #6",
+      "console_name": "Pokemon Scarlet & Violet Energy",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon Scarlet & Violet Energy"
+      }
+    },
+    {
+      "query": "Pokemon Scarlet & Violet Energies Basic Fighting Energy 6 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Scarlet%20%26%20Violet%20Energies%20Basic%20Fighting%20Energy%206%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5013889",
+      "product_name": "Basic Fighting Energy #6",
+      "console_name": "Pokemon Scarlet & Violet Energy",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon Scarlet & Violet Energy"
+      }
+    },
+    {
+      "query": "Pokemon Scarlet & Violet Energies Basic Fighting Energy 6 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Scarlet%20%26%20Violet%20Energies%20Basic%20Fighting%20Energy%206%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7321548",
+      "product_name": "Basic Fighting Energy [Reverse Holo] #6",
+      "console_name": "Pokemon Scarlet & Violet Energy",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon Scarlet & Violet Energy"
+      }
+    },
+    {
+      "query": "Pokemon Scarlet & Violet Energies Basic Fighting Energy 6 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Scarlet%20%26%20Violet%20Energies%20Basic%20Fighting%20Energy%206%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10042702",
+      "product_name": "Basic Fighting Energy [Holo] #22",
+      "console_name": "Pokemon Scarlet & Violet Energy",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:22"
+      }
+    },
+    {
+      "query": "Pokemon Scarlet & Violet Energies Basic Fighting Energy 6 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Scarlet%20%26%20Violet%20Energies%20Basic%20Fighting%20Energy%206%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8431357",
+      "product_name": "Basic Fighting Energy [Holo] #14",
+      "console_name": "Pokemon Scarlet & Violet Energy",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:14"
+      }
+    },
+    {
+      "query": "Pokemon Scarlet & Violet Energies Basic Fighting Energy 6 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Scarlet%20%26%20Violet%20Energies%20Basic%20Fighting%20Energy%206%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9758060",
+      "product_name": "Basic Fighting Energy [Cosmic Holo Prize Pack] #6",
+      "console_name": "Pokemon Scarlet & Violet Energy",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon Scarlet & Violet Energy"
+      }
+    },
+    {
+      "query": "Pokemon Scarlet & Violet Energies Basic Fighting Energy 6 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Scarlet%20%26%20Violet%20Energies%20Basic%20Fighting%20Energy%206%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8909509",
+      "product_name": "Basic Fighting Energy [Cosmos Holo] #14",
+      "console_name": "Pokemon Scarlet & Violet Energy",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:14"
+      }
+    },
+    {
+      "query": "Pokemon Scarlet & Violet Energies Basic Fighting Energy 6 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Scarlet%20%26%20Violet%20Energies%20Basic%20Fighting%20Energy%206%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10951988",
+      "product_name": "Basic Fighting Energy [Prize Pack] #14",
+      "console_name": "Pokemon Scarlet & Violet Energy",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:14"
+      }
+    },
+    {
+      "query": "Pokemon Scarlet & Violet Energies Basic Fighting Energy 6 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Scarlet%20%26%20Violet%20Energies%20Basic%20Fighting%20Energy%206%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9572292",
+      "product_name": "Basic Fighting Energy [Ice Cracked] #14",
+      "console_name": "Pokemon Scarlet & Violet Energy",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:14"
+      }
+    },
+    {
+      "query": "Pokemon Scarlet & Violet Energies Basic Fighting Energy 6 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Scarlet%20%26%20Violet%20Energies%20Basic%20Fighting%20Energy%206%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10046377",
+      "product_name": "Basic Fighting Energy #22",
+      "console_name": "Pokemon Scarlet & Violet Energy",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:22"
+      }
+    },
+    {
+      "query": "Pokemon Scarlet & Violet Energies Basic Fighting Energy 6 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Scarlet%20%26%20Violet%20Energies%20Basic%20Fighting%20Energy%206%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4934032",
+      "product_name": "Basic Fighting Energy #258",
+      "console_name": "Pokemon Scarlet & Violet Energy",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:258"
+      }
+    },
+    {
+      "query": "Pokemon Scarlet & Violet Energies Basic Fighting Energy 6 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Scarlet%20%26%20Violet%20Energies%20Basic%20Fighting%20Energy%206%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7549849",
+      "product_name": "Basic Fighting Energy #14",
+      "console_name": "Pokemon Scarlet & Violet Energy",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:14"
+      }
+    },
+    {
+      "query": "Pokemon Scarlet & Violet Energies Basic Fighting Energy 6 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Scarlet%20%26%20Violet%20Energies%20Basic%20Fighting%20Energy%206%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10951990",
+      "product_name": "Basic Fighting Energy [Prize Pack Cosmos Holo] #14",
+      "console_name": "Pokemon Scarlet & Violet Energy",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:14"
+      }
+    },
+    {
+      "query": "Pokemon Scarlet & Violet Energies Basic Fighting Energy 6 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Scarlet%20%26%20Violet%20Energies%20Basic%20Fighting%20Energy%206%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7549846",
+      "product_name": "Basic Grass Energy #9",
+      "console_name": "Pokemon Scarlet & Violet Energy",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:9"
+      }
+    },
+    {
+      "query": "Pokemon Scarlet & Violet Energies Basic Fighting Energy 6 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Scarlet%20%26%20Violet%20Energies%20Basic%20Fighting%20Energy%206%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10046270",
+      "product_name": "Basic Grass Energy #17",
+      "console_name": "Pokemon Scarlet & Violet Energy",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:17"
+      }
+    },
+    {
+      "query": "Pokemon Scarlet & Violet Energies Basic Fighting Energy 6 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Scarlet%20%26%20Violet%20Energies%20Basic%20Fighting%20Energy%206%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4956295",
+      "product_name": "Basic Grass Energy #1",
+      "console_name": "Pokemon Scarlet & Violet Energy",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:1"
+      }
+    },
+    {
+      "query": "Pokemon Scarlet & Violet Energies Basic Fighting Energy 6 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Scarlet%20%26%20Violet%20Energies%20Basic%20Fighting%20Energy%206%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8453093",
+      "product_name": "Basic Grass Energy [Holo] #9",
+      "console_name": "Pokemon Scarlet & Violet Energy",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:9"
+      }
+    },
+    {
+      "query": "Pokemon Scarlet & Violet Energies Basic Fighting Energy 6 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Scarlet%20%26%20Violet%20Energies%20Basic%20Fighting%20Energy%206%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10042701",
+      "product_name": "Basic Grass Energy [Holo] #17",
+      "console_name": "Pokemon Scarlet & Violet Energy",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:17"
+      }
+    },
+    {
+      "query": "Pokemon Scarlet & Violet Energies Basic Fighting Energy 6 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Scarlet%20%26%20Violet%20Energies%20Basic%20Fighting%20Energy%206%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7136274",
+      "product_name": "Basic Grass Energy [Holo] #1",
+      "console_name": "Pokemon Scarlet & Violet Energy",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:1"
+      }
+    },
+    {
+      "query": "Pokemon Scarlet & Violet Energies Basic Fighting Energy 6 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Scarlet%20%26%20Violet%20Energies%20Basic%20Fighting%20Energy%206%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5826824",
+      "product_name": "Basic Fighting Energy [Cosmos Holo] #6",
+      "console_name": "Pokemon Scarlet & Violet Energy",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon Scarlet & Violet Energy"
+      }
+    },
+    {
+      "query": "Pokemon Scarlet & Violet Energies Basic Fighting Energy 6 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Scarlet%20%26%20Violet%20Energies%20Basic%20Fighting%20Energy%206%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7211577",
+      "product_name": "Basic Fighting Energy [Prize Pack] #6",
+      "console_name": "Pokemon Scarlet & Violet Energy",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon Scarlet & Violet Energy"
+      }
+    },
+    {
+      "query": "Pokemon Scarlet & Violet Energies Basic Fighting Energy 6 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Scarlet%20%26%20Violet%20Energies%20Basic%20Fighting%20Energy%206%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5013889",
+      "product_name": "Basic Fighting Energy #6",
+      "console_name": "Pokemon Scarlet & Violet Energy",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon Scarlet & Violet Energy"
+      }
+    },
+    {
+      "query": "Pokemon Scarlet & Violet Energies Basic Fighting Energy 6 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Scarlet%20%26%20Violet%20Energies%20Basic%20Fighting%20Energy%206%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7321548",
+      "product_name": "Basic Fighting Energy [Reverse Holo] #6",
+      "console_name": "Pokemon Scarlet & Violet Energy",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon Scarlet & Violet Energy"
+      }
+    },
+    {
+      "query": "Pokemon Scarlet & Violet Energies Basic Fighting Energy 6 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Scarlet%20%26%20Violet%20Energies%20Basic%20Fighting%20Energy%206%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10042702",
+      "product_name": "Basic Fighting Energy [Holo] #22",
+      "console_name": "Pokemon Scarlet & Violet Energy",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:22"
+      }
+    },
+    {
+      "query": "Pokemon Scarlet & Violet Energies Basic Fighting Energy 6 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Scarlet%20%26%20Violet%20Energies%20Basic%20Fighting%20Energy%206%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8431357",
+      "product_name": "Basic Fighting Energy [Holo] #14",
+      "console_name": "Pokemon Scarlet & Violet Energy",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:14"
+      }
+    },
+    {
+      "query": "Pokemon Scarlet & Violet Energies Basic Fighting Energy 6 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Scarlet%20%26%20Violet%20Energies%20Basic%20Fighting%20Energy%206%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9758060",
+      "product_name": "Basic Fighting Energy [Cosmic Holo Prize Pack] #6",
+      "console_name": "Pokemon Scarlet & Violet Energy",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon Scarlet & Violet Energy"
+      }
+    },
+    {
+      "query": "Pokemon Scarlet & Violet Energies Basic Fighting Energy 6 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Scarlet%20%26%20Violet%20Energies%20Basic%20Fighting%20Energy%206%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8909509",
+      "product_name": "Basic Fighting Energy [Cosmos Holo] #14",
+      "console_name": "Pokemon Scarlet & Violet Energy",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:14"
+      }
+    },
+    {
+      "query": "Pokemon Scarlet & Violet Energies Basic Fighting Energy 6 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Scarlet%20%26%20Violet%20Energies%20Basic%20Fighting%20Energy%206%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10951988",
+      "product_name": "Basic Fighting Energy [Prize Pack] #14",
+      "console_name": "Pokemon Scarlet & Violet Energy",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:14"
+      }
+    },
+    {
+      "query": "Pokemon Scarlet & Violet Energies Basic Fighting Energy 6 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Scarlet%20%26%20Violet%20Energies%20Basic%20Fighting%20Energy%206%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9572292",
+      "product_name": "Basic Fighting Energy [Ice Cracked] #14",
+      "console_name": "Pokemon Scarlet & Violet Energy",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:14"
+      }
+    },
+    {
+      "query": "Pokemon Scarlet & Violet Energies Basic Fighting Energy 6 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Scarlet%20%26%20Violet%20Energies%20Basic%20Fighting%20Energy%206%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10046377",
+      "product_name": "Basic Fighting Energy #22",
+      "console_name": "Pokemon Scarlet & Violet Energy",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:22"
+      }
+    },
+    {
+      "query": "Pokemon Scarlet & Violet Energies Basic Fighting Energy 6 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Scarlet%20%26%20Violet%20Energies%20Basic%20Fighting%20Energy%206%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4934032",
+      "product_name": "Basic Fighting Energy #258",
+      "console_name": "Pokemon Scarlet & Violet Energy",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:258"
+      }
+    },
+    {
+      "query": "Pokemon Scarlet & Violet Energies Basic Fighting Energy 6 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Scarlet%20%26%20Violet%20Energies%20Basic%20Fighting%20Energy%206%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7549849",
+      "product_name": "Basic Fighting Energy #14",
+      "console_name": "Pokemon Scarlet & Violet Energy",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:14"
+      }
+    },
+    {
+      "query": "Pokemon Scarlet & Violet Energies Basic Fighting Energy 6 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Scarlet%20%26%20Violet%20Energies%20Basic%20Fighting%20Energy%206%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10951990",
+      "product_name": "Basic Fighting Energy [Prize Pack Cosmos Holo] #14",
+      "console_name": "Pokemon Scarlet & Violet Energy",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:14"
+      }
+    },
+    {
+      "query": "Pokemon Scarlet & Violet Energies Basic Fighting Energy 6 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Scarlet%20%26%20Violet%20Energies%20Basic%20Fighting%20Energy%206%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7549846",
+      "product_name": "Basic Grass Energy #9",
+      "console_name": "Pokemon Scarlet & Violet Energy",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:9"
+      }
+    },
+    {
+      "query": "Pokemon Scarlet & Violet Energies Basic Fighting Energy 6 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Scarlet%20%26%20Violet%20Energies%20Basic%20Fighting%20Energy%206%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10046270",
+      "product_name": "Basic Grass Energy #17",
+      "console_name": "Pokemon Scarlet & Violet Energy",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:17"
+      }
+    },
+    {
+      "query": "Pokemon Scarlet & Violet Energies Basic Fighting Energy 6 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Scarlet%20%26%20Violet%20Energies%20Basic%20Fighting%20Energy%206%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4956295",
+      "product_name": "Basic Grass Energy #1",
+      "console_name": "Pokemon Scarlet & Violet Energy",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:1"
+      }
+    },
+    {
+      "query": "Pokemon Scarlet & Violet Energies Basic Fighting Energy 6 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Scarlet%20%26%20Violet%20Energies%20Basic%20Fighting%20Energy%206%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8453093",
+      "product_name": "Basic Grass Energy [Holo] #9",
+      "console_name": "Pokemon Scarlet & Violet Energy",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:9"
+      }
+    },
+    {
+      "query": "Pokemon Scarlet & Violet Energies Basic Fighting Energy 6 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Scarlet%20%26%20Violet%20Energies%20Basic%20Fighting%20Energy%206%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10042701",
+      "product_name": "Basic Grass Energy [Holo] #17",
+      "console_name": "Pokemon Scarlet & Violet Energy",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:17"
+      }
+    },
+    {
+      "query": "Pokemon Scarlet & Violet Energies Basic Fighting Energy 6 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Scarlet%20%26%20Violet%20Energies%20Basic%20Fighting%20Energy%206%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7136274",
+      "product_name": "Basic Grass Energy [Holo] #1",
+      "console_name": "Pokemon Scarlet & Violet Energy",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:1"
+      }
+    }
+  ],
+  "source_lane": "pricecharting_api"
+}

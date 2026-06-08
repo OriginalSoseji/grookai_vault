@@ -1,0 +1,31 @@
+{
+  "fixture_version": "VERIFIED_MASTER_SET_INDEX_V1_HUMAN_SOURCE_FIXTURE_GENERATED",
+  "source_key": "tcdb_checklist_ex6",
+  "source_kind": "collector_reference",
+  "source_url": "https://www.tcdb.com",
+  "source_status": "available_generated",
+  "set_key": "ex6",
+  "set_name": "FireRed & LeafGreen",
+  "retrieved_at": "2026-05-26T11:12:00.461Z",
+  "raw_snapshot_ref": "generated_fixture:tcdb:ex6:2026-05-26T11:12:00.461Z",
+  "generation_note": "Generated from TCDB checklist pages. Finish evidence is emitted only when TCDB set title explicitly names the finish/variant.",
+  "records": [
+    {
+      "source_key": "tcdb_checklist",
+      "source_kind": "collector_reference",
+      "source_url": "https://www.tcdb.com/ViewCard.cfm/sid/353882/cid/20901906/2004-Pokemon-EX-FireRed-&-LeafGreen---Reverse-Holo-64/112-Growlithe?PageIndex=1",
+      "set_key": "ex6",
+      "set_name": "FireRed & LeafGreen",
+      "card_number": "64",
+      "card_name": "Growlithe",
+      "finish_key": "reverse",
+      "rarity": null,
+      "evidence_type": "finish_presence",
+      "evidence_label": "TCDB checklist 2004 Pokemon EX FireRed & LeafGreen - Reverse Holo 64 Growlithe",
+      "language": "en",
+      "retrieved_at": "2026-05-26T11:12:00.461Z",
+      "raw_snapshot_ref": "tcdb:353882:64:reverse",
+      "notes": "Exact card-level finish evidence from a TCDB checklist whose set title explicitly names this finish/variant. No era, rarity, or default-finish inference was used."
+    }
+  ]
+}

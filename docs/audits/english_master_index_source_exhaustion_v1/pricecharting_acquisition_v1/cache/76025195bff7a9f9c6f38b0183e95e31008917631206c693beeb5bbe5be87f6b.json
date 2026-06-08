@@ -1,0 +1,549 @@
+{
+  "status": "api_no_validated_match",
+  "fact": {
+    "gap_type": "finish_second_source_needed",
+    "fact_type": "printing_finish",
+    "set_key": "dp3",
+    "set_name": "Secret Wonders",
+    "card_number": "107",
+    "card_name": "Shellos West Sea",
+    "finish_key": "stamped",
+    "status": "human_source_verified",
+    "sources": [
+      "thepricedex_price_list"
+    ],
+    "source_authorities": [
+      "thepricedex.com"
+    ],
+    "source_kinds": [
+      "marketplace_checklist"
+    ],
+    "evidence_urls": [
+      "https://www.thepricedex.com/set/dp3/secret-wonders/price-list"
+    ],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "attempts": [
+    {
+      "query": "Pokemon Secret Wonders Shellos West Sea 107 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Secret%20Wonders%20Shellos%20West%20Sea%20107%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "920997",
+      "product_name": "Shellos West Sea #107",
+      "console_name": "Pokemon Secret Wonders",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon Secret Wonders Shellos West Sea 107 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Secret%20Wonders%20Shellos%20West%20Sea%20107%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "921129",
+      "product_name": "Shellos West Sea [Reverse Holo] #107",
+      "console_name": "Pokemon Secret Wonders",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Reverse Holo"
+      }
+    },
+    {
+      "query": "Pokemon Secret Wonders Shellos West Sea 107 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Secret%20Wonders%20Shellos%20West%20Sea%20107%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5530238",
+      "product_name": "Shellos West Sea [San Diego Comic Con] #107",
+      "console_name": "Pokemon Secret Wonders",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:San Diego Comic Con"
+      }
+    },
+    {
+      "query": "Pokemon Secret Wonders Shellos West Sea 107 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Secret%20Wonders%20Shellos%20West%20Sea%20107%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "920996",
+      "product_name": "Shellos East Sea #106",
+      "console_name": "Pokemon Secret Wonders",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:106"
+      }
+    },
+    {
+      "query": "Pokemon Secret Wonders Shellos West Sea 107 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Secret%20Wonders%20Shellos%20West%20Sea%20107%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "921128",
+      "product_name": "Shellos East Sea [Reverse Holo] #106",
+      "console_name": "Pokemon Secret Wonders",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:106"
+      }
+    },
+    {
+      "query": "Pokemon Secret Wonders Shellos West Sea 107 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Secret%20Wonders%20Shellos%20West%20Sea%20107%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "925595",
+      "product_name": "Shellos West Sea [Reverse Holo] #80",
+      "console_name": "Pokemon Rising Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:80"
+      }
+    },
+    {
+      "query": "Pokemon Secret Wonders Shellos West Sea 107 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Secret%20Wonders%20Shellos%20West%20Sea%20107%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "925476",
+      "product_name": "Shellos West Sea #80",
+      "console_name": "Pokemon Rising Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:80"
+      }
+    },
+    {
+      "query": "Pokemon Secret Wonders Shellos West Sea 107 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Secret%20Wonders%20Shellos%20West%20Sea%20107%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "921031",
+      "product_name": "Gastrodon West Sea [Reverse Holo] #9",
+      "console_name": "Pokemon Secret Wonders",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:9"
+      }
+    },
+    {
+      "query": "Pokemon Secret Wonders Shellos West Sea 107 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Secret%20Wonders%20Shellos%20West%20Sea%20107%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "920900",
+      "product_name": "Gastrodon West Sea #9",
+      "console_name": "Pokemon Secret Wonders",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:9"
+      }
+    },
+    {
+      "query": "Pokemon Secret Wonders Shellos West Sea 107 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Secret%20Wonders%20Shellos%20West%20Sea%20107%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10536041",
+      "product_name": "Shellos East Sea #4",
+      "console_name": "Pokemon Japanese Collection Pack",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:4"
+      }
+    },
+    {
+      "query": "Pokemon Secret Wonders Shellos West Sea 107 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Secret%20Wonders%20Shellos%20West%20Sea%20107%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "925594",
+      "product_name": "Shellos East Sea [Reverse Holo] #79",
+      "console_name": "Pokemon Rising Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:79"
+      }
+    },
+    {
+      "query": "Pokemon Secret Wonders Shellos West Sea 107 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Secret%20Wonders%20Shellos%20West%20Sea%20107%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "921535",
+      "product_name": "Shellos East Sea [Reverse Holo] #73",
+      "console_name": "Pokemon Majestic Dawn",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:73"
+      }
+    },
+    {
+      "query": "Pokemon Secret Wonders Shellos West Sea 107 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Secret%20Wonders%20Shellos%20West%20Sea%20107%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "925475",
+      "product_name": "Shellos East Sea #79",
+      "console_name": "Pokemon Rising Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:79"
+      }
+    },
+    {
+      "query": "Pokemon Secret Wonders Shellos West Sea 107 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Secret%20Wonders%20Shellos%20West%20Sea%20107%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "921435",
+      "product_name": "Shellos East Sea #73",
+      "console_name": "Pokemon Majestic Dawn",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:73"
+      }
+    },
+    {
+      "query": "Pokemon Secret Wonders Shellos West Sea 107 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Secret%20Wonders%20Shellos%20West%20Sea%20107%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "920898",
+      "product_name": "Gastrodon East Sea #8",
+      "console_name": "Pokemon Secret Wonders",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:8"
+      }
+    },
+    {
+      "query": "Pokemon Secret Wonders Shellos West Sea 107 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Secret%20Wonders%20Shellos%20West%20Sea%20107%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "921030",
+      "product_name": "Gastrodon East Sea [Reverse Holo] #8",
+      "console_name": "Pokemon Secret Wonders",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:8"
+      }
+    },
+    {
+      "query": "Pokemon Secret Wonders Shellos West Sea 107 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Secret%20Wonders%20Shellos%20West%20Sea%20107%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "925537",
+      "product_name": "Gastrodon West Sea [Reverse Holo] #22",
+      "console_name": "Pokemon Rising Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:22"
+      }
+    },
+    {
+      "query": "Pokemon Secret Wonders Shellos West Sea 107 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Secret%20Wonders%20Shellos%20West%20Sea%20107%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8453266",
+      "product_name": "Gastrodon West Sea [1st Edition] #52",
+      "console_name": "Pokemon Japanese Bonds to the End of Time",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:52"
+      }
+    },
+    {
+      "query": "Pokemon Secret Wonders Shellos West Sea 107 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Secret%20Wonders%20Shellos%20West%20Sea%20107%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8710134",
+      "product_name": "Sprigatito [Stamped] #107",
+      "console_name": "Pokemon Chinese Gem Pack",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Sprigatito"
+      }
+    },
+    {
+      "query": "Pokemon Secret Wonders Shellos West Sea 107 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Secret%20Wonders%20Shellos%20West%20Sea%20107%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7800079",
+      "product_name": "Shellos #46",
+      "console_name": "Pokemon Surging Sparks",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:46"
+      }
+    },
+    {
+      "query": "Pokemon Secret Wonders Shellos West Sea 107 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Secret%20Wonders%20Shellos%20West%20Sea%20107%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "920997",
+      "product_name": "Shellos West Sea #107",
+      "console_name": "Pokemon Secret Wonders",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon Secret Wonders Shellos West Sea 107 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Secret%20Wonders%20Shellos%20West%20Sea%20107%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "921129",
+      "product_name": "Shellos West Sea [Reverse Holo] #107",
+      "console_name": "Pokemon Secret Wonders",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Reverse Holo"
+      }
+    },
+    {
+      "query": "Pokemon Secret Wonders Shellos West Sea 107 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Secret%20Wonders%20Shellos%20West%20Sea%20107%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5530238",
+      "product_name": "Shellos West Sea [San Diego Comic Con] #107",
+      "console_name": "Pokemon Secret Wonders",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:San Diego Comic Con"
+      }
+    },
+    {
+      "query": "Pokemon Secret Wonders Shellos West Sea 107 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Secret%20Wonders%20Shellos%20West%20Sea%20107%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "920996",
+      "product_name": "Shellos East Sea #106",
+      "console_name": "Pokemon Secret Wonders",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:106"
+      }
+    },
+    {
+      "query": "Pokemon Secret Wonders Shellos West Sea 107 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Secret%20Wonders%20Shellos%20West%20Sea%20107%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "921128",
+      "product_name": "Shellos East Sea [Reverse Holo] #106",
+      "console_name": "Pokemon Secret Wonders",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:106"
+      }
+    },
+    {
+      "query": "Pokemon Secret Wonders Shellos West Sea 107 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Secret%20Wonders%20Shellos%20West%20Sea%20107%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "925595",
+      "product_name": "Shellos West Sea [Reverse Holo] #80",
+      "console_name": "Pokemon Rising Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:80"
+      }
+    },
+    {
+      "query": "Pokemon Secret Wonders Shellos West Sea 107 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Secret%20Wonders%20Shellos%20West%20Sea%20107%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "925476",
+      "product_name": "Shellos West Sea #80",
+      "console_name": "Pokemon Rising Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:80"
+      }
+    },
+    {
+      "query": "Pokemon Secret Wonders Shellos West Sea 107 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Secret%20Wonders%20Shellos%20West%20Sea%20107%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "921031",
+      "product_name": "Gastrodon West Sea [Reverse Holo] #9",
+      "console_name": "Pokemon Secret Wonders",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:9"
+      }
+    },
+    {
+      "query": "Pokemon Secret Wonders Shellos West Sea 107 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Secret%20Wonders%20Shellos%20West%20Sea%20107%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "920900",
+      "product_name": "Gastrodon West Sea #9",
+      "console_name": "Pokemon Secret Wonders",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:9"
+      }
+    },
+    {
+      "query": "Pokemon Secret Wonders Shellos West Sea 107 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Secret%20Wonders%20Shellos%20West%20Sea%20107%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10536041",
+      "product_name": "Shellos East Sea #4",
+      "console_name": "Pokemon Japanese Collection Pack",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:4"
+      }
+    },
+    {
+      "query": "Pokemon Secret Wonders Shellos West Sea 107 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Secret%20Wonders%20Shellos%20West%20Sea%20107%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "925594",
+      "product_name": "Shellos East Sea [Reverse Holo] #79",
+      "console_name": "Pokemon Rising Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:79"
+      }
+    },
+    {
+      "query": "Pokemon Secret Wonders Shellos West Sea 107 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Secret%20Wonders%20Shellos%20West%20Sea%20107%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "921535",
+      "product_name": "Shellos East Sea [Reverse Holo] #73",
+      "console_name": "Pokemon Majestic Dawn",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:73"
+      }
+    },
+    {
+      "query": "Pokemon Secret Wonders Shellos West Sea 107 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Secret%20Wonders%20Shellos%20West%20Sea%20107%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "925475",
+      "product_name": "Shellos East Sea #79",
+      "console_name": "Pokemon Rising Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:79"
+      }
+    },
+    {
+      "query": "Pokemon Secret Wonders Shellos West Sea 107 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Secret%20Wonders%20Shellos%20West%20Sea%20107%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "921435",
+      "product_name": "Shellos East Sea #73",
+      "console_name": "Pokemon Majestic Dawn",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:73"
+      }
+    },
+    {
+      "query": "Pokemon Secret Wonders Shellos West Sea 107 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Secret%20Wonders%20Shellos%20West%20Sea%20107%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "920898",
+      "product_name": "Gastrodon East Sea #8",
+      "console_name": "Pokemon Secret Wonders",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:8"
+      }
+    },
+    {
+      "query": "Pokemon Secret Wonders Shellos West Sea 107 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Secret%20Wonders%20Shellos%20West%20Sea%20107%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "921030",
+      "product_name": "Gastrodon East Sea [Reverse Holo] #8",
+      "console_name": "Pokemon Secret Wonders",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:8"
+      }
+    },
+    {
+      "query": "Pokemon Secret Wonders Shellos West Sea 107 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Secret%20Wonders%20Shellos%20West%20Sea%20107%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "925537",
+      "product_name": "Gastrodon West Sea [Reverse Holo] #22",
+      "console_name": "Pokemon Rising Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:22"
+      }
+    },
+    {
+      "query": "Pokemon Secret Wonders Shellos West Sea 107 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Secret%20Wonders%20Shellos%20West%20Sea%20107%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8453266",
+      "product_name": "Gastrodon West Sea [1st Edition] #52",
+      "console_name": "Pokemon Japanese Bonds to the End of Time",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:52"
+      }
+    },
+    {
+      "query": "Pokemon Secret Wonders Shellos West Sea 107 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Secret%20Wonders%20Shellos%20West%20Sea%20107%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8710134",
+      "product_name": "Sprigatito [Stamped] #107",
+      "console_name": "Pokemon Chinese Gem Pack",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Sprigatito"
+      }
+    },
+    {
+      "query": "Pokemon Secret Wonders Shellos West Sea 107 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Secret%20Wonders%20Shellos%20West%20Sea%20107%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7800079",
+      "product_name": "Shellos #46",
+      "console_name": "Pokemon Surging Sparks",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:46"
+      }
+    }
+  ],
+  "source_lane": "pricecharting_api"
+}

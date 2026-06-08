@@ -1,0 +1,549 @@
+{
+  "status": "api_no_validated_match",
+  "fact": {
+    "gap_type": "finish_second_source_needed",
+    "fact_type": "printing_finish",
+    "set_key": "me02",
+    "set_name": "Phantasmal Flames",
+    "card_number": "26",
+    "card_name": "Suicune",
+    "finish_key": "stamped",
+    "status": "human_source_verified",
+    "sources": [
+      "thepricedex_price_list"
+    ],
+    "source_authorities": [
+      "thepricedex.com"
+    ],
+    "source_kinds": [
+      "marketplace_checklist"
+    ],
+    "evidence_urls": [
+      "https://www.thepricedex.com/set/me2/phantasmal-flames/price-list"
+    ],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "attempts": [
+    {
+      "query": "Pokemon Phantasmal Flames Suicune 26 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Phantasmal%20Flames%20Suicune%2026%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11068930",
+      "product_name": "Suicune #26",
+      "console_name": "Pokemon Phantasmal Flames",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon Phantasmal Flames Suicune 26 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Phantasmal%20Flames%20Suicune%2026%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11069137",
+      "product_name": "Suicune [EB Games] #26",
+      "console_name": "Pokemon Phantasmal Flames",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:EB Games"
+      }
+    },
+    {
+      "query": "Pokemon Phantasmal Flames Suicune 26 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Phantasmal%20Flames%20Suicune%2026%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11069136",
+      "product_name": "Suicune [Gamestop] #26",
+      "console_name": "Pokemon Phantasmal Flames",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Gamestop"
+      }
+    },
+    {
+      "query": "Pokemon Phantasmal Flames Suicune 26 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Phantasmal%20Flames%20Suicune%2026%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11580218",
+      "product_name": "Suicune [Cosmos Holo] #26",
+      "console_name": "Pokemon Phantasmal Flames",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Cosmos Holo"
+      }
+    },
+    {
+      "query": "Pokemon Phantasmal Flames Suicune 26 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Phantasmal%20Flames%20Suicune%2026%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11069050",
+      "product_name": "Suicune [Reverse Holo] #26",
+      "console_name": "Pokemon Phantasmal Flames",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Reverse Holo"
+      }
+    },
+    {
+      "query": "Pokemon Phantasmal Flames Suicune 26 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Phantasmal%20Flames%20Suicune%2026%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11069135",
+      "product_name": "Reshiram [Stamped] #17",
+      "console_name": "Pokemon Phantasmal Flames",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:17"
+      }
+    },
+    {
+      "query": "Pokemon Phantasmal Flames Suicune 26 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Phantasmal%20Flames%20Suicune%2026%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11069133",
+      "product_name": "Genesect [Stamped] #8",
+      "console_name": "Pokemon Phantasmal Flames",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:8"
+      }
+    },
+    {
+      "query": "Pokemon Phantasmal Flames Suicune 26 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Phantasmal%20Flames%20Suicune%2026%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6883922",
+      "product_name": "Suicune [Stamped] #59",
+      "console_name": "Pokemon Lost Thunder",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:59"
+      }
+    },
+    {
+      "query": "Pokemon Phantasmal Flames Suicune 26 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Phantasmal%20Flames%20Suicune%2026%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11068925",
+      "product_name": "Seel #21",
+      "console_name": "Pokemon Phantasmal Flames",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:21"
+      }
+    },
+    {
+      "query": "Pokemon Phantasmal Flames Suicune 26 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Phantasmal%20Flames%20Suicune%2026%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11068983",
+      "product_name": "Dawn #118",
+      "console_name": "Pokemon Phantasmal Flames",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:118"
+      }
+    },
+    {
+      "query": "Pokemon Phantasmal Flames Suicune 26 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Phantasmal%20Flames%20Suicune%2026%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11069010",
+      "product_name": "Dawn #129",
+      "console_name": "Pokemon Phantasmal Flames",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:129"
+      }
+    },
+    {
+      "query": "Pokemon Phantasmal Flames Suicune 26 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Phantasmal%20Flames%20Suicune%2026%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11069035",
+      "product_name": "Dawn #87",
+      "console_name": "Pokemon Phantasmal Flames",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:87"
+      }
+    },
+    {
+      "query": "Pokemon Phantasmal Flames Suicune 26 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Phantasmal%20Flames%20Suicune%2026%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11068906",
+      "product_name": "Gloom #2",
+      "console_name": "Pokemon Phantasmal Flames",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:2"
+      }
+    },
+    {
+      "query": "Pokemon Phantasmal Flames Suicune 26 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Phantasmal%20Flames%20Suicune%2026%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11068914",
+      "product_name": "Lokix #10",
+      "console_name": "Pokemon Phantasmal Flames",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:10"
+      }
+    },
+    {
+      "query": "Pokemon Phantasmal Flames Suicune 26 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Phantasmal%20Flames%20Suicune%2026%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11068909",
+      "product_name": "Lotad #5",
+      "console_name": "Pokemon Phantasmal Flames",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:5"
+      }
+    },
+    {
+      "query": "Pokemon Phantasmal Flames Suicune 26 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Phantasmal%20Flames%20Suicune%2026%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11068936",
+      "product_name": "Pawmi #32",
+      "console_name": "Pokemon Phantasmal Flames",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:32"
+      }
+    },
+    {
+      "query": "Pokemon Phantasmal Flames Suicune 26 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Phantasmal%20Flames%20Suicune%2026%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11068937",
+      "product_name": "Pawmo #33",
+      "console_name": "Pokemon Phantasmal Flames",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:33"
+      }
+    },
+    {
+      "query": "Pokemon Phantasmal Flames Suicune 26 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Phantasmal%20Flames%20Suicune%2026%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11068985",
+      "product_name": "Absol #63",
+      "console_name": "Pokemon Phantasmal Flames",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:63"
+      }
+    },
+    {
+      "query": "Pokemon Phantasmal Flames Suicune 26 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Phantasmal%20Flames%20Suicune%2026%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11068990",
+      "product_name": "Toxel #67",
+      "console_name": "Pokemon Phantasmal Flames",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:67"
+      }
+    },
+    {
+      "query": "Pokemon Phantasmal Flames Suicune 26 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Phantasmal%20Flames%20Suicune%2026%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11069011",
+      "product_name": "Aipom #78",
+      "console_name": "Pokemon Phantasmal Flames",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:78"
+      }
+    },
+    {
+      "query": "Pokemon Phantasmal Flames Suicune 26 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Phantasmal%20Flames%20Suicune%2026%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11068930",
+      "product_name": "Suicune #26",
+      "console_name": "Pokemon Phantasmal Flames",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon Phantasmal Flames Suicune 26 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Phantasmal%20Flames%20Suicune%2026%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11069137",
+      "product_name": "Suicune [EB Games] #26",
+      "console_name": "Pokemon Phantasmal Flames",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:EB Games"
+      }
+    },
+    {
+      "query": "Pokemon Phantasmal Flames Suicune 26 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Phantasmal%20Flames%20Suicune%2026%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11069136",
+      "product_name": "Suicune [Gamestop] #26",
+      "console_name": "Pokemon Phantasmal Flames",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Gamestop"
+      }
+    },
+    {
+      "query": "Pokemon Phantasmal Flames Suicune 26 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Phantasmal%20Flames%20Suicune%2026%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11580218",
+      "product_name": "Suicune [Cosmos Holo] #26",
+      "console_name": "Pokemon Phantasmal Flames",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Cosmos Holo"
+      }
+    },
+    {
+      "query": "Pokemon Phantasmal Flames Suicune 26 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Phantasmal%20Flames%20Suicune%2026%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11069050",
+      "product_name": "Suicune [Reverse Holo] #26",
+      "console_name": "Pokemon Phantasmal Flames",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Reverse Holo"
+      }
+    },
+    {
+      "query": "Pokemon Phantasmal Flames Suicune 26 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Phantasmal%20Flames%20Suicune%2026%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11069135",
+      "product_name": "Reshiram [Stamped] #17",
+      "console_name": "Pokemon Phantasmal Flames",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:17"
+      }
+    },
+    {
+      "query": "Pokemon Phantasmal Flames Suicune 26 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Phantasmal%20Flames%20Suicune%2026%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11069133",
+      "product_name": "Genesect [Stamped] #8",
+      "console_name": "Pokemon Phantasmal Flames",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:8"
+      }
+    },
+    {
+      "query": "Pokemon Phantasmal Flames Suicune 26 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Phantasmal%20Flames%20Suicune%2026%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6883922",
+      "product_name": "Suicune [Stamped] #59",
+      "console_name": "Pokemon Lost Thunder",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:59"
+      }
+    },
+    {
+      "query": "Pokemon Phantasmal Flames Suicune 26 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Phantasmal%20Flames%20Suicune%2026%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11068925",
+      "product_name": "Seel #21",
+      "console_name": "Pokemon Phantasmal Flames",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:21"
+      }
+    },
+    {
+      "query": "Pokemon Phantasmal Flames Suicune 26 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Phantasmal%20Flames%20Suicune%2026%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11068983",
+      "product_name": "Dawn #118",
+      "console_name": "Pokemon Phantasmal Flames",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:118"
+      }
+    },
+    {
+      "query": "Pokemon Phantasmal Flames Suicune 26 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Phantasmal%20Flames%20Suicune%2026%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11069010",
+      "product_name": "Dawn #129",
+      "console_name": "Pokemon Phantasmal Flames",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:129"
+      }
+    },
+    {
+      "query": "Pokemon Phantasmal Flames Suicune 26 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Phantasmal%20Flames%20Suicune%2026%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11069035",
+      "product_name": "Dawn #87",
+      "console_name": "Pokemon Phantasmal Flames",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:87"
+      }
+    },
+    {
+      "query": "Pokemon Phantasmal Flames Suicune 26 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Phantasmal%20Flames%20Suicune%2026%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11068906",
+      "product_name": "Gloom #2",
+      "console_name": "Pokemon Phantasmal Flames",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:2"
+      }
+    },
+    {
+      "query": "Pokemon Phantasmal Flames Suicune 26 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Phantasmal%20Flames%20Suicune%2026%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11068914",
+      "product_name": "Lokix #10",
+      "console_name": "Pokemon Phantasmal Flames",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:10"
+      }
+    },
+    {
+      "query": "Pokemon Phantasmal Flames Suicune 26 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Phantasmal%20Flames%20Suicune%2026%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11068909",
+      "product_name": "Lotad #5",
+      "console_name": "Pokemon Phantasmal Flames",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:5"
+      }
+    },
+    {
+      "query": "Pokemon Phantasmal Flames Suicune 26 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Phantasmal%20Flames%20Suicune%2026%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11068936",
+      "product_name": "Pawmi #32",
+      "console_name": "Pokemon Phantasmal Flames",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:32"
+      }
+    },
+    {
+      "query": "Pokemon Phantasmal Flames Suicune 26 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Phantasmal%20Flames%20Suicune%2026%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11068937",
+      "product_name": "Pawmo #33",
+      "console_name": "Pokemon Phantasmal Flames",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:33"
+      }
+    },
+    {
+      "query": "Pokemon Phantasmal Flames Suicune 26 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Phantasmal%20Flames%20Suicune%2026%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11068985",
+      "product_name": "Absol #63",
+      "console_name": "Pokemon Phantasmal Flames",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:63"
+      }
+    },
+    {
+      "query": "Pokemon Phantasmal Flames Suicune 26 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Phantasmal%20Flames%20Suicune%2026%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11068990",
+      "product_name": "Toxel #67",
+      "console_name": "Pokemon Phantasmal Flames",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:67"
+      }
+    },
+    {
+      "query": "Pokemon Phantasmal Flames Suicune 26 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Phantasmal%20Flames%20Suicune%2026%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11069011",
+      "product_name": "Aipom #78",
+      "console_name": "Pokemon Phantasmal Flames",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:78"
+      }
+    }
+  ],
+  "source_lane": "pricecharting_api"
+}

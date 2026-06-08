@@ -1,0 +1,62 @@
+{
+  "status": "validated",
+  "fact": {
+    "gap_type": "finish_second_source_needed",
+    "fact_type": "printing_finish",
+    "set_key": "bw6",
+    "set_name": "Dragons Exalted",
+    "card_number": "98",
+    "card_name": "Hydreigon",
+    "finish_key": "holo",
+    "status": "human_source_verified",
+    "sources": [
+      "thepricedex_price_list"
+    ],
+    "source_authorities": [
+      "thepricedex.com"
+    ],
+    "source_kinds": [
+      "marketplace_checklist"
+    ],
+    "evidence_urls": [
+      "https://www.thepricedex.com/set/bw6/dragons-exalted/price-list"
+    ],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "query": "Pokemon Dragons Exalted Hydreigon 98 holo",
+  "search_url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragons%20Exalted%20Hydreigon%2098%20holo",
+  "source_url": "https://www.pricecharting.com/game/pokemon-dragons-exalted/hydreigon-reverse-holo-98",
+  "title": "Hydreigon [Reverse Holo] #98 | Pokemon Dragons Exalted",
+  "title_parts": {
+    "card_name": "Hydreigon",
+    "card_number": "98",
+    "variant_label": "Reverse Holo",
+    "set_name": "Pokemon Dragons Exalted",
+    "pricecharting_product_id": "956473"
+  },
+  "validation_source": "pricecharting_api_products",
+  "source_lane": "pricecharting_api",
+  "attempts": [
+    {
+      "query": "Pokemon Dragons Exalted Hydreigon 98 holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragons%20Exalted%20Hydreigon%2098%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "956473",
+      "product_name": "Hydreigon [Reverse Holo] #98",
+      "console_name": "Pokemon Dragons Exalted",
+      "validation": {
+        "ok": true,
+        "titleParts": {
+          "card_name": "Hydreigon",
+          "card_number": "98",
+          "variant_label": "Reverse Holo",
+          "set_name": "Pokemon Dragons Exalted",
+          "pricecharting_product_id": "956473"
+        },
+        "source_url": "https://www.pricecharting.com/game/pokemon-dragons-exalted/hydreigon-reverse-holo-98",
+        "title": "Hydreigon [Reverse Holo] #98 | Pokemon Dragons Exalted"
+      }
+    }
+  ]
+}

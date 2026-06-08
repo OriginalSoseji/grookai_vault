@@ -1,0 +1,31 @@
+{
+  "fixture_version": "VERIFIED_MASTER_SET_INDEX_V1_HUMAN_SOURCE_FIXTURE_GENERATED",
+  "source_key": "eyevo_identity_base4",
+  "source_kind": "collector_reference",
+  "source_url": "https://eyevotcg.com/sets/base-set-2/",
+  "source_status": "available_generated",
+  "set_key": "base4",
+  "set_name": "Base Set 2",
+  "retrieved_at": "2026-05-27T00:23:49.640Z",
+  "raw_snapshot_ref": "generated_fixture:eyevo_identity:base4:2026-05-27T00:23:49.640Z",
+  "generation_note": "Generated from Eyevo set checklist rows. Card identity only; no finish evidence is emitted.",
+  "records": [
+    {
+      "source_key": "eyevo_set_checklist",
+      "source_kind": "collector_reference",
+      "source_url": "https://eyevotcg.com/sets/base-set-2/",
+      "set_key": "base4",
+      "set_name": "Base Set 2",
+      "card_number": "102",
+      "card_name": "Impostor Professor Oak",
+      "finish_key": null,
+      "rarity": null,
+      "evidence_type": "card_identity",
+      "evidence_label": "Eyevo checklist row #102 - Impostor Professor Oak",
+      "language": "en",
+      "retrieved_at": "2026-05-27T00:23:49.640Z",
+      "raw_snapshot_ref": "eyevo:base4:102",
+      "notes": "Eyevo checklist card identity evidence only. This fixture does not assert finish or printing truth. Eyevo pages disclose Pokemon TCG API as an upstream data provider."
+    }
+  ]
+}

@@ -1,0 +1,549 @@
+{
+  "status": "api_no_validated_match",
+  "fact": {
+    "gap_type": "finish_second_source_needed",
+    "fact_type": "printing_finish",
+    "set_key": "sm11",
+    "set_name": "Unified Minds",
+    "card_number": "87",
+    "card_name": "Cresselia",
+    "finish_key": "stamped",
+    "status": "human_source_verified",
+    "sources": [
+      "thepricedex_price_list"
+    ],
+    "source_authorities": [
+      "thepricedex.com"
+    ],
+    "source_kinds": [
+      "marketplace_checklist"
+    ],
+    "evidence_urls": [
+      "https://www.thepricedex.com/set/sm11/unified-minds/price-list"
+    ],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "attempts": [
+    {
+      "query": "Pokemon Unified Minds Cresselia 87 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Unified%20Minds%20Cresselia%2087%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "963653",
+      "product_name": "Cresselia #87",
+      "console_name": "Pokemon Unified Minds",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon Unified Minds Cresselia 87 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Unified%20Minds%20Cresselia%2087%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "963902",
+      "product_name": "Cresselia [Reverse Holo] #87",
+      "console_name": "Pokemon Unified Minds",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Reverse Holo"
+      }
+    },
+    {
+      "query": "Pokemon Unified Minds Cresselia 87 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Unified%20Minds%20Cresselia%2087%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "2674695",
+      "product_name": "Reset Stamp #206a",
+      "console_name": "Pokemon Unified Minds",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:206a"
+      }
+    },
+    {
+      "query": "Pokemon Unified Minds Cresselia 87 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Unified%20Minds%20Cresselia%2087%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "963819",
+      "product_name": "Reset Stamp #253",
+      "console_name": "Pokemon Unified Minds",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:253"
+      }
+    },
+    {
+      "query": "Pokemon Unified Minds Cresselia 87 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Unified%20Minds%20Cresselia%2087%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "963772",
+      "product_name": "Reset Stamp #206",
+      "console_name": "Pokemon Unified Minds",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:206"
+      }
+    },
+    {
+      "query": "Pokemon Unified Minds Cresselia 87 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Unified%20Minds%20Cresselia%2087%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6376806",
+      "product_name": "Garchomp [Stamped] #114",
+      "console_name": "Pokemon Unified Minds",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:114"
+      }
+    },
+    {
+      "query": "Pokemon Unified Minds Cresselia 87 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Unified%20Minds%20Cresselia%2087%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "964013",
+      "product_name": "Reset Stamp [Reverse Holo] #206",
+      "console_name": "Pokemon Unified Minds",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:206"
+      }
+    },
+    {
+      "query": "Pokemon Unified Minds Cresselia 87 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Unified%20Minds%20Cresselia%2087%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "963649",
+      "product_name": "Uxie #83",
+      "console_name": "Pokemon Unified Minds",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:83"
+      }
+    },
+    {
+      "query": "Pokemon Unified Minds Cresselia 87 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Unified%20Minds%20Cresselia%2087%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "963669",
+      "product_name": "Onix #103",
+      "console_name": "Pokemon Unified Minds",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:103"
+      }
+    },
+    {
+      "query": "Pokemon Unified Minds Cresselia 87 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Unified%20Minds%20Cresselia%2087%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "963720",
+      "product_name": "Axew #154",
+      "console_name": "Pokemon Unified Minds",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:154"
+      }
+    },
+    {
+      "query": "Pokemon Unified Minds Cresselia 87 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Unified%20Minds%20Cresselia%2087%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "963642",
+      "product_name": "Jynx #76",
+      "console_name": "Pokemon Unified Minds",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:76"
+      }
+    },
+    {
+      "query": "Pokemon Unified Minds Cresselia 87 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Unified%20Minds%20Cresselia%2087%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "963766",
+      "product_name": "Hapu #200",
+      "console_name": "Pokemon Unified Minds",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:200"
+      }
+    },
+    {
+      "query": "Pokemon Unified Minds Cresselia 87 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Unified%20Minds%20Cresselia%2087%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "963568",
+      "product_name": "Yanma #2",
+      "console_name": "Pokemon Unified Minds",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:2"
+      }
+    },
+    {
+      "query": "Pokemon Unified Minds Cresselia 87 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Unified%20Minds%20Cresselia%2087%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "963589",
+      "product_name": "Numel #23",
+      "console_name": "Pokemon Unified Minds",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:23"
+      }
+    },
+    {
+      "query": "Pokemon Unified Minds Cresselia 87 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Unified%20Minds%20Cresselia%2087%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "963651",
+      "product_name": "Azelf #85",
+      "console_name": "Pokemon Unified Minds",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:85"
+      }
+    },
+    {
+      "query": "Pokemon Unified Minds Cresselia 87 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Unified%20Minds%20Cresselia%2087%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "963654",
+      "product_name": "Munna #88",
+      "console_name": "Pokemon Unified Minds",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:88"
+      }
+    },
+    {
+      "query": "Pokemon Unified Minds Cresselia 87 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Unified%20Minds%20Cresselia%2087%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "963706",
+      "product_name": "Hoopa #140",
+      "console_name": "Pokemon Unified Minds",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:140"
+      }
+    },
+    {
+      "query": "Pokemon Unified Minds Cresselia 87 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Unified%20Minds%20Cresselia%2087%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "963678",
+      "product_name": "Gible #112",
+      "console_name": "Pokemon Unified Minds",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:112"
+      }
+    },
+    {
+      "query": "Pokemon Unified Minds Cresselia 87 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Unified%20Minds%20Cresselia%2087%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "963681",
+      "product_name": "Riolu #115",
+      "console_name": "Pokemon Unified Minds",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:115"
+      }
+    },
+    {
+      "query": "Pokemon Unified Minds Cresselia 87 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Unified%20Minds%20Cresselia%2087%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "963682",
+      "product_name": "Riolu #116",
+      "console_name": "Pokemon Unified Minds",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:116"
+      }
+    },
+    {
+      "query": "Pokemon Unified Minds Cresselia 87 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Unified%20Minds%20Cresselia%2087%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "963653",
+      "product_name": "Cresselia #87",
+      "console_name": "Pokemon Unified Minds",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon Unified Minds Cresselia 87 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Unified%20Minds%20Cresselia%2087%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "963902",
+      "product_name": "Cresselia [Reverse Holo] #87",
+      "console_name": "Pokemon Unified Minds",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Reverse Holo"
+      }
+    },
+    {
+      "query": "Pokemon Unified Minds Cresselia 87 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Unified%20Minds%20Cresselia%2087%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "2674695",
+      "product_name": "Reset Stamp #206a",
+      "console_name": "Pokemon Unified Minds",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:206a"
+      }
+    },
+    {
+      "query": "Pokemon Unified Minds Cresselia 87 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Unified%20Minds%20Cresselia%2087%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "963819",
+      "product_name": "Reset Stamp #253",
+      "console_name": "Pokemon Unified Minds",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:253"
+      }
+    },
+    {
+      "query": "Pokemon Unified Minds Cresselia 87 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Unified%20Minds%20Cresselia%2087%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "963772",
+      "product_name": "Reset Stamp #206",
+      "console_name": "Pokemon Unified Minds",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:206"
+      }
+    },
+    {
+      "query": "Pokemon Unified Minds Cresselia 87 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Unified%20Minds%20Cresselia%2087%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6376806",
+      "product_name": "Garchomp [Stamped] #114",
+      "console_name": "Pokemon Unified Minds",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:114"
+      }
+    },
+    {
+      "query": "Pokemon Unified Minds Cresselia 87 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Unified%20Minds%20Cresselia%2087%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "964013",
+      "product_name": "Reset Stamp [Reverse Holo] #206",
+      "console_name": "Pokemon Unified Minds",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:206"
+      }
+    },
+    {
+      "query": "Pokemon Unified Minds Cresselia 87 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Unified%20Minds%20Cresselia%2087%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "963649",
+      "product_name": "Uxie #83",
+      "console_name": "Pokemon Unified Minds",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:83"
+      }
+    },
+    {
+      "query": "Pokemon Unified Minds Cresselia 87 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Unified%20Minds%20Cresselia%2087%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "963669",
+      "product_name": "Onix #103",
+      "console_name": "Pokemon Unified Minds",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:103"
+      }
+    },
+    {
+      "query": "Pokemon Unified Minds Cresselia 87 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Unified%20Minds%20Cresselia%2087%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "963720",
+      "product_name": "Axew #154",
+      "console_name": "Pokemon Unified Minds",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:154"
+      }
+    },
+    {
+      "query": "Pokemon Unified Minds Cresselia 87 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Unified%20Minds%20Cresselia%2087%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "963642",
+      "product_name": "Jynx #76",
+      "console_name": "Pokemon Unified Minds",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:76"
+      }
+    },
+    {
+      "query": "Pokemon Unified Minds Cresselia 87 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Unified%20Minds%20Cresselia%2087%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "963766",
+      "product_name": "Hapu #200",
+      "console_name": "Pokemon Unified Minds",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:200"
+      }
+    },
+    {
+      "query": "Pokemon Unified Minds Cresselia 87 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Unified%20Minds%20Cresselia%2087%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "963568",
+      "product_name": "Yanma #2",
+      "console_name": "Pokemon Unified Minds",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:2"
+      }
+    },
+    {
+      "query": "Pokemon Unified Minds Cresselia 87 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Unified%20Minds%20Cresselia%2087%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "963589",
+      "product_name": "Numel #23",
+      "console_name": "Pokemon Unified Minds",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:23"
+      }
+    },
+    {
+      "query": "Pokemon Unified Minds Cresselia 87 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Unified%20Minds%20Cresselia%2087%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "963651",
+      "product_name": "Azelf #85",
+      "console_name": "Pokemon Unified Minds",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:85"
+      }
+    },
+    {
+      "query": "Pokemon Unified Minds Cresselia 87 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Unified%20Minds%20Cresselia%2087%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "963654",
+      "product_name": "Munna #88",
+      "console_name": "Pokemon Unified Minds",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:88"
+      }
+    },
+    {
+      "query": "Pokemon Unified Minds Cresselia 87 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Unified%20Minds%20Cresselia%2087%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "963706",
+      "product_name": "Hoopa #140",
+      "console_name": "Pokemon Unified Minds",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:140"
+      }
+    },
+    {
+      "query": "Pokemon Unified Minds Cresselia 87 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Unified%20Minds%20Cresselia%2087%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "963678",
+      "product_name": "Gible #112",
+      "console_name": "Pokemon Unified Minds",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:112"
+      }
+    },
+    {
+      "query": "Pokemon Unified Minds Cresselia 87 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Unified%20Minds%20Cresselia%2087%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "963681",
+      "product_name": "Riolu #115",
+      "console_name": "Pokemon Unified Minds",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:115"
+      }
+    },
+    {
+      "query": "Pokemon Unified Minds Cresselia 87 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Unified%20Minds%20Cresselia%2087%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "963682",
+      "product_name": "Riolu #116",
+      "console_name": "Pokemon Unified Minds",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:116"
+      }
+    }
+  ],
+  "source_lane": "pricecharting_api"
+}

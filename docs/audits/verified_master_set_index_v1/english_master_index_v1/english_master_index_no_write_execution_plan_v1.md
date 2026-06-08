@@ -27,16 +27,16 @@ This is the complete no-write execution plan required before any future write pr
 | --- | --- | --- | --- | --- | --- |
 | sv4pt5 | Paldean Fates | 108 | 148 | sv04.5 | human-readable/checklist card identity evidence; exact card-number finish matrix evidence; second-source confirmation for each finish fact |
 | sv6pt5 | Shrouded Fable | 52 | 69 | sv06.5 | human-readable/checklist card identity evidence; exact card-number finish matrix evidence; second-source confirmation for each finish fact |
-| sv8pt5 | Prismatic Evolutions | 180 | 440 | sv08.5 | human-readable/checklist card identity evidence; exact card-number finish matrix evidence; second-source confirmation for each finish fact |
-| swsh2 | Rebel Clash | 1 | 2 | swsh2 | human-readable/checklist card identity evidence; exact card-number finish matrix evidence; second-source confirmation for each finish fact |
 | mcd21 | McDonald's Collection 2021 | 25 | 50 | 2021swsh | human-readable/checklist card identity evidence; exact card-number finish matrix evidence; second-source confirmation for each finish fact |
+| sv8pt5 | Prismatic Evolutions | 180 | 440 | sv08.5 | human-readable/checklist card identity evidence; exact card-number finish matrix evidence; second-source confirmation for each finish fact |
 | pgo | Pokémon GO | 34 | 42 | swsh10.5 | human-readable/checklist card identity evidence; exact card-number finish matrix evidence; second-source confirmation for each finish fact |
+| swsh2 | Rebel Clash | 1 | 2 | swsh2 | human-readable/checklist card identity evidence; exact card-number finish matrix evidence; second-source confirmation for each finish fact |
 | ecard3 | Skyridge | 15 | 19 | ecard3 | human-readable/checklist card identity evidence; exact card-number finish matrix evidence; second-source confirmation for each finish fact |
 | ecard2 | Aquapolis | 13 | 26 | ecard2 | human-readable/checklist card identity evidence; exact card-number finish matrix evidence; second-source confirmation for each finish fact |
+| dp7 | Stormfront | 8 | 10 | dp7 | human-readable/checklist card identity evidence; exact card-number finish matrix evidence; second-source confirmation for each finish fact |
+| pl1 | Platinum | 9 | 10 | pl1 | human-readable/checklist card identity evidence; exact card-number finish matrix evidence; second-source confirmation for each finish fact |
 | svp | Scarlet & Violet Black Star Promos | 73 | 219 | svp | human-readable/checklist card identity evidence; exact card-number finish matrix evidence; second-source confirmation for each finish fact |
-| me1 | Mega Evolution | 83 | 168 | me01 | human-readable/checklist card identity evidence; exact card-number finish matrix evidence; second-source confirmation for each finish fact |
-| swsh45 | Shining Fates | 2 | 4 | swsh4.5 | human-readable/checklist card identity evidence; exact card-number finish matrix evidence; second-source confirmation for each finish fact |
-| xy4 | Phantom Forces | 16 | 48 | xy4 | human-readable/checklist card identity evidence; exact card-number finish matrix evidence; second-source confirmation for each finish fact |
+| pl2 | Rising Rivals | 37 | 64 | pl2 | human-readable/checklist card identity evidence; exact card-number finish matrix evidence; second-source confirmation for each finish fact |
 
 ## Evidence Rules
 

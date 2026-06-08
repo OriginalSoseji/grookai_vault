@@ -1,0 +1,549 @@
+{
+  "status": "api_no_validated_match",
+  "fact": {
+    "gap_type": "finish_second_source_needed",
+    "fact_type": "printing_finish",
+    "set_key": "sv02",
+    "set_name": "Paldea Evolved",
+    "card_number": "127",
+    "card_name": "Ting-Lu ex",
+    "finish_key": "stamped",
+    "status": "human_source_verified",
+    "sources": [
+      "thepricedex_price_list"
+    ],
+    "source_authorities": [
+      "thepricedex.com"
+    ],
+    "source_kinds": [
+      "marketplace_checklist"
+    ],
+    "evidence_urls": [
+      "https://www.thepricedex.com/set/sv2/paldea-evolved/price-list"
+    ],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "attempts": [
+    {
+      "query": "Pokemon Paldea Evolved Ting-Lu ex 127 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Paldea%20Evolved%20Ting-Lu%20ex%20127%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5287416",
+      "product_name": "Ting-Lu ex #127",
+      "console_name": "Pokemon Paldea Evolved",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon Paldea Evolved Ting-Lu ex 127 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Paldea%20Evolved%20Ting-Lu%20ex%20127%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10909576",
+      "product_name": "Ting-Lu Ex [Prize Pack] #127",
+      "console_name": "Pokemon Paldea Evolved",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Prize Pack"
+      }
+    },
+    {
+      "query": "Pokemon Paldea Evolved Ting-Lu ex 127 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Paldea%20Evolved%20Ting-Lu%20ex%20127%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5287532",
+      "product_name": "Ting-Lu ex #243",
+      "console_name": "Pokemon Paldea Evolved",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:243"
+      }
+    },
+    {
+      "query": "Pokemon Paldea Evolved Ting-Lu ex 127 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Paldea%20Evolved%20Ting-Lu%20ex%20127%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5287564",
+      "product_name": "Ting-Lu ex #275",
+      "console_name": "Pokemon Paldea Evolved",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:275"
+      }
+    },
+    {
+      "query": "Pokemon Paldea Evolved Ting-Lu ex 127 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Paldea%20Evolved%20Ting-Lu%20ex%20127%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5287552",
+      "product_name": "Ting-Lu ex #263",
+      "console_name": "Pokemon Paldea Evolved",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:263"
+      }
+    },
+    {
+      "query": "Pokemon Paldea Evolved Ting-Lu ex 127 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Paldea%20Evolved%20Ting-Lu%20ex%20127%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7322439",
+      "product_name": "Pikachu Ex [Snowflake Stamp] #63",
+      "console_name": "Pokemon Paldea Evolved",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:63"
+      }
+    },
+    {
+      "query": "Pokemon Paldea Evolved Ting-Lu ex 127 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Paldea%20Evolved%20Ting-Lu%20ex%20127%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7322441",
+      "product_name": "Chien-Pao Ex [Snowflake Stamp] #61",
+      "console_name": "Pokemon Paldea Evolved",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:61"
+      }
+    },
+    {
+      "query": "Pokemon Paldea Evolved Ting-Lu ex 127 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Paldea%20Evolved%20Ting-Lu%20ex%20127%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6125156",
+      "product_name": "Ting-Lu ex #113",
+      "console_name": "Pokemon Japanese Shiny Treasure ex",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:113"
+      }
+    },
+    {
+      "query": "Pokemon Paldea Evolved Ting-Lu ex 127 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Paldea%20Evolved%20Ting-Lu%20ex%20127%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6125404",
+      "product_name": "Ting-Lu ex #359",
+      "console_name": "Pokemon Japanese Shiny Treasure ex",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:359"
+      }
+    },
+    {
+      "query": "Pokemon Paldea Evolved Ting-Lu ex 127 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Paldea%20Evolved%20Ting-Lu%20ex%20127%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5003456",
+      "product_name": "Ting-Lu ex #49",
+      "console_name": "Pokemon Japanese Clay Burst",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:49"
+      }
+    },
+    {
+      "query": "Pokemon Paldea Evolved Ting-Lu ex 127 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Paldea%20Evolved%20Ting-Lu%20ex%20127%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5066125",
+      "product_name": "Ting-Lu ex #88",
+      "console_name": "Pokemon Japanese Clay Burst",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:88"
+      }
+    },
+    {
+      "query": "Pokemon Paldea Evolved Ting-Lu ex 127 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Paldea%20Evolved%20Ting-Lu%20ex%20127%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5066131",
+      "product_name": "Ting-Lu ex #94",
+      "console_name": "Pokemon Japanese Clay Burst",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:94"
+      }
+    },
+    {
+      "query": "Pokemon Paldea Evolved Ting-Lu ex 127 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Paldea%20Evolved%20Ting-Lu%20ex%20127%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5066134",
+      "product_name": "Ting-Lu ex #97",
+      "console_name": "Pokemon Japanese Clay Burst",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:97"
+      }
+    },
+    {
+      "query": "Pokemon Paldea Evolved Ting-Lu ex 127 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Paldea%20Evolved%20Ting-Lu%20ex%20127%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6277163",
+      "product_name": "Ting-Lu ex #244",
+      "console_name": "Pokemon Paldean Fates",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:244"
+      }
+    },
+    {
+      "query": "Pokemon Paldea Evolved Ting-Lu ex 127 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Paldea%20Evolved%20Ting-Lu%20ex%20127%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11670739",
+      "product_name": "Ting-Lu EX #158",
+      "console_name": "Pokemon Chinese CSV3C",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:158"
+      }
+    },
+    {
+      "query": "Pokemon Paldea Evolved Ting-Lu ex 127 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Paldea%20Evolved%20Ting-Lu%20ex%20127%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "13025235",
+      "product_name": "Ting-Lu ex #94",
+      "console_name": "Pokemon Korean Clay Burst",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:94"
+      }
+    },
+    {
+      "query": "Pokemon Paldea Evolved Ting-Lu ex 127 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Paldea%20Evolved%20Ting-Lu%20ex%20127%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "13025239",
+      "product_name": "Ting-Lu ex #97",
+      "console_name": "Pokemon Korean Clay Burst",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:97"
+      }
+    },
+    {
+      "query": "Pokemon Paldea Evolved Ting-Lu ex 127 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Paldea%20Evolved%20Ting-Lu%20ex%20127%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "13025243",
+      "product_name": "Ting-Lu ex #49",
+      "console_name": "Pokemon Korean Clay Burst",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:49"
+      }
+    },
+    {
+      "query": "Pokemon Paldea Evolved Ting-Lu ex 127 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Paldea%20Evolved%20Ting-Lu%20ex%20127%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "13025234",
+      "product_name": "Ting-Lu ex #88",
+      "console_name": "Pokemon Korean Clay Burst",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:88"
+      }
+    },
+    {
+      "query": "Pokemon Paldea Evolved Ting-Lu ex 127 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Paldea%20Evolved%20Ting-Lu%20ex%20127%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12031126",
+      "product_name": "Ting-Lu #89",
+      "console_name": "Pokemon Korean Terastal Festival ex",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:89"
+      }
+    },
+    {
+      "query": "Pokemon Paldea Evolved Ting-Lu ex 127 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Paldea%20Evolved%20Ting-Lu%20ex%20127%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5287416",
+      "product_name": "Ting-Lu ex #127",
+      "console_name": "Pokemon Paldea Evolved",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon Paldea Evolved Ting-Lu ex 127 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Paldea%20Evolved%20Ting-Lu%20ex%20127%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10909576",
+      "product_name": "Ting-Lu Ex [Prize Pack] #127",
+      "console_name": "Pokemon Paldea Evolved",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Prize Pack"
+      }
+    },
+    {
+      "query": "Pokemon Paldea Evolved Ting-Lu ex 127 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Paldea%20Evolved%20Ting-Lu%20ex%20127%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5287532",
+      "product_name": "Ting-Lu ex #243",
+      "console_name": "Pokemon Paldea Evolved",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:243"
+      }
+    },
+    {
+      "query": "Pokemon Paldea Evolved Ting-Lu ex 127 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Paldea%20Evolved%20Ting-Lu%20ex%20127%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5287564",
+      "product_name": "Ting-Lu ex #275",
+      "console_name": "Pokemon Paldea Evolved",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:275"
+      }
+    },
+    {
+      "query": "Pokemon Paldea Evolved Ting-Lu ex 127 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Paldea%20Evolved%20Ting-Lu%20ex%20127%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5287552",
+      "product_name": "Ting-Lu ex #263",
+      "console_name": "Pokemon Paldea Evolved",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:263"
+      }
+    },
+    {
+      "query": "Pokemon Paldea Evolved Ting-Lu ex 127 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Paldea%20Evolved%20Ting-Lu%20ex%20127%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7322439",
+      "product_name": "Pikachu Ex [Snowflake Stamp] #63",
+      "console_name": "Pokemon Paldea Evolved",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:63"
+      }
+    },
+    {
+      "query": "Pokemon Paldea Evolved Ting-Lu ex 127 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Paldea%20Evolved%20Ting-Lu%20ex%20127%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7322441",
+      "product_name": "Chien-Pao Ex [Snowflake Stamp] #61",
+      "console_name": "Pokemon Paldea Evolved",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:61"
+      }
+    },
+    {
+      "query": "Pokemon Paldea Evolved Ting-Lu ex 127 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Paldea%20Evolved%20Ting-Lu%20ex%20127%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6125156",
+      "product_name": "Ting-Lu ex #113",
+      "console_name": "Pokemon Japanese Shiny Treasure ex",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:113"
+      }
+    },
+    {
+      "query": "Pokemon Paldea Evolved Ting-Lu ex 127 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Paldea%20Evolved%20Ting-Lu%20ex%20127%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6125404",
+      "product_name": "Ting-Lu ex #359",
+      "console_name": "Pokemon Japanese Shiny Treasure ex",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:359"
+      }
+    },
+    {
+      "query": "Pokemon Paldea Evolved Ting-Lu ex 127 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Paldea%20Evolved%20Ting-Lu%20ex%20127%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5003456",
+      "product_name": "Ting-Lu ex #49",
+      "console_name": "Pokemon Japanese Clay Burst",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:49"
+      }
+    },
+    {
+      "query": "Pokemon Paldea Evolved Ting-Lu ex 127 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Paldea%20Evolved%20Ting-Lu%20ex%20127%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5066125",
+      "product_name": "Ting-Lu ex #88",
+      "console_name": "Pokemon Japanese Clay Burst",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:88"
+      }
+    },
+    {
+      "query": "Pokemon Paldea Evolved Ting-Lu ex 127 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Paldea%20Evolved%20Ting-Lu%20ex%20127%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5066131",
+      "product_name": "Ting-Lu ex #94",
+      "console_name": "Pokemon Japanese Clay Burst",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:94"
+      }
+    },
+    {
+      "query": "Pokemon Paldea Evolved Ting-Lu ex 127 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Paldea%20Evolved%20Ting-Lu%20ex%20127%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5066134",
+      "product_name": "Ting-Lu ex #97",
+      "console_name": "Pokemon Japanese Clay Burst",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:97"
+      }
+    },
+    {
+      "query": "Pokemon Paldea Evolved Ting-Lu ex 127 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Paldea%20Evolved%20Ting-Lu%20ex%20127%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6277163",
+      "product_name": "Ting-Lu ex #244",
+      "console_name": "Pokemon Paldean Fates",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:244"
+      }
+    },
+    {
+      "query": "Pokemon Paldea Evolved Ting-Lu ex 127 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Paldea%20Evolved%20Ting-Lu%20ex%20127%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11670739",
+      "product_name": "Ting-Lu EX #158",
+      "console_name": "Pokemon Chinese CSV3C",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:158"
+      }
+    },
+    {
+      "query": "Pokemon Paldea Evolved Ting-Lu ex 127 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Paldea%20Evolved%20Ting-Lu%20ex%20127%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "13025235",
+      "product_name": "Ting-Lu ex #94",
+      "console_name": "Pokemon Korean Clay Burst",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:94"
+      }
+    },
+    {
+      "query": "Pokemon Paldea Evolved Ting-Lu ex 127 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Paldea%20Evolved%20Ting-Lu%20ex%20127%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "13025239",
+      "product_name": "Ting-Lu ex #97",
+      "console_name": "Pokemon Korean Clay Burst",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:97"
+      }
+    },
+    {
+      "query": "Pokemon Paldea Evolved Ting-Lu ex 127 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Paldea%20Evolved%20Ting-Lu%20ex%20127%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "13025243",
+      "product_name": "Ting-Lu ex #49",
+      "console_name": "Pokemon Korean Clay Burst",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:49"
+      }
+    },
+    {
+      "query": "Pokemon Paldea Evolved Ting-Lu ex 127 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Paldea%20Evolved%20Ting-Lu%20ex%20127%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "13025234",
+      "product_name": "Ting-Lu ex #88",
+      "console_name": "Pokemon Korean Clay Burst",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:88"
+      }
+    },
+    {
+      "query": "Pokemon Paldea Evolved Ting-Lu ex 127 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Paldea%20Evolved%20Ting-Lu%20ex%20127%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12031126",
+      "product_name": "Ting-Lu #89",
+      "console_name": "Pokemon Korean Terastal Festival ex",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:89"
+      }
+    }
+  ],
+  "source_lane": "pricecharting_api"
+}

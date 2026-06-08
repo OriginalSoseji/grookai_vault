@@ -1,0 +1,31 @@
+{
+  "fixture_version": "VERIFIED_MASTER_SET_INDEX_V1_HUMAN_SOURCE_FIXTURE_GENERATED",
+  "source_key": "cardtrader_finish_dp5",
+  "source_kind": "marketplace_checklist",
+  "source_url": "https://www.cardtrader.com/en/manasearch/5/blueprints.json",
+  "source_status": "available_generated",
+  "set_key": "dp5",
+  "set_name": "Majestic Dawn",
+  "retrieved_at": "2026-06-08T12:50:58.458Z",
+  "raw_snapshot_ref": "generated_fixture:cardtrader:dp5:2026-06-08T12:50:58.458Z",
+  "generation_note": "Generated from CardTrader Pokemon blueprint index. Exact card-number/name/finish matches only.",
+  "records": [
+    {
+      "source_key": "cardtrader_blueprint_index",
+      "source_kind": "marketplace_checklist",
+      "source_url": "https://www.cardtrader.com/en/cards/262486-call-energy-league-promo-reverse-holo-league-promos",
+      "set_key": "dp5",
+      "set_name": "Majestic Dawn",
+      "card_number": "92",
+      "card_name": "Call Energy",
+      "finish_key": "stamped",
+      "rarity": null,
+      "evidence_type": "finish_presence",
+      "evidence_label": "CardTrader blueprint row Call Energy - League Promo | Reverse Holo",
+      "language": "en",
+      "retrieved_at": "2026-06-08T12:50:58.458Z",
+      "raw_snapshot_ref": "cardtrader_blueprint:262486-call-energy-league-promo-reverse-holo-league-promos",
+      "notes": "Generated only from an exact CardTrader Pokemon blueprint match on set, card number, card name, and finish label."
+    }
+  ]
+}

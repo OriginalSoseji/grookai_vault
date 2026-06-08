@@ -1,0 +1,31 @@
+{
+  "fixture_version": "VERIFIED_MASTER_SET_INDEX_V1_HUMAN_SOURCE_FIXTURE_GENERATED",
+  "source_key": "doubleholo_finish_swsh10",
+  "source_kind": "marketplace_checklist",
+  "source_url": "https://doubleholo.com/sets/pokemon-astral-radiance",
+  "source_status": "available_generated",
+  "set_key": "swsh10",
+  "set_name": "Astral Radiance",
+  "retrieved_at": "2026-05-27T16:29:37.798Z",
+  "raw_snapshot_ref": "generated_fixture:doubleholo:swsh10:2026-05-27T16:29:37.798Z",
+  "generation_note": "Generated from Double Holo set checklist explicit bracketed finish labels only.",
+  "records": [
+    {
+      "source_key": "doubleholo_set_checklist",
+      "source_kind": "marketplace_checklist",
+      "source_url": "https://doubleholo.com/sets/pokemon-astral-radiance",
+      "set_key": "swsh10",
+      "set_name": "Astral Radiance",
+      "card_number": "46",
+      "card_name": "Radiant Greninja",
+      "finish_key": "stamped",
+      "rarity": null,
+      "evidence_type": "finish_presence",
+      "evidence_label": "Double Holo checklist row Radiant Greninja [Gym Stamp] #46",
+      "language": "en",
+      "retrieved_at": "2026-05-27T16:29:37.798Z",
+      "raw_snapshot_ref": "doubleholo:swsh10:46:stamped",
+      "notes": "Generated only from explicit bracketed Double Holo finish labels."
+    }
+  ]
+}

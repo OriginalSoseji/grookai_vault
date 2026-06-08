@@ -6,7 +6,7 @@ Status: publishable_complete
 
 - set_key: ecard1
 - cards: 165/165
-- printings: 324/324
+- printings: 330/330
 - completion_score: 100
 
 ## Finish Counts
@@ -15,4 +15,4 @@ Status: publishable_complete
 | --- | --- |
 | holo | 32 |
 | normal | 133 |
-| reverse | 159 |
+| reverse | 165 |

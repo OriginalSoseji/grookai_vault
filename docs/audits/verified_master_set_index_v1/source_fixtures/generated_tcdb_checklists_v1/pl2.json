@@ -1,0 +1,31 @@
+{
+  "fixture_version": "VERIFIED_MASTER_SET_INDEX_V1_HUMAN_SOURCE_FIXTURE_GENERATED",
+  "source_key": "tcdb_checklist_pl2",
+  "source_kind": "collector_reference",
+  "source_url": "https://www.tcdb.com",
+  "source_status": "available_generated",
+  "set_key": "pl2",
+  "set_name": "Rising Rivals",
+  "retrieved_at": "2026-05-26T11:13:17.537Z",
+  "raw_snapshot_ref": "generated_fixture:tcdb:pl2:2026-05-26T11:13:17.537Z",
+  "generation_note": "Generated from TCDB checklist pages. Finish evidence is emitted only when TCDB set title explicitly names the finish/variant.",
+  "records": [
+    {
+      "source_key": "tcdb_checklist",
+      "source_kind": "collector_reference",
+      "source_url": "https://www.tcdb.com/ViewCard.cfm/sid/83764/cid/6000414/2009-Pokemon-Platinum-Rising-Rivals-103/111-Alakazam-4-LV.X?PageIndex=2",
+      "set_key": "pl2",
+      "set_name": "Rising Rivals",
+      "card_number": "103",
+      "card_name": "Alakazam 4 LV. X",
+      "finish_key": null,
+      "rarity": null,
+      "evidence_type": "card_identity",
+      "evidence_label": "TCDB checklist 2009 Pokemon Platinum Rising Rivals 103 Alakazam 4 LV. X",
+      "language": "en",
+      "retrieved_at": "2026-05-26T11:13:17.537Z",
+      "raw_snapshot_ref": "tcdb:83764:103:identity",
+      "notes": "Card identity evidence from a TCDB checklist row. No finish truth was inferred."
+    }
+  ]
+}

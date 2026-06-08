@@ -1,0 +1,150 @@
+{
+  "version": "english_master_index_pricecharting_mee_energy_acquisition_v1",
+  "generated_at": "2026-05-29T10:42:11.207Z",
+  "audit_only": true,
+  "db_writes_performed": false,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "dry_run": false,
+  "csv_path": "tmp/pricecharting/pokemon_cards_pricecharting.csv",
+  "fixture_file": "docs\\audits\\verified_master_set_index_v1\\source_fixtures\\generated_pricecharting_mee_energy_v1\\mee.json",
+  "summary": {
+    "csv_rows_read": 87674,
+    "records_generated": 16,
+    "by_finish": {
+      "normal": 8,
+      "reverse": 8
+    }
+  },
+  "reviewed_rows": [
+    {
+      "product_name": "Basic Darkness Energy #7",
+      "card_number": "007",
+      "card_name": "Basic Darkness Energy",
+      "finish_key": "normal",
+      "source_url": "https://www.pricecharting.com/game/pokemon-mega-evolution-energy/basic-darkness-energy-7",
+      "accepted": true
+    },
+    {
+      "product_name": "Basic Darkness Energy [Reverse Holo] #7",
+      "card_number": "007",
+      "card_name": "Basic Darkness Energy",
+      "finish_key": "reverse",
+      "source_url": "https://www.pricecharting.com/game/pokemon-mega-evolution-energy/basic-darkness-energy-reverse-holo-7",
+      "accepted": true
+    },
+    {
+      "product_name": "Basic Fighting Energy #6",
+      "card_number": "006",
+      "card_name": "Basic Fighting Energy",
+      "finish_key": "normal",
+      "source_url": "https://www.pricecharting.com/game/pokemon-mega-evolution-energy/basic-fighting-energy-6",
+      "accepted": true
+    },
+    {
+      "product_name": "Basic Fighting Energy [Reverse Holo] #6",
+      "card_number": "006",
+      "card_name": "Basic Fighting Energy",
+      "finish_key": "reverse",
+      "source_url": "https://www.pricecharting.com/game/pokemon-mega-evolution-energy/basic-fighting-energy-reverse-holo-6",
+      "accepted": true
+    },
+    {
+      "product_name": "Basic Fire Energy #2",
+      "card_number": "002",
+      "card_name": "Basic Fire Energy",
+      "finish_key": "normal",
+      "source_url": "https://www.pricecharting.com/game/pokemon-mega-evolution-energy/basic-fire-energy-2",
+      "accepted": true
+    },
+    {
+      "product_name": "Basic Fire Energy [Reverse Holo] #2",
+      "card_number": "002",
+      "card_name": "Basic Fire Energy",
+      "finish_key": "reverse",
+      "source_url": "https://www.pricecharting.com/game/pokemon-mega-evolution-energy/basic-fire-energy-reverse-holo-2",
+      "accepted": true
+    },
+    {
+      "product_name": "Basic Grass Energy #1",
+      "card_number": "001",
+      "card_name": "Basic Grass Energy",
+      "finish_key": "normal",
+      "source_url": "https://www.pricecharting.com/game/pokemon-mega-evolution-energy/basic-grass-energy-1",
+      "accepted": true
+    },
+    {
+      "product_name": "Basic Lightning Energy #4",
+      "card_number": "004",
+      "card_name": "Basic Lightning Energy",
+      "finish_key": "normal",
+      "source_url": "https://www.pricecharting.com/game/pokemon-mega-evolution-energy/basic-lightning-energy-4",
+      "accepted": true
+    },
+    {
+      "product_name": "Basic Lightning Energy [Reverse Holo] #4",
+      "card_number": "004",
+      "card_name": "Basic Lightning Energy",
+      "finish_key": "reverse",
+      "source_url": "https://www.pricecharting.com/game/pokemon-mega-evolution-energy/basic-lightning-energy-reverse-holo-4",
+      "accepted": true
+    },
+    {
+      "product_name": "Basic Metal Energy #8",
+      "card_number": "008",
+      "card_name": "Basic Metal Energy",
+      "finish_key": "normal",
+      "source_url": "https://www.pricecharting.com/game/pokemon-mega-evolution-energy/basic-metal-energy-8",
+      "accepted": true
+    },
+    {
+      "product_name": "Basic Metal Energy [Reverse Holo] #8",
+      "card_number": "008",
+      "card_name": "Basic Metal Energy",
+      "finish_key": "reverse",
+      "source_url": "https://www.pricecharting.com/game/pokemon-mega-evolution-energy/basic-metal-energy-reverse-holo-8",
+      "accepted": true
+    },
+    {
+      "product_name": "Basic Psychic Energy #5",
+      "card_number": "005",
+      "card_name": "Basic Psychic Energy",
+      "finish_key": "normal",
+      "source_url": "https://www.pricecharting.com/game/pokemon-mega-evolution-energy/basic-psychic-energy-5",
+      "accepted": true
+    },
+    {
+      "product_name": "Basic Psychic Energy [Reverse Holo] #5",
+      "card_number": "005",
+      "card_name": "Basic Psychic Energy",
+      "finish_key": "reverse",
+      "source_url": "https://www.pricecharting.com/game/pokemon-mega-evolution-energy/basic-psychic-energy-reverse-holo-5",
+      "accepted": true
+    },
+    {
+      "product_name": "Basic Water Energy #3",
+      "card_number": "003",
+      "card_name": "Basic Water Energy",
+      "finish_key": "normal",
+      "source_url": "https://www.pricecharting.com/game/pokemon-mega-evolution-energy/basic-water-energy-3",
+      "accepted": true
+    },
+    {
+      "product_name": "Basic Water Energy [Reverse Holo] #3",
+      "card_number": "003",
+      "card_name": "Basic Water Energy",
+      "finish_key": "reverse",
+      "source_url": "https://www.pricecharting.com/game/pokemon-mega-evolution-energy/basic-water-energy-reverse-holo-3",
+      "accepted": true
+    },
+    {
+      "product_name": "Basis Energy Grass [Reverse Holo] #1",
+      "card_number": "001",
+      "card_name": "Basic Grass Energy",
+      "finish_key": "reverse",
+      "source_url": "https://www.pricecharting.com/game/pokemon-mega-evolution-energy/basis-energy-grass-reverse-holo-1",
+      "accepted": true
+    }
+  ]
+}

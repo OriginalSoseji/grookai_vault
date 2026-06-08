@@ -1,0 +1,48 @@
+{
+  "fixture_version": "VERIFIED_MASTER_SET_INDEX_V1_HUMAN_SOURCE_FIXTURE_GENERATED",
+  "source_key": "binderbuilder_ex1",
+  "source_kind": "collector_reference",
+  "source_url": "https://binderbuilder.app/sets/ex1",
+  "source_status": "available_generated",
+  "set_key": "ex1",
+  "set_name": "Ruby & Sapphire",
+  "retrieved_at": "2026-05-26T04:50:02.571Z",
+  "raw_snapshot_ref": "generated_fixture:binderbuilder:ex1:2026-05-26T04:50:02.571Z",
+  "generation_note": "Generated from Binder Builder exact visible variant labels. Unsupported/product-scope labels are excluded.",
+  "records": [
+    {
+      "source_key": "binderbuilder_set_variant",
+      "source_kind": "collector_reference",
+      "source_url": "https://binderbuilder.app/sets/ex1",
+      "set_key": "ex1",
+      "set_name": "Ruby & Sapphire",
+      "card_number": "3",
+      "card_name": "Blaziken",
+      "finish_key": "normal",
+      "rarity": null,
+      "evidence_type": "finish_presence",
+      "evidence_label": "Binder Builder variant row #3 - Blaziken - Normal",
+      "language": "en",
+      "retrieved_at": "2026-05-26T04:50:02.571Z",
+      "raw_snapshot_ref": "binderbuilder:ex1:3:normal",
+      "notes": "Exact finish evidence from Binder Builder visible variant label. Shadowless, Jumbo, Metal, and unsupported labels are not emitted."
+    },
+    {
+      "source_key": "binderbuilder_set_variant",
+      "source_kind": "collector_reference",
+      "source_url": "https://binderbuilder.app/sets/ex1",
+      "set_key": "ex1",
+      "set_name": "Ruby & Sapphire",
+      "card_number": "7",
+      "card_name": "Gardevoir",
+      "finish_key": "normal",
+      "rarity": null,
+      "evidence_type": "finish_presence",
+      "evidence_label": "Binder Builder variant row #7 - Gardevoir - Normal",
+      "language": "en",
+      "retrieved_at": "2026-05-26T04:50:02.571Z",
+      "raw_snapshot_ref": "binderbuilder:ex1:7:normal",
+      "notes": "Exact finish evidence from Binder Builder visible variant label. Shadowless, Jumbo, Metal, and unsupported labels are not emitted."
+    }
+  ]
+}

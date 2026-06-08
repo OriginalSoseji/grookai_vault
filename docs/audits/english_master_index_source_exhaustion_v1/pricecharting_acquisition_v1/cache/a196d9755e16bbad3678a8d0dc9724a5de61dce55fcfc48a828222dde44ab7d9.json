@@ -1,0 +1,549 @@
+{
+  "status": "api_no_validated_match",
+  "fact": {
+    "gap_type": "finish_second_source_needed",
+    "fact_type": "printing_finish",
+    "set_key": "g1",
+    "set_name": "Generations",
+    "card_number": "32",
+    "card_name": "Slowpoke",
+    "finish_key": "stamped",
+    "status": "human_source_verified",
+    "sources": [
+      "thepricedex_price_list"
+    ],
+    "source_authorities": [
+      "thepricedex.com"
+    ],
+    "source_kinds": [
+      "marketplace_checklist"
+    ],
+    "evidence_urls": [
+      "https://www.thepricedex.com/set/g1/generations/price-list"
+    ],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "attempts": [
+    {
+      "query": "Pokemon Generations Slowpoke 32 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Generations%20Slowpoke%2032%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "959744",
+      "product_name": "Slowpoke #32",
+      "console_name": "Pokemon Generations",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon Generations Slowpoke 32 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Generations%20Slowpoke%2032%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3179771",
+      "product_name": "Slowpoke [Toys R Us] #32",
+      "console_name": "Pokemon Generations",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Toys R Us"
+      }
+    },
+    {
+      "query": "Pokemon Generations Slowpoke 32 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Generations%20Slowpoke%2032%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "2975522",
+      "product_name": "Slowpoke [Reverse Holo] #32",
+      "console_name": "Pokemon Generations",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Reverse Holo"
+      }
+    },
+    {
+      "query": "Pokemon Generations Slowpoke 32 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Generations%20Slowpoke%2032%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9622105",
+      "product_name": "Slowpoke [20th Anniversary] #32",
+      "console_name": "Pokemon Generations",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:20th Anniversary"
+      }
+    },
+    {
+      "query": "Pokemon Generations Slowpoke 32 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Generations%20Slowpoke%2032%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9274452",
+      "product_name": "Slowpoke #27",
+      "console_name": "Pokemon Japanese Starter Deck Generations",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:27"
+      }
+    },
+    {
+      "query": "Pokemon Generations Slowpoke 32 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Generations%20Slowpoke%2032%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11703207",
+      "product_name": "Slowpoke [FamilyMart Stamped] #238/SV-P",
+      "console_name": "Pokemon Chinese Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:238/SV-P"
+      }
+    },
+    {
+      "query": "Pokemon Generations Slowpoke 32 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Generations%20Slowpoke%2032%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6329689",
+      "product_name": "Ponyta [Stamped] #14",
+      "console_name": "Pokemon Generations",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:14"
+      }
+    },
+    {
+      "query": "Pokemon Generations Slowpoke 32 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Generations%20Slowpoke%2032%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10638000",
+      "product_name": "Geodude [Stamped] #43",
+      "console_name": "Pokemon Generations",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:43"
+      }
+    },
+    {
+      "query": "Pokemon Generations Slowpoke 32 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Generations%20Slowpoke%2032%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6021834",
+      "product_name": "Pikachu [Stamped] #26",
+      "console_name": "Pokemon Generations",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:26"
+      }
+    },
+    {
+      "query": "Pokemon Generations Slowpoke 32 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Generations%20Slowpoke%2032%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6795207",
+      "product_name": "Meowth [20th Anniversary Stamp] #53",
+      "console_name": "Pokemon Generations",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:53"
+      }
+    },
+    {
+      "query": "Pokemon Generations Slowpoke 32 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Generations%20Slowpoke%2032%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "2336238",
+      "product_name": "Dark Charmeleon [W Stamp] #32",
+      "console_name": "Pokemon Team Rocket",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Dark Charmeleon"
+      }
+    },
+    {
+      "query": "Pokemon Generations Slowpoke 32 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Generations%20Slowpoke%2032%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4441263",
+      "product_name": "Delibird [Snowflake Stamp] #32",
+      "console_name": "Pokemon Chilling Reign",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Delibird"
+      }
+    },
+    {
+      "query": "Pokemon Generations Slowpoke 32 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Generations%20Slowpoke%2032%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7277625",
+      "product_name": "Slowpoke [1999-2000] #55",
+      "console_name": "Pokemon Fossil",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:55"
+      }
+    },
+    {
+      "query": "Pokemon Generations Slowpoke 32 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Generations%20Slowpoke%2032%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5095708",
+      "product_name": "Nick Fury #VS-32",
+      "console_name": "Marvel 2022 Ultra Avengers Value Stamp Relics",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:VS-32"
+      }
+    },
+    {
+      "query": "Pokemon Generations Slowpoke 32 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Generations%20Slowpoke%2032%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "762203",
+      "product_name": "Sabrina's Slowpoke #95",
+      "console_name": "Pokemon Gym Heroes",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:95"
+      }
+    },
+    {
+      "query": "Pokemon Generations Slowpoke 32 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Generations%20Slowpoke%2032%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3457583",
+      "product_name": "Sabrina's Slowpoke #079",
+      "console_name": "Pokemon Japanese Challenge from the Darkness",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:079"
+      }
+    },
+    {
+      "query": "Pokemon Generations Slowpoke 32 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Generations%20Slowpoke%2032%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3975713",
+      "product_name": "Slowpoke [Foil] #79",
+      "console_name": "Pokemon 2000 Topps TV",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:79"
+      }
+    },
+    {
+      "query": "Pokemon Generations Slowpoke 32 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Generations%20Slowpoke%2032%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5278796",
+      "product_name": "Slowpoke [Holo] #14",
+      "console_name": "Pokemon Japanese 2002 McDonald's",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:14"
+      }
+    },
+    {
+      "query": "Pokemon Generations Slowpoke 32 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Generations%20Slowpoke%2032%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12319721",
+      "product_name": "Slowpoke [Red] #79",
+      "console_name": "Pokemon Japanese 1996 Carddass",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:79"
+      }
+    },
+    {
+      "query": "Pokemon Generations Slowpoke 32 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Generations%20Slowpoke%2032%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8321707",
+      "product_name": "Slowpoke [Reverse] #18",
+      "console_name": "Pokemon Prismatic Evolutions",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:18"
+      }
+    },
+    {
+      "query": "Pokemon Generations Slowpoke 32 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Generations%20Slowpoke%2032%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "959744",
+      "product_name": "Slowpoke #32",
+      "console_name": "Pokemon Generations",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon Generations Slowpoke 32 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Generations%20Slowpoke%2032%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3179771",
+      "product_name": "Slowpoke [Toys R Us] #32",
+      "console_name": "Pokemon Generations",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Toys R Us"
+      }
+    },
+    {
+      "query": "Pokemon Generations Slowpoke 32 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Generations%20Slowpoke%2032%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "2975522",
+      "product_name": "Slowpoke [Reverse Holo] #32",
+      "console_name": "Pokemon Generations",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Reverse Holo"
+      }
+    },
+    {
+      "query": "Pokemon Generations Slowpoke 32 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Generations%20Slowpoke%2032%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9622105",
+      "product_name": "Slowpoke [20th Anniversary] #32",
+      "console_name": "Pokemon Generations",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:20th Anniversary"
+      }
+    },
+    {
+      "query": "Pokemon Generations Slowpoke 32 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Generations%20Slowpoke%2032%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9274452",
+      "product_name": "Slowpoke #27",
+      "console_name": "Pokemon Japanese Starter Deck Generations",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:27"
+      }
+    },
+    {
+      "query": "Pokemon Generations Slowpoke 32 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Generations%20Slowpoke%2032%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11703207",
+      "product_name": "Slowpoke [FamilyMart Stamped] #238/SV-P",
+      "console_name": "Pokemon Chinese Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:238/SV-P"
+      }
+    },
+    {
+      "query": "Pokemon Generations Slowpoke 32 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Generations%20Slowpoke%2032%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6329689",
+      "product_name": "Ponyta [Stamped] #14",
+      "console_name": "Pokemon Generations",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:14"
+      }
+    },
+    {
+      "query": "Pokemon Generations Slowpoke 32 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Generations%20Slowpoke%2032%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10638000",
+      "product_name": "Geodude [Stamped] #43",
+      "console_name": "Pokemon Generations",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:43"
+      }
+    },
+    {
+      "query": "Pokemon Generations Slowpoke 32 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Generations%20Slowpoke%2032%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6021834",
+      "product_name": "Pikachu [Stamped] #26",
+      "console_name": "Pokemon Generations",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:26"
+      }
+    },
+    {
+      "query": "Pokemon Generations Slowpoke 32 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Generations%20Slowpoke%2032%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6795207",
+      "product_name": "Meowth [20th Anniversary Stamp] #53",
+      "console_name": "Pokemon Generations",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:53"
+      }
+    },
+    {
+      "query": "Pokemon Generations Slowpoke 32 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Generations%20Slowpoke%2032%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "2336238",
+      "product_name": "Dark Charmeleon [W Stamp] #32",
+      "console_name": "Pokemon Team Rocket",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Dark Charmeleon"
+      }
+    },
+    {
+      "query": "Pokemon Generations Slowpoke 32 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Generations%20Slowpoke%2032%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4441263",
+      "product_name": "Delibird [Snowflake Stamp] #32",
+      "console_name": "Pokemon Chilling Reign",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Delibird"
+      }
+    },
+    {
+      "query": "Pokemon Generations Slowpoke 32 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Generations%20Slowpoke%2032%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7277625",
+      "product_name": "Slowpoke [1999-2000] #55",
+      "console_name": "Pokemon Fossil",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:55"
+      }
+    },
+    {
+      "query": "Pokemon Generations Slowpoke 32 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Generations%20Slowpoke%2032%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5095708",
+      "product_name": "Nick Fury #VS-32",
+      "console_name": "Marvel 2022 Ultra Avengers Value Stamp Relics",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:VS-32"
+      }
+    },
+    {
+      "query": "Pokemon Generations Slowpoke 32 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Generations%20Slowpoke%2032%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "762203",
+      "product_name": "Sabrina's Slowpoke #95",
+      "console_name": "Pokemon Gym Heroes",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:95"
+      }
+    },
+    {
+      "query": "Pokemon Generations Slowpoke 32 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Generations%20Slowpoke%2032%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3457583",
+      "product_name": "Sabrina's Slowpoke #079",
+      "console_name": "Pokemon Japanese Challenge from the Darkness",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:079"
+      }
+    },
+    {
+      "query": "Pokemon Generations Slowpoke 32 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Generations%20Slowpoke%2032%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3975713",
+      "product_name": "Slowpoke [Foil] #79",
+      "console_name": "Pokemon 2000 Topps TV",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:79"
+      }
+    },
+    {
+      "query": "Pokemon Generations Slowpoke 32 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Generations%20Slowpoke%2032%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5278796",
+      "product_name": "Slowpoke [Holo] #14",
+      "console_name": "Pokemon Japanese 2002 McDonald's",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:14"
+      }
+    },
+    {
+      "query": "Pokemon Generations Slowpoke 32 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Generations%20Slowpoke%2032%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12319721",
+      "product_name": "Slowpoke [Red] #79",
+      "console_name": "Pokemon Japanese 1996 Carddass",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:79"
+      }
+    },
+    {
+      "query": "Pokemon Generations Slowpoke 32 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Generations%20Slowpoke%2032%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8321707",
+      "product_name": "Slowpoke [Reverse] #18",
+      "console_name": "Pokemon Prismatic Evolutions",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:18"
+      }
+    }
+  ],
+  "source_lane": "pricecharting_api"
+}

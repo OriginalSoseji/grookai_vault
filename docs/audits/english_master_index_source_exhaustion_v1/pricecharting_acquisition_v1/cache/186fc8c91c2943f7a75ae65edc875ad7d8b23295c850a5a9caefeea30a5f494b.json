@@ -1,0 +1,549 @@
+{
+  "status": "api_no_validated_match",
+  "fact": {
+    "gap_type": "finish_second_source_needed",
+    "fact_type": "printing_finish",
+    "set_key": "ex15",
+    "set_name": "Dragon Frontiers",
+    "card_number": "79",
+    "card_name": "Professor Elm's Training Method",
+    "finish_key": "stamped",
+    "status": "human_source_verified",
+    "sources": [
+      "thepricedex_price_list"
+    ],
+    "source_authorities": [
+      "thepricedex.com"
+    ],
+    "source_kinds": [
+      "marketplace_checklist"
+    ],
+    "evidence_urls": [
+      "https://www.thepricedex.com/set/ex15/dragon-frontiers/price-list"
+    ],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "attempts": [
+    {
+      "query": "Pokemon Dragon Frontiers Professor Elm's Training Method 79 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Frontiers%20Professor%20Elm's%20Training%20Method%2079%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "889553",
+      "product_name": "Professor Elm's Training Method #79",
+      "console_name": "Pokemon Dragon Frontiers",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Frontiers Professor Elm's Training Method 79 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Frontiers%20Professor%20Elm's%20Training%20Method%2079%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "889654",
+      "product_name": "Professor Elm's Training Method [Reverse Holo] #79",
+      "console_name": "Pokemon Dragon Frontiers",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Reverse Holo"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Frontiers Professor Elm's Training Method 79 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Frontiers%20Professor%20Elm's%20Training%20Method%2079%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "806211",
+      "product_name": "Professor Elm's Training Method #100",
+      "console_name": "Pokemon HeartGold & SoulSilver",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:100"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Frontiers Professor Elm's Training Method 79 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Frontiers%20Professor%20Elm's%20Training%20Method%2079%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "842520",
+      "product_name": "Professor Elm's Training Method #148",
+      "console_name": "Pokemon Expedition",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:148"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Frontiers Professor Elm's Training Method 79 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Frontiers%20Professor%20Elm's%20Training%20Method%2079%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "925854",
+      "product_name": "Professor Elm's Training Method #25",
+      "console_name": "Pokemon Gyarados & Raichu",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:25"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Frontiers Professor Elm's Training Method 79 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Frontiers%20Professor%20Elm's%20Training%20Method%2079%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "926333",
+      "product_name": "Professor Elm's Training Method #82",
+      "console_name": "Pokemon Call of Legends",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:82"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Frontiers Professor Elm's Training Method 79 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Frontiers%20Professor%20Elm's%20Training%20Method%2079%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "888509",
+      "product_name": "Professor Elm's Training Method #89",
+      "console_name": "Pokemon Unseen Forces",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:89"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Frontiers Professor Elm's Training Method 79 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Frontiers%20Professor%20Elm's%20Training%20Method%2079%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3438262",
+      "product_name": "Professor Elm's Training Method #49",
+      "console_name": "Pokemon Japanese Expedition Expansion Pack",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:49"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Frontiers Professor Elm's Training Method 79 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Frontiers%20Professor%20Elm's%20Training%20Method%2079%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3460006",
+      "product_name": "Professor Elm's Training Method #67",
+      "console_name": "Pokemon Japanese HeartGold Collection",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:67"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Frontiers Professor Elm's Training Method 79 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Frontiers%20Professor%20Elm's%20Training%20Method%2079%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7226080",
+      "product_name": "Professor Elm's Training Method #89",
+      "console_name": "Pokemon World Championships 2007",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:89"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Frontiers Professor Elm's Training Method 79 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Frontiers%20Professor%20Elm's%20Training%20Method%2079%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4602784",
+      "product_name": "Professor Elm's Training Method #14",
+      "console_name": "Pokemon Japanese Shockwave Starter Deck",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:14"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Frontiers Professor Elm's Training Method 79 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Frontiers%20Professor%20Elm's%20Training%20Method%2079%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3439468",
+      "product_name": "Professor Elm's Training Method #97",
+      "console_name": "Pokemon Japanese Golden Sky, Silvery Ocean",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:97"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Frontiers Professor Elm's Training Method 79 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Frontiers%20Professor%20Elm's%20Training%20Method%2079%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7638515",
+      "product_name": "Professor Elm's Training Method #12",
+      "console_name": "Pokemon Japanese Leafeon VS Metagross Expert Deck",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:12"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Frontiers Professor Elm's Training Method 79 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Frontiers%20Professor%20Elm's%20Training%20Method%2079%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7401314",
+      "product_name": "Professor Elm's Training Method #13",
+      "console_name": "Pokemon Japanese Feraligatr Starter Deck",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:13"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Frontiers Professor Elm's Training Method 79 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Frontiers%20Professor%20Elm's%20Training%20Method%2079%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7401366",
+      "product_name": "Professor Elm's Training Method #13",
+      "console_name": "Pokemon Japanese Typhlosion Starter Deck",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:13"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Frontiers Professor Elm's Training Method 79 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Frontiers%20Professor%20Elm's%20Training%20Method%2079%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7401347",
+      "product_name": "Professor Elm's Training Method #13",
+      "console_name": "Pokemon Japanese Meganium Starter Deck",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:13"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Frontiers Professor Elm's Training Method 79 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Frontiers%20Professor%20Elm's%20Training%20Method%2079%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10608624",
+      "product_name": "Professor Elm's Training Method #14",
+      "console_name": "Pokemon Japanese Steelix Constructed Starter Deck",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:14"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Frontiers Professor Elm's Training Method 79 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Frontiers%20Professor%20Elm's%20Training%20Method%2079%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12300530",
+      "product_name": "Professor Elm's Training Method #9",
+      "console_name": "Pokemon Japanese Battle Starter Decks",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:9"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Frontiers Professor Elm's Training Method 79 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Frontiers%20Professor%20Elm's%20Training%20Method%2079%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "806318",
+      "product_name": "Professor Elm's Training Method [Reverse Holo] #100",
+      "console_name": "Pokemon HeartGold & SoulSilver",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:100"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Frontiers Professor Elm's Training Method 79 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Frontiers%20Professor%20Elm's%20Training%20Method%2079%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "2267001",
+      "product_name": "Professor Elm's Training Method [Reverse Holo] #148",
+      "console_name": "Pokemon Expedition",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:148"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Frontiers Professor Elm's Training Method 79 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Frontiers%20Professor%20Elm's%20Training%20Method%2079%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "889553",
+      "product_name": "Professor Elm's Training Method #79",
+      "console_name": "Pokemon Dragon Frontiers",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Frontiers Professor Elm's Training Method 79 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Frontiers%20Professor%20Elm's%20Training%20Method%2079%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "889654",
+      "product_name": "Professor Elm's Training Method [Reverse Holo] #79",
+      "console_name": "Pokemon Dragon Frontiers",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Reverse Holo"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Frontiers Professor Elm's Training Method 79 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Frontiers%20Professor%20Elm's%20Training%20Method%2079%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "806211",
+      "product_name": "Professor Elm's Training Method #100",
+      "console_name": "Pokemon HeartGold & SoulSilver",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:100"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Frontiers Professor Elm's Training Method 79 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Frontiers%20Professor%20Elm's%20Training%20Method%2079%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "842520",
+      "product_name": "Professor Elm's Training Method #148",
+      "console_name": "Pokemon Expedition",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:148"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Frontiers Professor Elm's Training Method 79 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Frontiers%20Professor%20Elm's%20Training%20Method%2079%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "925854",
+      "product_name": "Professor Elm's Training Method #25",
+      "console_name": "Pokemon Gyarados & Raichu",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:25"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Frontiers Professor Elm's Training Method 79 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Frontiers%20Professor%20Elm's%20Training%20Method%2079%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "926333",
+      "product_name": "Professor Elm's Training Method #82",
+      "console_name": "Pokemon Call of Legends",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:82"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Frontiers Professor Elm's Training Method 79 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Frontiers%20Professor%20Elm's%20Training%20Method%2079%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "888509",
+      "product_name": "Professor Elm's Training Method #89",
+      "console_name": "Pokemon Unseen Forces",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:89"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Frontiers Professor Elm's Training Method 79 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Frontiers%20Professor%20Elm's%20Training%20Method%2079%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3438262",
+      "product_name": "Professor Elm's Training Method #49",
+      "console_name": "Pokemon Japanese Expedition Expansion Pack",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:49"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Frontiers Professor Elm's Training Method 79 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Frontiers%20Professor%20Elm's%20Training%20Method%2079%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3460006",
+      "product_name": "Professor Elm's Training Method #67",
+      "console_name": "Pokemon Japanese HeartGold Collection",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:67"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Frontiers Professor Elm's Training Method 79 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Frontiers%20Professor%20Elm's%20Training%20Method%2079%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7226080",
+      "product_name": "Professor Elm's Training Method #89",
+      "console_name": "Pokemon World Championships 2007",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:89"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Frontiers Professor Elm's Training Method 79 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Frontiers%20Professor%20Elm's%20Training%20Method%2079%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4602784",
+      "product_name": "Professor Elm's Training Method #14",
+      "console_name": "Pokemon Japanese Shockwave Starter Deck",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:14"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Frontiers Professor Elm's Training Method 79 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Frontiers%20Professor%20Elm's%20Training%20Method%2079%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3439468",
+      "product_name": "Professor Elm's Training Method #97",
+      "console_name": "Pokemon Japanese Golden Sky, Silvery Ocean",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:97"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Frontiers Professor Elm's Training Method 79 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Frontiers%20Professor%20Elm's%20Training%20Method%2079%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7638515",
+      "product_name": "Professor Elm's Training Method #12",
+      "console_name": "Pokemon Japanese Leafeon VS Metagross Expert Deck",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:12"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Frontiers Professor Elm's Training Method 79 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Frontiers%20Professor%20Elm's%20Training%20Method%2079%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7401314",
+      "product_name": "Professor Elm's Training Method #13",
+      "console_name": "Pokemon Japanese Feraligatr Starter Deck",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:13"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Frontiers Professor Elm's Training Method 79 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Frontiers%20Professor%20Elm's%20Training%20Method%2079%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7401366",
+      "product_name": "Professor Elm's Training Method #13",
+      "console_name": "Pokemon Japanese Typhlosion Starter Deck",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:13"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Frontiers Professor Elm's Training Method 79 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Frontiers%20Professor%20Elm's%20Training%20Method%2079%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7401347",
+      "product_name": "Professor Elm's Training Method #13",
+      "console_name": "Pokemon Japanese Meganium Starter Deck",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:13"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Frontiers Professor Elm's Training Method 79 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Frontiers%20Professor%20Elm's%20Training%20Method%2079%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10608624",
+      "product_name": "Professor Elm's Training Method #14",
+      "console_name": "Pokemon Japanese Steelix Constructed Starter Deck",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:14"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Frontiers Professor Elm's Training Method 79 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Frontiers%20Professor%20Elm's%20Training%20Method%2079%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12300530",
+      "product_name": "Professor Elm's Training Method #9",
+      "console_name": "Pokemon Japanese Battle Starter Decks",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:9"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Frontiers Professor Elm's Training Method 79 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Frontiers%20Professor%20Elm's%20Training%20Method%2079%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "806318",
+      "product_name": "Professor Elm's Training Method [Reverse Holo] #100",
+      "console_name": "Pokemon HeartGold & SoulSilver",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:100"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Frontiers Professor Elm's Training Method 79 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Frontiers%20Professor%20Elm's%20Training%20Method%2079%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "2267001",
+      "product_name": "Professor Elm's Training Method [Reverse Holo] #148",
+      "console_name": "Pokemon Expedition",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:148"
+      }
+    }
+  ],
+  "source_lane": "pricecharting_api"
+}

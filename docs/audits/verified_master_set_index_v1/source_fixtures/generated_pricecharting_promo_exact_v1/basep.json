@@ -1,0 +1,52 @@
+{
+  "fixture_version": "VERIFIED_MASTER_SET_INDEX_V1_HUMAN_SOURCE_FIXTURE_GENERATED",
+  "source_key": "pricecharting_csv_promo_exact",
+  "source_kind": "marketplace_checklist",
+  "source_url": "https://www.pricecharting.com/console/pokemon-cards",
+  "source_status": "available_generated_exact_promo_rows",
+  "set_key": "basep",
+  "set_name": "Wizards Black Star Promos",
+  "retrieved_at": "2026-05-31T10:39:07.360Z",
+  "raw_snapshot_ref": "generated_fixture:pricecharting_csv_promo_exact:basep:2026-05-31T10:39:07.360Z",
+  "audit_only": true,
+  "db_writes_performed": false,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "records": [
+    {
+      "source_key": "pricecharting_csv_promo_exact",
+      "source_kind": "marketplace_checklist",
+      "source_url": "https://www.pricecharting.com/game/pokemon-promo/eevee-jr-stamp-rally-11",
+      "set_key": "basep",
+      "set_name": "Wizards Black Star Promos",
+      "card_number": "11",
+      "card_name": "Eevee",
+      "finish_key": "stamped",
+      "rarity": null,
+      "evidence_type": "finish_presence",
+      "evidence_label": "PriceCharting exact promo product 4786026: Eevee [Jr Stamp Rally] #11",
+      "language": "en",
+      "retrieved_at": "2026-05-31T10:39:07.360Z",
+      "raw_snapshot_ref": "pricecharting_csv_promo_exact:4786026",
+      "notes": "Exact promo-family evidence accepted only when PriceCharting console is Pokemon Promo, card number and name match the target promo fact, finish label is explicit for non-normal rows, and only one matching product exists."
+    },
+    {
+      "source_key": "pricecharting_csv_promo_exact",
+      "source_kind": "marketplace_checklist",
+      "source_url": "https://www.pricecharting.com/game/pokemon-promo/ho-oh-pokemon-center-ny-52",
+      "set_key": "basep",
+      "set_name": "Wizards Black Star Promos",
+      "card_number": "52",
+      "card_name": "Ho-oh",
+      "finish_key": "stamped",
+      "rarity": null,
+      "evidence_type": "finish_presence",
+      "evidence_label": "PriceCharting exact promo product 5830380: Ho-oh [Pokemon Center NY] #52",
+      "language": "en",
+      "retrieved_at": "2026-05-31T10:39:07.360Z",
+      "raw_snapshot_ref": "pricecharting_csv_promo_exact:5830380",
+      "notes": "Exact promo-family evidence accepted only when PriceCharting console is Pokemon Promo, card number and name match the target promo fact, finish label is explicit for non-normal rows, and only one matching product exists."
+    }
+  ]
+}

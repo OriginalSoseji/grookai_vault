@@ -1,0 +1,62 @@
+{
+  "status": "validated",
+  "fact": {
+    "gap_type": "finish_second_source_needed",
+    "fact_type": "printing_finish",
+    "set_key": "bw2",
+    "set_name": "Emerging Powers",
+    "card_number": "40",
+    "card_name": "Scolipede",
+    "finish_key": "holo",
+    "status": "human_source_verified",
+    "sources": [
+      "thepricedex_price_list"
+    ],
+    "source_authorities": [
+      "thepricedex.com"
+    ],
+    "source_kinds": [
+      "marketplace_checklist"
+    ],
+    "evidence_urls": [
+      "https://www.thepricedex.com/set/bw2/emerging-powers/price-list"
+    ],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "query": "Pokemon Emerging Powers Scolipede 40 holo",
+  "search_url": "https://www.pricecharting.com/api/products?q=Pokemon%20Emerging%20Powers%20Scolipede%2040%20holo",
+  "source_url": "https://www.pricecharting.com/game/pokemon-emerging-powers/scolipede-reverse-holo-40",
+  "title": "Scolipede [Reverse Holo] #40 | Pokemon Emerging Powers",
+  "title_parts": {
+    "card_name": "Scolipede",
+    "card_number": "40",
+    "variant_label": "Reverse Holo",
+    "set_name": "Pokemon Emerging Powers",
+    "pricecharting_product_id": "955563"
+  },
+  "validation_source": "pricecharting_api_products",
+  "source_lane": "pricecharting_api",
+  "attempts": [
+    {
+      "query": "Pokemon Emerging Powers Scolipede 40 holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Emerging%20Powers%20Scolipede%2040%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "955563",
+      "product_name": "Scolipede [Reverse Holo] #40",
+      "console_name": "Pokemon Emerging Powers",
+      "validation": {
+        "ok": true,
+        "titleParts": {
+          "card_name": "Scolipede",
+          "card_number": "40",
+          "variant_label": "Reverse Holo",
+          "set_name": "Pokemon Emerging Powers",
+          "pricecharting_product_id": "955563"
+        },
+        "source_url": "https://www.pricecharting.com/game/pokemon-emerging-powers/scolipede-reverse-holo-40",
+        "title": "Scolipede [Reverse Holo] #40 | Pokemon Emerging Powers"
+      }
+    }
+  ]
+}

@@ -1,0 +1,549 @@
+{
+  "status": "api_no_validated_match",
+  "fact": {
+    "gap_type": "finish_second_source_needed",
+    "fact_type": "printing_finish",
+    "set_key": "hgss2",
+    "set_name": "HS—Unleashed",
+    "card_number": "37",
+    "card_name": "Poliwhirl",
+    "finish_key": "stamped",
+    "status": "human_source_verified",
+    "sources": [
+      "thepricedex_price_list"
+    ],
+    "source_authorities": [
+      "thepricedex.com"
+    ],
+    "source_kinds": [
+      "marketplace_checklist"
+    ],
+    "evidence_urls": [
+      "https://www.thepricedex.com/set/hgss2/hs-unleashed/price-list"
+    ],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "attempts": [
+    {
+      "query": "Pokemon HS—Unleashed Poliwhirl 37 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Poliwhirl%2037%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8597939",
+      "product_name": "Poliwhirl [League] #37",
+      "console_name": "Pokemon Unleashed",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:League"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Poliwhirl 37 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Poliwhirl%2037%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "1287379",
+      "product_name": "Poliwhirl #37",
+      "console_name": "Pokemon Unleashed",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Poliwhirl 37 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Poliwhirl%2037%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "1287475",
+      "product_name": "Poliwhirl [Reverse Holo] #37",
+      "console_name": "Pokemon Unleashed",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Reverse Holo"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Poliwhirl 37 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Poliwhirl%2037%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4653875",
+      "product_name": "Poliwhirl [Staff] #37",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon Promo"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Poliwhirl 37 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Poliwhirl%2037%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4835861",
+      "product_name": "Poke Ball #37",
+      "console_name": "Pokemon Japanese Beginning Set HS",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Poke Ball"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Poliwhirl 37 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Poliwhirl%2037%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "2336218",
+      "product_name": "Brock's Vulpix [W Stamp] #37",
+      "console_name": "Pokemon Gym Challenge",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Brock's Vulpix"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Poliwhirl 37 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Poliwhirl%2037%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7322446",
+      "product_name": "Snorunt [Snowflake Stamp] #37",
+      "console_name": "Pokemon Paradox Rift",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Snorunt"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Poliwhirl 37 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Poliwhirl%2037%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8576046",
+      "product_name": "Poliwhirl [1999-2000] #38",
+      "console_name": "Pokemon Base Set",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:38"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Poliwhirl 37 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Poliwhirl%2037%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "762172",
+      "product_name": "Misty's Poliwhirl #53",
+      "console_name": "Pokemon Gym Heroes",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:53"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Poliwhirl 37 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Poliwhirl%2037%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3453567",
+      "product_name": "Misty's Poliwhirl #61",
+      "console_name": "Pokemon Japanese Leaders' Stadium",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:61"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Poliwhirl 37 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Poliwhirl%2037%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "715729",
+      "product_name": "Poliwhirl [Shadowless] #38",
+      "console_name": "Pokemon Base Set",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:38"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Poliwhirl 37 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Poliwhirl%2037%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3561429",
+      "product_name": "Poliwhirl [Tekno] #61",
+      "console_name": "Pokemon 2000 Topps Chrome",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:61"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Poliwhirl 37 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Poliwhirl%2037%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3561137",
+      "product_name": "Poliwhirl [Foil] #61",
+      "console_name": "Pokemon 1999 Topps TV",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:61"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Poliwhirl 37 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Poliwhirl%2037%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12319700",
+      "product_name": "Poliwhirl [Red] #61",
+      "console_name": "Pokemon Japanese 1996 Carddass",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:61"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Poliwhirl 37 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Poliwhirl%2037%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3561427",
+      "product_name": "Poliwhirl [Sparkle] #61",
+      "console_name": "Pokemon 2000 Topps Chrome",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:61"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Poliwhirl 37 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Poliwhirl%2037%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3561428",
+      "product_name": "Poliwhirl [Spectra] #61",
+      "console_name": "Pokemon 2000 Topps Chrome",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:61"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Poliwhirl 37 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Poliwhirl%2037%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3473873",
+      "product_name": "Poliwhirl [Series 1] #61",
+      "console_name": "Pokemon Japanese Vending",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:61"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Poliwhirl 37 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Poliwhirl%2037%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8708954",
+      "product_name": "Poliwhirl [Reverse] #61",
+      "console_name": "Pokemon Chinese 151 Collect",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:61"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Poliwhirl 37 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Poliwhirl%2037%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4614327",
+      "product_name": "Poliwhirl [Green] #61",
+      "console_name": "Pokemon Japanese 1996 Carddass",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:61"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Poliwhirl 37 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Poliwhirl%2037%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9771417",
+      "product_name": "Wolverine Unleashed #37 (1999)",
+      "console_name": "Comic Books Wolverine Unleashed",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Wolverine Unleashed"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Poliwhirl 37 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Poliwhirl%2037%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8597939",
+      "product_name": "Poliwhirl [League] #37",
+      "console_name": "Pokemon Unleashed",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:League"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Poliwhirl 37 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Poliwhirl%2037%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "1287379",
+      "product_name": "Poliwhirl #37",
+      "console_name": "Pokemon Unleashed",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Poliwhirl 37 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Poliwhirl%2037%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "1287475",
+      "product_name": "Poliwhirl [Reverse Holo] #37",
+      "console_name": "Pokemon Unleashed",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Reverse Holo"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Poliwhirl 37 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Poliwhirl%2037%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4653875",
+      "product_name": "Poliwhirl [Staff] #37",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon Promo"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Poliwhirl 37 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Poliwhirl%2037%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4835861",
+      "product_name": "Poke Ball #37",
+      "console_name": "Pokemon Japanese Beginning Set HS",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Poke Ball"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Poliwhirl 37 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Poliwhirl%2037%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "2336218",
+      "product_name": "Brock's Vulpix [W Stamp] #37",
+      "console_name": "Pokemon Gym Challenge",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Brock's Vulpix"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Poliwhirl 37 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Poliwhirl%2037%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7322446",
+      "product_name": "Snorunt [Snowflake Stamp] #37",
+      "console_name": "Pokemon Paradox Rift",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Snorunt"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Poliwhirl 37 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Poliwhirl%2037%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8576046",
+      "product_name": "Poliwhirl [1999-2000] #38",
+      "console_name": "Pokemon Base Set",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:38"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Poliwhirl 37 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Poliwhirl%2037%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "762172",
+      "product_name": "Misty's Poliwhirl #53",
+      "console_name": "Pokemon Gym Heroes",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:53"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Poliwhirl 37 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Poliwhirl%2037%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3453567",
+      "product_name": "Misty's Poliwhirl #61",
+      "console_name": "Pokemon Japanese Leaders' Stadium",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:61"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Poliwhirl 37 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Poliwhirl%2037%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "715729",
+      "product_name": "Poliwhirl [Shadowless] #38",
+      "console_name": "Pokemon Base Set",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:38"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Poliwhirl 37 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Poliwhirl%2037%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3561429",
+      "product_name": "Poliwhirl [Tekno] #61",
+      "console_name": "Pokemon 2000 Topps Chrome",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:61"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Poliwhirl 37 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Poliwhirl%2037%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3561137",
+      "product_name": "Poliwhirl [Foil] #61",
+      "console_name": "Pokemon 1999 Topps TV",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:61"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Poliwhirl 37 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Poliwhirl%2037%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12319700",
+      "product_name": "Poliwhirl [Red] #61",
+      "console_name": "Pokemon Japanese 1996 Carddass",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:61"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Poliwhirl 37 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Poliwhirl%2037%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3561427",
+      "product_name": "Poliwhirl [Sparkle] #61",
+      "console_name": "Pokemon 2000 Topps Chrome",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:61"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Poliwhirl 37 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Poliwhirl%2037%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3561428",
+      "product_name": "Poliwhirl [Spectra] #61",
+      "console_name": "Pokemon 2000 Topps Chrome",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:61"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Poliwhirl 37 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Poliwhirl%2037%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3473873",
+      "product_name": "Poliwhirl [Series 1] #61",
+      "console_name": "Pokemon Japanese Vending",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:61"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Poliwhirl 37 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Poliwhirl%2037%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8708954",
+      "product_name": "Poliwhirl [Reverse] #61",
+      "console_name": "Pokemon Chinese 151 Collect",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:61"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Poliwhirl 37 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Poliwhirl%2037%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4614327",
+      "product_name": "Poliwhirl [Green] #61",
+      "console_name": "Pokemon Japanese 1996 Carddass",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:61"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Poliwhirl 37 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Poliwhirl%2037%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9771417",
+      "product_name": "Wolverine Unleashed #37 (1999)",
+      "console_name": "Comic Books Wolverine Unleashed",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Wolverine Unleashed"
+      }
+    }
+  ],
+  "source_lane": "pricecharting_api"
+}

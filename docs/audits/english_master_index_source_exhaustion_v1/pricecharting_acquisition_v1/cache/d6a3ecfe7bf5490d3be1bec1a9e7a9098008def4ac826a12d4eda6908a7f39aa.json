@@ -1,0 +1,549 @@
+{
+  "status": "api_no_validated_match",
+  "fact": {
+    "gap_type": "finish_second_source_needed",
+    "fact_type": "printing_finish",
+    "set_key": "sm5",
+    "set_name": "Ultra Prism",
+    "card_number": "133",
+    "card_name": "Pokémon Fan Club",
+    "finish_key": "stamped",
+    "status": "human_source_verified",
+    "sources": [
+      "thepricedex_price_list"
+    ],
+    "source_authorities": [
+      "thepricedex.com"
+    ],
+    "source_kinds": [
+      "marketplace_checklist"
+    ],
+    "evidence_urls": [
+      "https://www.thepricedex.com/set/sm5/ultra-prism/price-list"
+    ],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "attempts": [
+    {
+      "query": "Pokemon Ultra Prism Pokémon Fan Club 133 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ultra%20Prism%20Pok%C3%A9mon%20Fan%20Club%20133%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "961496",
+      "product_name": "Pokemon Fan Club #133",
+      "console_name": "Pokemon Ultra Prism",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon Ultra Prism Pokémon Fan Club 133 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ultra%20Prism%20Pok%C3%A9mon%20Fan%20Club%20133%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "961658",
+      "product_name": "Pokemon Fan Club [Reverse Holo] #133",
+      "console_name": "Pokemon Ultra Prism",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Reverse Holo"
+      }
+    },
+    {
+      "query": "Pokemon Ultra Prism Pokémon Fan Club 133 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ultra%20Prism%20Pok%C3%A9mon%20Fan%20Club%20133%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "961518",
+      "product_name": "Pokemon Fan Club #155",
+      "console_name": "Pokemon Ultra Prism",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:155"
+      }
+    },
+    {
+      "query": "Pokemon Ultra Prism Pokémon Fan Club 133 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ultra%20Prism%20Pok%C3%A9mon%20Fan%20Club%20133%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9714069",
+      "product_name": "Pokemon Fan Club #133",
+      "console_name": "Pokemon 2020 Battle Academy",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon 2020 Battle Academy"
+      }
+    },
+    {
+      "query": "Pokemon Ultra Prism Pokémon Fan Club 133 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ultra%20Prism%20Pok%C3%A9mon%20Fan%20Club%20133%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6149076",
+      "product_name": "Eevee [500 Pt. Fan Club] #133",
+      "console_name": "Pokemon Japanese Promo",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Eevee"
+      }
+    },
+    {
+      "query": "Pokemon Ultra Prism Pokémon Fan Club 133 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ultra%20Prism%20Pok%C3%A9mon%20Fan%20Club%20133%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3468025",
+      "product_name": "Pokemon Fan Club #61",
+      "console_name": "Pokemon Japanese Ultra Sun",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:61"
+      }
+    },
+    {
+      "query": "Pokemon Ultra Prism Pokémon Fan Club 133 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ultra%20Prism%20Pok%C3%A9mon%20Fan%20Club%20133%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3468035",
+      "product_name": "Pokemon Fan Club #71",
+      "console_name": "Pokemon Japanese Ultra Sun",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:71"
+      }
+    },
+    {
+      "query": "Pokemon Ultra Prism Pokémon Fan Club 133 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ultra%20Prism%20Pok%C3%A9mon%20Fan%20Club%20133%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "961473",
+      "product_name": "Fan Rotom #110",
+      "console_name": "Pokemon Ultra Prism",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:110"
+      }
+    },
+    {
+      "query": "Pokemon Ultra Prism Pokémon Fan Club 133 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ultra%20Prism%20Pok%C3%A9mon%20Fan%20Club%20133%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3399237",
+      "product_name": "Heatran [Ultra Prism Stamped] #88",
+      "console_name": "Pokemon Ultra Prism",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:88"
+      }
+    },
+    {
+      "query": "Pokemon Ultra Prism Pokémon Fan Club 133 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ultra%20Prism%20Pok%C3%A9mon%20Fan%20Club%20133%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "961637",
+      "product_name": "Fan Rotom [Reverse Holo] #110",
+      "console_name": "Pokemon Ultra Prism",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:110"
+      }
+    },
+    {
+      "query": "Pokemon Ultra Prism Pokémon Fan Club 133 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ultra%20Prism%20Pok%C3%A9mon%20Fan%20Club%20133%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12384466",
+      "product_name": "Pokemon Fan Club [Daisuke Club] #96/PCG-P",
+      "console_name": "Pokemon Japanese Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:96/PCG-P"
+      }
+    },
+    {
+      "query": "Pokemon Ultra Prism Pokémon Fan Club 133 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ultra%20Prism%20Pok%C3%A9mon%20Fan%20Club%20133%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "842646",
+      "product_name": "Pokemon Fan Club #130",
+      "console_name": "Pokemon Aquapolis",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:130"
+      }
+    },
+    {
+      "query": "Pokemon Ultra Prism Pokémon Fan Club 133 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ultra%20Prism%20Pok%C3%A9mon%20Fan%20Club%20133%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "957853",
+      "product_name": "Pokemon Fan Club #106",
+      "console_name": "Pokemon Flashfire",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:106"
+      }
+    },
+    {
+      "query": "Pokemon Ultra Prism Pokémon Fan Club 133 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ultra%20Prism%20Pok%C3%A9mon%20Fan%20Club%20133%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "957841",
+      "product_name": "Pokemon Fan Club #94",
+      "console_name": "Pokemon Flashfire",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:94"
+      }
+    },
+    {
+      "query": "Pokemon Ultra Prism Pokémon Fan Club 133 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ultra%20Prism%20Pok%C3%A9mon%20Fan%20Club%20133%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "959781",
+      "product_name": "Pokemon Fan Club #69",
+      "console_name": "Pokemon Generations",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:69"
+      }
+    },
+    {
+      "query": "Pokemon Ultra Prism Pokémon Fan Club 133 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ultra%20Prism%20Pok%C3%A9mon%20Fan%20Club%20133%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12414367",
+      "product_name": "Pokemon Fan Club [League] #94",
+      "console_name": "Pokemon Flashfire",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:94"
+      }
+    },
+    {
+      "query": "Pokemon Ultra Prism Pokémon Fan Club 133 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ultra%20Prism%20Pok%C3%A9mon%20Fan%20Club%20133%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3461794",
+      "product_name": "Pokemon Fan Club #79",
+      "console_name": "Pokemon Japanese Wild Blaze",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:79"
+      }
+    },
+    {
+      "query": "Pokemon Ultra Prism Pokémon Fan Club 133 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ultra%20Prism%20Pok%C3%A9mon%20Fan%20Club%20133%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3461802",
+      "product_name": "Pokemon Fan Club #87",
+      "console_name": "Pokemon Japanese Wild Blaze",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:87"
+      }
+    },
+    {
+      "query": "Pokemon Ultra Prism Pokémon Fan Club 133 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ultra%20Prism%20Pok%C3%A9mon%20Fan%20Club%20133%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3445351",
+      "product_name": "Pokemon Fan Club #71",
+      "console_name": "Pokemon Japanese Starter Pack",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:71"
+      }
+    },
+    {
+      "query": "Pokemon Ultra Prism Pokémon Fan Club 133 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ultra%20Prism%20Pok%C3%A9mon%20Fan%20Club%20133%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3469530",
+      "product_name": "Pokemon Fan Club #86",
+      "console_name": "Pokemon Japanese Double Blaze",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:86"
+      }
+    },
+    {
+      "query": "Pokemon Ultra Prism Pokémon Fan Club 133 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ultra%20Prism%20Pok%C3%A9mon%20Fan%20Club%20133%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "961496",
+      "product_name": "Pokemon Fan Club #133",
+      "console_name": "Pokemon Ultra Prism",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon Ultra Prism Pokémon Fan Club 133 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ultra%20Prism%20Pok%C3%A9mon%20Fan%20Club%20133%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "961658",
+      "product_name": "Pokemon Fan Club [Reverse Holo] #133",
+      "console_name": "Pokemon Ultra Prism",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Reverse Holo"
+      }
+    },
+    {
+      "query": "Pokemon Ultra Prism Pokémon Fan Club 133 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ultra%20Prism%20Pok%C3%A9mon%20Fan%20Club%20133%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "961518",
+      "product_name": "Pokemon Fan Club #155",
+      "console_name": "Pokemon Ultra Prism",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:155"
+      }
+    },
+    {
+      "query": "Pokemon Ultra Prism Pokémon Fan Club 133 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ultra%20Prism%20Pok%C3%A9mon%20Fan%20Club%20133%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9714069",
+      "product_name": "Pokemon Fan Club #133",
+      "console_name": "Pokemon 2020 Battle Academy",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon 2020 Battle Academy"
+      }
+    },
+    {
+      "query": "Pokemon Ultra Prism Pokémon Fan Club 133 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ultra%20Prism%20Pok%C3%A9mon%20Fan%20Club%20133%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6149076",
+      "product_name": "Eevee [500 Pt. Fan Club] #133",
+      "console_name": "Pokemon Japanese Promo",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Eevee"
+      }
+    },
+    {
+      "query": "Pokemon Ultra Prism Pokémon Fan Club 133 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ultra%20Prism%20Pok%C3%A9mon%20Fan%20Club%20133%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3468025",
+      "product_name": "Pokemon Fan Club #61",
+      "console_name": "Pokemon Japanese Ultra Sun",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:61"
+      }
+    },
+    {
+      "query": "Pokemon Ultra Prism Pokémon Fan Club 133 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ultra%20Prism%20Pok%C3%A9mon%20Fan%20Club%20133%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3468035",
+      "product_name": "Pokemon Fan Club #71",
+      "console_name": "Pokemon Japanese Ultra Sun",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:71"
+      }
+    },
+    {
+      "query": "Pokemon Ultra Prism Pokémon Fan Club 133 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ultra%20Prism%20Pok%C3%A9mon%20Fan%20Club%20133%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "961473",
+      "product_name": "Fan Rotom #110",
+      "console_name": "Pokemon Ultra Prism",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:110"
+      }
+    },
+    {
+      "query": "Pokemon Ultra Prism Pokémon Fan Club 133 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ultra%20Prism%20Pok%C3%A9mon%20Fan%20Club%20133%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3399237",
+      "product_name": "Heatran [Ultra Prism Stamped] #88",
+      "console_name": "Pokemon Ultra Prism",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:88"
+      }
+    },
+    {
+      "query": "Pokemon Ultra Prism Pokémon Fan Club 133 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ultra%20Prism%20Pok%C3%A9mon%20Fan%20Club%20133%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "961637",
+      "product_name": "Fan Rotom [Reverse Holo] #110",
+      "console_name": "Pokemon Ultra Prism",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:110"
+      }
+    },
+    {
+      "query": "Pokemon Ultra Prism Pokémon Fan Club 133 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ultra%20Prism%20Pok%C3%A9mon%20Fan%20Club%20133%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12384466",
+      "product_name": "Pokemon Fan Club [Daisuke Club] #96/PCG-P",
+      "console_name": "Pokemon Japanese Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:96/PCG-P"
+      }
+    },
+    {
+      "query": "Pokemon Ultra Prism Pokémon Fan Club 133 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ultra%20Prism%20Pok%C3%A9mon%20Fan%20Club%20133%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "842646",
+      "product_name": "Pokemon Fan Club #130",
+      "console_name": "Pokemon Aquapolis",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:130"
+      }
+    },
+    {
+      "query": "Pokemon Ultra Prism Pokémon Fan Club 133 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ultra%20Prism%20Pok%C3%A9mon%20Fan%20Club%20133%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "957853",
+      "product_name": "Pokemon Fan Club #106",
+      "console_name": "Pokemon Flashfire",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:106"
+      }
+    },
+    {
+      "query": "Pokemon Ultra Prism Pokémon Fan Club 133 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ultra%20Prism%20Pok%C3%A9mon%20Fan%20Club%20133%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "957841",
+      "product_name": "Pokemon Fan Club #94",
+      "console_name": "Pokemon Flashfire",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:94"
+      }
+    },
+    {
+      "query": "Pokemon Ultra Prism Pokémon Fan Club 133 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ultra%20Prism%20Pok%C3%A9mon%20Fan%20Club%20133%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "959781",
+      "product_name": "Pokemon Fan Club #69",
+      "console_name": "Pokemon Generations",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:69"
+      }
+    },
+    {
+      "query": "Pokemon Ultra Prism Pokémon Fan Club 133 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ultra%20Prism%20Pok%C3%A9mon%20Fan%20Club%20133%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12414367",
+      "product_name": "Pokemon Fan Club [League] #94",
+      "console_name": "Pokemon Flashfire",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:94"
+      }
+    },
+    {
+      "query": "Pokemon Ultra Prism Pokémon Fan Club 133 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ultra%20Prism%20Pok%C3%A9mon%20Fan%20Club%20133%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3461794",
+      "product_name": "Pokemon Fan Club #79",
+      "console_name": "Pokemon Japanese Wild Blaze",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:79"
+      }
+    },
+    {
+      "query": "Pokemon Ultra Prism Pokémon Fan Club 133 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ultra%20Prism%20Pok%C3%A9mon%20Fan%20Club%20133%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3461802",
+      "product_name": "Pokemon Fan Club #87",
+      "console_name": "Pokemon Japanese Wild Blaze",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:87"
+      }
+    },
+    {
+      "query": "Pokemon Ultra Prism Pokémon Fan Club 133 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ultra%20Prism%20Pok%C3%A9mon%20Fan%20Club%20133%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3445351",
+      "product_name": "Pokemon Fan Club #71",
+      "console_name": "Pokemon Japanese Starter Pack",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:71"
+      }
+    },
+    {
+      "query": "Pokemon Ultra Prism Pokémon Fan Club 133 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ultra%20Prism%20Pok%C3%A9mon%20Fan%20Club%20133%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3469530",
+      "product_name": "Pokemon Fan Club #86",
+      "console_name": "Pokemon Japanese Double Blaze",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:86"
+      }
+    }
+  ],
+  "source_lane": "pricecharting_api"
+}

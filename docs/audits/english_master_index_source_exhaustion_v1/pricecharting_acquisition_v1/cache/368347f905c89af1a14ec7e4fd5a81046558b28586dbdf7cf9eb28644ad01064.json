@@ -1,0 +1,549 @@
+{
+  "status": "api_no_validated_match",
+  "fact": {
+    "gap_type": "finish_second_source_needed",
+    "fact_type": "printing_finish",
+    "set_key": "bwp",
+    "set_name": "BW Black Star Promos",
+    "card_number": "BW30",
+    "card_name": "Victory Cup",
+    "finish_key": "stamped",
+    "status": "human_source_verified",
+    "sources": [
+      "thepricedex_price_list"
+    ],
+    "source_authorities": [
+      "thepricedex.com"
+    ],
+    "source_kinds": [
+      "marketplace_checklist"
+    ],
+    "evidence_urls": [
+      "https://www.thepricedex.com/set/bwp/bw-black-star-promos/price-list"
+    ],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "attempts": [
+    {
+      "query": "Pokemon BW Black Star Promos Victory Cup BW30 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20BW%20Black%20Star%20Promos%20Victory%20Cup%20BW30%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "1563428",
+      "product_name": "Victory Cup [2nd Place] #BW30",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:2nd Place"
+      }
+    },
+    {
+      "query": "Pokemon BW Black Star Promos Victory Cup BW30 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20BW%20Black%20Star%20Promos%20Victory%20Cup%20BW30%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11955688",
+      "product_name": "Victory Cup [3rd Place] #BW-P",
+      "console_name": "Pokemon Japanese Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:BW-P"
+      }
+    },
+    {
+      "query": "Pokemon BW Black Star Promos Victory Cup BW30 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20BW%20Black%20Star%20Promos%20Victory%20Cup%20BW30%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "1563427",
+      "product_name": "Victory Cup [3rd Place] #BW29",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:BW29"
+      }
+    },
+    {
+      "query": "Pokemon BW Black Star Promos Victory Cup BW30 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20BW%20Black%20Star%20Promos%20Victory%20Cup%20BW30%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "1563429",
+      "product_name": "Victory Cup [1st Place] #BW31",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:BW31"
+      }
+    },
+    {
+      "query": "Pokemon BW Black Star Promos Victory Cup BW30 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20BW%20Black%20Star%20Promos%20Victory%20Cup%20BW30%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12810394",
+      "product_name": "Proof Of Victory [Bronze Stamp] #S-P",
+      "console_name": "Pokemon Chinese Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:S-P"
+      }
+    },
+    {
+      "query": "Pokemon BW Black Star Promos Victory Cup BW30 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20BW%20Black%20Star%20Promos%20Victory%20Cup%20BW30%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12984428",
+      "product_name": "Proof Of Victory [Gold Stamp] #S-P",
+      "console_name": "Pokemon Chinese Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:S-P"
+      }
+    },
+    {
+      "query": "Pokemon BW Black Star Promos Victory Cup BW30 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20BW%20Black%20Star%20Promos%20Victory%20Cup%20BW30%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7790428",
+      "product_name": "Victory! [Black] #52",
+      "console_name": "Star Wars 2024 Topps Chrome Sapphire",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:52"
+      }
+    },
+    {
+      "query": "Pokemon BW Black Star Promos Victory Cup BW30 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20BW%20Black%20Star%20Promos%20Victory%20Cup%20BW30%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5875365",
+      "product_name": "Victory Cup Racers #6539",
+      "console_name": "LEGO Town",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:6539"
+      }
+    },
+    {
+      "query": "Pokemon BW Black Star Promos Victory Cup BW30 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20BW%20Black%20Star%20Promos%20Victory%20Cup%20BW30%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9081358",
+      "product_name": "Pikachu [No Stamp] #190",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:190"
+      }
+    },
+    {
+      "query": "Pokemon BW Black Star Promos Victory Cup BW30 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20BW%20Black%20Star%20Promos%20Victory%20Cup%20BW30%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6399270",
+      "product_name": "Black Kyurem [Cracked Ice] #216/BW-P",
+      "console_name": "Pokemon Japanese Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:216/BW-P"
+      }
+    },
+    {
+      "query": "Pokemon BW Black Star Promos Victory Cup BW30 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20BW%20Black%20Star%20Promos%20Victory%20Cup%20BW30%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4408980",
+      "product_name": "Rare Candy [League Cup Staff] #142",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:142"
+      }
+    },
+    {
+      "query": "Pokemon BW Black Star Promos Victory Cup BW30 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20BW%20Black%20Star%20Promos%20Victory%20Cup%20BW30%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4442284",
+      "product_name": "Ninja Boy [League Cup Staff] #103",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:103"
+      }
+    },
+    {
+      "query": "Pokemon BW Black Star Promos Victory Cup BW30 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20BW%20Black%20Star%20Promos%20Victory%20Cup%20BW30%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11200884",
+      "product_name": "Anakin's Victory [Black Refractor] #14",
+      "console_name": "Star Wars 2019 Topps Chrome Legacy",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:14"
+      }
+    },
+    {
+      "query": "Pokemon BW Black Star Promos Victory Cup BW30 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20BW%20Black%20Star%20Promos%20Victory%20Cup%20BW30%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10214835",
+      "product_name": "Eevee V [Stamped] #SWSH065",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:SWSH065"
+      }
+    },
+    {
+      "query": "Pokemon BW Black Star Promos Victory Cup BW30 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20BW%20Black%20Star%20Promos%20Victory%20Cup%20BW30%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12414158",
+      "product_name": "Aurorus [Stamped] #24",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:24"
+      }
+    },
+    {
+      "query": "Pokemon BW Black Star Promos Victory Cup BW30 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20BW%20Black%20Star%20Promos%20Victory%20Cup%20BW30%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "13073301",
+      "product_name": "Ampharos [Stamped] #75",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:75"
+      }
+    },
+    {
+      "query": "Pokemon BW Black Star Promos Victory Cup BW30 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20BW%20Black%20Star%20Promos%20Victory%20Cup%20BW30%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11169863",
+      "product_name": "United in Victory #133",
+      "console_name": "Star Wars 2020 Return of the Jedi Black & White",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:133"
+      }
+    },
+    {
+      "query": "Pokemon BW Black Star Promos Victory Cup BW30 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20BW%20Black%20Star%20Promos%20Victory%20Cup%20BW30%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5305606",
+      "product_name": "Pikachu [Pokemon Center Stamp] #27",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:27"
+      }
+    },
+    {
+      "query": "Pokemon BW Black Star Promos Victory Cup BW30 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20BW%20Black%20Star%20Promos%20Victory%20Cup%20BW30%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8353041",
+      "product_name": "Rey #BW-R",
+      "console_name": "Star Wars 2024 Topps High-Tek Black And White Variation",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:BW-R"
+      }
+    },
+    {
+      "query": "Pokemon BW Black Star Promos Victory Cup BW30 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20BW%20Black%20Star%20Promos%20Victory%20Cup%20BW30%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4786026",
+      "product_name": "Eevee [Jr Stamp Rally] #11",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:11"
+      }
+    },
+    {
+      "query": "Pokemon BW Black Star Promos Victory Cup BW30 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20BW%20Black%20Star%20Promos%20Victory%20Cup%20BW30%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "1563428",
+      "product_name": "Victory Cup [2nd Place] #BW30",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:2nd Place"
+      }
+    },
+    {
+      "query": "Pokemon BW Black Star Promos Victory Cup BW30 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20BW%20Black%20Star%20Promos%20Victory%20Cup%20BW30%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11955688",
+      "product_name": "Victory Cup [3rd Place] #BW-P",
+      "console_name": "Pokemon Japanese Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:BW-P"
+      }
+    },
+    {
+      "query": "Pokemon BW Black Star Promos Victory Cup BW30 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20BW%20Black%20Star%20Promos%20Victory%20Cup%20BW30%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "1563427",
+      "product_name": "Victory Cup [3rd Place] #BW29",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:BW29"
+      }
+    },
+    {
+      "query": "Pokemon BW Black Star Promos Victory Cup BW30 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20BW%20Black%20Star%20Promos%20Victory%20Cup%20BW30%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "1563429",
+      "product_name": "Victory Cup [1st Place] #BW31",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:BW31"
+      }
+    },
+    {
+      "query": "Pokemon BW Black Star Promos Victory Cup BW30 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20BW%20Black%20Star%20Promos%20Victory%20Cup%20BW30%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12810394",
+      "product_name": "Proof Of Victory [Bronze Stamp] #S-P",
+      "console_name": "Pokemon Chinese Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:S-P"
+      }
+    },
+    {
+      "query": "Pokemon BW Black Star Promos Victory Cup BW30 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20BW%20Black%20Star%20Promos%20Victory%20Cup%20BW30%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12984428",
+      "product_name": "Proof Of Victory [Gold Stamp] #S-P",
+      "console_name": "Pokemon Chinese Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:S-P"
+      }
+    },
+    {
+      "query": "Pokemon BW Black Star Promos Victory Cup BW30 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20BW%20Black%20Star%20Promos%20Victory%20Cup%20BW30%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7790428",
+      "product_name": "Victory! [Black] #52",
+      "console_name": "Star Wars 2024 Topps Chrome Sapphire",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:52"
+      }
+    },
+    {
+      "query": "Pokemon BW Black Star Promos Victory Cup BW30 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20BW%20Black%20Star%20Promos%20Victory%20Cup%20BW30%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5875365",
+      "product_name": "Victory Cup Racers #6539",
+      "console_name": "LEGO Town",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:6539"
+      }
+    },
+    {
+      "query": "Pokemon BW Black Star Promos Victory Cup BW30 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20BW%20Black%20Star%20Promos%20Victory%20Cup%20BW30%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9081358",
+      "product_name": "Pikachu [No Stamp] #190",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:190"
+      }
+    },
+    {
+      "query": "Pokemon BW Black Star Promos Victory Cup BW30 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20BW%20Black%20Star%20Promos%20Victory%20Cup%20BW30%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6399270",
+      "product_name": "Black Kyurem [Cracked Ice] #216/BW-P",
+      "console_name": "Pokemon Japanese Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:216/BW-P"
+      }
+    },
+    {
+      "query": "Pokemon BW Black Star Promos Victory Cup BW30 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20BW%20Black%20Star%20Promos%20Victory%20Cup%20BW30%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4408980",
+      "product_name": "Rare Candy [League Cup Staff] #142",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:142"
+      }
+    },
+    {
+      "query": "Pokemon BW Black Star Promos Victory Cup BW30 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20BW%20Black%20Star%20Promos%20Victory%20Cup%20BW30%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4442284",
+      "product_name": "Ninja Boy [League Cup Staff] #103",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:103"
+      }
+    },
+    {
+      "query": "Pokemon BW Black Star Promos Victory Cup BW30 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20BW%20Black%20Star%20Promos%20Victory%20Cup%20BW30%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11200884",
+      "product_name": "Anakin's Victory [Black Refractor] #14",
+      "console_name": "Star Wars 2019 Topps Chrome Legacy",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:14"
+      }
+    },
+    {
+      "query": "Pokemon BW Black Star Promos Victory Cup BW30 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20BW%20Black%20Star%20Promos%20Victory%20Cup%20BW30%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10214835",
+      "product_name": "Eevee V [Stamped] #SWSH065",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:SWSH065"
+      }
+    },
+    {
+      "query": "Pokemon BW Black Star Promos Victory Cup BW30 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20BW%20Black%20Star%20Promos%20Victory%20Cup%20BW30%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12414158",
+      "product_name": "Aurorus [Stamped] #24",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:24"
+      }
+    },
+    {
+      "query": "Pokemon BW Black Star Promos Victory Cup BW30 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20BW%20Black%20Star%20Promos%20Victory%20Cup%20BW30%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "13073301",
+      "product_name": "Ampharos [Stamped] #75",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:75"
+      }
+    },
+    {
+      "query": "Pokemon BW Black Star Promos Victory Cup BW30 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20BW%20Black%20Star%20Promos%20Victory%20Cup%20BW30%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11169863",
+      "product_name": "United in Victory #133",
+      "console_name": "Star Wars 2020 Return of the Jedi Black & White",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:133"
+      }
+    },
+    {
+      "query": "Pokemon BW Black Star Promos Victory Cup BW30 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20BW%20Black%20Star%20Promos%20Victory%20Cup%20BW30%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5305606",
+      "product_name": "Pikachu [Pokemon Center Stamp] #27",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:27"
+      }
+    },
+    {
+      "query": "Pokemon BW Black Star Promos Victory Cup BW30 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20BW%20Black%20Star%20Promos%20Victory%20Cup%20BW30%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8353041",
+      "product_name": "Rey #BW-R",
+      "console_name": "Star Wars 2024 Topps High-Tek Black And White Variation",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:BW-R"
+      }
+    },
+    {
+      "query": "Pokemon BW Black Star Promos Victory Cup BW30 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20BW%20Black%20Star%20Promos%20Victory%20Cup%20BW30%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4786026",
+      "product_name": "Eevee [Jr Stamp Rally] #11",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:11"
+      }
+    }
+  ],
+  "source_lane": "pricecharting_api"
+}

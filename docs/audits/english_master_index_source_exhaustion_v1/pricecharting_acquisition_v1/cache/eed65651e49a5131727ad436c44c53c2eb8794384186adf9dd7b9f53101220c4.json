@@ -1,0 +1,549 @@
+{
+  "status": "api_no_validated_match",
+  "fact": {
+    "gap_type": "finish_second_source_needed",
+    "fact_type": "printing_finish",
+    "set_key": "dp5",
+    "set_name": "Majestic Dawn",
+    "card_number": "92",
+    "card_name": "Call Energy",
+    "finish_key": "stamped",
+    "status": "human_source_verified",
+    "sources": [
+      "thepricedex_price_list"
+    ],
+    "source_authorities": [
+      "thepricedex.com"
+    ],
+    "source_kinds": [
+      "marketplace_checklist"
+    ],
+    "evidence_urls": [
+      "https://www.thepricedex.com/set/dp5/majestic-dawn/price-list"
+    ],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "attempts": [
+    {
+      "query": "Pokemon Majestic Dawn Call Energy 92 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Majestic%20Dawn%20Call%20Energy%2092%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "921454",
+      "product_name": "Call Energy #92",
+      "console_name": "Pokemon Majestic Dawn",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon Majestic Dawn Call Energy 92 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Majestic%20Dawn%20Call%20Energy%2092%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "921554",
+      "product_name": "Call Energy [Reverse Holo] #92",
+      "console_name": "Pokemon Majestic Dawn",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Reverse Holo"
+      }
+    },
+    {
+      "query": "Pokemon Majestic Dawn Call Energy 92 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Majestic%20Dawn%20Call%20Energy%2092%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5419572",
+      "product_name": "Eevee [Stamped] #62",
+      "console_name": "Pokemon Majestic Dawn",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:62"
+      }
+    },
+    {
+      "query": "Pokemon Majestic Dawn Call Energy 92 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Majestic%20Dawn%20Call%20Energy%2092%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6987328",
+      "product_name": "Piplup [Stamped] #71",
+      "console_name": "Pokemon Majestic Dawn",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:71"
+      }
+    },
+    {
+      "query": "Pokemon Majestic Dawn Call Energy 92 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Majestic%20Dawn%20Call%20Energy%2092%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8280238",
+      "product_name": "Chimchar [Stamped] #56",
+      "console_name": "Pokemon Majestic Dawn",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:56"
+      }
+    },
+    {
+      "query": "Pokemon Majestic Dawn Call Energy 92 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Majestic%20Dawn%20Call%20Energy%2092%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9378127",
+      "product_name": "Leafeon [Stamped] #24",
+      "console_name": "Pokemon Majestic Dawn",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:24"
+      }
+    },
+    {
+      "query": "Pokemon Majestic Dawn Call Energy 92 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Majestic%20Dawn%20Call%20Energy%2092%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6135981",
+      "product_name": "Pikachu [Stamped] #70",
+      "console_name": "Pokemon Majestic Dawn",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:70"
+      }
+    },
+    {
+      "query": "Pokemon Majestic Dawn Call Energy 92 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Majestic%20Dawn%20Call%20Energy%2092%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "921455",
+      "product_name": "Darkness Energy #93",
+      "console_name": "Pokemon Majestic Dawn",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:93"
+      }
+    },
+    {
+      "query": "Pokemon Majestic Dawn Call Energy 92 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Majestic%20Dawn%20Call%20Energy%2092%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "921457",
+      "product_name": "Metal Energy #95",
+      "console_name": "Pokemon Majestic Dawn",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:95"
+      }
+    },
+    {
+      "query": "Pokemon Majestic Dawn Call Energy 92 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Majestic%20Dawn%20Call%20Energy%2092%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "921452",
+      "product_name": "Energy Search #90",
+      "console_name": "Pokemon Majestic Dawn",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:90"
+      }
+    },
+    {
+      "query": "Pokemon Majestic Dawn Call Energy 92 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Majestic%20Dawn%20Call%20Energy%2092%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "921456",
+      "product_name": "Health Energy #94",
+      "console_name": "Pokemon Majestic Dawn",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:94"
+      }
+    },
+    {
+      "query": "Pokemon Majestic Dawn Call Energy 92 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Majestic%20Dawn%20Call%20Energy%2092%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7762896",
+      "product_name": "Turtwig [Stamped] #77 #77",
+      "console_name": "Pokemon Majestic Dawn",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:77"
+      }
+    },
+    {
+      "query": "Pokemon Majestic Dawn Call Energy 92 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Majestic%20Dawn%20Call%20Energy%2092%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "921443",
+      "product_name": "Energy Restore #81",
+      "console_name": "Pokemon Majestic Dawn",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:81"
+      }
+    },
+    {
+      "query": "Pokemon Majestic Dawn Call Energy 92 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Majestic%20Dawn%20Call%20Energy%2092%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "921458",
+      "product_name": "Recover Energy #96",
+      "console_name": "Pokemon Majestic Dawn",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:96"
+      }
+    },
+    {
+      "query": "Pokemon Majestic Dawn Call Energy 92 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Majestic%20Dawn%20Call%20Energy%2092%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8464160",
+      "product_name": "Turtwig [Snowflake Stamped] #78",
+      "console_name": "Pokemon Majestic Dawn",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:78"
+      }
+    },
+    {
+      "query": "Pokemon Majestic Dawn Call Energy 92 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Majestic%20Dawn%20Call%20Energy%2092%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8243908",
+      "product_name": "Glaceon [Platinum Stamped] #20",
+      "console_name": "Pokemon Majestic Dawn",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:20"
+      }
+    },
+    {
+      "query": "Pokemon Majestic Dawn Call Energy 92 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Majestic%20Dawn%20Call%20Energy%2092%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7557908",
+      "product_name": "Munchlax [Snowflake Stamped] #68",
+      "console_name": "Pokemon Majestic Dawn",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:68"
+      }
+    },
+    {
+      "query": "Pokemon Majestic Dawn Call Energy 92 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Majestic%20Dawn%20Call%20Energy%2092%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "921557",
+      "product_name": "Metal Energy [Reverse Holo] #95",
+      "console_name": "Pokemon Majestic Dawn",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:95"
+      }
+    },
+    {
+      "query": "Pokemon Majestic Dawn Call Energy 92 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Majestic%20Dawn%20Call%20Energy%2092%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "921543",
+      "product_name": "Energy Restore [Reverse Holo] #81",
+      "console_name": "Pokemon Majestic Dawn",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:81"
+      }
+    },
+    {
+      "query": "Pokemon Majestic Dawn Call Energy 92 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Majestic%20Dawn%20Call%20Energy%2092%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "921552",
+      "product_name": "Energy Search [Reverse Holo] #90",
+      "console_name": "Pokemon Majestic Dawn",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:90"
+      }
+    },
+    {
+      "query": "Pokemon Majestic Dawn Call Energy 92 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Majestic%20Dawn%20Call%20Energy%2092%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "921454",
+      "product_name": "Call Energy #92",
+      "console_name": "Pokemon Majestic Dawn",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon Majestic Dawn Call Energy 92 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Majestic%20Dawn%20Call%20Energy%2092%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "921554",
+      "product_name": "Call Energy [Reverse Holo] #92",
+      "console_name": "Pokemon Majestic Dawn",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Reverse Holo"
+      }
+    },
+    {
+      "query": "Pokemon Majestic Dawn Call Energy 92 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Majestic%20Dawn%20Call%20Energy%2092%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5419572",
+      "product_name": "Eevee [Stamped] #62",
+      "console_name": "Pokemon Majestic Dawn",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:62"
+      }
+    },
+    {
+      "query": "Pokemon Majestic Dawn Call Energy 92 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Majestic%20Dawn%20Call%20Energy%2092%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6987328",
+      "product_name": "Piplup [Stamped] #71",
+      "console_name": "Pokemon Majestic Dawn",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:71"
+      }
+    },
+    {
+      "query": "Pokemon Majestic Dawn Call Energy 92 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Majestic%20Dawn%20Call%20Energy%2092%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8280238",
+      "product_name": "Chimchar [Stamped] #56",
+      "console_name": "Pokemon Majestic Dawn",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:56"
+      }
+    },
+    {
+      "query": "Pokemon Majestic Dawn Call Energy 92 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Majestic%20Dawn%20Call%20Energy%2092%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9378127",
+      "product_name": "Leafeon [Stamped] #24",
+      "console_name": "Pokemon Majestic Dawn",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:24"
+      }
+    },
+    {
+      "query": "Pokemon Majestic Dawn Call Energy 92 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Majestic%20Dawn%20Call%20Energy%2092%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6135981",
+      "product_name": "Pikachu [Stamped] #70",
+      "console_name": "Pokemon Majestic Dawn",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:70"
+      }
+    },
+    {
+      "query": "Pokemon Majestic Dawn Call Energy 92 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Majestic%20Dawn%20Call%20Energy%2092%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "921455",
+      "product_name": "Darkness Energy #93",
+      "console_name": "Pokemon Majestic Dawn",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:93"
+      }
+    },
+    {
+      "query": "Pokemon Majestic Dawn Call Energy 92 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Majestic%20Dawn%20Call%20Energy%2092%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "921457",
+      "product_name": "Metal Energy #95",
+      "console_name": "Pokemon Majestic Dawn",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:95"
+      }
+    },
+    {
+      "query": "Pokemon Majestic Dawn Call Energy 92 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Majestic%20Dawn%20Call%20Energy%2092%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "921452",
+      "product_name": "Energy Search #90",
+      "console_name": "Pokemon Majestic Dawn",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:90"
+      }
+    },
+    {
+      "query": "Pokemon Majestic Dawn Call Energy 92 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Majestic%20Dawn%20Call%20Energy%2092%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "921456",
+      "product_name": "Health Energy #94",
+      "console_name": "Pokemon Majestic Dawn",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:94"
+      }
+    },
+    {
+      "query": "Pokemon Majestic Dawn Call Energy 92 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Majestic%20Dawn%20Call%20Energy%2092%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7762896",
+      "product_name": "Turtwig [Stamped] #77 #77",
+      "console_name": "Pokemon Majestic Dawn",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:77"
+      }
+    },
+    {
+      "query": "Pokemon Majestic Dawn Call Energy 92 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Majestic%20Dawn%20Call%20Energy%2092%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "921443",
+      "product_name": "Energy Restore #81",
+      "console_name": "Pokemon Majestic Dawn",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:81"
+      }
+    },
+    {
+      "query": "Pokemon Majestic Dawn Call Energy 92 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Majestic%20Dawn%20Call%20Energy%2092%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "921458",
+      "product_name": "Recover Energy #96",
+      "console_name": "Pokemon Majestic Dawn",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:96"
+      }
+    },
+    {
+      "query": "Pokemon Majestic Dawn Call Energy 92 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Majestic%20Dawn%20Call%20Energy%2092%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8464160",
+      "product_name": "Turtwig [Snowflake Stamped] #78",
+      "console_name": "Pokemon Majestic Dawn",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:78"
+      }
+    },
+    {
+      "query": "Pokemon Majestic Dawn Call Energy 92 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Majestic%20Dawn%20Call%20Energy%2092%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8243908",
+      "product_name": "Glaceon [Platinum Stamped] #20",
+      "console_name": "Pokemon Majestic Dawn",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:20"
+      }
+    },
+    {
+      "query": "Pokemon Majestic Dawn Call Energy 92 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Majestic%20Dawn%20Call%20Energy%2092%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7557908",
+      "product_name": "Munchlax [Snowflake Stamped] #68",
+      "console_name": "Pokemon Majestic Dawn",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:68"
+      }
+    },
+    {
+      "query": "Pokemon Majestic Dawn Call Energy 92 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Majestic%20Dawn%20Call%20Energy%2092%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "921557",
+      "product_name": "Metal Energy [Reverse Holo] #95",
+      "console_name": "Pokemon Majestic Dawn",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:95"
+      }
+    },
+    {
+      "query": "Pokemon Majestic Dawn Call Energy 92 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Majestic%20Dawn%20Call%20Energy%2092%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "921543",
+      "product_name": "Energy Restore [Reverse Holo] #81",
+      "console_name": "Pokemon Majestic Dawn",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:81"
+      }
+    },
+    {
+      "query": "Pokemon Majestic Dawn Call Energy 92 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Majestic%20Dawn%20Call%20Energy%2092%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "921552",
+      "product_name": "Energy Search [Reverse Holo] #90",
+      "console_name": "Pokemon Majestic Dawn",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:90"
+      }
+    }
+  ],
+  "source_lane": "pricecharting_api"
+}

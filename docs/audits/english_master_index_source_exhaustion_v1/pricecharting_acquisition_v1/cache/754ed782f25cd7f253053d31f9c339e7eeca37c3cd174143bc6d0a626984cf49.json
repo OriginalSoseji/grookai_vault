@@ -1,0 +1,549 @@
+{
+  "status": "api_no_validated_match",
+  "fact": {
+    "gap_type": "finish_second_source_needed",
+    "fact_type": "printing_finish",
+    "set_key": "sv03.5",
+    "set_name": "151",
+    "card_number": "25",
+    "card_name": "Pikachu",
+    "finish_key": "stamped",
+    "status": "human_source_verified",
+    "sources": [
+      "thepricedex_price_list"
+    ],
+    "source_authorities": [
+      "thepricedex.com"
+    ],
+    "source_kinds": [
+      "marketplace_checklist"
+    ],
+    "evidence_urls": [
+      "https://www.thepricedex.com/set/sv3pt5/151/price-list"
+    ],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "attempts": [
+    {
+      "query": "Pokemon 151 Pikachu 25 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20151%20Pikachu%2025%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5326068",
+      "product_name": "Pikachu #25",
+      "console_name": "Pokemon Japanese Scarlet & Violet 151",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon 151 Pikachu 25 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20151%20Pikachu%2025%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5399714",
+      "product_name": "Pikachu [Reverse] #25",
+      "console_name": "Pokemon Japanese Scarlet & Violet 151",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Reverse"
+      }
+    },
+    {
+      "query": "Pokemon 151 Pikachu 25 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20151%20Pikachu%2025%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5399852",
+      "product_name": "Pikachu [Master Ball] #25",
+      "console_name": "Pokemon Japanese Scarlet & Violet 151",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Master Ball"
+      }
+    },
+    {
+      "query": "Pokemon 151 Pikachu 25 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20151%20Pikachu%2025%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5809405",
+      "product_name": "Pikachu #25",
+      "console_name": "Pokemon Scarlet & Violet 151",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon 151 Pikachu 25 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20151%20Pikachu%2025%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8708890",
+      "product_name": "Pikachu #25",
+      "console_name": "Pokemon Chinese 151 Collect",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon 151 Pikachu 25 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20151%20Pikachu%2025%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8708893",
+      "product_name": "Pikachu [Reverse] #25",
+      "console_name": "Pokemon Chinese 151 Collect",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Reverse"
+      }
+    },
+    {
+      "query": "Pokemon 151 Pikachu 25 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20151%20Pikachu%2025%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "2336239",
+      "product_name": "Pikachu [W Stamp] #60",
+      "console_name": "Pokemon Jungle",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:60"
+      }
+    },
+    {
+      "query": "Pokemon 151 Pikachu 25 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20151%20Pikachu%2025%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11865969",
+      "product_name": "Pikachu #25",
+      "console_name": "Pokemon Korean Scarlet & Violet 151",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon 151 Pikachu 25 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20151%20Pikachu%2025%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5305606",
+      "product_name": "Pikachu [Pokemon Center Stamp] #27",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:27"
+      }
+    },
+    {
+      "query": "Pokemon 151 Pikachu 25 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20151%20Pikachu%2025%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9081358",
+      "product_name": "Pikachu [No Stamp] #190",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:190"
+      }
+    },
+    {
+      "query": "Pokemon 151 Pikachu 25 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20151%20Pikachu%2025%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7979091",
+      "product_name": "Pikachu [Cosmos Holo] #25",
+      "console_name": "Pokemon Scarlet & Violet 151",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Cosmos Holo"
+      }
+    },
+    {
+      "query": "Pokemon 151 Pikachu 25 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20151%20Pikachu%2025%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8709231",
+      "product_name": "Pikachu [Master Ball] #25",
+      "console_name": "Pokemon Chinese 151 Collect",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Master Ball"
+      }
+    },
+    {
+      "query": "Pokemon 151 Pikachu 25 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20151%20Pikachu%2025%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6076342",
+      "product_name": "Pikachu [Pokemon Together] #25",
+      "console_name": "Pokemon Scarlet & Violet 151",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Pokemon Together"
+      }
+    },
+    {
+      "query": "Pokemon 151 Pikachu 25 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20151%20Pikachu%2025%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5809612",
+      "product_name": "Pikachu [Reverse Holo] #25",
+      "console_name": "Pokemon Scarlet & Violet 151",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Reverse Holo"
+      }
+    },
+    {
+      "query": "Pokemon 151 Pikachu 25 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20151%20Pikachu%2025%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6604526",
+      "product_name": "Pikachu [League Stamp] #65",
+      "console_name": "Pokemon Sword & Shield",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:65"
+      }
+    },
+    {
+      "query": "Pokemon 151 Pikachu 25 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20151%20Pikachu%2025%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6490256",
+      "product_name": "Pikachu [League Stamp] #49",
+      "console_name": "Pokemon Evolving Skies",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:49"
+      }
+    },
+    {
+      "query": "Pokemon 151 Pikachu 25 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20151%20Pikachu%2025%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4476213",
+      "product_name": "Pikachu [Snowflake Stamp] #SWSH153",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:SWSH153"
+      }
+    },
+    {
+      "query": "Pokemon 151 Pikachu 25 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20151%20Pikachu%2025%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4766447",
+      "product_name": "Detective Pikachu [Stamp] #SM190",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:SM190"
+      }
+    },
+    {
+      "query": "Pokemon 151 Pikachu 25 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20151%20Pikachu%2025%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4895432",
+      "product_name": "Pikachu [Snowflake Stamp] #DP16",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:DP16"
+      }
+    },
+    {
+      "query": "Pokemon 151 Pikachu 25 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20151%20Pikachu%2025%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5810878",
+      "product_name": "Pikachu [Snowflake Stamp] #49",
+      "console_name": "Pokemon Silver Tempest",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:49"
+      }
+    },
+    {
+      "query": "Pokemon 151 Pikachu 25 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20151%20Pikachu%2025%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5326068",
+      "product_name": "Pikachu #25",
+      "console_name": "Pokemon Japanese Scarlet & Violet 151",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon 151 Pikachu 25 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20151%20Pikachu%2025%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5399714",
+      "product_name": "Pikachu [Reverse] #25",
+      "console_name": "Pokemon Japanese Scarlet & Violet 151",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Reverse"
+      }
+    },
+    {
+      "query": "Pokemon 151 Pikachu 25 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20151%20Pikachu%2025%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5399852",
+      "product_name": "Pikachu [Master Ball] #25",
+      "console_name": "Pokemon Japanese Scarlet & Violet 151",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Master Ball"
+      }
+    },
+    {
+      "query": "Pokemon 151 Pikachu 25 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20151%20Pikachu%2025%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5809405",
+      "product_name": "Pikachu #25",
+      "console_name": "Pokemon Scarlet & Violet 151",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon 151 Pikachu 25 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20151%20Pikachu%2025%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8708890",
+      "product_name": "Pikachu #25",
+      "console_name": "Pokemon Chinese 151 Collect",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon 151 Pikachu 25 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20151%20Pikachu%2025%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8708893",
+      "product_name": "Pikachu [Reverse] #25",
+      "console_name": "Pokemon Chinese 151 Collect",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Reverse"
+      }
+    },
+    {
+      "query": "Pokemon 151 Pikachu 25 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20151%20Pikachu%2025%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "2336239",
+      "product_name": "Pikachu [W Stamp] #60",
+      "console_name": "Pokemon Jungle",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:60"
+      }
+    },
+    {
+      "query": "Pokemon 151 Pikachu 25 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20151%20Pikachu%2025%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11865969",
+      "product_name": "Pikachu #25",
+      "console_name": "Pokemon Korean Scarlet & Violet 151",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon 151 Pikachu 25 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20151%20Pikachu%2025%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5305606",
+      "product_name": "Pikachu [Pokemon Center Stamp] #27",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:27"
+      }
+    },
+    {
+      "query": "Pokemon 151 Pikachu 25 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20151%20Pikachu%2025%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9081358",
+      "product_name": "Pikachu [No Stamp] #190",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:190"
+      }
+    },
+    {
+      "query": "Pokemon 151 Pikachu 25 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20151%20Pikachu%2025%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7979091",
+      "product_name": "Pikachu [Cosmos Holo] #25",
+      "console_name": "Pokemon Scarlet & Violet 151",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Cosmos Holo"
+      }
+    },
+    {
+      "query": "Pokemon 151 Pikachu 25 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20151%20Pikachu%2025%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8709231",
+      "product_name": "Pikachu [Master Ball] #25",
+      "console_name": "Pokemon Chinese 151 Collect",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Master Ball"
+      }
+    },
+    {
+      "query": "Pokemon 151 Pikachu 25 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20151%20Pikachu%2025%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6076342",
+      "product_name": "Pikachu [Pokemon Together] #25",
+      "console_name": "Pokemon Scarlet & Violet 151",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Pokemon Together"
+      }
+    },
+    {
+      "query": "Pokemon 151 Pikachu 25 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20151%20Pikachu%2025%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5809612",
+      "product_name": "Pikachu [Reverse Holo] #25",
+      "console_name": "Pokemon Scarlet & Violet 151",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Reverse Holo"
+      }
+    },
+    {
+      "query": "Pokemon 151 Pikachu 25 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20151%20Pikachu%2025%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6604526",
+      "product_name": "Pikachu [League Stamp] #65",
+      "console_name": "Pokemon Sword & Shield",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:65"
+      }
+    },
+    {
+      "query": "Pokemon 151 Pikachu 25 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20151%20Pikachu%2025%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6490256",
+      "product_name": "Pikachu [League Stamp] #49",
+      "console_name": "Pokemon Evolving Skies",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:49"
+      }
+    },
+    {
+      "query": "Pokemon 151 Pikachu 25 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20151%20Pikachu%2025%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4476213",
+      "product_name": "Pikachu [Snowflake Stamp] #SWSH153",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:SWSH153"
+      }
+    },
+    {
+      "query": "Pokemon 151 Pikachu 25 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20151%20Pikachu%2025%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4766447",
+      "product_name": "Detective Pikachu [Stamp] #SM190",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:SM190"
+      }
+    },
+    {
+      "query": "Pokemon 151 Pikachu 25 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20151%20Pikachu%2025%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4895432",
+      "product_name": "Pikachu [Snowflake Stamp] #DP16",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:DP16"
+      }
+    },
+    {
+      "query": "Pokemon 151 Pikachu 25 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20151%20Pikachu%2025%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5810878",
+      "product_name": "Pikachu [Snowflake Stamp] #49",
+      "console_name": "Pokemon Silver Tempest",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:49"
+      }
+    }
+  ],
+  "source_lane": "pricecharting_api"
+}

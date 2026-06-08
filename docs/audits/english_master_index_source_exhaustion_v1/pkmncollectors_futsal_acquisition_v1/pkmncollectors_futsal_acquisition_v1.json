@@ -1,0 +1,106 @@
+{
+  "version": "english_master_index_pkmncollectors_futsal_acquisition_v1",
+  "generated_at": "2026-05-30T12:53:03.740Z",
+  "audit_only": true,
+  "db_writes_performed": false,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "dry_run": false,
+  "source_key": "pkmncollectors_futsal",
+  "source_kind": "collector_reference",
+  "fixture_dir": "docs/audits/verified_master_set_index_v1/source_fixtures/generated_pkmncollectors_futsal_v1",
+  "fixture_files": [
+    "docs\\audits\\verified_master_set_index_v1\\source_fixtures\\generated_pkmncollectors_futsal_v1\\fut2020_normal.json"
+  ],
+  "summary": {
+    "targets": 4,
+    "records_generated": 4,
+    "fixture_files_written": 1,
+    "by_status": {
+      "generated": 4
+    }
+  },
+  "results": [
+    {
+      "set_key": "fut2020",
+      "set_name": "Pokémon Futsal 2020",
+      "card_number": "2",
+      "card_name": "Eevee on the Ball",
+      "finish_key": "normal",
+      "source_url": "https://www.pkmncollectors.com/cards/eevee-on-the-ball-pokemon-futsal-2020-2-none",
+      "status": "generated",
+      "validation": {
+        "ok": true,
+        "checks": {
+          "card_name": true,
+          "card_number": true,
+          "set_name": true,
+          "available_variants_normal": true
+        }
+      },
+      "error": null,
+      "records_generated": 1
+    },
+    {
+      "set_key": "fut2020",
+      "set_name": "Pokémon Futsal 2020",
+      "card_number": "3",
+      "card_name": "Grookey on the Ball",
+      "finish_key": "normal",
+      "source_url": "https://www.pkmncollectors.com/cards/grookey-on-the-ball-pokemon-futsal-2020-3-none",
+      "status": "generated",
+      "validation": {
+        "ok": true,
+        "checks": {
+          "card_name": true,
+          "card_number": true,
+          "set_name": true,
+          "available_variants_normal": true
+        }
+      },
+      "error": null,
+      "records_generated": 1
+    },
+    {
+      "set_key": "fut2020",
+      "set_name": "Pokémon Futsal 2020",
+      "card_number": "4",
+      "card_name": "Scorbunny on the Ball",
+      "finish_key": "normal",
+      "source_url": "https://www.pkmncollectors.com/cards/scorbunny-on-the-ball-pokemon-futsal-2020-4-none",
+      "status": "generated",
+      "validation": {
+        "ok": true,
+        "checks": {
+          "card_name": true,
+          "card_number": true,
+          "set_name": true,
+          "available_variants_normal": true
+        }
+      },
+      "error": null,
+      "records_generated": 1
+    },
+    {
+      "set_key": "fut2020",
+      "set_name": "Pokémon Futsal 2020",
+      "card_number": "5",
+      "card_name": "Sobble on the Ball",
+      "finish_key": "normal",
+      "source_url": "https://www.pkmncollectors.com/cards/sobble-on-the-ball-pokemon-futsal-2020-5-none",
+      "status": "generated",
+      "validation": {
+        "ok": true,
+        "checks": {
+          "card_name": true,
+          "card_number": true,
+          "set_name": true,
+          "available_variants_normal": true
+        }
+      },
+      "error": null,
+      "records_generated": 1
+    }
+  ]
+}

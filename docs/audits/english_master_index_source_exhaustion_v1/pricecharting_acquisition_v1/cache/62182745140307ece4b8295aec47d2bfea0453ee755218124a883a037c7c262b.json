@@ -1,0 +1,549 @@
+{
+  "status": "api_no_validated_match",
+  "fact": {
+    "gap_type": "finish_second_source_needed",
+    "fact_type": "printing_finish",
+    "set_key": "ex9",
+    "set_name": "Emerald",
+    "card_number": "70",
+    "card_name": "Treecko",
+    "finish_key": "stamped",
+    "status": "human_source_verified",
+    "sources": [
+      "thepricedex_price_list"
+    ],
+    "source_authorities": [
+      "thepricedex.com"
+    ],
+    "source_kinds": [
+      "marketplace_checklist"
+    ],
+    "evidence_urls": [
+      "https://www.thepricedex.com/set/ex9/emerald/price-list"
+    ],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "attempts": [
+    {
+      "query": "Pokemon Emerald Treecko 70 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Emerald%20Treecko%2070%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "888295",
+      "product_name": "Treecko #70",
+      "console_name": "Pokemon Emerald",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon Emerald Treecko 70 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Emerald%20Treecko%2070%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "888402",
+      "product_name": "Treecko [Reverse Holo] #70",
+      "console_name": "Pokemon Emerald",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Reverse Holo"
+      }
+    },
+    {
+      "query": "Pokemon Emerald Treecko 70 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Emerald%20Treecko%2070%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5427868",
+      "product_name": "Treecko [Stamped] #8",
+      "console_name": "Pokemon Celestial Storm",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:8"
+      }
+    },
+    {
+      "query": "Pokemon Emerald Treecko 70 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Emerald%20Treecko%2070%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4126334",
+      "product_name": "Treecko [Gencon] #70",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon Promo"
+      }
+    },
+    {
+      "query": "Pokemon Emerald Treecko 70 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Emerald%20Treecko%2070%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "2514239",
+      "product_name": "Groudon [Stamped] #14",
+      "console_name": "Pokemon Emerald",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:14"
+      }
+    },
+    {
+      "query": "Pokemon Emerald Treecko 70 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Emerald%20Treecko%2070%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3462243",
+      "product_name": "Trainers' Mail #70",
+      "console_name": "Pokemon Japanese Emerald Break",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Trainers' Mail"
+      }
+    },
+    {
+      "query": "Pokemon Emerald Treecko 70 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Emerald%20Treecko%2070%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6135981",
+      "product_name": "Pikachu [Stamped] #70",
+      "console_name": "Pokemon Majestic Dawn",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Pikachu"
+      }
+    },
+    {
+      "query": "Pokemon Emerald Treecko 70 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Emerald%20Treecko%2070%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9826406",
+      "product_name": "Toxtricity V [Jumbo Stamped] #70",
+      "console_name": "Pokemon Rebel Clash",
+      "validation": {
+        "ok": false,
+        "reason": "product_scope_jumbo_not_canonical_set_finish"
+      }
+    },
+    {
+      "query": "Pokemon Emerald Treecko 70 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Emerald%20Treecko%2070%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10112145",
+      "product_name": "Team Rocket's Zapdos [Stamped] #70",
+      "console_name": "Pokemon Destined Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Team Rocket's Zapdos"
+      }
+    },
+    {
+      "query": "Pokemon Emerald Treecko 70 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Emerald%20Treecko%2070%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10103584",
+      "product_name": "Ash's Treecko #36/ADV-P",
+      "console_name": "Pokemon Japanese Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:36/ADV-P"
+      }
+    },
+    {
+      "query": "Pokemon Emerald Treecko 70 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Emerald%20Treecko%2070%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4563043",
+      "product_name": "Treecko [Jumbo] #76",
+      "console_name": "Pokemon Celebrations",
+      "validation": {
+        "ok": false,
+        "reason": "product_scope_jumbo_not_canonical_set_finish"
+      }
+    },
+    {
+      "query": "Pokemon Emerald Treecko 70 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Emerald%20Treecko%2070%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "1317329",
+      "product_name": "Treecko [Holo] #3",
+      "console_name": "Pokemon McDonalds 2021",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:3"
+      }
+    },
+    {
+      "query": "Pokemon Emerald Treecko 70 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Emerald%20Treecko%2070%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5769647",
+      "product_name": "Treecko [Foil] #84",
+      "console_name": "Pokemon 2003 Topps Advanced",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:84"
+      }
+    },
+    {
+      "query": "Pokemon Emerald Treecko 70 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Emerald%20Treecko%2070%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5769850",
+      "product_name": "Treecko [Foil] #79",
+      "console_name": "Pokemon 2004 Topps Advanced Challenge",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:79"
+      }
+    },
+    {
+      "query": "Pokemon Emerald Treecko 70 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Emerald%20Treecko%2070%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10492962",
+      "product_name": "Treecko [Mcdonalds] #3/ADV-P",
+      "console_name": "Pokemon Japanese Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:3/ADV-P"
+      }
+    },
+    {
+      "query": "Pokemon Emerald Treecko 70 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Emerald%20Treecko%2070%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7374563",
+      "product_name": "Treecko [Holo] #16/ ADV-P",
+      "console_name": "Pokemon Japanese Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:16/"
+      }
+    },
+    {
+      "query": "Pokemon Emerald Treecko 70 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Emerald%20Treecko%2070%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "849459",
+      "product_name": "Treecko #80",
+      "console_name": "Pokemon Dragon",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:80"
+      }
+    },
+    {
+      "query": "Pokemon Emerald Treecko 70 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Emerald%20Treecko%2070%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "925697",
+      "product_name": "Treecko #78",
+      "console_name": "Pokemon Arceus",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:78"
+      }
+    },
+    {
+      "query": "Pokemon Emerald Treecko 70 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Emerald%20Treecko%2070%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "925698",
+      "product_name": "Treecko #79",
+      "console_name": "Pokemon Arceus",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:79"
+      }
+    },
+    {
+      "query": "Pokemon Emerald Treecko 70 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Emerald%20Treecko%2070%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "925285",
+      "product_name": "Treecko #79",
+      "console_name": "Pokemon Stormfront",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:79"
+      }
+    },
+    {
+      "query": "Pokemon Emerald Treecko 70 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Emerald%20Treecko%2070%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "888295",
+      "product_name": "Treecko #70",
+      "console_name": "Pokemon Emerald",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon Emerald Treecko 70 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Emerald%20Treecko%2070%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "888402",
+      "product_name": "Treecko [Reverse Holo] #70",
+      "console_name": "Pokemon Emerald",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Reverse Holo"
+      }
+    },
+    {
+      "query": "Pokemon Emerald Treecko 70 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Emerald%20Treecko%2070%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5427868",
+      "product_name": "Treecko [Stamped] #8",
+      "console_name": "Pokemon Celestial Storm",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:8"
+      }
+    },
+    {
+      "query": "Pokemon Emerald Treecko 70 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Emerald%20Treecko%2070%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4126334",
+      "product_name": "Treecko [Gencon] #70",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon Promo"
+      }
+    },
+    {
+      "query": "Pokemon Emerald Treecko 70 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Emerald%20Treecko%2070%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "2514239",
+      "product_name": "Groudon [Stamped] #14",
+      "console_name": "Pokemon Emerald",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:14"
+      }
+    },
+    {
+      "query": "Pokemon Emerald Treecko 70 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Emerald%20Treecko%2070%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3462243",
+      "product_name": "Trainers' Mail #70",
+      "console_name": "Pokemon Japanese Emerald Break",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Trainers' Mail"
+      }
+    },
+    {
+      "query": "Pokemon Emerald Treecko 70 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Emerald%20Treecko%2070%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6135981",
+      "product_name": "Pikachu [Stamped] #70",
+      "console_name": "Pokemon Majestic Dawn",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Pikachu"
+      }
+    },
+    {
+      "query": "Pokemon Emerald Treecko 70 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Emerald%20Treecko%2070%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9826406",
+      "product_name": "Toxtricity V [Jumbo Stamped] #70",
+      "console_name": "Pokemon Rebel Clash",
+      "validation": {
+        "ok": false,
+        "reason": "product_scope_jumbo_not_canonical_set_finish"
+      }
+    },
+    {
+      "query": "Pokemon Emerald Treecko 70 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Emerald%20Treecko%2070%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10112145",
+      "product_name": "Team Rocket's Zapdos [Stamped] #70",
+      "console_name": "Pokemon Destined Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Team Rocket's Zapdos"
+      }
+    },
+    {
+      "query": "Pokemon Emerald Treecko 70 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Emerald%20Treecko%2070%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10103584",
+      "product_name": "Ash's Treecko #36/ADV-P",
+      "console_name": "Pokemon Japanese Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:36/ADV-P"
+      }
+    },
+    {
+      "query": "Pokemon Emerald Treecko 70 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Emerald%20Treecko%2070%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4563043",
+      "product_name": "Treecko [Jumbo] #76",
+      "console_name": "Pokemon Celebrations",
+      "validation": {
+        "ok": false,
+        "reason": "product_scope_jumbo_not_canonical_set_finish"
+      }
+    },
+    {
+      "query": "Pokemon Emerald Treecko 70 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Emerald%20Treecko%2070%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "1317329",
+      "product_name": "Treecko [Holo] #3",
+      "console_name": "Pokemon McDonalds 2021",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:3"
+      }
+    },
+    {
+      "query": "Pokemon Emerald Treecko 70 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Emerald%20Treecko%2070%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5769647",
+      "product_name": "Treecko [Foil] #84",
+      "console_name": "Pokemon 2003 Topps Advanced",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:84"
+      }
+    },
+    {
+      "query": "Pokemon Emerald Treecko 70 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Emerald%20Treecko%2070%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5769850",
+      "product_name": "Treecko [Foil] #79",
+      "console_name": "Pokemon 2004 Topps Advanced Challenge",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:79"
+      }
+    },
+    {
+      "query": "Pokemon Emerald Treecko 70 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Emerald%20Treecko%2070%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10492962",
+      "product_name": "Treecko [Mcdonalds] #3/ADV-P",
+      "console_name": "Pokemon Japanese Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:3/ADV-P"
+      }
+    },
+    {
+      "query": "Pokemon Emerald Treecko 70 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Emerald%20Treecko%2070%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7374563",
+      "product_name": "Treecko [Holo] #16/ ADV-P",
+      "console_name": "Pokemon Japanese Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:16/"
+      }
+    },
+    {
+      "query": "Pokemon Emerald Treecko 70 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Emerald%20Treecko%2070%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "849459",
+      "product_name": "Treecko #80",
+      "console_name": "Pokemon Dragon",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:80"
+      }
+    },
+    {
+      "query": "Pokemon Emerald Treecko 70 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Emerald%20Treecko%2070%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "925697",
+      "product_name": "Treecko #78",
+      "console_name": "Pokemon Arceus",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:78"
+      }
+    },
+    {
+      "query": "Pokemon Emerald Treecko 70 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Emerald%20Treecko%2070%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "925698",
+      "product_name": "Treecko #79",
+      "console_name": "Pokemon Arceus",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:79"
+      }
+    },
+    {
+      "query": "Pokemon Emerald Treecko 70 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Emerald%20Treecko%2070%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "925285",
+      "product_name": "Treecko #79",
+      "console_name": "Pokemon Stormfront",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:79"
+      }
+    }
+  ],
+  "source_lane": "pricecharting_api"
+}

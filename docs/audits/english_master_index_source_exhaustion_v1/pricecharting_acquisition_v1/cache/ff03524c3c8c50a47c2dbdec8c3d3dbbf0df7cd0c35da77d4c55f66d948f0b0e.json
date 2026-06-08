@@ -1,0 +1,549 @@
+{
+  "status": "api_no_validated_match",
+  "fact": {
+    "gap_type": "finish_second_source_needed",
+    "fact_type": "printing_finish",
+    "set_key": "ex11",
+    "set_name": "Delta Species",
+    "card_number": "61",
+    "card_name": "Ditto",
+    "finish_key": "stamped",
+    "status": "human_source_verified",
+    "sources": [
+      "thepricedex_price_list"
+    ],
+    "source_authorities": [
+      "thepricedex.com"
+    ],
+    "source_kinds": [
+      "marketplace_checklist"
+    ],
+    "evidence_urls": [
+      "https://www.thepricedex.com/set/ex11/delta-species/price-list"
+    ],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "attempts": [
+    {
+      "query": "Pokemon Delta Species Ditto 61 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Delta%20Species%20Ditto%2061%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "888723",
+      "product_name": "Ditto Charmander #61",
+      "console_name": "Pokemon Delta Species",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Ditto Charmander"
+      }
+    },
+    {
+      "query": "Pokemon Delta Species Ditto 61 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Delta%20Species%20Ditto%2061%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6389245",
+      "product_name": "Ditto Charmander [Origins] #61",
+      "console_name": "Pokemon Delta Species",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Ditto Charmander"
+      }
+    },
+    {
+      "query": "Pokemon Delta Species Ditto 61 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Delta%20Species%20Ditto%2061%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "888837",
+      "product_name": "Ditto Charmander [Reverse Holo] #61",
+      "console_name": "Pokemon Delta Species",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Ditto Charmander"
+      }
+    },
+    {
+      "query": "Pokemon Delta Species Ditto 61 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Delta%20Species%20Ditto%2061%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3439547",
+      "product_name": "Ditto #61",
+      "console_name": "Pokemon Japanese Holon Research",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon Japanese Holon Research"
+      }
+    },
+    {
+      "query": "Pokemon Delta Species Ditto 61 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Delta%20Species%20Ditto%2061%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7798850",
+      "product_name": "Ditto [Charmander Origins Games Expo] #61",
+      "console_name": "Pokemon Delta Species",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Charmander Origins Games Expo"
+      }
+    },
+    {
+      "query": "Pokemon Delta Species Ditto 61 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Delta%20Species%20Ditto%2061%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5609152",
+      "product_name": "Ditto #37",
+      "console_name": "Pokemon Delta Species",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:37"
+      }
+    },
+    {
+      "query": "Pokemon Delta Species Ditto 61 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Delta%20Species%20Ditto%2061%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "888697",
+      "product_name": "Ditto #35",
+      "console_name": "Pokemon Delta Species",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:35"
+      }
+    },
+    {
+      "query": "Pokemon Delta Species Ditto 61 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Delta%20Species%20Ditto%2061%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "888701",
+      "product_name": "Ditto (Pikachu) #39",
+      "console_name": "Pokemon Delta Species",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:39"
+      }
+    },
+    {
+      "query": "Pokemon Delta Species Ditto 61 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Delta%20Species%20Ditto%2061%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "888702",
+      "product_name": "Ditto (Squirtle) #40",
+      "console_name": "Pokemon Delta Species",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:40"
+      }
+    },
+    {
+      "query": "Pokemon Delta Species Ditto 61 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Delta%20Species%20Ditto%2061%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "888726",
+      "product_name": "Ditto (Squirtle) #64",
+      "console_name": "Pokemon Delta Species",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:64"
+      }
+    },
+    {
+      "query": "Pokemon Delta Species Ditto 61 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Delta%20Species%20Ditto%2061%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "888725",
+      "product_name": "Ditto (Pikachu) #63",
+      "console_name": "Pokemon Delta Species",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:63"
+      }
+    },
+    {
+      "query": "Pokemon Delta Species Ditto 61 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Delta%20Species%20Ditto%2061%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "888724",
+      "product_name": "Ditto (Geodude) #62",
+      "console_name": "Pokemon Delta Species",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:62"
+      }
+    },
+    {
+      "query": "Pokemon Delta Species Ditto 61 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Delta%20Species%20Ditto%2061%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "888699",
+      "product_name": "Ditto (Charmander) #37",
+      "console_name": "Pokemon Delta Species",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:37"
+      }
+    },
+    {
+      "query": "Pokemon Delta Species Ditto 61 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Delta%20Species%20Ditto%2061%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "888698",
+      "product_name": "Ditto (Bulbasaur) #36",
+      "console_name": "Pokemon Delta Species",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:36"
+      }
+    },
+    {
+      "query": "Pokemon Delta Species Ditto 61 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Delta%20Species%20Ditto%2061%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "888700",
+      "product_name": "Ditto (Mr. Mime) #38",
+      "console_name": "Pokemon Delta Species",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:38"
+      }
+    },
+    {
+      "query": "Pokemon Delta Species Ditto 61 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Delta%20Species%20Ditto%2061%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4214872",
+      "product_name": "Ditto [Games Expo] #64",
+      "console_name": "Pokemon Delta Species",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:64"
+      }
+    },
+    {
+      "query": "Pokemon Delta Species Ditto 61 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Delta%20Species%20Ditto%2061%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "888811",
+      "product_name": "Ditto [Reverse Holo] #35",
+      "console_name": "Pokemon Delta Species",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:35"
+      }
+    },
+    {
+      "query": "Pokemon Delta Species Ditto 61 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Delta%20Species%20Ditto%2061%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3507380",
+      "product_name": "Ditto [1st Edition] #61",
+      "console_name": "Pokemon Japanese Holon Research",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon Japanese Holon Research"
+      }
+    },
+    {
+      "query": "Pokemon Delta Species Ditto 61 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Delta%20Species%20Ditto%2061%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5830383",
+      "product_name": "Ditto [Pikachu Comic Con] #63",
+      "console_name": "Pokemon Delta Species",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:63"
+      }
+    },
+    {
+      "query": "Pokemon Delta Species Ditto 61 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Delta%20Species%20Ditto%2061%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "888813",
+      "product_name": "Ditto (Charmander) [Reverse Holo] #37",
+      "console_name": "Pokemon Delta Species",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:37"
+      }
+    },
+    {
+      "query": "Pokemon Delta Species Ditto 61 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Delta%20Species%20Ditto%2061%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "888723",
+      "product_name": "Ditto Charmander #61",
+      "console_name": "Pokemon Delta Species",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Ditto Charmander"
+      }
+    },
+    {
+      "query": "Pokemon Delta Species Ditto 61 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Delta%20Species%20Ditto%2061%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6389245",
+      "product_name": "Ditto Charmander [Origins] #61",
+      "console_name": "Pokemon Delta Species",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Ditto Charmander"
+      }
+    },
+    {
+      "query": "Pokemon Delta Species Ditto 61 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Delta%20Species%20Ditto%2061%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "888837",
+      "product_name": "Ditto Charmander [Reverse Holo] #61",
+      "console_name": "Pokemon Delta Species",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Ditto Charmander"
+      }
+    },
+    {
+      "query": "Pokemon Delta Species Ditto 61 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Delta%20Species%20Ditto%2061%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3439547",
+      "product_name": "Ditto #61",
+      "console_name": "Pokemon Japanese Holon Research",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon Japanese Holon Research"
+      }
+    },
+    {
+      "query": "Pokemon Delta Species Ditto 61 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Delta%20Species%20Ditto%2061%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7798850",
+      "product_name": "Ditto [Charmander Origins Games Expo] #61",
+      "console_name": "Pokemon Delta Species",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Charmander Origins Games Expo"
+      }
+    },
+    {
+      "query": "Pokemon Delta Species Ditto 61 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Delta%20Species%20Ditto%2061%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5609152",
+      "product_name": "Ditto #37",
+      "console_name": "Pokemon Delta Species",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:37"
+      }
+    },
+    {
+      "query": "Pokemon Delta Species Ditto 61 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Delta%20Species%20Ditto%2061%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "888697",
+      "product_name": "Ditto #35",
+      "console_name": "Pokemon Delta Species",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:35"
+      }
+    },
+    {
+      "query": "Pokemon Delta Species Ditto 61 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Delta%20Species%20Ditto%2061%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "888701",
+      "product_name": "Ditto (Pikachu) #39",
+      "console_name": "Pokemon Delta Species",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:39"
+      }
+    },
+    {
+      "query": "Pokemon Delta Species Ditto 61 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Delta%20Species%20Ditto%2061%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "888702",
+      "product_name": "Ditto (Squirtle) #40",
+      "console_name": "Pokemon Delta Species",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:40"
+      }
+    },
+    {
+      "query": "Pokemon Delta Species Ditto 61 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Delta%20Species%20Ditto%2061%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "888726",
+      "product_name": "Ditto (Squirtle) #64",
+      "console_name": "Pokemon Delta Species",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:64"
+      }
+    },
+    {
+      "query": "Pokemon Delta Species Ditto 61 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Delta%20Species%20Ditto%2061%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "888725",
+      "product_name": "Ditto (Pikachu) #63",
+      "console_name": "Pokemon Delta Species",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:63"
+      }
+    },
+    {
+      "query": "Pokemon Delta Species Ditto 61 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Delta%20Species%20Ditto%2061%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "888724",
+      "product_name": "Ditto (Geodude) #62",
+      "console_name": "Pokemon Delta Species",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:62"
+      }
+    },
+    {
+      "query": "Pokemon Delta Species Ditto 61 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Delta%20Species%20Ditto%2061%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "888699",
+      "product_name": "Ditto (Charmander) #37",
+      "console_name": "Pokemon Delta Species",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:37"
+      }
+    },
+    {
+      "query": "Pokemon Delta Species Ditto 61 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Delta%20Species%20Ditto%2061%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "888698",
+      "product_name": "Ditto (Bulbasaur) #36",
+      "console_name": "Pokemon Delta Species",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:36"
+      }
+    },
+    {
+      "query": "Pokemon Delta Species Ditto 61 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Delta%20Species%20Ditto%2061%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "888700",
+      "product_name": "Ditto (Mr. Mime) #38",
+      "console_name": "Pokemon Delta Species",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:38"
+      }
+    },
+    {
+      "query": "Pokemon Delta Species Ditto 61 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Delta%20Species%20Ditto%2061%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4214872",
+      "product_name": "Ditto [Games Expo] #64",
+      "console_name": "Pokemon Delta Species",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:64"
+      }
+    },
+    {
+      "query": "Pokemon Delta Species Ditto 61 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Delta%20Species%20Ditto%2061%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "888811",
+      "product_name": "Ditto [Reverse Holo] #35",
+      "console_name": "Pokemon Delta Species",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:35"
+      }
+    },
+    {
+      "query": "Pokemon Delta Species Ditto 61 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Delta%20Species%20Ditto%2061%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3507380",
+      "product_name": "Ditto [1st Edition] #61",
+      "console_name": "Pokemon Japanese Holon Research",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon Japanese Holon Research"
+      }
+    },
+    {
+      "query": "Pokemon Delta Species Ditto 61 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Delta%20Species%20Ditto%2061%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5830383",
+      "product_name": "Ditto [Pikachu Comic Con] #63",
+      "console_name": "Pokemon Delta Species",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:63"
+      }
+    },
+    {
+      "query": "Pokemon Delta Species Ditto 61 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Delta%20Species%20Ditto%2061%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "888813",
+      "product_name": "Ditto (Charmander) [Reverse Holo] #37",
+      "console_name": "Pokemon Delta Species",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:37"
+      }
+    }
+  ],
+  "source_lane": "pricecharting_api"
+}

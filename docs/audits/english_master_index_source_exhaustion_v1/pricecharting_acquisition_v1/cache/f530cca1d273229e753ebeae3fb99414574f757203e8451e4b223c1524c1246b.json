@@ -1,0 +1,549 @@
+{
+  "status": "api_no_validated_match",
+  "fact": {
+    "gap_type": "finish_second_source_needed",
+    "fact_type": "printing_finish",
+    "set_key": "sm4",
+    "set_name": "Crimson Invasion",
+    "card_number": "75",
+    "card_name": "Jangmo-o",
+    "finish_key": "cosmos",
+    "status": "human_source_verified",
+    "sources": [
+      "thepricedex_price_list"
+    ],
+    "source_authorities": [
+      "thepricedex.com"
+    ],
+    "source_kinds": [
+      "marketplace_checklist"
+    ],
+    "evidence_urls": [
+      "https://www.thepricedex.com/set/sm4/crimson-invasion/price-list"
+    ],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "attempts": [
+    {
+      "query": "Pokemon Crimson Invasion Jangmo-o 75 cosmos holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Crimson%20Invasion%20Jangmo-o%2075%20cosmos%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "2355365",
+      "product_name": "Jangmo-o [Holo] #75",
+      "console_name": "Pokemon Crimson Invasion",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Holo"
+      }
+    },
+    {
+      "query": "Pokemon Crimson Invasion Jangmo-o 75 cosmos holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Crimson%20Invasion%20Jangmo-o%2075%20cosmos%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "961338",
+      "product_name": "Jangmo-o [Reverse Holo] #75",
+      "console_name": "Pokemon Crimson Invasion",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Reverse Holo"
+      }
+    },
+    {
+      "query": "Pokemon Crimson Invasion Jangmo-o 75 cosmos holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Crimson%20Invasion%20Jangmo-o%2075%20cosmos%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "961221",
+      "product_name": "Jangmo-o #75",
+      "console_name": "Pokemon Crimson Invasion",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon Crimson Invasion Jangmo-o 75 cosmos holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Crimson%20Invasion%20Jangmo-o%2075%20cosmos%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8756535",
+      "product_name": "Jangmo-O [EB Games] #75",
+      "console_name": "Pokemon Crimson Invasion",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:EB Games"
+      }
+    },
+    {
+      "query": "Pokemon Crimson Invasion Jangmo-o 75 cosmos holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Crimson%20Invasion%20Jangmo-o%2075%20cosmos%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "2423662",
+      "product_name": "Jangmo-o [Toys R Us] #75",
+      "console_name": "Pokemon Crimson Invasion",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Toys R Us"
+      }
+    },
+    {
+      "query": "Pokemon Crimson Invasion Jangmo-o 75 cosmos holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Crimson%20Invasion%20Jangmo-o%2075%20cosmos%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "2355366",
+      "product_name": "Kommo-o [Holo] #77",
+      "console_name": "Pokemon Crimson Invasion",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:77"
+      }
+    },
+    {
+      "query": "Pokemon Crimson Invasion Jangmo-o 75 cosmos holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Crimson%20Invasion%20Jangmo-o%2075%20cosmos%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11579927",
+      "product_name": "Regice [Cosmos Holo] #28",
+      "console_name": "Pokemon Crimson Invasion",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:28"
+      }
+    },
+    {
+      "query": "Pokemon Crimson Invasion Jangmo-o 75 cosmos holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Crimson%20Invasion%20Jangmo-o%2075%20cosmos%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "961340",
+      "product_name": "Kommo-o [Reverse Holo] #77",
+      "console_name": "Pokemon Crimson Invasion",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:77"
+      }
+    },
+    {
+      "query": "Pokemon Crimson Invasion Jangmo-o 75 cosmos holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Crimson%20Invasion%20Jangmo-o%2075%20cosmos%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11579926",
+      "product_name": "Registeel [Cosmos Holo] #68",
+      "console_name": "Pokemon Crimson Invasion",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:68"
+      }
+    },
+    {
+      "query": "Pokemon Crimson Invasion Jangmo-o 75 cosmos holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Crimson%20Invasion%20Jangmo-o%2075%20cosmos%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11579925",
+      "product_name": "Regirock [Cosmos Holo] #53",
+      "console_name": "Pokemon Crimson Invasion",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:53"
+      }
+    },
+    {
+      "query": "Pokemon Crimson Invasion Jangmo-o 75 cosmos holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Crimson%20Invasion%20Jangmo-o%2075%20cosmos%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "961339",
+      "product_name": "Hakamo-o [Reverse Holo] #76",
+      "console_name": "Pokemon Crimson Invasion",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:76"
+      }
+    },
+    {
+      "query": "Pokemon Crimson Invasion Jangmo-o 75 cosmos holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Crimson%20Invasion%20Jangmo-o%2075%20cosmos%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "960754",
+      "product_name": "Jangmo-o [Reverse Holo] #98",
+      "console_name": "Pokemon Guardians Rising",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:98"
+      }
+    },
+    {
+      "query": "Pokemon Crimson Invasion Jangmo-o 75 cosmos holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Crimson%20Invasion%20Jangmo-o%2075%20cosmos%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "964655",
+      "product_name": "Jangmo-o [Reverse Holo] #161",
+      "console_name": "Pokemon Cosmic Eclipse",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:161"
+      }
+    },
+    {
+      "query": "Pokemon Crimson Invasion Jangmo-o 75 cosmos holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Crimson%20Invasion%20Jangmo-o%2075%20cosmos%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "964654",
+      "product_name": "Jangmo-o [Reverse Holo] #160",
+      "console_name": "Pokemon Cosmic Eclipse",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:160"
+      }
+    },
+    {
+      "query": "Pokemon Crimson Invasion Jangmo-o 75 cosmos holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Crimson%20Invasion%20Jangmo-o%2075%20cosmos%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "962357",
+      "product_name": "Jangmo-o [Reverse Holo] #52",
+      "console_name": "Pokemon Dragon Majesty",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:52"
+      }
+    },
+    {
+      "query": "Pokemon Crimson Invasion Jangmo-o 75 cosmos holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Crimson%20Invasion%20Jangmo-o%2075%20cosmos%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "961223",
+      "product_name": "Kommo-o #77",
+      "console_name": "Pokemon Crimson Invasion",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:77"
+      }
+    },
+    {
+      "query": "Pokemon Crimson Invasion Jangmo-o 75 cosmos holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Crimson%20Invasion%20Jangmo-o%2075%20cosmos%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "961222",
+      "product_name": "Hakamo-o #76",
+      "console_name": "Pokemon Crimson Invasion",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:76"
+      }
+    },
+    {
+      "query": "Pokemon Crimson Invasion Jangmo-o 75 cosmos holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Crimson%20Invasion%20Jangmo-o%2075%20cosmos%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "844943",
+      "product_name": "Jangmo-O #SM40",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:SM40"
+      }
+    },
+    {
+      "query": "Pokemon Crimson Invasion Jangmo-o 75 cosmos holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Crimson%20Invasion%20Jangmo-o%2075%20cosmos%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3445514",
+      "product_name": "Jangmo-o #39",
+      "console_name": "Pokemon Japanese Dragon Storm",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:39"
+      }
+    },
+    {
+      "query": "Pokemon Crimson Invasion Jangmo-o 75 cosmos holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Crimson%20Invasion%20Jangmo-o%2075%20cosmos%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3465764",
+      "product_name": "Jangmo-o #38",
+      "console_name": "Pokemon Japanese Ultradimensional Beasts",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:38"
+      }
+    },
+    {
+      "query": "Pokemon Crimson Invasion Jangmo-o 75 cosmos",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Crimson%20Invasion%20Jangmo-o%2075%20cosmos",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "961221",
+      "product_name": "Jangmo-o #75",
+      "console_name": "Pokemon Crimson Invasion",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon Crimson Invasion Jangmo-o 75 cosmos",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Crimson%20Invasion%20Jangmo-o%2075%20cosmos",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "2355365",
+      "product_name": "Jangmo-o [Holo] #75",
+      "console_name": "Pokemon Crimson Invasion",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Holo"
+      }
+    },
+    {
+      "query": "Pokemon Crimson Invasion Jangmo-o 75 cosmos",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Crimson%20Invasion%20Jangmo-o%2075%20cosmos",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8756535",
+      "product_name": "Jangmo-O [EB Games] #75",
+      "console_name": "Pokemon Crimson Invasion",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:EB Games"
+      }
+    },
+    {
+      "query": "Pokemon Crimson Invasion Jangmo-o 75 cosmos",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Crimson%20Invasion%20Jangmo-o%2075%20cosmos",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "2423662",
+      "product_name": "Jangmo-o [Toys R Us] #75",
+      "console_name": "Pokemon Crimson Invasion",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Toys R Us"
+      }
+    },
+    {
+      "query": "Pokemon Crimson Invasion Jangmo-o 75 cosmos",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Crimson%20Invasion%20Jangmo-o%2075%20cosmos",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "961338",
+      "product_name": "Jangmo-o [Reverse Holo] #75",
+      "console_name": "Pokemon Crimson Invasion",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Reverse Holo"
+      }
+    },
+    {
+      "query": "Pokemon Crimson Invasion Jangmo-o 75 cosmos",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Crimson%20Invasion%20Jangmo-o%2075%20cosmos",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "961223",
+      "product_name": "Kommo-o #77",
+      "console_name": "Pokemon Crimson Invasion",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:77"
+      }
+    },
+    {
+      "query": "Pokemon Crimson Invasion Jangmo-o 75 cosmos",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Crimson%20Invasion%20Jangmo-o%2075%20cosmos",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "961222",
+      "product_name": "Hakamo-o #76",
+      "console_name": "Pokemon Crimson Invasion",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:76"
+      }
+    },
+    {
+      "query": "Pokemon Crimson Invasion Jangmo-o 75 cosmos",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Crimson%20Invasion%20Jangmo-o%2075%20cosmos",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "2355366",
+      "product_name": "Kommo-o [Holo] #77",
+      "console_name": "Pokemon Crimson Invasion",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:77"
+      }
+    },
+    {
+      "query": "Pokemon Crimson Invasion Jangmo-o 75 cosmos",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Crimson%20Invasion%20Jangmo-o%2075%20cosmos",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "844943",
+      "product_name": "Jangmo-O #SM40",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:SM40"
+      }
+    },
+    {
+      "query": "Pokemon Crimson Invasion Jangmo-o 75 cosmos",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Crimson%20Invasion%20Jangmo-o%2075%20cosmos",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3445514",
+      "product_name": "Jangmo-o #39",
+      "console_name": "Pokemon Japanese Dragon Storm",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:39"
+      }
+    },
+    {
+      "query": "Pokemon Crimson Invasion Jangmo-o 75 cosmos",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Crimson%20Invasion%20Jangmo-o%2075%20cosmos",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3465764",
+      "product_name": "Jangmo-o #38",
+      "console_name": "Pokemon Japanese Ultradimensional Beasts",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:38"
+      }
+    },
+    {
+      "query": "Pokemon Crimson Invasion Jangmo-o 75 cosmos",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Crimson%20Invasion%20Jangmo-o%2075%20cosmos",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3470303",
+      "product_name": "Jangmo-o #68",
+      "console_name": "Pokemon Japanese Alter Genesis",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:68"
+      }
+    },
+    {
+      "query": "Pokemon Crimson Invasion Jangmo-o 75 cosmos",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Crimson%20Invasion%20Jangmo-o%2075%20cosmos",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3470304",
+      "product_name": "Jangmo-o #69",
+      "console_name": "Pokemon Japanese Alter Genesis",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:69"
+      }
+    },
+    {
+      "query": "Pokemon Crimson Invasion Jangmo-o 75 cosmos",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Crimson%20Invasion%20Jangmo-o%2075%20cosmos",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "964399",
+      "product_name": "Jangmo-o #161",
+      "console_name": "Pokemon Cosmic Eclipse",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:161"
+      }
+    },
+    {
+      "query": "Pokemon Crimson Invasion Jangmo-o 75 cosmos",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Crimson%20Invasion%20Jangmo-o%2075%20cosmos",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "964398",
+      "product_name": "Jangmo-o #160",
+      "console_name": "Pokemon Cosmic Eclipse",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:160"
+      }
+    },
+    {
+      "query": "Pokemon Crimson Invasion Jangmo-o 75 cosmos",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Crimson%20Invasion%20Jangmo-o%2075%20cosmos",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "962286",
+      "product_name": "Jangmo-o #52",
+      "console_name": "Pokemon Dragon Majesty",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:52"
+      }
+    },
+    {
+      "query": "Pokemon Crimson Invasion Jangmo-o 75 cosmos",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Crimson%20Invasion%20Jangmo-o%2075%20cosmos",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12460214",
+      "product_name": "Jangmo-O #113",
+      "console_name": "Pokemon Chinese CSM2aC",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:113"
+      }
+    },
+    {
+      "query": "Pokemon Crimson Invasion Jangmo-o 75 cosmos",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Crimson%20Invasion%20Jangmo-o%2075%20cosmos",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "960595",
+      "product_name": "Jangmo-o #98",
+      "console_name": "Pokemon Guardians Rising",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:98"
+      }
+    },
+    {
+      "query": "Pokemon Crimson Invasion Jangmo-o 75 cosmos",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Crimson%20Invasion%20Jangmo-o%2075%20cosmos",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3465450",
+      "product_name": "Jangmo-o #39",
+      "console_name": "Pokemon Japanese Islands Await You",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:39"
+      }
+    },
+    {
+      "query": "Pokemon Crimson Invasion Jangmo-o 75 cosmos",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Crimson%20Invasion%20Jangmo-o%2075%20cosmos",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5769149",
+      "product_name": "Jangmo-o #45/SM-P",
+      "console_name": "Pokemon Japanese Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:45/SM-P"
+      }
+    }
+  ],
+  "source_lane": "pricecharting_api"
+}

@@ -1,0 +1,549 @@
+{
+  "status": "api_no_validated_match",
+  "fact": {
+    "gap_type": "finish_second_source_needed",
+    "fact_type": "printing_finish",
+    "set_key": "sve",
+    "set_name": "Scarlet & Violet Energies",
+    "card_number": "2",
+    "card_name": "Basic Fire Energy",
+    "finish_key": "reverse",
+    "status": "human_source_verified",
+    "sources": [
+      "thepricedex_price_list"
+    ],
+    "source_authorities": [
+      "thepricedex.com"
+    ],
+    "source_kinds": [
+      "marketplace_checklist"
+    ],
+    "evidence_urls": [
+      "https://www.thepricedex.com/set/sve/scarlet-and-violet-energies/price-list"
+    ],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "attempts": [
+    {
+      "query": "Pokemon Scarlet & Violet Energies Basic Fire Energy 2 reverse holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Scarlet%20%26%20Violet%20Energies%20Basic%20Fire%20Energy%202%20reverse%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7321544",
+      "product_name": "Basic Fire Energy [Holo] #2",
+      "console_name": "Pokemon Scarlet & Violet Energy",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon Scarlet & Violet Energy"
+      }
+    },
+    {
+      "query": "Pokemon Scarlet & Violet Energies Basic Fire Energy 2 reverse holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Scarlet%20%26%20Violet%20Energies%20Basic%20Fire%20Energy%202%20reverse%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5917674",
+      "product_name": "Basic Fire Energy [Cosmos Holo] #2",
+      "console_name": "Pokemon Scarlet & Violet Energy",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon Scarlet & Violet Energy"
+      }
+    },
+    {
+      "query": "Pokemon Scarlet & Violet Energies Basic Fire Energy 2 reverse holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Scarlet%20%26%20Violet%20Energies%20Basic%20Fire%20Energy%202%20reverse%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10042692",
+      "product_name": "Basic Fire Energy [Holo] #18",
+      "console_name": "Pokemon Scarlet & Violet Energy",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:18"
+      }
+    },
+    {
+      "query": "Pokemon Scarlet & Violet Energies Basic Fire Energy 2 reverse holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Scarlet%20%26%20Violet%20Energies%20Basic%20Fire%20Energy%202%20reverse%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8431759",
+      "product_name": "Basic Fire Energy [Holo] #10",
+      "console_name": "Pokemon Scarlet & Violet Energy",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:10"
+      }
+    },
+    {
+      "query": "Pokemon Scarlet & Violet Energies Basic Fire Energy 2 reverse holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Scarlet%20%26%20Violet%20Energies%20Basic%20Fire%20Energy%202%20reverse%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8909505",
+      "product_name": "Basic Fire Energy [Cosmos Holo] #10",
+      "console_name": "Pokemon Scarlet & Violet Energy",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:10"
+      }
+    },
+    {
+      "query": "Pokemon Scarlet & Violet Energies Basic Fire Energy 2 reverse holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Scarlet%20%26%20Violet%20Energies%20Basic%20Fire%20Energy%202%20reverse%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10909859",
+      "product_name": "Basic Fire Energy [Prize Pack Cosmos Holo] #2",
+      "console_name": "Pokemon Scarlet & Violet Energy",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon Scarlet & Violet Energy"
+      }
+    },
+    {
+      "query": "Pokemon Scarlet & Violet Energies Basic Fire Energy 2 reverse holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Scarlet%20%26%20Violet%20Energies%20Basic%20Fire%20Energy%202%20reverse%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8765735",
+      "product_name": "Basic Fire Energy [Prize Pack] #2",
+      "console_name": "Pokemon Scarlet & Violet Energy",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon Scarlet & Violet Energy"
+      }
+    },
+    {
+      "query": "Pokemon Scarlet & Violet Energies Basic Fire Energy 2 reverse holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Scarlet%20%26%20Violet%20Energies%20Basic%20Fire%20Energy%202%20reverse%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4991224",
+      "product_name": "Basic Fire Energy #2",
+      "console_name": "Pokemon Scarlet & Violet Energy",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon Scarlet & Violet Energy"
+      }
+    },
+    {
+      "query": "Pokemon Scarlet & Violet Energies Basic Fire Energy 2 reverse holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Scarlet%20%26%20Violet%20Energies%20Basic%20Fire%20Energy%202%20reverse%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10951980",
+      "product_name": "Basic Fire Energy [Prize Pack Cosmos Holo] #10",
+      "console_name": "Pokemon Scarlet & Violet Energy",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:10"
+      }
+    },
+    {
+      "query": "Pokemon Scarlet & Violet Energies Basic Fire Energy 2 reverse holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Scarlet%20%26%20Violet%20Energies%20Basic%20Fire%20Energy%202%20reverse%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9271097",
+      "product_name": "Basic Grass Energy [Reverse Holo] #1",
+      "console_name": "Pokemon Scarlet & Violet Energy",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:1"
+      }
+    },
+    {
+      "query": "Pokemon Scarlet & Violet Energies Basic Fire Energy 2 reverse holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Scarlet%20%26%20Violet%20Energies%20Basic%20Fire%20Energy%202%20reverse%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7321554",
+      "product_name": "Basic Water Energy [Reverse Holo] #3",
+      "console_name": "Pokemon Scarlet & Violet Energy",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:3"
+      }
+    },
+    {
+      "query": "Pokemon Scarlet & Violet Energies Basic Fire Energy 2 reverse holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Scarlet%20%26%20Violet%20Energies%20Basic%20Fire%20Energy%202%20reverse%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12352806",
+      "product_name": "Basic Fire Energy [Reverse Holo] #2",
+      "console_name": "Pokemon Mega Evolution Energy",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon Mega Evolution Energy"
+      }
+    },
+    {
+      "query": "Pokemon Scarlet & Violet Energies Basic Fire Energy 2 reverse holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Scarlet%20%26%20Violet%20Energies%20Basic%20Fire%20Energy%202%20reverse%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7321548",
+      "product_name": "Basic Fighting Energy [Reverse Holo] #6",
+      "console_name": "Pokemon Scarlet & Violet Energy",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:6"
+      }
+    },
+    {
+      "query": "Pokemon Scarlet & Violet Energies Basic Fire Energy 2 reverse holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Scarlet%20%26%20Violet%20Energies%20Basic%20Fire%20Energy%202%20reverse%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8848161",
+      "product_name": "Basic Psychic Energy [Reverse Holo] #5",
+      "console_name": "Pokemon Scarlet & Violet Energy",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:5"
+      }
+    },
+    {
+      "query": "Pokemon Scarlet & Violet Energies Basic Fire Energy 2 reverse holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Scarlet%20%26%20Violet%20Energies%20Basic%20Fire%20Energy%202%20reverse%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10602295",
+      "product_name": "Basic Fire Energy [Prize Pack] #10",
+      "console_name": "Pokemon Scarlet & Violet Energy",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:10"
+      }
+    },
+    {
+      "query": "Pokemon Scarlet & Violet Energies Basic Fire Energy 2 reverse holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Scarlet%20%26%20Violet%20Energies%20Basic%20Fire%20Energy%202%20reverse%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10046271",
+      "product_name": "Basic Fire Energy #18",
+      "console_name": "Pokemon Scarlet & Violet Energy",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:18"
+      }
+    },
+    {
+      "query": "Pokemon Scarlet & Violet Energies Basic Fire Energy 2 reverse holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Scarlet%20%26%20Violet%20Energies%20Basic%20Fire%20Energy%202%20reverse%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7549850",
+      "product_name": "Basic Fire Energy #10",
+      "console_name": "Pokemon Scarlet & Violet Energy",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:10"
+      }
+    },
+    {
+      "query": "Pokemon Scarlet & Violet Energies Basic Fire Energy 2 reverse holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Scarlet%20%26%20Violet%20Energies%20Basic%20Fire%20Energy%202%20reverse%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9572286",
+      "product_name": "Basic Fire Energy [Ice Cracked] #10",
+      "console_name": "Pokemon Scarlet & Violet Energy",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:10"
+      }
+    },
+    {
+      "query": "Pokemon Scarlet & Violet Energies Basic Fire Energy 2 reverse holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Scarlet%20%26%20Violet%20Energies%20Basic%20Fire%20Energy%202%20reverse%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10042701",
+      "product_name": "Basic Grass Energy [Holo] #17",
+      "console_name": "Pokemon Scarlet & Violet Energy",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:17"
+      }
+    },
+    {
+      "query": "Pokemon Scarlet & Violet Energies Basic Fire Energy 2 reverse holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Scarlet%20%26%20Violet%20Energies%20Basic%20Fire%20Energy%202%20reverse%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7136274",
+      "product_name": "Basic Grass Energy [Holo] #1",
+      "console_name": "Pokemon Scarlet & Violet Energy",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:1"
+      }
+    },
+    {
+      "query": "Pokemon Scarlet & Violet Energies Basic Fire Energy 2 reverse holofoil",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Scarlet%20%26%20Violet%20Energies%20Basic%20Fire%20Energy%202%20reverse%20holofoil",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7321544",
+      "product_name": "Basic Fire Energy [Holo] #2",
+      "console_name": "Pokemon Scarlet & Violet Energy",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon Scarlet & Violet Energy"
+      }
+    },
+    {
+      "query": "Pokemon Scarlet & Violet Energies Basic Fire Energy 2 reverse holofoil",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Scarlet%20%26%20Violet%20Energies%20Basic%20Fire%20Energy%202%20reverse%20holofoil",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5917674",
+      "product_name": "Basic Fire Energy [Cosmos Holo] #2",
+      "console_name": "Pokemon Scarlet & Violet Energy",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon Scarlet & Violet Energy"
+      }
+    },
+    {
+      "query": "Pokemon Scarlet & Violet Energies Basic Fire Energy 2 reverse holofoil",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Scarlet%20%26%20Violet%20Energies%20Basic%20Fire%20Energy%202%20reverse%20holofoil",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10042692",
+      "product_name": "Basic Fire Energy [Holo] #18",
+      "console_name": "Pokemon Scarlet & Violet Energy",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:18"
+      }
+    },
+    {
+      "query": "Pokemon Scarlet & Violet Energies Basic Fire Energy 2 reverse holofoil",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Scarlet%20%26%20Violet%20Energies%20Basic%20Fire%20Energy%202%20reverse%20holofoil",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8431759",
+      "product_name": "Basic Fire Energy [Holo] #10",
+      "console_name": "Pokemon Scarlet & Violet Energy",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:10"
+      }
+    },
+    {
+      "query": "Pokemon Scarlet & Violet Energies Basic Fire Energy 2 reverse holofoil",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Scarlet%20%26%20Violet%20Energies%20Basic%20Fire%20Energy%202%20reverse%20holofoil",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8909505",
+      "product_name": "Basic Fire Energy [Cosmos Holo] #10",
+      "console_name": "Pokemon Scarlet & Violet Energy",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:10"
+      }
+    },
+    {
+      "query": "Pokemon Scarlet & Violet Energies Basic Fire Energy 2 reverse holofoil",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Scarlet%20%26%20Violet%20Energies%20Basic%20Fire%20Energy%202%20reverse%20holofoil",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10909859",
+      "product_name": "Basic Fire Energy [Prize Pack Cosmos Holo] #2",
+      "console_name": "Pokemon Scarlet & Violet Energy",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon Scarlet & Violet Energy"
+      }
+    },
+    {
+      "query": "Pokemon Scarlet & Violet Energies Basic Fire Energy 2 reverse holofoil",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Scarlet%20%26%20Violet%20Energies%20Basic%20Fire%20Energy%202%20reverse%20holofoil",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8765735",
+      "product_name": "Basic Fire Energy [Prize Pack] #2",
+      "console_name": "Pokemon Scarlet & Violet Energy",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon Scarlet & Violet Energy"
+      }
+    },
+    {
+      "query": "Pokemon Scarlet & Violet Energies Basic Fire Energy 2 reverse holofoil",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Scarlet%20%26%20Violet%20Energies%20Basic%20Fire%20Energy%202%20reverse%20holofoil",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4991224",
+      "product_name": "Basic Fire Energy #2",
+      "console_name": "Pokemon Scarlet & Violet Energy",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon Scarlet & Violet Energy"
+      }
+    },
+    {
+      "query": "Pokemon Scarlet & Violet Energies Basic Fire Energy 2 reverse holofoil",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Scarlet%20%26%20Violet%20Energies%20Basic%20Fire%20Energy%202%20reverse%20holofoil",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10951980",
+      "product_name": "Basic Fire Energy [Prize Pack Cosmos Holo] #10",
+      "console_name": "Pokemon Scarlet & Violet Energy",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:10"
+      }
+    },
+    {
+      "query": "Pokemon Scarlet & Violet Energies Basic Fire Energy 2 reverse holofoil",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Scarlet%20%26%20Violet%20Energies%20Basic%20Fire%20Energy%202%20reverse%20holofoil",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9271097",
+      "product_name": "Basic Grass Energy [Reverse Holo] #1",
+      "console_name": "Pokemon Scarlet & Violet Energy",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:1"
+      }
+    },
+    {
+      "query": "Pokemon Scarlet & Violet Energies Basic Fire Energy 2 reverse holofoil",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Scarlet%20%26%20Violet%20Energies%20Basic%20Fire%20Energy%202%20reverse%20holofoil",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7321554",
+      "product_name": "Basic Water Energy [Reverse Holo] #3",
+      "console_name": "Pokemon Scarlet & Violet Energy",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:3"
+      }
+    },
+    {
+      "query": "Pokemon Scarlet & Violet Energies Basic Fire Energy 2 reverse holofoil",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Scarlet%20%26%20Violet%20Energies%20Basic%20Fire%20Energy%202%20reverse%20holofoil",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12352806",
+      "product_name": "Basic Fire Energy [Reverse Holo] #2",
+      "console_name": "Pokemon Mega Evolution Energy",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon Mega Evolution Energy"
+      }
+    },
+    {
+      "query": "Pokemon Scarlet & Violet Energies Basic Fire Energy 2 reverse holofoil",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Scarlet%20%26%20Violet%20Energies%20Basic%20Fire%20Energy%202%20reverse%20holofoil",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7321548",
+      "product_name": "Basic Fighting Energy [Reverse Holo] #6",
+      "console_name": "Pokemon Scarlet & Violet Energy",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:6"
+      }
+    },
+    {
+      "query": "Pokemon Scarlet & Violet Energies Basic Fire Energy 2 reverse holofoil",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Scarlet%20%26%20Violet%20Energies%20Basic%20Fire%20Energy%202%20reverse%20holofoil",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8848161",
+      "product_name": "Basic Psychic Energy [Reverse Holo] #5",
+      "console_name": "Pokemon Scarlet & Violet Energy",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:5"
+      }
+    },
+    {
+      "query": "Pokemon Scarlet & Violet Energies Basic Fire Energy 2 reverse holofoil",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Scarlet%20%26%20Violet%20Energies%20Basic%20Fire%20Energy%202%20reverse%20holofoil",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10602295",
+      "product_name": "Basic Fire Energy [Prize Pack] #10",
+      "console_name": "Pokemon Scarlet & Violet Energy",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:10"
+      }
+    },
+    {
+      "query": "Pokemon Scarlet & Violet Energies Basic Fire Energy 2 reverse holofoil",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Scarlet%20%26%20Violet%20Energies%20Basic%20Fire%20Energy%202%20reverse%20holofoil",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10046271",
+      "product_name": "Basic Fire Energy #18",
+      "console_name": "Pokemon Scarlet & Violet Energy",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:18"
+      }
+    },
+    {
+      "query": "Pokemon Scarlet & Violet Energies Basic Fire Energy 2 reverse holofoil",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Scarlet%20%26%20Violet%20Energies%20Basic%20Fire%20Energy%202%20reverse%20holofoil",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7549850",
+      "product_name": "Basic Fire Energy #10",
+      "console_name": "Pokemon Scarlet & Violet Energy",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:10"
+      }
+    },
+    {
+      "query": "Pokemon Scarlet & Violet Energies Basic Fire Energy 2 reverse holofoil",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Scarlet%20%26%20Violet%20Energies%20Basic%20Fire%20Energy%202%20reverse%20holofoil",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9572286",
+      "product_name": "Basic Fire Energy [Ice Cracked] #10",
+      "console_name": "Pokemon Scarlet & Violet Energy",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:10"
+      }
+    },
+    {
+      "query": "Pokemon Scarlet & Violet Energies Basic Fire Energy 2 reverse holofoil",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Scarlet%20%26%20Violet%20Energies%20Basic%20Fire%20Energy%202%20reverse%20holofoil",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10042701",
+      "product_name": "Basic Grass Energy [Holo] #17",
+      "console_name": "Pokemon Scarlet & Violet Energy",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:17"
+      }
+    },
+    {
+      "query": "Pokemon Scarlet & Violet Energies Basic Fire Energy 2 reverse holofoil",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Scarlet%20%26%20Violet%20Energies%20Basic%20Fire%20Energy%202%20reverse%20holofoil",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7136274",
+      "product_name": "Basic Grass Energy [Holo] #1",
+      "console_name": "Pokemon Scarlet & Violet Energy",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:1"
+      }
+    }
+  ],
+  "source_lane": "pricecharting_api"
+}

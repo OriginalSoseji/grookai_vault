@@ -2,6 +2,8 @@ import fs from 'node:fs/promises';
 import path from 'node:path';
 import process from 'node:process';
 import { createRequire } from 'node:module';
+import { execFile } from 'node:child_process';
+import { promisify } from 'node:util';
 import zlib from 'node:zlib';
 
 import {
@@ -21,6 +23,7 @@ import { collectHumanFixtureEvidence } from './verified_master_set_index_v1/sour
 const require = createRequire(import.meta.url);
 const dotenv = require('dotenv');
 const pg = require('pg');
+const execFileAsync = promisify(execFile);
 
 const ROOT = process.cwd();
 for (const envPath of ['.env.local', '.env']) {
@@ -28,7 +31,17 @@ for (const envPath of ['.env.local', '.env']) {
 }
 
 const DEFAULT_MASTER_OUTPUT_DIR = path.join(DEFAULT_OUTPUT_DIR, 'english_master_index_v1');
+const DEFAULT_POKEMONTCG_SNAPSHOT_PATH = path.join(DEFAULT_OUTPUT_DIR, 'source_snapshots', 'pokemontcg_api_source_snapshot_v1.json.gz');
+const DEFAULT_POKEMONTCG_PRESERVATION_SNAPSHOT_PATH = path.join(DEFAULT_OUTPUT_DIR, 'source_snapshots', 'pokemontcg_api_preservation_overrides_v1.json');
 const SUPPORTED_SOURCES = new Set(['tcgdex', 'pokemontcg_api', 'official_checklist_pdf', 'thepricedex', 'pkmncards', 'bulbapedia']);
+const FOLDED_SUBSET_SET_CONFIGS = new Map([
+  ['rc', {
+    canonical_set_key: 'bw11',
+    canonical_set_name: 'Legendary Treasures',
+    source_set_name: 'Radiant Collection',
+    note: 'TCGdex exposes Radiant Collection RC1-RC25 as a standalone shell, but the English Master Index represents those cards as Legendary Treasures subset cards under bw11. Generations Radiant Collection remains under g1.',
+  }],
+]);
 const HUMAN_REQUIRED_NOTE = 'Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.';
 const EXACT_CHECKLIST_SOURCE_KINDS = new Set([
   'official_gallery',
@@ -36,6 +49,9 @@ const EXACT_CHECKLIST_SOURCE_KINDS = new Set([
   'marketplace_checklist',
   'collector_reference',
 ]);
+const FETCH_JSON_TIMEOUT_MS = 45000;
+const FETCH_BUFFER_TIMEOUT_MS = 90000;
+const FETCH_HTML_TIMEOUT_MS = 45000;
 
 async function sleep(ms) {
   await new Promise((resolve) => {
@@ -43,11 +59,40 @@ async function sleep(ms) {
   });
 }
 
+function isLocalTlsFailure(error) {
+  const message = String(error?.cause?.code ?? error?.message ?? error);
+  return /UNABLE_TO_VERIFY|CERT|certificate|REVOCATION/i.test(message);
+}
+
+async function fetchViaCurl(url, { accept, timeoutSeconds = 30 } = {}) {
+  const args = [
+    '--ssl-no-revoke',
+    '--silent',
+    '--show-error',
+    '--location',
+    '--max-time',
+    String(timeoutSeconds),
+    '--user-agent',
+    'Grookai Master Index Audit/1.0',
+  ];
+  if (accept) args.push('--header', `Accept: ${accept}`);
+  args.push(url);
+  const { stdout } = await execFileAsync('curl.exe', args, {
+    timeout: (timeoutSeconds + 10) * 1000,
+    maxBuffer: 50 * 1024 * 1024,
+    encoding: 'buffer',
+  });
+  return stdout;
+}
+
 async function fetchJson(url, headers = {}, attempts = 6) {
   let lastError = null;
   for (let attempt = 1; attempt <= attempts; attempt += 1) {
     try {
-      const response = await fetch(url, { headers: { Accept: 'application/json', ...headers } });
+      const response = await fetch(url, {
+        headers: { Accept: 'application/json', ...headers },
+        signal: AbortSignal.timeout(FETCH_JSON_TIMEOUT_MS),
+      });
       const text = await response.text();
       if (!response.ok) {
         throw new Error(`Fetch failed ${response.status} ${response.statusText}: ${url} :: ${text.slice(0, 250)}`);
@@ -55,6 +100,14 @@ async function fetchJson(url, headers = {}, attempts = 6) {
       return text ? JSON.parse(text) : {};
     } catch (error) {
       lastError = error;
+      if (isLocalTlsFailure(error)) {
+        try {
+          const text = (await fetchViaCurl(url, { accept: 'application/json', timeoutSeconds: 90 })).toString('utf8');
+          return text ? JSON.parse(text) : {};
+        } catch (fallbackError) {
+          lastError = fallbackError;
+        }
+      }
       if (attempt === attempts) break;
       await sleep(1000 * attempt);
     }
@@ -66,7 +119,10 @@ async function fetchBuffer(url, headers = {}, attempts = 4) {
   let lastError = null;
   for (let attempt = 1; attempt <= attempts; attempt += 1) {
     try {
-      const response = await fetch(url, { headers: { Accept: 'application/pdf,*/*', ...headers } });
+      const response = await fetch(url, {
+        headers: { Accept: 'application/pdf,*/*', ...headers },
+        signal: AbortSignal.timeout(FETCH_BUFFER_TIMEOUT_MS),
+      });
       const bytes = Buffer.from(await response.arrayBuffer());
       if (!response.ok) {
         throw new Error(`Fetch failed ${response.status} ${response.statusText}: ${url}`);
@@ -74,6 +130,42 @@ async function fetchBuffer(url, headers = {}, attempts = 4) {
       return bytes;
     } catch (error) {
       lastError = error;
+      if (isLocalTlsFailure(error)) {
+        return fetchViaCurl(url, { accept: 'application/pdf,*/*' });
+      }
+      if (attempt === attempts) break;
+      await sleep(1000 * attempt);
+    }
+  }
+  throw lastError;
+}
+
+async function fetchHtml(url, attempts = 4) {
+  let lastError = null;
+  for (let attempt = 1; attempt <= attempts; attempt += 1) {
+    try {
+      const response = await fetch(url, {
+        headers: {
+          Accept: 'text/html,application/xhtml+xml',
+          'User-Agent': 'Grookai Master Index Audit/1.0',
+        },
+        signal: AbortSignal.timeout(FETCH_HTML_TIMEOUT_MS),
+      });
+      const text = await response.text();
+      if (!response.ok) {
+        throw new Error(`Fetch failed ${response.status} ${response.statusText}: ${url}`);
+      }
+      return text;
+    } catch (error) {
+      lastError = error;
+      const message = String(error?.cause?.code ?? error?.message ?? error);
+      if (isLocalTlsFailure(error) || /fetch failed|ECONNRESET|UND_ERR|network/i.test(message)) {
+        const buffer = await fetchViaCurl(url, {
+          accept: 'text/html,application/xhtml+xml',
+          timeoutSeconds: 45,
+        });
+        return buffer.toString('utf8');
+      }
       if (attempt === attempts) break;
       await sleep(1000 * attempt);
     }
@@ -84,7 +176,7 @@ async function fetchBuffer(url, headers = {}, attempts = 4) {
 function parseArgs(argv) {
   const options = {
     outputDir: DEFAULT_MASTER_OUTPUT_DIR,
-    sources: ['tcgdex', 'pokemontcg_api', 'thepricedex', 'pkmncards'],
+    sources: ['tcgdex', 'pokemontcg_api', 'thepricedex', 'pkmncards', 'bulbapedia'],
     setFilter: null,
     maxSets: null,
     maxCardsPerSet: null,
@@ -93,6 +185,8 @@ function parseArgs(argv) {
     skipHumanFixtures: false,
     dryRun: false,
     fixtureDir: path.join(DEFAULT_OUTPUT_DIR, 'source_fixtures'),
+    pokemontcgSnapshotPath: DEFAULT_POKEMONTCG_SNAPSHOT_PATH,
+    pokemontcgPreservationSnapshotPath: DEFAULT_POKEMONTCG_PRESERVATION_SNAPSHOT_PATH,
     tcgdexBaseUrl: 'https://api.tcgdex.net/v2/en',
     pokemontcgBaseUrl: 'https://api.pokemontcg.io/v2',
   };
@@ -124,6 +218,12 @@ function parseArgs(argv) {
       options.skipHumanFixtures = true;
     } else if (arg === '--fixture-dir') {
       options.fixtureDir = next;
+      index += 1;
+    } else if (arg === '--pokemontcg-snapshot') {
+      options.pokemontcgSnapshotPath = next;
+      index += 1;
+    } else if (arg === '--pokemontcg-preservation-snapshot') {
+      options.pokemontcgPreservationSnapshotPath = next;
       index += 1;
     } else if (arg === '--dry-run') {
       options.dryRun = true;
@@ -165,7 +265,7 @@ function chooseSetName(pokemonSet, tcgdexSet) {
 function canonicalSetKey(pokemonSet, tcgdexSet) {
   const setName = chooseSetName(pokemonSet, tcgdexSet);
   if (normalizeText(setName) === 'ascended heroes') return 'ascended_heroes';
-  return pokemonSet?.id ?? tcgdexSet?.id;
+  return tcgdexSet?.id ?? pokemonSet?.id;
 }
 
 function knownManualAliases(setName) {
@@ -173,6 +273,22 @@ function knownManualAliases(setName) {
     return ['ascended_heroes', 'me02.5', 'me2pt5'];
   }
   return [];
+}
+
+function foldedSubsetSetConfig(set) {
+  const key = normalizeText(set?.id);
+  const rule = FOLDED_SUBSET_SET_CONFIGS.get(key);
+  if (!rule) return null;
+  if (normalizeSetLookup(set?.name) !== normalizeSetLookup(rule.source_set_name)) return null;
+  return rule;
+}
+
+function radiantCollectionSubsetNumber(cardNumber) {
+  const normalized = normalizeNumber(cardNumber).toUpperCase();
+  const match = normalized.match(/^RC(\d+)$/) ?? normalized.match(/^(\d+)$/);
+  if (!match) return null;
+  const value = Number(match[1]);
+  return Number.isInteger(value) && value >= 1 && value <= 25 ? `RC${value}` : null;
 }
 
 function slugifyForPkmnCards(value) {
@@ -226,6 +342,8 @@ function bulbapediaTitleForSet(key, setName) {
     svp: 'SV_Black_Star_Promos_(TCG)',
     xyp: 'XY_Black_Star_Promos_(TCG)',
     ascended_heroes: 'Ascended_Heroes_(TCG)',
+    sp: 'Sample_Set_(TCG)',
+    wp: 'W_Promotional_cards',
   };
   if (overrides[normalizedKey]) return overrides[normalizedKey];
   if (normalizedName === 'wizards black star promos') return 'Wizards_Black_Star_Promos_(TCG)';
@@ -268,6 +386,88 @@ async function fetchPokemonTcgSets(options) {
     page += 1;
   }
   return sets.filter(isPhysicalEnglishTcgSet);
+}
+
+async function readJsonMaybeGzip(file) {
+  const bytes = await fs.readFile(file);
+  const text = file.endsWith('.gz') ? zlib.gunzipSync(bytes).toString('utf8') : bytes.toString('utf8');
+  return JSON.parse(text);
+}
+
+async function loadPokemonTcgSourceSnapshot(options) {
+  if (!options.sources.includes('pokemontcg_api')) return null;
+  try {
+    const snapshot = await readJsonMaybeGzip(options.pokemontcgSnapshotPath);
+    let preservationSnapshot = null;
+    try {
+      preservationSnapshot = await readJsonMaybeGzip(options.pokemontcgPreservationSnapshotPath);
+    } catch (error) {
+      if (error?.code !== 'ENOENT') throw error;
+    }
+    const snapshotRecords = Array.isArray(snapshot.records) ? snapshot.records : [];
+    const preservationRecords = Array.isArray(preservationSnapshot?.records) ? preservationSnapshot.records : [];
+    return {
+      ...snapshot,
+      set_configs: Array.isArray(snapshot.set_configs) ? snapshot.set_configs : [],
+      records: [...snapshotRecords, ...preservationRecords],
+      preservation_snapshot_ref: preservationSnapshot
+        ? `${preservationSnapshot.version ?? 'pokemontcg_api_preservation_overrides'}:${preservationSnapshot.generated_at ?? 'unknown'}`
+        : null,
+      preservation_records_added: preservationRecords.length,
+    };
+  } catch (error) {
+    if (error?.code === 'ENOENT') return null;
+    throw error;
+  }
+}
+
+function mergePokemonTcgSnapshotSetConfigs(setConfigs, snapshot, { appendMissing = false } = {}) {
+  if (!snapshot?.set_configs?.length) return setConfigs;
+  const merged = [...setConfigs];
+  const byKey = new Map(merged.map((set) => [normalizeText(set.key), set]));
+  const byName = new Map();
+  for (const set of merged) {
+    const nameKey = normalizeSetLookup(set.set_name);
+    if (!byName.has(nameKey)) byName.set(nameKey, []);
+    byName.get(nameKey).push(set);
+  }
+
+  for (const snapshotSet of snapshot.set_configs) {
+    const key = normalizeText(snapshotSet.key);
+    const nameMatches = byName.get(normalizeSetLookup(snapshotSet.set_name)) ?? [];
+    const existing = byKey.get(key) ?? (nameMatches.length === 1 ? nameMatches[0] : null);
+    if (existing) {
+      existing.pokemontcg = existing.pokemontcg ?? snapshotSet.pokemontcg ?? null;
+      existing.manual_aliases = uniqueSorted([...(existing.manual_aliases ?? []), ...(snapshotSet.manual_aliases ?? [])]);
+      existing.source_aliases = {
+        ...(snapshotSet.source_aliases ?? {}),
+        ...(existing.source_aliases ?? {}),
+        pokemontcg_api: existing.source_aliases?.pokemontcg_api ?? snapshotSet.source_aliases?.pokemontcg_api ?? null,
+      };
+      existing.source_status = {
+        ...(snapshotSet.source_status ?? {}),
+        ...(existing.source_status ?? {}),
+        pokemontcg_api: existing.source_status?.pokemontcg_api === 'available'
+          ? 'available'
+          : (snapshotSet.source_status?.pokemontcg_api ?? existing.source_status?.pokemontcg_api ?? 'unavailable'),
+      };
+      existing.source_totals = {
+        ...(snapshotSet.source_totals ?? {}),
+        ...(existing.source_totals ?? {}),
+        pokemontcg_api: existing.source_totals?.pokemontcg_api ?? snapshotSet.source_totals?.pokemontcg_api ?? {},
+      };
+      byKey.set(normalizeText(existing.key), existing);
+      continue;
+    }
+
+    if (appendMissing) {
+      merged.push(snapshotSet);
+      byKey.set(key, snapshotSet);
+    }
+  }
+
+  return merged
+    .sort((a, b) => String(a.release_date ?? '').localeCompare(String(b.release_date ?? '')) || a.set_name.localeCompare(b.set_name));
 }
 
 async function fetchTcgdexSets(options) {
@@ -345,6 +545,7 @@ function buildSetConfigs({ pokemonSets, tcgdexSets, options }) {
 
   for (const tcgdexSet of tcgdexSets) {
     if (usedTcgdex.has(normalizeText(tcgdexSet.id))) continue;
+    if (foldedSubsetSetConfig(tcgdexSet)) continue;
     const setName = chooseSetName(null, tcgdexSet);
     const key = canonicalSetKey(null, tcgdexSet);
     const pkmnCardsSlug = pkmnCardsSlugForSet(key, setName);
@@ -517,7 +718,30 @@ function evidenceBase({ sourceKey, sourceUrl, setConfig, card, cardNumber, cardN
   };
 }
 
+function pokemonTcgIdSuffix(value) {
+  const match = String(value ?? '').match(/\/cards\/([^/?#]+)/);
+  const id = decodeURIComponent(match?.[1] ?? String(value ?? ''));
+  return id.split('-').pop() ?? '';
+}
+
+function hasPokemonTcgIdNumberMismatch({ sourceUrl, rawSnapshotRef, cardNumber }) {
+  const suffix = pokemonTcgIdSuffix(sourceUrl || rawSnapshotRef);
+  const normalizedSuffix = normalizeNumber(suffix).replace(/^0+/, '') || '0';
+  const normalizedNumber = normalizeNumber(cardNumber).replace(/^0+/, '') || '0';
+  if (!/^[0-9]+$/i.test(normalizedSuffix)) return false;
+  if (!/^[0-9]+$/i.test(normalizedNumber)) return false;
+  return normalizedSuffix !== normalizedNumber;
+}
+
 function pokemonCardEvidence(card, setConfig, retrievedAt) {
+  if (hasPokemonTcgIdNumberMismatch({
+    sourceUrl: `https://api.pokemontcg.io/v2/cards/${encodeURIComponent(card.id)}`,
+    rawSnapshotRef: `pokemontcg_api:${card.id}`,
+    cardNumber: card.number ?? '',
+  })) {
+    return [];
+  }
+
   const base = evidenceBase({
     sourceKey: 'pokemontcg_api',
     sourceUrl: `https://api.pokemontcg.io/v2/cards/${encodeURIComponent(card.id)}`,
@@ -811,16 +1035,7 @@ async function collectThePriceDexEvidenceForSet(setConfig, options, retrievedAt)
   if (!options.sources.includes('thepricedex')) return [];
   const url = thePriceDexUrl(setConfig);
   if (!url) return [];
-  const response = await fetch(url, {
-    headers: {
-      Accept: 'text/html,application/xhtml+xml',
-      'User-Agent': 'Grookai Master Index Audit/1.0',
-    },
-  });
-  const html = await response.text();
-  if (!response.ok) {
-    throw new Error(`Fetch failed ${response.status} ${response.statusText}: ${url}`);
-  }
+  const html = await fetchHtml(url);
   const data = extractNextDataJson(html, url);
   const cards = data?.props?.pageProps?.initialCards;
   if (!Array.isArray(cards) || cards.length === 0) {
@@ -907,16 +1122,7 @@ async function collectPkmnCardsEvidenceForSet(setConfig, options, retrievedAt) {
   if (!options.sources.includes('pkmncards')) return [];
   const url = pkmnCardsUrl(setConfig);
   if (!url) return [];
-  const response = await fetch(url, {
-    headers: {
-      Accept: 'text/html,application/xhtml+xml',
-      'User-Agent': 'Grookai Master Index Audit/1.0',
-    },
-  });
-  const html = await response.text();
-  if (!response.ok) {
-    throw new Error(`Fetch failed ${response.status} ${response.statusText}: ${url}`);
-  }
+  const html = await fetchHtml(url);
   const parsedRows = parsePkmnCardsSetPage(html);
   if (parsedRows.length === 0) {
     throw new Error(`PkmnCards page contained no card rows: ${url}`);
@@ -1011,16 +1217,7 @@ async function collectBulbapediaEvidenceForSet(setConfig, options, retrievedAt) 
   if (!options.sources.includes('bulbapedia')) return [];
   const url = bulbapediaUrl(setConfig);
   if (!url) return [];
-  const response = await fetch(url, {
-    headers: {
-      Accept: 'text/html,application/xhtml+xml',
-      'User-Agent': 'Grookai Master Index Audit/1.0',
-    },
-  });
-  const html = await response.text();
-  if (!response.ok) {
-    throw new Error(`Fetch failed ${response.status} ${response.statusText}: ${url}`);
-  }
+  const html = await fetchHtml(url);
   const parsedRows = parseBulbapediaSetPage(html, setConfig.set_name);
   if (parsedRows.length === 0) {
     throw new Error(`Bulbapedia page contained no extractable set-list rows: ${url}`);
@@ -1098,6 +1295,379 @@ function sourceAvailabilityFromSet(setConfig, sourceKey, rows, error = null) {
   };
 }
 
+function setAliasValues(set) {
+  return [
+    set.key,
+    set.set_name,
+    ...(set.manual_aliases ?? []),
+    set.pokemontcg,
+    set.tcgdex,
+    set.source_aliases?.pokemontcg_api,
+    set.source_aliases?.tcgdex,
+    set.source_aliases?.official_checklist_pdf,
+    set.source_aliases?.official_pokemon_checklist,
+    set.source_aliases?.thepricedex,
+    set.source_aliases?.thepricedex_price_list,
+    set.source_aliases?.pkmncards,
+    set.source_aliases?.bulbapedia,
+    set.source_aliases?.bulbapedia_set_list,
+  ];
+}
+
+function addSetAliasCandidate(candidates, alias, set, aliasKind) {
+  const normalized = normalizeText(alias);
+  if (!normalized) return;
+  if (!candidates.has(normalized)) candidates.set(normalized, new Map());
+  const bySet = candidates.get(normalized);
+  if (!bySet.has(set.key)) {
+    bySet.set(set.key, {
+      set_key: set.key,
+      set_name: set.set_name,
+      alias_values: new Set(),
+      alias_kinds: new Set(),
+    });
+  }
+  bySet.get(set.key).alias_values.add(String(alias));
+  bySet.get(set.key).alias_kinds.add(aliasKind);
+}
+
+function buildSetAliasIndex(setConfigs) {
+  const candidates = new Map();
+  for (const set of setConfigs) {
+    for (const alias of setAliasValues(set)) {
+      addSetAliasCandidate(candidates, alias, set, 'configured_alias');
+    }
+    addSetAliasCandidate(candidates, normalizeSetLookup(set.set_name), set, 'set_name_lookup');
+  }
+
+  const aliasToSet = new Map();
+  const ambiguousAliases = [];
+  for (const [alias, bySet] of candidates.entries()) {
+    const matches = [...bySet.values()].map((entry) => ({
+      ...entry,
+      alias_values: uniqueSorted([...entry.alias_values]),
+      alias_kinds: uniqueSorted([...entry.alias_kinds]),
+    }));
+    if (matches.length === 1) {
+      aliasToSet.set(alias, setConfigs.find((set) => set.key === matches[0].set_key));
+    } else {
+      ambiguousAliases.push({ alias, matches });
+    }
+  }
+
+  return {
+    aliasToSet,
+    ambiguousAliases: ambiguousAliases.sort((a, b) => a.alias.localeCompare(b.alias)),
+  };
+}
+
+function setMatchCandidates(row) {
+  return [
+    { field: 'set_key', value: row.set_key, normalized: normalizeText(row.set_key) },
+    { field: 'source_alias', value: row.source_alias, normalized: normalizeText(row.source_alias) },
+    { field: 'set_name', value: row.set_name, normalized: normalizeText(row.set_name) },
+    { field: 'set_name_lookup', value: row.set_name, normalized: normalizeSetLookup(row.set_name) },
+    { field: 'source_set_name', value: row.source_set_name, normalized: normalizeText(row.source_set_name) },
+    { field: 'source_set_name_lookup', value: row.source_set_name, normalized: normalizeSetLookup(row.source_set_name) },
+  ].filter((entry) => entry.normalized);
+}
+
+function findCanonicalSetForRow(row, aliasIndex) {
+  for (const candidate of setMatchCandidates(row)) {
+    const set = aliasIndex.aliasToSet.get(candidate.normalized);
+    if (set) return { set, matched_field: candidate.field, matched_value: candidate.value, matched_alias: candidate.normalized };
+  }
+  return null;
+}
+
+function applyKnownSourceAlias(row, setConfigs) {
+  const setKey = normalizeText(row.set_key);
+  const cardNumber = normalizeNumber(row.card_number);
+  const classicCollectionNumber = cardNumber.match(/^(\d+)a\d*$/i)?.[1] ?? null;
+
+  if (setKey === 'cel25' && classicCollectionNumber) {
+    const classicSet = setConfigs.find((set) => normalizeText(set.key) === 'cel25c');
+    if (!classicSet) return row;
+    return {
+      ...row,
+      original_set_key: row.original_set_key ?? row.set_key ?? null,
+      original_set_name: row.original_set_name ?? row.set_name ?? null,
+      original_card_number: row.original_card_number ?? row.card_number ?? null,
+      set_key: classicSet.key,
+      set_name: classicSet.set_name,
+      card_number: classicCollectionNumber,
+      source_alias: classicSet.key,
+      known_source_alias_normalized: true,
+      known_source_alias_rule: 'cel25_classic_collection_suffix',
+    };
+  }
+
+  if (setKey === 'rc') {
+    const foldedNumber = radiantCollectionSubsetNumber(cardNumber);
+    const foldedRule = FOLDED_SUBSET_SET_CONFIGS.get('rc');
+    const foldedSet = setConfigs.find((set) => normalizeText(set.key) === foldedRule?.canonical_set_key);
+    if (!foldedNumber || !foldedSet) return row;
+    return {
+      ...row,
+      original_set_key: row.original_set_key ?? row.set_key ?? null,
+      original_set_name: row.original_set_name ?? row.set_name ?? null,
+      original_card_number: row.original_card_number ?? row.card_number ?? null,
+      set_key: foldedSet.key,
+      set_name: foldedSet.set_name,
+      card_number: foldedNumber,
+      source_alias: foldedSet.key,
+      known_source_alias_normalized: true,
+      known_source_alias_rule: 'rc_radiant_collection_subset_to_bw11',
+      known_source_alias_note: foldedRule.note,
+    };
+  }
+
+  return row;
+}
+
+function canonicalizeEvidenceRows(records, setConfigs, generatedAt) {
+  const aliasIndex = buildSetAliasIndex(setConfigs);
+  const remapCounts = new Map();
+  const remapSamples = [];
+  const unresolvedSamples = [];
+  const deduped = [];
+  const seen = new Set();
+  let remappedRows = 0;
+  let duplicateRowsCollapsed = 0;
+  let unresolvedRows = 0;
+
+  for (const row of records) {
+    let next = applyKnownSourceAlias(row, setConfigs);
+    const knownAliasChanged = next !== row;
+    const match = findCanonicalSetForRow(next, aliasIndex);
+    if (match?.set) {
+      const changed = next.set_key !== match.set.key || next.set_name !== match.set.set_name || knownAliasChanged;
+      if (changed) {
+        remappedRows += 1;
+        const fromKey = row.set_key ?? '';
+        const toKey = match.set.key;
+        const remapKey = `${fromKey}|${row.set_name ?? ''}|${toKey}|${match.set.set_name}`;
+        remapCounts.set(remapKey, (remapCounts.get(remapKey) ?? 0) + 1);
+        if (remapSamples.length < 250) {
+          remapSamples.push({
+            source_key: row.source_key,
+            evidence_type: row.evidence_type,
+            original_set_key: row.set_key ?? null,
+            original_set_name: row.set_name ?? null,
+            canonical_set_key: match.set.key,
+            canonical_set_name: match.set.set_name,
+            matched_field: match.matched_field,
+            matched_value: match.matched_value ?? null,
+            card_number: next.card_number ?? row.card_number ?? null,
+            original_card_number: next.original_card_number ?? null,
+            card_name: row.card_name ?? null,
+            finish_key: row.finish_key ?? null,
+            known_source_alias_rule: next.known_source_alias_rule ?? null,
+          });
+        }
+        next = {
+          ...next,
+          original_set_key: next.original_set_key ?? row.set_key ?? null,
+          original_set_name: next.original_set_name ?? row.set_name ?? null,
+          set_key: match.set.key,
+          set_name: match.set.set_name,
+          set_alias_normalized: true,
+          set_alias_match_field: match.matched_field,
+          set_alias_match_value: match.matched_value ?? null,
+        };
+      }
+    } else {
+      unresolvedRows += 1;
+      if (unresolvedSamples.length < 250) {
+        unresolvedSamples.push({
+          source_key: row.source_key,
+          evidence_type: row.evidence_type,
+          set_key: row.set_key ?? null,
+          set_name: row.set_name ?? null,
+          source_alias: row.source_alias ?? null,
+          card_number: row.card_number ?? null,
+          card_name: row.card_name ?? null,
+          finish_key: row.finish_key ?? null,
+        });
+      }
+    }
+
+    const evidenceKey = sourceEvidenceKey(next);
+    if (seen.has(evidenceKey)) {
+      duplicateRowsCollapsed += 1;
+      continue;
+    }
+    seen.add(evidenceKey);
+    deduped.push(next);
+  }
+
+  const remaps = [...remapCounts.entries()]
+    .map(([key, count]) => {
+      const [from_set_key, from_set_name, to_set_key, to_set_name] = key.split('|');
+      return { from_set_key, from_set_name, to_set_key, to_set_name, evidence_rows: count };
+    })
+    .sort((a, b) => b.evidence_rows - a.evidence_rows || a.from_set_key.localeCompare(b.from_set_key));
+
+  const report = {
+    version: 'ENGLISH_MASTER_INDEX_SET_ALIAS_NORMALIZATION_V1',
+    generated_at: generatedAt,
+    audit_only: true,
+    db_writes: false,
+    rule: 'Evidence set aliases are canonicalized before suppression and classification only when an alias resolves to exactly one configured English set.',
+    summary: {
+      evidence_rows_examined: records.length,
+      evidence_rows_after_dedupe: deduped.length,
+      evidence_rows_remapped: remappedRows,
+      duplicate_rows_collapsed: duplicateRowsCollapsed,
+      unresolved_evidence_rows: unresolvedRows,
+      ambiguous_aliases: aliasIndex.ambiguousAliases.length,
+    },
+    remaps,
+    remap_samples: remapSamples,
+    unresolved_samples: unresolvedSamples,
+    ambiguous_aliases: aliasIndex.ambiguousAliases.slice(0, 500),
+  };
+
+  return { records: deduped, report, aliasIndex };
+}
+
+function canonicalizeSourceAvailabilityRows(sourceAvailability, aliasIndex) {
+  const rows = [];
+  const remaps = [];
+  for (const row of sourceAvailability) {
+    if (row.set_key === 'human_fixtures') {
+      rows.push(row);
+      continue;
+    }
+    const match = findCanonicalSetForRow(row, aliasIndex);
+    if (!match?.set || (row.set_key === match.set.key && row.set_name === match.set.set_name)) {
+      rows.push(row);
+      continue;
+    }
+    remaps.push({
+      source_key: row.source_key,
+      original_set_key: row.set_key ?? null,
+      original_set_name: row.set_name ?? null,
+      canonical_set_key: match.set.key,
+      canonical_set_name: match.set.set_name,
+      evidence_rows: row.evidence_rows ?? 0,
+      matched_field: match.matched_field,
+    });
+    rows.push({
+      ...row,
+      original_set_key: row.original_set_key ?? row.set_key ?? null,
+      original_set_name: row.original_set_name ?? row.set_name ?? null,
+      set_key: match.set.key,
+      set_name: match.set.set_name,
+      set_alias_normalized: true,
+    });
+  }
+  return { sourceAvailability: rows, remaps };
+}
+
+function sourceEvidenceKey(row) {
+  return [
+    row.source_key,
+    row.evidence_type,
+    row.set_key,
+    normalizeNumber(row.card_number),
+    normalizeText(row.card_name),
+    normalizeFinishKey(row.finish_key) ?? '',
+  ].join('|');
+}
+
+function applyPokemonTcgSourceSnapshot({ records, sourceAvailability, setConfigs, snapshot, generatedAt }) {
+  if (!snapshot?.records?.length) {
+    return { records, sourceAvailability, added: [] };
+  }
+  const aliasIndex = buildSetAliasIndex(setConfigs);
+  const existing = new Set(records.map(sourceEvidenceKey));
+  const added = [];
+  for (const row of snapshot.records) {
+    if (!['pokemontcg_api', 'tcgplayer_price_guide'].includes(row.source_key)) continue;
+    if (row.source_key === 'pokemontcg_api' && hasPokemonTcgIdNumberMismatch({
+      sourceUrl: row.source_url,
+      rawSnapshotRef: row.raw_snapshot_ref,
+      cardNumber: row.card_number,
+    })) {
+      continue;
+    }
+    const match = findCanonicalSetForRow(row, aliasIndex);
+    if (!match?.set) continue;
+    const snapshotRow = {
+      ...row,
+      original_set_key: row.original_set_key ?? row.set_key ?? null,
+      original_set_name: row.original_set_name ?? row.set_name ?? null,
+      set_key: match.set.key,
+      set_name: match.set.set_name,
+      set_alias_normalized: row.set_key !== match.set.key || row.set_name !== match.set.set_name || row.set_alias_normalized === true,
+      set_alias_match_field: match.matched_field,
+      set_alias_match_value: match.matched_value ?? null,
+    };
+    const key = sourceEvidenceKey(snapshotRow);
+    if (existing.has(key)) continue;
+    existing.add(key);
+    added.push({
+      ...snapshotRow,
+      retrieved_at: snapshotRow.retrieved_at ?? snapshot.generated_at ?? generatedAt,
+      cached_source_snapshot: true,
+      source_snapshot_ref: `${snapshot.version ?? 'pokemontcg_api_source_snapshot'}:${snapshot.generated_at ?? 'unknown'}`,
+      notes: [
+        snapshotRow.notes,
+        'Loaded from cached PokemonTCG.io/TCGplayer source snapshot to keep the audit deterministic when live PokemonTCG.io collection is unavailable or partial.',
+      ].filter(Boolean).join(' '),
+    });
+  }
+  if (added.length === 0) {
+    return { records, sourceAvailability, added };
+  }
+
+  const availabilityBySetSource = new Map(sourceAvailability.map((row) => [`${row.set_key}|${row.source_key}`, row]));
+  const addedCounts = new Map();
+  for (const row of added) {
+    const key = `${row.set_key}|${row.source_key}`;
+    addedCounts.set(key, (addedCounts.get(key) ?? 0) + 1);
+  }
+  const setByKey = new Map(setConfigs.map((set) => [set.key, set]));
+  for (const [key, count] of addedCounts.entries()) {
+    const [setKey, sourceKey] = key.split('|');
+    const availability = availabilityBySetSource.get(key);
+    const setConfig = setByKey.get(setKey);
+    const cachedAvailability = {
+      set_key: setKey,
+      set_name: setConfig?.set_name ?? setKey,
+      source_key: sourceKey,
+      source_alias: sourceKey === 'pokemontcg_api'
+        ? (setConfig?.source_aliases?.pokemontcg_api ?? null)
+        : null,
+      configured_status: sourceKey === 'pokemontcg_api'
+        ? (setConfig?.source_status?.pokemontcg_api ?? 'available')
+        : 'available',
+      runtime_status: 'cached_snapshot',
+      evidence_rows: count,
+      error: availability?.error ?? null,
+    };
+    if (availability) {
+      Object.assign(availability, {
+        ...cachedAvailability,
+        runtime_status: availability.runtime_status === 'collected'
+          ? 'collected_plus_cached_snapshot'
+          : cachedAvailability.runtime_status,
+        evidence_rows: (availability.evidence_rows ?? 0) + count,
+      });
+    } else {
+      sourceAvailability.push(cachedAvailability);
+      availabilityBySetSource.set(key, cachedAvailability);
+    }
+  }
+
+  return {
+    records: [...records, ...added],
+    sourceAvailability,
+    added,
+  };
+}
+
 function identitySupportKey(row) {
   return [
     row.set_key,
@@ -1155,12 +1725,21 @@ async function collectEvidenceForSet(setConfig, options, retrievedAt) {
   const availability = [];
 
   if (options.sources.includes('pokemontcg_api')) {
-    try {
+    if (options.skipLivePokemonTcg) {
+      availability.push(sourceAvailabilityFromSet(
+        setConfig,
+        'pokemontcg_api',
+        [],
+        new Error('Live PokemonTCG.io collection skipped because set inventory was unavailable and cached source snapshot fallback is enabled.'),
+      ));
+    } else {
+      try {
       const sourceRows = await collectPokemonCardsForSet(setConfig, options, retrievedAt);
       rows.push(...sourceRows);
       availability.push(sourceAvailabilityFromSet(setConfig, 'pokemontcg_api', sourceRows));
-    } catch (error) {
-      availability.push(sourceAvailabilityFromSet(setConfig, 'pokemontcg_api', [], error));
+      } catch (error) {
+        availability.push(sourceAvailabilityFromSet(setConfig, 'pokemontcg_api', [], error));
+      }
     }
   }
 
@@ -2874,8 +3453,9 @@ function buildApiAgreedTriageMarkdown(payload) {
   ].join('\n');
 }
 
-async function writeJson(outputDir, fileName, data) {
-  await fs.writeFile(path.join(outputDir, fileName), `${JSON.stringify(data, null, 2)}\n`);
+async function writeJson(outputDir, fileName, data, options = {}) {
+  const body = options.compact ? JSON.stringify(data) : JSON.stringify(data, null, 2);
+  await fs.writeFile(path.join(outputDir, fileName), `${body}\n`);
 }
 
 function evidenceUrlsForFact(row) {
@@ -2883,6 +3463,15 @@ function evidenceUrlsForFact(row) {
 }
 
 function compactPrintingFact(row) {
+  const { evidence, ...rest } = row;
+  return {
+    ...rest,
+    evidence_count: Array.isArray(evidence) ? evidence.length : 0,
+    evidence_urls: evidenceUrlsForFact(row),
+  };
+}
+
+function compactCardFact(row) {
   const { evidence, ...rest } = row;
   return {
     ...rest,
@@ -2903,6 +3492,7 @@ function indexSummaryArtifact(index) {
     summary: index.summary,
     artifact_manifest: {
       sets: 'english_master_index_sets_v1.json',
+      set_alias_normalization: 'english_master_index_set_alias_normalization_v1.json',
       source_availability: 'english_master_index_source_availability_v1.json',
       cards: 'english_master_index_cards_v1.json',
       printings: 'english_master_index_printings_v1.json',
@@ -2912,6 +3502,77 @@ function indexSummaryArtifact(index) {
       suppressed_structured_finish_candidates: 'english_master_index_suppressed_structured_finish_candidates_v1.json',
     },
   };
+}
+
+function buildSetAliasNormalizationMarkdown(payload) {
+  const summaryRows = Object.entries(payload.summary ?? {}).map(([metric, count]) => [metric, count]);
+  const remapRows = (payload.remaps ?? []).slice(0, 500).map((row) => [
+    row.from_set_key,
+    row.from_set_name,
+    row.to_set_key,
+    row.to_set_name,
+    row.evidence_rows,
+  ]);
+  const sampleRows = (payload.remap_samples ?? []).slice(0, 100).map((row) => [
+    row.source_key,
+    row.evidence_type,
+    row.original_set_key,
+    row.original_set_name,
+    row.canonical_set_key,
+    row.canonical_set_name,
+    row.card_number,
+    row.card_name,
+    row.finish_key,
+  ]);
+  const unresolvedRows = (payload.unresolved_samples ?? []).slice(0, 100).map((row) => [
+    row.source_key,
+    row.evidence_type,
+    row.set_key,
+    row.set_name,
+    row.card_number,
+    row.card_name,
+    row.finish_key,
+  ]);
+  const ambiguousRows = (payload.ambiguous_aliases ?? []).slice(0, 100).map((row) => [
+    row.alias,
+    row.matches.map((match) => `${match.set_key} ${match.set_name}`).join('; '),
+  ]);
+
+  return [
+    '# English Master Index Set Alias Normalization V1',
+    '',
+    payload.rule,
+    '',
+    'This is an audit-only evidence canonicalization report. No DB writes, migrations, cleanup, or quarantine were performed.',
+    '',
+    '## Summary',
+    '',
+    markdownTable(['metric', 'count'], summaryRows),
+    '',
+    '## Remaps',
+    '',
+    remapRows.length
+      ? markdownTable(['from_set_key', 'from_set_name', 'to_set_key', 'to_set_name', 'evidence_rows'], remapRows)
+      : 'No evidence rows required set alias normalization.',
+    '',
+    '## Remap Samples',
+    '',
+    sampleRows.length
+      ? markdownTable(['source', 'evidence_type', 'original_key', 'original_name', 'canonical_key', 'canonical_name', 'number', 'card', 'finish'], sampleRows)
+      : 'No remap samples.',
+    '',
+    '## Unresolved Samples',
+    '',
+    unresolvedRows.length
+      ? markdownTable(['source', 'evidence_type', 'set_key', 'set_name', 'number', 'card', 'finish'], unresolvedRows)
+      : 'No unresolved evidence rows.',
+    '',
+    '## Ambiguous Aliases',
+    '',
+    ambiguousRows.length
+      ? markdownTable(['alias', 'candidate_sets'], ambiguousRows)
+      : 'No ambiguous aliases detected.',
+  ].join('\n');
 }
 
 function buildSuppressedStructuredFinishCandidatesMarkdown(payload) {
@@ -2955,7 +3616,7 @@ function buildSuppressedStructuredFinishCandidatesMarkdown(payload) {
   ].join('\n');
 }
 
-async function writeReports({ outputDir, index, agreement, setAudit, grookaiAudit, generatedAt }) {
+async function writeReports({ outputDir, index, agreement, setAudit, grookaiAudit, aliasNormalization, generatedAt }) {
   await fs.mkdir(outputDir, { recursive: true });
   const setUnmappedTriage = buildSetUnmappedTriage(grookaiAudit, generatedAt);
   const nameMismatchTriage = buildNameMismatchTriage(grookaiAudit, generatedAt);
@@ -2972,6 +3633,11 @@ async function writeReports({ outputDir, index, agreement, setAudit, grookaiAudi
   };
 
   await writeJson(outputDir, 'english_master_index_v1.json', indexSummaryArtifact(index));
+  await writeJson(outputDir, 'english_master_index_set_alias_normalization_v1.json', aliasNormalization);
+  await fs.writeFile(
+    path.join(outputDir, 'english_master_index_set_alias_normalization_v1.md'),
+    buildSetAliasNormalizationMarkdown(aliasNormalization),
+  );
   await writeJson(outputDir, 'english_master_index_sets_v1.json', {
     version: 'ENGLISH_MASTER_INDEX_SETS_V1',
     generated_at: index.generated_at,
@@ -2991,8 +3657,8 @@ async function writeReports({ outputDir, index, agreement, setAudit, grookaiAudi
     generated_at: index.generated_at,
     audit_only: true,
     db_writes: false,
-    cards: index.cards,
-  });
+    cards: index.cards.map(compactCardFact),
+  }, { compact: true });
   await writeJson(outputDir, 'english_master_index_printings_v1.json', {
     version: 'ENGLISH_MASTER_INDEX_PRINTINGS_V1',
     generated_at: index.generated_at,
@@ -3001,7 +3667,7 @@ async function writeReports({ outputDir, index, agreement, setAudit, grookaiAudi
     evidence_storage: 'compact_evidence_urls_only',
     printings: index.printings.map(compactPrintingFact),
     finish_absences: index.finish_absences.map(compactPrintingFact),
-  });
+  }, { compact: true });
   await writeJson(outputDir, 'english_master_index_manual_review_v1.json', {
     version: 'ENGLISH_MASTER_INDEX_MANUAL_REVIEW_V1',
     generated_at: index.generated_at,
@@ -3050,11 +3716,25 @@ async function main() {
   const generatedAt = new Date().toISOString();
 
   console.log(`[master-index] fetching set inventories from ${options.sources.join(', ')}`);
-  const [pokemonSets, tcgdexSets] = await Promise.all([
-    fetchPokemonTcgSets(options),
+  const pokemonTcgSnapshot = await loadPokemonTcgSourceSnapshot(options);
+  const [pokemonSetsResult, tcgdexSets] = await Promise.all([
+    fetchPokemonTcgSets(options).catch((error) => {
+      console.warn(`[master-index] PokemonTCG.io set inventory unavailable: ${error.message ?? error}`);
+      return [];
+    }),
     fetchTcgdexSets(options),
   ]);
-  const setConfigs = buildSetConfigs({ pokemonSets, tcgdexSets, options });
+  const pokemonSets = pokemonSetsResult;
+  const pokemonLiveUnavailable = pokemonSets.length === 0 && Boolean(pokemonTcgSnapshot?.set_configs?.length);
+  if (pokemonLiveUnavailable) {
+    options.skipLivePokemonTcg = true;
+    console.log(`[master-index] enriching canonical set configs with cached PokemonTCG.io aliases from ${options.pokemontcgSnapshotPath}`);
+  }
+  const setConfigs = mergePokemonTcgSnapshotSetConfigs(
+    buildSetConfigs({ pokemonSets, tcgdexSets, options }),
+    pokemonTcgSnapshot,
+    { appendMissing: pokemonLiveUnavailable },
+  );
   console.log(`[master-index] selected ${setConfigs.length} English sets`);
 
   if (options.dryRun) {
@@ -3075,7 +3755,21 @@ async function main() {
     return collectEvidenceForSet(setConfig, options, generatedAt);
   });
   let records = collected.flatMap((entry) => entry.rows);
-  const sourceAvailability = collected.flatMap((entry) => entry.availability);
+  let sourceAvailability = collected.flatMap((entry) => entry.availability);
+  const snapshotResult = applyPokemonTcgSourceSnapshot({
+    records,
+    sourceAvailability,
+    setConfigs,
+    snapshot: pokemonTcgSnapshot,
+    generatedAt,
+  });
+  records = snapshotResult.records;
+  if (snapshotResult.added.length > 0) {
+    console.log(`[master-index] loaded ${snapshotResult.added.length} cached PokemonTCG.io/TCGplayer evidence rows from ${options.pokemontcgSnapshotPath}`);
+    if (pokemonTcgSnapshot?.preservation_records_added > 0) {
+      console.log(`[master-index] PokemonTCG preservation override records available: ${pokemonTcgSnapshot.preservation_records_added} from ${options.pokemontcgPreservationSnapshotPath}`);
+    }
+  }
   if (!options.skipHumanFixtures) {
     const fixtureRows = await collectHumanFixtureEvidence(setConfigs, {
       fixtureDir: options.fixtureDir,
@@ -3093,6 +3787,16 @@ async function main() {
       error: null,
     });
     console.log(`[master-index] loaded ${fixtureRows.length} human/checklist fixture evidence rows`);
+  }
+  const canonicalized = canonicalizeEvidenceRows(records, setConfigs, generatedAt);
+  records = canonicalized.records;
+  const sourceAvailabilityCanonicalized = canonicalizeSourceAvailabilityRows(sourceAvailability, canonicalized.aliasIndex);
+  sourceAvailability = sourceAvailabilityCanonicalized.sourceAvailability;
+  canonicalized.report.summary.source_availability_rows_remapped = sourceAvailabilityCanonicalized.remaps.length;
+  canonicalized.report.source_availability_remaps = sourceAvailabilityCanonicalized.remaps;
+  console.log(`[master-index] canonicalized ${canonicalized.report.summary.evidence_rows_remapped} evidence rows across set aliases`);
+  if (canonicalized.report.summary.duplicate_rows_collapsed > 0) {
+    console.log(`[master-index] collapsed ${canonicalized.report.summary.duplicate_rows_collapsed} duplicate evidence rows after alias normalization`);
   }
   const preSuppressionCount = records.length;
   const structuredSuppression = suppressStructuredOnlyFinishCandidates(records, generatedAt);
@@ -3146,6 +3850,7 @@ async function main() {
     agreement,
     setAudit,
     grookaiAudit,
+    aliasNormalization: canonicalized.report,
     generatedAt,
   });
 

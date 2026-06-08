@@ -1,0 +1,549 @@
+{
+  "status": "api_no_validated_match",
+  "fact": {
+    "gap_type": "finish_second_source_needed",
+    "fact_type": "printing_finish",
+    "set_key": "ex3",
+    "set_name": "Dragon",
+    "card_number": "100",
+    "card_name": "Charizard",
+    "finish_key": "stamped",
+    "status": "human_source_verified",
+    "sources": [
+      "thepricedex_price_list"
+    ],
+    "source_authorities": [
+      "thepricedex.com"
+    ],
+    "source_kinds": [
+      "marketplace_checklist"
+    ],
+    "evidence_urls": [
+      "https://www.thepricedex.com/set/ex3/dragon/price-list"
+    ],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "attempts": [
+    {
+      "query": "Pokemon Dragon Charizard 100 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Charizard%20100%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "849479",
+      "product_name": "Charizard #100",
+      "console_name": "Pokemon Dragon",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Charizard 100 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Charizard%20100%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "889574",
+      "product_name": "Charizard [Gold Star] #100",
+      "console_name": "Pokemon Dragon Frontiers",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Gold Star"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Charizard 100 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Charizard%20100%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3365586",
+      "product_name": "Charizard [National Championships] #100",
+      "console_name": "Pokemon Dragon",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:National Championships"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Charizard 100 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Charizard%20100%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "13077537",
+      "product_name": "Lance's Charizard V [25th Anniversary Stamped] #123/S-P",
+      "console_name": "Pokemon Chinese Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:123/S-P"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Charizard 100 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Charizard%20100%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4175809",
+      "product_name": "Reset Stamp #16",
+      "console_name": "Pokemon Japanese Charizard VMAX Starter Set",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:16"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Charizard 100 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Charizard%20100%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4918505",
+      "product_name": "Charizard [Holo] #3",
+      "console_name": "Pokemon Dragon Majesty",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:3"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Charizard 100 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Charizard%20100%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5254024",
+      "product_name": "Ash, Charizard, Squirtle #100",
+      "console_name": "Pokemon Japanese 1998 Carddass",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Ash, Charizard, Squirtle"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Charizard 100 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Charizard%20100%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "957847",
+      "product_name": "Charizard EX #100",
+      "console_name": "Pokemon Flashfire",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Charizard EX"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Charizard 100 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Charizard%20100%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5063584",
+      "product_name": "Charizard #3",
+      "console_name": "Pokemon Dragon Majesty",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:3"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Charizard 100 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Charizard%20100%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11519564",
+      "product_name": "Unfair Stamp [Mirror Holo] #633",
+      "console_name": "Pokemon Japanese Start Deck 100 Battle Collection",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:633"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Charizard 100 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Charizard%20100%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "962315",
+      "product_name": "Charizard [Reverse Holo] #3",
+      "console_name": "Pokemon Dragon Majesty",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:3"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Charizard 100 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Charizard%20100%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5672134",
+      "product_name": "Haxorus [Stamped] #16",
+      "console_name": "Pokemon Dragon Vault",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:16"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Charizard 100 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Charizard%20100%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4997891",
+      "product_name": "Latios [Stamped] #10",
+      "console_name": "Pokemon Dragon Vault",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:10"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Charizard 100 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Charizard%20100%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6124274",
+      "product_name": "Latias [Stamped] #9",
+      "console_name": "Pokemon Dragon Vault",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:9"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Charizard 100 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Charizard%20100%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11462969",
+      "product_name": "Unfair Stamp #633",
+      "console_name": "Pokemon Japanese Start Deck 100 Battle Collection",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:633"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Charizard 100 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Charizard%20100%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11519705",
+      "product_name": "Mega Charizard Y ex [Mirror Holo] #766",
+      "console_name": "Pokemon Japanese Start Deck 100 Battle Collection",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:766"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Charizard 100 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Charizard%20100%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11519704",
+      "product_name": "Mega Charizard Y ex [Mirror Holo] #85",
+      "console_name": "Pokemon Japanese Start Deck 100 Battle Collection",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:85"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Charizard 100 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Charizard%20100%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3445477",
+      "product_name": "Charizard #3",
+      "console_name": "Pokemon Japanese Dragon Storm",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:3"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Charizard 100 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Charizard%20100%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5134126",
+      "product_name": "Reset Stamp #100",
+      "console_name": "Pokemon Japanese V Starter Deck SD",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Reset Stamp"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Charizard 100 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Charizard%20100%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11463102",
+      "product_name": "Mega Charizard Y ex #766",
+      "console_name": "Pokemon Japanese Start Deck 100 Battle Collection",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:766"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Charizard 100 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Charizard%20100%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "849479",
+      "product_name": "Charizard #100",
+      "console_name": "Pokemon Dragon",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Charizard 100 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Charizard%20100%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "889574",
+      "product_name": "Charizard [Gold Star] #100",
+      "console_name": "Pokemon Dragon Frontiers",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Gold Star"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Charizard 100 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Charizard%20100%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3365586",
+      "product_name": "Charizard [National Championships] #100",
+      "console_name": "Pokemon Dragon",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:National Championships"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Charizard 100 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Charizard%20100%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "13077537",
+      "product_name": "Lance's Charizard V [25th Anniversary Stamped] #123/S-P",
+      "console_name": "Pokemon Chinese Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:123/S-P"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Charizard 100 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Charizard%20100%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4175809",
+      "product_name": "Reset Stamp #16",
+      "console_name": "Pokemon Japanese Charizard VMAX Starter Set",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:16"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Charizard 100 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Charizard%20100%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4918505",
+      "product_name": "Charizard [Holo] #3",
+      "console_name": "Pokemon Dragon Majesty",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:3"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Charizard 100 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Charizard%20100%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5254024",
+      "product_name": "Ash, Charizard, Squirtle #100",
+      "console_name": "Pokemon Japanese 1998 Carddass",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Ash, Charizard, Squirtle"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Charizard 100 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Charizard%20100%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "957847",
+      "product_name": "Charizard EX #100",
+      "console_name": "Pokemon Flashfire",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Charizard EX"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Charizard 100 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Charizard%20100%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5063584",
+      "product_name": "Charizard #3",
+      "console_name": "Pokemon Dragon Majesty",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:3"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Charizard 100 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Charizard%20100%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11519564",
+      "product_name": "Unfair Stamp [Mirror Holo] #633",
+      "console_name": "Pokemon Japanese Start Deck 100 Battle Collection",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:633"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Charizard 100 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Charizard%20100%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "962315",
+      "product_name": "Charizard [Reverse Holo] #3",
+      "console_name": "Pokemon Dragon Majesty",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:3"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Charizard 100 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Charizard%20100%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5672134",
+      "product_name": "Haxorus [Stamped] #16",
+      "console_name": "Pokemon Dragon Vault",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:16"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Charizard 100 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Charizard%20100%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4997891",
+      "product_name": "Latios [Stamped] #10",
+      "console_name": "Pokemon Dragon Vault",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:10"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Charizard 100 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Charizard%20100%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6124274",
+      "product_name": "Latias [Stamped] #9",
+      "console_name": "Pokemon Dragon Vault",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:9"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Charizard 100 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Charizard%20100%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11462969",
+      "product_name": "Unfair Stamp #633",
+      "console_name": "Pokemon Japanese Start Deck 100 Battle Collection",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:633"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Charizard 100 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Charizard%20100%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11519705",
+      "product_name": "Mega Charizard Y ex [Mirror Holo] #766",
+      "console_name": "Pokemon Japanese Start Deck 100 Battle Collection",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:766"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Charizard 100 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Charizard%20100%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11519704",
+      "product_name": "Mega Charizard Y ex [Mirror Holo] #85",
+      "console_name": "Pokemon Japanese Start Deck 100 Battle Collection",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:85"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Charizard 100 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Charizard%20100%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3445477",
+      "product_name": "Charizard #3",
+      "console_name": "Pokemon Japanese Dragon Storm",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:3"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Charizard 100 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Charizard%20100%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5134126",
+      "product_name": "Reset Stamp #100",
+      "console_name": "Pokemon Japanese V Starter Deck SD",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Reset Stamp"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Charizard 100 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Charizard%20100%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11463102",
+      "product_name": "Mega Charizard Y ex #766",
+      "console_name": "Pokemon Japanese Start Deck 100 Battle Collection",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:766"
+      }
+    }
+  ],
+  "source_lane": "pricecharting_api"
+}

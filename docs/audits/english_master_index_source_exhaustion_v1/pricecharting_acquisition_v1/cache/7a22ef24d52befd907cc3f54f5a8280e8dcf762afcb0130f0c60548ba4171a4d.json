@@ -1,0 +1,549 @@
+{
+  "status": "api_no_validated_match",
+  "fact": {
+    "gap_type": "finish_second_source_needed",
+    "fact_type": "printing_finish",
+    "set_key": "hgss3",
+    "set_name": "HS—Undaunted",
+    "card_number": "79",
+    "card_name": "Darkness Energy",
+    "finish_key": "stamped",
+    "status": "human_source_verified",
+    "sources": [
+      "thepricedex_price_list"
+    ],
+    "source_authorities": [
+      "thepricedex.com"
+    ],
+    "source_kinds": [
+      "marketplace_checklist"
+    ],
+    "evidence_urls": [
+      "https://www.thepricedex.com/set/hgss3/hs-undaunted/price-list"
+    ],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "attempts": [
+    {
+      "query": "Pokemon HS—Undaunted Darkness Energy 79 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Undaunted%20Darkness%20Energy%2079%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "925966",
+      "product_name": "Darkness Energy #79",
+      "console_name": "Pokemon Undaunted",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon HS—Undaunted Darkness Energy 79 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Undaunted%20Darkness%20Energy%2079%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8597950",
+      "product_name": "Darkness Energy [League] #79",
+      "console_name": "Pokemon Undaunted",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:League"
+      }
+    },
+    {
+      "query": "Pokemon HS—Undaunted Darkness Energy 79 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Undaunted%20Darkness%20Energy%2079%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "926057",
+      "product_name": "Darkness Energy [Reverse Holo] #79",
+      "console_name": "Pokemon Undaunted",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Reverse Holo"
+      }
+    },
+    {
+      "query": "Pokemon HS—Undaunted Darkness Energy 79 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Undaunted%20Darkness%20Energy%2079%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3460162",
+      "product_name": "Darkness Energy #79",
+      "console_name": "Pokemon Japanese Reviving Legends",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon Japanese Reviving Legends"
+      }
+    },
+    {
+      "query": "Pokemon HS—Undaunted Darkness Energy 79 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Undaunted%20Darkness%20Energy%2079%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8454141",
+      "product_name": "Darkness Energy [1st Edition] #79",
+      "console_name": "Pokemon Japanese Reviving Legends",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon Japanese Reviving Legends"
+      }
+    },
+    {
+      "query": "Pokemon HS—Undaunted Darkness Energy 79 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Undaunted%20Darkness%20Energy%2079%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "925967",
+      "product_name": "Metal Energy #80",
+      "console_name": "Pokemon Undaunted",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:80"
+      }
+    },
+    {
+      "query": "Pokemon HS—Undaunted Darkness Energy 79 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Undaunted%20Darkness%20Energy%2079%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6124813",
+      "product_name": "Metal Energy [Pokemon League] #80",
+      "console_name": "Pokemon Undaunted",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:80"
+      }
+    },
+    {
+      "query": "Pokemon HS—Undaunted Darkness Energy 79 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Undaunted%20Darkness%20Energy%2079%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "925960",
+      "product_name": "Energy Exchanger #73",
+      "console_name": "Pokemon Undaunted",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:73"
+      }
+    },
+    {
+      "query": "Pokemon HS—Undaunted Darkness Energy 79 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Undaunted%20Darkness%20Energy%2079%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "926058",
+      "product_name": "Metal Energy [Reverse Holo] #80",
+      "console_name": "Pokemon Undaunted",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:80"
+      }
+    },
+    {
+      "query": "Pokemon HS—Undaunted Darkness Energy 79 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Undaunted%20Darkness%20Energy%2079%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "926051",
+      "product_name": "Energy Exchanger [Reverse Holo] #73",
+      "console_name": "Pokemon Undaunted",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:73"
+      }
+    },
+    {
+      "query": "Pokemon HS—Undaunted Darkness Energy 79 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Undaunted%20Darkness%20Energy%2079%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4835862",
+      "product_name": "Grass Energy",
+      "console_name": "Pokemon Japanese Beginning Set HS",
+      "validation": {
+        "ok": false,
+        "reason": "api_product_name_pattern_not_supported"
+      }
+    },
+    {
+      "query": "Pokemon HS—Undaunted Darkness Energy 79 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Undaunted%20Darkness%20Energy%2079%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4835874",
+      "product_name": "Fire Energy",
+      "console_name": "Pokemon Japanese Beginning Set HS",
+      "validation": {
+        "ok": false,
+        "reason": "api_product_name_pattern_not_supported"
+      }
+    },
+    {
+      "query": "Pokemon HS—Undaunted Darkness Energy 79 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Undaunted%20Darkness%20Energy%2079%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4835886",
+      "product_name": "Water Energy",
+      "console_name": "Pokemon Japanese Beginning Set HS",
+      "validation": {
+        "ok": false,
+        "reason": "api_product_name_pattern_not_supported"
+      }
+    },
+    {
+      "query": "Pokemon HS—Undaunted Darkness Energy 79 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Undaunted%20Darkness%20Energy%2079%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10932248",
+      "product_name": "Luminous Energy [Stamped] #2006",
+      "console_name": "Pokemon Chinese Gem Pack 3",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:2006"
+      }
+    },
+    {
+      "query": "Pokemon HS—Undaunted Darkness Energy 79 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Undaunted%20Darkness%20Energy%2079%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4835887",
+      "product_name": "Psychic Energy",
+      "console_name": "Pokemon Japanese Beginning Set HS",
+      "validation": {
+        "ok": false,
+        "reason": "api_product_name_pattern_not_supported"
+      }
+    },
+    {
+      "query": "Pokemon HS—Undaunted Darkness Energy 79 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Undaunted%20Darkness%20Energy%2079%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5827440",
+      "product_name": "Darkness Energy [Holo]",
+      "console_name": "Pokemon Japanese Gengar Vmax High-Class",
+      "validation": {
+        "ok": false,
+        "reason": "api_product_name_pattern_not_supported"
+      }
+    },
+    {
+      "query": "Pokemon HS—Undaunted Darkness Energy 79 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Undaunted%20Darkness%20Energy%2079%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5442444",
+      "product_name": "Darkness Energy [Holo] #DAR",
+      "console_name": "Pokemon Japanese Go",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:DAR"
+      }
+    },
+    {
+      "query": "Pokemon HS—Undaunted Darkness Energy 79 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Undaunted%20Darkness%20Energy%2079%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3458198",
+      "product_name": "Darkness Energy",
+      "console_name": "Pokemon Japanese Shining Darkness",
+      "validation": {
+        "ok": false,
+        "reason": "api_product_name_pattern_not_supported"
+      }
+    },
+    {
+      "query": "Pokemon HS—Undaunted Darkness Energy 79 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Undaunted%20Darkness%20Energy%2079%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10045243",
+      "product_name": "Basic Darkness Energy [Holo] #23",
+      "console_name": "Pokemon Scarlet & Violet Energy",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:23"
+      }
+    },
+    {
+      "query": "Pokemon HS—Undaunted Darkness Energy 79 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Undaunted%20Darkness%20Energy%2079%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7321552",
+      "product_name": "Basic Darkness Energy [Holo] #7",
+      "console_name": "Pokemon Scarlet & Violet Energy",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:7"
+      }
+    },
+    {
+      "query": "Pokemon HS—Undaunted Darkness Energy 79 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Undaunted%20Darkness%20Energy%2079%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "925966",
+      "product_name": "Darkness Energy #79",
+      "console_name": "Pokemon Undaunted",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon HS—Undaunted Darkness Energy 79 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Undaunted%20Darkness%20Energy%2079%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8597950",
+      "product_name": "Darkness Energy [League] #79",
+      "console_name": "Pokemon Undaunted",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:League"
+      }
+    },
+    {
+      "query": "Pokemon HS—Undaunted Darkness Energy 79 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Undaunted%20Darkness%20Energy%2079%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "926057",
+      "product_name": "Darkness Energy [Reverse Holo] #79",
+      "console_name": "Pokemon Undaunted",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Reverse Holo"
+      }
+    },
+    {
+      "query": "Pokemon HS—Undaunted Darkness Energy 79 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Undaunted%20Darkness%20Energy%2079%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3460162",
+      "product_name": "Darkness Energy #79",
+      "console_name": "Pokemon Japanese Reviving Legends",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon Japanese Reviving Legends"
+      }
+    },
+    {
+      "query": "Pokemon HS—Undaunted Darkness Energy 79 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Undaunted%20Darkness%20Energy%2079%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8454141",
+      "product_name": "Darkness Energy [1st Edition] #79",
+      "console_name": "Pokemon Japanese Reviving Legends",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon Japanese Reviving Legends"
+      }
+    },
+    {
+      "query": "Pokemon HS—Undaunted Darkness Energy 79 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Undaunted%20Darkness%20Energy%2079%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "925967",
+      "product_name": "Metal Energy #80",
+      "console_name": "Pokemon Undaunted",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:80"
+      }
+    },
+    {
+      "query": "Pokemon HS—Undaunted Darkness Energy 79 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Undaunted%20Darkness%20Energy%2079%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6124813",
+      "product_name": "Metal Energy [Pokemon League] #80",
+      "console_name": "Pokemon Undaunted",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:80"
+      }
+    },
+    {
+      "query": "Pokemon HS—Undaunted Darkness Energy 79 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Undaunted%20Darkness%20Energy%2079%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "925960",
+      "product_name": "Energy Exchanger #73",
+      "console_name": "Pokemon Undaunted",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:73"
+      }
+    },
+    {
+      "query": "Pokemon HS—Undaunted Darkness Energy 79 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Undaunted%20Darkness%20Energy%2079%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "926058",
+      "product_name": "Metal Energy [Reverse Holo] #80",
+      "console_name": "Pokemon Undaunted",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:80"
+      }
+    },
+    {
+      "query": "Pokemon HS—Undaunted Darkness Energy 79 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Undaunted%20Darkness%20Energy%2079%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "926051",
+      "product_name": "Energy Exchanger [Reverse Holo] #73",
+      "console_name": "Pokemon Undaunted",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:73"
+      }
+    },
+    {
+      "query": "Pokemon HS—Undaunted Darkness Energy 79 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Undaunted%20Darkness%20Energy%2079%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4835862",
+      "product_name": "Grass Energy",
+      "console_name": "Pokemon Japanese Beginning Set HS",
+      "validation": {
+        "ok": false,
+        "reason": "api_product_name_pattern_not_supported"
+      }
+    },
+    {
+      "query": "Pokemon HS—Undaunted Darkness Energy 79 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Undaunted%20Darkness%20Energy%2079%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4835874",
+      "product_name": "Fire Energy",
+      "console_name": "Pokemon Japanese Beginning Set HS",
+      "validation": {
+        "ok": false,
+        "reason": "api_product_name_pattern_not_supported"
+      }
+    },
+    {
+      "query": "Pokemon HS—Undaunted Darkness Energy 79 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Undaunted%20Darkness%20Energy%2079%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4835886",
+      "product_name": "Water Energy",
+      "console_name": "Pokemon Japanese Beginning Set HS",
+      "validation": {
+        "ok": false,
+        "reason": "api_product_name_pattern_not_supported"
+      }
+    },
+    {
+      "query": "Pokemon HS—Undaunted Darkness Energy 79 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Undaunted%20Darkness%20Energy%2079%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10932248",
+      "product_name": "Luminous Energy [Stamped] #2006",
+      "console_name": "Pokemon Chinese Gem Pack 3",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:2006"
+      }
+    },
+    {
+      "query": "Pokemon HS—Undaunted Darkness Energy 79 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Undaunted%20Darkness%20Energy%2079%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4835887",
+      "product_name": "Psychic Energy",
+      "console_name": "Pokemon Japanese Beginning Set HS",
+      "validation": {
+        "ok": false,
+        "reason": "api_product_name_pattern_not_supported"
+      }
+    },
+    {
+      "query": "Pokemon HS—Undaunted Darkness Energy 79 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Undaunted%20Darkness%20Energy%2079%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5827440",
+      "product_name": "Darkness Energy [Holo]",
+      "console_name": "Pokemon Japanese Gengar Vmax High-Class",
+      "validation": {
+        "ok": false,
+        "reason": "api_product_name_pattern_not_supported"
+      }
+    },
+    {
+      "query": "Pokemon HS—Undaunted Darkness Energy 79 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Undaunted%20Darkness%20Energy%2079%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5442444",
+      "product_name": "Darkness Energy [Holo] #DAR",
+      "console_name": "Pokemon Japanese Go",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:DAR"
+      }
+    },
+    {
+      "query": "Pokemon HS—Undaunted Darkness Energy 79 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Undaunted%20Darkness%20Energy%2079%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3458198",
+      "product_name": "Darkness Energy",
+      "console_name": "Pokemon Japanese Shining Darkness",
+      "validation": {
+        "ok": false,
+        "reason": "api_product_name_pattern_not_supported"
+      }
+    },
+    {
+      "query": "Pokemon HS—Undaunted Darkness Energy 79 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Undaunted%20Darkness%20Energy%2079%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10045243",
+      "product_name": "Basic Darkness Energy [Holo] #23",
+      "console_name": "Pokemon Scarlet & Violet Energy",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:23"
+      }
+    },
+    {
+      "query": "Pokemon HS—Undaunted Darkness Energy 79 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Undaunted%20Darkness%20Energy%2079%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7321552",
+      "product_name": "Basic Darkness Energy [Holo] #7",
+      "console_name": "Pokemon Scarlet & Violet Energy",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:7"
+      }
+    }
+  ],
+  "source_lane": "pricecharting_api"
+}

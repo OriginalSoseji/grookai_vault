@@ -1,0 +1,50 @@
+{
+  "status": "no_validated_match",
+  "fact": {
+    "gap_type": "finish_human_checklist_evidence_needed",
+    "fact_type": "printing_finish",
+    "set_key": "ex11",
+    "set_name": "Delta Species",
+    "card_number": "113",
+    "card_name": "Metagross Star",
+    "finish_key": "holo",
+    "status": "candidate_unconfirmed",
+    "sources": [
+      "tcgdex"
+    ],
+    "source_authorities": [
+      "api.tcgdex.net"
+    ],
+    "source_kinds": [
+      "structured_api"
+    ],
+    "evidence_urls": [],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "attempts": [
+    {
+      "query": "Pokemon Delta Species Metagross Star 113 holo",
+      "url": "https://www.pricecharting.com/search-products?q=Pokemon%20Delta%20Species%20Metagross%20Star%20113%20holo&type=prices",
+      "parsed": {
+        "title": "Pokemon Delta Species Metagross Star 113 Holo Prices | Pokemon Delta Species Metagross Star 113 Holo List",
+        "source_url": "https://www.pricecharting.com/search-products?q=pokemon+delta+species+metagross+star+113+holo&type=prices"
+      },
+      "validation": {
+        "ok": false,
+        "reason": "title_pattern_not_supported"
+      }
+    },
+    {
+      "query": "Pokemon Delta Species Metagross Star 113 holofoil",
+      "url": "https://www.pricecharting.com/search-products?q=Pokemon%20Delta%20Species%20Metagross%20Star%20113%20holofoil&type=prices",
+      "parsed": {
+        "title": "Pokemon Delta Species Metagross Star 113 Holofoil Prices | Pokemon Delta Species Metagross Star 113 Holofoil List",
+        "source_url": "https://www.pricecharting.com/search-products?q=pokemon+delta+species+metagross+star+113+holofoil&type=prices"
+      },
+      "validation": {
+        "ok": false,
+        "reason": "title_pattern_not_supported"
+      }
+    }
+  ]
+}

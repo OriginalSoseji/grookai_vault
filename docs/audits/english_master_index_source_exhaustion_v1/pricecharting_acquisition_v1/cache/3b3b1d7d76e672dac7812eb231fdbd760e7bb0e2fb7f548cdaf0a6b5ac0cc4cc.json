@@ -1,0 +1,58 @@
+{
+  "status": "validated",
+  "fact": {
+    "gap_type": "finish_second_source_needed",
+    "fact_type": "printing_finish",
+    "set_key": "swsh3",
+    "set_name": "Darkness Ablaze",
+    "card_number": "116",
+    "card_name": "Eternatus V",
+    "finish_key": "stamped",
+    "status": "human_source_verified",
+    "sources": [
+      "thepricedex_price_list"
+    ],
+    "source_authorities": [
+      "thepricedex.com"
+    ],
+    "source_kinds": [
+      "marketplace_checklist"
+    ],
+    "evidence_urls": [],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "query": "Pokemon Darkness Ablaze Eternatus V 116 stamp",
+  "search_url": "https://www.pricecharting.com/search-products?q=Pokemon%20Darkness%20Ablaze%20Eternatus%20V%20116%20stamp&type=prices",
+  "source_url": "https://www.pricecharting.com/game/pokemon-darkness-ablaze/eternatus-v-jumbo-stamped-116",
+  "title": "Eternatus V [Jumbo Stamped] #116 Prices | Pokemon Darkness Ablaze | Pokemon Cards",
+  "title_parts": {
+    "card_name": "Eternatus V",
+    "variant_label": "Jumbo Stamped",
+    "card_number": "116",
+    "set_name": "Darkness Ablaze"
+  },
+  "attempts": [
+    {
+      "query": "Pokemon Darkness Ablaze Eternatus V 116 stamped",
+      "url": "https://www.pricecharting.com/search-products?q=Pokemon%20Darkness%20Ablaze%20Eternatus%20V%20116%20stamped&type=prices",
+      "error": "Fetch failed 403 Forbidden: https://www.pricecharting.com/search-products?q=Pokemon%20Darkness%20Ablaze%20Eternatus%20V%20116%20stamped&type=prices"
+    },
+    {
+      "query": "Pokemon Darkness Ablaze Eternatus V 116 stamp",
+      "url": "https://www.pricecharting.com/search-products?q=Pokemon%20Darkness%20Ablaze%20Eternatus%20V%20116%20stamp&type=prices",
+      "parsed": {
+        "title": "Eternatus V [Jumbo Stamped] #116 Prices | Pokemon Darkness Ablaze | Pokemon Cards",
+        "source_url": "https://www.pricecharting.com/game/pokemon-darkness-ablaze/eternatus-v-jumbo-stamped-116"
+      },
+      "validation": {
+        "ok": true,
+        "titleParts": {
+          "card_name": "Eternatus V",
+          "variant_label": "Jumbo Stamped",
+          "card_number": "116",
+          "set_name": "Darkness Ablaze"
+        }
+      }
+    }
+  ]
+}

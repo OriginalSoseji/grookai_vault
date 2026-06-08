@@ -1,0 +1,48 @@
+{
+  "fixture_version": "VERIFIED_MASTER_SET_INDEX_V1_HUMAN_SOURCE_FIXTURE_GENERATED",
+  "source_key": "doubleholo_finish_sm10",
+  "source_kind": "marketplace_checklist",
+  "source_url": "https://doubleholo.com/sets/pokemon-unbroken-bonds",
+  "source_status": "available_generated",
+  "set_key": "sm10",
+  "set_name": "Unbroken Bonds",
+  "retrieved_at": "2026-05-27T16:29:37.798Z",
+  "raw_snapshot_ref": "generated_fixture:doubleholo:sm10:2026-05-27T16:29:37.798Z",
+  "generation_note": "Generated from Double Holo set checklist explicit bracketed finish labels only.",
+  "records": [
+    {
+      "source_key": "doubleholo_set_checklist",
+      "source_kind": "marketplace_checklist",
+      "source_url": "https://doubleholo.com/sets/pokemon-unbroken-bonds",
+      "set_key": "sm10",
+      "set_name": "Unbroken Bonds",
+      "card_number": "33",
+      "card_name": "Squirtle",
+      "finish_key": "holo",
+      "rarity": null,
+      "evidence_type": "finish_presence",
+      "evidence_label": "Double Holo checklist row Squirtle [Holo] #33",
+      "language": "en",
+      "retrieved_at": "2026-05-27T16:29:37.798Z",
+      "raw_snapshot_ref": "doubleholo:sm10:33:holo",
+      "notes": "Generated only from explicit bracketed Double Holo finish labels."
+    },
+    {
+      "source_key": "doubleholo_set_checklist",
+      "source_kind": "marketplace_checklist",
+      "source_url": "https://doubleholo.com/sets/pokemon-unbroken-bonds",
+      "set_key": "sm10",
+      "set_name": "Unbroken Bonds",
+      "card_number": "34",
+      "card_name": "Wartortle",
+      "finish_key": "holo",
+      "rarity": null,
+      "evidence_type": "finish_presence",
+      "evidence_label": "Double Holo checklist row Wartortle [Holo] #34",
+      "language": "en",
+      "retrieved_at": "2026-05-27T16:29:37.798Z",
+      "raw_snapshot_ref": "doubleholo:sm10:34:holo",
+      "notes": "Generated only from explicit bracketed Double Holo finish labels."
+    }
+  ]
+}

@@ -1,0 +1,549 @@
+{
+  "status": "api_no_validated_match",
+  "fact": {
+    "gap_type": "finish_second_source_needed",
+    "fact_type": "printing_finish",
+    "set_key": "sv07",
+    "set_name": "Stellar Crown",
+    "card_number": "31",
+    "card_name": "Lapras",
+    "finish_key": "stamped",
+    "status": "human_source_verified",
+    "sources": [
+      "thepricedex_price_list"
+    ],
+    "source_authorities": [
+      "thepricedex.com"
+    ],
+    "source_kinds": [
+      "marketplace_checklist"
+    ],
+    "evidence_urls": [
+      "https://www.thepricedex.com/set/sv7/stellar-crown/price-list"
+    ],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "attempts": [
+    {
+      "query": "Pokemon Stellar Crown Lapras 31 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Stellar%20Crown%20Lapras%2031%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7418516",
+      "product_name": "Lapras #31",
+      "console_name": "Pokemon Stellar Crown",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon Stellar Crown Lapras 31 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Stellar%20Crown%20Lapras%2031%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7470939",
+      "product_name": "Lapras [7-11] #31",
+      "console_name": "Pokemon Stellar Crown",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:7-11"
+      }
+    },
+    {
+      "query": "Pokemon Stellar Crown Lapras 31 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Stellar%20Crown%20Lapras%2031%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7418687",
+      "product_name": "Lapras [Reverse Holo] #31",
+      "console_name": "Pokemon Stellar Crown",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Reverse Holo"
+      }
+    },
+    {
+      "query": "Pokemon Stellar Crown Lapras 31 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Stellar%20Crown%20Lapras%2031%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7418517",
+      "product_name": "Lapras ex #32",
+      "console_name": "Pokemon Stellar Crown",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:32"
+      }
+    },
+    {
+      "query": "Pokemon Stellar Crown Lapras 31 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Stellar%20Crown%20Lapras%2031%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7418643",
+      "product_name": "Lapras ex #158",
+      "console_name": "Pokemon Stellar Crown",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:158"
+      }
+    },
+    {
+      "query": "Pokemon Stellar Crown Lapras 31 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Stellar%20Crown%20Lapras%2031%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11580217",
+      "product_name": "Meltan [Stamped] #102",
+      "console_name": "Pokemon Stellar Crown",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:102"
+      }
+    },
+    {
+      "query": "Pokemon Stellar Crown Lapras 31 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Stellar%20Crown%20Lapras%2031%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11370172",
+      "product_name": "Reshiram [Stamped] #22",
+      "console_name": "Pokemon Stellar Crown",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:22"
+      }
+    },
+    {
+      "query": "Pokemon Stellar Crown Lapras 31 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Stellar%20Crown%20Lapras%2031%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10028510",
+      "product_name": "Glass Trumpet [Gym Stamp] #135",
+      "console_name": "Pokemon Stellar Crown",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:135"
+      }
+    },
+    {
+      "query": "Pokemon Stellar Crown Lapras 31 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Stellar%20Crown%20Lapras%2031%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7442384",
+      "product_name": "Raging Bolt [Stamped] #111",
+      "console_name": "Pokemon Stellar Crown",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:111"
+      }
+    },
+    {
+      "query": "Pokemon Stellar Crown Lapras 31 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Stellar%20Crown%20Lapras%2031%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10212998",
+      "product_name": "Blastoise Ex [Stamped] #30",
+      "console_name": "Pokemon Stellar Crown",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:30"
+      }
+    },
+    {
+      "query": "Pokemon Stellar Crown Lapras 31 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Stellar%20Crown%20Lapras%2031%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11469116",
+      "product_name": "Melmetal Ex [Stamped] #105",
+      "console_name": "Pokemon Stellar Crown",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:105"
+      }
+    },
+    {
+      "query": "Pokemon Stellar Crown Lapras 31 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Stellar%20Crown%20Lapras%2031%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11321011",
+      "product_name": "Greninja EX [Stamped] #41",
+      "console_name": "Pokemon Stellar Crown",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:41"
+      }
+    },
+    {
+      "query": "Pokemon Stellar Crown Lapras 31 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Stellar%20Crown%20Lapras%2031%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10233481",
+      "product_name": "Venusaur Ex [Stamped] #1",
+      "console_name": "Pokemon Stellar Crown",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:1"
+      }
+    },
+    {
+      "query": "Pokemon Stellar Crown Lapras 31 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Stellar%20Crown%20Lapras%2031%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7445419",
+      "product_name": "Archaludon [Cosmos Holo Stamped] #107",
+      "console_name": "Pokemon Stellar Crown",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:107"
+      }
+    },
+    {
+      "query": "Pokemon Stellar Crown Lapras 31 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Stellar%20Crown%20Lapras%2031%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4442473",
+      "product_name": "Lapras [Snowflake Stamp] #48",
+      "console_name": "Pokemon Sword & Shield",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:48"
+      }
+    },
+    {
+      "query": "Pokemon Stellar Crown Lapras 31 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Stellar%20Crown%20Lapras%2031%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10366693",
+      "product_name": "Area Zero Underdepths [Gym Stamp Asia] #131",
+      "console_name": "Pokemon Stellar Crown",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:131"
+      }
+    },
+    {
+      "query": "Pokemon Stellar Crown Lapras 31 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Stellar%20Crown%20Lapras%2031%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4637061",
+      "product_name": "Lapras #GG05",
+      "console_name": "Pokemon Crown Zenith",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:GG05"
+      }
+    },
+    {
+      "query": "Pokemon Stellar Crown Lapras 31 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Stellar%20Crown%20Lapras%2031%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3449247",
+      "product_name": "Lapras V #31",
+      "console_name": "Pokemon Japanese Shiny Star V",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Lapras V"
+      }
+    },
+    {
+      "query": "Pokemon Stellar Crown Lapras 31 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Stellar%20Crown%20Lapras%2031%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7029953",
+      "product_name": "Lapras ex #117",
+      "console_name": "Pokemon Japanese Stellar Miracle",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:117"
+      }
+    },
+    {
+      "query": "Pokemon Stellar Crown Lapras 31 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Stellar%20Crown%20Lapras%2031%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7029856",
+      "product_name": "Lapras ex #19",
+      "console_name": "Pokemon Japanese Stellar Miracle",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:19"
+      }
+    },
+    {
+      "query": "Pokemon Stellar Crown Lapras 31 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Stellar%20Crown%20Lapras%2031%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7418516",
+      "product_name": "Lapras #31",
+      "console_name": "Pokemon Stellar Crown",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon Stellar Crown Lapras 31 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Stellar%20Crown%20Lapras%2031%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7470939",
+      "product_name": "Lapras [7-11] #31",
+      "console_name": "Pokemon Stellar Crown",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:7-11"
+      }
+    },
+    {
+      "query": "Pokemon Stellar Crown Lapras 31 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Stellar%20Crown%20Lapras%2031%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7418687",
+      "product_name": "Lapras [Reverse Holo] #31",
+      "console_name": "Pokemon Stellar Crown",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Reverse Holo"
+      }
+    },
+    {
+      "query": "Pokemon Stellar Crown Lapras 31 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Stellar%20Crown%20Lapras%2031%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7418517",
+      "product_name": "Lapras ex #32",
+      "console_name": "Pokemon Stellar Crown",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:32"
+      }
+    },
+    {
+      "query": "Pokemon Stellar Crown Lapras 31 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Stellar%20Crown%20Lapras%2031%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7418643",
+      "product_name": "Lapras ex #158",
+      "console_name": "Pokemon Stellar Crown",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:158"
+      }
+    },
+    {
+      "query": "Pokemon Stellar Crown Lapras 31 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Stellar%20Crown%20Lapras%2031%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11580217",
+      "product_name": "Meltan [Stamped] #102",
+      "console_name": "Pokemon Stellar Crown",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:102"
+      }
+    },
+    {
+      "query": "Pokemon Stellar Crown Lapras 31 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Stellar%20Crown%20Lapras%2031%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11370172",
+      "product_name": "Reshiram [Stamped] #22",
+      "console_name": "Pokemon Stellar Crown",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:22"
+      }
+    },
+    {
+      "query": "Pokemon Stellar Crown Lapras 31 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Stellar%20Crown%20Lapras%2031%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10028510",
+      "product_name": "Glass Trumpet [Gym Stamp] #135",
+      "console_name": "Pokemon Stellar Crown",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:135"
+      }
+    },
+    {
+      "query": "Pokemon Stellar Crown Lapras 31 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Stellar%20Crown%20Lapras%2031%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7442384",
+      "product_name": "Raging Bolt [Stamped] #111",
+      "console_name": "Pokemon Stellar Crown",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:111"
+      }
+    },
+    {
+      "query": "Pokemon Stellar Crown Lapras 31 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Stellar%20Crown%20Lapras%2031%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10212998",
+      "product_name": "Blastoise Ex [Stamped] #30",
+      "console_name": "Pokemon Stellar Crown",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:30"
+      }
+    },
+    {
+      "query": "Pokemon Stellar Crown Lapras 31 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Stellar%20Crown%20Lapras%2031%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11469116",
+      "product_name": "Melmetal Ex [Stamped] #105",
+      "console_name": "Pokemon Stellar Crown",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:105"
+      }
+    },
+    {
+      "query": "Pokemon Stellar Crown Lapras 31 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Stellar%20Crown%20Lapras%2031%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11321011",
+      "product_name": "Greninja EX [Stamped] #41",
+      "console_name": "Pokemon Stellar Crown",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:41"
+      }
+    },
+    {
+      "query": "Pokemon Stellar Crown Lapras 31 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Stellar%20Crown%20Lapras%2031%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10233481",
+      "product_name": "Venusaur Ex [Stamped] #1",
+      "console_name": "Pokemon Stellar Crown",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:1"
+      }
+    },
+    {
+      "query": "Pokemon Stellar Crown Lapras 31 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Stellar%20Crown%20Lapras%2031%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7445419",
+      "product_name": "Archaludon [Cosmos Holo Stamped] #107",
+      "console_name": "Pokemon Stellar Crown",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:107"
+      }
+    },
+    {
+      "query": "Pokemon Stellar Crown Lapras 31 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Stellar%20Crown%20Lapras%2031%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4442473",
+      "product_name": "Lapras [Snowflake Stamp] #48",
+      "console_name": "Pokemon Sword & Shield",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:48"
+      }
+    },
+    {
+      "query": "Pokemon Stellar Crown Lapras 31 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Stellar%20Crown%20Lapras%2031%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10366693",
+      "product_name": "Area Zero Underdepths [Gym Stamp Asia] #131",
+      "console_name": "Pokemon Stellar Crown",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:131"
+      }
+    },
+    {
+      "query": "Pokemon Stellar Crown Lapras 31 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Stellar%20Crown%20Lapras%2031%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4637061",
+      "product_name": "Lapras #GG05",
+      "console_name": "Pokemon Crown Zenith",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:GG05"
+      }
+    },
+    {
+      "query": "Pokemon Stellar Crown Lapras 31 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Stellar%20Crown%20Lapras%2031%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3449247",
+      "product_name": "Lapras V #31",
+      "console_name": "Pokemon Japanese Shiny Star V",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Lapras V"
+      }
+    },
+    {
+      "query": "Pokemon Stellar Crown Lapras 31 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Stellar%20Crown%20Lapras%2031%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7029953",
+      "product_name": "Lapras ex #117",
+      "console_name": "Pokemon Japanese Stellar Miracle",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:117"
+      }
+    },
+    {
+      "query": "Pokemon Stellar Crown Lapras 31 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Stellar%20Crown%20Lapras%2031%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7029856",
+      "product_name": "Lapras ex #19",
+      "console_name": "Pokemon Japanese Stellar Miracle",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:19"
+      }
+    }
+  ],
+  "source_lane": "pricecharting_api"
+}

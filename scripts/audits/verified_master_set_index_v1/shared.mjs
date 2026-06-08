@@ -120,24 +120,65 @@ export function normalizeText(value) {
     .trim()
     .toLowerCase()
     .replace(/[’]/g, "'")
+    .replace(/[★☆]/g, ' star ')
     .replace(/[^a-z0-9]+/g, ' ')
     .replace(/\s+/g, ' ')
     .trim();
 }
 
 export function normalizeNumber(value) {
-  const raw = String(value ?? '').trim();
+  const rawInput = String(value ?? '').trim();
+  let raw = rawInput;
+  try {
+    raw = decodeURIComponent(rawInput);
+  } catch {
+    raw = rawInput;
+  }
   if (!raw) return '';
   const [head] = raw.split('/');
   const normalizedHead = head.replace(/^0+(?=\d)/, '');
   return normalizedHead || head;
 }
 
+const BASIC_ENERGY_PATTERN = /^(?:basic\s+)?(grass|fire|water|lightning|psychic|fighting|darkness|metal)\s+energy$/;
+const BASIC_ENERGY_CANONICAL_SETS = new Set([
+  'sve',
+  'scarlet violet energies',
+  'scarlet violet energy',
+  'mee',
+  'mega evolution energy',
+]);
+
+export function canonicalCardNameKey(record) {
+  const setKey = normalizeText(record?.set_key ?? record?.set_name);
+  const name = normalizeText(record?.card_name);
+  if (BASIC_ENERGY_CANONICAL_SETS.has(setKey)) {
+    const match = name.match(BASIC_ENERGY_PATTERN);
+    if (match) return `basic ${match[1]} energy`;
+  }
+  return name;
+}
+
+export function canonicalCardDisplayName(rows) {
+  const first = rows?.[0];
+  const setKey = normalizeText(first?.set_key ?? first?.set_name);
+  if (BASIC_ENERGY_CANONICAL_SETS.has(setKey)) {
+    const basic = rows.find((row) => /^basic\s+/i.test(String(row.card_name ?? '')));
+    if (basic) return basic.card_name;
+    const match = normalizeText(first?.card_name).match(BASIC_ENERGY_PATTERN);
+    if (match) {
+      const label = match[1].replace(/\b\w/g, (char) => char.toUpperCase());
+      return `Basic ${label} Energy`;
+    }
+  }
+  return first?.card_name;
+}
+
 export function cardFactKey(record) {
   return [
     normalizeText(record.set_name),
     normalizeNumber(record.card_number),
-    normalizeText(record.card_name),
+    canonicalCardNameKey(record),
   ].join('|');
 }
 

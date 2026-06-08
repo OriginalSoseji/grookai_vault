@@ -1,0 +1,31 @@
+{
+  "fixture_version": "VERIFIED_MASTER_SET_INDEX_V1_HUMAN_SOURCE_FIXTURE_GENERATED",
+  "source_key": "binderbuilder_sm2",
+  "source_kind": "collector_reference",
+  "source_url": "https://binderbuilder.app/sets/sm2",
+  "source_status": "available_generated",
+  "set_key": "sm2",
+  "set_name": "Guardians Rising",
+  "retrieved_at": "2026-05-26T04:50:02.571Z",
+  "raw_snapshot_ref": "generated_fixture:binderbuilder:sm2:2026-05-26T04:50:02.571Z",
+  "generation_note": "Generated from Binder Builder exact visible variant labels. Unsupported/product-scope labels are excluded.",
+  "records": [
+    {
+      "source_key": "binderbuilder_set_variant",
+      "source_kind": "collector_reference",
+      "source_url": "https://binderbuilder.app/sets/sm2",
+      "set_key": "sm2",
+      "set_name": "Guardians Rising",
+      "card_number": "14",
+      "card_name": "Oricorio",
+      "finish_key": "stamped",
+      "rarity": null,
+      "evidence_type": "finish_presence",
+      "evidence_label": "Binder Builder variant row #14 - Oricorio - League Stamp",
+      "language": "en",
+      "retrieved_at": "2026-05-26T04:50:02.571Z",
+      "raw_snapshot_ref": "binderbuilder:sm2:14:stamped",
+      "notes": "Exact finish evidence from Binder Builder visible variant label. Shadowless, Jumbo, Metal, and unsupported labels are not emitted."
+    }
+  ]
+}

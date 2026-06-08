@@ -1,0 +1,31 @@
+{
+  "fixture_version": "VERIFIED_MASTER_SET_INDEX_V1_HUMAN_SOURCE_FIXTURE_GENERATED",
+  "source_key": "cardtrader_finish_sv03.5",
+  "source_kind": "marketplace_checklist",
+  "source_url": "https://www.cardtrader.com/en/manasearch/5/blueprints.json",
+  "source_status": "available_generated",
+  "set_key": "sv03.5",
+  "set_name": "151",
+  "retrieved_at": "2026-06-08T12:50:58.458Z",
+  "raw_snapshot_ref": "generated_fixture:cardtrader:sv03.5:2026-06-08T12:50:58.458Z",
+  "generation_note": "Generated from CardTrader Pokemon blueprint index. Exact card-number/name/finish matches only.",
+  "records": [
+    {
+      "source_key": "cardtrader_blueprint_index",
+      "source_kind": "marketplace_checklist",
+      "source_url": "https://www.cardtrader.com/en/cards/259241-bulbasaur-reverse-holo-151-stamp-promo-mew001-151",
+      "set_key": "sv03.5",
+      "set_name": "151",
+      "card_number": "1",
+      "card_name": "Bulbasaur",
+      "finish_key": "stamped",
+      "rarity": null,
+      "evidence_type": "finish_presence",
+      "evidence_label": "CardTrader blueprint row Bulbasaur - Reverse Holo \"151\" Stamp Promo | MEW001",
+      "language": "en",
+      "retrieved_at": "2026-06-08T12:50:58.458Z",
+      "raw_snapshot_ref": "cardtrader_blueprint:259241-bulbasaur-reverse-holo-151-stamp-promo-mew001-151",
+      "notes": "Generated only from an exact CardTrader Pokemon blueprint match on set, card number, card name, and finish label."
+    }
+  ]
+}

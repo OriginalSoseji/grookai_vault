@@ -1,0 +1,43 @@
+{
+  "status": "no_validated_match",
+  "fact": {
+    "gap_type": "finish_second_source_needed",
+    "fact_type": "printing_finish",
+    "set_key": "swsh10",
+    "set_name": "Astral Radiance",
+    "card_number": "142",
+    "card_name": "Gapejaw Bog",
+    "finish_key": "stamped",
+    "status": "human_source_verified",
+    "sources": [
+      "thepricedex_price_list"
+    ],
+    "source_authorities": [
+      "thepricedex.com"
+    ],
+    "source_kinds": [
+      "marketplace_checklist"
+    ],
+    "evidence_urls": [],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "attempts": [
+    {
+      "query": "Pokemon Astral Radiance Gapejaw Bog 142 stamped",
+      "url": "https://www.pricecharting.com/search-products?q=Pokemon%20Astral%20Radiance%20Gapejaw%20Bog%20142%20stamped&type=prices",
+      "parsed": {
+        "title": "Pokemon Astral Radiance Gapejaw Bog 142 Stamped Prices | Pokemon Astral Radiance Gapejaw Bog 142 Stamped List",
+        "source_url": "https://www.pricecharting.com/search-products?q=pokemon+astral+radiance+gapejaw+bog+142+stamped&type=prices"
+      },
+      "validation": {
+        "ok": false,
+        "reason": "title_pattern_not_supported"
+      }
+    },
+    {
+      "query": "Pokemon Astral Radiance Gapejaw Bog 142 stamp",
+      "url": "https://www.pricecharting.com/search-products?q=Pokemon%20Astral%20Radiance%20Gapejaw%20Bog%20142%20stamp&type=prices",
+      "error": "Fetch failed 403 Forbidden: https://www.pricecharting.com/search-products?q=Pokemon%20Astral%20Radiance%20Gapejaw%20Bog%20142%20stamp&type=prices"
+    }
+  ]
+}

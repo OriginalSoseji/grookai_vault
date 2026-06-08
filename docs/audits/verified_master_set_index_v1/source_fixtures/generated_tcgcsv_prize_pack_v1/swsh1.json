@@ -1,0 +1,52 @@
+{
+  "fixture_version": "VERIFIED_MASTER_SET_INDEX_V1_HUMAN_SOURCE_FIXTURE_GENERATED",
+  "source_key": "tcgcsv_prize_pack_catalog",
+  "source_kind": "marketplace_checklist",
+  "source_url": "https://tcgcsv.com/tcgplayer/3/22880/products",
+  "source_status": "available_generated_exact_prize_pack_rows",
+  "set_key": "swsh1",
+  "set_name": "Sword & Shield",
+  "retrieved_at": "2026-06-06T19:48:34.675Z",
+  "raw_snapshot_ref": "generated_fixture:tcgcsv_prize_pack_catalog:swsh1:2026-06-06T19:48:34.675Z",
+  "audit_only": true,
+  "db_writes_performed": false,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "records": [
+    {
+      "source_key": "tcgcsv_prize_pack_catalog",
+      "source_kind": "marketplace_checklist",
+      "source_url": "https://www.tcgplayer.com/product/476065/pokemon-prize-pack-series-cards-zamazenta-v-139-202",
+      "set_key": "swsh1",
+      "set_name": "Sword & Shield",
+      "card_number": "139",
+      "card_name": "Zamazenta V",
+      "finish_key": "stamped",
+      "rarity": "Ultra Rare",
+      "evidence_type": "finish_presence",
+      "evidence_label": "TCGCSV/TCGplayer Prize Pack product 476065: Zamazenta V - 139/202 (139/202)",
+      "language": "en",
+      "retrieved_at": "2026-06-06T19:48:34.675Z",
+      "raw_snapshot_ref": "tcgcsv_prize_pack:22880:476065",
+      "notes": "Exact stamped finish evidence from the TCGplayer Prize Pack Series Cards catalog. Expansion-set rows require exact card name, card number, and printed-total denominator match; promo rows require exact promo number and name."
+    },
+    {
+      "source_key": "tcgcsv_prize_pack_catalog",
+      "source_kind": "marketplace_checklist",
+      "source_url": "https://www.tcgplayer.com/product/476115/pokemon-prize-pack-series-cards-rare-candy-180-202",
+      "set_key": "swsh1",
+      "set_name": "Sword & Shield",
+      "card_number": "180",
+      "card_name": "Rare Candy",
+      "finish_key": "stamped",
+      "rarity": "Uncommon",
+      "evidence_type": "finish_presence",
+      "evidence_label": "TCGCSV/TCGplayer Prize Pack product 476115: Rare Candy - 180/202 (180/202)",
+      "language": "en",
+      "retrieved_at": "2026-06-06T19:48:34.675Z",
+      "raw_snapshot_ref": "tcgcsv_prize_pack:22880:476115",
+      "notes": "Exact stamped finish evidence from the TCGplayer Prize Pack Series Cards catalog. Expansion-set rows require exact card name, card number, and printed-total denominator match; promo rows require exact promo number and name."
+    }
+  ]
+}

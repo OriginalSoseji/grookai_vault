@@ -1,0 +1,549 @@
+{
+  "status": "api_no_validated_match",
+  "fact": {
+    "gap_type": "finish_second_source_needed",
+    "fact_type": "printing_finish",
+    "set_key": "bw1",
+    "set_name": "Black & White",
+    "card_number": "108",
+    "card_name": "Lightning Energy",
+    "finish_key": "stamped",
+    "status": "human_source_verified",
+    "sources": [
+      "thepricedex_price_list"
+    ],
+    "source_authorities": [
+      "thepricedex.com"
+    ],
+    "source_kinds": [
+      "marketplace_checklist"
+    ],
+    "evidence_urls": [
+      "https://www.thepricedex.com/set/bw1/black-and-white/price-list"
+    ],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "attempts": [
+    {
+      "query": "Pokemon Black & White Lightning Energy 108 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Lightning%20Energy%20108%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7047617",
+      "product_name": "Lightning Energy [Holo] #108",
+      "console_name": "Pokemon Black & White",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Holo"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Lightning Energy 108 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Lightning%20Energy%20108%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8597958",
+      "product_name": "Lightning Energy [Play] #108",
+      "console_name": "Pokemon Black & White",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Play"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Lightning Energy 108 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Lightning%20Energy%20108%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "2677930",
+      "product_name": "Lightning Energy #108",
+      "console_name": "Pokemon Black & White",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Lightning Energy 108 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Lightning%20Energy%20108%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "889188",
+      "product_name": "Lightning Energy [Holo] #108",
+      "console_name": "Pokemon Holon Phantoms",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon Holon Phantoms"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Lightning Energy 108 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Lightning%20Energy%20108%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9680422",
+      "product_name": "Lightning Energy [Stamped] #1104",
+      "console_name": "Pokemon Chinese Gem Pack 2",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:1104"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Lightning Energy 108 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Lightning%20Energy%20108%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4708330",
+      "product_name": "Lightning Energy #108",
+      "console_name": "Pokemon Japanese Violet Ex",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon Japanese Violet Ex"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Lightning Energy 108 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Lightning%20Energy%20108%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12753750",
+      "product_name": "Lightning Energy [2011 Play]",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "api_product_name_pattern_not_supported"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Lightning Energy 108 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Lightning%20Energy%20108%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12385767",
+      "product_name": "Lightning Energy [League]",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "api_product_name_pattern_not_supported"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Lightning Energy 108 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Lightning%20Energy%20108%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10871181",
+      "product_name": "Lightning Energy [2006-2007 League Promo]",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "api_product_name_pattern_not_supported"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Lightning Energy 108 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Lightning%20Energy%20108%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6985249",
+      "product_name": "Lightning Energy [WOTC League]",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "api_product_name_pattern_not_supported"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Lightning Energy 108 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Lightning%20Energy%20108%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "2677911",
+      "product_name": "Grass Energy #105",
+      "console_name": "Pokemon Black & White",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:105"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Lightning Energy 108 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Lightning%20Energy%20108%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8597954",
+      "product_name": "Metal Energy [Play] #112",
+      "console_name": "Pokemon Black & White",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:112"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Lightning Energy 108 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Lightning%20Energy%20108%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "2677907",
+      "product_name": "Darkness Energy #111",
+      "console_name": "Pokemon Black & White",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:111"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Lightning Energy 108 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Lightning%20Energy%20108%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8597957",
+      "product_name": "Psychic Energy [Play] #109",
+      "console_name": "Pokemon Black & White",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:109"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Lightning Energy 108 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Lightning%20Energy%20108%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "2677917",
+      "product_name": "Fire Energy #106",
+      "console_name": "Pokemon Black & White",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:106"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Lightning Energy 108 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Lightning%20Energy%20108%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5167564",
+      "product_name": "Lightning Energy [Energize Your Game]",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "api_product_name_pattern_not_supported"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Lightning Energy 108 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Lightning%20Energy%20108%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6948386",
+      "product_name": "Lightning Energy [Prize Pack Holo]",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "api_product_name_pattern_not_supported"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Lightning Energy 108 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Lightning%20Energy%20108%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "2677903",
+      "product_name": "Metal Energy #112",
+      "console_name": "Pokemon Black & White",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:112"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Lightning Energy 108 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Lightning%20Energy%20108%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "2677928",
+      "product_name": "Water Energy #107",
+      "console_name": "Pokemon Black & White",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:107"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Lightning Energy 108 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Lightning%20Energy%20108%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9142926",
+      "product_name": "Lightning Energy [1999-2000] #100",
+      "console_name": "Pokemon Base Set",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:100"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Lightning Energy 108 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Lightning%20Energy%20108%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7047617",
+      "product_name": "Lightning Energy [Holo] #108",
+      "console_name": "Pokemon Black & White",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Holo"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Lightning Energy 108 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Lightning%20Energy%20108%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8597958",
+      "product_name": "Lightning Energy [Play] #108",
+      "console_name": "Pokemon Black & White",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Play"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Lightning Energy 108 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Lightning%20Energy%20108%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "2677930",
+      "product_name": "Lightning Energy #108",
+      "console_name": "Pokemon Black & White",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Lightning Energy 108 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Lightning%20Energy%20108%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "889188",
+      "product_name": "Lightning Energy [Holo] #108",
+      "console_name": "Pokemon Holon Phantoms",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon Holon Phantoms"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Lightning Energy 108 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Lightning%20Energy%20108%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9680422",
+      "product_name": "Lightning Energy [Stamped] #1104",
+      "console_name": "Pokemon Chinese Gem Pack 2",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:1104"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Lightning Energy 108 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Lightning%20Energy%20108%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4708330",
+      "product_name": "Lightning Energy #108",
+      "console_name": "Pokemon Japanese Violet Ex",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon Japanese Violet Ex"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Lightning Energy 108 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Lightning%20Energy%20108%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12753750",
+      "product_name": "Lightning Energy [2011 Play]",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "api_product_name_pattern_not_supported"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Lightning Energy 108 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Lightning%20Energy%20108%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12385767",
+      "product_name": "Lightning Energy [League]",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "api_product_name_pattern_not_supported"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Lightning Energy 108 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Lightning%20Energy%20108%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10871181",
+      "product_name": "Lightning Energy [2006-2007 League Promo]",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "api_product_name_pattern_not_supported"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Lightning Energy 108 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Lightning%20Energy%20108%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6985249",
+      "product_name": "Lightning Energy [WOTC League]",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "api_product_name_pattern_not_supported"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Lightning Energy 108 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Lightning%20Energy%20108%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "2677911",
+      "product_name": "Grass Energy #105",
+      "console_name": "Pokemon Black & White",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:105"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Lightning Energy 108 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Lightning%20Energy%20108%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8597954",
+      "product_name": "Metal Energy [Play] #112",
+      "console_name": "Pokemon Black & White",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:112"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Lightning Energy 108 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Lightning%20Energy%20108%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "2677907",
+      "product_name": "Darkness Energy #111",
+      "console_name": "Pokemon Black & White",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:111"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Lightning Energy 108 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Lightning%20Energy%20108%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8597957",
+      "product_name": "Psychic Energy [Play] #109",
+      "console_name": "Pokemon Black & White",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:109"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Lightning Energy 108 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Lightning%20Energy%20108%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "2677917",
+      "product_name": "Fire Energy #106",
+      "console_name": "Pokemon Black & White",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:106"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Lightning Energy 108 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Lightning%20Energy%20108%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5167564",
+      "product_name": "Lightning Energy [Energize Your Game]",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "api_product_name_pattern_not_supported"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Lightning Energy 108 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Lightning%20Energy%20108%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6948386",
+      "product_name": "Lightning Energy [Prize Pack Holo]",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "api_product_name_pattern_not_supported"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Lightning Energy 108 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Lightning%20Energy%20108%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "2677903",
+      "product_name": "Metal Energy #112",
+      "console_name": "Pokemon Black & White",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:112"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Lightning Energy 108 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Lightning%20Energy%20108%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "2677928",
+      "product_name": "Water Energy #107",
+      "console_name": "Pokemon Black & White",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:107"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Lightning Energy 108 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Lightning%20Energy%20108%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9142926",
+      "product_name": "Lightning Energy [1999-2000] #100",
+      "console_name": "Pokemon Base Set",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:100"
+      }
+    }
+  ],
+  "source_lane": "pricecharting_api"
+}

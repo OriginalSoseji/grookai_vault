@@ -6,6 +6,7 @@ import { markdownTable } from './verified_master_set_index_v1/shared.mjs';
 const SOURCE_DIR = 'docs/audits/verified_master_set_index_v1/english_master_index_v1';
 const COMPLETION_DIR = 'docs/audits/english_master_index_completion_v1';
 const OUTPUT_DIR = 'docs/audits/english_master_index_source_exhaustion_v1';
+const FINISH_BLOCKER_CLOSURE_FILE = 'english_master_index_finish_blocker_closure_v1.json';
 
 const GENERATED_FILES = [
   'english_master_index_source_exhaustion_ledger_v1.json',
@@ -58,6 +59,14 @@ const SOURCE_CATALOG = [
     finish_truth_limit: 'Current adapter records rarity context but does not infer finish truth.',
   },
   {
+    source_key: 'bulbapedia_battle_academy_product',
+    source_kind: 'human_readable_checklist',
+    automation_status: 'automated_guarded',
+    evidence_strength: 'exact_product_deck_marked_printings',
+    source_url_template: 'https://bulbapedia.bulbagarden.net/wiki/Battle_Academy_{year}_(TCG)',
+    finish_truth_limit: 'Only exact deck-list rows on pages that state Battle Academy cards have colored silhouettes/deck marks may support stamped finish truth.',
+  },
+  {
     source_key: 'official_pokemon_checklist',
     source_kind: 'official_gallery',
     automation_status: 'partial_parser',
@@ -72,6 +81,110 @@ const SOURCE_CATALOG = [
     evidence_strength: 'exact_product_variant_or_price_guide_rows',
     source_url_template: 'https://www.tcgplayer.com/search/pokemon/product?productLineName=pokemon&q={set_name}',
     finish_truth_limit: 'Must prove exact card + finish from product/checklist page, not search result existence.',
+  },
+  {
+    source_key: 'gengar_sve_reverse_variant',
+    source_kind: 'marketplace_checklist',
+    automation_status: 'automated_guarded',
+    evidence_strength: 'exact SVE reverse product/variant pages',
+    source_url_template: 'https://www.gengar.cz/p/{card_slug}-reverse-holo-sve-{number}',
+    finish_truth_limit: 'SVE-only lane. Accepts only exact card number, card name, Scarlet & Violet Energies context, and reverse holo page/variant evidence.',
+  },
+  {
+    source_key: 'facetofacegames_sve_reverse_product',
+    source_kind: 'marketplace_checklist',
+    automation_status: 'automated_guarded',
+    evidence_strength: 'exact SVE reverse product pages',
+    source_url_template: 'https://facetofacegames.com/products/{card_slug}-{number}-common-sve-{number}-reverse-holo',
+    finish_truth_limit: 'SVE-only fallback lane. Accepts only exact product title plus reverse finish and collector number labels.',
+  },
+  {
+    source_key: 'pokesov_sve_reverse_variant',
+    source_kind: 'marketplace_checklist',
+    automation_status: 'automated_guarded',
+    evidence_strength: 'exact SVE reverse product variant rows',
+    source_url_template: 'https://www.pokesov.cz/{card_slug}-sve-{number}/',
+    finish_truth_limit: 'SVE-only fallback lane. Accepts only exact product identity plus explicit Reverse Holo variant metadata.',
+  },
+  {
+    source_key: 'pokescope_svp_variant',
+    source_kind: 'marketplace_checklist',
+    automation_status: 'automated_guarded',
+    evidence_strength: 'exact SVP promo product/variant pages',
+    source_url_template: 'https://pokescope.app/card/svp-{number}/',
+    finish_truth_limit: 'SVP-only lane. Accepts only exact Scarlet & Violet Black Star Promos identity plus explicit embedded variant/finish evidence.',
+  },
+  {
+    source_key: 'pricecharting_svp_winner_variant',
+    source_kind: 'marketplace_checklist',
+    automation_status: 'automated_guarded',
+    evidence_strength: 'exact SVP World Championships Winner product page',
+    source_url_template: 'https://www.pricecharting.com/game/pokemon-promo/pikachu-world-championships-winner-225',
+    finish_truth_limit: 'Single exact SVP #225 lane. Accepts only product title/text matching Pikachu, #225, Pokemon Promo, and World Championships Winner.',
+  },
+  {
+    source_key: 'pokescope_sv02_stamp',
+    source_kind: 'marketplace_checklist',
+    automation_status: 'automated_guarded',
+    evidence_strength: 'exact Paldea Evolved stamped product/variant pages',
+    source_url_template: 'https://pokescope.app/card/sv2-{number}/',
+    finish_truth_limit: 'SV02-only lane. Accepts only exact Paldea Evolved identity plus explicit embedded stamp variant evidence.',
+  },
+  {
+    source_key: 'pokescope_me01_stamp',
+    source_kind: 'marketplace_checklist',
+    automation_status: 'automated_guarded',
+    evidence_strength: 'exact Mega Evolution Play Pokemon stamped product/variant pages',
+    source_url_template: 'https://pokescope.app/card/me1-{number}/',
+    finish_truth_limit: 'ME01-only lane. Accepts only exact Mega Evolution identity plus explicit embedded Play Pokemon stamp variant evidence.',
+  },
+  {
+    source_key: 'pokescope_pl2_variant',
+    source_kind: 'marketplace_checklist',
+    automation_status: 'manual_guarded',
+    evidence_strength: 'exact Rising Rivals card-level variant pages',
+    source_url_template: 'https://pokescope.app/card/pl2-{number}/',
+    finish_truth_limit: 'PL2-only lane. Accepts only exact Rising Rivals identity plus explicit Holofoil or League Stamp variant evidence. League Stamp maps to stamped only for exact card-level source pages.',
+  },
+  {
+    source_key: 'bulbapedia_sv085_professor_program',
+    source_kind: 'human_readable_checklist',
+    automation_status: 'manual_guarded',
+    evidence_strength: 'exact Prismatic Evolutions additional-card Professor Program Logo rows',
+    source_url_template: 'https://bulbapedia.bulbagarden.net/wiki/Prismatic_Evolutions_(TCG)',
+    finish_truth_limit: 'SV08.5-only lane. Accepts only exact Additional Cards rows naming Professor Program Logo. Generic Promotion markers and rarity icons are not finish truth.',
+  },
+  {
+    source_key: 'bulbapedia_sv05_additional_cards',
+    source_kind: 'human_readable_checklist',
+    automation_status: 'manual_guarded',
+    evidence_strength: 'exact Temporal Forces additional-card finish and stamp rows',
+    source_url_template: 'https://bulbapedia.bulbagarden.net/wiki/Temporal_Forces_(TCG)',
+    finish_truth_limit: 'SV05-only lane. Accepts only exact Additional Cards rows naming Cosmos Holo or a specific stamp. Generic Promotion markers and rarity icons are not finish truth.',
+  },
+  {
+    source_key: 'magicmadhouse_swsh9_stamps',
+    source_kind: 'marketplace_checklist',
+    automation_status: 'manual_guarded',
+    evidence_strength: 'exact Brilliant Stars stamped product pages',
+    source_url_template: 'https://magicmadhouse.co.uk/pokemon-brilliant-stars-{number}-172-{card_slug}-{variant_slug}',
+    finish_truth_limit: 'SWSH9-only lane. Accepts only exact product titles naming card number, card name, and Prize Pack League Promo or Pikachu Pumpkin Stamp. No set-wide inference is allowed.',
+  },
+  {
+    source_key: 'bulbapedia_swsh11_trick_or_trade_stamps',
+    source_kind: 'human_readable_checklist',
+    automation_status: 'manual_guarded',
+    evidence_strength: 'exact Lost Origin Trick or Trade 2023 stamped release-info pages',
+    source_url_template: 'https://bulbapedia.bulbagarden.net/wiki/{card_name}_(Lost_Origin_{number})',
+    finish_truth_limit: 'SWSH11-only lane. Accepts only exact card release pages naming Lost Origin card number, card name, Mirage Holofoil, and Pikachu jack-o-lantern stamp. General Trick or Trade set membership is not enough.',
+  },
+  {
+    source_key: 'magicmadhouse_bw1_league_promos',
+    source_kind: 'marketplace_checklist',
+    automation_status: 'manual_guarded',
+    evidence_strength: 'exact Black & White Play! Pokemon League Promo product pages',
+    source_url_template: 'https://magicmadhouse.co.uk/pokemon-black-white-{number}-114-{card_slug}-play-pokemon-league-promo',
+    finish_truth_limit: 'BW1-only lane. Accepts only exact product titles naming card number, card name, and Play! Pokemon League Promo. No set-wide league-promo inference is allowed.',
   },
   {
     source_key: 'pricecharting',
@@ -145,6 +258,11 @@ async function writeMarkdown(fileName, markdown) {
   await fs.writeFile(path.join(OUTPUT_DIR, fileName), markdown);
 }
 
+function evidenceUrls(row) {
+  if (Array.isArray(row.evidence_urls)) return row.evidence_urls.filter(Boolean);
+  return (row.evidence ?? []).map((entry) => entry.source_url).filter(Boolean);
+}
+
 function addCount(target, key, count = 1) {
   const normalized = String(key ?? 'unknown').trim() || 'unknown';
   target[normalized] = (target[normalized] ?? 0) + Number(count ?? 0);
@@ -170,6 +288,23 @@ function rowSetKey(row) {
   return String(row.set_key ?? row.set_code ?? 'unknown').trim() || 'unknown';
 }
 
+function finishFactKey(row) {
+  return [
+    row.set_key,
+    row.card_number ?? '',
+    String(row.card_name ?? '').trim().toLowerCase(),
+    row.finish_key ?? row.gap_finish_key ?? '',
+  ].join('|');
+}
+
+function buildFinishBlockerMap(blockerClosure) {
+  const map = new Map();
+  for (const row of blockerClosure.mapped_blockers ?? []) {
+    map.set(finishFactKey(row), row);
+  }
+  return map;
+}
+
 function gapTypeForFact(row) {
   if (row.fact_type === 'card_identity') return 'card_identity_second_source_needed';
   if (row.fact_type === 'printing_finish' && row.status === 'human_source_verified') return 'finish_second_source_needed';
@@ -192,29 +327,37 @@ function unresolvedCardFacts(cardsArtifact) {
       sources: row.sources ?? [],
       source_authorities: row.source_authorities ?? [],
       source_kinds: row.source_kinds ?? [],
-      evidence_urls: (row.evidence ?? []).map((entry) => entry.source_url).filter(Boolean),
+      evidence_urls: evidenceUrls(row),
       required_next_evidence: 'A second independent English source agreeing on set + number + card name.',
     }));
 }
 
-function unresolvedPrintingFacts(printingsArtifact) {
+function unresolvedPrintingFacts(printingsArtifact, finishBlockerMap) {
   return (printingsArtifact.printings ?? [])
     .filter((row) => row.status !== 'master_verified')
-    .map((row) => ({
-      gap_type: gapTypeForFact(row),
-      fact_type: 'printing_finish',
-      set_key: row.set_key,
-      set_name: row.set_name,
-      card_number: row.card_number,
-      card_name: row.card_name,
-      finish_key: row.finish_key,
-      status: row.status,
-      sources: row.sources ?? [],
-      source_authorities: row.source_authorities ?? [],
-      source_kinds: row.source_kinds ?? [],
-      evidence_urls: (row.evidence ?? []).map((entry) => entry.source_url).filter(Boolean),
-      required_next_evidence: 'Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement.',
-    }));
+    .map((row) => {
+      const blocker = finishBlockerMap.get(finishFactKey(row));
+      return {
+        gap_type: blocker ? 'finish_blocker_boundary' : gapTypeForFact(row),
+        fact_type: 'printing_finish',
+        set_key: row.set_key,
+        set_name: row.set_name,
+        card_number: row.card_number,
+        card_name: row.card_name,
+        finish_key: row.finish_key,
+        status: row.status,
+        sources: row.sources ?? [],
+        source_authorities: row.source_authorities ?? [],
+        source_kinds: row.source_kinds ?? [],
+        evidence_urls: blocker?.evidence_urls ?? evidenceUrls(row),
+        blocker_type: blocker?.blocker_type ?? null,
+        blocker_reason: blocker?.reason_not_promoted ?? null,
+        blocker_next_action: blocker?.next_action ?? null,
+        required_next_evidence: blocker
+          ? 'Manual finish/number adjudication is required. Do not promote from broad source acquisition.'
+          : 'Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement.',
+      };
+    });
 }
 
 function suppressedFacts(suppressedArtifact) {
@@ -235,10 +378,11 @@ function suppressedFacts(suppressedArtifact) {
   }));
 }
 
-function buildRemainingGapFacts({ cardsArtifact, printingsArtifact, suppressedArtifact, generatedAt }) {
+function buildRemainingGapFacts({ cardsArtifact, printingsArtifact, suppressedArtifact, finishBlockerClosure, generatedAt }) {
+  const finishBlockerMap = buildFinishBlockerMap(finishBlockerClosure);
   const facts = [
     ...unresolvedCardFacts(cardsArtifact),
-    ...unresolvedPrintingFacts(printingsArtifact),
+    ...unresolvedPrintingFacts(printingsArtifact, finishBlockerMap),
     ...suppressedFacts(suppressedArtifact),
   ];
   const byGapType = {};
@@ -256,6 +400,7 @@ function buildRemainingGapFacts({ cardsArtifact, printingsArtifact, suppressedAr
     rule: 'Remaining facts are not mutation authority. They define exactly what evidence is still missing or unresolved.',
     summary: {
       total_gap_facts: facts.length,
+      finish_blocker_boundary_facts: byGapType.finish_blocker_boundary ?? 0,
       by_gap_type: byGapType,
       by_status: byStatus,
       top_sets: Object.fromEntries(topEntries(bySet, 80)),
@@ -277,6 +422,9 @@ function sourceStatusesForSet(availabilityRows) {
 }
 
 function nextSourceLanesForWorklistItem(item) {
+  if ((item.lanes ?? []).includes('finish_blocker_boundary_adjudication')) {
+    return ['manual_finish_number_adjudication'];
+  }
   if (item.lane === 'card_identity_second_source') {
     return ['pkmncards', 'bulbapedia_set_list', 'collectr_or_pokellector_style_checklist', 'tcgplayer_product_or_checklist', 'reddit_forum_or_photo_evidence'];
   }
@@ -511,12 +659,14 @@ async function main() {
   const printingsArtifact = await readJson(SOURCE_DIR, 'english_master_index_printings_v1.json');
   const sourceAvailability = await readJson(SOURCE_DIR, 'english_master_index_source_availability_v1.json');
   const suppressedArtifact = await readJson(SOURCE_DIR, 'english_master_index_suppressed_structured_finish_candidates_v1.json', { suppressed: [] });
+  const finishBlockerClosure = await readJson(SOURCE_DIR, FINISH_BLOCKER_CLOSURE_FILE, { mapped_blockers: [], summary: {} });
   const worklistArtifact = await readJson(COMPLETION_DIR, 'english_master_index_source_worklist_v1.json');
 
   const remainingGapFacts = buildRemainingGapFacts({
     cardsArtifact,
     printingsArtifact,
     suppressedArtifact,
+    finishBlockerClosure,
     generatedAt,
   });
   const ledger = buildLedger({

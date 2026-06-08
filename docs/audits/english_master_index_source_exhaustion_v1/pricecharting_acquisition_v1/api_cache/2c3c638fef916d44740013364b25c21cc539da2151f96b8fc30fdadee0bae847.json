@@ -1,0 +1,17 @@
+{
+  "products": [
+    {
+      "console-name": "Pokemon Prismatic Evolutions",
+      "gamestop-price": 0,
+      "gamestop-trade-price": 0,
+      "genre": "Pokemon Card",
+      "id": "11047387",
+      "loose-price": 3773,
+      "product-name": "Budew [Gym Stamp] #4",
+      "retail-loose-buy": 1680,
+      "retail-loose-sell": 4199,
+      "sales-volume": "19"
+    }
+  ],
+  "status": "success"
+}

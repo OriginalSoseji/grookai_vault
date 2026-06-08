@@ -1,0 +1,549 @@
+{
+  "status": "api_no_validated_match",
+  "fact": {
+    "gap_type": "finish_second_source_needed",
+    "fact_type": "printing_finish",
+    "set_key": "ex4",
+    "set_name": "Team Magma vs Team Aqua",
+    "card_number": "24",
+    "card_name": "Team Aqua's Cacnea",
+    "finish_key": "stamped",
+    "status": "human_source_verified",
+    "sources": [
+      "thepricedex_price_list"
+    ],
+    "source_authorities": [
+      "thepricedex.com"
+    ],
+    "source_kinds": [
+      "marketplace_checklist"
+    ],
+    "evidence_urls": [
+      "https://www.thepricedex.com/set/ex4/team-magma-vs-team-aqua/price-list"
+    ],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "attempts": [
+    {
+      "query": "Pokemon Team Magma vs Team Aqua Team Aqua's Cacnea 24 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Team%20Magma%20vs%20Team%20Aqua%20Team%20Aqua's%20Cacnea%2024%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3438959",
+      "product_name": "Team Aqua's Cacnea #11",
+      "console_name": "Pokemon Japanese Magma VS Aqua: Two Ambitions",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:11"
+      }
+    },
+    {
+      "query": "Pokemon Team Magma vs Team Aqua Team Aqua's Cacnea 24 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Team%20Magma%20vs%20Team%20Aqua%20Team%20Aqua's%20Cacnea%2024%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8453803",
+      "product_name": "Team Aqua's Cacnea [1st Edition] #11",
+      "console_name": "Pokemon Japanese Magma VS Aqua: Two Ambitions",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:11"
+      }
+    },
+    {
+      "query": "Pokemon Team Magma vs Team Aqua Team Aqua's Cacnea 24 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Team%20Magma%20vs%20Team%20Aqua%20Team%20Aqua's%20Cacnea%2024%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "849593",
+      "product_name": "Cacnea #24",
+      "console_name": "Pokemon Team Magma & Team Aqua",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Cacnea"
+      }
+    },
+    {
+      "query": "Pokemon Team Magma vs Team Aqua Team Aqua's Cacnea 24 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Team%20Magma%20vs%20Team%20Aqua%20Team%20Aqua's%20Cacnea%2024%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6136581",
+      "product_name": "Cacnea [Prerelease] #24",
+      "console_name": "Pokemon Team Magma & Team Aqua",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Cacnea"
+      }
+    },
+    {
+      "query": "Pokemon Team Magma vs Team Aqua Team Aqua's Cacnea 24 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Team%20Magma%20vs%20Team%20Aqua%20Team%20Aqua's%20Cacnea%2024%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "849690",
+      "product_name": "Cacnea [Reverse Holo] #24",
+      "console_name": "Pokemon Team Magma & Team Aqua",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Cacnea"
+      }
+    },
+    {
+      "query": "Pokemon Team Magma vs Team Aqua Team Aqua's Cacnea 24 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Team%20Magma%20vs%20Team%20Aqua%20Team%20Aqua's%20Cacnea%2024%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3438960",
+      "product_name": "Team Aqua's Cacturne #12",
+      "console_name": "Pokemon Japanese Magma VS Aqua: Two Ambitions",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:12"
+      }
+    },
+    {
+      "query": "Pokemon Team Magma vs Team Aqua Team Aqua's Cacnea 24 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Team%20Magma%20vs%20Team%20Aqua%20Team%20Aqua's%20Cacnea%2024%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3438958",
+      "product_name": "Team Aqua's Seviper #10",
+      "console_name": "Pokemon Japanese Magma VS Aqua: Two Ambitions",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:10"
+      }
+    },
+    {
+      "query": "Pokemon Team Magma vs Team Aqua Team Aqua's Cacnea 24 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Team%20Magma%20vs%20Team%20Aqua%20Team%20Aqua's%20Cacnea%2024%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3438981",
+      "product_name": "Team Aqua's Carvanha #33",
+      "console_name": "Pokemon Japanese Magma VS Aqua: Two Ambitions",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:33"
+      }
+    },
+    {
+      "query": "Pokemon Team Magma vs Team Aqua Team Aqua's Cacnea 24 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Team%20Magma%20vs%20Team%20Aqua%20Team%20Aqua's%20Cacnea%2024%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3438983",
+      "product_name": "Team Aqua's Sharpedo #35",
+      "console_name": "Pokemon Japanese Magma VS Aqua: Two Ambitions",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:35"
+      }
+    },
+    {
+      "query": "Pokemon Team Magma vs Team Aqua Team Aqua's Cacnea 24 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Team%20Magma%20vs%20Team%20Aqua%20Team%20Aqua's%20Cacnea%2024%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3438982",
+      "product_name": "Team Aqua's Corphish #34",
+      "console_name": "Pokemon Japanese Magma VS Aqua: Two Ambitions",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:34"
+      }
+    },
+    {
+      "query": "Pokemon Team Magma vs Team Aqua Team Aqua's Cacnea 24 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Team%20Magma%20vs%20Team%20Aqua%20Team%20Aqua's%20Cacnea%2024%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3438984",
+      "product_name": "Team Aqua's Crawdaunt #36",
+      "console_name": "Pokemon Japanese Magma VS Aqua: Two Ambitions",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:36"
+      }
+    },
+    {
+      "query": "Pokemon Team Magma vs Team Aqua Team Aqua's Cacnea 24 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Team%20Magma%20vs%20Team%20Aqua%20Team%20Aqua's%20Cacnea%2024%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3438987",
+      "product_name": "Team Aqua's Manectric #39",
+      "console_name": "Pokemon Japanese Magma VS Aqua: Two Ambitions",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:39"
+      }
+    },
+    {
+      "query": "Pokemon Team Magma vs Team Aqua Team Aqua's Cacnea 24 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Team%20Magma%20vs%20Team%20Aqua%20Team%20Aqua's%20Cacnea%2024%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3438986",
+      "product_name": "Team Aqua's Electrike #38",
+      "console_name": "Pokemon Japanese Magma VS Aqua: Two Ambitions",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:38"
+      }
+    },
+    {
+      "query": "Pokemon Team Magma vs Team Aqua Team Aqua's Cacnea 24 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Team%20Magma%20vs%20Team%20Aqua%20Team%20Aqua's%20Cacnea%2024%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8453806",
+      "product_name": "Team Aqua's Corphish [1st Edition] #34",
+      "console_name": "Pokemon Japanese Magma VS Aqua: Two Ambitions",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:34"
+      }
+    },
+    {
+      "query": "Pokemon Team Magma vs Team Aqua Team Aqua's Cacnea 24 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Team%20Magma%20vs%20Team%20Aqua%20Team%20Aqua's%20Cacnea%2024%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8453804",
+      "product_name": "Team Aqua's Cacturne [1st Edition] #12",
+      "console_name": "Pokemon Japanese Magma VS Aqua: Two Ambitions",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:12"
+      }
+    },
+    {
+      "query": "Pokemon Team Magma vs Team Aqua Team Aqua's Cacnea 24 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Team%20Magma%20vs%20Team%20Aqua%20Team%20Aqua's%20Cacnea%2024%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8453805",
+      "product_name": "Team Aqua's Carvanha [1st Edition] #33",
+      "console_name": "Pokemon Japanese Magma VS Aqua: Two Ambitions",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:33"
+      }
+    },
+    {
+      "query": "Pokemon Team Magma vs Team Aqua Team Aqua's Cacnea 24 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Team%20Magma%20vs%20Team%20Aqua%20Team%20Aqua's%20Cacnea%2024%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8453811",
+      "product_name": "Team Aqua's Sharpedo [1st Edition] #35",
+      "console_name": "Pokemon Japanese Magma VS Aqua: Two Ambitions",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:35"
+      }
+    },
+    {
+      "query": "Pokemon Team Magma vs Team Aqua Team Aqua's Cacnea 24 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Team%20Magma%20vs%20Team%20Aqua%20Team%20Aqua's%20Cacnea%2024%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8453810",
+      "product_name": "Team Aqua's Seviper [1st Edition] #10",
+      "console_name": "Pokemon Japanese Magma VS Aqua: Two Ambitions",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:10"
+      }
+    },
+    {
+      "query": "Pokemon Team Magma vs Team Aqua Team Aqua's Cacnea 24 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Team%20Magma%20vs%20Team%20Aqua%20Team%20Aqua's%20Cacnea%2024%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8453807",
+      "product_name": "Team Aqua's Crawdaunt [1st Edition] #36",
+      "console_name": "Pokemon Japanese Magma VS Aqua: Two Ambitions",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:36"
+      }
+    },
+    {
+      "query": "Pokemon Team Magma vs Team Aqua Team Aqua's Cacnea 24 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Team%20Magma%20vs%20Team%20Aqua%20Team%20Aqua's%20Cacnea%2024%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8453809",
+      "product_name": "Team Aqua's Manectric [1st Edition] #39",
+      "console_name": "Pokemon Japanese Magma VS Aqua: Two Ambitions",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:39"
+      }
+    },
+    {
+      "query": "Pokemon Team Magma vs Team Aqua Team Aqua's Cacnea 24 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Team%20Magma%20vs%20Team%20Aqua%20Team%20Aqua's%20Cacnea%2024%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3438959",
+      "product_name": "Team Aqua's Cacnea #11",
+      "console_name": "Pokemon Japanese Magma VS Aqua: Two Ambitions",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:11"
+      }
+    },
+    {
+      "query": "Pokemon Team Magma vs Team Aqua Team Aqua's Cacnea 24 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Team%20Magma%20vs%20Team%20Aqua%20Team%20Aqua's%20Cacnea%2024%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8453803",
+      "product_name": "Team Aqua's Cacnea [1st Edition] #11",
+      "console_name": "Pokemon Japanese Magma VS Aqua: Two Ambitions",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:11"
+      }
+    },
+    {
+      "query": "Pokemon Team Magma vs Team Aqua Team Aqua's Cacnea 24 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Team%20Magma%20vs%20Team%20Aqua%20Team%20Aqua's%20Cacnea%2024%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "849593",
+      "product_name": "Cacnea #24",
+      "console_name": "Pokemon Team Magma & Team Aqua",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Cacnea"
+      }
+    },
+    {
+      "query": "Pokemon Team Magma vs Team Aqua Team Aqua's Cacnea 24 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Team%20Magma%20vs%20Team%20Aqua%20Team%20Aqua's%20Cacnea%2024%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6136581",
+      "product_name": "Cacnea [Prerelease] #24",
+      "console_name": "Pokemon Team Magma & Team Aqua",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Cacnea"
+      }
+    },
+    {
+      "query": "Pokemon Team Magma vs Team Aqua Team Aqua's Cacnea 24 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Team%20Magma%20vs%20Team%20Aqua%20Team%20Aqua's%20Cacnea%2024%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "849690",
+      "product_name": "Cacnea [Reverse Holo] #24",
+      "console_name": "Pokemon Team Magma & Team Aqua",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Cacnea"
+      }
+    },
+    {
+      "query": "Pokemon Team Magma vs Team Aqua Team Aqua's Cacnea 24 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Team%20Magma%20vs%20Team%20Aqua%20Team%20Aqua's%20Cacnea%2024%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3438960",
+      "product_name": "Team Aqua's Cacturne #12",
+      "console_name": "Pokemon Japanese Magma VS Aqua: Two Ambitions",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:12"
+      }
+    },
+    {
+      "query": "Pokemon Team Magma vs Team Aqua Team Aqua's Cacnea 24 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Team%20Magma%20vs%20Team%20Aqua%20Team%20Aqua's%20Cacnea%2024%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3438958",
+      "product_name": "Team Aqua's Seviper #10",
+      "console_name": "Pokemon Japanese Magma VS Aqua: Two Ambitions",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:10"
+      }
+    },
+    {
+      "query": "Pokemon Team Magma vs Team Aqua Team Aqua's Cacnea 24 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Team%20Magma%20vs%20Team%20Aqua%20Team%20Aqua's%20Cacnea%2024%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3438981",
+      "product_name": "Team Aqua's Carvanha #33",
+      "console_name": "Pokemon Japanese Magma VS Aqua: Two Ambitions",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:33"
+      }
+    },
+    {
+      "query": "Pokemon Team Magma vs Team Aqua Team Aqua's Cacnea 24 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Team%20Magma%20vs%20Team%20Aqua%20Team%20Aqua's%20Cacnea%2024%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3438983",
+      "product_name": "Team Aqua's Sharpedo #35",
+      "console_name": "Pokemon Japanese Magma VS Aqua: Two Ambitions",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:35"
+      }
+    },
+    {
+      "query": "Pokemon Team Magma vs Team Aqua Team Aqua's Cacnea 24 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Team%20Magma%20vs%20Team%20Aqua%20Team%20Aqua's%20Cacnea%2024%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3438982",
+      "product_name": "Team Aqua's Corphish #34",
+      "console_name": "Pokemon Japanese Magma VS Aqua: Two Ambitions",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:34"
+      }
+    },
+    {
+      "query": "Pokemon Team Magma vs Team Aqua Team Aqua's Cacnea 24 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Team%20Magma%20vs%20Team%20Aqua%20Team%20Aqua's%20Cacnea%2024%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3438984",
+      "product_name": "Team Aqua's Crawdaunt #36",
+      "console_name": "Pokemon Japanese Magma VS Aqua: Two Ambitions",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:36"
+      }
+    },
+    {
+      "query": "Pokemon Team Magma vs Team Aqua Team Aqua's Cacnea 24 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Team%20Magma%20vs%20Team%20Aqua%20Team%20Aqua's%20Cacnea%2024%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3438987",
+      "product_name": "Team Aqua's Manectric #39",
+      "console_name": "Pokemon Japanese Magma VS Aqua: Two Ambitions",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:39"
+      }
+    },
+    {
+      "query": "Pokemon Team Magma vs Team Aqua Team Aqua's Cacnea 24 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Team%20Magma%20vs%20Team%20Aqua%20Team%20Aqua's%20Cacnea%2024%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3438986",
+      "product_name": "Team Aqua's Electrike #38",
+      "console_name": "Pokemon Japanese Magma VS Aqua: Two Ambitions",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:38"
+      }
+    },
+    {
+      "query": "Pokemon Team Magma vs Team Aqua Team Aqua's Cacnea 24 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Team%20Magma%20vs%20Team%20Aqua%20Team%20Aqua's%20Cacnea%2024%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8453806",
+      "product_name": "Team Aqua's Corphish [1st Edition] #34",
+      "console_name": "Pokemon Japanese Magma VS Aqua: Two Ambitions",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:34"
+      }
+    },
+    {
+      "query": "Pokemon Team Magma vs Team Aqua Team Aqua's Cacnea 24 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Team%20Magma%20vs%20Team%20Aqua%20Team%20Aqua's%20Cacnea%2024%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8453804",
+      "product_name": "Team Aqua's Cacturne [1st Edition] #12",
+      "console_name": "Pokemon Japanese Magma VS Aqua: Two Ambitions",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:12"
+      }
+    },
+    {
+      "query": "Pokemon Team Magma vs Team Aqua Team Aqua's Cacnea 24 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Team%20Magma%20vs%20Team%20Aqua%20Team%20Aqua's%20Cacnea%2024%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8453805",
+      "product_name": "Team Aqua's Carvanha [1st Edition] #33",
+      "console_name": "Pokemon Japanese Magma VS Aqua: Two Ambitions",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:33"
+      }
+    },
+    {
+      "query": "Pokemon Team Magma vs Team Aqua Team Aqua's Cacnea 24 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Team%20Magma%20vs%20Team%20Aqua%20Team%20Aqua's%20Cacnea%2024%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8453811",
+      "product_name": "Team Aqua's Sharpedo [1st Edition] #35",
+      "console_name": "Pokemon Japanese Magma VS Aqua: Two Ambitions",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:35"
+      }
+    },
+    {
+      "query": "Pokemon Team Magma vs Team Aqua Team Aqua's Cacnea 24 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Team%20Magma%20vs%20Team%20Aqua%20Team%20Aqua's%20Cacnea%2024%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8453810",
+      "product_name": "Team Aqua's Seviper [1st Edition] #10",
+      "console_name": "Pokemon Japanese Magma VS Aqua: Two Ambitions",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:10"
+      }
+    },
+    {
+      "query": "Pokemon Team Magma vs Team Aqua Team Aqua's Cacnea 24 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Team%20Magma%20vs%20Team%20Aqua%20Team%20Aqua's%20Cacnea%2024%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8453807",
+      "product_name": "Team Aqua's Crawdaunt [1st Edition] #36",
+      "console_name": "Pokemon Japanese Magma VS Aqua: Two Ambitions",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:36"
+      }
+    },
+    {
+      "query": "Pokemon Team Magma vs Team Aqua Team Aqua's Cacnea 24 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Team%20Magma%20vs%20Team%20Aqua%20Team%20Aqua's%20Cacnea%2024%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8453809",
+      "product_name": "Team Aqua's Manectric [1st Edition] #39",
+      "console_name": "Pokemon Japanese Magma VS Aqua: Two Ambitions",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:39"
+      }
+    }
+  ],
+  "source_lane": "pricecharting_api"
+}

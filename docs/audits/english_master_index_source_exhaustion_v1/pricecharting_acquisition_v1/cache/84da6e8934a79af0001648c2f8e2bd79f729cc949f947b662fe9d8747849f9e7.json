@@ -1,0 +1,43 @@
+{
+  "status": "no_validated_match",
+  "fact": {
+    "gap_type": "finish_second_source_needed",
+    "fact_type": "printing_finish",
+    "set_key": "swsh35",
+    "set_name": "Champion's Path",
+    "card_number": "7",
+    "card_name": "Victini",
+    "finish_key": "stamped",
+    "status": "human_source_verified",
+    "sources": [
+      "thepricedex_price_list"
+    ],
+    "source_authorities": [
+      "thepricedex.com"
+    ],
+    "source_kinds": [
+      "marketplace_checklist"
+    ],
+    "evidence_urls": [],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "attempts": [
+    {
+      "query": "Pokemon Champion's Path Victini 7 stamped",
+      "url": "https://www.pricecharting.com/search-products?q=Pokemon%20Champion's%20Path%20Victini%207%20stamped&type=prices",
+      "parsed": {
+        "title": "Pokemon Champion'S Path Victini 7 Stamped Prices | Pokemon Champion'S Path Victini 7 Stamped List",
+        "source_url": "https://www.pricecharting.com/search-products?q=pokemon+champion%27s+path+victini+7+stamped&type=prices"
+      },
+      "validation": {
+        "ok": false,
+        "reason": "title_pattern_not_supported"
+      }
+    },
+    {
+      "query": "Pokemon Champion's Path Victini 7 stamp",
+      "url": "https://www.pricecharting.com/search-products?q=Pokemon%20Champion's%20Path%20Victini%207%20stamp&type=prices",
+      "error": "Fetch failed 403 Forbidden: https://www.pricecharting.com/search-products?q=Pokemon%20Champion's%20Path%20Victini%207%20stamp&type=prices"
+    }
+  ]
+}

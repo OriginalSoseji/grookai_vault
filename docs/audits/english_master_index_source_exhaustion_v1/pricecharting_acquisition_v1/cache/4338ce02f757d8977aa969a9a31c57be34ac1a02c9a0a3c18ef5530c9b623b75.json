@@ -1,0 +1,549 @@
+{
+  "status": "api_no_validated_match",
+  "fact": {
+    "gap_type": "finish_second_source_needed",
+    "fact_type": "printing_finish",
+    "set_key": "ex2",
+    "set_name": "Sandstorm",
+    "card_number": "93",
+    "card_name": "Multi Energy",
+    "finish_key": "stamped",
+    "status": "human_source_verified",
+    "sources": [
+      "thepricedex_price_list"
+    ],
+    "source_authorities": [
+      "thepricedex.com"
+    ],
+    "source_kinds": [
+      "marketplace_checklist"
+    ],
+    "evidence_urls": [
+      "https://www.thepricedex.com/set/ex2/sandstorm/price-list"
+    ],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "attempts": [
+    {
+      "query": "Pokemon Sandstorm Multi Energy 93 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Sandstorm%20Multi%20Energy%2093%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10809790",
+      "product_name": "Multi Energy [Jumbo] #93",
+      "console_name": "Pokemon Sandstorm",
+      "validation": {
+        "ok": false,
+        "reason": "product_scope_jumbo_not_canonical_set_finish"
+      }
+    },
+    {
+      "query": "Pokemon Sandstorm Multi Energy 93 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Sandstorm%20Multi%20Energy%2093%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8096327",
+      "product_name": "Multi Energy [Cosmos Holo] #93",
+      "console_name": "Pokemon Sandstorm",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Cosmos Holo"
+      }
+    },
+    {
+      "query": "Pokemon Sandstorm Multi Energy 93 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Sandstorm%20Multi%20Energy%2093%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "849281",
+      "product_name": "Multi Energy #93",
+      "console_name": "Pokemon Sandstorm",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon Sandstorm Multi Energy 93 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Sandstorm%20Multi%20Energy%2093%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "849381",
+      "product_name": "Multi Energy [Reverse Holo] #93",
+      "console_name": "Pokemon Sandstorm",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Reverse Holo"
+      }
+    },
+    {
+      "query": "Pokemon Sandstorm Multi Energy 93 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Sandstorm%20Multi%20Energy%2093%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4125200",
+      "product_name": "Multi Energy [Winner] #93",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon Promo"
+      }
+    },
+    {
+      "query": "Pokemon Sandstorm Multi Energy 93 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Sandstorm%20Multi%20Energy%2093%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3438890",
+      "product_name": "Multi Energy #53",
+      "console_name": "Pokemon Japanese Miracle of the Desert",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:53"
+      }
+    },
+    {
+      "query": "Pokemon Sandstorm Multi Energy 93 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Sandstorm%20Multi%20Energy%2093%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8453854",
+      "product_name": "Multi Energy [1st Edition] #53",
+      "console_name": "Pokemon Japanese Miracle of the Desert",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:53"
+      }
+    },
+    {
+      "query": "Pokemon Sandstorm Multi Energy 93 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Sandstorm%20Multi%20Energy%2093%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6657631",
+      "product_name": "Multi Energy [Reverse Holo] #89",
+      "console_name": "Pokemon Emerald",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:89"
+      }
+    },
+    {
+      "query": "Pokemon Sandstorm Multi Energy 93 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Sandstorm%20Multi%20Energy%2093%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "920867",
+      "product_name": "Multi Energy [Reverse Holo] #118",
+      "console_name": "Pokemon Mysterious Treasures",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:118"
+      }
+    },
+    {
+      "query": "Pokemon Sandstorm Multi Energy 93 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Sandstorm%20Multi%20Energy%2093%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "889285",
+      "product_name": "Multi Energy [Reverse Holo] #96",
+      "console_name": "Pokemon Holon Phantoms",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:96"
+      }
+    },
+    {
+      "query": "Pokemon Sandstorm Multi Energy 93 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Sandstorm%20Multi%20Energy%2093%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "889860",
+      "product_name": "Multi Energy [Reverse Holo] #89",
+      "console_name": "Pokemon Power Keepers",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:89"
+      }
+    },
+    {
+      "query": "Pokemon Sandstorm Multi Energy 93 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Sandstorm%20Multi%20Energy%2093%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4928064",
+      "product_name": "Multi Energy [1st Edition]",
+      "console_name": "Pokemon Japanese Secret of the Lakes",
+      "validation": {
+        "ok": false,
+        "reason": "api_product_name_pattern_not_supported"
+      }
+    },
+    {
+      "query": "Pokemon Sandstorm Multi Energy 93 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Sandstorm%20Multi%20Energy%2093%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "850185",
+      "product_name": "Multi Energy [Reverse Holo] #103",
+      "console_name": "Pokemon Fire Red & Leaf Green",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:103"
+      }
+    },
+    {
+      "query": "Pokemon Sandstorm Multi Energy 93 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Sandstorm%20Multi%20Energy%2093%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10803168",
+      "product_name": "Multi Energy [1st Edition] #99",
+      "console_name": "Pokemon Japanese World Champions Pack",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:99"
+      }
+    },
+    {
+      "query": "Pokemon Sandstorm Multi Energy 93 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Sandstorm%20Multi%20Energy%2093%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "888314",
+      "product_name": "Multi Energy #89",
+      "console_name": "Pokemon Emerald",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:89"
+      }
+    },
+    {
+      "query": "Pokemon Sandstorm Multi Energy 93 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Sandstorm%20Multi%20Energy%2093%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3458080",
+      "product_name": "Multi Energy",
+      "console_name": "Pokemon Japanese Secret of the Lakes",
+      "validation": {
+        "ok": false,
+        "reason": "api_product_name_pattern_not_supported"
+      }
+    },
+    {
+      "query": "Pokemon Sandstorm Multi Energy 93 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Sandstorm%20Multi%20Energy%2093%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12300555",
+      "product_name": "Multi Energy",
+      "console_name": "Pokemon Japanese Rampardos the Attacker",
+      "validation": {
+        "ok": false,
+        "reason": "api_product_name_pattern_not_supported"
+      }
+    },
+    {
+      "query": "Pokemon Sandstorm Multi Energy 93 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Sandstorm%20Multi%20Energy%2093%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "920742",
+      "product_name": "Multi Energy #118",
+      "console_name": "Pokemon Mysterious Treasures",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:118"
+      }
+    },
+    {
+      "query": "Pokemon Sandstorm Multi Energy 93 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Sandstorm%20Multi%20Energy%2093%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "889753",
+      "product_name": "Multi Energy #89",
+      "console_name": "Pokemon Power Keepers",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:89"
+      }
+    },
+    {
+      "query": "Pokemon Sandstorm Multi Energy 93 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Sandstorm%20Multi%20Energy%2093%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "889176",
+      "product_name": "Multi Energy #96",
+      "console_name": "Pokemon Holon Phantoms",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:96"
+      }
+    },
+    {
+      "query": "Pokemon Sandstorm Multi Energy 93 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Sandstorm%20Multi%20Energy%2093%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10809790",
+      "product_name": "Multi Energy [Jumbo] #93",
+      "console_name": "Pokemon Sandstorm",
+      "validation": {
+        "ok": false,
+        "reason": "product_scope_jumbo_not_canonical_set_finish"
+      }
+    },
+    {
+      "query": "Pokemon Sandstorm Multi Energy 93 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Sandstorm%20Multi%20Energy%2093%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8096327",
+      "product_name": "Multi Energy [Cosmos Holo] #93",
+      "console_name": "Pokemon Sandstorm",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Cosmos Holo"
+      }
+    },
+    {
+      "query": "Pokemon Sandstorm Multi Energy 93 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Sandstorm%20Multi%20Energy%2093%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "849281",
+      "product_name": "Multi Energy #93",
+      "console_name": "Pokemon Sandstorm",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon Sandstorm Multi Energy 93 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Sandstorm%20Multi%20Energy%2093%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "849381",
+      "product_name": "Multi Energy [Reverse Holo] #93",
+      "console_name": "Pokemon Sandstorm",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Reverse Holo"
+      }
+    },
+    {
+      "query": "Pokemon Sandstorm Multi Energy 93 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Sandstorm%20Multi%20Energy%2093%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4125200",
+      "product_name": "Multi Energy [Winner] #93",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon Promo"
+      }
+    },
+    {
+      "query": "Pokemon Sandstorm Multi Energy 93 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Sandstorm%20Multi%20Energy%2093%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3438890",
+      "product_name": "Multi Energy #53",
+      "console_name": "Pokemon Japanese Miracle of the Desert",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:53"
+      }
+    },
+    {
+      "query": "Pokemon Sandstorm Multi Energy 93 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Sandstorm%20Multi%20Energy%2093%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8453854",
+      "product_name": "Multi Energy [1st Edition] #53",
+      "console_name": "Pokemon Japanese Miracle of the Desert",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:53"
+      }
+    },
+    {
+      "query": "Pokemon Sandstorm Multi Energy 93 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Sandstorm%20Multi%20Energy%2093%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6657631",
+      "product_name": "Multi Energy [Reverse Holo] #89",
+      "console_name": "Pokemon Emerald",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:89"
+      }
+    },
+    {
+      "query": "Pokemon Sandstorm Multi Energy 93 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Sandstorm%20Multi%20Energy%2093%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "920867",
+      "product_name": "Multi Energy [Reverse Holo] #118",
+      "console_name": "Pokemon Mysterious Treasures",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:118"
+      }
+    },
+    {
+      "query": "Pokemon Sandstorm Multi Energy 93 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Sandstorm%20Multi%20Energy%2093%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "889285",
+      "product_name": "Multi Energy [Reverse Holo] #96",
+      "console_name": "Pokemon Holon Phantoms",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:96"
+      }
+    },
+    {
+      "query": "Pokemon Sandstorm Multi Energy 93 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Sandstorm%20Multi%20Energy%2093%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "889860",
+      "product_name": "Multi Energy [Reverse Holo] #89",
+      "console_name": "Pokemon Power Keepers",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:89"
+      }
+    },
+    {
+      "query": "Pokemon Sandstorm Multi Energy 93 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Sandstorm%20Multi%20Energy%2093%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4928064",
+      "product_name": "Multi Energy [1st Edition]",
+      "console_name": "Pokemon Japanese Secret of the Lakes",
+      "validation": {
+        "ok": false,
+        "reason": "api_product_name_pattern_not_supported"
+      }
+    },
+    {
+      "query": "Pokemon Sandstorm Multi Energy 93 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Sandstorm%20Multi%20Energy%2093%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "850185",
+      "product_name": "Multi Energy [Reverse Holo] #103",
+      "console_name": "Pokemon Fire Red & Leaf Green",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:103"
+      }
+    },
+    {
+      "query": "Pokemon Sandstorm Multi Energy 93 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Sandstorm%20Multi%20Energy%2093%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10803168",
+      "product_name": "Multi Energy [1st Edition] #99",
+      "console_name": "Pokemon Japanese World Champions Pack",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:99"
+      }
+    },
+    {
+      "query": "Pokemon Sandstorm Multi Energy 93 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Sandstorm%20Multi%20Energy%2093%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "888314",
+      "product_name": "Multi Energy #89",
+      "console_name": "Pokemon Emerald",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:89"
+      }
+    },
+    {
+      "query": "Pokemon Sandstorm Multi Energy 93 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Sandstorm%20Multi%20Energy%2093%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3458080",
+      "product_name": "Multi Energy",
+      "console_name": "Pokemon Japanese Secret of the Lakes",
+      "validation": {
+        "ok": false,
+        "reason": "api_product_name_pattern_not_supported"
+      }
+    },
+    {
+      "query": "Pokemon Sandstorm Multi Energy 93 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Sandstorm%20Multi%20Energy%2093%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12300555",
+      "product_name": "Multi Energy",
+      "console_name": "Pokemon Japanese Rampardos the Attacker",
+      "validation": {
+        "ok": false,
+        "reason": "api_product_name_pattern_not_supported"
+      }
+    },
+    {
+      "query": "Pokemon Sandstorm Multi Energy 93 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Sandstorm%20Multi%20Energy%2093%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "920742",
+      "product_name": "Multi Energy #118",
+      "console_name": "Pokemon Mysterious Treasures",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:118"
+      }
+    },
+    {
+      "query": "Pokemon Sandstorm Multi Energy 93 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Sandstorm%20Multi%20Energy%2093%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "889753",
+      "product_name": "Multi Energy #89",
+      "console_name": "Pokemon Power Keepers",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:89"
+      }
+    },
+    {
+      "query": "Pokemon Sandstorm Multi Energy 93 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Sandstorm%20Multi%20Energy%2093%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "889176",
+      "product_name": "Multi Energy #96",
+      "console_name": "Pokemon Holon Phantoms",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:96"
+      }
+    }
+  ],
+  "source_lane": "pricecharting_api"
+}

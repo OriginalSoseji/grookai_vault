@@ -1,0 +1,241 @@
+{
+  "generated_at": "2026-05-27T00:23:49.640Z",
+  "version": "EYEVO_IDENTITY_ACQUISITION_V1",
+  "audit_only": true,
+  "db_writes_performed": false,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "rule": "Eyevo rows may support card identity only. They must not be promoted to finish truth.",
+  "summary": {
+    "target_sets": 22,
+    "records_generated": 145,
+    "fixture_files_written": 14,
+    "by_status": {
+      "generated": 14,
+      "no_exact_matches": 8
+    }
+  },
+  "attempts": [
+    {
+      "set_key": "mfb",
+      "set_name": "My First Battle",
+      "status": "generated",
+      "target_facts": 34,
+      "source_rows": 34,
+      "records_generated": 34,
+      "fixture_file": "docs\\audits\\verified_master_set_index_v1\\source_fixtures\\generated_eyevo_identity_v1\\mfb.json",
+      "source_url": "https://eyevotcg.com/sets/my-first-battle/"
+    },
+    {
+      "set_key": "exu",
+      "set_name": "Unseen Forces Unown Collection",
+      "status": "generated",
+      "target_facts": 28,
+      "source_rows": 27,
+      "records_generated": 27,
+      "fixture_file": "docs\\audits\\verified_master_set_index_v1\\source_fixtures\\generated_eyevo_identity_v1\\exu.json",
+      "source_url": "https://eyevotcg.com/sets/unseen-forces-unown-collection/"
+    },
+    {
+      "set_key": "cel25",
+      "set_name": "Celebrations",
+      "status": "generated",
+      "target_facts": 25,
+      "source_rows": 51,
+      "records_generated": 21,
+      "fixture_file": "docs\\audits\\verified_master_set_index_v1\\source_fixtures\\generated_eyevo_identity_v1\\cel25.json",
+      "source_url": "https://eyevotcg.com/sets/celebrations/"
+    },
+    {
+      "set_key": "dpp",
+      "set_name": "DP Black Star Promos",
+      "status": "generated",
+      "target_facts": 19,
+      "source_rows": 56,
+      "records_generated": 19,
+      "fixture_file": "docs\\audits\\verified_master_set_index_v1\\source_fixtures\\generated_eyevo_identity_v1\\dpp.json",
+      "source_url": "https://eyevotcg.com/sets/dp-black-star-promos/"
+    },
+    {
+      "set_key": "2023sv",
+      "set_name": "McDonald's Collection 2023",
+      "status": "generated",
+      "target_facts": 15,
+      "source_rows": 15,
+      "records_generated": 15,
+      "fixture_file": "docs\\audits\\verified_master_set_index_v1\\source_fixtures\\generated_eyevo_identity_v1\\2023sv.json",
+      "source_url": "https://eyevotcg.com/sets/mcdonalds-collection-2023/"
+    },
+    {
+      "set_key": "sm2",
+      "set_name": "Guardians Rising",
+      "status": "no_exact_matches",
+      "target_facts": 11,
+      "source_rows": 169,
+      "records_generated": 0,
+      "fixture_file": null,
+      "source_url": "https://eyevotcg.com/sets/guardians-rising/"
+    },
+    {
+      "set_key": "ecard3",
+      "set_name": "Skyridge",
+      "status": "generated",
+      "target_facts": 9,
+      "source_rows": 182,
+      "records_generated": 9,
+      "fixture_file": "docs\\audits\\verified_master_set_index_v1\\source_fixtures\\generated_eyevo_identity_v1\\ecard3.json",
+      "source_url": "https://eyevotcg.com/sets/skyridge/"
+    },
+    {
+      "set_key": "mee",
+      "set_name": "Mega Evolution Energy",
+      "status": "generated",
+      "target_facts": 8,
+      "source_rows": 8,
+      "records_generated": 8,
+      "fixture_file": "docs\\audits\\verified_master_set_index_v1\\source_fixtures\\generated_eyevo_identity_v1\\mee.json",
+      "source_url": "https://eyevotcg.com/sets/mega-evolution-energy/"
+    },
+    {
+      "set_key": "pl2",
+      "set_name": "Rising Rivals",
+      "status": "generated",
+      "target_facts": 6,
+      "source_rows": 120,
+      "records_generated": 3,
+      "fixture_file": "docs\\audits\\verified_master_set_index_v1\\source_fixtures\\generated_eyevo_identity_v1\\pl2.json",
+      "source_url": "https://eyevotcg.com/sets/rising-rivals/"
+    },
+    {
+      "set_key": "fut2020",
+      "set_name": "Pokémon Futsal 2020",
+      "status": "no_exact_matches",
+      "target_facts": 5,
+      "source_rows": 0,
+      "records_generated": 0,
+      "fixture_file": null,
+      "source_url": "https://eyevotcg.com/sets/pokemon-futsal-collection/"
+    },
+    {
+      "set_key": "ecard2",
+      "set_name": "Aquapolis",
+      "status": "generated",
+      "target_facts": 3,
+      "source_rows": 186,
+      "records_generated": 3,
+      "fixture_file": "docs\\audits\\verified_master_set_index_v1\\source_fixtures\\generated_eyevo_identity_v1\\ecard2.json",
+      "source_url": "https://eyevotcg.com/sets/aquapolis/"
+    },
+    {
+      "set_key": "swsh2",
+      "set_name": "Rebel Clash",
+      "status": "no_exact_matches",
+      "target_facts": 3,
+      "source_rows": 209,
+      "records_generated": 0,
+      "fixture_file": null,
+      "source_url": "https://eyevotcg.com/sets/rebel-clash/"
+    },
+    {
+      "set_key": "bw6",
+      "set_name": "Dragons Exalted",
+      "status": "generated",
+      "target_facts": 2,
+      "source_rows": 128,
+      "records_generated": 2,
+      "fixture_file": "docs\\audits\\verified_master_set_index_v1\\source_fixtures\\generated_eyevo_identity_v1\\bw6.json",
+      "source_url": "https://eyevotcg.com/sets/dragons-exalted/"
+    },
+    {
+      "set_key": "ex4",
+      "set_name": "Team Magma vs Team Aqua",
+      "status": "no_exact_matches",
+      "target_facts": 2,
+      "source_rows": 97,
+      "records_generated": 0,
+      "fixture_file": null,
+      "source_url": "https://eyevotcg.com/sets/team-magma-vs-team-aqua/"
+    },
+    {
+      "set_key": "swsh4.5",
+      "set_name": "Shining Fates",
+      "status": "no_exact_matches",
+      "target_facts": 2,
+      "source_rows": 195,
+      "records_generated": 0,
+      "fixture_file": null,
+      "source_url": "https://eyevotcg.com/sets/shining-fates/"
+    },
+    {
+      "set_key": "swshp",
+      "set_name": "SWSH Black Star Promos",
+      "status": "no_exact_matches",
+      "target_facts": 2,
+      "source_rows": 0,
+      "records_generated": 0,
+      "fixture_file": null,
+      "source_url": "https://eyevotcg.com/sets/sword-shield-promos/"
+    },
+    {
+      "set_key": "base4",
+      "set_name": "Base Set 2",
+      "status": "generated",
+      "target_facts": 1,
+      "source_rows": 130,
+      "records_generated": 1,
+      "fixture_file": "docs\\audits\\verified_master_set_index_v1\\source_fixtures\\generated_eyevo_identity_v1\\base4.json",
+      "source_url": "https://eyevotcg.com/sets/base-set-2/"
+    },
+    {
+      "set_key": "hgss1",
+      "set_name": "HeartGold & SoulSilver",
+      "status": "generated",
+      "target_facts": 1,
+      "source_rows": 124,
+      "records_generated": 1,
+      "fixture_file": "docs\\audits\\verified_master_set_index_v1\\source_fixtures\\generated_eyevo_identity_v1\\hgss1.json",
+      "source_url": "https://eyevotcg.com/sets/heartgold-soulsilver/"
+    },
+    {
+      "set_key": "sv10.5b",
+      "set_name": "Black Bolt",
+      "status": "no_exact_matches",
+      "target_facts": 1,
+      "source_rows": 172,
+      "records_generated": 0,
+      "fixture_file": null,
+      "source_url": "https://eyevotcg.com/sets/black-bolt/"
+    },
+    {
+      "set_key": "svp",
+      "set_name": "Scarlet & Violet Black Star Promos",
+      "status": "no_exact_matches",
+      "target_facts": 1,
+      "source_rows": 0,
+      "records_generated": 0,
+      "fixture_file": null,
+      "source_url": "https://eyevotcg.com/sets/scarlet-violet-promos/"
+    },
+    {
+      "set_key": "tk-hs-g",
+      "set_name": "HS trainer Kit (Gyarados)",
+      "status": "generated",
+      "target_facts": 1,
+      "source_rows": 1,
+      "records_generated": 1,
+      "fixture_file": "docs\\audits\\verified_master_set_index_v1\\source_fixtures\\generated_eyevo_identity_v1\\tk-hs-g.json",
+      "source_url": "https://eyevotcg.com/sets/hs-trainer-kit-gyarados/"
+    },
+    {
+      "set_key": "tk-hs-r",
+      "set_name": "HS trainer Kit (Raichu)",
+      "status": "generated",
+      "target_facts": 1,
+      "source_rows": 1,
+      "records_generated": 1,
+      "fixture_file": "docs\\audits\\verified_master_set_index_v1\\source_fixtures\\generated_eyevo_identity_v1\\tk-hs-r.json",
+      "source_url": "https://eyevotcg.com/sets/hs-trainer-kit-raichu/"
+    }
+  ]
+}

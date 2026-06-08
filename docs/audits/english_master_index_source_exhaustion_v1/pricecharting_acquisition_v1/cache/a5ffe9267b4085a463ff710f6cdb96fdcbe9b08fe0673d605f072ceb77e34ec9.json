@@ -1,0 +1,58 @@
+{
+  "status": "validated",
+  "fact": {
+    "gap_type": "finish_second_source_needed",
+    "fact_type": "printing_finish",
+    "set_key": "swsh12",
+    "set_name": "Silver Tempest",
+    "card_number": "49",
+    "card_name": "Pikachu",
+    "finish_key": "stamped",
+    "status": "human_source_verified",
+    "sources": [
+      "thepricedex_price_list"
+    ],
+    "source_authorities": [
+      "thepricedex.com"
+    ],
+    "source_kinds": [
+      "marketplace_checklist"
+    ],
+    "evidence_urls": [],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "query": "Pokemon Silver Tempest Pikachu 49 stamp",
+  "search_url": "https://www.pricecharting.com/search-products?q=Pokemon%20Silver%20Tempest%20Pikachu%2049%20stamp&type=prices",
+  "source_url": "https://www.pricecharting.com/game/pokemon-silver-tempest/pikachu-snowflake-stamp-49",
+  "title": "Pikachu [Snowflake Stamp] #49 Prices | Pokemon Silver Tempest | Pokemon Cards",
+  "title_parts": {
+    "card_name": "Pikachu",
+    "variant_label": "Snowflake Stamp",
+    "card_number": "49",
+    "set_name": "Silver Tempest"
+  },
+  "attempts": [
+    {
+      "query": "Pokemon Silver Tempest Pikachu 49 stamped",
+      "url": "https://www.pricecharting.com/search-products?q=Pokemon%20Silver%20Tempest%20Pikachu%2049%20stamped&type=prices",
+      "error": "Fetch failed 403 Forbidden: https://www.pricecharting.com/search-products?q=Pokemon%20Silver%20Tempest%20Pikachu%2049%20stamped&type=prices"
+    },
+    {
+      "query": "Pokemon Silver Tempest Pikachu 49 stamp",
+      "url": "https://www.pricecharting.com/search-products?q=Pokemon%20Silver%20Tempest%20Pikachu%2049%20stamp&type=prices",
+      "parsed": {
+        "title": "Pikachu [Snowflake Stamp] #49 Prices | Pokemon Silver Tempest | Pokemon Cards",
+        "source_url": "https://www.pricecharting.com/game/pokemon-silver-tempest/pikachu-snowflake-stamp-49"
+      },
+      "validation": {
+        "ok": true,
+        "titleParts": {
+          "card_name": "Pikachu",
+          "variant_label": "Snowflake Stamp",
+          "card_number": "49",
+          "set_name": "Silver Tempest"
+        }
+      }
+    }
+  ]
+}

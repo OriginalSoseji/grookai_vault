@@ -1,0 +1,1085 @@
+{
+  "version": "english_master_index_bulbapedia_card_page_acquisition_v1",
+  "generated_at": "2026-06-08T12:44:52.048Z",
+  "audit_only": true,
+  "db_writes_performed": false,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "dry_run": false,
+  "source_key": "bulbapedia_card_page_release_info",
+  "source_url": "https://bulbapedia.bulbagarden.net/wiki/Category:Pokémon_cards",
+  "summary": {
+    "pages_attempted": 58,
+    "records_generated": 0,
+    "fixture_files_written": 0,
+    "by_status": {
+      "no_exact_finish_or_identity_evidence": 51,
+      "source_unavailable": 7
+    },
+    "by_finish": {},
+    "by_evidence_type": {}
+  },
+  "fixture_dir": "docs/audits/verified_master_set_index_v1/source_fixtures/generated_bulbapedia_card_pages_v1",
+  "fixture_files": [],
+  "results": [
+    {
+      "title": "Porygon_(Aquapolis_103)",
+      "requested_title": "Porygon_(Aquapolis_103)",
+      "set_key": "ecard2",
+      "set_name": "Aquapolis",
+      "card_number": "103",
+      "card_name": "Porygon",
+      "status": "no_exact_finish_or_identity_evidence",
+      "target_facts": 2,
+      "records_generated": 0,
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Porygon_(Aquapolis_103)",
+      "from_cache": true,
+      "ignored": [
+        {
+          "gap_key": "printing_finish|ecard2|103|porygon|normal",
+          "reason": "page_expansion_metadata_did_not_match_target_set_number"
+        },
+        {
+          "gap_key": "printing_finish|ecard2|103|porygon|reverse",
+          "reason": "page_expansion_metadata_did_not_match_target_set_number"
+        }
+      ]
+    },
+    {
+      "title": "_____'s_Pikachu_(Celebrations_24)",
+      "set_key": "cel25",
+      "set_name": "Celebrations",
+      "card_number": "24",
+      "card_name": "_____'s Pikachu",
+      "status": "source_unavailable",
+      "target_facts": 1,
+      "records_generated": 0,
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/_____'s_Pikachu_(Celebrations_24)",
+      "ignored": []
+    },
+    {
+      "title": "Alolan_Ninetales_(Burning_Shadows_28)",
+      "requested_title": "Alolan_Ninetales_(Burning_Shadows_28)",
+      "set_key": "sm3",
+      "set_name": "Burning Shadows",
+      "card_number": "28",
+      "card_name": "Alolan Ninetales",
+      "status": "no_exact_finish_or_identity_evidence",
+      "target_facts": 1,
+      "records_generated": 0,
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Alolan_Ninetales_(Burning_Shadows_28)",
+      "from_cache": true,
+      "ignored": [
+        {
+          "gap_key": "printing_finish|sm3|28|alolan ninetales|holo",
+          "reason": "no_explicit_target_finish_language"
+        }
+      ]
+    },
+    {
+      "title": "Avalugg_(Flashfire_31)",
+      "requested_title": "Avalugg_(Flashfire_31)",
+      "set_key": "xy2",
+      "set_name": "Flashfire",
+      "card_number": "31",
+      "card_name": "Avalugg",
+      "status": "no_exact_finish_or_identity_evidence",
+      "target_facts": 1,
+      "records_generated": 0,
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Avalugg_(Flashfire_31)",
+      "from_cache": true,
+      "ignored": [
+        {
+          "gap_key": "printing_finish|xy2|31|avalugg|stamped",
+          "reason": "no_explicit_target_finish_language"
+        }
+      ]
+    },
+    {
+      "title": "Blend_Energy_GrassFirePsychicDarkness_(Dragons_Exalted_117)",
+      "set_key": "bw6",
+      "set_name": "Dragons Exalted",
+      "card_number": "117",
+      "card_name": "Blend Energy GrassFirePsychicDarkness",
+      "status": "source_unavailable",
+      "target_facts": 1,
+      "records_generated": 0,
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Blend_Energy_GrassFirePsychicDarkness_(Dragons_Exalted_117)",
+      "ignored": []
+    },
+    {
+      "title": "Blend_Energy_WaterLightningFightingMetal_(Dragons_Exalted_118)",
+      "set_key": "bw6",
+      "set_name": "Dragons Exalted",
+      "card_number": "118",
+      "card_name": "Blend Energy WaterLightningFightingMetal",
+      "status": "source_unavailable",
+      "target_facts": 1,
+      "records_generated": 0,
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Blend_Energy_WaterLightningFightingMetal_(Dragons_Exalted_118)",
+      "ignored": []
+    },
+    {
+      "title": "Bulbasaur_(SM_Promo_198)",
+      "requested_title": "Bulbasaur_(SM_Promo_198)",
+      "set_key": "smp",
+      "set_name": "SM Black Star Promos",
+      "card_number": "SM198",
+      "card_name": "Bulbasaur",
+      "status": "no_exact_finish_or_identity_evidence",
+      "target_facts": 1,
+      "records_generated": 0,
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Bulbasaur_(SM_Promo_198)",
+      "from_cache": true,
+      "ignored": [
+        {
+          "gap_key": "printing_finish|smp|198|bulbasaur|cosmos",
+          "reason": "no_explicit_target_finish_language"
+        }
+      ]
+    },
+    {
+      "title": "Call_Energy_(Majestic_Dawn_92)",
+      "requested_title": "Call_Energy_(Majestic_Dawn_92)",
+      "set_key": "dp5",
+      "set_name": "Majestic Dawn",
+      "card_number": "92",
+      "card_name": "Call Energy",
+      "status": "no_exact_finish_or_identity_evidence",
+      "target_facts": 1,
+      "records_generated": 0,
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Call_Energy_(Majestic_Dawn_92)",
+      "from_cache": true,
+      "ignored": [
+        {
+          "gap_key": "printing_finish|dp5|92|call energy|stamped",
+          "reason": "page_expansion_metadata_did_not_match_target_set_number"
+        }
+      ]
+    },
+    {
+      "title": "Champions_Festival_(BW_Promo_95)",
+      "requested_title": "Champions_Festival_(XY_Promo_176)",
+      "set_key": "xyp",
+      "set_name": "XY Black Star Promos",
+      "card_number": "XY176",
+      "card_name": "Champions Festival",
+      "status": "no_exact_finish_or_identity_evidence",
+      "target_facts": 1,
+      "records_generated": 0,
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Champions_Festival_(BW_Promo_95)",
+      "from_cache": true,
+      "ignored": [
+        {
+          "gap_key": "printing_finish|xyp|176|champions festival|normal",
+          "reason": "page_expansion_metadata_did_not_match_target_set_number"
+        }
+      ]
+    },
+    {
+      "title": "Copycat_(Expedition_138)",
+      "requested_title": "Copycat_(Celestial_Storm_127)",
+      "set_key": "sm7",
+      "set_name": "Celestial Storm",
+      "card_number": "127",
+      "card_name": "Copycat",
+      "status": "no_exact_finish_or_identity_evidence",
+      "target_facts": 1,
+      "records_generated": 0,
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Copycat_(Expedition_138)",
+      "from_cache": true,
+      "ignored": [
+        {
+          "gap_key": "printing_finish|sm7|127|copycat|stamped",
+          "reason": "page_expansion_metadata_did_not_match_target_set_number"
+        }
+      ]
+    },
+    {
+      "title": "Darkness_Energy_(Neo_Genesis_104)",
+      "requested_title": "Darkness_Energy_(EX_Ruby_&_Sapphire_93)",
+      "set_key": "ex1",
+      "set_name": "Ruby & Sapphire",
+      "card_number": "93",
+      "card_name": "Darkness Energy",
+      "status": "no_exact_finish_or_identity_evidence",
+      "target_facts": 1,
+      "records_generated": 0,
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Darkness_Energy_(Neo_Genesis_104)",
+      "from_cache": true,
+      "ignored": [
+        {
+          "gap_key": "printing_finish|ex1|93|darkness energy|cosmos",
+          "reason": "page_expansion_metadata_did_not_match_target_set_number"
+        }
+      ]
+    },
+    {
+      "title": "Dimension_Valley_(Phantom_Forces_93)",
+      "requested_title": "Dimension_Valley_(Phantom_Forces_93)",
+      "set_key": "xy4",
+      "set_name": "Phantom Forces",
+      "card_number": "93",
+      "card_name": "Dimension Valley",
+      "status": "no_exact_finish_or_identity_evidence",
+      "target_facts": 1,
+      "records_generated": 0,
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Dimension_Valley_(Phantom_Forces_93)",
+      "from_cache": true,
+      "ignored": [
+        {
+          "gap_key": "printing_finish|xy4|93|dimension valley|stamped",
+          "reason": "page_expansion_metadata_did_not_match_target_set_number"
+        }
+      ]
+    },
+    {
+      "title": "Druddigon_(Plasma_Storm_94)",
+      "requested_title": "Druddigon_(Plasma_Storm_94)",
+      "set_key": "bw8",
+      "set_name": "Plasma Storm",
+      "card_number": "94",
+      "card_name": "Druddigon",
+      "status": "no_exact_finish_or_identity_evidence",
+      "target_facts": 1,
+      "records_generated": 0,
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Druddigon_(Plasma_Storm_94)",
+      "from_cache": true,
+      "ignored": [
+        {
+          "gap_key": "printing_finish|bw8|94|druddigon|holo",
+          "reason": "no_explicit_target_finish_language"
+        }
+      ]
+    },
+    {
+      "title": "Dusknoir_(Vivid_Voltage_71)",
+      "requested_title": "Dusknoir_(Vivid_Voltage_71)",
+      "set_key": "swsh4",
+      "set_name": "Vivid Voltage",
+      "card_number": "71",
+      "card_name": "Dusknoir",
+      "status": "no_exact_finish_or_identity_evidence",
+      "target_facts": 1,
+      "records_generated": 0,
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Dusknoir_(Vivid_Voltage_71)",
+      "from_cache": true,
+      "ignored": [
+        {
+          "gap_key": "printing_finish|swsh4|71|dusknoir|stamped",
+          "reason": "no_explicit_target_finish_language"
+        }
+      ]
+    },
+    {
+      "title": "Enhanced_Hammer_(Dark_Explorers_94)",
+      "requested_title": "Enhanced_Hammer_(Dark_Explorers_94)",
+      "set_key": "bw5",
+      "set_name": "Dark Explorers",
+      "card_number": "94",
+      "card_name": "Enhanced Hammer",
+      "status": "no_exact_finish_or_identity_evidence",
+      "target_facts": 1,
+      "records_generated": 0,
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Enhanced_Hammer_(Dark_Explorers_94)",
+      "from_cache": true,
+      "ignored": [
+        {
+          "gap_key": "printing_finish|bw5|94|enhanced hammer|stamped",
+          "reason": "page_expansion_metadata_did_not_match_target_set_number"
+        }
+      ]
+    },
+    {
+      "title": "Eviolite_(Noble_Victories_91)",
+      "requested_title": "Eviolite_(Noble_Victories_91)",
+      "set_key": "bw3",
+      "set_name": "Noble Victories",
+      "card_number": "91",
+      "card_name": "Eviolite",
+      "status": "no_exact_finish_or_identity_evidence",
+      "target_facts": 1,
+      "records_generated": 0,
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Eviolite_(Noble_Victories_91)",
+      "from_cache": true,
+      "ignored": [
+        {
+          "gap_key": "printing_finish|bw3|91|eviolite|stamped",
+          "reason": "page_expansion_metadata_did_not_match_target_set_number"
+        }
+      ]
+    },
+    {
+      "title": "Farfetch'd_(EX_Emerald_107)",
+      "requested_title": "Farfetch'd_(EX_Emerald_107)",
+      "set_key": "ex9",
+      "set_name": "Emerald",
+      "card_number": "107",
+      "card_name": "Farfetch'd",
+      "status": "no_exact_finish_or_identity_evidence",
+      "target_facts": 1,
+      "records_generated": 0,
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Farfetch'd_(EX_Emerald_107)",
+      "from_cache": true,
+      "ignored": [
+        {
+          "gap_key": "printing_finish|ex9|107|farfetch d|normal",
+          "reason": "no_explicit_target_finish_language"
+        }
+      ]
+    },
+    {
+      "title": "Florges_(BREAKthrough_103)",
+      "requested_title": "Florges_(BREAKthrough_103)",
+      "set_key": "xy8",
+      "set_name": "BREAKthrough",
+      "card_number": "103",
+      "card_name": "Florges",
+      "status": "no_exact_finish_or_identity_evidence",
+      "target_facts": 1,
+      "records_generated": 0,
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Florges_(BREAKthrough_103)",
+      "from_cache": true,
+      "ignored": [
+        {
+          "gap_key": "printing_finish|xy8|103|florges|stamped",
+          "reason": "no_explicit_target_finish_language"
+        }
+      ]
+    },
+    {
+      "title": "Hala_(Guardians_Rising_126)",
+      "requested_title": "Hala_(Guardians_Rising_126)",
+      "set_key": "sm2",
+      "set_name": "Guardians Rising",
+      "card_number": "126",
+      "card_name": "Hala",
+      "status": "no_exact_finish_or_identity_evidence",
+      "target_facts": 1,
+      "records_generated": 0,
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Hala_(Guardians_Rising_126)",
+      "from_cache": true,
+      "ignored": [
+        {
+          "gap_key": "printing_finish|sm2|126|hala|stamped",
+          "reason": "page_expansion_metadata_did_not_match_target_set_number"
+        }
+      ]
+    },
+    {
+      "title": "Hydreigon_(Dragons_Exalted_98)",
+      "requested_title": "Hydreigon_(Dragons_Exalted_98)",
+      "set_key": "bw6",
+      "set_name": "Dragons Exalted",
+      "card_number": "98",
+      "card_name": "Hydreigon",
+      "status": "no_exact_finish_or_identity_evidence",
+      "target_facts": 1,
+      "records_generated": 0,
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Hydreigon_(Dragons_Exalted_98)",
+      "from_cache": true,
+      "ignored": [
+        {
+          "gap_key": "printing_finish|bw6|98|hydreigon|holo",
+          "reason": "no_explicit_target_finish_language"
+        }
+      ]
+    },
+    {
+      "title": "Jangmo-o_(Crimson_Invasion_75)",
+      "requested_title": "Jangmo-o_(Crimson_Invasion_75)",
+      "set_key": "sm4",
+      "set_name": "Crimson Invasion",
+      "card_number": "75",
+      "card_name": "Jangmo-o",
+      "status": "no_exact_finish_or_identity_evidence",
+      "target_facts": 1,
+      "records_generated": 0,
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Jangmo-o_(Crimson_Invasion_75)",
+      "from_cache": true,
+      "ignored": [
+        {
+          "gap_key": "printing_finish|sm4|75|jangmo o|cosmos",
+          "reason": "no_explicit_target_finish_language"
+        }
+      ]
+    },
+    {
+      "title": "Junk_Arm_(HS—Triumphant_87)",
+      "set_key": "hgss4",
+      "set_name": "HS—Triumphant",
+      "card_number": "87",
+      "card_name": "Junk Arm",
+      "status": "source_unavailable",
+      "target_facts": 1,
+      "records_generated": 0,
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Junk_Arm_(HS%E2%80%94Triumphant_87)",
+      "ignored": []
+    },
+    {
+      "title": "Basic_Lightning_Energy_(TCG)",
+      "requested_title": "Lightning_Energy_(Call_of_Legends_91)",
+      "set_key": "col1",
+      "set_name": "Call of Legends",
+      "card_number": "91",
+      "card_name": "Lightning Energy",
+      "status": "no_exact_finish_or_identity_evidence",
+      "target_facts": 1,
+      "records_generated": 0,
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Basic_Lightning_Energy_(TCG)",
+      "from_cache": true,
+      "ignored": [
+        {
+          "gap_key": "printing_finish|col1|91|lightning energy|stamped",
+          "reason": "page_expansion_metadata_did_not_match_target_set_number"
+        }
+      ]
+    },
+    {
+      "title": "Lost_Vacuum_(Lost_Origin_162)",
+      "requested_title": "Lost_Vacuum_(Lost_Origin_162)",
+      "set_key": "swsh11",
+      "set_name": "Lost Origin",
+      "card_number": "162",
+      "card_name": "Lost Vacuum",
+      "status": "no_exact_finish_or_identity_evidence",
+      "target_facts": 1,
+      "records_generated": 0,
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Lost_Vacuum_(Lost_Origin_162)",
+      "from_cache": true,
+      "ignored": [
+        {
+          "gap_key": "printing_finish|swsh11|162|lost vacuum|stamped",
+          "reason": "page_expansion_metadata_did_not_match_target_set_number"
+        }
+      ]
+    },
+    {
+      "title": "Lucian's_Assignment_(Rising_Rivals_92)",
+      "requested_title": "Lucian's_Assignment_(Rising_Rivals_92)",
+      "set_key": "pl2",
+      "set_name": "Rising Rivals",
+      "card_number": "92",
+      "card_name": "Lucian's Assignment",
+      "status": "no_exact_finish_or_identity_evidence",
+      "target_facts": 1,
+      "records_generated": 0,
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Lucian's_Assignment_(Rising_Rivals_92)",
+      "from_cache": true,
+      "ignored": [
+        {
+          "gap_key": "printing_finish|pl2|92|lucian s assignment|stamped",
+          "reason": "page_expansion_metadata_did_not_match_target_set_number"
+        }
+      ]
+    },
+    {
+      "title": "Magikarp_(Rebel_Clash_39)",
+      "requested_title": "Magikarp_(Rebel_Clash_39)",
+      "set_key": "swsh2",
+      "set_name": "Rebel Clash",
+      "card_number": "39",
+      "card_name": "Magikarp",
+      "status": "no_exact_finish_or_identity_evidence",
+      "target_facts": 1,
+      "records_generated": 0,
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Magikarp_(Rebel_Clash_39)",
+      "from_cache": true,
+      "ignored": [
+        {
+          "gap_key": "printing_finish|swsh2|39|magikarp|cosmos",
+          "reason": "no_explicit_target_finish_language"
+        }
+      ]
+    },
+    {
+      "title": "Marshadow_(Evolving_Skies_80)",
+      "requested_title": "Marshadow_(Evolving_Skies_80)",
+      "set_key": "swsh7",
+      "set_name": "Evolving Skies",
+      "card_number": "80",
+      "card_name": "Marshadow",
+      "status": "no_exact_finish_or_identity_evidence",
+      "target_facts": 1,
+      "records_generated": 0,
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Marshadow_(Evolving_Skies_80)",
+      "from_cache": true,
+      "ignored": [
+        {
+          "gap_key": "printing_finish|swsh7|80|marshadow|stamped",
+          "reason": "no_explicit_target_finish_language"
+        }
+      ]
+    },
+    {
+      "title": "Misty's_Determination_(BREAKpoint_104)",
+      "requested_title": "Misty's_Determination_(BREAKpoint_104)",
+      "set_key": "xy9",
+      "set_name": "BREAKpoint",
+      "card_number": "104",
+      "card_name": "Misty's Determination",
+      "status": "no_exact_finish_or_identity_evidence",
+      "target_facts": 1,
+      "records_generated": 0,
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Misty's_Determination_(BREAKpoint_104)",
+      "from_cache": true,
+      "ignored": [
+        {
+          "gap_key": "printing_finish|xy9|104|misty s determination|stamped",
+          "reason": "page_expansion_metadata_did_not_match_target_set_number"
+        }
+      ]
+    },
+    {
+      "title": "Moltres_(151_146)",
+      "requested_title": "Moltres_(151_146)",
+      "set_key": "sv03.5",
+      "set_name": "151",
+      "card_number": "146",
+      "card_name": "Moltres",
+      "status": "no_exact_finish_or_identity_evidence",
+      "target_facts": 1,
+      "records_generated": 0,
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Moltres_(151_146)",
+      "from_cache": true,
+      "ignored": [
+        {
+          "gap_key": "printing_finish|sv03.5|146|moltres|normal",
+          "reason": "no_explicit_target_finish_language"
+        }
+      ]
+    },
+    {
+      "title": "Net_Ball_(Lost_Thunder_187)",
+      "requested_title": "Net_Ball_(Lost_Thunder_187)",
+      "set_key": "sm8",
+      "set_name": "Lost Thunder",
+      "card_number": "187",
+      "card_name": "Net Ball",
+      "status": "no_exact_finish_or_identity_evidence",
+      "target_facts": 1,
+      "records_generated": 0,
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Net_Ball_(Lost_Thunder_187)",
+      "from_cache": true,
+      "ignored": [
+        {
+          "gap_key": "printing_finish|sm8|187|net ball|stamped",
+          "reason": "page_expansion_metadata_did_not_match_target_set_number"
+        }
+      ]
+    },
+    {
+      "title": "Pikachu_(XY_Promo_202)",
+      "requested_title": "Pikachu_(XY_Promo_202)",
+      "set_key": "xyp",
+      "set_name": "XY Black Star Promos",
+      "card_number": "XY202",
+      "card_name": "Pikachu",
+      "status": "no_exact_finish_or_identity_evidence",
+      "target_facts": 1,
+      "records_generated": 0,
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Pikachu_(XY_Promo_202)",
+      "from_cache": true,
+      "ignored": [
+        {
+          "gap_key": "printing_finish|xyp|202|pikachu|holo",
+          "reason": "no_explicit_target_finish_language"
+        }
+      ]
+    },
+    {
+      "title": "Plasma_Energy_(Plasma_Storm_127)",
+      "requested_title": "Plasma_Energy_(Plasma_Freeze_106)",
+      "set_key": "bw9",
+      "set_name": "Plasma Freeze",
+      "card_number": "106",
+      "card_name": "Plasma Energy",
+      "status": "no_exact_finish_or_identity_evidence",
+      "target_facts": 1,
+      "records_generated": 0,
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Plasma_Energy_(Plasma_Storm_127)",
+      "from_cache": true,
+      "ignored": [
+        {
+          "gap_key": "printing_finish|bw9|106|plasma energy|stamped",
+          "reason": "page_expansion_metadata_did_not_match_target_set_number"
+        }
+      ]
+    },
+    {
+      "title": "PlusPower_(Base_Set_84)",
+      "requested_title": "PlusPower_(Platinum_112)",
+      "set_key": "pl1",
+      "set_name": "Platinum",
+      "card_number": "112",
+      "card_name": "PlusPower",
+      "status": "no_exact_finish_or_identity_evidence",
+      "target_facts": 1,
+      "records_generated": 0,
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/PlusPower_(Base_Set_84)",
+      "from_cache": true,
+      "ignored": [
+        {
+          "gap_key": "printing_finish|pl1|112|pluspower|stamped",
+          "reason": "page_expansion_metadata_did_not_match_target_set_number"
+        }
+      ]
+    },
+    {
+      "title": "Pokémon_Communication_(HeartGold_&_SoulSilver_98)",
+      "requested_title": "Pokémon_Communication_(HeartGold_&_SoulSilver_98)",
+      "set_key": "hgss1",
+      "set_name": "HeartGold & SoulSilver",
+      "card_number": "98",
+      "card_name": "Pokémon Communication",
+      "status": "no_exact_finish_or_identity_evidence",
+      "target_facts": 1,
+      "records_generated": 0,
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Pok%C3%A9mon_Communication_(HeartGold_%26_SoulSilver_98)",
+      "from_cache": true,
+      "ignored": [
+        {
+          "gap_key": "printing_finish|hgss1|98|communication|stamped",
+          "reason": "page_expansion_metadata_did_not_match_target_set_number"
+        }
+      ]
+    },
+    {
+      "title": "Professor_Oak's_Research_(Expedition_149)",
+      "requested_title": "Prof._Oak's_Research_(EX_FireRed_&_LeafGreen_98)",
+      "set_key": "ex6",
+      "set_name": "FireRed & LeafGreen",
+      "card_number": "98",
+      "card_name": "Prof. Oak's Research",
+      "status": "no_exact_finish_or_identity_evidence",
+      "target_facts": 1,
+      "records_generated": 0,
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Professor_Oak's_Research_(Expedition_149)",
+      "from_cache": true,
+      "ignored": [
+        {
+          "gap_key": "printing_finish|ex6|98|prof oak s research|stamped",
+          "reason": "page_expansion_metadata_did_not_match_target_set_number"
+        }
+      ]
+    },
+    {
+      "title": "Professor_Elm's_Lecture_(Lost_Thunder_188)",
+      "requested_title": "Professor_Elm's_Lecture_(Lost_Thunder_188)",
+      "set_key": "sm8",
+      "set_name": "Lost Thunder",
+      "card_number": "188",
+      "card_name": "Professor Elm's Lecture",
+      "status": "no_exact_finish_or_identity_evidence",
+      "target_facts": 1,
+      "records_generated": 0,
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Professor_Elm's_Lecture_(Lost_Thunder_188)",
+      "from_cache": true,
+      "ignored": [
+        {
+          "gap_key": "printing_finish|sm8|188|professor elm s lecture|stamped",
+          "reason": "page_expansion_metadata_did_not_match_target_set_number"
+        }
+      ]
+    },
+    {
+      "title": "Professor_Rowan_(Diamond_&_Pearl_112)",
+      "requested_title": "Professor_Rowan_(Diamond_&_Pearl_112)",
+      "set_key": "dp1",
+      "set_name": "Diamond & Pearl",
+      "card_number": "112",
+      "card_name": "Professor Rowan",
+      "status": "no_exact_finish_or_identity_evidence",
+      "target_facts": 1,
+      "records_generated": 0,
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Professor_Rowan_(Diamond_%26_Pearl_112)",
+      "from_cache": true,
+      "ignored": [
+        {
+          "gap_key": "printing_finish|dp1|112|professor rowan|stamped",
+          "reason": "page_expansion_metadata_did_not_match_target_set_number"
+        }
+      ]
+    },
+    {
+      "title": "Professor's_Research_(Professor_Magnolia)_(Champion's_Path_62)",
+      "set_key": "swsh3.5",
+      "set_name": "Champion's Path",
+      "card_number": "62",
+      "card_name": "Professor's Research (Professor Magnolia)",
+      "status": "source_unavailable",
+      "target_facts": 1,
+      "records_generated": 0,
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Professor's_Research_(Professor_Magnolia)_(Champion's_Path_62)",
+      "ignored": []
+    },
+    {
+      "title": "Professor's_Research_(Professor_Magnolia)_(Sword_&_Shield_178)",
+      "set_key": "swsh1",
+      "set_name": "Sword & Shield",
+      "card_number": "178",
+      "card_name": "Professor's Research (Professor Magnolia)",
+      "status": "source_unavailable",
+      "target_facts": 1,
+      "records_generated": 0,
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Professor's_Research_(Professor_Magnolia)_(Sword_%26_Shield_178)",
+      "ignored": []
+    },
+    {
+      "title": "Psyduck_(SM_Promo_199)",
+      "requested_title": "Psyduck_(SM_Promo_199)",
+      "set_key": "smp",
+      "set_name": "SM Black Star Promos",
+      "card_number": "SM199",
+      "card_name": "Psyduck",
+      "status": "no_exact_finish_or_identity_evidence",
+      "target_facts": 1,
+      "records_generated": 0,
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Psyduck_(SM_Promo_199)",
+      "from_cache": true,
+      "ignored": [
+        {
+          "gap_key": "printing_finish|smp|199|psyduck|cosmos",
+          "reason": "no_explicit_target_finish_language"
+        }
+      ]
+    },
+    {
+      "title": "Rainbow_Energy_(Team_Rocket_17)",
+      "requested_title": "Rainbow_Energy_(HeartGold_&_SoulSilver_104)",
+      "set_key": "hgss1",
+      "set_name": "HeartGold & SoulSilver",
+      "card_number": "104",
+      "card_name": "Rainbow Energy",
+      "status": "no_exact_finish_or_identity_evidence",
+      "target_facts": 1,
+      "records_generated": 0,
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Rainbow_Energy_(Team_Rocket_17)",
+      "from_cache": true,
+      "ignored": [
+        {
+          "gap_key": "printing_finish|hgss1|104|rainbow energy|stamped",
+          "reason": "page_expansion_metadata_did_not_match_target_set_number"
+        }
+      ]
+    },
+    {
+      "title": "Recycle_Energy_(Neo_Genesis_105)",
+      "requested_title": "Recycle_Energy_(Neo_Genesis_105)",
+      "set_key": "neo1",
+      "set_name": "Neo Genesis",
+      "card_number": "105",
+      "card_name": "Recycle Energy",
+      "status": "no_exact_finish_or_identity_evidence",
+      "target_facts": 1,
+      "records_generated": 0,
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Recycle_Energy_(Neo_Genesis_105)",
+      "from_cache": true,
+      "ignored": [
+        {
+          "gap_key": "printing_finish|neo1|105|recycle energy|holo",
+          "reason": "page_expansion_metadata_did_not_match_target_set_number"
+        }
+      ]
+    },
+    {
+      "title": "Reverse_Valley_(BREAKpoint_110)",
+      "requested_title": "Reverse_Valley_(BREAKpoint_110)",
+      "set_key": "xy9",
+      "set_name": "BREAKpoint",
+      "card_number": "110",
+      "card_name": "Reverse Valley",
+      "status": "no_exact_finish_or_identity_evidence",
+      "target_facts": 1,
+      "records_generated": 0,
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Reverse_Valley_(BREAKpoint_110)",
+      "from_cache": true,
+      "ignored": [
+        {
+          "gap_key": "printing_finish|xy9|110|reverse valley|stamped",
+          "reason": "page_expansion_metadata_did_not_match_target_set_number"
+        }
+      ]
+    },
+    {
+      "title": "Scolipede_(Emerging_Powers_40)",
+      "requested_title": "Scolipede_(Emerging_Powers_40)",
+      "set_key": "bw2",
+      "set_name": "Emerging Powers",
+      "card_number": "40",
+      "card_name": "Scolipede",
+      "status": "no_exact_finish_or_identity_evidence",
+      "target_facts": 1,
+      "records_generated": 0,
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Scolipede_(Emerging_Powers_40)",
+      "from_cache": true,
+      "ignored": [
+        {
+          "gap_key": "printing_finish|bw2|40|scolipede|holo",
+          "reason": "no_explicit_target_finish_language"
+        }
+      ]
+    },
+    {
+      "title": "Scorbunny_(Sword_&_Shield_31)",
+      "requested_title": "Scorbunny_(Sword_&_Shield_31)",
+      "set_key": "swsh1",
+      "set_name": "Sword & Shield",
+      "card_number": "31",
+      "card_name": "Scorbunny",
+      "status": "no_exact_finish_or_identity_evidence",
+      "target_facts": 1,
+      "records_generated": 0,
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Scorbunny_(Sword_%26_Shield_31)",
+      "from_cache": true,
+      "ignored": [
+        {
+          "gap_key": "printing_finish|swsh1|31|scorbunny|holo",
+          "reason": "no_explicit_target_finish_language"
+        }
+      ]
+    },
+    {
+      "title": "Shellos_(Secret_Wonders_106)",
+      "requested_title": "Shellos_East_Sea_(Secret_Wonders_106)",
+      "set_key": "dp3",
+      "set_name": "Secret Wonders",
+      "card_number": "106",
+      "card_name": "Shellos East Sea",
+      "status": "no_exact_finish_or_identity_evidence",
+      "target_facts": 1,
+      "records_generated": 0,
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Shellos_(Secret_Wonders_106)",
+      "from_cache": true,
+      "ignored": [
+        {
+          "gap_key": "printing_finish|dp3|106|shellos east sea|stamped",
+          "reason": "no_explicit_target_finish_language"
+        }
+      ]
+    },
+    {
+      "title": "Snubbull_(SM_Promo_200)",
+      "requested_title": "Snubbull_(SM_Promo_200)",
+      "set_key": "smp",
+      "set_name": "SM Black Star Promos",
+      "card_number": "SM200",
+      "card_name": "Snubbull",
+      "status": "no_exact_finish_or_identity_evidence",
+      "target_facts": 1,
+      "records_generated": 0,
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Snubbull_(SM_Promo_200)",
+      "from_cache": true,
+      "ignored": [
+        {
+          "gap_key": "printing_finish|smp|200|snubbull|cosmos",
+          "reason": "no_explicit_target_finish_language"
+        }
+      ]
+    },
+    {
+      "title": "Snubbull_(Sun_&_Moon_90)",
+      "requested_title": "Snubbull_(Sun_&_Moon_90)",
+      "set_key": "sm1",
+      "set_name": "Sun & Moon",
+      "card_number": "90",
+      "card_name": "Snubbull",
+      "status": "no_exact_finish_or_identity_evidence",
+      "target_facts": 1,
+      "records_generated": 0,
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Snubbull_(Sun_%26_Moon_90)",
+      "from_cache": true,
+      "ignored": [
+        {
+          "gap_key": "printing_finish|sm1|90|snubbull|stamped",
+          "reason": "no_explicit_target_finish_language"
+        }
+      ]
+    },
+    {
+      "title": "Splash_Energy_(BREAKpoint_113)",
+      "requested_title": "Splash_Energy_(BREAKpoint_113)",
+      "set_key": "xy9",
+      "set_name": "BREAKpoint",
+      "card_number": "113",
+      "card_name": "Splash Energy",
+      "status": "no_exact_finish_or_identity_evidence",
+      "target_facts": 1,
+      "records_generated": 0,
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Splash_Energy_(BREAKpoint_113)",
+      "from_cache": true,
+      "ignored": [
+        {
+          "gap_key": "printing_finish|xy9|113|splash energy|stamped",
+          "reason": "page_expansion_metadata_did_not_match_target_set_number"
+        }
+      ]
+    },
+    {
+      "title": "Squirtle_(151_7)",
+      "requested_title": "Squirtle_(151_7)",
+      "set_key": "sv03.5",
+      "set_name": "151",
+      "card_number": "7",
+      "card_name": "Squirtle",
+      "status": "no_exact_finish_or_identity_evidence",
+      "target_facts": 1,
+      "records_generated": 0,
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Squirtle_(151_7)",
+      "from_cache": true,
+      "ignored": [
+        {
+          "gap_key": "printing_finish|sv03.5|7|squirtle|stamped",
+          "reason": "no_explicit_target_finish_language"
+        }
+      ]
+    },
+    {
+      "title": "Super_Scoop_Up_(HS—Unleashed_83)",
+      "set_key": "hgss2",
+      "set_name": "HS—Unleashed",
+      "card_number": "83",
+      "card_name": "Super Scoop Up",
+      "status": "source_unavailable",
+      "target_facts": 1,
+      "records_generated": 0,
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Super_Scoop_Up_(HS%E2%80%94Unleashed_83)",
+      "ignored": []
+    },
+    {
+      "title": "Team_Aqua's_Cacnea_(EX_Team_Magma_vs_Team_Aqua_24)",
+      "requested_title": "Team_Aqua's_Cacnea_(EX_Team_Magma_vs_Team_Aqua_24)",
+      "set_key": "ex4",
+      "set_name": "Team Magma vs Team Aqua",
+      "card_number": "24",
+      "card_name": "Team Aqua's Cacnea",
+      "status": "no_exact_finish_or_identity_evidence",
+      "target_facts": 1,
+      "records_generated": 0,
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Team_Aqua's_Cacnea_(EX_Team_Magma_vs_Team_Aqua_24)",
+      "from_cache": true,
+      "ignored": [
+        {
+          "gap_key": "printing_finish|ex4|24|team aqua s cacnea|stamped",
+          "reason": "no_explicit_target_finish_language"
+        }
+      ]
+    },
+    {
+      "title": "Training_Center_(Furious_Fists_102)",
+      "requested_title": "Training_Center_(Furious_Fists_102)",
+      "set_key": "xy3",
+      "set_name": "Furious Fists",
+      "card_number": "102",
+      "card_name": "Training Center",
+      "status": "no_exact_finish_or_identity_evidence",
+      "target_facts": 1,
+      "records_generated": 0,
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Training_Center_(Furious_Fists_102)",
+      "from_cache": true,
+      "ignored": [
+        {
+          "gap_key": "printing_finish|xy3|102|training center|stamped",
+          "reason": "page_expansion_metadata_did_not_match_target_set_number"
+        }
+      ]
+    },
+    {
+      "title": "Trekking_Shoes_(Astral_Radiance_156)",
+      "requested_title": "Trekking_Shoes_(Astral_Radiance_156)",
+      "set_key": "swsh10",
+      "set_name": "Astral Radiance",
+      "card_number": "156",
+      "card_name": "Trekking Shoes",
+      "status": "no_exact_finish_or_identity_evidence",
+      "target_facts": 1,
+      "records_generated": 0,
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Trekking_Shoes_(Astral_Radiance_156)",
+      "from_cache": true,
+      "ignored": [
+        {
+          "gap_key": "printing_finish|swsh10|156|trekking shoes|stamped",
+          "reason": "page_expansion_metadata_did_not_match_target_set_number"
+        }
+      ]
+    },
+    {
+      "title": "Upper_Energy_(Rising_Rivals_102)",
+      "requested_title": "Upper_Energy_(Rising_Rivals_102)",
+      "set_key": "pl2",
+      "set_name": "Rising Rivals",
+      "card_number": "102",
+      "card_name": "Upper Energy",
+      "status": "no_exact_finish_or_identity_evidence",
+      "target_facts": 1,
+      "records_generated": 0,
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Upper_Energy_(Rising_Rivals_102)",
+      "from_cache": true,
+      "ignored": [
+        {
+          "gap_key": "printing_finish|pl2|102|upper energy|stamped",
+          "reason": "page_expansion_metadata_did_not_match_target_set_number"
+        }
+      ]
+    },
+    {
+      "title": "Vileplume_(151_45)",
+      "requested_title": "Vileplume_(151_45)",
+      "set_key": "sv03.5",
+      "set_name": "151",
+      "card_number": "45",
+      "card_name": "Vileplume",
+      "status": "no_exact_finish_or_identity_evidence",
+      "target_facts": 1,
+      "records_generated": 0,
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Vileplume_(151_45)",
+      "from_cache": true,
+      "ignored": [
+        {
+          "gap_key": "printing_finish|sv03.5|45|vileplume|normal",
+          "reason": "no_explicit_target_finish_language"
+        }
+      ]
+    },
+    {
+      "title": "Wartortle_(EX_Crystal_Guardians_42)",
+      "requested_title": "Wartortle_(EX_Crystal_Guardians_42)",
+      "set_key": "ex14",
+      "set_name": "Crystal Guardians",
+      "card_number": "42",
+      "card_name": "Wartortle",
+      "status": "no_exact_finish_or_identity_evidence",
+      "target_facts": 1,
+      "records_generated": 0,
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Wartortle_(EX_Crystal_Guardians_42)",
+      "from_cache": true,
+      "ignored": [
+        {
+          "gap_key": "printing_finish|ex14|42|wartortle|stamped",
+          "reason": "no_explicit_target_finish_language"
+        }
+      ]
+    },
+    {
+      "title": "Zeraora_(Unbroken_Bonds_60)",
+      "requested_title": "Zeraora_(Unbroken_Bonds_60)",
+      "set_key": "sm10",
+      "set_name": "Unbroken Bonds",
+      "card_number": "60",
+      "card_name": "Zeraora",
+      "status": "no_exact_finish_or_identity_evidence",
+      "target_facts": 1,
+      "records_generated": 0,
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Zeraora_(Unbroken_Bonds_60)",
+      "from_cache": true,
+      "ignored": [
+        {
+          "gap_key": "printing_finish|sm10|60|zeraora|holo",
+          "reason": "no_explicit_target_finish_language"
+        }
+      ]
+    }
+  ],
+  "records": []
+}

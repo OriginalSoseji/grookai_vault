@@ -1,0 +1,549 @@
+{
+  "status": "api_no_validated_match",
+  "fact": {
+    "gap_type": "finish_second_source_needed",
+    "fact_type": "printing_finish",
+    "set_key": "ex8",
+    "set_name": "Deoxys",
+    "card_number": "107",
+    "card_name": "Rayquaza ☆",
+    "finish_key": "holo",
+    "status": "human_source_verified",
+    "sources": [
+      "thepricedex_price_list"
+    ],
+    "source_authorities": [
+      "thepricedex.com"
+    ],
+    "source_kinds": [
+      "marketplace_checklist"
+    ],
+    "evidence_urls": [
+      "https://www.thepricedex.com/set/ex8/deoxys/price-list"
+    ],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "attempts": [
+    {
+      "query": "Pokemon Deoxys Rayquaza ☆ 107 holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Deoxys%20Rayquaza%20%E2%98%86%20107%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "888127",
+      "product_name": "Rayquaza [Gold Star] #107",
+      "console_name": "Pokemon Deoxys",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Gold Star"
+      }
+    },
+    {
+      "query": "Pokemon Deoxys Rayquaza ☆ 107 holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Deoxys%20Rayquaza%20%E2%98%86%20107%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8280984",
+      "product_name": "Rayquaza [Holo] #22",
+      "console_name": "Pokemon Deoxys",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:22"
+      }
+    },
+    {
+      "query": "Pokemon Deoxys Rayquaza ☆ 107 holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Deoxys%20Rayquaza%20%E2%98%86%20107%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "888150",
+      "product_name": "Rayquaza [Reverse Holo] #22",
+      "console_name": "Pokemon Deoxys",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:22"
+      }
+    },
+    {
+      "query": "Pokemon Deoxys Rayquaza ☆ 107 holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Deoxys%20Rayquaza%20%E2%98%86%20107%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "925976",
+      "product_name": "Rayquaza & Deoxys LEGEND #89",
+      "console_name": "Pokemon Undaunted",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:89"
+      }
+    },
+    {
+      "query": "Pokemon Deoxys Rayquaza ☆ 107 holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Deoxys%20Rayquaza%20%E2%98%86%20107%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "925977",
+      "product_name": "Rayquaza & Deoxys LEGEND #90",
+      "console_name": "Pokemon Undaunted",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:90"
+      }
+    },
+    {
+      "query": "Pokemon Deoxys Rayquaza ☆ 107 holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Deoxys%20Rayquaza%20%E2%98%86%20107%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6859528",
+      "product_name": "Rayquaza & Deoxys Legend #74",
+      "console_name": "Pokemon Japanese Clash at the Summit",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:74"
+      }
+    },
+    {
+      "query": "Pokemon Deoxys Rayquaza ☆ 107 holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Deoxys%20Rayquaza%20%E2%98%86%20107%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5075764",
+      "product_name": "Rayquaza & Deoxys Legend #75",
+      "console_name": "Pokemon Japanese Clash at the Summit",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:75"
+      }
+    },
+    {
+      "query": "Pokemon Deoxys Rayquaza ☆ 107 holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Deoxys%20Rayquaza%20%E2%98%86%20107%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "888043",
+      "product_name": "Rayquaza #22",
+      "console_name": "Pokemon Deoxys",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:22"
+      }
+    },
+    {
+      "query": "Pokemon Deoxys Rayquaza ☆ 107 holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Deoxys%20Rayquaza%20%E2%98%86%20107%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11742987",
+      "product_name": "Rayquaza & Deoxys Legend #89",
+      "console_name": "Pokemon World Championships 2011",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:89"
+      }
+    },
+    {
+      "query": "Pokemon Deoxys Rayquaza ☆ 107 holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Deoxys%20Rayquaza%20%E2%98%86%20107%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11742979",
+      "product_name": "Rayquaza & Deoxys Legend #90",
+      "console_name": "Pokemon World Championships 2011",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:90"
+      }
+    },
+    {
+      "query": "Pokemon Deoxys Rayquaza ☆ 107 holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Deoxys%20Rayquaza%20%E2%98%86%20107%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "888122",
+      "product_name": "Rayquaza EX #102",
+      "console_name": "Pokemon Deoxys",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:102"
+      }
+    },
+    {
+      "query": "Pokemon Deoxys Rayquaza ☆ 107 holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Deoxys%20Rayquaza%20%E2%98%86%20107%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "13016147",
+      "product_name": "Deoxys VS Rayquaza [Normal Form] #202",
+      "console_name": "Pokemon Japanese Topsun",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:202"
+      }
+    },
+    {
+      "query": "Pokemon Deoxys Rayquaza ☆ 107 holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Deoxys%20Rayquaza%20%E2%98%86%20107%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "13016149",
+      "product_name": "Deoxys VS Rayquaza [Attack Form] #202",
+      "console_name": "Pokemon Japanese Topsun",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:202"
+      }
+    },
+    {
+      "query": "Pokemon Deoxys Rayquaza ☆ 107 holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Deoxys%20Rayquaza%20%E2%98%86%20107%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "13016148",
+      "product_name": "Deoxys VS Rayquaza [Defense Form] #202",
+      "console_name": "Pokemon Japanese Topsun",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:202"
+      }
+    },
+    {
+      "query": "Pokemon Deoxys Rayquaza ☆ 107 holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Deoxys%20Rayquaza%20%E2%98%86%20107%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8453391",
+      "product_name": "Rayquaza & Deoxys Legend [1st Edition] #74",
+      "console_name": "Pokemon Japanese Clash at the Summit",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:74"
+      }
+    },
+    {
+      "query": "Pokemon Deoxys Rayquaza ☆ 107 holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Deoxys%20Rayquaza%20%E2%98%86%20107%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8453390",
+      "product_name": "Rayquaza & Deoxys Legend [1st Edition] #75",
+      "console_name": "Pokemon Japanese Clash at the Summit",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:75"
+      }
+    },
+    {
+      "query": "Pokemon Deoxys Rayquaza ☆ 107 holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Deoxys%20Rayquaza%20%E2%98%86%20107%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4447582",
+      "product_name": "Rayquaza V #107",
+      "console_name": "Pokemon Japanese VSTAR Universe",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Rayquaza V"
+      }
+    },
+    {
+      "query": "Pokemon Deoxys Rayquaza ☆ 107 holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Deoxys%20Rayquaza%20%E2%98%86%20107%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3365959",
+      "product_name": "Rayquaza [Gym Challenge Promo] #22",
+      "console_name": "Pokemon Deoxys",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:22"
+      }
+    },
+    {
+      "query": "Pokemon Deoxys Rayquaza ☆ 107 holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Deoxys%20Rayquaza%20%E2%98%86%20107%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9659821",
+      "product_name": "Deoxys #107/SM-P",
+      "console_name": "Pokemon Korean Promo",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Deoxys"
+      }
+    },
+    {
+      "query": "Pokemon Deoxys Rayquaza ☆ 107 holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Deoxys%20Rayquaza%20%E2%98%86%20107%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4408987",
+      "product_name": "Rayquaza EX [Holo] #8",
+      "console_name": "Pokemon Japanese Rayquaza Constructed Starter Deck",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:8"
+      }
+    },
+    {
+      "query": "Pokemon Deoxys Rayquaza ☆ 107 holofoil",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Deoxys%20Rayquaza%20%E2%98%86%20107%20holofoil",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "888127",
+      "product_name": "Rayquaza [Gold Star] #107",
+      "console_name": "Pokemon Deoxys",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Gold Star"
+      }
+    },
+    {
+      "query": "Pokemon Deoxys Rayquaza ☆ 107 holofoil",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Deoxys%20Rayquaza%20%E2%98%86%20107%20holofoil",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8280984",
+      "product_name": "Rayquaza [Holo] #22",
+      "console_name": "Pokemon Deoxys",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:22"
+      }
+    },
+    {
+      "query": "Pokemon Deoxys Rayquaza ☆ 107 holofoil",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Deoxys%20Rayquaza%20%E2%98%86%20107%20holofoil",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "888150",
+      "product_name": "Rayquaza [Reverse Holo] #22",
+      "console_name": "Pokemon Deoxys",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:22"
+      }
+    },
+    {
+      "query": "Pokemon Deoxys Rayquaza ☆ 107 holofoil",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Deoxys%20Rayquaza%20%E2%98%86%20107%20holofoil",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "925976",
+      "product_name": "Rayquaza & Deoxys LEGEND #89",
+      "console_name": "Pokemon Undaunted",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:89"
+      }
+    },
+    {
+      "query": "Pokemon Deoxys Rayquaza ☆ 107 holofoil",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Deoxys%20Rayquaza%20%E2%98%86%20107%20holofoil",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "925977",
+      "product_name": "Rayquaza & Deoxys LEGEND #90",
+      "console_name": "Pokemon Undaunted",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:90"
+      }
+    },
+    {
+      "query": "Pokemon Deoxys Rayquaza ☆ 107 holofoil",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Deoxys%20Rayquaza%20%E2%98%86%20107%20holofoil",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6859528",
+      "product_name": "Rayquaza & Deoxys Legend #74",
+      "console_name": "Pokemon Japanese Clash at the Summit",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:74"
+      }
+    },
+    {
+      "query": "Pokemon Deoxys Rayquaza ☆ 107 holofoil",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Deoxys%20Rayquaza%20%E2%98%86%20107%20holofoil",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5075764",
+      "product_name": "Rayquaza & Deoxys Legend #75",
+      "console_name": "Pokemon Japanese Clash at the Summit",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:75"
+      }
+    },
+    {
+      "query": "Pokemon Deoxys Rayquaza ☆ 107 holofoil",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Deoxys%20Rayquaza%20%E2%98%86%20107%20holofoil",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "888043",
+      "product_name": "Rayquaza #22",
+      "console_name": "Pokemon Deoxys",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:22"
+      }
+    },
+    {
+      "query": "Pokemon Deoxys Rayquaza ☆ 107 holofoil",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Deoxys%20Rayquaza%20%E2%98%86%20107%20holofoil",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11742987",
+      "product_name": "Rayquaza & Deoxys Legend #89",
+      "console_name": "Pokemon World Championships 2011",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:89"
+      }
+    },
+    {
+      "query": "Pokemon Deoxys Rayquaza ☆ 107 holofoil",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Deoxys%20Rayquaza%20%E2%98%86%20107%20holofoil",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11742979",
+      "product_name": "Rayquaza & Deoxys Legend #90",
+      "console_name": "Pokemon World Championships 2011",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:90"
+      }
+    },
+    {
+      "query": "Pokemon Deoxys Rayquaza ☆ 107 holofoil",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Deoxys%20Rayquaza%20%E2%98%86%20107%20holofoil",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "888122",
+      "product_name": "Rayquaza EX #102",
+      "console_name": "Pokemon Deoxys",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:102"
+      }
+    },
+    {
+      "query": "Pokemon Deoxys Rayquaza ☆ 107 holofoil",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Deoxys%20Rayquaza%20%E2%98%86%20107%20holofoil",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "13016147",
+      "product_name": "Deoxys VS Rayquaza [Normal Form] #202",
+      "console_name": "Pokemon Japanese Topsun",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:202"
+      }
+    },
+    {
+      "query": "Pokemon Deoxys Rayquaza ☆ 107 holofoil",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Deoxys%20Rayquaza%20%E2%98%86%20107%20holofoil",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "13016149",
+      "product_name": "Deoxys VS Rayquaza [Attack Form] #202",
+      "console_name": "Pokemon Japanese Topsun",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:202"
+      }
+    },
+    {
+      "query": "Pokemon Deoxys Rayquaza ☆ 107 holofoil",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Deoxys%20Rayquaza%20%E2%98%86%20107%20holofoil",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "13016148",
+      "product_name": "Deoxys VS Rayquaza [Defense Form] #202",
+      "console_name": "Pokemon Japanese Topsun",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:202"
+      }
+    },
+    {
+      "query": "Pokemon Deoxys Rayquaza ☆ 107 holofoil",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Deoxys%20Rayquaza%20%E2%98%86%20107%20holofoil",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8453391",
+      "product_name": "Rayquaza & Deoxys Legend [1st Edition] #74",
+      "console_name": "Pokemon Japanese Clash at the Summit",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:74"
+      }
+    },
+    {
+      "query": "Pokemon Deoxys Rayquaza ☆ 107 holofoil",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Deoxys%20Rayquaza%20%E2%98%86%20107%20holofoil",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8453390",
+      "product_name": "Rayquaza & Deoxys Legend [1st Edition] #75",
+      "console_name": "Pokemon Japanese Clash at the Summit",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:75"
+      }
+    },
+    {
+      "query": "Pokemon Deoxys Rayquaza ☆ 107 holofoil",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Deoxys%20Rayquaza%20%E2%98%86%20107%20holofoil",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4447582",
+      "product_name": "Rayquaza V #107",
+      "console_name": "Pokemon Japanese VSTAR Universe",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Rayquaza V"
+      }
+    },
+    {
+      "query": "Pokemon Deoxys Rayquaza ☆ 107 holofoil",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Deoxys%20Rayquaza%20%E2%98%86%20107%20holofoil",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3365959",
+      "product_name": "Rayquaza [Gym Challenge Promo] #22",
+      "console_name": "Pokemon Deoxys",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:22"
+      }
+    },
+    {
+      "query": "Pokemon Deoxys Rayquaza ☆ 107 holofoil",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Deoxys%20Rayquaza%20%E2%98%86%20107%20holofoil",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9659821",
+      "product_name": "Deoxys #107/SM-P",
+      "console_name": "Pokemon Korean Promo",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Deoxys"
+      }
+    },
+    {
+      "query": "Pokemon Deoxys Rayquaza ☆ 107 holofoil",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Deoxys%20Rayquaza%20%E2%98%86%20107%20holofoil",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4408987",
+      "product_name": "Rayquaza EX [Holo] #8",
+      "console_name": "Pokemon Japanese Rayquaza Constructed Starter Deck",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:8"
+      }
+    }
+  ],
+  "source_lane": "pricecharting_api"
+}

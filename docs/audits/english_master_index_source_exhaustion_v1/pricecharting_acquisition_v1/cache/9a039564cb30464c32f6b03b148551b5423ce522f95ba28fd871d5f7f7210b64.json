@@ -1,0 +1,549 @@
+{
+  "status": "api_no_validated_match",
+  "fact": {
+    "gap_type": "finish_second_source_needed",
+    "fact_type": "printing_finish",
+    "set_key": "swsh10",
+    "set_name": "Astral Radiance",
+    "card_number": "43",
+    "card_name": "Hisuian Basculin",
+    "finish_key": "stamped",
+    "status": "human_source_verified",
+    "sources": [
+      "thepricedex_price_list"
+    ],
+    "source_authorities": [
+      "thepricedex.com"
+    ],
+    "source_kinds": [
+      "marketplace_checklist"
+    ],
+    "evidence_urls": [
+      "https://www.thepricedex.com/set/swsh10/astral-radiance/price-list"
+    ],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "attempts": [
+    {
+      "query": "Pokemon Astral Radiance Hisuian Basculin 43 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Astral%20Radiance%20Hisuian%20Basculin%2043%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3489541",
+      "product_name": "Hisuian Basculin #43",
+      "console_name": "Pokemon Astral Radiance",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon Astral Radiance Hisuian Basculin 43 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Astral%20Radiance%20Hisuian%20Basculin%2043%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3489752",
+      "product_name": "Hisuian Basculin [Reverse Holo] #43",
+      "console_name": "Pokemon Astral Radiance",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Reverse Holo"
+      }
+    },
+    {
+      "query": "Pokemon Astral Radiance Hisuian Basculin 43 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Astral%20Radiance%20Hisuian%20Basculin%2043%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6777265",
+      "product_name": "Hisuian Basculin [Prize Pack Series 3] #43",
+      "console_name": "Pokemon Astral Radiance",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Prize Pack Series 3"
+      }
+    },
+    {
+      "query": "Pokemon Astral Radiance Hisuian Basculin 43 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Astral%20Radiance%20Hisuian%20Basculin%2043%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3489515",
+      "product_name": "Hisuian Lilligant V #17",
+      "console_name": "Pokemon Astral Radiance",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:17"
+      }
+    },
+    {
+      "query": "Pokemon Astral Radiance Hisuian Basculin 43 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Astral%20Radiance%20Hisuian%20Basculin%2043%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3489581",
+      "product_name": "Hisuian Decidueye V #83",
+      "console_name": "Pokemon Astral Radiance",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:83"
+      }
+    },
+    {
+      "query": "Pokemon Astral Radiance Hisuian Basculin 43 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Astral%20Radiance%20Hisuian%20Basculin%2043%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3489592",
+      "product_name": "Hisuian Sneasler V #94",
+      "console_name": "Pokemon Astral Radiance",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:94"
+      }
+    },
+    {
+      "query": "Pokemon Astral Radiance Hisuian Basculin 43 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Astral%20Radiance%20Hisuian%20Basculin%2043%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3489600",
+      "product_name": "Hisuian Samurott V #101",
+      "console_name": "Pokemon Astral Radiance",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:101"
+      }
+    },
+    {
+      "query": "Pokemon Astral Radiance Hisuian Basculin 43 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Astral%20Radiance%20Hisuian%20Basculin%2043%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3489661",
+      "product_name": "Hisuian Lilligant V #162",
+      "console_name": "Pokemon Astral Radiance",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:162"
+      }
+    },
+    {
+      "query": "Pokemon Astral Radiance Hisuian Basculin 43 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Astral%20Radiance%20Hisuian%20Basculin%2043%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3489662",
+      "product_name": "Hisuian Lilligant V #163",
+      "console_name": "Pokemon Astral Radiance",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:163"
+      }
+    },
+    {
+      "query": "Pokemon Astral Radiance Hisuian Basculin 43 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Astral%20Radiance%20Hisuian%20Basculin%2043%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3489672",
+      "product_name": "Hisuian Decidueye V #173",
+      "console_name": "Pokemon Astral Radiance",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:173"
+      }
+    },
+    {
+      "query": "Pokemon Astral Radiance Hisuian Basculin 43 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Astral%20Radiance%20Hisuian%20Basculin%2043%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3489673",
+      "product_name": "Hisuian Sneasler V #174",
+      "console_name": "Pokemon Astral Radiance",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:174"
+      }
+    },
+    {
+      "query": "Pokemon Astral Radiance Hisuian Basculin 43 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Astral%20Radiance%20Hisuian%20Basculin%2043%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3489674",
+      "product_name": "Hisuian Sneasler V #175",
+      "console_name": "Pokemon Astral Radiance",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:175"
+      }
+    },
+    {
+      "query": "Pokemon Astral Radiance Hisuian Basculin 43 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Astral%20Radiance%20Hisuian%20Basculin%2043%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3489675",
+      "product_name": "Hisuian Samurott V #176",
+      "console_name": "Pokemon Astral Radiance",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:176"
+      }
+    },
+    {
+      "query": "Pokemon Astral Radiance Hisuian Basculin 43 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Astral%20Radiance%20Hisuian%20Basculin%2043%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3489551",
+      "product_name": "Hisuian Typhlosion V #53",
+      "console_name": "Pokemon Astral Radiance",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:53"
+      }
+    },
+    {
+      "query": "Pokemon Astral Radiance Hisuian Basculin 43 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Astral%20Radiance%20Hisuian%20Basculin%2043%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3489591",
+      "product_name": "Hisuian Sneasler [Holo] #93",
+      "console_name": "Pokemon Astral Radiance",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:93"
+      }
+    },
+    {
+      "query": "Pokemon Astral Radiance Hisuian Basculin 43 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Astral%20Radiance%20Hisuian%20Basculin%2043%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3489668",
+      "product_name": "Hisuian Typhlosion V #169",
+      "console_name": "Pokemon Astral Radiance",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:169"
+      }
+    },
+    {
+      "query": "Pokemon Astral Radiance Hisuian Basculin 43 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Astral%20Radiance%20Hisuian%20Basculin%2043%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4566859",
+      "product_name": "Hisuian Samurott [Holo] #100",
+      "console_name": "Pokemon Astral Radiance",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:100"
+      }
+    },
+    {
+      "query": "Pokemon Astral Radiance Hisuian Basculin 43 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Astral%20Radiance%20Hisuian%20Basculin%2043%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5165853",
+      "product_name": "Hisuian Voltorb [Holo] #2",
+      "console_name": "Pokemon Astral Radiance",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:2"
+      }
+    },
+    {
+      "query": "Pokemon Astral Radiance Hisuian Basculin 43 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Astral%20Radiance%20Hisuian%20Basculin%2043%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5166868",
+      "product_name": "Hisuian Growlithe [Holo] #70",
+      "console_name": "Pokemon Astral Radiance",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:70"
+      }
+    },
+    {
+      "query": "Pokemon Astral Radiance Hisuian Basculin 43 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Astral%20Radiance%20Hisuian%20Basculin%2043%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5610845",
+      "product_name": "Hisuian Decidueye [Holo] #82",
+      "console_name": "Pokemon Astral Radiance",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:82"
+      }
+    },
+    {
+      "query": "Pokemon Astral Radiance Hisuian Basculin 43 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Astral%20Radiance%20Hisuian%20Basculin%2043%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3489541",
+      "product_name": "Hisuian Basculin #43",
+      "console_name": "Pokemon Astral Radiance",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon Astral Radiance Hisuian Basculin 43 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Astral%20Radiance%20Hisuian%20Basculin%2043%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3489752",
+      "product_name": "Hisuian Basculin [Reverse Holo] #43",
+      "console_name": "Pokemon Astral Radiance",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Reverse Holo"
+      }
+    },
+    {
+      "query": "Pokemon Astral Radiance Hisuian Basculin 43 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Astral%20Radiance%20Hisuian%20Basculin%2043%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6777265",
+      "product_name": "Hisuian Basculin [Prize Pack Series 3] #43",
+      "console_name": "Pokemon Astral Radiance",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Prize Pack Series 3"
+      }
+    },
+    {
+      "query": "Pokemon Astral Radiance Hisuian Basculin 43 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Astral%20Radiance%20Hisuian%20Basculin%2043%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3489515",
+      "product_name": "Hisuian Lilligant V #17",
+      "console_name": "Pokemon Astral Radiance",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:17"
+      }
+    },
+    {
+      "query": "Pokemon Astral Radiance Hisuian Basculin 43 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Astral%20Radiance%20Hisuian%20Basculin%2043%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3489581",
+      "product_name": "Hisuian Decidueye V #83",
+      "console_name": "Pokemon Astral Radiance",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:83"
+      }
+    },
+    {
+      "query": "Pokemon Astral Radiance Hisuian Basculin 43 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Astral%20Radiance%20Hisuian%20Basculin%2043%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3489592",
+      "product_name": "Hisuian Sneasler V #94",
+      "console_name": "Pokemon Astral Radiance",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:94"
+      }
+    },
+    {
+      "query": "Pokemon Astral Radiance Hisuian Basculin 43 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Astral%20Radiance%20Hisuian%20Basculin%2043%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3489600",
+      "product_name": "Hisuian Samurott V #101",
+      "console_name": "Pokemon Astral Radiance",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:101"
+      }
+    },
+    {
+      "query": "Pokemon Astral Radiance Hisuian Basculin 43 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Astral%20Radiance%20Hisuian%20Basculin%2043%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3489661",
+      "product_name": "Hisuian Lilligant V #162",
+      "console_name": "Pokemon Astral Radiance",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:162"
+      }
+    },
+    {
+      "query": "Pokemon Astral Radiance Hisuian Basculin 43 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Astral%20Radiance%20Hisuian%20Basculin%2043%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3489662",
+      "product_name": "Hisuian Lilligant V #163",
+      "console_name": "Pokemon Astral Radiance",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:163"
+      }
+    },
+    {
+      "query": "Pokemon Astral Radiance Hisuian Basculin 43 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Astral%20Radiance%20Hisuian%20Basculin%2043%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3489672",
+      "product_name": "Hisuian Decidueye V #173",
+      "console_name": "Pokemon Astral Radiance",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:173"
+      }
+    },
+    {
+      "query": "Pokemon Astral Radiance Hisuian Basculin 43 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Astral%20Radiance%20Hisuian%20Basculin%2043%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3489673",
+      "product_name": "Hisuian Sneasler V #174",
+      "console_name": "Pokemon Astral Radiance",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:174"
+      }
+    },
+    {
+      "query": "Pokemon Astral Radiance Hisuian Basculin 43 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Astral%20Radiance%20Hisuian%20Basculin%2043%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3489674",
+      "product_name": "Hisuian Sneasler V #175",
+      "console_name": "Pokemon Astral Radiance",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:175"
+      }
+    },
+    {
+      "query": "Pokemon Astral Radiance Hisuian Basculin 43 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Astral%20Radiance%20Hisuian%20Basculin%2043%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3489675",
+      "product_name": "Hisuian Samurott V #176",
+      "console_name": "Pokemon Astral Radiance",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:176"
+      }
+    },
+    {
+      "query": "Pokemon Astral Radiance Hisuian Basculin 43 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Astral%20Radiance%20Hisuian%20Basculin%2043%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3489551",
+      "product_name": "Hisuian Typhlosion V #53",
+      "console_name": "Pokemon Astral Radiance",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:53"
+      }
+    },
+    {
+      "query": "Pokemon Astral Radiance Hisuian Basculin 43 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Astral%20Radiance%20Hisuian%20Basculin%2043%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3489591",
+      "product_name": "Hisuian Sneasler [Holo] #93",
+      "console_name": "Pokemon Astral Radiance",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:93"
+      }
+    },
+    {
+      "query": "Pokemon Astral Radiance Hisuian Basculin 43 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Astral%20Radiance%20Hisuian%20Basculin%2043%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3489668",
+      "product_name": "Hisuian Typhlosion V #169",
+      "console_name": "Pokemon Astral Radiance",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:169"
+      }
+    },
+    {
+      "query": "Pokemon Astral Radiance Hisuian Basculin 43 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Astral%20Radiance%20Hisuian%20Basculin%2043%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4566859",
+      "product_name": "Hisuian Samurott [Holo] #100",
+      "console_name": "Pokemon Astral Radiance",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:100"
+      }
+    },
+    {
+      "query": "Pokemon Astral Radiance Hisuian Basculin 43 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Astral%20Radiance%20Hisuian%20Basculin%2043%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5165853",
+      "product_name": "Hisuian Voltorb [Holo] #2",
+      "console_name": "Pokemon Astral Radiance",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:2"
+      }
+    },
+    {
+      "query": "Pokemon Astral Radiance Hisuian Basculin 43 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Astral%20Radiance%20Hisuian%20Basculin%2043%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5166868",
+      "product_name": "Hisuian Growlithe [Holo] #70",
+      "console_name": "Pokemon Astral Radiance",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:70"
+      }
+    },
+    {
+      "query": "Pokemon Astral Radiance Hisuian Basculin 43 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Astral%20Radiance%20Hisuian%20Basculin%2043%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5610845",
+      "product_name": "Hisuian Decidueye [Holo] #82",
+      "console_name": "Pokemon Astral Radiance",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:82"
+      }
+    }
+  ],
+  "source_lane": "pricecharting_api"
+}

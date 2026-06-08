@@ -4,7 +4,7 @@ This export contains Master Index-admissible facts only. It is audit-only and no
 
 ## Summary
 
-- card_identity_facts: 21051
-- printing_finish_facts: 34458
-- sets_with_admissible_cards: 182
-- sets_with_admissible_printings: 173
+- card_identity_facts: 21520
+- printing_finish_facts: 38841
+- sets_with_admissible_cards: 199
+- sets_with_admissible_printings: 199

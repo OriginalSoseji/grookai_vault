@@ -1,0 +1,170 @@
+{
+  "version": "english_master_index_pricecharting_base_product_acquisition_v1",
+  "generated_at": "2026-05-29T22:15:56.609Z",
+  "audit_only": true,
+  "db_writes_performed": false,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "dry_run": false,
+  "rule": "Only letter-suffixed alternate card-number normal-finish gaps may use exact PriceCharting base product rows. This lane intentionally excludes broad unlabeled marketplace rows.",
+  "fixture_dir": "docs/audits/verified_master_set_index_v1/source_fixtures/generated_pricecharting_base_product_v1",
+  "fixture_files": [
+    "docs\\audits\\verified_master_set_index_v1\\source_fixtures\\generated_pricecharting_base_product_v1\\xy2.json",
+    "docs\\audits\\verified_master_set_index_v1\\source_fixtures\\generated_pricecharting_base_product_v1\\xy4.json",
+    "docs\\audits\\verified_master_set_index_v1\\source_fixtures\\generated_pricecharting_base_product_v1\\xy6.json",
+    "docs\\audits\\verified_master_set_index_v1\\source_fixtures\\generated_pricecharting_base_product_v1\\xy7.json",
+    "docs\\audits\\verified_master_set_index_v1\\source_fixtures\\generated_pricecharting_base_product_v1\\xy8.json",
+    "docs\\audits\\verified_master_set_index_v1\\source_fixtures\\generated_pricecharting_base_product_v1\\xy9.json",
+    "docs\\audits\\verified_master_set_index_v1\\source_fixtures\\generated_pricecharting_base_product_v1\\g1.json",
+    "docs\\audits\\verified_master_set_index_v1\\source_fixtures\\generated_pricecharting_base_product_v1\\sm4.json"
+  ],
+  "summary": {
+    "target_facts": 5,
+    "preserved_current_index_records": 12,
+    "records_generated": 13,
+    "fixture_files_written": 8,
+    "by_status": {
+      "validated": 1,
+      "no_exact_base_product_match": 4
+    }
+  },
+  "results": [
+    {
+      "status": "validated",
+      "fact": {
+        "gap_type": "finish_human_checklist_evidence_needed",
+        "fact_type": "printing_finish",
+        "set_key": "xy6",
+        "set_name": "Roaring Skies",
+        "card_number": "92a",
+        "card_name": "Trainers' Mail",
+        "finish_key": "normal",
+        "status": "candidate_unconfirmed",
+        "sources": [
+          "tcgdex"
+        ],
+        "source_authorities": [
+          "api.tcgdex.net"
+        ],
+        "source_kinds": [
+          "structured_api"
+        ],
+        "evidence_urls": [
+          "https://api.tcgdex.net/v2/en/cards/xy6-92a"
+        ],
+        "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+      },
+      "source_url": "https://www.pricecharting.com/game/pokemon-roaring-skies/trainers-mail-92a",
+      "evidence_label": "PriceCharting exact base product row: Trainer's Mail #92A"
+    },
+    {
+      "status": "no_exact_base_product_match",
+      "fact": {
+        "gap_type": "finish_human_checklist_evidence_needed",
+        "fact_type": "printing_finish",
+        "set_key": "xya",
+        "set_name": "Yellow A Alternate",
+        "card_number": "24a",
+        "card_name": "M Manectric-EX",
+        "finish_key": "normal",
+        "status": "candidate_unconfirmed",
+        "sources": [
+          "tcgdex"
+        ],
+        "source_authorities": [
+          "api.tcgdex.net"
+        ],
+        "source_kinds": [
+          "structured_api"
+        ],
+        "evidence_urls": [
+          "https://api.tcgdex.net/v2/en/cards/xya-24a"
+        ],
+        "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+      },
+      "match_count": 0
+    },
+    {
+      "status": "no_exact_base_product_match",
+      "fact": {
+        "gap_type": "finish_human_checklist_evidence_needed",
+        "fact_type": "printing_finish",
+        "set_key": "xya",
+        "set_name": "Yellow A Alternate",
+        "card_number": "28a",
+        "card_name": "Jolteon-EX",
+        "finish_key": "normal",
+        "status": "candidate_unconfirmed",
+        "sources": [
+          "tcgdex"
+        ],
+        "source_authorities": [
+          "api.tcgdex.net"
+        ],
+        "source_kinds": [
+          "structured_api"
+        ],
+        "evidence_urls": [
+          "https://api.tcgdex.net/v2/en/cards/xya-28a"
+        ],
+        "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+      },
+      "match_count": 0
+    },
+    {
+      "status": "no_exact_base_product_match",
+      "fact": {
+        "gap_type": "finish_human_checklist_evidence_needed",
+        "fact_type": "printing_finish",
+        "set_key": "xya",
+        "set_name": "Yellow A Alternate",
+        "card_number": "54a",
+        "card_name": "Zygarde-EX",
+        "finish_key": "normal",
+        "status": "candidate_unconfirmed",
+        "sources": [
+          "tcgdex"
+        ],
+        "source_authorities": [
+          "api.tcgdex.net"
+        ],
+        "source_kinds": [
+          "structured_api"
+        ],
+        "evidence_urls": [
+          "https://api.tcgdex.net/v2/en/cards/xya-54a"
+        ],
+        "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+      },
+      "match_count": 0
+    },
+    {
+      "status": "no_exact_base_product_match",
+      "fact": {
+        "gap_type": "finish_human_checklist_evidence_needed",
+        "fact_type": "printing_finish",
+        "set_key": "xya",
+        "set_name": "Yellow A Alternate",
+        "card_number": "55a",
+        "card_name": "M Lucario-EX",
+        "finish_key": "normal",
+        "status": "candidate_unconfirmed",
+        "sources": [
+          "tcgdex"
+        ],
+        "source_authorities": [
+          "api.tcgdex.net"
+        ],
+        "source_kinds": [
+          "structured_api"
+        ],
+        "evidence_urls": [
+          "https://api.tcgdex.net/v2/en/cards/xya-55a"
+        ],
+        "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+      },
+      "match_count": 0
+    }
+  ]
+}

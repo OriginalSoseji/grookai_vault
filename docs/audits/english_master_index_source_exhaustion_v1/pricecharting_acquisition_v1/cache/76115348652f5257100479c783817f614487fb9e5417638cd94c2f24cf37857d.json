@@ -1,0 +1,549 @@
+{
+  "status": "api_no_validated_match",
+  "fact": {
+    "gap_type": "finish_second_source_needed",
+    "fact_type": "printing_finish",
+    "set_key": "bw5",
+    "set_name": "Dark Explorers",
+    "card_number": "94",
+    "card_name": "Enhanced Hammer",
+    "finish_key": "stamped",
+    "status": "human_source_verified",
+    "sources": [
+      "thepricedex_price_list"
+    ],
+    "source_authorities": [
+      "thepricedex.com"
+    ],
+    "source_kinds": [
+      "marketplace_checklist"
+    ],
+    "evidence_urls": [
+      "https://www.thepricedex.com/set/bw5/dark-explorers/price-list"
+    ],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "attempts": [
+    {
+      "query": "Pokemon Dark Explorers Enhanced Hammer 94 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Enhanced%20Hammer%2094%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "956140",
+      "product_name": "Enhanced Hammer #94",
+      "console_name": "Pokemon Dark Explorers",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Enhanced Hammer 94 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Enhanced%20Hammer%2094%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "956246",
+      "product_name": "Enhanced Hammer [Reverse Holo] #94",
+      "console_name": "Pokemon Dark Explorers",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Reverse Holo"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Enhanced Hammer 94 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Enhanced%20Hammer%2094%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "958401",
+      "product_name": "Enhanced Hammer [Reverse Holo] #94",
+      "console_name": "Pokemon Phantom Forces",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon Phantom Forces"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Enhanced Hammer 94 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Enhanced%20Hammer%2094%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "958287",
+      "product_name": "Enhanced Hammer #94",
+      "console_name": "Pokemon Phantom Forces",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon Phantom Forces"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Enhanced Hammer 94 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Enhanced%20Hammer%2094%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12758242",
+      "product_name": "Enhanced Hammer [Andrew Estrada] #94",
+      "console_name": "Pokemon World Championships 2014",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon World Championships 2014"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Enhanced Hammer 94 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Enhanced%20Hammer%2094%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3460943",
+      "product_name": "Enhanced Hammer #63",
+      "console_name": "Pokemon Japanese Dark Rush",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:63"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Enhanced Hammer 94 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Enhanced%20Hammer%2094%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11362865",
+      "product_name": "Enhanced Hammer #63",
+      "console_name": "Pokemon Korean Dark Rush",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:63"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Enhanced Hammer 94 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Enhanced%20Hammer%2094%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10263137",
+      "product_name": "Enhanced Hammer [Pokemon League] #124A",
+      "console_name": "Pokemon Guardians Rising",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:124A"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Enhanced Hammer 94 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Enhanced%20Hammer%2094%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7980331",
+      "product_name": "Enhanced Hammer [Poke Ball] #138",
+      "console_name": "Pokemon Japanese Terastal Festival",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:138"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Enhanced Hammer 94 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Enhanced%20Hammer%2094%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12843912",
+      "product_name": "Enhanced Hammer [Poke Ball] #175",
+      "console_name": "Pokemon Chinese CSV7C",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:175"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Enhanced Hammer 94 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Enhanced%20Hammer%2094%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10656101",
+      "product_name": "Enhanced Hammer [Prize Pack] #148",
+      "console_name": "Pokemon Twilight Masquerade",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:148"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Enhanced Hammer 94 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Enhanced%20Hammer%2094%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12030872",
+      "product_name": "Enhanced Hammer [Poke Ball] #138",
+      "console_name": "Pokemon Korean Terastal Festival ex",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:138"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Enhanced Hammer 94 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Enhanced%20Hammer%2094%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12843914",
+      "product_name": "Enhanced Hammer [Master Ball] #175",
+      "console_name": "Pokemon Chinese CSV7C",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:175"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Enhanced Hammer 94 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Enhanced%20Hammer%2094%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "960778",
+      "product_name": "Enhanced Hammer [Reverse Holo] #124",
+      "console_name": "Pokemon Guardians Rising",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:124"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Enhanced Hammer 94 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Enhanced%20Hammer%2094%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6769841",
+      "product_name": "Enhanced Hammer [Reverse Holo] #148",
+      "console_name": "Pokemon Twilight Masquerade",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:148"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Enhanced Hammer 94 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Enhanced%20Hammer%2094%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8454345",
+      "product_name": "Enhanced Hammer [1st Edition] #79",
+      "console_name": "Pokemon Japanese Tidal Storm",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:79"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Enhanced Hammer 94 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Enhanced%20Hammer%2094%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12030871",
+      "product_name": "Enhanced Hammer [Master Ball] #138",
+      "console_name": "Pokemon Korean Terastal Festival ex",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:138"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Enhanced Hammer 94 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Enhanced%20Hammer%2094%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6769628",
+      "product_name": "Enhanced Hammer #148",
+      "console_name": "Pokemon Twilight Masquerade",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:148"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Enhanced Hammer 94 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Enhanced%20Hammer%2094%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6769703",
+      "product_name": "Enhanced Hammer #224",
+      "console_name": "Pokemon Twilight Masquerade",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:224"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Enhanced Hammer 94 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Enhanced%20Hammer%2094%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12843908",
+      "product_name": "Enhanced Hammer #175",
+      "console_name": "Pokemon Chinese CSV7C",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:175"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Enhanced Hammer 94 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Enhanced%20Hammer%2094%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "956140",
+      "product_name": "Enhanced Hammer #94",
+      "console_name": "Pokemon Dark Explorers",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Enhanced Hammer 94 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Enhanced%20Hammer%2094%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "956246",
+      "product_name": "Enhanced Hammer [Reverse Holo] #94",
+      "console_name": "Pokemon Dark Explorers",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Reverse Holo"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Enhanced Hammer 94 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Enhanced%20Hammer%2094%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "958401",
+      "product_name": "Enhanced Hammer [Reverse Holo] #94",
+      "console_name": "Pokemon Phantom Forces",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon Phantom Forces"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Enhanced Hammer 94 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Enhanced%20Hammer%2094%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "958287",
+      "product_name": "Enhanced Hammer #94",
+      "console_name": "Pokemon Phantom Forces",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon Phantom Forces"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Enhanced Hammer 94 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Enhanced%20Hammer%2094%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12758242",
+      "product_name": "Enhanced Hammer [Andrew Estrada] #94",
+      "console_name": "Pokemon World Championships 2014",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon World Championships 2014"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Enhanced Hammer 94 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Enhanced%20Hammer%2094%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3460943",
+      "product_name": "Enhanced Hammer #63",
+      "console_name": "Pokemon Japanese Dark Rush",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:63"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Enhanced Hammer 94 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Enhanced%20Hammer%2094%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11362865",
+      "product_name": "Enhanced Hammer #63",
+      "console_name": "Pokemon Korean Dark Rush",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:63"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Enhanced Hammer 94 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Enhanced%20Hammer%2094%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10263137",
+      "product_name": "Enhanced Hammer [Pokemon League] #124A",
+      "console_name": "Pokemon Guardians Rising",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:124A"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Enhanced Hammer 94 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Enhanced%20Hammer%2094%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7980331",
+      "product_name": "Enhanced Hammer [Poke Ball] #138",
+      "console_name": "Pokemon Japanese Terastal Festival",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:138"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Enhanced Hammer 94 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Enhanced%20Hammer%2094%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12843912",
+      "product_name": "Enhanced Hammer [Poke Ball] #175",
+      "console_name": "Pokemon Chinese CSV7C",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:175"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Enhanced Hammer 94 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Enhanced%20Hammer%2094%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10656101",
+      "product_name": "Enhanced Hammer [Prize Pack] #148",
+      "console_name": "Pokemon Twilight Masquerade",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:148"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Enhanced Hammer 94 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Enhanced%20Hammer%2094%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12030872",
+      "product_name": "Enhanced Hammer [Poke Ball] #138",
+      "console_name": "Pokemon Korean Terastal Festival ex",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:138"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Enhanced Hammer 94 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Enhanced%20Hammer%2094%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12843914",
+      "product_name": "Enhanced Hammer [Master Ball] #175",
+      "console_name": "Pokemon Chinese CSV7C",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:175"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Enhanced Hammer 94 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Enhanced%20Hammer%2094%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "960778",
+      "product_name": "Enhanced Hammer [Reverse Holo] #124",
+      "console_name": "Pokemon Guardians Rising",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:124"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Enhanced Hammer 94 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Enhanced%20Hammer%2094%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6769841",
+      "product_name": "Enhanced Hammer [Reverse Holo] #148",
+      "console_name": "Pokemon Twilight Masquerade",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:148"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Enhanced Hammer 94 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Enhanced%20Hammer%2094%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8454345",
+      "product_name": "Enhanced Hammer [1st Edition] #79",
+      "console_name": "Pokemon Japanese Tidal Storm",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:79"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Enhanced Hammer 94 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Enhanced%20Hammer%2094%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12030871",
+      "product_name": "Enhanced Hammer [Master Ball] #138",
+      "console_name": "Pokemon Korean Terastal Festival ex",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:138"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Enhanced Hammer 94 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Enhanced%20Hammer%2094%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6769628",
+      "product_name": "Enhanced Hammer #148",
+      "console_name": "Pokemon Twilight Masquerade",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:148"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Enhanced Hammer 94 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Enhanced%20Hammer%2094%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6769703",
+      "product_name": "Enhanced Hammer #224",
+      "console_name": "Pokemon Twilight Masquerade",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:224"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Enhanced Hammer 94 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Enhanced%20Hammer%2094%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12843908",
+      "product_name": "Enhanced Hammer #175",
+      "console_name": "Pokemon Chinese CSV7C",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:175"
+      }
+    }
+  ],
+  "source_lane": "pricecharting_api"
+}

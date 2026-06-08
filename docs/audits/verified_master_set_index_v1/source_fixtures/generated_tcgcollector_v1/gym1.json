@@ -1,0 +1,48 @@
+{
+  "fixture_version": "VERIFIED_MASTER_SET_INDEX_V1_HUMAN_SOURCE_FIXTURE_GENERATED",
+  "source_key": "tcgcollector_variants_gym1",
+  "source_kind": "collector_reference",
+  "source_url": "https://www.tcgcollector.com/sets/116/gym-heroes?setCardCountMode=anyCardVariant",
+  "source_status": "available_generated",
+  "set_key": "gym1",
+  "set_name": "Gym Heroes",
+  "retrieved_at": "2026-05-26T04:41:18.789Z",
+  "raw_snapshot_ref": "generated_fixture:tcgcollector:gym1:2026-05-26T04:41:18.789Z",
+  "generation_note": "Generated from TCGCollector explicit card variant type IDs. No finish is inferred from set era, rarity, or card count.",
+  "records": [
+    {
+      "source_key": "tcgcollector_card_variants",
+      "source_kind": "collector_reference",
+      "source_url": "https://www.tcgcollector.com/cards/1156/mistys-seadra-gym-heroes-9-132",
+      "set_key": "gym1",
+      "set_name": "Gym Heroes",
+      "card_number": "9",
+      "card_name": "Misty's Seadra",
+      "finish_key": "stamped",
+      "rarity": null,
+      "evidence_type": "finish_presence",
+      "evidence_label": "TCGCollector card variant Prerelease",
+      "language": "en",
+      "retrieved_at": "2026-05-26T04:41:18.789Z",
+      "raw_snapshot_ref": "tcgcollector:1156:6",
+      "notes": "Exact card-level finish evidence from TCGCollector card variant type map. Only explicit variant labels are emitted."
+    },
+    {
+      "source_key": "tcgcollector_card_variants",
+      "source_kind": "collector_reference",
+      "source_url": "https://www.tcgcollector.com/cards/1154/mistys-psyduck-gym-heroes-54-132",
+      "set_key": "gym1",
+      "set_name": "Gym Heroes",
+      "card_number": "54",
+      "card_name": "Misty's Psyduck",
+      "finish_key": "stamped",
+      "rarity": null,
+      "evidence_type": "finish_presence",
+      "evidence_label": "TCGCollector card variant WOTC Stamp",
+      "language": "en",
+      "retrieved_at": "2026-05-26T04:41:18.789Z",
+      "raw_snapshot_ref": "tcgcollector:1154:8",
+      "notes": "Exact card-level finish evidence from TCGCollector card variant type map. Only explicit variant labels are emitted."
+    }
+  ]
+}

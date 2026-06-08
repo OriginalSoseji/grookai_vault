@@ -1,0 +1,36 @@
+{
+  "status": "no_validated_match",
+  "fact": {
+    "gap_type": "finish_human_checklist_evidence_needed",
+    "fact_type": "printing_finish",
+    "set_key": "zsv10pt5",
+    "set_name": "Black Bolt",
+    "card_number": "60",
+    "card_name": "Antique Cover Fossil",
+    "finish_key": "reverse",
+    "status": "candidate_unconfirmed",
+    "sources": [
+      "pokemontcg_api"
+    ],
+    "source_authorities": [
+      "api.pokemontcg.io"
+    ],
+    "source_kinds": [
+      "structured_api"
+    ],
+    "evidence_urls": [],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "attempts": [
+    {
+      "query": "Pokemon Black Bolt Antique Cover Fossil 60 reverse holo",
+      "url": "https://www.pricecharting.com/search-products?q=Pokemon%20Black%20Bolt%20Antique%20Cover%20Fossil%2060%20reverse%20holo&type=prices",
+      "error": "Fetch failed 403 Forbidden: https://www.pricecharting.com/search-products?q=Pokemon%20Black%20Bolt%20Antique%20Cover%20Fossil%2060%20reverse%20holo&type=prices"
+    },
+    {
+      "query": "Pokemon Black Bolt Antique Cover Fossil 60 reverse holofoil",
+      "url": "https://www.pricecharting.com/search-products?q=Pokemon%20Black%20Bolt%20Antique%20Cover%20Fossil%2060%20reverse%20holofoil&type=prices",
+      "error": "Fetch failed 403 Forbidden: https://www.pricecharting.com/search-products?q=Pokemon%20Black%20Bolt%20Antique%20Cover%20Fossil%2060%20reverse%20holofoil&type=prices"
+    }
+  ]
+}

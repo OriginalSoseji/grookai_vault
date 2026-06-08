@@ -40,6 +40,15 @@ async function readJson(fileName) {
   return JSON.parse(await fs.readFile(path.join(OUTPUT_DIR, fileName), 'utf8'));
 }
 
+async function readOptionalJson(fileName, fallback) {
+  try {
+    return await readJson(fileName);
+  } catch (error) {
+    if (error?.code === 'ENOENT') return fallback;
+    throw error;
+  }
+}
+
 async function writeJson(fileName, data) {
   await fs.writeFile(path.join(OUTPUT_DIR, fileName), `${JSON.stringify(data, null, 2)}\n`);
 }
@@ -60,7 +69,7 @@ function safetyBlock() {
   };
 }
 
-function buildGlobalBuckets({ grookaiAudit, setUnmapped, provenance, recoveryLanes, exactMatch, sourceAcquisition, readiness, repairPriority }) {
+function buildGlobalBuckets({ grookaiAudit, setUnmapped, provenance, recoveryLanes, exactMatch, sourceAcquisition, readiness, repairPriority, finishBlockerClosure }) {
   const statusCounts = grookaiAudit.summary?.by_status ?? {};
   return [
     {
@@ -160,6 +169,19 @@ function buildGlobalBuckets({ grookaiAudit, setUnmapped, provenance, recoveryLan
       mutation_ready: false,
       reason: 'The source acquisition queue is still the main blocker to safe writes.',
       next_action: 'Prioritize human checklist evidence for high-volume physical recovery sets.',
+    },
+    {
+      bucket: 'finish_blocker_boundary',
+      row_count: finishBlockerClosure.summary?.blocker_mapped_rows ?? 0,
+      status: 'manual_adjudication_required',
+      mutation_ready: false,
+      reason: 'Remaining finish-second-source rows have exact finish-label or card-number conflicts and are not promotion safe.',
+      next_action: 'Resolve manually as finish-label/number adjudication before any future write package.',
+      detail: {
+        closure_status: finishBlockerClosure.summary?.closure_status ?? 'not_available',
+        promotion_safe_now: finishBlockerClosure.summary?.promotion_safe_now ?? 0,
+        by_blocker_type: finishBlockerClosure.summary?.by_blocker_type ?? {},
+      },
     },
     {
       bucket: 'truth_readiness_sets',
@@ -358,6 +380,7 @@ function buildArtifacts(inputs) {
     set_unmapped_categories: inputs.setUnmapped.summary?.by_category ?? {},
     physical_recovery_exact_match: inputs.exactMatch.summary ?? {},
     source_acquisition_queue: valueAt(inputs.sourceAcquisition, ['summary', 'queue_summary'], {}),
+    finish_blocker_closure: inputs.finishBlockerClosure.summary ?? {},
     truth_readiness: inputs.readiness.summary ?? {},
     repair_priority: inputs.repairPriority.summary ?? {},
   };
@@ -439,6 +462,7 @@ function buildArtifacts(inputs) {
       reason: 'The audit has enough structure to plan writes, but not enough master_verified finish evidence to execute them safely.',
       strongest_positive_finding: '807 physical missing-set candidates have exact Master Index card identity matches.',
       main_blocker: 'Finish truth still requires human-readable/checklist evidence and master_verified promotion.',
+      finish_blocker_boundary: 'The final finish-second-source rows are classified as blocker-boundary adjudication items, not broad source-acquisition gaps.',
     },
     summary,
     immediate_next_non_write_work: [
@@ -498,6 +522,7 @@ ${artifact.conclusion}
 - Grookai printing rows: ${artifact.summary.grookai_printing_rows}
 - Index printing rows: ${artifact.summary.index_printing_rows}
 - master_verified_by_index: ${artifact.summary.global_status_counts.master_verified_by_index ?? 0}
+- finish_blocker_boundary_rows: ${artifact.summary.finish_blocker_closure.blocker_mapped_rows ?? 0}
 - physical exact card matches: ${artifact.summary.physical_recovery_exact_match.by_card_match_status?.exact_card_identity_match ?? 0}
 - physical finish blocked: ${(artifact.summary.physical_recovery_exact_match.by_finish_match_status?.all_finishes_supported_but_not_master_verified ?? 0) + (artifact.summary.physical_recovery_exact_match.by_finish_match_status?.partial_finishes_supported_by_index ?? 0) + (artifact.summary.physical_recovery_exact_match.by_finish_match_status?.no_finishes_supported_by_index ?? 0)}
 
@@ -608,6 +633,7 @@ async function main() {
     sourceAcquisition: await readJson('english_master_index_source_acquisition_v1.json'),
     readiness: await readJson('english_master_index_truth_readiness_v1.json'),
     repairPriority: await readJson('english_master_index_repair_priority_v1.json'),
+    finishBlockerClosure: await readOptionalJson('english_master_index_finish_blocker_closure_v1.json', { mapped_blockers: [], summary: {} }),
   };
   const artifacts = buildArtifacts(inputs);
 

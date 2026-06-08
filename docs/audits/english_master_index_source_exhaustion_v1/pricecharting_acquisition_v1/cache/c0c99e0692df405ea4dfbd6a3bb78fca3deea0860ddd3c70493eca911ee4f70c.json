@@ -1,0 +1,36 @@
+{
+  "status": "no_validated_match",
+  "fact": {
+    "gap_type": "finish_human_checklist_evidence_needed",
+    "fact_type": "printing_finish",
+    "set_key": "pl2",
+    "set_name": "Rising Rivals",
+    "card_number": "111",
+    "card_name": "Snorlax",
+    "finish_key": "holo",
+    "status": "candidate_unconfirmed",
+    "sources": [
+      "tcgdex"
+    ],
+    "source_authorities": [
+      "api.tcgdex.net"
+    ],
+    "source_kinds": [
+      "structured_api"
+    ],
+    "evidence_urls": [],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "attempts": [
+    {
+      "query": "Pokemon Rising Rivals Snorlax 111 holo",
+      "url": "https://www.pricecharting.com/search-products?q=Pokemon%20Rising%20Rivals%20Snorlax%20111%20holo&type=prices",
+      "error": "Fetch failed 403 Forbidden: https://www.pricecharting.com/search-products?q=Pokemon%20Rising%20Rivals%20Snorlax%20111%20holo&type=prices"
+    },
+    {
+      "query": "Pokemon Rising Rivals Snorlax 111 holofoil",
+      "url": "https://www.pricecharting.com/search-products?q=Pokemon%20Rising%20Rivals%20Snorlax%20111%20holofoil&type=prices",
+      "error": "Fetch failed 403 Forbidden: https://www.pricecharting.com/search-products?q=Pokemon%20Rising%20Rivals%20Snorlax%20111%20holofoil&type=prices"
+    }
+  ]
+}

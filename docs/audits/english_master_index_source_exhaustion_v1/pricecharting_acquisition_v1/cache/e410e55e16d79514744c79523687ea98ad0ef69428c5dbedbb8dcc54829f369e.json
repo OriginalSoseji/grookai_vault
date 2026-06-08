@@ -1,0 +1,549 @@
+{
+  "status": "api_no_validated_match",
+  "fact": {
+    "gap_type": "finish_second_source_needed",
+    "fact_type": "printing_finish",
+    "set_key": "sm12",
+    "set_name": "Cosmic Eclipse",
+    "card_number": "99",
+    "card_name": "Cosmog",
+    "finish_key": "stamped",
+    "status": "human_source_verified",
+    "sources": [
+      "thepricedex_price_list"
+    ],
+    "source_authorities": [
+      "thepricedex.com"
+    ],
+    "source_kinds": [
+      "marketplace_checklist"
+    ],
+    "evidence_urls": [
+      "https://www.thepricedex.com/set/sm12/cosmic-eclipse/price-list"
+    ],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "attempts": [
+    {
+      "query": "Pokemon Cosmic Eclipse Cosmog 99 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Cosmic%20Eclipse%20Cosmog%2099%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "964337",
+      "product_name": "Cosmog #99",
+      "console_name": "Pokemon Cosmic Eclipse",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon Cosmic Eclipse Cosmog 99 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Cosmic%20Eclipse%20Cosmog%2099%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9299787",
+      "product_name": "Cosmog [Club Promo] #99",
+      "console_name": "Pokemon Cosmic Eclipse",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Club Promo"
+      }
+    },
+    {
+      "query": "Pokemon Cosmic Eclipse Cosmog 99 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Cosmic%20Eclipse%20Cosmog%2099%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "964599",
+      "product_name": "Cosmog [Reverse Holo] #99",
+      "console_name": "Pokemon Cosmic Eclipse",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Reverse Holo"
+      }
+    },
+    {
+      "query": "Pokemon Cosmic Eclipse Cosmog 99 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Cosmic%20Eclipse%20Cosmog%2099%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "964338",
+      "product_name": "Cosmog #100",
+      "console_name": "Pokemon Cosmic Eclipse",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:100"
+      }
+    },
+    {
+      "query": "Pokemon Cosmic Eclipse Cosmog 99 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Cosmic%20Eclipse%20Cosmog%2099%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "964600",
+      "product_name": "Cosmog [Reverse Holo] #100",
+      "console_name": "Pokemon Cosmic Eclipse",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:100"
+      }
+    },
+    {
+      "query": "Pokemon Cosmic Eclipse Cosmog 99 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Cosmic%20Eclipse%20Cosmog%2099%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5704540",
+      "product_name": "Solgaleo [Stamped] #142",
+      "console_name": "Pokemon Cosmic Eclipse",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:142"
+      }
+    },
+    {
+      "query": "Pokemon Cosmic Eclipse Cosmog 99 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Cosmic%20Eclipse%20Cosmog%2099%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "964316",
+      "product_name": "Natu #78",
+      "console_name": "Pokemon Cosmic Eclipse",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:78"
+      }
+    },
+    {
+      "query": "Pokemon Cosmic Eclipse Cosmog 99 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Cosmic%20Eclipse%20Cosmog%2099%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "964317",
+      "product_name": "Xatu #79",
+      "console_name": "Pokemon Cosmic Eclipse",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:79"
+      }
+    },
+    {
+      "query": "Pokemon Cosmic Eclipse Cosmog 99 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Cosmic%20Eclipse%20Cosmog%2099%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "964426",
+      "product_name": "Clay #188",
+      "console_name": "Pokemon Cosmic Eclipse",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:188"
+      }
+    },
+    {
+      "query": "Pokemon Cosmic Eclipse Cosmog 99 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Cosmic%20Eclipse%20Cosmog%2099%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "964442",
+      "product_name": "Rosa #204",
+      "console_name": "Pokemon Cosmic Eclipse",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:204"
+      }
+    },
+    {
+      "query": "Pokemon Cosmic Eclipse Cosmog 99 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Cosmic%20Eclipse%20Cosmog%2099%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "964446",
+      "product_name": "Will #208",
+      "console_name": "Pokemon Cosmic Eclipse",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:208"
+      }
+    },
+    {
+      "query": "Pokemon Cosmic Eclipse Cosmog 99 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Cosmic%20Eclipse%20Cosmog%2099%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "964343",
+      "product_name": "Onix #105",
+      "console_name": "Pokemon Cosmic Eclipse",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:105"
+      }
+    },
+    {
+      "query": "Pokemon Cosmic Eclipse Cosmog 99 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Cosmic%20Eclipse%20Cosmog%2099%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "964474",
+      "product_name": "Rosa #236",
+      "console_name": "Pokemon Cosmic Eclipse",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:236"
+      }
+    },
+    {
+      "query": "Pokemon Cosmic Eclipse Cosmog 99 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Cosmic%20Eclipse%20Cosmog%2099%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "964407",
+      "product_name": "Aipom #169",
+      "console_name": "Pokemon Cosmic Eclipse",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:169"
+      }
+    },
+    {
+      "query": "Pokemon Cosmic Eclipse Cosmog 99 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Cosmic%20Eclipse%20Cosmog%2099%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "964405",
+      "product_name": "Eevee #167",
+      "console_name": "Pokemon Cosmic Eclipse",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:167"
+      }
+    },
+    {
+      "query": "Pokemon Cosmic Eclipse Cosmog 99 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Cosmic%20Eclipse%20Cosmog%2099%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "964404",
+      "product_name": "Eevee #166",
+      "console_name": "Pokemon Cosmic Eclipse",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:166"
+      }
+    },
+    {
+      "query": "Pokemon Cosmic Eclipse Cosmog 99 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Cosmic%20Eclipse%20Cosmog%2099%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "964443",
+      "product_name": "Roxie #205",
+      "console_name": "Pokemon Cosmic Eclipse",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:205"
+      }
+    },
+    {
+      "query": "Pokemon Cosmic Eclipse Cosmog 99 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Cosmic%20Eclipse%20Cosmog%2099%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "964269",
+      "product_name": "Tepig #31",
+      "console_name": "Pokemon Cosmic Eclipse",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:31"
+      }
+    },
+    {
+      "query": "Pokemon Cosmic Eclipse Cosmog 99 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Cosmic%20Eclipse%20Cosmog%2099%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "964266",
+      "product_name": "Entei #28",
+      "console_name": "Pokemon Cosmic Eclipse",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:28"
+      }
+    },
+    {
+      "query": "Pokemon Cosmic Eclipse Cosmog 99 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Cosmic%20Eclipse%20Cosmog%2099%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "964324",
+      "product_name": "Rotom #86",
+      "console_name": "Pokemon Cosmic Eclipse",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:86"
+      }
+    },
+    {
+      "query": "Pokemon Cosmic Eclipse Cosmog 99 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Cosmic%20Eclipse%20Cosmog%2099%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "964337",
+      "product_name": "Cosmog #99",
+      "console_name": "Pokemon Cosmic Eclipse",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon Cosmic Eclipse Cosmog 99 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Cosmic%20Eclipse%20Cosmog%2099%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9299787",
+      "product_name": "Cosmog [Club Promo] #99",
+      "console_name": "Pokemon Cosmic Eclipse",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Club Promo"
+      }
+    },
+    {
+      "query": "Pokemon Cosmic Eclipse Cosmog 99 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Cosmic%20Eclipse%20Cosmog%2099%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "964599",
+      "product_name": "Cosmog [Reverse Holo] #99",
+      "console_name": "Pokemon Cosmic Eclipse",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Reverse Holo"
+      }
+    },
+    {
+      "query": "Pokemon Cosmic Eclipse Cosmog 99 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Cosmic%20Eclipse%20Cosmog%2099%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "964338",
+      "product_name": "Cosmog #100",
+      "console_name": "Pokemon Cosmic Eclipse",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:100"
+      }
+    },
+    {
+      "query": "Pokemon Cosmic Eclipse Cosmog 99 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Cosmic%20Eclipse%20Cosmog%2099%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "964600",
+      "product_name": "Cosmog [Reverse Holo] #100",
+      "console_name": "Pokemon Cosmic Eclipse",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:100"
+      }
+    },
+    {
+      "query": "Pokemon Cosmic Eclipse Cosmog 99 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Cosmic%20Eclipse%20Cosmog%2099%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5704540",
+      "product_name": "Solgaleo [Stamped] #142",
+      "console_name": "Pokemon Cosmic Eclipse",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:142"
+      }
+    },
+    {
+      "query": "Pokemon Cosmic Eclipse Cosmog 99 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Cosmic%20Eclipse%20Cosmog%2099%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "964316",
+      "product_name": "Natu #78",
+      "console_name": "Pokemon Cosmic Eclipse",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:78"
+      }
+    },
+    {
+      "query": "Pokemon Cosmic Eclipse Cosmog 99 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Cosmic%20Eclipse%20Cosmog%2099%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "964317",
+      "product_name": "Xatu #79",
+      "console_name": "Pokemon Cosmic Eclipse",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:79"
+      }
+    },
+    {
+      "query": "Pokemon Cosmic Eclipse Cosmog 99 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Cosmic%20Eclipse%20Cosmog%2099%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "964426",
+      "product_name": "Clay #188",
+      "console_name": "Pokemon Cosmic Eclipse",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:188"
+      }
+    },
+    {
+      "query": "Pokemon Cosmic Eclipse Cosmog 99 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Cosmic%20Eclipse%20Cosmog%2099%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "964442",
+      "product_name": "Rosa #204",
+      "console_name": "Pokemon Cosmic Eclipse",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:204"
+      }
+    },
+    {
+      "query": "Pokemon Cosmic Eclipse Cosmog 99 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Cosmic%20Eclipse%20Cosmog%2099%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "964446",
+      "product_name": "Will #208",
+      "console_name": "Pokemon Cosmic Eclipse",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:208"
+      }
+    },
+    {
+      "query": "Pokemon Cosmic Eclipse Cosmog 99 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Cosmic%20Eclipse%20Cosmog%2099%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "964343",
+      "product_name": "Onix #105",
+      "console_name": "Pokemon Cosmic Eclipse",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:105"
+      }
+    },
+    {
+      "query": "Pokemon Cosmic Eclipse Cosmog 99 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Cosmic%20Eclipse%20Cosmog%2099%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "964474",
+      "product_name": "Rosa #236",
+      "console_name": "Pokemon Cosmic Eclipse",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:236"
+      }
+    },
+    {
+      "query": "Pokemon Cosmic Eclipse Cosmog 99 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Cosmic%20Eclipse%20Cosmog%2099%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "964407",
+      "product_name": "Aipom #169",
+      "console_name": "Pokemon Cosmic Eclipse",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:169"
+      }
+    },
+    {
+      "query": "Pokemon Cosmic Eclipse Cosmog 99 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Cosmic%20Eclipse%20Cosmog%2099%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "964405",
+      "product_name": "Eevee #167",
+      "console_name": "Pokemon Cosmic Eclipse",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:167"
+      }
+    },
+    {
+      "query": "Pokemon Cosmic Eclipse Cosmog 99 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Cosmic%20Eclipse%20Cosmog%2099%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "964404",
+      "product_name": "Eevee #166",
+      "console_name": "Pokemon Cosmic Eclipse",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:166"
+      }
+    },
+    {
+      "query": "Pokemon Cosmic Eclipse Cosmog 99 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Cosmic%20Eclipse%20Cosmog%2099%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "964443",
+      "product_name": "Roxie #205",
+      "console_name": "Pokemon Cosmic Eclipse",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:205"
+      }
+    },
+    {
+      "query": "Pokemon Cosmic Eclipse Cosmog 99 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Cosmic%20Eclipse%20Cosmog%2099%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "964269",
+      "product_name": "Tepig #31",
+      "console_name": "Pokemon Cosmic Eclipse",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:31"
+      }
+    },
+    {
+      "query": "Pokemon Cosmic Eclipse Cosmog 99 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Cosmic%20Eclipse%20Cosmog%2099%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "964266",
+      "product_name": "Entei #28",
+      "console_name": "Pokemon Cosmic Eclipse",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:28"
+      }
+    },
+    {
+      "query": "Pokemon Cosmic Eclipse Cosmog 99 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Cosmic%20Eclipse%20Cosmog%2099%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "964324",
+      "product_name": "Rotom #86",
+      "console_name": "Pokemon Cosmic Eclipse",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:86"
+      }
+    }
+  ],
+  "source_lane": "pricecharting_api"
+}

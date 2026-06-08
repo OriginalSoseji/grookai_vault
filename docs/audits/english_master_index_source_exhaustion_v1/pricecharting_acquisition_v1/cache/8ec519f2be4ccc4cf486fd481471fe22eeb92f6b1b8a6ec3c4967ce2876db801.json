@@ -1,0 +1,58 @@
+{
+  "status": "validated",
+  "fact": {
+    "gap_type": "finish_second_source_needed",
+    "fact_type": "printing_finish",
+    "set_key": "xy1",
+    "set_name": "XY",
+    "card_number": "114",
+    "card_name": "Furfrou",
+    "finish_key": "cosmos",
+    "status": "human_source_verified",
+    "sources": [
+      "thepricedex_price_list"
+    ],
+    "source_authorities": [
+      "thepricedex.com"
+    ],
+    "source_kinds": [
+      "marketplace_checklist"
+    ],
+    "evidence_urls": [],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "query": "Pokemon XY Furfrou 114 cosmos",
+  "search_url": "https://www.pricecharting.com/search-products?q=Pokemon%20XY%20Furfrou%20114%20cosmos&type=prices",
+  "source_url": "https://www.pricecharting.com/game/pokemon-xy/furfrou-cosmos-holo-114",
+  "title": "Furfrou [Cosmos Holo] #114 Prices | Pokemon XY | Pokemon Cards",
+  "title_parts": {
+    "card_name": "Furfrou",
+    "variant_label": "Cosmos Holo",
+    "card_number": "114",
+    "set_name": "XY"
+  },
+  "attempts": [
+    {
+      "query": "Pokemon XY Furfrou 114 cosmos holo",
+      "url": "https://www.pricecharting.com/search-products?q=Pokemon%20XY%20Furfrou%20114%20cosmos%20holo&type=prices",
+      "error": "Fetch failed 403 Forbidden: https://www.pricecharting.com/search-products?q=Pokemon%20XY%20Furfrou%20114%20cosmos%20holo&type=prices"
+    },
+    {
+      "query": "Pokemon XY Furfrou 114 cosmos",
+      "url": "https://www.pricecharting.com/search-products?q=Pokemon%20XY%20Furfrou%20114%20cosmos&type=prices",
+      "parsed": {
+        "title": "Furfrou [Cosmos Holo] #114 Prices | Pokemon XY | Pokemon Cards",
+        "source_url": "https://www.pricecharting.com/game/pokemon-xy/furfrou-cosmos-holo-114"
+      },
+      "validation": {
+        "ok": true,
+        "titleParts": {
+          "card_name": "Furfrou",
+          "variant_label": "Cosmos Holo",
+          "card_number": "114",
+          "set_name": "XY"
+        }
+      }
+    }
+  ]
+}

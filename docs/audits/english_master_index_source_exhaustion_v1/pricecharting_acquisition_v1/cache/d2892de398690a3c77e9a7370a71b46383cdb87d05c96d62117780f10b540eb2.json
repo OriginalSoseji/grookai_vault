@@ -1,0 +1,549 @@
+{
+  "status": "api_no_validated_match",
+  "fact": {
+    "gap_type": "finish_second_source_needed",
+    "fact_type": "printing_finish",
+    "set_key": "sv03.5",
+    "set_name": "151",
+    "card_number": "7",
+    "card_name": "Squirtle",
+    "finish_key": "stamped",
+    "status": "human_source_verified",
+    "sources": [
+      "thepricedex_price_list"
+    ],
+    "source_authorities": [
+      "thepricedex.com"
+    ],
+    "source_kinds": [
+      "marketplace_checklist"
+    ],
+    "evidence_urls": [
+      "https://www.thepricedex.com/set/sv3pt5/151/price-list"
+    ],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "attempts": [
+    {
+      "query": "Pokemon 151 Squirtle 7 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20151%20Squirtle%207%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5399698",
+      "product_name": "Squirtle [Reverse] #7",
+      "console_name": "Pokemon Japanese Scarlet & Violet 151",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Reverse"
+      }
+    },
+    {
+      "query": "Pokemon 151 Squirtle 7 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20151%20Squirtle%207%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5326049",
+      "product_name": "Squirtle #7",
+      "console_name": "Pokemon Japanese Scarlet & Violet 151",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon 151 Squirtle 7 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20151%20Squirtle%207%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8708799",
+      "product_name": "Squirtle [Reverse] #7",
+      "console_name": "Pokemon Chinese 151 Collect",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Reverse"
+      }
+    },
+    {
+      "query": "Pokemon 151 Squirtle 7 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20151%20Squirtle%207%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5399836",
+      "product_name": "Squirtle [Master Ball] #7",
+      "console_name": "Pokemon Japanese Scarlet & Violet 151",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Master Ball"
+      }
+    },
+    {
+      "query": "Pokemon 151 Squirtle 7 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20151%20Squirtle%207%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5809387",
+      "product_name": "Squirtle #7",
+      "console_name": "Pokemon Scarlet & Violet 151",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon 151 Squirtle 7 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20151%20Squirtle%207%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8708797",
+      "product_name": "Squirtle #7",
+      "console_name": "Pokemon Chinese 151 Collect",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon 151 Squirtle 7 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20151%20Squirtle%207%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11865951",
+      "product_name": "Squirtle #7",
+      "console_name": "Pokemon Korean Scarlet & Violet 151",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon 151 Squirtle 7 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20151%20Squirtle%207%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5874858",
+      "product_name": "Squirtle [Pokemon Center] #7",
+      "console_name": "Pokemon Scarlet & Violet 151",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Pokemon Center"
+      }
+    },
+    {
+      "query": "Pokemon 151 Squirtle 7 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20151%20Squirtle%207%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8708798",
+      "product_name": "Squirtle [Master Ball] #7",
+      "console_name": "Pokemon Chinese 151 Collect",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Master Ball"
+      }
+    },
+    {
+      "query": "Pokemon 151 Squirtle 7 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20151%20Squirtle%207%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7979090",
+      "product_name": "Squirtle [Cosmos Holo] #7",
+      "console_name": "Pokemon Scarlet & Violet 151",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Cosmos Holo"
+      }
+    },
+    {
+      "query": "Pokemon 151 Squirtle 7 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20151%20Squirtle%207%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5809596",
+      "product_name": "Squirtle [Reverse Holo] #7",
+      "console_name": "Pokemon Scarlet & Violet 151",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Reverse Holo"
+      }
+    },
+    {
+      "query": "Pokemon 151 Squirtle 7 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20151%20Squirtle%207%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5326211",
+      "product_name": "Squirtle #170",
+      "console_name": "Pokemon Japanese Scarlet & Violet 151",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:170"
+      }
+    },
+    {
+      "query": "Pokemon 151 Squirtle 7 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20151%20Squirtle%207%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5809551",
+      "product_name": "Squirtle #170",
+      "console_name": "Pokemon Scarlet & Violet 151",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:170"
+      }
+    },
+    {
+      "query": "Pokemon 151 Squirtle 7 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20151%20Squirtle%207%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11866105",
+      "product_name": "Squirtle #170",
+      "console_name": "Pokemon Korean Scarlet & Violet 151",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:170"
+      }
+    },
+    {
+      "query": "Pokemon 151 Squirtle 7 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20151%20Squirtle%207%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11703203",
+      "product_name": "Squirtle [FamilyMart Stamped] #233/SV-P",
+      "console_name": "Pokemon Chinese Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:233/SV-P"
+      }
+    },
+    {
+      "query": "Pokemon 151 Squirtle 7 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20151%20Squirtle%207%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3560975",
+      "product_name": "Squirtle [Foil] #7",
+      "console_name": "Pokemon 1999 Topps TV",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon 1999 Topps TV"
+      }
+    },
+    {
+      "query": "Pokemon 151 Squirtle 7 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20151%20Squirtle%207%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5278789",
+      "product_name": "Squirtle [Holo] #7",
+      "console_name": "Pokemon Japanese 2002 McDonald's",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon Japanese 2002 McDonald's"
+      }
+    },
+    {
+      "query": "Pokemon 151 Squirtle 7 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20151%20Squirtle%207%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5923314",
+      "product_name": "Full Heal #7",
+      "console_name": "Pokemon Japanese Squirtle Deck",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Full Heal"
+      }
+    },
+    {
+      "query": "Pokemon 151 Squirtle 7 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20151%20Squirtle%207%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12180619",
+      "product_name": "Squirtle [Red] #7",
+      "console_name": "Pokemon Japanese 1996 Carddass",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon Japanese 1996 Carddass"
+      }
+    },
+    {
+      "query": "Pokemon 151 Squirtle 7 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20151%20Squirtle%207%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4614272",
+      "product_name": "Squirtle [Green] #7",
+      "console_name": "Pokemon Japanese 1996 Carddass",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon Japanese 1996 Carddass"
+      }
+    },
+    {
+      "query": "Pokemon 151 Squirtle 7 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20151%20Squirtle%207%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5399698",
+      "product_name": "Squirtle [Reverse] #7",
+      "console_name": "Pokemon Japanese Scarlet & Violet 151",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Reverse"
+      }
+    },
+    {
+      "query": "Pokemon 151 Squirtle 7 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20151%20Squirtle%207%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5326049",
+      "product_name": "Squirtle #7",
+      "console_name": "Pokemon Japanese Scarlet & Violet 151",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon 151 Squirtle 7 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20151%20Squirtle%207%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8708799",
+      "product_name": "Squirtle [Reverse] #7",
+      "console_name": "Pokemon Chinese 151 Collect",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Reverse"
+      }
+    },
+    {
+      "query": "Pokemon 151 Squirtle 7 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20151%20Squirtle%207%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5399836",
+      "product_name": "Squirtle [Master Ball] #7",
+      "console_name": "Pokemon Japanese Scarlet & Violet 151",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Master Ball"
+      }
+    },
+    {
+      "query": "Pokemon 151 Squirtle 7 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20151%20Squirtle%207%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5809387",
+      "product_name": "Squirtle #7",
+      "console_name": "Pokemon Scarlet & Violet 151",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon 151 Squirtle 7 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20151%20Squirtle%207%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8708797",
+      "product_name": "Squirtle #7",
+      "console_name": "Pokemon Chinese 151 Collect",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon 151 Squirtle 7 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20151%20Squirtle%207%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11865951",
+      "product_name": "Squirtle #7",
+      "console_name": "Pokemon Korean Scarlet & Violet 151",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon 151 Squirtle 7 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20151%20Squirtle%207%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5874858",
+      "product_name": "Squirtle [Pokemon Center] #7",
+      "console_name": "Pokemon Scarlet & Violet 151",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Pokemon Center"
+      }
+    },
+    {
+      "query": "Pokemon 151 Squirtle 7 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20151%20Squirtle%207%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8708798",
+      "product_name": "Squirtle [Master Ball] #7",
+      "console_name": "Pokemon Chinese 151 Collect",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Master Ball"
+      }
+    },
+    {
+      "query": "Pokemon 151 Squirtle 7 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20151%20Squirtle%207%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7979090",
+      "product_name": "Squirtle [Cosmos Holo] #7",
+      "console_name": "Pokemon Scarlet & Violet 151",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Cosmos Holo"
+      }
+    },
+    {
+      "query": "Pokemon 151 Squirtle 7 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20151%20Squirtle%207%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5809596",
+      "product_name": "Squirtle [Reverse Holo] #7",
+      "console_name": "Pokemon Scarlet & Violet 151",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Reverse Holo"
+      }
+    },
+    {
+      "query": "Pokemon 151 Squirtle 7 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20151%20Squirtle%207%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5326211",
+      "product_name": "Squirtle #170",
+      "console_name": "Pokemon Japanese Scarlet & Violet 151",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:170"
+      }
+    },
+    {
+      "query": "Pokemon 151 Squirtle 7 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20151%20Squirtle%207%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5809551",
+      "product_name": "Squirtle #170",
+      "console_name": "Pokemon Scarlet & Violet 151",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:170"
+      }
+    },
+    {
+      "query": "Pokemon 151 Squirtle 7 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20151%20Squirtle%207%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11866105",
+      "product_name": "Squirtle #170",
+      "console_name": "Pokemon Korean Scarlet & Violet 151",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:170"
+      }
+    },
+    {
+      "query": "Pokemon 151 Squirtle 7 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20151%20Squirtle%207%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11703203",
+      "product_name": "Squirtle [FamilyMart Stamped] #233/SV-P",
+      "console_name": "Pokemon Chinese Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:233/SV-P"
+      }
+    },
+    {
+      "query": "Pokemon 151 Squirtle 7 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20151%20Squirtle%207%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3560975",
+      "product_name": "Squirtle [Foil] #7",
+      "console_name": "Pokemon 1999 Topps TV",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon 1999 Topps TV"
+      }
+    },
+    {
+      "query": "Pokemon 151 Squirtle 7 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20151%20Squirtle%207%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5278789",
+      "product_name": "Squirtle [Holo] #7",
+      "console_name": "Pokemon Japanese 2002 McDonald's",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon Japanese 2002 McDonald's"
+      }
+    },
+    {
+      "query": "Pokemon 151 Squirtle 7 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20151%20Squirtle%207%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5923314",
+      "product_name": "Full Heal #7",
+      "console_name": "Pokemon Japanese Squirtle Deck",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Full Heal"
+      }
+    },
+    {
+      "query": "Pokemon 151 Squirtle 7 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20151%20Squirtle%207%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12180619",
+      "product_name": "Squirtle [Red] #7",
+      "console_name": "Pokemon Japanese 1996 Carddass",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon Japanese 1996 Carddass"
+      }
+    },
+    {
+      "query": "Pokemon 151 Squirtle 7 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20151%20Squirtle%207%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4614272",
+      "product_name": "Squirtle [Green] #7",
+      "console_name": "Pokemon Japanese 1996 Carddass",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon Japanese 1996 Carddass"
+      }
+    }
+  ],
+  "source_lane": "pricecharting_api"
+}

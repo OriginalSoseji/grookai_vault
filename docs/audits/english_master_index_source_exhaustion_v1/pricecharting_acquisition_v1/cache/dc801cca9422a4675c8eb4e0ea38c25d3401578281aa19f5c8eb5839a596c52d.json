@@ -1,0 +1,36 @@
+{
+  "status": "no_validated_match",
+  "fact": {
+    "gap_type": "finish_human_checklist_evidence_needed",
+    "fact_type": "printing_finish",
+    "set_key": "ex15",
+    "set_name": "Dragon Frontiers",
+    "card_number": "100",
+    "card_name": "Charizard Star δ",
+    "finish_key": "holo",
+    "status": "candidate_unconfirmed",
+    "sources": [
+      "tcgdex"
+    ],
+    "source_authorities": [
+      "api.tcgdex.net"
+    ],
+    "source_kinds": [
+      "structured_api"
+    ],
+    "evidence_urls": [],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "attempts": [
+    {
+      "query": "Pokemon Dragon Frontiers Charizard Star δ 100 holo",
+      "url": "https://www.pricecharting.com/search-products?q=Pokemon%20Dragon%20Frontiers%20Charizard%20Star%20%CE%B4%20100%20holo&type=prices",
+      "error": "Fetch failed 403 Forbidden: https://www.pricecharting.com/search-products?q=Pokemon%20Dragon%20Frontiers%20Charizard%20Star%20%CE%B4%20100%20holo&type=prices"
+    },
+    {
+      "query": "Pokemon Dragon Frontiers Charizard Star δ 100 holofoil",
+      "url": "https://www.pricecharting.com/search-products?q=Pokemon%20Dragon%20Frontiers%20Charizard%20Star%20%CE%B4%20100%20holofoil&type=prices",
+      "error": "Fetch failed 403 Forbidden: https://www.pricecharting.com/search-products?q=Pokemon%20Dragon%20Frontiers%20Charizard%20Star%20%CE%B4%20100%20holofoil&type=prices"
+    }
+  ]
+}

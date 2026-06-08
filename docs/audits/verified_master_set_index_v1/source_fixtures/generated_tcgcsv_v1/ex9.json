@@ -1,0 +1,31 @@
+{
+  "fixture_version": "VERIFIED_MASTER_SET_INDEX_V1_HUMAN_SOURCE_FIXTURE_GENERATED",
+  "source_key": "tcgcsv_finish_ex9",
+  "source_kind": "marketplace_checklist",
+  "source_url": "https://tcgcsv.com/docs",
+  "source_status": "available_generated",
+  "set_key": "ex9",
+  "set_name": "Emerald",
+  "retrieved_at": "2026-06-08T12:46:55.588Z",
+  "raw_snapshot_ref": "generated_fixture:tcgcsv:ex9:2026-06-08T12:46:55.588Z",
+  "generation_note": "Generated from TCGCSV TCGplayer catalog product and price subtype data. Exact finish evidence only.",
+  "records": [
+    {
+      "source_key": "tcgcsv_tcgplayer_catalog",
+      "source_kind": "marketplace_checklist",
+      "source_url": "https://www.tcgplayer.com/product/88626/pokemon-emerald-rayquaza",
+      "set_key": "ex9",
+      "set_name": "Emerald",
+      "card_number": "9",
+      "card_name": "Rayquaza",
+      "finish_key": "reverse",
+      "rarity": "Holo Rare",
+      "evidence_type": "finish_presence",
+      "evidence_label": "TCGCSV/TCGplayer product 88626 price subtype Reverse Holofoil",
+      "language": "en",
+      "retrieved_at": "2026-06-08T12:46:55.588Z",
+      "raw_snapshot_ref": "tcgcsv:1410:88626:Reverse Holofoil",
+      "notes": "Generated from TCGCSV TCGplayer products joined to price subTypeName. Exact set, number, name, and finish match only."
+    }
+  ]
+}

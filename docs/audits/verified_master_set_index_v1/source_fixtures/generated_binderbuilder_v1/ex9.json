@@ -1,0 +1,48 @@
+{
+  "fixture_version": "VERIFIED_MASTER_SET_INDEX_V1_HUMAN_SOURCE_FIXTURE_GENERATED",
+  "source_key": "binderbuilder_ex9",
+  "source_kind": "collector_reference",
+  "source_url": "https://binderbuilder.app/sets/ex9",
+  "source_status": "available_generated",
+  "set_key": "ex9",
+  "set_name": "Emerald",
+  "retrieved_at": "2026-05-26T04:50:02.571Z",
+  "raw_snapshot_ref": "generated_fixture:binderbuilder:ex9:2026-05-26T04:50:02.571Z",
+  "generation_note": "Generated from Binder Builder exact visible variant labels. Unsupported/product-scope labels are excluded.",
+  "records": [
+    {
+      "source_key": "binderbuilder_set_variant",
+      "source_kind": "collector_reference",
+      "source_url": "https://binderbuilder.app/sets/ex9",
+      "set_key": "ex9",
+      "set_name": "Emerald",
+      "card_number": "3",
+      "card_name": "Exploud",
+      "finish_key": "stamped",
+      "rarity": null,
+      "evidence_type": "finish_presence",
+      "evidence_label": "Binder Builder variant row #3 - Exploud - League Stamp",
+      "language": "en",
+      "retrieved_at": "2026-05-26T04:50:02.571Z",
+      "raw_snapshot_ref": "binderbuilder:ex9:3:stamped",
+      "notes": "Exact finish evidence from Binder Builder visible variant label. Shadowless, Jumbo, Metal, and unsupported labels are not emitted."
+    },
+    {
+      "source_key": "binderbuilder_set_variant",
+      "source_kind": "collector_reference",
+      "source_url": "https://binderbuilder.app/sets/ex9",
+      "set_key": "ex9",
+      "set_name": "Emerald",
+      "card_number": "13",
+      "card_name": "Glalie",
+      "finish_key": "reverse",
+      "rarity": null,
+      "evidence_type": "finish_presence",
+      "evidence_label": "Binder Builder variant row #13 - Glalie - Reverse Holofoil",
+      "language": "en",
+      "retrieved_at": "2026-05-26T04:50:02.571Z",
+      "raw_snapshot_ref": "binderbuilder:ex9:13:reverse",
+      "notes": "Exact finish evidence from Binder Builder visible variant label. Shadowless, Jumbo, Metal, and unsupported labels are not emitted."
+    }
+  ]
+}

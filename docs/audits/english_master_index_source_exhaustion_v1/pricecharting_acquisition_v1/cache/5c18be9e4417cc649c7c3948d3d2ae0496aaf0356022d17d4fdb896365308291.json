@@ -1,0 +1,549 @@
+{
+  "status": "api_no_validated_match",
+  "fact": {
+    "gap_type": "finish_second_source_needed",
+    "fact_type": "printing_finish",
+    "set_key": "sv10",
+    "set_name": "Destined Rivals",
+    "card_number": "39",
+    "card_name": "Ethan's Ho-Oh ex",
+    "finish_key": "stamped",
+    "status": "human_source_verified",
+    "sources": [
+      "thepricedex_price_list"
+    ],
+    "source_authorities": [
+      "thepricedex.com"
+    ],
+    "source_kinds": [
+      "marketplace_checklist"
+    ],
+    "evidence_urls": [
+      "https://www.thepricedex.com/set/sv10/destined-rivals/price-list"
+    ],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "attempts": [
+    {
+      "query": "Pokemon Destined Rivals Ethan's Ho-Oh ex 39 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Destined%20Rivals%20Ethan's%20Ho-Oh%20ex%2039%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9432747",
+      "product_name": "Ethan's Ho-Oh ex #39",
+      "console_name": "Pokemon Destined Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon Destined Rivals Ethan's Ho-Oh ex 39 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Destined%20Rivals%20Ethan's%20Ho-Oh%20ex%2039%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12397374",
+      "product_name": "Ethan's Ho-Oh Ex [Prize Pack] #39",
+      "console_name": "Pokemon Destined Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Prize Pack"
+      }
+    },
+    {
+      "query": "Pokemon Destined Rivals Ethan's Ho-Oh ex 39 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Destined%20Rivals%20Ethan's%20Ho-Oh%20ex%2039%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9432937",
+      "product_name": "Ethan's Ho-Oh ex #230",
+      "console_name": "Pokemon Destined Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:230"
+      }
+    },
+    {
+      "query": "Pokemon Destined Rivals Ethan's Ho-Oh ex 39 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Destined%20Rivals%20Ethan's%20Ho-Oh%20ex%2039%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9432946",
+      "product_name": "Ethan's Ho-Oh ex #239",
+      "console_name": "Pokemon Destined Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:239"
+      }
+    },
+    {
+      "query": "Pokemon Destined Rivals Ethan's Ho-Oh ex 39 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Destined%20Rivals%20Ethan's%20Ho-Oh%20ex%2039%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9432916",
+      "product_name": "Ethan's Ho-Oh ex #209",
+      "console_name": "Pokemon Destined Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:209"
+      }
+    },
+    {
+      "query": "Pokemon Destined Rivals Ethan's Ho-Oh ex 39 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Destined%20Rivals%20Ethan's%20Ho-Oh%20ex%2039%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9572255",
+      "product_name": "Ethan's Typhlosion [Stamped] #34",
+      "console_name": "Pokemon Destined Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:34"
+      }
+    },
+    {
+      "query": "Pokemon Destined Rivals Ethan's Ho-Oh ex 39 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Destined%20Rivals%20Ethan's%20Ho-Oh%20ex%2039%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11815964",
+      "product_name": "Ethan's Ho-Oh ex #26",
+      "console_name": "Pokemon Ascended Heroes",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:26"
+      }
+    },
+    {
+      "query": "Pokemon Destined Rivals Ethan's Ho-Oh ex 39 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Destined%20Rivals%20Ethan's%20Ho-Oh%20ex%2039%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11302388",
+      "product_name": "Ethan's Ho-Oh ex #21",
+      "console_name": "Pokemon Japanese Mega Dream ex",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:21"
+      }
+    },
+    {
+      "query": "Pokemon Destined Rivals Ethan's Ho-Oh ex 39 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Destined%20Rivals%20Ethan's%20Ho-Oh%20ex%2039%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "13014822",
+      "product_name": "Ethan's Ho-Oh ex #21",
+      "console_name": "Pokemon Korean Mega Dream ex",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:21"
+      }
+    },
+    {
+      "query": "Pokemon Destined Rivals Ethan's Ho-Oh ex 39 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Destined%20Rivals%20Ethan's%20Ho-Oh%20ex%2039%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8867716",
+      "product_name": "Ethan's Ho-Oh ex #20",
+      "console_name": "Pokemon Japanese Heat Wave Arena",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:20"
+      }
+    },
+    {
+      "query": "Pokemon Destined Rivals Ethan's Ho-Oh ex 39 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Destined%20Rivals%20Ethan's%20Ho-Oh%20ex%2039%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8867749",
+      "product_name": "Ethan's Ho-Oh ex #77",
+      "console_name": "Pokemon Japanese Heat Wave Arena",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:77"
+      }
+    },
+    {
+      "query": "Pokemon Destined Rivals Ethan's Ho-Oh ex 39 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Destined%20Rivals%20Ethan's%20Ho-Oh%20ex%2039%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8867755",
+      "product_name": "Ethan's Ho-Oh ex #86",
+      "console_name": "Pokemon Japanese Heat Wave Arena",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:86"
+      }
+    },
+    {
+      "query": "Pokemon Destined Rivals Ethan's Ho-Oh ex 39 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Destined%20Rivals%20Ethan's%20Ho-Oh%20ex%2039%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8867761",
+      "product_name": "Ethan's Ho-oh ex #90",
+      "console_name": "Pokemon Japanese Heat Wave Arena",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:90"
+      }
+    },
+    {
+      "query": "Pokemon Destined Rivals Ethan's Ho-Oh ex 39 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Destined%20Rivals%20Ethan's%20Ho-Oh%20ex%2039%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11355414",
+      "product_name": "Ethan's Ho-Oh Ex #77",
+      "console_name": "Pokemon Korean Heat Wave Arena",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:77"
+      }
+    },
+    {
+      "query": "Pokemon Destined Rivals Ethan's Ho-Oh ex 39 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Destined%20Rivals%20Ethan's%20Ho-Oh%20ex%2039%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11316505",
+      "product_name": "Ethan's Ho-Oh Ex #20",
+      "console_name": "Pokemon Korean Heat Wave Arena",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:20"
+      }
+    },
+    {
+      "query": "Pokemon Destined Rivals Ethan's Ho-Oh ex 39 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Destined%20Rivals%20Ethan's%20Ho-Oh%20ex%2039%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11533218",
+      "product_name": "Ethan's Ho-Oh ex #86",
+      "console_name": "Pokemon Korean Heat Wave Arena",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:86"
+      }
+    },
+    {
+      "query": "Pokemon Destined Rivals Ethan's Ho-Oh ex 39 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Destined%20Rivals%20Ethan's%20Ho-Oh%20ex%2039%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11533221",
+      "product_name": "Ethan's Ho-Oh ex #90",
+      "console_name": "Pokemon Korean Heat Wave Arena",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:90"
+      }
+    },
+    {
+      "query": "Pokemon Destined Rivals Ethan's Ho-Oh ex 39 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Destined%20Rivals%20Ethan's%20Ho-Oh%20ex%2039%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11315067",
+      "product_name": "Team Rocket's Moltres ex [Stamped] #229",
+      "console_name": "Pokemon Destined Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:229"
+      }
+    },
+    {
+      "query": "Pokemon Destined Rivals Ethan's Ho-Oh ex 39 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Destined%20Rivals%20Ethan's%20Ho-Oh%20ex%2039%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11315057",
+      "product_name": "Team Rocket's Moltres ex [Stamped] #208",
+      "console_name": "Pokemon Destined Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:208"
+      }
+    },
+    {
+      "query": "Pokemon Destined Rivals Ethan's Ho-Oh ex 39 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Destined%20Rivals%20Ethan's%20Ho-Oh%20ex%2039%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11315071",
+      "product_name": "Team Rocket's Moltres ex [Stamped] #31",
+      "console_name": "Pokemon Destined Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:31"
+      }
+    },
+    {
+      "query": "Pokemon Destined Rivals Ethan's Ho-Oh ex 39 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Destined%20Rivals%20Ethan's%20Ho-Oh%20ex%2039%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9432747",
+      "product_name": "Ethan's Ho-Oh ex #39",
+      "console_name": "Pokemon Destined Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon Destined Rivals Ethan's Ho-Oh ex 39 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Destined%20Rivals%20Ethan's%20Ho-Oh%20ex%2039%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12397374",
+      "product_name": "Ethan's Ho-Oh Ex [Prize Pack] #39",
+      "console_name": "Pokemon Destined Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Prize Pack"
+      }
+    },
+    {
+      "query": "Pokemon Destined Rivals Ethan's Ho-Oh ex 39 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Destined%20Rivals%20Ethan's%20Ho-Oh%20ex%2039%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9432937",
+      "product_name": "Ethan's Ho-Oh ex #230",
+      "console_name": "Pokemon Destined Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:230"
+      }
+    },
+    {
+      "query": "Pokemon Destined Rivals Ethan's Ho-Oh ex 39 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Destined%20Rivals%20Ethan's%20Ho-Oh%20ex%2039%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9432946",
+      "product_name": "Ethan's Ho-Oh ex #239",
+      "console_name": "Pokemon Destined Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:239"
+      }
+    },
+    {
+      "query": "Pokemon Destined Rivals Ethan's Ho-Oh ex 39 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Destined%20Rivals%20Ethan's%20Ho-Oh%20ex%2039%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9432916",
+      "product_name": "Ethan's Ho-Oh ex #209",
+      "console_name": "Pokemon Destined Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:209"
+      }
+    },
+    {
+      "query": "Pokemon Destined Rivals Ethan's Ho-Oh ex 39 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Destined%20Rivals%20Ethan's%20Ho-Oh%20ex%2039%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9572255",
+      "product_name": "Ethan's Typhlosion [Stamped] #34",
+      "console_name": "Pokemon Destined Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:34"
+      }
+    },
+    {
+      "query": "Pokemon Destined Rivals Ethan's Ho-Oh ex 39 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Destined%20Rivals%20Ethan's%20Ho-Oh%20ex%2039%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11815964",
+      "product_name": "Ethan's Ho-Oh ex #26",
+      "console_name": "Pokemon Ascended Heroes",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:26"
+      }
+    },
+    {
+      "query": "Pokemon Destined Rivals Ethan's Ho-Oh ex 39 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Destined%20Rivals%20Ethan's%20Ho-Oh%20ex%2039%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11302388",
+      "product_name": "Ethan's Ho-Oh ex #21",
+      "console_name": "Pokemon Japanese Mega Dream ex",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:21"
+      }
+    },
+    {
+      "query": "Pokemon Destined Rivals Ethan's Ho-Oh ex 39 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Destined%20Rivals%20Ethan's%20Ho-Oh%20ex%2039%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "13014822",
+      "product_name": "Ethan's Ho-Oh ex #21",
+      "console_name": "Pokemon Korean Mega Dream ex",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:21"
+      }
+    },
+    {
+      "query": "Pokemon Destined Rivals Ethan's Ho-Oh ex 39 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Destined%20Rivals%20Ethan's%20Ho-Oh%20ex%2039%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8867716",
+      "product_name": "Ethan's Ho-Oh ex #20",
+      "console_name": "Pokemon Japanese Heat Wave Arena",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:20"
+      }
+    },
+    {
+      "query": "Pokemon Destined Rivals Ethan's Ho-Oh ex 39 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Destined%20Rivals%20Ethan's%20Ho-Oh%20ex%2039%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8867749",
+      "product_name": "Ethan's Ho-Oh ex #77",
+      "console_name": "Pokemon Japanese Heat Wave Arena",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:77"
+      }
+    },
+    {
+      "query": "Pokemon Destined Rivals Ethan's Ho-Oh ex 39 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Destined%20Rivals%20Ethan's%20Ho-Oh%20ex%2039%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8867755",
+      "product_name": "Ethan's Ho-Oh ex #86",
+      "console_name": "Pokemon Japanese Heat Wave Arena",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:86"
+      }
+    },
+    {
+      "query": "Pokemon Destined Rivals Ethan's Ho-Oh ex 39 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Destined%20Rivals%20Ethan's%20Ho-Oh%20ex%2039%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8867761",
+      "product_name": "Ethan's Ho-oh ex #90",
+      "console_name": "Pokemon Japanese Heat Wave Arena",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:90"
+      }
+    },
+    {
+      "query": "Pokemon Destined Rivals Ethan's Ho-Oh ex 39 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Destined%20Rivals%20Ethan's%20Ho-Oh%20ex%2039%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11355414",
+      "product_name": "Ethan's Ho-Oh Ex #77",
+      "console_name": "Pokemon Korean Heat Wave Arena",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:77"
+      }
+    },
+    {
+      "query": "Pokemon Destined Rivals Ethan's Ho-Oh ex 39 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Destined%20Rivals%20Ethan's%20Ho-Oh%20ex%2039%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11316505",
+      "product_name": "Ethan's Ho-Oh Ex #20",
+      "console_name": "Pokemon Korean Heat Wave Arena",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:20"
+      }
+    },
+    {
+      "query": "Pokemon Destined Rivals Ethan's Ho-Oh ex 39 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Destined%20Rivals%20Ethan's%20Ho-Oh%20ex%2039%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11533218",
+      "product_name": "Ethan's Ho-Oh ex #86",
+      "console_name": "Pokemon Korean Heat Wave Arena",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:86"
+      }
+    },
+    {
+      "query": "Pokemon Destined Rivals Ethan's Ho-Oh ex 39 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Destined%20Rivals%20Ethan's%20Ho-Oh%20ex%2039%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11533221",
+      "product_name": "Ethan's Ho-Oh ex #90",
+      "console_name": "Pokemon Korean Heat Wave Arena",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:90"
+      }
+    },
+    {
+      "query": "Pokemon Destined Rivals Ethan's Ho-Oh ex 39 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Destined%20Rivals%20Ethan's%20Ho-Oh%20ex%2039%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11315067",
+      "product_name": "Team Rocket's Moltres ex [Stamped] #229",
+      "console_name": "Pokemon Destined Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:229"
+      }
+    },
+    {
+      "query": "Pokemon Destined Rivals Ethan's Ho-Oh ex 39 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Destined%20Rivals%20Ethan's%20Ho-Oh%20ex%2039%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11315057",
+      "product_name": "Team Rocket's Moltres ex [Stamped] #208",
+      "console_name": "Pokemon Destined Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:208"
+      }
+    },
+    {
+      "query": "Pokemon Destined Rivals Ethan's Ho-Oh ex 39 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Destined%20Rivals%20Ethan's%20Ho-Oh%20ex%2039%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11315071",
+      "product_name": "Team Rocket's Moltres ex [Stamped] #31",
+      "console_name": "Pokemon Destined Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:31"
+      }
+    }
+  ],
+  "source_lane": "pricecharting_api"
+}

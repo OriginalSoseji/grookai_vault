@@ -1,0 +1,549 @@
+{
+  "status": "api_no_validated_match",
+  "fact": {
+    "gap_type": "finish_second_source_needed",
+    "fact_type": "printing_finish",
+    "set_key": "hgss2",
+    "set_name": "HS—Unleashed",
+    "card_number": "24",
+    "card_name": "Steelix",
+    "finish_key": "stamped",
+    "status": "human_source_verified",
+    "sources": [
+      "thepricedex_price_list"
+    ],
+    "source_authorities": [
+      "thepricedex.com"
+    ],
+    "source_kinds": [
+      "marketplace_checklist"
+    ],
+    "evidence_urls": [
+      "https://www.thepricedex.com/set/hgss2/hs-unleashed/price-list"
+    ],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "attempts": [
+    {
+      "query": "Pokemon HS—Unleashed Steelix 24 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Steelix%2024%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "1287366",
+      "product_name": "Steelix #24",
+      "console_name": "Pokemon Unleashed",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Steelix 24 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Steelix%2024%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "1287462",
+      "product_name": "Steelix [Reverse Holo] #24",
+      "console_name": "Pokemon Unleashed",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Reverse Holo"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Steelix 24 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Steelix%2024%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6341886",
+      "product_name": "Steelix [Crosshatch League Promo] #24",
+      "console_name": "Pokemon Unleashed",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Crosshatch League Promo"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Steelix 24 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Steelix%2024%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "1287429",
+      "product_name": "Steelix #87",
+      "console_name": "Pokemon Unleashed",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:87"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Steelix 24 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Steelix%2024%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10608617",
+      "product_name": "Steelix #7",
+      "console_name": "Pokemon Japanese Steelix Constructed Starter Deck",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:7"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Steelix 24 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Steelix%2024%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4835854",
+      "product_name": "Sandile #24",
+      "console_name": "Pokemon Japanese Beginning Set HS",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Sandile"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Steelix 24 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Steelix%2024%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3471986",
+      "product_name": "Steelix V #46",
+      "console_name": "Pokemon Japanese Legendary Heartbeat",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:46"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Steelix 24 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Steelix%2024%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3472020",
+      "product_name": "Steelix V #81",
+      "console_name": "Pokemon Japanese Legendary Heartbeat",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:81"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Steelix 24 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Steelix%2024%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "887714",
+      "product_name": "Steelix V #176",
+      "console_name": "Pokemon Vivid Voltage",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:176"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Steelix 24 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Steelix%2024%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "842110",
+      "product_name": "Steelix V #115",
+      "console_name": "Pokemon Vivid Voltage",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:115"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Steelix 24 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Steelix%2024%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3438114",
+      "product_name": "Bruno's Steelix #84",
+      "console_name": "Pokemon Japanese VS",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:84"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Steelix 24 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Steelix%2024%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5979083",
+      "product_name": "Steelix [Holo] #125",
+      "console_name": "Pokemon Paradox Rift",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:125"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Steelix 24 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Steelix%2024%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3438062",
+      "product_name": "Jasmine's Steelix #32",
+      "console_name": "Pokemon Japanese VS",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:32"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Steelix 24 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Steelix%2024%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "1673279",
+      "product_name": "Steelix [Holo] #99",
+      "console_name": "Pokemon Battle Styles",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:99"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Steelix 24 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Steelix%2024%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "2771168",
+      "product_name": "Steelix [Holo] #139",
+      "console_name": "Pokemon Fusion Strike",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:139"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Steelix 24 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Steelix%2024%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7752411",
+      "product_name": "Steelix [Holo] #7",
+      "console_name": "Pokemon Japanese Rayquaza Constructed Starter Deck",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:7"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Steelix 24 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Steelix%2024%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5706072",
+      "product_name": "Steelix [Holo] #208",
+      "console_name": "Pokemon 2001 Topps Johto",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:208"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Steelix 24 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Steelix%2024%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "960147",
+      "product_name": "M Steelix EX #68",
+      "console_name": "Pokemon Steam Siege",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:68"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Steelix 24 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Steelix%2024%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "960188",
+      "product_name": "M Steelix EX #109",
+      "console_name": "Pokemon Steam Siege",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:109"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Steelix 24 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Steelix%2024%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12564543",
+      "product_name": "Steelix [Cosmos Holo] #93",
+      "console_name": "Pokemon Mega Evolution",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:93"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Steelix 24 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Steelix%2024%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "1287366",
+      "product_name": "Steelix #24",
+      "console_name": "Pokemon Unleashed",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Steelix 24 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Steelix%2024%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "1287462",
+      "product_name": "Steelix [Reverse Holo] #24",
+      "console_name": "Pokemon Unleashed",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Reverse Holo"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Steelix 24 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Steelix%2024%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6341886",
+      "product_name": "Steelix [Crosshatch League Promo] #24",
+      "console_name": "Pokemon Unleashed",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Crosshatch League Promo"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Steelix 24 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Steelix%2024%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "1287429",
+      "product_name": "Steelix #87",
+      "console_name": "Pokemon Unleashed",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:87"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Steelix 24 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Steelix%2024%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10608617",
+      "product_name": "Steelix #7",
+      "console_name": "Pokemon Japanese Steelix Constructed Starter Deck",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:7"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Steelix 24 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Steelix%2024%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4835854",
+      "product_name": "Sandile #24",
+      "console_name": "Pokemon Japanese Beginning Set HS",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Sandile"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Steelix 24 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Steelix%2024%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3471986",
+      "product_name": "Steelix V #46",
+      "console_name": "Pokemon Japanese Legendary Heartbeat",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:46"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Steelix 24 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Steelix%2024%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3472020",
+      "product_name": "Steelix V #81",
+      "console_name": "Pokemon Japanese Legendary Heartbeat",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:81"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Steelix 24 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Steelix%2024%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "887714",
+      "product_name": "Steelix V #176",
+      "console_name": "Pokemon Vivid Voltage",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:176"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Steelix 24 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Steelix%2024%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "842110",
+      "product_name": "Steelix V #115",
+      "console_name": "Pokemon Vivid Voltage",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:115"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Steelix 24 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Steelix%2024%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3438114",
+      "product_name": "Bruno's Steelix #84",
+      "console_name": "Pokemon Japanese VS",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:84"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Steelix 24 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Steelix%2024%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5979083",
+      "product_name": "Steelix [Holo] #125",
+      "console_name": "Pokemon Paradox Rift",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:125"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Steelix 24 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Steelix%2024%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3438062",
+      "product_name": "Jasmine's Steelix #32",
+      "console_name": "Pokemon Japanese VS",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:32"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Steelix 24 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Steelix%2024%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "1673279",
+      "product_name": "Steelix [Holo] #99",
+      "console_name": "Pokemon Battle Styles",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:99"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Steelix 24 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Steelix%2024%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "2771168",
+      "product_name": "Steelix [Holo] #139",
+      "console_name": "Pokemon Fusion Strike",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:139"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Steelix 24 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Steelix%2024%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7752411",
+      "product_name": "Steelix [Holo] #7",
+      "console_name": "Pokemon Japanese Rayquaza Constructed Starter Deck",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:7"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Steelix 24 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Steelix%2024%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5706072",
+      "product_name": "Steelix [Holo] #208",
+      "console_name": "Pokemon 2001 Topps Johto",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:208"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Steelix 24 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Steelix%2024%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "960147",
+      "product_name": "M Steelix EX #68",
+      "console_name": "Pokemon Steam Siege",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:68"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Steelix 24 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Steelix%2024%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "960188",
+      "product_name": "M Steelix EX #109",
+      "console_name": "Pokemon Steam Siege",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:109"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Steelix 24 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Steelix%2024%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12564543",
+      "product_name": "Steelix [Cosmos Holo] #93",
+      "console_name": "Pokemon Mega Evolution",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:93"
+      }
+    }
+  ],
+  "source_lane": "pricecharting_api"
+}

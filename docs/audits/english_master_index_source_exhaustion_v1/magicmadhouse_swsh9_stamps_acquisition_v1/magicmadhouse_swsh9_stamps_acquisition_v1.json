@@ -1,0 +1,132 @@
+{
+  "version": "english_master_index_magicmadhouse_swsh9_stamps_acquisition_v1",
+  "generated_at": "2026-06-06T19:15:00.000Z",
+  "audit_only": true,
+  "db_writes_performed": false,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "dry_run": false,
+  "fixture_file": "docs/audits/verified_master_set_index_v1/source_fixtures/generated_magicmadhouse_swsh9_stamps_v1/swsh9.json",
+  "rule": "Only exact Magic Madhouse Brilliant Stars product titles naming the target card number, card name, and stamped/promo label are accepted. Prize Pack League Promo and Pikachu Pumpkin Stamp map to stamped only for exact card-level product pages.",
+  "summary": {
+    "target_facts": 5,
+    "validated": 5,
+    "blocked": 0,
+    "by_source_key": {
+      "magicmadhouse_swsh9_stamps": 5
+    }
+  },
+  "results": [
+    {
+      "status": "validated",
+      "source_key": "magicmadhouse_swsh9_stamps",
+      "source_kind": "marketplace_checklist",
+      "source_url": "https://magicmadhouse.co.uk/pokemon-brilliant-stars-010-172-wormadam-prize-pack-league-promo-non-holo",
+      "fact": {
+        "set_key": "swsh9",
+        "set_name": "Brilliant Stars",
+        "card_number": "10",
+        "card_name": "Wormadam",
+        "finish_key": "stamped"
+      },
+      "validation": {
+        "ok": true,
+        "checks": {
+          "has_identity": true,
+          "has_card_number": true,
+          "has_exact_stamped_label": true,
+          "not_general_set_inference": true
+        }
+      }
+    },
+    {
+      "status": "validated",
+      "source_key": "magicmadhouse_swsh9_stamps",
+      "source_kind": "marketplace_checklist",
+      "source_url": "https://magicmadhouse.co.uk/pokemon-brilliant-stars-061-172-dusclops-pikachu-pumpkin-stamp",
+      "fact": {
+        "set_key": "swsh9",
+        "set_name": "Brilliant Stars",
+        "card_number": "61",
+        "card_name": "Dusclops",
+        "finish_key": "stamped"
+      },
+      "validation": {
+        "ok": true,
+        "checks": {
+          "has_identity": true,
+          "has_card_number": true,
+          "has_exact_stamped_label": true,
+          "not_general_set_inference": true
+        }
+      }
+    },
+    {
+      "status": "validated",
+      "source_key": "magicmadhouse_swsh9_stamps",
+      "source_kind": "marketplace_checklist",
+      "source_url": "https://magicmadhouse.co.uk/pokemon-brilliant-stars-077-172-wormadam-prize-pack-league-promo-non-holo",
+      "fact": {
+        "set_key": "swsh9",
+        "set_name": "Brilliant Stars",
+        "card_number": "77",
+        "card_name": "Wormadam",
+        "finish_key": "stamped"
+      },
+      "validation": {
+        "ok": true,
+        "checks": {
+          "has_identity": true,
+          "has_card_number": true,
+          "has_exact_stamped_label": true,
+          "not_general_set_inference": true
+        }
+      }
+    },
+    {
+      "status": "validated",
+      "source_key": "magicmadhouse_swsh9_stamps",
+      "source_kind": "marketplace_checklist",
+      "source_url": "https://magicmadhouse.co.uk/pokemon-brilliant-stars-098-172-wormadam-prize-pack-league-promo-non-holo",
+      "fact": {
+        "set_key": "swsh9",
+        "set_name": "Brilliant Stars",
+        "card_number": "98",
+        "card_name": "Wormadam",
+        "finish_key": "stamped"
+      },
+      "validation": {
+        "ok": true,
+        "checks": {
+          "has_identity": true,
+          "has_card_number": true,
+          "has_exact_stamped_label": true,
+          "not_general_set_inference": true
+        }
+      }
+    },
+    {
+      "status": "validated",
+      "source_key": "magicmadhouse_swsh9_stamps",
+      "source_kind": "marketplace_checklist",
+      "source_url": "https://magicmadhouse.co.uk/pokemon-brilliant-stars-105-172-zamazenta-v-prize-pack-league-promo",
+      "fact": {
+        "set_key": "swsh9",
+        "set_name": "Brilliant Stars",
+        "card_number": "105",
+        "card_name": "Zamazenta V",
+        "finish_key": "stamped"
+      },
+      "validation": {
+        "ok": true,
+        "checks": {
+          "has_identity": true,
+          "has_card_number": true,
+          "has_exact_stamped_label": true,
+          "not_general_set_inference": true
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,48 @@
+{
+  "fixture_version": "VERIFIED_MASTER_SET_INDEX_V1_HUMAN_SOURCE_FIXTURE_GENERATED",
+  "source_key": "cardtrader_finish_sv3",
+  "source_kind": "marketplace_checklist",
+  "source_url": "https://www.cardtrader.com/en/manasearch/5/blueprints.json",
+  "source_status": "available_generated",
+  "set_key": "sv3",
+  "set_name": "Obsidian Flames",
+  "retrieved_at": "2026-05-26T04:52:47.265Z",
+  "raw_snapshot_ref": "generated_fixture:cardtrader:sv3:2026-05-26T04:52:47.265Z",
+  "generation_note": "Generated from CardTrader Pokemon blueprint index. Exact card-number/name/finish matches only.",
+  "records": [
+    {
+      "source_key": "cardtrader_blueprint_index",
+      "source_kind": "marketplace_checklist",
+      "source_url": "https://www.cardtrader.com/en/cards/255586-charmander-non-holo-026-197-obsidian-flames",
+      "set_key": "sv3",
+      "set_name": "Obsidian Flames",
+      "card_number": "026",
+      "card_name": "Charmander",
+      "finish_key": "holo",
+      "rarity": null,
+      "evidence_type": "finish_presence",
+      "evidence_label": "CardTrader blueprint row Charmander - Non-Holo | 026/197",
+      "language": "en",
+      "retrieved_at": "2026-05-26T04:52:47.265Z",
+      "raw_snapshot_ref": "cardtrader_blueprint:255586-charmander-non-holo-026-197-obsidian-flames",
+      "notes": "Generated only from an exact CardTrader Pokemon blueprint match on set, card number, card name, and finish label."
+    },
+    {
+      "source_key": "cardtrader_blueprint_index",
+      "source_kind": "marketplace_checklist",
+      "source_url": "https://www.cardtrader.com/en/cards/255587-charmeleon-non-holo-027-197-obsidian-flames",
+      "set_key": "sv3",
+      "set_name": "Obsidian Flames",
+      "card_number": "027",
+      "card_name": "Charmeleon",
+      "finish_key": "holo",
+      "rarity": null,
+      "evidence_type": "finish_presence",
+      "evidence_label": "CardTrader blueprint row Charmeleon - Non-Holo | 027/197",
+      "language": "en",
+      "retrieved_at": "2026-05-26T04:52:47.265Z",
+      "raw_snapshot_ref": "cardtrader_blueprint:255587-charmeleon-non-holo-027-197-obsidian-flames",
+      "notes": "Generated only from an exact CardTrader Pokemon blueprint match on set, card number, card name, and finish label."
+    }
+  ]
+}

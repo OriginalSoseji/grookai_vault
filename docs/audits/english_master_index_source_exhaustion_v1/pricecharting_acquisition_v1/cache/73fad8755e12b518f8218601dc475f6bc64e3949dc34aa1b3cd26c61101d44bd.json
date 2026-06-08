@@ -1,0 +1,549 @@
+{
+  "status": "api_no_validated_match",
+  "fact": {
+    "gap_type": "finish_second_source_needed",
+    "fact_type": "printing_finish",
+    "set_key": "sv03.5",
+    "set_name": "151",
+    "card_number": "151",
+    "card_name": "Mew ex",
+    "finish_key": "stamped",
+    "status": "human_source_verified",
+    "sources": [
+      "thepricedex_price_list"
+    ],
+    "source_authorities": [
+      "thepricedex.com"
+    ],
+    "source_kinds": [
+      "marketplace_checklist"
+    ],
+    "evidence_urls": [
+      "https://www.thepricedex.com/set/sv3pt5/151/price-list"
+    ],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "attempts": [
+    {
+      "query": "Pokemon 151 Mew ex 151 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20151%20Mew%20ex%20151%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5809532",
+      "product_name": "Mew ex #151",
+      "console_name": "Pokemon Scarlet & Violet 151",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon 151 Mew ex 151 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20151%20Mew%20ex%20151%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5326193",
+      "product_name": "Mew EX #151",
+      "console_name": "Pokemon Japanese Scarlet & Violet 151",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon 151 Mew ex 151 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20151%20Mew%20ex%20151%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8709214",
+      "product_name": "Mew EX #151",
+      "console_name": "Pokemon Chinese 151 Collect",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon 151 Mew ex 151 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20151%20Mew%20ex%20151%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7572027",
+      "product_name": "Mew Ex [Prize Pack] #151",
+      "console_name": "Pokemon Scarlet & Violet 151",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Prize Pack"
+      }
+    },
+    {
+      "query": "Pokemon 151 Mew ex 151 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20151%20Mew%20ex%20151%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11866088",
+      "product_name": "Mew ex #151",
+      "console_name": "Pokemon Korean Scarlet & Violet 151",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon 151 Mew ex 151 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20151%20Mew%20ex%20151%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6735363",
+      "product_name": "Mew [Stamp Rally] #151",
+      "console_name": "Pokemon Japanese Promo",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Mew"
+      }
+    },
+    {
+      "query": "Pokemon 151 Mew ex 151 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20151%20Mew%20ex%20151%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5326234",
+      "product_name": "Mew EX #205",
+      "console_name": "Pokemon Japanese Scarlet & Violet 151",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:205"
+      }
+    },
+    {
+      "query": "Pokemon 151 Mew ex 151 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20151%20Mew%20ex%20151%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5326235",
+      "product_name": "Mew EX #208",
+      "console_name": "Pokemon Japanese Scarlet & Violet 151",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:208"
+      }
+    },
+    {
+      "query": "Pokemon 151 Mew ex 151 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20151%20Mew%20ex%20151%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5326228",
+      "product_name": "Mew EX #195",
+      "console_name": "Pokemon Japanese Scarlet & Violet 151",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:195"
+      }
+    },
+    {
+      "query": "Pokemon 151 Mew ex 151 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20151%20Mew%20ex%20151%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5809576",
+      "product_name": "Mew ex #193",
+      "console_name": "Pokemon Scarlet & Violet 151",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:193"
+      }
+    },
+    {
+      "query": "Pokemon 151 Mew ex 151 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20151%20Mew%20ex%20151%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5809586",
+      "product_name": "Mew ex #205",
+      "console_name": "Pokemon Scarlet & Violet 151",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:205"
+      }
+    },
+    {
+      "query": "Pokemon 151 Mew ex 151 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20151%20Mew%20ex%20151%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8693310",
+      "product_name": "Mew Ex [Ultra Ball League] #151",
+      "console_name": "Pokemon Scarlet & Violet 151",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Ultra Ball League"
+      }
+    },
+    {
+      "query": "Pokemon 151 Mew ex 151 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20151%20Mew%20ex%20151%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5873367",
+      "product_name": "Mew Ex [Metal] #205",
+      "console_name": "Pokemon Scarlet & Violet 151",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:205"
+      }
+    },
+    {
+      "query": "Pokemon 151 Mew ex 151 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20151%20Mew%20ex%20151%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10809469",
+      "product_name": "Mew ex [Jumbo] #205",
+      "console_name": "Pokemon Scarlet & Violet 151",
+      "validation": {
+        "ok": false,
+        "reason": "product_scope_jumbo_not_canonical_set_finish"
+      }
+    },
+    {
+      "query": "Pokemon 151 Mew ex 151 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20151%20Mew%20ex%20151%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8743650",
+      "product_name": "Mew EX #188",
+      "console_name": "Pokemon Chinese 151 Collect",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:188"
+      }
+    },
+    {
+      "query": "Pokemon 151 Mew ex 151 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20151%20Mew%20ex%20151%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8743666",
+      "product_name": "Mew EX #191",
+      "console_name": "Pokemon Chinese 151 Collect",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:191"
+      }
+    },
+    {
+      "query": "Pokemon 151 Mew ex 151 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20151%20Mew%20ex%20151%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8709227",
+      "product_name": "Mew EX #185",
+      "console_name": "Pokemon Chinese 151 Collect",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:185"
+      }
+    },
+    {
+      "query": "Pokemon 151 Mew ex 151 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20151%20Mew%20ex%20151%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8709228",
+      "product_name": "Mew EX #192",
+      "console_name": "Pokemon Chinese 151 Collect",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:192"
+      }
+    },
+    {
+      "query": "Pokemon 151 Mew ex 151 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20151%20Mew%20ex%20151%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11866128",
+      "product_name": "Mew ex #195",
+      "console_name": "Pokemon Korean Scarlet & Violet 151",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:195"
+      }
+    },
+    {
+      "query": "Pokemon 151 Mew ex 151 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20151%20Mew%20ex%20151%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11282115",
+      "product_name": "Mew Ex #205",
+      "console_name": "Pokemon Korean Scarlet & Violet 151",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:205"
+      }
+    },
+    {
+      "query": "Pokemon 151 Mew ex 151 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20151%20Mew%20ex%20151%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5809532",
+      "product_name": "Mew ex #151",
+      "console_name": "Pokemon Scarlet & Violet 151",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon 151 Mew ex 151 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20151%20Mew%20ex%20151%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5326193",
+      "product_name": "Mew EX #151",
+      "console_name": "Pokemon Japanese Scarlet & Violet 151",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon 151 Mew ex 151 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20151%20Mew%20ex%20151%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8709214",
+      "product_name": "Mew EX #151",
+      "console_name": "Pokemon Chinese 151 Collect",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon 151 Mew ex 151 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20151%20Mew%20ex%20151%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7572027",
+      "product_name": "Mew Ex [Prize Pack] #151",
+      "console_name": "Pokemon Scarlet & Violet 151",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Prize Pack"
+      }
+    },
+    {
+      "query": "Pokemon 151 Mew ex 151 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20151%20Mew%20ex%20151%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11866088",
+      "product_name": "Mew ex #151",
+      "console_name": "Pokemon Korean Scarlet & Violet 151",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon 151 Mew ex 151 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20151%20Mew%20ex%20151%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6735363",
+      "product_name": "Mew [Stamp Rally] #151",
+      "console_name": "Pokemon Japanese Promo",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Mew"
+      }
+    },
+    {
+      "query": "Pokemon 151 Mew ex 151 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20151%20Mew%20ex%20151%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5326234",
+      "product_name": "Mew EX #205",
+      "console_name": "Pokemon Japanese Scarlet & Violet 151",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:205"
+      }
+    },
+    {
+      "query": "Pokemon 151 Mew ex 151 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20151%20Mew%20ex%20151%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5326235",
+      "product_name": "Mew EX #208",
+      "console_name": "Pokemon Japanese Scarlet & Violet 151",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:208"
+      }
+    },
+    {
+      "query": "Pokemon 151 Mew ex 151 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20151%20Mew%20ex%20151%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5326228",
+      "product_name": "Mew EX #195",
+      "console_name": "Pokemon Japanese Scarlet & Violet 151",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:195"
+      }
+    },
+    {
+      "query": "Pokemon 151 Mew ex 151 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20151%20Mew%20ex%20151%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5809576",
+      "product_name": "Mew ex #193",
+      "console_name": "Pokemon Scarlet & Violet 151",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:193"
+      }
+    },
+    {
+      "query": "Pokemon 151 Mew ex 151 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20151%20Mew%20ex%20151%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5809586",
+      "product_name": "Mew ex #205",
+      "console_name": "Pokemon Scarlet & Violet 151",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:205"
+      }
+    },
+    {
+      "query": "Pokemon 151 Mew ex 151 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20151%20Mew%20ex%20151%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8693310",
+      "product_name": "Mew Ex [Ultra Ball League] #151",
+      "console_name": "Pokemon Scarlet & Violet 151",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Ultra Ball League"
+      }
+    },
+    {
+      "query": "Pokemon 151 Mew ex 151 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20151%20Mew%20ex%20151%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5873367",
+      "product_name": "Mew Ex [Metal] #205",
+      "console_name": "Pokemon Scarlet & Violet 151",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:205"
+      }
+    },
+    {
+      "query": "Pokemon 151 Mew ex 151 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20151%20Mew%20ex%20151%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10809469",
+      "product_name": "Mew ex [Jumbo] #205",
+      "console_name": "Pokemon Scarlet & Violet 151",
+      "validation": {
+        "ok": false,
+        "reason": "product_scope_jumbo_not_canonical_set_finish"
+      }
+    },
+    {
+      "query": "Pokemon 151 Mew ex 151 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20151%20Mew%20ex%20151%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8743650",
+      "product_name": "Mew EX #188",
+      "console_name": "Pokemon Chinese 151 Collect",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:188"
+      }
+    },
+    {
+      "query": "Pokemon 151 Mew ex 151 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20151%20Mew%20ex%20151%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8743666",
+      "product_name": "Mew EX #191",
+      "console_name": "Pokemon Chinese 151 Collect",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:191"
+      }
+    },
+    {
+      "query": "Pokemon 151 Mew ex 151 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20151%20Mew%20ex%20151%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8709227",
+      "product_name": "Mew EX #185",
+      "console_name": "Pokemon Chinese 151 Collect",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:185"
+      }
+    },
+    {
+      "query": "Pokemon 151 Mew ex 151 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20151%20Mew%20ex%20151%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8709228",
+      "product_name": "Mew EX #192",
+      "console_name": "Pokemon Chinese 151 Collect",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:192"
+      }
+    },
+    {
+      "query": "Pokemon 151 Mew ex 151 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20151%20Mew%20ex%20151%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11866128",
+      "product_name": "Mew ex #195",
+      "console_name": "Pokemon Korean Scarlet & Violet 151",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:195"
+      }
+    },
+    {
+      "query": "Pokemon 151 Mew ex 151 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20151%20Mew%20ex%20151%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11282115",
+      "product_name": "Mew Ex #205",
+      "console_name": "Pokemon Korean Scarlet & Violet 151",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:205"
+      }
+    }
+  ],
+  "source_lane": "pricecharting_api"
+}

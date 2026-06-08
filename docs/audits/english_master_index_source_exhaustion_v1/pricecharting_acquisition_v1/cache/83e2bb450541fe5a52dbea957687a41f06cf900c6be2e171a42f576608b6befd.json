@@ -1,0 +1,43 @@
+{
+  "status": "no_validated_match",
+  "fact": {
+    "gap_type": "finish_second_source_needed",
+    "fact_type": "printing_finish",
+    "set_key": "hgss2",
+    "set_name": "HS—Unleashed",
+    "card_number": "2",
+    "card_name": "Magmortar",
+    "finish_key": "cracked_ice",
+    "status": "human_source_verified",
+    "sources": [
+      "thepricedex_price_list"
+    ],
+    "source_authorities": [
+      "thepricedex.com"
+    ],
+    "source_kinds": [
+      "marketplace_checklist"
+    ],
+    "evidence_urls": [],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "attempts": [
+    {
+      "query": "Pokemon HS—Unleashed Magmortar 2 cracked ice holo",
+      "url": "https://www.pricecharting.com/search-products?q=Pokemon%20HS%E2%80%94Unleashed%20Magmortar%202%20cracked%20ice%20holo&type=prices",
+      "error": "Fetch failed 403 Forbidden: https://www.pricecharting.com/search-products?q=Pokemon%20HS%E2%80%94Unleashed%20Magmortar%202%20cracked%20ice%20holo&type=prices"
+    },
+    {
+      "query": "Pokemon HS—Unleashed Magmortar 2 cracked ice",
+      "url": "https://www.pricecharting.com/search-products?q=Pokemon%20HS%E2%80%94Unleashed%20Magmortar%202%20cracked%20ice&type=prices",
+      "parsed": {
+        "title": "Pokemon HS—Unleashed Magmortar 2 Cracked Ice Prices | Pokemon HS—Unleashed Magmortar 2 Cracked Ice List",
+        "source_url": "https://www.pricecharting.com/search-products?q=pokemon+hs%E2%80%94unleashed+magmortar+2+cracked+ice&type=prices"
+      },
+      "validation": {
+        "ok": false,
+        "reason": "title_pattern_not_supported"
+      }
+    }
+  ]
+}

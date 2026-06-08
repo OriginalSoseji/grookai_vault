@@ -1,0 +1,549 @@
+{
+  "status": "api_no_validated_match",
+  "fact": {
+    "gap_type": "finish_second_source_needed",
+    "fact_type": "printing_finish",
+    "set_key": "ex9",
+    "set_name": "Emerald",
+    "card_number": "60",
+    "card_name": "Pikachu",
+    "finish_key": "stamped",
+    "status": "human_source_verified",
+    "sources": [
+      "thepricedex_price_list"
+    ],
+    "source_authorities": [
+      "thepricedex.com"
+    ],
+    "source_kinds": [
+      "marketplace_checklist"
+    ],
+    "evidence_urls": [
+      "https://www.thepricedex.com/set/ex9/emerald/price-list"
+    ],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "attempts": [
+    {
+      "query": "Pokemon Emerald Pikachu 60 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Emerald%20Pikachu%2060%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "888285",
+      "product_name": "Pikachu #60",
+      "console_name": "Pokemon Emerald",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon Emerald Pikachu 60 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Emerald%20Pikachu%2060%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "2336239",
+      "product_name": "Pikachu [W Stamp] #60",
+      "console_name": "Pokemon Jungle",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon Jungle"
+      }
+    },
+    {
+      "query": "Pokemon Emerald Pikachu 60 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Emerald%20Pikachu%2060%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "888392",
+      "product_name": "Pikachu [Reverse Holo] #60",
+      "console_name": "Pokemon Emerald",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Reverse Holo"
+      }
+    },
+    {
+      "query": "Pokemon Emerald Pikachu 60 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Emerald%20Pikachu%2060%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5527615",
+      "product_name": "Pikachu [Comic Con Promo] #60",
+      "console_name": "Pokemon Emerald",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Comic Con Promo"
+      }
+    },
+    {
+      "query": "Pokemon Emerald Pikachu 60 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Emerald%20Pikachu%2060%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9081358",
+      "product_name": "Pikachu [No Stamp] #190",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:190"
+      }
+    },
+    {
+      "query": "Pokemon Emerald Pikachu 60 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Emerald%20Pikachu%2060%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5305606",
+      "product_name": "Pikachu [Pokemon Center Stamp] #27",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:27"
+      }
+    },
+    {
+      "query": "Pokemon Emerald Pikachu 60 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Emerald%20Pikachu%2060%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6604526",
+      "product_name": "Pikachu [League Stamp] #65",
+      "console_name": "Pokemon Sword & Shield",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:65"
+      }
+    },
+    {
+      "query": "Pokemon Emerald Pikachu 60 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Emerald%20Pikachu%2060%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6490256",
+      "product_name": "Pikachu [League Stamp] #49",
+      "console_name": "Pokemon Evolving Skies",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:49"
+      }
+    },
+    {
+      "query": "Pokemon Emerald Pikachu 60 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Emerald%20Pikachu%2060%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4476213",
+      "product_name": "Pikachu [Snowflake Stamp] #SWSH153",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:SWSH153"
+      }
+    },
+    {
+      "query": "Pokemon Emerald Pikachu 60 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Emerald%20Pikachu%2060%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4766447",
+      "product_name": "Detective Pikachu [Stamp] #SM190",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:SM190"
+      }
+    },
+    {
+      "query": "Pokemon Emerald Pikachu 60 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Emerald%20Pikachu%2060%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4895432",
+      "product_name": "Pikachu [Snowflake Stamp] #DP16",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:DP16"
+      }
+    },
+    {
+      "query": "Pokemon Emerald Pikachu 60 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Emerald%20Pikachu%2060%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5810878",
+      "product_name": "Pikachu [Snowflake Stamp] #49",
+      "console_name": "Pokemon Silver Tempest",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:49"
+      }
+    },
+    {
+      "query": "Pokemon Emerald Pikachu 60 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Emerald%20Pikachu%2060%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "2514239",
+      "product_name": "Groudon [Stamped] #14",
+      "console_name": "Pokemon Emerald",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:14"
+      }
+    },
+    {
+      "query": "Pokemon Emerald Pikachu 60 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Emerald%20Pikachu%2060%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6021834",
+      "product_name": "Pikachu [Stamped] #26",
+      "console_name": "Pokemon Generations",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:26"
+      }
+    },
+    {
+      "query": "Pokemon Emerald Pikachu 60 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Emerald%20Pikachu%2060%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7322439",
+      "product_name": "Pikachu Ex [Snowflake Stamp] #63",
+      "console_name": "Pokemon Paldea Evolved",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:63"
+      }
+    },
+    {
+      "query": "Pokemon Emerald Pikachu 60 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Emerald%20Pikachu%2060%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11748475",
+      "product_name": "Hop [#33 Pikachu Stamp] #165",
+      "console_name": "Pokemon 2022 Battle Academy",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:165"
+      }
+    },
+    {
+      "query": "Pokemon Emerald Pikachu 60 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Emerald%20Pikachu%2060%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4925874",
+      "product_name": "Pikachu [Stamped] #9",
+      "console_name": "Pokemon POP Series 6",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:9"
+      }
+    },
+    {
+      "query": "Pokemon Emerald Pikachu 60 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Emerald%20Pikachu%2060%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6135981",
+      "product_name": "Pikachu [Stamped] #70",
+      "console_name": "Pokemon Majestic Dawn",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:70"
+      }
+    },
+    {
+      "query": "Pokemon Emerald Pikachu 60 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Emerald%20Pikachu%2060%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6133914",
+      "product_name": "Pikachu [Stamped] #94",
+      "console_name": "Pokemon Mysterious Treasures",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:94"
+      }
+    },
+    {
+      "query": "Pokemon Emerald Pikachu 60 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Emerald%20Pikachu%2060%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6610754",
+      "product_name": "Pikachu [LPP Collecting Stamp] #1",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:1"
+      }
+    },
+    {
+      "query": "Pokemon Emerald Pikachu 60 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Emerald%20Pikachu%2060%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "888285",
+      "product_name": "Pikachu #60",
+      "console_name": "Pokemon Emerald",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon Emerald Pikachu 60 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Emerald%20Pikachu%2060%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "2336239",
+      "product_name": "Pikachu [W Stamp] #60",
+      "console_name": "Pokemon Jungle",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon Jungle"
+      }
+    },
+    {
+      "query": "Pokemon Emerald Pikachu 60 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Emerald%20Pikachu%2060%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "888392",
+      "product_name": "Pikachu [Reverse Holo] #60",
+      "console_name": "Pokemon Emerald",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Reverse Holo"
+      }
+    },
+    {
+      "query": "Pokemon Emerald Pikachu 60 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Emerald%20Pikachu%2060%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5527615",
+      "product_name": "Pikachu [Comic Con Promo] #60",
+      "console_name": "Pokemon Emerald",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Comic Con Promo"
+      }
+    },
+    {
+      "query": "Pokemon Emerald Pikachu 60 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Emerald%20Pikachu%2060%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9081358",
+      "product_name": "Pikachu [No Stamp] #190",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:190"
+      }
+    },
+    {
+      "query": "Pokemon Emerald Pikachu 60 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Emerald%20Pikachu%2060%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5305606",
+      "product_name": "Pikachu [Pokemon Center Stamp] #27",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:27"
+      }
+    },
+    {
+      "query": "Pokemon Emerald Pikachu 60 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Emerald%20Pikachu%2060%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6604526",
+      "product_name": "Pikachu [League Stamp] #65",
+      "console_name": "Pokemon Sword & Shield",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:65"
+      }
+    },
+    {
+      "query": "Pokemon Emerald Pikachu 60 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Emerald%20Pikachu%2060%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6490256",
+      "product_name": "Pikachu [League Stamp] #49",
+      "console_name": "Pokemon Evolving Skies",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:49"
+      }
+    },
+    {
+      "query": "Pokemon Emerald Pikachu 60 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Emerald%20Pikachu%2060%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4476213",
+      "product_name": "Pikachu [Snowflake Stamp] #SWSH153",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:SWSH153"
+      }
+    },
+    {
+      "query": "Pokemon Emerald Pikachu 60 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Emerald%20Pikachu%2060%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4766447",
+      "product_name": "Detective Pikachu [Stamp] #SM190",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:SM190"
+      }
+    },
+    {
+      "query": "Pokemon Emerald Pikachu 60 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Emerald%20Pikachu%2060%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4895432",
+      "product_name": "Pikachu [Snowflake Stamp] #DP16",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:DP16"
+      }
+    },
+    {
+      "query": "Pokemon Emerald Pikachu 60 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Emerald%20Pikachu%2060%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5810878",
+      "product_name": "Pikachu [Snowflake Stamp] #49",
+      "console_name": "Pokemon Silver Tempest",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:49"
+      }
+    },
+    {
+      "query": "Pokemon Emerald Pikachu 60 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Emerald%20Pikachu%2060%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "2514239",
+      "product_name": "Groudon [Stamped] #14",
+      "console_name": "Pokemon Emerald",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:14"
+      }
+    },
+    {
+      "query": "Pokemon Emerald Pikachu 60 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Emerald%20Pikachu%2060%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6021834",
+      "product_name": "Pikachu [Stamped] #26",
+      "console_name": "Pokemon Generations",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:26"
+      }
+    },
+    {
+      "query": "Pokemon Emerald Pikachu 60 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Emerald%20Pikachu%2060%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7322439",
+      "product_name": "Pikachu Ex [Snowflake Stamp] #63",
+      "console_name": "Pokemon Paldea Evolved",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:63"
+      }
+    },
+    {
+      "query": "Pokemon Emerald Pikachu 60 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Emerald%20Pikachu%2060%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11748475",
+      "product_name": "Hop [#33 Pikachu Stamp] #165",
+      "console_name": "Pokemon 2022 Battle Academy",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:165"
+      }
+    },
+    {
+      "query": "Pokemon Emerald Pikachu 60 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Emerald%20Pikachu%2060%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4925874",
+      "product_name": "Pikachu [Stamped] #9",
+      "console_name": "Pokemon POP Series 6",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:9"
+      }
+    },
+    {
+      "query": "Pokemon Emerald Pikachu 60 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Emerald%20Pikachu%2060%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6135981",
+      "product_name": "Pikachu [Stamped] #70",
+      "console_name": "Pokemon Majestic Dawn",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:70"
+      }
+    },
+    {
+      "query": "Pokemon Emerald Pikachu 60 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Emerald%20Pikachu%2060%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6133914",
+      "product_name": "Pikachu [Stamped] #94",
+      "console_name": "Pokemon Mysterious Treasures",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:94"
+      }
+    },
+    {
+      "query": "Pokemon Emerald Pikachu 60 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Emerald%20Pikachu%2060%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6610754",
+      "product_name": "Pikachu [LPP Collecting Stamp] #1",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:1"
+      }
+    }
+  ],
+  "source_lane": "pricecharting_api"
+}

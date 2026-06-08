@@ -1,0 +1,549 @@
+{
+  "status": "api_no_validated_match",
+  "fact": {
+    "gap_type": "finish_second_source_needed",
+    "fact_type": "printing_finish",
+    "set_key": "sm115",
+    "set_name": "Hidden Fates",
+    "card_number": "9",
+    "card_name": "Charizard-GX",
+    "finish_key": "stamped",
+    "status": "human_source_verified",
+    "sources": [
+      "thepricedex_price_list"
+    ],
+    "source_authorities": [
+      "thepricedex.com"
+    ],
+    "source_kinds": [
+      "marketplace_checklist"
+    ],
+    "evidence_urls": [
+      "https://www.thepricedex.com/set/sm115/hidden-fates/price-list"
+    ],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "attempts": [
+    {
+      "query": "Pokemon Hidden Fates Charizard-GX 9 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Hidden%20Fates%20Charizard-GX%209%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "964029",
+      "product_name": "Charizard GX #9",
+      "console_name": "Pokemon Hidden Fates",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon Hidden Fates Charizard-GX 9 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Hidden%20Fates%20Charizard-GX%209%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9122946",
+      "product_name": "Hidden Fates Collection [Charizard GX]",
+      "console_name": "Pokemon Hidden Fates",
+      "validation": {
+        "ok": false,
+        "reason": "api_product_name_pattern_not_supported"
+      }
+    },
+    {
+      "query": "Pokemon Hidden Fates Charizard-GX 9 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Hidden%20Fates%20Charizard-GX%209%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "2253083",
+      "product_name": "Charizard GX Hidden Fates Tin",
+      "console_name": "Pokemon Hidden Fates",
+      "validation": {
+        "ok": false,
+        "reason": "api_product_name_pattern_not_supported"
+      }
+    },
+    {
+      "query": "Pokemon Hidden Fates Charizard-GX 9 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Hidden%20Fates%20Charizard-GX%209%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "964133",
+      "product_name": "Charizard GX #SV49",
+      "console_name": "Pokemon Hidden Fates",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:SV49"
+      }
+    },
+    {
+      "query": "Pokemon Hidden Fates Charizard-GX 9 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Hidden%20Fates%20Charizard-GX%209%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10907387",
+      "product_name": "Hidden Fates Collection [Gyarados GX]",
+      "console_name": "Pokemon Hidden Fates",
+      "validation": {
+        "ok": false,
+        "reason": "api_product_name_pattern_not_supported"
+      }
+    },
+    {
+      "query": "Pokemon Hidden Fates Charizard-GX 9 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Hidden%20Fates%20Charizard-GX%209%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10907388",
+      "product_name": "Hidden Fates Collection [Raichu GX]",
+      "console_name": "Pokemon Hidden Fates",
+      "validation": {
+        "ok": false,
+        "reason": "api_product_name_pattern_not_supported"
+      }
+    },
+    {
+      "query": "Pokemon Hidden Fates Charizard-GX 9 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Hidden%20Fates%20Charizard-GX%209%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "964056",
+      "product_name": "Onix GX #36",
+      "console_name": "Pokemon Hidden Fates",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:36"
+      }
+    },
+    {
+      "query": "Pokemon Hidden Fates Charizard-GX 9 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Hidden%20Fates%20Charizard-GX%209%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "964135",
+      "product_name": "Ho-Oh GX #SV50",
+      "console_name": "Pokemon Hidden Fates",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:SV50"
+      }
+    },
+    {
+      "query": "Pokemon Hidden Fates Charizard-GX 9 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Hidden%20Fates%20Charizard-GX%209%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5606577",
+      "product_name": "Raichu GX Hidden Fates Tin",
+      "console_name": "Pokemon Hidden Fates",
+      "validation": {
+        "ok": false,
+        "reason": "api_product_name_pattern_not_supported"
+      }
+    },
+    {
+      "query": "Pokemon Hidden Fates Charizard-GX 9 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Hidden%20Fates%20Charizard-GX%209%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "964026",
+      "product_name": "Pinsir GX #6",
+      "console_name": "Pokemon Hidden Fates",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:6"
+      }
+    },
+    {
+      "query": "Pokemon Hidden Fates Charizard-GX 9 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Hidden%20Fates%20Charizard-GX%209%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "964040",
+      "product_name": "Raichu GX #20",
+      "console_name": "Pokemon Hidden Fates",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:20"
+      }
+    },
+    {
+      "query": "Pokemon Hidden Fates Charizard-GX 9 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Hidden%20Fates%20Charizard-GX%209%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "964051",
+      "product_name": "Mewtwo GX #31",
+      "console_name": "Pokemon Hidden Fates",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:31"
+      }
+    },
+    {
+      "query": "Pokemon Hidden Fates Charizard-GX 9 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Hidden%20Fates%20Charizard-GX%209%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "964146",
+      "product_name": "Espeon GX #SV60",
+      "console_name": "Pokemon Hidden Fates",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:SV60"
+      }
+    },
+    {
+      "query": "Pokemon Hidden Fates Charizard-GX 9 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Hidden%20Fates%20Charizard-GX%209%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "964144",
+      "product_name": "Mewtwo GX #SV59",
+      "console_name": "Pokemon Hidden Fates",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:SV59"
+      }
+    },
+    {
+      "query": "Pokemon Hidden Fates Charizard-GX 9 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Hidden%20Fates%20Charizard-GX%209%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "964159",
+      "product_name": "Scizor GX #SV72",
+      "console_name": "Pokemon Hidden Fates",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:SV72"
+      }
+    },
+    {
+      "query": "Pokemon Hidden Fates Charizard-GX 9 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Hidden%20Fates%20Charizard-GX%209%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "964168",
+      "product_name": "Drampa GX #SV80",
+      "console_name": "Pokemon Hidden Fates",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:SV80"
+      }
+    },
+    {
+      "query": "Pokemon Hidden Fates Charizard-GX 9 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Hidden%20Fates%20Charizard-GX%209%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "964036",
+      "product_name": "Gyarados GX #16",
+      "console_name": "Pokemon Hidden Fates",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:16"
+      }
+    },
+    {
+      "query": "Pokemon Hidden Fates Charizard-GX 9 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Hidden%20Fates%20Charizard-GX%209%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6675551",
+      "product_name": "Gyrados GX Hidden Fates Tin",
+      "console_name": "Pokemon Hidden Fates",
+      "validation": {
+        "ok": false,
+        "reason": "api_product_name_pattern_not_supported"
+      }
+    },
+    {
+      "query": "Pokemon Hidden Fates Charizard-GX 9 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Hidden%20Fates%20Charizard-GX%209%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "964034",
+      "product_name": "Starmie GX #14",
+      "console_name": "Pokemon Hidden Fates",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:14"
+      }
+    },
+    {
+      "query": "Pokemon Hidden Fates Charizard-GX 9 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Hidden%20Fates%20Charizard-GX%209%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "964130",
+      "product_name": "Leafeon GX #SV46",
+      "console_name": "Pokemon Hidden Fates",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:SV46"
+      }
+    },
+    {
+      "query": "Pokemon Hidden Fates Charizard-GX 9 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Hidden%20Fates%20Charizard-GX%209%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "964029",
+      "product_name": "Charizard GX #9",
+      "console_name": "Pokemon Hidden Fates",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon Hidden Fates Charizard-GX 9 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Hidden%20Fates%20Charizard-GX%209%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9122946",
+      "product_name": "Hidden Fates Collection [Charizard GX]",
+      "console_name": "Pokemon Hidden Fates",
+      "validation": {
+        "ok": false,
+        "reason": "api_product_name_pattern_not_supported"
+      }
+    },
+    {
+      "query": "Pokemon Hidden Fates Charizard-GX 9 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Hidden%20Fates%20Charizard-GX%209%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "2253083",
+      "product_name": "Charizard GX Hidden Fates Tin",
+      "console_name": "Pokemon Hidden Fates",
+      "validation": {
+        "ok": false,
+        "reason": "api_product_name_pattern_not_supported"
+      }
+    },
+    {
+      "query": "Pokemon Hidden Fates Charizard-GX 9 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Hidden%20Fates%20Charizard-GX%209%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "964133",
+      "product_name": "Charizard GX #SV49",
+      "console_name": "Pokemon Hidden Fates",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:SV49"
+      }
+    },
+    {
+      "query": "Pokemon Hidden Fates Charizard-GX 9 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Hidden%20Fates%20Charizard-GX%209%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10907387",
+      "product_name": "Hidden Fates Collection [Gyarados GX]",
+      "console_name": "Pokemon Hidden Fates",
+      "validation": {
+        "ok": false,
+        "reason": "api_product_name_pattern_not_supported"
+      }
+    },
+    {
+      "query": "Pokemon Hidden Fates Charizard-GX 9 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Hidden%20Fates%20Charizard-GX%209%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10907388",
+      "product_name": "Hidden Fates Collection [Raichu GX]",
+      "console_name": "Pokemon Hidden Fates",
+      "validation": {
+        "ok": false,
+        "reason": "api_product_name_pattern_not_supported"
+      }
+    },
+    {
+      "query": "Pokemon Hidden Fates Charizard-GX 9 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Hidden%20Fates%20Charizard-GX%209%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "964056",
+      "product_name": "Onix GX #36",
+      "console_name": "Pokemon Hidden Fates",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:36"
+      }
+    },
+    {
+      "query": "Pokemon Hidden Fates Charizard-GX 9 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Hidden%20Fates%20Charizard-GX%209%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "964135",
+      "product_name": "Ho-Oh GX #SV50",
+      "console_name": "Pokemon Hidden Fates",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:SV50"
+      }
+    },
+    {
+      "query": "Pokemon Hidden Fates Charizard-GX 9 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Hidden%20Fates%20Charizard-GX%209%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5606577",
+      "product_name": "Raichu GX Hidden Fates Tin",
+      "console_name": "Pokemon Hidden Fates",
+      "validation": {
+        "ok": false,
+        "reason": "api_product_name_pattern_not_supported"
+      }
+    },
+    {
+      "query": "Pokemon Hidden Fates Charizard-GX 9 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Hidden%20Fates%20Charizard-GX%209%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "964026",
+      "product_name": "Pinsir GX #6",
+      "console_name": "Pokemon Hidden Fates",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:6"
+      }
+    },
+    {
+      "query": "Pokemon Hidden Fates Charizard-GX 9 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Hidden%20Fates%20Charizard-GX%209%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "964040",
+      "product_name": "Raichu GX #20",
+      "console_name": "Pokemon Hidden Fates",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:20"
+      }
+    },
+    {
+      "query": "Pokemon Hidden Fates Charizard-GX 9 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Hidden%20Fates%20Charizard-GX%209%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "964051",
+      "product_name": "Mewtwo GX #31",
+      "console_name": "Pokemon Hidden Fates",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:31"
+      }
+    },
+    {
+      "query": "Pokemon Hidden Fates Charizard-GX 9 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Hidden%20Fates%20Charizard-GX%209%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "964146",
+      "product_name": "Espeon GX #SV60",
+      "console_name": "Pokemon Hidden Fates",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:SV60"
+      }
+    },
+    {
+      "query": "Pokemon Hidden Fates Charizard-GX 9 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Hidden%20Fates%20Charizard-GX%209%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "964144",
+      "product_name": "Mewtwo GX #SV59",
+      "console_name": "Pokemon Hidden Fates",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:SV59"
+      }
+    },
+    {
+      "query": "Pokemon Hidden Fates Charizard-GX 9 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Hidden%20Fates%20Charizard-GX%209%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "964159",
+      "product_name": "Scizor GX #SV72",
+      "console_name": "Pokemon Hidden Fates",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:SV72"
+      }
+    },
+    {
+      "query": "Pokemon Hidden Fates Charizard-GX 9 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Hidden%20Fates%20Charizard-GX%209%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "964168",
+      "product_name": "Drampa GX #SV80",
+      "console_name": "Pokemon Hidden Fates",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:SV80"
+      }
+    },
+    {
+      "query": "Pokemon Hidden Fates Charizard-GX 9 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Hidden%20Fates%20Charizard-GX%209%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "964036",
+      "product_name": "Gyarados GX #16",
+      "console_name": "Pokemon Hidden Fates",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:16"
+      }
+    },
+    {
+      "query": "Pokemon Hidden Fates Charizard-GX 9 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Hidden%20Fates%20Charizard-GX%209%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6675551",
+      "product_name": "Gyrados GX Hidden Fates Tin",
+      "console_name": "Pokemon Hidden Fates",
+      "validation": {
+        "ok": false,
+        "reason": "api_product_name_pattern_not_supported"
+      }
+    },
+    {
+      "query": "Pokemon Hidden Fates Charizard-GX 9 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Hidden%20Fates%20Charizard-GX%209%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "964034",
+      "product_name": "Starmie GX #14",
+      "console_name": "Pokemon Hidden Fates",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:14"
+      }
+    },
+    {
+      "query": "Pokemon Hidden Fates Charizard-GX 9 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Hidden%20Fates%20Charizard-GX%209%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "964130",
+      "product_name": "Leafeon GX #SV46",
+      "console_name": "Pokemon Hidden Fates",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:SV46"
+      }
+    }
+  ],
+  "source_lane": "pricecharting_api"
+}

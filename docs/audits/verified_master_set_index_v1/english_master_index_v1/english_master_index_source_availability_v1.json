@@ -1,6 +1,6 @@
 {
   "version": "ENGLISH_MASTER_INDEX_SOURCE_AVAILABILITY_V1",
-  "generated_at": "2026-05-25T17:31:46.407Z",
+  "generated_at": "2026-06-08T18:24:41.247Z",
   "audit_only": true,
   "db_writes": false,
   "source_availability": [
@@ -32,17 +32,17 @@
       "configured_status": "candidate_url",
       "runtime_status": "error",
       "evidence_rows": 0,
-      "error": "Fetch failed 404 Not Found: https://www.thepricedex.com/set/tk-bw-e/bw-trainer-kit-excadrill/price-list"
+      "error": "ThePriceDex page contained no card rows: https://www.thepricedex.com/set/tk-bw-e/bw-trainer-kit-excadrill/price-list"
     },
     {
       "set_key": "tk-bw-e",
       "set_name": "BW trainer Kit (Excadrill)",
-      "source_key": "pkmncards",
-      "source_alias": "bw-trainer-kit-excadrill",
+      "source_key": "bulbapedia_set_list",
+      "source_alias": "BW_trainer_Kit_(Excadrill)_(TCG)",
       "configured_status": "candidate_url",
       "runtime_status": "error",
       "evidence_rows": 0,
-      "error": "Fetch failed 404 Not Found: https://pkmncards.com/set/bw-trainer-kit-excadrill/"
+      "error": "Bulbapedia page contained no extractable set-list rows: https://bulbapedia.bulbagarden.net/wiki/BW_trainer_Kit_(Excadrill)_(TCG)"
     },
     {
       "set_key": "tk-bw-e",
@@ -82,17 +82,17 @@
       "configured_status": "candidate_url",
       "runtime_status": "error",
       "evidence_rows": 0,
-      "error": "Fetch failed 404 Not Found: https://www.thepricedex.com/set/tk-bw-z/bw-trainer-kit-zoroark/price-list"
+      "error": "ThePriceDex page contained no card rows: https://www.thepricedex.com/set/tk-bw-z/bw-trainer-kit-zoroark/price-list"
     },
     {
       "set_key": "tk-bw-z",
       "set_name": "BW trainer Kit (Zoroark)",
-      "source_key": "pkmncards",
-      "source_alias": "bw-trainer-kit-zoroark",
+      "source_key": "bulbapedia_set_list",
+      "source_alias": "BW_trainer_Kit_(Zoroark)_(TCG)",
       "configured_status": "candidate_url",
       "runtime_status": "error",
       "evidence_rows": 0,
-      "error": "Fetch failed 404 Not Found: https://pkmncards.com/set/bw-trainer-kit-zoroark/"
+      "error": "Bulbapedia page contained no extractable set-list rows: https://bulbapedia.bulbagarden.net/wiki/BW_trainer_Kit_(Zoroark)_(TCG)"
     },
     {
       "set_key": "tk-bw-z",
@@ -132,17 +132,17 @@
       "configured_status": "candidate_url",
       "runtime_status": "error",
       "evidence_rows": 0,
-      "error": "Fetch failed 404 Not Found: https://www.thepricedex.com/set/tk-dp-l/dp-trainer-kit-lucario/price-list"
+      "error": "ThePriceDex page contained no card rows: https://www.thepricedex.com/set/tk-dp-l/dp-trainer-kit-lucario/price-list"
     },
     {
       "set_key": "tk-dp-l",
       "set_name": "DP trainer Kit (Lucario)",
-      "source_key": "pkmncards",
-      "source_alias": "dp-trainer-kit-lucario",
+      "source_key": "bulbapedia_set_list",
+      "source_alias": "DP_trainer_Kit_(Lucario)_(TCG)",
       "configured_status": "candidate_url",
       "runtime_status": "error",
       "evidence_rows": 0,
-      "error": "Fetch failed 404 Not Found: https://pkmncards.com/set/dp-trainer-kit-lucario/"
+      "error": "Bulbapedia page contained no extractable set-list rows: https://bulbapedia.bulbagarden.net/wiki/DP_trainer_Kit_(Lucario)_(TCG)"
     },
     {
       "set_key": "tk-dp-l",
@@ -182,17 +182,17 @@
       "configured_status": "candidate_url",
       "runtime_status": "error",
       "evidence_rows": 0,
-      "error": "Fetch failed 404 Not Found: https://www.thepricedex.com/set/tk-dp-m/dp-trainer-kit-manaphy/price-list"
+      "error": "ThePriceDex page contained no card rows: https://www.thepricedex.com/set/tk-dp-m/dp-trainer-kit-manaphy/price-list"
     },
     {
       "set_key": "tk-dp-m",
       "set_name": "DP trainer Kit (Manaphy)",
-      "source_key": "pkmncards",
-      "source_alias": "dp-trainer-kit-manaphy",
+      "source_key": "bulbapedia_set_list",
+      "source_alias": "DP_trainer_Kit_(Manaphy)_(TCG)",
       "configured_status": "candidate_url",
       "runtime_status": "error",
       "evidence_rows": 0,
-      "error": "Fetch failed 404 Not Found: https://pkmncards.com/set/dp-trainer-kit-manaphy/"
+      "error": "Bulbapedia page contained no extractable set-list rows: https://bulbapedia.bulbagarden.net/wiki/DP_trainer_Kit_(Manaphy)_(TCG)"
     },
     {
       "set_key": "tk-dp-m",
@@ -232,17 +232,17 @@
       "configured_status": "candidate_url",
       "runtime_status": "error",
       "evidence_rows": 0,
-      "error": "Fetch failed 404 Not Found: https://www.thepricedex.com/set/tk-hs-g/hs-trainer-kit-gyarados/price-list"
+      "error": "ThePriceDex page contained no card rows: https://www.thepricedex.com/set/tk-hs-g/hs-trainer-kit-gyarados/price-list"
     },
     {
       "set_key": "tk-hs-g",
       "set_name": "HS trainer Kit (Gyarados)",
-      "source_key": "pkmncards",
-      "source_alias": "hs-trainer-kit-gyarados",
+      "source_key": "bulbapedia_set_list",
+      "source_alias": "HS_trainer_Kit_(Gyarados)_(TCG)",
       "configured_status": "candidate_url",
       "runtime_status": "error",
       "evidence_rows": 0,
-      "error": "PkmnCards page contained no card rows: https://pkmncards.com/set/hs-trainer-kit-gyarados/"
+      "error": "Bulbapedia page contained no extractable set-list rows: https://bulbapedia.bulbagarden.net/wiki/HS_trainer_Kit_(Gyarados)_(TCG)"
     },
     {
       "set_key": "tk-hs-g",
@@ -282,17 +282,17 @@
       "configured_status": "candidate_url",
       "runtime_status": "error",
       "evidence_rows": 0,
-      "error": "Fetch failed 404 Not Found: https://www.thepricedex.com/set/tk-hs-r/hs-trainer-kit-raichu/price-list"
+      "error": "ThePriceDex page contained no card rows: https://www.thepricedex.com/set/tk-hs-r/hs-trainer-kit-raichu/price-list"
     },
     {
       "set_key": "tk-hs-r",
       "set_name": "HS trainer Kit (Raichu)",
-      "source_key": "pkmncards",
-      "source_alias": "hs-trainer-kit-raichu",
+      "source_key": "bulbapedia_set_list",
+      "source_alias": "HS_trainer_Kit_(Raichu)_(TCG)",
       "configured_status": "candidate_url",
       "runtime_status": "error",
       "evidence_rows": 0,
-      "error": "PkmnCards page contained no card rows: https://pkmncards.com/set/hs-trainer-kit-raichu/"
+      "error": "Bulbapedia page contained no extractable set-list rows: https://bulbapedia.bulbagarden.net/wiki/HS_trainer_Kit_(Raichu)_(TCG)"
     },
     {
       "set_key": "tk-hs-r",
@@ -332,17 +332,17 @@
       "configured_status": "candidate_url",
       "runtime_status": "error",
       "evidence_rows": 0,
-      "error": "Fetch failed 404 Not Found: https://www.thepricedex.com/set/jumbo/jumbo-cards/price-list"
+      "error": "ThePriceDex page contained no card rows: https://www.thepricedex.com/set/jumbo/jumbo-cards/price-list"
     },
     {
       "set_key": "jumbo",
       "set_name": "Jumbo cards",
-      "source_key": "pkmncards",
-      "source_alias": "jumbo-cards",
+      "source_key": "bulbapedia_set_list",
+      "source_alias": "Jumbo_cards_(TCG)",
       "configured_status": "candidate_url",
       "runtime_status": "error",
       "evidence_rows": 0,
-      "error": "Fetch failed 404 Not Found: https://pkmncards.com/set/jumbo-cards/"
+      "error": "Bulbapedia page contained no extractable set-list rows: https://bulbapedia.bulbagarden.net/wiki/Jumbo_cards_(TCG)"
     },
     {
       "set_key": "jumbo",
@@ -382,17 +382,17 @@
       "configured_status": "candidate_url",
       "runtime_status": "error",
       "evidence_rows": 0,
-      "error": "Fetch failed 404 Not Found: https://www.thepricedex.com/set/2023sv/mcdonalds-collection-2023/price-list"
+      "error": "ThePriceDex page contained no card rows: https://www.thepricedex.com/set/2023sv/mcdonalds-collection-2023/price-list"
     },
     {
       "set_key": "2023sv",
       "set_name": "McDonald's Collection 2023",
-      "source_key": "pkmncards",
-      "source_alias": "mcdonalds-collection-2023",
+      "source_key": "bulbapedia_set_list",
+      "source_alias": "McDonald's_Collection_2023_(TCG)",
       "configured_status": "candidate_url",
       "runtime_status": "error",
       "evidence_rows": 0,
-      "error": "Fetch failed 404 Not Found: https://pkmncards.com/set/mcdonalds-collection-2023/"
+      "error": "Bulbapedia page contained no extractable set-list rows: https://bulbapedia.bulbagarden.net/wiki/McDonald's_Collection_2023_(TCG)"
     },
     {
       "set_key": "2023sv",
@@ -432,17 +432,17 @@
       "configured_status": "candidate_url",
       "runtime_status": "error",
       "evidence_rows": 0,
-      "error": "Fetch failed 404 Not Found: https://www.thepricedex.com/set/2024sv/mcdonalds-collection-2024/price-list"
+      "error": "ThePriceDex page contained no card rows: https://www.thepricedex.com/set/2024sv/mcdonalds-collection-2024/price-list"
     },
     {
       "set_key": "2024sv",
       "set_name": "McDonald's Collection 2024",
-      "source_key": "pkmncards",
-      "source_alias": "mcdonalds-collection-2024",
+      "source_key": "bulbapedia_set_list",
+      "source_alias": "McDonald's_Collection_2024_(TCG)",
       "configured_status": "candidate_url",
       "runtime_status": "error",
       "evidence_rows": 0,
-      "error": "Fetch failed 404 Not Found: https://pkmncards.com/set/mcdonalds-collection-2024/"
+      "error": "Bulbapedia page contained no extractable set-list rows: https://bulbapedia.bulbagarden.net/wiki/McDonald's_Collection_2024_(TCG)"
     },
     {
       "set_key": "2024sv",
@@ -471,7 +471,7 @@
       "source_alias": "mee",
       "configured_status": "available",
       "runtime_status": "collected",
-      "evidence_rows": 16,
+      "evidence_rows": 24,
       "error": null
     },
     {
@@ -482,17 +482,17 @@
       "configured_status": "candidate_url",
       "runtime_status": "error",
       "evidence_rows": 0,
-      "error": "Fetch failed 404 Not Found: https://www.thepricedex.com/set/mee/mega-evolution-energy/price-list"
+      "error": "ThePriceDex page contained no card rows: https://www.thepricedex.com/set/mee/mega-evolution-energy/price-list"
     },
     {
       "set_key": "mee",
       "set_name": "Mega Evolution Energy",
-      "source_key": "pkmncards",
-      "source_alias": "mega-evolution-energy",
+      "source_key": "bulbapedia_set_list",
+      "source_alias": "Mega_Evolution_Energy_(TCG)",
       "configured_status": "candidate_url",
       "runtime_status": "error",
       "evidence_rows": 0,
-      "error": "Fetch failed 404 Not Found: https://pkmncards.com/set/mega-evolution-energy/"
+      "error": "Bulbapedia page contained no extractable set-list rows: https://bulbapedia.bulbagarden.net/wiki/Mega_Evolution_Energy_(TCG)"
     },
     {
       "set_key": "mee",
@@ -537,12 +537,12 @@
     {
       "set_key": "mep",
       "set_name": "MEP Black Star Promos",
-      "source_key": "pkmncards",
-      "source_alias": "mep-black-star-promos",
+      "source_key": "bulbapedia_set_list",
+      "source_alias": "MEP_Black_Star_Promos_(TCG)",
       "configured_status": "candidate_url",
       "runtime_status": "error",
       "evidence_rows": 0,
-      "error": "Fetch failed 404 Not Found: https://pkmncards.com/set/mep-black-star-promos/"
+      "error": "Bulbapedia page contained no extractable set-list rows: https://bulbapedia.bulbagarden.net/wiki/MEP_Black_Star_Promos_(TCG)"
     },
     {
       "set_key": "mep",
@@ -582,17 +582,17 @@
       "configured_status": "candidate_url",
       "runtime_status": "error",
       "evidence_rows": 0,
-      "error": "Fetch failed 404 Not Found: https://www.thepricedex.com/set/mfb/my-first-battle/price-list"
+      "error": "ThePriceDex page contained no card rows: https://www.thepricedex.com/set/mfb/my-first-battle/price-list"
     },
     {
       "set_key": "mfb",
       "set_name": "My First Battle",
-      "source_key": "pkmncards",
-      "source_alias": "my-first-battle",
+      "source_key": "bulbapedia_set_list",
+      "source_alias": "My_First_Battle_(TCG)",
       "configured_status": "candidate_url",
       "runtime_status": "error",
       "evidence_rows": 0,
-      "error": "Fetch failed 404 Not Found: https://pkmncards.com/set/my-first-battle/"
+      "error": "Bulbapedia page contained no extractable set-list rows: https://bulbapedia.bulbagarden.net/wiki/My_First_Battle_(TCG)"
     },
     {
       "set_key": "mfb",
@@ -632,17 +632,17 @@
       "configured_status": "candidate_url",
       "runtime_status": "error",
       "evidence_rows": 0,
-      "error": "Fetch failed 404 Not Found: https://www.thepricedex.com/set/ex5.5/pok-card-creator-pack/price-list"
+      "error": "ThePriceDex page contained no card rows: https://www.thepricedex.com/set/ex5.5/pok-card-creator-pack/price-list"
     },
     {
       "set_key": "ex5.5",
       "set_name": "Poké Card Creator Pack",
-      "source_key": "pkmncards",
-      "source_alias": "pok-card-creator-pack",
+      "source_key": "bulbapedia_set_list",
+      "source_alias": "Poké_Card_Creator_Pack_(TCG)",
       "configured_status": "candidate_url",
       "runtime_status": "error",
       "evidence_rows": 0,
-      "error": "Fetch failed 404 Not Found: https://pkmncards.com/set/pok-card-creator-pack/"
+      "error": "Bulbapedia page contained no extractable set-list rows: https://bulbapedia.bulbagarden.net/wiki/Pok%C3%A9_Card_Creator_Pack_(TCG)"
     },
     {
       "set_key": "ex5.5",
@@ -682,71 +682,21 @@
       "configured_status": "candidate_url",
       "runtime_status": "error",
       "evidence_rows": 0,
-      "error": "Fetch failed 404 Not Found: https://www.thepricedex.com/set/fut2020/pok-mon-futsal-2020/price-list"
+      "error": "ThePriceDex page contained no card rows: https://www.thepricedex.com/set/fut2020/pok-mon-futsal-2020/price-list"
     },
     {
       "set_key": "fut2020",
       "set_name": "Pokémon Futsal 2020",
-      "source_key": "pkmncards",
-      "source_alias": "pok-mon-futsal-2020",
+      "source_key": "bulbapedia_set_list",
+      "source_alias": "Pokémon_Futsal_2020_(TCG)",
       "configured_status": "candidate_url",
       "runtime_status": "error",
       "evidence_rows": 0,
-      "error": "Fetch failed 404 Not Found: https://pkmncards.com/set/pok-mon-futsal-2020/"
+      "error": "Bulbapedia page contained no extractable set-list rows: https://bulbapedia.bulbagarden.net/wiki/Pok%C3%A9mon_Futsal_2020_(TCG)"
     },
     {
       "set_key": "fut2020",
       "set_name": "Pokémon Futsal 2020",
-      "source_key": "tcgplayer_price_guide",
-      "source_alias": null,
-      "configured_status": "unavailable",
-      "runtime_status": "unavailable",
-      "evidence_rows": 0,
-      "error": null
-    },
-    {
-      "set_key": "rc",
-      "set_name": "Radiant Collection",
-      "source_key": "pokemontcg_api",
-      "source_alias": null,
-      "configured_status": "unavailable",
-      "runtime_status": "unavailable",
-      "evidence_rows": 0,
-      "error": null
-    },
-    {
-      "set_key": "rc",
-      "set_name": "Radiant Collection",
-      "source_key": "tcgdex",
-      "source_alias": "rc",
-      "configured_status": "available",
-      "runtime_status": "unavailable",
-      "evidence_rows": 0,
-      "error": null
-    },
-    {
-      "set_key": "rc",
-      "set_name": "Radiant Collection",
-      "source_key": "thepricedex_price_list",
-      "source_alias": "rc",
-      "configured_status": "candidate_url",
-      "runtime_status": "error",
-      "evidence_rows": 0,
-      "error": "Fetch failed 404 Not Found: https://www.thepricedex.com/set/rc/radiant-collection/price-list"
-    },
-    {
-      "set_key": "rc",
-      "set_name": "Radiant Collection",
-      "source_key": "pkmncards",
-      "source_alias": "radiant-collection",
-      "configured_status": "candidate_url",
-      "runtime_status": "error",
-      "evidence_rows": 0,
-      "error": "Fetch failed 404 Not Found: https://pkmncards.com/set/radiant-collection/"
-    },
-    {
-      "set_key": "rc",
-      "set_name": "Radiant Collection",
       "source_key": "tcgplayer_price_guide",
       "source_alias": null,
       "configured_status": "unavailable",
@@ -782,17 +732,17 @@
       "configured_status": "candidate_url",
       "runtime_status": "error",
       "evidence_rows": 0,
-      "error": "Fetch failed 404 Not Found: https://www.thepricedex.com/set/sp/sample/price-list"
+      "error": "ThePriceDex page contained no card rows: https://www.thepricedex.com/set/sp/sample/price-list"
     },
     {
       "set_key": "sp",
       "set_name": "Sample",
-      "source_key": "pkmncards",
-      "source_alias": "sample",
+      "source_key": "bulbapedia_set_list",
+      "source_alias": "Sample_Set_(TCG)",
       "configured_status": "candidate_url",
       "runtime_status": "error",
       "evidence_rows": 0,
-      "error": "Fetch failed 404 Not Found: https://pkmncards.com/set/sample/"
+      "error": "Bulbapedia page contained no extractable set-list rows: https://bulbapedia.bulbagarden.net/wiki/Sample_Set_(TCG)"
     },
     {
       "set_key": "sp",
@@ -832,17 +782,17 @@
       "configured_status": "candidate_url",
       "runtime_status": "error",
       "evidence_rows": 0,
-      "error": "Fetch failed 404 Not Found: https://www.thepricedex.com/set/tk-sm-r/sm-trainer-kit-alolan-raichu/price-list"
+      "error": "ThePriceDex page contained no card rows: https://www.thepricedex.com/set/tk-sm-r/sm-trainer-kit-alolan-raichu/price-list"
     },
     {
       "set_key": "tk-sm-r",
       "set_name": "SM trainer Kit (Alolan Raichu)",
-      "source_key": "pkmncards",
-      "source_alias": "sm-trainer-kit-alolan-raichu",
+      "source_key": "bulbapedia_set_list",
+      "source_alias": "SM_trainer_Kit_(Alolan_Raichu)_(TCG)",
       "configured_status": "candidate_url",
       "runtime_status": "error",
       "evidence_rows": 0,
-      "error": "Fetch failed 404 Not Found: https://pkmncards.com/set/sm-trainer-kit-alolan-raichu/"
+      "error": "Bulbapedia page contained no extractable set-list rows: https://bulbapedia.bulbagarden.net/wiki/SM_trainer_Kit_(Alolan_Raichu)_(TCG)"
     },
     {
       "set_key": "tk-sm-r",
@@ -882,17 +832,17 @@
       "configured_status": "candidate_url",
       "runtime_status": "error",
       "evidence_rows": 0,
-      "error": "Fetch failed 404 Not Found: https://www.thepricedex.com/set/tk-sm-l/sm-trainer-kit-lycanroc/price-list"
+      "error": "ThePriceDex page contained no card rows: https://www.thepricedex.com/set/tk-sm-l/sm-trainer-kit-lycanroc/price-list"
     },
     {
       "set_key": "tk-sm-l",
       "set_name": "SM trainer Kit (Lycanroc)",
-      "source_key": "pkmncards",
-      "source_alias": "sm-trainer-kit-lycanroc",
+      "source_key": "bulbapedia_set_list",
+      "source_alias": "SM_trainer_Kit_(Lycanroc)_(TCG)",
       "configured_status": "candidate_url",
       "runtime_status": "error",
       "evidence_rows": 0,
-      "error": "Fetch failed 404 Not Found: https://pkmncards.com/set/sm-trainer-kit-lycanroc/"
+      "error": "Bulbapedia page contained no extractable set-list rows: https://bulbapedia.bulbagarden.net/wiki/SM_trainer_Kit_(Lycanroc)_(TCG)"
     },
     {
       "set_key": "tk-sm-l",
@@ -932,17 +882,17 @@
       "configured_status": "candidate_url",
       "runtime_status": "error",
       "evidence_rows": 0,
-      "error": "Fetch failed 404 Not Found: https://www.thepricedex.com/set/exu/unseen-forces-unown-collection/price-list"
+      "error": "ThePriceDex page contained no card rows: https://www.thepricedex.com/set/exu/unseen-forces-unown-collection/price-list"
     },
     {
       "set_key": "exu",
       "set_name": "Unseen Forces Unown Collection",
-      "source_key": "pkmncards",
-      "source_alias": "unseen-forces-unown-collection",
+      "source_key": "bulbapedia_set_list",
+      "source_alias": "Unseen_Forces_Unown_Collection_(TCG)",
       "configured_status": "candidate_url",
       "runtime_status": "error",
       "evidence_rows": 0,
-      "error": "Fetch failed 404 Not Found: https://pkmncards.com/set/unseen-forces-unown-collection/"
+      "error": "Bulbapedia page contained no extractable set-list rows: https://bulbapedia.bulbagarden.net/wiki/Unseen_Forces_Unown_Collection_(TCG)"
     },
     {
       "set_key": "exu",
@@ -982,17 +932,17 @@
       "configured_status": "candidate_url",
       "runtime_status": "error",
       "evidence_rows": 0,
-      "error": "Fetch failed 404 Not Found: https://www.thepricedex.com/set/wp/w-promotional/price-list"
+      "error": "ThePriceDex page contained no card rows: https://www.thepricedex.com/set/wp/w-promotional/price-list"
     },
     {
       "set_key": "wp",
       "set_name": "W Promotional",
-      "source_key": "pkmncards",
-      "source_alias": "w-promotional",
+      "source_key": "bulbapedia_set_list",
+      "source_alias": "W_Promotional_cards",
       "configured_status": "candidate_url",
       "runtime_status": "error",
       "evidence_rows": 0,
-      "error": "Fetch failed 404 Not Found: https://pkmncards.com/set/w-promotional/"
+      "error": "Bulbapedia page contained no extractable set-list rows: https://bulbapedia.bulbagarden.net/wiki/W_Promotional_cards"
     },
     {
       "set_key": "wp",
@@ -1032,17 +982,17 @@
       "configured_status": "candidate_url",
       "runtime_status": "error",
       "evidence_rows": 0,
-      "error": "Fetch failed 404 Not Found: https://www.thepricedex.com/set/tk-xy-b/xy-trainer-kit-bisharp/price-list"
+      "error": "ThePriceDex page contained no card rows: https://www.thepricedex.com/set/tk-xy-b/xy-trainer-kit-bisharp/price-list"
     },
     {
       "set_key": "tk-xy-b",
       "set_name": "XY trainer Kit (Bisharp)",
-      "source_key": "pkmncards",
-      "source_alias": "xy-trainer-kit-bisharp",
+      "source_key": "bulbapedia_set_list",
+      "source_alias": "XY_trainer_Kit_(Bisharp)_(TCG)",
       "configured_status": "candidate_url",
-      "runtime_status": "collected",
-      "evidence_rows": 30,
-      "error": null
+      "runtime_status": "error",
+      "evidence_rows": 0,
+      "error": "Bulbapedia page contained no extractable set-list rows: https://bulbapedia.bulbagarden.net/wiki/XY_trainer_Kit_(Bisharp)_(TCG)"
     },
     {
       "set_key": "tk-xy-b",
@@ -1082,17 +1032,17 @@
       "configured_status": "candidate_url",
       "runtime_status": "error",
       "evidence_rows": 0,
-      "error": "Fetch failed 404 Not Found: https://www.thepricedex.com/set/tk-xy-latia/xy-trainer-kit-latias/price-list"
+      "error": "ThePriceDex page contained no card rows: https://www.thepricedex.com/set/tk-xy-latia/xy-trainer-kit-latias/price-list"
     },
     {
       "set_key": "tk-xy-latia",
       "set_name": "XY trainer Kit (Latias)",
-      "source_key": "pkmncards",
-      "source_alias": "xy-trainer-kit-latias",
+      "source_key": "bulbapedia_set_list",
+      "source_alias": "XY_trainer_Kit_(Latias)_(TCG)",
       "configured_status": "candidate_url",
-      "runtime_status": "collected",
-      "evidence_rows": 30,
-      "error": null
+      "runtime_status": "error",
+      "evidence_rows": 0,
+      "error": "Bulbapedia page contained no extractable set-list rows: https://bulbapedia.bulbagarden.net/wiki/XY_trainer_Kit_(Latias)_(TCG)"
     },
     {
       "set_key": "tk-xy-latia",
@@ -1132,17 +1082,17 @@
       "configured_status": "candidate_url",
       "runtime_status": "error",
       "evidence_rows": 0,
-      "error": "Fetch failed 404 Not Found: https://www.thepricedex.com/set/tk-xy-latio/xy-trainer-kit-latios/price-list"
+      "error": "ThePriceDex page contained no card rows: https://www.thepricedex.com/set/tk-xy-latio/xy-trainer-kit-latios/price-list"
     },
     {
       "set_key": "tk-xy-latio",
       "set_name": "XY trainer Kit (Latios)",
-      "source_key": "pkmncards",
-      "source_alias": "xy-trainer-kit-latios",
+      "source_key": "bulbapedia_set_list",
+      "source_alias": "XY_trainer_Kit_(Latios)_(TCG)",
       "configured_status": "candidate_url",
-      "runtime_status": "collected",
-      "evidence_rows": 30,
-      "error": null
+      "runtime_status": "error",
+      "evidence_rows": 0,
+      "error": "Bulbapedia page contained no extractable set-list rows: https://bulbapedia.bulbagarden.net/wiki/XY_trainer_Kit_(Latios)_(TCG)"
     },
     {
       "set_key": "tk-xy-latio",
@@ -1182,17 +1132,17 @@
       "configured_status": "candidate_url",
       "runtime_status": "error",
       "evidence_rows": 0,
-      "error": "Fetch failed 404 Not Found: https://www.thepricedex.com/set/tk-xy-n/xy-trainer-kit-noivern/price-list"
+      "error": "ThePriceDex page contained no card rows: https://www.thepricedex.com/set/tk-xy-n/xy-trainer-kit-noivern/price-list"
     },
     {
       "set_key": "tk-xy-n",
       "set_name": "XY trainer Kit (Noivern)",
-      "source_key": "pkmncards",
-      "source_alias": "xy-trainer-kit-noivern",
+      "source_key": "bulbapedia_set_list",
+      "source_alias": "XY_trainer_Kit_(Noivern)_(TCG)",
       "configured_status": "candidate_url",
-      "runtime_status": "collected",
-      "evidence_rows": 30,
-      "error": null
+      "runtime_status": "error",
+      "evidence_rows": 0,
+      "error": "Bulbapedia page contained no extractable set-list rows: https://bulbapedia.bulbagarden.net/wiki/XY_trainer_Kit_(Noivern)_(TCG)"
     },
     {
       "set_key": "tk-xy-n",
@@ -1232,17 +1182,17 @@
       "configured_status": "candidate_url",
       "runtime_status": "error",
       "evidence_rows": 0,
-      "error": "Fetch failed 404 Not Found: https://www.thepricedex.com/set/tk-xy-p/xy-trainer-kit-pikachu-libre/price-list"
+      "error": "ThePriceDex page contained no card rows: https://www.thepricedex.com/set/tk-xy-p/xy-trainer-kit-pikachu-libre/price-list"
     },
     {
       "set_key": "tk-xy-p",
       "set_name": "XY trainer Kit (Pikachu Libre)",
-      "source_key": "pkmncards",
-      "source_alias": "xy-trainer-kit-pikachu-libre",
+      "source_key": "bulbapedia_set_list",
+      "source_alias": "XY_trainer_Kit_(Pikachu_Libre)_(TCG)",
       "configured_status": "candidate_url",
-      "runtime_status": "collected",
-      "evidence_rows": 30,
-      "error": null
+      "runtime_status": "error",
+      "evidence_rows": 0,
+      "error": "Bulbapedia page contained no extractable set-list rows: https://bulbapedia.bulbagarden.net/wiki/XY_trainer_Kit_(Pikachu_Libre)_(TCG)"
     },
     {
       "set_key": "tk-xy-p",
@@ -1282,17 +1232,17 @@
       "configured_status": "candidate_url",
       "runtime_status": "error",
       "evidence_rows": 0,
-      "error": "Fetch failed 404 Not Found: https://www.thepricedex.com/set/tk-xy-su/xy-trainer-kit-suicune/price-list"
+      "error": "ThePriceDex page contained no card rows: https://www.thepricedex.com/set/tk-xy-su/xy-trainer-kit-suicune/price-list"
     },
     {
       "set_key": "tk-xy-su",
       "set_name": "XY trainer Kit (Suicune)",
-      "source_key": "pkmncards",
-      "source_alias": "xy-trainer-kit-suicune",
+      "source_key": "bulbapedia_set_list",
+      "source_alias": "XY_trainer_Kit_(Suicune)_(TCG)",
       "configured_status": "candidate_url",
-      "runtime_status": "collected",
-      "evidence_rows": 30,
-      "error": null
+      "runtime_status": "error",
+      "evidence_rows": 0,
+      "error": "Bulbapedia page contained no extractable set-list rows: https://bulbapedia.bulbagarden.net/wiki/XY_trainer_Kit_(Suicune)_(TCG)"
     },
     {
       "set_key": "tk-xy-su",
@@ -1332,17 +1282,17 @@
       "configured_status": "candidate_url",
       "runtime_status": "error",
       "evidence_rows": 0,
-      "error": "Fetch failed 404 Not Found: https://www.thepricedex.com/set/tk-xy-sy/xy-trainer-kit-sylveon/price-list"
+      "error": "ThePriceDex page contained no card rows: https://www.thepricedex.com/set/tk-xy-sy/xy-trainer-kit-sylveon/price-list"
     },
     {
       "set_key": "tk-xy-sy",
       "set_name": "XY trainer Kit (Sylveon)",
-      "source_key": "pkmncards",
-      "source_alias": "xy-trainer-kit-sylveon",
+      "source_key": "bulbapedia_set_list",
+      "source_alias": "XY_trainer_Kit_(Sylveon)_(TCG)",
       "configured_status": "candidate_url",
-      "runtime_status": "collected",
-      "evidence_rows": 30,
-      "error": null
+      "runtime_status": "error",
+      "evidence_rows": 0,
+      "error": "Bulbapedia page contained no extractable set-list rows: https://bulbapedia.bulbagarden.net/wiki/XY_trainer_Kit_(Sylveon)_(TCG)"
     },
     {
       "set_key": "tk-xy-sy",
@@ -1382,17 +1332,17 @@
       "configured_status": "candidate_url",
       "runtime_status": "error",
       "evidence_rows": 0,
-      "error": "Fetch failed 404 Not Found: https://www.thepricedex.com/set/tk-xy-w/xy-trainer-kit-wigglytuff/price-list"
+      "error": "ThePriceDex page contained no card rows: https://www.thepricedex.com/set/tk-xy-w/xy-trainer-kit-wigglytuff/price-list"
     },
     {
       "set_key": "tk-xy-w",
       "set_name": "XY trainer Kit (Wigglytuff)",
-      "source_key": "pkmncards",
-      "source_alias": "xy-trainer-kit-wigglytuff",
+      "source_key": "bulbapedia_set_list",
+      "source_alias": "XY_trainer_Kit_(Wigglytuff)_(TCG)",
       "configured_status": "candidate_url",
-      "runtime_status": "collected",
-      "evidence_rows": 30,
-      "error": null
+      "runtime_status": "error",
+      "evidence_rows": 0,
+      "error": "Bulbapedia page contained no extractable set-list rows: https://bulbapedia.bulbagarden.net/wiki/XY_trainer_Kit_(Wigglytuff)_(TCG)"
     },
     {
       "set_key": "tk-xy-w",
@@ -1432,17 +1382,17 @@
       "configured_status": "candidate_url",
       "runtime_status": "error",
       "evidence_rows": 0,
-      "error": "Fetch failed 404 Not Found: https://www.thepricedex.com/set/xya/yellow-a-alternate/price-list"
+      "error": "ThePriceDex page contained no card rows: https://www.thepricedex.com/set/xya/yellow-a-alternate/price-list"
     },
     {
       "set_key": "xya",
       "set_name": "Yellow A Alternate",
-      "source_key": "pkmncards",
-      "source_alias": "yellow-a-alternate",
+      "source_key": "bulbapedia_set_list",
+      "source_alias": "Yellow_A_Alternate_(TCG)",
       "configured_status": "candidate_url",
       "runtime_status": "error",
       "evidence_rows": 0,
-      "error": "Fetch failed 404 Not Found: https://pkmncards.com/set/yellow-a-alternate/"
+      "error": "Bulbapedia page contained no extractable set-list rows: https://bulbapedia.bulbagarden.net/wiki/Yellow_A_Alternate_(TCG)"
     },
     {
       "set_key": "xya",
@@ -1487,12 +1437,12 @@
     {
       "set_key": "base1",
       "set_name": "Base",
-      "source_key": "pkmncards",
-      "source_alias": "base",
+      "source_key": "bulbapedia_set_list",
+      "source_alias": "Base_(TCG)",
       "configured_status": "candidate_url",
-      "runtime_status": "error",
-      "evidence_rows": 0,
-      "error": "Fetch failed 404 Not Found: https://pkmncards.com/set/base/"
+      "runtime_status": "collected",
+      "evidence_rows": 101,
+      "error": null
     },
     {
       "set_key": "base1",
@@ -1537,11 +1487,11 @@
     {
       "set_key": "base2",
       "set_name": "Jungle",
-      "source_key": "pkmncards",
-      "source_alias": "jungle",
+      "source_key": "bulbapedia_set_list",
+      "source_alias": "Jungle_(TCG)",
       "configured_status": "candidate_url",
       "runtime_status": "collected",
-      "evidence_rows": 63,
+      "evidence_rows": 64,
       "error": null
     },
     {
@@ -1587,12 +1537,12 @@
     {
       "set_key": "basep",
       "set_name": "Wizards Black Star Promos",
-      "source_key": "pkmncards",
-      "source_alias": "wizards-black-star-promos",
+      "source_key": "bulbapedia_set_list",
+      "source_alias": "Wizards_Black_Star_Promos_(TCG)",
       "configured_status": "candidate_url",
       "runtime_status": "error",
       "evidence_rows": 0,
-      "error": "PkmnCards page contained no card rows: https://pkmncards.com/set/wizards-black-star-promos/"
+      "error": "Bulbapedia page contained no extractable set-list rows: https://bulbapedia.bulbagarden.net/wiki/Wizards_Black_Star_Promos_(TCG)"
     },
     {
       "set_key": "basep",
@@ -1637,8 +1587,8 @@
     {
       "set_key": "base3",
       "set_name": "Fossil",
-      "source_key": "pkmncards",
-      "source_alias": "fossil",
+      "source_key": "bulbapedia_set_list",
+      "source_alias": "Fossil_(TCG)",
       "configured_status": "candidate_url",
       "runtime_status": "collected",
       "evidence_rows": 62,
@@ -1687,12 +1637,12 @@
     {
       "set_key": "base4",
       "set_name": "Base Set 2",
-      "source_key": "pkmncards",
-      "source_alias": "base-set-2",
+      "source_key": "bulbapedia_set_list",
+      "source_alias": "Base_Set_2_(TCG)",
       "configured_status": "candidate_url",
-      "runtime_status": "collected",
-      "evidence_rows": 128,
-      "error": null
+      "runtime_status": "error",
+      "evidence_rows": 0,
+      "error": "Bulbapedia page contained no extractable set-list rows: https://bulbapedia.bulbagarden.net/wiki/Base_Set_2_(TCG)"
     },
     {
       "set_key": "base4",
@@ -1737,8 +1687,8 @@
     {
       "set_key": "base5",
       "set_name": "Team Rocket",
-      "source_key": "pkmncards",
-      "source_alias": "team-rocket",
+      "source_key": "bulbapedia_set_list",
+      "source_alias": "Team_Rocket_(TCG)",
       "configured_status": "candidate_url",
       "runtime_status": "collected",
       "evidence_rows": 83,
@@ -1787,8 +1737,8 @@
     {
       "set_key": "gym1",
       "set_name": "Gym Heroes",
-      "source_key": "pkmncards",
-      "source_alias": "gym-heroes",
+      "source_key": "bulbapedia_set_list",
+      "source_alias": "Gym_Heroes_(TCG)",
       "configured_status": "candidate_url",
       "runtime_status": "collected",
       "evidence_rows": 132,
@@ -1837,11 +1787,11 @@
     {
       "set_key": "gym2",
       "set_name": "Gym Challenge",
-      "source_key": "pkmncards",
-      "source_alias": "gym-challenge",
+      "source_key": "bulbapedia_set_list",
+      "source_alias": "Gym_Challenge_(TCG)",
       "configured_status": "candidate_url",
       "runtime_status": "collected",
-      "evidence_rows": 130,
+      "evidence_rows": 132,
       "error": null
     },
     {
@@ -1887,8 +1837,8 @@
     {
       "set_key": "neo1",
       "set_name": "Neo Genesis",
-      "source_key": "pkmncards",
-      "source_alias": "neo-genesis",
+      "source_key": "bulbapedia_set_list",
+      "source_alias": "Neo_Genesis_(TCG)",
       "configured_status": "candidate_url",
       "runtime_status": "collected",
       "evidence_rows": 111,
@@ -1937,8 +1887,8 @@
     {
       "set_key": "neo2",
       "set_name": "Neo Discovery",
-      "source_key": "pkmncards",
-      "source_alias": "neo-discovery",
+      "source_key": "bulbapedia_set_list",
+      "source_alias": "Neo_Discovery_(TCG)",
       "configured_status": "candidate_url",
       "runtime_status": "collected",
       "evidence_rows": 75,
@@ -1987,12 +1937,12 @@
     {
       "set_key": "si1",
       "set_name": "Southern Islands",
-      "source_key": "pkmncards",
-      "source_alias": "southern-islands",
+      "source_key": "bulbapedia_set_list",
+      "source_alias": "Southern_Islands_(TCG)",
       "configured_status": "candidate_url",
-      "runtime_status": "collected",
-      "evidence_rows": 18,
-      "error": null
+      "runtime_status": "error",
+      "evidence_rows": 0,
+      "error": "Bulbapedia page contained no extractable set-list rows: https://bulbapedia.bulbagarden.net/wiki/Southern_Islands_(TCG)"
     },
     {
       "set_key": "si1",
@@ -2011,7 +1961,7 @@
       "source_alias": "neo3",
       "configured_status": "available",
       "runtime_status": "collected",
-      "evidence_rows": 80,
+      "evidence_rows": 81,
       "error": null
     },
     {
@@ -2037,8 +1987,8 @@
     {
       "set_key": "neo3",
       "set_name": "Neo Revelation",
-      "source_key": "pkmncards",
-      "source_alias": "neo-revelation",
+      "source_key": "bulbapedia_set_list",
+      "source_alias": "Neo_Revelation_(TCG)",
       "configured_status": "candidate_url",
       "runtime_status": "collected",
       "evidence_rows": 66,
@@ -2061,7 +2011,7 @@
       "source_alias": "neo4",
       "configured_status": "available",
       "runtime_status": "collected",
-      "evidence_rows": 127,
+      "evidence_rows": 131,
       "error": null
     },
     {
@@ -2087,8 +2037,8 @@
     {
       "set_key": "neo4",
       "set_name": "Neo Destiny",
-      "source_key": "pkmncards",
-      "source_alias": "neo-destiny",
+      "source_key": "bulbapedia_set_list",
+      "source_alias": "Neo_Destiny_(TCG)",
       "configured_status": "candidate_url",
       "runtime_status": "collected",
       "evidence_rows": 113,
@@ -2101,21 +2051,21 @@
       "source_alias": null,
       "configured_status": "unavailable",
       "runtime_status": "collected",
-      "evidence_rows": 10,
+      "evidence_rows": 12,
       "error": null
     },
     {
-      "set_key": "base6",
+      "set_key": "lc",
       "set_name": "Legendary Collection",
       "source_key": "pokemontcg_api",
       "source_alias": "base6",
       "configured_status": "available",
-      "runtime_status": "collected",
-      "evidence_rows": 322,
+      "runtime_status": "collected_plus_cached_snapshot",
+      "evidence_rows": 328,
       "error": null
     },
     {
-      "set_key": "base6",
+      "set_key": "lc",
       "set_name": "Legendary Collection",
       "source_key": "tcgdex",
       "source_alias": "lc",
@@ -2125,7 +2075,7 @@
       "error": null
     },
     {
-      "set_key": "base6",
+      "set_key": "lc",
       "set_name": "Legendary Collection",
       "source_key": "thepricedex_price_list",
       "source_alias": "base6",
@@ -2135,23 +2085,23 @@
       "error": null
     },
     {
-      "set_key": "base6",
+      "set_key": "lc",
       "set_name": "Legendary Collection",
-      "source_key": "pkmncards",
-      "source_alias": "legendary-collection",
+      "source_key": "bulbapedia_set_list",
+      "source_alias": "Legendary_Collection_(TCG)",
       "configured_status": "candidate_url",
-      "runtime_status": "collected",
-      "evidence_rows": 108,
-      "error": null
+      "runtime_status": "error",
+      "evidence_rows": 0,
+      "error": "Bulbapedia page contained no extractable set-list rows: https://bulbapedia.bulbagarden.net/wiki/Legendary_Collection_(TCG)"
     },
     {
-      "set_key": "base6",
+      "set_key": "lc",
       "set_name": "Legendary Collection",
       "source_key": "tcgplayer_price_guide",
       "source_alias": null,
-      "configured_status": "unavailable",
-      "runtime_status": "collected",
-      "evidence_rows": 212,
+      "configured_status": "available",
+      "runtime_status": "collected_plus_cached_snapshot",
+      "evidence_rows": 218,
       "error": null
     },
     {
@@ -2187,12 +2137,12 @@
     {
       "set_key": "ecard1",
       "set_name": "Expedition Base Set",
-      "source_key": "pkmncards",
-      "source_alias": "expedition-base-set",
+      "source_key": "bulbapedia_set_list",
+      "source_alias": "Expedition_Base_Set_(TCG)",
       "configured_status": "candidate_url",
-      "runtime_status": "error",
-      "evidence_rows": 0,
-      "error": "Fetch failed 404 Not Found: https://pkmncards.com/set/expedition-base-set/"
+      "runtime_status": "collected",
+      "evidence_rows": 165,
+      "error": null
     },
     {
       "set_key": "ecard1",
@@ -2205,7 +2155,7 @@
       "error": null
     },
     {
-      "set_key": "bp",
+      "set_key": "bog",
       "set_name": "Best of Game",
       "source_key": "pokemontcg_api",
       "source_alias": "bp",
@@ -2215,7 +2165,7 @@
       "error": null
     },
     {
-      "set_key": "bp",
+      "set_key": "bog",
       "set_name": "Best of Game",
       "source_key": "tcgdex",
       "source_alias": "bog",
@@ -2225,7 +2175,7 @@
       "error": null
     },
     {
-      "set_key": "bp",
+      "set_key": "bog",
       "set_name": "Best of Game",
       "source_key": "thepricedex_price_list",
       "source_alias": "bp",
@@ -2235,17 +2185,17 @@
       "error": null
     },
     {
-      "set_key": "bp",
+      "set_key": "bog",
       "set_name": "Best of Game",
-      "source_key": "pkmncards",
-      "source_alias": "best-of-game",
+      "source_key": "bulbapedia_set_list",
+      "source_alias": "Best_of_Game_(TCG)",
       "configured_status": "candidate_url",
       "runtime_status": "error",
       "evidence_rows": 0,
-      "error": "PkmnCards page contained no card rows: https://pkmncards.com/set/best-of-game/"
+      "error": "Bulbapedia page contained no extractable set-list rows: https://bulbapedia.bulbagarden.net/wiki/Best_of_Game_(TCG)"
     },
     {
-      "set_key": "bp",
+      "set_key": "bog",
       "set_name": "Best of Game",
       "source_key": "tcgplayer_price_guide",
       "source_alias": null,
@@ -2260,8 +2210,8 @@
       "source_key": "pokemontcg_api",
       "source_alias": "ecard2",
       "configured_status": "available",
-      "runtime_status": "collected",
-      "evidence_rows": 486,
+      "runtime_status": "collected_plus_cached_snapshot",
+      "evidence_rows": 493,
       "error": null
     },
     {
@@ -2287,11 +2237,11 @@
     {
       "set_key": "ecard2",
       "set_name": "Aquapolis",
-      "source_key": "pkmncards",
-      "source_alias": "aquapolis",
+      "source_key": "bulbapedia_set_list",
+      "source_alias": "Aquapolis_(TCG)",
       "configured_status": "candidate_url",
       "runtime_status": "collected",
-      "evidence_rows": 181,
+      "evidence_rows": 154,
       "error": null
     },
     {
@@ -2299,9 +2249,9 @@
       "set_name": "Aquapolis",
       "source_key": "tcgplayer_price_guide",
       "source_alias": null,
-      "configured_status": "unavailable",
-      "runtime_status": "collected",
-      "evidence_rows": 293,
+      "configured_status": "available",
+      "runtime_status": "collected_plus_cached_snapshot",
+      "evidence_rows": 300,
       "error": null
     },
     {
@@ -2310,8 +2260,8 @@
       "source_key": "pokemontcg_api",
       "source_alias": "ecard3",
       "configured_status": "available",
-      "runtime_status": "collected",
-      "evidence_rows": 480,
+      "runtime_status": "collected_plus_cached_snapshot",
+      "evidence_rows": 487,
       "error": null
     },
     {
@@ -2337,11 +2287,11 @@
     {
       "set_key": "ecard3",
       "set_name": "Skyridge",
-      "source_key": "pkmncards",
-      "source_alias": "skyridge",
+      "source_key": "bulbapedia_set_list",
+      "source_alias": "Skyridge_(TCG)",
       "configured_status": "candidate_url",
       "runtime_status": "collected",
-      "evidence_rows": 180,
+      "evidence_rows": 150,
       "error": null
     },
     {
@@ -2349,9 +2299,9 @@
       "set_name": "Skyridge",
       "source_key": "tcgplayer_price_guide",
       "source_alias": null,
-      "configured_status": "unavailable",
-      "runtime_status": "collected",
-      "evidence_rows": 284,
+      "configured_status": "available",
+      "runtime_status": "collected_plus_cached_snapshot",
+      "evidence_rows": 291,
       "error": null
     },
     {
@@ -2387,8 +2337,8 @@
     {
       "set_key": "ex1",
       "set_name": "Ruby & Sapphire",
-      "source_key": "pkmncards",
-      "source_alias": "ruby-sapphire",
+      "source_key": "bulbapedia_set_list",
+      "source_alias": "Ruby_&_Sapphire_(TCG)",
       "configured_status": "candidate_url",
       "runtime_status": "collected",
       "evidence_rows": 109,
@@ -2437,8 +2387,8 @@
     {
       "set_key": "ex2",
       "set_name": "Sandstorm",
-      "source_key": "pkmncards",
-      "source_alias": "sandstorm",
+      "source_key": "bulbapedia_set_list",
+      "source_alias": "Sandstorm_(TCG)",
       "configured_status": "candidate_url",
       "runtime_status": "collected",
       "evidence_rows": 100,
@@ -2487,12 +2437,12 @@
     {
       "set_key": "np",
       "set_name": "Nintendo Black Star Promos",
-      "source_key": "pkmncards",
-      "source_alias": "nintendo-promos",
+      "source_key": "bulbapedia_set_list",
+      "source_alias": "Nintendo_Black_Star_Promos_(TCG)",
       "configured_status": "candidate_url",
       "runtime_status": "error",
       "evidence_rows": 0,
-      "error": "Fetch failed 404 Not Found: https://pkmncards.com/set/nintendo-promos/"
+      "error": "Bulbapedia page contained no extractable set-list rows: https://bulbapedia.bulbagarden.net/wiki/Nintendo_Black_Star_Promos_(TCG)"
     },
     {
       "set_key": "np",
@@ -2537,12 +2487,12 @@
     {
       "set_key": "ex3",
       "set_name": "Dragon",
-      "source_key": "pkmncards",
-      "source_alias": "dragon",
+      "source_key": "bulbapedia_set_list",
+      "source_alias": "Dragon_(TCG)",
       "configured_status": "candidate_url",
-      "runtime_status": "collected",
-      "evidence_rows": 100,
-      "error": null
+      "runtime_status": "error",
+      "evidence_rows": 0,
+      "error": "Bulbapedia page contained no extractable set-list rows: https://bulbapedia.bulbagarden.net/wiki/Dragon_(TCG)"
     },
     {
       "set_key": "ex3",
@@ -2561,7 +2511,7 @@
       "source_alias": "ex4",
       "configured_status": "available",
       "runtime_status": "collected",
-      "evidence_rows": 281,
+      "evidence_rows": 282,
       "error": null
     },
     {
@@ -2587,8 +2537,8 @@
     {
       "set_key": "ex4",
       "set_name": "Team Magma vs Team Aqua",
-      "source_key": "pkmncards",
-      "source_alias": "team-magma-vs-team-aqua",
+      "source_key": "bulbapedia_set_list",
+      "source_alias": "Team_Magma_vs_Team_Aqua_(TCG)",
       "configured_status": "candidate_url",
       "runtime_status": "collected",
       "evidence_rows": 97,
@@ -2601,11 +2551,11 @@
       "source_alias": null,
       "configured_status": "unavailable",
       "runtime_status": "collected",
-      "evidence_rows": 174,
+      "evidence_rows": 175,
       "error": null
     },
     {
-      "set_key": "tk1a",
+      "set_key": "tk-ex-latia",
       "set_name": "EX Trainer Kit Latias",
       "source_key": "pokemontcg_api",
       "source_alias": "tk1a",
@@ -2615,7 +2565,7 @@
       "error": null
     },
     {
-      "set_key": "tk1a",
+      "set_key": "tk-ex-latia",
       "set_name": "EX Trainer Kit Latias",
       "source_key": "tcgdex",
       "source_alias": "tk-ex-latia",
@@ -2625,7 +2575,7 @@
       "error": null
     },
     {
-      "set_key": "tk1a",
+      "set_key": "tk-ex-latia",
       "set_name": "EX Trainer Kit Latias",
       "source_key": "thepricedex_price_list",
       "source_alias": "tk1a",
@@ -2635,17 +2585,17 @@
       "error": null
     },
     {
-      "set_key": "tk1a",
+      "set_key": "tk-ex-latia",
       "set_name": "EX Trainer Kit Latias",
-      "source_key": "pkmncards",
-      "source_alias": "ex-trainer-kit-latias",
+      "source_key": "bulbapedia_set_list",
+      "source_alias": "EX_Trainer_Kit_Latias_(TCG)",
       "configured_status": "candidate_url",
-      "runtime_status": "collected",
-      "evidence_rows": 7,
-      "error": null
+      "runtime_status": "error",
+      "evidence_rows": 0,
+      "error": "Bulbapedia page contained no extractable set-list rows: https://bulbapedia.bulbagarden.net/wiki/EX_Trainer_Kit_Latias_(TCG)"
     },
     {
-      "set_key": "tk1a",
+      "set_key": "tk-ex-latia",
       "set_name": "EX Trainer Kit Latias",
       "source_key": "tcgplayer_price_guide",
       "source_alias": null,
@@ -2655,7 +2605,7 @@
       "error": null
     },
     {
-      "set_key": "tk1b",
+      "set_key": "tk-ex-latio",
       "set_name": "EX Trainer Kit Latios",
       "source_key": "pokemontcg_api",
       "source_alias": "tk1b",
@@ -2665,7 +2615,7 @@
       "error": null
     },
     {
-      "set_key": "tk1b",
+      "set_key": "tk-ex-latio",
       "set_name": "EX Trainer Kit Latios",
       "source_key": "tcgdex",
       "source_alias": "tk-ex-latio",
@@ -2675,7 +2625,7 @@
       "error": null
     },
     {
-      "set_key": "tk1b",
+      "set_key": "tk-ex-latio",
       "set_name": "EX Trainer Kit Latios",
       "source_key": "thepricedex_price_list",
       "source_alias": "tk1b",
@@ -2685,17 +2635,17 @@
       "error": null
     },
     {
-      "set_key": "tk1b",
+      "set_key": "tk-ex-latio",
       "set_name": "EX Trainer Kit Latios",
-      "source_key": "pkmncards",
-      "source_alias": "ex-trainer-kit-latios",
+      "source_key": "bulbapedia_set_list",
+      "source_alias": "EX_Trainer_Kit_Latios_(TCG)",
       "configured_status": "candidate_url",
-      "runtime_status": "collected",
-      "evidence_rows": 7,
-      "error": null
+      "runtime_status": "error",
+      "evidence_rows": 0,
+      "error": "Bulbapedia page contained no extractable set-list rows: https://bulbapedia.bulbagarden.net/wiki/EX_Trainer_Kit_Latios_(TCG)"
     },
     {
-      "set_key": "tk1b",
+      "set_key": "tk-ex-latio",
       "set_name": "EX Trainer Kit Latios",
       "source_key": "tcgplayer_price_guide",
       "source_alias": null,
@@ -2737,8 +2687,8 @@
     {
       "set_key": "ex5",
       "set_name": "Hidden Legends",
-      "source_key": "pkmncards",
-      "source_alias": "hidden-legends",
+      "source_key": "bulbapedia_set_list",
+      "source_alias": "Hidden_Legends_(TCG)",
       "configured_status": "candidate_url",
       "runtime_status": "collected",
       "evidence_rows": 102,
@@ -2760,8 +2710,8 @@
       "source_key": "pokemontcg_api",
       "source_alias": "ex6",
       "configured_status": "available",
-      "runtime_status": "collected",
-      "evidence_rows": 356,
+      "runtime_status": "collected_plus_cached_snapshot",
+      "evidence_rows": 355,
       "error": null
     },
     {
@@ -2787,11 +2737,11 @@
     {
       "set_key": "ex6",
       "set_name": "FireRed & LeafGreen",
-      "source_key": "pkmncards",
-      "source_alias": "firered-leafgreen",
+      "source_key": "bulbapedia_set_list",
+      "source_alias": "FireRed_&_LeafGreen_(TCG)",
       "configured_status": "candidate_url",
       "runtime_status": "collected",
-      "evidence_rows": 114,
+      "evidence_rows": 116,
       "error": null
     },
     {
@@ -2799,8 +2749,8 @@
       "set_name": "FireRed & LeafGreen",
       "source_key": "tcgplayer_price_guide",
       "source_alias": null,
-      "configured_status": "unavailable",
-      "runtime_status": "collected",
+      "configured_status": "available",
+      "runtime_status": "collected_plus_cached_snapshot",
       "evidence_rows": 116,
       "error": null
     },
@@ -2837,12 +2787,12 @@
     {
       "set_key": "pop1",
       "set_name": "POP Series 1",
-      "source_key": "pkmncards",
-      "source_alias": "pop-series-1",
+      "source_key": "bulbapedia_set_list",
+      "source_alias": "POP_Series_1_(TCG)",
       "configured_status": "candidate_url",
-      "runtime_status": "collected",
-      "evidence_rows": 17,
-      "error": null
+      "runtime_status": "error",
+      "evidence_rows": 0,
+      "error": "Bulbapedia page contained no extractable set-list rows: https://bulbapedia.bulbagarden.net/wiki/POP_Series_1_(TCG)"
     },
     {
       "set_key": "pop1",
@@ -2861,7 +2811,7 @@
       "source_alias": "ex7",
       "configured_status": "available",
       "runtime_status": "collected",
-      "evidence_rows": 329,
+      "evidence_rows": 330,
       "error": null
     },
     {
@@ -2887,8 +2837,8 @@
     {
       "set_key": "ex7",
       "set_name": "Team Rocket Returns",
-      "source_key": "pkmncards",
-      "source_alias": "team-rocket-returns",
+      "source_key": "bulbapedia_set_list",
+      "source_alias": "Team_Rocket_Returns_(TCG)",
       "configured_status": "candidate_url",
       "runtime_status": "collected",
       "evidence_rows": 111,
@@ -2901,7 +2851,7 @@
       "source_alias": null,
       "configured_status": "unavailable",
       "runtime_status": "collected",
-      "evidence_rows": 109,
+      "evidence_rows": 111,
       "error": null
     },
     {
@@ -2911,7 +2861,7 @@
       "source_alias": "ex8",
       "configured_status": "available",
       "runtime_status": "collected",
-      "evidence_rows": 325,
+      "evidence_rows": 326,
       "error": null
     },
     {
@@ -2937,12 +2887,12 @@
     {
       "set_key": "ex8",
       "set_name": "Deoxys",
-      "source_key": "pkmncards",
-      "source_alias": "deoxys",
+      "source_key": "bulbapedia_set_list",
+      "source_alias": "Deoxys_(TCG)",
       "configured_status": "candidate_url",
-      "runtime_status": "collected",
-      "evidence_rows": 108,
-      "error": null
+      "runtime_status": "error",
+      "evidence_rows": 0,
+      "error": "Bulbapedia page contained no extractable set-list rows: https://bulbapedia.bulbagarden.net/wiki/Deoxys_(TCG)"
     },
     {
       "set_key": "ex8",
@@ -2951,7 +2901,7 @@
       "source_alias": null,
       "configured_status": "unavailable",
       "runtime_status": "collected",
-      "evidence_rows": 105,
+      "evidence_rows": 108,
       "error": null
     },
     {
@@ -2960,8 +2910,8 @@
       "source_key": "pokemontcg_api",
       "source_alias": "ex9",
       "configured_status": "available",
-      "runtime_status": "collected",
-      "evidence_rows": 322,
+      "runtime_status": "collected_plus_cached_snapshot",
+      "evidence_rows": 320,
       "error": null
     },
     {
@@ -2987,12 +2937,12 @@
     {
       "set_key": "ex9",
       "set_name": "Emerald",
-      "source_key": "pkmncards",
-      "source_alias": "emerald",
+      "source_key": "bulbapedia_set_list",
+      "source_alias": "Emerald_(TCG)",
       "configured_status": "candidate_url",
-      "runtime_status": "collected",
-      "evidence_rows": 107,
-      "error": null
+      "runtime_status": "error",
+      "evidence_rows": 0,
+      "error": "Bulbapedia page contained no extractable set-list rows: https://bulbapedia.bulbagarden.net/wiki/Emerald_(TCG)"
     },
     {
       "set_key": "ex9",
@@ -3037,12 +2987,12 @@
     {
       "set_key": "pop2",
       "set_name": "POP Series 2",
-      "source_key": "pkmncards",
-      "source_alias": "pop-series-2",
+      "source_key": "bulbapedia_set_list",
+      "source_alias": "POP_Series_2_(TCG)",
       "configured_status": "candidate_url",
-      "runtime_status": "collected",
-      "evidence_rows": 17,
-      "error": null
+      "runtime_status": "error",
+      "evidence_rows": 0,
+      "error": "Bulbapedia page contained no extractable set-list rows: https://bulbapedia.bulbagarden.net/wiki/POP_Series_2_(TCG)"
     },
     {
       "set_key": "pop2",
@@ -3087,11 +3037,11 @@
     {
       "set_key": "ex10",
       "set_name": "Unseen Forces",
-      "source_key": "pkmncards",
-      "source_alias": "unseen-forces",
+      "source_key": "bulbapedia_set_list",
+      "source_alias": "Unseen_Forces_(TCG)",
       "configured_status": "candidate_url",
       "runtime_status": "collected",
-      "evidence_rows": 145,
+      "evidence_rows": 117,
       "error": null
     },
     {
@@ -3101,7 +3051,7 @@
       "source_alias": null,
       "configured_status": "unavailable",
       "runtime_status": "collected",
-      "evidence_rows": 114,
+      "evidence_rows": 117,
       "error": null
     },
     {
@@ -3110,8 +3060,8 @@
       "source_key": "pokemontcg_api",
       "source_alias": "ex11",
       "configured_status": "available",
-      "runtime_status": "collected",
-      "evidence_rows": 333,
+      "runtime_status": "collected_plus_cached_snapshot",
+      "evidence_rows": 334,
       "error": null
     },
     {
@@ -3137,12 +3087,12 @@
     {
       "set_key": "ex11",
       "set_name": "Delta Species",
-      "source_key": "pkmncards",
-      "source_alias": "delta-species",
+      "source_key": "bulbapedia_set_list",
+      "source_alias": "Delta_Species_(TCG)",
       "configured_status": "candidate_url",
-      "runtime_status": "collected",
-      "evidence_rows": 114,
-      "error": null
+      "runtime_status": "error",
+      "evidence_rows": 0,
+      "error": "Bulbapedia page contained no extractable set-list rows: https://bulbapedia.bulbagarden.net/wiki/Delta_Species_(TCG)"
     },
     {
       "set_key": "ex11",
@@ -3151,7 +3101,7 @@
       "source_alias": null,
       "configured_status": "unavailable",
       "runtime_status": "collected",
-      "evidence_rows": 111,
+      "evidence_rows": 114,
       "error": null
     },
     {
@@ -3187,8 +3137,8 @@
     {
       "set_key": "ex12",
       "set_name": "Legend Maker",
-      "source_key": "pkmncards",
-      "source_alias": "legend-maker",
+      "source_key": "bulbapedia_set_list",
+      "source_alias": "Legend_Maker_(TCG)",
       "configured_status": "candidate_url",
       "runtime_status": "collected",
       "evidence_rows": 93,
@@ -3201,11 +3151,11 @@
       "source_alias": null,
       "configured_status": "unavailable",
       "runtime_status": "collected",
-      "evidence_rows": 90,
+      "evidence_rows": 93,
       "error": null
     },
     {
-      "set_key": "tk2b",
+      "set_key": "tk-ex-m",
       "set_name": "EX Trainer Kit 2 Minun",
       "source_key": "pokemontcg_api",
       "source_alias": "tk2b",
@@ -3215,7 +3165,7 @@
       "error": null
     },
     {
-      "set_key": "tk2b",
+      "set_key": "tk-ex-m",
       "set_name": "EX Trainer Kit 2 Minun",
       "source_key": "tcgdex",
       "source_alias": "tk-ex-m",
@@ -3225,7 +3175,7 @@
       "error": null
     },
     {
-      "set_key": "tk2b",
+      "set_key": "tk-ex-m",
       "set_name": "EX Trainer Kit 2 Minun",
       "source_key": "thepricedex_price_list",
       "source_alias": "tk2b",
@@ -3235,17 +3185,17 @@
       "error": null
     },
     {
-      "set_key": "tk2b",
+      "set_key": "tk-ex-m",
       "set_name": "EX Trainer Kit 2 Minun",
-      "source_key": "pkmncards",
-      "source_alias": "ex-trainer-kit-2-minun",
+      "source_key": "bulbapedia_set_list",
+      "source_alias": "EX_Trainer_Kit_2_Minun_(TCG)",
       "configured_status": "candidate_url",
       "runtime_status": "error",
       "evidence_rows": 0,
-      "error": "Fetch failed 404 Not Found: https://pkmncards.com/set/ex-trainer-kit-2-minun/"
+      "error": "Bulbapedia page contained no extractable set-list rows: https://bulbapedia.bulbagarden.net/wiki/EX_Trainer_Kit_2_Minun_(TCG)"
     },
     {
-      "set_key": "tk2b",
+      "set_key": "tk-ex-m",
       "set_name": "EX Trainer Kit 2 Minun",
       "source_key": "tcgplayer_price_guide",
       "source_alias": null,
@@ -3255,7 +3205,7 @@
       "error": null
     },
     {
-      "set_key": "tk2a",
+      "set_key": "tk-ex-p",
       "set_name": "EX Trainer Kit 2 Plusle",
       "source_key": "pokemontcg_api",
       "source_alias": "tk2a",
@@ -3265,7 +3215,7 @@
       "error": null
     },
     {
-      "set_key": "tk2a",
+      "set_key": "tk-ex-p",
       "set_name": "EX Trainer Kit 2 Plusle",
       "source_key": "tcgdex",
       "source_alias": "tk-ex-p",
@@ -3275,7 +3225,7 @@
       "error": null
     },
     {
-      "set_key": "tk2a",
+      "set_key": "tk-ex-p",
       "set_name": "EX Trainer Kit 2 Plusle",
       "source_key": "thepricedex_price_list",
       "source_alias": "tk2a",
@@ -3285,17 +3235,17 @@
       "error": null
     },
     {
-      "set_key": "tk2a",
+      "set_key": "tk-ex-p",
       "set_name": "EX Trainer Kit 2 Plusle",
-      "source_key": "pkmncards",
-      "source_alias": "ex-trainer-kit-2-plusle",
+      "source_key": "bulbapedia_set_list",
+      "source_alias": "EX_Trainer_Kit_2_Plusle_(TCG)",
       "configured_status": "candidate_url",
       "runtime_status": "error",
       "evidence_rows": 0,
-      "error": "Fetch failed 404 Not Found: https://pkmncards.com/set/ex-trainer-kit-2-plusle/"
+      "error": "Bulbapedia page contained no extractable set-list rows: https://bulbapedia.bulbagarden.net/wiki/EX_Trainer_Kit_2_Plusle_(TCG)"
     },
     {
-      "set_key": "tk2a",
+      "set_key": "tk-ex-p",
       "set_name": "EX Trainer Kit 2 Plusle",
       "source_key": "tcgplayer_price_guide",
       "source_alias": null,
@@ -3311,7 +3261,7 @@
       "source_alias": "pop3",
       "configured_status": "available",
       "runtime_status": "collected",
-      "evidence_rows": 39,
+      "evidence_rows": 40,
       "error": null
     },
     {
@@ -3337,12 +3287,12 @@
     {
       "set_key": "pop3",
       "set_name": "POP Series 3",
-      "source_key": "pkmncards",
-      "source_alias": "pop-series-3",
+      "source_key": "bulbapedia_set_list",
+      "source_alias": "POP_Series_3_(TCG)",
       "configured_status": "candidate_url",
-      "runtime_status": "collected",
-      "evidence_rows": 17,
-      "error": null
+      "runtime_status": "error",
+      "evidence_rows": 0,
+      "error": "Bulbapedia page contained no extractable set-list rows: https://bulbapedia.bulbagarden.net/wiki/POP_Series_3_(TCG)"
     },
     {
       "set_key": "pop3",
@@ -3387,11 +3337,11 @@
     {
       "set_key": "ex13",
       "set_name": "Holon Phantoms",
-      "source_key": "pkmncards",
-      "source_alias": "holon-phantoms",
+      "source_key": "bulbapedia_set_list",
+      "source_alias": "Holon_Phantoms_(TCG)",
       "configured_status": "candidate_url",
       "runtime_status": "collected",
-      "evidence_rows": 110,
+      "evidence_rows": 111,
       "error": null
     },
     {
@@ -3401,7 +3351,7 @@
       "source_alias": null,
       "configured_status": "unavailable",
       "runtime_status": "collected",
-      "evidence_rows": 107,
+      "evidence_rows": 110,
       "error": null
     },
     {
@@ -3437,8 +3387,8 @@
     {
       "set_key": "ex14",
       "set_name": "Crystal Guardians",
-      "source_key": "pkmncards",
-      "source_alias": "crystal-guardians",
+      "source_key": "bulbapedia_set_list",
+      "source_alias": "Crystal_Guardians_(TCG)",
       "configured_status": "candidate_url",
       "runtime_status": "collected",
       "evidence_rows": 100,
@@ -3451,7 +3401,7 @@
       "source_alias": null,
       "configured_status": "unavailable",
       "runtime_status": "collected",
-      "evidence_rows": 98,
+      "evidence_rows": 100,
       "error": null
     },
     {
@@ -3487,12 +3437,12 @@
     {
       "set_key": "pop4",
       "set_name": "POP Series 4",
-      "source_key": "pkmncards",
-      "source_alias": "pop-series-4",
+      "source_key": "bulbapedia_set_list",
+      "source_alias": "POP_Series_4_(TCG)",
       "configured_status": "candidate_url",
-      "runtime_status": "collected",
-      "evidence_rows": 17,
-      "error": null
+      "runtime_status": "error",
+      "evidence_rows": 0,
+      "error": "Bulbapedia page contained no extractable set-list rows: https://bulbapedia.bulbagarden.net/wiki/POP_Series_4_(TCG)"
     },
     {
       "set_key": "pop4",
@@ -3537,11 +3487,11 @@
     {
       "set_key": "ex15",
       "set_name": "Dragon Frontiers",
-      "source_key": "pkmncards",
-      "source_alias": "dragon-frontiers",
+      "source_key": "bulbapedia_set_list",
+      "source_alias": "Dragon_Frontiers_(TCG)",
       "configured_status": "candidate_url",
       "runtime_status": "collected",
-      "evidence_rows": 98,
+      "evidence_rows": 101,
       "error": null
     },
     {
@@ -3551,7 +3501,7 @@
       "source_alias": null,
       "configured_status": "unavailable",
       "runtime_status": "collected",
-      "evidence_rows": 99,
+      "evidence_rows": 101,
       "error": null
     },
     {
@@ -3587,8 +3537,8 @@
     {
       "set_key": "ex16",
       "set_name": "Power Keepers",
-      "source_key": "pkmncards",
-      "source_alias": "power-keepers",
+      "source_key": "bulbapedia_set_list",
+      "source_alias": "Power_Keepers_(TCG)",
       "configured_status": "candidate_url",
       "runtime_status": "collected",
       "evidence_rows": 108,
@@ -3601,7 +3551,7 @@
       "source_alias": null,
       "configured_status": "unavailable",
       "runtime_status": "collected",
-      "evidence_rows": 92,
+      "evidence_rows": 93,
       "error": null
     },
     {
@@ -3637,12 +3587,12 @@
     {
       "set_key": "pop5",
       "set_name": "POP Series 5",
-      "source_key": "pkmncards",
-      "source_alias": "pop-series-5",
+      "source_key": "bulbapedia_set_list",
+      "source_alias": "POP_Series_5_(TCG)",
       "configured_status": "candidate_url",
-      "runtime_status": "collected",
-      "evidence_rows": 14,
-      "error": null
+      "runtime_status": "error",
+      "evidence_rows": 0,
+      "error": "Bulbapedia page contained no extractable set-list rows: https://bulbapedia.bulbagarden.net/wiki/POP_Series_5_(TCG)"
     },
     {
       "set_key": "pop5",
@@ -3687,8 +3637,8 @@
     {
       "set_key": "dp1",
       "set_name": "Diamond & Pearl",
-      "source_key": "pkmncards",
-      "source_alias": "diamond-pearl",
+      "source_key": "bulbapedia_set_list",
+      "source_alias": "Diamond_&_Pearl_(TCG)",
       "configured_status": "candidate_url",
       "runtime_status": "collected",
       "evidence_rows": 130,
@@ -3737,12 +3687,12 @@
     {
       "set_key": "dpp",
       "set_name": "DP Black Star Promos",
-      "source_key": "pkmncards",
-      "source_alias": "diamond-pearl-promos",
+      "source_key": "bulbapedia_set_list",
+      "source_alias": "DP_Black_Star_Promos_(TCG)",
       "configured_status": "candidate_url",
       "runtime_status": "error",
       "evidence_rows": 0,
-      "error": "PkmnCards page contained no card rows: https://pkmncards.com/set/diamond-pearl-promos/"
+      "error": "Bulbapedia page contained no extractable set-list rows: https://bulbapedia.bulbagarden.net/wiki/DP_Black_Star_Promos_(TCG)"
     },
     {
       "set_key": "dpp",
@@ -3787,11 +3737,11 @@
     {
       "set_key": "dp2",
       "set_name": "Mysterious Treasures",
-      "source_key": "pkmncards",
-      "source_alias": "mysterious-treasures",
+      "source_key": "bulbapedia_set_list",
+      "source_alias": "Mysterious_Treasures_(TCG)",
       "configured_status": "candidate_url",
       "runtime_status": "collected",
-      "evidence_rows": 123,
+      "evidence_rows": 124,
       "error": null
     },
     {
@@ -3837,12 +3787,12 @@
     {
       "set_key": "pop6",
       "set_name": "POP Series 6",
-      "source_key": "pkmncards",
-      "source_alias": "pop-series-6",
+      "source_key": "bulbapedia_set_list",
+      "source_alias": "POP_Series_6_(TCG)",
       "configured_status": "candidate_url",
-      "runtime_status": "collected",
-      "evidence_rows": 17,
-      "error": null
+      "runtime_status": "error",
+      "evidence_rows": 0,
+      "error": "Bulbapedia page contained no extractable set-list rows: https://bulbapedia.bulbagarden.net/wiki/POP_Series_6_(TCG)"
     },
     {
       "set_key": "pop6",
@@ -3887,11 +3837,11 @@
     {
       "set_key": "dp3",
       "set_name": "Secret Wonders",
-      "source_key": "pkmncards",
-      "source_alias": "secret-wonders",
+      "source_key": "bulbapedia_set_list",
+      "source_alias": "Secret_Wonders_(TCG)",
       "configured_status": "candidate_url",
       "runtime_status": "collected",
-      "evidence_rows": 131,
+      "evidence_rows": 122,
       "error": null
     },
     {
@@ -3937,12 +3887,12 @@
     {
       "set_key": "dp4",
       "set_name": "Great Encounters",
-      "source_key": "pkmncards",
-      "source_alias": "great-encounters",
+      "source_key": "bulbapedia_set_list",
+      "source_alias": "Great_Encounters_(TCG)",
       "configured_status": "candidate_url",
-      "runtime_status": "collected",
-      "evidence_rows": 106,
-      "error": null
+      "runtime_status": "error",
+      "evidence_rows": 0,
+      "error": "Bulbapedia page contained no extractable set-list rows: https://bulbapedia.bulbagarden.net/wiki/Great_Encounters_(TCG)"
     },
     {
       "set_key": "dp4",
@@ -3987,12 +3937,12 @@
     {
       "set_key": "pop7",
       "set_name": "POP Series 7",
-      "source_key": "pkmncards",
-      "source_alias": "pop-series-7",
+      "source_key": "bulbapedia_set_list",
+      "source_alias": "POP_Series_7_(TCG)",
       "configured_status": "candidate_url",
-      "runtime_status": "collected",
-      "evidence_rows": 17,
-      "error": null
+      "runtime_status": "error",
+      "evidence_rows": 0,
+      "error": "Bulbapedia page contained no extractable set-list rows: https://bulbapedia.bulbagarden.net/wiki/POP_Series_7_(TCG)"
     },
     {
       "set_key": "pop7",
@@ -4037,12 +3987,12 @@
     {
       "set_key": "dp5",
       "set_name": "Majestic Dawn",
-      "source_key": "pkmncards",
-      "source_alias": "majestic-dawn",
+      "source_key": "bulbapedia_set_list",
+      "source_alias": "Majestic_Dawn_(TCG)",
       "configured_status": "candidate_url",
-      "runtime_status": "collected",
-      "evidence_rows": 100,
-      "error": null
+      "runtime_status": "error",
+      "evidence_rows": 0,
+      "error": "Bulbapedia page contained no extractable set-list rows: https://bulbapedia.bulbagarden.net/wiki/Majestic_Dawn_(TCG)"
     },
     {
       "set_key": "dp5",
@@ -4061,7 +4011,7 @@
       "source_alias": "dp6",
       "configured_status": "available",
       "runtime_status": "collected",
-      "evidence_rows": 426,
+      "evidence_rows": 428,
       "error": null
     },
     {
@@ -4087,11 +4037,11 @@
     {
       "set_key": "dp6",
       "set_name": "Legends Awakened",
-      "source_key": "pkmncards",
-      "source_alias": "legends-awakened",
+      "source_key": "bulbapedia_set_list",
+      "source_alias": "Legends_Awakened_(TCG)",
       "configured_status": "candidate_url",
       "runtime_status": "collected",
-      "evidence_rows": 146,
+      "evidence_rows": 139,
       "error": null
     },
     {
@@ -4101,7 +4051,7 @@
       "source_alias": null,
       "configured_status": "unavailable",
       "runtime_status": "collected",
-      "evidence_rows": 273,
+      "evidence_rows": 275,
       "error": null
     },
     {
@@ -4110,8 +4060,8 @@
       "source_key": "pokemontcg_api",
       "source_alias": "pop8",
       "configured_status": "available",
-      "runtime_status": "collected",
-      "evidence_rows": 46,
+      "runtime_status": "collected_plus_cached_snapshot",
+      "evidence_rows": 45,
       "error": null
     },
     {
@@ -4137,12 +4087,12 @@
     {
       "set_key": "pop8",
       "set_name": "POP Series 8",
-      "source_key": "pkmncards",
-      "source_alias": "pop-series-8",
+      "source_key": "bulbapedia_set_list",
+      "source_alias": "POP_Series_8_(TCG)",
       "configured_status": "candidate_url",
-      "runtime_status": "collected",
-      "evidence_rows": 17,
-      "error": null
+      "runtime_status": "error",
+      "evidence_rows": 0,
+      "error": "Bulbapedia page contained no extractable set-list rows: https://bulbapedia.bulbagarden.net/wiki/POP_Series_8_(TCG)"
     },
     {
       "set_key": "pop8",
@@ -4187,11 +4137,11 @@
     {
       "set_key": "dp7",
       "set_name": "Stormfront",
-      "source_key": "pkmncards",
-      "source_alias": "stormfront",
+      "source_key": "bulbapedia_set_list",
+      "source_alias": "Stormfront_(TCG)",
       "configured_status": "candidate_url",
       "runtime_status": "collected",
-      "evidence_rows": 106,
+      "evidence_rows": 103,
       "error": null
     },
     {
@@ -4211,7 +4161,7 @@
       "source_alias": "pl1",
       "configured_status": "available",
       "runtime_status": "collected",
-      "evidence_rows": 386,
+      "evidence_rows": 387,
       "error": null
     },
     {
@@ -4237,11 +4187,11 @@
     {
       "set_key": "pl1",
       "set_name": "Platinum",
-      "source_key": "pkmncards",
-      "source_alias": "platinum",
+      "source_key": "bulbapedia_set_list",
+      "source_alias": "Platinum_(TCG)",
       "configured_status": "candidate_url",
       "runtime_status": "collected",
-      "evidence_rows": 133,
+      "evidence_rows": 130,
       "error": null
     },
     {
@@ -4251,7 +4201,7 @@
       "source_alias": null,
       "configured_status": "unavailable",
       "runtime_status": "collected",
-      "evidence_rows": 247,
+      "evidence_rows": 248,
       "error": null
     },
     {
@@ -4287,12 +4237,12 @@
     {
       "set_key": "pop9",
       "set_name": "POP Series 9",
-      "source_key": "pkmncards",
-      "source_alias": "pop-series-9",
+      "source_key": "bulbapedia_set_list",
+      "source_alias": "POP_Series_9_(TCG)",
       "configured_status": "candidate_url",
-      "runtime_status": "collected",
-      "evidence_rows": 17,
-      "error": null
+      "runtime_status": "error",
+      "evidence_rows": 0,
+      "error": "Bulbapedia page contained no extractable set-list rows: https://bulbapedia.bulbagarden.net/wiki/POP_Series_9_(TCG)"
     },
     {
       "set_key": "pop9",
@@ -4311,7 +4261,7 @@
       "source_alias": "pl2",
       "configured_status": "available",
       "runtime_status": "collected",
-      "evidence_rows": 341,
+      "evidence_rows": 342,
       "error": null
     },
     {
@@ -4337,11 +4287,11 @@
     {
       "set_key": "pl2",
       "set_name": "Rising Rivals",
-      "source_key": "pkmncards",
-      "source_alias": "rising-rivals",
+      "source_key": "bulbapedia_set_list",
+      "source_alias": "Rising_Rivals_(TCG)",
       "configured_status": "candidate_url",
       "runtime_status": "collected",
-      "evidence_rows": 118,
+      "evidence_rows": 107,
       "error": null
     },
     {
@@ -4351,7 +4301,7 @@
       "source_alias": null,
       "configured_status": "unavailable",
       "runtime_status": "collected",
-      "evidence_rows": 171,
+      "evidence_rows": 172,
       "error": null
     },
     {
@@ -4361,7 +4311,7 @@
       "source_alias": "pl3",
       "configured_status": "available",
       "runtime_status": "collected",
-      "evidence_rows": 444,
+      "evidence_rows": 445,
       "error": null
     },
     {
@@ -4387,11 +4337,11 @@
     {
       "set_key": "pl3",
       "set_name": "Supreme Victors",
-      "source_key": "pkmncards",
-      "source_alias": "supreme-victors",
+      "source_key": "bulbapedia_set_list",
+      "source_alias": "Supreme_Victors_(TCG)",
       "configured_status": "candidate_url",
       "runtime_status": "collected",
-      "evidence_rows": 153,
+      "evidence_rows": 150,
       "error": null
     },
     {
@@ -4401,7 +4351,7 @@
       "source_alias": null,
       "configured_status": "unavailable",
       "runtime_status": "collected",
-      "evidence_rows": 171,
+      "evidence_rows": 172,
       "error": null
     },
     {
@@ -4437,12 +4387,12 @@
     {
       "set_key": "pl4",
       "set_name": "Arceus",
-      "source_key": "pkmncards",
-      "source_alias": "arceus",
+      "source_key": "bulbapedia_set_list",
+      "source_alias": "Arceus_(TCG)",
       "configured_status": "candidate_url",
-      "runtime_status": "collected",
-      "evidence_rows": 111,
-      "error": null
+      "runtime_status": "error",
+      "evidence_rows": 0,
+      "error": "Bulbapedia page contained no extractable set-list rows: https://bulbapedia.bulbagarden.net/wiki/Arceus_(TCG)"
     },
     {
       "set_key": "pl4",
@@ -4487,12 +4437,12 @@
     {
       "set_key": "ru1",
       "set_name": "Pokémon Rumble",
-      "source_key": "pkmncards",
-      "source_alias": "pok-mon-rumble",
+      "source_key": "bulbapedia_set_list",
+      "source_alias": "Pokémon_Rumble_(TCG)",
       "configured_status": "candidate_url",
-      "runtime_status": "error",
-      "evidence_rows": 0,
-      "error": "Fetch failed 404 Not Found: https://pkmncards.com/set/pok-mon-rumble/"
+      "runtime_status": "collected",
+      "evidence_rows": 16,
+      "error": null
     },
     {
       "set_key": "ru1",
@@ -4510,7 +4460,7 @@
       "source_key": "pokemontcg_api",
       "source_alias": "hgss1",
       "configured_status": "available",
-      "runtime_status": "collected",
+      "runtime_status": "collected_plus_cached_snapshot",
       "evidence_rows": 355,
       "error": null
     },
@@ -4537,11 +4487,11 @@
     {
       "set_key": "hgss1",
       "set_name": "HeartGold & SoulSilver",
-      "source_key": "pkmncards",
-      "source_alias": "heartgold-soulsilver",
+      "source_key": "bulbapedia_set_list",
+      "source_alias": "HeartGold_&_SoulSilver_(TCG)",
       "configured_status": "candidate_url",
       "runtime_status": "collected",
-      "evidence_rows": 124,
+      "evidence_rows": 123,
       "error": null
     },
     {
@@ -4549,13 +4499,13 @@
       "set_name": "HeartGold & SoulSilver",
       "source_key": "tcgplayer_price_guide",
       "source_alias": null,
-      "configured_status": "unavailable",
-      "runtime_status": "collected",
+      "configured_status": "available",
+      "runtime_status": "collected_plus_cached_snapshot",
       "evidence_rows": 226,
       "error": null
     },
     {
-      "set_key": "hsp",
+      "set_key": "hgssp",
       "set_name": "HGSS Black Star Promos",
       "source_key": "pokemontcg_api",
       "source_alias": "hsp",
@@ -4565,7 +4515,7 @@
       "error": null
     },
     {
-      "set_key": "hsp",
+      "set_key": "hgssp",
       "set_name": "HGSS Black Star Promos",
       "source_key": "tcgdex",
       "source_alias": "hgssp",
@@ -4575,7 +4525,7 @@
       "error": null
     },
     {
-      "set_key": "hsp",
+      "set_key": "hgssp",
       "set_name": "HGSS Black Star Promos",
       "source_key": "thepricedex_price_list",
       "source_alias": "hsp",
@@ -4585,17 +4535,17 @@
       "error": null
     },
     {
-      "set_key": "hsp",
+      "set_key": "hgssp",
       "set_name": "HGSS Black Star Promos",
-      "source_key": "pkmncards",
-      "source_alias": "heartgold-soulsilver-promos",
+      "source_key": "bulbapedia_set_list",
+      "source_alias": "HGSS_Black_Star_Promos_(TCG)",
       "configured_status": "candidate_url",
       "runtime_status": "error",
       "evidence_rows": 0,
-      "error": "PkmnCards page contained no card rows: https://pkmncards.com/set/heartgold-soulsilver-promos/"
+      "error": "Bulbapedia page contained no extractable set-list rows: https://bulbapedia.bulbagarden.net/wiki/HGSS_Black_Star_Promos_(TCG)"
     },
     {
-      "set_key": "hsp",
+      "set_key": "hgssp",
       "set_name": "HGSS Black Star Promos",
       "source_key": "tcgplayer_price_guide",
       "source_alias": null,
@@ -4637,12 +4587,12 @@
     {
       "set_key": "hgss2",
       "set_name": "HS—Unleashed",
-      "source_key": "pkmncards",
-      "source_alias": "hs-unleashed",
+      "source_key": "bulbapedia_set_list",
+      "source_alias": "HS—Unleashed_(TCG)",
       "configured_status": "candidate_url",
       "runtime_status": "error",
       "evidence_rows": 0,
-      "error": "Fetch failed 404 Not Found: https://pkmncards.com/set/hs-unleashed/"
+      "error": "Bulbapedia page contained no extractable set-list rows: https://bulbapedia.bulbagarden.net/wiki/HS%E2%80%94Unleashed_(TCG)"
     },
     {
       "set_key": "hgss2",
@@ -4687,12 +4637,12 @@
     {
       "set_key": "hgss3",
       "set_name": "HS—Undaunted",
-      "source_key": "pkmncards",
-      "source_alias": "hs-undaunted",
+      "source_key": "bulbapedia_set_list",
+      "source_alias": "HS—Undaunted_(TCG)",
       "configured_status": "candidate_url",
       "runtime_status": "error",
       "evidence_rows": 0,
-      "error": "Fetch failed 404 Not Found: https://pkmncards.com/set/hs-undaunted/"
+      "error": "Bulbapedia page contained no extractable set-list rows: https://bulbapedia.bulbagarden.net/wiki/HS%E2%80%94Undaunted_(TCG)"
     },
     {
       "set_key": "hgss3",
@@ -4737,12 +4687,12 @@
     {
       "set_key": "hgss4",
       "set_name": "HS—Triumphant",
-      "source_key": "pkmncards",
-      "source_alias": "hs-triumphant",
+      "source_key": "bulbapedia_set_list",
+      "source_alias": "HS—Triumphant_(TCG)",
       "configured_status": "candidate_url",
       "runtime_status": "error",
       "evidence_rows": 0,
-      "error": "Fetch failed 404 Not Found: https://pkmncards.com/set/hs-triumphant/"
+      "error": "Bulbapedia page contained no extractable set-list rows: https://bulbapedia.bulbagarden.net/wiki/HS%E2%80%94Triumphant_(TCG)"
     },
     {
       "set_key": "hgss4",
@@ -4760,8 +4710,8 @@
       "source_key": "pokemontcg_api",
       "source_alias": "col1",
       "configured_status": "available",
-      "runtime_status": "collected",
-      "evidence_rows": 296,
+      "runtime_status": "collected_plus_cached_snapshot",
+      "evidence_rows": 297,
       "error": null
     },
     {
@@ -4787,20 +4737,20 @@
     {
       "set_key": "col1",
       "set_name": "Call of Legends",
-      "source_key": "pkmncards",
-      "source_alias": "call-of-legends",
+      "source_key": "bulbapedia_set_list",
+      "source_alias": "Call_of_Legends_(TCG)",
       "configured_status": "candidate_url",
-      "runtime_status": "collected",
-      "evidence_rows": 106,
-      "error": null
+      "runtime_status": "error",
+      "evidence_rows": 0,
+      "error": "Bulbapedia page contained no extractable set-list rows: https://bulbapedia.bulbagarden.net/wiki/Call_of_Legends_(TCG)"
     },
     {
       "set_key": "col1",
       "set_name": "Call of Legends",
       "source_key": "tcgplayer_price_guide",
       "source_alias": null,
-      "configured_status": "unavailable",
-      "runtime_status": "collected",
+      "configured_status": "available",
+      "runtime_status": "collected_plus_cached_snapshot",
       "evidence_rows": 72,
       "error": null
     },
@@ -4830,19 +4780,19 @@
       "source_key": "thepricedex_price_list",
       "source_alias": "bwp",
       "configured_status": "candidate_url",
-      "runtime_status": "collected",
-      "evidence_rows": 236,
-      "error": null
+      "runtime_status": "error",
+      "evidence_rows": 0,
+      "error": "Command failed: curl.exe --ssl-no-revoke --silent --show-error --location --max-time 45 --user-agent Grookai Master Index Audit/1.0 --header Accept: text/html,application/xhtml+xml https://www.thepricedex.com/set/bwp/bw-black-star-promos/price-list\n"
     },
     {
       "set_key": "bwp",
       "set_name": "BW Black Star Promos",
-      "source_key": "pkmncards",
-      "source_alias": "black-white-promos",
+      "source_key": "bulbapedia_set_list",
+      "source_alias": "BW_Black_Star_Promos_(TCG)",
       "configured_status": "candidate_url",
-      "runtime_status": "collected",
-      "evidence_rows": 99,
-      "error": null
+      "runtime_status": "error",
+      "evidence_rows": 0,
+      "error": "Bulbapedia page contained no extractable set-list rows: https://bulbapedia.bulbagarden.net/wiki/BW_Black_Star_Promos_(TCG)"
     },
     {
       "set_key": "bwp",
@@ -4887,8 +4837,8 @@
     {
       "set_key": "bw1",
       "set_name": "Black & White",
-      "source_key": "pkmncards",
-      "source_alias": "black-white",
+      "source_key": "bulbapedia_set_list",
+      "source_alias": "Black_&_White_(TCG)",
       "configured_status": "candidate_url",
       "runtime_status": "collected",
       "evidence_rows": 115,
@@ -4905,7 +4855,7 @@
       "error": null
     },
     {
-      "set_key": "mcd11",
+      "set_key": "2011bw",
       "set_name": "McDonald's Collection 2011",
       "source_key": "pokemontcg_api",
       "source_alias": "mcd11",
@@ -4915,7 +4865,7 @@
       "error": null
     },
     {
-      "set_key": "mcd11",
+      "set_key": "2011bw",
       "set_name": "McDonald's Collection 2011",
       "source_key": "tcgdex",
       "source_alias": "2011bw",
@@ -4925,7 +4875,7 @@
       "error": null
     },
     {
-      "set_key": "mcd11",
+      "set_key": "2011bw",
       "set_name": "McDonald's Collection 2011",
       "source_key": "thepricedex_price_list",
       "source_alias": "mcd11",
@@ -4935,17 +4885,17 @@
       "error": null
     },
     {
-      "set_key": "mcd11",
+      "set_key": "2011bw",
       "set_name": "McDonald's Collection 2011",
-      "source_key": "pkmncards",
-      "source_alias": "mcdonalds-collection-2011",
+      "source_key": "bulbapedia_set_list",
+      "source_alias": "McDonald's_Collection_2011_(TCG)",
       "configured_status": "candidate_url",
       "runtime_status": "collected",
       "evidence_rows": 12,
       "error": null
     },
     {
-      "set_key": "mcd11",
+      "set_key": "2011bw",
       "set_name": "McDonald's Collection 2011",
       "source_key": "tcgplayer_price_guide",
       "source_alias": null,
@@ -4960,8 +4910,8 @@
       "source_key": "pokemontcg_api",
       "source_alias": "bw2",
       "configured_status": "available",
-      "runtime_status": "collected",
-      "evidence_rows": 291,
+      "runtime_status": "collected_plus_cached_snapshot",
+      "evidence_rows": 292,
       "error": null
     },
     {
@@ -4987,12 +4937,12 @@
     {
       "set_key": "bw2",
       "set_name": "Emerging Powers",
-      "source_key": "pkmncards",
-      "source_alias": "emerging-powers",
+      "source_key": "bulbapedia_set_list",
+      "source_alias": "Emerging_Powers_(TCG)",
       "configured_status": "candidate_url",
-      "runtime_status": "collected",
-      "evidence_rows": 98,
-      "error": null
+      "runtime_status": "error",
+      "evidence_rows": 0,
+      "error": "Bulbapedia page contained no extractable set-list rows: https://bulbapedia.bulbagarden.net/wiki/Emerging_Powers_(TCG)"
     },
     {
       "set_key": "bw2",
@@ -5037,8 +4987,8 @@
     {
       "set_key": "bw3",
       "set_name": "Noble Victories",
-      "source_key": "pkmncards",
-      "source_alias": "noble-victories",
+      "source_key": "bulbapedia_set_list",
+      "source_alias": "Noble_Victories_(TCG)",
       "configured_status": "candidate_url",
       "runtime_status": "collected",
       "evidence_rows": 102,
@@ -5087,8 +5037,8 @@
     {
       "set_key": "bw4",
       "set_name": "Next Destinies",
-      "source_key": "pkmncards",
-      "source_alias": "next-destinies",
+      "source_key": "bulbapedia_set_list",
+      "source_alias": "Next_Destinies_(TCG)",
       "configured_status": "candidate_url",
       "runtime_status": "collected",
       "evidence_rows": 103,
@@ -5111,7 +5061,7 @@
       "source_alias": "bw5",
       "configured_status": "available",
       "runtime_status": "collected",
-      "evidence_rows": 317,
+      "evidence_rows": 318,
       "error": null
     },
     {
@@ -5137,8 +5087,8 @@
     {
       "set_key": "bw5",
       "set_name": "Dark Explorers",
-      "source_key": "pkmncards",
-      "source_alias": "dark-explorers",
+      "source_key": "bulbapedia_set_list",
+      "source_alias": "Dark_Explorers_(TCG)",
       "configured_status": "candidate_url",
       "runtime_status": "collected",
       "evidence_rows": 111,
@@ -5155,7 +5105,7 @@
       "error": null
     },
     {
-      "set_key": "mcd12",
+      "set_key": "2012bw",
       "set_name": "McDonald's Collection 2012",
       "source_key": "pokemontcg_api",
       "source_alias": "mcd12",
@@ -5165,7 +5115,7 @@
       "error": null
     },
     {
-      "set_key": "mcd12",
+      "set_key": "2012bw",
       "set_name": "McDonald's Collection 2012",
       "source_key": "tcgdex",
       "source_alias": "2012bw",
@@ -5175,7 +5125,7 @@
       "error": null
     },
     {
-      "set_key": "mcd12",
+      "set_key": "2012bw",
       "set_name": "McDonald's Collection 2012",
       "source_key": "thepricedex_price_list",
       "source_alias": "mcd12",
@@ -5185,17 +5135,17 @@
       "error": null
     },
     {
-      "set_key": "mcd12",
+      "set_key": "2012bw",
       "set_name": "McDonald's Collection 2012",
-      "source_key": "pkmncards",
-      "source_alias": "mcdonalds-collection-2012",
+      "source_key": "bulbapedia_set_list",
+      "source_alias": "McDonald's_Collection_2012_(TCG)",
       "configured_status": "candidate_url",
-      "runtime_status": "collected",
-      "evidence_rows": 12,
-      "error": null
+      "runtime_status": "error",
+      "evidence_rows": 0,
+      "error": "Bulbapedia page contained no extractable set-list rows: https://bulbapedia.bulbagarden.net/wiki/McDonald's_Collection_2012_(TCG)"
     },
     {
-      "set_key": "mcd12",
+      "set_key": "2012bw",
       "set_name": "McDonald's Collection 2012",
       "source_key": "tcgplayer_price_guide",
       "source_alias": null,
@@ -5211,7 +5161,7 @@
       "source_alias": "bw6",
       "configured_status": "available",
       "runtime_status": "collected",
-      "evidence_rows": 366,
+      "evidence_rows": 367,
       "error": null
     },
     {
@@ -5237,8 +5187,8 @@
     {
       "set_key": "bw6",
       "set_name": "Dragons Exalted",
-      "source_key": "pkmncards",
-      "source_alias": "dragons-exalted",
+      "source_key": "bulbapedia_set_list",
+      "source_alias": "Dragons_Exalted_(TCG)",
       "configured_status": "candidate_url",
       "runtime_status": "collected",
       "evidence_rows": 126,
@@ -5287,8 +5237,8 @@
     {
       "set_key": "dv1",
       "set_name": "Dragon Vault",
-      "source_key": "pkmncards",
-      "source_alias": "dragon-vault",
+      "source_key": "bulbapedia_set_list",
+      "source_alias": "Dragon_Vault_(TCG)",
       "configured_status": "candidate_url",
       "runtime_status": "collected",
       "evidence_rows": 21,
@@ -5310,8 +5260,8 @@
       "source_key": "pokemontcg_api",
       "source_alias": "bw7",
       "configured_status": "available",
-      "runtime_status": "collected",
-      "evidence_rows": 435,
+      "runtime_status": "collected_plus_cached_snapshot",
+      "evidence_rows": 437,
       "error": null
     },
     {
@@ -5337,8 +5287,8 @@
     {
       "set_key": "bw7",
       "set_name": "Boundaries Crossed",
-      "source_key": "pkmncards",
-      "source_alias": "boundaries-crossed",
+      "source_key": "bulbapedia_set_list",
+      "source_alias": "Boundaries_Crossed_(TCG)",
       "configured_status": "candidate_url",
       "runtime_status": "collected",
       "evidence_rows": 153,
@@ -5387,8 +5337,8 @@
     {
       "set_key": "bw8",
       "set_name": "Plasma Storm",
-      "source_key": "pkmncards",
-      "source_alias": "plasma-storm",
+      "source_key": "bulbapedia_set_list",
+      "source_alias": "Plasma_Storm_(TCG)",
       "configured_status": "candidate_url",
       "runtime_status": "collected",
       "evidence_rows": 138,
@@ -5437,11 +5387,11 @@
     {
       "set_key": "bw9",
       "set_name": "Plasma Freeze",
-      "source_key": "pkmncards",
-      "source_alias": "plasma-freeze",
+      "source_key": "bulbapedia_set_list",
+      "source_alias": "Plasma_Freeze_(TCG)",
       "configured_status": "candidate_url",
       "runtime_status": "collected",
-      "evidence_rows": 120,
+      "evidence_rows": 122,
       "error": null
     },
     {
@@ -5487,8 +5437,8 @@
     {
       "set_key": "bw10",
       "set_name": "Plasma Blast",
-      "source_key": "pkmncards",
-      "source_alias": "plasma-blast",
+      "source_key": "bulbapedia_set_list",
+      "source_alias": "Plasma_Blast_(TCG)",
       "configured_status": "candidate_url",
       "runtime_status": "collected",
       "evidence_rows": 105,
@@ -5537,12 +5487,12 @@
     {
       "set_key": "xyp",
       "set_name": "XY Black Star Promos",
-      "source_key": "pkmncards",
-      "source_alias": "xy-promos",
+      "source_key": "bulbapedia_set_list",
+      "source_alias": "XY_Black_Star_Promos_(TCG)",
       "configured_status": "candidate_url",
-      "runtime_status": "collected",
-      "evidence_rows": 216,
-      "error": null
+      "runtime_status": "error",
+      "evidence_rows": 0,
+      "error": "Bulbapedia page contained no extractable set-list rows: https://bulbapedia.bulbagarden.net/wiki/XY_Black_Star_Promos_(TCG)"
     },
     {
       "set_key": "xyp",
@@ -5560,7 +5510,7 @@
       "source_key": "pokemontcg_api",
       "source_alias": "bw11",
       "configured_status": "available",
-      "runtime_status": "collected",
+      "runtime_status": "collected_plus_cached_snapshot",
       "evidence_rows": 381,
       "error": null
     },
@@ -5587,11 +5537,11 @@
     {
       "set_key": "bw11",
       "set_name": "Legendary Treasures",
-      "source_key": "pkmncards",
-      "source_alias": "legendary-treasures",
+      "source_key": "bulbapedia_set_list",
+      "source_alias": "Legendary_Treasures_(TCG)",
       "configured_status": "candidate_url",
       "runtime_status": "collected",
-      "evidence_rows": 140,
+      "evidence_rows": 115,
       "error": null
     },
     {
@@ -5637,12 +5587,12 @@
     {
       "set_key": "xy0",
       "set_name": "Kalos Starter Set",
-      "source_key": "pkmncards",
-      "source_alias": "kalos-starter-set",
+      "source_key": "bulbapedia_set_list",
+      "source_alias": "Kalos_Starter_Set_(TCG)",
       "configured_status": "candidate_url",
-      "runtime_status": "collected",
-      "evidence_rows": 39,
-      "error": null
+      "runtime_status": "error",
+      "evidence_rows": 0,
+      "error": "Bulbapedia page contained no extractable set-list rows: https://bulbapedia.bulbagarden.net/wiki/Kalos_Starter_Set_(TCG)"
     },
     {
       "set_key": "xy0",
@@ -5687,11 +5637,11 @@
     {
       "set_key": "xy1",
       "set_name": "XY",
-      "source_key": "pkmncards",
-      "source_alias": "xy",
+      "source_key": "bulbapedia_set_list",
+      "source_alias": "XY_(TCG)",
       "configured_status": "candidate_url",
       "runtime_status": "collected",
-      "evidence_rows": 146,
+      "evidence_rows": 144,
       "error": null
     },
     {
@@ -5737,11 +5687,11 @@
     {
       "set_key": "xy2",
       "set_name": "Flashfire",
-      "source_key": "pkmncards",
-      "source_alias": "flashfire",
+      "source_key": "bulbapedia_set_list",
+      "source_alias": "Flashfire_(TCG)",
       "configured_status": "candidate_url",
       "runtime_status": "collected",
-      "evidence_rows": 110,
+      "evidence_rows": 103,
       "error": null
     },
     {
@@ -5755,7 +5705,7 @@
       "error": null
     },
     {
-      "set_key": "mcd14",
+      "set_key": "2014xy",
       "set_name": "McDonald's Collection 2014",
       "source_key": "pokemontcg_api",
       "source_alias": "mcd14",
@@ -5765,7 +5715,7 @@
       "error": null
     },
     {
-      "set_key": "mcd14",
+      "set_key": "2014xy",
       "set_name": "McDonald's Collection 2014",
       "source_key": "tcgdex",
       "source_alias": "2014xy",
@@ -5775,7 +5725,7 @@
       "error": null
     },
     {
-      "set_key": "mcd14",
+      "set_key": "2014xy",
       "set_name": "McDonald's Collection 2014",
       "source_key": "thepricedex_price_list",
       "source_alias": "mcd14",
@@ -5785,17 +5735,17 @@
       "error": null
     },
     {
-      "set_key": "mcd14",
+      "set_key": "2014xy",
       "set_name": "McDonald's Collection 2014",
-      "source_key": "pkmncards",
-      "source_alias": "mcdonalds-collection-2014",
+      "source_key": "bulbapedia_set_list",
+      "source_alias": "McDonald's_Collection_2014_(TCG)",
       "configured_status": "candidate_url",
       "runtime_status": "error",
       "evidence_rows": 0,
-      "error": "Fetch failed 404 Not Found: https://pkmncards.com/set/mcdonalds-collection-2014/"
+      "error": "Bulbapedia page contained no extractable set-list rows: https://bulbapedia.bulbagarden.net/wiki/McDonald's_Collection_2014_(TCG)"
     },
     {
-      "set_key": "mcd14",
+      "set_key": "2014xy",
       "set_name": "McDonald's Collection 2014",
       "source_key": "tcgplayer_price_guide",
       "source_alias": null,
@@ -5837,11 +5787,11 @@
     {
       "set_key": "xy3",
       "set_name": "Furious Fists",
-      "source_key": "pkmncards",
-      "source_alias": "furious-fists",
+      "source_key": "bulbapedia_set_list",
+      "source_alias": "Furious_Fists_(TCG)",
       "configured_status": "candidate_url",
       "runtime_status": "collected",
-      "evidence_rows": 114,
+      "evidence_rows": 109,
       "error": null
     },
     {
@@ -5887,11 +5837,11 @@
     {
       "set_key": "xy4",
       "set_name": "Phantom Forces",
-      "source_key": "pkmncards",
-      "source_alias": "phantom-forces",
+      "source_key": "bulbapedia_set_list",
+      "source_alias": "Phantom_Forces_(TCG)",
       "configured_status": "candidate_url",
       "runtime_status": "collected",
-      "evidence_rows": 124,
+      "evidence_rows": 113,
       "error": null
     },
     {
@@ -5937,11 +5887,11 @@
     {
       "set_key": "xy5",
       "set_name": "Primal Clash",
-      "source_key": "pkmncards",
-      "source_alias": "primal-clash",
+      "source_key": "bulbapedia_set_list",
+      "source_alias": "Primal_Clash_(TCG)",
       "configured_status": "candidate_url",
       "runtime_status": "collected",
-      "evidence_rows": 163,
+      "evidence_rows": 160,
       "error": null
     },
     {
@@ -5987,8 +5937,8 @@
     {
       "set_key": "dc1",
       "set_name": "Double Crisis",
-      "source_key": "pkmncards",
-      "source_alias": "double-crisis",
+      "source_key": "bulbapedia_set_list",
+      "source_alias": "Double_Crisis_(TCG)",
       "configured_status": "candidate_url",
       "runtime_status": "collected",
       "evidence_rows": 34,
@@ -6037,11 +5987,11 @@
     {
       "set_key": "xy6",
       "set_name": "Roaring Skies",
-      "source_key": "pkmncards",
-      "source_alias": "roaring-skies",
+      "source_key": "bulbapedia_set_list",
+      "source_alias": "Roaring_Skies_(TCG)",
       "configured_status": "candidate_url",
       "runtime_status": "collected",
-      "evidence_rows": 112,
+      "evidence_rows": 103,
       "error": null
     },
     {
@@ -6087,11 +6037,11 @@
     {
       "set_key": "xy7",
       "set_name": "Ancient Origins",
-      "source_key": "pkmncards",
-      "source_alias": "ancient-origins",
+      "source_key": "bulbapedia_set_list",
+      "source_alias": "Ancient_Origins_(TCG)",
       "configured_status": "candidate_url",
       "runtime_status": "collected",
-      "evidence_rows": 101,
+      "evidence_rows": 93,
       "error": null
     },
     {
@@ -6137,11 +6087,11 @@
     {
       "set_key": "xy8",
       "set_name": "BREAKthrough",
-      "source_key": "pkmncards",
-      "source_alias": "breakthrough",
+      "source_key": "bulbapedia_set_list",
+      "source_alias": "BREAKthrough_(TCG)",
       "configured_status": "candidate_url",
       "runtime_status": "collected",
-      "evidence_rows": 165,
+      "evidence_rows": 156,
       "error": null
     },
     {
@@ -6155,7 +6105,7 @@
       "error": null
     },
     {
-      "set_key": "mcd15",
+      "set_key": "2015xy",
       "set_name": "McDonald's Collection 2015",
       "source_key": "pokemontcg_api",
       "source_alias": "mcd15",
@@ -6165,7 +6115,7 @@
       "error": null
     },
     {
-      "set_key": "mcd15",
+      "set_key": "2015xy",
       "set_name": "McDonald's Collection 2015",
       "source_key": "tcgdex",
       "source_alias": "2015xy",
@@ -6175,7 +6125,7 @@
       "error": null
     },
     {
-      "set_key": "mcd15",
+      "set_key": "2015xy",
       "set_name": "McDonald's Collection 2015",
       "source_key": "thepricedex_price_list",
       "source_alias": "mcd15",
@@ -6185,17 +6135,17 @@
       "error": null
     },
     {
-      "set_key": "mcd15",
+      "set_key": "2015xy",
       "set_name": "McDonald's Collection 2015",
-      "source_key": "pkmncards",
-      "source_alias": "mcdonalds-collection-2015",
+      "source_key": "bulbapedia_set_list",
+      "source_alias": "McDonald's_Collection_2015_(TCG)",
       "configured_status": "candidate_url",
       "runtime_status": "error",
       "evidence_rows": 0,
-      "error": "Fetch failed 404 Not Found: https://pkmncards.com/set/mcdonalds-collection-2015/"
+      "error": "Bulbapedia page contained no extractable set-list rows: https://bulbapedia.bulbagarden.net/wiki/McDonald's_Collection_2015_(TCG)"
     },
     {
-      "set_key": "mcd15",
+      "set_key": "2015xy",
       "set_name": "McDonald's Collection 2015",
       "source_key": "tcgplayer_price_guide",
       "source_alias": null,
@@ -6237,11 +6187,11 @@
     {
       "set_key": "xy9",
       "set_name": "BREAKpoint",
-      "source_key": "pkmncards",
-      "source_alias": "breakpoint",
+      "source_key": "bulbapedia_set_list",
+      "source_alias": "BREAKpoint_(TCG)",
       "configured_status": "candidate_url",
       "runtime_status": "collected",
-      "evidence_rows": 126,
+      "evidence_rows": 119,
       "error": null
     },
     {
@@ -6287,11 +6237,11 @@
     {
       "set_key": "g1",
       "set_name": "Generations",
-      "source_key": "pkmncards",
-      "source_alias": "generations",
+      "source_key": "bulbapedia_set_list",
+      "source_alias": "Generations_(TCG)",
       "configured_status": "candidate_url",
       "runtime_status": "collected",
-      "evidence_rows": 117,
+      "evidence_rows": 80,
       "error": null
     },
     {
@@ -6337,11 +6287,11 @@
     {
       "set_key": "xy10",
       "set_name": "Fates Collide",
-      "source_key": "pkmncards",
-      "source_alias": "fates-collide",
+      "source_key": "bulbapedia_set_list",
+      "source_alias": "Fates_Collide_(TCG)",
       "configured_status": "candidate_url",
       "runtime_status": "collected",
-      "evidence_rows": 129,
+      "evidence_rows": 120,
       "error": null
     },
     {
@@ -6387,11 +6337,11 @@
     {
       "set_key": "xy11",
       "set_name": "Steam Siege",
-      "source_key": "pkmncards",
-      "source_alias": "steam-siege",
+      "source_key": "bulbapedia_set_list",
+      "source_alias": "Steam_Siege_(TCG)",
       "configured_status": "candidate_url",
       "runtime_status": "collected",
-      "evidence_rows": 115,
+      "evidence_rows": 112,
       "error": null
     },
     {
@@ -6405,7 +6355,7 @@
       "error": null
     },
     {
-      "set_key": "mcd16",
+      "set_key": "2016xy",
       "set_name": "McDonald's Collection 2016",
       "source_key": "pokemontcg_api",
       "source_alias": "mcd16",
@@ -6415,7 +6365,7 @@
       "error": null
     },
     {
-      "set_key": "mcd16",
+      "set_key": "2016xy",
       "set_name": "McDonald's Collection 2016",
       "source_key": "tcgdex",
       "source_alias": "2016xy",
@@ -6425,7 +6375,7 @@
       "error": null
     },
     {
-      "set_key": "mcd16",
+      "set_key": "2016xy",
       "set_name": "McDonald's Collection 2016",
       "source_key": "thepricedex_price_list",
       "source_alias": "mcd16",
@@ -6435,17 +6385,17 @@
       "error": null
     },
     {
-      "set_key": "mcd16",
+      "set_key": "2016xy",
       "set_name": "McDonald's Collection 2016",
-      "source_key": "pkmncards",
-      "source_alias": "mcdonalds-collection-2016",
+      "source_key": "bulbapedia_set_list",
+      "source_alias": "McDonald's_Collection_2016_(TCG)",
       "configured_status": "candidate_url",
-      "runtime_status": "collected",
-      "evidence_rows": 12,
-      "error": null
+      "runtime_status": "error",
+      "evidence_rows": 0,
+      "error": "Bulbapedia page contained no extractable set-list rows: https://bulbapedia.bulbagarden.net/wiki/McDonald's_Collection_2016_(TCG)"
     },
     {
-      "set_key": "mcd16",
+      "set_key": "2016xy",
       "set_name": "McDonald's Collection 2016",
       "source_key": "tcgplayer_price_guide",
       "source_alias": null,
@@ -6487,11 +6437,11 @@
     {
       "set_key": "xy12",
       "set_name": "Evolutions",
-      "source_key": "pkmncards",
-      "source_alias": "evolutions",
+      "source_key": "bulbapedia_set_list",
+      "source_alias": "Evolutions_(TCG)",
       "configured_status": "candidate_url",
       "runtime_status": "collected",
-      "evidence_rows": 112,
+      "evidence_rows": 104,
       "error": null
     },
     {
@@ -6537,12 +6487,12 @@
     {
       "set_key": "smp",
       "set_name": "SM Black Star Promos",
-      "source_key": "pkmncards",
-      "source_alias": "sun-moon-promos",
+      "source_key": "bulbapedia_set_list",
+      "source_alias": "SM_Black_Star_Promos_(TCG)",
       "configured_status": "candidate_url",
-      "runtime_status": "collected",
-      "evidence_rows": 251,
-      "error": null
+      "runtime_status": "error",
+      "evidence_rows": 0,
+      "error": "Bulbapedia page contained no extractable set-list rows: https://bulbapedia.bulbagarden.net/wiki/SM_Black_Star_Promos_(TCG)"
     },
     {
       "set_key": "smp",
@@ -6587,11 +6537,11 @@
     {
       "set_key": "sm1",
       "set_name": "Sun & Moon",
-      "source_key": "pkmncards",
-      "source_alias": "sun-moon",
+      "source_key": "bulbapedia_set_list",
+      "source_alias": "Sun_&_Moon_(TCG)",
       "configured_status": "candidate_url",
       "runtime_status": "collected",
-      "evidence_rows": 164,
+      "evidence_rows": 163,
       "error": null
     },
     {
@@ -6637,11 +6587,11 @@
     {
       "set_key": "sm2",
       "set_name": "Guardians Rising",
-      "source_key": "pkmncards",
-      "source_alias": "guardians-rising",
+      "source_key": "bulbapedia_set_list",
+      "source_alias": "Guardians_Rising_(TCG)",
       "configured_status": "candidate_url",
       "runtime_status": "collected",
-      "evidence_rows": 180,
+      "evidence_rows": 169,
       "error": null
     },
     {
@@ -6687,11 +6637,11 @@
     {
       "set_key": "sm3",
       "set_name": "Burning Shadows",
-      "source_key": "pkmncards",
-      "source_alias": "burning-shadows",
+      "source_key": "bulbapedia_set_list",
+      "source_alias": "Burning_Shadows_(TCG)",
       "configured_status": "candidate_url",
       "runtime_status": "collected",
-      "evidence_rows": 177,
+      "evidence_rows": 169,
       "error": null
     },
     {
@@ -6705,7 +6655,7 @@
       "error": null
     },
     {
-      "set_key": "sm35",
+      "set_key": "sm3.5",
       "set_name": "Shining Legends",
       "source_key": "pokemontcg_api",
       "source_alias": "sm35",
@@ -6715,7 +6665,7 @@
       "error": null
     },
     {
-      "set_key": "sm35",
+      "set_key": "sm3.5",
       "set_name": "Shining Legends",
       "source_key": "tcgdex",
       "source_alias": "sm3.5",
@@ -6725,7 +6675,7 @@
       "error": null
     },
     {
-      "set_key": "sm35",
+      "set_key": "sm3.5",
       "set_name": "Shining Legends",
       "source_key": "thepricedex_price_list",
       "source_alias": "sm35",
@@ -6735,17 +6685,17 @@
       "error": null
     },
     {
-      "set_key": "sm35",
+      "set_key": "sm3.5",
       "set_name": "Shining Legends",
-      "source_key": "pkmncards",
-      "source_alias": "shining-legends",
+      "source_key": "bulbapedia_set_list",
+      "source_alias": "Shining_Legends_(TCG)",
       "configured_status": "candidate_url",
       "runtime_status": "collected",
-      "evidence_rows": 81,
+      "evidence_rows": 78,
       "error": null
     },
     {
-      "set_key": "sm35",
+      "set_key": "sm3.5",
       "set_name": "Shining Legends",
       "source_key": "tcgplayer_price_guide",
       "source_alias": null,
@@ -6787,11 +6737,11 @@
     {
       "set_key": "sm4",
       "set_name": "Crimson Invasion",
-      "source_key": "pkmncards",
-      "source_alias": "crimson-invasion",
+      "source_key": "bulbapedia_set_list",
+      "source_alias": "Crimson_Invasion_(TCG)",
       "configured_status": "candidate_url",
       "runtime_status": "collected",
-      "evidence_rows": 126,
+      "evidence_rows": 124,
       "error": null
     },
     {
@@ -6805,7 +6755,7 @@
       "error": null
     },
     {
-      "set_key": "mcd17",
+      "set_key": "2017sm",
       "set_name": "McDonald's Collection 2017",
       "source_key": "pokemontcg_api",
       "source_alias": "mcd17",
@@ -6815,7 +6765,7 @@
       "error": null
     },
     {
-      "set_key": "mcd17",
+      "set_key": "2017sm",
       "set_name": "McDonald's Collection 2017",
       "source_key": "tcgdex",
       "source_alias": "2017sm",
@@ -6825,7 +6775,7 @@
       "error": null
     },
     {
-      "set_key": "mcd17",
+      "set_key": "2017sm",
       "set_name": "McDonald's Collection 2017",
       "source_key": "thepricedex_price_list",
       "source_alias": "mcd17",
@@ -6835,17 +6785,17 @@
       "error": null
     },
     {
-      "set_key": "mcd17",
+      "set_key": "2017sm",
       "set_name": "McDonald's Collection 2017",
-      "source_key": "pkmncards",
-      "source_alias": "mcdonalds-collection-2017",
+      "source_key": "bulbapedia_set_list",
+      "source_alias": "McDonald's_Collection_2017_(TCG)",
       "configured_status": "candidate_url",
       "runtime_status": "error",
       "evidence_rows": 0,
-      "error": "Fetch failed 404 Not Found: https://pkmncards.com/set/mcdonalds-collection-2017/"
+      "error": "Bulbapedia page contained no extractable set-list rows: https://bulbapedia.bulbagarden.net/wiki/McDonald's_Collection_2017_(TCG)"
     },
     {
-      "set_key": "mcd17",
+      "set_key": "2017sm",
       "set_name": "McDonald's Collection 2017",
       "source_key": "tcgplayer_price_guide",
       "source_alias": null,
@@ -6887,8 +6837,8 @@
     {
       "set_key": "sm5",
       "set_name": "Ultra Prism",
-      "source_key": "pkmncards",
-      "source_alias": "ultra-prism",
+      "source_key": "bulbapedia_set_list",
+      "source_alias": "Ultra_Prism_(TCG)",
       "configured_status": "candidate_url",
       "runtime_status": "collected",
       "evidence_rows": 168,
@@ -6937,8 +6887,8 @@
     {
       "set_key": "sm6",
       "set_name": "Forbidden Light",
-      "source_key": "pkmncards",
-      "source_alias": "forbidden-light",
+      "source_key": "bulbapedia_set_list",
+      "source_alias": "Forbidden_Light_(TCG)",
       "configured_status": "candidate_url",
       "runtime_status": "collected",
       "evidence_rows": 143,
@@ -6987,11 +6937,11 @@
     {
       "set_key": "sm7",
       "set_name": "Celestial Storm",
-      "source_key": "pkmncards",
-      "source_alias": "celestial-storm",
+      "source_key": "bulbapedia_set_list",
+      "source_alias": "Celestial_Storm_(TCG)",
       "configured_status": "candidate_url",
       "runtime_status": "collected",
-      "evidence_rows": 184,
+      "evidence_rows": 183,
       "error": null
     },
     {
@@ -7005,7 +6955,7 @@
       "error": null
     },
     {
-      "set_key": "sm75",
+      "set_key": "sm7.5",
       "set_name": "Dragon Majesty",
       "source_key": "pokemontcg_api",
       "source_alias": "sm75",
@@ -7015,7 +6965,7 @@
       "error": null
     },
     {
-      "set_key": "sm75",
+      "set_key": "sm7.5",
       "set_name": "Dragon Majesty",
       "source_key": "tcgdex",
       "source_alias": "sm7.5",
@@ -7025,7 +6975,7 @@
       "error": null
     },
     {
-      "set_key": "sm75",
+      "set_key": "sm7.5",
       "set_name": "Dragon Majesty",
       "source_key": "thepricedex_price_list",
       "source_alias": "sm75",
@@ -7035,17 +6985,17 @@
       "error": null
     },
     {
-      "set_key": "sm75",
+      "set_key": "sm7.5",
       "set_name": "Dragon Majesty",
-      "source_key": "pkmncards",
-      "source_alias": "dragon-majesty",
+      "source_key": "bulbapedia_set_list",
+      "source_alias": "Dragon_Majesty_(TCG)",
       "configured_status": "candidate_url",
       "runtime_status": "collected",
       "evidence_rows": 78,
       "error": null
     },
     {
-      "set_key": "sm75",
+      "set_key": "sm7.5",
       "set_name": "Dragon Majesty",
       "source_key": "tcgplayer_price_guide",
       "source_alias": null,
@@ -7055,7 +7005,7 @@
       "error": null
     },
     {
-      "set_key": "mcd18",
+      "set_key": "2018sm",
       "set_name": "McDonald's Collection 2018",
       "source_key": "pokemontcg_api",
       "source_alias": "mcd18",
@@ -7065,7 +7015,7 @@
       "error": null
     },
     {
-      "set_key": "mcd18",
+      "set_key": "2018sm",
       "set_name": "McDonald's Collection 2018",
       "source_key": "tcgdex",
       "source_alias": "2018sm",
@@ -7075,7 +7025,7 @@
       "error": null
     },
     {
-      "set_key": "mcd18",
+      "set_key": "2018sm",
       "set_name": "McDonald's Collection 2018",
       "source_key": "thepricedex_price_list",
       "source_alias": "mcd18",
@@ -7085,17 +7035,17 @@
       "error": null
     },
     {
-      "set_key": "mcd18",
+      "set_key": "2018sm",
       "set_name": "McDonald's Collection 2018",
-      "source_key": "pkmncards",
-      "source_alias": "mcdonalds-collection-2018",
+      "source_key": "bulbapedia_set_list",
+      "source_alias": "McDonald's_Collection_2018_(TCG)",
       "configured_status": "candidate_url",
-      "runtime_status": "error",
+      "runtime_status": "unavailable",
       "evidence_rows": 0,
-      "error": "Fetch failed 404 Not Found: https://pkmncards.com/set/mcdonalds-collection-2018/"
+      "error": null
     },
     {
-      "set_key": "mcd18",
+      "set_key": "2018sm",
       "set_name": "McDonald's Collection 2018",
       "source_key": "tcgplayer_price_guide",
       "source_alias": null,
@@ -7137,11 +7087,11 @@
     {
       "set_key": "sm8",
       "set_name": "Lost Thunder",
-      "source_key": "pkmncards",
-      "source_alias": "lost-thunder",
+      "source_key": "bulbapedia_set_list",
+      "source_alias": "Lost_Thunder_(TCG)",
       "configured_status": "candidate_url",
       "runtime_status": "collected",
-      "evidence_rows": 229,
+      "evidence_rows": 232,
       "error": null
     },
     {
@@ -7187,11 +7137,11 @@
     {
       "set_key": "sm9",
       "set_name": "Team Up",
-      "source_key": "pkmncards",
-      "source_alias": "team-up",
+      "source_key": "bulbapedia_set_list",
+      "source_alias": "Team_Up_(TCG)",
       "configured_status": "candidate_url",
       "runtime_status": "collected",
-      "evidence_rows": 192,
+      "evidence_rows": 196,
       "error": null
     },
     {
@@ -7237,8 +7187,8 @@
     {
       "set_key": "det1",
       "set_name": "Detective Pikachu",
-      "source_key": "pkmncards",
-      "source_alias": "detective-pikachu",
+      "source_key": "bulbapedia_set_list",
+      "source_alias": "Detective_Pikachu_(TCG)",
       "configured_status": "candidate_url",
       "runtime_status": "collected",
       "evidence_rows": 18,
@@ -7287,11 +7237,11 @@
     {
       "set_key": "sm10",
       "set_name": "Unbroken Bonds",
-      "source_key": "pkmncards",
-      "source_alias": "unbroken-bonds",
+      "source_key": "bulbapedia_set_list",
+      "source_alias": "Unbroken_Bonds_(TCG)",
       "configured_status": "candidate_url",
       "runtime_status": "collected",
-      "evidence_rows": 237,
+      "evidence_rows": 233,
       "error": null
     },
     {
@@ -7337,11 +7287,11 @@
     {
       "set_key": "sm11",
       "set_name": "Unified Minds",
-      "source_key": "pkmncards",
-      "source_alias": "unified-minds",
+      "source_key": "bulbapedia_set_list",
+      "source_alias": "Unified_Minds_(TCG)",
       "configured_status": "candidate_url",
       "runtime_status": "collected",
-      "evidence_rows": 261,
+      "evidence_rows": 258,
       "error": null
     },
     {
@@ -7387,8 +7337,8 @@
     {
       "set_key": "sm115",
       "set_name": "Hidden Fates",
-      "source_key": "pkmncards",
-      "source_alias": "hidden-fates",
+      "source_key": "bulbapedia_set_list",
+      "source_alias": "Hidden_Fates_(TCG)",
       "configured_status": "candidate_url",
       "runtime_status": "collected",
       "evidence_rows": 69,
@@ -7437,12 +7387,12 @@
     {
       "set_key": "sma",
       "set_name": "Hidden Fates Shiny Vault",
-      "source_key": "pkmncards",
-      "source_alias": "hidden-fates-shiny-vault",
+      "source_key": "bulbapedia_set_list",
+      "source_alias": "Hidden_Fates_Shiny_Vault_(TCG)",
       "configured_status": "candidate_url",
       "runtime_status": "error",
       "evidence_rows": 0,
-      "error": "Fetch failed 404 Not Found: https://pkmncards.com/set/hidden-fates-shiny-vault/"
+      "error": "Bulbapedia page contained no extractable set-list rows: https://bulbapedia.bulbagarden.net/wiki/Hidden_Fates_Shiny_Vault_(TCG)"
     },
     {
       "set_key": "sma",
@@ -7455,7 +7405,7 @@
       "error": null
     },
     {
-      "set_key": "mcd19",
+      "set_key": "2019sm",
       "set_name": "McDonald's Collection 2019",
       "source_key": "pokemontcg_api",
       "source_alias": "mcd19",
@@ -7465,7 +7415,7 @@
       "error": null
     },
     {
-      "set_key": "mcd19",
+      "set_key": "2019sm",
       "set_name": "McDonald's Collection 2019",
       "source_key": "tcgdex",
       "source_alias": "2019sm",
@@ -7475,7 +7425,7 @@
       "error": null
     },
     {
-      "set_key": "mcd19",
+      "set_key": "2019sm",
       "set_name": "McDonald's Collection 2019",
       "source_key": "thepricedex_price_list",
       "source_alias": "mcd19",
@@ -7485,17 +7435,17 @@
       "error": null
     },
     {
-      "set_key": "mcd19",
+      "set_key": "2019sm",
       "set_name": "McDonald's Collection 2019",
-      "source_key": "pkmncards",
-      "source_alias": "mcdonalds-collection-2019",
+      "source_key": "bulbapedia_set_list",
+      "source_alias": "McDonald's_Collection_2019_(TCG)",
       "configured_status": "candidate_url",
       "runtime_status": "collected",
       "evidence_rows": 12,
       "error": null
     },
     {
-      "set_key": "mcd19",
+      "set_key": "2019sm",
       "set_name": "McDonald's Collection 2019",
       "source_key": "tcgplayer_price_guide",
       "source_alias": null,
@@ -7537,11 +7487,11 @@
     {
       "set_key": "sm12",
       "set_name": "Cosmic Eclipse",
-      "source_key": "pkmncards",
-      "source_alias": "cosmic-eclipse",
+      "source_key": "bulbapedia_set_list",
+      "source_alias": "Cosmic_Eclipse_(TCG)",
       "configured_status": "candidate_url",
       "runtime_status": "collected",
-      "evidence_rows": 272,
+      "evidence_rows": 271,
       "error": null
     },
     {
@@ -7587,12 +7537,12 @@
     {
       "set_key": "swshp",
       "set_name": "SWSH Black Star Promos",
-      "source_key": "pkmncards",
-      "source_alias": "sword-shield-promos",
+      "source_key": "bulbapedia_set_list",
+      "source_alias": "SWSH_Black_Star_Promos_(TCG)",
       "configured_status": "candidate_url",
       "runtime_status": "error",
       "evidence_rows": 0,
-      "error": "PkmnCards page contained no card rows: https://pkmncards.com/set/sword-shield-promos/"
+      "error": "Bulbapedia page contained no extractable set-list rows: https://bulbapedia.bulbagarden.net/wiki/SWSH_Black_Star_Promos_(TCG)"
     },
     {
       "set_key": "swshp",
@@ -7637,8 +7587,8 @@
     {
       "set_key": "swsh1",
       "set_name": "Sword & Shield",
-      "source_key": "pkmncards",
-      "source_alias": "sword-shield",
+      "source_key": "bulbapedia_set_list",
+      "source_alias": "Sword_&_Shield_(TCG)",
       "configured_status": "candidate_url",
       "runtime_status": "collected",
       "evidence_rows": 213,
@@ -7687,8 +7637,8 @@
     {
       "set_key": "swsh2",
       "set_name": "Rebel Clash",
-      "source_key": "pkmncards",
-      "source_alias": "rebel-clash",
+      "source_key": "bulbapedia_set_list",
+      "source_alias": "Rebel_Clash_(TCG)",
       "configured_status": "candidate_url",
       "runtime_status": "collected",
       "evidence_rows": 207,
@@ -7737,8 +7687,8 @@
     {
       "set_key": "swsh3",
       "set_name": "Darkness Ablaze",
-      "source_key": "pkmncards",
-      "source_alias": "darkness-ablaze",
+      "source_key": "bulbapedia_set_list",
+      "source_alias": "Darkness_Ablaze_(TCG)",
       "configured_status": "candidate_url",
       "runtime_status": "collected",
       "evidence_rows": 198,
@@ -7787,12 +7737,12 @@
     {
       "set_key": "fut20",
       "set_name": "Pokémon Futsal Collection",
-      "source_key": "pkmncards",
-      "source_alias": "pok-mon-futsal-collection",
+      "source_key": "bulbapedia_set_list",
+      "source_alias": "Pokémon_Futsal_Collection_(TCG)",
       "configured_status": "candidate_url",
       "runtime_status": "error",
       "evidence_rows": 0,
-      "error": "Fetch failed 404 Not Found: https://pkmncards.com/set/pok-mon-futsal-collection/"
+      "error": "Bulbapedia page contained no extractable set-list rows: https://bulbapedia.bulbagarden.net/wiki/Pok%C3%A9mon_Futsal_Collection_(TCG)"
     },
     {
       "set_key": "fut20",
@@ -7805,7 +7755,7 @@
       "error": null
     },
     {
-      "set_key": "swsh35",
+      "set_key": "swsh3.5",
       "set_name": "Champion's Path",
       "source_key": "pokemontcg_api",
       "source_alias": "swsh35",
@@ -7815,7 +7765,7 @@
       "error": null
     },
     {
-      "set_key": "swsh35",
+      "set_key": "swsh3.5",
       "set_name": "Champion's Path",
       "source_key": "tcgdex",
       "source_alias": "swsh3.5",
@@ -7825,7 +7775,7 @@
       "error": null
     },
     {
-      "set_key": "swsh35",
+      "set_key": "swsh3.5",
       "set_name": "Champion's Path",
       "source_key": "thepricedex_price_list",
       "source_alias": "swsh35",
@@ -7835,17 +7785,17 @@
       "error": null
     },
     {
-      "set_key": "swsh35",
+      "set_key": "swsh3.5",
       "set_name": "Champion's Path",
-      "source_key": "pkmncards",
-      "source_alias": "champions-path",
+      "source_key": "bulbapedia_set_list",
+      "source_alias": "Champion's_Path_(TCG)",
       "configured_status": "candidate_url",
-      "runtime_status": "collected",
-      "evidence_rows": 79,
-      "error": null
+      "runtime_status": "error",
+      "evidence_rows": 0,
+      "error": "Bulbapedia page contained no extractable set-list rows: https://bulbapedia.bulbagarden.net/wiki/Champion's_Path_(TCG)"
     },
     {
-      "set_key": "swsh35",
+      "set_key": "swsh3.5",
       "set_name": "Champion's Path",
       "source_key": "tcgplayer_price_guide",
       "source_alias": null,
@@ -7887,8 +7837,8 @@
     {
       "set_key": "swsh4",
       "set_name": "Vivid Voltage",
-      "source_key": "pkmncards",
-      "source_alias": "vivid-voltage",
+      "source_key": "bulbapedia_set_list",
+      "source_alias": "Vivid_Voltage_(TCG)",
       "configured_status": "candidate_url",
       "runtime_status": "collected",
       "evidence_rows": 199,
@@ -7905,7 +7855,7 @@
       "error": null
     },
     {
-      "set_key": "mcd21",
+      "set_key": "2021swsh",
       "set_name": "McDonald's Collection 2021",
       "source_key": "pokemontcg_api",
       "source_alias": "mcd21",
@@ -7915,7 +7865,7 @@
       "error": null
     },
     {
-      "set_key": "mcd21",
+      "set_key": "2021swsh",
       "set_name": "McDonald's Collection 2021",
       "source_key": "tcgdex",
       "source_alias": "2021swsh",
@@ -7925,7 +7875,7 @@
       "error": null
     },
     {
-      "set_key": "mcd21",
+      "set_key": "2021swsh",
       "set_name": "McDonald's Collection 2021",
       "source_key": "thepricedex_price_list",
       "source_alias": "mcd21",
@@ -7935,17 +7885,17 @@
       "error": null
     },
     {
-      "set_key": "mcd21",
+      "set_key": "2021swsh",
       "set_name": "McDonald's Collection 2021",
-      "source_key": "pkmncards",
-      "source_alias": "mcdonalds-collection-2021",
+      "source_key": "bulbapedia_set_list",
+      "source_alias": "McDonald's_Collection_2021_(TCG)",
       "configured_status": "candidate_url",
-      "runtime_status": "collected",
-      "evidence_rows": 25,
-      "error": null
+      "runtime_status": "error",
+      "evidence_rows": 0,
+      "error": "Bulbapedia page contained no extractable set-list rows: https://bulbapedia.bulbagarden.net/wiki/McDonald's_Collection_2021_(TCG)"
     },
     {
-      "set_key": "mcd21",
+      "set_key": "2021swsh",
       "set_name": "McDonald's Collection 2021",
       "source_key": "tcgplayer_price_guide",
       "source_alias": null,
@@ -7955,7 +7905,7 @@
       "error": null
     },
     {
-      "set_key": "swsh45",
+      "set_key": "swsh4.5",
       "set_name": "Shining Fates",
       "source_key": "pokemontcg_api",
       "source_alias": "swsh45",
@@ -7965,7 +7915,7 @@
       "error": null
     },
     {
-      "set_key": "swsh45",
+      "set_key": "swsh4.5",
       "set_name": "Shining Fates",
       "source_key": "tcgdex",
       "source_alias": "swsh4.5",
@@ -7975,7 +7925,7 @@
       "error": null
     },
     {
-      "set_key": "swsh45",
+      "set_key": "swsh4.5",
       "set_name": "Shining Fates",
       "source_key": "thepricedex_price_list",
       "source_alias": "swsh45",
@@ -7985,17 +7935,17 @@
       "error": null
     },
     {
-      "set_key": "swsh45",
+      "set_key": "swsh4.5",
       "set_name": "Shining Fates",
-      "source_key": "pkmncards",
-      "source_alias": "shining-fates",
+      "source_key": "bulbapedia_set_list",
+      "source_alias": "Shining_Fates_(TCG)",
       "configured_status": "candidate_url",
-      "runtime_status": "collected",
-      "evidence_rows": 195,
-      "error": null
+      "runtime_status": "error",
+      "evidence_rows": 0,
+      "error": "Bulbapedia page contained no extractable set-list rows: https://bulbapedia.bulbagarden.net/wiki/Shining_Fates_(TCG)"
     },
     {
-      "set_key": "swsh45",
+      "set_key": "swsh4.5",
       "set_name": "Shining Fates",
       "source_key": "tcgplayer_price_guide",
       "source_alias": null,
@@ -8037,12 +7987,12 @@
     {
       "set_key": "swsh45sv",
       "set_name": "Shining Fates Shiny Vault",
-      "source_key": "pkmncards",
-      "source_alias": "shining-fates-shiny-vault",
+      "source_key": "bulbapedia_set_list",
+      "source_alias": "Shining_Fates_Shiny_Vault_(TCG)",
       "configured_status": "candidate_url",
       "runtime_status": "error",
       "evidence_rows": 0,
-      "error": "Fetch failed 404 Not Found: https://pkmncards.com/set/shining-fates-shiny-vault/"
+      "error": "Bulbapedia page contained no extractable set-list rows: https://bulbapedia.bulbagarden.net/wiki/Shining_Fates_Shiny_Vault_(TCG)"
     },
     {
       "set_key": "swsh45sv",
@@ -8087,8 +8037,8 @@
     {
       "set_key": "swsh5",
       "set_name": "Battle Styles",
-      "source_key": "pkmncards",
-      "source_alias": "battle-styles",
+      "source_key": "bulbapedia_set_list",
+      "source_alias": "Battle_Styles_(TCG)",
       "configured_status": "candidate_url",
       "runtime_status": "collected",
       "evidence_rows": 183,
@@ -8137,8 +8087,8 @@
     {
       "set_key": "swsh6",
       "set_name": "Chilling Reign",
-      "source_key": "pkmncards",
-      "source_alias": "chilling-reign",
+      "source_key": "bulbapedia_set_list",
+      "source_alias": "Chilling_Reign_(TCG)",
       "configured_status": "candidate_url",
       "runtime_status": "collected",
       "evidence_rows": 233,
@@ -8187,8 +8137,8 @@
     {
       "set_key": "swsh7",
       "set_name": "Evolving Skies",
-      "source_key": "pkmncards",
-      "source_alias": "evolving-skies",
+      "source_key": "bulbapedia_set_list",
+      "source_alias": "Evolving_Skies_(TCG)",
       "configured_status": "candidate_url",
       "runtime_status": "collected",
       "evidence_rows": 237,
@@ -8237,11 +8187,11 @@
     {
       "set_key": "cel25",
       "set_name": "Celebrations",
-      "source_key": "pkmncards",
-      "source_alias": "celebrations",
+      "source_key": "bulbapedia_set_list",
+      "source_alias": "Celebrations_(TCG)",
       "configured_status": "candidate_url",
       "runtime_status": "collected",
-      "evidence_rows": 47,
+      "evidence_rows": 23,
       "error": null
     },
     {
@@ -8287,12 +8237,12 @@
     {
       "set_key": "cel25c",
       "set_name": "Celebrations: Classic Collection",
-      "source_key": "pkmncards",
-      "source_alias": "celebrations-classic-collection",
+      "source_key": "bulbapedia_set_list",
+      "source_alias": "Celebrations:_Classic_Collection_(TCG)",
       "configured_status": "candidate_url",
       "runtime_status": "error",
       "evidence_rows": 0,
-      "error": "Fetch failed 404 Not Found: https://pkmncards.com/set/celebrations-classic-collection/"
+      "error": "Bulbapedia page contained no extractable set-list rows: https://bulbapedia.bulbagarden.net/wiki/Celebrations%3A_Classic_Collection_(TCG)"
     },
     {
       "set_key": "cel25c",
@@ -8337,8 +8287,8 @@
     {
       "set_key": "swsh8",
       "set_name": "Fusion Strike",
-      "source_key": "pkmncards",
-      "source_alias": "fusion-strike",
+      "source_key": "bulbapedia_set_list",
+      "source_alias": "Fusion_Strike_(TCG)",
       "configured_status": "candidate_url",
       "runtime_status": "collected",
       "evidence_rows": 284,
@@ -8387,12 +8337,12 @@
     {
       "set_key": "swsh9",
       "set_name": "Brilliant Stars",
-      "source_key": "pkmncards",
-      "source_alias": "brilliant-stars",
+      "source_key": "bulbapedia_set_list",
+      "source_alias": "Brilliant_Stars_(TCG)",
       "configured_status": "candidate_url",
-      "runtime_status": "collected",
-      "evidence_rows": 216,
-      "error": null
+      "runtime_status": "error",
+      "evidence_rows": 0,
+      "error": "Bulbapedia page contained no extractable set-list rows: https://bulbapedia.bulbagarden.net/wiki/Brilliant_Stars_(TCG)"
     },
     {
       "set_key": "swsh9",
@@ -8437,12 +8387,12 @@
     {
       "set_key": "swsh9tg",
       "set_name": "Brilliant Stars Trainer Gallery",
-      "source_key": "pkmncards",
-      "source_alias": "brilliant-stars-trainer-gallery",
+      "source_key": "bulbapedia_set_list",
+      "source_alias": "Brilliant_Stars_Trainer_Gallery_(TCG)",
       "configured_status": "candidate_url",
       "runtime_status": "error",
       "evidence_rows": 0,
-      "error": "Fetch failed 404 Not Found: https://pkmncards.com/set/brilliant-stars-trainer-gallery/"
+      "error": "Bulbapedia page contained no extractable set-list rows: https://bulbapedia.bulbagarden.net/wiki/Brilliant_Stars_Trainer_Gallery_(TCG)"
     },
     {
       "set_key": "swsh9tg",
@@ -8487,11 +8437,11 @@
     {
       "set_key": "swsh10",
       "set_name": "Astral Radiance",
-      "source_key": "pkmncards",
-      "source_alias": "astral-radiance",
+      "source_key": "bulbapedia_set_list",
+      "source_alias": "Astral_Radiance_(TCG)",
       "configured_status": "candidate_url",
       "runtime_status": "collected",
-      "evidence_rows": 246,
+      "evidence_rows": 216,
       "error": null
     },
     {
@@ -8537,12 +8487,12 @@
     {
       "set_key": "swsh10tg",
       "set_name": "Astral Radiance Trainer Gallery",
-      "source_key": "pkmncards",
-      "source_alias": "astral-radiance-trainer-gallery",
+      "source_key": "bulbapedia_set_list",
+      "source_alias": "Astral_Radiance_Trainer_Gallery_(TCG)",
       "configured_status": "candidate_url",
       "runtime_status": "error",
       "evidence_rows": 0,
-      "error": "Fetch failed 404 Not Found: https://pkmncards.com/set/astral-radiance-trainer-gallery/"
+      "error": "Bulbapedia page contained no extractable set-list rows: https://bulbapedia.bulbagarden.net/wiki/Astral_Radiance_Trainer_Gallery_(TCG)"
     },
     {
       "set_key": "swsh10tg",
@@ -8555,7 +8505,7 @@
       "error": null
     },
     {
-      "set_key": "pgo",
+      "set_key": "swsh10.5",
       "set_name": "Pokémon GO",
       "source_key": "pokemontcg_api",
       "source_alias": "pgo",
@@ -8565,7 +8515,7 @@
       "error": null
     },
     {
-      "set_key": "pgo",
+      "set_key": "swsh10.5",
       "set_name": "Pokémon GO",
       "source_key": "tcgdex",
       "source_alias": "swsh10.5",
@@ -8575,7 +8525,7 @@
       "error": null
     },
     {
-      "set_key": "pgo",
+      "set_key": "swsh10.5",
       "set_name": "Pokémon GO",
       "source_key": "thepricedex_price_list",
       "source_alias": "pgo",
@@ -8585,17 +8535,17 @@
       "error": null
     },
     {
-      "set_key": "pgo",
+      "set_key": "swsh10.5",
       "set_name": "Pokémon GO",
-      "source_key": "pkmncards",
-      "source_alias": "pok-mon-go",
+      "source_key": "bulbapedia_set_list",
+      "source_alias": "Pokémon_GO_(TCG)",
       "configured_status": "candidate_url",
-      "runtime_status": "error",
-      "evidence_rows": 0,
-      "error": "Fetch failed 404 Not Found: https://pkmncards.com/set/pok-mon-go/"
+      "runtime_status": "collected",
+      "evidence_rows": 88,
+      "error": null
     },
     {
-      "set_key": "pgo",
+      "set_key": "swsh10.5",
       "set_name": "Pokémon GO",
       "source_key": "tcgplayer_price_guide",
       "source_alias": null,
@@ -8605,7 +8555,7 @@
       "error": null
     },
     {
-      "set_key": "mcd22",
+      "set_key": "2022swsh",
       "set_name": "McDonald's Collection 2022",
       "source_key": "pokemontcg_api",
       "source_alias": "mcd22",
@@ -8615,7 +8565,7 @@
       "error": null
     },
     {
-      "set_key": "mcd22",
+      "set_key": "2022swsh",
       "set_name": "McDonald's Collection 2022",
       "source_key": "tcgdex",
       "source_alias": "2022swsh",
@@ -8625,7 +8575,7 @@
       "error": null
     },
     {
-      "set_key": "mcd22",
+      "set_key": "2022swsh",
       "set_name": "McDonald's Collection 2022",
       "source_key": "thepricedex_price_list",
       "source_alias": "mcd22",
@@ -8635,17 +8585,17 @@
       "error": null
     },
     {
-      "set_key": "mcd22",
+      "set_key": "2022swsh",
       "set_name": "McDonald's Collection 2022",
-      "source_key": "pkmncards",
-      "source_alias": "mcdonalds-collection-2022",
+      "source_key": "bulbapedia_set_list",
+      "source_alias": "McDonald's_Collection_2022_(TCG)",
       "configured_status": "candidate_url",
-      "runtime_status": "collected",
-      "evidence_rows": 15,
-      "error": null
+      "runtime_status": "error",
+      "evidence_rows": 0,
+      "error": "Bulbapedia page contained no extractable set-list rows: https://bulbapedia.bulbagarden.net/wiki/McDonald's_Collection_2022_(TCG)"
     },
     {
-      "set_key": "mcd22",
+      "set_key": "2022swsh",
       "set_name": "McDonald's Collection 2022",
       "source_key": "tcgplayer_price_guide",
       "source_alias": null,
@@ -8687,12 +8637,12 @@
     {
       "set_key": "swsh11",
       "set_name": "Lost Origin",
-      "source_key": "pkmncards",
-      "source_alias": "lost-origin",
+      "source_key": "bulbapedia_set_list",
+      "source_alias": "Lost_Origin_(TCG)",
       "configured_status": "candidate_url",
-      "runtime_status": "collected",
-      "evidence_rows": 247,
-      "error": null
+      "runtime_status": "error",
+      "evidence_rows": 0,
+      "error": "Bulbapedia page contained no extractable set-list rows: https://bulbapedia.bulbagarden.net/wiki/Lost_Origin_(TCG)"
     },
     {
       "set_key": "swsh11",
@@ -8737,12 +8687,12 @@
     {
       "set_key": "swsh11tg",
       "set_name": "Lost Origin Trainer Gallery",
-      "source_key": "pkmncards",
-      "source_alias": "lost-origin-trainer-gallery",
+      "source_key": "bulbapedia_set_list",
+      "source_alias": "Lost_Origin_Trainer_Gallery_(TCG)",
       "configured_status": "candidate_url",
       "runtime_status": "error",
       "evidence_rows": 0,
-      "error": "Fetch failed 404 Not Found: https://pkmncards.com/set/lost-origin-trainer-gallery/"
+      "error": "Bulbapedia page contained no extractable set-list rows: https://bulbapedia.bulbagarden.net/wiki/Lost_Origin_Trainer_Gallery_(TCG)"
     },
     {
       "set_key": "swsh11tg",
@@ -8787,12 +8737,12 @@
     {
       "set_key": "swsh12",
       "set_name": "Silver Tempest",
-      "source_key": "pkmncards",
-      "source_alias": "silver-tempest",
+      "source_key": "bulbapedia_set_list",
+      "source_alias": "Silver_Tempest_(TCG)",
       "configured_status": "candidate_url",
-      "runtime_status": "collected",
-      "evidence_rows": 245,
-      "error": null
+      "runtime_status": "error",
+      "evidence_rows": 0,
+      "error": "Bulbapedia page contained no extractable set-list rows: https://bulbapedia.bulbagarden.net/wiki/Silver_Tempest_(TCG)"
     },
     {
       "set_key": "swsh12",
@@ -8837,12 +8787,12 @@
     {
       "set_key": "swsh12tg",
       "set_name": "Silver Tempest Trainer Gallery",
-      "source_key": "pkmncards",
-      "source_alias": "silver-tempest-trainer-gallery",
+      "source_key": "bulbapedia_set_list",
+      "source_alias": "Silver_Tempest_Trainer_Gallery_(TCG)",
       "configured_status": "candidate_url",
       "runtime_status": "error",
       "evidence_rows": 0,
-      "error": "Fetch failed 404 Not Found: https://pkmncards.com/set/silver-tempest-trainer-gallery/"
+      "error": "Bulbapedia page contained no extractable set-list rows: https://bulbapedia.bulbagarden.net/wiki/Silver_Tempest_Trainer_Gallery_(TCG)"
     },
     {
       "set_key": "swsh12tg",
@@ -8887,12 +8837,12 @@
     {
       "set_key": "svp",
       "set_name": "Scarlet & Violet Black Star Promos",
-      "source_key": "pkmncards",
-      "source_alias": "scarlet-violet-promos",
+      "source_key": "bulbapedia_set_list",
+      "source_alias": "SV_Black_Star_Promos_(TCG)",
       "configured_status": "candidate_url",
-      "runtime_status": "collected",
-      "evidence_rows": 224,
-      "error": null
+      "runtime_status": "error",
+      "evidence_rows": 0,
+      "error": "Bulbapedia page contained no extractable set-list rows: https://bulbapedia.bulbagarden.net/wiki/SV_Black_Star_Promos_(TCG)"
     },
     {
       "set_key": "svp",
@@ -8905,7 +8855,7 @@
       "error": null
     },
     {
-      "set_key": "swsh12pt5",
+      "set_key": "swsh12.5",
       "set_name": "Crown Zenith",
       "source_key": "pokemontcg_api",
       "source_alias": "swsh12pt5",
@@ -8915,7 +8865,7 @@
       "error": null
     },
     {
-      "set_key": "swsh12pt5",
+      "set_key": "swsh12.5",
       "set_name": "Crown Zenith",
       "source_key": "tcgdex",
       "source_alias": "swsh12.5",
@@ -8925,7 +8875,7 @@
       "error": null
     },
     {
-      "set_key": "swsh12pt5",
+      "set_key": "swsh12.5",
       "set_name": "Crown Zenith",
       "source_key": "thepricedex_price_list",
       "source_alias": "swsh12pt5",
@@ -8935,17 +8885,17 @@
       "error": null
     },
     {
-      "set_key": "swsh12pt5",
+      "set_key": "swsh12.5",
       "set_name": "Crown Zenith",
-      "source_key": "pkmncards",
-      "source_alias": "crown-zenith",
+      "source_key": "bulbapedia_set_list",
+      "source_alias": "Crown_Zenith_(TCG)",
       "configured_status": "candidate_url",
-      "runtime_status": "collected",
-      "evidence_rows": 230,
-      "error": null
+      "runtime_status": "error",
+      "evidence_rows": 0,
+      "error": "Bulbapedia page contained no extractable set-list rows: https://bulbapedia.bulbagarden.net/wiki/Crown_Zenith_(TCG)"
     },
     {
-      "set_key": "swsh12pt5",
+      "set_key": "swsh12.5",
       "set_name": "Crown Zenith",
       "source_key": "tcgplayer_price_guide",
       "source_alias": null,
@@ -8987,12 +8937,12 @@
     {
       "set_key": "swsh12pt5gg",
       "set_name": "Crown Zenith Galarian Gallery",
-      "source_key": "pkmncards",
-      "source_alias": "crown-zenith-galarian-gallery",
+      "source_key": "bulbapedia_set_list",
+      "source_alias": "Crown_Zenith_Galarian_Gallery_(TCG)",
       "configured_status": "candidate_url",
       "runtime_status": "error",
       "evidence_rows": 0,
-      "error": "Fetch failed 404 Not Found: https://pkmncards.com/set/crown-zenith-galarian-gallery/"
+      "error": "Bulbapedia page contained no extractable set-list rows: https://bulbapedia.bulbagarden.net/wiki/Crown_Zenith_Galarian_Gallery_(TCG)"
     },
     {
       "set_key": "swsh12pt5gg",
@@ -9005,7 +8955,7 @@
       "error": null
     },
     {
-      "set_key": "sv1",
+      "set_key": "sv01",
       "set_name": "Scarlet & Violet",
       "source_key": "pokemontcg_api",
       "source_alias": "sv1",
@@ -9015,7 +8965,7 @@
       "error": null
     },
     {
-      "set_key": "sv1",
+      "set_key": "sv01",
       "set_name": "Scarlet & Violet",
       "source_key": "tcgdex",
       "source_alias": "sv01",
@@ -9025,7 +8975,7 @@
       "error": null
     },
     {
-      "set_key": "sv1",
+      "set_key": "sv01",
       "set_name": "Scarlet & Violet",
       "source_key": "thepricedex_price_list",
       "source_alias": "sv1",
@@ -9035,17 +8985,17 @@
       "error": null
     },
     {
-      "set_key": "sv1",
+      "set_key": "sv01",
       "set_name": "Scarlet & Violet",
-      "source_key": "pkmncards",
-      "source_alias": "scarlet-violet",
+      "source_key": "bulbapedia_set_list",
+      "source_alias": "Scarlet_&_Violet_(TCG)",
       "configured_status": "candidate_url",
       "runtime_status": "collected",
-      "evidence_rows": 256,
+      "evidence_rows": 258,
       "error": null
     },
     {
-      "set_key": "sv1",
+      "set_key": "sv01",
       "set_name": "Scarlet & Violet",
       "source_key": "tcgplayer_price_guide",
       "source_alias": null,
@@ -9087,12 +9037,12 @@
     {
       "set_key": "sve",
       "set_name": "Scarlet & Violet Energies",
-      "source_key": "pkmncards",
-      "source_alias": "scarlet-violet-energies",
+      "source_key": "bulbapedia_set_list",
+      "source_alias": "Scarlet_&_Violet_Energies_(TCG)",
       "configured_status": "candidate_url",
       "runtime_status": "error",
       "evidence_rows": 0,
-      "error": "Fetch failed 404 Not Found: https://pkmncards.com/set/scarlet-violet-energies/"
+      "error": "Bulbapedia page contained no extractable set-list rows: https://bulbapedia.bulbagarden.net/wiki/Scarlet_%26_Violet_Energies_(TCG)"
     },
     {
       "set_key": "sve",
@@ -9105,7 +9055,7 @@
       "error": null
     },
     {
-      "set_key": "sv2",
+      "set_key": "sv02",
       "set_name": "Paldea Evolved",
       "source_key": "pokemontcg_api",
       "source_alias": "sv2",
@@ -9115,7 +9065,7 @@
       "error": null
     },
     {
-      "set_key": "sv2",
+      "set_key": "sv02",
       "set_name": "Paldea Evolved",
       "source_key": "tcgdex",
       "source_alias": "sv02",
@@ -9125,7 +9075,7 @@
       "error": null
     },
     {
-      "set_key": "sv2",
+      "set_key": "sv02",
       "set_name": "Paldea Evolved",
       "source_key": "thepricedex_price_list",
       "source_alias": "sv2",
@@ -9135,17 +9085,17 @@
       "error": null
     },
     {
-      "set_key": "sv2",
+      "set_key": "sv02",
       "set_name": "Paldea Evolved",
-      "source_key": "pkmncards",
-      "source_alias": "paldea-evolved",
+      "source_key": "bulbapedia_set_list",
+      "source_alias": "Paldea_Evolved_(TCG)",
       "configured_status": "candidate_url",
-      "runtime_status": "collected",
-      "evidence_rows": 277,
-      "error": null
+      "runtime_status": "error",
+      "evidence_rows": 0,
+      "error": "Bulbapedia page contained no extractable set-list rows: https://bulbapedia.bulbagarden.net/wiki/Paldea_Evolved_(TCG)"
     },
     {
-      "set_key": "sv2",
+      "set_key": "sv02",
       "set_name": "Paldea Evolved",
       "source_key": "tcgplayer_price_guide",
       "source_alias": null,
@@ -9155,7 +9105,7 @@
       "error": null
     },
     {
-      "set_key": "sv3",
+      "set_key": "sv03",
       "set_name": "Obsidian Flames",
       "source_key": "pokemontcg_api",
       "source_alias": "sv3",
@@ -9165,7 +9115,7 @@
       "error": null
     },
     {
-      "set_key": "sv3",
+      "set_key": "sv03",
       "set_name": "Obsidian Flames",
       "source_key": "tcgdex",
       "source_alias": "sv03",
@@ -9175,7 +9125,7 @@
       "error": null
     },
     {
-      "set_key": "sv3",
+      "set_key": "sv03",
       "set_name": "Obsidian Flames",
       "source_key": "thepricedex_price_list",
       "source_alias": "sv3",
@@ -9185,17 +9135,17 @@
       "error": null
     },
     {
-      "set_key": "sv3",
+      "set_key": "sv03",
       "set_name": "Obsidian Flames",
-      "source_key": "pkmncards",
-      "source_alias": "obsidian-flames",
+      "source_key": "bulbapedia_set_list",
+      "source_alias": "Obsidian_Flames_(TCG)",
       "configured_status": "candidate_url",
-      "runtime_status": "collected",
-      "evidence_rows": 229,
-      "error": null
+      "runtime_status": "error",
+      "evidence_rows": 0,
+      "error": "Bulbapedia page contained no extractable set-list rows: https://bulbapedia.bulbagarden.net/wiki/Obsidian_Flames_(TCG)"
     },
     {
-      "set_key": "sv3",
+      "set_key": "sv03",
       "set_name": "Obsidian Flames",
       "source_key": "tcgplayer_price_guide",
       "source_alias": null,
@@ -9205,7 +9155,7 @@
       "error": null
     },
     {
-      "set_key": "sv3pt5",
+      "set_key": "sv03.5",
       "set_name": "151",
       "source_key": "pokemontcg_api",
       "source_alias": "sv3pt5",
@@ -9215,7 +9165,7 @@
       "error": null
     },
     {
-      "set_key": "sv3pt5",
+      "set_key": "sv03.5",
       "set_name": "151",
       "source_key": "tcgdex",
       "source_alias": "sv03.5",
@@ -9225,7 +9175,7 @@
       "error": null
     },
     {
-      "set_key": "sv3pt5",
+      "set_key": "sv03.5",
       "set_name": "151",
       "source_key": "thepricedex_price_list",
       "source_alias": "sv3pt5",
@@ -9235,17 +9185,17 @@
       "error": null
     },
     {
-      "set_key": "sv3pt5",
+      "set_key": "sv03.5",
       "set_name": "151",
-      "source_key": "pkmncards",
-      "source_alias": "151",
+      "source_key": "bulbapedia_set_list",
+      "source_alias": "151_(TCG)",
       "configured_status": "candidate_url",
-      "runtime_status": "collected",
-      "evidence_rows": 204,
-      "error": null
+      "runtime_status": "error",
+      "evidence_rows": 0,
+      "error": "Bulbapedia page contained no extractable set-list rows: https://bulbapedia.bulbagarden.net/wiki/151_(TCG)"
     },
     {
-      "set_key": "sv3pt5",
+      "set_key": "sv03.5",
       "set_name": "151",
       "source_key": "tcgplayer_price_guide",
       "source_alias": null,
@@ -9255,7 +9205,7 @@
       "error": null
     },
     {
-      "set_key": "sv4",
+      "set_key": "sv04",
       "set_name": "Paradox Rift",
       "source_key": "pokemontcg_api",
       "source_alias": "sv4",
@@ -9265,7 +9215,7 @@
       "error": null
     },
     {
-      "set_key": "sv4",
+      "set_key": "sv04",
       "set_name": "Paradox Rift",
       "source_key": "tcgdex",
       "source_alias": "sv04",
@@ -9275,7 +9225,7 @@
       "error": null
     },
     {
-      "set_key": "sv4",
+      "set_key": "sv04",
       "set_name": "Paradox Rift",
       "source_key": "thepricedex_price_list",
       "source_alias": "sv4",
@@ -9285,17 +9235,17 @@
       "error": null
     },
     {
-      "set_key": "sv4",
+      "set_key": "sv04",
       "set_name": "Paradox Rift",
-      "source_key": "pkmncards",
-      "source_alias": "paradox-rift",
+      "source_key": "bulbapedia_set_list",
+      "source_alias": "Paradox_Rift_(TCG)",
       "configured_status": "candidate_url",
-      "runtime_status": "collected",
-      "evidence_rows": 266,
-      "error": null
+      "runtime_status": "error",
+      "evidence_rows": 0,
+      "error": "Bulbapedia page contained no extractable set-list rows: https://bulbapedia.bulbagarden.net/wiki/Paradox_Rift_(TCG)"
     },
     {
-      "set_key": "sv4",
+      "set_key": "sv04",
       "set_name": "Paradox Rift",
       "source_key": "tcgplayer_price_guide",
       "source_alias": null,
@@ -9305,7 +9255,7 @@
       "error": null
     },
     {
-      "set_key": "sv4pt5",
+      "set_key": "sv04.5",
       "set_name": "Paldean Fates",
       "source_key": "pokemontcg_api",
       "source_alias": "sv4pt5",
@@ -9315,7 +9265,7 @@
       "error": null
     },
     {
-      "set_key": "sv4pt5",
+      "set_key": "sv04.5",
       "set_name": "Paldean Fates",
       "source_key": "tcgdex",
       "source_alias": "sv04.5",
@@ -9325,7 +9275,7 @@
       "error": null
     },
     {
-      "set_key": "sv4pt5",
+      "set_key": "sv04.5",
       "set_name": "Paldean Fates",
       "source_key": "thepricedex_price_list",
       "source_alias": "sv4pt5",
@@ -9335,17 +9285,17 @@
       "error": null
     },
     {
-      "set_key": "sv4pt5",
+      "set_key": "sv04.5",
       "set_name": "Paldean Fates",
-      "source_key": "pkmncards",
-      "source_alias": "paldean-fates",
+      "source_key": "bulbapedia_set_list",
+      "source_alias": "Paldean_Fates_(TCG)",
       "configured_status": "candidate_url",
-      "runtime_status": "collected",
-      "evidence_rows": 245,
-      "error": null
+      "runtime_status": "error",
+      "evidence_rows": 0,
+      "error": "Bulbapedia page contained no extractable set-list rows: https://bulbapedia.bulbagarden.net/wiki/Paldean_Fates_(TCG)"
     },
     {
-      "set_key": "sv4pt5",
+      "set_key": "sv04.5",
       "set_name": "Paldean Fates",
       "source_key": "tcgplayer_price_guide",
       "source_alias": null,
@@ -9355,7 +9305,7 @@
       "error": null
     },
     {
-      "set_key": "sv5",
+      "set_key": "sv05",
       "set_name": "Temporal Forces",
       "source_key": "pokemontcg_api",
       "source_alias": "sv5",
@@ -9365,7 +9315,7 @@
       "error": null
     },
     {
-      "set_key": "sv5",
+      "set_key": "sv05",
       "set_name": "Temporal Forces",
       "source_key": "tcgdex",
       "source_alias": "sv05",
@@ -9375,7 +9325,7 @@
       "error": null
     },
     {
-      "set_key": "sv5",
+      "set_key": "sv05",
       "set_name": "Temporal Forces",
       "source_key": "thepricedex_price_list",
       "source_alias": "sv5",
@@ -9385,17 +9335,17 @@
       "error": null
     },
     {
-      "set_key": "sv5",
+      "set_key": "sv05",
       "set_name": "Temporal Forces",
-      "source_key": "pkmncards",
-      "source_alias": "temporal-forces",
+      "source_key": "bulbapedia_set_list",
+      "source_alias": "Temporal_Forces_(TCG)",
       "configured_status": "candidate_url",
-      "runtime_status": "collected",
-      "evidence_rows": 218,
-      "error": null
+      "runtime_status": "error",
+      "evidence_rows": 0,
+      "error": "Bulbapedia page contained no extractable set-list rows: https://bulbapedia.bulbagarden.net/wiki/Temporal_Forces_(TCG)"
     },
     {
-      "set_key": "sv5",
+      "set_key": "sv05",
       "set_name": "Temporal Forces",
       "source_key": "tcgplayer_price_guide",
       "source_alias": null,
@@ -9405,7 +9355,7 @@
       "error": null
     },
     {
-      "set_key": "sv6",
+      "set_key": "sv06",
       "set_name": "Twilight Masquerade",
       "source_key": "pokemontcg_api",
       "source_alias": "sv6",
@@ -9415,7 +9365,7 @@
       "error": null
     },
     {
-      "set_key": "sv6",
+      "set_key": "sv06",
       "set_name": "Twilight Masquerade",
       "source_key": "tcgdex",
       "source_alias": "sv06",
@@ -9425,7 +9375,7 @@
       "error": null
     },
     {
-      "set_key": "sv6",
+      "set_key": "sv06",
       "set_name": "Twilight Masquerade",
       "source_key": "thepricedex_price_list",
       "source_alias": "sv6",
@@ -9435,17 +9385,17 @@
       "error": null
     },
     {
-      "set_key": "sv6",
+      "set_key": "sv06",
       "set_name": "Twilight Masquerade",
-      "source_key": "pkmncards",
-      "source_alias": "twilight-masquerade",
+      "source_key": "bulbapedia_set_list",
+      "source_alias": "Twilight_Masquerade_(TCG)",
       "configured_status": "candidate_url",
-      "runtime_status": "collected",
-      "evidence_rows": 226,
-      "error": null
+      "runtime_status": "error",
+      "evidence_rows": 0,
+      "error": "Bulbapedia page contained no extractable set-list rows: https://bulbapedia.bulbagarden.net/wiki/Twilight_Masquerade_(TCG)"
     },
     {
-      "set_key": "sv6",
+      "set_key": "sv06",
       "set_name": "Twilight Masquerade",
       "source_key": "tcgplayer_price_guide",
       "source_alias": null,
@@ -9455,7 +9405,7 @@
       "error": null
     },
     {
-      "set_key": "sv6pt5",
+      "set_key": "sv06.5",
       "set_name": "Shrouded Fable",
       "source_key": "pokemontcg_api",
       "source_alias": "sv6pt5",
@@ -9465,7 +9415,7 @@
       "error": null
     },
     {
-      "set_key": "sv6pt5",
+      "set_key": "sv06.5",
       "set_name": "Shrouded Fable",
       "source_key": "tcgdex",
       "source_alias": "sv06.5",
@@ -9475,7 +9425,7 @@
       "error": null
     },
     {
-      "set_key": "sv6pt5",
+      "set_key": "sv06.5",
       "set_name": "Shrouded Fable",
       "source_key": "thepricedex_price_list",
       "source_alias": "sv6pt5",
@@ -9485,17 +9435,17 @@
       "error": null
     },
     {
-      "set_key": "sv6pt5",
+      "set_key": "sv06.5",
       "set_name": "Shrouded Fable",
-      "source_key": "pkmncards",
-      "source_alias": "shrouded-fable",
+      "source_key": "bulbapedia_set_list",
+      "source_alias": "Shrouded_Fable_(TCG)",
       "configured_status": "candidate_url",
-      "runtime_status": "collected",
-      "evidence_rows": 97,
-      "error": null
+      "runtime_status": "error",
+      "evidence_rows": 0,
+      "error": "Bulbapedia page contained no extractable set-list rows: https://bulbapedia.bulbagarden.net/wiki/Shrouded_Fable_(TCG)"
     },
     {
-      "set_key": "sv6pt5",
+      "set_key": "sv06.5",
       "set_name": "Shrouded Fable",
       "source_key": "tcgplayer_price_guide",
       "source_alias": null,
@@ -9505,7 +9455,7 @@
       "error": null
     },
     {
-      "set_key": "sv7",
+      "set_key": "sv07",
       "set_name": "Stellar Crown",
       "source_key": "pokemontcg_api",
       "source_alias": "sv7",
@@ -9515,7 +9465,7 @@
       "error": null
     },
     {
-      "set_key": "sv7",
+      "set_key": "sv07",
       "set_name": "Stellar Crown",
       "source_key": "tcgdex",
       "source_alias": "sv07",
@@ -9525,7 +9475,7 @@
       "error": null
     },
     {
-      "set_key": "sv7",
+      "set_key": "sv07",
       "set_name": "Stellar Crown",
       "source_key": "thepricedex_price_list",
       "source_alias": "sv7",
@@ -9535,17 +9485,17 @@
       "error": null
     },
     {
-      "set_key": "sv7",
+      "set_key": "sv07",
       "set_name": "Stellar Crown",
-      "source_key": "pkmncards",
-      "source_alias": "stellar-crown",
+      "source_key": "bulbapedia_set_list",
+      "source_alias": "Stellar_Crown_(TCG)",
       "configured_status": "candidate_url",
-      "runtime_status": "collected",
-      "evidence_rows": 175,
-      "error": null
+      "runtime_status": "error",
+      "evidence_rows": 0,
+      "error": "Bulbapedia page contained no extractable set-list rows: https://bulbapedia.bulbagarden.net/wiki/Stellar_Crown_(TCG)"
     },
     {
-      "set_key": "sv7",
+      "set_key": "sv07",
       "set_name": "Stellar Crown",
       "source_key": "tcgplayer_price_guide",
       "source_alias": null,
@@ -9555,7 +9505,7 @@
       "error": null
     },
     {
-      "set_key": "sv8",
+      "set_key": "sv08",
       "set_name": "Surging Sparks",
       "source_key": "pokemontcg_api",
       "source_alias": "sv8",
@@ -9565,7 +9515,7 @@
       "error": null
     },
     {
-      "set_key": "sv8",
+      "set_key": "sv08",
       "set_name": "Surging Sparks",
       "source_key": "tcgdex",
       "source_alias": "sv08",
@@ -9575,7 +9525,7 @@
       "error": null
     },
     {
-      "set_key": "sv8",
+      "set_key": "sv08",
       "set_name": "Surging Sparks",
       "source_key": "thepricedex_price_list",
       "source_alias": "sv8",
@@ -9585,17 +9535,17 @@
       "error": null
     },
     {
-      "set_key": "sv8",
+      "set_key": "sv08",
       "set_name": "Surging Sparks",
-      "source_key": "pkmncards",
-      "source_alias": "surging-sparks",
+      "source_key": "bulbapedia_set_list",
+      "source_alias": "Surging_Sparks_(TCG)",
       "configured_status": "candidate_url",
-      "runtime_status": "collected",
-      "evidence_rows": 252,
-      "error": null
+      "runtime_status": "error",
+      "evidence_rows": 0,
+      "error": "Bulbapedia page contained no extractable set-list rows: https://bulbapedia.bulbagarden.net/wiki/Surging_Sparks_(TCG)"
     },
     {
-      "set_key": "sv8",
+      "set_key": "sv08",
       "set_name": "Surging Sparks",
       "source_key": "tcgplayer_price_guide",
       "source_alias": null,
@@ -9605,7 +9555,7 @@
       "error": null
     },
     {
-      "set_key": "sv8pt5",
+      "set_key": "sv08.5",
       "set_name": "Prismatic Evolutions",
       "source_key": "pokemontcg_api",
       "source_alias": "sv8pt5",
@@ -9615,7 +9565,7 @@
       "error": null
     },
     {
-      "set_key": "sv8pt5",
+      "set_key": "sv08.5",
       "set_name": "Prismatic Evolutions",
       "source_key": "tcgdex",
       "source_alias": "sv08.5",
@@ -9625,7 +9575,7 @@
       "error": null
     },
     {
-      "set_key": "sv8pt5",
+      "set_key": "sv08.5",
       "set_name": "Prismatic Evolutions",
       "source_key": "thepricedex_price_list",
       "source_alias": "sv8pt5",
@@ -9635,17 +9585,17 @@
       "error": null
     },
     {
-      "set_key": "sv8pt5",
+      "set_key": "sv08.5",
       "set_name": "Prismatic Evolutions",
-      "source_key": "pkmncards",
-      "source_alias": "prismatic-evolutions",
+      "source_key": "bulbapedia_set_list",
+      "source_alias": "Prismatic_Evolutions_(TCG)",
       "configured_status": "candidate_url",
-      "runtime_status": "collected",
-      "evidence_rows": 180,
-      "error": null
+      "runtime_status": "error",
+      "evidence_rows": 0,
+      "error": "Bulbapedia page contained no extractable set-list rows: https://bulbapedia.bulbagarden.net/wiki/Prismatic_Evolutions_(TCG)"
     },
     {
-      "set_key": "sv8pt5",
+      "set_key": "sv08.5",
       "set_name": "Prismatic Evolutions",
       "source_key": "tcgplayer_price_guide",
       "source_alias": null,
@@ -9655,7 +9605,7 @@
       "error": null
     },
     {
-      "set_key": "sv9",
+      "set_key": "sv09",
       "set_name": "Journey Together",
       "source_key": "pokemontcg_api",
       "source_alias": "sv9",
@@ -9665,7 +9615,7 @@
       "error": null
     },
     {
-      "set_key": "sv9",
+      "set_key": "sv09",
       "set_name": "Journey Together",
       "source_key": "tcgdex",
       "source_alias": "sv09",
@@ -9675,7 +9625,7 @@
       "error": null
     },
     {
-      "set_key": "sv9",
+      "set_key": "sv09",
       "set_name": "Journey Together",
       "source_key": "thepricedex_price_list",
       "source_alias": "sv9",
@@ -9685,17 +9635,17 @@
       "error": null
     },
     {
-      "set_key": "sv9",
+      "set_key": "sv09",
       "set_name": "Journey Together",
-      "source_key": "pkmncards",
-      "source_alias": "journey-together",
+      "source_key": "bulbapedia_set_list",
+      "source_alias": "Journey_Together_(TCG)",
       "configured_status": "candidate_url",
-      "runtime_status": "collected",
-      "evidence_rows": 190,
-      "error": null
+      "runtime_status": "error",
+      "evidence_rows": 0,
+      "error": "Bulbapedia page contained no extractable set-list rows: https://bulbapedia.bulbagarden.net/wiki/Journey_Together_(TCG)"
     },
     {
-      "set_key": "sv9",
+      "set_key": "sv09",
       "set_name": "Journey Together",
       "source_key": "tcgplayer_price_guide",
       "source_alias": null,
@@ -9737,12 +9687,12 @@
     {
       "set_key": "sv10",
       "set_name": "Destined Rivals",
-      "source_key": "pkmncards",
-      "source_alias": "destined-rivals",
+      "source_key": "bulbapedia_set_list",
+      "source_alias": "Destined_Rivals_(TCG)",
       "configured_status": "candidate_url",
-      "runtime_status": "collected",
-      "evidence_rows": 242,
-      "error": null
+      "runtime_status": "error",
+      "evidence_rows": 0,
+      "error": "Bulbapedia page contained no extractable set-list rows: https://bulbapedia.bulbagarden.net/wiki/Destined_Rivals_(TCG)"
     },
     {
       "set_key": "sv10",
@@ -9755,17 +9705,17 @@
       "error": null
     },
     {
-      "set_key": "zsv10pt5",
+      "set_key": "sv10.5b",
       "set_name": "Black Bolt",
       "source_key": "pokemontcg_api",
       "source_alias": "zsv10pt5",
       "configured_status": "available",
       "runtime_status": "collected",
-      "evidence_rows": 425,
+      "evidence_rows": 422,
       "error": null
     },
     {
-      "set_key": "zsv10pt5",
+      "set_key": "sv10.5b",
       "set_name": "Black Bolt",
       "source_key": "tcgdex",
       "source_alias": "sv10.5b",
@@ -9775,7 +9725,7 @@
       "error": null
     },
     {
-      "set_key": "zsv10pt5",
+      "set_key": "sv10.5b",
       "set_name": "Black Bolt",
       "source_key": "thepricedex_price_list",
       "source_alias": "zsv10pt5",
@@ -9785,17 +9735,17 @@
       "error": null
     },
     {
-      "set_key": "zsv10pt5",
+      "set_key": "sv10.5b",
       "set_name": "Black Bolt",
-      "source_key": "pkmncards",
-      "source_alias": "black-bolt",
+      "source_key": "bulbapedia_set_list",
+      "source_alias": "Black_Bolt_(TCG)",
       "configured_status": "candidate_url",
-      "runtime_status": "collected",
-      "evidence_rows": 172,
-      "error": null
+      "runtime_status": "error",
+      "evidence_rows": 0,
+      "error": "Bulbapedia page contained no extractable set-list rows: https://bulbapedia.bulbagarden.net/wiki/Black_Bolt_(TCG)"
     },
     {
-      "set_key": "zsv10pt5",
+      "set_key": "sv10.5b",
       "set_name": "Black Bolt",
       "source_key": "tcgplayer_price_guide",
       "source_alias": null,
@@ -9805,7 +9755,7 @@
       "error": null
     },
     {
-      "set_key": "rsv10pt5",
+      "set_key": "sv10.5w",
       "set_name": "White Flare",
       "source_key": "pokemontcg_api",
       "source_alias": "rsv10pt5",
@@ -9815,7 +9765,7 @@
       "error": null
     },
     {
-      "set_key": "rsv10pt5",
+      "set_key": "sv10.5w",
       "set_name": "White Flare",
       "source_key": "tcgdex",
       "source_alias": "sv10.5w",
@@ -9825,7 +9775,7 @@
       "error": null
     },
     {
-      "set_key": "rsv10pt5",
+      "set_key": "sv10.5w",
       "set_name": "White Flare",
       "source_key": "thepricedex_price_list",
       "source_alias": "rsv10pt5",
@@ -9835,17 +9785,17 @@
       "error": null
     },
     {
-      "set_key": "rsv10pt5",
+      "set_key": "sv10.5w",
       "set_name": "White Flare",
-      "source_key": "pkmncards",
-      "source_alias": "white-flare",
+      "source_key": "bulbapedia_set_list",
+      "source_alias": "White_Flare_(TCG)",
       "configured_status": "candidate_url",
-      "runtime_status": "collected",
-      "evidence_rows": 173,
-      "error": null
+      "runtime_status": "error",
+      "evidence_rows": 0,
+      "error": "Bulbapedia page contained no extractable set-list rows: https://bulbapedia.bulbagarden.net/wiki/White_Flare_(TCG)"
     },
     {
-      "set_key": "rsv10pt5",
+      "set_key": "sv10.5w",
       "set_name": "White Flare",
       "source_key": "tcgplayer_price_guide",
       "source_alias": null,
@@ -9855,7 +9805,7 @@
       "error": null
     },
     {
-      "set_key": "me1",
+      "set_key": "me01",
       "set_name": "Mega Evolution",
       "source_key": "pokemontcg_api",
       "source_alias": "me1",
@@ -9865,7 +9815,7 @@
       "error": null
     },
     {
-      "set_key": "me1",
+      "set_key": "me01",
       "set_name": "Mega Evolution",
       "source_key": "tcgdex",
       "source_alias": "me01",
@@ -9875,7 +9825,7 @@
       "error": null
     },
     {
-      "set_key": "me1",
+      "set_key": "me01",
       "set_name": "Mega Evolution",
       "source_key": "thepricedex_price_list",
       "source_alias": "me1",
@@ -9885,17 +9835,17 @@
       "error": null
     },
     {
-      "set_key": "me1",
+      "set_key": "me01",
       "set_name": "Mega Evolution",
-      "source_key": "pkmncards",
-      "source_alias": "mega-evolution",
+      "source_key": "bulbapedia_set_list",
+      "source_alias": "Mega_Evolution_(TCG)",
       "configured_status": "candidate_url",
-      "runtime_status": "collected",
-      "evidence_rows": 188,
-      "error": null
+      "runtime_status": "error",
+      "evidence_rows": 0,
+      "error": "Bulbapedia page contained no extractable set-list rows: https://bulbapedia.bulbagarden.net/wiki/Mega_Evolution_(TCG)"
     },
     {
-      "set_key": "me1",
+      "set_key": "me01",
       "set_name": "Mega Evolution",
       "source_key": "tcgplayer_price_guide",
       "source_alias": null,
@@ -9905,7 +9855,7 @@
       "error": null
     },
     {
-      "set_key": "me2",
+      "set_key": "me02",
       "set_name": "Phantasmal Flames",
       "source_key": "pokemontcg_api",
       "source_alias": "me2",
@@ -9915,7 +9865,7 @@
       "error": null
     },
     {
-      "set_key": "me2",
+      "set_key": "me02",
       "set_name": "Phantasmal Flames",
       "source_key": "tcgdex",
       "source_alias": "me02",
@@ -9925,7 +9875,7 @@
       "error": null
     },
     {
-      "set_key": "me2",
+      "set_key": "me02",
       "set_name": "Phantasmal Flames",
       "source_key": "thepricedex_price_list",
       "source_alias": "me2",
@@ -9935,17 +9885,17 @@
       "error": null
     },
     {
-      "set_key": "me2",
+      "set_key": "me02",
       "set_name": "Phantasmal Flames",
-      "source_key": "pkmncards",
-      "source_alias": "phantasmal-flames",
+      "source_key": "bulbapedia_set_list",
+      "source_alias": "Phantasmal_Flames_(TCG)",
       "configured_status": "candidate_url",
-      "runtime_status": "collected",
-      "evidence_rows": 130,
-      "error": null
+      "runtime_status": "error",
+      "evidence_rows": 0,
+      "error": "Bulbapedia page contained no extractable set-list rows: https://bulbapedia.bulbagarden.net/wiki/Phantasmal_Flames_(TCG)"
     },
     {
-      "set_key": "me2",
+      "set_key": "me02",
       "set_name": "Phantasmal Flames",
       "source_key": "tcgplayer_price_guide",
       "source_alias": null,
@@ -9960,8 +9910,8 @@
       "source_key": "pokemontcg_api",
       "source_alias": "me2pt5",
       "configured_status": "available",
-      "runtime_status": "collected",
-      "evidence_rows": 295,
+      "runtime_status": "collected_plus_cached_snapshot",
+      "evidence_rows": 296,
       "error": null
     },
     {
@@ -9987,12 +9937,12 @@
     {
       "set_key": "ascended_heroes",
       "set_name": "Ascended Heroes",
-      "source_key": "pkmncards",
-      "source_alias": "ascended-heroes",
+      "source_key": "bulbapedia_set_list",
+      "source_alias": "Ascended_Heroes_(TCG)",
       "configured_status": "candidate_url",
-      "runtime_status": "collected",
-      "evidence_rows": 295,
-      "error": null
+      "runtime_status": "error",
+      "evidence_rows": 0,
+      "error": "Bulbapedia page contained no extractable set-list rows: https://bulbapedia.bulbagarden.net/wiki/Ascended_Heroes_(TCG)"
     },
     {
       "set_key": "ascended_heroes",
@@ -10005,7 +9955,7 @@
       "error": null
     },
     {
-      "set_key": "me3",
+      "set_key": "me03",
       "set_name": "Perfect Order",
       "source_key": "pokemontcg_api",
       "source_alias": "me3",
@@ -10015,7 +9965,7 @@
       "error": null
     },
     {
-      "set_key": "me3",
+      "set_key": "me03",
       "set_name": "Perfect Order",
       "source_key": "tcgdex",
       "source_alias": "me03",
@@ -10025,7 +9975,7 @@
       "error": null
     },
     {
-      "set_key": "me3",
+      "set_key": "me03",
       "set_name": "Perfect Order",
       "source_key": "thepricedex_price_list",
       "source_alias": "me3",
@@ -10035,17 +9985,17 @@
       "error": null
     },
     {
-      "set_key": "me3",
+      "set_key": "me03",
       "set_name": "Perfect Order",
-      "source_key": "pkmncards",
-      "source_alias": "perfect-order",
+      "source_key": "bulbapedia_set_list",
+      "source_alias": "Perfect_Order_(TCG)",
       "configured_status": "candidate_url",
-      "runtime_status": "collected",
-      "evidence_rows": 121,
-      "error": null
+      "runtime_status": "error",
+      "evidence_rows": 0,
+      "error": "Bulbapedia page contained no extractable set-list rows: https://bulbapedia.bulbagarden.net/wiki/Perfect_Order_(TCG)"
     },
     {
-      "set_key": "me3",
+      "set_key": "me03",
       "set_name": "Perfect Order",
       "source_key": "tcgplayer_price_guide",
       "source_alias": null,
@@ -10055,7 +10005,7 @@
       "error": null
     },
     {
-      "set_key": "me4",
+      "set_key": "me04",
       "set_name": "Chaos Rising",
       "source_key": "pokemontcg_api",
       "source_alias": "me4",
@@ -10065,7 +10015,7 @@
       "error": null
     },
     {
-      "set_key": "me4",
+      "set_key": "me04",
       "set_name": "Chaos Rising",
       "source_key": "tcgdex",
       "source_alias": "me04",
@@ -10075,7 +10025,7 @@
       "error": null
     },
     {
-      "set_key": "me4",
+      "set_key": "me04",
       "set_name": "Chaos Rising",
       "source_key": "thepricedex_price_list",
       "source_alias": "me4",
@@ -10085,17 +10035,17 @@
       "error": null
     },
     {
-      "set_key": "me4",
+      "set_key": "me04",
       "set_name": "Chaos Rising",
-      "source_key": "pkmncards",
-      "source_alias": "chaos-rising",
+      "source_key": "bulbapedia_set_list",
+      "source_alias": "Chaos_Rising_(TCG)",
       "configured_status": "candidate_url",
-      "runtime_status": "collected",
-      "evidence_rows": 119,
-      "error": null
+      "runtime_status": "error",
+      "evidence_rows": 0,
+      "error": "Bulbapedia page contained no extractable set-list rows: https://bulbapedia.bulbagarden.net/wiki/Chaos_Rising_(TCG)"
     },
     {
-      "set_key": "me4",
+      "set_key": "me04",
       "set_name": "Chaos Rising",
       "source_key": "tcgplayer_price_guide",
       "source_alias": null,
@@ -10111,7 +10061,7 @@
       "source_alias": "docs\\audits\\verified_master_set_index_v1\\source_fixtures",
       "configured_status": "available",
       "runtime_status": "collected",
-      "evidence_rows": 1384,
+      "evidence_rows": 113143,
       "error": null
     }
   ]

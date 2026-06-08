@@ -1,0 +1,549 @@
+{
+  "status": "api_no_validated_match",
+  "fact": {
+    "gap_type": "finish_second_source_needed",
+    "fact_type": "printing_finish",
+    "set_key": "sv03.5",
+    "set_name": "151",
+    "card_number": "4",
+    "card_name": "Charmander",
+    "finish_key": "stamped",
+    "status": "human_source_verified",
+    "sources": [
+      "thepricedex_price_list"
+    ],
+    "source_authorities": [
+      "thepricedex.com"
+    ],
+    "source_kinds": [
+      "marketplace_checklist"
+    ],
+    "evidence_urls": [
+      "https://www.thepricedex.com/set/sv3pt5/151/price-list"
+    ],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "attempts": [
+    {
+      "query": "Pokemon 151 Charmander 4 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20151%20Charmander%204%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5399696",
+      "product_name": "Charmander [Reverse] #4",
+      "console_name": "Pokemon Japanese Scarlet & Violet 151",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Reverse"
+      }
+    },
+    {
+      "query": "Pokemon 151 Charmander 4 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20151%20Charmander%204%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5326046",
+      "product_name": "Charmander #4",
+      "console_name": "Pokemon Japanese Scarlet & Violet 151",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon 151 Charmander 4 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20151%20Charmander%204%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5399834",
+      "product_name": "Charmander [Master Ball] #4",
+      "console_name": "Pokemon Japanese Scarlet & Violet 151",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Master Ball"
+      }
+    },
+    {
+      "query": "Pokemon 151 Charmander 4 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20151%20Charmander%204%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8708792",
+      "product_name": "Charmander [Reverse] #4",
+      "console_name": "Pokemon Chinese 151 Collect",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Reverse"
+      }
+    },
+    {
+      "query": "Pokemon 151 Charmander 4 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20151%20Charmander%204%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6314580",
+      "product_name": "Charmander [EB Games] #4",
+      "console_name": "Pokemon Scarlet & Violet 151",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:EB Games"
+      }
+    },
+    {
+      "query": "Pokemon 151 Charmander 4 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20151%20Charmander%204%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5809384",
+      "product_name": "Charmander #4",
+      "console_name": "Pokemon Scarlet & Violet 151",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon 151 Charmander 4 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20151%20Charmander%204%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8708790",
+      "product_name": "Charmander #4",
+      "console_name": "Pokemon Chinese 151 Collect",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon 151 Charmander 4 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20151%20Charmander%204%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5811322",
+      "product_name": "Charmander [GameStop] #4",
+      "console_name": "Pokemon Scarlet & Violet 151",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:GameStop"
+      }
+    },
+    {
+      "query": "Pokemon 151 Charmander 4 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20151%20Charmander%204%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11865948",
+      "product_name": "Charmander #4",
+      "console_name": "Pokemon Korean Scarlet & Violet 151",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon 151 Charmander 4 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20151%20Charmander%204%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8708791",
+      "product_name": "Charmander [Master Ball] #4",
+      "console_name": "Pokemon Chinese 151 Collect",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Master Ball"
+      }
+    },
+    {
+      "query": "Pokemon 151 Charmander 4 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20151%20Charmander%204%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7566539",
+      "product_name": "Charmander [Cosmos Holo] #4",
+      "console_name": "Pokemon Scarlet & Violet 151",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Cosmos Holo"
+      }
+    },
+    {
+      "query": "Pokemon 151 Charmander 4 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20151%20Charmander%204%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5809594",
+      "product_name": "Charmander [Reverse Holo] #4",
+      "console_name": "Pokemon Scarlet & Violet 151",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Reverse Holo"
+      }
+    },
+    {
+      "query": "Pokemon 151 Charmander 4 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20151%20Charmander%204%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8682565",
+      "product_name": "Charmander [Reverse Holo Cosmos] #4",
+      "console_name": "Pokemon Scarlet & Violet 151",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Reverse Holo Cosmos"
+      }
+    },
+    {
+      "query": "Pokemon 151 Charmander 4 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20151%20Charmander%204%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4895161",
+      "product_name": "Charmander [Stamped] #48",
+      "console_name": "Pokemon Power Keepers",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:48"
+      }
+    },
+    {
+      "query": "Pokemon 151 Charmander 4 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20151%20Charmander%204%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5326209",
+      "product_name": "Charmander #168",
+      "console_name": "Pokemon Japanese Scarlet & Violet 151",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:168"
+      }
+    },
+    {
+      "query": "Pokemon 151 Charmander 4 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20151%20Charmander%204%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5809549",
+      "product_name": "Charmander #168",
+      "console_name": "Pokemon Scarlet & Violet 151",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:168"
+      }
+    },
+    {
+      "query": "Pokemon 151 Charmander 4 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20151%20Charmander%204%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8710098",
+      "product_name": "Charmander #152",
+      "console_name": "Pokemon Chinese 151 Collect",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:152"
+      }
+    },
+    {
+      "query": "Pokemon 151 Charmander 4 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20151%20Charmander%204%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11314371",
+      "product_name": "Charmander #168",
+      "console_name": "Pokemon Korean Scarlet & Violet 151",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:168"
+      }
+    },
+    {
+      "query": "Pokemon 151 Charmander 4 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20151%20Charmander%204%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11703201",
+      "product_name": "Charmander [FamilyMart Stamped] #232/SV-P",
+      "console_name": "Pokemon Chinese Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:232/SV-P"
+      }
+    },
+    {
+      "query": "Pokemon 151 Charmander 4 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20151%20Charmander%204%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6735363",
+      "product_name": "Mew [Stamp Rally] #151",
+      "console_name": "Pokemon Japanese Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:151"
+      }
+    },
+    {
+      "query": "Pokemon 151 Charmander 4 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20151%20Charmander%204%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5399696",
+      "product_name": "Charmander [Reverse] #4",
+      "console_name": "Pokemon Japanese Scarlet & Violet 151",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Reverse"
+      }
+    },
+    {
+      "query": "Pokemon 151 Charmander 4 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20151%20Charmander%204%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5326046",
+      "product_name": "Charmander #4",
+      "console_name": "Pokemon Japanese Scarlet & Violet 151",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon 151 Charmander 4 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20151%20Charmander%204%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5399834",
+      "product_name": "Charmander [Master Ball] #4",
+      "console_name": "Pokemon Japanese Scarlet & Violet 151",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Master Ball"
+      }
+    },
+    {
+      "query": "Pokemon 151 Charmander 4 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20151%20Charmander%204%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8708792",
+      "product_name": "Charmander [Reverse] #4",
+      "console_name": "Pokemon Chinese 151 Collect",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Reverse"
+      }
+    },
+    {
+      "query": "Pokemon 151 Charmander 4 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20151%20Charmander%204%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6314580",
+      "product_name": "Charmander [EB Games] #4",
+      "console_name": "Pokemon Scarlet & Violet 151",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:EB Games"
+      }
+    },
+    {
+      "query": "Pokemon 151 Charmander 4 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20151%20Charmander%204%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5809384",
+      "product_name": "Charmander #4",
+      "console_name": "Pokemon Scarlet & Violet 151",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon 151 Charmander 4 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20151%20Charmander%204%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8708790",
+      "product_name": "Charmander #4",
+      "console_name": "Pokemon Chinese 151 Collect",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon 151 Charmander 4 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20151%20Charmander%204%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5811322",
+      "product_name": "Charmander [GameStop] #4",
+      "console_name": "Pokemon Scarlet & Violet 151",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:GameStop"
+      }
+    },
+    {
+      "query": "Pokemon 151 Charmander 4 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20151%20Charmander%204%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11865948",
+      "product_name": "Charmander #4",
+      "console_name": "Pokemon Korean Scarlet & Violet 151",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon 151 Charmander 4 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20151%20Charmander%204%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8708791",
+      "product_name": "Charmander [Master Ball] #4",
+      "console_name": "Pokemon Chinese 151 Collect",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Master Ball"
+      }
+    },
+    {
+      "query": "Pokemon 151 Charmander 4 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20151%20Charmander%204%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7566539",
+      "product_name": "Charmander [Cosmos Holo] #4",
+      "console_name": "Pokemon Scarlet & Violet 151",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Cosmos Holo"
+      }
+    },
+    {
+      "query": "Pokemon 151 Charmander 4 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20151%20Charmander%204%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5809594",
+      "product_name": "Charmander [Reverse Holo] #4",
+      "console_name": "Pokemon Scarlet & Violet 151",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Reverse Holo"
+      }
+    },
+    {
+      "query": "Pokemon 151 Charmander 4 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20151%20Charmander%204%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8682565",
+      "product_name": "Charmander [Reverse Holo Cosmos] #4",
+      "console_name": "Pokemon Scarlet & Violet 151",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Reverse Holo Cosmos"
+      }
+    },
+    {
+      "query": "Pokemon 151 Charmander 4 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20151%20Charmander%204%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4895161",
+      "product_name": "Charmander [Stamped] #48",
+      "console_name": "Pokemon Power Keepers",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:48"
+      }
+    },
+    {
+      "query": "Pokemon 151 Charmander 4 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20151%20Charmander%204%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5326209",
+      "product_name": "Charmander #168",
+      "console_name": "Pokemon Japanese Scarlet & Violet 151",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:168"
+      }
+    },
+    {
+      "query": "Pokemon 151 Charmander 4 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20151%20Charmander%204%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5809549",
+      "product_name": "Charmander #168",
+      "console_name": "Pokemon Scarlet & Violet 151",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:168"
+      }
+    },
+    {
+      "query": "Pokemon 151 Charmander 4 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20151%20Charmander%204%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8710098",
+      "product_name": "Charmander #152",
+      "console_name": "Pokemon Chinese 151 Collect",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:152"
+      }
+    },
+    {
+      "query": "Pokemon 151 Charmander 4 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20151%20Charmander%204%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11314371",
+      "product_name": "Charmander #168",
+      "console_name": "Pokemon Korean Scarlet & Violet 151",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:168"
+      }
+    },
+    {
+      "query": "Pokemon 151 Charmander 4 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20151%20Charmander%204%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11703201",
+      "product_name": "Charmander [FamilyMart Stamped] #232/SV-P",
+      "console_name": "Pokemon Chinese Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:232/SV-P"
+      }
+    },
+    {
+      "query": "Pokemon 151 Charmander 4 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20151%20Charmander%204%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6735363",
+      "product_name": "Mew [Stamp Rally] #151",
+      "console_name": "Pokemon Japanese Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:151"
+      }
+    }
+  ],
+  "source_lane": "pricecharting_api"
+}

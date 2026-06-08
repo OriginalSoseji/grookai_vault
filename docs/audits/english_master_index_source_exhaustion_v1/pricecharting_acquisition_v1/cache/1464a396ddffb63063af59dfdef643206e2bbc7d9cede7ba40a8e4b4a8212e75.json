@@ -1,0 +1,549 @@
+{
+  "status": "api_no_validated_match",
+  "fact": {
+    "gap_type": "finish_second_source_needed",
+    "fact_type": "printing_finish",
+    "set_key": "ex10",
+    "set_name": "Unseen Forces",
+    "card_number": "29",
+    "card_name": "Lugia",
+    "finish_key": "stamped",
+    "status": "human_source_verified",
+    "sources": [
+      "thepricedex_price_list"
+    ],
+    "source_authorities": [
+      "thepricedex.com"
+    ],
+    "source_kinds": [
+      "marketplace_checklist"
+    ],
+    "evidence_urls": [
+      "https://www.thepricedex.com/set/ex10/unseen-forces/price-list"
+    ],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "attempts": [
+    {
+      "query": "Pokemon Unseen Forces Lugia 29 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Unseen%20Forces%20Lugia%2029%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "888449",
+      "product_name": "Lugia #29",
+      "console_name": "Pokemon Unseen Forces",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon Unseen Forces Lugia 29 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Unseen%20Forces%20Lugia%2029%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7746761",
+      "product_name": "Lugia [Cosmos Holo] #29",
+      "console_name": "Pokemon Unseen Forces",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Cosmos Holo"
+      }
+    },
+    {
+      "query": "Pokemon Unseen Forces Lugia 29 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Unseen%20Forces%20Lugia%2029%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5529002",
+      "product_name": "Lugia [Rocks America] #29",
+      "console_name": "Pokemon Unseen Forces",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Rocks America"
+      }
+    },
+    {
+      "query": "Pokemon Unseen Forces Lugia 29 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Unseen%20Forces%20Lugia%2029%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "888591",
+      "product_name": "Lugia [Reverse Holo] #29",
+      "console_name": "Pokemon Unseen Forces",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Reverse Holo"
+      }
+    },
+    {
+      "query": "Pokemon Unseen Forces Lugia 29 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Unseen%20Forces%20Lugia%2029%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "888525",
+      "product_name": "Lugia EX #105",
+      "console_name": "Pokemon Unseen Forces",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:105"
+      }
+    },
+    {
+      "query": "Pokemon Unseen Forces Lugia 29 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Unseen%20Forces%20Lugia%2029%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9420266",
+      "product_name": "Gilgar [Stamped] #57",
+      "console_name": "Pokemon Unseen Forces",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:57"
+      }
+    },
+    {
+      "query": "Pokemon Unseen Forces Lugia 29 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Unseen%20Forces%20Lugia%2029%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3439461",
+      "product_name": "Lugia ex #90",
+      "console_name": "Pokemon Japanese Golden Sky, Silvery Ocean",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:90"
+      }
+    },
+    {
+      "query": "Pokemon Unseen Forces Lugia 29 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Unseen%20Forces%20Lugia%2029%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3507296",
+      "product_name": "Lugia ex [1st Edition] #90",
+      "console_name": "Pokemon Japanese Golden Sky, Silvery Ocean",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:90"
+      }
+    },
+    {
+      "query": "Pokemon Unseen Forces Lugia 29 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Unseen%20Forces%20Lugia%2029%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11085989",
+      "product_name": "Lugia Ex [Stamped] #82",
+      "console_name": "Pokemon Prismatic Evolutions",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:82"
+      }
+    },
+    {
+      "query": "Pokemon Unseen Forces Lugia 29 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Unseen%20Forces%20Lugia%2029%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3439400",
+      "product_name": "Remoraid #29",
+      "console_name": "Pokemon Japanese Golden Sky, Silvery Ocean",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Remoraid"
+      }
+    },
+    {
+      "query": "Pokemon Unseen Forces Lugia 29 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Unseen%20Forces%20Lugia%2029%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "888448",
+      "product_name": "Jynx #28",
+      "console_name": "Pokemon Unseen Forces",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:28"
+      }
+    },
+    {
+      "query": "Pokemon Unseen Forces Lugia 29 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Unseen%20Forces%20Lugia%2029%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "888469",
+      "product_name": "Xatu #49",
+      "console_name": "Pokemon Unseen Forces",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:49"
+      }
+    },
+    {
+      "query": "Pokemon Unseen Forces Lugia 29 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Unseen%20Forces%20Lugia%2029%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "888483",
+      "product_name": "Natu #63",
+      "console_name": "Pokemon Unseen Forces",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:63"
+      }
+    },
+    {
+      "query": "Pokemon Unseen Forces Lugia 29 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Unseen%20Forces%20Lugia%2029%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "888485",
+      "product_name": "Onix #65",
+      "console_name": "Pokemon Unseen Forces",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:65"
+      }
+    },
+    {
+      "query": "Pokemon Unseen Forces Lugia 29 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Unseen%20Forces%20Lugia%2029%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "888537",
+      "product_name": "Unown [A]",
+      "console_name": "Pokemon Unseen Forces",
+      "validation": {
+        "ok": false,
+        "reason": "api_product_name_pattern_not_supported"
+      }
+    },
+    {
+      "query": "Pokemon Unseen Forces Lugia 29 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Unseen%20Forces%20Lugia%2029%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "888454",
+      "product_name": "Aipom #34",
+      "console_name": "Pokemon Unseen Forces",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:34"
+      }
+    },
+    {
+      "query": "Pokemon Unseen Forces Lugia 29 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Unseen%20Forces%20Lugia%2029%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "888470",
+      "product_name": "Yanma #50",
+      "console_name": "Pokemon Unseen Forces",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:50"
+      }
+    },
+    {
+      "query": "Pokemon Unseen Forces Lugia 29 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Unseen%20Forces%20Lugia%2029%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "888478",
+      "product_name": "Gloom #58",
+      "console_name": "Pokemon Unseen Forces",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:58"
+      }
+    },
+    {
+      "query": "Pokemon Unseen Forces Lugia 29 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Unseen%20Forces%20Lugia%2029%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "888475",
+      "product_name": "Eevee #55",
+      "console_name": "Pokemon Unseen Forces",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:55"
+      }
+    },
+    {
+      "query": "Pokemon Unseen Forces Lugia 29 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Unseen%20Forces%20Lugia%2029%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "888443",
+      "product_name": "Elekid #23",
+      "console_name": "Pokemon Unseen Forces",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:23"
+      }
+    },
+    {
+      "query": "Pokemon Unseen Forces Lugia 29 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Unseen%20Forces%20Lugia%2029%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "888449",
+      "product_name": "Lugia #29",
+      "console_name": "Pokemon Unseen Forces",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon Unseen Forces Lugia 29 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Unseen%20Forces%20Lugia%2029%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7746761",
+      "product_name": "Lugia [Cosmos Holo] #29",
+      "console_name": "Pokemon Unseen Forces",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Cosmos Holo"
+      }
+    },
+    {
+      "query": "Pokemon Unseen Forces Lugia 29 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Unseen%20Forces%20Lugia%2029%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5529002",
+      "product_name": "Lugia [Rocks America] #29",
+      "console_name": "Pokemon Unseen Forces",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Rocks America"
+      }
+    },
+    {
+      "query": "Pokemon Unseen Forces Lugia 29 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Unseen%20Forces%20Lugia%2029%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "888591",
+      "product_name": "Lugia [Reverse Holo] #29",
+      "console_name": "Pokemon Unseen Forces",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Reverse Holo"
+      }
+    },
+    {
+      "query": "Pokemon Unseen Forces Lugia 29 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Unseen%20Forces%20Lugia%2029%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "888525",
+      "product_name": "Lugia EX #105",
+      "console_name": "Pokemon Unseen Forces",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:105"
+      }
+    },
+    {
+      "query": "Pokemon Unseen Forces Lugia 29 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Unseen%20Forces%20Lugia%2029%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9420266",
+      "product_name": "Gilgar [Stamped] #57",
+      "console_name": "Pokemon Unseen Forces",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:57"
+      }
+    },
+    {
+      "query": "Pokemon Unseen Forces Lugia 29 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Unseen%20Forces%20Lugia%2029%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3439461",
+      "product_name": "Lugia ex #90",
+      "console_name": "Pokemon Japanese Golden Sky, Silvery Ocean",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:90"
+      }
+    },
+    {
+      "query": "Pokemon Unseen Forces Lugia 29 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Unseen%20Forces%20Lugia%2029%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3507296",
+      "product_name": "Lugia ex [1st Edition] #90",
+      "console_name": "Pokemon Japanese Golden Sky, Silvery Ocean",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:90"
+      }
+    },
+    {
+      "query": "Pokemon Unseen Forces Lugia 29 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Unseen%20Forces%20Lugia%2029%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11085989",
+      "product_name": "Lugia Ex [Stamped] #82",
+      "console_name": "Pokemon Prismatic Evolutions",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:82"
+      }
+    },
+    {
+      "query": "Pokemon Unseen Forces Lugia 29 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Unseen%20Forces%20Lugia%2029%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3439400",
+      "product_name": "Remoraid #29",
+      "console_name": "Pokemon Japanese Golden Sky, Silvery Ocean",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Remoraid"
+      }
+    },
+    {
+      "query": "Pokemon Unseen Forces Lugia 29 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Unseen%20Forces%20Lugia%2029%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "888448",
+      "product_name": "Jynx #28",
+      "console_name": "Pokemon Unseen Forces",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:28"
+      }
+    },
+    {
+      "query": "Pokemon Unseen Forces Lugia 29 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Unseen%20Forces%20Lugia%2029%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "888469",
+      "product_name": "Xatu #49",
+      "console_name": "Pokemon Unseen Forces",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:49"
+      }
+    },
+    {
+      "query": "Pokemon Unseen Forces Lugia 29 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Unseen%20Forces%20Lugia%2029%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "888483",
+      "product_name": "Natu #63",
+      "console_name": "Pokemon Unseen Forces",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:63"
+      }
+    },
+    {
+      "query": "Pokemon Unseen Forces Lugia 29 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Unseen%20Forces%20Lugia%2029%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "888485",
+      "product_name": "Onix #65",
+      "console_name": "Pokemon Unseen Forces",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:65"
+      }
+    },
+    {
+      "query": "Pokemon Unseen Forces Lugia 29 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Unseen%20Forces%20Lugia%2029%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "888537",
+      "product_name": "Unown [A]",
+      "console_name": "Pokemon Unseen Forces",
+      "validation": {
+        "ok": false,
+        "reason": "api_product_name_pattern_not_supported"
+      }
+    },
+    {
+      "query": "Pokemon Unseen Forces Lugia 29 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Unseen%20Forces%20Lugia%2029%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "888454",
+      "product_name": "Aipom #34",
+      "console_name": "Pokemon Unseen Forces",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:34"
+      }
+    },
+    {
+      "query": "Pokemon Unseen Forces Lugia 29 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Unseen%20Forces%20Lugia%2029%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "888470",
+      "product_name": "Yanma #50",
+      "console_name": "Pokemon Unseen Forces",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:50"
+      }
+    },
+    {
+      "query": "Pokemon Unseen Forces Lugia 29 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Unseen%20Forces%20Lugia%2029%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "888478",
+      "product_name": "Gloom #58",
+      "console_name": "Pokemon Unseen Forces",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:58"
+      }
+    },
+    {
+      "query": "Pokemon Unseen Forces Lugia 29 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Unseen%20Forces%20Lugia%2029%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "888475",
+      "product_name": "Eevee #55",
+      "console_name": "Pokemon Unseen Forces",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:55"
+      }
+    },
+    {
+      "query": "Pokemon Unseen Forces Lugia 29 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Unseen%20Forces%20Lugia%2029%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "888443",
+      "product_name": "Elekid #23",
+      "console_name": "Pokemon Unseen Forces",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:23"
+      }
+    }
+  ],
+  "source_lane": "pricecharting_api"
+}

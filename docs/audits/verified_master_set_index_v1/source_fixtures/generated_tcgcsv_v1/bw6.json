@@ -1,0 +1,48 @@
+{
+  "fixture_version": "VERIFIED_MASTER_SET_INDEX_V1_HUMAN_SOURCE_FIXTURE_GENERATED",
+  "source_key": "tcgcsv_finish_bw6",
+  "source_kind": "marketplace_checklist",
+  "source_url": "https://tcgcsv.com/docs",
+  "source_status": "available_generated",
+  "set_key": "bw6",
+  "set_name": "Dragons Exalted",
+  "retrieved_at": "2026-06-08T12:46:55.588Z",
+  "raw_snapshot_ref": "generated_fixture:tcgcsv:bw6:2026-06-08T12:46:55.588Z",
+  "generation_note": "Generated from TCGCSV TCGplayer catalog product and price subtype data. Exact finish evidence only.",
+  "records": [
+    {
+      "source_key": "tcgcsv_tcgplayer_catalog",
+      "source_kind": "marketplace_checklist",
+      "source_url": "https://www.tcgplayer.com/product/83916/pokemon-dragons-exalted-blend-energy-gfpd",
+      "set_key": "bw6",
+      "set_name": "Dragons Exalted",
+      "card_number": "117",
+      "card_name": "Blend Energy Grass Fire Psychic Darkness",
+      "finish_key": "normal",
+      "rarity": "Uncommon",
+      "evidence_type": "finish_presence",
+      "evidence_label": "TCGCSV/TCGplayer product 83916 price subtype Normal",
+      "language": "en",
+      "retrieved_at": "2026-06-08T12:46:55.588Z",
+      "raw_snapshot_ref": "tcgcsv:1394:83916:Normal",
+      "notes": "Generated from TCGCSV TCGplayer products joined to price subTypeName. Exact set, number, name, and finish match only."
+    },
+    {
+      "source_key": "tcgcsv_tcgplayer_catalog",
+      "source_kind": "marketplace_checklist",
+      "source_url": "https://www.tcgplayer.com/product/83917/pokemon-dragons-exalted-blend-energy-wlfm",
+      "set_key": "bw6",
+      "set_name": "Dragons Exalted",
+      "card_number": "118",
+      "card_name": "Blend Energy Water Lightning Fighting Metal",
+      "finish_key": "normal",
+      "rarity": "Uncommon",
+      "evidence_type": "finish_presence",
+      "evidence_label": "TCGCSV/TCGplayer product 83917 price subtype Normal",
+      "language": "en",
+      "retrieved_at": "2026-06-08T12:46:55.588Z",
+      "raw_snapshot_ref": "tcgcsv:1394:83917:Normal",
+      "notes": "Generated from TCGCSV TCGplayer products joined to price subTypeName. Exact set, number, name, and finish match only."
+    }
+  ]
+}

@@ -1,0 +1,56 @@
+{
+  "version": "english_master_index_pokex_identity_acquisition_v1",
+  "generated_at": "2026-05-30T02:17:35.377Z",
+  "audit_only": true,
+  "db_writes_performed": false,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "source_key": "pokex_set_checklist",
+  "rule": "Pokex evidence is identity-only. No finish or printing facts are emitted from this lane.",
+  "summary": {
+    "target_sets": 3,
+    "records_generated": 0,
+    "fixture_files_written": 0,
+    "by_status": {
+      "source_unavailable": 3
+    }
+  },
+  "fixture_dir": "docs/audits/verified_master_set_index_v1/source_fixtures/generated_pokex_identity_v1",
+  "fixture_files": [],
+  "results": [
+    {
+      "set_key": "cel25",
+      "set_name": "Celebrations",
+      "status": "source_unavailable",
+      "target_facts": 4,
+      "source_rows": 0,
+      "records_generated": 0,
+      "source_url": null,
+      "fixture_file": null,
+      "error": "No exact Pokex checklist set match found."
+    },
+    {
+      "set_key": "pl2",
+      "set_name": "Rising Rivals",
+      "status": "source_unavailable",
+      "target_facts": 3,
+      "source_rows": 0,
+      "records_generated": 0,
+      "source_url": null,
+      "fixture_file": null,
+      "error": "No exact Pokex checklist set match found."
+    },
+    {
+      "set_key": "exu",
+      "set_name": "Unseen Forces Unown Collection",
+      "status": "source_unavailable",
+      "target_facts": 1,
+      "source_rows": 0,
+      "records_generated": 0,
+      "source_url": null,
+      "fixture_file": null,
+      "error": "No exact Pokex checklist set match found."
+    }
+  ]
+}

@@ -1,0 +1,62 @@
+{
+  "status": "validated",
+  "fact": {
+    "gap_type": "finish_second_source_needed",
+    "fact_type": "printing_finish",
+    "set_key": "smp",
+    "set_name": "SM Black Star Promos",
+    "card_number": "SM200",
+    "card_name": "Snubbull",
+    "finish_key": "stamped",
+    "status": "human_source_verified",
+    "sources": [
+      "thepricedex_price_list"
+    ],
+    "source_authorities": [
+      "thepricedex.com"
+    ],
+    "source_kinds": [
+      "marketplace_checklist"
+    ],
+    "evidence_urls": [
+      "https://www.thepricedex.com/set/smp/sm-black-star-promos/price-list"
+    ],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "query": "Pokemon SM Black Star Promos Snubbull SM200 stamped",
+  "search_url": "https://www.pricecharting.com/api/products?q=Pokemon%20SM%20Black%20Star%20Promos%20Snubbull%20SM200%20stamped",
+  "source_url": "https://www.pricecharting.com/game/pokemon-promo/snubbull-stamped-sm200",
+  "title": "Snubbull [Stamped] #SM200 | Pokemon Promo",
+  "title_parts": {
+    "card_name": "Snubbull",
+    "card_number": "SM200",
+    "variant_label": "Stamped",
+    "set_name": "Pokemon Promo",
+    "pricecharting_product_id": "6266573"
+  },
+  "validation_source": "pricecharting_api_products",
+  "source_lane": "pricecharting_api",
+  "attempts": [
+    {
+      "query": "Pokemon SM Black Star Promos Snubbull SM200 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20SM%20Black%20Star%20Promos%20Snubbull%20SM200%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6266573",
+      "product_name": "Snubbull [Stamped] #SM200",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": true,
+        "titleParts": {
+          "card_name": "Snubbull",
+          "card_number": "SM200",
+          "variant_label": "Stamped",
+          "set_name": "Pokemon Promo",
+          "pricecharting_product_id": "6266573"
+        },
+        "source_url": "https://www.pricecharting.com/game/pokemon-promo/snubbull-stamped-sm200",
+        "title": "Snubbull [Stamped] #SM200 | Pokemon Promo"
+      }
+    }
+  ]
+}

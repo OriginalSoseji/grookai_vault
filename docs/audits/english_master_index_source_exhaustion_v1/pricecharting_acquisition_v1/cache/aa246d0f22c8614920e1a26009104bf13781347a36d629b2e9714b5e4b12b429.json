@@ -1,0 +1,36 @@
+{
+  "status": "no_validated_match",
+  "fact": {
+    "gap_type": "finish_second_source_needed",
+    "fact_type": "printing_finish",
+    "set_key": "swsh12pt5",
+    "set_name": "Crown Zenith",
+    "card_number": "130",
+    "card_name": "Friends in Hisui",
+    "finish_key": "stamped",
+    "status": "human_source_verified",
+    "sources": [
+      "thepricedex_price_list"
+    ],
+    "source_authorities": [
+      "thepricedex.com"
+    ],
+    "source_kinds": [
+      "marketplace_checklist"
+    ],
+    "evidence_urls": [],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "attempts": [
+    {
+      "query": "Pokemon Crown Zenith Friends in Hisui 130 stamped",
+      "url": "https://www.pricecharting.com/search-products?q=Pokemon%20Crown%20Zenith%20Friends%20in%20Hisui%20130%20stamped&type=prices",
+      "error": "Fetch failed 403 Forbidden: https://www.pricecharting.com/search-products?q=Pokemon%20Crown%20Zenith%20Friends%20in%20Hisui%20130%20stamped&type=prices"
+    },
+    {
+      "query": "Pokemon Crown Zenith Friends in Hisui 130 stamp",
+      "url": "https://www.pricecharting.com/search-products?q=Pokemon%20Crown%20Zenith%20Friends%20in%20Hisui%20130%20stamp&type=prices",
+      "error": "Fetch failed 403 Forbidden: https://www.pricecharting.com/search-products?q=Pokemon%20Crown%20Zenith%20Friends%20in%20Hisui%20130%20stamp&type=prices"
+    }
+  ]
+}

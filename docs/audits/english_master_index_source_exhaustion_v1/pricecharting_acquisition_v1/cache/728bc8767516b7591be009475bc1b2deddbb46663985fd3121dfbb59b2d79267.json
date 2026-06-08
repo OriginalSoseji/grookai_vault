@@ -1,0 +1,43 @@
+{
+  "status": "no_validated_match",
+  "fact": {
+    "gap_type": "finish_second_source_needed",
+    "fact_type": "printing_finish",
+    "set_key": "xy7",
+    "set_name": "Ancient Origins",
+    "card_number": "63",
+    "card_name": "Eevee",
+    "finish_key": "stamped",
+    "status": "human_source_verified",
+    "sources": [
+      "thepricedex_price_list"
+    ],
+    "source_authorities": [
+      "thepricedex.com"
+    ],
+    "source_kinds": [
+      "marketplace_checklist"
+    ],
+    "evidence_urls": [],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "attempts": [
+    {
+      "query": "Pokemon Ancient Origins Eevee 63 stamped",
+      "url": "https://www.pricecharting.com/search-products?q=Pokemon%20Ancient%20Origins%20Eevee%2063%20stamped&type=prices",
+      "error": "Fetch failed 403 Forbidden: https://www.pricecharting.com/search-products?q=Pokemon%20Ancient%20Origins%20Eevee%2063%20stamped&type=prices"
+    },
+    {
+      "query": "Pokemon Ancient Origins Eevee 63 stamp",
+      "url": "https://www.pricecharting.com/search-products?q=Pokemon%20Ancient%20Origins%20Eevee%2063%20stamp&type=prices",
+      "parsed": {
+        "title": "Pokemon Ancient Origins Eevee 63 Stamp Prices | Pokemon Ancient Origins Eevee 63 Stamp List",
+        "source_url": "https://www.pricecharting.com/search-products?q=pokemon+ancient+origins+eevee+63+stamp&type=prices"
+      },
+      "validation": {
+        "ok": false,
+        "reason": "title_pattern_not_supported"
+      }
+    }
+  ]
+}

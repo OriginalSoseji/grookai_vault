@@ -1,0 +1,549 @@
+{
+  "status": "api_no_validated_match",
+  "fact": {
+    "gap_type": "finish_second_source_needed",
+    "fact_type": "printing_finish",
+    "set_key": "sm1",
+    "set_name": "Sun & Moon",
+    "card_number": "135",
+    "card_name": "Ultra Ball",
+    "finish_key": "stamped",
+    "status": "human_source_verified",
+    "sources": [
+      "thepricedex_price_list"
+    ],
+    "source_authorities": [
+      "thepricedex.com"
+    ],
+    "source_kinds": [
+      "marketplace_checklist"
+    ],
+    "evidence_urls": [
+      "https://www.thepricedex.com/set/sm1/sun-and-moon/price-list"
+    ],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "attempts": [
+    {
+      "query": "Pokemon Sun & Moon Ultra Ball 135 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Sun%20%26%20Moon%20Ultra%20Ball%20135%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "806879",
+      "product_name": "Ultra Ball #135",
+      "console_name": "Pokemon Sun & Moon",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon Sun & Moon Ultra Ball 135 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Sun%20%26%20Moon%20Ultra%20Ball%20135%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "807008",
+      "product_name": "Ultra Ball [Reverse Holo] #135",
+      "console_name": "Pokemon Sun & Moon",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Reverse Holo"
+      }
+    },
+    {
+      "query": "Pokemon Sun & Moon Ultra Ball 135 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Sun%20%26%20Moon%20Ultra%20Ball%20135%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6254480",
+      "product_name": "Ultra Ball [Championships Staff Europe] #135",
+      "console_name": "Pokemon Sun & Moon",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Championships Staff Europe"
+      }
+    },
+    {
+      "query": "Pokemon Sun & Moon Ultra Ball 135 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Sun%20%26%20Moon%20Ultra%20Ball%20135%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11869803",
+      "product_name": "Ultra Ball [Championships North America] #135",
+      "console_name": "Pokemon Sun & Moon",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Championships North America"
+      }
+    },
+    {
+      "query": "Pokemon Sun & Moon Ultra Ball 135 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Sun%20%26%20Moon%20Ultra%20Ball%20135%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6254479",
+      "product_name": "Ultra Ball [Championships Staff Oceania] #135",
+      "console_name": "Pokemon Sun & Moon",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Championships Staff Oceania"
+      }
+    },
+    {
+      "query": "Pokemon Sun & Moon Ultra Ball 135 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Sun%20%26%20Moon%20Ultra%20Ball%20135%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6254478",
+      "product_name": "Ultra Ball [Championships Staff North America] #135",
+      "console_name": "Pokemon Sun & Moon",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Championships Staff North America"
+      }
+    },
+    {
+      "query": "Pokemon Sun & Moon Ultra Ball 135 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Sun%20%26%20Moon%20Ultra%20Ball%20135%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11828498",
+      "product_name": "Ultra Ball [Championships North America Top 8] #135",
+      "console_name": "Pokemon Sun & Moon",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Championships North America Top 8"
+      }
+    },
+    {
+      "query": "Pokemon Sun & Moon Ultra Ball 135 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Sun%20%26%20Moon%20Ultra%20Ball%20135%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "2573461",
+      "product_name": "Ultra Ball #161",
+      "console_name": "Pokemon Sun & Moon",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:161"
+      }
+    },
+    {
+      "query": "Pokemon Sun & Moon Ultra Ball 135 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Sun%20%26%20Moon%20Ultra%20Ball%20135%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3473785",
+      "product_name": "Ultra Ball #45",
+      "console_name": "Pokemon Japanese Strength Expansion Pack Sun & Moon",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:45"
+      }
+    },
+    {
+      "query": "Pokemon Sun & Moon Ultra Ball 135 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Sun%20%26%20Moon%20Ultra%20Ball%20135%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "2163215",
+      "product_name": "Pokemon Ultra Sun & Ultra Moon Guide",
+      "console_name": "Strategy Guide",
+      "validation": {
+        "ok": false,
+        "reason": "api_product_name_pattern_not_supported"
+      }
+    },
+    {
+      "query": "Pokemon Sun & Moon Ultra Ball 135 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Sun%20%26%20Moon%20Ultra%20Ball%20135%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "40529",
+      "product_name": "Pokemon Ultra Sun & Pokemon Ultra Moon Dual Pack",
+      "console_name": "Nintendo 3DS",
+      "validation": {
+        "ok": false,
+        "reason": "api_product_name_pattern_not_supported"
+      }
+    },
+    {
+      "query": "Pokemon Sun & Moon Ultra Ball 135 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Sun%20%26%20Moon%20Ultra%20Ball%20135%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "2740661",
+      "product_name": "Pokemon Ultra Sun & Pokemon Ultra Moon Dual Edition",
+      "console_name": "PAL Nintendo 3DS",
+      "validation": {
+        "ok": false,
+        "reason": "api_product_name_pattern_not_supported"
+      }
+    },
+    {
+      "query": "Pokemon Sun & Moon Ultra Ball 135 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Sun%20%26%20Moon%20Ultra%20Ball%20135%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "806867",
+      "product_name": "Nest Ball #123",
+      "console_name": "Pokemon Sun & Moon",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:123"
+      }
+    },
+    {
+      "query": "Pokemon Sun & Moon Ultra Ball 135 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Sun%20%26%20Moon%20Ultra%20Ball%20135%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "2573467",
+      "product_name": "Nest Ball #158",
+      "console_name": "Pokemon Sun & Moon",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:158"
+      }
+    },
+    {
+      "query": "Pokemon Sun & Moon Ultra Ball 135 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Sun%20%26%20Moon%20Ultra%20Ball%20135%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "806863",
+      "product_name": "Great Ball #119",
+      "console_name": "Pokemon Sun & Moon",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:119"
+      }
+    },
+    {
+      "query": "Pokemon Sun & Moon Ultra Ball 135 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Sun%20%26%20Moon%20Ultra%20Ball%20135%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "806878",
+      "product_name": "Timer Ball #134",
+      "console_name": "Pokemon Sun & Moon",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:134"
+      }
+    },
+    {
+      "query": "Pokemon Sun & Moon Ultra Ball 135 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Sun%20%26%20Moon%20Ultra%20Ball%20135%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5403737",
+      "product_name": "Pokemon Ultra Sun & Pokemon Ultra Moon Dual Pack [Bonus Figures]",
+      "console_name": "Nintendo 3DS",
+      "validation": {
+        "ok": false,
+        "reason": "api_product_name_pattern_not_supported"
+      }
+    },
+    {
+      "query": "Pokemon Sun & Moon Ultra Ball 135 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Sun%20%26%20Moon%20Ultra%20Ball%20135%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "40539",
+      "product_name": "Pokemon Ultra Sun & Pokemon Ultra Moon [Steelbook Edition]",
+      "console_name": "Nintendo 3DS",
+      "validation": {
+        "ok": false,
+        "reason": "api_product_name_pattern_not_supported"
+      }
+    },
+    {
+      "query": "Pokemon Sun & Moon Ultra Ball 135 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Sun%20%26%20Moon%20Ultra%20Ball%20135%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "2266837",
+      "product_name": "Pokemon Ultra Sun And Pokemon Ultra Moon Pokedex",
+      "console_name": "Strategy Guide",
+      "validation": {
+        "ok": false,
+        "reason": "api_product_name_pattern_not_supported"
+      }
+    },
+    {
+      "query": "Pokemon Sun & Moon Ultra Ball 135 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Sun%20%26%20Moon%20Ultra%20Ball%20135%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "806869",
+      "product_name": "Poke Ball #125",
+      "console_name": "Pokemon Sun & Moon",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:125"
+      }
+    },
+    {
+      "query": "Pokemon Sun & Moon Ultra Ball 135 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Sun%20%26%20Moon%20Ultra%20Ball%20135%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "806879",
+      "product_name": "Ultra Ball #135",
+      "console_name": "Pokemon Sun & Moon",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon Sun & Moon Ultra Ball 135 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Sun%20%26%20Moon%20Ultra%20Ball%20135%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "807008",
+      "product_name": "Ultra Ball [Reverse Holo] #135",
+      "console_name": "Pokemon Sun & Moon",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Reverse Holo"
+      }
+    },
+    {
+      "query": "Pokemon Sun & Moon Ultra Ball 135 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Sun%20%26%20Moon%20Ultra%20Ball%20135%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6254480",
+      "product_name": "Ultra Ball [Championships Staff Europe] #135",
+      "console_name": "Pokemon Sun & Moon",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Championships Staff Europe"
+      }
+    },
+    {
+      "query": "Pokemon Sun & Moon Ultra Ball 135 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Sun%20%26%20Moon%20Ultra%20Ball%20135%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11869803",
+      "product_name": "Ultra Ball [Championships North America] #135",
+      "console_name": "Pokemon Sun & Moon",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Championships North America"
+      }
+    },
+    {
+      "query": "Pokemon Sun & Moon Ultra Ball 135 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Sun%20%26%20Moon%20Ultra%20Ball%20135%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6254479",
+      "product_name": "Ultra Ball [Championships Staff Oceania] #135",
+      "console_name": "Pokemon Sun & Moon",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Championships Staff Oceania"
+      }
+    },
+    {
+      "query": "Pokemon Sun & Moon Ultra Ball 135 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Sun%20%26%20Moon%20Ultra%20Ball%20135%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6254478",
+      "product_name": "Ultra Ball [Championships Staff North America] #135",
+      "console_name": "Pokemon Sun & Moon",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Championships Staff North America"
+      }
+    },
+    {
+      "query": "Pokemon Sun & Moon Ultra Ball 135 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Sun%20%26%20Moon%20Ultra%20Ball%20135%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11828498",
+      "product_name": "Ultra Ball [Championships North America Top 8] #135",
+      "console_name": "Pokemon Sun & Moon",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Championships North America Top 8"
+      }
+    },
+    {
+      "query": "Pokemon Sun & Moon Ultra Ball 135 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Sun%20%26%20Moon%20Ultra%20Ball%20135%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "2573461",
+      "product_name": "Ultra Ball #161",
+      "console_name": "Pokemon Sun & Moon",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:161"
+      }
+    },
+    {
+      "query": "Pokemon Sun & Moon Ultra Ball 135 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Sun%20%26%20Moon%20Ultra%20Ball%20135%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3473785",
+      "product_name": "Ultra Ball #45",
+      "console_name": "Pokemon Japanese Strength Expansion Pack Sun & Moon",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:45"
+      }
+    },
+    {
+      "query": "Pokemon Sun & Moon Ultra Ball 135 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Sun%20%26%20Moon%20Ultra%20Ball%20135%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "2163215",
+      "product_name": "Pokemon Ultra Sun & Ultra Moon Guide",
+      "console_name": "Strategy Guide",
+      "validation": {
+        "ok": false,
+        "reason": "api_product_name_pattern_not_supported"
+      }
+    },
+    {
+      "query": "Pokemon Sun & Moon Ultra Ball 135 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Sun%20%26%20Moon%20Ultra%20Ball%20135%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "40529",
+      "product_name": "Pokemon Ultra Sun & Pokemon Ultra Moon Dual Pack",
+      "console_name": "Nintendo 3DS",
+      "validation": {
+        "ok": false,
+        "reason": "api_product_name_pattern_not_supported"
+      }
+    },
+    {
+      "query": "Pokemon Sun & Moon Ultra Ball 135 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Sun%20%26%20Moon%20Ultra%20Ball%20135%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "2740661",
+      "product_name": "Pokemon Ultra Sun & Pokemon Ultra Moon Dual Edition",
+      "console_name": "PAL Nintendo 3DS",
+      "validation": {
+        "ok": false,
+        "reason": "api_product_name_pattern_not_supported"
+      }
+    },
+    {
+      "query": "Pokemon Sun & Moon Ultra Ball 135 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Sun%20%26%20Moon%20Ultra%20Ball%20135%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "806867",
+      "product_name": "Nest Ball #123",
+      "console_name": "Pokemon Sun & Moon",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:123"
+      }
+    },
+    {
+      "query": "Pokemon Sun & Moon Ultra Ball 135 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Sun%20%26%20Moon%20Ultra%20Ball%20135%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "2573467",
+      "product_name": "Nest Ball #158",
+      "console_name": "Pokemon Sun & Moon",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:158"
+      }
+    },
+    {
+      "query": "Pokemon Sun & Moon Ultra Ball 135 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Sun%20%26%20Moon%20Ultra%20Ball%20135%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "806863",
+      "product_name": "Great Ball #119",
+      "console_name": "Pokemon Sun & Moon",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:119"
+      }
+    },
+    {
+      "query": "Pokemon Sun & Moon Ultra Ball 135 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Sun%20%26%20Moon%20Ultra%20Ball%20135%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "806878",
+      "product_name": "Timer Ball #134",
+      "console_name": "Pokemon Sun & Moon",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:134"
+      }
+    },
+    {
+      "query": "Pokemon Sun & Moon Ultra Ball 135 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Sun%20%26%20Moon%20Ultra%20Ball%20135%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5403737",
+      "product_name": "Pokemon Ultra Sun & Pokemon Ultra Moon Dual Pack [Bonus Figures]",
+      "console_name": "Nintendo 3DS",
+      "validation": {
+        "ok": false,
+        "reason": "api_product_name_pattern_not_supported"
+      }
+    },
+    {
+      "query": "Pokemon Sun & Moon Ultra Ball 135 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Sun%20%26%20Moon%20Ultra%20Ball%20135%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "40539",
+      "product_name": "Pokemon Ultra Sun & Pokemon Ultra Moon [Steelbook Edition]",
+      "console_name": "Nintendo 3DS",
+      "validation": {
+        "ok": false,
+        "reason": "api_product_name_pattern_not_supported"
+      }
+    },
+    {
+      "query": "Pokemon Sun & Moon Ultra Ball 135 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Sun%20%26%20Moon%20Ultra%20Ball%20135%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "2266837",
+      "product_name": "Pokemon Ultra Sun And Pokemon Ultra Moon Pokedex",
+      "console_name": "Strategy Guide",
+      "validation": {
+        "ok": false,
+        "reason": "api_product_name_pattern_not_supported"
+      }
+    },
+    {
+      "query": "Pokemon Sun & Moon Ultra Ball 135 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Sun%20%26%20Moon%20Ultra%20Ball%20135%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "806869",
+      "product_name": "Poke Ball #125",
+      "console_name": "Pokemon Sun & Moon",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:125"
+      }
+    }
+  ],
+  "source_lane": "pricecharting_api"
+}

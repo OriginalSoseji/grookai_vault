@@ -1,0 +1,31 @@
+{
+  "fixture_version": "VERIFIED_MASTER_SET_INDEX_V1_HUMAN_SOURCE_FIXTURE_GENERATED",
+  "source_key": "pokex_identity_ecard2",
+  "source_kind": "human_readable_checklist",
+  "source_url": "https://scanpokemon.com/checklist/aquapolis/",
+  "source_status": "available_generated",
+  "set_key": "ecard2",
+  "set_name": "Aquapolis",
+  "retrieved_at": "2026-05-26T11:51:04.297Z",
+  "raw_snapshot_ref": "generated_fixture:pokex_identity:ecard2:2026-05-26T11:51:04.297Z",
+  "generation_note": "Generated from Pokex set checklist rows. Card identity only; no finish evidence is emitted.",
+  "records": [
+    {
+      "source_key": "pokex_set_checklist",
+      "source_kind": "human_readable_checklist",
+      "source_url": "https://scanpokemon.com/checklist/aquapolis/",
+      "set_key": "ecard2",
+      "set_name": "Aquapolis",
+      "card_number": "H02",
+      "card_name": "Arcanine",
+      "finish_key": null,
+      "rarity": null,
+      "evidence_type": "card_identity",
+      "evidence_label": "Pokex checklist row #H02 - Arcanine",
+      "language": "en",
+      "retrieved_at": "2026-05-26T11:51:04.297Z",
+      "raw_snapshot_ref": "pokex:ecard2:H02",
+      "notes": "Pokex checklist card identity evidence only. This fixture does not assert finish or printing truth."
+    }
+  ]
+}

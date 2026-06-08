@@ -1,0 +1,549 @@
+{
+  "status": "api_no_validated_match",
+  "fact": {
+    "gap_type": "finish_second_source_needed",
+    "fact_type": "printing_finish",
+    "set_key": "sv02",
+    "set_name": "Paldea Evolved",
+    "card_number": "172",
+    "card_name": "Boss's Orders (Ghetsis)",
+    "finish_key": "stamped",
+    "status": "human_source_verified",
+    "sources": [
+      "thepricedex_price_list"
+    ],
+    "source_authorities": [
+      "thepricedex.com"
+    ],
+    "source_kinds": [
+      "marketplace_checklist"
+    ],
+    "evidence_urls": [
+      "https://www.thepricedex.com/set/sv2/paldea-evolved/price-list"
+    ],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "attempts": [
+    {
+      "query": "Pokemon Paldea Evolved Boss's Orders (Ghetsis) 172 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Paldea%20Evolved%20Boss's%20Orders%20(Ghetsis)%20172%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10909587",
+      "product_name": "Boss's Orders [Ghetsis] [Prize Pack] #172",
+      "console_name": "Pokemon Paldea Evolved",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Prize Pack"
+      }
+    },
+    {
+      "query": "Pokemon Paldea Evolved Boss's Orders (Ghetsis) 172 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Paldea%20Evolved%20Boss's%20Orders%20(Ghetsis)%20172%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10909781",
+      "product_name": "Boss's Orders [Ghetsis] [Prize Pack Holo] #172",
+      "console_name": "Pokemon Paldea Evolved",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Prize Pack Holo"
+      }
+    },
+    {
+      "query": "Pokemon Paldea Evolved Boss's Orders (Ghetsis) 172 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Paldea%20Evolved%20Boss's%20Orders%20(Ghetsis)%20172%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5401632",
+      "product_name": "Boss's Orders #172",
+      "console_name": "Pokemon Paldea Evolved",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Boss's Orders"
+      }
+    },
+    {
+      "query": "Pokemon Paldea Evolved Boss's Orders (Ghetsis) 172 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Paldea%20Evolved%20Boss's%20Orders%20(Ghetsis)%20172%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5287461",
+      "product_name": "Boss's Orders [Holo] #172",
+      "console_name": "Pokemon Paldea Evolved",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Boss's Orders"
+      }
+    },
+    {
+      "query": "Pokemon Paldea Evolved Boss's Orders (Ghetsis) 172 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Paldea%20Evolved%20Boss's%20Orders%20(Ghetsis)%20172%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5287723",
+      "product_name": "Boss's Orders [Reverse Holo] #172",
+      "console_name": "Pokemon Paldea Evolved",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Boss's Orders"
+      }
+    },
+    {
+      "query": "Pokemon Paldea Evolved Boss's Orders (Ghetsis) 172 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Paldea%20Evolved%20Boss's%20Orders%20(Ghetsis)%20172%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5287537",
+      "product_name": "Boss's Orders #248",
+      "console_name": "Pokemon Paldea Evolved",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:248"
+      }
+    },
+    {
+      "query": "Pokemon Paldea Evolved Boss's Orders (Ghetsis) 172 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Paldea%20Evolved%20Boss's%20Orders%20(Ghetsis)%20172%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5287554",
+      "product_name": "Boss's Orders #265",
+      "console_name": "Pokemon Paldea Evolved",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:265"
+      }
+    },
+    {
+      "query": "Pokemon Paldea Evolved Boss's Orders (Ghetsis) 172 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Paldea%20Evolved%20Boss's%20Orders%20(Ghetsis)%20172%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7640240",
+      "product_name": "Boss's Orders: Ghetsis #138",
+      "console_name": "Pokemon Japanese ex Starter Decks",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:138"
+      }
+    },
+    {
+      "query": "Pokemon Paldea Evolved Boss's Orders (Ghetsis) 172 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Paldea%20Evolved%20Boss's%20Orders%20(Ghetsis)%20172%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8458377",
+      "product_name": "Boss's Orders: Ghetsis #18",
+      "console_name": "Pokemon Japanese Starter Set SVOM",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:18"
+      }
+    },
+    {
+      "query": "Pokemon Paldea Evolved Boss's Orders (Ghetsis) 172 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Paldea%20Evolved%20Boss's%20Orders%20(Ghetsis)%20172%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8458375",
+      "product_name": "Boss's Orders: Ghetsis #17",
+      "console_name": "Pokemon Japanese Starter Set SVOD",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:17"
+      }
+    },
+    {
+      "query": "Pokemon Paldea Evolved Boss's Orders (Ghetsis) 172 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Paldea%20Evolved%20Boss's%20Orders%20(Ghetsis)%20172%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10616218",
+      "product_name": "Boss's Orders: Ghetsis #114",
+      "console_name": "Pokemon Mega Evolution",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:114"
+      }
+    },
+    {
+      "query": "Pokemon Paldea Evolved Boss's Orders (Ghetsis) 172 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Paldea%20Evolved%20Boss's%20Orders%20(Ghetsis)%20172%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7962300",
+      "product_name": "Boss's Orders: Ghetsis #39",
+      "console_name": "Pokemon Japanese Stellar Miracle Deck Build Box",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:39"
+      }
+    },
+    {
+      "query": "Pokemon Paldea Evolved Boss's Orders (Ghetsis) 172 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Paldea%20Evolved%20Boss's%20Orders%20(Ghetsis)%20172%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7311968",
+      "product_name": "Boss's Orders: Ghetsis #19",
+      "console_name": "Pokemon Japanese Battle Master Terastal Charizard",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:19"
+      }
+    },
+    {
+      "query": "Pokemon Paldea Evolved Boss's Orders (Ghetsis) 172 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Paldea%20Evolved%20Boss's%20Orders%20(Ghetsis)%20172%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7311993",
+      "product_name": "Boss's Orders: Ghetsis #18",
+      "console_name": "Pokemon Japanese Battle Master Chien-Pao",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:18"
+      }
+    },
+    {
+      "query": "Pokemon Paldea Evolved Boss's Orders (Ghetsis) 172 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Paldea%20Evolved%20Boss's%20Orders%20(Ghetsis)%20172%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8343441",
+      "product_name": "Boss's Orders: Ghetsis #46",
+      "console_name": "Pokemon Japanese Future Miraidon ex Starter Deck",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:46"
+      }
+    },
+    {
+      "query": "Pokemon Paldea Evolved Boss's Orders (Ghetsis) 172 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Paldea%20Evolved%20Boss's%20Orders%20(Ghetsis)%20172%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8343494",
+      "product_name": "Boss's Orders: Ghetsis #46",
+      "console_name": "Pokemon Japanese Ancient Koraidon ex Starter Deck",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:46"
+      }
+    },
+    {
+      "query": "Pokemon Paldea Evolved Boss's Orders (Ghetsis) 172 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Paldea%20Evolved%20Boss's%20Orders%20(Ghetsis)%20172%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10515232",
+      "product_name": "Boss's Orders: Ghetsis #19",
+      "console_name": "Pokemon Japanese Mega Starter Deck Diancie Ex",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:19"
+      }
+    },
+    {
+      "query": "Pokemon Paldea Evolved Boss's Orders (Ghetsis) 172 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Paldea%20Evolved%20Boss's%20Orders%20(Ghetsis)%20172%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10515258",
+      "product_name": "Boss's Orders: Ghetsis #20",
+      "console_name": "Pokemon Japanese Mega Starter Deck Gengar Ex",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:20"
+      }
+    },
+    {
+      "query": "Pokemon Paldea Evolved Boss's Orders (Ghetsis) 172 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Paldea%20Evolved%20Boss's%20Orders%20(Ghetsis)%20172%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10761327",
+      "product_name": "Boss's Orders: Ghetsis #38",
+      "console_name": "Pokemon Japanese Battle Partners Deck Build Box",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:38"
+      }
+    },
+    {
+      "query": "Pokemon Paldea Evolved Boss's Orders (Ghetsis) 172 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Paldea%20Evolved%20Boss's%20Orders%20(Ghetsis)%20172%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7322540",
+      "product_name": "Boss's Orders: Ghetsis #22",
+      "console_name": "Pokemon Japanese Stellar Tera Starter Set Sylveon ex",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:22"
+      }
+    },
+    {
+      "query": "Pokemon Paldea Evolved Boss's Orders (Ghetsis) 172 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Paldea%20Evolved%20Boss's%20Orders%20(Ghetsis)%20172%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10909587",
+      "product_name": "Boss's Orders [Ghetsis] [Prize Pack] #172",
+      "console_name": "Pokemon Paldea Evolved",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Prize Pack"
+      }
+    },
+    {
+      "query": "Pokemon Paldea Evolved Boss's Orders (Ghetsis) 172 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Paldea%20Evolved%20Boss's%20Orders%20(Ghetsis)%20172%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10909781",
+      "product_name": "Boss's Orders [Ghetsis] [Prize Pack Holo] #172",
+      "console_name": "Pokemon Paldea Evolved",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Prize Pack Holo"
+      }
+    },
+    {
+      "query": "Pokemon Paldea Evolved Boss's Orders (Ghetsis) 172 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Paldea%20Evolved%20Boss's%20Orders%20(Ghetsis)%20172%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5401632",
+      "product_name": "Boss's Orders #172",
+      "console_name": "Pokemon Paldea Evolved",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Boss's Orders"
+      }
+    },
+    {
+      "query": "Pokemon Paldea Evolved Boss's Orders (Ghetsis) 172 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Paldea%20Evolved%20Boss's%20Orders%20(Ghetsis)%20172%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5287461",
+      "product_name": "Boss's Orders [Holo] #172",
+      "console_name": "Pokemon Paldea Evolved",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Boss's Orders"
+      }
+    },
+    {
+      "query": "Pokemon Paldea Evolved Boss's Orders (Ghetsis) 172 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Paldea%20Evolved%20Boss's%20Orders%20(Ghetsis)%20172%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5287723",
+      "product_name": "Boss's Orders [Reverse Holo] #172",
+      "console_name": "Pokemon Paldea Evolved",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Boss's Orders"
+      }
+    },
+    {
+      "query": "Pokemon Paldea Evolved Boss's Orders (Ghetsis) 172 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Paldea%20Evolved%20Boss's%20Orders%20(Ghetsis)%20172%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5287537",
+      "product_name": "Boss's Orders #248",
+      "console_name": "Pokemon Paldea Evolved",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:248"
+      }
+    },
+    {
+      "query": "Pokemon Paldea Evolved Boss's Orders (Ghetsis) 172 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Paldea%20Evolved%20Boss's%20Orders%20(Ghetsis)%20172%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5287554",
+      "product_name": "Boss's Orders #265",
+      "console_name": "Pokemon Paldea Evolved",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:265"
+      }
+    },
+    {
+      "query": "Pokemon Paldea Evolved Boss's Orders (Ghetsis) 172 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Paldea%20Evolved%20Boss's%20Orders%20(Ghetsis)%20172%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7640240",
+      "product_name": "Boss's Orders: Ghetsis #138",
+      "console_name": "Pokemon Japanese ex Starter Decks",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:138"
+      }
+    },
+    {
+      "query": "Pokemon Paldea Evolved Boss's Orders (Ghetsis) 172 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Paldea%20Evolved%20Boss's%20Orders%20(Ghetsis)%20172%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8458377",
+      "product_name": "Boss's Orders: Ghetsis #18",
+      "console_name": "Pokemon Japanese Starter Set SVOM",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:18"
+      }
+    },
+    {
+      "query": "Pokemon Paldea Evolved Boss's Orders (Ghetsis) 172 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Paldea%20Evolved%20Boss's%20Orders%20(Ghetsis)%20172%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8458375",
+      "product_name": "Boss's Orders: Ghetsis #17",
+      "console_name": "Pokemon Japanese Starter Set SVOD",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:17"
+      }
+    },
+    {
+      "query": "Pokemon Paldea Evolved Boss's Orders (Ghetsis) 172 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Paldea%20Evolved%20Boss's%20Orders%20(Ghetsis)%20172%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10616218",
+      "product_name": "Boss's Orders: Ghetsis #114",
+      "console_name": "Pokemon Mega Evolution",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:114"
+      }
+    },
+    {
+      "query": "Pokemon Paldea Evolved Boss's Orders (Ghetsis) 172 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Paldea%20Evolved%20Boss's%20Orders%20(Ghetsis)%20172%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7962300",
+      "product_name": "Boss's Orders: Ghetsis #39",
+      "console_name": "Pokemon Japanese Stellar Miracle Deck Build Box",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:39"
+      }
+    },
+    {
+      "query": "Pokemon Paldea Evolved Boss's Orders (Ghetsis) 172 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Paldea%20Evolved%20Boss's%20Orders%20(Ghetsis)%20172%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7311968",
+      "product_name": "Boss's Orders: Ghetsis #19",
+      "console_name": "Pokemon Japanese Battle Master Terastal Charizard",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:19"
+      }
+    },
+    {
+      "query": "Pokemon Paldea Evolved Boss's Orders (Ghetsis) 172 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Paldea%20Evolved%20Boss's%20Orders%20(Ghetsis)%20172%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7311993",
+      "product_name": "Boss's Orders: Ghetsis #18",
+      "console_name": "Pokemon Japanese Battle Master Chien-Pao",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:18"
+      }
+    },
+    {
+      "query": "Pokemon Paldea Evolved Boss's Orders (Ghetsis) 172 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Paldea%20Evolved%20Boss's%20Orders%20(Ghetsis)%20172%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8343441",
+      "product_name": "Boss's Orders: Ghetsis #46",
+      "console_name": "Pokemon Japanese Future Miraidon ex Starter Deck",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:46"
+      }
+    },
+    {
+      "query": "Pokemon Paldea Evolved Boss's Orders (Ghetsis) 172 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Paldea%20Evolved%20Boss's%20Orders%20(Ghetsis)%20172%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8343494",
+      "product_name": "Boss's Orders: Ghetsis #46",
+      "console_name": "Pokemon Japanese Ancient Koraidon ex Starter Deck",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:46"
+      }
+    },
+    {
+      "query": "Pokemon Paldea Evolved Boss's Orders (Ghetsis) 172 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Paldea%20Evolved%20Boss's%20Orders%20(Ghetsis)%20172%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10515232",
+      "product_name": "Boss's Orders: Ghetsis #19",
+      "console_name": "Pokemon Japanese Mega Starter Deck Diancie Ex",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:19"
+      }
+    },
+    {
+      "query": "Pokemon Paldea Evolved Boss's Orders (Ghetsis) 172 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Paldea%20Evolved%20Boss's%20Orders%20(Ghetsis)%20172%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10515258",
+      "product_name": "Boss's Orders: Ghetsis #20",
+      "console_name": "Pokemon Japanese Mega Starter Deck Gengar Ex",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:20"
+      }
+    },
+    {
+      "query": "Pokemon Paldea Evolved Boss's Orders (Ghetsis) 172 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Paldea%20Evolved%20Boss's%20Orders%20(Ghetsis)%20172%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10761327",
+      "product_name": "Boss's Orders: Ghetsis #38",
+      "console_name": "Pokemon Japanese Battle Partners Deck Build Box",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:38"
+      }
+    },
+    {
+      "query": "Pokemon Paldea Evolved Boss's Orders (Ghetsis) 172 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Paldea%20Evolved%20Boss's%20Orders%20(Ghetsis)%20172%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7322540",
+      "product_name": "Boss's Orders: Ghetsis #22",
+      "console_name": "Pokemon Japanese Stellar Tera Starter Set Sylveon ex",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:22"
+      }
+    }
+  ],
+  "source_lane": "pricecharting_api"
+}

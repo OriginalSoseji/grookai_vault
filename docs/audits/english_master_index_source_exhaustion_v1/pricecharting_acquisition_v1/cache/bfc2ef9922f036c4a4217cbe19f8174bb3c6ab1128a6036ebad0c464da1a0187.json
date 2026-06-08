@@ -1,0 +1,62 @@
+{
+  "status": "validated",
+  "fact": {
+    "gap_type": "finish_second_source_needed",
+    "fact_type": "printing_finish",
+    "set_key": "swsh10",
+    "set_name": "Astral Radiance",
+    "card_number": "125",
+    "card_name": "Stantler",
+    "finish_key": "stamped",
+    "status": "human_source_verified",
+    "sources": [
+      "thepricedex_price_list"
+    ],
+    "source_authorities": [
+      "thepricedex.com"
+    ],
+    "source_kinds": [
+      "marketplace_checklist"
+    ],
+    "evidence_urls": [
+      "https://www.thepricedex.com/set/swsh10/astral-radiance/price-list"
+    ],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "query": "Pokemon Astral Radiance Stantler 125 stamped",
+  "search_url": "https://www.pricecharting.com/api/products?q=Pokemon%20Astral%20Radiance%20Stantler%20125%20stamped",
+  "source_url": "https://www.pricecharting.com/game/pokemon-astral-radiance/stantler-snowflake-stamp-125",
+  "title": "Stantler [Snowflake Stamp] #125 | Pokemon Astral Radiance",
+  "title_parts": {
+    "card_name": "Stantler",
+    "card_number": "125",
+    "variant_label": "Snowflake Stamp",
+    "set_name": "Pokemon Astral Radiance",
+    "pricecharting_product_id": "5810877"
+  },
+  "validation_source": "pricecharting_api_products",
+  "source_lane": "pricecharting_api",
+  "attempts": [
+    {
+      "query": "Pokemon Astral Radiance Stantler 125 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Astral%20Radiance%20Stantler%20125%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5810877",
+      "product_name": "Stantler [Snowflake Stamp] #125",
+      "console_name": "Pokemon Astral Radiance",
+      "validation": {
+        "ok": true,
+        "titleParts": {
+          "card_name": "Stantler",
+          "card_number": "125",
+          "variant_label": "Snowflake Stamp",
+          "set_name": "Pokemon Astral Radiance",
+          "pricecharting_product_id": "5810877"
+        },
+        "source_url": "https://www.pricecharting.com/game/pokemon-astral-radiance/stantler-snowflake-stamp-125",
+        "title": "Stantler [Snowflake Stamp] #125 | Pokemon Astral Radiance"
+      }
+    }
+  ]
+}

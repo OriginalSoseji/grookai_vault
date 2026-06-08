@@ -1,0 +1,549 @@
+{
+  "status": "api_no_validated_match",
+  "fact": {
+    "gap_type": "finish_second_source_needed",
+    "fact_type": "printing_finish",
+    "set_key": "pl2",
+    "set_name": "Rising Rivals",
+    "card_number": "96",
+    "card_name": "Team Galactic's Invention G-109 SP Radar",
+    "finish_key": "stamped",
+    "status": "human_source_verified",
+    "sources": [
+      "thepricedex_price_list"
+    ],
+    "source_authorities": [
+      "thepricedex.com"
+    ],
+    "source_kinds": [
+      "marketplace_checklist"
+    ],
+    "evidence_urls": [
+      "https://www.thepricedex.com/set/pl2/rising-rivals/price-list"
+    ],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "attempts": [
+    {
+      "query": "Pokemon Rising Rivals Team Galactic's Invention G-109 SP Radar 96 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Rising%20Rivals%20Team%20Galactic's%20Invention%20G-109%20SP%20Radar%2096%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12120312",
+      "product_name": "Team Galactic's Invention G-109 SP Radar [Tsubasa Nakamura] #96",
+      "console_name": "Pokemon World Championships 2009",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon World Championships 2009"
+      }
+    },
+    {
+      "query": "Pokemon Rising Rivals Team Galactic's Invention G-109 SP Radar 96 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Rising%20Rivals%20Team%20Galactic's%20Invention%20G-109%20SP%20Radar%2096%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12649625",
+      "product_name": "Team Galactic's Invention G-107 #14",
+      "console_name": "Pokemon Japanese Garchomp vs Charizard SP",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:14"
+      }
+    },
+    {
+      "query": "Pokemon Rising Rivals Team Galactic's Invention G-109 SP Radar 96 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Rising%20Rivals%20Team%20Galactic's%20Invention%20G-109%20SP%20Radar%2096%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "925492",
+      "product_name": "SP-Radar #96",
+      "console_name": "Pokemon Rising Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:SP-Radar"
+      }
+    },
+    {
+      "query": "Pokemon Rising Rivals Team Galactic's Invention G-109 SP Radar 96 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Rising%20Rivals%20Team%20Galactic's%20Invention%20G-109%20SP%20Radar%2096%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "925611",
+      "product_name": "SP-Radar [Reverse Holo] #96",
+      "console_name": "Pokemon Rising Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:SP-Radar"
+      }
+    },
+    {
+      "query": "Pokemon Rising Rivals Team Galactic's Invention G-109 SP Radar 96 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Rising%20Rivals%20Team%20Galactic's%20Invention%20G-109%20SP%20Radar%2096%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12120381",
+      "product_name": "Team Galactic's Invention G-103 Power Spray [Tsubasa Nakamura] #117",
+      "console_name": "Pokemon World Championships 2009",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:117"
+      }
+    },
+    {
+      "query": "Pokemon Rising Rivals Team Galactic's Invention G-109 SP Radar 96 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Rising%20Rivals%20Team%20Galactic's%20Invention%20G-109%20SP%20Radar%2096%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12120311",
+      "product_name": "Team Galactic's Invention G-105 Poke Turn [Tsubasa Nakamura] #118",
+      "console_name": "Pokemon World Championships 2009",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:118"
+      }
+    },
+    {
+      "query": "Pokemon Rising Rivals Team Galactic's Invention G-109 SP Radar 96 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Rising%20Rivals%20Team%20Galactic's%20Invention%20G-109%20SP%20Radar%2096%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12289517",
+      "product_name": "Team Galactic's Invention G-103 Power Spray [Yuta Komatsuda] #117",
+      "console_name": "Pokemon World Championships 2010",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:117"
+      }
+    },
+    {
+      "query": "Pokemon Rising Rivals Team Galactic's Invention G-109 SP Radar 96 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Rising%20Rivals%20Team%20Galactic's%20Invention%20G-109%20SP%20Radar%2096%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "13091397",
+      "product_name": "PriceCharting Https://Www.Pricecharting.Com Team Galactic's Invention G-105 Poke Turn Mychael Bryan #118",
+      "console_name": "Pokemon World Championships 2010",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:118"
+      }
+    },
+    {
+      "query": "Pokemon Rising Rivals Team Galactic's Invention G-109 SP Radar 96 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Rising%20Rivals%20Team%20Galactic's%20Invention%20G-109%20SP%20Radar%2096%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9962541",
+      "product_name": "Team Rocket's Tyranitar [Stamped] #96",
+      "console_name": "Pokemon Destined Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Team Rocket's Tyranitar"
+      }
+    },
+    {
+      "query": "Pokemon Rising Rivals Team Galactic's Invention G-109 SP Radar 96 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Rising%20Rivals%20Team%20Galactic's%20Invention%20G-109%20SP%20Radar%2096%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "925505",
+      "product_name": "Luxray GL LV.X #109",
+      "console_name": "Pokemon Rising Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:109"
+      }
+    },
+    {
+      "query": "Pokemon Rising Rivals Team Galactic's Invention G-109 SP Radar 96 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Rising%20Rivals%20Team%20Galactic's%20Invention%20G-109%20SP%20Radar%2096%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "925497",
+      "product_name": "SP Energy #101",
+      "console_name": "Pokemon Rising Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:101"
+      }
+    },
+    {
+      "query": "Pokemon Rising Rivals Team Galactic's Invention G-109 SP Radar 96 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Rising%20Rivals%20Team%20Galactic's%20Invention%20G-109%20SP%20Radar%2096%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "925399",
+      "product_name": "Darkrai G #3",
+      "console_name": "Pokemon Rising Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:3"
+      }
+    },
+    {
+      "query": "Pokemon Rising Rivals Team Galactic's Invention G-109 SP Radar 96 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Rising%20Rivals%20Team%20Galactic's%20Invention%20G-109%20SP%20Radar%2096%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "925452",
+      "product_name": "Ambipom G #56",
+      "console_name": "Pokemon Rising Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:56"
+      }
+    },
+    {
+      "query": "Pokemon Rising Rivals Team Galactic's Invention G-109 SP Radar 96 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Rising%20Rivals%20Team%20Galactic's%20Invention%20G-109%20SP%20Radar%2096%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "925457",
+      "product_name": "Forretress G #61",
+      "console_name": "Pokemon Rising Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:61"
+      }
+    },
+    {
+      "query": "Pokemon Rising Rivals Team Galactic's Invention G-109 SP Radar 96 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Rising%20Rivals%20Team%20Galactic's%20Invention%20G-109%20SP%20Radar%2096%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "925616",
+      "product_name": "SP Energy [Reverse Holo] #101",
+      "console_name": "Pokemon Rising Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:101"
+      }
+    },
+    {
+      "query": "Pokemon Rising Rivals Team Galactic's Invention G-109 SP Radar 96 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Rising%20Rivals%20Team%20Galactic's%20Invention%20G-109%20SP%20Radar%2096%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "925435",
+      "product_name": "Electrode G #39",
+      "console_name": "Pokemon Rising Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:39"
+      }
+    },
+    {
+      "query": "Pokemon Rising Rivals Team Galactic's Invention G-109 SP Radar 96 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Rising%20Rivals%20Team%20Galactic's%20Invention%20G-109%20SP%20Radar%2096%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9670337",
+      "product_name": "Team Rocket's Articuno [Stamped] #51",
+      "console_name": "Pokemon Destined Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:51"
+      }
+    },
+    {
+      "query": "Pokemon Rising Rivals Team Galactic's Invention G-109 SP Radar 96 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Rising%20Rivals%20Team%20Galactic's%20Invention%20G-109%20SP%20Radar%2096%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10112145",
+      "product_name": "Team Rocket's Zapdos [Stamped] #70",
+      "console_name": "Pokemon Destined Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:70"
+      }
+    },
+    {
+      "query": "Pokemon Rising Rivals Team Galactic's Invention G-109 SP Radar 96 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Rising%20Rivals%20Team%20Galactic's%20Invention%20G-109%20SP%20Radar%2096%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "925491",
+      "product_name": "Technical Machine G #95",
+      "console_name": "Pokemon Rising Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:95"
+      }
+    },
+    {
+      "query": "Pokemon Rising Rivals Team Galactic's Invention G-109 SP Radar 96 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Rising%20Rivals%20Team%20Galactic's%20Invention%20G-109%20SP%20Radar%2096%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "925519",
+      "product_name": "Darkrai G [Reverse Holo] #3",
+      "console_name": "Pokemon Rising Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:3"
+      }
+    },
+    {
+      "query": "Pokemon Rising Rivals Team Galactic's Invention G-109 SP Radar 96 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Rising%20Rivals%20Team%20Galactic's%20Invention%20G-109%20SP%20Radar%2096%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12120312",
+      "product_name": "Team Galactic's Invention G-109 SP Radar [Tsubasa Nakamura] #96",
+      "console_name": "Pokemon World Championships 2009",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon World Championships 2009"
+      }
+    },
+    {
+      "query": "Pokemon Rising Rivals Team Galactic's Invention G-109 SP Radar 96 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Rising%20Rivals%20Team%20Galactic's%20Invention%20G-109%20SP%20Radar%2096%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12649625",
+      "product_name": "Team Galactic's Invention G-107 #14",
+      "console_name": "Pokemon Japanese Garchomp vs Charizard SP",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:14"
+      }
+    },
+    {
+      "query": "Pokemon Rising Rivals Team Galactic's Invention G-109 SP Radar 96 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Rising%20Rivals%20Team%20Galactic's%20Invention%20G-109%20SP%20Radar%2096%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "925492",
+      "product_name": "SP-Radar #96",
+      "console_name": "Pokemon Rising Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:SP-Radar"
+      }
+    },
+    {
+      "query": "Pokemon Rising Rivals Team Galactic's Invention G-109 SP Radar 96 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Rising%20Rivals%20Team%20Galactic's%20Invention%20G-109%20SP%20Radar%2096%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "925611",
+      "product_name": "SP-Radar [Reverse Holo] #96",
+      "console_name": "Pokemon Rising Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:SP-Radar"
+      }
+    },
+    {
+      "query": "Pokemon Rising Rivals Team Galactic's Invention G-109 SP Radar 96 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Rising%20Rivals%20Team%20Galactic's%20Invention%20G-109%20SP%20Radar%2096%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12120381",
+      "product_name": "Team Galactic's Invention G-103 Power Spray [Tsubasa Nakamura] #117",
+      "console_name": "Pokemon World Championships 2009",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:117"
+      }
+    },
+    {
+      "query": "Pokemon Rising Rivals Team Galactic's Invention G-109 SP Radar 96 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Rising%20Rivals%20Team%20Galactic's%20Invention%20G-109%20SP%20Radar%2096%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12120311",
+      "product_name": "Team Galactic's Invention G-105 Poke Turn [Tsubasa Nakamura] #118",
+      "console_name": "Pokemon World Championships 2009",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:118"
+      }
+    },
+    {
+      "query": "Pokemon Rising Rivals Team Galactic's Invention G-109 SP Radar 96 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Rising%20Rivals%20Team%20Galactic's%20Invention%20G-109%20SP%20Radar%2096%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12289517",
+      "product_name": "Team Galactic's Invention G-103 Power Spray [Yuta Komatsuda] #117",
+      "console_name": "Pokemon World Championships 2010",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:117"
+      }
+    },
+    {
+      "query": "Pokemon Rising Rivals Team Galactic's Invention G-109 SP Radar 96 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Rising%20Rivals%20Team%20Galactic's%20Invention%20G-109%20SP%20Radar%2096%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "13091397",
+      "product_name": "PriceCharting Https://Www.Pricecharting.Com Team Galactic's Invention G-105 Poke Turn Mychael Bryan #118",
+      "console_name": "Pokemon World Championships 2010",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:118"
+      }
+    },
+    {
+      "query": "Pokemon Rising Rivals Team Galactic's Invention G-109 SP Radar 96 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Rising%20Rivals%20Team%20Galactic's%20Invention%20G-109%20SP%20Radar%2096%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9962541",
+      "product_name": "Team Rocket's Tyranitar [Stamped] #96",
+      "console_name": "Pokemon Destined Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Team Rocket's Tyranitar"
+      }
+    },
+    {
+      "query": "Pokemon Rising Rivals Team Galactic's Invention G-109 SP Radar 96 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Rising%20Rivals%20Team%20Galactic's%20Invention%20G-109%20SP%20Radar%2096%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "925505",
+      "product_name": "Luxray GL LV.X #109",
+      "console_name": "Pokemon Rising Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:109"
+      }
+    },
+    {
+      "query": "Pokemon Rising Rivals Team Galactic's Invention G-109 SP Radar 96 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Rising%20Rivals%20Team%20Galactic's%20Invention%20G-109%20SP%20Radar%2096%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "925497",
+      "product_name": "SP Energy #101",
+      "console_name": "Pokemon Rising Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:101"
+      }
+    },
+    {
+      "query": "Pokemon Rising Rivals Team Galactic's Invention G-109 SP Radar 96 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Rising%20Rivals%20Team%20Galactic's%20Invention%20G-109%20SP%20Radar%2096%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "925399",
+      "product_name": "Darkrai G #3",
+      "console_name": "Pokemon Rising Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:3"
+      }
+    },
+    {
+      "query": "Pokemon Rising Rivals Team Galactic's Invention G-109 SP Radar 96 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Rising%20Rivals%20Team%20Galactic's%20Invention%20G-109%20SP%20Radar%2096%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "925452",
+      "product_name": "Ambipom G #56",
+      "console_name": "Pokemon Rising Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:56"
+      }
+    },
+    {
+      "query": "Pokemon Rising Rivals Team Galactic's Invention G-109 SP Radar 96 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Rising%20Rivals%20Team%20Galactic's%20Invention%20G-109%20SP%20Radar%2096%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "925457",
+      "product_name": "Forretress G #61",
+      "console_name": "Pokemon Rising Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:61"
+      }
+    },
+    {
+      "query": "Pokemon Rising Rivals Team Galactic's Invention G-109 SP Radar 96 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Rising%20Rivals%20Team%20Galactic's%20Invention%20G-109%20SP%20Radar%2096%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "925616",
+      "product_name": "SP Energy [Reverse Holo] #101",
+      "console_name": "Pokemon Rising Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:101"
+      }
+    },
+    {
+      "query": "Pokemon Rising Rivals Team Galactic's Invention G-109 SP Radar 96 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Rising%20Rivals%20Team%20Galactic's%20Invention%20G-109%20SP%20Radar%2096%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "925435",
+      "product_name": "Electrode G #39",
+      "console_name": "Pokemon Rising Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:39"
+      }
+    },
+    {
+      "query": "Pokemon Rising Rivals Team Galactic's Invention G-109 SP Radar 96 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Rising%20Rivals%20Team%20Galactic's%20Invention%20G-109%20SP%20Radar%2096%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9670337",
+      "product_name": "Team Rocket's Articuno [Stamped] #51",
+      "console_name": "Pokemon Destined Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:51"
+      }
+    },
+    {
+      "query": "Pokemon Rising Rivals Team Galactic's Invention G-109 SP Radar 96 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Rising%20Rivals%20Team%20Galactic's%20Invention%20G-109%20SP%20Radar%2096%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10112145",
+      "product_name": "Team Rocket's Zapdos [Stamped] #70",
+      "console_name": "Pokemon Destined Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:70"
+      }
+    },
+    {
+      "query": "Pokemon Rising Rivals Team Galactic's Invention G-109 SP Radar 96 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Rising%20Rivals%20Team%20Galactic's%20Invention%20G-109%20SP%20Radar%2096%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "925491",
+      "product_name": "Technical Machine G #95",
+      "console_name": "Pokemon Rising Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:95"
+      }
+    },
+    {
+      "query": "Pokemon Rising Rivals Team Galactic's Invention G-109 SP Radar 96 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Rising%20Rivals%20Team%20Galactic's%20Invention%20G-109%20SP%20Radar%2096%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "925519",
+      "product_name": "Darkrai G [Reverse Holo] #3",
+      "console_name": "Pokemon Rising Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:3"
+      }
+    }
+  ],
+  "source_lane": "pricecharting_api"
+}

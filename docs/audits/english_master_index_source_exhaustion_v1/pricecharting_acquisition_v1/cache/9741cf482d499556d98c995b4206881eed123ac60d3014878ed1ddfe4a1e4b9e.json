@@ -1,0 +1,43 @@
+{
+  "status": "no_validated_match",
+  "fact": {
+    "gap_type": "finish_second_source_needed",
+    "fact_type": "printing_finish",
+    "set_key": "bwp",
+    "set_name": "BW Black Star Promos",
+    "card_number": "BW39",
+    "card_name": "Battle City",
+    "finish_key": "reverse",
+    "status": "human_source_verified",
+    "sources": [
+      "thepricedex_price_list"
+    ],
+    "source_authorities": [
+      "thepricedex.com"
+    ],
+    "source_kinds": [
+      "marketplace_checklist"
+    ],
+    "evidence_urls": [],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "attempts": [
+    {
+      "query": "Pokemon BW Black Star Promos Battle City BW39 reverse holo",
+      "url": "https://www.pricecharting.com/search-products?q=Pokemon%20BW%20Black%20Star%20Promos%20Battle%20City%20BW39%20reverse%20holo&type=prices",
+      "parsed": {
+        "title": "Pokemon BW Black Star Promos Battle City BW39 Reverse Holo Prices | Pokemon BW Black Star Promos Battle City BW39 Reverse Holo List",
+        "source_url": "https://www.pricecharting.com/search-products?q=pokemon+bw+black+star+promos+battle+city+bw39+reverse+holo&type=prices"
+      },
+      "validation": {
+        "ok": false,
+        "reason": "title_pattern_not_supported"
+      }
+    },
+    {
+      "query": "Pokemon BW Black Star Promos Battle City BW39 reverse holofoil",
+      "url": "https://www.pricecharting.com/search-products?q=Pokemon%20BW%20Black%20Star%20Promos%20Battle%20City%20BW39%20reverse%20holofoil&type=prices",
+      "error": "Fetch failed 403 Forbidden: https://www.pricecharting.com/search-products?q=Pokemon%20BW%20Black%20Star%20Promos%20Battle%20City%20BW39%20reverse%20holofoil&type=prices"
+    }
+  ]
+}

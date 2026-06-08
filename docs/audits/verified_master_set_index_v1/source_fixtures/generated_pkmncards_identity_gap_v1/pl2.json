@@ -1,0 +1,37 @@
+{
+  "source_key": "pkmncards_identity_gap_pl2",
+  "source_kind": "collector_reference",
+  "source_url": "https://pkmncards.com/",
+  "set_key": "pl2",
+  "set_name": "Rising Rivals",
+  "retrieved_at": "2026-05-30T07:14:09.823Z",
+  "raw_snapshot_ref": "pkmncards_identity_gap:pl2:2026-05-30T07:14:09.823Z",
+  "records": [
+    {
+      "source_key": "pkmncards_identity_gap",
+      "source_kind": "collector_reference",
+      "source_url": "https://pkmncards.com/card/gallade-e4-lv-x-rising-rivals-rr-106/",
+      "set_key": "pl2",
+      "set_name": "Rising Rivals",
+      "card_number": "106",
+      "card_name": "Gallade 4 LV. X",
+      "finish_key": null,
+      "evidence_type": "card_identity",
+      "evidence_label": "PKMNCards card page: Gallade E4 LV.X · Rising Rivals (RR) #106",
+      "notes": "Exact card identity evidence accepted because PKMNCards matched set, card number, and card name."
+    },
+    {
+      "source_key": "pkmncards_identity_gap",
+      "source_kind": "collector_reference",
+      "source_url": "https://pkmncards.com/card/infernape-e4-lv-x-rising-rivals-rr-108/",
+      "set_key": "pl2",
+      "set_name": "Rising Rivals",
+      "card_number": "108",
+      "card_name": "Infernape 4 LV. X",
+      "finish_key": null,
+      "evidence_type": "card_identity",
+      "evidence_label": "PKMNCards card page: Infernape E4 LV.X · Rising Rivals (RR) #108",
+      "notes": "Exact card identity evidence accepted because PKMNCards matched set, card number, and card name."
+    }
+  ]
+}

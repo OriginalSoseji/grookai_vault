@@ -1,0 +1,17 @@
+{
+  "products": [
+    {
+      "console-name": "Pokemon Stellar Crown",
+      "gamestop-price": 0,
+      "gamestop-trade-price": 0,
+      "genre": "Pokemon Card",
+      "id": "10028510",
+      "loose-price": 1936,
+      "product-name": "Glass Trumpet [Gym Stamp] #135",
+      "retail-loose-buy": 630,
+      "retail-loose-sell": 2099,
+      "sales-volume": "4"
+    }
+  ],
+  "status": "success"
+}

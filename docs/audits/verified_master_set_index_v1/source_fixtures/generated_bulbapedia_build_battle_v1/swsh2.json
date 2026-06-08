@@ -1,0 +1,48 @@
+{
+  "fixture_version": "VERIFIED_MASTER_SET_INDEX_V1_HUMAN_SOURCE_FIXTURE_GENERATED",
+  "source_key": "bulbapedia_build_battle_swsh2",
+  "source_kind": "human_readable_checklist",
+  "source_url": "https://bulbapedia.bulbagarden.net/wiki/Build_%26_Battle_Box_(TCG)",
+  "source_status": "available_generated",
+  "set_key": "swsh2",
+  "set_name": "Rebel Clash",
+  "retrieved_at": "2026-05-26T14:10:47.586Z",
+  "raw_snapshot_ref": "generated_fixture:bulbapedia_build_battle:swsh2:2026-05-26T14:10:47.586Z",
+  "generation_note": "Generated from Bulbapedia Build & Battle product pages. Exact Non Holofoil and specially stamped Prerelease statements only; deck-list generalities are ignored.",
+  "records": [
+    {
+      "source_key": "bulbapedia_build_battle_product",
+      "source_kind": "human_readable_checklist",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Rebel_Clash_Build_%26_Battle_Box_(TCG)",
+      "set_key": "swsh2",
+      "set_name": "Rebel Clash",
+      "card_number": "62",
+      "card_name": "Luxray",
+      "finish_key": "normal",
+      "rarity": null,
+      "evidence_type": "finish_presence",
+      "evidence_label": "Bulbapedia Build & Battle Box exclusive Non Holofoil versions",
+      "language": "en",
+      "retrieved_at": "2026-05-26T14:10:47.586Z",
+      "raw_snapshot_ref": "bulbapedia_build_battle:Rebel_Clash_Build_&_Battle_Box_(TCG):swsh2:62:normal",
+      "notes": "Exact Bulbapedia Build & Battle product-page TCG ID matched to an existing remaining gap. Evidence phrase: exclusive Non Holofoil versions."
+    },
+    {
+      "source_key": "bulbapedia_build_battle_product",
+      "source_kind": "human_readable_checklist",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Rebel_Clash_Build_%26_Battle_Box_(TCG)",
+      "set_key": "swsh2",
+      "set_name": "Rebel Clash",
+      "card_number": "125",
+      "card_name": "Grimmsnarl",
+      "finish_key": "normal",
+      "rarity": null,
+      "evidence_type": "finish_presence",
+      "evidence_label": "Bulbapedia Build & Battle Box exclusive Non Holofoil versions",
+      "language": "en",
+      "retrieved_at": "2026-05-26T14:10:47.586Z",
+      "raw_snapshot_ref": "bulbapedia_build_battle:Rebel_Clash_Build_&_Battle_Box_(TCG):swsh2:125:normal",
+      "notes": "Exact Bulbapedia Build & Battle product-page TCG ID matched to an existing remaining gap. Evidence phrase: exclusive Non Holofoil versions."
+    }
+  ]
+}

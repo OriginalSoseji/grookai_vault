@@ -1,0 +1,17 @@
+{
+  "products": [
+    {
+      "console-name": "Pokemon Journey Together",
+      "gamestop-price": 0,
+      "gamestop-trade-price": 0,
+      "genre": "Pokemon Card",
+      "id": "10025682",
+      "loose-price": 2389,
+      "product-name": "Levincia [Gym Stamp] #150",
+      "retail-loose-buy": 780,
+      "retail-loose-sell": 2599,
+      "sales-volume": "3"
+    }
+  ],
+  "status": "success"
+}

@@ -1,0 +1,53 @@
+{
+  "status": "validated",
+  "fact": {
+    "gap_type": "finish_second_source_needed",
+    "fact_type": "printing_finish",
+    "set_key": "xy8",
+    "set_name": "BREAKthrough",
+    "card_number": "60",
+    "card_name": "Gengar",
+    "finish_key": "cosmos",
+    "status": "human_source_verified",
+    "sources": [
+      "thepricedex_price_list"
+    ],
+    "source_authorities": [
+      "thepricedex.com"
+    ],
+    "source_kinds": [
+      "marketplace_checklist"
+    ],
+    "evidence_urls": [],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "query": "Pokemon BREAKthrough Gengar 60 cosmos holo",
+  "search_url": "https://www.pricecharting.com/search-products?q=Pokemon%20BREAKthrough%20Gengar%2060%20cosmos%20holo&type=prices",
+  "source_url": "https://www.pricecharting.com/game/pokemon-breakthrough/gengar-cosmos-holo-60",
+  "title": "Gengar [Cosmos Holo] #60 Prices | Pokemon BREAKthrough | Pokemon Cards",
+  "title_parts": {
+    "card_name": "Gengar",
+    "variant_label": "Cosmos Holo",
+    "card_number": "60",
+    "set_name": "BREAKthrough"
+  },
+  "attempts": [
+    {
+      "query": "Pokemon BREAKthrough Gengar 60 cosmos holo",
+      "url": "https://www.pricecharting.com/search-products?q=Pokemon%20BREAKthrough%20Gengar%2060%20cosmos%20holo&type=prices",
+      "parsed": {
+        "title": "Gengar [Cosmos Holo] #60 Prices | Pokemon BREAKthrough | Pokemon Cards",
+        "source_url": "https://www.pricecharting.com/game/pokemon-breakthrough/gengar-cosmos-holo-60"
+      },
+      "validation": {
+        "ok": true,
+        "titleParts": {
+          "card_name": "Gengar",
+          "variant_label": "Cosmos Holo",
+          "card_number": "60",
+          "set_name": "BREAKthrough"
+        }
+      }
+    }
+  ]
+}

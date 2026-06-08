@@ -1,0 +1,50 @@
+{
+  "status": "no_validated_match",
+  "fact": {
+    "gap_type": "finish_human_checklist_evidence_needed",
+    "fact_type": "printing_finish",
+    "set_key": "ecard3",
+    "set_name": "Skyridge",
+    "card_number": "135",
+    "card_name": "Mystery Plate Gamma",
+    "finish_key": "reverse",
+    "status": "candidate_unconfirmed",
+    "sources": [
+      "tcgdex"
+    ],
+    "source_authorities": [
+      "api.tcgdex.net"
+    ],
+    "source_kinds": [
+      "structured_api"
+    ],
+    "evidence_urls": [],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "attempts": [
+    {
+      "query": "Pokemon Skyridge Mystery Plate Gamma 135 reverse holo",
+      "url": "https://www.pricecharting.com/search-products?q=Pokemon%20Skyridge%20Mystery%20Plate%20Gamma%20135%20reverse%20holo&type=prices",
+      "parsed": {
+        "title": "Pokemon Skyridge Mystery Plate Gamma 135 Reverse Holo Prices | Pokemon Skyridge Mystery Plate Gamma 135 Reverse Holo List",
+        "source_url": "https://www.pricecharting.com/search-products?q=pokemon+skyridge+mystery+plate+gamma+135+reverse+holo&type=prices"
+      },
+      "validation": {
+        "ok": false,
+        "reason": "title_pattern_not_supported"
+      }
+    },
+    {
+      "query": "Pokemon Skyridge Mystery Plate Gamma 135 reverse holofoil",
+      "url": "https://www.pricecharting.com/search-products?q=Pokemon%20Skyridge%20Mystery%20Plate%20Gamma%20135%20reverse%20holofoil&type=prices",
+      "parsed": {
+        "title": "Pokemon Skyridge Mystery Plate Gamma 135 Reverse Holofoil Prices | Pokemon Skyridge Mystery Plate Gamma 135 Reverse Holofoil List",
+        "source_url": "https://www.pricecharting.com/search-products?q=pokemon+skyridge+mystery+plate+gamma+135+reverse+holofoil&type=prices"
+      },
+      "validation": {
+        "ok": false,
+        "reason": "title_pattern_not_supported"
+      }
+    }
+  ]
+}

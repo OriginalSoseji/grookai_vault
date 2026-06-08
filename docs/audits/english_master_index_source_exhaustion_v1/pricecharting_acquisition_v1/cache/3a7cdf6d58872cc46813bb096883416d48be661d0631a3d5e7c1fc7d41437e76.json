@@ -1,0 +1,549 @@
+{
+  "status": "api_no_validated_match",
+  "fact": {
+    "gap_type": "finish_second_source_needed",
+    "fact_type": "printing_finish",
+    "set_key": "bw1",
+    "set_name": "Black & White",
+    "card_number": "79",
+    "card_name": "Watchog",
+    "finish_key": "stamped",
+    "status": "human_source_verified",
+    "sources": [
+      "thepricedex_price_list"
+    ],
+    "source_authorities": [
+      "thepricedex.com"
+    ],
+    "source_kinds": [
+      "marketplace_checklist"
+    ],
+    "evidence_urls": [
+      "https://www.thepricedex.com/set/bw1/black-and-white/price-list"
+    ],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "attempts": [
+    {
+      "query": "Pokemon Black & White Watchog 79 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Watchog%2079%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "806387",
+      "product_name": "Watchog #79",
+      "console_name": "Pokemon Black & White",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Watchog 79 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Watchog%2079%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "806474",
+      "product_name": "Watchog [Reverse Holo] #79",
+      "console_name": "Pokemon Black & White",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Reverse Holo"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Watchog 79 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Watchog%2079%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5206636",
+      "product_name": "Watchog [League Promo] #79",
+      "console_name": "Pokemon Black & White",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:League Promo"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Watchog 79 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Watchog%2079%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "955505",
+      "product_name": "Watchog #79",
+      "console_name": "Pokemon Emerging Powers",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon Emerging Powers"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Watchog 79 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Watchog%2079%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "955602",
+      "product_name": "Watchog [Reverse Holo] #79",
+      "console_name": "Pokemon Emerging Powers",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon Emerging Powers"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Watchog 79 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Watchog%2079%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10026866",
+      "product_name": "Watchog [Reverse] #73",
+      "console_name": "Pokemon White Flare",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:73"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Watchog 79 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Watchog%2079%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3460438",
+      "product_name": "Watchog #41",
+      "console_name": "Pokemon Japanese White Collection",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:41"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Watchog 79 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Watchog%2079%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10026958",
+      "product_name": "Watchog [Poke Ball] #73",
+      "console_name": "Pokemon White Flare",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:73"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Watchog 79 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Watchog%2079%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9647599",
+      "product_name": "Watchog [Poke Ball] #71",
+      "console_name": "Pokemon Japanese White Flare",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:71"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Watchog 79 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Watchog%2079%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8454454",
+      "product_name": "Watchog [1st Edition] #41",
+      "console_name": "Pokemon Japanese White Collection",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:41"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Watchog 79 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Watchog%2079%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12755377",
+      "product_name": "Watchog [Poke Ball] #71",
+      "console_name": "Pokemon Korean White Flare",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:71"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Watchog 79 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Watchog%2079%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10026975",
+      "product_name": "Watchog [Master Ball] #73",
+      "console_name": "Pokemon White Flare",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:73"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Watchog 79 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Watchog%2079%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9861834",
+      "product_name": "Watchog [Master Ball] #71",
+      "console_name": "Pokemon Japanese White Flare",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:71"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Watchog 79 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Watchog%2079%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10026692",
+      "product_name": "Watchog #73",
+      "console_name": "Pokemon White Flare",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:73"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Watchog 79 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Watchog%2079%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10026793",
+      "product_name": "Watchog #153",
+      "console_name": "Pokemon White Flare",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:153"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Watchog 79 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Watchog%2079%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9647412",
+      "product_name": "Watchog #71",
+      "console_name": "Pokemon Japanese White Flare",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:71"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Watchog 79 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Watchog%2079%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9688261",
+      "product_name": "Watchog #152",
+      "console_name": "Pokemon Japanese White Flare",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:152"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Watchog 79 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Watchog%2079%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12755391",
+      "product_name": "Watchog [Master Ball] #71",
+      "console_name": "Pokemon Korean White Flare",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:71"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Watchog 79 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Watchog%2079%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12755376",
+      "product_name": "Watchog #71",
+      "console_name": "Pokemon Korean White Flare",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:71"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Watchog 79 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Watchog%2079%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12755478",
+      "product_name": "Watchog #152",
+      "console_name": "Pokemon Korean White Flare",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:152"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Watchog 79 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Watchog%2079%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "806387",
+      "product_name": "Watchog #79",
+      "console_name": "Pokemon Black & White",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Watchog 79 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Watchog%2079%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "806474",
+      "product_name": "Watchog [Reverse Holo] #79",
+      "console_name": "Pokemon Black & White",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Reverse Holo"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Watchog 79 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Watchog%2079%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5206636",
+      "product_name": "Watchog [League Promo] #79",
+      "console_name": "Pokemon Black & White",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:League Promo"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Watchog 79 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Watchog%2079%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "955505",
+      "product_name": "Watchog #79",
+      "console_name": "Pokemon Emerging Powers",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon Emerging Powers"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Watchog 79 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Watchog%2079%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "955602",
+      "product_name": "Watchog [Reverse Holo] #79",
+      "console_name": "Pokemon Emerging Powers",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon Emerging Powers"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Watchog 79 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Watchog%2079%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10026866",
+      "product_name": "Watchog [Reverse] #73",
+      "console_name": "Pokemon White Flare",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:73"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Watchog 79 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Watchog%2079%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3460438",
+      "product_name": "Watchog #41",
+      "console_name": "Pokemon Japanese White Collection",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:41"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Watchog 79 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Watchog%2079%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10026958",
+      "product_name": "Watchog [Poke Ball] #73",
+      "console_name": "Pokemon White Flare",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:73"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Watchog 79 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Watchog%2079%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9647599",
+      "product_name": "Watchog [Poke Ball] #71",
+      "console_name": "Pokemon Japanese White Flare",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:71"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Watchog 79 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Watchog%2079%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8454454",
+      "product_name": "Watchog [1st Edition] #41",
+      "console_name": "Pokemon Japanese White Collection",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:41"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Watchog 79 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Watchog%2079%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12755377",
+      "product_name": "Watchog [Poke Ball] #71",
+      "console_name": "Pokemon Korean White Flare",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:71"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Watchog 79 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Watchog%2079%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10026975",
+      "product_name": "Watchog [Master Ball] #73",
+      "console_name": "Pokemon White Flare",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:73"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Watchog 79 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Watchog%2079%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9861834",
+      "product_name": "Watchog [Master Ball] #71",
+      "console_name": "Pokemon Japanese White Flare",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:71"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Watchog 79 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Watchog%2079%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10026692",
+      "product_name": "Watchog #73",
+      "console_name": "Pokemon White Flare",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:73"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Watchog 79 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Watchog%2079%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10026793",
+      "product_name": "Watchog #153",
+      "console_name": "Pokemon White Flare",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:153"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Watchog 79 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Watchog%2079%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9647412",
+      "product_name": "Watchog #71",
+      "console_name": "Pokemon Japanese White Flare",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:71"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Watchog 79 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Watchog%2079%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9688261",
+      "product_name": "Watchog #152",
+      "console_name": "Pokemon Japanese White Flare",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:152"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Watchog 79 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Watchog%2079%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12755391",
+      "product_name": "Watchog [Master Ball] #71",
+      "console_name": "Pokemon Korean White Flare",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:71"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Watchog 79 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Watchog%2079%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12755376",
+      "product_name": "Watchog #71",
+      "console_name": "Pokemon Korean White Flare",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:71"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Watchog 79 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Watchog%2079%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12755478",
+      "product_name": "Watchog #152",
+      "console_name": "Pokemon Korean White Flare",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:152"
+      }
+    }
+  ],
+  "source_lane": "pricecharting_api"
+}

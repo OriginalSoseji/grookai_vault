@@ -1,0 +1,20 @@
+{
+  "version": "english_master_index_thepricedex_preservation_from_index_v1",
+  "generated_at": "2026-06-08T03:01:26.754Z",
+  "source_index_generated_at": "2026-06-08T02:10:12.037Z",
+  "audit_only": true,
+  "db_writes_performed": false,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "dry_run": false,
+  "fixture_dir": "docs/audits/verified_master_set_index_v1/source_fixtures/generated_thepricedex_preservation_v1",
+  "fixture_file": "docs\\audits\\verified_master_set_index_v1\\source_fixtures\\generated_thepricedex_preservation_v1\\thepricedex_preservation_v1.json",
+  "summary": {
+    "records_generated": 57709,
+    "card_identity_records": 20793,
+    "finish_presence_records": 36916,
+    "source_key_preserved_as": "thepricedex_price_list",
+    "source_authority_preserved_as": "thepricedex.com"
+  }
+}

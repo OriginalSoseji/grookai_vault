@@ -1,0 +1,549 @@
+{
+  "status": "api_no_validated_match",
+  "fact": {
+    "gap_type": "finish_second_source_needed",
+    "fact_type": "printing_finish",
+    "set_key": "sv05",
+    "set_name": "Temporal Forces",
+    "card_number": "159",
+    "card_name": "Rescue Board",
+    "finish_key": "stamped",
+    "status": "human_source_verified",
+    "sources": [
+      "thepricedex_price_list"
+    ],
+    "source_authorities": [
+      "thepricedex.com"
+    ],
+    "source_kinds": [
+      "marketplace_checklist"
+    ],
+    "evidence_urls": [
+      "https://www.thepricedex.com/set/sv5/temporal-forces/price-list"
+    ],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "attempts": [
+    {
+      "query": "Pokemon Temporal Forces Rescue Board 159 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Temporal%20Forces%20Rescue%20Board%20159%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6495619",
+      "product_name": "Rescue Board #159",
+      "console_name": "Pokemon Temporal Forces",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon Temporal Forces Rescue Board 159 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Temporal%20Forces%20Rescue%20Board%20159%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10057823",
+      "product_name": "Rescue Board [Prize Pack] #159",
+      "console_name": "Pokemon Temporal Forces",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Prize Pack"
+      }
+    },
+    {
+      "query": "Pokemon Temporal Forces Rescue Board 159 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Temporal%20Forces%20Rescue%20Board%20159%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6495823",
+      "product_name": "Rescue Board [Reverse Holo] #159",
+      "console_name": "Pokemon Temporal Forces",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Reverse Holo"
+      }
+    },
+    {
+      "query": "Pokemon Temporal Forces Rescue Board 159 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Temporal%20Forces%20Rescue%20Board%20159%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8205404",
+      "product_name": "Rescue Board [Prize Pack Cosmos Holo] #159",
+      "console_name": "Pokemon Temporal Forces",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Prize Pack Cosmos Holo"
+      }
+    },
+    {
+      "query": "Pokemon Temporal Forces Rescue Board 159 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Temporal%20Forces%20Rescue%20Board%20159%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6582717",
+      "product_name": "Miraidon [Stamped] #121",
+      "console_name": "Pokemon Temporal Forces",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:121"
+      }
+    },
+    {
+      "query": "Pokemon Temporal Forces Rescue Board 159 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Temporal%20Forces%20Rescue%20Board%20159%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6659921",
+      "product_name": "Koraidon [Stamped] #119",
+      "console_name": "Pokemon Temporal Forces",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:119"
+      }
+    },
+    {
+      "query": "Pokemon Temporal Forces Rescue Board 159 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Temporal%20Forces%20Rescue%20Board%20159%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11440379",
+      "product_name": "Iron Treads [Stamped] #118",
+      "console_name": "Pokemon Temporal Forces",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:118"
+      }
+    },
+    {
+      "query": "Pokemon Temporal Forces Rescue Board 159 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Temporal%20Forces%20Rescue%20Board%20159%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11440380",
+      "product_name": "Great Tusk [Stamped] #96",
+      "console_name": "Pokemon Temporal Forces",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:96"
+      }
+    },
+    {
+      "query": "Pokemon Temporal Forces Rescue Board 159 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Temporal%20Forces%20Rescue%20Board%20159%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8244724",
+      "product_name": "Rescue Board [Reverse] #126",
+      "console_name": "Pokemon Prismatic Evolutions",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:126"
+      }
+    },
+    {
+      "query": "Pokemon Temporal Forces Rescue Board 159 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Temporal%20Forces%20Rescue%20Board%20159%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8329894",
+      "product_name": "Rescue Board [Poke Ball] #126",
+      "console_name": "Pokemon Prismatic Evolutions",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:126"
+      }
+    },
+    {
+      "query": "Pokemon Temporal Forces Rescue Board 159 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Temporal%20Forces%20Rescue%20Board%20159%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7980346",
+      "product_name": "Rescue Board [Poke Ball] #153",
+      "console_name": "Pokemon Japanese Terastal Festival",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:153"
+      }
+    },
+    {
+      "query": "Pokemon Temporal Forces Rescue Board 159 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Temporal%20Forces%20Rescue%20Board%20159%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12843967",
+      "product_name": "Rescue Board [Poke Ball] #185",
+      "console_name": "Pokemon Chinese CSV7C",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:185"
+      }
+    },
+    {
+      "query": "Pokemon Temporal Forces Rescue Board 159 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Temporal%20Forces%20Rescue%20Board%20159%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12843779",
+      "product_name": "Rescue Board [Master Ball] #185",
+      "console_name": "Pokemon Chinese CSV7C",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:185"
+      }
+    },
+    {
+      "query": "Pokemon Temporal Forces Rescue Board 159 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Temporal%20Forces%20Rescue%20Board%20159%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12031004",
+      "product_name": "Rescue Board [Poke Ball] #153",
+      "console_name": "Pokemon Korean Terastal Festival ex",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:153"
+      }
+    },
+    {
+      "query": "Pokemon Temporal Forces Rescue Board 159 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Temporal%20Forces%20Rescue%20Board%20159%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12030996",
+      "product_name": "Rescue Board [Master Ball] #153",
+      "console_name": "Pokemon Korean Terastal Festival ex",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:153"
+      }
+    },
+    {
+      "query": "Pokemon Temporal Forces Rescue Board 159 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Temporal%20Forces%20Rescue%20Board%20159%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11453615",
+      "product_name": "Rescue Board [Jesse Parker]",
+      "console_name": "Pokemon World Championships 2024",
+      "validation": {
+        "ok": false,
+        "reason": "api_product_name_pattern_not_supported"
+      }
+    },
+    {
+      "query": "Pokemon Temporal Forces Rescue Board 159 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Temporal%20Forces%20Rescue%20Board%20159%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6495606",
+      "product_name": "Eri #146",
+      "console_name": "Pokemon Temporal Forces",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:146"
+      }
+    },
+    {
+      "query": "Pokemon Temporal Forces Rescue Board 159 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Temporal%20Forces%20Rescue%20Board%20159%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6495659",
+      "product_name": "Eri #199",
+      "console_name": "Pokemon Temporal Forces",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:199"
+      }
+    },
+    {
+      "query": "Pokemon Temporal Forces Rescue Board 159 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Temporal%20Forces%20Rescue%20Board%20159%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6495670",
+      "product_name": "Eri #210",
+      "console_name": "Pokemon Temporal Forces",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:210"
+      }
+    },
+    {
+      "query": "Pokemon Temporal Forces Rescue Board 159 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Temporal%20Forces%20Rescue%20Board%20159%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6495505",
+      "product_name": "Snom #45",
+      "console_name": "Pokemon Temporal Forces",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:45"
+      }
+    },
+    {
+      "query": "Pokemon Temporal Forces Rescue Board 159 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Temporal%20Forces%20Rescue%20Board%20159%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6495619",
+      "product_name": "Rescue Board #159",
+      "console_name": "Pokemon Temporal Forces",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon Temporal Forces Rescue Board 159 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Temporal%20Forces%20Rescue%20Board%20159%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10057823",
+      "product_name": "Rescue Board [Prize Pack] #159",
+      "console_name": "Pokemon Temporal Forces",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Prize Pack"
+      }
+    },
+    {
+      "query": "Pokemon Temporal Forces Rescue Board 159 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Temporal%20Forces%20Rescue%20Board%20159%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6495823",
+      "product_name": "Rescue Board [Reverse Holo] #159",
+      "console_name": "Pokemon Temporal Forces",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Reverse Holo"
+      }
+    },
+    {
+      "query": "Pokemon Temporal Forces Rescue Board 159 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Temporal%20Forces%20Rescue%20Board%20159%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8205404",
+      "product_name": "Rescue Board [Prize Pack Cosmos Holo] #159",
+      "console_name": "Pokemon Temporal Forces",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Prize Pack Cosmos Holo"
+      }
+    },
+    {
+      "query": "Pokemon Temporal Forces Rescue Board 159 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Temporal%20Forces%20Rescue%20Board%20159%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6582717",
+      "product_name": "Miraidon [Stamped] #121",
+      "console_name": "Pokemon Temporal Forces",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:121"
+      }
+    },
+    {
+      "query": "Pokemon Temporal Forces Rescue Board 159 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Temporal%20Forces%20Rescue%20Board%20159%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6659921",
+      "product_name": "Koraidon [Stamped] #119",
+      "console_name": "Pokemon Temporal Forces",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:119"
+      }
+    },
+    {
+      "query": "Pokemon Temporal Forces Rescue Board 159 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Temporal%20Forces%20Rescue%20Board%20159%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11440379",
+      "product_name": "Iron Treads [Stamped] #118",
+      "console_name": "Pokemon Temporal Forces",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:118"
+      }
+    },
+    {
+      "query": "Pokemon Temporal Forces Rescue Board 159 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Temporal%20Forces%20Rescue%20Board%20159%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11440380",
+      "product_name": "Great Tusk [Stamped] #96",
+      "console_name": "Pokemon Temporal Forces",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:96"
+      }
+    },
+    {
+      "query": "Pokemon Temporal Forces Rescue Board 159 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Temporal%20Forces%20Rescue%20Board%20159%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8244724",
+      "product_name": "Rescue Board [Reverse] #126",
+      "console_name": "Pokemon Prismatic Evolutions",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:126"
+      }
+    },
+    {
+      "query": "Pokemon Temporal Forces Rescue Board 159 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Temporal%20Forces%20Rescue%20Board%20159%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8329894",
+      "product_name": "Rescue Board [Poke Ball] #126",
+      "console_name": "Pokemon Prismatic Evolutions",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:126"
+      }
+    },
+    {
+      "query": "Pokemon Temporal Forces Rescue Board 159 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Temporal%20Forces%20Rescue%20Board%20159%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7980346",
+      "product_name": "Rescue Board [Poke Ball] #153",
+      "console_name": "Pokemon Japanese Terastal Festival",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:153"
+      }
+    },
+    {
+      "query": "Pokemon Temporal Forces Rescue Board 159 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Temporal%20Forces%20Rescue%20Board%20159%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12843967",
+      "product_name": "Rescue Board [Poke Ball] #185",
+      "console_name": "Pokemon Chinese CSV7C",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:185"
+      }
+    },
+    {
+      "query": "Pokemon Temporal Forces Rescue Board 159 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Temporal%20Forces%20Rescue%20Board%20159%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12843779",
+      "product_name": "Rescue Board [Master Ball] #185",
+      "console_name": "Pokemon Chinese CSV7C",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:185"
+      }
+    },
+    {
+      "query": "Pokemon Temporal Forces Rescue Board 159 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Temporal%20Forces%20Rescue%20Board%20159%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12031004",
+      "product_name": "Rescue Board [Poke Ball] #153",
+      "console_name": "Pokemon Korean Terastal Festival ex",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:153"
+      }
+    },
+    {
+      "query": "Pokemon Temporal Forces Rescue Board 159 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Temporal%20Forces%20Rescue%20Board%20159%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12030996",
+      "product_name": "Rescue Board [Master Ball] #153",
+      "console_name": "Pokemon Korean Terastal Festival ex",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:153"
+      }
+    },
+    {
+      "query": "Pokemon Temporal Forces Rescue Board 159 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Temporal%20Forces%20Rescue%20Board%20159%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11453615",
+      "product_name": "Rescue Board [Jesse Parker]",
+      "console_name": "Pokemon World Championships 2024",
+      "validation": {
+        "ok": false,
+        "reason": "api_product_name_pattern_not_supported"
+      }
+    },
+    {
+      "query": "Pokemon Temporal Forces Rescue Board 159 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Temporal%20Forces%20Rescue%20Board%20159%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6495606",
+      "product_name": "Eri #146",
+      "console_name": "Pokemon Temporal Forces",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:146"
+      }
+    },
+    {
+      "query": "Pokemon Temporal Forces Rescue Board 159 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Temporal%20Forces%20Rescue%20Board%20159%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6495659",
+      "product_name": "Eri #199",
+      "console_name": "Pokemon Temporal Forces",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:199"
+      }
+    },
+    {
+      "query": "Pokemon Temporal Forces Rescue Board 159 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Temporal%20Forces%20Rescue%20Board%20159%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6495670",
+      "product_name": "Eri #210",
+      "console_name": "Pokemon Temporal Forces",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:210"
+      }
+    },
+    {
+      "query": "Pokemon Temporal Forces Rescue Board 159 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Temporal%20Forces%20Rescue%20Board%20159%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6495505",
+      "product_name": "Snom #45",
+      "console_name": "Pokemon Temporal Forces",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:45"
+      }
+    }
+  ],
+  "source_lane": "pricecharting_api"
+}

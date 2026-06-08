@@ -1,0 +1,53 @@
+{
+  "status": "validated",
+  "fact": {
+    "gap_type": "finish_second_source_needed",
+    "fact_type": "printing_finish",
+    "set_key": "xy4",
+    "set_name": "Phantom Forces",
+    "card_number": "81",
+    "card_name": "Blissey",
+    "finish_key": "cosmos",
+    "status": "human_source_verified",
+    "sources": [
+      "thepricedex_price_list"
+    ],
+    "source_authorities": [
+      "thepricedex.com"
+    ],
+    "source_kinds": [
+      "marketplace_checklist"
+    ],
+    "evidence_urls": [],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "query": "Pokemon Phantom Forces Blissey 81 cosmos holo",
+  "search_url": "https://www.pricecharting.com/search-products?q=Pokemon%20Phantom%20Forces%20Blissey%2081%20cosmos%20holo&type=prices",
+  "source_url": "https://www.pricecharting.com/game/pokemon-phantom-forces/blissey-cosmos-holo-81",
+  "title": "Blissey [Cosmos Holo] #81 Prices | Pokemon Phantom Forces | Pokemon Cards",
+  "title_parts": {
+    "card_name": "Blissey",
+    "variant_label": "Cosmos Holo",
+    "card_number": "81",
+    "set_name": "Phantom Forces"
+  },
+  "attempts": [
+    {
+      "query": "Pokemon Phantom Forces Blissey 81 cosmos holo",
+      "url": "https://www.pricecharting.com/search-products?q=Pokemon%20Phantom%20Forces%20Blissey%2081%20cosmos%20holo&type=prices",
+      "parsed": {
+        "title": "Blissey [Cosmos Holo] #81 Prices | Pokemon Phantom Forces | Pokemon Cards",
+        "source_url": "https://www.pricecharting.com/game/pokemon-phantom-forces/blissey-cosmos-holo-81"
+      },
+      "validation": {
+        "ok": true,
+        "titleParts": {
+          "card_name": "Blissey",
+          "variant_label": "Cosmos Holo",
+          "card_number": "81",
+          "set_name": "Phantom Forces"
+        }
+      }
+    }
+  ]
+}

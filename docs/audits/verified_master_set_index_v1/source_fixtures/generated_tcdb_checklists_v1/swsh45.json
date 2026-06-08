@@ -1,0 +1,48 @@
+{
+  "fixture_version": "VERIFIED_MASTER_SET_INDEX_V1_HUMAN_SOURCE_FIXTURE_GENERATED",
+  "source_key": "tcdb_checklist_swsh45",
+  "source_kind": "collector_reference",
+  "source_url": "https://www.tcdb.com",
+  "source_status": "available_generated",
+  "set_key": "swsh45",
+  "set_name": "Shining Fates",
+  "retrieved_at": "2026-05-26T11:12:00.461Z",
+  "raw_snapshot_ref": "generated_fixture:tcdb:swsh45:2026-05-26T11:12:00.461Z",
+  "generation_note": "Generated from TCDB checklist pages. Finish evidence is emitted only when TCDB set title explicitly names the finish/variant.",
+  "records": [
+    {
+      "source_key": "tcdb_checklist",
+      "source_kind": "collector_reference",
+      "source_url": "https://www.tcdb.com/ViewCard.cfm/sid/261540/cid/16099516/2021-Pokemon-Sword-&-Shield-Shining-Fates---Reverse-Holos-058/072-Boss's-Orders:-Lysandre?PageIndex=1",
+      "set_key": "swsh45",
+      "set_name": "Shining Fates",
+      "card_number": "58",
+      "card_name": "Boss's Orders (Lysandre)",
+      "finish_key": "reverse",
+      "rarity": null,
+      "evidence_type": "finish_presence",
+      "evidence_label": "TCDB checklist 2021 Pokemon Sword & Shield Shining Fates - Reverse-Holos 58 Boss's Orders (Lysandre)",
+      "language": "en",
+      "retrieved_at": "2026-05-26T11:12:00.461Z",
+      "raw_snapshot_ref": "tcdb:261540:58:reverse",
+      "notes": "Exact card-level finish evidence from a TCDB checklist whose set title explicitly names this finish/variant. No era, rarity, or default-finish inference was used."
+    },
+    {
+      "source_key": "tcdb_checklist",
+      "source_kind": "collector_reference",
+      "source_url": "https://www.tcdb.com/ViewCard.cfm/sid/261540/cid/16099518/2021-Pokemon-Sword-&-Shield-Shining-Fates---Reverse-Holos-060/072-Professor's-Research:-Professor-Juniper?PageIndex=1",
+      "set_key": "swsh45",
+      "set_name": "Shining Fates",
+      "card_number": "60",
+      "card_name": "Professor's Research (Professor Juniper)",
+      "finish_key": "reverse",
+      "rarity": null,
+      "evidence_type": "finish_presence",
+      "evidence_label": "TCDB checklist 2021 Pokemon Sword & Shield Shining Fates - Reverse-Holos 60 Professor's Research (Professor Juniper)",
+      "language": "en",
+      "retrieved_at": "2026-05-26T11:12:00.461Z",
+      "raw_snapshot_ref": "tcdb:261540:60:reverse",
+      "notes": "Exact card-level finish evidence from a TCDB checklist whose set title explicitly names this finish/variant. No era, rarity, or default-finish inference was used."
+    }
+  ]
+}

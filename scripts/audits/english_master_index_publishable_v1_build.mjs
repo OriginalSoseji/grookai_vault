@@ -44,6 +44,7 @@ function countBy(rows, keyFn) {
 
 function publishabilityStatus(set) {
   if (set.completion.status === 'complete_master_index_set') return 'publishable_complete';
+  if (set.completion.status === 'non_standard_single_source_reference') return 'non_standard_not_double_verified';
   if (set.card_identity.master_admissible < set.card_identity.total_working_facts) return 'not_publishable_card_identity_gaps';
   if (set.printings.master_admissible < set.printings.total_working_facts) return 'not_publishable_finish_gaps';
   if (set.completion.status === 'source_unavailable') return 'source_unavailable';
@@ -69,6 +70,8 @@ function setManifestRow(set) {
       gap_count: Math.max(0, set.printings.total_working_facts - set.printings.master_admissible),
     },
     finish_counts: set.finish_counts ?? {},
+    verification_level: set.completion.verification_level ?? 'normal_double_source_required',
+    non_standard_policy: set.completion.non_standard_policy ?? null,
     blocker_summary: set.completion.blocker_summary,
     shard_refs: set.completion.status === 'complete_master_index_set'
       ? {
@@ -205,7 +208,6 @@ async function main() {
     sets: setRows,
   };
 
-  await fs.rm(OUTPUT_DIR, { recursive: true, force: true });
   await writeJson(path.join(OUTPUT_DIR, 'english_master_index_publishable_manifest_v1.json'), manifest);
   await writeMarkdown(path.join(OUTPUT_DIR, 'english_master_index_publishable_manifest_v1.md'), manifestMarkdown(manifest));
 

@@ -1,0 +1,549 @@
+{
+  "status": "api_no_validated_match",
+  "fact": {
+    "gap_type": "finish_second_source_needed",
+    "fact_type": "printing_finish",
+    "set_key": "hgss1",
+    "set_name": "HeartGold & SoulSilver",
+    "card_number": "103",
+    "card_name": "Double Colorless Energy",
+    "finish_key": "stamped",
+    "status": "human_source_verified",
+    "sources": [
+      "thepricedex_price_list"
+    ],
+    "source_authorities": [
+      "thepricedex.com"
+    ],
+    "source_kinds": [
+      "marketplace_checklist"
+    ],
+    "evidence_urls": [
+      "https://www.thepricedex.com/set/hgss1/heartgold-and-soulsilver/price-list"
+    ],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "attempts": [
+    {
+      "query": "Pokemon HeartGold & SoulSilver Double Colorless Energy 103 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HeartGold%20%26%20SoulSilver%20Double%20Colorless%20Energy%20103%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8597949",
+      "product_name": "Double Colorless Energy [League] #103",
+      "console_name": "Pokemon HeartGold & SoulSilver",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:League"
+      }
+    },
+    {
+      "query": "Pokemon HeartGold & SoulSilver Double Colorless Energy 103 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HeartGold%20%26%20SoulSilver%20Double%20Colorless%20Energy%20103%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "806214",
+      "product_name": "Double Colorless Energy #103",
+      "console_name": "Pokemon HeartGold & SoulSilver",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon HeartGold & SoulSilver Double Colorless Energy 103 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HeartGold%20%26%20SoulSilver%20Double%20Colorless%20Energy%20103%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "806321",
+      "product_name": "Double Colorless Energy [Reverse Holo] #103",
+      "console_name": "Pokemon HeartGold & SoulSilver",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Reverse Holo"
+      }
+    },
+    {
+      "query": "Pokemon HeartGold & SoulSilver Double Colorless Energy 103 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HeartGold%20%26%20SoulSilver%20Double%20Colorless%20Energy%20103%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12116801",
+      "product_name": "Double Colorless Energy [Reverse Holo] #70",
+      "console_name": "Pokemon Japanese HeartGold Collection",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:70"
+      }
+    },
+    {
+      "query": "Pokemon HeartGold & SoulSilver Double Colorless Energy 103 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HeartGold%20%26%20SoulSilver%20Double%20Colorless%20Energy%20103%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3460009",
+      "product_name": "Double Colorless Energy #70",
+      "console_name": "Pokemon Japanese HeartGold Collection",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:70"
+      }
+    },
+    {
+      "query": "Pokemon HeartGold & SoulSilver Double Colorless Energy 103 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HeartGold%20%26%20SoulSilver%20Double%20Colorless%20Energy%20103%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10341657",
+      "product_name": "Double Colorless Energy [1999-2000] #96",
+      "console_name": "Pokemon Base Set",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:96"
+      }
+    },
+    {
+      "query": "Pokemon HeartGold & SoulSilver Double Colorless Energy 103 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HeartGold%20%26%20SoulSilver%20Double%20Colorless%20Energy%20103%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "2677908",
+      "product_name": "Grass Energy #115",
+      "console_name": "Pokemon HeartGold & SoulSilver",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:115"
+      }
+    },
+    {
+      "query": "Pokemon HeartGold & SoulSilver Double Colorless Energy 103 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HeartGold%20%26%20SoulSilver%20Double%20Colorless%20Energy%20103%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "2677915",
+      "product_name": "Fire Energy #116",
+      "console_name": "Pokemon HeartGold & SoulSilver",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:116"
+      }
+    },
+    {
+      "query": "Pokemon HeartGold & SoulSilver Double Colorless Energy 103 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HeartGold%20%26%20SoulSilver%20Double%20Colorless%20Energy%20103%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "2677906",
+      "product_name": "Darkness Energy #121",
+      "console_name": "Pokemon HeartGold & SoulSilver",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:121"
+      }
+    },
+    {
+      "query": "Pokemon HeartGold & SoulSilver Double Colorless Energy 103 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HeartGold%20%26%20SoulSilver%20Double%20Colorless%20Energy%20103%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3365526",
+      "product_name": "Metal Energy #122",
+      "console_name": "Pokemon HeartGold & SoulSilver",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:122"
+      }
+    },
+    {
+      "query": "Pokemon HeartGold & SoulSilver Double Colorless Energy 103 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HeartGold%20%26%20SoulSilver%20Double%20Colorless%20Energy%20103%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "2677927",
+      "product_name": "Water Energy #117",
+      "console_name": "Pokemon HeartGold & SoulSilver",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:117"
+      }
+    },
+    {
+      "query": "Pokemon HeartGold & SoulSilver Double Colorless Energy 103 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HeartGold%20%26%20SoulSilver%20Double%20Colorless%20Energy%20103%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "806202",
+      "product_name": "Energy Switch #91",
+      "console_name": "Pokemon HeartGold & SoulSilver",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:91"
+      }
+    },
+    {
+      "query": "Pokemon HeartGold & SoulSilver Double Colorless Energy 103 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HeartGold%20%26%20SoulSilver%20Double%20Colorless%20Energy%20103%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "806215",
+      "product_name": "Rainbow Energy #104",
+      "console_name": "Pokemon HeartGold & SoulSilver",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:104"
+      }
+    },
+    {
+      "query": "Pokemon HeartGold & SoulSilver Double Colorless Energy 103 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HeartGold%20%26%20SoulSilver%20Double%20Colorless%20Energy%20103%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "2677912",
+      "product_name": "Psychic Energy #119",
+      "console_name": "Pokemon HeartGold & SoulSilver",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:119"
+      }
+    },
+    {
+      "query": "Pokemon HeartGold & SoulSilver Double Colorless Energy 103 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HeartGold%20%26%20SoulSilver%20Double%20Colorless%20Energy%20103%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7813365",
+      "product_name": "Double Colorless Energy [Top 8 Oceania] #90",
+      "console_name": "Pokemon Evolutions",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:90"
+      }
+    },
+    {
+      "query": "Pokemon HeartGold & SoulSilver Double Colorless Energy 103 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HeartGold%20%26%20SoulSilver%20Double%20Colorless%20Energy%20103%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "2368691",
+      "product_name": "Fighting Energy #120",
+      "console_name": "Pokemon HeartGold & SoulSilver",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:120"
+      }
+    },
+    {
+      "query": "Pokemon HeartGold & SoulSilver Double Colorless Energy 103 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HeartGold%20%26%20SoulSilver%20Double%20Colorless%20Energy%20103%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "2677929",
+      "product_name": "Lightning Energy #118",
+      "console_name": "Pokemon HeartGold & SoulSilver",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:118"
+      }
+    },
+    {
+      "query": "Pokemon HeartGold & SoulSilver Double Colorless Energy 103 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HeartGold%20%26%20SoulSilver%20Double%20Colorless%20Energy%20103%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3492002",
+      "product_name": "Double Colorless Energy [No Rarity]",
+      "console_name": "Pokemon Japanese Expansion Pack",
+      "validation": {
+        "ok": false,
+        "reason": "api_product_name_pattern_not_supported"
+      }
+    },
+    {
+      "query": "Pokemon HeartGold & SoulSilver Double Colorless Energy 103 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HeartGold%20%26%20SoulSilver%20Double%20Colorless%20Energy%20103%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4188903",
+      "product_name": "Double Colorless Energy [Shadowless] #96",
+      "console_name": "Pokemon Base Set",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:96"
+      }
+    },
+    {
+      "query": "Pokemon HeartGold & SoulSilver Double Colorless Energy 103 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HeartGold%20%26%20SoulSilver%20Double%20Colorless%20Energy%20103%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "715685",
+      "product_name": "Double Colorless Energy [1st Edition] #96",
+      "console_name": "Pokemon Base Set",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:96"
+      }
+    },
+    {
+      "query": "Pokemon HeartGold & SoulSilver Double Colorless Energy 103 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HeartGold%20%26%20SoulSilver%20Double%20Colorless%20Energy%20103%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8597949",
+      "product_name": "Double Colorless Energy [League] #103",
+      "console_name": "Pokemon HeartGold & SoulSilver",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:League"
+      }
+    },
+    {
+      "query": "Pokemon HeartGold & SoulSilver Double Colorless Energy 103 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HeartGold%20%26%20SoulSilver%20Double%20Colorless%20Energy%20103%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "806214",
+      "product_name": "Double Colorless Energy #103",
+      "console_name": "Pokemon HeartGold & SoulSilver",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon HeartGold & SoulSilver Double Colorless Energy 103 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HeartGold%20%26%20SoulSilver%20Double%20Colorless%20Energy%20103%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "806321",
+      "product_name": "Double Colorless Energy [Reverse Holo] #103",
+      "console_name": "Pokemon HeartGold & SoulSilver",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Reverse Holo"
+      }
+    },
+    {
+      "query": "Pokemon HeartGold & SoulSilver Double Colorless Energy 103 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HeartGold%20%26%20SoulSilver%20Double%20Colorless%20Energy%20103%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12116801",
+      "product_name": "Double Colorless Energy [Reverse Holo] #70",
+      "console_name": "Pokemon Japanese HeartGold Collection",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:70"
+      }
+    },
+    {
+      "query": "Pokemon HeartGold & SoulSilver Double Colorless Energy 103 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HeartGold%20%26%20SoulSilver%20Double%20Colorless%20Energy%20103%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3460009",
+      "product_name": "Double Colorless Energy #70",
+      "console_name": "Pokemon Japanese HeartGold Collection",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:70"
+      }
+    },
+    {
+      "query": "Pokemon HeartGold & SoulSilver Double Colorless Energy 103 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HeartGold%20%26%20SoulSilver%20Double%20Colorless%20Energy%20103%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10341657",
+      "product_name": "Double Colorless Energy [1999-2000] #96",
+      "console_name": "Pokemon Base Set",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:96"
+      }
+    },
+    {
+      "query": "Pokemon HeartGold & SoulSilver Double Colorless Energy 103 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HeartGold%20%26%20SoulSilver%20Double%20Colorless%20Energy%20103%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "2677908",
+      "product_name": "Grass Energy #115",
+      "console_name": "Pokemon HeartGold & SoulSilver",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:115"
+      }
+    },
+    {
+      "query": "Pokemon HeartGold & SoulSilver Double Colorless Energy 103 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HeartGold%20%26%20SoulSilver%20Double%20Colorless%20Energy%20103%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "2677915",
+      "product_name": "Fire Energy #116",
+      "console_name": "Pokemon HeartGold & SoulSilver",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:116"
+      }
+    },
+    {
+      "query": "Pokemon HeartGold & SoulSilver Double Colorless Energy 103 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HeartGold%20%26%20SoulSilver%20Double%20Colorless%20Energy%20103%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "2677906",
+      "product_name": "Darkness Energy #121",
+      "console_name": "Pokemon HeartGold & SoulSilver",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:121"
+      }
+    },
+    {
+      "query": "Pokemon HeartGold & SoulSilver Double Colorless Energy 103 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HeartGold%20%26%20SoulSilver%20Double%20Colorless%20Energy%20103%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3365526",
+      "product_name": "Metal Energy #122",
+      "console_name": "Pokemon HeartGold & SoulSilver",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:122"
+      }
+    },
+    {
+      "query": "Pokemon HeartGold & SoulSilver Double Colorless Energy 103 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HeartGold%20%26%20SoulSilver%20Double%20Colorless%20Energy%20103%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "2677927",
+      "product_name": "Water Energy #117",
+      "console_name": "Pokemon HeartGold & SoulSilver",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:117"
+      }
+    },
+    {
+      "query": "Pokemon HeartGold & SoulSilver Double Colorless Energy 103 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HeartGold%20%26%20SoulSilver%20Double%20Colorless%20Energy%20103%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "806202",
+      "product_name": "Energy Switch #91",
+      "console_name": "Pokemon HeartGold & SoulSilver",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:91"
+      }
+    },
+    {
+      "query": "Pokemon HeartGold & SoulSilver Double Colorless Energy 103 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HeartGold%20%26%20SoulSilver%20Double%20Colorless%20Energy%20103%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "806215",
+      "product_name": "Rainbow Energy #104",
+      "console_name": "Pokemon HeartGold & SoulSilver",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:104"
+      }
+    },
+    {
+      "query": "Pokemon HeartGold & SoulSilver Double Colorless Energy 103 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HeartGold%20%26%20SoulSilver%20Double%20Colorless%20Energy%20103%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "2677912",
+      "product_name": "Psychic Energy #119",
+      "console_name": "Pokemon HeartGold & SoulSilver",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:119"
+      }
+    },
+    {
+      "query": "Pokemon HeartGold & SoulSilver Double Colorless Energy 103 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HeartGold%20%26%20SoulSilver%20Double%20Colorless%20Energy%20103%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7813365",
+      "product_name": "Double Colorless Energy [Top 8 Oceania] #90",
+      "console_name": "Pokemon Evolutions",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:90"
+      }
+    },
+    {
+      "query": "Pokemon HeartGold & SoulSilver Double Colorless Energy 103 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HeartGold%20%26%20SoulSilver%20Double%20Colorless%20Energy%20103%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "2368691",
+      "product_name": "Fighting Energy #120",
+      "console_name": "Pokemon HeartGold & SoulSilver",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:120"
+      }
+    },
+    {
+      "query": "Pokemon HeartGold & SoulSilver Double Colorless Energy 103 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HeartGold%20%26%20SoulSilver%20Double%20Colorless%20Energy%20103%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "2677929",
+      "product_name": "Lightning Energy #118",
+      "console_name": "Pokemon HeartGold & SoulSilver",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:118"
+      }
+    },
+    {
+      "query": "Pokemon HeartGold & SoulSilver Double Colorless Energy 103 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HeartGold%20%26%20SoulSilver%20Double%20Colorless%20Energy%20103%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3492002",
+      "product_name": "Double Colorless Energy [No Rarity]",
+      "console_name": "Pokemon Japanese Expansion Pack",
+      "validation": {
+        "ok": false,
+        "reason": "api_product_name_pattern_not_supported"
+      }
+    },
+    {
+      "query": "Pokemon HeartGold & SoulSilver Double Colorless Energy 103 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HeartGold%20%26%20SoulSilver%20Double%20Colorless%20Energy%20103%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4188903",
+      "product_name": "Double Colorless Energy [Shadowless] #96",
+      "console_name": "Pokemon Base Set",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:96"
+      }
+    },
+    {
+      "query": "Pokemon HeartGold & SoulSilver Double Colorless Energy 103 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HeartGold%20%26%20SoulSilver%20Double%20Colorless%20Energy%20103%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "715685",
+      "product_name": "Double Colorless Energy [1st Edition] #96",
+      "console_name": "Pokemon Base Set",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:96"
+      }
+    }
+  ],
+  "source_lane": "pricecharting_api"
+}

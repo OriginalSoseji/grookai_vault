@@ -1,0 +1,549 @@
+{
+  "status": "api_no_validated_match",
+  "fact": {
+    "gap_type": "finish_second_source_needed",
+    "fact_type": "printing_finish",
+    "set_key": "bwp",
+    "set_name": "BW Black Star Promos",
+    "card_number": "BW95",
+    "card_name": "Champions Festival",
+    "finish_key": "stamped",
+    "status": "human_source_verified",
+    "sources": [
+      "thepricedex_price_list"
+    ],
+    "source_authorities": [
+      "thepricedex.com"
+    ],
+    "source_kinds": [
+      "marketplace_checklist"
+    ],
+    "evidence_urls": [
+      "https://www.thepricedex.com/set/bwp/bw-black-star-promos/price-list"
+    ],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "attempts": [
+    {
+      "query": "Pokemon BW Black Star Promos Champions Festival BW95 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20BW%20Black%20Star%20Promos%20Champions%20Festival%20BW95%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "1563490",
+      "product_name": "Champions Festival #BW95",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon BW Black Star Promos Champions Festival BW95 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20BW%20Black%20Star%20Promos%20Champions%20Festival%20BW95%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9455851",
+      "product_name": "Champions Festival [Staff] #BW95",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Staff"
+      }
+    },
+    {
+      "query": "Pokemon BW Black Star Promos Champions Festival BW95 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20BW%20Black%20Star%20Promos%20Champions%20Festival%20BW95%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9455854",
+      "product_name": "Champions Festival [Top Sixteen] #BW95",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Top Sixteen"
+      }
+    },
+    {
+      "query": "Pokemon BW Black Star Promos Champions Festival BW95 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20BW%20Black%20Star%20Promos%20Champions%20Festival%20BW95%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9455853",
+      "product_name": "Champions Festival [Quarter-Finalist] #BW95",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Quarter-Finalist"
+      }
+    },
+    {
+      "query": "Pokemon BW Black Star Promos Champions Festival BW95 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20BW%20Black%20Star%20Promos%20Champions%20Festival%20BW95%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5177448",
+      "product_name": "Champion's Festival [World Champions 2013] #BW-P",
+      "console_name": "Pokemon Japanese Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:BW-P"
+      }
+    },
+    {
+      "query": "Pokemon BW Black Star Promos Champions Festival BW95 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20BW%20Black%20Star%20Promos%20Champions%20Festival%20BW95%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5944594",
+      "product_name": "Champions Festival [Staff] #SM231",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:SM231"
+      }
+    },
+    {
+      "query": "Pokemon BW Black Star Promos Champions Festival BW95 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20BW%20Black%20Star%20Promos%20Champions%20Festival%20BW95%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6115140",
+      "product_name": "Champions Festival [Staff] #XY91",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:XY91"
+      }
+    },
+    {
+      "query": "Pokemon BW Black Star Promos Champions Festival BW95 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20BW%20Black%20Star%20Promos%20Champions%20Festival%20BW95%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6385905",
+      "product_name": "Champions Festival [Staff] #SWSH296",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:SWSH296"
+      }
+    },
+    {
+      "query": "Pokemon BW Black Star Promos Champions Festival BW95 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20BW%20Black%20Star%20Promos%20Champions%20Festival%20BW95%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5975653",
+      "product_name": "Champions Festival [Staff] #XY176",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:XY176"
+      }
+    },
+    {
+      "query": "Pokemon BW Black Star Promos Champions Festival BW95 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20BW%20Black%20Star%20Promos%20Champions%20Festival%20BW95%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6124419",
+      "product_name": "Champions Festival [Staff] #XY27",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:XY27"
+      }
+    },
+    {
+      "query": "Pokemon BW Black Star Promos Champions Festival BW95 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20BW%20Black%20Star%20Promos%20Champions%20Festival%20BW95%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6776361",
+      "product_name": "Champions Festival [Staff] #SM148",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:SM148"
+      }
+    },
+    {
+      "query": "Pokemon BW Black Star Promos Champions Festival BW95 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20BW%20Black%20Star%20Promos%20Champions%20Festival%20BW95%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6143182",
+      "product_name": "Champion's Festival #SWSH296",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:SWSH296"
+      }
+    },
+    {
+      "query": "Pokemon BW Black Star Promos Champions Festival BW95 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20BW%20Black%20Star%20Promos%20Champions%20Festival%20BW95%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "844645",
+      "product_name": "Champion's Festival #XY176",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:XY176"
+      }
+    },
+    {
+      "query": "Pokemon BW Black Star Promos Champions Festival BW95 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20BW%20Black%20Star%20Promos%20Champions%20Festival%20BW95%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6682368",
+      "product_name": "Champions Festival [Finalist] #SM78",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:SM78"
+      }
+    },
+    {
+      "query": "Pokemon BW Black Star Promos Champions Festival BW95 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20BW%20Black%20Star%20Promos%20Champions%20Festival%20BW95%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6777383",
+      "product_name": "Champions Festival [Champion] #XY176",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:XY176"
+      }
+    },
+    {
+      "query": "Pokemon BW Black Star Promos Champions Festival BW95 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20BW%20Black%20Star%20Promos%20Champions%20Festival%20BW95%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6874726",
+      "product_name": "Champions Festival [Finalist] #XY27",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:XY27"
+      }
+    },
+    {
+      "query": "Pokemon BW Black Star Promos Champions Festival BW95 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20BW%20Black%20Star%20Promos%20Champions%20Festival%20BW95%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7750393",
+      "product_name": "Champions Festival [Champion] #SM78",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:SM78"
+      }
+    },
+    {
+      "query": "Pokemon BW Black Star Promos Champions Festival BW95 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20BW%20Black%20Star%20Promos%20Champions%20Festival%20BW95%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10306225",
+      "product_name": "Champions Festival [Finalist] #XY176",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:XY176"
+      }
+    },
+    {
+      "query": "Pokemon BW Black Star Promos Champions Festival BW95 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20BW%20Black%20Star%20Promos%20Champions%20Festival%20BW95%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12577618",
+      "product_name": "Champions Festival [Champion] #SM148",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:SM148"
+      }
+    },
+    {
+      "query": "Pokemon BW Black Star Promos Champions Festival BW95 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20BW%20Black%20Star%20Promos%20Champions%20Festival%20BW95%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11747645",
+      "product_name": "Champions Festival [Semi-Finalist] #SM78",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:SM78"
+      }
+    },
+    {
+      "query": "Pokemon BW Black Star Promos Champions Festival BW95 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20BW%20Black%20Star%20Promos%20Champions%20Festival%20BW95%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "1563490",
+      "product_name": "Champions Festival #BW95",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon BW Black Star Promos Champions Festival BW95 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20BW%20Black%20Star%20Promos%20Champions%20Festival%20BW95%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9455851",
+      "product_name": "Champions Festival [Staff] #BW95",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Staff"
+      }
+    },
+    {
+      "query": "Pokemon BW Black Star Promos Champions Festival BW95 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20BW%20Black%20Star%20Promos%20Champions%20Festival%20BW95%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9455854",
+      "product_name": "Champions Festival [Top Sixteen] #BW95",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Top Sixteen"
+      }
+    },
+    {
+      "query": "Pokemon BW Black Star Promos Champions Festival BW95 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20BW%20Black%20Star%20Promos%20Champions%20Festival%20BW95%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9455853",
+      "product_name": "Champions Festival [Quarter-Finalist] #BW95",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Quarter-Finalist"
+      }
+    },
+    {
+      "query": "Pokemon BW Black Star Promos Champions Festival BW95 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20BW%20Black%20Star%20Promos%20Champions%20Festival%20BW95%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5177448",
+      "product_name": "Champion's Festival [World Champions 2013] #BW-P",
+      "console_name": "Pokemon Japanese Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:BW-P"
+      }
+    },
+    {
+      "query": "Pokemon BW Black Star Promos Champions Festival BW95 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20BW%20Black%20Star%20Promos%20Champions%20Festival%20BW95%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5944594",
+      "product_name": "Champions Festival [Staff] #SM231",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:SM231"
+      }
+    },
+    {
+      "query": "Pokemon BW Black Star Promos Champions Festival BW95 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20BW%20Black%20Star%20Promos%20Champions%20Festival%20BW95%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6115140",
+      "product_name": "Champions Festival [Staff] #XY91",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:XY91"
+      }
+    },
+    {
+      "query": "Pokemon BW Black Star Promos Champions Festival BW95 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20BW%20Black%20Star%20Promos%20Champions%20Festival%20BW95%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6385905",
+      "product_name": "Champions Festival [Staff] #SWSH296",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:SWSH296"
+      }
+    },
+    {
+      "query": "Pokemon BW Black Star Promos Champions Festival BW95 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20BW%20Black%20Star%20Promos%20Champions%20Festival%20BW95%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5975653",
+      "product_name": "Champions Festival [Staff] #XY176",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:XY176"
+      }
+    },
+    {
+      "query": "Pokemon BW Black Star Promos Champions Festival BW95 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20BW%20Black%20Star%20Promos%20Champions%20Festival%20BW95%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6124419",
+      "product_name": "Champions Festival [Staff] #XY27",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:XY27"
+      }
+    },
+    {
+      "query": "Pokemon BW Black Star Promos Champions Festival BW95 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20BW%20Black%20Star%20Promos%20Champions%20Festival%20BW95%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6776361",
+      "product_name": "Champions Festival [Staff] #SM148",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:SM148"
+      }
+    },
+    {
+      "query": "Pokemon BW Black Star Promos Champions Festival BW95 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20BW%20Black%20Star%20Promos%20Champions%20Festival%20BW95%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6143182",
+      "product_name": "Champion's Festival #SWSH296",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:SWSH296"
+      }
+    },
+    {
+      "query": "Pokemon BW Black Star Promos Champions Festival BW95 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20BW%20Black%20Star%20Promos%20Champions%20Festival%20BW95%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "844645",
+      "product_name": "Champion's Festival #XY176",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:XY176"
+      }
+    },
+    {
+      "query": "Pokemon BW Black Star Promos Champions Festival BW95 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20BW%20Black%20Star%20Promos%20Champions%20Festival%20BW95%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6682368",
+      "product_name": "Champions Festival [Finalist] #SM78",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:SM78"
+      }
+    },
+    {
+      "query": "Pokemon BW Black Star Promos Champions Festival BW95 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20BW%20Black%20Star%20Promos%20Champions%20Festival%20BW95%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6777383",
+      "product_name": "Champions Festival [Champion] #XY176",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:XY176"
+      }
+    },
+    {
+      "query": "Pokemon BW Black Star Promos Champions Festival BW95 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20BW%20Black%20Star%20Promos%20Champions%20Festival%20BW95%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6874726",
+      "product_name": "Champions Festival [Finalist] #XY27",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:XY27"
+      }
+    },
+    {
+      "query": "Pokemon BW Black Star Promos Champions Festival BW95 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20BW%20Black%20Star%20Promos%20Champions%20Festival%20BW95%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7750393",
+      "product_name": "Champions Festival [Champion] #SM78",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:SM78"
+      }
+    },
+    {
+      "query": "Pokemon BW Black Star Promos Champions Festival BW95 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20BW%20Black%20Star%20Promos%20Champions%20Festival%20BW95%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10306225",
+      "product_name": "Champions Festival [Finalist] #XY176",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:XY176"
+      }
+    },
+    {
+      "query": "Pokemon BW Black Star Promos Champions Festival BW95 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20BW%20Black%20Star%20Promos%20Champions%20Festival%20BW95%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12577618",
+      "product_name": "Champions Festival [Champion] #SM148",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:SM148"
+      }
+    },
+    {
+      "query": "Pokemon BW Black Star Promos Champions Festival BW95 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20BW%20Black%20Star%20Promos%20Champions%20Festival%20BW95%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11747645",
+      "product_name": "Champions Festival [Semi-Finalist] #SM78",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:SM78"
+      }
+    }
+  ],
+  "source_lane": "pricecharting_api"
+}

@@ -1,0 +1,125 @@
+{
+  "version": "english_master_index_bulbapedia_sv085_professor_program_acquisition_v1",
+  "generated_at": "2026-06-06T17:30:00.000Z",
+  "audit_only": true,
+  "db_writes_performed": false,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "dry_run": false,
+  "fixture_file": "docs/audits/verified_master_set_index_v1/source_fixtures/generated_bulbapedia_sv085_professor_program_v1/sv08.5.json",
+  "source_url": "https://bulbapedia.bulbagarden.net/wiki/Prismatic_Evolutions_(TCG)",
+  "rule": "Only exact Prismatic Evolutions additional-card rows naming Professor Program Logo are accepted. Stamped finish is not inferred from general promotion markers or rarity.",
+  "summary": {
+    "target_facts": 5,
+    "validated": 4,
+    "blocked": 1,
+    "by_source_key": {
+      "bulbapedia_sv085_professor_program": 4
+    }
+  },
+  "results": [
+    {
+      "status": "validated",
+      "source_key": "bulbapedia_sv085_professor_program",
+      "source_kind": "human_readable_checklist",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Prismatic_Evolutions_(TCG)",
+      "fact": {
+        "set_key": "sv08.5",
+        "set_name": "Prismatic Evolutions",
+        "card_number": "122",
+        "card_name": "Professor's Research",
+        "finish_key": "stamped"
+      },
+      "validation": {
+        "ok": true,
+        "checks": {
+          "has_identity": true,
+          "has_card_number": true,
+          "has_professor_program_logo": true,
+          "not_general_promotion_marker": true
+        }
+      }
+    },
+    {
+      "status": "validated",
+      "source_key": "bulbapedia_sv085_professor_program",
+      "source_kind": "human_readable_checklist",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Prismatic_Evolutions_(TCG)",
+      "fact": {
+        "set_key": "sv08.5",
+        "set_name": "Prismatic Evolutions",
+        "card_number": "123",
+        "card_name": "Professor's Research",
+        "finish_key": "stamped"
+      },
+      "validation": {
+        "ok": true,
+        "checks": {
+          "has_identity": true,
+          "has_card_number": true,
+          "has_professor_program_logo": true,
+          "not_general_promotion_marker": true
+        }
+      }
+    },
+    {
+      "status": "validated",
+      "source_key": "bulbapedia_sv085_professor_program",
+      "source_kind": "human_readable_checklist",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Prismatic_Evolutions_(TCG)",
+      "fact": {
+        "set_key": "sv08.5",
+        "set_name": "Prismatic Evolutions",
+        "card_number": "124",
+        "card_name": "Professor's Research",
+        "finish_key": "stamped"
+      },
+      "validation": {
+        "ok": true,
+        "checks": {
+          "has_identity": true,
+          "has_card_number": true,
+          "has_professor_program_logo": true,
+          "not_general_promotion_marker": true
+        }
+      }
+    },
+    {
+      "status": "validated",
+      "source_key": "bulbapedia_sv085_professor_program",
+      "source_kind": "human_readable_checklist",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Prismatic_Evolutions_(TCG)",
+      "fact": {
+        "set_key": "sv08.5",
+        "set_name": "Prismatic Evolutions",
+        "card_number": "125",
+        "card_name": "Professor's Research",
+        "finish_key": "stamped"
+      },
+      "validation": {
+        "ok": true,
+        "checks": {
+          "has_identity": true,
+          "has_card_number": true,
+          "has_professor_program_logo": true,
+          "not_general_promotion_marker": true
+        }
+      }
+    },
+    {
+      "status": "blocked_no_exact_stamped_evidence",
+      "source_key": "bulbapedia_sv085_professor_program",
+      "source_kind": "human_readable_checklist",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Prismatic_Evolutions_(TCG)",
+      "fact": {
+        "set_key": "sv08.5",
+        "set_name": "Prismatic Evolutions",
+        "card_number": "129",
+        "card_name": "Sparkling Crystal",
+        "finish_key": "stamped"
+      },
+      "reason": "Bulbapedia card list identifies Sparkling Crystal 129/131 and holo/ACE SPEC context, but the checked page did not provide an additional-card row or exact stamped/logo finish evidence for this card."
+    }
+  ]
+}

@@ -1,0 +1,53 @@
+{
+  "status": "validated",
+  "fact": {
+    "gap_type": "finish_second_source_needed",
+    "fact_type": "printing_finish",
+    "set_key": "swsh9",
+    "set_name": "Brilliant Stars",
+    "card_number": "56",
+    "card_name": "Mewtwo",
+    "finish_key": "stamped",
+    "status": "human_source_verified",
+    "sources": [
+      "thepricedex_price_list"
+    ],
+    "source_authorities": [
+      "thepricedex.com"
+    ],
+    "source_kinds": [
+      "marketplace_checklist"
+    ],
+    "evidence_urls": [],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "query": "Pokemon Brilliant Stars Mewtwo 56 stamped",
+  "search_url": "https://www.pricecharting.com/search-products?q=Pokemon%20Brilliant%20Stars%20Mewtwo%2056%20stamped&type=prices",
+  "source_url": "https://www.pricecharting.com/game/pokemon-brilliant-stars/mewtwo-stamped-56",
+  "title": "Mewtwo [Stamped] #56 Prices | Pokemon Brilliant Stars | Pokemon Cards",
+  "title_parts": {
+    "card_name": "Mewtwo",
+    "variant_label": "Stamped",
+    "card_number": "56",
+    "set_name": "Brilliant Stars"
+  },
+  "attempts": [
+    {
+      "query": "Pokemon Brilliant Stars Mewtwo 56 stamped",
+      "url": "https://www.pricecharting.com/search-products?q=Pokemon%20Brilliant%20Stars%20Mewtwo%2056%20stamped&type=prices",
+      "parsed": {
+        "title": "Mewtwo [Stamped] #56 Prices | Pokemon Brilliant Stars | Pokemon Cards",
+        "source_url": "https://www.pricecharting.com/game/pokemon-brilliant-stars/mewtwo-stamped-56"
+      },
+      "validation": {
+        "ok": true,
+        "titleParts": {
+          "card_name": "Mewtwo",
+          "variant_label": "Stamped",
+          "card_number": "56",
+          "set_name": "Brilliant Stars"
+        }
+      }
+    }
+  ]
+}

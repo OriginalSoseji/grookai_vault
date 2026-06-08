@@ -1,0 +1,549 @@
+{
+  "status": "api_no_validated_match",
+  "fact": {
+    "gap_type": "finish_second_source_needed",
+    "fact_type": "printing_finish",
+    "set_key": "pl2",
+    "set_name": "Rising Rivals",
+    "card_number": "98",
+    "card_name": "Volkner's Philosophy",
+    "finish_key": "stamped",
+    "status": "human_source_verified",
+    "sources": [
+      "thepricedex_price_list"
+    ],
+    "source_authorities": [
+      "thepricedex.com"
+    ],
+    "source_kinds": [
+      "marketplace_checklist"
+    ],
+    "evidence_urls": [
+      "https://www.thepricedex.com/set/pl2/rising-rivals/price-list"
+    ],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "attempts": [
+    {
+      "query": "Pokemon Rising Rivals Volkner's Philosophy 98 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Rising%20Rivals%20Volkner's%20Philosophy%2098%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "925494",
+      "product_name": "Volkner's Philosophy #98",
+      "console_name": "Pokemon Rising Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon Rising Rivals Volkner's Philosophy 98 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Rising%20Rivals%20Volkner's%20Philosophy%2098%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "925613",
+      "product_name": "Volkner's Philosophy [Reverse Holo] #98",
+      "console_name": "Pokemon Rising Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Reverse Holo"
+      }
+    },
+    {
+      "query": "Pokemon Rising Rivals Volkner's Philosophy 98 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Rising%20Rivals%20Volkner's%20Philosophy%2098%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3459710",
+      "product_name": "Volkner's Philosophy #79",
+      "console_name": "Pokemon Japanese Bonds to the End of Time",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:79"
+      }
+    },
+    {
+      "query": "Pokemon Rising Rivals Volkner's Philosophy 98 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Rising%20Rivals%20Volkner's%20Philosophy%2098%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8453325",
+      "product_name": "Volkner's Philosophy [1st Edition] #79",
+      "console_name": "Pokemon Japanese Bonds to the End of Time",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:79"
+      }
+    },
+    {
+      "query": "Pokemon Rising Rivals Volkner's Philosophy 98 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Rising%20Rivals%20Volkner's%20Philosophy%2098%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "925453",
+      "product_name": "Aron #57",
+      "console_name": "Pokemon Rising Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:57"
+      }
+    },
+    {
+      "query": "Pokemon Rising Rivals Volkner's Philosophy 98 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Rising%20Rivals%20Volkner's%20Philosophy%2098%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "925419",
+      "product_name": "Golem #23",
+      "console_name": "Pokemon Rising Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:23"
+      }
+    },
+    {
+      "query": "Pokemon Rising Rivals Volkner's Philosophy 98 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Rising%20Rivals%20Volkner's%20Philosophy%2098%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "925455",
+      "product_name": "Eevee #59",
+      "console_name": "Pokemon Rising Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:59"
+      }
+    },
+    {
+      "query": "Pokemon Rising Rivals Volkner's Philosophy 98 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Rising%20Rivals%20Volkner's%20Philosophy%2098%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "925410",
+      "product_name": "Aggron #14",
+      "console_name": "Pokemon Rising Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:14"
+      }
+    },
+    {
+      "query": "Pokemon Rising Rivals Volkner's Philosophy 98 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Rising%20Rivals%20Volkner's%20Philosophy%2098%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "925444",
+      "product_name": "Scizor #48",
+      "console_name": "Pokemon Rising Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:48"
+      }
+    },
+    {
+      "query": "Pokemon Rising Rivals Volkner's Philosophy 98 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Rising%20Rivals%20Volkner's%20Philosophy%2098%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "925439",
+      "product_name": "Lairon #44",
+      "console_name": "Pokemon Rising Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:44"
+      }
+    },
+    {
+      "query": "Pokemon Rising Rivals Volkner's Philosophy 98 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Rising%20Rivals%20Volkner's%20Philosophy%2098%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "925462",
+      "product_name": "Kakuna #66",
+      "console_name": "Pokemon Rising Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:66"
+      }
+    },
+    {
+      "query": "Pokemon Rising Rivals Volkner's Philosophy 98 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Rising%20Rivals%20Volkner's%20Philosophy%2098%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "925478",
+      "product_name": "Spheal #82",
+      "console_name": "Pokemon Rising Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:82"
+      }
+    },
+    {
+      "query": "Pokemon Rising Rivals Volkner's Philosophy 98 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Rising%20Rivals%20Volkner's%20Philosophy%2098%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "925479",
+      "product_name": "Staryu #83",
+      "console_name": "Pokemon Rising Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:83"
+      }
+    },
+    {
+      "query": "Pokemon Rising Rivals Volkner's Philosophy 98 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Rising%20Rivals%20Volkner's%20Philosophy%2098%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "925482",
+      "product_name": "Weedle #86",
+      "console_name": "Pokemon Rising Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:86"
+      }
+    },
+    {
+      "query": "Pokemon Rising Rivals Volkner's Philosophy 98 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Rising%20Rivals%20Volkner's%20Philosophy%2098%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "925401",
+      "product_name": "Flygon #5",
+      "console_name": "Pokemon Rising Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:5"
+      }
+    },
+    {
+      "query": "Pokemon Rising Rivals Volkner's Philosophy 98 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Rising%20Rivals%20Volkner's%20Philosophy%2098%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "925414",
+      "product_name": "Espeon #18",
+      "console_name": "Pokemon Rising Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:18"
+      }
+    },
+    {
+      "query": "Pokemon Rising Rivals Volkner's Philosophy 98 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Rising%20Rivals%20Volkner's%20Philosophy%2098%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "925473",
+      "product_name": "Sealeo #77",
+      "console_name": "Pokemon Rising Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:77"
+      }
+    },
+    {
+      "query": "Pokemon Rising Rivals Volkner's Philosophy 98 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Rising%20Rivals%20Volkner's%20Philosophy%2098%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "925474",
+      "product_name": "Seedot #78",
+      "console_name": "Pokemon Rising Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:78"
+      }
+    },
+    {
+      "query": "Pokemon Rising Rivals Volkner's Philosophy 98 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Rising%20Rivals%20Volkner's%20Philosophy%2098%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "925409",
+      "product_name": "Shiftry #13",
+      "console_name": "Pokemon Rising Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:13"
+      }
+    },
+    {
+      "query": "Pokemon Rising Rivals Volkner's Philosophy 98 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Rising%20Rivals%20Volkner's%20Philosophy%2098%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "925403",
+      "product_name": "Jirachi #7",
+      "console_name": "Pokemon Rising Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:7"
+      }
+    },
+    {
+      "query": "Pokemon Rising Rivals Volkner's Philosophy 98 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Rising%20Rivals%20Volkner's%20Philosophy%2098%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "925494",
+      "product_name": "Volkner's Philosophy #98",
+      "console_name": "Pokemon Rising Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon Rising Rivals Volkner's Philosophy 98 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Rising%20Rivals%20Volkner's%20Philosophy%2098%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "925613",
+      "product_name": "Volkner's Philosophy [Reverse Holo] #98",
+      "console_name": "Pokemon Rising Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Reverse Holo"
+      }
+    },
+    {
+      "query": "Pokemon Rising Rivals Volkner's Philosophy 98 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Rising%20Rivals%20Volkner's%20Philosophy%2098%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3459710",
+      "product_name": "Volkner's Philosophy #79",
+      "console_name": "Pokemon Japanese Bonds to the End of Time",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:79"
+      }
+    },
+    {
+      "query": "Pokemon Rising Rivals Volkner's Philosophy 98 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Rising%20Rivals%20Volkner's%20Philosophy%2098%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8453325",
+      "product_name": "Volkner's Philosophy [1st Edition] #79",
+      "console_name": "Pokemon Japanese Bonds to the End of Time",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:79"
+      }
+    },
+    {
+      "query": "Pokemon Rising Rivals Volkner's Philosophy 98 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Rising%20Rivals%20Volkner's%20Philosophy%2098%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "925453",
+      "product_name": "Aron #57",
+      "console_name": "Pokemon Rising Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:57"
+      }
+    },
+    {
+      "query": "Pokemon Rising Rivals Volkner's Philosophy 98 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Rising%20Rivals%20Volkner's%20Philosophy%2098%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "925419",
+      "product_name": "Golem #23",
+      "console_name": "Pokemon Rising Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:23"
+      }
+    },
+    {
+      "query": "Pokemon Rising Rivals Volkner's Philosophy 98 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Rising%20Rivals%20Volkner's%20Philosophy%2098%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "925455",
+      "product_name": "Eevee #59",
+      "console_name": "Pokemon Rising Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:59"
+      }
+    },
+    {
+      "query": "Pokemon Rising Rivals Volkner's Philosophy 98 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Rising%20Rivals%20Volkner's%20Philosophy%2098%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "925410",
+      "product_name": "Aggron #14",
+      "console_name": "Pokemon Rising Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:14"
+      }
+    },
+    {
+      "query": "Pokemon Rising Rivals Volkner's Philosophy 98 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Rising%20Rivals%20Volkner's%20Philosophy%2098%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "925444",
+      "product_name": "Scizor #48",
+      "console_name": "Pokemon Rising Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:48"
+      }
+    },
+    {
+      "query": "Pokemon Rising Rivals Volkner's Philosophy 98 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Rising%20Rivals%20Volkner's%20Philosophy%2098%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "925439",
+      "product_name": "Lairon #44",
+      "console_name": "Pokemon Rising Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:44"
+      }
+    },
+    {
+      "query": "Pokemon Rising Rivals Volkner's Philosophy 98 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Rising%20Rivals%20Volkner's%20Philosophy%2098%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "925462",
+      "product_name": "Kakuna #66",
+      "console_name": "Pokemon Rising Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:66"
+      }
+    },
+    {
+      "query": "Pokemon Rising Rivals Volkner's Philosophy 98 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Rising%20Rivals%20Volkner's%20Philosophy%2098%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "925478",
+      "product_name": "Spheal #82",
+      "console_name": "Pokemon Rising Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:82"
+      }
+    },
+    {
+      "query": "Pokemon Rising Rivals Volkner's Philosophy 98 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Rising%20Rivals%20Volkner's%20Philosophy%2098%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "925479",
+      "product_name": "Staryu #83",
+      "console_name": "Pokemon Rising Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:83"
+      }
+    },
+    {
+      "query": "Pokemon Rising Rivals Volkner's Philosophy 98 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Rising%20Rivals%20Volkner's%20Philosophy%2098%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "925482",
+      "product_name": "Weedle #86",
+      "console_name": "Pokemon Rising Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:86"
+      }
+    },
+    {
+      "query": "Pokemon Rising Rivals Volkner's Philosophy 98 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Rising%20Rivals%20Volkner's%20Philosophy%2098%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "925401",
+      "product_name": "Flygon #5",
+      "console_name": "Pokemon Rising Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:5"
+      }
+    },
+    {
+      "query": "Pokemon Rising Rivals Volkner's Philosophy 98 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Rising%20Rivals%20Volkner's%20Philosophy%2098%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "925414",
+      "product_name": "Espeon #18",
+      "console_name": "Pokemon Rising Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:18"
+      }
+    },
+    {
+      "query": "Pokemon Rising Rivals Volkner's Philosophy 98 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Rising%20Rivals%20Volkner's%20Philosophy%2098%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "925473",
+      "product_name": "Sealeo #77",
+      "console_name": "Pokemon Rising Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:77"
+      }
+    },
+    {
+      "query": "Pokemon Rising Rivals Volkner's Philosophy 98 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Rising%20Rivals%20Volkner's%20Philosophy%2098%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "925474",
+      "product_name": "Seedot #78",
+      "console_name": "Pokemon Rising Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:78"
+      }
+    },
+    {
+      "query": "Pokemon Rising Rivals Volkner's Philosophy 98 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Rising%20Rivals%20Volkner's%20Philosophy%2098%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "925409",
+      "product_name": "Shiftry #13",
+      "console_name": "Pokemon Rising Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:13"
+      }
+    },
+    {
+      "query": "Pokemon Rising Rivals Volkner's Philosophy 98 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Rising%20Rivals%20Volkner's%20Philosophy%2098%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "925403",
+      "product_name": "Jirachi #7",
+      "console_name": "Pokemon Rising Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:7"
+      }
+    }
+  ],
+  "source_lane": "pricecharting_api"
+}

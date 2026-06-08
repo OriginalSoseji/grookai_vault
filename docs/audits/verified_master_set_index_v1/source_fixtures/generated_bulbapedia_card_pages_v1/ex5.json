@@ -1,0 +1,31 @@
+{
+  "fixture_version": "VERIFIED_MASTER_SET_INDEX_V1_HUMAN_SOURCE_FIXTURE_GENERATED",
+  "source_key": "bulbapedia_card_page_ex5",
+  "source_kind": "human_readable_checklist",
+  "source_url": "https://bulbapedia.bulbagarden.net/wiki/Category:Pokémon_cards",
+  "source_status": "available_generated",
+  "set_key": "ex5",
+  "set_name": "Hidden Legends",
+  "retrieved_at": "2026-05-28T14:55:00.996Z",
+  "raw_snapshot_ref": "generated_fixture:bulbapedia_card_page:ex5:2026-05-28T14:55:00.996Z",
+  "generation_note": "Generated from Bulbapedia individual card page expansion metadata and release-information text. Exact set/number match is required; finish truth is emitted only for explicit finish/stamp/logo wording.",
+  "records": [
+    {
+      "source_key": "bulbapedia_card_page_release_info",
+      "source_kind": "human_readable_checklist",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Beldum_(EX_Hidden_Legends_29)",
+      "set_key": "ex5",
+      "set_name": "Hidden Legends",
+      "card_number": "29",
+      "card_name": "Beldum",
+      "finish_key": "stamped",
+      "rarity": null,
+      "evidence_type": "finish_presence",
+      "evidence_label": "Bulbapedia card page release information stamp/logo variant",
+      "language": "en",
+      "retrieved_at": "2026-05-28T14:55:00.996Z",
+      "raw_snapshot_ref": "bulbapedia_card_page:Beldum_(EX_Hidden_Legends_29):ex5:29:stamped",
+      "notes": "Release information explicitly documents an English-scoped stamp/logo variant. Evidence: Winner versions of this card were also awarded, which feature a gold foil \"Winner\" stamp in the bottom right corner of the artwork."
+    }
+  ]
+}

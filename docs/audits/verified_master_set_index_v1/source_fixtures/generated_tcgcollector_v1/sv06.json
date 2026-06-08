@@ -1,0 +1,31 @@
+{
+  "fixture_version": "VERIFIED_MASTER_SET_INDEX_V1_HUMAN_SOURCE_FIXTURE_GENERATED",
+  "source_key": "tcgcollector_variants_sv06",
+  "source_kind": "collector_reference",
+  "source_url": "https://www.tcgcollector.com/sets/11625/twilight-masquerade?setCardCountMode=anyCardVariant",
+  "source_status": "available_generated",
+  "set_key": "sv06",
+  "set_name": "Twilight Masquerade",
+  "retrieved_at": "2026-05-29T03:46:18.529Z",
+  "raw_snapshot_ref": "generated_fixture:tcgcollector:sv06:2026-05-29T03:46:18.529Z",
+  "generation_note": "Generated from TCGCollector explicit card variant type IDs. No finish is inferred from set era, rarity, or card count.",
+  "records": [
+    {
+      "source_key": "tcgcollector_card_variants",
+      "source_kind": "collector_reference",
+      "source_url": "https://www.tcgcollector.com/cards/45137/hisuian-arcanine-twilight-masquerade-100-167",
+      "set_key": "sv06",
+      "set_name": "Twilight Masquerade",
+      "card_number": "100",
+      "card_name": "Hisuian Arcanine",
+      "finish_key": "normal",
+      "rarity": null,
+      "evidence_type": "finish_presence",
+      "evidence_label": "TCGCollector card variant Non-holo",
+      "language": "en",
+      "retrieved_at": "2026-05-29T03:46:18.529Z",
+      "raw_snapshot_ref": "tcgcollector:45137:46",
+      "notes": "Exact card-level finish evidence from TCGCollector card variant type map. Only explicit variant labels are emitted."
+    }
+  ]
+}

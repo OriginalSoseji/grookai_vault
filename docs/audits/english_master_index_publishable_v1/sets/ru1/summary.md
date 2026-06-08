@@ -6,7 +6,7 @@ Status: publishable_complete
 
 - set_key: ru1
 - cards: 16/16
-- printings: 16/16
+- printings: 19/19
 - completion_score: 100
 
 ## Finish Counts
@@ -14,4 +14,4 @@ Status: publishable_complete
 | finish_key | count |
 | --- | --- |
 | holo | 3 |
-| normal | 13 |
+| normal | 16 |

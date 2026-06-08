@@ -1,0 +1,549 @@
+{
+  "status": "api_no_validated_match",
+  "fact": {
+    "gap_type": "finish_second_source_needed",
+    "fact_type": "printing_finish",
+    "set_key": "sm4",
+    "set_name": "Crimson Invasion",
+    "card_number": "91",
+    "card_name": "Counter Catcher",
+    "finish_key": "stamped",
+    "status": "human_source_verified",
+    "sources": [
+      "thepricedex_price_list"
+    ],
+    "source_authorities": [
+      "thepricedex.com"
+    ],
+    "source_kinds": [
+      "marketplace_checklist"
+    ],
+    "evidence_urls": [
+      "https://www.thepricedex.com/set/sm4/crimson-invasion/price-list"
+    ],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "attempts": [
+    {
+      "query": "Pokemon Crimson Invasion Counter Catcher 91 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Crimson%20Invasion%20Counter%20Catcher%2091%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "961237",
+      "product_name": "Counter Catcher #91",
+      "console_name": "Pokemon Crimson Invasion",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon Crimson Invasion Counter Catcher 91 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Crimson%20Invasion%20Counter%20Catcher%2091%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6073274",
+      "product_name": "Counter Catcher [League Cup] #91",
+      "console_name": "Pokemon Crimson Invasion",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:League Cup"
+      }
+    },
+    {
+      "query": "Pokemon Crimson Invasion Counter Catcher 91 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Crimson%20Invasion%20Counter%20Catcher%2091%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "961353",
+      "product_name": "Counter Catcher [Reverse Holo] #91",
+      "console_name": "Pokemon Crimson Invasion",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Reverse Holo"
+      }
+    },
+    {
+      "query": "Pokemon Crimson Invasion Counter Catcher 91 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Crimson%20Invasion%20Counter%20Catcher%2091%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6009630",
+      "product_name": "Counter Catcher [League Cup Staff] #91",
+      "console_name": "Pokemon Crimson Invasion",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:League Cup Staff"
+      }
+    },
+    {
+      "query": "Pokemon Crimson Invasion Counter Catcher 91 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Crimson%20Invasion%20Counter%20Catcher%2091%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "961266",
+      "product_name": "Counter Catcher #120",
+      "console_name": "Pokemon Crimson Invasion",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:120"
+      }
+    },
+    {
+      "query": "Pokemon Crimson Invasion Counter Catcher 91 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Crimson%20Invasion%20Counter%20Catcher%2091%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11707184",
+      "product_name": "Counter Catcher [2024 Lunar New Year Stamped] #83/SV-P",
+      "console_name": "Pokemon Chinese Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:83/SV-P"
+      }
+    },
+    {
+      "query": "Pokemon Crimson Invasion Counter Catcher 91 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Crimson%20Invasion%20Counter%20Catcher%2091%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "961246",
+      "product_name": "Counter Energy #100",
+      "console_name": "Pokemon Crimson Invasion",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:100"
+      }
+    },
+    {
+      "query": "Pokemon Crimson Invasion Counter Catcher 91 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Crimson%20Invasion%20Counter%20Catcher%2091%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "961268",
+      "product_name": "Counter Energy #122",
+      "console_name": "Pokemon Crimson Invasion",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:122"
+      }
+    },
+    {
+      "query": "Pokemon Crimson Invasion Counter Catcher 91 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Crimson%20Invasion%20Counter%20Catcher%2091%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "961362",
+      "product_name": "Counter Energy [Reverse Holo] #100",
+      "console_name": "Pokemon Crimson Invasion",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:100"
+      }
+    },
+    {
+      "query": "Pokemon Crimson Invasion Counter Catcher 91 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Crimson%20Invasion%20Counter%20Catcher%2091%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7980332",
+      "product_name": "Counter Catcher [Poke Ball] #139",
+      "console_name": "Pokemon Japanese Terastal Festival",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:139"
+      }
+    },
+    {
+      "query": "Pokemon Crimson Invasion Counter Catcher 91 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Crimson%20Invasion%20Counter%20Catcher%2091%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10909676",
+      "product_name": "Counter Catcher [Prize Pack] #160",
+      "console_name": "Pokemon Paradox Rift",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:160"
+      }
+    },
+    {
+      "query": "Pokemon Crimson Invasion Counter Catcher 91 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Crimson%20Invasion%20Counter%20Catcher%2091%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12030847",
+      "product_name": "Counter Catcher [Poke Ball] #139",
+      "console_name": "Pokemon Korean Terastal Festival ex",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:139"
+      }
+    },
+    {
+      "query": "Pokemon Crimson Invasion Counter Catcher 91 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Crimson%20Invasion%20Counter%20Catcher%2091%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5953245",
+      "product_name": "Counter Catcher [Reverse Holo] #160",
+      "console_name": "Pokemon Paradox Rift",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:160"
+      }
+    },
+    {
+      "query": "Pokemon Crimson Invasion Counter Catcher 91 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Crimson%20Invasion%20Counter%20Catcher%2091%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12030846",
+      "product_name": "Counter Catcher [Master Ball] #139",
+      "console_name": "Pokemon Korean Terastal Festival ex",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:139"
+      }
+    },
+    {
+      "query": "Pokemon Crimson Invasion Counter Catcher 91 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Crimson%20Invasion%20Counter%20Catcher%2091%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10117466",
+      "product_name": "Counter Catcher [Prize Pack Holo] #160",
+      "console_name": "Pokemon Paradox Rift",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:160"
+      }
+    },
+    {
+      "query": "Pokemon Crimson Invasion Counter Catcher 91 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Crimson%20Invasion%20Counter%20Catcher%2091%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8487787",
+      "product_name": "Pokemon Catcher [Cinderace Stamp] #175",
+      "console_name": "Pokemon 2022 Battle Academy",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:175"
+      }
+    },
+    {
+      "query": "Pokemon Crimson Invasion Counter Catcher 91 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Crimson%20Invasion%20Counter%20Catcher%2091%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5952998",
+      "product_name": "Counter Catcher #160",
+      "console_name": "Pokemon Paradox Rift",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:160"
+      }
+    },
+    {
+      "query": "Pokemon Crimson Invasion Counter Catcher 91 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Crimson%20Invasion%20Counter%20Catcher%2091%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5953103",
+      "product_name": "Counter Catcher #264",
+      "console_name": "Pokemon Paradox Rift",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:264"
+      }
+    },
+    {
+      "query": "Pokemon Crimson Invasion Counter Catcher 91 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Crimson%20Invasion%20Counter%20Catcher%2091%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7980152",
+      "product_name": "Counter Catcher #139",
+      "console_name": "Pokemon Japanese Terastal Festival",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:139"
+      }
+    },
+    {
+      "query": "Pokemon Crimson Invasion Counter Catcher 91 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Crimson%20Invasion%20Counter%20Catcher%2091%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5952753",
+      "product_name": "Counter Catcher #94",
+      "console_name": "Pokemon Japanese Future Flash",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:94"
+      }
+    },
+    {
+      "query": "Pokemon Crimson Invasion Counter Catcher 91 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Crimson%20Invasion%20Counter%20Catcher%2091%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "961237",
+      "product_name": "Counter Catcher #91",
+      "console_name": "Pokemon Crimson Invasion",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon Crimson Invasion Counter Catcher 91 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Crimson%20Invasion%20Counter%20Catcher%2091%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6073274",
+      "product_name": "Counter Catcher [League Cup] #91",
+      "console_name": "Pokemon Crimson Invasion",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:League Cup"
+      }
+    },
+    {
+      "query": "Pokemon Crimson Invasion Counter Catcher 91 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Crimson%20Invasion%20Counter%20Catcher%2091%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "961353",
+      "product_name": "Counter Catcher [Reverse Holo] #91",
+      "console_name": "Pokemon Crimson Invasion",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Reverse Holo"
+      }
+    },
+    {
+      "query": "Pokemon Crimson Invasion Counter Catcher 91 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Crimson%20Invasion%20Counter%20Catcher%2091%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6009630",
+      "product_name": "Counter Catcher [League Cup Staff] #91",
+      "console_name": "Pokemon Crimson Invasion",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:League Cup Staff"
+      }
+    },
+    {
+      "query": "Pokemon Crimson Invasion Counter Catcher 91 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Crimson%20Invasion%20Counter%20Catcher%2091%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "961266",
+      "product_name": "Counter Catcher #120",
+      "console_name": "Pokemon Crimson Invasion",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:120"
+      }
+    },
+    {
+      "query": "Pokemon Crimson Invasion Counter Catcher 91 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Crimson%20Invasion%20Counter%20Catcher%2091%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11707184",
+      "product_name": "Counter Catcher [2024 Lunar New Year Stamped] #83/SV-P",
+      "console_name": "Pokemon Chinese Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:83/SV-P"
+      }
+    },
+    {
+      "query": "Pokemon Crimson Invasion Counter Catcher 91 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Crimson%20Invasion%20Counter%20Catcher%2091%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "961246",
+      "product_name": "Counter Energy #100",
+      "console_name": "Pokemon Crimson Invasion",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:100"
+      }
+    },
+    {
+      "query": "Pokemon Crimson Invasion Counter Catcher 91 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Crimson%20Invasion%20Counter%20Catcher%2091%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "961268",
+      "product_name": "Counter Energy #122",
+      "console_name": "Pokemon Crimson Invasion",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:122"
+      }
+    },
+    {
+      "query": "Pokemon Crimson Invasion Counter Catcher 91 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Crimson%20Invasion%20Counter%20Catcher%2091%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "961362",
+      "product_name": "Counter Energy [Reverse Holo] #100",
+      "console_name": "Pokemon Crimson Invasion",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:100"
+      }
+    },
+    {
+      "query": "Pokemon Crimson Invasion Counter Catcher 91 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Crimson%20Invasion%20Counter%20Catcher%2091%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7980332",
+      "product_name": "Counter Catcher [Poke Ball] #139",
+      "console_name": "Pokemon Japanese Terastal Festival",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:139"
+      }
+    },
+    {
+      "query": "Pokemon Crimson Invasion Counter Catcher 91 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Crimson%20Invasion%20Counter%20Catcher%2091%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10909676",
+      "product_name": "Counter Catcher [Prize Pack] #160",
+      "console_name": "Pokemon Paradox Rift",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:160"
+      }
+    },
+    {
+      "query": "Pokemon Crimson Invasion Counter Catcher 91 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Crimson%20Invasion%20Counter%20Catcher%2091%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12030847",
+      "product_name": "Counter Catcher [Poke Ball] #139",
+      "console_name": "Pokemon Korean Terastal Festival ex",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:139"
+      }
+    },
+    {
+      "query": "Pokemon Crimson Invasion Counter Catcher 91 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Crimson%20Invasion%20Counter%20Catcher%2091%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5953245",
+      "product_name": "Counter Catcher [Reverse Holo] #160",
+      "console_name": "Pokemon Paradox Rift",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:160"
+      }
+    },
+    {
+      "query": "Pokemon Crimson Invasion Counter Catcher 91 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Crimson%20Invasion%20Counter%20Catcher%2091%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12030846",
+      "product_name": "Counter Catcher [Master Ball] #139",
+      "console_name": "Pokemon Korean Terastal Festival ex",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:139"
+      }
+    },
+    {
+      "query": "Pokemon Crimson Invasion Counter Catcher 91 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Crimson%20Invasion%20Counter%20Catcher%2091%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10117466",
+      "product_name": "Counter Catcher [Prize Pack Holo] #160",
+      "console_name": "Pokemon Paradox Rift",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:160"
+      }
+    },
+    {
+      "query": "Pokemon Crimson Invasion Counter Catcher 91 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Crimson%20Invasion%20Counter%20Catcher%2091%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8487787",
+      "product_name": "Pokemon Catcher [Cinderace Stamp] #175",
+      "console_name": "Pokemon 2022 Battle Academy",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:175"
+      }
+    },
+    {
+      "query": "Pokemon Crimson Invasion Counter Catcher 91 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Crimson%20Invasion%20Counter%20Catcher%2091%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5952998",
+      "product_name": "Counter Catcher #160",
+      "console_name": "Pokemon Paradox Rift",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:160"
+      }
+    },
+    {
+      "query": "Pokemon Crimson Invasion Counter Catcher 91 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Crimson%20Invasion%20Counter%20Catcher%2091%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5953103",
+      "product_name": "Counter Catcher #264",
+      "console_name": "Pokemon Paradox Rift",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:264"
+      }
+    },
+    {
+      "query": "Pokemon Crimson Invasion Counter Catcher 91 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Crimson%20Invasion%20Counter%20Catcher%2091%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7980152",
+      "product_name": "Counter Catcher #139",
+      "console_name": "Pokemon Japanese Terastal Festival",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:139"
+      }
+    },
+    {
+      "query": "Pokemon Crimson Invasion Counter Catcher 91 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Crimson%20Invasion%20Counter%20Catcher%2091%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5952753",
+      "product_name": "Counter Catcher #94",
+      "console_name": "Pokemon Japanese Future Flash",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:94"
+      }
+    }
+  ],
+  "source_lane": "pricecharting_api"
+}

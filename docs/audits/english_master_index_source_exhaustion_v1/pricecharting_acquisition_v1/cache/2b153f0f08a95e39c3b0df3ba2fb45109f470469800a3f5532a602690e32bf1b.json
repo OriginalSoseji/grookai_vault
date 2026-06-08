@@ -1,0 +1,549 @@
+{
+  "status": "api_no_validated_match",
+  "fact": {
+    "gap_type": "finish_second_source_needed",
+    "fact_type": "printing_finish",
+    "set_key": "g1",
+    "set_name": "Generations",
+    "card_number": "22",
+    "card_name": "Magikarp",
+    "finish_key": "stamped",
+    "status": "human_source_verified",
+    "sources": [
+      "thepricedex_price_list"
+    ],
+    "source_authorities": [
+      "thepricedex.com"
+    ],
+    "source_kinds": [
+      "marketplace_checklist"
+    ],
+    "evidence_urls": [
+      "https://www.thepricedex.com/set/g1/generations/price-list"
+    ],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "attempts": [
+    {
+      "query": "Pokemon Generations Magikarp 22 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Generations%20Magikarp%2022%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "959734",
+      "product_name": "Magikarp #22",
+      "console_name": "Pokemon Generations",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon Generations Magikarp 22 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Generations%20Magikarp%2022%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3010355",
+      "product_name": "Magikarp [Toys R Us] #22",
+      "console_name": "Pokemon Generations",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Toys R Us"
+      }
+    },
+    {
+      "query": "Pokemon Generations Magikarp 22 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Generations%20Magikarp%2022%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "2978670",
+      "product_name": "Magikarp [Reverse Holo] #22",
+      "console_name": "Pokemon Generations",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Reverse Holo"
+      }
+    },
+    {
+      "query": "Pokemon Generations Magikarp 22 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Generations%20Magikarp%2022%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9826277",
+      "product_name": "Magikarp [20th Anniversary] #22",
+      "console_name": "Pokemon Generations",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:20th Anniversary"
+      }
+    },
+    {
+      "query": "Pokemon Generations Magikarp 22 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Generations%20Magikarp%2022%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6329689",
+      "product_name": "Ponyta [Stamped] #14",
+      "console_name": "Pokemon Generations",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:14"
+      }
+    },
+    {
+      "query": "Pokemon Generations Magikarp 22 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Generations%20Magikarp%2022%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10638000",
+      "product_name": "Geodude [Stamped] #43",
+      "console_name": "Pokemon Generations",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:43"
+      }
+    },
+    {
+      "query": "Pokemon Generations Magikarp 22 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Generations%20Magikarp%2022%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6021834",
+      "product_name": "Pikachu [Stamped] #26",
+      "console_name": "Pokemon Generations",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:26"
+      }
+    },
+    {
+      "query": "Pokemon Generations Magikarp 22 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Generations%20Magikarp%2022%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6795207",
+      "product_name": "Meowth [20th Anniversary Stamp] #53",
+      "console_name": "Pokemon Generations",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:53"
+      }
+    },
+    {
+      "query": "Pokemon Generations Magikarp 22 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Generations%20Magikarp%2022%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3460034",
+      "product_name": "Magikarp #22",
+      "console_name": "Pokemon Japanese SoulSilver Collection",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon Japanese SoulSilver Collection"
+      }
+    },
+    {
+      "query": "Pokemon Generations Magikarp 22 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Generations%20Magikarp%2022%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4947378",
+      "product_name": "Magikarp #22",
+      "console_name": "Pokemon Japanese Triplet Beat",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon Japanese Triplet Beat"
+      }
+    },
+    {
+      "query": "Pokemon Generations Magikarp 22 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Generations%20Magikarp%2022%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3461569",
+      "product_name": "Magikarp #22",
+      "console_name": "Pokemon Japanese EX Battle Boost",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon Japanese EX Battle Boost"
+      }
+    },
+    {
+      "query": "Pokemon Generations Magikarp 22 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Generations%20Magikarp%2022%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12240457",
+      "product_name": "Magikarp #22",
+      "console_name": "Pokemon Korean Triple Beat",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon Korean Triple Beat"
+      }
+    },
+    {
+      "query": "Pokemon Generations Magikarp 22 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Generations%20Magikarp%2022%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9079575",
+      "product_name": "Magikarp [1st Edition] #22",
+      "console_name": "Pokemon Japanese EX Battle Boost",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon Japanese EX Battle Boost"
+      }
+    },
+    {
+      "query": "Pokemon Generations Magikarp 22 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Generations%20Magikarp%2022%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9680192",
+      "product_name": "Magikarp [Reverse Holo] #22",
+      "console_name": "Pokemon Japanese EX Battle Boost",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon Japanese EX Battle Boost"
+      }
+    },
+    {
+      "query": "Pokemon Generations Magikarp 22 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Generations%20Magikarp%2022%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9274477",
+      "product_name": "Reshiram ex #22",
+      "console_name": "Pokemon Japanese Starter Deck Generations",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Reshiram ex"
+      }
+    },
+    {
+      "query": "Pokemon Generations Magikarp 22 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Generations%20Magikarp%2022%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6782216",
+      "product_name": "Sinistcha [Stamped] #22",
+      "console_name": "Pokemon Twilight Masquerade",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Sinistcha"
+      }
+    },
+    {
+      "query": "Pokemon Generations Magikarp 22 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Generations%20Magikarp%2022%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11370172",
+      "product_name": "Reshiram [Stamped] #22",
+      "console_name": "Pokemon Stellar Crown",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Reshiram"
+      }
+    },
+    {
+      "query": "Pokemon Generations Magikarp 22 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Generations%20Magikarp%2022%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8576045",
+      "product_name": "Magikarp [1999-2000] #35",
+      "console_name": "Pokemon Base Set",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:35"
+      }
+    },
+    {
+      "query": "Pokemon Generations Magikarp 22 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Generations%20Magikarp%2022%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "762290",
+      "product_name": "Misty's Magikarp #88",
+      "console_name": "Pokemon Gym Challenge",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:88"
+      }
+    },
+    {
+      "query": "Pokemon Generations Magikarp 22 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Generations%20Magikarp%2022%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3453566",
+      "product_name": "Misty's Magikarp #129",
+      "console_name": "Pokemon Japanese Leaders' Stadium",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:129"
+      }
+    },
+    {
+      "query": "Pokemon Generations Magikarp 22 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Generations%20Magikarp%2022%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "959734",
+      "product_name": "Magikarp #22",
+      "console_name": "Pokemon Generations",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon Generations Magikarp 22 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Generations%20Magikarp%2022%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3010355",
+      "product_name": "Magikarp [Toys R Us] #22",
+      "console_name": "Pokemon Generations",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Toys R Us"
+      }
+    },
+    {
+      "query": "Pokemon Generations Magikarp 22 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Generations%20Magikarp%2022%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "2978670",
+      "product_name": "Magikarp [Reverse Holo] #22",
+      "console_name": "Pokemon Generations",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Reverse Holo"
+      }
+    },
+    {
+      "query": "Pokemon Generations Magikarp 22 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Generations%20Magikarp%2022%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9826277",
+      "product_name": "Magikarp [20th Anniversary] #22",
+      "console_name": "Pokemon Generations",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:20th Anniversary"
+      }
+    },
+    {
+      "query": "Pokemon Generations Magikarp 22 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Generations%20Magikarp%2022%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6329689",
+      "product_name": "Ponyta [Stamped] #14",
+      "console_name": "Pokemon Generations",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:14"
+      }
+    },
+    {
+      "query": "Pokemon Generations Magikarp 22 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Generations%20Magikarp%2022%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10638000",
+      "product_name": "Geodude [Stamped] #43",
+      "console_name": "Pokemon Generations",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:43"
+      }
+    },
+    {
+      "query": "Pokemon Generations Magikarp 22 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Generations%20Magikarp%2022%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6021834",
+      "product_name": "Pikachu [Stamped] #26",
+      "console_name": "Pokemon Generations",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:26"
+      }
+    },
+    {
+      "query": "Pokemon Generations Magikarp 22 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Generations%20Magikarp%2022%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6795207",
+      "product_name": "Meowth [20th Anniversary Stamp] #53",
+      "console_name": "Pokemon Generations",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:53"
+      }
+    },
+    {
+      "query": "Pokemon Generations Magikarp 22 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Generations%20Magikarp%2022%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3460034",
+      "product_name": "Magikarp #22",
+      "console_name": "Pokemon Japanese SoulSilver Collection",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon Japanese SoulSilver Collection"
+      }
+    },
+    {
+      "query": "Pokemon Generations Magikarp 22 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Generations%20Magikarp%2022%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4947378",
+      "product_name": "Magikarp #22",
+      "console_name": "Pokemon Japanese Triplet Beat",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon Japanese Triplet Beat"
+      }
+    },
+    {
+      "query": "Pokemon Generations Magikarp 22 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Generations%20Magikarp%2022%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3461569",
+      "product_name": "Magikarp #22",
+      "console_name": "Pokemon Japanese EX Battle Boost",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon Japanese EX Battle Boost"
+      }
+    },
+    {
+      "query": "Pokemon Generations Magikarp 22 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Generations%20Magikarp%2022%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12240457",
+      "product_name": "Magikarp #22",
+      "console_name": "Pokemon Korean Triple Beat",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon Korean Triple Beat"
+      }
+    },
+    {
+      "query": "Pokemon Generations Magikarp 22 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Generations%20Magikarp%2022%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9079575",
+      "product_name": "Magikarp [1st Edition] #22",
+      "console_name": "Pokemon Japanese EX Battle Boost",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon Japanese EX Battle Boost"
+      }
+    },
+    {
+      "query": "Pokemon Generations Magikarp 22 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Generations%20Magikarp%2022%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9680192",
+      "product_name": "Magikarp [Reverse Holo] #22",
+      "console_name": "Pokemon Japanese EX Battle Boost",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon Japanese EX Battle Boost"
+      }
+    },
+    {
+      "query": "Pokemon Generations Magikarp 22 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Generations%20Magikarp%2022%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9274477",
+      "product_name": "Reshiram ex #22",
+      "console_name": "Pokemon Japanese Starter Deck Generations",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Reshiram ex"
+      }
+    },
+    {
+      "query": "Pokemon Generations Magikarp 22 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Generations%20Magikarp%2022%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6782216",
+      "product_name": "Sinistcha [Stamped] #22",
+      "console_name": "Pokemon Twilight Masquerade",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Sinistcha"
+      }
+    },
+    {
+      "query": "Pokemon Generations Magikarp 22 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Generations%20Magikarp%2022%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11370172",
+      "product_name": "Reshiram [Stamped] #22",
+      "console_name": "Pokemon Stellar Crown",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Reshiram"
+      }
+    },
+    {
+      "query": "Pokemon Generations Magikarp 22 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Generations%20Magikarp%2022%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8576045",
+      "product_name": "Magikarp [1999-2000] #35",
+      "console_name": "Pokemon Base Set",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:35"
+      }
+    },
+    {
+      "query": "Pokemon Generations Magikarp 22 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Generations%20Magikarp%2022%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "762290",
+      "product_name": "Misty's Magikarp #88",
+      "console_name": "Pokemon Gym Challenge",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:88"
+      }
+    },
+    {
+      "query": "Pokemon Generations Magikarp 22 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Generations%20Magikarp%2022%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3453566",
+      "product_name": "Misty's Magikarp #129",
+      "console_name": "Pokemon Japanese Leaders' Stadium",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:129"
+      }
+    }
+  ],
+  "source_lane": "pricecharting_api"
+}

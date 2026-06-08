@@ -1,0 +1,48 @@
+{
+  "fixture_version": "VERIFIED_MASTER_SET_INDEX_V1_HUMAN_SOURCE_FIXTURE_GENERATED",
+  "source_key": "reverseholo_ru1",
+  "source_kind": "collector_reference",
+  "source_url": "https://reverseholo.app/sets/ru1",
+  "source_status": "available_generated",
+  "set_key": "ru1",
+  "set_name": "Pokémon Rumble",
+  "retrieved_at": "2026-06-08T02:54:04.257Z",
+  "raw_snapshot_ref": "generated_fixture:reverseholo:ru1:2026-06-08T02:54:04.257Z",
+  "generation_note": "Generated from ReverseHolo exact visible checklist labels. Only supported finish labels are emitted.",
+  "records": [
+    {
+      "source_key": "reverseholo_set_checklist",
+      "source_kind": "collector_reference",
+      "source_url": "https://reverseholo.app/sets/ru1",
+      "set_key": "ru1",
+      "set_name": "Pokémon Rumble",
+      "card_number": "1",
+      "card_name": "Venusaur",
+      "finish_key": "holo",
+      "rarity": null,
+      "evidence_type": "finish_presence",
+      "evidence_label": "ReverseHolo checklist row #1 - Venusaur - HOLO",
+      "language": "en",
+      "retrieved_at": "2026-06-08T02:54:04.257Z",
+      "raw_snapshot_ref": "reverseholo:ru1:1:holo",
+      "notes": "Exact finish evidence from ReverseHolo visible checklist label. Ambiguous unsupported labels are not emitted."
+    },
+    {
+      "source_key": "reverseholo_set_checklist",
+      "source_kind": "collector_reference",
+      "source_url": "https://reverseholo.app/sets/ru1",
+      "set_key": "ru1",
+      "set_name": "Pokémon Rumble",
+      "card_number": "9",
+      "card_name": "Mewtwo",
+      "finish_key": "holo",
+      "rarity": null,
+      "evidence_type": "finish_presence",
+      "evidence_label": "ReverseHolo checklist row #9 - Mewtwo - HOLO",
+      "language": "en",
+      "retrieved_at": "2026-06-08T02:54:04.257Z",
+      "raw_snapshot_ref": "reverseholo:ru1:9:holo",
+      "notes": "Exact finish evidence from ReverseHolo visible checklist label. Ambiguous unsupported labels are not emitted."
+    }
+  ]
+}

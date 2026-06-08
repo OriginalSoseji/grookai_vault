@@ -1,0 +1,554 @@
+{
+  "status": "manual_review_context",
+  "fact": {
+    "gap_type": "finish_second_source_needed",
+    "fact_type": "printing_finish",
+    "set_key": "ecard2",
+    "set_name": "Aquapolis",
+    "card_number": "103",
+    "card_name": "Porygon",
+    "finish_key": "reverse",
+    "status": "human_source_verified",
+    "sources": [
+      "thepricedex_price_list"
+    ],
+    "source_authorities": [
+      "thepricedex.com"
+    ],
+    "source_kinds": [
+      "marketplace_checklist"
+    ],
+    "evidence_urls": [
+      "https://www.thepricedex.com/set/ecard2/aquapolis/price-list"
+    ],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "query": "Pokemon Aquapolis Porygon 103 reverse holo",
+  "search_url": "https://www.pricecharting.com/api/products?q=Pokemon%20Aquapolis%20Porygon%20103%20reverse%20holo",
+  "source_url": "https://www.pricecharting.com/game/pokemon-aquapolis/porygon-reverse-holo-103a",
+  "title": "Porygon [Reverse Holo] #103a | Pokemon Aquapolis",
+  "context_reason": "PriceCharting API product candidate contains expected set, card number, card name, and finish, but exact product validation did not pass.",
+  "source_lane": "pricecharting_api",
+  "attempts": [
+    {
+      "query": "Pokemon Aquapolis Porygon 103 reverse holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Aquapolis%20Porygon%20103%20reverse%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "2293994",
+      "product_name": "Porygon [Reverse Holo] #103a",
+      "console_name": "Pokemon Aquapolis",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:103a"
+      }
+    },
+    {
+      "query": "Pokemon Aquapolis Porygon 103 reverse holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Aquapolis%20Porygon%20103%20reverse%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5135316",
+      "product_name": "Porygon [Reverse Holo] #103b",
+      "console_name": "Pokemon Aquapolis",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:103b"
+      }
+    },
+    {
+      "query": "Pokemon Aquapolis Porygon 103 reverse holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Aquapolis%20Porygon%20103%20reverse%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "961044",
+      "product_name": "Porygon [Reverse Holo] #103",
+      "console_name": "Pokemon Burning Shadows",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon Burning Shadows"
+      }
+    },
+    {
+      "query": "Pokemon Aquapolis Porygon 103 reverse holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Aquapolis%20Porygon%20103%20reverse%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "2293919",
+      "product_name": "Porygon2 [Reverse Holo] #28",
+      "console_name": "Pokemon Aquapolis",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:28"
+      }
+    },
+    {
+      "query": "Pokemon Aquapolis Porygon 103 reverse holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Aquapolis%20Porygon%20103%20reverse%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "926209",
+      "product_name": "Porygon 2 [Reverse Holo] #49",
+      "console_name": "Pokemon Triumphant",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:49"
+      }
+    },
+    {
+      "query": "Pokemon Aquapolis Porygon 103 reverse holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Aquapolis%20Porygon%20103%20reverse%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "921309",
+      "product_name": "Porygon 2 [Reverse Holo] #49",
+      "console_name": "Pokemon Great Encounters",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:49"
+      }
+    },
+    {
+      "query": "Pokemon Aquapolis Porygon 103 reverse holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Aquapolis%20Porygon%20103%20reverse%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9176368",
+      "product_name": "Porygon 2 [Reverse Holo] #111",
+      "console_name": "Pokemon Japanese Tag All Stars",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:111"
+      }
+    },
+    {
+      "query": "Pokemon Aquapolis Porygon 103 reverse holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Aquapolis%20Porygon%20103%20reverse%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "926233",
+      "product_name": "Porygon [Reverse Holo] #73",
+      "console_name": "Pokemon Triumphant",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:73"
+      }
+    },
+    {
+      "query": "Pokemon Aquapolis Porygon 103 reverse holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Aquapolis%20Porygon%20103%20reverse%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "960448",
+      "product_name": "Porygon [Reverse Holo] #71",
+      "console_name": "Pokemon Evolutions",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:71"
+      }
+    },
+    {
+      "query": "Pokemon Aquapolis Porygon 103 reverse holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Aquapolis%20Porygon%20103%20reverse%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5953229",
+      "product_name": "Porygon [Reverse Holo] #142",
+      "console_name": "Pokemon Paradox Rift",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:142"
+      }
+    },
+    {
+      "query": "Pokemon Aquapolis Porygon 103 reverse holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Aquapolis%20Porygon%20103%20reverse%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "842623",
+      "product_name": "Porygon #103a",
+      "console_name": "Pokemon Aquapolis",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:103a"
+      }
+    },
+    {
+      "query": "Pokemon Aquapolis Porygon 103 reverse holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Aquapolis%20Porygon%20103%20reverse%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5135011",
+      "product_name": "Porygon #103b",
+      "console_name": "Pokemon Aquapolis",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:103b"
+      }
+    },
+    {
+      "query": "Pokemon Aquapolis Porygon 103 reverse holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Aquapolis%20Porygon%20103%20reverse%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "963532",
+      "product_name": "Porygon [Reverse Holo] #155",
+      "console_name": "Pokemon Unbroken Bonds",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:155"
+      }
+    },
+    {
+      "query": "Pokemon Aquapolis Porygon 103 reverse holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Aquapolis%20Porygon%20103%20reverse%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "963531",
+      "product_name": "Porygon [Reverse Holo] #154",
+      "console_name": "Pokemon Unbroken Bonds",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:154"
+      }
+    },
+    {
+      "query": "Pokemon Aquapolis Porygon 103 reverse holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Aquapolis%20Porygon%20103%20reverse%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "921341",
+      "product_name": "Porygon [Reverse Holo] #81",
+      "console_name": "Pokemon Great Encounters",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:81"
+      }
+    },
+    {
+      "query": "Pokemon Aquapolis Porygon 103 reverse holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Aquapolis%20Porygon%20103%20reverse%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "957473",
+      "product_name": "Porygon [Reverse Holo] #72",
+      "console_name": "Pokemon Plasma Blast",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:72"
+      }
+    },
+    {
+      "query": "Pokemon Aquapolis Porygon 103 reverse holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Aquapolis%20Porygon%20103%20reverse%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "959171",
+      "product_name": "Porygon [Reverse Holo] #64",
+      "console_name": "Pokemon Ancient Origins",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:64"
+      }
+    },
+    {
+      "query": "Pokemon Aquapolis Porygon 103 reverse holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Aquapolis%20Porygon%20103%20reverse%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "888631",
+      "product_name": "Porygon [Reverse Holo] #69",
+      "console_name": "Pokemon Unseen Forces",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:69"
+      }
+    },
+    {
+      "query": "Pokemon Aquapolis Porygon 103 reverse holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Aquapolis%20Porygon%20103%20reverse%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "888856",
+      "product_name": "Porygon [Reverse Holo] #80",
+      "console_name": "Pokemon Delta Species",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:80"
+      }
+    },
+    {
+      "query": "Pokemon Aquapolis Porygon 103 reverse holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Aquapolis%20Porygon%20103%20reverse%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "2254131",
+      "product_name": "Porygon [Reverse Holo] #116",
+      "console_name": "Pokemon Chilling Reign",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:116"
+      }
+    },
+    {
+      "query": "Pokemon Aquapolis Porygon 103 reverse holofoil",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Aquapolis%20Porygon%20103%20reverse%20holofoil",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "2293994",
+      "product_name": "Porygon [Reverse Holo] #103a",
+      "console_name": "Pokemon Aquapolis",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:103a"
+      }
+    },
+    {
+      "query": "Pokemon Aquapolis Porygon 103 reverse holofoil",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Aquapolis%20Porygon%20103%20reverse%20holofoil",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5135316",
+      "product_name": "Porygon [Reverse Holo] #103b",
+      "console_name": "Pokemon Aquapolis",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:103b"
+      }
+    },
+    {
+      "query": "Pokemon Aquapolis Porygon 103 reverse holofoil",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Aquapolis%20Porygon%20103%20reverse%20holofoil",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "961044",
+      "product_name": "Porygon [Reverse Holo] #103",
+      "console_name": "Pokemon Burning Shadows",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon Burning Shadows"
+      }
+    },
+    {
+      "query": "Pokemon Aquapolis Porygon 103 reverse holofoil",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Aquapolis%20Porygon%20103%20reverse%20holofoil",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "2293919",
+      "product_name": "Porygon2 [Reverse Holo] #28",
+      "console_name": "Pokemon Aquapolis",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:28"
+      }
+    },
+    {
+      "query": "Pokemon Aquapolis Porygon 103 reverse holofoil",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Aquapolis%20Porygon%20103%20reverse%20holofoil",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "926209",
+      "product_name": "Porygon 2 [Reverse Holo] #49",
+      "console_name": "Pokemon Triumphant",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:49"
+      }
+    },
+    {
+      "query": "Pokemon Aquapolis Porygon 103 reverse holofoil",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Aquapolis%20Porygon%20103%20reverse%20holofoil",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "921309",
+      "product_name": "Porygon 2 [Reverse Holo] #49",
+      "console_name": "Pokemon Great Encounters",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:49"
+      }
+    },
+    {
+      "query": "Pokemon Aquapolis Porygon 103 reverse holofoil",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Aquapolis%20Porygon%20103%20reverse%20holofoil",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9176368",
+      "product_name": "Porygon 2 [Reverse Holo] #111",
+      "console_name": "Pokemon Japanese Tag All Stars",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:111"
+      }
+    },
+    {
+      "query": "Pokemon Aquapolis Porygon 103 reverse holofoil",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Aquapolis%20Porygon%20103%20reverse%20holofoil",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "926233",
+      "product_name": "Porygon [Reverse Holo] #73",
+      "console_name": "Pokemon Triumphant",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:73"
+      }
+    },
+    {
+      "query": "Pokemon Aquapolis Porygon 103 reverse holofoil",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Aquapolis%20Porygon%20103%20reverse%20holofoil",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "960448",
+      "product_name": "Porygon [Reverse Holo] #71",
+      "console_name": "Pokemon Evolutions",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:71"
+      }
+    },
+    {
+      "query": "Pokemon Aquapolis Porygon 103 reverse holofoil",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Aquapolis%20Porygon%20103%20reverse%20holofoil",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5953229",
+      "product_name": "Porygon [Reverse Holo] #142",
+      "console_name": "Pokemon Paradox Rift",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:142"
+      }
+    },
+    {
+      "query": "Pokemon Aquapolis Porygon 103 reverse holofoil",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Aquapolis%20Porygon%20103%20reverse%20holofoil",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "842623",
+      "product_name": "Porygon #103a",
+      "console_name": "Pokemon Aquapolis",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:103a"
+      }
+    },
+    {
+      "query": "Pokemon Aquapolis Porygon 103 reverse holofoil",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Aquapolis%20Porygon%20103%20reverse%20holofoil",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5135011",
+      "product_name": "Porygon #103b",
+      "console_name": "Pokemon Aquapolis",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:103b"
+      }
+    },
+    {
+      "query": "Pokemon Aquapolis Porygon 103 reverse holofoil",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Aquapolis%20Porygon%20103%20reverse%20holofoil",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "963532",
+      "product_name": "Porygon [Reverse Holo] #155",
+      "console_name": "Pokemon Unbroken Bonds",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:155"
+      }
+    },
+    {
+      "query": "Pokemon Aquapolis Porygon 103 reverse holofoil",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Aquapolis%20Porygon%20103%20reverse%20holofoil",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "963531",
+      "product_name": "Porygon [Reverse Holo] #154",
+      "console_name": "Pokemon Unbroken Bonds",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:154"
+      }
+    },
+    {
+      "query": "Pokemon Aquapolis Porygon 103 reverse holofoil",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Aquapolis%20Porygon%20103%20reverse%20holofoil",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "921341",
+      "product_name": "Porygon [Reverse Holo] #81",
+      "console_name": "Pokemon Great Encounters",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:81"
+      }
+    },
+    {
+      "query": "Pokemon Aquapolis Porygon 103 reverse holofoil",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Aquapolis%20Porygon%20103%20reverse%20holofoil",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "957473",
+      "product_name": "Porygon [Reverse Holo] #72",
+      "console_name": "Pokemon Plasma Blast",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:72"
+      }
+    },
+    {
+      "query": "Pokemon Aquapolis Porygon 103 reverse holofoil",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Aquapolis%20Porygon%20103%20reverse%20holofoil",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "959171",
+      "product_name": "Porygon [Reverse Holo] #64",
+      "console_name": "Pokemon Ancient Origins",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:64"
+      }
+    },
+    {
+      "query": "Pokemon Aquapolis Porygon 103 reverse holofoil",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Aquapolis%20Porygon%20103%20reverse%20holofoil",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "888631",
+      "product_name": "Porygon [Reverse Holo] #69",
+      "console_name": "Pokemon Unseen Forces",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:69"
+      }
+    },
+    {
+      "query": "Pokemon Aquapolis Porygon 103 reverse holofoil",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Aquapolis%20Porygon%20103%20reverse%20holofoil",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "888856",
+      "product_name": "Porygon [Reverse Holo] #80",
+      "console_name": "Pokemon Delta Species",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:80"
+      }
+    },
+    {
+      "query": "Pokemon Aquapolis Porygon 103 reverse holofoil",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Aquapolis%20Porygon%20103%20reverse%20holofoil",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "2254131",
+      "product_name": "Porygon [Reverse Holo] #116",
+      "console_name": "Pokemon Chilling Reign",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:116"
+      }
+    }
+  ]
+}

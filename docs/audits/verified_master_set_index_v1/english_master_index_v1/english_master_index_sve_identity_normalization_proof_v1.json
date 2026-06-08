@@ -1,0 +1,175 @@
+{
+  "version": "ENGLISH_MASTER_INDEX_SVE_IDENTITY_NORMALIZATION_PROOF_V1",
+  "generated_at": "2026-05-31T01:41:36.849Z",
+  "audit_only": true,
+  "db_writes_performed": false,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "staging_dir": "docs/audits/verified_master_set_index_v1/english_master_index_v1_guarded_staging/2026-05-29T02-27-55-907Z",
+  "rule": "Scarlet & Violet Energies may collapse Basic Energy and non-Basic Energy labels into one canonical card identity only for set_key sve.",
+  "conclusion": "stop_manual_review_required",
+  "baseline": {
+    "generated_at": "2026-05-31T01:16:35.875Z",
+    "sets": 201,
+    "evidence_rows": 232307,
+    "cards_by_status": {
+      "api_agreed": 9,
+      "master_verified": 21511
+    },
+    "printings_by_status": {
+      "human_source_verified": 325,
+      "master_verified": 38520
+    },
+    "conflicts": 0
+  },
+  "staged": {
+    "generated_at": "2026-05-29T02:27:55.983Z",
+    "sets": 202,
+    "evidence_rows": 231538,
+    "cards_by_status": {
+      "api_agreed": 9,
+      "candidate_unconfirmed": 7,
+      "human_source_verified": 2,
+      "master_verified": 21547
+    },
+    "printings_by_status": {
+      "candidate_unconfirmed": 72,
+      "human_source_verified": 451,
+      "master_verified": 38324
+    },
+    "conflicts": 0
+  },
+  "delta": {
+    "removed_cards": 20,
+    "added_cards": 65,
+    "removed_printings": 56,
+    "added_printings": 58,
+    "removed_cards_by_set": {
+      "mee": 8,
+      "exu": 1,
+      "pop5": 2,
+      "cel25c": 1,
+      "cel25": 1,
+      "wp": 7
+    },
+    "added_cards_by_set": {
+      "mee": 8,
+      "exu": 1,
+      "ex7": 3,
+      "ex8": 3,
+      "ex10": 3,
+      "ex11": 3,
+      "ex12": 3,
+      "ex13": 3,
+      "ex14": 2,
+      "ex15": 2,
+      "ex16": 3,
+      "pop5": 2,
+      "swshp": 1,
+      "cel25": 26,
+      "cel25c": 1,
+      "sv10.5b": 1
+    },
+    "removed_printings_by_set": {
+      "mee": 16,
+      "exu": 1,
+      "ex16": 2,
+      "pop5": 2,
+      "bw11": 2,
+      "swshp": 1,
+      "swsh4.5": 2,
+      "cel25": 1,
+      "cel25c": 1,
+      "sv01": 1,
+      "sv05": 1,
+      "sv06": 1,
+      "sv07": 2,
+      "sv10": 2,
+      "tk-bw-e": 1,
+      "tk-bw-z": 1,
+      "tk-dp-l": 1,
+      "tk-dp-m": 1,
+      "tk-sm-l": 1,
+      "tk-sm-r": 1,
+      "tk-xy-b": 1,
+      "tk-xy-latia": 1,
+      "tk-xy-latio": 1,
+      "tk-xy-n": 1,
+      "tk-xy-p": 1,
+      "tk-xy-su": 1,
+      "tk-xy-sy": 1,
+      "tk-xy-w": 1,
+      "wp": 7
+    },
+    "added_printings_by_set": {
+      "tk-bw-e": 1,
+      "tk-bw-z": 1,
+      "tk-dp-l": 1,
+      "tk-dp-m": 1,
+      "mee": 8,
+      "tk-sm-r": 1,
+      "tk-sm-l": 1,
+      "exu": 1,
+      "tk-xy-b": 1,
+      "tk-xy-latia": 1,
+      "tk-xy-latio": 1,
+      "tk-xy-n": 1,
+      "tk-xy-p": 1,
+      "tk-xy-su": 1,
+      "tk-xy-sy": 1,
+      "tk-xy-w": 1,
+      "ex7": 3,
+      "ex8": 3,
+      "ex10": 3,
+      "ex11": 3,
+      "ex12": 3,
+      "ex13": 3,
+      "ex14": 2,
+      "ex15": 2,
+      "ex16": 5,
+      "pop5": 2,
+      "col1": 1,
+      "swshp": 1,
+      "cel25": 1,
+      "cel25c": 1,
+      "sv10.5b": 2
+    },
+    "non_sve_removed_cards": 20,
+    "non_sve_added_cards": 65,
+    "non_sve_removed_printings": 56,
+    "non_sve_added_printings": 58
+  },
+  "sve": {
+    "baseline_cards": 24,
+    "staged_cards": 24,
+    "baseline_printings": 79,
+    "staged_printings": 79,
+    "baseline_cards_by_status": {
+      "master_verified": 24
+    },
+    "staged_cards_by_status": {
+      "master_verified": 24
+    },
+    "baseline_printings_by_status": {
+      "master_verified": 67,
+      "human_source_verified": 12
+    },
+    "staged_printings_by_status": {
+      "master_verified": 47,
+      "human_source_verified": 32
+    },
+    "removed_card_examples": [],
+    "added_card_examples": [],
+    "removed_printing_examples": [],
+    "added_printing_examples": []
+  },
+  "promotion_guard": {
+    "min_master_verified_printings": 38324,
+    "min_master_verified_cards": 21547,
+    "max_candidate_printings": 72,
+    "max_conflicts": 0,
+    "required_non_sve_card_changes": 0,
+    "required_non_sve_printing_changes": 0
+  }
+}

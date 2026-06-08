@@ -1,0 +1,549 @@
+{
+  "status": "api_no_validated_match",
+  "fact": {
+    "gap_type": "finish_second_source_needed",
+    "fact_type": "printing_finish",
+    "set_key": "pl1",
+    "set_name": "Platinum",
+    "card_number": "112",
+    "card_name": "PlusPower",
+    "finish_key": "stamped",
+    "status": "human_source_verified",
+    "sources": [
+      "thepricedex_price_list"
+    ],
+    "source_authorities": [
+      "thepricedex.com"
+    ],
+    "source_kinds": [
+      "marketplace_checklist"
+    ],
+    "evidence_urls": [
+      "https://www.thepricedex.com/set/pl1/platinum/price-list"
+    ],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "attempts": [
+    {
+      "query": "Pokemon Platinum PlusPower 112 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Platinum%20PlusPower%20112%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "806030",
+      "product_name": "Pluspower #112",
+      "console_name": "Pokemon Platinum",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon Platinum PlusPower 112 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Platinum%20PlusPower%20112%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "806031",
+      "product_name": "Pluspower [Reverse Holo] #112",
+      "console_name": "Pokemon Platinum",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Reverse Holo"
+      }
+    },
+    {
+      "query": "Pokemon Platinum PlusPower 112 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Platinum%20PlusPower%20112%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9677763",
+      "product_name": "Eevee [Stamped] #112",
+      "console_name": "Pokemon Chinese Gem Pack 2",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Eevee"
+      }
+    },
+    {
+      "query": "Pokemon Platinum PlusPower 112 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Platinum%20PlusPower%20112%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8243947",
+      "product_name": "PlusPower [1999-2000] #84",
+      "console_name": "Pokemon Base Set",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:84"
+      }
+    },
+    {
+      "query": "Pokemon Platinum PlusPower 112 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Platinum%20PlusPower%20112%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3839430",
+      "product_name": "PlusPower [Shadowless] #84",
+      "console_name": "Pokemon Base Set",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:84"
+      }
+    },
+    {
+      "query": "Pokemon Platinum PlusPower 112 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Platinum%20PlusPower%20112%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3492046",
+      "product_name": "PlusPower [No Rarity]",
+      "console_name": "Pokemon Japanese Expansion Pack",
+      "validation": {
+        "ok": false,
+        "reason": "api_product_name_pattern_not_supported"
+      }
+    },
+    {
+      "query": "Pokemon Platinum PlusPower 112 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Platinum%20PlusPower%20112%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "1287518",
+      "product_name": "PlusPower [Reverse Holo] #80",
+      "console_name": "Pokemon Unleashed",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:80"
+      }
+    },
+    {
+      "query": "Pokemon Platinum PlusPower 112 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Platinum%20PlusPower%20112%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8454283",
+      "product_name": "PlusPower [1st Edition]",
+      "console_name": "Pokemon Japanese Space-Time",
+      "validation": {
+        "ok": false,
+        "reason": "api_product_name_pattern_not_supported"
+      }
+    },
+    {
+      "query": "Pokemon Platinum PlusPower 112 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Platinum%20PlusPower%20112%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7671877",
+      "product_name": "Meowth [Platinum Stamped] #106",
+      "console_name": "Pokemon Legends Awakened",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:106"
+      }
+    },
+    {
+      "query": "Pokemon Platinum PlusPower 112 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Platinum%20PlusPower%20112%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "715673",
+      "product_name": "PlusPower [1st Edition] #84",
+      "console_name": "Pokemon Base Set",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:84"
+      }
+    },
+    {
+      "query": "Pokemon Platinum PlusPower 112 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Platinum%20PlusPower%20112%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "806489",
+      "product_name": "PlusPower [Reverse Holo] #96",
+      "console_name": "Pokemon Black & White",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:96"
+      }
+    },
+    {
+      "query": "Pokemon Platinum PlusPower 112 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Platinum%20PlusPower%20112%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "763267",
+      "product_name": "PlusPower [Reverse Holo] #109",
+      "console_name": "Pokemon Diamond & Pearl",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:109"
+      }
+    },
+    {
+      "query": "Pokemon Platinum PlusPower 112 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Platinum%20PlusPower%20112%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "921143",
+      "product_name": "PlusPower [Reverse Holo] #121",
+      "console_name": "Pokemon Secret Wonders",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:121"
+      }
+    },
+    {
+      "query": "Pokemon Platinum PlusPower 112 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Platinum%20PlusPower%20112%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8454182",
+      "product_name": "PlusPower [1st Edition] #72",
+      "console_name": "Pokemon Japanese Reviving Legends",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:72"
+      }
+    },
+    {
+      "query": "Pokemon Platinum PlusPower 112 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Platinum%20PlusPower%20112%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8454433",
+      "product_name": "PlusPower [1st Edition] #51",
+      "console_name": "Pokemon Japanese White Collection",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:51"
+      }
+    },
+    {
+      "query": "Pokemon Platinum PlusPower 112 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Platinum%20PlusPower%20112%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8243908",
+      "product_name": "Glaceon [Platinum Stamped] #20",
+      "console_name": "Pokemon Majestic Dawn",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:20"
+      }
+    },
+    {
+      "query": "Pokemon Platinum PlusPower 112 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Platinum%20PlusPower%20112%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12228847",
+      "product_name": "PlusPower [Shuto Itagaki] #96",
+      "console_name": "Pokemon World Championships 2012",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:96"
+      }
+    },
+    {
+      "query": "Pokemon Platinum PlusPower 112 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Platinum%20PlusPower%20112%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3458378",
+      "product_name": "PlusPower",
+      "console_name": "Pokemon Japanese Space-Time",
+      "validation": {
+        "ok": false,
+        "reason": "api_product_name_pattern_not_supported"
+      }
+    },
+    {
+      "query": "Pokemon Platinum PlusPower 112 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Platinum%20PlusPower%20112%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3453355",
+      "product_name": "PlusPower",
+      "console_name": "Pokemon Japanese Expansion Pack",
+      "validation": {
+        "ok": false,
+        "reason": "api_product_name_pattern_not_supported"
+      }
+    },
+    {
+      "query": "Pokemon Platinum PlusPower 112 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Platinum%20PlusPower%20112%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "1287422",
+      "product_name": "PlusPower #80",
+      "console_name": "Pokemon Unleashed",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:80"
+      }
+    },
+    {
+      "query": "Pokemon Platinum PlusPower 112 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Platinum%20PlusPower%20112%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "806030",
+      "product_name": "Pluspower #112",
+      "console_name": "Pokemon Platinum",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon Platinum PlusPower 112 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Platinum%20PlusPower%20112%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "806031",
+      "product_name": "Pluspower [Reverse Holo] #112",
+      "console_name": "Pokemon Platinum",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Reverse Holo"
+      }
+    },
+    {
+      "query": "Pokemon Platinum PlusPower 112 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Platinum%20PlusPower%20112%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9677763",
+      "product_name": "Eevee [Stamped] #112",
+      "console_name": "Pokemon Chinese Gem Pack 2",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Eevee"
+      }
+    },
+    {
+      "query": "Pokemon Platinum PlusPower 112 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Platinum%20PlusPower%20112%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8243947",
+      "product_name": "PlusPower [1999-2000] #84",
+      "console_name": "Pokemon Base Set",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:84"
+      }
+    },
+    {
+      "query": "Pokemon Platinum PlusPower 112 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Platinum%20PlusPower%20112%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3839430",
+      "product_name": "PlusPower [Shadowless] #84",
+      "console_name": "Pokemon Base Set",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:84"
+      }
+    },
+    {
+      "query": "Pokemon Platinum PlusPower 112 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Platinum%20PlusPower%20112%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3492046",
+      "product_name": "PlusPower [No Rarity]",
+      "console_name": "Pokemon Japanese Expansion Pack",
+      "validation": {
+        "ok": false,
+        "reason": "api_product_name_pattern_not_supported"
+      }
+    },
+    {
+      "query": "Pokemon Platinum PlusPower 112 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Platinum%20PlusPower%20112%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "1287518",
+      "product_name": "PlusPower [Reverse Holo] #80",
+      "console_name": "Pokemon Unleashed",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:80"
+      }
+    },
+    {
+      "query": "Pokemon Platinum PlusPower 112 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Platinum%20PlusPower%20112%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8454283",
+      "product_name": "PlusPower [1st Edition]",
+      "console_name": "Pokemon Japanese Space-Time",
+      "validation": {
+        "ok": false,
+        "reason": "api_product_name_pattern_not_supported"
+      }
+    },
+    {
+      "query": "Pokemon Platinum PlusPower 112 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Platinum%20PlusPower%20112%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7671877",
+      "product_name": "Meowth [Platinum Stamped] #106",
+      "console_name": "Pokemon Legends Awakened",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:106"
+      }
+    },
+    {
+      "query": "Pokemon Platinum PlusPower 112 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Platinum%20PlusPower%20112%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "715673",
+      "product_name": "PlusPower [1st Edition] #84",
+      "console_name": "Pokemon Base Set",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:84"
+      }
+    },
+    {
+      "query": "Pokemon Platinum PlusPower 112 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Platinum%20PlusPower%20112%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "806489",
+      "product_name": "PlusPower [Reverse Holo] #96",
+      "console_name": "Pokemon Black & White",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:96"
+      }
+    },
+    {
+      "query": "Pokemon Platinum PlusPower 112 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Platinum%20PlusPower%20112%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "763267",
+      "product_name": "PlusPower [Reverse Holo] #109",
+      "console_name": "Pokemon Diamond & Pearl",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:109"
+      }
+    },
+    {
+      "query": "Pokemon Platinum PlusPower 112 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Platinum%20PlusPower%20112%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "921143",
+      "product_name": "PlusPower [Reverse Holo] #121",
+      "console_name": "Pokemon Secret Wonders",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:121"
+      }
+    },
+    {
+      "query": "Pokemon Platinum PlusPower 112 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Platinum%20PlusPower%20112%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8454182",
+      "product_name": "PlusPower [1st Edition] #72",
+      "console_name": "Pokemon Japanese Reviving Legends",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:72"
+      }
+    },
+    {
+      "query": "Pokemon Platinum PlusPower 112 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Platinum%20PlusPower%20112%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8454433",
+      "product_name": "PlusPower [1st Edition] #51",
+      "console_name": "Pokemon Japanese White Collection",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:51"
+      }
+    },
+    {
+      "query": "Pokemon Platinum PlusPower 112 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Platinum%20PlusPower%20112%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8243908",
+      "product_name": "Glaceon [Platinum Stamped] #20",
+      "console_name": "Pokemon Majestic Dawn",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:20"
+      }
+    },
+    {
+      "query": "Pokemon Platinum PlusPower 112 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Platinum%20PlusPower%20112%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12228847",
+      "product_name": "PlusPower [Shuto Itagaki] #96",
+      "console_name": "Pokemon World Championships 2012",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:96"
+      }
+    },
+    {
+      "query": "Pokemon Platinum PlusPower 112 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Platinum%20PlusPower%20112%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3458378",
+      "product_name": "PlusPower",
+      "console_name": "Pokemon Japanese Space-Time",
+      "validation": {
+        "ok": false,
+        "reason": "api_product_name_pattern_not_supported"
+      }
+    },
+    {
+      "query": "Pokemon Platinum PlusPower 112 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Platinum%20PlusPower%20112%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3453355",
+      "product_name": "PlusPower",
+      "console_name": "Pokemon Japanese Expansion Pack",
+      "validation": {
+        "ok": false,
+        "reason": "api_product_name_pattern_not_supported"
+      }
+    },
+    {
+      "query": "Pokemon Platinum PlusPower 112 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Platinum%20PlusPower%20112%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "1287422",
+      "product_name": "PlusPower #80",
+      "console_name": "Pokemon Unleashed",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:80"
+      }
+    }
+  ],
+  "source_lane": "pricecharting_api"
+}

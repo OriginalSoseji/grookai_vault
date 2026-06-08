@@ -1,0 +1,43 @@
+{
+  "status": "no_validated_match",
+  "fact": {
+    "gap_type": "finish_second_source_needed",
+    "fact_type": "printing_finish",
+    "set_key": "neo4",
+    "set_name": "Neo Destiny",
+    "card_number": "110",
+    "card_name": "Shining Noctowl",
+    "finish_key": "holo",
+    "status": "human_source_verified",
+    "sources": [
+      "thepricedex_price_list"
+    ],
+    "source_authorities": [
+      "thepricedex.com"
+    ],
+    "source_kinds": [
+      "marketplace_checklist"
+    ],
+    "evidence_urls": [],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "attempts": [
+    {
+      "query": "Pokemon Neo Destiny Shining Noctowl 110 holo",
+      "url": "https://www.pricecharting.com/search-products?q=Pokemon%20Neo%20Destiny%20Shining%20Noctowl%20110%20holo&type=prices",
+      "parsed": {
+        "title": "Pokemon Neo Destiny Shining Noctowl 110 Holo Prices | Pokemon Neo Destiny Shining Noctowl 110 Holo List",
+        "source_url": "https://www.pricecharting.com/search-products?q=pokemon+neo+destiny+shining+noctowl+110+holo&type=prices"
+      },
+      "validation": {
+        "ok": false,
+        "reason": "title_pattern_not_supported"
+      }
+    },
+    {
+      "query": "Pokemon Neo Destiny Shining Noctowl 110 holofoil",
+      "url": "https://www.pricecharting.com/search-products?q=Pokemon%20Neo%20Destiny%20Shining%20Noctowl%20110%20holofoil&type=prices",
+      "error": "Fetch failed 403 Forbidden: https://www.pricecharting.com/search-products?q=Pokemon%20Neo%20Destiny%20Shining%20Noctowl%20110%20holofoil&type=prices"
+    }
+  ]
+}

@@ -1,0 +1,549 @@
+{
+  "status": "api_no_validated_match",
+  "fact": {
+    "gap_type": "finish_second_source_needed",
+    "fact_type": "printing_finish",
+    "set_key": "sm8",
+    "set_name": "Lost Thunder",
+    "card_number": "181",
+    "card_name": "Lost Blender",
+    "finish_key": "stamped",
+    "status": "human_source_verified",
+    "sources": [
+      "thepricedex_price_list"
+    ],
+    "source_authorities": [
+      "thepricedex.com"
+    ],
+    "source_kinds": [
+      "marketplace_checklist"
+    ],
+    "evidence_urls": [
+      "https://www.thepricedex.com/set/sm8/lost-thunder/price-list"
+    ],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "attempts": [
+    {
+      "query": "Pokemon Lost Thunder Lost Blender 181 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Lost%20Thunder%20Lost%20Blender%20181%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9312173",
+      "product_name": "Lost Blender [League] #181",
+      "console_name": "Pokemon Lost Thunder",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:League"
+      }
+    },
+    {
+      "query": "Pokemon Lost Thunder Lost Blender 181 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Lost%20Thunder%20Lost%20Blender%20181%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "962569",
+      "product_name": "Lost Blender #181",
+      "console_name": "Pokemon Lost Thunder",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon Lost Thunder Lost Blender 181 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Lost%20Thunder%20Lost%20Blender%20181%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "962786",
+      "product_name": "Lost Blender [Reverse Holo] #181",
+      "console_name": "Pokemon Lost Thunder",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Reverse Holo"
+      }
+    },
+    {
+      "query": "Pokemon Lost Thunder Lost Blender 181 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Lost%20Thunder%20Lost%20Blender%20181%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "962621",
+      "product_name": "Lost Blender #233",
+      "console_name": "Pokemon Lost Thunder",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:233"
+      }
+    },
+    {
+      "query": "Pokemon Lost Thunder Lost Blender 181 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Lost%20Thunder%20Lost%20Blender%20181%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4166493",
+      "product_name": "Mareep [Stamped] #75",
+      "console_name": "Pokemon Lost Thunder",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:75"
+      }
+    },
+    {
+      "query": "Pokemon Lost Thunder Lost Blender 181 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Lost%20Thunder%20Lost%20Blender%20181%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6883922",
+      "product_name": "Suicune [Stamped] #59",
+      "console_name": "Pokemon Lost Thunder",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:59"
+      }
+    },
+    {
+      "query": "Pokemon Lost Thunder Lost Blender 181 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Lost%20Thunder%20Lost%20Blender%20181%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6106262",
+      "product_name": "Lost Blender [Reverse Holo] #138",
+      "console_name": "Pokemon Japanese Tag All Stars",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:138"
+      }
+    },
+    {
+      "query": "Pokemon Lost Thunder Lost Blender 181 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Lost%20Thunder%20Lost%20Blender%20181%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3468654",
+      "product_name": "Lost Blender #83",
+      "console_name": "Pokemon Japanese Super-Burst Impact",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:83"
+      }
+    },
+    {
+      "query": "Pokemon Lost Thunder Lost Blender 181 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Lost%20Thunder%20Lost%20Blender%20181%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3468681",
+      "product_name": "Lost Blender #110",
+      "console_name": "Pokemon Japanese Super-Burst Impact",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:110"
+      }
+    },
+    {
+      "query": "Pokemon Lost Thunder Lost Blender 181 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Lost%20Thunder%20Lost%20Blender%20181%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4118604",
+      "product_name": "Lost Blender #138",
+      "console_name": "Pokemon Japanese Tag All Stars",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:138"
+      }
+    },
+    {
+      "query": "Pokemon Lost Thunder Lost Blender 181 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Lost%20Thunder%20Lost%20Blender%20181%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "962475",
+      "product_name": "Natu #87",
+      "console_name": "Pokemon Lost Thunder",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:87"
+      }
+    },
+    {
+      "query": "Pokemon Lost Thunder Lost Blender 181 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Lost%20Thunder%20Lost%20Blender%20181%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "962476",
+      "product_name": "Xatu #88",
+      "console_name": "Pokemon Lost Thunder",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:88"
+      }
+    },
+    {
+      "query": "Pokemon Lost Thunder Lost Blender 181 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Lost%20Thunder%20Lost%20Blender%20181%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "962497",
+      "product_name": "Onix #109",
+      "console_name": "Pokemon Lost Thunder",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:109"
+      }
+    },
+    {
+      "query": "Pokemon Lost Thunder Lost Blender 181 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Lost%20Thunder%20Lost%20Blender%20181%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "962561",
+      "product_name": "Faba #173",
+      "console_name": "Pokemon Lost Thunder",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:173"
+      }
+    },
+    {
+      "query": "Pokemon Lost Thunder Lost Blender 181 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Lost%20Thunder%20Lost%20Blender%20181%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "962571",
+      "product_name": "Mina #183",
+      "console_name": "Pokemon Lost Thunder",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:183"
+      }
+    },
+    {
+      "query": "Pokemon Lost Thunder Lost Blender 181 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Lost%20Thunder%20Lost%20Blender%20181%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "962596",
+      "product_name": "Faba #208",
+      "console_name": "Pokemon Lost Thunder",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:208"
+      }
+    },
+    {
+      "query": "Pokemon Lost Thunder Lost Blender 181 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Lost%20Thunder%20Lost%20Blender%20181%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "962599",
+      "product_name": "Mina #211",
+      "console_name": "Pokemon Lost Thunder",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:211"
+      }
+    },
+    {
+      "query": "Pokemon Lost Thunder Lost Blender 181 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Lost%20Thunder%20Lost%20Blender%20181%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "962435",
+      "product_name": "Entei #47",
+      "console_name": "Pokemon Lost Thunder",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:47"
+      }
+    },
+    {
+      "query": "Pokemon Lost Thunder Lost Blender 181 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Lost%20Thunder%20Lost%20Blender%20181%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "962479",
+      "product_name": "Unown #91",
+      "console_name": "Pokemon Lost Thunder",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:91"
+      }
+    },
+    {
+      "query": "Pokemon Lost Thunder Lost Blender 181 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Lost%20Thunder%20Lost%20Blender%20181%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "962478",
+      "product_name": "Unown #90",
+      "console_name": "Pokemon Lost Thunder",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:90"
+      }
+    },
+    {
+      "query": "Pokemon Lost Thunder Lost Blender 181 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Lost%20Thunder%20Lost%20Blender%20181%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9312173",
+      "product_name": "Lost Blender [League] #181",
+      "console_name": "Pokemon Lost Thunder",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:League"
+      }
+    },
+    {
+      "query": "Pokemon Lost Thunder Lost Blender 181 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Lost%20Thunder%20Lost%20Blender%20181%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "962569",
+      "product_name": "Lost Blender #181",
+      "console_name": "Pokemon Lost Thunder",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon Lost Thunder Lost Blender 181 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Lost%20Thunder%20Lost%20Blender%20181%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "962786",
+      "product_name": "Lost Blender [Reverse Holo] #181",
+      "console_name": "Pokemon Lost Thunder",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Reverse Holo"
+      }
+    },
+    {
+      "query": "Pokemon Lost Thunder Lost Blender 181 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Lost%20Thunder%20Lost%20Blender%20181%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "962621",
+      "product_name": "Lost Blender #233",
+      "console_name": "Pokemon Lost Thunder",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:233"
+      }
+    },
+    {
+      "query": "Pokemon Lost Thunder Lost Blender 181 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Lost%20Thunder%20Lost%20Blender%20181%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4166493",
+      "product_name": "Mareep [Stamped] #75",
+      "console_name": "Pokemon Lost Thunder",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:75"
+      }
+    },
+    {
+      "query": "Pokemon Lost Thunder Lost Blender 181 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Lost%20Thunder%20Lost%20Blender%20181%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6883922",
+      "product_name": "Suicune [Stamped] #59",
+      "console_name": "Pokemon Lost Thunder",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:59"
+      }
+    },
+    {
+      "query": "Pokemon Lost Thunder Lost Blender 181 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Lost%20Thunder%20Lost%20Blender%20181%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6106262",
+      "product_name": "Lost Blender [Reverse Holo] #138",
+      "console_name": "Pokemon Japanese Tag All Stars",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:138"
+      }
+    },
+    {
+      "query": "Pokemon Lost Thunder Lost Blender 181 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Lost%20Thunder%20Lost%20Blender%20181%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3468654",
+      "product_name": "Lost Blender #83",
+      "console_name": "Pokemon Japanese Super-Burst Impact",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:83"
+      }
+    },
+    {
+      "query": "Pokemon Lost Thunder Lost Blender 181 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Lost%20Thunder%20Lost%20Blender%20181%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3468681",
+      "product_name": "Lost Blender #110",
+      "console_name": "Pokemon Japanese Super-Burst Impact",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:110"
+      }
+    },
+    {
+      "query": "Pokemon Lost Thunder Lost Blender 181 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Lost%20Thunder%20Lost%20Blender%20181%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4118604",
+      "product_name": "Lost Blender #138",
+      "console_name": "Pokemon Japanese Tag All Stars",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:138"
+      }
+    },
+    {
+      "query": "Pokemon Lost Thunder Lost Blender 181 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Lost%20Thunder%20Lost%20Blender%20181%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "962475",
+      "product_name": "Natu #87",
+      "console_name": "Pokemon Lost Thunder",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:87"
+      }
+    },
+    {
+      "query": "Pokemon Lost Thunder Lost Blender 181 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Lost%20Thunder%20Lost%20Blender%20181%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "962476",
+      "product_name": "Xatu #88",
+      "console_name": "Pokemon Lost Thunder",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:88"
+      }
+    },
+    {
+      "query": "Pokemon Lost Thunder Lost Blender 181 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Lost%20Thunder%20Lost%20Blender%20181%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "962497",
+      "product_name": "Onix #109",
+      "console_name": "Pokemon Lost Thunder",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:109"
+      }
+    },
+    {
+      "query": "Pokemon Lost Thunder Lost Blender 181 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Lost%20Thunder%20Lost%20Blender%20181%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "962561",
+      "product_name": "Faba #173",
+      "console_name": "Pokemon Lost Thunder",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:173"
+      }
+    },
+    {
+      "query": "Pokemon Lost Thunder Lost Blender 181 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Lost%20Thunder%20Lost%20Blender%20181%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "962571",
+      "product_name": "Mina #183",
+      "console_name": "Pokemon Lost Thunder",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:183"
+      }
+    },
+    {
+      "query": "Pokemon Lost Thunder Lost Blender 181 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Lost%20Thunder%20Lost%20Blender%20181%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "962596",
+      "product_name": "Faba #208",
+      "console_name": "Pokemon Lost Thunder",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:208"
+      }
+    },
+    {
+      "query": "Pokemon Lost Thunder Lost Blender 181 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Lost%20Thunder%20Lost%20Blender%20181%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "962599",
+      "product_name": "Mina #211",
+      "console_name": "Pokemon Lost Thunder",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:211"
+      }
+    },
+    {
+      "query": "Pokemon Lost Thunder Lost Blender 181 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Lost%20Thunder%20Lost%20Blender%20181%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "962435",
+      "product_name": "Entei #47",
+      "console_name": "Pokemon Lost Thunder",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:47"
+      }
+    },
+    {
+      "query": "Pokemon Lost Thunder Lost Blender 181 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Lost%20Thunder%20Lost%20Blender%20181%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "962479",
+      "product_name": "Unown #91",
+      "console_name": "Pokemon Lost Thunder",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:91"
+      }
+    },
+    {
+      "query": "Pokemon Lost Thunder Lost Blender 181 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Lost%20Thunder%20Lost%20Blender%20181%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "962478",
+      "product_name": "Unown #90",
+      "console_name": "Pokemon Lost Thunder",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:90"
+      }
+    }
+  ],
+  "source_lane": "pricecharting_api"
+}

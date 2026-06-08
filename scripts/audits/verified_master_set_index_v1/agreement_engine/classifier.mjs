@@ -1,5 +1,7 @@
 import {
   cardFactKey,
+  canonicalCardDisplayName,
+  canonicalCardNameKey,
   printingFactKey,
   HUMAN_SOURCE_KINDS,
   normalizeNumber,
@@ -54,7 +56,7 @@ function evidenceSummary(row) {
 }
 
 function isAmbiguousCardRows(rows) {
-  const names = uniqueSorted(rows.map((row) => normalizeText(row.card_name)));
+  const names = uniqueSorted(rows.map((row) => canonicalCardNameKey(row)));
   const numbers = uniqueSorted(rows.map((row) => normalizeNumber(row.card_number)));
   const sets = uniqueSorted(rows.map((row) => normalizeText(row.set_name)));
   return names.length > 1 || numbers.length > 1 || sets.length > 1;
@@ -67,7 +69,7 @@ function buildFactRecord(rows, status, { finishTruth = false } = {}) {
     set_key: first.set_key,
     set_name: first.set_name,
     card_number: first.card_number,
-    card_name: first.card_name,
+    card_name: canonicalCardDisplayName(rows),
     finish_key: finishTruth ? first.finish_key : null,
     rarity_values: uniqueSorted(rows.map((row) => row.rarity)),
     source_count: uniqueSorted(rows.map(sourceAuthorityKey)).length,

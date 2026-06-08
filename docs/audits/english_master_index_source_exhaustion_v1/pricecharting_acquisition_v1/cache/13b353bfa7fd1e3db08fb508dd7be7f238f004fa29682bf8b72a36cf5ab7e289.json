@@ -1,0 +1,549 @@
+{
+  "status": "api_no_validated_match",
+  "fact": {
+    "gap_type": "finish_second_source_needed",
+    "fact_type": "printing_finish",
+    "set_key": "bw1",
+    "set_name": "Black & White",
+    "card_number": "64",
+    "card_name": "Krokorok",
+    "finish_key": "stamped",
+    "status": "human_source_verified",
+    "sources": [
+      "thepricedex_price_list"
+    ],
+    "source_authorities": [
+      "thepricedex.com"
+    ],
+    "source_kinds": [
+      "marketplace_checklist"
+    ],
+    "evidence_urls": [
+      "https://www.thepricedex.com/set/bw1/black-and-white/price-list"
+    ],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "attempts": [
+    {
+      "query": "Pokemon Black & White Krokorok 64 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Krokorok%2064%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "806373",
+      "product_name": "Krokorok #64",
+      "console_name": "Pokemon Black & White",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Krokorok 64 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Krokorok%2064%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6239712",
+      "product_name": "Krokorok [Pokemon League] #64",
+      "console_name": "Pokemon Black & White",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Pokemon League"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Krokorok 64 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Krokorok%2064%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12085637",
+      "product_name": "Krokorok [Cracked Ice] #64",
+      "console_name": "Pokemon Black & White",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Cracked Ice"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Krokorok 64 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Krokorok%2064%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "806460",
+      "product_name": "Krokorok [Reverse Holo] #64",
+      "console_name": "Pokemon Black & White",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Reverse Holo"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Krokorok 64 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Krokorok%2064%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3460429",
+      "product_name": "Krokorok #32",
+      "console_name": "Pokemon Japanese White Collection",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:32"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Krokorok 64 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Krokorok%2064%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8454421",
+      "product_name": "Krokorok [1st Edition] #32",
+      "console_name": "Pokemon Japanese White Collection",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:32"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Krokorok 64 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Krokorok%2064%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10031539",
+      "product_name": "Krokorok [Reverse] #58",
+      "console_name": "Pokemon Black Bolt",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:58"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Krokorok 64 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Krokorok%2064%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9647509",
+      "product_name": "Krokorok [Poke Ball] #61",
+      "console_name": "Pokemon Japanese Black Bolt",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:61"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Krokorok 64 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Krokorok%2064%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10031860",
+      "product_name": "Krokorok [Poke Ball] #58",
+      "console_name": "Pokemon Black Bolt",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:58"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Krokorok 64 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Krokorok%2064%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9861783",
+      "product_name": "Krokorok [Master Ball] #61",
+      "console_name": "Pokemon Japanese Black Bolt",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:61"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Krokorok 64 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Krokorok%2064%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10031728",
+      "product_name": "Krokorok [Master Ball] #58",
+      "console_name": "Pokemon Black Bolt",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:58"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Krokorok 64 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Krokorok%2064%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10031586",
+      "product_name": "Krokorok #58",
+      "console_name": "Pokemon Black Bolt",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:58"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Krokorok 64 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Krokorok%2064%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10031672",
+      "product_name": "Krokorok #136",
+      "console_name": "Pokemon Black Bolt",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:136"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Krokorok 64 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Krokorok%2064%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9683026",
+      "product_name": "Krokorok #142",
+      "console_name": "Pokemon Japanese Black Bolt",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:142"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Krokorok 64 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Krokorok%2064%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9647304",
+      "product_name": "Krokorok #61",
+      "console_name": "Pokemon Japanese Black Bolt",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:61"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Krokorok 64 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Krokorok%2064%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10693500",
+      "product_name": "Xerneas [Stamped] #64",
+      "console_name": "Pokemon Mega Evolution",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Xerneas"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Krokorok 64 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Krokorok%2064%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10491823",
+      "product_name": "Tyranitar [Stamped] #64",
+      "console_name": "Pokemon Prismatic Evolutions",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Tyranitar"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Krokorok 64 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Krokorok%2064%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12515506",
+      "product_name": "Serperior [Stamped] #64",
+      "console_name": "Pokemon Perfect Order",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Serperior"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Krokorok 64 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Krokorok%2064%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10694872",
+      "product_name": "Xerneas [Stamped Asia Promo] #64",
+      "console_name": "Pokemon Mega Evolution",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Xerneas"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Krokorok 64 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Krokorok%2064%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11467071",
+      "product_name": "Zoroark [Stamped] #62",
+      "console_name": "Pokemon White Flare",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:62"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Krokorok 64 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Krokorok%2064%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "806373",
+      "product_name": "Krokorok #64",
+      "console_name": "Pokemon Black & White",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Krokorok 64 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Krokorok%2064%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6239712",
+      "product_name": "Krokorok [Pokemon League] #64",
+      "console_name": "Pokemon Black & White",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Pokemon League"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Krokorok 64 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Krokorok%2064%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12085637",
+      "product_name": "Krokorok [Cracked Ice] #64",
+      "console_name": "Pokemon Black & White",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Cracked Ice"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Krokorok 64 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Krokorok%2064%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "806460",
+      "product_name": "Krokorok [Reverse Holo] #64",
+      "console_name": "Pokemon Black & White",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Reverse Holo"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Krokorok 64 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Krokorok%2064%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3460429",
+      "product_name": "Krokorok #32",
+      "console_name": "Pokemon Japanese White Collection",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:32"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Krokorok 64 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Krokorok%2064%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8454421",
+      "product_name": "Krokorok [1st Edition] #32",
+      "console_name": "Pokemon Japanese White Collection",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:32"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Krokorok 64 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Krokorok%2064%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10031539",
+      "product_name": "Krokorok [Reverse] #58",
+      "console_name": "Pokemon Black Bolt",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:58"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Krokorok 64 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Krokorok%2064%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9647509",
+      "product_name": "Krokorok [Poke Ball] #61",
+      "console_name": "Pokemon Japanese Black Bolt",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:61"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Krokorok 64 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Krokorok%2064%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10031860",
+      "product_name": "Krokorok [Poke Ball] #58",
+      "console_name": "Pokemon Black Bolt",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:58"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Krokorok 64 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Krokorok%2064%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9861783",
+      "product_name": "Krokorok [Master Ball] #61",
+      "console_name": "Pokemon Japanese Black Bolt",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:61"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Krokorok 64 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Krokorok%2064%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10031728",
+      "product_name": "Krokorok [Master Ball] #58",
+      "console_name": "Pokemon Black Bolt",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:58"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Krokorok 64 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Krokorok%2064%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10031586",
+      "product_name": "Krokorok #58",
+      "console_name": "Pokemon Black Bolt",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:58"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Krokorok 64 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Krokorok%2064%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10031672",
+      "product_name": "Krokorok #136",
+      "console_name": "Pokemon Black Bolt",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:136"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Krokorok 64 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Krokorok%2064%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9683026",
+      "product_name": "Krokorok #142",
+      "console_name": "Pokemon Japanese Black Bolt",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:142"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Krokorok 64 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Krokorok%2064%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9647304",
+      "product_name": "Krokorok #61",
+      "console_name": "Pokemon Japanese Black Bolt",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:61"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Krokorok 64 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Krokorok%2064%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10693500",
+      "product_name": "Xerneas [Stamped] #64",
+      "console_name": "Pokemon Mega Evolution",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Xerneas"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Krokorok 64 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Krokorok%2064%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10491823",
+      "product_name": "Tyranitar [Stamped] #64",
+      "console_name": "Pokemon Prismatic Evolutions",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Tyranitar"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Krokorok 64 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Krokorok%2064%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12515506",
+      "product_name": "Serperior [Stamped] #64",
+      "console_name": "Pokemon Perfect Order",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Serperior"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Krokorok 64 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Krokorok%2064%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10694872",
+      "product_name": "Xerneas [Stamped Asia Promo] #64",
+      "console_name": "Pokemon Mega Evolution",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Xerneas"
+      }
+    },
+    {
+      "query": "Pokemon Black & White Krokorok 64 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20%26%20White%20Krokorok%2064%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11467071",
+      "product_name": "Zoroark [Stamped] #62",
+      "console_name": "Pokemon White Flare",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:62"
+      }
+    }
+  ],
+  "source_lane": "pricecharting_api"
+}

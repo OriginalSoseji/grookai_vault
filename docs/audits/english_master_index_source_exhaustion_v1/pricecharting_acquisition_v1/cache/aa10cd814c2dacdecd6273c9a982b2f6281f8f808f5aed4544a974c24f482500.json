@@ -1,0 +1,549 @@
+{
+  "status": "api_no_validated_match",
+  "fact": {
+    "gap_type": "finish_second_source_needed",
+    "fact_type": "printing_finish",
+    "set_key": "pl3",
+    "set_name": "Supreme Victors",
+    "card_number": "27",
+    "card_name": "Empoleon FB",
+    "finish_key": "stamped",
+    "status": "human_source_verified",
+    "sources": [
+      "thepricedex_price_list"
+    ],
+    "source_authorities": [
+      "thepricedex.com"
+    ],
+    "source_kinds": [
+      "marketplace_checklist"
+    ],
+    "evidence_urls": [
+      "https://www.thepricedex.com/set/pl3/supreme-victors/price-list"
+    ],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "attempts": [
+    {
+      "query": "Pokemon Supreme Victors Empoleon FB 27 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Supreme%20Victors%20Empoleon%20FB%2027%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "1287074",
+      "product_name": "Empoleon FB #27",
+      "console_name": "Pokemon Supreme Victors",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon Supreme Victors Empoleon FB 27 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Supreme%20Victors%20Empoleon%20FB%2027%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6045117",
+      "product_name": "Empoleon FB [Pokemon League] #27",
+      "console_name": "Pokemon Supreme Victors",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Pokemon League"
+      }
+    },
+    {
+      "query": "Pokemon Supreme Victors Empoleon FB 27 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Supreme%20Victors%20Empoleon%20FB%2027%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "1287228",
+      "product_name": "Empoleon FB [Reverse Holo] #27",
+      "console_name": "Pokemon Supreme Victors",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Reverse Holo"
+      }
+    },
+    {
+      "query": "Pokemon Supreme Victors Empoleon FB 27 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Supreme%20Victors%20Empoleon%20FB%2027%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "1287056",
+      "product_name": "Regigigas FB #9",
+      "console_name": "Pokemon Supreme Victors",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:9"
+      }
+    },
+    {
+      "query": "Pokemon Supreme Victors Empoleon FB 27 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Supreme%20Victors%20Empoleon%20FB%2027%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "1287050",
+      "product_name": "Drifblim FB #3",
+      "console_name": "Pokemon Supreme Victors",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:3"
+      }
+    },
+    {
+      "query": "Pokemon Supreme Victors Empoleon FB 27 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Supreme%20Victors%20Empoleon%20FB%2027%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "1287073",
+      "product_name": "Dusknoir FB #26",
+      "console_name": "Pokemon Supreme Victors",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:26"
+      }
+    },
+    {
+      "query": "Pokemon Supreme Victors Empoleon FB 27 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Supreme%20Victors%20Empoleon%20FB%2027%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "1287130",
+      "product_name": "Skarmory FB #83",
+      "console_name": "Pokemon Supreme Victors",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:83"
+      }
+    },
+    {
+      "query": "Pokemon Supreme Victors Empoleon FB 27 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Supreme%20Victors%20Empoleon%20FB%2027%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "1287530",
+      "product_name": "Blaziken FB #2",
+      "console_name": "Pokemon Supreme Victors",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:2"
+      }
+    },
+    {
+      "query": "Pokemon Supreme Victors Empoleon FB 27 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Supreme%20Victors%20Empoleon%20FB%2027%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "1287058",
+      "product_name": "Staraptor FB #11",
+      "console_name": "Pokemon Supreme Victors",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:11"
+      }
+    },
+    {
+      "query": "Pokemon Supreme Victors Empoleon FB 27 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Supreme%20Victors%20Empoleon%20FB%2027%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "1287103",
+      "product_name": "Dragonite FB #56",
+      "console_name": "Pokemon Supreme Victors",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:56"
+      }
+    },
+    {
+      "query": "Pokemon Supreme Victors Empoleon FB 27 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Supreme%20Victors%20Empoleon%20FB%2027%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "1287051",
+      "product_name": "Electivire FB #4",
+      "console_name": "Pokemon Supreme Victors",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:4"
+      }
+    },
+    {
+      "query": "Pokemon Supreme Victors Empoleon FB 27 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Supreme%20Victors%20Empoleon%20FB%2027%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "1287064",
+      "product_name": "Butterfree FB #17",
+      "console_name": "Pokemon Supreme Victors",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:17"
+      }
+    },
+    {
+      "query": "Pokemon Supreme Victors Empoleon FB 27 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Supreme%20Victors%20Empoleon%20FB%2027%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "1287195",
+      "product_name": "Staraptor FB LV. X #147",
+      "console_name": "Pokemon Supreme Victors",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:147"
+      }
+    },
+    {
+      "query": "Pokemon Supreme Victors Empoleon FB 27 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Supreme%20Victors%20Empoleon%20FB%2027%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "1287190",
+      "product_name": "Blaziken FB LV. X #142",
+      "console_name": "Pokemon Supreme Victors",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:142"
+      }
+    },
+    {
+      "query": "Pokemon Supreme Victors Empoleon FB 27 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Supreme%20Victors%20Empoleon%20FB%2027%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "1287192",
+      "product_name": "Electivire FB LV. X #144",
+      "console_name": "Pokemon Supreme Victors",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:144"
+      }
+    },
+    {
+      "query": "Pokemon Supreme Victors Empoleon FB 27 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Supreme%20Victors%20Empoleon%20FB%2027%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "1287210",
+      "product_name": "Regigigas FB [Reverse Holo] #9",
+      "console_name": "Pokemon Supreme Victors",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:9"
+      }
+    },
+    {
+      "query": "Pokemon Supreme Victors Empoleon FB 27 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Supreme%20Victors%20Empoleon%20FB%2027%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "1287203",
+      "product_name": "Blaziken FB [Reverse Holo] #2",
+      "console_name": "Pokemon Supreme Victors",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:2"
+      }
+    },
+    {
+      "query": "Pokemon Supreme Victors Empoleon FB 27 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Supreme%20Victors%20Empoleon%20FB%2027%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "1287204",
+      "product_name": "Drifblim FB [Reverse Holo] #3",
+      "console_name": "Pokemon Supreme Victors",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:3"
+      }
+    },
+    {
+      "query": "Pokemon Supreme Victors Empoleon FB 27 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Supreme%20Victors%20Empoleon%20FB%2027%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "1287212",
+      "product_name": "Staraptor FB [Reverse Holo] #11",
+      "console_name": "Pokemon Supreme Victors",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:11"
+      }
+    },
+    {
+      "query": "Pokemon Supreme Victors Empoleon FB 27 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Supreme%20Victors%20Empoleon%20FB%2027%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "1287227",
+      "product_name": "Dusknoir FB [Reverse Holo] #26",
+      "console_name": "Pokemon Supreme Victors",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:26"
+      }
+    },
+    {
+      "query": "Pokemon Supreme Victors Empoleon FB 27 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Supreme%20Victors%20Empoleon%20FB%2027%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "1287074",
+      "product_name": "Empoleon FB #27",
+      "console_name": "Pokemon Supreme Victors",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon Supreme Victors Empoleon FB 27 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Supreme%20Victors%20Empoleon%20FB%2027%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6045117",
+      "product_name": "Empoleon FB [Pokemon League] #27",
+      "console_name": "Pokemon Supreme Victors",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Pokemon League"
+      }
+    },
+    {
+      "query": "Pokemon Supreme Victors Empoleon FB 27 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Supreme%20Victors%20Empoleon%20FB%2027%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "1287228",
+      "product_name": "Empoleon FB [Reverse Holo] #27",
+      "console_name": "Pokemon Supreme Victors",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Reverse Holo"
+      }
+    },
+    {
+      "query": "Pokemon Supreme Victors Empoleon FB 27 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Supreme%20Victors%20Empoleon%20FB%2027%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "1287056",
+      "product_name": "Regigigas FB #9",
+      "console_name": "Pokemon Supreme Victors",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:9"
+      }
+    },
+    {
+      "query": "Pokemon Supreme Victors Empoleon FB 27 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Supreme%20Victors%20Empoleon%20FB%2027%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "1287050",
+      "product_name": "Drifblim FB #3",
+      "console_name": "Pokemon Supreme Victors",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:3"
+      }
+    },
+    {
+      "query": "Pokemon Supreme Victors Empoleon FB 27 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Supreme%20Victors%20Empoleon%20FB%2027%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "1287073",
+      "product_name": "Dusknoir FB #26",
+      "console_name": "Pokemon Supreme Victors",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:26"
+      }
+    },
+    {
+      "query": "Pokemon Supreme Victors Empoleon FB 27 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Supreme%20Victors%20Empoleon%20FB%2027%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "1287130",
+      "product_name": "Skarmory FB #83",
+      "console_name": "Pokemon Supreme Victors",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:83"
+      }
+    },
+    {
+      "query": "Pokemon Supreme Victors Empoleon FB 27 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Supreme%20Victors%20Empoleon%20FB%2027%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "1287530",
+      "product_name": "Blaziken FB #2",
+      "console_name": "Pokemon Supreme Victors",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:2"
+      }
+    },
+    {
+      "query": "Pokemon Supreme Victors Empoleon FB 27 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Supreme%20Victors%20Empoleon%20FB%2027%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "1287058",
+      "product_name": "Staraptor FB #11",
+      "console_name": "Pokemon Supreme Victors",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:11"
+      }
+    },
+    {
+      "query": "Pokemon Supreme Victors Empoleon FB 27 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Supreme%20Victors%20Empoleon%20FB%2027%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "1287103",
+      "product_name": "Dragonite FB #56",
+      "console_name": "Pokemon Supreme Victors",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:56"
+      }
+    },
+    {
+      "query": "Pokemon Supreme Victors Empoleon FB 27 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Supreme%20Victors%20Empoleon%20FB%2027%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "1287051",
+      "product_name": "Electivire FB #4",
+      "console_name": "Pokemon Supreme Victors",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:4"
+      }
+    },
+    {
+      "query": "Pokemon Supreme Victors Empoleon FB 27 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Supreme%20Victors%20Empoleon%20FB%2027%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "1287064",
+      "product_name": "Butterfree FB #17",
+      "console_name": "Pokemon Supreme Victors",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:17"
+      }
+    },
+    {
+      "query": "Pokemon Supreme Victors Empoleon FB 27 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Supreme%20Victors%20Empoleon%20FB%2027%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "1287195",
+      "product_name": "Staraptor FB LV. X #147",
+      "console_name": "Pokemon Supreme Victors",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:147"
+      }
+    },
+    {
+      "query": "Pokemon Supreme Victors Empoleon FB 27 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Supreme%20Victors%20Empoleon%20FB%2027%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "1287190",
+      "product_name": "Blaziken FB LV. X #142",
+      "console_name": "Pokemon Supreme Victors",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:142"
+      }
+    },
+    {
+      "query": "Pokemon Supreme Victors Empoleon FB 27 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Supreme%20Victors%20Empoleon%20FB%2027%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "1287192",
+      "product_name": "Electivire FB LV. X #144",
+      "console_name": "Pokemon Supreme Victors",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:144"
+      }
+    },
+    {
+      "query": "Pokemon Supreme Victors Empoleon FB 27 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Supreme%20Victors%20Empoleon%20FB%2027%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "1287210",
+      "product_name": "Regigigas FB [Reverse Holo] #9",
+      "console_name": "Pokemon Supreme Victors",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:9"
+      }
+    },
+    {
+      "query": "Pokemon Supreme Victors Empoleon FB 27 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Supreme%20Victors%20Empoleon%20FB%2027%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "1287203",
+      "product_name": "Blaziken FB [Reverse Holo] #2",
+      "console_name": "Pokemon Supreme Victors",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:2"
+      }
+    },
+    {
+      "query": "Pokemon Supreme Victors Empoleon FB 27 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Supreme%20Victors%20Empoleon%20FB%2027%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "1287204",
+      "product_name": "Drifblim FB [Reverse Holo] #3",
+      "console_name": "Pokemon Supreme Victors",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:3"
+      }
+    },
+    {
+      "query": "Pokemon Supreme Victors Empoleon FB 27 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Supreme%20Victors%20Empoleon%20FB%2027%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "1287212",
+      "product_name": "Staraptor FB [Reverse Holo] #11",
+      "console_name": "Pokemon Supreme Victors",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:11"
+      }
+    },
+    {
+      "query": "Pokemon Supreme Victors Empoleon FB 27 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Supreme%20Victors%20Empoleon%20FB%2027%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "1287227",
+      "product_name": "Dusknoir FB [Reverse Holo] #26",
+      "console_name": "Pokemon Supreme Victors",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:26"
+      }
+    }
+  ],
+  "source_lane": "pricecharting_api"
+}

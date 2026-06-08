@@ -1,0 +1,549 @@
+{
+  "status": "api_no_validated_match",
+  "fact": {
+    "gap_type": "finish_second_source_needed",
+    "fact_type": "printing_finish",
+    "set_key": "hgss1",
+    "set_name": "HeartGold & SoulSilver",
+    "card_number": "90",
+    "card_name": "Copycat",
+    "finish_key": "stamped",
+    "status": "human_source_verified",
+    "sources": [
+      "thepricedex_price_list"
+    ],
+    "source_authorities": [
+      "thepricedex.com"
+    ],
+    "source_kinds": [
+      "marketplace_checklist"
+    ],
+    "evidence_urls": [
+      "https://www.thepricedex.com/set/hgss1/heartgold-and-soulsilver/price-list"
+    ],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "attempts": [
+    {
+      "query": "Pokemon HeartGold & SoulSilver Copycat 90 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HeartGold%20%26%20SoulSilver%20Copycat%2090%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "806201",
+      "product_name": "Copycat #90",
+      "console_name": "Pokemon HeartGold & SoulSilver",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon HeartGold & SoulSilver Copycat 90 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HeartGold%20%26%20SoulSilver%20Copycat%2090%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6254481",
+      "product_name": "Copycat [Cross Holo] #90",
+      "console_name": "Pokemon HeartGold & SoulSilver",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Cross Holo"
+      }
+    },
+    {
+      "query": "Pokemon HeartGold & SoulSilver Copycat 90 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HeartGold%20%26%20SoulSilver%20Copycat%2090%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "806308",
+      "product_name": "Copycat [Reverse Holo] #90",
+      "console_name": "Pokemon HeartGold & SoulSilver",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Reverse Holo"
+      }
+    },
+    {
+      "query": "Pokemon HeartGold & SoulSilver Copycat 90 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HeartGold%20%26%20SoulSilver%20Copycat%2090%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4802143",
+      "product_name": "Pokemon Adventures: HeartGold & SoulSilver Vol. 2 (2013)",
+      "console_name": "Comic Books Pokemon Adventures: HeartGold & SoulSilver",
+      "validation": {
+        "ok": false,
+        "reason": "api_product_name_pattern_not_supported"
+      }
+    },
+    {
+      "query": "Pokemon HeartGold & SoulSilver Copycat 90 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HeartGold%20%26%20SoulSilver%20Copycat%2090%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4802144",
+      "product_name": "Pokemon Adventures: HeartGold & SoulSilver Vol. 1 (2013)",
+      "console_name": "Comic Books Pokemon Adventures: HeartGold & SoulSilver",
+      "validation": {
+        "ok": false,
+        "reason": "api_product_name_pattern_not_supported"
+      }
+    },
+    {
+      "query": "Pokemon HeartGold & SoulSilver Copycat 90 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HeartGold%20%26%20SoulSilver%20Copycat%2090%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "806200",
+      "product_name": "Bill #89",
+      "console_name": "Pokemon HeartGold & SoulSilver",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:89"
+      }
+    },
+    {
+      "query": "Pokemon HeartGold & SoulSilver Copycat 90 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HeartGold%20%26%20SoulSilver%20Copycat%2090%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "806181",
+      "product_name": "Jynx #69",
+      "console_name": "Pokemon HeartGold & SoulSilver",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:69"
+      }
+    },
+    {
+      "query": "Pokemon HeartGold & SoulSilver Copycat 90 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HeartGold%20%26%20SoulSilver%20Copycat%2090%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "806167",
+      "product_name": "Unown #54",
+      "console_name": "Pokemon HeartGold & SoulSilver",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:54"
+      }
+    },
+    {
+      "query": "Pokemon HeartGold & SoulSilver Copycat 90 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HeartGold%20%26%20SoulSilver%20Copycat%2090%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "886669",
+      "product_name": "Unown #55",
+      "console_name": "Pokemon HeartGold & SoulSilver",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:55"
+      }
+    },
+    {
+      "query": "Pokemon HeartGold & SoulSilver Copycat 90 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HeartGold%20%26%20SoulSilver%20Copycat%2090%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "806136",
+      "product_name": "Hypno #23",
+      "console_name": "Pokemon HeartGold & SoulSilver",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:23"
+      }
+    },
+    {
+      "query": "Pokemon HeartGold & SoulSilver Copycat 90 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HeartGold%20%26%20SoulSilver%20Copycat%2090%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "806141",
+      "product_name": "Pichu #28",
+      "console_name": "Pokemon HeartGold & SoulSilver",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:28"
+      }
+    },
+    {
+      "query": "Pokemon HeartGold & SoulSilver Copycat 90 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HeartGold%20%26%20SoulSilver%20Copycat%2090%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3460081",
+      "product_name": "Copycat #69",
+      "console_name": "Pokemon Japanese SoulSilver Collection",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:69"
+      }
+    },
+    {
+      "query": "Pokemon HeartGold & SoulSilver Copycat 90 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HeartGold%20%26%20SoulSilver%20Copycat%2090%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "806188",
+      "product_name": "Paras #76",
+      "console_name": "Pokemon HeartGold & SoulSilver",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:76"
+      }
+    },
+    {
+      "query": "Pokemon HeartGold & SoulSilver Copycat 90 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HeartGold%20%26%20SoulSilver%20Copycat%2090%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "806187",
+      "product_name": "Meowth #75",
+      "console_name": "Pokemon HeartGold & SoulSilver",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:75"
+      }
+    },
+    {
+      "query": "Pokemon HeartGold & SoulSilver Copycat 90 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HeartGold%20%26%20SoulSilver%20Copycat%2090%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "806186",
+      "product_name": "Marill #74",
+      "console_name": "Pokemon HeartGold & SoulSilver",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:74"
+      }
+    },
+    {
+      "query": "Pokemon HeartGold & SoulSilver Copycat 90 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HeartGold%20%26%20SoulSilver%20Copycat%2090%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "806185",
+      "product_name": "Mareep #73",
+      "console_name": "Pokemon HeartGold & SoulSilver",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:73"
+      }
+    },
+    {
+      "query": "Pokemon HeartGold & SoulSilver Copycat 90 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HeartGold%20%26%20SoulSilver%20Copycat%2090%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "806198",
+      "product_name": "Vulpix #87",
+      "console_name": "Pokemon HeartGold & SoulSilver",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:87"
+      }
+    },
+    {
+      "query": "Pokemon HeartGold & SoulSilver Copycat 90 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HeartGold%20%26%20SoulSilver%20Copycat%2090%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "806195",
+      "product_name": "Staryu #84",
+      "console_name": "Pokemon HeartGold & SoulSilver",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:84"
+      }
+    },
+    {
+      "query": "Pokemon HeartGold & SoulSilver Copycat 90 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HeartGold%20%26%20SoulSilver%20Copycat%2090%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "806199",
+      "product_name": "Wooper #88",
+      "console_name": "Pokemon HeartGold & SoulSilver",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:88"
+      }
+    },
+    {
+      "query": "Pokemon HeartGold & SoulSilver Copycat 90 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HeartGold%20%26%20SoulSilver%20Copycat%2090%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "806213",
+      "product_name": "Switch #102",
+      "console_name": "Pokemon HeartGold & SoulSilver",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:102"
+      }
+    },
+    {
+      "query": "Pokemon HeartGold & SoulSilver Copycat 90 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HeartGold%20%26%20SoulSilver%20Copycat%2090%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "806201",
+      "product_name": "Copycat #90",
+      "console_name": "Pokemon HeartGold & SoulSilver",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon HeartGold & SoulSilver Copycat 90 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HeartGold%20%26%20SoulSilver%20Copycat%2090%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6254481",
+      "product_name": "Copycat [Cross Holo] #90",
+      "console_name": "Pokemon HeartGold & SoulSilver",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Cross Holo"
+      }
+    },
+    {
+      "query": "Pokemon HeartGold & SoulSilver Copycat 90 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HeartGold%20%26%20SoulSilver%20Copycat%2090%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "806308",
+      "product_name": "Copycat [Reverse Holo] #90",
+      "console_name": "Pokemon HeartGold & SoulSilver",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Reverse Holo"
+      }
+    },
+    {
+      "query": "Pokemon HeartGold & SoulSilver Copycat 90 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HeartGold%20%26%20SoulSilver%20Copycat%2090%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4802143",
+      "product_name": "Pokemon Adventures: HeartGold & SoulSilver Vol. 2 (2013)",
+      "console_name": "Comic Books Pokemon Adventures: HeartGold & SoulSilver",
+      "validation": {
+        "ok": false,
+        "reason": "api_product_name_pattern_not_supported"
+      }
+    },
+    {
+      "query": "Pokemon HeartGold & SoulSilver Copycat 90 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HeartGold%20%26%20SoulSilver%20Copycat%2090%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4802144",
+      "product_name": "Pokemon Adventures: HeartGold & SoulSilver Vol. 1 (2013)",
+      "console_name": "Comic Books Pokemon Adventures: HeartGold & SoulSilver",
+      "validation": {
+        "ok": false,
+        "reason": "api_product_name_pattern_not_supported"
+      }
+    },
+    {
+      "query": "Pokemon HeartGold & SoulSilver Copycat 90 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HeartGold%20%26%20SoulSilver%20Copycat%2090%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "806200",
+      "product_name": "Bill #89",
+      "console_name": "Pokemon HeartGold & SoulSilver",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:89"
+      }
+    },
+    {
+      "query": "Pokemon HeartGold & SoulSilver Copycat 90 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HeartGold%20%26%20SoulSilver%20Copycat%2090%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "806181",
+      "product_name": "Jynx #69",
+      "console_name": "Pokemon HeartGold & SoulSilver",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:69"
+      }
+    },
+    {
+      "query": "Pokemon HeartGold & SoulSilver Copycat 90 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HeartGold%20%26%20SoulSilver%20Copycat%2090%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "806167",
+      "product_name": "Unown #54",
+      "console_name": "Pokemon HeartGold & SoulSilver",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:54"
+      }
+    },
+    {
+      "query": "Pokemon HeartGold & SoulSilver Copycat 90 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HeartGold%20%26%20SoulSilver%20Copycat%2090%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "886669",
+      "product_name": "Unown #55",
+      "console_name": "Pokemon HeartGold & SoulSilver",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:55"
+      }
+    },
+    {
+      "query": "Pokemon HeartGold & SoulSilver Copycat 90 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HeartGold%20%26%20SoulSilver%20Copycat%2090%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "806136",
+      "product_name": "Hypno #23",
+      "console_name": "Pokemon HeartGold & SoulSilver",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:23"
+      }
+    },
+    {
+      "query": "Pokemon HeartGold & SoulSilver Copycat 90 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HeartGold%20%26%20SoulSilver%20Copycat%2090%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "806141",
+      "product_name": "Pichu #28",
+      "console_name": "Pokemon HeartGold & SoulSilver",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:28"
+      }
+    },
+    {
+      "query": "Pokemon HeartGold & SoulSilver Copycat 90 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HeartGold%20%26%20SoulSilver%20Copycat%2090%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3460081",
+      "product_name": "Copycat #69",
+      "console_name": "Pokemon Japanese SoulSilver Collection",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:69"
+      }
+    },
+    {
+      "query": "Pokemon HeartGold & SoulSilver Copycat 90 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HeartGold%20%26%20SoulSilver%20Copycat%2090%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "806188",
+      "product_name": "Paras #76",
+      "console_name": "Pokemon HeartGold & SoulSilver",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:76"
+      }
+    },
+    {
+      "query": "Pokemon HeartGold & SoulSilver Copycat 90 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HeartGold%20%26%20SoulSilver%20Copycat%2090%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "806187",
+      "product_name": "Meowth #75",
+      "console_name": "Pokemon HeartGold & SoulSilver",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:75"
+      }
+    },
+    {
+      "query": "Pokemon HeartGold & SoulSilver Copycat 90 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HeartGold%20%26%20SoulSilver%20Copycat%2090%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "806186",
+      "product_name": "Marill #74",
+      "console_name": "Pokemon HeartGold & SoulSilver",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:74"
+      }
+    },
+    {
+      "query": "Pokemon HeartGold & SoulSilver Copycat 90 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HeartGold%20%26%20SoulSilver%20Copycat%2090%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "806185",
+      "product_name": "Mareep #73",
+      "console_name": "Pokemon HeartGold & SoulSilver",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:73"
+      }
+    },
+    {
+      "query": "Pokemon HeartGold & SoulSilver Copycat 90 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HeartGold%20%26%20SoulSilver%20Copycat%2090%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "806198",
+      "product_name": "Vulpix #87",
+      "console_name": "Pokemon HeartGold & SoulSilver",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:87"
+      }
+    },
+    {
+      "query": "Pokemon HeartGold & SoulSilver Copycat 90 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HeartGold%20%26%20SoulSilver%20Copycat%2090%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "806195",
+      "product_name": "Staryu #84",
+      "console_name": "Pokemon HeartGold & SoulSilver",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:84"
+      }
+    },
+    {
+      "query": "Pokemon HeartGold & SoulSilver Copycat 90 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HeartGold%20%26%20SoulSilver%20Copycat%2090%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "806199",
+      "product_name": "Wooper #88",
+      "console_name": "Pokemon HeartGold & SoulSilver",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:88"
+      }
+    },
+    {
+      "query": "Pokemon HeartGold & SoulSilver Copycat 90 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HeartGold%20%26%20SoulSilver%20Copycat%2090%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "806213",
+      "product_name": "Switch #102",
+      "console_name": "Pokemon HeartGold & SoulSilver",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:102"
+      }
+    }
+  ],
+  "source_lane": "pricecharting_api"
+}

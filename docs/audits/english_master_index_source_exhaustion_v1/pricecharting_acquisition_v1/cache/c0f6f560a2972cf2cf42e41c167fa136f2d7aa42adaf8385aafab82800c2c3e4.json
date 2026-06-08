@@ -1,0 +1,43 @@
+{
+  "status": "no_validated_match",
+  "fact": {
+    "gap_type": "finish_second_source_needed",
+    "fact_type": "printing_finish",
+    "set_key": "sm5",
+    "set_name": "Ultra Prism",
+    "card_number": "34",
+    "card_name": "Empoleon",
+    "finish_key": "cracked_ice",
+    "status": "human_source_verified",
+    "sources": [
+      "thepricedex_price_list"
+    ],
+    "source_authorities": [
+      "thepricedex.com"
+    ],
+    "source_kinds": [
+      "marketplace_checklist"
+    ],
+    "evidence_urls": [],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "attempts": [
+    {
+      "query": "Pokemon Ultra Prism Empoleon 34 cracked ice holo",
+      "url": "https://www.pricecharting.com/search-products?q=Pokemon%20Ultra%20Prism%20Empoleon%2034%20cracked%20ice%20holo&type=prices",
+      "parsed": {
+        "title": "Pokemon Ultra Prism Empoleon 34 Cracked Ice Holo Prices | Pokemon Ultra Prism Empoleon 34 Cracked Ice Holo List",
+        "source_url": "https://www.pricecharting.com/search-products?q=pokemon+ultra+prism+empoleon+34+cracked+ice+holo&type=prices"
+      },
+      "validation": {
+        "ok": false,
+        "reason": "title_pattern_not_supported"
+      }
+    },
+    {
+      "query": "Pokemon Ultra Prism Empoleon 34 cracked ice",
+      "url": "https://www.pricecharting.com/search-products?q=Pokemon%20Ultra%20Prism%20Empoleon%2034%20cracked%20ice&type=prices",
+      "error": "Fetch failed 403 Forbidden: https://www.pricecharting.com/search-products?q=Pokemon%20Ultra%20Prism%20Empoleon%2034%20cracked%20ice&type=prices"
+    }
+  ]
+}

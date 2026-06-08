@@ -1,0 +1,43 @@
+{
+  "products": [
+    {
+      "cib-price": 951,
+      "console-name": "Pokemon Plasma Storm",
+      "gamestop-price": 0,
+      "gamestop-trade-price": 0,
+      "genre": "Pokemon Card",
+      "id": "8166059",
+      "loose-price": 398,
+      "product-name": "Druddigon [Cracked Ice Holo] #94",
+      "retail-cib-buy": 200,
+      "retail-cib-sell": 999,
+      "retail-loose-buy": 90,
+      "retail-loose-sell": 439,
+      "sales-volume": "21"
+    },
+    {
+      "bgs-10-price": 118300,
+      "box-only-price": 3500,
+      "condition-17-price": 54600,
+      "condition-18-price": 54600,
+      "console-name": "Pokemon Plasma Storm",
+      "gamestop-price": 0,
+      "gamestop-trade-price": 0,
+      "genre": "Pokemon Card",
+      "graded-price": 3200,
+      "id": "957024",
+      "loose-price": 347,
+      "manual-only-price": 91000,
+      "new-price": 2874,
+      "product-name": "Druddigon [Reverse Holo] #94",
+      "release-date": "2013-02-06",
+      "retail-loose-buy": 80,
+      "retail-loose-sell": 379,
+      "retail-new-buy": 960,
+      "retail-new-sell": 3199,
+      "sales-volume": "24",
+      "tcg-id": "84982"
+    }
+  ],
+  "status": "success"
+}

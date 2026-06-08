@@ -1,0 +1,36 @@
+{
+  "fixture_version": "VERIFIED_MASTER_SET_INDEX_V1_HUMAN_SOURCE_FIXTURE_GENERATED",
+  "source_key": "sports_card_investor_variant_exact_accepted_delta_v1",
+  "source_kind": "marketplace_checklist",
+  "source_url": "https://www.sportscardinvestor.com/cards/prof.-oak-s-research-pokemon/2004-ex-firered-leafgreen-promo-professor-program-098-112",
+  "source_status": "available_generated_accepted_delta",
+  "set_key": "accepted_delta",
+  "set_name": "sports_card_investor_variant_exact accepted delta",
+  "retrieved_at": "2026-06-08T15:51:48.396Z",
+  "raw_snapshot_ref": "generated_fixture:accepted_delta:sports_card_investor_variant_exact:2026-06-08T15:51:48.396Z",
+  "audit_only": true,
+  "db_writes_performed": false,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "generation_note": "Generated from source delta audit useful matches only. Existing accepted delta rows are preserved to avoid source-reset evidence loss.",
+  "records": [
+    {
+      "source_key": "sports_card_investor_variant_exact",
+      "source_kind": "marketplace_checklist",
+      "source_url": "https://www.sportscardinvestor.com/cards/prof.-oak-s-research-pokemon/2004-ex-firered-leafgreen-promo-professor-program-098-112",
+      "set_key": "ex6",
+      "set_name": "FireRed & LeafGreen",
+      "card_number": "98",
+      "card_name": "Prof. Oak's Research",
+      "finish_key": "stamped",
+      "rarity": null,
+      "evidence_type": "finish_presence",
+      "evidence_label": "Sports Card Investor: Prof. Oak's Research 2004 EX FireRed & LeafGreen #098/112 Promo Professor Program",
+      "language": "en",
+      "retrieved_at": "2026-06-08T15:51:48.396Z",
+      "raw_snapshot_ref": "accepted_delta:manual_web_exact_finish_mixed_batch_20260608_source_delta_audit_v1.json:sports_card_investor_variant_exact:ex6:98:stamped",
+      "notes": "Accepted from source delta audit with status candidate_second_finish_source. This is exact gap-matched evidence only; broad source fixture rows remain excluded from direct promotion."
+    }
+  ]
+}

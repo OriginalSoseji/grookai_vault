@@ -1,0 +1,549 @@
+{
+  "status": "api_no_validated_match",
+  "fact": {
+    "gap_type": "finish_second_source_needed",
+    "fact_type": "printing_finish",
+    "set_key": "ex3",
+    "set_name": "Dragon",
+    "card_number": "32",
+    "card_name": "Gyarados",
+    "finish_key": "stamped",
+    "status": "human_source_verified",
+    "sources": [
+      "thepricedex_price_list"
+    ],
+    "source_authorities": [
+      "thepricedex.com"
+    ],
+    "source_kinds": [
+      "marketplace_checklist"
+    ],
+    "evidence_urls": [
+      "https://www.thepricedex.com/set/ex3/dragon/price-list"
+    ],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "attempts": [
+    {
+      "query": "Pokemon Dragon Gyarados 32 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Gyarados%2032%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "849412",
+      "product_name": "Gyarados #32",
+      "console_name": "Pokemon Dragon",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Gyarados 32 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Gyarados%2032%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3312764",
+      "product_name": "Gyarados [Prerelease] #32",
+      "console_name": "Pokemon Dragon",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Prerelease"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Gyarados 32 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Gyarados%2032%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "849511",
+      "product_name": "Gyarados [Reverse Holo] #32",
+      "console_name": "Pokemon Dragon",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Reverse Holo"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Gyarados 32 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Gyarados%2032%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9572257",
+      "product_name": "Misty's Gyarados [Stamped] #49",
+      "console_name": "Pokemon Destined Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:49"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Gyarados 32 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Gyarados%2032%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3506781",
+      "product_name": "Gyarados [1st Edition] #32",
+      "console_name": "Pokemon Japanese 20th Anniversary",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon Japanese 20th Anniversary"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Gyarados 32 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Gyarados%2032%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "962254",
+      "product_name": "Gyarados #20",
+      "console_name": "Pokemon Dragon Majesty",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:20"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Gyarados 32 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Gyarados%2032%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "962329",
+      "product_name": "Gyarados [Reverse Holo] #20",
+      "console_name": "Pokemon Dragon Majesty",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:20"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Gyarados 32 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Gyarados%2032%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "2336238",
+      "product_name": "Dark Charmeleon [W Stamp] #32",
+      "console_name": "Pokemon Team Rocket",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Dark Charmeleon"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Gyarados 32 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Gyarados%2032%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4441263",
+      "product_name": "Delibird [Snowflake Stamp] #32",
+      "console_name": "Pokemon Chilling Reign",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Delibird"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Gyarados 32 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Gyarados%2032%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3445491",
+      "product_name": "Gyarados #16",
+      "console_name": "Pokemon Japanese Dragon Storm",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:16"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Gyarados 32 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Gyarados%2032%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5095708",
+      "product_name": "Nick Fury #VS-32",
+      "console_name": "Marvel 2022 Ultra Avengers Value Stamp Relics",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:VS-32"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Gyarados 32 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Gyarados%2032%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5672134",
+      "product_name": "Haxorus [Stamped] #16",
+      "console_name": "Pokemon Dragon Vault",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:16"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Gyarados 32 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Gyarados%2032%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4997891",
+      "product_name": "Latios [Stamped] #10",
+      "console_name": "Pokemon Dragon Vault",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:10"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Gyarados 32 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Gyarados%2032%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6124274",
+      "product_name": "Latias [Stamped] #9",
+      "console_name": "Pokemon Dragon Vault",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:9"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Gyarados 32 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Gyarados%2032%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3438906",
+      "product_name": "Gyarados #14",
+      "console_name": "Pokemon Japanese Rulers of the Heavens",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:14"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Gyarados 32 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Gyarados%2032%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9282353",
+      "product_name": "Gyarados [1st Edition] #14",
+      "console_name": "Pokemon Japanese Rulers of the Heavens",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:14"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Gyarados 32 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Gyarados%2032%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5962590",
+      "product_name": "Seel [Stamped] #62",
+      "console_name": "Pokemon Dragon Frontiers",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:62"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Gyarados 32 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Gyarados%2032%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4916992",
+      "product_name": "Horsea [Stamped] #31",
+      "console_name": "Pokemon Dragon Frontiers",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:31"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Gyarados 32 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Gyarados%2032%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9057142",
+      "product_name": "Ledian [Stamped] #18",
+      "console_name": "Pokemon Dragon Frontiers",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:18"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Gyarados 32 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Gyarados%2032%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5811201",
+      "product_name": "Rayquaza [Stamped] #11",
+      "console_name": "Pokemon Dragon Vault",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:11"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Gyarados 32 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Gyarados%2032%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "849412",
+      "product_name": "Gyarados #32",
+      "console_name": "Pokemon Dragon",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Gyarados 32 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Gyarados%2032%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3312764",
+      "product_name": "Gyarados [Prerelease] #32",
+      "console_name": "Pokemon Dragon",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Prerelease"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Gyarados 32 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Gyarados%2032%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "849511",
+      "product_name": "Gyarados [Reverse Holo] #32",
+      "console_name": "Pokemon Dragon",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Reverse Holo"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Gyarados 32 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Gyarados%2032%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9572257",
+      "product_name": "Misty's Gyarados [Stamped] #49",
+      "console_name": "Pokemon Destined Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:49"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Gyarados 32 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Gyarados%2032%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3506781",
+      "product_name": "Gyarados [1st Edition] #32",
+      "console_name": "Pokemon Japanese 20th Anniversary",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon Japanese 20th Anniversary"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Gyarados 32 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Gyarados%2032%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "962254",
+      "product_name": "Gyarados #20",
+      "console_name": "Pokemon Dragon Majesty",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:20"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Gyarados 32 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Gyarados%2032%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "962329",
+      "product_name": "Gyarados [Reverse Holo] #20",
+      "console_name": "Pokemon Dragon Majesty",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:20"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Gyarados 32 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Gyarados%2032%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "2336238",
+      "product_name": "Dark Charmeleon [W Stamp] #32",
+      "console_name": "Pokemon Team Rocket",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Dark Charmeleon"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Gyarados 32 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Gyarados%2032%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4441263",
+      "product_name": "Delibird [Snowflake Stamp] #32",
+      "console_name": "Pokemon Chilling Reign",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Delibird"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Gyarados 32 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Gyarados%2032%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3445491",
+      "product_name": "Gyarados #16",
+      "console_name": "Pokemon Japanese Dragon Storm",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:16"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Gyarados 32 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Gyarados%2032%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5095708",
+      "product_name": "Nick Fury #VS-32",
+      "console_name": "Marvel 2022 Ultra Avengers Value Stamp Relics",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:VS-32"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Gyarados 32 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Gyarados%2032%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5672134",
+      "product_name": "Haxorus [Stamped] #16",
+      "console_name": "Pokemon Dragon Vault",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:16"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Gyarados 32 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Gyarados%2032%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4997891",
+      "product_name": "Latios [Stamped] #10",
+      "console_name": "Pokemon Dragon Vault",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:10"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Gyarados 32 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Gyarados%2032%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6124274",
+      "product_name": "Latias [Stamped] #9",
+      "console_name": "Pokemon Dragon Vault",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:9"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Gyarados 32 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Gyarados%2032%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3438906",
+      "product_name": "Gyarados #14",
+      "console_name": "Pokemon Japanese Rulers of the Heavens",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:14"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Gyarados 32 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Gyarados%2032%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9282353",
+      "product_name": "Gyarados [1st Edition] #14",
+      "console_name": "Pokemon Japanese Rulers of the Heavens",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:14"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Gyarados 32 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Gyarados%2032%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5962590",
+      "product_name": "Seel [Stamped] #62",
+      "console_name": "Pokemon Dragon Frontiers",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:62"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Gyarados 32 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Gyarados%2032%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4916992",
+      "product_name": "Horsea [Stamped] #31",
+      "console_name": "Pokemon Dragon Frontiers",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:31"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Gyarados 32 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Gyarados%2032%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9057142",
+      "product_name": "Ledian [Stamped] #18",
+      "console_name": "Pokemon Dragon Frontiers",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:18"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Gyarados 32 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Gyarados%2032%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5811201",
+      "product_name": "Rayquaza [Stamped] #11",
+      "console_name": "Pokemon Dragon Vault",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:11"
+      }
+    }
+  ],
+  "source_lane": "pricecharting_api"
+}

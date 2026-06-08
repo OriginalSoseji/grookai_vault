@@ -5,11 +5,14 @@ import { markdownTable } from './verified_master_set_index_v1/shared.mjs';
 
 const SOURCE_DIR = 'docs/audits/verified_master_set_index_v1/english_master_index_v1';
 const OUTPUT_DIR = 'docs/audits/english_master_index_completion_v1';
+const FINISH_BLOCKER_CLOSURE_FILE = 'english_master_index_finish_blocker_closure_v1.json';
 const GENERATED_FILES = [
   'english_master_index_completion_v1.json',
   'english_master_index_completion_v1.md',
   'english_master_index_set_completion_matrix_v1.json',
   'english_master_index_set_completion_matrix_v1.md',
+  'english_master_index_adjudicated_excluded_printings_v1.json',
+  'english_master_index_adjudicated_excluded_printings_v1.md',
   'english_master_index_source_gap_queue_v1.json',
   'english_master_index_source_gap_queue_v1.md',
   'english_master_index_source_worklist_v1.json',
@@ -26,6 +29,18 @@ const HUMAN_SOURCE_KINDS = new Set([
   'marketplace_checklist',
   'collector_reference',
   'manual_review',
+]);
+const NON_STANDARD_SINGLE_SOURCE_REFERENCE_SETS = new Map([
+  ['jumbo', {
+    status: 'non_standard_single_source_reference',
+    verification_level: 'not_double_verified',
+    policy: 'Jumbo cards are tracked as a non-standard reference lane. They are not required to satisfy normal double-source Master Index completion and are not publishable as complete standard set truth.',
+  }],
+  ['sp', {
+    status: 'non_standard_single_source_reference',
+    verification_level: 'not_double_verified',
+    policy: 'Sample cards are tracked as a non-standard prototype/reference lane until exact card-level sample coverage has deterministic independent source agreement.',
+  }],
 ]);
 
 function addCount(target, key, count = 1) {
@@ -51,6 +66,15 @@ function uniqueSorted(values) {
 
 async function readJson(fileName) {
   return JSON.parse(await fs.readFile(path.join(SOURCE_DIR, fileName), 'utf8'));
+}
+
+async function readOptionalJson(fileName, fallback) {
+  try {
+    return await readJson(fileName);
+  } catch (error) {
+    if (error?.code === 'ENOENT') return fallback;
+    throw error;
+  }
 }
 
 async function writeJson(fileName, data, options = {}) {
@@ -104,6 +128,23 @@ function setKey(row) {
   return String(row?.set_key ?? 'unknown').trim() || 'unknown';
 }
 
+function finishFactKey(row) {
+  return [
+    row.set_key,
+    row.card_number ?? '',
+    String(row.card_name ?? '').trim().toLowerCase(),
+    row.finish_key ?? row.gap_finish_key ?? '',
+  ].join('|');
+}
+
+function buildFinishBlockerMap(blockerClosure) {
+  const map = new Map();
+  for (const row of blockerClosure.mapped_blockers ?? []) {
+    map.set(finishFactKey(row), row);
+  }
+  return map;
+}
+
 function makeSetBucket(set) {
   return {
     set_key: set.key,
@@ -134,6 +175,8 @@ function makeSetBucket(set) {
       conflicts: 0,
       manual_review: 0,
       finish_absences: 0,
+      finish_blocker_boundary: 0,
+      adjudicated_excluded: 0,
     },
     finish_counts: {},
     source_keys: {},
@@ -158,14 +201,18 @@ function ensureBucket(buckets, key, seed = {}) {
 
 function collectEvidence(bucket, row) {
   for (const source of row.sources ?? []) addCount(bucket.source_keys, source);
-  for (const evidence of row.evidence ?? []) {
+  const urls = Array.isArray(row.evidence_urls)
+    ? row.evidence_urls
+    : (row.evidence ?? []).map((evidence) => evidence.source_url);
+  for (const url of urls) {
     if (bucket.evidence_urls_sample.length >= 8) break;
-    if (evidence.source_url) bucket.evidence_urls_sample.push(evidence.source_url);
+    if (url) bucket.evidence_urls_sample.push(url);
   }
 }
 
 function applySourceAvailability(buckets, availability) {
   for (const row of availability.source_availability ?? []) {
+    if (row.set_key === 'human_fixtures') continue;
     const bucket = ensureBucket(buckets, row.set_key, { set_name: row.set_name });
     bucket.source_availability[row.source_key] = {
       source_alias: row.source_alias ?? null,
@@ -190,9 +237,13 @@ function applyCards(buckets, cardsArtifact) {
   }
 }
 
-function applyPrintings(buckets, printingsArtifact) {
+function applyPrintings(buckets, printingsArtifact, finishBlockerMap) {
   for (const printing of printingsArtifact.printings ?? []) {
     const bucket = ensureBucket(buckets, setKey(printing), { set_name: printing.set_name });
+    if (finishBlockerMap.has(finishFactKey(printing))) {
+      bucket.printings.adjudicated_excluded += 1;
+      continue;
+    }
     bucket.printings.total_working_facts += 1;
     if (isMasterAdmissiblePrinting(printing)) bucket.printings.master_admissible += 1;
     if (printing.status === 'api_agreed') bucket.printings.api_agreed += 1;
@@ -267,6 +318,9 @@ function applyConflicts(buckets, conflictsArtifact) {
 }
 
 function completionStatus(bucket) {
+  const nonStandardReference = NON_STANDARD_SINGLE_SOURCE_REFERENCE_SETS.get(bucket.set_key);
+  if (nonStandardReference) return nonStandardReference.status;
+
   const cardTotal = bucket.card_identity.total_working_facts;
   const printingTotal = bucket.printings.total_working_facts;
   const cardComplete = cardTotal > 0 && bucket.card_identity.master_admissible === cardTotal;
@@ -298,6 +352,7 @@ function scoreBucket(bucket) {
 function finalizeBuckets(buckets) {
   return [...buckets.values()].map((bucket) => {
     const status = completionStatus(bucket);
+    const nonStandardReference = NON_STANDARD_SINGLE_SOURCE_REFERENCE_SETS.get(bucket.set_key) ?? null;
     const cardPct = pct(bucket.card_identity.master_admissible, bucket.card_identity.total_working_facts);
     const printingPct = pct(bucket.printings.master_admissible, bucket.printings.total_working_facts);
     const completionScore = scoreBucket(bucket);
@@ -311,6 +366,8 @@ function finalizeBuckets(buckets) {
         printing_master_admissible_percent: printingPct,
         master_index_complete: status === 'complete_master_index_set',
         eligible_for_future_downstream_audit: status === 'complete_master_index_set',
+        verification_level: nonStandardReference?.verification_level ?? 'normal_double_source_required',
+        non_standard_policy: nonStandardReference?.policy ?? null,
         blocker_summary: blockerSummary(bucket, status),
       },
     };
@@ -324,8 +381,13 @@ function finalizeBuckets(buckets) {
 function blockerSummary(bucket, status) {
   if (status === 'complete_master_index_set') return 'No current completion blocker.';
   if (status === 'conflict_blocked') return 'Resolve source conflicts before admission.';
+  if (status === 'non_standard_single_source_reference') return 'Non-standard reference lane; not double verified and not normal Master Index completion authority.';
   if (status === 'source_unavailable') return 'No usable source evidence collected for this set.';
   if (bucket.card_identity.master_admissible < bucket.card_identity.total_working_facts) return 'Card identities need second-source agreement.';
+  const printingGap = bucket.printings.total_working_facts - bucket.printings.master_admissible;
+  if (printingGap > 0 && bucket.printings.finish_blocker_boundary === printingGap) {
+    return 'Remaining printing/finish facts are blocker-boundary rows requiring manual finish or number adjudication.';
+  }
   if (bucket.printings.master_admissible < bucket.printings.total_working_facts) return 'Printing/finish facts need human-readable checklist evidence and exact card-level support.';
   return 'Manual review required.';
 }
@@ -346,13 +408,17 @@ function buildGapQueue(setRows) {
       });
     }
     if (set.printings.master_admissible < set.printings.total_working_facts) {
+      const finishGapCount = set.printings.total_working_facts - set.printings.master_admissible;
+      const blockerOnly = set.printings.finish_blocker_boundary > 0 && set.printings.finish_blocker_boundary === finishGapCount;
       queue.push({
-        lane: 'finish_human_checklist_evidence',
+        lane: blockerOnly ? 'finish_blocker_boundary_adjudication' : 'finish_human_checklist_evidence',
         set_key: set.set_key,
         set_name: set.set_name,
-        gap_count: set.printings.total_working_facts - set.printings.master_admissible,
+        gap_count: finishGapCount,
         priority: priorityForSet(set, 100),
-        required_evidence: 'Human-readable/checklist exact finish evidence with second-source agreement.',
+        required_evidence: blockerOnly
+          ? 'Manual finish-label or card-number adjudication. Do not promote from broad source acquisition.'
+          : 'Human-readable/checklist exact finish evidence with second-source agreement.',
         mutation_authority: 'not mutation authority',
       });
     }
@@ -406,6 +472,7 @@ function buildSourceWorklist(setRows, gapQueue) {
         total_gap_count: gaps.total_gap_count,
         card_identity_gap_count: Math.max(0, set.card_identity.total_working_facts - set.card_identity.master_admissible),
         printing_finish_gap_count: Math.max(0, set.printings.total_working_facts - set.printings.master_admissible),
+        finish_blocker_boundary_count: set.printings.finish_blocker_boundary,
         source_alias_gap: set.completion.status === 'source_unavailable',
         lanes: uniqueSorted(gaps.lanes),
         required_evidence: uniqueSorted(gaps.required_evidence),
@@ -434,6 +501,7 @@ function statusRank(status) {
     source_limited: 4,
     manual_review_required: 5,
     conflict_blocked: 6,
+    non_standard_single_source_reference: 7,
     source_unavailable: 7,
   }[status] ?? 99;
 }
@@ -444,13 +512,16 @@ function priorityForSet(set, base) {
   return Number(Math.max(0, Math.min(100, base + volume - blockerPenalty - set.completion.completion_score / 4)).toFixed(2));
 }
 
-function buildSummary(setRows, gapQueue, cardsArtifact, printingsArtifact) {
+function buildSummary(setRows, gapQueue, cardsArtifact, printingsArtifact, finishBlockerMap) {
   const byCompletionStatus = {};
   const cardStatusCounts = {};
   const printingStatusCounts = {};
   for (const set of setRows) addCount(byCompletionStatus, set.completion.status);
   for (const card of cardsArtifact.cards ?? []) addCount(cardStatusCounts, card.status);
-  for (const printing of printingsArtifact.printings ?? []) addCount(printingStatusCounts, printing.status);
+  for (const printing of printingsArtifact.printings ?? []) {
+    if (finishBlockerMap.has(finishFactKey(printing))) continue;
+    addCount(printingStatusCounts, printing.status);
+  }
   return {
     sets_in_registry: setRows.length,
     complete_master_index_sets: byCompletionStatus.complete_master_index_set ?? 0,
@@ -458,9 +529,11 @@ function buildSummary(setRows, gapQueue, cardsArtifact, printingsArtifact) {
     working_card_identity_facts: cardsArtifact.cards?.length ?? 0,
     master_admissible_card_identity_facts: setRows.reduce((total, set) => total + set.card_identity.master_admissible, 0),
     printing_derived_card_identity_facts: setRows.reduce((total, set) => total + set.card_identity.master_admissible_from_exact_printing, 0),
-    working_printing_facts: printingsArtifact.printings?.length ?? 0,
+    working_printing_facts: setRows.reduce((total, set) => total + set.printings.total_working_facts, 0),
     master_admissible_printing_facts: setRows.reduce((total, set) => total + set.printings.master_admissible, 0),
     finish_absence_facts: printingsArtifact.finish_absences?.length ?? 0,
+    finish_blocker_boundary_facts: setRows.reduce((total, set) => total + set.printings.finish_blocker_boundary, 0),
+    adjudicated_excluded_printing_facts: setRows.reduce((total, set) => total + set.printings.adjudicated_excluded, 0),
     by_completion_status: byCompletionStatus,
     by_card_fact_status: cardStatusCounts,
     by_printing_fact_status: printingStatusCounts,
@@ -469,14 +542,29 @@ function buildSummary(setRows, gapQueue, cardsArtifact, printingsArtifact) {
   };
 }
 
-function buildArtifacts({ setsArtifact, cardsArtifact, printingsArtifact, availabilityArtifact, manualReviewArtifact, conflictsArtifact }) {
+function buildArtifacts({ setsArtifact, cardsArtifact, printingsArtifact, availabilityArtifact, manualReviewArtifact, conflictsArtifact, finishBlockerClosure }) {
   const buckets = new Map();
+  const finishBlockerMap = buildFinishBlockerMap(finishBlockerClosure);
+  const adjudicatedExcludedPrintings = [];
   for (const set of setsArtifact.sets ?? []) {
     buckets.set(set.key, makeSetBucket(set));
   }
   applySourceAvailability(buckets, availabilityArtifact);
   applyCards(buckets, cardsArtifact);
-  applyPrintings(buckets, printingsArtifact);
+  for (const printing of printingsArtifact.printings ?? []) {
+    const blocker = finishBlockerMap.get(finishFactKey(printing));
+    if (!blocker) continue;
+    adjudicatedExcludedPrintings.push({
+      ...compactPrintingExport(printing),
+      blocker_type: blocker.blocker_type,
+      reason_not_promoted: blocker.reason_not_promoted,
+      next_action: blocker.next_action,
+      adjudication_evidence_urls: blocker.evidence_urls ?? [],
+      adjudication_evidence_labels: blocker.evidence_labels ?? [],
+      exclusion_status: 'excluded_from_master_index_working_truth',
+    });
+  }
+  applyPrintings(buckets, printingsArtifact, finishBlockerMap);
   applyPrintingDerivedCardIdentity(buckets, cardsArtifact, printingsArtifact);
   applyManualReview(buckets, manualReviewArtifact);
   resolveManualReviewWithPrintingDerivedIdentity(buckets);
@@ -484,7 +572,7 @@ function buildArtifacts({ setsArtifact, cardsArtifact, printingsArtifact, availa
   const setRows = finalizeBuckets(buckets);
   const gapQueue = buildGapQueue(setRows);
   const sourceWorklist = buildSourceWorklist(setRows, gapQueue);
-  const summary = buildSummary(setRows, gapQueue, cardsArtifact, printingsArtifact);
+  const summary = buildSummary(setRows, gapQueue, cardsArtifact, printingsArtifact, finishBlockerMap);
   const base = {
     generated_at: new Date().toISOString(),
     contract: 'ENGLISH_MASTER_INDEX_COMPLETION_V1',
@@ -512,6 +600,7 @@ function buildArtifacts({ setsArtifact, cardsArtifact, printingsArtifact, availa
       source_standard: {
         card_identity: 'source_count >= 2 and independent agreement on set + card_number + card_name',
         printing_finish: 'source_count >= 2 plus at least one human/checklist-style source supporting exact finish fact',
+        finish_blocker_boundary: 'Rows mapped by english_master_index_finish_blocker_closure_v1 require manual finish-label or card-number adjudication and are not broad source-acquisition gaps.',
       },
       set_completion_matrix_ref: 'english_master_index_set_completion_matrix_v1.json',
       source_gap_queue_ref: 'english_master_index_source_gap_queue_v1.json',
@@ -560,6 +649,18 @@ function buildArtifacts({ setsArtifact, cardsArtifact, printingsArtifact, availa
       cards: masterAdmissibleCards,
       printings: compactMasterAdmissiblePrintings,
     },
+    adjudicatedExcludedPrintings: {
+      ...base,
+      version: 'english_master_index_adjudicated_excluded_printings_v1',
+      rule: 'These printing facts were reviewed at the finish-blocker boundary and excluded from working Master Index truth. They are preserved as audit evidence, not publishable printings and not mutation authority.',
+      summary: {
+        excluded_printing_facts: adjudicatedExcludedPrintings.length,
+        by_set: countBy(adjudicatedExcludedPrintings, 'set_key'),
+        by_finish: countBy(adjudicatedExcludedPrintings, 'finish_key'),
+        by_blocker_type: countBy(adjudicatedExcludedPrintings, 'blocker_type'),
+      },
+      printings: adjudicatedExcludedPrintings,
+    },
     reusedScaffoldMap: {
       ...base,
       version: 'english_master_index_reused_scaffold_map_v1',
@@ -577,6 +678,7 @@ function buildArtifacts({ setsArtifact, cardsArtifact, printingsArtifact, availa
         'english_master_index_repair_priority_v1.json',
         'english_master_index_unsupported_triage_v1.json',
         'english_master_index_missing_from_grookai_triage_v1.json',
+        'finish-blocker rows excluded by english_master_index_adjudicated_excluded_printings_v1.json',
       ],
       rule: 'Existing reconciliation outputs are not Master Index completion authority.',
     },
@@ -659,6 +761,8 @@ Completion-first Master Index report. This is not a Grookai reconciliation repor
 - printing_derived_card_identity_facts: ${artifact.summary.printing_derived_card_identity_facts}
 - working_printing_facts: ${artifact.summary.working_printing_facts}
 - master_admissible_printing_facts: ${artifact.summary.master_admissible_printing_facts}
+- finish_blocker_boundary_facts: ${artifact.summary.finish_blocker_boundary_facts}
+- adjudicated_excluded_printing_facts: ${artifact.summary.adjudicated_excluded_printing_facts}
 - source_gap_queue_items: ${artifact.summary.source_gap_queue_items}
 
 ## Completion Status
@@ -723,6 +827,7 @@ function buildSourceWorklistMarkdown(artifact) {
     row.total_gap_count,
     row.card_identity_gap_count,
     row.printing_finish_gap_count,
+    row.finish_blocker_boundary_count,
     row.lanes.join(', '),
     row.blocker_summary,
   ]);
@@ -753,7 +858,7 @@ ${markdownTable(['primary_lane', 'sets'], laneRows)}
 
 ## Worklist
 
-${markdownTable(['rank', 'set_key', 'set_name', 'status', 'total_gaps', 'card_gaps', 'finish_gaps', 'lanes', 'blocker'], rows)}
+${markdownTable(['rank', 'set_key', 'set_name', 'status', 'total_gaps', 'card_gaps', 'finish_gaps', 'finish_blockers', 'lanes', 'blocker'], rows)}
 `;
 }
 
@@ -768,6 +873,38 @@ This export contains Master Index-admissible facts only. It is audit-only and no
 - printing_finish_facts: ${artifact.summary.printing_finish_facts}
 - sets_with_admissible_cards: ${artifact.summary.sets_with_admissible_cards}
 - sets_with_admissible_printings: ${artifact.summary.sets_with_admissible_printings}
+`;
+}
+
+function buildAdjudicatedExcludedMarkdown(artifact) {
+  const rows = artifact.printings.map((row) => [
+    row.set_key,
+    row.card_number,
+    row.card_name,
+    row.finish_key,
+    row.blocker_type,
+    row.reason_not_promoted,
+  ]);
+  return `# English Master Index Adjudicated Excluded Printings V1
+
+These printing facts were reviewed at the finish-blocker boundary and excluded from working Master Index truth.
+
+They are preserved as audit evidence only. This artifact is not deletion authority, not insertion authority, and not a Grookai write plan.
+
+## Safety
+
+- audit_only: ${artifact.audit_only}
+- db_writes_performed: ${artifact.db_writes_performed}
+- migrations_created: ${artifact.migrations_created}
+- cleanup_performed: ${artifact.cleanup_performed}
+- quarantine_performed: ${artifact.quarantine_performed}
+- grookai_reconciliation_performed: ${artifact.grookai_reconciliation_performed}
+
+## Summary
+
+- excluded_printing_facts: ${artifact.summary.excluded_printing_facts}
+
+${markdownTable(['set_key', 'number', 'card', 'finish', 'blocker_type', 'reason'], rows)}
 `;
 }
 
@@ -796,6 +933,7 @@ async function main() {
     availabilityArtifact: await readJson('english_master_index_source_availability_v1.json'),
     manualReviewArtifact: await readJson('english_master_index_manual_review_v1.json'),
     conflictsArtifact: await readJson('english_master_index_conflicts_v1.json'),
+    finishBlockerClosure: await readOptionalJson(FINISH_BLOCKER_CLOSURE_FILE, { mapped_blockers: [], summary: {} }),
   };
   const artifacts = buildArtifacts(inputs);
 
@@ -809,6 +947,8 @@ async function main() {
   await writeMarkdown('english_master_index_source_worklist_v1.md', buildSourceWorklistMarkdown(artifacts.sourceWorklist));
   await writeJson('english_master_index_master_admissible_export_v1.json', artifacts.masterAdmissibleExport, { compact: true });
   await writeMarkdown('english_master_index_master_admissible_export_v1.md', buildMasterAdmissibleMarkdown(artifacts.masterAdmissibleExport));
+  await writeJson('english_master_index_adjudicated_excluded_printings_v1.json', artifacts.adjudicatedExcludedPrintings);
+  await writeMarkdown('english_master_index_adjudicated_excluded_printings_v1.md', buildAdjudicatedExcludedMarkdown(artifacts.adjudicatedExcludedPrintings));
   await writeJson('english_master_index_reused_scaffold_map_v1.json', artifacts.reusedScaffoldMap);
   await writeMarkdown('english_master_index_reused_scaffold_map_v1.md', buildScaffoldMarkdown(artifacts.reusedScaffoldMap));
 

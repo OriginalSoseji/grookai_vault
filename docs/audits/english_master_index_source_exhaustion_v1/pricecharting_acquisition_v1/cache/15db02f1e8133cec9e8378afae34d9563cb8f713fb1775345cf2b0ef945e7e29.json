@@ -1,0 +1,549 @@
+{
+  "status": "api_no_validated_match",
+  "fact": {
+    "gap_type": "finish_second_source_needed",
+    "fact_type": "printing_finish",
+    "set_key": "dp5",
+    "set_name": "Majestic Dawn",
+    "card_number": "88",
+    "card_name": "Warp Point",
+    "finish_key": "stamped",
+    "status": "human_source_verified",
+    "sources": [
+      "thepricedex_price_list"
+    ],
+    "source_authorities": [
+      "thepricedex.com"
+    ],
+    "source_kinds": [
+      "marketplace_checklist"
+    ],
+    "evidence_urls": [
+      "https://www.thepricedex.com/set/dp5/majestic-dawn/price-list"
+    ],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "attempts": [
+    {
+      "query": "Pokemon Majestic Dawn Warp Point 88 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Majestic%20Dawn%20Warp%20Point%2088%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "921450",
+      "product_name": "Warp Point #88",
+      "console_name": "Pokemon Majestic Dawn",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon Majestic Dawn Warp Point 88 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Majestic%20Dawn%20Warp%20Point%2088%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "921550",
+      "product_name": "Warp Point [Reverse Holo] #88",
+      "console_name": "Pokemon Majestic Dawn",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Reverse Holo"
+      }
+    },
+    {
+      "query": "Pokemon Majestic Dawn Warp Point 88 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Majestic%20Dawn%20Warp%20Point%2088%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6401529",
+      "product_name": "Warp Point [Crosshatch Holo] #88",
+      "console_name": "Pokemon Majestic Dawn",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Crosshatch Holo"
+      }
+    },
+    {
+      "query": "Pokemon Majestic Dawn Warp Point 88 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Majestic%20Dawn%20Warp%20Point%2088%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9052750",
+      "product_name": "Warp Point [Yuka Furusawa] #88",
+      "console_name": "Pokemon World Championships 2010",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon World Championships 2010"
+      }
+    },
+    {
+      "query": "Pokemon Majestic Dawn Warp Point 88 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Majestic%20Dawn%20Warp%20Point%2088%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9052749",
+      "product_name": "Warp Point [Michael Pramawat] #88",
+      "console_name": "Pokemon World Championships 2010",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon World Championships 2010"
+      }
+    },
+    {
+      "query": "Pokemon Majestic Dawn Warp Point 88 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Majestic%20Dawn%20Warp%20Point%2088%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9052745",
+      "product_name": "Warp Point [Jason Klaczynski] #88",
+      "console_name": "Pokemon World Championships 2008",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon World Championships 2008"
+      }
+    },
+    {
+      "query": "Pokemon Majestic Dawn Warp Point 88 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Majestic%20Dawn%20Warp%20Point%2088%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9052746",
+      "product_name": "Warp Point [Paul Atanassov] #88",
+      "console_name": "Pokemon World Championships 2008",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon World Championships 2008"
+      }
+    },
+    {
+      "query": "Pokemon Majestic Dawn Warp Point 88 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Majestic%20Dawn%20Warp%20Point%2088%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9052743",
+      "product_name": "Warp Point [Dylan Lefavour] #88",
+      "console_name": "Pokemon World Championships 2008",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon World Championships 2008"
+      }
+    },
+    {
+      "query": "Pokemon Majestic Dawn Warp Point 88 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Majestic%20Dawn%20Warp%20Point%2088%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9052748",
+      "product_name": "Warp Point [Stephen Silvestro] #88",
+      "console_name": "Pokemon World Championships 2009",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon World Championships 2009"
+      }
+    },
+    {
+      "query": "Pokemon Majestic Dawn Warp Point 88 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Majestic%20Dawn%20Warp%20Point%2088%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9052747",
+      "product_name": "Warp Point [Jason Martinez] #88",
+      "console_name": "Pokemon World Championships 2009",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon World Championships 2009"
+      }
+    },
+    {
+      "query": "Pokemon Majestic Dawn Warp Point 88 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Majestic%20Dawn%20Warp%20Point%2088%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5419572",
+      "product_name": "Eevee [Stamped] #62",
+      "console_name": "Pokemon Majestic Dawn",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:62"
+      }
+    },
+    {
+      "query": "Pokemon Majestic Dawn Warp Point 88 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Majestic%20Dawn%20Warp%20Point%2088%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6987328",
+      "product_name": "Piplup [Stamped] #71",
+      "console_name": "Pokemon Majestic Dawn",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:71"
+      }
+    },
+    {
+      "query": "Pokemon Majestic Dawn Warp Point 88 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Majestic%20Dawn%20Warp%20Point%2088%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8280238",
+      "product_name": "Chimchar [Stamped] #56",
+      "console_name": "Pokemon Majestic Dawn",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:56"
+      }
+    },
+    {
+      "query": "Pokemon Majestic Dawn Warp Point 88 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Majestic%20Dawn%20Warp%20Point%2088%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9378127",
+      "product_name": "Leafeon [Stamped] #24",
+      "console_name": "Pokemon Majestic Dawn",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:24"
+      }
+    },
+    {
+      "query": "Pokemon Majestic Dawn Warp Point 88 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Majestic%20Dawn%20Warp%20Point%2088%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6135981",
+      "product_name": "Pikachu [Stamped] #70",
+      "console_name": "Pokemon Majestic Dawn",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:70"
+      }
+    },
+    {
+      "query": "Pokemon Majestic Dawn Warp Point 88 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Majestic%20Dawn%20Warp%20Point%2088%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7762896",
+      "product_name": "Turtwig [Stamped] #77 #77",
+      "console_name": "Pokemon Majestic Dawn",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:77"
+      }
+    },
+    {
+      "query": "Pokemon Majestic Dawn Warp Point 88 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Majestic%20Dawn%20Warp%20Point%2088%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8464160",
+      "product_name": "Turtwig [Snowflake Stamped] #78",
+      "console_name": "Pokemon Majestic Dawn",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:78"
+      }
+    },
+    {
+      "query": "Pokemon Majestic Dawn Warp Point 88 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Majestic%20Dawn%20Warp%20Point%2088%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8243908",
+      "product_name": "Glaceon [Platinum Stamped] #20",
+      "console_name": "Pokemon Majestic Dawn",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:20"
+      }
+    },
+    {
+      "query": "Pokemon Majestic Dawn Warp Point 88 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Majestic%20Dawn%20Warp%20Point%2088%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7557908",
+      "product_name": "Munchlax [Snowflake Stamped] #68",
+      "console_name": "Pokemon Majestic Dawn",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:68"
+      }
+    },
+    {
+      "query": "Pokemon Majestic Dawn Warp Point 88 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Majestic%20Dawn%20Warp%20Point%2088%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "2267005",
+      "product_name": "Warp Point [Reverse Holo] #152",
+      "console_name": "Pokemon Expedition",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:152"
+      }
+    },
+    {
+      "query": "Pokemon Majestic Dawn Warp Point 88 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Majestic%20Dawn%20Warp%20Point%2088%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "921450",
+      "product_name": "Warp Point #88",
+      "console_name": "Pokemon Majestic Dawn",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon Majestic Dawn Warp Point 88 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Majestic%20Dawn%20Warp%20Point%2088%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "921550",
+      "product_name": "Warp Point [Reverse Holo] #88",
+      "console_name": "Pokemon Majestic Dawn",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Reverse Holo"
+      }
+    },
+    {
+      "query": "Pokemon Majestic Dawn Warp Point 88 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Majestic%20Dawn%20Warp%20Point%2088%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6401529",
+      "product_name": "Warp Point [Crosshatch Holo] #88",
+      "console_name": "Pokemon Majestic Dawn",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Crosshatch Holo"
+      }
+    },
+    {
+      "query": "Pokemon Majestic Dawn Warp Point 88 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Majestic%20Dawn%20Warp%20Point%2088%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9052750",
+      "product_name": "Warp Point [Yuka Furusawa] #88",
+      "console_name": "Pokemon World Championships 2010",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon World Championships 2010"
+      }
+    },
+    {
+      "query": "Pokemon Majestic Dawn Warp Point 88 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Majestic%20Dawn%20Warp%20Point%2088%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9052749",
+      "product_name": "Warp Point [Michael Pramawat] #88",
+      "console_name": "Pokemon World Championships 2010",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon World Championships 2010"
+      }
+    },
+    {
+      "query": "Pokemon Majestic Dawn Warp Point 88 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Majestic%20Dawn%20Warp%20Point%2088%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9052745",
+      "product_name": "Warp Point [Jason Klaczynski] #88",
+      "console_name": "Pokemon World Championships 2008",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon World Championships 2008"
+      }
+    },
+    {
+      "query": "Pokemon Majestic Dawn Warp Point 88 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Majestic%20Dawn%20Warp%20Point%2088%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9052746",
+      "product_name": "Warp Point [Paul Atanassov] #88",
+      "console_name": "Pokemon World Championships 2008",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon World Championships 2008"
+      }
+    },
+    {
+      "query": "Pokemon Majestic Dawn Warp Point 88 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Majestic%20Dawn%20Warp%20Point%2088%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9052743",
+      "product_name": "Warp Point [Dylan Lefavour] #88",
+      "console_name": "Pokemon World Championships 2008",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon World Championships 2008"
+      }
+    },
+    {
+      "query": "Pokemon Majestic Dawn Warp Point 88 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Majestic%20Dawn%20Warp%20Point%2088%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9052748",
+      "product_name": "Warp Point [Stephen Silvestro] #88",
+      "console_name": "Pokemon World Championships 2009",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon World Championships 2009"
+      }
+    },
+    {
+      "query": "Pokemon Majestic Dawn Warp Point 88 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Majestic%20Dawn%20Warp%20Point%2088%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9052747",
+      "product_name": "Warp Point [Jason Martinez] #88",
+      "console_name": "Pokemon World Championships 2009",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon World Championships 2009"
+      }
+    },
+    {
+      "query": "Pokemon Majestic Dawn Warp Point 88 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Majestic%20Dawn%20Warp%20Point%2088%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5419572",
+      "product_name": "Eevee [Stamped] #62",
+      "console_name": "Pokemon Majestic Dawn",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:62"
+      }
+    },
+    {
+      "query": "Pokemon Majestic Dawn Warp Point 88 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Majestic%20Dawn%20Warp%20Point%2088%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6987328",
+      "product_name": "Piplup [Stamped] #71",
+      "console_name": "Pokemon Majestic Dawn",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:71"
+      }
+    },
+    {
+      "query": "Pokemon Majestic Dawn Warp Point 88 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Majestic%20Dawn%20Warp%20Point%2088%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8280238",
+      "product_name": "Chimchar [Stamped] #56",
+      "console_name": "Pokemon Majestic Dawn",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:56"
+      }
+    },
+    {
+      "query": "Pokemon Majestic Dawn Warp Point 88 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Majestic%20Dawn%20Warp%20Point%2088%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9378127",
+      "product_name": "Leafeon [Stamped] #24",
+      "console_name": "Pokemon Majestic Dawn",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:24"
+      }
+    },
+    {
+      "query": "Pokemon Majestic Dawn Warp Point 88 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Majestic%20Dawn%20Warp%20Point%2088%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6135981",
+      "product_name": "Pikachu [Stamped] #70",
+      "console_name": "Pokemon Majestic Dawn",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:70"
+      }
+    },
+    {
+      "query": "Pokemon Majestic Dawn Warp Point 88 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Majestic%20Dawn%20Warp%20Point%2088%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7762896",
+      "product_name": "Turtwig [Stamped] #77 #77",
+      "console_name": "Pokemon Majestic Dawn",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:77"
+      }
+    },
+    {
+      "query": "Pokemon Majestic Dawn Warp Point 88 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Majestic%20Dawn%20Warp%20Point%2088%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8464160",
+      "product_name": "Turtwig [Snowflake Stamped] #78",
+      "console_name": "Pokemon Majestic Dawn",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:78"
+      }
+    },
+    {
+      "query": "Pokemon Majestic Dawn Warp Point 88 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Majestic%20Dawn%20Warp%20Point%2088%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8243908",
+      "product_name": "Glaceon [Platinum Stamped] #20",
+      "console_name": "Pokemon Majestic Dawn",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:20"
+      }
+    },
+    {
+      "query": "Pokemon Majestic Dawn Warp Point 88 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Majestic%20Dawn%20Warp%20Point%2088%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7557908",
+      "product_name": "Munchlax [Snowflake Stamped] #68",
+      "console_name": "Pokemon Majestic Dawn",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:68"
+      }
+    },
+    {
+      "query": "Pokemon Majestic Dawn Warp Point 88 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Majestic%20Dawn%20Warp%20Point%2088%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "2267005",
+      "product_name": "Warp Point [Reverse Holo] #152",
+      "console_name": "Pokemon Expedition",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:152"
+      }
+    }
+  ],
+  "source_lane": "pricecharting_api"
+}

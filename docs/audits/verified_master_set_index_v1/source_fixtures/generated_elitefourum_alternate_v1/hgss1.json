@@ -1,0 +1,31 @@
+{
+  "fixture_version": "VERIFIED_MASTER_SET_INDEX_V1_HUMAN_SOURCE_FIXTURE_GENERATED",
+  "source_key": "elitefourum_alternate_hgss1",
+  "source_kind": "collector_reference",
+  "source_url": "https://www.elitefourum.com/t/updated-6-15-15-alternate-set-card-checklist-english/11788",
+  "source_status": "available_generated",
+  "set_key": "hgss1",
+  "set_name": "HeartGold & SoulSilver",
+  "retrieved_at": "2026-05-28T02:44:21.474Z",
+  "raw_snapshot_ref": "generated_fixture:elitefourum_alternate:hgss1:2026-05-28T02:44:21.474Z",
+  "generation_note": "Generated from Elite Fourum English alternate set checklist. Exact card-number/name/finish matches only.",
+  "records": [
+    {
+      "source_key": "elitefourum_alternate_checklist",
+      "source_kind": "collector_reference",
+      "source_url": "https://www.elitefourum.com/t/updated-6-15-15-alternate-set-card-checklist-english/11788",
+      "set_key": "hgss1",
+      "set_name": "HeartGold & SoulSilver",
+      "card_number": "100",
+      "card_name": "Professor Elm's Training Method",
+      "finish_key": "stamped",
+      "rarity": null,
+      "evidence_type": "finish_presence",
+      "evidence_label": "Elite Fourum alternate checklist: 100/123 Professor Elm’s Training Method [Professor Program Stamped; March 2011]",
+      "language": "en",
+      "retrieved_at": "2026-05-28T02:44:21.474Z",
+      "raw_snapshot_ref": "elitefourum_alternate_checklist:hgss1:100:stamped",
+      "notes": "Generated only when the checklist line exactly matched set, card number, card name, and explicit finish label."
+    }
+  ]
+}

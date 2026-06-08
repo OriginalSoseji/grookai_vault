@@ -1,0 +1,48 @@
+{
+  "fixture_version": "VERIFIED_MASTER_SET_INDEX_V1_HUMAN_SOURCE_FIXTURE_GENERATED",
+  "source_key": "elitefourum_alternate_ex12",
+  "source_kind": "collector_reference",
+  "source_url": "https://www.elitefourum.com/t/updated-6-15-15-alternate-set-card-checklist-english/11788",
+  "source_status": "available_generated",
+  "set_key": "ex12",
+  "set_name": "Legend Maker",
+  "retrieved_at": "2026-05-28T02:44:21.474Z",
+  "raw_snapshot_ref": "generated_fixture:elitefourum_alternate:ex12:2026-05-28T02:44:21.474Z",
+  "generation_note": "Generated from Elite Fourum English alternate set checklist. Exact card-number/name/finish matches only.",
+  "records": [
+    {
+      "source_key": "elitefourum_alternate_checklist",
+      "source_kind": "collector_reference",
+      "source_url": "https://www.elitefourum.com/t/updated-6-15-15-alternate-set-card-checklist-english/11788",
+      "set_key": "ex12",
+      "set_name": "Legend Maker",
+      "card_number": "5",
+      "card_name": "Gengar",
+      "finish_key": "stamped",
+      "rarity": null,
+      "evidence_type": "finish_presence",
+      "evidence_label": "Elite Fourum alternate checklist: 5/92 Gengar [Gym Challenge Stamped; 2006-2007]",
+      "language": "en",
+      "retrieved_at": "2026-05-28T02:44:21.474Z",
+      "raw_snapshot_ref": "elitefourum_alternate_checklist:ex12:5:stamped",
+      "notes": "Generated only when the checklist line exactly matched set, card number, card name, and explicit finish label."
+    },
+    {
+      "source_key": "elitefourum_alternate_checklist",
+      "source_kind": "collector_reference",
+      "source_url": "https://www.elitefourum.com/t/updated-6-15-15-alternate-set-card-checklist-english/11788",
+      "set_key": "ex12",
+      "set_name": "Legend Maker",
+      "card_number": "45",
+      "card_name": "Tentacruel",
+      "finish_key": "stamped",
+      "rarity": null,
+      "evidence_type": "finish_presence",
+      "evidence_label": "Elite Fourum alternate checklist: 45/92 Tentacruel [Prerelease Stamped]",
+      "language": "en",
+      "retrieved_at": "2026-05-28T02:44:21.474Z",
+      "raw_snapshot_ref": "elitefourum_alternate_checklist:ex12:45:stamped",
+      "notes": "Generated only when the checklist line exactly matched set, card number, card name, and explicit finish label."
+    }
+  ]
+}

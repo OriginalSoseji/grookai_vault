@@ -1,0 +1,43 @@
+{
+  "status": "no_validated_match",
+  "fact": {
+    "gap_type": "finish_second_source_needed",
+    "fact_type": "printing_finish",
+    "set_key": "xy2",
+    "set_name": "Flashfire",
+    "card_number": "89",
+    "card_name": "Fiery Torch",
+    "finish_key": "stamped",
+    "status": "human_source_verified",
+    "sources": [
+      "thepricedex_price_list"
+    ],
+    "source_authorities": [
+      "thepricedex.com"
+    ],
+    "source_kinds": [
+      "marketplace_checklist"
+    ],
+    "evidence_urls": [],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "attempts": [
+    {
+      "query": "Pokemon Flashfire Fiery Torch 89 stamped",
+      "url": "https://www.pricecharting.com/search-products?q=Pokemon%20Flashfire%20Fiery%20Torch%2089%20stamped&type=prices",
+      "error": "Fetch failed 403 Forbidden: https://www.pricecharting.com/search-products?q=Pokemon%20Flashfire%20Fiery%20Torch%2089%20stamped&type=prices"
+    },
+    {
+      "query": "Pokemon Flashfire Fiery Torch 89 stamp",
+      "url": "https://www.pricecharting.com/search-products?q=Pokemon%20Flashfire%20Fiery%20Torch%2089%20stamp&type=prices",
+      "parsed": {
+        "title": "Pokemon Flashfire Fiery Torch 89 Stamp Prices | Pokemon Flashfire Fiery Torch 89 Stamp List",
+        "source_url": "https://www.pricecharting.com/search-products?q=pokemon+flashfire+fiery+torch+89+stamp&type=prices"
+      },
+      "validation": {
+        "ok": false,
+        "reason": "title_pattern_not_supported"
+      }
+    }
+  ]
+}

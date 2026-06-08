@@ -1,0 +1,58 @@
+{
+  "status": "validated",
+  "fact": {
+    "gap_type": "finish_second_source_needed",
+    "fact_type": "printing_finish",
+    "set_key": "swsh8",
+    "set_name": "Fusion Strike",
+    "card_number": "161",
+    "card_name": "Galarian Obstagoon",
+    "finish_key": "cosmos",
+    "status": "human_source_verified",
+    "sources": [
+      "thepricedex_price_list"
+    ],
+    "source_authorities": [
+      "thepricedex.com"
+    ],
+    "source_kinds": [
+      "marketplace_checklist"
+    ],
+    "evidence_urls": [],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "query": "Pokemon Fusion Strike Galarian Obstagoon 161 cosmos",
+  "search_url": "https://www.pricecharting.com/search-products?q=Pokemon%20Fusion%20Strike%20Galarian%20Obstagoon%20161%20cosmos&type=prices",
+  "source_url": "https://www.pricecharting.com/game/pokemon-fusion-strike/galarian-obstagoon-cosmos-holo-161",
+  "title": "Galarian Obstagoon [Cosmos Holo] #161 Prices | Pokemon Fusion Strike | Pokemon Cards",
+  "title_parts": {
+    "card_name": "Galarian Obstagoon",
+    "variant_label": "Cosmos Holo",
+    "card_number": "161",
+    "set_name": "Fusion Strike"
+  },
+  "attempts": [
+    {
+      "query": "Pokemon Fusion Strike Galarian Obstagoon 161 cosmos holo",
+      "url": "https://www.pricecharting.com/search-products?q=Pokemon%20Fusion%20Strike%20Galarian%20Obstagoon%20161%20cosmos%20holo&type=prices",
+      "error": "Fetch failed 403 Forbidden: https://www.pricecharting.com/search-products?q=Pokemon%20Fusion%20Strike%20Galarian%20Obstagoon%20161%20cosmos%20holo&type=prices"
+    },
+    {
+      "query": "Pokemon Fusion Strike Galarian Obstagoon 161 cosmos",
+      "url": "https://www.pricecharting.com/search-products?q=Pokemon%20Fusion%20Strike%20Galarian%20Obstagoon%20161%20cosmos&type=prices",
+      "parsed": {
+        "title": "Galarian Obstagoon [Cosmos Holo] #161 Prices | Pokemon Fusion Strike | Pokemon Cards",
+        "source_url": "https://www.pricecharting.com/game/pokemon-fusion-strike/galarian-obstagoon-cosmos-holo-161"
+      },
+      "validation": {
+        "ok": true,
+        "titleParts": {
+          "card_name": "Galarian Obstagoon",
+          "variant_label": "Cosmos Holo",
+          "card_number": "161",
+          "set_name": "Fusion Strike"
+        }
+      }
+    }
+  ]
+}

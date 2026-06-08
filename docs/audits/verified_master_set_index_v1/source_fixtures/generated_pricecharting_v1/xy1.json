@@ -1,0 +1,23 @@
+{
+  "source_key": "pricecharting_xy1",
+  "source_kind": "marketplace_checklist",
+  "source_url": "https://www.pricecharting.com/",
+  "set_key": "xy1",
+  "set_name": "XY",
+  "retrieved_at": "2026-05-28T04:20:24.359Z",
+  "raw_snapshot_ref": "pricecharting_acquisition:xy1:2026-05-28T04:20:24.359Z",
+  "records": [
+    {
+      "source_key": "pricecharting_product_page",
+      "source_kind": "marketplace_checklist",
+      "source_url": "https://www.pricecharting.com/game/pokemon-xy/furfrou-cosmos-holo-114",
+      "set_name": "XY",
+      "card_number": "114",
+      "card_name": "Furfrou",
+      "finish_key": "cosmos",
+      "evidence_type": "finish_presence",
+      "evidence_label": "PriceCharting product title: Furfrou [Cosmos Holo] #114 Prices | Pokemon XY | Pokemon Cards",
+      "notes": "Exact finish evidence accepted only because PriceCharting evidence matched set, card number, card name, and finish label."
+    }
+  ]
+}

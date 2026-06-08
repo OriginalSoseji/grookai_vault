@@ -1,0 +1,43 @@
+{
+  "status": "no_validated_match",
+  "fact": {
+    "gap_type": "finish_second_source_needed",
+    "fact_type": "printing_finish",
+    "set_key": "sm115",
+    "set_name": "Hidden Fates",
+    "card_number": "SV55",
+    "card_name": "Glaceon-GX",
+    "finish_key": "holo",
+    "status": "human_source_verified",
+    "sources": [
+      "thepricedex_price_list"
+    ],
+    "source_authorities": [
+      "thepricedex.com"
+    ],
+    "source_kinds": [
+      "marketplace_checklist"
+    ],
+    "evidence_urls": [],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "attempts": [
+    {
+      "query": "Pokemon Hidden Fates Glaceon-GX SV55 holo",
+      "url": "https://www.pricecharting.com/search-products?q=Pokemon%20Hidden%20Fates%20Glaceon-GX%20SV55%20holo&type=prices",
+      "parsed": {
+        "title": "Pokemon Hidden Fates Glaceon-GX SV55 Holo Prices | Pokemon Hidden Fates Glaceon-GX SV55 Holo List",
+        "source_url": "https://www.pricecharting.com/search-products?q=pokemon+hidden+fates+glaceon-gx+sv55+holo&type=prices"
+      },
+      "validation": {
+        "ok": false,
+        "reason": "title_pattern_not_supported"
+      }
+    },
+    {
+      "query": "Pokemon Hidden Fates Glaceon-GX SV55 holofoil",
+      "url": "https://www.pricecharting.com/search-products?q=Pokemon%20Hidden%20Fates%20Glaceon-GX%20SV55%20holofoil&type=prices",
+      "error": "Fetch failed 403 Forbidden: https://www.pricecharting.com/search-products?q=Pokemon%20Hidden%20Fates%20Glaceon-GX%20SV55%20holofoil&type=prices"
+    }
+  ]
+}

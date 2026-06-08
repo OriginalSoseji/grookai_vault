@@ -1,0 +1,549 @@
+{
+  "status": "api_no_validated_match",
+  "fact": {
+    "gap_type": "finish_second_source_needed",
+    "fact_type": "printing_finish",
+    "set_key": "sv02",
+    "set_name": "Paldea Evolved",
+    "card_number": "189",
+    "card_name": "Superior Energy Retrieval",
+    "finish_key": "stamped",
+    "status": "human_source_verified",
+    "sources": [
+      "thepricedex_price_list"
+    ],
+    "source_authorities": [
+      "thepricedex.com"
+    ],
+    "source_kinds": [
+      "marketplace_checklist"
+    ],
+    "evidence_urls": [
+      "https://www.thepricedex.com/set/sv2/paldea-evolved/price-list"
+    ],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "attempts": [
+    {
+      "query": "Pokemon Paldea Evolved Superior Energy Retrieval 189 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Paldea%20Evolved%20Superior%20Energy%20Retrieval%20189%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10909640",
+      "product_name": "Superior Energy Retrieval [Prize Pack] #189",
+      "console_name": "Pokemon Paldea Evolved",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Prize Pack"
+      }
+    },
+    {
+      "query": "Pokemon Paldea Evolved Superior Energy Retrieval 189 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Paldea%20Evolved%20Superior%20Energy%20Retrieval%20189%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5287740",
+      "product_name": "Superior Energy Retrieval [Reverse Holo] #189",
+      "console_name": "Pokemon Paldea Evolved",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Reverse Holo"
+      }
+    },
+    {
+      "query": "Pokemon Paldea Evolved Superior Energy Retrieval 189 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Paldea%20Evolved%20Superior%20Energy%20Retrieval%20189%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5287478",
+      "product_name": "Superior Energy Retrieval #189",
+      "console_name": "Pokemon Paldea Evolved",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon Paldea Evolved Superior Energy Retrieval 189 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Paldea%20Evolved%20Superior%20Energy%20Retrieval%20189%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10909843",
+      "product_name": "Superior Energy Retrieval [Prize Pack Cosmos Holo] #189",
+      "console_name": "Pokemon Paldea Evolved",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Prize Pack Cosmos Holo"
+      }
+    },
+    {
+      "query": "Pokemon Paldea Evolved Superior Energy Retrieval 189 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Paldea%20Evolved%20Superior%20Energy%20Retrieval%20189%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5287566",
+      "product_name": "Superior Energy Retrieval #277",
+      "console_name": "Pokemon Paldea Evolved",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:277"
+      }
+    },
+    {
+      "query": "Pokemon Paldea Evolved Superior Energy Retrieval 189 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Paldea%20Evolved%20Superior%20Energy%20Retrieval%20189%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12031078",
+      "product_name": "Superior Energy Retrieval [Poke Ball] #141",
+      "console_name": "Pokemon Korean Terastal Festival ex",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:141"
+      }
+    },
+    {
+      "query": "Pokemon Paldea Evolved Superior Energy Retrieval 189 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Paldea%20Evolved%20Superior%20Energy%20Retrieval%20189%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7980334",
+      "product_name": "Superior Energy Retrieval [Poke Ball] #141",
+      "console_name": "Pokemon Japanese Terastal Festival",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:141"
+      }
+    },
+    {
+      "query": "Pokemon Paldea Evolved Superior Energy Retrieval 189 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Paldea%20Evolved%20Superior%20Energy%20Retrieval%20189%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "957272",
+      "product_name": "Superior Energy Retrieval [Reverse Holo] #103",
+      "console_name": "Pokemon Plasma Freeze",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:103"
+      }
+    },
+    {
+      "query": "Pokemon Paldea Evolved Superior Energy Retrieval 189 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Paldea%20Evolved%20Superior%20Energy%20Retrieval%20189%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12031077",
+      "product_name": "Superior Energy Retrieval [Master Ball] #141",
+      "console_name": "Pokemon Korean Terastal Festival ex",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:141"
+      }
+    },
+    {
+      "query": "Pokemon Paldea Evolved Superior Energy Retrieval 189 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Paldea%20Evolved%20Superior%20Energy%20Retrieval%20189%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11513743",
+      "product_name": "Superior Energy Retrieval [Evan Pavelski]",
+      "console_name": "Pokemon World Championships 2024",
+      "validation": {
+        "ok": false,
+        "reason": "api_product_name_pattern_not_supported"
+      }
+    },
+    {
+      "query": "Pokemon Paldea Evolved Superior Energy Retrieval 189 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Paldea%20Evolved%20Superior%20Energy%20Retrieval%20189%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12764646",
+      "product_name": "Superior Energy Retrieval [Jacob Van Wagner] #103",
+      "console_name": "Pokemon World Championships 2015",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:103"
+      }
+    },
+    {
+      "query": "Pokemon Paldea Evolved Superior Energy Retrieval 189 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Paldea%20Evolved%20Superior%20Energy%20Retrieval%20189%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5287479",
+      "product_name": "Jet Energy #190",
+      "console_name": "Pokemon Paldea Evolved",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:190"
+      }
+    },
+    {
+      "query": "Pokemon Paldea Evolved Superior Energy Retrieval 189 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Paldea%20Evolved%20Superior%20Energy%20Retrieval%20189%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10491821",
+      "product_name": "Tyranitar [Stamped] #135",
+      "console_name": "Pokemon Paldea Evolved",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:135"
+      }
+    },
+    {
+      "query": "Pokemon Paldea Evolved Superior Energy Retrieval 189 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Paldea%20Evolved%20Superior%20Energy%20Retrieval%20189%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6392495",
+      "product_name": "Tinkaton [Stamped] #105",
+      "console_name": "Pokemon Paldea Evolved",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:105"
+      }
+    },
+    {
+      "query": "Pokemon Paldea Evolved Superior Energy Retrieval 189 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Paldea%20Evolved%20Superior%20Energy%20Retrieval%20189%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5287480",
+      "product_name": "Luminous Energy #191",
+      "console_name": "Pokemon Paldea Evolved",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:191"
+      }
+    },
+    {
+      "query": "Pokemon Paldea Evolved Superior Energy Retrieval 189 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Paldea%20Evolved%20Superior%20Energy%20Retrieval%20189%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7322444",
+      "product_name": "Frigibax [Snowflake Stamp] #58",
+      "console_name": "Pokemon Paldea Evolved",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:58"
+      }
+    },
+    {
+      "query": "Pokemon Paldea Evolved Superior Energy Retrieval 189 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Paldea%20Evolved%20Superior%20Energy%20Retrieval%20189%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7322448",
+      "product_name": "Cetoddle [Snowflake Stamp] #53",
+      "console_name": "Pokemon Paldea Evolved",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:53"
+      }
+    },
+    {
+      "query": "Pokemon Paldea Evolved Superior Energy Retrieval 189 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Paldea%20Evolved%20Superior%20Energy%20Retrieval%20189%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "957157",
+      "product_name": "Superior Energy Retrieval #103",
+      "console_name": "Pokemon Plasma Freeze",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:103"
+      }
+    },
+    {
+      "query": "Pokemon Paldea Evolved Superior Energy Retrieval 189 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Paldea%20Evolved%20Superior%20Energy%20Retrieval%20189%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12240503",
+      "product_name": "Superior Energy Retrieval #64",
+      "console_name": "Pokemon Korean Triple Beat",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:64"
+      }
+    },
+    {
+      "query": "Pokemon Paldea Evolved Superior Energy Retrieval 189 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Paldea%20Evolved%20Superior%20Energy%20Retrieval%20189%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7980154",
+      "product_name": "Superior Energy Retrieval #141",
+      "console_name": "Pokemon Japanese Terastal Festival",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:141"
+      }
+    },
+    {
+      "query": "Pokemon Paldea Evolved Superior Energy Retrieval 189 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Paldea%20Evolved%20Superior%20Energy%20Retrieval%20189%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10909640",
+      "product_name": "Superior Energy Retrieval [Prize Pack] #189",
+      "console_name": "Pokemon Paldea Evolved",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Prize Pack"
+      }
+    },
+    {
+      "query": "Pokemon Paldea Evolved Superior Energy Retrieval 189 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Paldea%20Evolved%20Superior%20Energy%20Retrieval%20189%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5287740",
+      "product_name": "Superior Energy Retrieval [Reverse Holo] #189",
+      "console_name": "Pokemon Paldea Evolved",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Reverse Holo"
+      }
+    },
+    {
+      "query": "Pokemon Paldea Evolved Superior Energy Retrieval 189 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Paldea%20Evolved%20Superior%20Energy%20Retrieval%20189%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5287478",
+      "product_name": "Superior Energy Retrieval #189",
+      "console_name": "Pokemon Paldea Evolved",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon Paldea Evolved Superior Energy Retrieval 189 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Paldea%20Evolved%20Superior%20Energy%20Retrieval%20189%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10909843",
+      "product_name": "Superior Energy Retrieval [Prize Pack Cosmos Holo] #189",
+      "console_name": "Pokemon Paldea Evolved",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Prize Pack Cosmos Holo"
+      }
+    },
+    {
+      "query": "Pokemon Paldea Evolved Superior Energy Retrieval 189 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Paldea%20Evolved%20Superior%20Energy%20Retrieval%20189%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5287566",
+      "product_name": "Superior Energy Retrieval #277",
+      "console_name": "Pokemon Paldea Evolved",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:277"
+      }
+    },
+    {
+      "query": "Pokemon Paldea Evolved Superior Energy Retrieval 189 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Paldea%20Evolved%20Superior%20Energy%20Retrieval%20189%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12031078",
+      "product_name": "Superior Energy Retrieval [Poke Ball] #141",
+      "console_name": "Pokemon Korean Terastal Festival ex",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:141"
+      }
+    },
+    {
+      "query": "Pokemon Paldea Evolved Superior Energy Retrieval 189 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Paldea%20Evolved%20Superior%20Energy%20Retrieval%20189%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7980334",
+      "product_name": "Superior Energy Retrieval [Poke Ball] #141",
+      "console_name": "Pokemon Japanese Terastal Festival",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:141"
+      }
+    },
+    {
+      "query": "Pokemon Paldea Evolved Superior Energy Retrieval 189 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Paldea%20Evolved%20Superior%20Energy%20Retrieval%20189%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "957272",
+      "product_name": "Superior Energy Retrieval [Reverse Holo] #103",
+      "console_name": "Pokemon Plasma Freeze",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:103"
+      }
+    },
+    {
+      "query": "Pokemon Paldea Evolved Superior Energy Retrieval 189 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Paldea%20Evolved%20Superior%20Energy%20Retrieval%20189%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12031077",
+      "product_name": "Superior Energy Retrieval [Master Ball] #141",
+      "console_name": "Pokemon Korean Terastal Festival ex",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:141"
+      }
+    },
+    {
+      "query": "Pokemon Paldea Evolved Superior Energy Retrieval 189 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Paldea%20Evolved%20Superior%20Energy%20Retrieval%20189%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11513743",
+      "product_name": "Superior Energy Retrieval [Evan Pavelski]",
+      "console_name": "Pokemon World Championships 2024",
+      "validation": {
+        "ok": false,
+        "reason": "api_product_name_pattern_not_supported"
+      }
+    },
+    {
+      "query": "Pokemon Paldea Evolved Superior Energy Retrieval 189 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Paldea%20Evolved%20Superior%20Energy%20Retrieval%20189%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12764646",
+      "product_name": "Superior Energy Retrieval [Jacob Van Wagner] #103",
+      "console_name": "Pokemon World Championships 2015",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:103"
+      }
+    },
+    {
+      "query": "Pokemon Paldea Evolved Superior Energy Retrieval 189 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Paldea%20Evolved%20Superior%20Energy%20Retrieval%20189%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5287479",
+      "product_name": "Jet Energy #190",
+      "console_name": "Pokemon Paldea Evolved",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:190"
+      }
+    },
+    {
+      "query": "Pokemon Paldea Evolved Superior Energy Retrieval 189 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Paldea%20Evolved%20Superior%20Energy%20Retrieval%20189%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10491821",
+      "product_name": "Tyranitar [Stamped] #135",
+      "console_name": "Pokemon Paldea Evolved",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:135"
+      }
+    },
+    {
+      "query": "Pokemon Paldea Evolved Superior Energy Retrieval 189 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Paldea%20Evolved%20Superior%20Energy%20Retrieval%20189%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6392495",
+      "product_name": "Tinkaton [Stamped] #105",
+      "console_name": "Pokemon Paldea Evolved",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:105"
+      }
+    },
+    {
+      "query": "Pokemon Paldea Evolved Superior Energy Retrieval 189 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Paldea%20Evolved%20Superior%20Energy%20Retrieval%20189%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5287480",
+      "product_name": "Luminous Energy #191",
+      "console_name": "Pokemon Paldea Evolved",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:191"
+      }
+    },
+    {
+      "query": "Pokemon Paldea Evolved Superior Energy Retrieval 189 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Paldea%20Evolved%20Superior%20Energy%20Retrieval%20189%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7322444",
+      "product_name": "Frigibax [Snowflake Stamp] #58",
+      "console_name": "Pokemon Paldea Evolved",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:58"
+      }
+    },
+    {
+      "query": "Pokemon Paldea Evolved Superior Energy Retrieval 189 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Paldea%20Evolved%20Superior%20Energy%20Retrieval%20189%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7322448",
+      "product_name": "Cetoddle [Snowflake Stamp] #53",
+      "console_name": "Pokemon Paldea Evolved",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:53"
+      }
+    },
+    {
+      "query": "Pokemon Paldea Evolved Superior Energy Retrieval 189 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Paldea%20Evolved%20Superior%20Energy%20Retrieval%20189%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "957157",
+      "product_name": "Superior Energy Retrieval #103",
+      "console_name": "Pokemon Plasma Freeze",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:103"
+      }
+    },
+    {
+      "query": "Pokemon Paldea Evolved Superior Energy Retrieval 189 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Paldea%20Evolved%20Superior%20Energy%20Retrieval%20189%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12240503",
+      "product_name": "Superior Energy Retrieval #64",
+      "console_name": "Pokemon Korean Triple Beat",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:64"
+      }
+    },
+    {
+      "query": "Pokemon Paldea Evolved Superior Energy Retrieval 189 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Paldea%20Evolved%20Superior%20Energy%20Retrieval%20189%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7980154",
+      "product_name": "Superior Energy Retrieval #141",
+      "console_name": "Pokemon Japanese Terastal Festival",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:141"
+      }
+    }
+  ],
+  "source_lane": "pricecharting_api"
+}

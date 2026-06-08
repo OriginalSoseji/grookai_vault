@@ -1,0 +1,48 @@
+{
+  "fixture_version": "VERIFIED_MASTER_SET_INDEX_V1_HUMAN_SOURCE_FIXTURE_GENERATED",
+  "source_key": "cardtrader_finish_swshp",
+  "source_kind": "marketplace_checklist",
+  "source_url": "https://www.cardtrader.com/en/manasearch/5/blueprints.json",
+  "source_status": "available_generated",
+  "set_key": "swshp",
+  "set_name": "SWSH Black Star Promos",
+  "retrieved_at": "2026-06-08T02:53:52.187Z",
+  "raw_snapshot_ref": "generated_fixture:cardtrader:swshp:2026-06-08T02:53:52.187Z",
+  "generation_note": "Generated from CardTrader Pokemon blueprint index. Exact card-number/name/finish matches only.",
+  "records": [
+    {
+      "source_key": "cardtrader_blueprint_index",
+      "source_kind": "marketplace_checklist",
+      "source_url": "https://www.cardtrader.com/en/cards/275752-professor-burnet-stamped-promo-swsh-167-swsh-black-star-promos",
+      "set_key": "swshp",
+      "set_name": "SWSH Black Star Promos",
+      "card_number": "SWSH167",
+      "card_name": "Professor Burnet",
+      "finish_key": "stamped",
+      "rarity": null,
+      "evidence_type": "finish_presence",
+      "evidence_label": "CardTrader blueprint row Professor Burnet - Stamped Promo | SWSH 167",
+      "language": "en",
+      "retrieved_at": "2026-06-08T02:53:52.187Z",
+      "raw_snapshot_ref": "cardtrader_blueprint:275752-professor-burnet-stamped-promo-swsh-167-swsh-black-star-promos",
+      "notes": "Generated only from an exact CardTrader Pokemon blueprint match on set, card number, card name, and finish label."
+    },
+    {
+      "source_key": "cardtrader_blueprint_index",
+      "source_kind": "marketplace_checklist",
+      "source_url": "https://www.cardtrader.com/en/cards/236518-champions-festival-staff-promo-swsh296-swsh-black-star-promos",
+      "set_key": "swshp",
+      "set_name": "SWSH Black Star Promos",
+      "card_number": "SWSH296",
+      "card_name": "Champions Festival",
+      "finish_key": "normal",
+      "rarity": null,
+      "evidence_type": "finish_presence",
+      "evidence_label": "CardTrader blueprint row Champions Festival - STAFF Promo | SWSH296",
+      "language": "en",
+      "retrieved_at": "2026-06-08T02:53:52.187Z",
+      "raw_snapshot_ref": "cardtrader_blueprint:236518-champions-festival-staff-promo-swsh296-swsh-black-star-promos",
+      "notes": "Generated only from an exact CardTrader Pokemon blueprint match on set, card number, card name, and finish label."
+    }
+  ]
+}

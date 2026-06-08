@@ -1,0 +1,549 @@
+{
+  "status": "api_no_validated_match",
+  "fact": {
+    "gap_type": "finish_second_source_needed",
+    "fact_type": "printing_finish",
+    "set_key": "bw5",
+    "set_name": "Dark Explorers",
+    "card_number": "98",
+    "card_name": "Professor Juniper",
+    "finish_key": "stamped",
+    "status": "human_source_verified",
+    "sources": [
+      "thepricedex_price_list"
+    ],
+    "source_authorities": [
+      "thepricedex.com"
+    ],
+    "source_kinds": [
+      "marketplace_checklist"
+    ],
+    "evidence_urls": [
+      "https://www.thepricedex.com/set/bw5/dark-explorers/price-list"
+    ],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "attempts": [
+    {
+      "query": "Pokemon Dark Explorers Professor Juniper 98 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Professor%20Juniper%2098%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "956144",
+      "product_name": "Professor Juniper #98",
+      "console_name": "Pokemon Dark Explorers",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Professor Juniper 98 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Professor%20Juniper%2098%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8132172",
+      "product_name": "Professor Juniper [Professor Program] #98",
+      "console_name": "Pokemon Dark Explorers",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Professor Program"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Professor Juniper 98 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Professor%20Juniper%2098%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "956250",
+      "product_name": "Professor Juniper [Reverse Holo] #98",
+      "console_name": "Pokemon Dark Explorers",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Reverse Holo"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Professor Juniper 98 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Professor%20Juniper%2098%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12119682",
+      "product_name": "Professor Juniper [Ian Whiton] #98",
+      "console_name": "Pokemon World Championships 2013",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon World Championships 2013"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Professor Juniper 98 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Professor%20Juniper%2098%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12228835",
+      "product_name": "Professor Juniper [Shuto Itagaki] #98",
+      "console_name": "Pokemon World Championships 2012",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon World Championships 2012"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Professor Juniper 98 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Professor%20Juniper%2098%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12414624",
+      "product_name": "Professor's Research: Professor Juniper #68",
+      "console_name": "Pokemon Chinese CS2.5C",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:68"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Professor Juniper 98 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Professor%20Juniper%2098%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9647327",
+      "product_name": "Professor's Research: Professor Juniper #84",
+      "console_name": "Pokemon Japanese Black Bolt",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:84"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Professor Juniper 98 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Professor%20Juniper%2098%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10031695",
+      "product_name": "Professor's Research: Professor Juniper #85",
+      "console_name": "Pokemon Black Bolt",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:85"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Professor Juniper 98 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Professor%20Juniper%2098%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9363404",
+      "product_name": "Professor Juniper [Professor Program] #101",
+      "console_name": "Pokemon Black & White",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:101"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Professor Juniper 98 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Professor%20Juniper%2098%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12511030",
+      "product_name": "Professor's Research: Professor Juniper [Professor Program] #85",
+      "console_name": "Pokemon Black Bolt",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:85"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Professor Juniper 98 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Professor%20Juniper%2098%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10031590",
+      "product_name": "Professor's Research: Professor Juniper [Reverse] #85",
+      "console_name": "Pokemon Black Bolt",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:85"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Professor Juniper 98 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Professor%20Juniper%2098%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "806494",
+      "product_name": "Professor Juniper [Reverse Holo] #101",
+      "console_name": "Pokemon Black & White",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:101"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Professor Juniper 98 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Professor%20Juniper%2098%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "957485",
+      "product_name": "Professor Juniper [Reverse Holo] #84",
+      "console_name": "Pokemon Plasma Blast",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:84"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Professor Juniper 98 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Professor%20Juniper%2098%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3506874",
+      "product_name": "Professor Juniper [1st Edition] #53",
+      "console_name": "Pokemon Japanese Black Collection",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:53"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Professor Juniper 98 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Professor%20Juniper%2098%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9647531",
+      "product_name": "Professor's Research: Professor Juniper [Poke Ball] #84",
+      "console_name": "Pokemon Japanese Black Bolt",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:84"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Professor Juniper 98 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Professor%20Juniper%2098%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9861823",
+      "product_name": "Professor's Research: Professor Juniper [Master Ball] #84",
+      "console_name": "Pokemon Japanese Black Bolt",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:84"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Professor Juniper 98 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Professor%20Juniper%2098%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10031886",
+      "product_name": "Professor's Research: Professor Juniper [Poke Ball] #85",
+      "console_name": "Pokemon Black Bolt",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:85"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Professor Juniper 98 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Professor%20Juniper%2098%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10803044",
+      "product_name": "Professor Juniper [1st Edition] #55",
+      "console_name": "Pokemon Japanese Thunder Knuckle",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:55"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Professor Juniper 98 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Professor%20Juniper%2098%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12764472",
+      "product_name": "Professor Juniper [Jacob Van Wagner] #84",
+      "console_name": "Pokemon World Championships 2015",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:84"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Professor Juniper 98 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Professor%20Juniper%2098%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12764470",
+      "product_name": "Professor Juniper [Patrick Martinez] #84",
+      "console_name": "Pokemon World Championships 2015",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:84"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Professor Juniper 98 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Professor%20Juniper%2098%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "956144",
+      "product_name": "Professor Juniper #98",
+      "console_name": "Pokemon Dark Explorers",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Professor Juniper 98 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Professor%20Juniper%2098%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8132172",
+      "product_name": "Professor Juniper [Professor Program] #98",
+      "console_name": "Pokemon Dark Explorers",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Professor Program"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Professor Juniper 98 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Professor%20Juniper%2098%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "956250",
+      "product_name": "Professor Juniper [Reverse Holo] #98",
+      "console_name": "Pokemon Dark Explorers",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Reverse Holo"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Professor Juniper 98 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Professor%20Juniper%2098%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12119682",
+      "product_name": "Professor Juniper [Ian Whiton] #98",
+      "console_name": "Pokemon World Championships 2013",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon World Championships 2013"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Professor Juniper 98 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Professor%20Juniper%2098%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12228835",
+      "product_name": "Professor Juniper [Shuto Itagaki] #98",
+      "console_name": "Pokemon World Championships 2012",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon World Championships 2012"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Professor Juniper 98 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Professor%20Juniper%2098%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12414624",
+      "product_name": "Professor's Research: Professor Juniper #68",
+      "console_name": "Pokemon Chinese CS2.5C",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:68"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Professor Juniper 98 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Professor%20Juniper%2098%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9647327",
+      "product_name": "Professor's Research: Professor Juniper #84",
+      "console_name": "Pokemon Japanese Black Bolt",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:84"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Professor Juniper 98 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Professor%20Juniper%2098%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10031695",
+      "product_name": "Professor's Research: Professor Juniper #85",
+      "console_name": "Pokemon Black Bolt",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:85"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Professor Juniper 98 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Professor%20Juniper%2098%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9363404",
+      "product_name": "Professor Juniper [Professor Program] #101",
+      "console_name": "Pokemon Black & White",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:101"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Professor Juniper 98 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Professor%20Juniper%2098%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12511030",
+      "product_name": "Professor's Research: Professor Juniper [Professor Program] #85",
+      "console_name": "Pokemon Black Bolt",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:85"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Professor Juniper 98 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Professor%20Juniper%2098%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10031590",
+      "product_name": "Professor's Research: Professor Juniper [Reverse] #85",
+      "console_name": "Pokemon Black Bolt",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:85"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Professor Juniper 98 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Professor%20Juniper%2098%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "806494",
+      "product_name": "Professor Juniper [Reverse Holo] #101",
+      "console_name": "Pokemon Black & White",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:101"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Professor Juniper 98 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Professor%20Juniper%2098%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "957485",
+      "product_name": "Professor Juniper [Reverse Holo] #84",
+      "console_name": "Pokemon Plasma Blast",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:84"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Professor Juniper 98 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Professor%20Juniper%2098%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3506874",
+      "product_name": "Professor Juniper [1st Edition] #53",
+      "console_name": "Pokemon Japanese Black Collection",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:53"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Professor Juniper 98 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Professor%20Juniper%2098%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9647531",
+      "product_name": "Professor's Research: Professor Juniper [Poke Ball] #84",
+      "console_name": "Pokemon Japanese Black Bolt",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:84"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Professor Juniper 98 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Professor%20Juniper%2098%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9861823",
+      "product_name": "Professor's Research: Professor Juniper [Master Ball] #84",
+      "console_name": "Pokemon Japanese Black Bolt",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:84"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Professor Juniper 98 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Professor%20Juniper%2098%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10031886",
+      "product_name": "Professor's Research: Professor Juniper [Poke Ball] #85",
+      "console_name": "Pokemon Black Bolt",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:85"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Professor Juniper 98 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Professor%20Juniper%2098%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10803044",
+      "product_name": "Professor Juniper [1st Edition] #55",
+      "console_name": "Pokemon Japanese Thunder Knuckle",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:55"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Professor Juniper 98 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Professor%20Juniper%2098%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12764472",
+      "product_name": "Professor Juniper [Jacob Van Wagner] #84",
+      "console_name": "Pokemon World Championships 2015",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:84"
+      }
+    },
+    {
+      "query": "Pokemon Dark Explorers Professor Juniper 98 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dark%20Explorers%20Professor%20Juniper%2098%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12764470",
+      "product_name": "Professor Juniper [Patrick Martinez] #84",
+      "console_name": "Pokemon World Championships 2015",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:84"
+      }
+    }
+  ],
+  "source_lane": "pricecharting_api"
+}

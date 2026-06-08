@@ -1,0 +1,549 @@
+{
+  "status": "api_no_validated_match",
+  "fact": {
+    "gap_type": "finish_second_source_needed",
+    "fact_type": "printing_finish",
+    "set_key": "pl3",
+    "set_name": "Supreme Victors",
+    "card_number": "136",
+    "card_name": "Cynthia's Guidance",
+    "finish_key": "stamped",
+    "status": "human_source_verified",
+    "sources": [
+      "thepricedex_price_list"
+    ],
+    "source_authorities": [
+      "thepricedex.com"
+    ],
+    "source_kinds": [
+      "marketplace_checklist"
+    ],
+    "evidence_urls": [
+      "https://www.thepricedex.com/set/pl3/supreme-victors/price-list"
+    ],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "attempts": [
+    {
+      "query": "Pokemon Supreme Victors Cynthia's Guidance 136 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Supreme%20Victors%20Cynthia's%20Guidance%20136%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "1287184",
+      "product_name": "Cynthia's Guidance #136",
+      "console_name": "Pokemon Supreme Victors",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon Supreme Victors Cynthia's Guidance 136 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Supreme%20Victors%20Cynthia's%20Guidance%20136%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "1287337",
+      "product_name": "Cynthia's Guidance [Reverse Holo] #136",
+      "console_name": "Pokemon Supreme Victors",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Reverse Holo"
+      }
+    },
+    {
+      "query": "Pokemon Supreme Victors Cynthia's Guidance 136 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Supreme%20Victors%20Cynthia's%20Guidance%20136%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6777958",
+      "product_name": "Cynthia's Guidance [Crosshatch Holo] #136",
+      "console_name": "Pokemon Supreme Victors",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Crosshatch Holo"
+      }
+    },
+    {
+      "query": "Pokemon Supreme Victors Cynthia's Guidance 136 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Supreme%20Victors%20Cynthia's%20Guidance%20136%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3459823",
+      "product_name": "Cynthia's Guidance #92",
+      "console_name": "Pokemon Japanese Beat of the Frontier",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:92"
+      }
+    },
+    {
+      "query": "Pokemon Supreme Victors Cynthia's Guidance 136 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Supreme%20Victors%20Cynthia's%20Guidance%20136%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12649614",
+      "product_name": "Cynthia's Guidance #15",
+      "console_name": "Pokemon Japanese Garchomp vs Charizard SP",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:15"
+      }
+    },
+    {
+      "query": "Pokemon Supreme Victors Cynthia's Guidance 136 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Supreme%20Victors%20Cynthia's%20Guidance%20136%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6591102",
+      "product_name": "Cynthia's Guidance [1st Edition] #92",
+      "console_name": "Pokemon Japanese Beat of the Frontier",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:92"
+      }
+    },
+    {
+      "query": "Pokemon Supreme Victors Cynthia's Guidance 136 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Supreme%20Victors%20Cynthia's%20Guidance%20136%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "1287172",
+      "product_name": "Seel #125",
+      "console_name": "Pokemon Supreme Victors",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:125"
+      }
+    },
+    {
+      "query": "Pokemon Supreme Victors Cynthia's Guidance 136 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Supreme%20Victors%20Cynthia's%20Guidance%20136%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "1287153",
+      "product_name": "Gible #106",
+      "console_name": "Pokemon Supreme Victors",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:106"
+      }
+    },
+    {
+      "query": "Pokemon Supreme Victors Cynthia's Guidance 136 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Supreme%20Victors%20Cynthia's%20Guidance%20136%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "1287149",
+      "product_name": "Doduo #102",
+      "console_name": "Pokemon Supreme Victors",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:102"
+      }
+    },
+    {
+      "query": "Pokemon Supreme Victors Cynthia's Guidance 136 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Supreme%20Victors%20Cynthia's%20Guidance%20136%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "1287181",
+      "product_name": "Zubat #133",
+      "console_name": "Pokemon Supreme Victors",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:133"
+      }
+    },
+    {
+      "query": "Pokemon Supreme Victors Cynthia's Guidance 136 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Supreme%20Victors%20Cynthia's%20Guidance%20136%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "1287174",
+      "product_name": "Shinx #126",
+      "console_name": "Pokemon Supreme Victors",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:126"
+      }
+    },
+    {
+      "query": "Pokemon Supreme Victors Cynthia's Guidance 136 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Supreme%20Victors%20Cynthia's%20Guidance%20136%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "1287201",
+      "product_name": "Yanma #SH9",
+      "console_name": "Pokemon Supreme Victors",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:SH9"
+      }
+    },
+    {
+      "query": "Pokemon Supreme Victors Cynthia's Guidance 136 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Supreme%20Victors%20Cynthia's%20Guidance%20136%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "1287118",
+      "product_name": "Minun #71",
+      "console_name": "Pokemon Supreme Victors",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:71"
+      }
+    },
+    {
+      "query": "Pokemon Supreme Victors Cynthia's Guidance 136 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Supreme%20Victors%20Cynthia's%20Guidance%20136%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "1287121",
+      "product_name": "Numel #74",
+      "console_name": "Pokemon Supreme Victors",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:74"
+      }
+    },
+    {
+      "query": "Pokemon Supreme Victors Cynthia's Guidance 136 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Supreme%20Victors%20Cynthia's%20Guidance%20136%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "1287129",
+      "product_name": "Rotom #82",
+      "console_name": "Pokemon Supreme Victors",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:82"
+      }
+    },
+    {
+      "query": "Pokemon Supreme Victors Cynthia's Guidance 136 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Supreme%20Victors%20Cynthia's%20Guidance%20136%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "1287135",
+      "product_name": "Yanma #88",
+      "console_name": "Pokemon Supreme Victors",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:88"
+      }
+    },
+    {
+      "query": "Pokemon Supreme Victors Cynthia's Guidance 136 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Supreme%20Victors%20Cynthia's%20Guidance%20136%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "1287166",
+      "product_name": "Paras #119",
+      "console_name": "Pokemon Supreme Victors",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:119"
+      }
+    },
+    {
+      "query": "Pokemon Supreme Victors Cynthia's Guidance 136 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Supreme%20Victors%20Cynthia's%20Guidance%20136%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "1287137",
+      "product_name": "Beldum #90",
+      "console_name": "Pokemon Supreme Victors",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:90"
+      }
+    },
+    {
+      "query": "Pokemon Supreme Victors Cynthia's Guidance 136 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Supreme%20Victors%20Cynthia's%20Guidance%20136%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "1287139",
+      "product_name": "Buizel #92",
+      "console_name": "Pokemon Supreme Victors",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:92"
+      }
+    },
+    {
+      "query": "Pokemon Supreme Victors Cynthia's Guidance 136 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Supreme%20Victors%20Cynthia's%20Guidance%20136%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "1287142",
+      "product_name": "Chatot #95",
+      "console_name": "Pokemon Supreme Victors",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:95"
+      }
+    },
+    {
+      "query": "Pokemon Supreme Victors Cynthia's Guidance 136 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Supreme%20Victors%20Cynthia's%20Guidance%20136%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "1287184",
+      "product_name": "Cynthia's Guidance #136",
+      "console_name": "Pokemon Supreme Victors",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon Supreme Victors Cynthia's Guidance 136 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Supreme%20Victors%20Cynthia's%20Guidance%20136%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "1287337",
+      "product_name": "Cynthia's Guidance [Reverse Holo] #136",
+      "console_name": "Pokemon Supreme Victors",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Reverse Holo"
+      }
+    },
+    {
+      "query": "Pokemon Supreme Victors Cynthia's Guidance 136 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Supreme%20Victors%20Cynthia's%20Guidance%20136%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6777958",
+      "product_name": "Cynthia's Guidance [Crosshatch Holo] #136",
+      "console_name": "Pokemon Supreme Victors",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Crosshatch Holo"
+      }
+    },
+    {
+      "query": "Pokemon Supreme Victors Cynthia's Guidance 136 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Supreme%20Victors%20Cynthia's%20Guidance%20136%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3459823",
+      "product_name": "Cynthia's Guidance #92",
+      "console_name": "Pokemon Japanese Beat of the Frontier",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:92"
+      }
+    },
+    {
+      "query": "Pokemon Supreme Victors Cynthia's Guidance 136 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Supreme%20Victors%20Cynthia's%20Guidance%20136%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12649614",
+      "product_name": "Cynthia's Guidance #15",
+      "console_name": "Pokemon Japanese Garchomp vs Charizard SP",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:15"
+      }
+    },
+    {
+      "query": "Pokemon Supreme Victors Cynthia's Guidance 136 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Supreme%20Victors%20Cynthia's%20Guidance%20136%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6591102",
+      "product_name": "Cynthia's Guidance [1st Edition] #92",
+      "console_name": "Pokemon Japanese Beat of the Frontier",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:92"
+      }
+    },
+    {
+      "query": "Pokemon Supreme Victors Cynthia's Guidance 136 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Supreme%20Victors%20Cynthia's%20Guidance%20136%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "1287172",
+      "product_name": "Seel #125",
+      "console_name": "Pokemon Supreme Victors",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:125"
+      }
+    },
+    {
+      "query": "Pokemon Supreme Victors Cynthia's Guidance 136 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Supreme%20Victors%20Cynthia's%20Guidance%20136%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "1287153",
+      "product_name": "Gible #106",
+      "console_name": "Pokemon Supreme Victors",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:106"
+      }
+    },
+    {
+      "query": "Pokemon Supreme Victors Cynthia's Guidance 136 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Supreme%20Victors%20Cynthia's%20Guidance%20136%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "1287149",
+      "product_name": "Doduo #102",
+      "console_name": "Pokemon Supreme Victors",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:102"
+      }
+    },
+    {
+      "query": "Pokemon Supreme Victors Cynthia's Guidance 136 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Supreme%20Victors%20Cynthia's%20Guidance%20136%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "1287181",
+      "product_name": "Zubat #133",
+      "console_name": "Pokemon Supreme Victors",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:133"
+      }
+    },
+    {
+      "query": "Pokemon Supreme Victors Cynthia's Guidance 136 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Supreme%20Victors%20Cynthia's%20Guidance%20136%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "1287174",
+      "product_name": "Shinx #126",
+      "console_name": "Pokemon Supreme Victors",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:126"
+      }
+    },
+    {
+      "query": "Pokemon Supreme Victors Cynthia's Guidance 136 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Supreme%20Victors%20Cynthia's%20Guidance%20136%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "1287201",
+      "product_name": "Yanma #SH9",
+      "console_name": "Pokemon Supreme Victors",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:SH9"
+      }
+    },
+    {
+      "query": "Pokemon Supreme Victors Cynthia's Guidance 136 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Supreme%20Victors%20Cynthia's%20Guidance%20136%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "1287118",
+      "product_name": "Minun #71",
+      "console_name": "Pokemon Supreme Victors",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:71"
+      }
+    },
+    {
+      "query": "Pokemon Supreme Victors Cynthia's Guidance 136 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Supreme%20Victors%20Cynthia's%20Guidance%20136%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "1287121",
+      "product_name": "Numel #74",
+      "console_name": "Pokemon Supreme Victors",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:74"
+      }
+    },
+    {
+      "query": "Pokemon Supreme Victors Cynthia's Guidance 136 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Supreme%20Victors%20Cynthia's%20Guidance%20136%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "1287129",
+      "product_name": "Rotom #82",
+      "console_name": "Pokemon Supreme Victors",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:82"
+      }
+    },
+    {
+      "query": "Pokemon Supreme Victors Cynthia's Guidance 136 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Supreme%20Victors%20Cynthia's%20Guidance%20136%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "1287135",
+      "product_name": "Yanma #88",
+      "console_name": "Pokemon Supreme Victors",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:88"
+      }
+    },
+    {
+      "query": "Pokemon Supreme Victors Cynthia's Guidance 136 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Supreme%20Victors%20Cynthia's%20Guidance%20136%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "1287166",
+      "product_name": "Paras #119",
+      "console_name": "Pokemon Supreme Victors",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:119"
+      }
+    },
+    {
+      "query": "Pokemon Supreme Victors Cynthia's Guidance 136 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Supreme%20Victors%20Cynthia's%20Guidance%20136%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "1287137",
+      "product_name": "Beldum #90",
+      "console_name": "Pokemon Supreme Victors",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:90"
+      }
+    },
+    {
+      "query": "Pokemon Supreme Victors Cynthia's Guidance 136 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Supreme%20Victors%20Cynthia's%20Guidance%20136%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "1287139",
+      "product_name": "Buizel #92",
+      "console_name": "Pokemon Supreme Victors",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:92"
+      }
+    },
+    {
+      "query": "Pokemon Supreme Victors Cynthia's Guidance 136 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Supreme%20Victors%20Cynthia's%20Guidance%20136%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "1287142",
+      "product_name": "Chatot #95",
+      "console_name": "Pokemon Supreme Victors",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:95"
+      }
+    }
+  ],
+  "source_lane": "pricecharting_api"
+}

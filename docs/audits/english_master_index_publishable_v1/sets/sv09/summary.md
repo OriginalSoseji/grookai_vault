@@ -1,0 +1,20 @@
+# Journey Together
+
+Status: publishable_complete
+
+## Summary
+
+- set_key: sv09
+- cards: 190/190
+- printings: 368/368
+- completion_score: 100
+
+## Finish Counts
+
+| finish_key | count |
+| --- | --- |
+| cosmos | 6 |
+| holo | 63 |
+| normal | 129 |
+| reverse | 143 |
+| stamped | 27 |

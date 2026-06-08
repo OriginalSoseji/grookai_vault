@@ -1,0 +1,549 @@
+{
+  "status": "api_no_validated_match",
+  "fact": {
+    "gap_type": "finish_second_source_needed",
+    "fact_type": "printing_finish",
+    "set_key": "sm7.5",
+    "set_name": "Dragon Majesty",
+    "card_number": "3",
+    "card_name": "Charizard",
+    "finish_key": "stamped",
+    "status": "human_source_verified",
+    "sources": [
+      "thepricedex_price_list"
+    ],
+    "source_authorities": [
+      "thepricedex.com"
+    ],
+    "source_kinds": [
+      "marketplace_checklist"
+    ],
+    "evidence_urls": [
+      "https://www.thepricedex.com/set/sm75/dragon-majesty/price-list"
+    ],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "attempts": [
+    {
+      "query": "Pokemon Dragon Majesty Charizard 3 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Majesty%20Charizard%203%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4918505",
+      "product_name": "Charizard [Holo] #3",
+      "console_name": "Pokemon Dragon Majesty",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Holo"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Majesty Charizard 3 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Majesty%20Charizard%203%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5063584",
+      "product_name": "Charizard #3",
+      "console_name": "Pokemon Dragon Majesty",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Majesty Charizard 3 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Majesty%20Charizard%203%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "962315",
+      "product_name": "Charizard [Reverse Holo] #3",
+      "console_name": "Pokemon Dragon Majesty",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Reverse Holo"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Majesty Charizard 3 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Majesty%20Charizard%203%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4166491",
+      "product_name": "Dratini [Stamped] #35",
+      "console_name": "Pokemon Dragon Majesty",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:35"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Majesty Charizard 3 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Majesty%20Charizard%203%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3445477",
+      "product_name": "Charizard #3",
+      "console_name": "Pokemon Japanese Dragon Storm",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon Japanese Dragon Storm"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Majesty Charizard 3 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Majesty%20Charizard%203%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "13077537",
+      "product_name": "Lance's Charizard V [25th Anniversary Stamped] #123/S-P",
+      "console_name": "Pokemon Chinese Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:123/S-P"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Majesty Charizard 3 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Majesty%20Charizard%203%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "962276",
+      "product_name": "Bagon #42",
+      "console_name": "Pokemon Dragon Majesty",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:42"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Majesty Charizard 3 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Majesty%20Charizard%203%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4175809",
+      "product_name": "Reset Stamp #16",
+      "console_name": "Pokemon Japanese Charizard VMAX Starter Set",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:16"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Majesty Charizard 3 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Majesty%20Charizard%203%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "962246",
+      "product_name": "Litten #12",
+      "console_name": "Pokemon Dragon Majesty",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:12"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Majesty Charizard 3 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Majesty%20Charizard%203%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "962273",
+      "product_name": "Flygon #39",
+      "console_name": "Pokemon Dragon Majesty",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:39"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Majesty Charizard 3 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Majesty%20Charizard%203%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "962280",
+      "product_name": "Zekrom #46",
+      "console_name": "Pokemon Dragon Majesty",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:46"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Majesty Charizard 3 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Majesty%20Charizard%203%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "962281",
+      "product_name": "Kyurem #47",
+      "console_name": "Pokemon Dragon Majesty",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:47"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Majesty Charizard 3 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Majesty%20Charizard%203%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "962298",
+      "product_name": "Zinnia #64",
+      "console_name": "Pokemon Dragon Majesty",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:64"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Majesty Charizard 3 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Majesty%20Charizard%203%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "962251",
+      "product_name": "Seadra #17",
+      "console_name": "Pokemon Dragon Majesty",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:17"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Majesty Charizard 3 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Majesty%20Charizard%203%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "962249",
+      "product_name": "Horsea #15",
+      "console_name": "Pokemon Dragon Majesty",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:15"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Majesty Charizard 3 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Majesty%20Charizard%203%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "962250",
+      "product_name": "Horsea #16",
+      "console_name": "Pokemon Dragon Majesty",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:16"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Majesty Charizard 3 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Majesty%20Charizard%203%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "962259",
+      "product_name": "Wooper #25",
+      "console_name": "Pokemon Dragon Majesty",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:25"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Majesty Charizard 3 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Majesty%20Charizard%203%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "962264",
+      "product_name": "Phione #30",
+      "console_name": "Pokemon Dragon Majesty",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:30"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Majesty Charizard 3 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Majesty%20Charizard%203%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "962285",
+      "product_name": "Drampa #51",
+      "console_name": "Pokemon Dragon Majesty",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:51"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Majesty Charizard 3 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Majesty%20Charizard%203%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "962291",
+      "product_name": "Swablu #57",
+      "console_name": "Pokemon Dragon Majesty",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:57"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Majesty Charizard 3 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Majesty%20Charizard%203%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4918505",
+      "product_name": "Charizard [Holo] #3",
+      "console_name": "Pokemon Dragon Majesty",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Holo"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Majesty Charizard 3 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Majesty%20Charizard%203%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5063584",
+      "product_name": "Charizard #3",
+      "console_name": "Pokemon Dragon Majesty",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Majesty Charizard 3 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Majesty%20Charizard%203%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "962315",
+      "product_name": "Charizard [Reverse Holo] #3",
+      "console_name": "Pokemon Dragon Majesty",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Reverse Holo"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Majesty Charizard 3 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Majesty%20Charizard%203%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4166491",
+      "product_name": "Dratini [Stamped] #35",
+      "console_name": "Pokemon Dragon Majesty",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:35"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Majesty Charizard 3 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Majesty%20Charizard%203%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3445477",
+      "product_name": "Charizard #3",
+      "console_name": "Pokemon Japanese Dragon Storm",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon Japanese Dragon Storm"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Majesty Charizard 3 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Majesty%20Charizard%203%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "13077537",
+      "product_name": "Lance's Charizard V [25th Anniversary Stamped] #123/S-P",
+      "console_name": "Pokemon Chinese Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:123/S-P"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Majesty Charizard 3 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Majesty%20Charizard%203%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "962276",
+      "product_name": "Bagon #42",
+      "console_name": "Pokemon Dragon Majesty",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:42"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Majesty Charizard 3 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Majesty%20Charizard%203%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4175809",
+      "product_name": "Reset Stamp #16",
+      "console_name": "Pokemon Japanese Charizard VMAX Starter Set",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:16"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Majesty Charizard 3 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Majesty%20Charizard%203%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "962246",
+      "product_name": "Litten #12",
+      "console_name": "Pokemon Dragon Majesty",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:12"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Majesty Charizard 3 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Majesty%20Charizard%203%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "962273",
+      "product_name": "Flygon #39",
+      "console_name": "Pokemon Dragon Majesty",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:39"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Majesty Charizard 3 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Majesty%20Charizard%203%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "962280",
+      "product_name": "Zekrom #46",
+      "console_name": "Pokemon Dragon Majesty",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:46"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Majesty Charizard 3 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Majesty%20Charizard%203%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "962281",
+      "product_name": "Kyurem #47",
+      "console_name": "Pokemon Dragon Majesty",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:47"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Majesty Charizard 3 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Majesty%20Charizard%203%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "962298",
+      "product_name": "Zinnia #64",
+      "console_name": "Pokemon Dragon Majesty",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:64"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Majesty Charizard 3 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Majesty%20Charizard%203%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "962251",
+      "product_name": "Seadra #17",
+      "console_name": "Pokemon Dragon Majesty",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:17"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Majesty Charizard 3 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Majesty%20Charizard%203%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "962249",
+      "product_name": "Horsea #15",
+      "console_name": "Pokemon Dragon Majesty",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:15"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Majesty Charizard 3 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Majesty%20Charizard%203%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "962250",
+      "product_name": "Horsea #16",
+      "console_name": "Pokemon Dragon Majesty",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:16"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Majesty Charizard 3 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Majesty%20Charizard%203%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "962259",
+      "product_name": "Wooper #25",
+      "console_name": "Pokemon Dragon Majesty",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:25"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Majesty Charizard 3 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Majesty%20Charizard%203%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "962264",
+      "product_name": "Phione #30",
+      "console_name": "Pokemon Dragon Majesty",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:30"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Majesty Charizard 3 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Majesty%20Charizard%203%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "962285",
+      "product_name": "Drampa #51",
+      "console_name": "Pokemon Dragon Majesty",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:51"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Majesty Charizard 3 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Majesty%20Charizard%203%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "962291",
+      "product_name": "Swablu #57",
+      "console_name": "Pokemon Dragon Majesty",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:57"
+      }
+    }
+  ],
+  "source_lane": "pricecharting_api"
+}

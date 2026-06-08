@@ -1,0 +1,36 @@
+{
+  "status": "no_validated_match",
+  "fact": {
+    "gap_type": "finish_human_checklist_evidence_needed",
+    "fact_type": "printing_finish",
+    "set_key": "ex16",
+    "set_name": "Power Keepers",
+    "card_number": "101",
+    "card_name": "Jolteon Star",
+    "finish_key": "holo",
+    "status": "candidate_unconfirmed",
+    "sources": [
+      "tcgdex"
+    ],
+    "source_authorities": [
+      "api.tcgdex.net"
+    ],
+    "source_kinds": [
+      "structured_api"
+    ],
+    "evidence_urls": [],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "attempts": [
+    {
+      "query": "Pokemon Power Keepers Jolteon Star 101 holo",
+      "url": "https://www.pricecharting.com/search-products?q=Pokemon%20Power%20Keepers%20Jolteon%20Star%20101%20holo&type=prices",
+      "error": "Fetch failed 403 Forbidden: https://www.pricecharting.com/search-products?q=Pokemon%20Power%20Keepers%20Jolteon%20Star%20101%20holo&type=prices"
+    },
+    {
+      "query": "Pokemon Power Keepers Jolteon Star 101 holofoil",
+      "url": "https://www.pricecharting.com/search-products?q=Pokemon%20Power%20Keepers%20Jolteon%20Star%20101%20holofoil&type=prices",
+      "error": "Fetch failed 403 Forbidden: https://www.pricecharting.com/search-products?q=Pokemon%20Power%20Keepers%20Jolteon%20Star%20101%20holofoil&type=prices"
+    }
+  ]
+}

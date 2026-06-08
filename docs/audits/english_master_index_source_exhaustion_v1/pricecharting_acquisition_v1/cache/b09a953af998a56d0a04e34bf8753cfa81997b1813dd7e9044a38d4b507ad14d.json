@@ -1,0 +1,549 @@
+{
+  "status": "api_no_validated_match",
+  "fact": {
+    "gap_type": "finish_second_source_needed",
+    "fact_type": "printing_finish",
+    "set_key": "ex5",
+    "set_name": "Hidden Legends",
+    "card_number": "50",
+    "card_name": "Swalot",
+    "finish_key": "stamped",
+    "status": "human_source_verified",
+    "sources": [
+      "thepricedex_price_list"
+    ],
+    "source_authorities": [
+      "thepricedex.com"
+    ],
+    "source_kinds": [
+      "marketplace_checklist"
+    ],
+    "evidence_urls": [
+      "https://www.thepricedex.com/set/ex5/hidden-legends/price-list"
+    ],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "attempts": [
+    {
+      "query": "Pokemon Hidden Legends Swalot 50 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Hidden%20Legends%20Swalot%2050%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "849823",
+      "product_name": "Swalot #50",
+      "console_name": "Pokemon Hidden Legends",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon Hidden Legends Swalot 50 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Hidden%20Legends%20Swalot%2050%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4034854",
+      "product_name": "Swalot [Prerelease] #50",
+      "console_name": "Pokemon Hidden Legends",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Prerelease"
+      }
+    },
+    {
+      "query": "Pokemon Hidden Legends Swalot 50 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Hidden%20Legends%20Swalot%2050%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "849925",
+      "product_name": "Swalot [Reverse Holo] #50",
+      "console_name": "Pokemon Hidden Legends",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Reverse Holo"
+      }
+    },
+    {
+      "query": "Pokemon Hidden Legends Swalot 50 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Hidden%20Legends%20Swalot%2050%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "925148",
+      "product_name": "Swalot [Reverse Holo] #72",
+      "console_name": "Pokemon Legends Awakened",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:72"
+      }
+    },
+    {
+      "query": "Pokemon Hidden Legends Swalot 50 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Hidden%20Legends%20Swalot%2050%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "925003",
+      "product_name": "Swalot #72",
+      "console_name": "Pokemon Legends Awakened",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:72"
+      }
+    },
+    {
+      "query": "Pokemon Hidden Legends Swalot 50 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Hidden%20Legends%20Swalot%2050%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "849808",
+      "product_name": "Gloom #35",
+      "console_name": "Pokemon Hidden Legends",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:35"
+      }
+    },
+    {
+      "query": "Pokemon Hidden Legends Swalot 50 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Hidden%20Legends%20Swalot%2050%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "849833",
+      "product_name": "Doduo #60",
+      "console_name": "Pokemon Hidden Legends",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:60"
+      }
+    },
+    {
+      "query": "Pokemon Hidden Legends Swalot 50 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Hidden%20Legends%20Swalot%2050%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "849840",
+      "product_name": "Minun #67",
+      "console_name": "Pokemon Hidden Legends",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:67"
+      }
+    },
+    {
+      "query": "Pokemon Hidden Legends Swalot 50 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Hidden%20Legends%20Swalot%2050%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "849856",
+      "product_name": "Zubat #83",
+      "console_name": "Pokemon Hidden Legends",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:83"
+      }
+    },
+    {
+      "query": "Pokemon Hidden Legends Swalot 50 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Hidden%20Legends%20Swalot%2050%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "849794",
+      "product_name": "Metang #21",
+      "console_name": "Pokemon Hidden Legends",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:21"
+      }
+    },
+    {
+      "query": "Pokemon Hidden Legends Swalot 50 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Hidden%20Legends%20Swalot%2050%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "849809",
+      "product_name": "Golbat #36",
+      "console_name": "Pokemon Hidden Legends",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:36"
+      }
+    },
+    {
+      "query": "Pokemon Hidden Legends Swalot 50 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Hidden%20Legends%20Swalot%2050%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "849807",
+      "product_name": "Glalie #34",
+      "console_name": "Pokemon Hidden Legends",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:34"
+      }
+    },
+    {
+      "query": "Pokemon Hidden Legends Swalot 50 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Hidden%20Legends%20Swalot%2050%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "849776",
+      "product_name": "Crobat #3",
+      "console_name": "Pokemon Hidden Legends",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:3"
+      }
+    },
+    {
+      "query": "Pokemon Hidden Legends Swalot 50 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Hidden%20Legends%20Swalot%2050%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "849786",
+      "product_name": "Pinsir #13",
+      "console_name": "Pokemon Hidden Legends",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:13"
+      }
+    },
+    {
+      "query": "Pokemon Hidden Legends Swalot 50 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Hidden%20Legends%20Swalot%2050%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "849801",
+      "product_name": "Beldum #28",
+      "console_name": "Pokemon Hidden Legends",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:28"
+      }
+    },
+    {
+      "query": "Pokemon Hidden Legends Swalot 50 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Hidden%20Legends%20Swalot%2050%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "849802",
+      "product_name": "Beldum #29",
+      "console_name": "Pokemon Hidden Legends",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:29"
+      }
+    },
+    {
+      "query": "Pokemon Hidden Legends Swalot 50 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Hidden%20Legends%20Swalot%2050%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "849806",
+      "product_name": "Dodrio #33",
+      "console_name": "Pokemon Hidden Legends",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:33"
+      }
+    },
+    {
+      "query": "Pokemon Hidden Legends Swalot 50 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Hidden%20Legends%20Swalot%2050%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "849816",
+      "product_name": "Metang #43",
+      "console_name": "Pokemon Hidden Legends",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:43"
+      }
+    },
+    {
+      "query": "Pokemon Hidden Legends Swalot 50 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Hidden%20Legends%20Swalot%2050%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "849817",
+      "product_name": "Metang #44",
+      "console_name": "Pokemon Hidden Legends",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:44"
+      }
+    },
+    {
+      "query": "Pokemon Hidden Legends Swalot 50 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Hidden%20Legends%20Swalot%2050%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "849819",
+      "product_name": "Rhydon #46",
+      "console_name": "Pokemon Hidden Legends",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:46"
+      }
+    },
+    {
+      "query": "Pokemon Hidden Legends Swalot 50 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Hidden%20Legends%20Swalot%2050%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "849823",
+      "product_name": "Swalot #50",
+      "console_name": "Pokemon Hidden Legends",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon Hidden Legends Swalot 50 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Hidden%20Legends%20Swalot%2050%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4034854",
+      "product_name": "Swalot [Prerelease] #50",
+      "console_name": "Pokemon Hidden Legends",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Prerelease"
+      }
+    },
+    {
+      "query": "Pokemon Hidden Legends Swalot 50 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Hidden%20Legends%20Swalot%2050%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "849925",
+      "product_name": "Swalot [Reverse Holo] #50",
+      "console_name": "Pokemon Hidden Legends",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Reverse Holo"
+      }
+    },
+    {
+      "query": "Pokemon Hidden Legends Swalot 50 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Hidden%20Legends%20Swalot%2050%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "925148",
+      "product_name": "Swalot [Reverse Holo] #72",
+      "console_name": "Pokemon Legends Awakened",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:72"
+      }
+    },
+    {
+      "query": "Pokemon Hidden Legends Swalot 50 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Hidden%20Legends%20Swalot%2050%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "925003",
+      "product_name": "Swalot #72",
+      "console_name": "Pokemon Legends Awakened",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:72"
+      }
+    },
+    {
+      "query": "Pokemon Hidden Legends Swalot 50 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Hidden%20Legends%20Swalot%2050%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "849808",
+      "product_name": "Gloom #35",
+      "console_name": "Pokemon Hidden Legends",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:35"
+      }
+    },
+    {
+      "query": "Pokemon Hidden Legends Swalot 50 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Hidden%20Legends%20Swalot%2050%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "849833",
+      "product_name": "Doduo #60",
+      "console_name": "Pokemon Hidden Legends",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:60"
+      }
+    },
+    {
+      "query": "Pokemon Hidden Legends Swalot 50 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Hidden%20Legends%20Swalot%2050%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "849840",
+      "product_name": "Minun #67",
+      "console_name": "Pokemon Hidden Legends",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:67"
+      }
+    },
+    {
+      "query": "Pokemon Hidden Legends Swalot 50 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Hidden%20Legends%20Swalot%2050%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "849856",
+      "product_name": "Zubat #83",
+      "console_name": "Pokemon Hidden Legends",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:83"
+      }
+    },
+    {
+      "query": "Pokemon Hidden Legends Swalot 50 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Hidden%20Legends%20Swalot%2050%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "849794",
+      "product_name": "Metang #21",
+      "console_name": "Pokemon Hidden Legends",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:21"
+      }
+    },
+    {
+      "query": "Pokemon Hidden Legends Swalot 50 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Hidden%20Legends%20Swalot%2050%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "849809",
+      "product_name": "Golbat #36",
+      "console_name": "Pokemon Hidden Legends",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:36"
+      }
+    },
+    {
+      "query": "Pokemon Hidden Legends Swalot 50 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Hidden%20Legends%20Swalot%2050%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "849807",
+      "product_name": "Glalie #34",
+      "console_name": "Pokemon Hidden Legends",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:34"
+      }
+    },
+    {
+      "query": "Pokemon Hidden Legends Swalot 50 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Hidden%20Legends%20Swalot%2050%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "849776",
+      "product_name": "Crobat #3",
+      "console_name": "Pokemon Hidden Legends",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:3"
+      }
+    },
+    {
+      "query": "Pokemon Hidden Legends Swalot 50 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Hidden%20Legends%20Swalot%2050%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "849786",
+      "product_name": "Pinsir #13",
+      "console_name": "Pokemon Hidden Legends",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:13"
+      }
+    },
+    {
+      "query": "Pokemon Hidden Legends Swalot 50 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Hidden%20Legends%20Swalot%2050%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "849801",
+      "product_name": "Beldum #28",
+      "console_name": "Pokemon Hidden Legends",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:28"
+      }
+    },
+    {
+      "query": "Pokemon Hidden Legends Swalot 50 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Hidden%20Legends%20Swalot%2050%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "849802",
+      "product_name": "Beldum #29",
+      "console_name": "Pokemon Hidden Legends",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:29"
+      }
+    },
+    {
+      "query": "Pokemon Hidden Legends Swalot 50 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Hidden%20Legends%20Swalot%2050%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "849806",
+      "product_name": "Dodrio #33",
+      "console_name": "Pokemon Hidden Legends",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:33"
+      }
+    },
+    {
+      "query": "Pokemon Hidden Legends Swalot 50 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Hidden%20Legends%20Swalot%2050%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "849816",
+      "product_name": "Metang #43",
+      "console_name": "Pokemon Hidden Legends",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:43"
+      }
+    },
+    {
+      "query": "Pokemon Hidden Legends Swalot 50 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Hidden%20Legends%20Swalot%2050%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "849817",
+      "product_name": "Metang #44",
+      "console_name": "Pokemon Hidden Legends",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:44"
+      }
+    },
+    {
+      "query": "Pokemon Hidden Legends Swalot 50 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Hidden%20Legends%20Swalot%2050%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "849819",
+      "product_name": "Rhydon #46",
+      "console_name": "Pokemon Hidden Legends",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:46"
+      }
+    }
+  ],
+  "source_lane": "pricecharting_api"
+}

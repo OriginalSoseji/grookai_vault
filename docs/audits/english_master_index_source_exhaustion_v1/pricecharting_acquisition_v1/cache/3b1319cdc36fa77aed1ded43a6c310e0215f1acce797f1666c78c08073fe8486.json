@@ -1,0 +1,549 @@
+{
+  "status": "api_no_validated_match",
+  "fact": {
+    "gap_type": "finish_second_source_needed",
+    "fact_type": "printing_finish",
+    "set_key": "sm5",
+    "set_name": "Ultra Prism",
+    "card_number": "25",
+    "card_name": "Salandit",
+    "finish_key": "stamped",
+    "status": "human_source_verified",
+    "sources": [
+      "thepricedex_price_list"
+    ],
+    "source_authorities": [
+      "thepricedex.com"
+    ],
+    "source_kinds": [
+      "marketplace_checklist"
+    ],
+    "evidence_urls": [
+      "https://www.thepricedex.com/set/sm5/ultra-prism/price-list"
+    ],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "attempts": [
+    {
+      "query": "Pokemon Ultra Prism Salandit 25 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ultra%20Prism%20Salandit%2025%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "961388",
+      "product_name": "Salandit #25",
+      "console_name": "Pokemon Ultra Prism",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon Ultra Prism Salandit 25 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ultra%20Prism%20Salandit%2025%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "961560",
+      "product_name": "Salandit [Reverse Holo] #25",
+      "console_name": "Pokemon Ultra Prism",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Reverse Holo"
+      }
+    },
+    {
+      "query": "Pokemon Ultra Prism Salandit 25 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ultra%20Prism%20Salandit%2025%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3399237",
+      "product_name": "Heatran [Ultra Prism Stamped] #88",
+      "console_name": "Pokemon Ultra Prism",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:88"
+      }
+    },
+    {
+      "query": "Pokemon Ultra Prism Salandit 25 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ultra%20Prism%20Salandit%2025%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3467986",
+      "product_name": "Salandit #22",
+      "console_name": "Pokemon Japanese Ultra Sun",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:22"
+      }
+    },
+    {
+      "query": "Pokemon Ultra Prism Salandit 25 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ultra%20Prism%20Salandit%2025%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5438777",
+      "product_name": "Salandit #25",
+      "console_name": "Pokemon 2020 Battle Academy",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon 2020 Battle Academy"
+      }
+    },
+    {
+      "query": "Pokemon Ultra Prism Salandit 25 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ultra%20Prism%20Salandit%2025%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "961513",
+      "product_name": "Lana #150",
+      "console_name": "Pokemon Ultra Prism",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:150"
+      }
+    },
+    {
+      "query": "Pokemon Ultra Prism Salandit 25 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ultra%20Prism%20Salandit%2025%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "961517",
+      "product_name": "Mars #154",
+      "console_name": "Pokemon Ultra Prism",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:154"
+      }
+    },
+    {
+      "query": "Pokemon Ultra Prism Salandit 25 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ultra%20Prism%20Salandit%2025%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "961491",
+      "product_name": "Mars #128",
+      "console_name": "Pokemon Ultra Prism",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:128"
+      }
+    },
+    {
+      "query": "Pokemon Ultra Prism Salandit 25 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ultra%20Prism%20Salandit%2025%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "961429",
+      "product_name": "Riolu #66",
+      "console_name": "Pokemon Ultra Prism",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:66"
+      }
+    },
+    {
+      "query": "Pokemon Ultra Prism Salandit 25 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ultra%20Prism%20Salandit%2025%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "961467",
+      "product_name": "Eevee #104",
+      "console_name": "Pokemon Ultra Prism",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:104"
+      }
+    },
+    {
+      "query": "Pokemon Ultra Prism Salandit 25 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ultra%20Prism%20Salandit%2025%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "961468",
+      "product_name": "Eevee #105",
+      "console_name": "Pokemon Ultra Prism",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:105"
+      }
+    },
+    {
+      "query": "Pokemon Ultra Prism Salandit 25 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ultra%20Prism%20Salandit%2025%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "961459",
+      "product_name": "Gible #96",
+      "console_name": "Pokemon Ultra Prism",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:96"
+      }
+    },
+    {
+      "query": "Pokemon Ultra Prism Salandit 25 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ultra%20Prism%20Salandit%2025%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "961460",
+      "product_name": "Gible #97",
+      "console_name": "Pokemon Ultra Prism",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:97"
+      }
+    },
+    {
+      "query": "Pokemon Ultra Prism Salandit 25 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ultra%20Prism%20Salandit%2025%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "961365",
+      "product_name": "Yanma #2",
+      "console_name": "Pokemon Ultra Prism",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:2"
+      }
+    },
+    {
+      "query": "Pokemon Ultra Prism Salandit 25 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ultra%20Prism%20Salandit%2025%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "961409",
+      "product_name": "Shinx #46",
+      "console_name": "Pokemon Ultra Prism",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:46"
+      }
+    },
+    {
+      "query": "Pokemon Ultra Prism Salandit 25 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ultra%20Prism%20Salandit%2025%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "961408",
+      "product_name": "Shinx #45",
+      "console_name": "Pokemon Ultra Prism",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:45"
+      }
+    },
+    {
+      "query": "Pokemon Ultra Prism Salandit 25 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ultra%20Prism%20Salandit%2025%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "961413",
+      "product_name": "Rotom #50",
+      "console_name": "Pokemon Ultra Prism",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:50"
+      }
+    },
+    {
+      "query": "Pokemon Ultra Prism Salandit 25 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ultra%20Prism%20Salandit%2025%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "961410",
+      "product_name": "Luxio #47",
+      "console_name": "Pokemon Ultra Prism",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:47"
+      }
+    },
+    {
+      "query": "Pokemon Ultra Prism Salandit 25 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ultra%20Prism%20Salandit%2025%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "961489",
+      "product_name": "Looker #126",
+      "console_name": "Pokemon Ultra Prism",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:126"
+      }
+    },
+    {
+      "query": "Pokemon Ultra Prism Salandit 25 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ultra%20Prism%20Salandit%2025%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "961488",
+      "product_name": "Lillie #125",
+      "console_name": "Pokemon Ultra Prism",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:125"
+      }
+    },
+    {
+      "query": "Pokemon Ultra Prism Salandit 25 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ultra%20Prism%20Salandit%2025%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "961388",
+      "product_name": "Salandit #25",
+      "console_name": "Pokemon Ultra Prism",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon Ultra Prism Salandit 25 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ultra%20Prism%20Salandit%2025%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "961560",
+      "product_name": "Salandit [Reverse Holo] #25",
+      "console_name": "Pokemon Ultra Prism",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Reverse Holo"
+      }
+    },
+    {
+      "query": "Pokemon Ultra Prism Salandit 25 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ultra%20Prism%20Salandit%2025%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3399237",
+      "product_name": "Heatran [Ultra Prism Stamped] #88",
+      "console_name": "Pokemon Ultra Prism",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:88"
+      }
+    },
+    {
+      "query": "Pokemon Ultra Prism Salandit 25 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ultra%20Prism%20Salandit%2025%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3467986",
+      "product_name": "Salandit #22",
+      "console_name": "Pokemon Japanese Ultra Sun",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:22"
+      }
+    },
+    {
+      "query": "Pokemon Ultra Prism Salandit 25 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ultra%20Prism%20Salandit%2025%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5438777",
+      "product_name": "Salandit #25",
+      "console_name": "Pokemon 2020 Battle Academy",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon 2020 Battle Academy"
+      }
+    },
+    {
+      "query": "Pokemon Ultra Prism Salandit 25 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ultra%20Prism%20Salandit%2025%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "961513",
+      "product_name": "Lana #150",
+      "console_name": "Pokemon Ultra Prism",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:150"
+      }
+    },
+    {
+      "query": "Pokemon Ultra Prism Salandit 25 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ultra%20Prism%20Salandit%2025%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "961517",
+      "product_name": "Mars #154",
+      "console_name": "Pokemon Ultra Prism",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:154"
+      }
+    },
+    {
+      "query": "Pokemon Ultra Prism Salandit 25 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ultra%20Prism%20Salandit%2025%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "961491",
+      "product_name": "Mars #128",
+      "console_name": "Pokemon Ultra Prism",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:128"
+      }
+    },
+    {
+      "query": "Pokemon Ultra Prism Salandit 25 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ultra%20Prism%20Salandit%2025%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "961429",
+      "product_name": "Riolu #66",
+      "console_name": "Pokemon Ultra Prism",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:66"
+      }
+    },
+    {
+      "query": "Pokemon Ultra Prism Salandit 25 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ultra%20Prism%20Salandit%2025%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "961467",
+      "product_name": "Eevee #104",
+      "console_name": "Pokemon Ultra Prism",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:104"
+      }
+    },
+    {
+      "query": "Pokemon Ultra Prism Salandit 25 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ultra%20Prism%20Salandit%2025%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "961468",
+      "product_name": "Eevee #105",
+      "console_name": "Pokemon Ultra Prism",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:105"
+      }
+    },
+    {
+      "query": "Pokemon Ultra Prism Salandit 25 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ultra%20Prism%20Salandit%2025%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "961459",
+      "product_name": "Gible #96",
+      "console_name": "Pokemon Ultra Prism",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:96"
+      }
+    },
+    {
+      "query": "Pokemon Ultra Prism Salandit 25 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ultra%20Prism%20Salandit%2025%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "961460",
+      "product_name": "Gible #97",
+      "console_name": "Pokemon Ultra Prism",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:97"
+      }
+    },
+    {
+      "query": "Pokemon Ultra Prism Salandit 25 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ultra%20Prism%20Salandit%2025%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "961365",
+      "product_name": "Yanma #2",
+      "console_name": "Pokemon Ultra Prism",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:2"
+      }
+    },
+    {
+      "query": "Pokemon Ultra Prism Salandit 25 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ultra%20Prism%20Salandit%2025%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "961409",
+      "product_name": "Shinx #46",
+      "console_name": "Pokemon Ultra Prism",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:46"
+      }
+    },
+    {
+      "query": "Pokemon Ultra Prism Salandit 25 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ultra%20Prism%20Salandit%2025%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "961408",
+      "product_name": "Shinx #45",
+      "console_name": "Pokemon Ultra Prism",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:45"
+      }
+    },
+    {
+      "query": "Pokemon Ultra Prism Salandit 25 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ultra%20Prism%20Salandit%2025%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "961413",
+      "product_name": "Rotom #50",
+      "console_name": "Pokemon Ultra Prism",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:50"
+      }
+    },
+    {
+      "query": "Pokemon Ultra Prism Salandit 25 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ultra%20Prism%20Salandit%2025%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "961410",
+      "product_name": "Luxio #47",
+      "console_name": "Pokemon Ultra Prism",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:47"
+      }
+    },
+    {
+      "query": "Pokemon Ultra Prism Salandit 25 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ultra%20Prism%20Salandit%2025%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "961489",
+      "product_name": "Looker #126",
+      "console_name": "Pokemon Ultra Prism",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:126"
+      }
+    },
+    {
+      "query": "Pokemon Ultra Prism Salandit 25 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ultra%20Prism%20Salandit%2025%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "961488",
+      "product_name": "Lillie #125",
+      "console_name": "Pokemon Ultra Prism",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:125"
+      }
+    }
+  ],
+  "source_lane": "pricecharting_api"
+}

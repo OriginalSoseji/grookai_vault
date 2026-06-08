@@ -1,0 +1,62 @@
+{
+  "status": "validated",
+  "fact": {
+    "gap_type": "finish_second_source_needed",
+    "fact_type": "printing_finish",
+    "set_key": "sv02",
+    "set_name": "Paldea Evolved",
+    "card_number": "50",
+    "card_name": "Quaxly",
+    "finish_key": "holo",
+    "status": "human_source_verified",
+    "sources": [
+      "thepricedex_price_list"
+    ],
+    "source_authorities": [
+      "thepricedex.com"
+    ],
+    "source_kinds": [
+      "marketplace_checklist"
+    ],
+    "evidence_urls": [
+      "https://www.thepricedex.com/set/sv2/paldea-evolved/price-list"
+    ],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "query": "Pokemon Paldea Evolved Quaxly 50 holo",
+  "search_url": "https://www.pricecharting.com/api/products?q=Pokemon%20Paldea%20Evolved%20Quaxly%2050%20holo",
+  "source_url": "https://www.pricecharting.com/game/pokemon-paldea-evolved/quaxly-holo-50",
+  "title": "Quaxly [Holo] #50 | Pokemon Paldea Evolved",
+  "title_parts": {
+    "card_name": "Quaxly",
+    "card_number": "50",
+    "variant_label": "Holo",
+    "set_name": "Pokemon Paldea Evolved",
+    "pricecharting_product_id": "6836321"
+  },
+  "validation_source": "pricecharting_api_products",
+  "source_lane": "pricecharting_api",
+  "attempts": [
+    {
+      "query": "Pokemon Paldea Evolved Quaxly 50 holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Paldea%20Evolved%20Quaxly%2050%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6836321",
+      "product_name": "Quaxly [Holo] #50",
+      "console_name": "Pokemon Paldea Evolved",
+      "validation": {
+        "ok": true,
+        "titleParts": {
+          "card_name": "Quaxly",
+          "card_number": "50",
+          "variant_label": "Holo",
+          "set_name": "Pokemon Paldea Evolved",
+          "pricecharting_product_id": "6836321"
+        },
+        "source_url": "https://www.pricecharting.com/game/pokemon-paldea-evolved/quaxly-holo-50",
+        "title": "Quaxly [Holo] #50 | Pokemon Paldea Evolved"
+      }
+    }
+  ]
+}

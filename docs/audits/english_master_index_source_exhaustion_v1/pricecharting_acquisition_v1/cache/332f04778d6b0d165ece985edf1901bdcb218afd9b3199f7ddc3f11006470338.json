@@ -1,0 +1,549 @@
+{
+  "status": "api_no_validated_match",
+  "fact": {
+    "gap_type": "finish_second_source_needed",
+    "fact_type": "printing_finish",
+    "set_key": "pl3",
+    "set_name": "Supreme Victors",
+    "card_number": "35",
+    "card_name": "Milotic C",
+    "finish_key": "stamped",
+    "status": "human_source_verified",
+    "sources": [
+      "thepricedex_price_list"
+    ],
+    "source_authorities": [
+      "thepricedex.com"
+    ],
+    "source_kinds": [
+      "marketplace_checklist"
+    ],
+    "evidence_urls": [
+      "https://www.thepricedex.com/set/pl3/supreme-victors/price-list"
+    ],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "attempts": [
+    {
+      "query": "Pokemon Supreme Victors Milotic C 35 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Supreme%20Victors%20Milotic%20C%2035%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "1287082",
+      "product_name": "Milotic C #35",
+      "console_name": "Pokemon Supreme Victors",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon Supreme Victors Milotic C 35 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Supreme%20Victors%20Milotic%20C%2035%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "1287236",
+      "product_name": "Milotic C [Reverse Holo] #35",
+      "console_name": "Pokemon Supreme Victors",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Reverse Holo"
+      }
+    },
+    {
+      "query": "Pokemon Supreme Victors Milotic C 35 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Supreme%20Victors%20Milotic%20C%2035%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6142822",
+      "product_name": "Milotic C [Pokemon League] #35",
+      "console_name": "Pokemon Supreme Victors",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Pokemon League"
+      }
+    },
+    {
+      "query": "Pokemon Supreme Victors Milotic C 35 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Supreme%20Victors%20Milotic%20C%2035%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12395477",
+      "product_name": "Milotic C [Cosmos Holo] #35",
+      "console_name": "Pokemon Supreme Victors",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Cosmos Holo"
+      }
+    },
+    {
+      "query": "Pokemon Supreme Victors Milotic C 35 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Supreme%20Victors%20Milotic%20C%2035%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "1287199",
+      "product_name": "Milotic #SH7",
+      "console_name": "Pokemon Supreme Victors",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:SH7"
+      }
+    },
+    {
+      "query": "Pokemon Supreme Victors Milotic C 35 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Supreme%20Victors%20Milotic%20C%2035%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "1287117",
+      "product_name": "Milotic #70",
+      "console_name": "Pokemon Supreme Victors",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:70"
+      }
+    },
+    {
+      "query": "Pokemon Supreme Victors Milotic C 35 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Supreme%20Victors%20Milotic%20C%2035%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8470238",
+      "product_name": "Milotic [Prerelease] #70",
+      "console_name": "Pokemon Supreme Victors",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:70"
+      }
+    },
+    {
+      "query": "Pokemon Supreme Victors Milotic C 35 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Supreme%20Victors%20Milotic%20C%2035%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "1287271",
+      "product_name": "Milotic [Reverse Holo] #70",
+      "console_name": "Pokemon Supreme Victors",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:70"
+      }
+    },
+    {
+      "query": "Pokemon Supreme Victors Milotic C 35 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Supreme%20Victors%20Milotic%20C%2035%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3985756",
+      "product_name": "Milotic [Prerelease Staff] #70",
+      "console_name": "Pokemon Supreme Victors",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:70"
+      }
+    },
+    {
+      "query": "Pokemon Supreme Victors Milotic C 35 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Supreme%20Victors%20Milotic%20C%2035%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "1287147",
+      "product_name": "Corphish #100",
+      "console_name": "Pokemon Supreme Victors",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:100"
+      }
+    },
+    {
+      "query": "Pokemon Supreme Victors Milotic C 35 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Supreme%20Victors%20Milotic%20C%2035%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "1287078",
+      "product_name": "Lucario C #31",
+      "console_name": "Pokemon Supreme Victors",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:31"
+      }
+    },
+    {
+      "query": "Pokemon Supreme Victors Milotic C 35 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Supreme%20Victors%20Milotic%20C%2035%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "1287096",
+      "product_name": "Altaria C #49",
+      "console_name": "Pokemon Supreme Victors",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:49"
+      }
+    },
+    {
+      "query": "Pokemon Supreme Victors Milotic C 35 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Supreme%20Victors%20Milotic%20C%2035%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "1287055",
+      "product_name": "Rayquaza C #8",
+      "console_name": "Pokemon Supreme Victors",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:8"
+      }
+    },
+    {
+      "query": "Pokemon Supreme Victors Milotic C 35 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Supreme%20Victors%20Milotic%20C%2035%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "1287087",
+      "product_name": "Roserade C #40",
+      "console_name": "Pokemon Supreme Victors",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:40"
+      }
+    },
+    {
+      "query": "Pokemon Supreme Victors Milotic C 35 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Supreme%20Victors%20Milotic%20C%2035%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "1287107",
+      "product_name": "Garchomp C #60",
+      "console_name": "Pokemon Supreme Victors",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:60"
+      }
+    },
+    {
+      "query": "Pokemon Supreme Victors Milotic C 35 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Supreme%20Victors%20Milotic%20C%2035%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "1287131",
+      "product_name": "Spiritomb C #84",
+      "console_name": "Pokemon Supreme Victors",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:84"
+      }
+    },
+    {
+      "query": "Pokemon Supreme Victors Milotic C 35 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Supreme%20Victors%20Milotic%20C%2035%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "1287133",
+      "product_name": "Togekiss C #86",
+      "console_name": "Pokemon Supreme Victors",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:86"
+      }
+    },
+    {
+      "query": "Pokemon Supreme Victors Milotic C 35 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Supreme%20Victors%20Milotic%20C%2035%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "1287077",
+      "product_name": "Lickilicky C #30",
+      "console_name": "Pokemon Supreme Victors",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:30"
+      }
+    },
+    {
+      "query": "Pokemon Supreme Victors Milotic C 35 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Supreme%20Victors%20Milotic%20C%2035%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "1287194",
+      "product_name": "Rayquaza C LV. X #146",
+      "console_name": "Pokemon Supreme Victors",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:146"
+      }
+    },
+    {
+      "query": "Pokemon Supreme Victors Milotic C 35 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Supreme%20Victors%20Milotic%20C%2035%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "1287193",
+      "product_name": "Garchomp C LV. X #145",
+      "console_name": "Pokemon Supreme Victors",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:145"
+      }
+    },
+    {
+      "query": "Pokemon Supreme Victors Milotic C 35 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Supreme%20Victors%20Milotic%20C%2035%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "1287082",
+      "product_name": "Milotic C #35",
+      "console_name": "Pokemon Supreme Victors",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon Supreme Victors Milotic C 35 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Supreme%20Victors%20Milotic%20C%2035%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "1287236",
+      "product_name": "Milotic C [Reverse Holo] #35",
+      "console_name": "Pokemon Supreme Victors",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Reverse Holo"
+      }
+    },
+    {
+      "query": "Pokemon Supreme Victors Milotic C 35 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Supreme%20Victors%20Milotic%20C%2035%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6142822",
+      "product_name": "Milotic C [Pokemon League] #35",
+      "console_name": "Pokemon Supreme Victors",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Pokemon League"
+      }
+    },
+    {
+      "query": "Pokemon Supreme Victors Milotic C 35 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Supreme%20Victors%20Milotic%20C%2035%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12395477",
+      "product_name": "Milotic C [Cosmos Holo] #35",
+      "console_name": "Pokemon Supreme Victors",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Cosmos Holo"
+      }
+    },
+    {
+      "query": "Pokemon Supreme Victors Milotic C 35 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Supreme%20Victors%20Milotic%20C%2035%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "1287199",
+      "product_name": "Milotic #SH7",
+      "console_name": "Pokemon Supreme Victors",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:SH7"
+      }
+    },
+    {
+      "query": "Pokemon Supreme Victors Milotic C 35 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Supreme%20Victors%20Milotic%20C%2035%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "1287117",
+      "product_name": "Milotic #70",
+      "console_name": "Pokemon Supreme Victors",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:70"
+      }
+    },
+    {
+      "query": "Pokemon Supreme Victors Milotic C 35 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Supreme%20Victors%20Milotic%20C%2035%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8470238",
+      "product_name": "Milotic [Prerelease] #70",
+      "console_name": "Pokemon Supreme Victors",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:70"
+      }
+    },
+    {
+      "query": "Pokemon Supreme Victors Milotic C 35 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Supreme%20Victors%20Milotic%20C%2035%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "1287271",
+      "product_name": "Milotic [Reverse Holo] #70",
+      "console_name": "Pokemon Supreme Victors",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:70"
+      }
+    },
+    {
+      "query": "Pokemon Supreme Victors Milotic C 35 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Supreme%20Victors%20Milotic%20C%2035%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3985756",
+      "product_name": "Milotic [Prerelease Staff] #70",
+      "console_name": "Pokemon Supreme Victors",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:70"
+      }
+    },
+    {
+      "query": "Pokemon Supreme Victors Milotic C 35 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Supreme%20Victors%20Milotic%20C%2035%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "1287147",
+      "product_name": "Corphish #100",
+      "console_name": "Pokemon Supreme Victors",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:100"
+      }
+    },
+    {
+      "query": "Pokemon Supreme Victors Milotic C 35 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Supreme%20Victors%20Milotic%20C%2035%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "1287078",
+      "product_name": "Lucario C #31",
+      "console_name": "Pokemon Supreme Victors",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:31"
+      }
+    },
+    {
+      "query": "Pokemon Supreme Victors Milotic C 35 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Supreme%20Victors%20Milotic%20C%2035%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "1287096",
+      "product_name": "Altaria C #49",
+      "console_name": "Pokemon Supreme Victors",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:49"
+      }
+    },
+    {
+      "query": "Pokemon Supreme Victors Milotic C 35 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Supreme%20Victors%20Milotic%20C%2035%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "1287055",
+      "product_name": "Rayquaza C #8",
+      "console_name": "Pokemon Supreme Victors",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:8"
+      }
+    },
+    {
+      "query": "Pokemon Supreme Victors Milotic C 35 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Supreme%20Victors%20Milotic%20C%2035%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "1287087",
+      "product_name": "Roserade C #40",
+      "console_name": "Pokemon Supreme Victors",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:40"
+      }
+    },
+    {
+      "query": "Pokemon Supreme Victors Milotic C 35 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Supreme%20Victors%20Milotic%20C%2035%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "1287107",
+      "product_name": "Garchomp C #60",
+      "console_name": "Pokemon Supreme Victors",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:60"
+      }
+    },
+    {
+      "query": "Pokemon Supreme Victors Milotic C 35 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Supreme%20Victors%20Milotic%20C%2035%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "1287131",
+      "product_name": "Spiritomb C #84",
+      "console_name": "Pokemon Supreme Victors",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:84"
+      }
+    },
+    {
+      "query": "Pokemon Supreme Victors Milotic C 35 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Supreme%20Victors%20Milotic%20C%2035%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "1287133",
+      "product_name": "Togekiss C #86",
+      "console_name": "Pokemon Supreme Victors",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:86"
+      }
+    },
+    {
+      "query": "Pokemon Supreme Victors Milotic C 35 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Supreme%20Victors%20Milotic%20C%2035%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "1287077",
+      "product_name": "Lickilicky C #30",
+      "console_name": "Pokemon Supreme Victors",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:30"
+      }
+    },
+    {
+      "query": "Pokemon Supreme Victors Milotic C 35 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Supreme%20Victors%20Milotic%20C%2035%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "1287194",
+      "product_name": "Rayquaza C LV. X #146",
+      "console_name": "Pokemon Supreme Victors",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:146"
+      }
+    },
+    {
+      "query": "Pokemon Supreme Victors Milotic C 35 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Supreme%20Victors%20Milotic%20C%2035%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "1287193",
+      "product_name": "Garchomp C LV. X #145",
+      "console_name": "Pokemon Supreme Victors",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:145"
+      }
+    }
+  ],
+  "source_lane": "pricecharting_api"
+}

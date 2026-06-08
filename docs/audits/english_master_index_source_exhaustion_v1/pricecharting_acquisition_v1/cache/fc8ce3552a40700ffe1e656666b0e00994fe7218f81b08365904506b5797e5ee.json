@@ -1,0 +1,38 @@
+{
+  "status": "no_validated_match",
+  "fact": {
+    "gap_type": "finish_second_source_needed",
+    "fact_type": "printing_finish",
+    "set_key": "swsh3.5",
+    "set_name": "Champion's Path",
+    "card_number": "23",
+    "card_name": "Alcremie VMAX",
+    "finish_key": "stamped",
+    "status": "human_source_verified",
+    "sources": [
+      "thepricedex_price_list"
+    ],
+    "source_authorities": [
+      "thepricedex.com"
+    ],
+    "source_kinds": [
+      "marketplace_checklist"
+    ],
+    "evidence_urls": [
+      "https://www.thepricedex.com/set/swsh35/champions-path/price-list"
+    ],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "attempts": [
+    {
+      "query": "Pokemon Champion's Path Alcremie VMAX 23 stamped",
+      "url": "https://www.pricecharting.com/search-products?q=Pokemon%20Champion's%20Path%20Alcremie%20VMAX%2023%20stamped&type=prices",
+      "error": "fetch failed"
+    },
+    {
+      "query": "Pokemon Champion's Path Alcremie VMAX 23 stamp",
+      "url": "https://www.pricecharting.com/search-products?q=Pokemon%20Champion's%20Path%20Alcremie%20VMAX%2023%20stamp&type=prices",
+      "error": "fetch failed"
+    }
+  ]
+}

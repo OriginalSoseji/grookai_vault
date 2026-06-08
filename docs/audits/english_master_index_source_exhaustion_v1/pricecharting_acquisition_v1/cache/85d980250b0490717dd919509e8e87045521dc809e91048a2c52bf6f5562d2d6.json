@@ -1,0 +1,50 @@
+{
+  "status": "no_validated_match",
+  "fact": {
+    "gap_type": "finish_human_checklist_evidence_needed",
+    "fact_type": "printing_finish",
+    "set_key": "pl2",
+    "set_name": "Rising Rivals",
+    "card_number": "16",
+    "card_name": "Bronzong 4",
+    "finish_key": "reverse",
+    "status": "candidate_unconfirmed",
+    "sources": [
+      "tcgdex"
+    ],
+    "source_authorities": [
+      "api.tcgdex.net"
+    ],
+    "source_kinds": [
+      "structured_api"
+    ],
+    "evidence_urls": [],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "attempts": [
+    {
+      "query": "Pokemon Rising Rivals Bronzong 4 16 reverse holo",
+      "url": "https://www.pricecharting.com/search-products?q=Pokemon%20Rising%20Rivals%20Bronzong%204%2016%20reverse%20holo&type=prices",
+      "parsed": {
+        "title": "Pokemon Rising Rivals Bronzong 4 16 Reverse Holo Prices | Pokemon Rising Rivals Bronzong 4 16 Reverse Holo List",
+        "source_url": "https://www.pricecharting.com/search-products?q=pokemon+rising+rivals+bronzong+4+16+reverse+holo&type=prices"
+      },
+      "validation": {
+        "ok": false,
+        "reason": "title_pattern_not_supported"
+      }
+    },
+    {
+      "query": "Pokemon Rising Rivals Bronzong 4 16 reverse holofoil",
+      "url": "https://www.pricecharting.com/search-products?q=Pokemon%20Rising%20Rivals%20Bronzong%204%2016%20reverse%20holofoil&type=prices",
+      "parsed": {
+        "title": "Pokemon Rising Rivals Bronzong 4 16 Reverse Holofoil Prices | Pokemon Rising Rivals Bronzong 4 16 Reverse Holofoil List",
+        "source_url": "https://www.pricecharting.com/search-products?q=pokemon+rising+rivals+bronzong+4+16+reverse+holofoil&type=prices"
+      },
+      "validation": {
+        "ok": false,
+        "reason": "title_pattern_not_supported"
+      }
+    }
+  ]
+}

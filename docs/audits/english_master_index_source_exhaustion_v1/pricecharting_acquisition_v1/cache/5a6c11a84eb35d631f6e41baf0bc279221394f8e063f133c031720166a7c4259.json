@@ -1,0 +1,549 @@
+{
+  "status": "api_no_validated_match",
+  "fact": {
+    "gap_type": "finish_second_source_needed",
+    "fact_type": "printing_finish",
+    "set_key": "pl2",
+    "set_name": "Rising Rivals",
+    "card_number": "89",
+    "card_name": "Bebe's Search",
+    "finish_key": "stamped",
+    "status": "human_source_verified",
+    "sources": [
+      "thepricedex_price_list"
+    ],
+    "source_authorities": [
+      "thepricedex.com"
+    ],
+    "source_kinds": [
+      "marketplace_checklist"
+    ],
+    "evidence_urls": [
+      "https://www.thepricedex.com/set/pl2/rising-rivals/price-list"
+    ],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "attempts": [
+    {
+      "query": "Pokemon Rising Rivals Bebe's Search 89 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Rising%20Rivals%20Bebe's%20Search%2089%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "925485",
+      "product_name": "Bebe's Search #89",
+      "console_name": "Pokemon Rising Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon Rising Rivals Bebe's Search 89 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Rising%20Rivals%20Bebe's%20Search%2089%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8597942",
+      "product_name": "Bebe's Search [League] #89",
+      "console_name": "Pokemon Rising Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:League"
+      }
+    },
+    {
+      "query": "Pokemon Rising Rivals Bebe's Search 89 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Rising%20Rivals%20Bebe's%20Search%2089%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "925604",
+      "product_name": "Bebe's Search [Reverse Holo] #89",
+      "console_name": "Pokemon Rising Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Reverse Holo"
+      }
+    },
+    {
+      "query": "Pokemon Rising Rivals Bebe's Search 89 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Rising%20Rivals%20Bebe's%20Search%2089%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3459919",
+      "product_name": "Bebe's Search #89",
+      "console_name": "Pokemon Japanese Advent of Arceus",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon Japanese Advent of Arceus"
+      }
+    },
+    {
+      "query": "Pokemon Rising Rivals Bebe's Search 89 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Rising%20Rivals%20Bebe's%20Search%2089%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5997245",
+      "product_name": "Bebe's Search #89",
+      "console_name": "Pokemon World Championships 2009",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon World Championships 2009"
+      }
+    },
+    {
+      "query": "Pokemon Rising Rivals Bebe's Search 89 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Rising%20Rivals%20Bebe's%20Search%2089%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3506662",
+      "product_name": "Bebe's Search [1st Edition] #89",
+      "console_name": "Pokemon Japanese Advent of Arceus",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon Japanese Advent of Arceus"
+      }
+    },
+    {
+      "query": "Pokemon Rising Rivals Bebe's Search 89 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Rising%20Rivals%20Bebe's%20Search%2089%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3458074",
+      "product_name": "Bebe's Search",
+      "console_name": "Pokemon Japanese Secret of the Lakes",
+      "validation": {
+        "ok": false,
+        "reason": "api_product_name_pattern_not_supported"
+      }
+    },
+    {
+      "query": "Pokemon Rising Rivals Bebe's Search 89 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Rising%20Rivals%20Bebe's%20Search%2089%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "921009",
+      "product_name": "Bebe's Search #119",
+      "console_name": "Pokemon Secret Wonders",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:119"
+      }
+    },
+    {
+      "query": "Pokemon Rising Rivals Bebe's Search 89 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Rising%20Rivals%20Bebe's%20Search%2089%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "920733",
+      "product_name": "Bebe's Search #109",
+      "console_name": "Pokemon Mysterious Treasures",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:109"
+      }
+    },
+    {
+      "query": "Pokemon Rising Rivals Bebe's Search 89 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Rising%20Rivals%20Bebe's%20Search%2089%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11355238",
+      "product_name": "Bebe's Search #119",
+      "console_name": "Pokemon World Championships 2008",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:119"
+      }
+    },
+    {
+      "query": "Pokemon Rising Rivals Bebe's Search 89 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Rising%20Rivals%20Bebe's%20Search%2089%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3459712",
+      "product_name": "Bebe's Search #81",
+      "console_name": "Pokemon Japanese Bonds to the End of Time",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:81"
+      }
+    },
+    {
+      "query": "Pokemon Rising Rivals Bebe's Search 89 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Rising%20Rivals%20Bebe's%20Search%2089%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "920856",
+      "product_name": "Bebe's Search [Reverse Holo] #109",
+      "console_name": "Pokemon Mysterious Treasures",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:109"
+      }
+    },
+    {
+      "query": "Pokemon Rising Rivals Bebe's Search 89 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Rising%20Rivals%20Bebe's%20Search%2089%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "921141",
+      "product_name": "Bebe's Search [Reverse Holo] #119",
+      "console_name": "Pokemon Secret Wonders",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:119"
+      }
+    },
+    {
+      "query": "Pokemon Rising Rivals Bebe's Search 89 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Rising%20Rivals%20Bebe's%20Search%2089%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4928005",
+      "product_name": "Bebe's Search [1st Edition]",
+      "console_name": "Pokemon Japanese Secret of the Lakes",
+      "validation": {
+        "ok": false,
+        "reason": "api_product_name_pattern_not_supported"
+      }
+    },
+    {
+      "query": "Pokemon Rising Rivals Bebe's Search 89 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Rising%20Rivals%20Bebe's%20Search%2089%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "13043973",
+      "product_name": "Bebe's Search [Cosmos Holo] #109",
+      "console_name": "Pokemon Mysterious Treasures",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:109"
+      }
+    },
+    {
+      "query": "Pokemon Rising Rivals Bebe's Search 89 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Rising%20Rivals%20Bebe's%20Search%2089%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5067454",
+      "product_name": "Bebe's Search [Spring Battle Road]",
+      "console_name": "Pokemon Japanese Promo",
+      "validation": {
+        "ok": false,
+        "reason": "api_product_name_pattern_not_supported"
+      }
+    },
+    {
+      "query": "Pokemon Rising Rivals Bebe's Search 89 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Rising%20Rivals%20Bebe's%20Search%2089%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8453251",
+      "product_name": "Bebe's Search [1st Edition] #81",
+      "console_name": "Pokemon Japanese Bonds to the End of Time",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:81"
+      }
+    },
+    {
+      "query": "Pokemon Rising Rivals Bebe's Search 89 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Rising%20Rivals%20Bebe's%20Search%2089%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "925453",
+      "product_name": "Aron #57",
+      "console_name": "Pokemon Rising Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:57"
+      }
+    },
+    {
+      "query": "Pokemon Rising Rivals Bebe's Search 89 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Rising%20Rivals%20Bebe's%20Search%2089%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "925419",
+      "product_name": "Golem #23",
+      "console_name": "Pokemon Rising Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:23"
+      }
+    },
+    {
+      "query": "Pokemon Rising Rivals Bebe's Search 89 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Rising%20Rivals%20Bebe's%20Search%2089%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "925455",
+      "product_name": "Eevee #59",
+      "console_name": "Pokemon Rising Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:59"
+      }
+    },
+    {
+      "query": "Pokemon Rising Rivals Bebe's Search 89 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Rising%20Rivals%20Bebe's%20Search%2089%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "925485",
+      "product_name": "Bebe's Search #89",
+      "console_name": "Pokemon Rising Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon Rising Rivals Bebe's Search 89 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Rising%20Rivals%20Bebe's%20Search%2089%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8597942",
+      "product_name": "Bebe's Search [League] #89",
+      "console_name": "Pokemon Rising Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:League"
+      }
+    },
+    {
+      "query": "Pokemon Rising Rivals Bebe's Search 89 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Rising%20Rivals%20Bebe's%20Search%2089%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "925604",
+      "product_name": "Bebe's Search [Reverse Holo] #89",
+      "console_name": "Pokemon Rising Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Reverse Holo"
+      }
+    },
+    {
+      "query": "Pokemon Rising Rivals Bebe's Search 89 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Rising%20Rivals%20Bebe's%20Search%2089%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3459919",
+      "product_name": "Bebe's Search #89",
+      "console_name": "Pokemon Japanese Advent of Arceus",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon Japanese Advent of Arceus"
+      }
+    },
+    {
+      "query": "Pokemon Rising Rivals Bebe's Search 89 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Rising%20Rivals%20Bebe's%20Search%2089%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5997245",
+      "product_name": "Bebe's Search #89",
+      "console_name": "Pokemon World Championships 2009",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon World Championships 2009"
+      }
+    },
+    {
+      "query": "Pokemon Rising Rivals Bebe's Search 89 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Rising%20Rivals%20Bebe's%20Search%2089%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3506662",
+      "product_name": "Bebe's Search [1st Edition] #89",
+      "console_name": "Pokemon Japanese Advent of Arceus",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon Japanese Advent of Arceus"
+      }
+    },
+    {
+      "query": "Pokemon Rising Rivals Bebe's Search 89 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Rising%20Rivals%20Bebe's%20Search%2089%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3458074",
+      "product_name": "Bebe's Search",
+      "console_name": "Pokemon Japanese Secret of the Lakes",
+      "validation": {
+        "ok": false,
+        "reason": "api_product_name_pattern_not_supported"
+      }
+    },
+    {
+      "query": "Pokemon Rising Rivals Bebe's Search 89 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Rising%20Rivals%20Bebe's%20Search%2089%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "921009",
+      "product_name": "Bebe's Search #119",
+      "console_name": "Pokemon Secret Wonders",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:119"
+      }
+    },
+    {
+      "query": "Pokemon Rising Rivals Bebe's Search 89 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Rising%20Rivals%20Bebe's%20Search%2089%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "920733",
+      "product_name": "Bebe's Search #109",
+      "console_name": "Pokemon Mysterious Treasures",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:109"
+      }
+    },
+    {
+      "query": "Pokemon Rising Rivals Bebe's Search 89 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Rising%20Rivals%20Bebe's%20Search%2089%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11355238",
+      "product_name": "Bebe's Search #119",
+      "console_name": "Pokemon World Championships 2008",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:119"
+      }
+    },
+    {
+      "query": "Pokemon Rising Rivals Bebe's Search 89 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Rising%20Rivals%20Bebe's%20Search%2089%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3459712",
+      "product_name": "Bebe's Search #81",
+      "console_name": "Pokemon Japanese Bonds to the End of Time",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:81"
+      }
+    },
+    {
+      "query": "Pokemon Rising Rivals Bebe's Search 89 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Rising%20Rivals%20Bebe's%20Search%2089%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "920856",
+      "product_name": "Bebe's Search [Reverse Holo] #109",
+      "console_name": "Pokemon Mysterious Treasures",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:109"
+      }
+    },
+    {
+      "query": "Pokemon Rising Rivals Bebe's Search 89 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Rising%20Rivals%20Bebe's%20Search%2089%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "921141",
+      "product_name": "Bebe's Search [Reverse Holo] #119",
+      "console_name": "Pokemon Secret Wonders",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:119"
+      }
+    },
+    {
+      "query": "Pokemon Rising Rivals Bebe's Search 89 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Rising%20Rivals%20Bebe's%20Search%2089%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4928005",
+      "product_name": "Bebe's Search [1st Edition]",
+      "console_name": "Pokemon Japanese Secret of the Lakes",
+      "validation": {
+        "ok": false,
+        "reason": "api_product_name_pattern_not_supported"
+      }
+    },
+    {
+      "query": "Pokemon Rising Rivals Bebe's Search 89 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Rising%20Rivals%20Bebe's%20Search%2089%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "13043973",
+      "product_name": "Bebe's Search [Cosmos Holo] #109",
+      "console_name": "Pokemon Mysterious Treasures",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:109"
+      }
+    },
+    {
+      "query": "Pokemon Rising Rivals Bebe's Search 89 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Rising%20Rivals%20Bebe's%20Search%2089%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5067454",
+      "product_name": "Bebe's Search [Spring Battle Road]",
+      "console_name": "Pokemon Japanese Promo",
+      "validation": {
+        "ok": false,
+        "reason": "api_product_name_pattern_not_supported"
+      }
+    },
+    {
+      "query": "Pokemon Rising Rivals Bebe's Search 89 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Rising%20Rivals%20Bebe's%20Search%2089%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8453251",
+      "product_name": "Bebe's Search [1st Edition] #81",
+      "console_name": "Pokemon Japanese Bonds to the End of Time",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:81"
+      }
+    },
+    {
+      "query": "Pokemon Rising Rivals Bebe's Search 89 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Rising%20Rivals%20Bebe's%20Search%2089%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "925453",
+      "product_name": "Aron #57",
+      "console_name": "Pokemon Rising Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:57"
+      }
+    },
+    {
+      "query": "Pokemon Rising Rivals Bebe's Search 89 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Rising%20Rivals%20Bebe's%20Search%2089%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "925419",
+      "product_name": "Golem #23",
+      "console_name": "Pokemon Rising Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:23"
+      }
+    },
+    {
+      "query": "Pokemon Rising Rivals Bebe's Search 89 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Rising%20Rivals%20Bebe's%20Search%2089%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "925455",
+      "product_name": "Eevee #59",
+      "console_name": "Pokemon Rising Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:59"
+      }
+    }
+  ],
+  "source_lane": "pricecharting_api"
+}

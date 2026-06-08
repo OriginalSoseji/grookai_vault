@@ -1,0 +1,549 @@
+{
+  "status": "api_no_validated_match",
+  "fact": {
+    "gap_type": "finish_second_source_needed",
+    "fact_type": "printing_finish",
+    "set_key": "ex7",
+    "set_name": "Team Rocket Returns",
+    "card_number": "37",
+    "card_name": "Dark Houndoom",
+    "finish_key": "stamped",
+    "status": "human_source_verified",
+    "sources": [
+      "thepricedex_price_list"
+    ],
+    "source_authorities": [
+      "thepricedex.com"
+    ],
+    "source_kinds": [
+      "marketplace_checklist"
+    ],
+    "evidence_urls": [
+      "https://www.thepricedex.com/set/ex7/team-rocket-returns/price-list"
+    ],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "attempts": [
+    {
+      "query": "Pokemon Team Rocket Returns Dark Houndoom 37 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Team%20Rocket%20Returns%20Dark%20Houndoom%2037%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "886371",
+      "product_name": "Dark Houndoom #37",
+      "console_name": "Pokemon Team Rocket Returns",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon Team Rocket Returns Dark Houndoom 37 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Team%20Rocket%20Returns%20Dark%20Houndoom%2037%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3892407",
+      "product_name": "Dark Houndoom [Pre-Release] #37",
+      "console_name": "Pokemon Team Rocket Returns",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Pre-Release"
+      }
+    },
+    {
+      "query": "Pokemon Team Rocket Returns Dark Houndoom 37 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Team%20Rocket%20Returns%20Dark%20Houndoom%2037%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "886482",
+      "product_name": "Dark Houndoom [Reverse Holo] #37",
+      "console_name": "Pokemon Team Rocket Returns",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Reverse Holo"
+      }
+    },
+    {
+      "query": "Pokemon Team Rocket Returns Dark Houndoom 37 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Team%20Rocket%20Returns%20Dark%20Houndoom%2037%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "886339",
+      "product_name": "Dark Houndoom #5",
+      "console_name": "Pokemon Team Rocket Returns",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:5"
+      }
+    },
+    {
+      "query": "Pokemon Team Rocket Returns Dark Houndoom 37 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Team%20Rocket%20Returns%20Dark%20Houndoom%2037%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "886450",
+      "product_name": "Dark Houndoom [Reverse Holo] #5",
+      "console_name": "Pokemon Team Rocket Returns",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:5"
+      }
+    },
+    {
+      "query": "Pokemon Team Rocket Returns Dark Houndoom 37 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Team%20Rocket%20Returns%20Dark%20Houndoom%2037%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "886350",
+      "product_name": "Dark Muk #16",
+      "console_name": "Pokemon Team Rocket Returns",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:16"
+      }
+    },
+    {
+      "query": "Pokemon Team Rocket Returns Dark Houndoom 37 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Team%20Rocket%20Returns%20Dark%20Houndoom%2037%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "886340",
+      "product_name": "Dark Hypno #6",
+      "console_name": "Pokemon Team Rocket Returns",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:6"
+      }
+    },
+    {
+      "query": "Pokemon Team Rocket Returns Dark Houndoom 37 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Team%20Rocket%20Returns%20Dark%20Houndoom%2037%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "886363",
+      "product_name": "Dark Arbok #29",
+      "console_name": "Pokemon Team Rocket Returns",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:29"
+      }
+    },
+    {
+      "query": "Pokemon Team Rocket Returns Dark Houndoom 37 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Team%20Rocket%20Returns%20Dark%20Houndoom%2037%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "886336",
+      "product_name": "Dark Ampharos #2",
+      "console_name": "Pokemon Team Rocket Returns",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:2"
+      }
+    },
+    {
+      "query": "Pokemon Team Rocket Returns Dark Houndoom 37 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Team%20Rocket%20Returns%20Dark%20Houndoom%2037%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "886364",
+      "product_name": "Dark Ariados #30",
+      "console_name": "Pokemon Team Rocket Returns",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:30"
+      }
+    },
+    {
+      "query": "Pokemon Team Rocket Returns Dark Houndoom 37 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Team%20Rocket%20Returns%20Dark%20Houndoom%2037%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "886370",
+      "product_name": "Dark Gyarados #36",
+      "console_name": "Pokemon Team Rocket Returns",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:36"
+      }
+    },
+    {
+      "query": "Pokemon Team Rocket Returns Dark Houndoom 37 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Team%20Rocket%20Returns%20Dark%20Houndoom%2037%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "886337",
+      "product_name": "Dark Crobat #3",
+      "console_name": "Pokemon Team Rocket Returns",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:3"
+      }
+    },
+    {
+      "query": "Pokemon Team Rocket Returns Dark Houndoom 37 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Team%20Rocket%20Returns%20Dark%20Houndoom%2037%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "886368",
+      "product_name": "Dark Golbat #34",
+      "console_name": "Pokemon Team Rocket Returns",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:34"
+      }
+    },
+    {
+      "query": "Pokemon Team Rocket Returns Dark Houndoom 37 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Team%20Rocket%20Returns%20Dark%20Houndoom%2037%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "886341",
+      "product_name": "Dark Marowak #7",
+      "console_name": "Pokemon Team Rocket Returns",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:7"
+      }
+    },
+    {
+      "query": "Pokemon Team Rocket Returns Dark Houndoom 37 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Team%20Rocket%20Returns%20Dark%20Houndoom%2037%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "886344",
+      "product_name": "Dark Steelix #10",
+      "console_name": "Pokemon Team Rocket Returns",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:10"
+      }
+    },
+    {
+      "query": "Pokemon Team Rocket Returns Dark Houndoom 37 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Team%20Rocket%20Returns%20Dark%20Houndoom%2037%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "886369",
+      "product_name": "Dark Golduck #35",
+      "console_name": "Pokemon Team Rocket Returns",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:35"
+      }
+    },
+    {
+      "query": "Pokemon Team Rocket Returns Dark Houndoom 37 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Team%20Rocket%20Returns%20Dark%20Houndoom%2037%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "886367",
+      "product_name": "Dark Flaaffy #33",
+      "console_name": "Pokemon Team Rocket Returns",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:33"
+      }
+    },
+    {
+      "query": "Pokemon Team Rocket Returns Dark Houndoom 37 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Team%20Rocket%20Returns%20Dark%20Houndoom%2037%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "886375",
+      "product_name": "Dark Pupitar #41",
+      "console_name": "Pokemon Team Rocket Returns",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:41"
+      }
+    },
+    {
+      "query": "Pokemon Team Rocket Returns Dark Houndoom 37 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Team%20Rocket%20Returns%20Dark%20Houndoom%2037%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "886374",
+      "product_name": "Dark Pupitar #40",
+      "console_name": "Pokemon Team Rocket Returns",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:40"
+      }
+    },
+    {
+      "query": "Pokemon Team Rocket Returns Dark Houndoom 37 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Team%20Rocket%20Returns%20Dark%20Houndoom%2037%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "886376",
+      "product_name": "Dark Weezing #42",
+      "console_name": "Pokemon Team Rocket Returns",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:42"
+      }
+    },
+    {
+      "query": "Pokemon Team Rocket Returns Dark Houndoom 37 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Team%20Rocket%20Returns%20Dark%20Houndoom%2037%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "886371",
+      "product_name": "Dark Houndoom #37",
+      "console_name": "Pokemon Team Rocket Returns",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon Team Rocket Returns Dark Houndoom 37 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Team%20Rocket%20Returns%20Dark%20Houndoom%2037%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3892407",
+      "product_name": "Dark Houndoom [Pre-Release] #37",
+      "console_name": "Pokemon Team Rocket Returns",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Pre-Release"
+      }
+    },
+    {
+      "query": "Pokemon Team Rocket Returns Dark Houndoom 37 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Team%20Rocket%20Returns%20Dark%20Houndoom%2037%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "886482",
+      "product_name": "Dark Houndoom [Reverse Holo] #37",
+      "console_name": "Pokemon Team Rocket Returns",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Reverse Holo"
+      }
+    },
+    {
+      "query": "Pokemon Team Rocket Returns Dark Houndoom 37 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Team%20Rocket%20Returns%20Dark%20Houndoom%2037%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "886339",
+      "product_name": "Dark Houndoom #5",
+      "console_name": "Pokemon Team Rocket Returns",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:5"
+      }
+    },
+    {
+      "query": "Pokemon Team Rocket Returns Dark Houndoom 37 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Team%20Rocket%20Returns%20Dark%20Houndoom%2037%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "886450",
+      "product_name": "Dark Houndoom [Reverse Holo] #5",
+      "console_name": "Pokemon Team Rocket Returns",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:5"
+      }
+    },
+    {
+      "query": "Pokemon Team Rocket Returns Dark Houndoom 37 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Team%20Rocket%20Returns%20Dark%20Houndoom%2037%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "886350",
+      "product_name": "Dark Muk #16",
+      "console_name": "Pokemon Team Rocket Returns",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:16"
+      }
+    },
+    {
+      "query": "Pokemon Team Rocket Returns Dark Houndoom 37 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Team%20Rocket%20Returns%20Dark%20Houndoom%2037%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "886340",
+      "product_name": "Dark Hypno #6",
+      "console_name": "Pokemon Team Rocket Returns",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:6"
+      }
+    },
+    {
+      "query": "Pokemon Team Rocket Returns Dark Houndoom 37 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Team%20Rocket%20Returns%20Dark%20Houndoom%2037%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "886363",
+      "product_name": "Dark Arbok #29",
+      "console_name": "Pokemon Team Rocket Returns",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:29"
+      }
+    },
+    {
+      "query": "Pokemon Team Rocket Returns Dark Houndoom 37 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Team%20Rocket%20Returns%20Dark%20Houndoom%2037%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "886336",
+      "product_name": "Dark Ampharos #2",
+      "console_name": "Pokemon Team Rocket Returns",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:2"
+      }
+    },
+    {
+      "query": "Pokemon Team Rocket Returns Dark Houndoom 37 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Team%20Rocket%20Returns%20Dark%20Houndoom%2037%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "886364",
+      "product_name": "Dark Ariados #30",
+      "console_name": "Pokemon Team Rocket Returns",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:30"
+      }
+    },
+    {
+      "query": "Pokemon Team Rocket Returns Dark Houndoom 37 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Team%20Rocket%20Returns%20Dark%20Houndoom%2037%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "886370",
+      "product_name": "Dark Gyarados #36",
+      "console_name": "Pokemon Team Rocket Returns",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:36"
+      }
+    },
+    {
+      "query": "Pokemon Team Rocket Returns Dark Houndoom 37 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Team%20Rocket%20Returns%20Dark%20Houndoom%2037%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "886337",
+      "product_name": "Dark Crobat #3",
+      "console_name": "Pokemon Team Rocket Returns",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:3"
+      }
+    },
+    {
+      "query": "Pokemon Team Rocket Returns Dark Houndoom 37 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Team%20Rocket%20Returns%20Dark%20Houndoom%2037%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "886368",
+      "product_name": "Dark Golbat #34",
+      "console_name": "Pokemon Team Rocket Returns",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:34"
+      }
+    },
+    {
+      "query": "Pokemon Team Rocket Returns Dark Houndoom 37 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Team%20Rocket%20Returns%20Dark%20Houndoom%2037%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "886341",
+      "product_name": "Dark Marowak #7",
+      "console_name": "Pokemon Team Rocket Returns",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:7"
+      }
+    },
+    {
+      "query": "Pokemon Team Rocket Returns Dark Houndoom 37 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Team%20Rocket%20Returns%20Dark%20Houndoom%2037%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "886344",
+      "product_name": "Dark Steelix #10",
+      "console_name": "Pokemon Team Rocket Returns",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:10"
+      }
+    },
+    {
+      "query": "Pokemon Team Rocket Returns Dark Houndoom 37 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Team%20Rocket%20Returns%20Dark%20Houndoom%2037%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "886369",
+      "product_name": "Dark Golduck #35",
+      "console_name": "Pokemon Team Rocket Returns",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:35"
+      }
+    },
+    {
+      "query": "Pokemon Team Rocket Returns Dark Houndoom 37 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Team%20Rocket%20Returns%20Dark%20Houndoom%2037%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "886367",
+      "product_name": "Dark Flaaffy #33",
+      "console_name": "Pokemon Team Rocket Returns",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:33"
+      }
+    },
+    {
+      "query": "Pokemon Team Rocket Returns Dark Houndoom 37 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Team%20Rocket%20Returns%20Dark%20Houndoom%2037%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "886375",
+      "product_name": "Dark Pupitar #41",
+      "console_name": "Pokemon Team Rocket Returns",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:41"
+      }
+    },
+    {
+      "query": "Pokemon Team Rocket Returns Dark Houndoom 37 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Team%20Rocket%20Returns%20Dark%20Houndoom%2037%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "886374",
+      "product_name": "Dark Pupitar #40",
+      "console_name": "Pokemon Team Rocket Returns",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:40"
+      }
+    },
+    {
+      "query": "Pokemon Team Rocket Returns Dark Houndoom 37 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Team%20Rocket%20Returns%20Dark%20Houndoom%2037%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "886376",
+      "product_name": "Dark Weezing #42",
+      "console_name": "Pokemon Team Rocket Returns",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:42"
+      }
+    }
+  ],
+  "source_lane": "pricecharting_api"
+}

@@ -1,0 +1,549 @@
+{
+  "status": "api_no_validated_match",
+  "fact": {
+    "gap_type": "finish_second_source_needed",
+    "fact_type": "printing_finish",
+    "set_key": "bwp",
+    "set_name": "BW Black Star Promos",
+    "card_number": "BW50",
+    "card_name": "Tropical Beach",
+    "finish_key": "stamped",
+    "status": "human_source_verified",
+    "sources": [
+      "thepricedex_price_list"
+    ],
+    "source_authorities": [
+      "thepricedex.com"
+    ],
+    "source_kinds": [
+      "marketplace_checklist"
+    ],
+    "evidence_urls": [
+      "https://www.thepricedex.com/set/bwp/bw-black-star-promos/price-list"
+    ],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "attempts": [
+    {
+      "query": "Pokemon BW Black Star Promos Tropical Beach BW50 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20BW%20Black%20Star%20Promos%20Tropical%20Beach%20BW50%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3985761",
+      "product_name": "Tropical Beach [Staff] #BW50",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Staff"
+      }
+    },
+    {
+      "query": "Pokemon BW Black Star Promos Tropical Beach BW50 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20BW%20Black%20Star%20Promos%20Tropical%20Beach%20BW50%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8996180",
+      "product_name": "Tropical Beach [Finalist] #BW50",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Finalist"
+      }
+    },
+    {
+      "query": "Pokemon BW Black Star Promos Tropical Beach BW50 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20BW%20Black%20Star%20Promos%20Tropical%20Beach%20BW50%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "1563446",
+      "product_name": "Tropical Beach #BW50",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon BW Black Star Promos Tropical Beach BW50 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20BW%20Black%20Star%20Promos%20Tropical%20Beach%20BW50%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9911861",
+      "product_name": "Tropical Beach [Semi-Finalist] #BW50",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Semi-Finalist"
+      }
+    },
+    {
+      "query": "Pokemon BW Black Star Promos Tropical Beach BW50 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20BW%20Black%20Star%20Promos%20Tropical%20Beach%20BW50%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8460269",
+      "product_name": "Tropical Beach #BW50",
+      "console_name": "Pokemon World Championships 2014",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon World Championships 2014"
+      }
+    },
+    {
+      "query": "Pokemon BW Black Star Promos Tropical Beach BW50 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20BW%20Black%20Star%20Promos%20Tropical%20Beach%20BW50%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8045154",
+      "product_name": "Tropical Beach #BW50",
+      "console_name": "Pokemon World Championships 2013",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon World Championships 2013"
+      }
+    },
+    {
+      "query": "Pokemon BW Black Star Promos Tropical Beach BW50 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20BW%20Black%20Star%20Promos%20Tropical%20Beach%20BW50%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9544007",
+      "product_name": "Tropical Beach [Clement Lamberton] #BW50",
+      "console_name": "Pokemon World Championships 2013",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon World Championships 2013"
+      }
+    },
+    {
+      "query": "Pokemon BW Black Star Promos Tropical Beach BW50 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20BW%20Black%20Star%20Promos%20Tropical%20Beach%20BW50%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6837998",
+      "product_name": "Tropical Beach [Worlds 12] #BW-P",
+      "console_name": "Pokemon Japanese Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:BW-P"
+      }
+    },
+    {
+      "query": "Pokemon BW Black Star Promos Tropical Beach BW50 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20BW%20Black%20Star%20Promos%20Tropical%20Beach%20BW50%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4765513",
+      "product_name": "Tropical Beach [Worlds 11 Staff] #BW28",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:BW28"
+      }
+    },
+    {
+      "query": "Pokemon BW Black Star Promos Tropical Beach BW50 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20BW%20Black%20Star%20Promos%20Tropical%20Beach%20BW50%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6635591",
+      "product_name": "Tropical Beach [Top Sixteen] #BW28",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:BW28"
+      }
+    },
+    {
+      "query": "Pokemon BW Black Star Promos Tropical Beach BW50 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20BW%20Black%20Star%20Promos%20Tropical%20Beach%20BW50%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8928579",
+      "product_name": "Tropical Beach [Semi-Finalist] #BW28",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:BW28"
+      }
+    },
+    {
+      "query": "Pokemon BW Black Star Promos Tropical Beach BW50 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20BW%20Black%20Star%20Promos%20Tropical%20Beach%20BW50%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8928578",
+      "product_name": "Tropical Beach [Top Thirty-Two] #BW28",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:BW28"
+      }
+    },
+    {
+      "query": "Pokemon BW Black Star Promos Tropical Beach BW50 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20BW%20Black%20Star%20Promos%20Tropical%20Beach%20BW50%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9283048",
+      "product_name": "Tropical Wind [No Stamp] #26",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:26"
+      }
+    },
+    {
+      "query": "Pokemon BW Black Star Promos Tropical Beach BW50 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20BW%20Black%20Star%20Promos%20Tropical%20Beach%20BW50%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "1563426",
+      "product_name": "Tropical Beach #BW28",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:BW28"
+      }
+    },
+    {
+      "query": "Pokemon BW Black Star Promos Tropical Beach BW50 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20BW%20Black%20Star%20Promos%20Tropical%20Beach%20BW50%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6124849",
+      "product_name": "Tropical Island Beach Box",
+      "console_name": "Pokemon Japanese Southern Islands",
+      "validation": {
+        "ok": false,
+        "reason": "api_product_name_pattern_not_supported"
+      }
+    },
+    {
+      "query": "Pokemon BW Black Star Promos Tropical Beach BW50 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20BW%20Black%20Star%20Promos%20Tropical%20Beach%20BW50%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4125269",
+      "product_name": "Tropical Wind [Staff] #DP25",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:DP25"
+      }
+    },
+    {
+      "query": "Pokemon BW Black Star Promos Tropical Beach BW50 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20BW%20Black%20Star%20Promos%20Tropical%20Beach%20BW50%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5780488",
+      "product_name": "Tropical Wind [Staff] #DP05",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:DP05"
+      }
+    },
+    {
+      "query": "Pokemon BW Black Star Promos Tropical Beach BW50 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20BW%20Black%20Star%20Promos%20Tropical%20Beach%20BW50%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8506636",
+      "product_name": "Tropical Wind [Staff] #DP48",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:DP48"
+      }
+    },
+    {
+      "query": "Pokemon BW Black Star Promos Tropical Beach BW50 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20BW%20Black%20Star%20Promos%20Tropical%20Beach%20BW50%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6791474",
+      "product_name": "Tropical Wind [Finalist] #DP25",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:DP25"
+      }
+    },
+    {
+      "query": "Pokemon BW Black Star Promos Tropical Beach BW50 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20BW%20Black%20Star%20Promos%20Tropical%20Beach%20BW50%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8506645",
+      "product_name": "Tropical Wind [Finalist] #DP48",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:DP48"
+      }
+    },
+    {
+      "query": "Pokemon BW Black Star Promos Tropical Beach BW50 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20BW%20Black%20Star%20Promos%20Tropical%20Beach%20BW50%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3985761",
+      "product_name": "Tropical Beach [Staff] #BW50",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Staff"
+      }
+    },
+    {
+      "query": "Pokemon BW Black Star Promos Tropical Beach BW50 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20BW%20Black%20Star%20Promos%20Tropical%20Beach%20BW50%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8996180",
+      "product_name": "Tropical Beach [Finalist] #BW50",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Finalist"
+      }
+    },
+    {
+      "query": "Pokemon BW Black Star Promos Tropical Beach BW50 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20BW%20Black%20Star%20Promos%20Tropical%20Beach%20BW50%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "1563446",
+      "product_name": "Tropical Beach #BW50",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon BW Black Star Promos Tropical Beach BW50 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20BW%20Black%20Star%20Promos%20Tropical%20Beach%20BW50%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9911861",
+      "product_name": "Tropical Beach [Semi-Finalist] #BW50",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Semi-Finalist"
+      }
+    },
+    {
+      "query": "Pokemon BW Black Star Promos Tropical Beach BW50 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20BW%20Black%20Star%20Promos%20Tropical%20Beach%20BW50%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8460269",
+      "product_name": "Tropical Beach #BW50",
+      "console_name": "Pokemon World Championships 2014",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon World Championships 2014"
+      }
+    },
+    {
+      "query": "Pokemon BW Black Star Promos Tropical Beach BW50 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20BW%20Black%20Star%20Promos%20Tropical%20Beach%20BW50%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8045154",
+      "product_name": "Tropical Beach #BW50",
+      "console_name": "Pokemon World Championships 2013",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon World Championships 2013"
+      }
+    },
+    {
+      "query": "Pokemon BW Black Star Promos Tropical Beach BW50 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20BW%20Black%20Star%20Promos%20Tropical%20Beach%20BW50%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9544007",
+      "product_name": "Tropical Beach [Clement Lamberton] #BW50",
+      "console_name": "Pokemon World Championships 2013",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon World Championships 2013"
+      }
+    },
+    {
+      "query": "Pokemon BW Black Star Promos Tropical Beach BW50 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20BW%20Black%20Star%20Promos%20Tropical%20Beach%20BW50%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6837998",
+      "product_name": "Tropical Beach [Worlds 12] #BW-P",
+      "console_name": "Pokemon Japanese Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:BW-P"
+      }
+    },
+    {
+      "query": "Pokemon BW Black Star Promos Tropical Beach BW50 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20BW%20Black%20Star%20Promos%20Tropical%20Beach%20BW50%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4765513",
+      "product_name": "Tropical Beach [Worlds 11 Staff] #BW28",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:BW28"
+      }
+    },
+    {
+      "query": "Pokemon BW Black Star Promos Tropical Beach BW50 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20BW%20Black%20Star%20Promos%20Tropical%20Beach%20BW50%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6635591",
+      "product_name": "Tropical Beach [Top Sixteen] #BW28",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:BW28"
+      }
+    },
+    {
+      "query": "Pokemon BW Black Star Promos Tropical Beach BW50 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20BW%20Black%20Star%20Promos%20Tropical%20Beach%20BW50%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8928579",
+      "product_name": "Tropical Beach [Semi-Finalist] #BW28",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:BW28"
+      }
+    },
+    {
+      "query": "Pokemon BW Black Star Promos Tropical Beach BW50 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20BW%20Black%20Star%20Promos%20Tropical%20Beach%20BW50%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8928578",
+      "product_name": "Tropical Beach [Top Thirty-Two] #BW28",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:BW28"
+      }
+    },
+    {
+      "query": "Pokemon BW Black Star Promos Tropical Beach BW50 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20BW%20Black%20Star%20Promos%20Tropical%20Beach%20BW50%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9283048",
+      "product_name": "Tropical Wind [No Stamp] #26",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:26"
+      }
+    },
+    {
+      "query": "Pokemon BW Black Star Promos Tropical Beach BW50 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20BW%20Black%20Star%20Promos%20Tropical%20Beach%20BW50%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "1563426",
+      "product_name": "Tropical Beach #BW28",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:BW28"
+      }
+    },
+    {
+      "query": "Pokemon BW Black Star Promos Tropical Beach BW50 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20BW%20Black%20Star%20Promos%20Tropical%20Beach%20BW50%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6124849",
+      "product_name": "Tropical Island Beach Box",
+      "console_name": "Pokemon Japanese Southern Islands",
+      "validation": {
+        "ok": false,
+        "reason": "api_product_name_pattern_not_supported"
+      }
+    },
+    {
+      "query": "Pokemon BW Black Star Promos Tropical Beach BW50 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20BW%20Black%20Star%20Promos%20Tropical%20Beach%20BW50%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4125269",
+      "product_name": "Tropical Wind [Staff] #DP25",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:DP25"
+      }
+    },
+    {
+      "query": "Pokemon BW Black Star Promos Tropical Beach BW50 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20BW%20Black%20Star%20Promos%20Tropical%20Beach%20BW50%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5780488",
+      "product_name": "Tropical Wind [Staff] #DP05",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:DP05"
+      }
+    },
+    {
+      "query": "Pokemon BW Black Star Promos Tropical Beach BW50 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20BW%20Black%20Star%20Promos%20Tropical%20Beach%20BW50%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8506636",
+      "product_name": "Tropical Wind [Staff] #DP48",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:DP48"
+      }
+    },
+    {
+      "query": "Pokemon BW Black Star Promos Tropical Beach BW50 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20BW%20Black%20Star%20Promos%20Tropical%20Beach%20BW50%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6791474",
+      "product_name": "Tropical Wind [Finalist] #DP25",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:DP25"
+      }
+    },
+    {
+      "query": "Pokemon BW Black Star Promos Tropical Beach BW50 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20BW%20Black%20Star%20Promos%20Tropical%20Beach%20BW50%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8506645",
+      "product_name": "Tropical Wind [Finalist] #DP48",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:DP48"
+      }
+    }
+  ],
+  "source_lane": "pricecharting_api"
+}

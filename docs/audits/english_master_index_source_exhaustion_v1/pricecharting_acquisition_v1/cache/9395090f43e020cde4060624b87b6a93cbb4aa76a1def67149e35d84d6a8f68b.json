@@ -1,0 +1,549 @@
+{
+  "status": "api_no_validated_match",
+  "fact": {
+    "gap_type": "finish_second_source_needed",
+    "fact_type": "printing_finish",
+    "set_key": "dp3",
+    "set_name": "Secret Wonders",
+    "card_number": "125",
+    "card_name": "Roseanne's Research",
+    "finish_key": "stamped",
+    "status": "human_source_verified",
+    "sources": [
+      "thepricedex_price_list"
+    ],
+    "source_authorities": [
+      "thepricedex.com"
+    ],
+    "source_kinds": [
+      "marketplace_checklist"
+    ],
+    "evidence_urls": [
+      "https://www.thepricedex.com/set/dp3/secret-wonders/price-list"
+    ],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "attempts": [
+    {
+      "query": "Pokemon Secret Wonders Roseanne's Research 125 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Secret%20Wonders%20Roseanne's%20Research%20125%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "921015",
+      "product_name": "Roseanne's Research #125",
+      "console_name": "Pokemon Secret Wonders",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon Secret Wonders Roseanne's Research 125 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Secret%20Wonders%20Roseanne's%20Research%20125%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "921147",
+      "product_name": "Roseanne's Research [Reverse Holo] #125",
+      "console_name": "Pokemon Secret Wonders",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Reverse Holo"
+      }
+    },
+    {
+      "query": "Pokemon Secret Wonders Roseanne's Research 125 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Secret%20Wonders%20Roseanne's%20Research%20125%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6124831",
+      "product_name": "Roseanne's Research [Pokemon League Holo] #125",
+      "console_name": "Pokemon Secret Wonders",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Pokemon League Holo"
+      }
+    },
+    {
+      "query": "Pokemon Secret Wonders Roseanne's Research 125 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Secret%20Wonders%20Roseanne's%20Research%20125%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11355286",
+      "product_name": "Roseanne's Research #125",
+      "console_name": "Pokemon World Championships 2008",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon World Championships 2008"
+      }
+    },
+    {
+      "query": "Pokemon Secret Wonders Roseanne's Research 125 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Secret%20Wonders%20Roseanne's%20Research%20125%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12120477",
+      "product_name": "Roseanne's Research [Tsubasa Nakamura] #125",
+      "console_name": "Pokemon World Championships 2009",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon World Championships 2009"
+      }
+    },
+    {
+      "query": "Pokemon Secret Wonders Roseanne's Research 125 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Secret%20Wonders%20Roseanne's%20Research%20125%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3458197",
+      "product_name": "Roseanne's Research",
+      "console_name": "Pokemon Japanese Shining Darkness",
+      "validation": {
+        "ok": false,
+        "reason": "api_product_name_pattern_not_supported"
+      }
+    },
+    {
+      "query": "Pokemon Secret Wonders Roseanne's Research 125 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Secret%20Wonders%20Roseanne's%20Research%20125%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "762840",
+      "product_name": "Roseanne's Research #11",
+      "console_name": "Pokemon POP Series 8",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:11"
+      }
+    },
+    {
+      "query": "Pokemon Secret Wonders Roseanne's Research 125 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Secret%20Wonders%20Roseanne's%20Research%20125%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4928790",
+      "product_name": "Roseanne's Research [1st Edition]",
+      "console_name": "Pokemon Japanese Shining Darkness",
+      "validation": {
+        "ok": false,
+        "reason": "api_product_name_pattern_not_supported"
+      }
+    },
+    {
+      "query": "Pokemon Secret Wonders Roseanne's Research 125 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Secret%20Wonders%20Roseanne's%20Research%20125%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12579938",
+      "product_name": "Professor's Research: Professor Sada [Event Organizer Stamp] #21/SV-P",
+      "console_name": "Pokemon Japanese Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:21/SV-P"
+      }
+    },
+    {
+      "query": "Pokemon Secret Wonders Roseanne's Research 125 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Secret%20Wonders%20Roseanne's%20Research%20125%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8244569",
+      "product_name": "Professor's Research: Professor Sycamore #125",
+      "console_name": "Pokemon Prismatic Evolutions",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Professor's Research: Professor Sycamore"
+      }
+    },
+    {
+      "query": "Pokemon Secret Wonders Roseanne's Research 125 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Secret%20Wonders%20Roseanne's%20Research%20125%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5810877",
+      "product_name": "Stantler [Snowflake Stamp] #125",
+      "console_name": "Pokemon Astral Radiance",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Stantler"
+      }
+    },
+    {
+      "query": "Pokemon Secret Wonders Roseanne's Research 125 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Secret%20Wonders%20Roseanne's%20Research%20125%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8244723",
+      "product_name": "Professor's Research: Professor Sycamore [Reverse] #125",
+      "console_name": "Pokemon Prismatic Evolutions",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Professor's Research: Professor Sycamore"
+      }
+    },
+    {
+      "query": "Pokemon Secret Wonders Roseanne's Research 125 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Secret%20Wonders%20Roseanne's%20Research%20125%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8329893",
+      "product_name": "Professor's Research: Professor Sycamore [Poke Ball] #125",
+      "console_name": "Pokemon Prismatic Evolutions",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Professor's Research: Professor Sycamore"
+      }
+    },
+    {
+      "query": "Pokemon Secret Wonders Roseanne's Research 125 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Secret%20Wonders%20Roseanne's%20Research%20125%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "920906",
+      "product_name": "Mew #15",
+      "console_name": "Pokemon Secret Wonders",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:15"
+      }
+    },
+    {
+      "query": "Pokemon Secret Wonders Roseanne's Research 125 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Secret%20Wonders%20Roseanne's%20Research%20125%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "920946",
+      "product_name": "Muk #56",
+      "console_name": "Pokemon Secret Wonders",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:56"
+      }
+    },
+    {
+      "query": "Pokemon Secret Wonders Roseanne's Research 125 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Secret%20Wonders%20Roseanne's%20Research%20125%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "920920",
+      "product_name": "Jynx #30",
+      "console_name": "Pokemon Secret Wonders",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:30"
+      }
+    },
+    {
+      "query": "Pokemon Secret Wonders Roseanne's Research 125 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Secret%20Wonders%20Roseanne's%20Research%20125%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "920934",
+      "product_name": "Xatu #44",
+      "console_name": "Pokemon Secret Wonders",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:44"
+      }
+    },
+    {
+      "query": "Pokemon Secret Wonders Roseanne's Research 125 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Secret%20Wonders%20Roseanne's%20Research%20125%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "920986",
+      "product_name": "Natu #96",
+      "console_name": "Pokemon Secret Wonders",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:96"
+      }
+    },
+    {
+      "query": "Pokemon Secret Wonders Roseanne's Research 125 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Secret%20Wonders%20Roseanne's%20Research%20125%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3440553",
+      "product_name": "Roseanne's Backup #96",
+      "console_name": "Pokemon Japanese Star Birth",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:96"
+      }
+    },
+    {
+      "query": "Pokemon Secret Wonders Roseanne's Research 125 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Secret%20Wonders%20Roseanne's%20Research%20125%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3440573",
+      "product_name": "Roseanne's Backup #116",
+      "console_name": "Pokemon Japanese Star Birth",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:116"
+      }
+    },
+    {
+      "query": "Pokemon Secret Wonders Roseanne's Research 125 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Secret%20Wonders%20Roseanne's%20Research%20125%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "921015",
+      "product_name": "Roseanne's Research #125",
+      "console_name": "Pokemon Secret Wonders",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon Secret Wonders Roseanne's Research 125 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Secret%20Wonders%20Roseanne's%20Research%20125%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "921147",
+      "product_name": "Roseanne's Research [Reverse Holo] #125",
+      "console_name": "Pokemon Secret Wonders",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Reverse Holo"
+      }
+    },
+    {
+      "query": "Pokemon Secret Wonders Roseanne's Research 125 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Secret%20Wonders%20Roseanne's%20Research%20125%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6124831",
+      "product_name": "Roseanne's Research [Pokemon League Holo] #125",
+      "console_name": "Pokemon Secret Wonders",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Pokemon League Holo"
+      }
+    },
+    {
+      "query": "Pokemon Secret Wonders Roseanne's Research 125 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Secret%20Wonders%20Roseanne's%20Research%20125%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11355286",
+      "product_name": "Roseanne's Research #125",
+      "console_name": "Pokemon World Championships 2008",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon World Championships 2008"
+      }
+    },
+    {
+      "query": "Pokemon Secret Wonders Roseanne's Research 125 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Secret%20Wonders%20Roseanne's%20Research%20125%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12120477",
+      "product_name": "Roseanne's Research [Tsubasa Nakamura] #125",
+      "console_name": "Pokemon World Championships 2009",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon World Championships 2009"
+      }
+    },
+    {
+      "query": "Pokemon Secret Wonders Roseanne's Research 125 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Secret%20Wonders%20Roseanne's%20Research%20125%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3458197",
+      "product_name": "Roseanne's Research",
+      "console_name": "Pokemon Japanese Shining Darkness",
+      "validation": {
+        "ok": false,
+        "reason": "api_product_name_pattern_not_supported"
+      }
+    },
+    {
+      "query": "Pokemon Secret Wonders Roseanne's Research 125 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Secret%20Wonders%20Roseanne's%20Research%20125%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "762840",
+      "product_name": "Roseanne's Research #11",
+      "console_name": "Pokemon POP Series 8",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:11"
+      }
+    },
+    {
+      "query": "Pokemon Secret Wonders Roseanne's Research 125 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Secret%20Wonders%20Roseanne's%20Research%20125%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4928790",
+      "product_name": "Roseanne's Research [1st Edition]",
+      "console_name": "Pokemon Japanese Shining Darkness",
+      "validation": {
+        "ok": false,
+        "reason": "api_product_name_pattern_not_supported"
+      }
+    },
+    {
+      "query": "Pokemon Secret Wonders Roseanne's Research 125 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Secret%20Wonders%20Roseanne's%20Research%20125%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12579938",
+      "product_name": "Professor's Research: Professor Sada [Event Organizer Stamp] #21/SV-P",
+      "console_name": "Pokemon Japanese Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:21/SV-P"
+      }
+    },
+    {
+      "query": "Pokemon Secret Wonders Roseanne's Research 125 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Secret%20Wonders%20Roseanne's%20Research%20125%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8244569",
+      "product_name": "Professor's Research: Professor Sycamore #125",
+      "console_name": "Pokemon Prismatic Evolutions",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Professor's Research: Professor Sycamore"
+      }
+    },
+    {
+      "query": "Pokemon Secret Wonders Roseanne's Research 125 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Secret%20Wonders%20Roseanne's%20Research%20125%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5810877",
+      "product_name": "Stantler [Snowflake Stamp] #125",
+      "console_name": "Pokemon Astral Radiance",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Stantler"
+      }
+    },
+    {
+      "query": "Pokemon Secret Wonders Roseanne's Research 125 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Secret%20Wonders%20Roseanne's%20Research%20125%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8244723",
+      "product_name": "Professor's Research: Professor Sycamore [Reverse] #125",
+      "console_name": "Pokemon Prismatic Evolutions",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Professor's Research: Professor Sycamore"
+      }
+    },
+    {
+      "query": "Pokemon Secret Wonders Roseanne's Research 125 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Secret%20Wonders%20Roseanne's%20Research%20125%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8329893",
+      "product_name": "Professor's Research: Professor Sycamore [Poke Ball] #125",
+      "console_name": "Pokemon Prismatic Evolutions",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Professor's Research: Professor Sycamore"
+      }
+    },
+    {
+      "query": "Pokemon Secret Wonders Roseanne's Research 125 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Secret%20Wonders%20Roseanne's%20Research%20125%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "920906",
+      "product_name": "Mew #15",
+      "console_name": "Pokemon Secret Wonders",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:15"
+      }
+    },
+    {
+      "query": "Pokemon Secret Wonders Roseanne's Research 125 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Secret%20Wonders%20Roseanne's%20Research%20125%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "920946",
+      "product_name": "Muk #56",
+      "console_name": "Pokemon Secret Wonders",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:56"
+      }
+    },
+    {
+      "query": "Pokemon Secret Wonders Roseanne's Research 125 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Secret%20Wonders%20Roseanne's%20Research%20125%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "920920",
+      "product_name": "Jynx #30",
+      "console_name": "Pokemon Secret Wonders",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:30"
+      }
+    },
+    {
+      "query": "Pokemon Secret Wonders Roseanne's Research 125 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Secret%20Wonders%20Roseanne's%20Research%20125%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "920934",
+      "product_name": "Xatu #44",
+      "console_name": "Pokemon Secret Wonders",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:44"
+      }
+    },
+    {
+      "query": "Pokemon Secret Wonders Roseanne's Research 125 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Secret%20Wonders%20Roseanne's%20Research%20125%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "920986",
+      "product_name": "Natu #96",
+      "console_name": "Pokemon Secret Wonders",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:96"
+      }
+    },
+    {
+      "query": "Pokemon Secret Wonders Roseanne's Research 125 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Secret%20Wonders%20Roseanne's%20Research%20125%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3440553",
+      "product_name": "Roseanne's Backup #96",
+      "console_name": "Pokemon Japanese Star Birth",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:96"
+      }
+    },
+    {
+      "query": "Pokemon Secret Wonders Roseanne's Research 125 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Secret%20Wonders%20Roseanne's%20Research%20125%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3440573",
+      "product_name": "Roseanne's Backup #116",
+      "console_name": "Pokemon Japanese Star Birth",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:116"
+      }
+    }
+  ],
+  "source_lane": "pricecharting_api"
+}

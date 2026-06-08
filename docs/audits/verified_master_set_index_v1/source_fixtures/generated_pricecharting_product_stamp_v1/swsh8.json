@@ -1,0 +1,52 @@
+{
+  "fixture_version": "VERIFIED_MASTER_SET_INDEX_V1_HUMAN_SOURCE_FIXTURE_GENERATED",
+  "source_key": "pricecharting_csv_product_stamp",
+  "source_kind": "marketplace_checklist",
+  "source_url": "https://www.pricecharting.com/console/pokemon-cards",
+  "source_status": "available_generated_explicit_product_stamp_rows",
+  "set_key": "swsh8",
+  "set_name": "Fusion Strike",
+  "retrieved_at": "2026-05-31T11:07:14.387Z",
+  "raw_snapshot_ref": "generated_fixture:pricecharting_csv_product_stamp:swsh8:2026-05-31T11:07:14.387Z",
+  "audit_only": true,
+  "db_writes_performed": false,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "records": [
+    {
+      "source_key": "pricecharting_csv_product_stamp",
+      "source_kind": "marketplace_checklist",
+      "source_url": "https://www.pricecharting.com/game/pokemon-2022-battle-academy/vulpix-31-cinderace-stamped-29",
+      "set_key": "swsh8",
+      "set_name": "Fusion Strike",
+      "card_number": "29",
+      "card_name": "Vulpix",
+      "finish_key": "stamped",
+      "rarity": null,
+      "evidence_type": "finish_presence",
+      "evidence_label": "PriceCharting explicit stamped product 10931693: Vulpix [#31 Cinderace Stamped] #29",
+      "language": "en",
+      "retrieved_at": "2026-05-31T11:07:14.387Z",
+      "raw_snapshot_ref": "pricecharting_csv_product_stamp:10931693",
+      "notes": "Exact product-stamp evidence accepted only for allowed product families when the product title has one explicit stamped/staff/Professor Program/Pokemon Center label and exact card number/name match. It does not infer unstated deck variants."
+    },
+    {
+      "source_key": "pricecharting_csv_product_stamp",
+      "source_kind": "marketplace_checklist",
+      "source_url": "https://www.pricecharting.com/game/pokemon-2022-battle-academy/sizzlipede-17-cinderace-stamped-46",
+      "set_key": "swsh8",
+      "set_name": "Fusion Strike",
+      "card_number": "46",
+      "card_name": "Sizzlipede",
+      "finish_key": "stamped",
+      "rarity": null,
+      "evidence_type": "finish_presence",
+      "evidence_label": "PriceCharting explicit stamped product 10931695: Sizzlipede [#17 Cinderace Stamped] #46",
+      "language": "en",
+      "retrieved_at": "2026-05-31T11:07:14.387Z",
+      "raw_snapshot_ref": "pricecharting_csv_product_stamp:10931695",
+      "notes": "Exact product-stamp evidence accepted only for allowed product families when the product title has one explicit stamped/staff/Professor Program/Pokemon Center label and exact card number/name match. It does not infer unstated deck variants."
+    }
+  ]
+}

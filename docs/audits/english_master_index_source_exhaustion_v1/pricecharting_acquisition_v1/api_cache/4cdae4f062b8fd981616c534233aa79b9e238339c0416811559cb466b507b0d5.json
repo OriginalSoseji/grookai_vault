@@ -1,0 +1,22 @@
+{
+  "products": [
+    {
+      "bgs-10-price": 19400,
+      "condition-17-price": 8900,
+      "condition-18-price": 8900,
+      "console-name": "Pokemon Scarlet & Violet 151",
+      "gamestop-price": 0,
+      "gamestop-trade-price": 0,
+      "genre": "Pokemon Card",
+      "id": "11330245",
+      "loose-price": 389,
+      "manual-only-price": 14900,
+      "product-name": "Raichu [Cosmos Holo] #26",
+      "retail-loose-buy": 90,
+      "retail-loose-sell": 429,
+      "sales-volume": "56",
+      "tcg-id": "662074"
+    }
+  ],
+  "status": "success"
+}

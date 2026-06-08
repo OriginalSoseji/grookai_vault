@@ -1,0 +1,38 @@
+{
+  "status": "no_validated_match",
+  "fact": {
+    "gap_type": "finish_second_source_needed",
+    "fact_type": "printing_finish",
+    "set_key": "swsh3",
+    "set_name": "Darkness Ablaze",
+    "card_number": "160",
+    "card_name": "Cape of Toughness",
+    "finish_key": "stamped",
+    "status": "human_source_verified",
+    "sources": [
+      "thepricedex_price_list"
+    ],
+    "source_authorities": [
+      "thepricedex.com"
+    ],
+    "source_kinds": [
+      "marketplace_checklist"
+    ],
+    "evidence_urls": [
+      "https://www.thepricedex.com/set/swsh3/darkness-ablaze/price-list"
+    ],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "attempts": [
+    {
+      "query": "Pokemon Darkness Ablaze Cape of Toughness 160 stamped",
+      "url": "https://www.pricecharting.com/search-products?q=Pokemon%20Darkness%20Ablaze%20Cape%20of%20Toughness%20160%20stamped&type=prices",
+      "error": "fetch failed"
+    },
+    {
+      "query": "Pokemon Darkness Ablaze Cape of Toughness 160 stamp",
+      "url": "https://www.pricecharting.com/search-products?q=Pokemon%20Darkness%20Ablaze%20Cape%20of%20Toughness%20160%20stamp&type=prices",
+      "error": "fetch failed"
+    }
+  ]
+}

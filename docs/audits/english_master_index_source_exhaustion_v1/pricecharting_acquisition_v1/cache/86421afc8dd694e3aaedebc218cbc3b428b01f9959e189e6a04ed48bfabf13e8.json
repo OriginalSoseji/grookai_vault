@@ -1,0 +1,549 @@
+{
+  "status": "api_no_validated_match",
+  "fact": {
+    "gap_type": "finish_second_source_needed",
+    "fact_type": "printing_finish",
+    "set_key": "swsh10",
+    "set_name": "Astral Radiance",
+    "card_number": "39",
+    "card_name": "Origin Forme Palkia V",
+    "finish_key": "stamped",
+    "status": "human_source_verified",
+    "sources": [
+      "thepricedex_price_list"
+    ],
+    "source_authorities": [
+      "thepricedex.com"
+    ],
+    "source_kinds": [
+      "marketplace_checklist"
+    ],
+    "evidence_urls": [
+      "https://www.thepricedex.com/set/swsh10/astral-radiance/price-list"
+    ],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "attempts": [
+    {
+      "query": "Pokemon Astral Radiance Origin Forme Palkia V 39 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Astral%20Radiance%20Origin%20Forme%20Palkia%20V%2039%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3489537",
+      "product_name": "Origin Forme Palkia V #39",
+      "console_name": "Pokemon Astral Radiance",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon Astral Radiance Origin Forme Palkia V 39 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Astral%20Radiance%20Origin%20Forme%20Palkia%20V%2039%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3489666",
+      "product_name": "Origin Forme Palkia V #167",
+      "console_name": "Pokemon Astral Radiance",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:167"
+      }
+    },
+    {
+      "query": "Pokemon Astral Radiance Origin Forme Palkia V 39 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Astral%20Radiance%20Origin%20Forme%20Palkia%20V%2039%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3489538",
+      "product_name": "Origin Forme Palkia VSTAR #40",
+      "console_name": "Pokemon Astral Radiance",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:40"
+      }
+    },
+    {
+      "query": "Pokemon Astral Radiance Origin Forme Palkia V 39 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Astral%20Radiance%20Origin%20Forme%20Palkia%20V%2039%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3489691",
+      "product_name": "Origin Forme Palkia VSTAR #192",
+      "console_name": "Pokemon Astral Radiance",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:192"
+      }
+    },
+    {
+      "query": "Pokemon Astral Radiance Origin Forme Palkia V 39 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Astral%20Radiance%20Origin%20Forme%20Palkia%20V%2039%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3489708",
+      "product_name": "Origin Forme Palkia VSTAR #208",
+      "console_name": "Pokemon Astral Radiance",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:208"
+      }
+    },
+    {
+      "query": "Pokemon Astral Radiance Origin Forme Palkia V 39 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Astral%20Radiance%20Origin%20Forme%20Palkia%20V%2039%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3489612",
+      "product_name": "Origin Forme Dialga V #113",
+      "console_name": "Pokemon Astral Radiance",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:113"
+      }
+    },
+    {
+      "query": "Pokemon Astral Radiance Origin Forme Palkia V 39 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Astral%20Radiance%20Origin%20Forme%20Palkia%20V%2039%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3489676",
+      "product_name": "Origin Forme Dialga V #177",
+      "console_name": "Pokemon Astral Radiance",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:177"
+      }
+    },
+    {
+      "query": "Pokemon Astral Radiance Origin Forme Palkia V 39 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Astral%20Radiance%20Origin%20Forme%20Palkia%20V%2039%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7532892",
+      "product_name": "Origin Forme Palkia V #39",
+      "console_name": "Pokemon World Championships 2022",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon World Championships 2022"
+      }
+    },
+    {
+      "query": "Pokemon Astral Radiance Origin Forme Palkia V 39 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Astral%20Radiance%20Origin%20Forme%20Palkia%20V%2039%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9056513",
+      "product_name": "Origin Forme Dialga V [Prize Pack] #113",
+      "console_name": "Pokemon Astral Radiance",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:113"
+      }
+    },
+    {
+      "query": "Pokemon Astral Radiance Origin Forme Palkia V 39 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Astral%20Radiance%20Origin%20Forme%20Palkia%20V%2039%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4196803",
+      "product_name": "Origin Forme Palkia V #SWSH253",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:SWSH253"
+      }
+    },
+    {
+      "query": "Pokemon Astral Radiance Origin Forme Palkia V 39 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Astral%20Radiance%20Origin%20Forme%20Palkia%20V%2039%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9152630",
+      "product_name": "Origin Forme Palkia V #139",
+      "console_name": "Pokemon Chinese CS5bC",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:139"
+      }
+    },
+    {
+      "query": "Pokemon Astral Radiance Origin Forme Palkia V 39 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Astral%20Radiance%20Origin%20Forme%20Palkia%20V%2039%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4447502",
+      "product_name": "Origin Forme Palkia V #27",
+      "console_name": "Pokemon Japanese VSTAR Universe",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:27"
+      }
+    },
+    {
+      "query": "Pokemon Astral Radiance Origin Forme Palkia V 39 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Astral%20Radiance%20Origin%20Forme%20Palkia%20V%2039%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3491780",
+      "product_name": "Origin Forme Palkia V #22",
+      "console_name": "Pokemon Japanese Space Juggler",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:22"
+      }
+    },
+    {
+      "query": "Pokemon Astral Radiance Origin Forme Palkia V 39 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Astral%20Radiance%20Origin%20Forme%20Palkia%20V%2039%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3491828",
+      "product_name": "Origin Forme Palkia V #70",
+      "console_name": "Pokemon Japanese Space Juggler",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:70"
+      }
+    },
+    {
+      "query": "Pokemon Astral Radiance Origin Forme Palkia V 39 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Astral%20Radiance%20Origin%20Forme%20Palkia%20V%2039%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3491829",
+      "product_name": "Origin Forme Palkia V #71",
+      "console_name": "Pokemon Japanese Space Juggler",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:71"
+      }
+    },
+    {
+      "query": "Pokemon Astral Radiance Origin Forme Palkia V 39 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Astral%20Radiance%20Origin%20Forme%20Palkia%20V%2039%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7311976",
+      "product_name": "Origin Forme Palkia V #1",
+      "console_name": "Pokemon Japanese Battle Master Chien-Pao",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:1"
+      }
+    },
+    {
+      "query": "Pokemon Astral Radiance Origin Forme Palkia V 39 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Astral%20Radiance%20Origin%20Forme%20Palkia%20V%2039%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9056514",
+      "product_name": "Origin Forme Dialga VSTAR [Prize Pack] #114",
+      "console_name": "Pokemon Astral Radiance",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:114"
+      }
+    },
+    {
+      "query": "Pokemon Astral Radiance Origin Forme Palkia V 39 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Astral%20Radiance%20Origin%20Forme%20Palkia%20V%2039%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3489613",
+      "product_name": "Origin Forme Dialga VSTAR #114",
+      "console_name": "Pokemon Astral Radiance",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:114"
+      }
+    },
+    {
+      "query": "Pokemon Astral Radiance Origin Forme Palkia V 39 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Astral%20Radiance%20Origin%20Forme%20Palkia%20V%2039%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3489698",
+      "product_name": "Origin Forme Dialga VSTAR #198",
+      "console_name": "Pokemon Astral Radiance",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:198"
+      }
+    },
+    {
+      "query": "Pokemon Astral Radiance Origin Forme Palkia V 39 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Astral%20Radiance%20Origin%20Forme%20Palkia%20V%2039%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3489710",
+      "product_name": "Origin Forme Dialga VSTAR #210",
+      "console_name": "Pokemon Astral Radiance",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:210"
+      }
+    },
+    {
+      "query": "Pokemon Astral Radiance Origin Forme Palkia V 39 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Astral%20Radiance%20Origin%20Forme%20Palkia%20V%2039%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3489537",
+      "product_name": "Origin Forme Palkia V #39",
+      "console_name": "Pokemon Astral Radiance",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon Astral Radiance Origin Forme Palkia V 39 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Astral%20Radiance%20Origin%20Forme%20Palkia%20V%2039%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3489666",
+      "product_name": "Origin Forme Palkia V #167",
+      "console_name": "Pokemon Astral Radiance",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:167"
+      }
+    },
+    {
+      "query": "Pokemon Astral Radiance Origin Forme Palkia V 39 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Astral%20Radiance%20Origin%20Forme%20Palkia%20V%2039%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3489538",
+      "product_name": "Origin Forme Palkia VSTAR #40",
+      "console_name": "Pokemon Astral Radiance",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:40"
+      }
+    },
+    {
+      "query": "Pokemon Astral Radiance Origin Forme Palkia V 39 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Astral%20Radiance%20Origin%20Forme%20Palkia%20V%2039%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3489691",
+      "product_name": "Origin Forme Palkia VSTAR #192",
+      "console_name": "Pokemon Astral Radiance",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:192"
+      }
+    },
+    {
+      "query": "Pokemon Astral Radiance Origin Forme Palkia V 39 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Astral%20Radiance%20Origin%20Forme%20Palkia%20V%2039%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3489708",
+      "product_name": "Origin Forme Palkia VSTAR #208",
+      "console_name": "Pokemon Astral Radiance",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:208"
+      }
+    },
+    {
+      "query": "Pokemon Astral Radiance Origin Forme Palkia V 39 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Astral%20Radiance%20Origin%20Forme%20Palkia%20V%2039%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3489612",
+      "product_name": "Origin Forme Dialga V #113",
+      "console_name": "Pokemon Astral Radiance",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:113"
+      }
+    },
+    {
+      "query": "Pokemon Astral Radiance Origin Forme Palkia V 39 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Astral%20Radiance%20Origin%20Forme%20Palkia%20V%2039%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3489676",
+      "product_name": "Origin Forme Dialga V #177",
+      "console_name": "Pokemon Astral Radiance",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:177"
+      }
+    },
+    {
+      "query": "Pokemon Astral Radiance Origin Forme Palkia V 39 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Astral%20Radiance%20Origin%20Forme%20Palkia%20V%2039%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7532892",
+      "product_name": "Origin Forme Palkia V #39",
+      "console_name": "Pokemon World Championships 2022",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon World Championships 2022"
+      }
+    },
+    {
+      "query": "Pokemon Astral Radiance Origin Forme Palkia V 39 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Astral%20Radiance%20Origin%20Forme%20Palkia%20V%2039%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9056513",
+      "product_name": "Origin Forme Dialga V [Prize Pack] #113",
+      "console_name": "Pokemon Astral Radiance",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:113"
+      }
+    },
+    {
+      "query": "Pokemon Astral Radiance Origin Forme Palkia V 39 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Astral%20Radiance%20Origin%20Forme%20Palkia%20V%2039%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4196803",
+      "product_name": "Origin Forme Palkia V #SWSH253",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:SWSH253"
+      }
+    },
+    {
+      "query": "Pokemon Astral Radiance Origin Forme Palkia V 39 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Astral%20Radiance%20Origin%20Forme%20Palkia%20V%2039%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9152630",
+      "product_name": "Origin Forme Palkia V #139",
+      "console_name": "Pokemon Chinese CS5bC",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:139"
+      }
+    },
+    {
+      "query": "Pokemon Astral Radiance Origin Forme Palkia V 39 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Astral%20Radiance%20Origin%20Forme%20Palkia%20V%2039%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4447502",
+      "product_name": "Origin Forme Palkia V #27",
+      "console_name": "Pokemon Japanese VSTAR Universe",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:27"
+      }
+    },
+    {
+      "query": "Pokemon Astral Radiance Origin Forme Palkia V 39 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Astral%20Radiance%20Origin%20Forme%20Palkia%20V%2039%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3491780",
+      "product_name": "Origin Forme Palkia V #22",
+      "console_name": "Pokemon Japanese Space Juggler",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:22"
+      }
+    },
+    {
+      "query": "Pokemon Astral Radiance Origin Forme Palkia V 39 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Astral%20Radiance%20Origin%20Forme%20Palkia%20V%2039%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3491828",
+      "product_name": "Origin Forme Palkia V #70",
+      "console_name": "Pokemon Japanese Space Juggler",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:70"
+      }
+    },
+    {
+      "query": "Pokemon Astral Radiance Origin Forme Palkia V 39 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Astral%20Radiance%20Origin%20Forme%20Palkia%20V%2039%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3491829",
+      "product_name": "Origin Forme Palkia V #71",
+      "console_name": "Pokemon Japanese Space Juggler",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:71"
+      }
+    },
+    {
+      "query": "Pokemon Astral Radiance Origin Forme Palkia V 39 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Astral%20Radiance%20Origin%20Forme%20Palkia%20V%2039%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7311976",
+      "product_name": "Origin Forme Palkia V #1",
+      "console_name": "Pokemon Japanese Battle Master Chien-Pao",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:1"
+      }
+    },
+    {
+      "query": "Pokemon Astral Radiance Origin Forme Palkia V 39 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Astral%20Radiance%20Origin%20Forme%20Palkia%20V%2039%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9056514",
+      "product_name": "Origin Forme Dialga VSTAR [Prize Pack] #114",
+      "console_name": "Pokemon Astral Radiance",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:114"
+      }
+    },
+    {
+      "query": "Pokemon Astral Radiance Origin Forme Palkia V 39 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Astral%20Radiance%20Origin%20Forme%20Palkia%20V%2039%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3489613",
+      "product_name": "Origin Forme Dialga VSTAR #114",
+      "console_name": "Pokemon Astral Radiance",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:114"
+      }
+    },
+    {
+      "query": "Pokemon Astral Radiance Origin Forme Palkia V 39 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Astral%20Radiance%20Origin%20Forme%20Palkia%20V%2039%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3489698",
+      "product_name": "Origin Forme Dialga VSTAR #198",
+      "console_name": "Pokemon Astral Radiance",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:198"
+      }
+    },
+    {
+      "query": "Pokemon Astral Radiance Origin Forme Palkia V 39 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Astral%20Radiance%20Origin%20Forme%20Palkia%20V%2039%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3489710",
+      "product_name": "Origin Forme Dialga VSTAR #210",
+      "console_name": "Pokemon Astral Radiance",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:210"
+      }
+    }
+  ],
+  "source_lane": "pricecharting_api"
+}

@@ -1,0 +1,36 @@
+{
+  "status": "no_validated_match",
+  "fact": {
+    "gap_type": "finish_second_source_needed",
+    "fact_type": "printing_finish",
+    "set_key": "bw11",
+    "set_name": "Legendary Treasures",
+    "card_number": "90",
+    "card_name": "Zoroark",
+    "finish_key": "cosmos",
+    "status": "human_source_verified",
+    "sources": [
+      "thepricedex_price_list"
+    ],
+    "source_authorities": [
+      "thepricedex.com"
+    ],
+    "source_kinds": [
+      "marketplace_checklist"
+    ],
+    "evidence_urls": [],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "attempts": [
+    {
+      "query": "Pokemon Legendary Treasures Zoroark 90 cosmos holo",
+      "url": "https://www.pricecharting.com/search-products?q=Pokemon%20Legendary%20Treasures%20Zoroark%2090%20cosmos%20holo&type=prices",
+      "error": "Fetch failed 403 Forbidden: https://www.pricecharting.com/search-products?q=Pokemon%20Legendary%20Treasures%20Zoroark%2090%20cosmos%20holo&type=prices"
+    },
+    {
+      "query": "Pokemon Legendary Treasures Zoroark 90 cosmos",
+      "url": "https://www.pricecharting.com/search-products?q=Pokemon%20Legendary%20Treasures%20Zoroark%2090%20cosmos&type=prices",
+      "error": "Fetch failed 403 Forbidden: https://www.pricecharting.com/search-products?q=Pokemon%20Legendary%20Treasures%20Zoroark%2090%20cosmos&type=prices"
+    }
+  ]
+}

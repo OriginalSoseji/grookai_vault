@@ -1,0 +1,549 @@
+{
+  "status": "api_no_validated_match",
+  "fact": {
+    "gap_type": "finish_second_source_needed",
+    "fact_type": "printing_finish",
+    "set_key": "hgss2",
+    "set_name": "HS—Unleashed",
+    "card_number": "58",
+    "card_name": "Poliwag",
+    "finish_key": "stamped",
+    "status": "human_source_verified",
+    "sources": [
+      "thepricedex_price_list"
+    ],
+    "source_authorities": [
+      "thepricedex.com"
+    ],
+    "source_kinds": [
+      "marketplace_checklist"
+    ],
+    "evidence_urls": [
+      "https://www.thepricedex.com/set/hgss2/hs-unleashed/price-list"
+    ],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "attempts": [
+    {
+      "query": "Pokemon HS—Unleashed Poliwag 58 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Poliwag%2058%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "1287404",
+      "product_name": "Poliwag #58",
+      "console_name": "Pokemon Unleashed",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Poliwag 58 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Poliwag%2058%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "1287496",
+      "product_name": "Poliwag [Reverse Holo] #58",
+      "console_name": "Pokemon Unleashed",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Reverse Holo"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Poliwag 58 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Poliwag%2058%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6138816",
+      "product_name": "Poliwag [City Championship] #58",
+      "console_name": "Pokemon Unleashed",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:City Championship"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Poliwag 58 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Poliwag%2058%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4405295",
+      "product_name": "Poliwag [Staff] #58",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon Promo"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Poliwag 58 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Poliwag%2058%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7322444",
+      "product_name": "Frigibax [Snowflake Stamp] #58",
+      "console_name": "Pokemon Paldea Evolved",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Frigibax"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Poliwag 58 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Poliwag%2058%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3398878",
+      "product_name": "Prinplup [Diamond & Pearl Stamp] #58",
+      "console_name": "Pokemon Diamond & Pearl",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Prinplup"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Poliwag 58 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Poliwag%2058%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7517728",
+      "product_name": "Poliwag [1999-2000] #59",
+      "console_name": "Pokemon Base Set",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:59"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Poliwag 58 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Poliwag%2058%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3442497",
+      "product_name": "Pikachu [1st Edition Ghost Stamp] #58",
+      "console_name": "Pokemon Base Set",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Pikachu"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Poliwag 58 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Poliwag%2058%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "762194",
+      "product_name": "Misty's Poliwag #87",
+      "console_name": "Pokemon Gym Heroes",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:87"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Poliwag 58 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Poliwag%2058%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "762291",
+      "product_name": "Misty's Poliwag #89",
+      "console_name": "Pokemon Gym Challenge",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:89"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Poliwag 58 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Poliwag%2058%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3453561",
+      "product_name": "Misty's Poliwag #60",
+      "console_name": "Pokemon Japanese Leaders' Stadium",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:60"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Poliwag 58 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Poliwag%2058%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "715750",
+      "product_name": "Poliwag [Shadowless] #59",
+      "console_name": "Pokemon Base Set",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:59"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Poliwag 58 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Poliwag%2058%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5880533",
+      "product_name": "Heracross & Poliwag #21",
+      "console_name": "Pokemon Japanese 2000 Carddass",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:21"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Poliwag 58 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Poliwag%2058%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3561425",
+      "product_name": "Poliwag [Tekno] #60",
+      "console_name": "Pokemon 2000 Topps Chrome",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:60"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Poliwag 58 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Poliwag%2058%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3561134",
+      "product_name": "Poliwag [Foil] #60",
+      "console_name": "Pokemon 1999 Topps TV",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:60"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Poliwag 58 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Poliwag%2058%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12319696",
+      "product_name": "Poliwag [Red] #60",
+      "console_name": "Pokemon Japanese 1996 Carddass",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:60"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Poliwag 58 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Poliwag%2058%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3561424",
+      "product_name": "Poliwag [Spectra] #60",
+      "console_name": "Pokemon 2000 Topps Chrome",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:60"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Poliwag 58 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Poliwag%2058%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3561423",
+      "product_name": "Poliwag [Sparkle] #60",
+      "console_name": "Pokemon 2000 Topps Chrome",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:60"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Poliwag 58 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Poliwag%2058%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8132271",
+      "product_name": "Inkay, Poliwag (May)",
+      "console_name": "Pokemon Japanese Hanafuda",
+      "validation": {
+        "ok": false,
+        "reason": "api_product_name_pattern_not_supported"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Poliwag 58 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Poliwag%2058%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3473872",
+      "product_name": "Poliwag [Series 1] #60",
+      "console_name": "Pokemon Japanese Vending",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:60"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Poliwag 58 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Poliwag%2058%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "1287404",
+      "product_name": "Poliwag #58",
+      "console_name": "Pokemon Unleashed",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Poliwag 58 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Poliwag%2058%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "1287496",
+      "product_name": "Poliwag [Reverse Holo] #58",
+      "console_name": "Pokemon Unleashed",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Reverse Holo"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Poliwag 58 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Poliwag%2058%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6138816",
+      "product_name": "Poliwag [City Championship] #58",
+      "console_name": "Pokemon Unleashed",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:City Championship"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Poliwag 58 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Poliwag%2058%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4405295",
+      "product_name": "Poliwag [Staff] #58",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon Promo"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Poliwag 58 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Poliwag%2058%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7322444",
+      "product_name": "Frigibax [Snowflake Stamp] #58",
+      "console_name": "Pokemon Paldea Evolved",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Frigibax"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Poliwag 58 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Poliwag%2058%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3398878",
+      "product_name": "Prinplup [Diamond & Pearl Stamp] #58",
+      "console_name": "Pokemon Diamond & Pearl",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Prinplup"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Poliwag 58 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Poliwag%2058%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7517728",
+      "product_name": "Poliwag [1999-2000] #59",
+      "console_name": "Pokemon Base Set",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:59"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Poliwag 58 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Poliwag%2058%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3442497",
+      "product_name": "Pikachu [1st Edition Ghost Stamp] #58",
+      "console_name": "Pokemon Base Set",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Pikachu"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Poliwag 58 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Poliwag%2058%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "762194",
+      "product_name": "Misty's Poliwag #87",
+      "console_name": "Pokemon Gym Heroes",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:87"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Poliwag 58 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Poliwag%2058%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "762291",
+      "product_name": "Misty's Poliwag #89",
+      "console_name": "Pokemon Gym Challenge",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:89"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Poliwag 58 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Poliwag%2058%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3453561",
+      "product_name": "Misty's Poliwag #60",
+      "console_name": "Pokemon Japanese Leaders' Stadium",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:60"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Poliwag 58 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Poliwag%2058%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "715750",
+      "product_name": "Poliwag [Shadowless] #59",
+      "console_name": "Pokemon Base Set",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:59"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Poliwag 58 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Poliwag%2058%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5880533",
+      "product_name": "Heracross & Poliwag #21",
+      "console_name": "Pokemon Japanese 2000 Carddass",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:21"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Poliwag 58 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Poliwag%2058%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3561425",
+      "product_name": "Poliwag [Tekno] #60",
+      "console_name": "Pokemon 2000 Topps Chrome",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:60"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Poliwag 58 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Poliwag%2058%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3561134",
+      "product_name": "Poliwag [Foil] #60",
+      "console_name": "Pokemon 1999 Topps TV",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:60"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Poliwag 58 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Poliwag%2058%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12319696",
+      "product_name": "Poliwag [Red] #60",
+      "console_name": "Pokemon Japanese 1996 Carddass",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:60"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Poliwag 58 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Poliwag%2058%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3561424",
+      "product_name": "Poliwag [Spectra] #60",
+      "console_name": "Pokemon 2000 Topps Chrome",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:60"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Poliwag 58 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Poliwag%2058%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3561423",
+      "product_name": "Poliwag [Sparkle] #60",
+      "console_name": "Pokemon 2000 Topps Chrome",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:60"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Poliwag 58 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Poliwag%2058%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8132271",
+      "product_name": "Inkay, Poliwag (May)",
+      "console_name": "Pokemon Japanese Hanafuda",
+      "validation": {
+        "ok": false,
+        "reason": "api_product_name_pattern_not_supported"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Poliwag 58 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Poliwag%2058%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3473872",
+      "product_name": "Poliwag [Series 1] #60",
+      "console_name": "Pokemon Japanese Vending",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:60"
+      }
+    }
+  ],
+  "source_lane": "pricecharting_api"
+}

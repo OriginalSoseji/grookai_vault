@@ -1,0 +1,43 @@
+{
+  "status": "no_validated_match",
+  "fact": {
+    "gap_type": "finish_second_source_needed",
+    "fact_type": "printing_finish",
+    "set_key": "sv9",
+    "set_name": "Journey Together",
+    "card_number": "98",
+    "card_name": "N's Zoroark ex",
+    "finish_key": "stamped",
+    "status": "human_source_verified",
+    "sources": [
+      "thepricedex_price_list"
+    ],
+    "source_authorities": [
+      "thepricedex.com"
+    ],
+    "source_kinds": [
+      "marketplace_checklist"
+    ],
+    "evidence_urls": [],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "attempts": [
+    {
+      "query": "Pokemon Journey Together N's Zoroark ex 98 stamped",
+      "url": "https://www.pricecharting.com/search-products?q=Pokemon%20Journey%20Together%20N's%20Zoroark%20ex%2098%20stamped&type=prices",
+      "error": "Fetch failed 403 Forbidden: https://www.pricecharting.com/search-products?q=Pokemon%20Journey%20Together%20N's%20Zoroark%20ex%2098%20stamped&type=prices"
+    },
+    {
+      "query": "Pokemon Journey Together N's Zoroark ex 98 stamp",
+      "url": "https://www.pricecharting.com/search-products?q=Pokemon%20Journey%20Together%20N's%20Zoroark%20ex%2098%20stamp&type=prices",
+      "parsed": {
+        "title": "Pokemon Journey Together N'S Zoroark Ex 98 Stamp Prices | Pokemon Journey Together N'S Zoroark Ex 98 Stamp List",
+        "source_url": "https://www.pricecharting.com/search-products?q=pokemon+journey+together+n%27s+zoroark+ex+98+stamp&type=prices"
+      },
+      "validation": {
+        "ok": false,
+        "reason": "title_pattern_not_supported"
+      }
+    }
+  ]
+}

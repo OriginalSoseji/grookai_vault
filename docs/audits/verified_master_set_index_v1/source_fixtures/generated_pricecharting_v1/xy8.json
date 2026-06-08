@@ -1,0 +1,23 @@
+{
+  "source_key": "pricecharting_xy8",
+  "source_kind": "marketplace_checklist",
+  "source_url": "https://www.pricecharting.com/",
+  "set_key": "xy8",
+  "set_name": "BREAKthrough",
+  "retrieved_at": "2026-05-28T04:20:24.359Z",
+  "raw_snapshot_ref": "pricecharting_acquisition:xy8:2026-05-28T04:20:24.359Z",
+  "records": [
+    {
+      "source_key": "pricecharting_product_page",
+      "source_kind": "marketplace_checklist",
+      "source_url": "https://www.pricecharting.com/game/pokemon-breakthrough/gengar-cosmos-holo-60",
+      "set_name": "BREAKthrough",
+      "card_number": "60",
+      "card_name": "Gengar",
+      "finish_key": "cosmos",
+      "evidence_type": "finish_presence",
+      "evidence_label": "PriceCharting product title: Gengar [Cosmos Holo] #60 Prices | Pokemon BREAKthrough | Pokemon Cards",
+      "notes": "Exact finish evidence accepted only because PriceCharting evidence matched set, card number, card name, and finish label."
+    }
+  ]
+}

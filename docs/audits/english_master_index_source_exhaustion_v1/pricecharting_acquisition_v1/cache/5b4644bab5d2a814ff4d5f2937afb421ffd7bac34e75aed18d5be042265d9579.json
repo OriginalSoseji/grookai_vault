@@ -1,0 +1,549 @@
+{
+  "status": "api_no_validated_match",
+  "fact": {
+    "gap_type": "finish_second_source_needed",
+    "fact_type": "printing_finish",
+    "set_key": "sve",
+    "set_name": "Scarlet & Violet Energies",
+    "card_number": "5",
+    "card_name": "Basic Psychic Energy",
+    "finish_key": "stamped",
+    "status": "human_source_verified",
+    "sources": [
+      "thepricedex_price_list"
+    ],
+    "source_authorities": [
+      "thepricedex.com"
+    ],
+    "source_kinds": [
+      "marketplace_checklist"
+    ],
+    "evidence_urls": [
+      "https://www.thepricedex.com/set/sve/scarlet-and-violet-energies/price-list"
+    ],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "attempts": [
+    {
+      "query": "Pokemon Scarlet & Violet Energies Basic Psychic Energy 5 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Scarlet%20%26%20Violet%20Energies%20Basic%20Psychic%20Energy%205%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7321547",
+      "product_name": "Basic Psychic Energy [Holo] #5",
+      "console_name": "Pokemon Scarlet & Violet Energy",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon Scarlet & Violet Energy"
+      }
+    },
+    {
+      "query": "Pokemon Scarlet & Violet Energies Basic Psychic Energy 5 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Scarlet%20%26%20Violet%20Energies%20Basic%20Psychic%20Energy%205%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5917676",
+      "product_name": "Basic Psychic Energy [Cosmos Holo] #5",
+      "console_name": "Pokemon Scarlet & Violet Energy",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon Scarlet & Violet Energy"
+      }
+    },
+    {
+      "query": "Pokemon Scarlet & Violet Energies Basic Psychic Energy 5 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Scarlet%20%26%20Violet%20Energies%20Basic%20Psychic%20Energy%205%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9759064",
+      "product_name": "Basic Psychic Energy [Prize Pack] #5",
+      "console_name": "Pokemon Scarlet & Violet Energy",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon Scarlet & Violet Energy"
+      }
+    },
+    {
+      "query": "Pokemon Scarlet & Violet Energies Basic Psychic Energy 5 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Scarlet%20%26%20Violet%20Energies%20Basic%20Psychic%20Energy%205%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5013847",
+      "product_name": "Basic Psychic Energy #5",
+      "console_name": "Pokemon Scarlet & Violet Energy",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon Scarlet & Violet Energy"
+      }
+    },
+    {
+      "query": "Pokemon Scarlet & Violet Energies Basic Psychic Energy 5 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Scarlet%20%26%20Violet%20Energies%20Basic%20Psychic%20Energy%205%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8848161",
+      "product_name": "Basic Psychic Energy [Reverse Holo] #5",
+      "console_name": "Pokemon Scarlet & Violet Energy",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon Scarlet & Violet Energy"
+      }
+    },
+    {
+      "query": "Pokemon Scarlet & Violet Energies Basic Psychic Energy 5 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Scarlet%20%26%20Violet%20Energies%20Basic%20Psychic%20Energy%205%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10042704",
+      "product_name": "Basic Psychic Energy [Holo] #21",
+      "console_name": "Pokemon Scarlet & Violet Energy",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:21"
+      }
+    },
+    {
+      "query": "Pokemon Scarlet & Violet Energies Basic Psychic Energy 5 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Scarlet%20%26%20Violet%20Energies%20Basic%20Psychic%20Energy%205%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8455042",
+      "product_name": "Basic Psychic Energy [Holo] #13",
+      "console_name": "Pokemon Scarlet & Violet Energy",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:13"
+      }
+    },
+    {
+      "query": "Pokemon Scarlet & Violet Energies Basic Psychic Energy 5 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Scarlet%20%26%20Violet%20Energies%20Basic%20Psychic%20Energy%205%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8909508",
+      "product_name": "Basic Psychic Energy [Cosmos Holo] #13",
+      "console_name": "Pokemon Scarlet & Violet Energy",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:13"
+      }
+    },
+    {
+      "query": "Pokemon Scarlet & Violet Energies Basic Psychic Energy 5 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Scarlet%20%26%20Violet%20Energies%20Basic%20Psychic%20Energy%205%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7211572",
+      "product_name": "Basic Psychic Energy [Cosmos Holo Prize Pack] #5",
+      "console_name": "Pokemon Scarlet & Violet Energy",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon Scarlet & Violet Energy"
+      }
+    },
+    {
+      "query": "Pokemon Scarlet & Violet Energies Basic Psychic Energy 5 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Scarlet%20%26%20Violet%20Energies%20Basic%20Psychic%20Energy%205%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10951986",
+      "product_name": "Basic Psychic Energy [Prize Pack] #13",
+      "console_name": "Pokemon Scarlet & Violet Energy",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:13"
+      }
+    },
+    {
+      "query": "Pokemon Scarlet & Violet Energies Basic Psychic Energy 5 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Scarlet%20%26%20Violet%20Energies%20Basic%20Psychic%20Energy%205%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9572298",
+      "product_name": "Basic Psychic Energy [Ice Cracked] #13",
+      "console_name": "Pokemon Scarlet & Violet Energy",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:13"
+      }
+    },
+    {
+      "query": "Pokemon Scarlet & Violet Energies Basic Psychic Energy 5 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Scarlet%20%26%20Violet%20Energies%20Basic%20Psychic%20Energy%205%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7549853",
+      "product_name": "Basic Psychic Energy #13",
+      "console_name": "Pokemon Scarlet & Violet Energy",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:13"
+      }
+    },
+    {
+      "query": "Pokemon Scarlet & Violet Energies Basic Psychic Energy 5 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Scarlet%20%26%20Violet%20Energies%20Basic%20Psychic%20Energy%205%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10046376",
+      "product_name": "Basic Psychic Energy #21",
+      "console_name": "Pokemon Scarlet & Violet Energy",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:21"
+      }
+    },
+    {
+      "query": "Pokemon Scarlet & Violet Energies Basic Psychic Energy 5 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Scarlet%20%26%20Violet%20Energies%20Basic%20Psychic%20Energy%205%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12772823",
+      "product_name": "Basic Psychic Energy [Professor Program] #13",
+      "console_name": "Pokemon Scarlet & Violet Energy",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:13"
+      }
+    },
+    {
+      "query": "Pokemon Scarlet & Violet Energies Basic Psychic Energy 5 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Scarlet%20%26%20Violet%20Energies%20Basic%20Psychic%20Energy%205%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9435146",
+      "product_name": "Psychic Energy [Prize Pack] #5",
+      "console_name": "Pokemon Scarlet & Violet Energy",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Psychic Energy"
+      }
+    },
+    {
+      "query": "Pokemon Scarlet & Violet Energies Basic Psychic Energy 5 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Scarlet%20%26%20Violet%20Energies%20Basic%20Psychic%20Energy%205%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7549846",
+      "product_name": "Basic Grass Energy #9",
+      "console_name": "Pokemon Scarlet & Violet Energy",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:9"
+      }
+    },
+    {
+      "query": "Pokemon Scarlet & Violet Energies Basic Psychic Energy 5 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Scarlet%20%26%20Violet%20Energies%20Basic%20Psychic%20Energy%205%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10046270",
+      "product_name": "Basic Grass Energy #17",
+      "console_name": "Pokemon Scarlet & Violet Energy",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:17"
+      }
+    },
+    {
+      "query": "Pokemon Scarlet & Violet Energies Basic Psychic Energy 5 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Scarlet%20%26%20Violet%20Energies%20Basic%20Psychic%20Energy%205%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4956295",
+      "product_name": "Basic Grass Energy #1",
+      "console_name": "Pokemon Scarlet & Violet Energy",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:1"
+      }
+    },
+    {
+      "query": "Pokemon Scarlet & Violet Energies Basic Psychic Energy 5 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Scarlet%20%26%20Violet%20Energies%20Basic%20Psychic%20Energy%205%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8453093",
+      "product_name": "Basic Grass Energy [Holo] #9",
+      "console_name": "Pokemon Scarlet & Violet Energy",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:9"
+      }
+    },
+    {
+      "query": "Pokemon Scarlet & Violet Energies Basic Psychic Energy 5 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Scarlet%20%26%20Violet%20Energies%20Basic%20Psychic%20Energy%205%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10042701",
+      "product_name": "Basic Grass Energy [Holo] #17",
+      "console_name": "Pokemon Scarlet & Violet Energy",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:17"
+      }
+    },
+    {
+      "query": "Pokemon Scarlet & Violet Energies Basic Psychic Energy 5 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Scarlet%20%26%20Violet%20Energies%20Basic%20Psychic%20Energy%205%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7321547",
+      "product_name": "Basic Psychic Energy [Holo] #5",
+      "console_name": "Pokemon Scarlet & Violet Energy",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon Scarlet & Violet Energy"
+      }
+    },
+    {
+      "query": "Pokemon Scarlet & Violet Energies Basic Psychic Energy 5 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Scarlet%20%26%20Violet%20Energies%20Basic%20Psychic%20Energy%205%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5917676",
+      "product_name": "Basic Psychic Energy [Cosmos Holo] #5",
+      "console_name": "Pokemon Scarlet & Violet Energy",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon Scarlet & Violet Energy"
+      }
+    },
+    {
+      "query": "Pokemon Scarlet & Violet Energies Basic Psychic Energy 5 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Scarlet%20%26%20Violet%20Energies%20Basic%20Psychic%20Energy%205%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9759064",
+      "product_name": "Basic Psychic Energy [Prize Pack] #5",
+      "console_name": "Pokemon Scarlet & Violet Energy",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon Scarlet & Violet Energy"
+      }
+    },
+    {
+      "query": "Pokemon Scarlet & Violet Energies Basic Psychic Energy 5 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Scarlet%20%26%20Violet%20Energies%20Basic%20Psychic%20Energy%205%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5013847",
+      "product_name": "Basic Psychic Energy #5",
+      "console_name": "Pokemon Scarlet & Violet Energy",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon Scarlet & Violet Energy"
+      }
+    },
+    {
+      "query": "Pokemon Scarlet & Violet Energies Basic Psychic Energy 5 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Scarlet%20%26%20Violet%20Energies%20Basic%20Psychic%20Energy%205%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8848161",
+      "product_name": "Basic Psychic Energy [Reverse Holo] #5",
+      "console_name": "Pokemon Scarlet & Violet Energy",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon Scarlet & Violet Energy"
+      }
+    },
+    {
+      "query": "Pokemon Scarlet & Violet Energies Basic Psychic Energy 5 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Scarlet%20%26%20Violet%20Energies%20Basic%20Psychic%20Energy%205%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10042704",
+      "product_name": "Basic Psychic Energy [Holo] #21",
+      "console_name": "Pokemon Scarlet & Violet Energy",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:21"
+      }
+    },
+    {
+      "query": "Pokemon Scarlet & Violet Energies Basic Psychic Energy 5 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Scarlet%20%26%20Violet%20Energies%20Basic%20Psychic%20Energy%205%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8455042",
+      "product_name": "Basic Psychic Energy [Holo] #13",
+      "console_name": "Pokemon Scarlet & Violet Energy",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:13"
+      }
+    },
+    {
+      "query": "Pokemon Scarlet & Violet Energies Basic Psychic Energy 5 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Scarlet%20%26%20Violet%20Energies%20Basic%20Psychic%20Energy%205%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8909508",
+      "product_name": "Basic Psychic Energy [Cosmos Holo] #13",
+      "console_name": "Pokemon Scarlet & Violet Energy",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:13"
+      }
+    },
+    {
+      "query": "Pokemon Scarlet & Violet Energies Basic Psychic Energy 5 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Scarlet%20%26%20Violet%20Energies%20Basic%20Psychic%20Energy%205%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7211572",
+      "product_name": "Basic Psychic Energy [Cosmos Holo Prize Pack] #5",
+      "console_name": "Pokemon Scarlet & Violet Energy",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon Scarlet & Violet Energy"
+      }
+    },
+    {
+      "query": "Pokemon Scarlet & Violet Energies Basic Psychic Energy 5 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Scarlet%20%26%20Violet%20Energies%20Basic%20Psychic%20Energy%205%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10951986",
+      "product_name": "Basic Psychic Energy [Prize Pack] #13",
+      "console_name": "Pokemon Scarlet & Violet Energy",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:13"
+      }
+    },
+    {
+      "query": "Pokemon Scarlet & Violet Energies Basic Psychic Energy 5 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Scarlet%20%26%20Violet%20Energies%20Basic%20Psychic%20Energy%205%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9572298",
+      "product_name": "Basic Psychic Energy [Ice Cracked] #13",
+      "console_name": "Pokemon Scarlet & Violet Energy",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:13"
+      }
+    },
+    {
+      "query": "Pokemon Scarlet & Violet Energies Basic Psychic Energy 5 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Scarlet%20%26%20Violet%20Energies%20Basic%20Psychic%20Energy%205%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7549853",
+      "product_name": "Basic Psychic Energy #13",
+      "console_name": "Pokemon Scarlet & Violet Energy",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:13"
+      }
+    },
+    {
+      "query": "Pokemon Scarlet & Violet Energies Basic Psychic Energy 5 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Scarlet%20%26%20Violet%20Energies%20Basic%20Psychic%20Energy%205%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10046376",
+      "product_name": "Basic Psychic Energy #21",
+      "console_name": "Pokemon Scarlet & Violet Energy",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:21"
+      }
+    },
+    {
+      "query": "Pokemon Scarlet & Violet Energies Basic Psychic Energy 5 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Scarlet%20%26%20Violet%20Energies%20Basic%20Psychic%20Energy%205%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12772823",
+      "product_name": "Basic Psychic Energy [Professor Program] #13",
+      "console_name": "Pokemon Scarlet & Violet Energy",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:13"
+      }
+    },
+    {
+      "query": "Pokemon Scarlet & Violet Energies Basic Psychic Energy 5 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Scarlet%20%26%20Violet%20Energies%20Basic%20Psychic%20Energy%205%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9435146",
+      "product_name": "Psychic Energy [Prize Pack] #5",
+      "console_name": "Pokemon Scarlet & Violet Energy",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Psychic Energy"
+      }
+    },
+    {
+      "query": "Pokemon Scarlet & Violet Energies Basic Psychic Energy 5 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Scarlet%20%26%20Violet%20Energies%20Basic%20Psychic%20Energy%205%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7549846",
+      "product_name": "Basic Grass Energy #9",
+      "console_name": "Pokemon Scarlet & Violet Energy",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:9"
+      }
+    },
+    {
+      "query": "Pokemon Scarlet & Violet Energies Basic Psychic Energy 5 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Scarlet%20%26%20Violet%20Energies%20Basic%20Psychic%20Energy%205%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10046270",
+      "product_name": "Basic Grass Energy #17",
+      "console_name": "Pokemon Scarlet & Violet Energy",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:17"
+      }
+    },
+    {
+      "query": "Pokemon Scarlet & Violet Energies Basic Psychic Energy 5 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Scarlet%20%26%20Violet%20Energies%20Basic%20Psychic%20Energy%205%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4956295",
+      "product_name": "Basic Grass Energy #1",
+      "console_name": "Pokemon Scarlet & Violet Energy",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:1"
+      }
+    },
+    {
+      "query": "Pokemon Scarlet & Violet Energies Basic Psychic Energy 5 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Scarlet%20%26%20Violet%20Energies%20Basic%20Psychic%20Energy%205%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8453093",
+      "product_name": "Basic Grass Energy [Holo] #9",
+      "console_name": "Pokemon Scarlet & Violet Energy",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:9"
+      }
+    },
+    {
+      "query": "Pokemon Scarlet & Violet Energies Basic Psychic Energy 5 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Scarlet%20%26%20Violet%20Energies%20Basic%20Psychic%20Energy%205%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10042701",
+      "product_name": "Basic Grass Energy [Holo] #17",
+      "console_name": "Pokemon Scarlet & Violet Energy",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:17"
+      }
+    }
+  ],
+  "source_lane": "pricecharting_api"
+}

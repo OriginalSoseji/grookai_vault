@@ -1,0 +1,17 @@
+{
+  "products": [
+    {
+      "console-name": "Pokemon Astral Radiance",
+      "gamestop-price": 0,
+      "gamestop-trade-price": 0,
+      "genre": "Pokemon Card",
+      "id": "5810877",
+      "loose-price": 40,
+      "product-name": "Stantler [Snowflake Stamp] #125",
+      "retail-loose-sell": 99,
+      "sales-volume": "20",
+      "tcg-id": "514445"
+    }
+  ],
+  "status": "success"
+}

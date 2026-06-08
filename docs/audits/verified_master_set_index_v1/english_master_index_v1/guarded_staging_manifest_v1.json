@@ -1,0 +1,45 @@
+{
+  "version": "ENGLISH_MASTER_INDEX_GUARDED_STAGING_V1",
+  "generated_at": "2026-06-08T18:24:41.148Z",
+  "audit_only": true,
+  "db_writes_performed": false,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "sources": "tcgdex,pokemontcg_api,thepricedex,bulbapedia",
+  "allow_canonical_dedupe": true,
+  "baseline_file": "docs\\audits\\verified_master_set_index_v1\\english_master_index_v1\\english_master_index_v1.json",
+  "staging_dir": "docs\\audits\\verified_master_set_index_v1\\english_master_index_v1_guarded_staging\\2026-06-08T18-24-41-148Z-mixed-finish-exact-4-v1",
+  "baseline": {
+    "generated_at": "2026-06-08T17:53:18.464Z",
+    "master_verified_cards": 21511,
+    "master_verified_printings": 38832,
+    "conflicts": 0,
+    "evidence_rows": 232640,
+    "candidate_printings": 0,
+    "human_source_verified_printings": 14
+  },
+  "staged": {
+    "generated_at": "2026-06-08T18:24:41.247Z",
+    "master_verified_cards": 21511,
+    "master_verified_printings": 38841,
+    "conflicts": 0,
+    "evidence_rows": 232649,
+    "candidate_printings": 0,
+    "human_source_verified_printings": 5
+  },
+  "recommended_guard_command": "node scripts/audits/english_master_index_guarded_rebuild_v1.mjs --staging-dir docs\\audits\\verified_master_set_index_v1\\english_master_index_v1_guarded_staging\\2026-06-08T18-24-41-148Z-mixed-finish-exact-4-v1 --min-master-verified-printings 38832 --min-master-verified-cards 21511 --min-evidence-rows 232640 --max-candidate-printings 0 --max-conflicts 0 --allow-canonical-dedupe --promote",
+  "guard_thresholds": {
+    "min_master_verified_printings": 38832,
+    "min_master_verified_cards": 21511,
+    "min_evidence_rows": 232640,
+    "max_candidate_printings": 0,
+    "max_conflicts": 0
+  },
+  "workflow": [
+    "Build staging output in this directory.",
+    "Inspect staged metrics and source deltas.",
+    "Promote only through english_master_index_guarded_rebuild_v1.mjs --staging-dir.",
+    "Regenerate downstream reports only after guard promotion passes."
+  ]
+}

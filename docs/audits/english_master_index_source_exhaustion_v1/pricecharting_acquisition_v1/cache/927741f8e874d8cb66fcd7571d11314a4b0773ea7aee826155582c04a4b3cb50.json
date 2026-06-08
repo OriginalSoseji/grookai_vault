@@ -1,0 +1,43 @@
+{
+  "status": "no_validated_match",
+  "fact": {
+    "gap_type": "finish_second_source_needed",
+    "fact_type": "printing_finish",
+    "set_key": "swsh35",
+    "set_name": "Champion's Path",
+    "card_number": "18",
+    "card_name": "Hatenna",
+    "finish_key": "stamped",
+    "status": "human_source_verified",
+    "sources": [
+      "thepricedex_price_list"
+    ],
+    "source_authorities": [
+      "thepricedex.com"
+    ],
+    "source_kinds": [
+      "marketplace_checklist"
+    ],
+    "evidence_urls": [],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "attempts": [
+    {
+      "query": "Pokemon Champion's Path Hatenna 18 stamped",
+      "url": "https://www.pricecharting.com/search-products?q=Pokemon%20Champion's%20Path%20Hatenna%2018%20stamped&type=prices",
+      "parsed": {
+        "title": "Pokemon Champion'S Path Hatenna 18 Stamped Prices | Pokemon Champion'S Path Hatenna 18 Stamped List",
+        "source_url": "https://www.pricecharting.com/search-products?q=pokemon+champion%27s+path+hatenna+18+stamped&type=prices"
+      },
+      "validation": {
+        "ok": false,
+        "reason": "title_pattern_not_supported"
+      }
+    },
+    {
+      "query": "Pokemon Champion's Path Hatenna 18 stamp",
+      "url": "https://www.pricecharting.com/search-products?q=Pokemon%20Champion's%20Path%20Hatenna%2018%20stamp&type=prices",
+      "error": "Fetch failed 403 Forbidden: https://www.pricecharting.com/search-products?q=Pokemon%20Champion's%20Path%20Hatenna%2018%20stamp&type=prices"
+    }
+  ]
+}

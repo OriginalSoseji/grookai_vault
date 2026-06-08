@@ -1,0 +1,549 @@
+{
+  "status": "api_no_validated_match",
+  "fact": {
+    "gap_type": "finish_second_source_needed",
+    "fact_type": "printing_finish",
+    "set_key": "bw7",
+    "set_name": "Boundaries Crossed",
+    "card_number": "38",
+    "card_name": "Delibird",
+    "finish_key": "stamped",
+    "status": "human_source_verified",
+    "sources": [
+      "thepricedex_price_list"
+    ],
+    "source_authorities": [
+      "thepricedex.com"
+    ],
+    "source_kinds": [
+      "marketplace_checklist"
+    ],
+    "evidence_urls": [
+      "https://www.thepricedex.com/set/bw7/boundaries-crossed/price-list"
+    ],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "attempts": [
+    {
+      "query": "Pokemon Boundaries Crossed Delibird 38 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Boundaries%20Crossed%20Delibird%2038%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "956553",
+      "product_name": "Delibird #38",
+      "console_name": "Pokemon Boundaries Crossed",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon Boundaries Crossed Delibird 38 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Boundaries%20Crossed%20Delibird%2038%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "956704",
+      "product_name": "Delibird [Reverse Holo] #38",
+      "console_name": "Pokemon Boundaries Crossed",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Reverse Holo"
+      }
+    },
+    {
+      "query": "Pokemon Boundaries Crossed Delibird 38 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Boundaries%20Crossed%20Delibird%2038%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10259709",
+      "product_name": "Delibird [3rd Place League] #38",
+      "console_name": "Pokemon Boundaries Crossed",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:3rd Place League"
+      }
+    },
+    {
+      "query": "Pokemon Boundaries Crossed Delibird 38 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Boundaries%20Crossed%20Delibird%2038%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8670736",
+      "product_name": "Delibird [2nd Place League] #38",
+      "console_name": "Pokemon Boundaries Crossed",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:2nd Place League"
+      }
+    },
+    {
+      "query": "Pokemon Boundaries Crossed Delibird 38 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Boundaries%20Crossed%20Delibird%2038%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6216898",
+      "product_name": "Delibird [1st Place League] #38",
+      "console_name": "Pokemon Boundaries Crossed",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:1st Place League"
+      }
+    },
+    {
+      "query": "Pokemon Boundaries Crossed Delibird 38 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Boundaries%20Crossed%20Delibird%2038%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "13071509",
+      "product_name": "Delibird [4th Place League] #38",
+      "console_name": "Pokemon Boundaries Crossed",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:4th Place League"
+      }
+    },
+    {
+      "query": "Pokemon Boundaries Crossed Delibird 38 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Boundaries%20Crossed%20Delibird%2038%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4441263",
+      "product_name": "Delibird [Snowflake Stamp] #32",
+      "console_name": "Pokemon Chilling Reign",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:32"
+      }
+    },
+    {
+      "query": "Pokemon Boundaries Crossed Delibird 38 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Boundaries%20Crossed%20Delibird%2038%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "956645",
+      "product_name": "Hugh #130",
+      "console_name": "Pokemon Boundaries Crossed",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:130"
+      }
+    },
+    {
+      "query": "Pokemon Boundaries Crossed Delibird 38 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Boundaries%20Crossed%20Delibird%2038%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "956517",
+      "product_name": "Gloom #2",
+      "console_name": "Pokemon Boundaries Crossed",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:2"
+      }
+    },
+    {
+      "query": "Pokemon Boundaries Crossed Delibird 38 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Boundaries%20Crossed%20Delibird%2038%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "956536",
+      "product_name": "Numel #21",
+      "console_name": "Pokemon Boundaries Crossed",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:21"
+      }
+    },
+    {
+      "query": "Pokemon Boundaries Crossed Delibird 38 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Boundaries%20Crossed%20Delibird%2038%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "956539",
+      "product_name": "Tepig #24",
+      "console_name": "Pokemon Boundaries Crossed",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:24"
+      }
+    },
+    {
+      "query": "Pokemon Boundaries Crossed Delibird 38 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Boundaries%20Crossed%20Delibird%2038%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "956526",
+      "product_name": "Snivy #11",
+      "console_name": "Pokemon Boundaries Crossed",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:11"
+      }
+    },
+    {
+      "query": "Pokemon Boundaries Crossed Delibird 38 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Boundaries%20Crossed%20Delibird%2038%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "956583",
+      "product_name": "Munna #68",
+      "console_name": "Pokemon Boundaries Crossed",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:68"
+      }
+    },
+    {
+      "query": "Pokemon Boundaries Crossed Delibird 38 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Boundaries%20Crossed%20Delibird%2038%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "956612",
+      "product_name": "Klink #97",
+      "console_name": "Pokemon Boundaries Crossed",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:97"
+      }
+    },
+    {
+      "query": "Pokemon Boundaries Crossed Delibird 38 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Boundaries%20Crossed%20Delibird%2038%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "956623",
+      "product_name": "Ditto #108",
+      "console_name": "Pokemon Boundaries Crossed",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:108"
+      }
+    },
+    {
+      "query": "Pokemon Boundaries Crossed Delibird 38 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Boundaries%20Crossed%20Delibird%2038%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "956649",
+      "product_name": "Skyla #134",
+      "console_name": "Pokemon Boundaries Crossed",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:134"
+      }
+    },
+    {
+      "query": "Pokemon Boundaries Crossed Delibird 38 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Boundaries%20Crossed%20Delibird%2038%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "956664",
+      "product_name": "Skyla #149",
+      "console_name": "Pokemon Boundaries Crossed",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:149"
+      }
+    },
+    {
+      "query": "Pokemon Boundaries Crossed Delibird 38 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Boundaries%20Crossed%20Delibird%2038%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "956541",
+      "product_name": "Emboar #26",
+      "console_name": "Pokemon Boundaries Crossed",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:26"
+      }
+    },
+    {
+      "query": "Pokemon Boundaries Crossed Delibird 38 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Boundaries%20Crossed%20Delibird%2038%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "956516",
+      "product_name": "Oddish #1",
+      "console_name": "Pokemon Boundaries Crossed",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:1"
+      }
+    },
+    {
+      "query": "Pokemon Boundaries Crossed Delibird 38 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Boundaries%20Crossed%20Delibird%2038%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "956551",
+      "product_name": "Marill #36",
+      "console_name": "Pokemon Boundaries Crossed",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:36"
+      }
+    },
+    {
+      "query": "Pokemon Boundaries Crossed Delibird 38 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Boundaries%20Crossed%20Delibird%2038%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "956553",
+      "product_name": "Delibird #38",
+      "console_name": "Pokemon Boundaries Crossed",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon Boundaries Crossed Delibird 38 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Boundaries%20Crossed%20Delibird%2038%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "956704",
+      "product_name": "Delibird [Reverse Holo] #38",
+      "console_name": "Pokemon Boundaries Crossed",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Reverse Holo"
+      }
+    },
+    {
+      "query": "Pokemon Boundaries Crossed Delibird 38 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Boundaries%20Crossed%20Delibird%2038%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10259709",
+      "product_name": "Delibird [3rd Place League] #38",
+      "console_name": "Pokemon Boundaries Crossed",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:3rd Place League"
+      }
+    },
+    {
+      "query": "Pokemon Boundaries Crossed Delibird 38 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Boundaries%20Crossed%20Delibird%2038%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8670736",
+      "product_name": "Delibird [2nd Place League] #38",
+      "console_name": "Pokemon Boundaries Crossed",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:2nd Place League"
+      }
+    },
+    {
+      "query": "Pokemon Boundaries Crossed Delibird 38 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Boundaries%20Crossed%20Delibird%2038%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6216898",
+      "product_name": "Delibird [1st Place League] #38",
+      "console_name": "Pokemon Boundaries Crossed",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:1st Place League"
+      }
+    },
+    {
+      "query": "Pokemon Boundaries Crossed Delibird 38 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Boundaries%20Crossed%20Delibird%2038%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "13071509",
+      "product_name": "Delibird [4th Place League] #38",
+      "console_name": "Pokemon Boundaries Crossed",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:4th Place League"
+      }
+    },
+    {
+      "query": "Pokemon Boundaries Crossed Delibird 38 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Boundaries%20Crossed%20Delibird%2038%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4441263",
+      "product_name": "Delibird [Snowflake Stamp] #32",
+      "console_name": "Pokemon Chilling Reign",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:32"
+      }
+    },
+    {
+      "query": "Pokemon Boundaries Crossed Delibird 38 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Boundaries%20Crossed%20Delibird%2038%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "956645",
+      "product_name": "Hugh #130",
+      "console_name": "Pokemon Boundaries Crossed",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:130"
+      }
+    },
+    {
+      "query": "Pokemon Boundaries Crossed Delibird 38 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Boundaries%20Crossed%20Delibird%2038%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "956517",
+      "product_name": "Gloom #2",
+      "console_name": "Pokemon Boundaries Crossed",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:2"
+      }
+    },
+    {
+      "query": "Pokemon Boundaries Crossed Delibird 38 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Boundaries%20Crossed%20Delibird%2038%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "956536",
+      "product_name": "Numel #21",
+      "console_name": "Pokemon Boundaries Crossed",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:21"
+      }
+    },
+    {
+      "query": "Pokemon Boundaries Crossed Delibird 38 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Boundaries%20Crossed%20Delibird%2038%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "956539",
+      "product_name": "Tepig #24",
+      "console_name": "Pokemon Boundaries Crossed",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:24"
+      }
+    },
+    {
+      "query": "Pokemon Boundaries Crossed Delibird 38 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Boundaries%20Crossed%20Delibird%2038%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "956526",
+      "product_name": "Snivy #11",
+      "console_name": "Pokemon Boundaries Crossed",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:11"
+      }
+    },
+    {
+      "query": "Pokemon Boundaries Crossed Delibird 38 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Boundaries%20Crossed%20Delibird%2038%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "956583",
+      "product_name": "Munna #68",
+      "console_name": "Pokemon Boundaries Crossed",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:68"
+      }
+    },
+    {
+      "query": "Pokemon Boundaries Crossed Delibird 38 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Boundaries%20Crossed%20Delibird%2038%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "956612",
+      "product_name": "Klink #97",
+      "console_name": "Pokemon Boundaries Crossed",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:97"
+      }
+    },
+    {
+      "query": "Pokemon Boundaries Crossed Delibird 38 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Boundaries%20Crossed%20Delibird%2038%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "956623",
+      "product_name": "Ditto #108",
+      "console_name": "Pokemon Boundaries Crossed",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:108"
+      }
+    },
+    {
+      "query": "Pokemon Boundaries Crossed Delibird 38 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Boundaries%20Crossed%20Delibird%2038%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "956649",
+      "product_name": "Skyla #134",
+      "console_name": "Pokemon Boundaries Crossed",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:134"
+      }
+    },
+    {
+      "query": "Pokemon Boundaries Crossed Delibird 38 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Boundaries%20Crossed%20Delibird%2038%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "956664",
+      "product_name": "Skyla #149",
+      "console_name": "Pokemon Boundaries Crossed",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:149"
+      }
+    },
+    {
+      "query": "Pokemon Boundaries Crossed Delibird 38 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Boundaries%20Crossed%20Delibird%2038%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "956541",
+      "product_name": "Emboar #26",
+      "console_name": "Pokemon Boundaries Crossed",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:26"
+      }
+    },
+    {
+      "query": "Pokemon Boundaries Crossed Delibird 38 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Boundaries%20Crossed%20Delibird%2038%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "956516",
+      "product_name": "Oddish #1",
+      "console_name": "Pokemon Boundaries Crossed",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:1"
+      }
+    },
+    {
+      "query": "Pokemon Boundaries Crossed Delibird 38 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Boundaries%20Crossed%20Delibird%2038%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "956551",
+      "product_name": "Marill #36",
+      "console_name": "Pokemon Boundaries Crossed",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:36"
+      }
+    }
+  ],
+  "source_lane": "pricecharting_api"
+}

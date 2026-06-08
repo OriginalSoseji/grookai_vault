@@ -1,0 +1,31 @@
+{
+  "fixture_version": "VERIFIED_MASTER_SET_INDEX_V1_HUMAN_SOURCE_FIXTURE_GENERATED",
+  "source_key": "tcgcollector_variants_base4",
+  "source_kind": "collector_reference",
+  "source_url": "https://www.tcgcollector.com/sets/114/base-set-2?setCardCountMode=anyCardVariant",
+  "source_status": "available_generated",
+  "set_key": "base4",
+  "set_name": "Base Set 2",
+  "retrieved_at": "2026-05-26T04:41:18.789Z",
+  "raw_snapshot_ref": "generated_fixture:tcgcollector:base4:2026-05-26T04:41:18.789Z",
+  "generation_note": "Generated from TCGCollector explicit card variant type IDs. No finish is inferred from set era, rarity, or card count.",
+  "records": [
+    {
+      "source_key": "tcgcollector_card_variants",
+      "source_kind": "collector_reference",
+      "source_url": "https://www.tcgcollector.com/cards/9425/wartortle-base-set-2-63-130",
+      "set_key": "base4",
+      "set_name": "Base Set 2",
+      "card_number": "63",
+      "card_name": "Wartortle",
+      "finish_key": "stamped",
+      "rarity": null,
+      "evidence_type": "finish_presence",
+      "evidence_label": "TCGCollector card variant WOTC Stamp",
+      "language": "en",
+      "retrieved_at": "2026-05-26T04:41:18.789Z",
+      "raw_snapshot_ref": "tcgcollector:9425:8",
+      "notes": "Exact card-level finish evidence from TCGCollector card variant type map. Only explicit variant labels are emitted."
+    }
+  ]
+}

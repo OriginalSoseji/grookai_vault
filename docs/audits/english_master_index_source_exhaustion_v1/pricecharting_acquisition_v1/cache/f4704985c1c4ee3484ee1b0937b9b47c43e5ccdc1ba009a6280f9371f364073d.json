@@ -1,0 +1,549 @@
+{
+  "status": "api_no_validated_match",
+  "fact": {
+    "gap_type": "finish_second_source_needed",
+    "fact_type": "printing_finish",
+    "set_key": "smp",
+    "set_name": "SM Black Star Promos",
+    "card_number": "SM186",
+    "card_name": "Flareon",
+    "finish_key": "stamped",
+    "status": "human_source_verified",
+    "sources": [
+      "thepricedex_price_list"
+    ],
+    "source_authorities": [
+      "thepricedex.com"
+    ],
+    "source_kinds": [
+      "marketplace_checklist"
+    ],
+    "evidence_urls": [
+      "https://www.thepricedex.com/set/smp/sm-black-star-promos/price-list"
+    ],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "attempts": [
+    {
+      "query": "Pokemon SM Black Star Promos Flareon SM186 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20SM%20Black%20Star%20Promos%20Flareon%20SM186%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "844876",
+      "product_name": "Flareon #SM186",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon SM Black Star Promos Flareon SM186 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20SM%20Black%20Star%20Promos%20Flareon%20SM186%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9679298",
+      "product_name": "Flareon [Stamped] #411",
+      "console_name": "Pokemon Chinese Gem Pack 2",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:411"
+      }
+    },
+    {
+      "query": "Pokemon SM Black Star Promos Flareon SM186 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20SM%20Black%20Star%20Promos%20Flareon%20SM186%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9679299",
+      "product_name": "Flareon [Stamped] #412",
+      "console_name": "Pokemon Chinese Gem Pack 2",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:412"
+      }
+    },
+    {
+      "query": "Pokemon SM Black Star Promos Flareon SM186 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20SM%20Black%20Star%20Promos%20Flareon%20SM186%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8624382",
+      "product_name": "Flareon ex [Stamped] #14",
+      "console_name": "Pokemon Prismatic Evolutions",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:14"
+      }
+    },
+    {
+      "query": "Pokemon SM Black Star Promos Flareon SM186 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20SM%20Black%20Star%20Promos%20Flareon%20SM186%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "2989141",
+      "product_name": "Flareon V #SWSH179",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:SWSH179"
+      }
+    },
+    {
+      "query": "Pokemon SM Black Star Promos Flareon SM186 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20SM%20Black%20Star%20Promos%20Flareon%20SM186%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "2674826",
+      "product_name": "Flareon V #SWSH149",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:SWSH149"
+      }
+    },
+    {
+      "query": "Pokemon SM Black Star Promos Flareon SM186 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20SM%20Black%20Star%20Promos%20Flareon%20SM186%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3895031",
+      "product_name": "Flareon GX [Jumbo] #SM171",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "product_scope_jumbo_not_canonical_set_finish"
+      }
+    },
+    {
+      "query": "Pokemon SM Black Star Promos Flareon SM186 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20SM%20Black%20Star%20Promos%20Flareon%20SM186%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10809663",
+      "product_name": "Flareon GX [Jumbo] #174",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "product_scope_jumbo_not_canonical_set_finish"
+      }
+    },
+    {
+      "query": "Pokemon SM Black Star Promos Flareon SM186 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20SM%20Black%20Star%20Promos%20Flareon%20SM186%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "1563483",
+      "product_name": "Flareon #BW88",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:BW88"
+      }
+    },
+    {
+      "query": "Pokemon SM Black Star Promos Flareon SM186 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20SM%20Black%20Star%20Promos%20Flareon%20SM186%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "1656572",
+      "product_name": "Flareon #SWSH041",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:SWSH041"
+      }
+    },
+    {
+      "query": "Pokemon SM Black Star Promos Flareon SM186 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20SM%20Black%20Star%20Promos%20Flareon%20SM186%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8330944",
+      "product_name": "Flareon [Cosmos Holo] #167",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:167"
+      }
+    },
+    {
+      "query": "Pokemon SM Black Star Promos Flareon SM186 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20SM%20Black%20Star%20Promos%20Flareon%20SM186%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10809574",
+      "product_name": "Flareon VMAX [Jumbo] #180",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "product_scope_jumbo_not_canonical_set_finish"
+      }
+    },
+    {
+      "query": "Pokemon SM Black Star Promos Flareon SM186 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20SM%20Black%20Star%20Promos%20Flareon%20SM186%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7557614",
+      "product_name": "Flareon VMAX [Jumbo] #SWSH180",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "product_scope_jumbo_not_canonical_set_finish"
+      }
+    },
+    {
+      "query": "Pokemon SM Black Star Promos Flareon SM186 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20SM%20Black%20Star%20Promos%20Flareon%20SM186%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5896408",
+      "product_name": "Flareon V [Prize Pack] #SWSH149",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:SWSH149"
+      }
+    },
+    {
+      "query": "Pokemon SM Black Star Promos Flareon SM186 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20SM%20Black%20Star%20Promos%20Flareon%20SM186%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "844860",
+      "product_name": "Flareon GX #SM171",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:SM171"
+      }
+    },
+    {
+      "query": "Pokemon SM Black Star Promos Flareon SM186 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20SM%20Black%20Star%20Promos%20Flareon%20SM186%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "2989143",
+      "product_name": "Flareon VMAX #SWSH180",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:SWSH180"
+      }
+    },
+    {
+      "query": "Pokemon SM Black Star Promos Flareon SM186 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20SM%20Black%20Star%20Promos%20Flareon%20SM186%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9679242",
+      "product_name": "Flareon [Stars] #405",
+      "console_name": "Pokemon Chinese Gem Pack 2",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:405"
+      }
+    },
+    {
+      "query": "Pokemon SM Black Star Promos Flareon SM186 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20SM%20Black%20Star%20Promos%20Flareon%20SM186%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9679243",
+      "product_name": "Flareon [Stars] #406",
+      "console_name": "Pokemon Chinese Gem Pack 2",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:406"
+      }
+    },
+    {
+      "query": "Pokemon SM Black Star Promos Flareon SM186 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20SM%20Black%20Star%20Promos%20Flareon%20SM186%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "889764",
+      "product_name": "Flareon [Gold Star] #100",
+      "console_name": "Pokemon Power Keepers",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:100"
+      }
+    },
+    {
+      "query": "Pokemon SM Black Star Promos Flareon SM186 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20SM%20Black%20Star%20Promos%20Flareon%20SM186%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11035332",
+      "product_name": "Litten #182/SM-P",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:182/SM-P"
+      }
+    },
+    {
+      "query": "Pokemon SM Black Star Promos Flareon SM186 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20SM%20Black%20Star%20Promos%20Flareon%20SM186%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "844876",
+      "product_name": "Flareon #SM186",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon SM Black Star Promos Flareon SM186 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20SM%20Black%20Star%20Promos%20Flareon%20SM186%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9679298",
+      "product_name": "Flareon [Stamped] #411",
+      "console_name": "Pokemon Chinese Gem Pack 2",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:411"
+      }
+    },
+    {
+      "query": "Pokemon SM Black Star Promos Flareon SM186 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20SM%20Black%20Star%20Promos%20Flareon%20SM186%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9679299",
+      "product_name": "Flareon [Stamped] #412",
+      "console_name": "Pokemon Chinese Gem Pack 2",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:412"
+      }
+    },
+    {
+      "query": "Pokemon SM Black Star Promos Flareon SM186 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20SM%20Black%20Star%20Promos%20Flareon%20SM186%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8624382",
+      "product_name": "Flareon ex [Stamped] #14",
+      "console_name": "Pokemon Prismatic Evolutions",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:14"
+      }
+    },
+    {
+      "query": "Pokemon SM Black Star Promos Flareon SM186 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20SM%20Black%20Star%20Promos%20Flareon%20SM186%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "2989141",
+      "product_name": "Flareon V #SWSH179",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:SWSH179"
+      }
+    },
+    {
+      "query": "Pokemon SM Black Star Promos Flareon SM186 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20SM%20Black%20Star%20Promos%20Flareon%20SM186%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "2674826",
+      "product_name": "Flareon V #SWSH149",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:SWSH149"
+      }
+    },
+    {
+      "query": "Pokemon SM Black Star Promos Flareon SM186 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20SM%20Black%20Star%20Promos%20Flareon%20SM186%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3895031",
+      "product_name": "Flareon GX [Jumbo] #SM171",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "product_scope_jumbo_not_canonical_set_finish"
+      }
+    },
+    {
+      "query": "Pokemon SM Black Star Promos Flareon SM186 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20SM%20Black%20Star%20Promos%20Flareon%20SM186%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10809663",
+      "product_name": "Flareon GX [Jumbo] #174",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "product_scope_jumbo_not_canonical_set_finish"
+      }
+    },
+    {
+      "query": "Pokemon SM Black Star Promos Flareon SM186 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20SM%20Black%20Star%20Promos%20Flareon%20SM186%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "1563483",
+      "product_name": "Flareon #BW88",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:BW88"
+      }
+    },
+    {
+      "query": "Pokemon SM Black Star Promos Flareon SM186 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20SM%20Black%20Star%20Promos%20Flareon%20SM186%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "1656572",
+      "product_name": "Flareon #SWSH041",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:SWSH041"
+      }
+    },
+    {
+      "query": "Pokemon SM Black Star Promos Flareon SM186 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20SM%20Black%20Star%20Promos%20Flareon%20SM186%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8330944",
+      "product_name": "Flareon [Cosmos Holo] #167",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:167"
+      }
+    },
+    {
+      "query": "Pokemon SM Black Star Promos Flareon SM186 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20SM%20Black%20Star%20Promos%20Flareon%20SM186%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10809574",
+      "product_name": "Flareon VMAX [Jumbo] #180",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "product_scope_jumbo_not_canonical_set_finish"
+      }
+    },
+    {
+      "query": "Pokemon SM Black Star Promos Flareon SM186 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20SM%20Black%20Star%20Promos%20Flareon%20SM186%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7557614",
+      "product_name": "Flareon VMAX [Jumbo] #SWSH180",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "product_scope_jumbo_not_canonical_set_finish"
+      }
+    },
+    {
+      "query": "Pokemon SM Black Star Promos Flareon SM186 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20SM%20Black%20Star%20Promos%20Flareon%20SM186%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5896408",
+      "product_name": "Flareon V [Prize Pack] #SWSH149",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:SWSH149"
+      }
+    },
+    {
+      "query": "Pokemon SM Black Star Promos Flareon SM186 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20SM%20Black%20Star%20Promos%20Flareon%20SM186%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "844860",
+      "product_name": "Flareon GX #SM171",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:SM171"
+      }
+    },
+    {
+      "query": "Pokemon SM Black Star Promos Flareon SM186 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20SM%20Black%20Star%20Promos%20Flareon%20SM186%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "2989143",
+      "product_name": "Flareon VMAX #SWSH180",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:SWSH180"
+      }
+    },
+    {
+      "query": "Pokemon SM Black Star Promos Flareon SM186 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20SM%20Black%20Star%20Promos%20Flareon%20SM186%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9679242",
+      "product_name": "Flareon [Stars] #405",
+      "console_name": "Pokemon Chinese Gem Pack 2",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:405"
+      }
+    },
+    {
+      "query": "Pokemon SM Black Star Promos Flareon SM186 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20SM%20Black%20Star%20Promos%20Flareon%20SM186%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9679243",
+      "product_name": "Flareon [Stars] #406",
+      "console_name": "Pokemon Chinese Gem Pack 2",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:406"
+      }
+    },
+    {
+      "query": "Pokemon SM Black Star Promos Flareon SM186 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20SM%20Black%20Star%20Promos%20Flareon%20SM186%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "889764",
+      "product_name": "Flareon [Gold Star] #100",
+      "console_name": "Pokemon Power Keepers",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:100"
+      }
+    },
+    {
+      "query": "Pokemon SM Black Star Promos Flareon SM186 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20SM%20Black%20Star%20Promos%20Flareon%20SM186%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11035332",
+      "product_name": "Litten #182/SM-P",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:182/SM-P"
+      }
+    }
+  ],
+  "source_lane": "pricecharting_api"
+}

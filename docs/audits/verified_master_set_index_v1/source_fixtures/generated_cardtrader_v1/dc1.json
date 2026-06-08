@@ -1,0 +1,48 @@
+{
+  "fixture_version": "VERIFIED_MASTER_SET_INDEX_V1_HUMAN_SOURCE_FIXTURE_GENERATED",
+  "source_key": "cardtrader_finish_dc1",
+  "source_kind": "marketplace_checklist",
+  "source_url": "https://www.cardtrader.com/en/manasearch/5/blueprints.json",
+  "source_status": "available_generated",
+  "set_key": "dc1",
+  "set_name": "Double Crisis",
+  "retrieved_at": "2026-06-08T02:53:52.187Z",
+  "raw_snapshot_ref": "generated_fixture:cardtrader:dc1:2026-06-08T02:53:52.187Z",
+  "generation_note": "Generated from CardTrader Pokemon blueprint index. Exact card-number/name/finish matches only.",
+  "records": [
+    {
+      "source_key": "cardtrader_blueprint_index",
+      "source_kind": "marketplace_checklist",
+      "source_url": "https://www.cardtrader.com/en/cards/311140-team-aqua-s-kyogre-ex-ultra-rare-006-034-magma-gang-vs-aqua-gang-double-crisis",
+      "set_key": "dc1",
+      "set_name": "Double Crisis",
+      "card_number": "6",
+      "card_name": "Team Aqua's Kyogre EX",
+      "finish_key": "normal",
+      "rarity": null,
+      "evidence_type": "finish_presence",
+      "evidence_label": "CardTrader blueprint row Team Aqua's Kyogre EX - Ultra Rare | 006/034",
+      "language": "en",
+      "retrieved_at": "2026-06-08T02:53:52.187Z",
+      "raw_snapshot_ref": "cardtrader_blueprint:311140-team-aqua-s-kyogre-ex-ultra-rare-006-034-magma-gang-vs-aqua-gang-double-crisis",
+      "notes": "Generated only from an exact CardTrader Pokemon blueprint match on set, card number, card name, and finish label."
+    },
+    {
+      "source_key": "cardtrader_blueprint_index",
+      "source_kind": "marketplace_checklist",
+      "source_url": "https://www.cardtrader.com/en/cards/311149-team-magma-s-groudon-ex-ultra-rare-015-034-magma-gang-vs-aqua-gang-double-crisis",
+      "set_key": "dc1",
+      "set_name": "Double Crisis",
+      "card_number": "15",
+      "card_name": "Team Magma's Groudon EX",
+      "finish_key": "normal",
+      "rarity": null,
+      "evidence_type": "finish_presence",
+      "evidence_label": "CardTrader blueprint row Team Magma's Groudon EX - Ultra Rare | 015/034",
+      "language": "en",
+      "retrieved_at": "2026-06-08T02:53:52.187Z",
+      "raw_snapshot_ref": "cardtrader_blueprint:311149-team-magma-s-groudon-ex-ultra-rare-015-034-magma-gang-vs-aqua-gang-double-crisis",
+      "notes": "Generated only from an exact CardTrader Pokemon blueprint match on set, card number, card name, and finish label."
+    }
+  ]
+}

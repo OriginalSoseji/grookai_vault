@@ -1,0 +1,549 @@
+{
+  "status": "api_no_validated_match",
+  "fact": {
+    "gap_type": "finish_second_source_needed",
+    "fact_type": "printing_finish",
+    "set_key": "me01",
+    "set_name": "Mega Evolution",
+    "card_number": "114",
+    "card_name": "Boss's Orders",
+    "finish_key": "stamped",
+    "status": "human_source_verified",
+    "sources": [
+      "thepricedex_price_list"
+    ],
+    "source_authorities": [
+      "thepricedex.com"
+    ],
+    "source_kinds": [
+      "marketplace_checklist"
+    ],
+    "evidence_urls": [
+      "https://www.thepricedex.com/set/me1/mega-evolution/price-list"
+    ],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "attempts": [
+    {
+      "query": "Pokemon Mega Evolution Boss's Orders 114 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Mega%20Evolution%20Boss's%20Orders%20114%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10616218",
+      "product_name": "Boss's Orders: Ghetsis #114",
+      "console_name": "Pokemon Mega Evolution",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Boss's Orders: Ghetsis"
+      }
+    },
+    {
+      "query": "Pokemon Mega Evolution Boss's Orders 114 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Mega%20Evolution%20Boss's%20Orders%20114%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10616426",
+      "product_name": "Boss's Orders: Ghetsis [Reverse Holo] #114",
+      "console_name": "Pokemon Mega Evolution",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Boss's Orders: Ghetsis"
+      }
+    },
+    {
+      "query": "Pokemon Mega Evolution Boss's Orders 114 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Mega%20Evolution%20Boss's%20Orders%20114%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12189307",
+      "product_name": "Boss's Orders [Prize Pack Cosmo Holo] #114",
+      "console_name": "Pokemon Mega Evolution",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Prize Pack Cosmo Holo"
+      }
+    },
+    {
+      "query": "Pokemon Mega Evolution Boss's Orders 114 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Mega%20Evolution%20Boss's%20Orders%20114%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10515232",
+      "product_name": "Boss's Orders: Ghetsis #19",
+      "console_name": "Pokemon Japanese Mega Starter Deck Diancie Ex",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:19"
+      }
+    },
+    {
+      "query": "Pokemon Mega Evolution Boss's Orders 114 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Mega%20Evolution%20Boss's%20Orders%20114%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10515258",
+      "product_name": "Boss's Orders: Ghetsis #20",
+      "console_name": "Pokemon Japanese Mega Starter Deck Gengar Ex",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:20"
+      }
+    },
+    {
+      "query": "Pokemon Mega Evolution Boss's Orders 114 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Mega%20Evolution%20Boss's%20Orders%20114%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4939517",
+      "product_name": "Boss's Orders #SWSH251",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:SWSH251"
+      }
+    },
+    {
+      "query": "Pokemon Mega Evolution Boss's Orders 114 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Mega%20Evolution%20Boss's%20Orders%20114%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5287537",
+      "product_name": "Boss's Orders #248",
+      "console_name": "Pokemon Paldea Evolved",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:248"
+      }
+    },
+    {
+      "query": "Pokemon Mega Evolution Boss's Orders 114 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Mega%20Evolution%20Boss's%20Orders%20114%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5287554",
+      "product_name": "Boss's Orders #265",
+      "console_name": "Pokemon Paldea Evolved",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:265"
+      }
+    },
+    {
+      "query": "Pokemon Mega Evolution Boss's Orders 114 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Mega%20Evolution%20Boss's%20Orders%20114%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5401632",
+      "product_name": "Boss's Orders #172",
+      "console_name": "Pokemon Paldea Evolved",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:172"
+      }
+    },
+    {
+      "query": "Pokemon Mega Evolution Boss's Orders 114 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Mega%20Evolution%20Boss's%20Orders%20114%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3440554",
+      "product_name": "Boss's Orders #97",
+      "console_name": "Pokemon Japanese Star Birth",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:97"
+      }
+    },
+    {
+      "query": "Pokemon Mega Evolution Boss's Orders 114 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Mega%20Evolution%20Boss's%20Orders%20114%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "886880",
+      "product_name": "Boss's Orders #154",
+      "console_name": "Pokemon Rebel Clash",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:154"
+      }
+    },
+    {
+      "query": "Pokemon Mega Evolution Boss's Orders 114 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Mega%20Evolution%20Boss's%20Orders%20114%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "886915",
+      "product_name": "Boss's Orders #189",
+      "console_name": "Pokemon Rebel Clash",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:189"
+      }
+    },
+    {
+      "query": "Pokemon Mega Evolution Boss's Orders 114 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Mega%20Evolution%20Boss's%20Orders%20114%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "886926",
+      "product_name": "Boss's Orders #200",
+      "console_name": "Pokemon Rebel Clash",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:200"
+      }
+    },
+    {
+      "query": "Pokemon Mega Evolution Boss's Orders 114 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Mega%20Evolution%20Boss's%20Orders%20114%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3404792",
+      "product_name": "Boss's Orders #158",
+      "console_name": "Pokemon Japanese VMAX Climax",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:158"
+      }
+    },
+    {
+      "query": "Pokemon Mega Evolution Boss's Orders 114 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Mega%20Evolution%20Boss's%20Orders%20114%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3404902",
+      "product_name": "Boss's Orders #268",
+      "console_name": "Pokemon Japanese VMAX Climax",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:268"
+      }
+    },
+    {
+      "query": "Pokemon Mega Evolution Boss's Orders 114 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Mega%20Evolution%20Boss's%20Orders%20114%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3471703",
+      "product_name": "Boss's Orders #92",
+      "console_name": "Pokemon Japanese Rebel Clash",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:92"
+      }
+    },
+    {
+      "query": "Pokemon Mega Evolution Boss's Orders 114 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Mega%20Evolution%20Boss's%20Orders%20114%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3471717",
+      "product_name": "Boss's Orders #106",
+      "console_name": "Pokemon Japanese Rebel Clash",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:106"
+      }
+    },
+    {
+      "query": "Pokemon Mega Evolution Boss's Orders 114 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Mega%20Evolution%20Boss's%20Orders%20114%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3471723",
+      "product_name": "Boss's Orders #112",
+      "console_name": "Pokemon Japanese Rebel Clash",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:112"
+      }
+    },
+    {
+      "query": "Pokemon Mega Evolution Boss's Orders 114 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Mega%20Evolution%20Boss's%20Orders%20114%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3449392",
+      "product_name": "Boss's Orders #176",
+      "console_name": "Pokemon Japanese Shiny Star V",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:176"
+      }
+    },
+    {
+      "query": "Pokemon Mega Evolution Boss's Orders 114 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Mega%20Evolution%20Boss's%20Orders%20114%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4447636",
+      "product_name": "Boss's Orders #161",
+      "console_name": "Pokemon Japanese VSTAR Universe",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:161"
+      }
+    },
+    {
+      "query": "Pokemon Mega Evolution Boss's Orders 114 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Mega%20Evolution%20Boss's%20Orders%20114%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10616218",
+      "product_name": "Boss's Orders: Ghetsis #114",
+      "console_name": "Pokemon Mega Evolution",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Boss's Orders: Ghetsis"
+      }
+    },
+    {
+      "query": "Pokemon Mega Evolution Boss's Orders 114 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Mega%20Evolution%20Boss's%20Orders%20114%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10616426",
+      "product_name": "Boss's Orders: Ghetsis [Reverse Holo] #114",
+      "console_name": "Pokemon Mega Evolution",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Boss's Orders: Ghetsis"
+      }
+    },
+    {
+      "query": "Pokemon Mega Evolution Boss's Orders 114 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Mega%20Evolution%20Boss's%20Orders%20114%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12189307",
+      "product_name": "Boss's Orders [Prize Pack Cosmo Holo] #114",
+      "console_name": "Pokemon Mega Evolution",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Prize Pack Cosmo Holo"
+      }
+    },
+    {
+      "query": "Pokemon Mega Evolution Boss's Orders 114 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Mega%20Evolution%20Boss's%20Orders%20114%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10515232",
+      "product_name": "Boss's Orders: Ghetsis #19",
+      "console_name": "Pokemon Japanese Mega Starter Deck Diancie Ex",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:19"
+      }
+    },
+    {
+      "query": "Pokemon Mega Evolution Boss's Orders 114 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Mega%20Evolution%20Boss's%20Orders%20114%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10515258",
+      "product_name": "Boss's Orders: Ghetsis #20",
+      "console_name": "Pokemon Japanese Mega Starter Deck Gengar Ex",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:20"
+      }
+    },
+    {
+      "query": "Pokemon Mega Evolution Boss's Orders 114 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Mega%20Evolution%20Boss's%20Orders%20114%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4939517",
+      "product_name": "Boss's Orders #SWSH251",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:SWSH251"
+      }
+    },
+    {
+      "query": "Pokemon Mega Evolution Boss's Orders 114 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Mega%20Evolution%20Boss's%20Orders%20114%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5287537",
+      "product_name": "Boss's Orders #248",
+      "console_name": "Pokemon Paldea Evolved",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:248"
+      }
+    },
+    {
+      "query": "Pokemon Mega Evolution Boss's Orders 114 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Mega%20Evolution%20Boss's%20Orders%20114%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5287554",
+      "product_name": "Boss's Orders #265",
+      "console_name": "Pokemon Paldea Evolved",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:265"
+      }
+    },
+    {
+      "query": "Pokemon Mega Evolution Boss's Orders 114 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Mega%20Evolution%20Boss's%20Orders%20114%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5401632",
+      "product_name": "Boss's Orders #172",
+      "console_name": "Pokemon Paldea Evolved",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:172"
+      }
+    },
+    {
+      "query": "Pokemon Mega Evolution Boss's Orders 114 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Mega%20Evolution%20Boss's%20Orders%20114%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3440554",
+      "product_name": "Boss's Orders #97",
+      "console_name": "Pokemon Japanese Star Birth",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:97"
+      }
+    },
+    {
+      "query": "Pokemon Mega Evolution Boss's Orders 114 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Mega%20Evolution%20Boss's%20Orders%20114%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "886880",
+      "product_name": "Boss's Orders #154",
+      "console_name": "Pokemon Rebel Clash",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:154"
+      }
+    },
+    {
+      "query": "Pokemon Mega Evolution Boss's Orders 114 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Mega%20Evolution%20Boss's%20Orders%20114%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "886915",
+      "product_name": "Boss's Orders #189",
+      "console_name": "Pokemon Rebel Clash",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:189"
+      }
+    },
+    {
+      "query": "Pokemon Mega Evolution Boss's Orders 114 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Mega%20Evolution%20Boss's%20Orders%20114%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "886926",
+      "product_name": "Boss's Orders #200",
+      "console_name": "Pokemon Rebel Clash",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:200"
+      }
+    },
+    {
+      "query": "Pokemon Mega Evolution Boss's Orders 114 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Mega%20Evolution%20Boss's%20Orders%20114%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3404792",
+      "product_name": "Boss's Orders #158",
+      "console_name": "Pokemon Japanese VMAX Climax",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:158"
+      }
+    },
+    {
+      "query": "Pokemon Mega Evolution Boss's Orders 114 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Mega%20Evolution%20Boss's%20Orders%20114%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3404902",
+      "product_name": "Boss's Orders #268",
+      "console_name": "Pokemon Japanese VMAX Climax",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:268"
+      }
+    },
+    {
+      "query": "Pokemon Mega Evolution Boss's Orders 114 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Mega%20Evolution%20Boss's%20Orders%20114%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3471703",
+      "product_name": "Boss's Orders #92",
+      "console_name": "Pokemon Japanese Rebel Clash",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:92"
+      }
+    },
+    {
+      "query": "Pokemon Mega Evolution Boss's Orders 114 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Mega%20Evolution%20Boss's%20Orders%20114%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3471717",
+      "product_name": "Boss's Orders #106",
+      "console_name": "Pokemon Japanese Rebel Clash",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:106"
+      }
+    },
+    {
+      "query": "Pokemon Mega Evolution Boss's Orders 114 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Mega%20Evolution%20Boss's%20Orders%20114%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3471723",
+      "product_name": "Boss's Orders #112",
+      "console_name": "Pokemon Japanese Rebel Clash",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:112"
+      }
+    },
+    {
+      "query": "Pokemon Mega Evolution Boss's Orders 114 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Mega%20Evolution%20Boss's%20Orders%20114%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3449392",
+      "product_name": "Boss's Orders #176",
+      "console_name": "Pokemon Japanese Shiny Star V",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:176"
+      }
+    },
+    {
+      "query": "Pokemon Mega Evolution Boss's Orders 114 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Mega%20Evolution%20Boss's%20Orders%20114%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4447636",
+      "product_name": "Boss's Orders #161",
+      "console_name": "Pokemon Japanese VSTAR Universe",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:161"
+      }
+    }
+  ],
+  "source_lane": "pricecharting_api"
+}

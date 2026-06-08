@@ -1,0 +1,50 @@
+{
+  "status": "no_validated_match",
+  "fact": {
+    "gap_type": "finish_second_source_needed",
+    "fact_type": "printing_finish",
+    "set_key": "sm6",
+    "set_name": "Forbidden Light",
+    "card_number": "51",
+    "card_name": "Malamar",
+    "finish_key": "stamped",
+    "status": "human_source_verified",
+    "sources": [
+      "thepricedex_price_list"
+    ],
+    "source_authorities": [
+      "thepricedex.com"
+    ],
+    "source_kinds": [
+      "marketplace_checklist"
+    ],
+    "evidence_urls": [],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "attempts": [
+    {
+      "query": "Pokemon Forbidden Light Malamar 51 stamped",
+      "url": "https://www.pricecharting.com/search-products?q=Pokemon%20Forbidden%20Light%20Malamar%2051%20stamped&type=prices",
+      "parsed": {
+        "title": "Pokemon Forbidden Light Malamar 51 Stamped Prices | Pokemon Forbidden Light Malamar 51 Stamped List",
+        "source_url": "https://www.pricecharting.com/search-products?q=pokemon+forbidden+light+malamar+51+stamped&type=prices"
+      },
+      "validation": {
+        "ok": false,
+        "reason": "title_pattern_not_supported"
+      }
+    },
+    {
+      "query": "Pokemon Forbidden Light Malamar 51 stamp",
+      "url": "https://www.pricecharting.com/search-products?q=Pokemon%20Forbidden%20Light%20Malamar%2051%20stamp&type=prices",
+      "parsed": {
+        "title": "Pokemon Forbidden Light Malamar 51 Stamp Prices | Pokemon Forbidden Light Malamar 51 Stamp List",
+        "source_url": "https://www.pricecharting.com/search-products?q=pokemon+forbidden+light+malamar+51+stamp&type=prices"
+      },
+      "validation": {
+        "ok": false,
+        "reason": "title_pattern_not_supported"
+      }
+    }
+  ]
+}

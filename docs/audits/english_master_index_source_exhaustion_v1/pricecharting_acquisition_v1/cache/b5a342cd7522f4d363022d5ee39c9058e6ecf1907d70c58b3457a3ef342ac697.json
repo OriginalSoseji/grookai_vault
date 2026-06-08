@@ -1,0 +1,549 @@
+{
+  "status": "api_no_validated_match",
+  "fact": {
+    "gap_type": "finish_second_source_needed",
+    "fact_type": "printing_finish",
+    "set_key": "sv03.5",
+    "set_name": "151",
+    "card_number": "132",
+    "card_name": "Ditto",
+    "finish_key": "stamped",
+    "status": "human_source_verified",
+    "sources": [
+      "thepricedex_price_list"
+    ],
+    "source_authorities": [
+      "thepricedex.com"
+    ],
+    "source_kinds": [
+      "marketplace_checklist"
+    ],
+    "evidence_urls": [
+      "https://www.thepricedex.com/set/sv3pt5/151/price-list"
+    ],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "attempts": [
+    {
+      "query": "Pokemon 151 Ditto 132 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20151%20Ditto%20132%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5326175",
+      "product_name": "Ditto #132",
+      "console_name": "Pokemon Japanese Scarlet & Violet 151",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon 151 Ditto 132 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20151%20Ditto%20132%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8953352",
+      "product_name": "Ditto #132",
+      "console_name": "Pokemon Scarlet & Violet 151",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon 151 Ditto 132 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20151%20Ditto%20132%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8709157",
+      "product_name": "Ditto #132",
+      "console_name": "Pokemon Chinese 151 Collect",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon 151 Ditto 132 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20151%20Ditto%20132%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11866069",
+      "product_name": "Ditto #132",
+      "console_name": "Pokemon Korean Scarlet & Violet 151",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon 151 Ditto 132 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20151%20Ditto%20132%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5809513",
+      "product_name": "Ditto [Holo] #132",
+      "console_name": "Pokemon Scarlet & Violet 151",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Holo"
+      }
+    },
+    {
+      "query": "Pokemon 151 Ditto 132 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20151%20Ditto%20132%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5399814",
+      "product_name": "Ditto [Reverse] #132",
+      "console_name": "Pokemon Japanese Scarlet & Violet 151",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Reverse"
+      }
+    },
+    {
+      "query": "Pokemon 151 Ditto 132 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20151%20Ditto%20132%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8709159",
+      "product_name": "Ditto [Reverse] #132",
+      "console_name": "Pokemon Chinese 151 Collect",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Reverse"
+      }
+    },
+    {
+      "query": "Pokemon 151 Ditto 132 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20151%20Ditto%20132%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5399952",
+      "product_name": "Ditto [Master Ball] #132",
+      "console_name": "Pokemon Japanese Scarlet & Violet 151",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Master Ball"
+      }
+    },
+    {
+      "query": "Pokemon 151 Ditto 132 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20151%20Ditto%20132%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8927687",
+      "product_name": "Ditto [Prize Pack] #132",
+      "console_name": "Pokemon Scarlet & Violet 151",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Prize Pack"
+      }
+    },
+    {
+      "query": "Pokemon 151 Ditto 132 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20151%20Ditto%20132%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8709158",
+      "product_name": "Ditto [Master Ball] #132",
+      "console_name": "Pokemon Chinese 151 Collect",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Master Ball"
+      }
+    },
+    {
+      "query": "Pokemon 151 Ditto 132 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20151%20Ditto%20132%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5809713",
+      "product_name": "Ditto [Reverse Holo] #132",
+      "console_name": "Pokemon Scarlet & Violet 151",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Reverse Holo"
+      }
+    },
+    {
+      "query": "Pokemon 151 Ditto 132 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20151%20Ditto%20132%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5880771",
+      "product_name": "Ditto #132",
+      "console_name": "Pokemon Japanese 1999 Merlin",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon Japanese 1999 Merlin"
+      }
+    },
+    {
+      "query": "Pokemon 151 Ditto 132 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20151%20Ditto%20132%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3457609",
+      "product_name": "Koga's Ditto #132",
+      "console_name": "Pokemon Japanese Challenge from the Darkness",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Koga's Ditto"
+      }
+    },
+    {
+      "query": "Pokemon 151 Ditto 132 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20151%20Ditto%20132%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12319755",
+      "product_name": "Ditto [Red] #132",
+      "console_name": "Pokemon Japanese 1996 Carddass",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon Japanese 1996 Carddass"
+      }
+    },
+    {
+      "query": "Pokemon 151 Ditto 132 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20151%20Ditto%20132%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3975876",
+      "product_name": "Ditto #132",
+      "console_name": "Pokemon 2000 Topps TV",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon 2000 Topps TV"
+      }
+    },
+    {
+      "query": "Pokemon 151 Ditto 132 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20151%20Ditto%20132%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3453468",
+      "product_name": "Ditto #132",
+      "console_name": "Pokemon Japanese Mystery of the Fossils",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon Japanese Mystery of the Fossils"
+      }
+    },
+    {
+      "query": "Pokemon 151 Ditto 132 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20151%20Ditto%20132%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4892205",
+      "product_name": "Ditto #132",
+      "console_name": "Pokemon Burger King",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon Burger King"
+      }
+    },
+    {
+      "query": "Pokemon 151 Ditto 132 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20151%20Ditto%20132%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3473128",
+      "product_name": "Ditto #132",
+      "console_name": "Pokemon Japanese 1997 Carddass",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon Japanese 1997 Carddass"
+      }
+    },
+    {
+      "query": "Pokemon 151 Ditto 132 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20151%20Ditto%20132%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3975877",
+      "product_name": "Ditto [Foil] #132",
+      "console_name": "Pokemon 2000 Topps TV",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon 2000 Topps TV"
+      }
+    },
+    {
+      "query": "Pokemon 151 Ditto 132 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20151%20Ditto%20132%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3473928",
+      "product_name": "Ditto [Series II] #132",
+      "console_name": "Pokemon Japanese Vending",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon Japanese Vending"
+      }
+    },
+    {
+      "query": "Pokemon 151 Ditto 132 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20151%20Ditto%20132%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5326175",
+      "product_name": "Ditto #132",
+      "console_name": "Pokemon Japanese Scarlet & Violet 151",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon 151 Ditto 132 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20151%20Ditto%20132%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8953352",
+      "product_name": "Ditto #132",
+      "console_name": "Pokemon Scarlet & Violet 151",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon 151 Ditto 132 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20151%20Ditto%20132%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8709157",
+      "product_name": "Ditto #132",
+      "console_name": "Pokemon Chinese 151 Collect",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon 151 Ditto 132 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20151%20Ditto%20132%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11866069",
+      "product_name": "Ditto #132",
+      "console_name": "Pokemon Korean Scarlet & Violet 151",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon 151 Ditto 132 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20151%20Ditto%20132%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5809513",
+      "product_name": "Ditto [Holo] #132",
+      "console_name": "Pokemon Scarlet & Violet 151",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Holo"
+      }
+    },
+    {
+      "query": "Pokemon 151 Ditto 132 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20151%20Ditto%20132%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5399814",
+      "product_name": "Ditto [Reverse] #132",
+      "console_name": "Pokemon Japanese Scarlet & Violet 151",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Reverse"
+      }
+    },
+    {
+      "query": "Pokemon 151 Ditto 132 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20151%20Ditto%20132%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8709159",
+      "product_name": "Ditto [Reverse] #132",
+      "console_name": "Pokemon Chinese 151 Collect",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Reverse"
+      }
+    },
+    {
+      "query": "Pokemon 151 Ditto 132 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20151%20Ditto%20132%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5399952",
+      "product_name": "Ditto [Master Ball] #132",
+      "console_name": "Pokemon Japanese Scarlet & Violet 151",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Master Ball"
+      }
+    },
+    {
+      "query": "Pokemon 151 Ditto 132 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20151%20Ditto%20132%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8927687",
+      "product_name": "Ditto [Prize Pack] #132",
+      "console_name": "Pokemon Scarlet & Violet 151",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Prize Pack"
+      }
+    },
+    {
+      "query": "Pokemon 151 Ditto 132 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20151%20Ditto%20132%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8709158",
+      "product_name": "Ditto [Master Ball] #132",
+      "console_name": "Pokemon Chinese 151 Collect",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Master Ball"
+      }
+    },
+    {
+      "query": "Pokemon 151 Ditto 132 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20151%20Ditto%20132%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5809713",
+      "product_name": "Ditto [Reverse Holo] #132",
+      "console_name": "Pokemon Scarlet & Violet 151",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Reverse Holo"
+      }
+    },
+    {
+      "query": "Pokemon 151 Ditto 132 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20151%20Ditto%20132%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5880771",
+      "product_name": "Ditto #132",
+      "console_name": "Pokemon Japanese 1999 Merlin",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon Japanese 1999 Merlin"
+      }
+    },
+    {
+      "query": "Pokemon 151 Ditto 132 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20151%20Ditto%20132%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3457609",
+      "product_name": "Koga's Ditto #132",
+      "console_name": "Pokemon Japanese Challenge from the Darkness",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Koga's Ditto"
+      }
+    },
+    {
+      "query": "Pokemon 151 Ditto 132 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20151%20Ditto%20132%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12319755",
+      "product_name": "Ditto [Red] #132",
+      "console_name": "Pokemon Japanese 1996 Carddass",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon Japanese 1996 Carddass"
+      }
+    },
+    {
+      "query": "Pokemon 151 Ditto 132 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20151%20Ditto%20132%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3975876",
+      "product_name": "Ditto #132",
+      "console_name": "Pokemon 2000 Topps TV",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon 2000 Topps TV"
+      }
+    },
+    {
+      "query": "Pokemon 151 Ditto 132 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20151%20Ditto%20132%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3453468",
+      "product_name": "Ditto #132",
+      "console_name": "Pokemon Japanese Mystery of the Fossils",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon Japanese Mystery of the Fossils"
+      }
+    },
+    {
+      "query": "Pokemon 151 Ditto 132 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20151%20Ditto%20132%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4892205",
+      "product_name": "Ditto #132",
+      "console_name": "Pokemon Burger King",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon Burger King"
+      }
+    },
+    {
+      "query": "Pokemon 151 Ditto 132 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20151%20Ditto%20132%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3473128",
+      "product_name": "Ditto #132",
+      "console_name": "Pokemon Japanese 1997 Carddass",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon Japanese 1997 Carddass"
+      }
+    },
+    {
+      "query": "Pokemon 151 Ditto 132 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20151%20Ditto%20132%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3975877",
+      "product_name": "Ditto [Foil] #132",
+      "console_name": "Pokemon 2000 Topps TV",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon 2000 Topps TV"
+      }
+    },
+    {
+      "query": "Pokemon 151 Ditto 132 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20151%20Ditto%20132%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3473928",
+      "product_name": "Ditto [Series II] #132",
+      "console_name": "Pokemon Japanese Vending",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon Japanese Vending"
+      }
+    }
+  ],
+  "source_lane": "pricecharting_api"
+}

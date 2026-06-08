@@ -1,0 +1,549 @@
+{
+  "status": "api_no_validated_match",
+  "fact": {
+    "gap_type": "finish_second_source_needed",
+    "fact_type": "printing_finish",
+    "set_key": "ex1",
+    "set_name": "Ruby & Sapphire",
+    "card_number": "85",
+    "card_name": "Oran Berry",
+    "finish_key": "stamped",
+    "status": "human_source_verified",
+    "sources": [
+      "thepricedex_price_list"
+    ],
+    "source_authorities": [
+      "thepricedex.com"
+    ],
+    "source_kinds": [
+      "marketplace_checklist"
+    ],
+    "evidence_urls": [
+      "https://www.thepricedex.com/set/ex1/ruby-and-sapphire/price-list"
+    ],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "attempts": [
+    {
+      "query": "Pokemon Ruby & Sapphire Oran Berry 85 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ruby%20%26%20Sapphire%20Oran%20Berry%2085%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "762938",
+      "product_name": "Oran Berry #85",
+      "console_name": "Pokemon Ruby & Sapphire",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon Ruby & Sapphire Oran Berry 85 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ruby%20%26%20Sapphire%20Oran%20Berry%2085%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10809796",
+      "product_name": "Oran Berry [Jumbo] #85",
+      "console_name": "Pokemon Ruby & Sapphire",
+      "validation": {
+        "ok": false,
+        "reason": "product_scope_jumbo_not_canonical_set_finish"
+      }
+    },
+    {
+      "query": "Pokemon Ruby & Sapphire Oran Berry 85 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ruby%20%26%20Sapphire%20Oran%20Berry%2085%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8315382",
+      "product_name": "Oran Berry [Winner] #85",
+      "console_name": "Pokemon Ruby & Sapphire",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Winner"
+      }
+    },
+    {
+      "query": "Pokemon Ruby & Sapphire Oran Berry 85 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ruby%20%26%20Sapphire%20Oran%20Berry%2085%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "763020",
+      "product_name": "Oran Berry [Reverse Holo] #85",
+      "console_name": "Pokemon Ruby & Sapphire",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Reverse Holo"
+      }
+    },
+    {
+      "query": "Pokemon Ruby & Sapphire Oran Berry 85 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ruby%20%26%20Sapphire%20Oran%20Berry%2085%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3438832",
+      "product_name": "Oran Berry #55",
+      "console_name": "Pokemon Japanese EX Ruby & Sapphire Expansion Pack",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:55"
+      }
+    },
+    {
+      "query": "Pokemon Ruby & Sapphire Oran Berry 85 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ruby%20%26%20Sapphire%20Oran%20Berry%2085%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10801613",
+      "product_name": "Oran Berry [1st Edition] #55",
+      "console_name": "Pokemon Japanese EX Ruby & Sapphire Expansion Pack",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:55"
+      }
+    },
+    {
+      "query": "Pokemon Ruby & Sapphire Oran Berry 85 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ruby%20%26%20Sapphire%20Oran%20Berry%2085%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "762937",
+      "product_name": "Lum Berry #84",
+      "console_name": "Pokemon Ruby & Sapphire",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:84"
+      }
+    },
+    {
+      "query": "Pokemon Ruby & Sapphire Oran Berry 85 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ruby%20%26%20Sapphire%20Oran%20Berry%2085%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "763019",
+      "product_name": "Lum Berry [Reverse Holo] #84",
+      "console_name": "Pokemon Ruby & Sapphire",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:84"
+      }
+    },
+    {
+      "query": "Pokemon Ruby & Sapphire Oran Berry 85 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ruby%20%26%20Sapphire%20Oran%20Berry%2085%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "888412",
+      "product_name": "Oran Berry [Reverse Holo] #80",
+      "console_name": "Pokemon Emerald",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:80"
+      }
+    },
+    {
+      "query": "Pokemon Ruby & Sapphire Oran Berry 85 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ruby%20%26%20Sapphire%20Oran%20Berry%2085%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "888305",
+      "product_name": "Oran Berry #80",
+      "console_name": "Pokemon Emerald",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:80"
+      }
+    },
+    {
+      "query": "Pokemon Ruby & Sapphire Oran Berry 85 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ruby%20%26%20Sapphire%20Oran%20Berry%2085%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3506710",
+      "product_name": "Oran Berry #8",
+      "console_name": "Pokemon Japanese Master Kit",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:8"
+      }
+    },
+    {
+      "query": "Pokemon Ruby & Sapphire Oran Berry 85 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ruby%20%26%20Sapphire%20Oran%20Berry%2085%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "888505",
+      "product_name": "Fluffy Berry #85",
+      "console_name": "Pokemon Unseen Forces",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Fluffy Berry"
+      }
+    },
+    {
+      "query": "Pokemon Ruby & Sapphire Oran Berry 85 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ruby%20%26%20Sapphire%20Oran%20Berry%2085%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "888647",
+      "product_name": "Fluffy Berry [Reverse Holo] #85",
+      "console_name": "Pokemon Unseen Forces",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Fluffy Berry"
+      }
+    },
+    {
+      "query": "Pokemon Ruby & Sapphire Oran Berry 85 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ruby%20%26%20Sapphire%20Oran%20Berry%2085%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4802207",
+      "product_name": "Pokemon Adventures Vol. 17: Ruby and Sapphire (2013)",
+      "console_name": "Comic Books Pokemon Adventures",
+      "validation": {
+        "ok": false,
+        "reason": "api_product_name_pattern_not_supported"
+      }
+    },
+    {
+      "query": "Pokemon Ruby & Sapphire Oran Berry 85 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ruby%20%26%20Sapphire%20Oran%20Berry%2085%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "762902",
+      "product_name": "Aron #25",
+      "console_name": "Pokemon Ruby & Sapphire",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:25"
+      }
+    },
+    {
+      "query": "Pokemon Ruby & Sapphire Oran Berry 85 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ruby%20%26%20Sapphire%20Oran%20Berry%2085%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "886606",
+      "product_name": "Aron #49",
+      "console_name": "Pokemon Ruby & Sapphire",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:49"
+      }
+    },
+    {
+      "query": "Pokemon Ruby & Sapphire Oran Berry 85 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ruby%20%26%20Sapphire%20Oran%20Berry%2085%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "886607",
+      "product_name": "Aron #50",
+      "console_name": "Pokemon Ruby & Sapphire",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:50"
+      }
+    },
+    {
+      "query": "Pokemon Ruby & Sapphire Oran Berry 85 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ruby%20%26%20Sapphire%20Oran%20Berry%2085%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4802202",
+      "product_name": "Pokemon Adventures Vol. 22: Ruby and Sapphire (2014)",
+      "console_name": "Comic Books Pokemon Adventures",
+      "validation": {
+        "ok": false,
+        "reason": "api_product_name_pattern_not_supported"
+      }
+    },
+    {
+      "query": "Pokemon Ruby & Sapphire Oran Berry 85 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ruby%20%26%20Sapphire%20Oran%20Berry%2085%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "762922",
+      "product_name": "Numel #61",
+      "console_name": "Pokemon Ruby & Sapphire",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:61"
+      }
+    },
+    {
+      "query": "Pokemon Ruby & Sapphire Oran Berry 85 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ruby%20%26%20Sapphire%20Oran%20Berry%2085%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "886615",
+      "product_name": "Ralts #67",
+      "console_name": "Pokemon Ruby & Sapphire",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:67"
+      }
+    },
+    {
+      "query": "Pokemon Ruby & Sapphire Oran Berry 85 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ruby%20%26%20Sapphire%20Oran%20Berry%2085%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "762938",
+      "product_name": "Oran Berry #85",
+      "console_name": "Pokemon Ruby & Sapphire",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon Ruby & Sapphire Oran Berry 85 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ruby%20%26%20Sapphire%20Oran%20Berry%2085%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10809796",
+      "product_name": "Oran Berry [Jumbo] #85",
+      "console_name": "Pokemon Ruby & Sapphire",
+      "validation": {
+        "ok": false,
+        "reason": "product_scope_jumbo_not_canonical_set_finish"
+      }
+    },
+    {
+      "query": "Pokemon Ruby & Sapphire Oran Berry 85 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ruby%20%26%20Sapphire%20Oran%20Berry%2085%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8315382",
+      "product_name": "Oran Berry [Winner] #85",
+      "console_name": "Pokemon Ruby & Sapphire",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Winner"
+      }
+    },
+    {
+      "query": "Pokemon Ruby & Sapphire Oran Berry 85 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ruby%20%26%20Sapphire%20Oran%20Berry%2085%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "763020",
+      "product_name": "Oran Berry [Reverse Holo] #85",
+      "console_name": "Pokemon Ruby & Sapphire",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Reverse Holo"
+      }
+    },
+    {
+      "query": "Pokemon Ruby & Sapphire Oran Berry 85 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ruby%20%26%20Sapphire%20Oran%20Berry%2085%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3438832",
+      "product_name": "Oran Berry #55",
+      "console_name": "Pokemon Japanese EX Ruby & Sapphire Expansion Pack",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:55"
+      }
+    },
+    {
+      "query": "Pokemon Ruby & Sapphire Oran Berry 85 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ruby%20%26%20Sapphire%20Oran%20Berry%2085%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10801613",
+      "product_name": "Oran Berry [1st Edition] #55",
+      "console_name": "Pokemon Japanese EX Ruby & Sapphire Expansion Pack",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:55"
+      }
+    },
+    {
+      "query": "Pokemon Ruby & Sapphire Oran Berry 85 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ruby%20%26%20Sapphire%20Oran%20Berry%2085%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "762937",
+      "product_name": "Lum Berry #84",
+      "console_name": "Pokemon Ruby & Sapphire",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:84"
+      }
+    },
+    {
+      "query": "Pokemon Ruby & Sapphire Oran Berry 85 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ruby%20%26%20Sapphire%20Oran%20Berry%2085%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "763019",
+      "product_name": "Lum Berry [Reverse Holo] #84",
+      "console_name": "Pokemon Ruby & Sapphire",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:84"
+      }
+    },
+    {
+      "query": "Pokemon Ruby & Sapphire Oran Berry 85 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ruby%20%26%20Sapphire%20Oran%20Berry%2085%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "888412",
+      "product_name": "Oran Berry [Reverse Holo] #80",
+      "console_name": "Pokemon Emerald",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:80"
+      }
+    },
+    {
+      "query": "Pokemon Ruby & Sapphire Oran Berry 85 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ruby%20%26%20Sapphire%20Oran%20Berry%2085%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "888305",
+      "product_name": "Oran Berry #80",
+      "console_name": "Pokemon Emerald",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:80"
+      }
+    },
+    {
+      "query": "Pokemon Ruby & Sapphire Oran Berry 85 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ruby%20%26%20Sapphire%20Oran%20Berry%2085%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3506710",
+      "product_name": "Oran Berry #8",
+      "console_name": "Pokemon Japanese Master Kit",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:8"
+      }
+    },
+    {
+      "query": "Pokemon Ruby & Sapphire Oran Berry 85 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ruby%20%26%20Sapphire%20Oran%20Berry%2085%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "888505",
+      "product_name": "Fluffy Berry #85",
+      "console_name": "Pokemon Unseen Forces",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Fluffy Berry"
+      }
+    },
+    {
+      "query": "Pokemon Ruby & Sapphire Oran Berry 85 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ruby%20%26%20Sapphire%20Oran%20Berry%2085%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "888647",
+      "product_name": "Fluffy Berry [Reverse Holo] #85",
+      "console_name": "Pokemon Unseen Forces",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Fluffy Berry"
+      }
+    },
+    {
+      "query": "Pokemon Ruby & Sapphire Oran Berry 85 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ruby%20%26%20Sapphire%20Oran%20Berry%2085%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4802207",
+      "product_name": "Pokemon Adventures Vol. 17: Ruby and Sapphire (2013)",
+      "console_name": "Comic Books Pokemon Adventures",
+      "validation": {
+        "ok": false,
+        "reason": "api_product_name_pattern_not_supported"
+      }
+    },
+    {
+      "query": "Pokemon Ruby & Sapphire Oran Berry 85 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ruby%20%26%20Sapphire%20Oran%20Berry%2085%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "762902",
+      "product_name": "Aron #25",
+      "console_name": "Pokemon Ruby & Sapphire",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:25"
+      }
+    },
+    {
+      "query": "Pokemon Ruby & Sapphire Oran Berry 85 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ruby%20%26%20Sapphire%20Oran%20Berry%2085%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "886606",
+      "product_name": "Aron #49",
+      "console_name": "Pokemon Ruby & Sapphire",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:49"
+      }
+    },
+    {
+      "query": "Pokemon Ruby & Sapphire Oran Berry 85 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ruby%20%26%20Sapphire%20Oran%20Berry%2085%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "886607",
+      "product_name": "Aron #50",
+      "console_name": "Pokemon Ruby & Sapphire",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:50"
+      }
+    },
+    {
+      "query": "Pokemon Ruby & Sapphire Oran Berry 85 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ruby%20%26%20Sapphire%20Oran%20Berry%2085%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4802202",
+      "product_name": "Pokemon Adventures Vol. 22: Ruby and Sapphire (2014)",
+      "console_name": "Comic Books Pokemon Adventures",
+      "validation": {
+        "ok": false,
+        "reason": "api_product_name_pattern_not_supported"
+      }
+    },
+    {
+      "query": "Pokemon Ruby & Sapphire Oran Berry 85 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ruby%20%26%20Sapphire%20Oran%20Berry%2085%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "762922",
+      "product_name": "Numel #61",
+      "console_name": "Pokemon Ruby & Sapphire",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:61"
+      }
+    },
+    {
+      "query": "Pokemon Ruby & Sapphire Oran Berry 85 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Ruby%20%26%20Sapphire%20Oran%20Berry%2085%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "886615",
+      "product_name": "Ralts #67",
+      "console_name": "Pokemon Ruby & Sapphire",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:67"
+      }
+    }
+  ],
+  "source_lane": "pricecharting_api"
+}

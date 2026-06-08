@@ -1,0 +1,549 @@
+{
+  "status": "api_no_validated_match",
+  "fact": {
+    "gap_type": "finish_second_source_needed",
+    "fact_type": "printing_finish",
+    "set_key": "ex8",
+    "set_name": "Deoxys",
+    "card_number": "91",
+    "card_name": "Space Center",
+    "finish_key": "stamped",
+    "status": "human_source_verified",
+    "sources": [
+      "thepricedex_price_list"
+    ],
+    "source_authorities": [
+      "thepricedex.com"
+    ],
+    "source_kinds": [
+      "marketplace_checklist"
+    ],
+    "evidence_urls": [
+      "https://www.thepricedex.com/set/ex8/deoxys/price-list"
+    ],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "attempts": [
+    {
+      "query": "Pokemon Deoxys Space Center 91 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Deoxys%20Space%20Center%2091%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "888111",
+      "product_name": "Space Center #91",
+      "console_name": "Pokemon Deoxys",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon Deoxys Space Center 91 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Deoxys%20Space%20Center%2091%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "888219",
+      "product_name": "Space Center [Reverse Holo] #91",
+      "console_name": "Pokemon Deoxys",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Reverse Holo"
+      }
+    },
+    {
+      "query": "Pokemon Deoxys Space Center 91 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Deoxys%20Space%20Center%2091%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5964283",
+      "product_name": "Space Center [10th Anniversary] #91",
+      "console_name": "Pokemon Deoxys",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:10th Anniversary"
+      }
+    },
+    {
+      "query": "Pokemon Deoxys Space Center 91 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Deoxys%20Space%20Center%2091%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8453475",
+      "product_name": "Space Center [1st Edition] #78",
+      "console_name": "Pokemon Japanese Clash of the Blue Sky",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:78"
+      }
+    },
+    {
+      "query": "Pokemon Deoxys Space Center 91 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Deoxys%20Space%20Center%2091%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3439366",
+      "product_name": "Space Center #78",
+      "console_name": "Pokemon Japanese Clash of the Blue Sky",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:78"
+      }
+    },
+    {
+      "query": "Pokemon Deoxys Space Center 91 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Deoxys%20Space%20Center%2091%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5305606",
+      "product_name": "Pikachu [Pokemon Center Stamp] #27",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:27"
+      }
+    },
+    {
+      "query": "Pokemon Deoxys Space Center 91 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Deoxys%20Space%20Center%2091%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6675517",
+      "product_name": "Space Fissure's Deoxys #1",
+      "console_name": "Pokemon Japanese VS",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:1"
+      }
+    },
+    {
+      "query": "Pokemon Deoxys Space Center 91 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Deoxys%20Space%20Center%2091%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10983403",
+      "product_name": "Space Fissure's Deoxys [Lenticular]",
+      "console_name": "Pokemon Japanese VS",
+      "validation": {
+        "ok": false,
+        "reason": "api_product_name_pattern_not_supported"
+      }
+    },
+    {
+      "query": "Pokemon Deoxys Space Center 91 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Deoxys%20Space%20Center%2091%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12906377",
+      "product_name": "Space Fissure's Deoxys [Defense Forme] [Lenticular]",
+      "console_name": "Pokemon Japanese VS",
+      "validation": {
+        "ok": false,
+        "reason": "api_product_name_pattern_not_supported"
+      }
+    },
+    {
+      "query": "Pokemon Deoxys Space Center 91 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Deoxys%20Space%20Center%2091%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12906376",
+      "product_name": "Space Fissure's Deoxys [Attack Forme] [Lenticular]",
+      "console_name": "Pokemon Japanese VS",
+      "validation": {
+        "ok": false,
+        "reason": "api_product_name_pattern_not_supported"
+      }
+    },
+    {
+      "query": "Pokemon Deoxys Space Center 91 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Deoxys%20Space%20Center%2091%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6021832",
+      "product_name": "Dragapult [Cosmos Holo Stamped] #91",
+      "console_name": "Pokemon Rebel Clash",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Dragapult"
+      }
+    },
+    {
+      "query": "Pokemon Deoxys Space Center 91 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Deoxys%20Space%20Center%2091%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5872970",
+      "product_name": "Space Command Center #493",
+      "console_name": "LEGO Space",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:493"
+      }
+    },
+    {
+      "query": "Pokemon Deoxys Space Center 91 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Deoxys%20Space%20Center%2091%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "13884",
+      "product_name": "Space Invaders 91",
+      "console_name": "Sega Genesis",
+      "validation": {
+        "ok": false,
+        "reason": "api_product_name_pattern_not_supported"
+      }
+    },
+    {
+      "query": "Pokemon Deoxys Space Center 91 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Deoxys%20Space%20Center%2091%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5875088",
+      "product_name": "Space Center #3368",
+      "console_name": "LEGO City",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:3368"
+      }
+    },
+    {
+      "query": "Pokemon Deoxys Space Center 91 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Deoxys%20Space%20Center%2091%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5862352",
+      "product_name": "Space Center #2945",
+      "console_name": "LEGO DUPLO",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:2945"
+      }
+    },
+    {
+      "query": "Pokemon Deoxys Space Center 91 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Deoxys%20Space%20Center%2091%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5873164",
+      "product_name": "Robot Command Center #6951",
+      "console_name": "LEGO Space",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:6951"
+      }
+    },
+    {
+      "query": "Pokemon Deoxys Space Center 91 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Deoxys%20Space%20Center%2091%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "2413903",
+      "product_name": "Mystery in Space #91 (1964)",
+      "console_name": "Comic Books Mystery in Space",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Mystery in Space"
+      }
+    },
+    {
+      "query": "Pokemon Deoxys Space Center 91 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Deoxys%20Space%20Center%2091%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9138760",
+      "product_name": "Pokemon Center [1999-2000] #85",
+      "console_name": "Pokemon Base Set",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:85"
+      }
+    },
+    {
+      "query": "Pokemon Deoxys Space Center 91 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Deoxys%20Space%20Center%2091%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4134110",
+      "product_name": "Deoxys [Pokemon Day] #16",
+      "console_name": "Pokemon Deoxys",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:16"
+      }
+    },
+    {
+      "query": "Pokemon Deoxys Space Center 91 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Deoxys%20Space%20Center%2091%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3366448",
+      "product_name": "Deoxys [Destiny Deoxys] #16",
+      "console_name": "Pokemon Deoxys",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:16"
+      }
+    },
+    {
+      "query": "Pokemon Deoxys Space Center 91 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Deoxys%20Space%20Center%2091%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "888111",
+      "product_name": "Space Center #91",
+      "console_name": "Pokemon Deoxys",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon Deoxys Space Center 91 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Deoxys%20Space%20Center%2091%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "888219",
+      "product_name": "Space Center [Reverse Holo] #91",
+      "console_name": "Pokemon Deoxys",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Reverse Holo"
+      }
+    },
+    {
+      "query": "Pokemon Deoxys Space Center 91 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Deoxys%20Space%20Center%2091%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5964283",
+      "product_name": "Space Center [10th Anniversary] #91",
+      "console_name": "Pokemon Deoxys",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:10th Anniversary"
+      }
+    },
+    {
+      "query": "Pokemon Deoxys Space Center 91 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Deoxys%20Space%20Center%2091%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8453475",
+      "product_name": "Space Center [1st Edition] #78",
+      "console_name": "Pokemon Japanese Clash of the Blue Sky",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:78"
+      }
+    },
+    {
+      "query": "Pokemon Deoxys Space Center 91 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Deoxys%20Space%20Center%2091%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3439366",
+      "product_name": "Space Center #78",
+      "console_name": "Pokemon Japanese Clash of the Blue Sky",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:78"
+      }
+    },
+    {
+      "query": "Pokemon Deoxys Space Center 91 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Deoxys%20Space%20Center%2091%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5305606",
+      "product_name": "Pikachu [Pokemon Center Stamp] #27",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:27"
+      }
+    },
+    {
+      "query": "Pokemon Deoxys Space Center 91 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Deoxys%20Space%20Center%2091%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6675517",
+      "product_name": "Space Fissure's Deoxys #1",
+      "console_name": "Pokemon Japanese VS",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:1"
+      }
+    },
+    {
+      "query": "Pokemon Deoxys Space Center 91 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Deoxys%20Space%20Center%2091%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10983403",
+      "product_name": "Space Fissure's Deoxys [Lenticular]",
+      "console_name": "Pokemon Japanese VS",
+      "validation": {
+        "ok": false,
+        "reason": "api_product_name_pattern_not_supported"
+      }
+    },
+    {
+      "query": "Pokemon Deoxys Space Center 91 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Deoxys%20Space%20Center%2091%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12906377",
+      "product_name": "Space Fissure's Deoxys [Defense Forme] [Lenticular]",
+      "console_name": "Pokemon Japanese VS",
+      "validation": {
+        "ok": false,
+        "reason": "api_product_name_pattern_not_supported"
+      }
+    },
+    {
+      "query": "Pokemon Deoxys Space Center 91 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Deoxys%20Space%20Center%2091%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12906376",
+      "product_name": "Space Fissure's Deoxys [Attack Forme] [Lenticular]",
+      "console_name": "Pokemon Japanese VS",
+      "validation": {
+        "ok": false,
+        "reason": "api_product_name_pattern_not_supported"
+      }
+    },
+    {
+      "query": "Pokemon Deoxys Space Center 91 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Deoxys%20Space%20Center%2091%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6021832",
+      "product_name": "Dragapult [Cosmos Holo Stamped] #91",
+      "console_name": "Pokemon Rebel Clash",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Dragapult"
+      }
+    },
+    {
+      "query": "Pokemon Deoxys Space Center 91 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Deoxys%20Space%20Center%2091%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5872970",
+      "product_name": "Space Command Center #493",
+      "console_name": "LEGO Space",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:493"
+      }
+    },
+    {
+      "query": "Pokemon Deoxys Space Center 91 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Deoxys%20Space%20Center%2091%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "13884",
+      "product_name": "Space Invaders 91",
+      "console_name": "Sega Genesis",
+      "validation": {
+        "ok": false,
+        "reason": "api_product_name_pattern_not_supported"
+      }
+    },
+    {
+      "query": "Pokemon Deoxys Space Center 91 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Deoxys%20Space%20Center%2091%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5875088",
+      "product_name": "Space Center #3368",
+      "console_name": "LEGO City",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:3368"
+      }
+    },
+    {
+      "query": "Pokemon Deoxys Space Center 91 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Deoxys%20Space%20Center%2091%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5862352",
+      "product_name": "Space Center #2945",
+      "console_name": "LEGO DUPLO",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:2945"
+      }
+    },
+    {
+      "query": "Pokemon Deoxys Space Center 91 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Deoxys%20Space%20Center%2091%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5873164",
+      "product_name": "Robot Command Center #6951",
+      "console_name": "LEGO Space",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:6951"
+      }
+    },
+    {
+      "query": "Pokemon Deoxys Space Center 91 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Deoxys%20Space%20Center%2091%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "2413903",
+      "product_name": "Mystery in Space #91 (1964)",
+      "console_name": "Comic Books Mystery in Space",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Mystery in Space"
+      }
+    },
+    {
+      "query": "Pokemon Deoxys Space Center 91 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Deoxys%20Space%20Center%2091%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9138760",
+      "product_name": "Pokemon Center [1999-2000] #85",
+      "console_name": "Pokemon Base Set",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:85"
+      }
+    },
+    {
+      "query": "Pokemon Deoxys Space Center 91 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Deoxys%20Space%20Center%2091%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4134110",
+      "product_name": "Deoxys [Pokemon Day] #16",
+      "console_name": "Pokemon Deoxys",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:16"
+      }
+    },
+    {
+      "query": "Pokemon Deoxys Space Center 91 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Deoxys%20Space%20Center%2091%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3366448",
+      "product_name": "Deoxys [Destiny Deoxys] #16",
+      "console_name": "Pokemon Deoxys",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:16"
+      }
+    }
+  ],
+  "source_lane": "pricecharting_api"
+}

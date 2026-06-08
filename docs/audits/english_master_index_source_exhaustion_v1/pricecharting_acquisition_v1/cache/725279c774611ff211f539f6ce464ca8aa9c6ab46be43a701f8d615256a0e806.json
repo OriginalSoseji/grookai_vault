@@ -1,0 +1,549 @@
+{
+  "status": "api_no_validated_match",
+  "fact": {
+    "gap_type": "finish_second_source_needed",
+    "fact_type": "printing_finish",
+    "set_key": "sv08.5",
+    "set_name": "Prismatic Evolutions",
+    "card_number": "109",
+    "card_name": "Friends in Paldea",
+    "finish_key": "stamped",
+    "status": "human_source_verified",
+    "sources": [
+      "thepricedex_price_list"
+    ],
+    "source_authorities": [
+      "thepricedex.com"
+    ],
+    "source_kinds": [
+      "marketplace_checklist"
+    ],
+    "evidence_urls": [
+      "https://www.thepricedex.com/set/sv8pt5/prismatic-evolutions/price-list"
+    ],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "attempts": [
+    {
+      "query": "Pokemon Prismatic Evolutions Friends in Paldea 109 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Prismatic%20Evolutions%20Friends%20in%20Paldea%20109%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8244554",
+      "product_name": "Friends in Paldea #109",
+      "console_name": "Pokemon Prismatic Evolutions",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon Prismatic Evolutions Friends in Paldea 109 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Prismatic%20Evolutions%20Friends%20in%20Paldea%20109%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8321772",
+      "product_name": "Friends in Paldea [Reverse] #109",
+      "console_name": "Pokemon Prismatic Evolutions",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Reverse"
+      }
+    },
+    {
+      "query": "Pokemon Prismatic Evolutions Friends in Paldea 109 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Prismatic%20Evolutions%20Friends%20in%20Paldea%20109%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8321676",
+      "product_name": "Friends in Paldea [Poke Ball] #109",
+      "console_name": "Pokemon Prismatic Evolutions",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Poke Ball"
+      }
+    },
+    {
+      "query": "Pokemon Prismatic Evolutions Friends in Paldea 109 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Prismatic%20Evolutions%20Friends%20in%20Paldea%20109%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8244580",
+      "product_name": "Friends in Paldea #137",
+      "console_name": "Pokemon Prismatic Evolutions",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:137"
+      }
+    },
+    {
+      "query": "Pokemon Prismatic Evolutions Friends in Paldea 109 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Prismatic%20Evolutions%20Friends%20in%20Paldea%20109%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11047387",
+      "product_name": "Budew [Gym Stamp] #4",
+      "console_name": "Pokemon Prismatic Evolutions",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:4"
+      }
+    },
+    {
+      "query": "Pokemon Prismatic Evolutions Friends in Paldea 109 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Prismatic%20Evolutions%20Friends%20in%20Paldea%20109%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10491819",
+      "product_name": "Lucario [Stamped] #51",
+      "console_name": "Pokemon Prismatic Evolutions",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:51"
+      }
+    },
+    {
+      "query": "Pokemon Prismatic Evolutions Friends in Paldea 109 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Prismatic%20Evolutions%20Friends%20in%20Paldea%20109%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12054435",
+      "product_name": "Friends In Paldea [Professor Program] #109",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon Promo"
+      }
+    },
+    {
+      "query": "Pokemon Prismatic Evolutions Friends in Paldea 109 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Prismatic%20Evolutions%20Friends%20in%20Paldea%20109%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10491823",
+      "product_name": "Tyranitar [Stamped] #64",
+      "console_name": "Pokemon Prismatic Evolutions",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:64"
+      }
+    },
+    {
+      "query": "Pokemon Prismatic Evolutions Friends in Paldea 109 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Prismatic%20Evolutions%20Friends%20in%20Paldea%20109%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11085989",
+      "product_name": "Lugia Ex [Stamped] #82",
+      "console_name": "Pokemon Prismatic Evolutions",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:82"
+      }
+    },
+    {
+      "query": "Pokemon Prismatic Evolutions Friends in Paldea 109 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Prismatic%20Evolutions%20Friends%20in%20Paldea%20109%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8576523",
+      "product_name": "Eevee Ex [Stamped] #75",
+      "console_name": "Pokemon Prismatic Evolutions",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:75"
+      }
+    },
+    {
+      "query": "Pokemon Prismatic Evolutions Friends in Paldea 109 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Prismatic%20Evolutions%20Friends%20in%20Paldea%20109%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11444940",
+      "product_name": "Snorlax Ex [Stamped] #76",
+      "console_name": "Pokemon Prismatic Evolutions",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:76"
+      }
+    },
+    {
+      "query": "Pokemon Prismatic Evolutions Friends in Paldea 109 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Prismatic%20Evolutions%20Friends%20in%20Paldea%20109%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8624383",
+      "product_name": "Sylveon ex [Stamped] #41",
+      "console_name": "Pokemon Prismatic Evolutions",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:41"
+      }
+    },
+    {
+      "query": "Pokemon Prismatic Evolutions Friends in Paldea 109 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Prismatic%20Evolutions%20Friends%20in%20Paldea%20109%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8624384",
+      "product_name": "Umbreon ex [Stamped] #60",
+      "console_name": "Pokemon Prismatic Evolutions",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:60"
+      }
+    },
+    {
+      "query": "Pokemon Prismatic Evolutions Friends in Paldea 109 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Prismatic%20Evolutions%20Friends%20in%20Paldea%20109%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8576850",
+      "product_name": "Leafeon Ex [Stamped] #6",
+      "console_name": "Pokemon Prismatic Evolutions",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:6"
+      }
+    },
+    {
+      "query": "Pokemon Prismatic Evolutions Friends in Paldea 109 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Prismatic%20Evolutions%20Friends%20in%20Paldea%20109%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8624377",
+      "product_name": "Glaceon ex [Stamped] #26",
+      "console_name": "Pokemon Prismatic Evolutions",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:26"
+      }
+    },
+    {
+      "query": "Pokemon Prismatic Evolutions Friends in Paldea 109 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Prismatic%20Evolutions%20Friends%20in%20Paldea%20109%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8624379",
+      "product_name": "Jolteon ex [Stamped] #30",
+      "console_name": "Pokemon Prismatic Evolutions",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:30"
+      }
+    },
+    {
+      "query": "Pokemon Prismatic Evolutions Friends in Paldea 109 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Prismatic%20Evolutions%20Friends%20in%20Paldea%20109%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8624382",
+      "product_name": "Flareon ex [Stamped] #14",
+      "console_name": "Pokemon Prismatic Evolutions",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:14"
+      }
+    },
+    {
+      "query": "Pokemon Prismatic Evolutions Friends in Paldea 109 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Prismatic%20Evolutions%20Friends%20in%20Paldea%20109%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8624380",
+      "product_name": "Espeon ex [Stamped] #34",
+      "console_name": "Pokemon Prismatic Evolutions",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:34"
+      }
+    },
+    {
+      "query": "Pokemon Prismatic Evolutions Friends in Paldea 109 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Prismatic%20Evolutions%20Friends%20in%20Paldea%20109%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8624381",
+      "product_name": "Vaporeon ex [Stamped] #23",
+      "console_name": "Pokemon Prismatic Evolutions",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:23"
+      }
+    },
+    {
+      "query": "Pokemon Prismatic Evolutions Friends in Paldea 109 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Prismatic%20Evolutions%20Friends%20in%20Paldea%20109%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7980187",
+      "product_name": "Friends in Paldea #174",
+      "console_name": "Pokemon Japanese Terastal Festival",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:174"
+      }
+    },
+    {
+      "query": "Pokemon Prismatic Evolutions Friends in Paldea 109 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Prismatic%20Evolutions%20Friends%20in%20Paldea%20109%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8244554",
+      "product_name": "Friends in Paldea #109",
+      "console_name": "Pokemon Prismatic Evolutions",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon Prismatic Evolutions Friends in Paldea 109 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Prismatic%20Evolutions%20Friends%20in%20Paldea%20109%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8321772",
+      "product_name": "Friends in Paldea [Reverse] #109",
+      "console_name": "Pokemon Prismatic Evolutions",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Reverse"
+      }
+    },
+    {
+      "query": "Pokemon Prismatic Evolutions Friends in Paldea 109 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Prismatic%20Evolutions%20Friends%20in%20Paldea%20109%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8321676",
+      "product_name": "Friends in Paldea [Poke Ball] #109",
+      "console_name": "Pokemon Prismatic Evolutions",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Poke Ball"
+      }
+    },
+    {
+      "query": "Pokemon Prismatic Evolutions Friends in Paldea 109 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Prismatic%20Evolutions%20Friends%20in%20Paldea%20109%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8244580",
+      "product_name": "Friends in Paldea #137",
+      "console_name": "Pokemon Prismatic Evolutions",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:137"
+      }
+    },
+    {
+      "query": "Pokemon Prismatic Evolutions Friends in Paldea 109 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Prismatic%20Evolutions%20Friends%20in%20Paldea%20109%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11047387",
+      "product_name": "Budew [Gym Stamp] #4",
+      "console_name": "Pokemon Prismatic Evolutions",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:4"
+      }
+    },
+    {
+      "query": "Pokemon Prismatic Evolutions Friends in Paldea 109 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Prismatic%20Evolutions%20Friends%20in%20Paldea%20109%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10491819",
+      "product_name": "Lucario [Stamped] #51",
+      "console_name": "Pokemon Prismatic Evolutions",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:51"
+      }
+    },
+    {
+      "query": "Pokemon Prismatic Evolutions Friends in Paldea 109 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Prismatic%20Evolutions%20Friends%20in%20Paldea%20109%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12054435",
+      "product_name": "Friends In Paldea [Professor Program] #109",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon Promo"
+      }
+    },
+    {
+      "query": "Pokemon Prismatic Evolutions Friends in Paldea 109 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Prismatic%20Evolutions%20Friends%20in%20Paldea%20109%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10491823",
+      "product_name": "Tyranitar [Stamped] #64",
+      "console_name": "Pokemon Prismatic Evolutions",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:64"
+      }
+    },
+    {
+      "query": "Pokemon Prismatic Evolutions Friends in Paldea 109 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Prismatic%20Evolutions%20Friends%20in%20Paldea%20109%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11085989",
+      "product_name": "Lugia Ex [Stamped] #82",
+      "console_name": "Pokemon Prismatic Evolutions",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:82"
+      }
+    },
+    {
+      "query": "Pokemon Prismatic Evolutions Friends in Paldea 109 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Prismatic%20Evolutions%20Friends%20in%20Paldea%20109%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8576523",
+      "product_name": "Eevee Ex [Stamped] #75",
+      "console_name": "Pokemon Prismatic Evolutions",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:75"
+      }
+    },
+    {
+      "query": "Pokemon Prismatic Evolutions Friends in Paldea 109 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Prismatic%20Evolutions%20Friends%20in%20Paldea%20109%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11444940",
+      "product_name": "Snorlax Ex [Stamped] #76",
+      "console_name": "Pokemon Prismatic Evolutions",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:76"
+      }
+    },
+    {
+      "query": "Pokemon Prismatic Evolutions Friends in Paldea 109 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Prismatic%20Evolutions%20Friends%20in%20Paldea%20109%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8624383",
+      "product_name": "Sylveon ex [Stamped] #41",
+      "console_name": "Pokemon Prismatic Evolutions",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:41"
+      }
+    },
+    {
+      "query": "Pokemon Prismatic Evolutions Friends in Paldea 109 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Prismatic%20Evolutions%20Friends%20in%20Paldea%20109%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8624384",
+      "product_name": "Umbreon ex [Stamped] #60",
+      "console_name": "Pokemon Prismatic Evolutions",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:60"
+      }
+    },
+    {
+      "query": "Pokemon Prismatic Evolutions Friends in Paldea 109 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Prismatic%20Evolutions%20Friends%20in%20Paldea%20109%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8576850",
+      "product_name": "Leafeon Ex [Stamped] #6",
+      "console_name": "Pokemon Prismatic Evolutions",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:6"
+      }
+    },
+    {
+      "query": "Pokemon Prismatic Evolutions Friends in Paldea 109 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Prismatic%20Evolutions%20Friends%20in%20Paldea%20109%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8624377",
+      "product_name": "Glaceon ex [Stamped] #26",
+      "console_name": "Pokemon Prismatic Evolutions",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:26"
+      }
+    },
+    {
+      "query": "Pokemon Prismatic Evolutions Friends in Paldea 109 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Prismatic%20Evolutions%20Friends%20in%20Paldea%20109%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8624379",
+      "product_name": "Jolteon ex [Stamped] #30",
+      "console_name": "Pokemon Prismatic Evolutions",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:30"
+      }
+    },
+    {
+      "query": "Pokemon Prismatic Evolutions Friends in Paldea 109 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Prismatic%20Evolutions%20Friends%20in%20Paldea%20109%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8624382",
+      "product_name": "Flareon ex [Stamped] #14",
+      "console_name": "Pokemon Prismatic Evolutions",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:14"
+      }
+    },
+    {
+      "query": "Pokemon Prismatic Evolutions Friends in Paldea 109 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Prismatic%20Evolutions%20Friends%20in%20Paldea%20109%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8624380",
+      "product_name": "Espeon ex [Stamped] #34",
+      "console_name": "Pokemon Prismatic Evolutions",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:34"
+      }
+    },
+    {
+      "query": "Pokemon Prismatic Evolutions Friends in Paldea 109 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Prismatic%20Evolutions%20Friends%20in%20Paldea%20109%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8624381",
+      "product_name": "Vaporeon ex [Stamped] #23",
+      "console_name": "Pokemon Prismatic Evolutions",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:23"
+      }
+    },
+    {
+      "query": "Pokemon Prismatic Evolutions Friends in Paldea 109 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Prismatic%20Evolutions%20Friends%20in%20Paldea%20109%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7980187",
+      "product_name": "Friends in Paldea #174",
+      "console_name": "Pokemon Japanese Terastal Festival",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:174"
+      }
+    }
+  ],
+  "source_lane": "pricecharting_api"
+}

@@ -1,0 +1,549 @@
+{
+  "status": "api_no_validated_match",
+  "fact": {
+    "gap_type": "finish_second_source_needed",
+    "fact_type": "printing_finish",
+    "set_key": "ex5",
+    "set_name": "Hidden Legends",
+    "card_number": "29",
+    "card_name": "Beldum",
+    "finish_key": "stamped",
+    "status": "human_source_verified",
+    "sources": [
+      "thepricedex_price_list"
+    ],
+    "source_authorities": [
+      "thepricedex.com"
+    ],
+    "source_kinds": [
+      "marketplace_checklist"
+    ],
+    "evidence_urls": [
+      "https://www.thepricedex.com/set/ex5/hidden-legends/price-list"
+    ],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "attempts": [
+    {
+      "query": "Pokemon Hidden Legends Beldum 29 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Hidden%20Legends%20Beldum%2029%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "849802",
+      "product_name": "Beldum #29",
+      "console_name": "Pokemon Hidden Legends",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon Hidden Legends Beldum 29 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Hidden%20Legends%20Beldum%2029%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "849904",
+      "product_name": "Beldum [Reverse Holo] #29",
+      "console_name": "Pokemon Hidden Legends",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Reverse Holo"
+      }
+    },
+    {
+      "query": "Pokemon Hidden Legends Beldum 29 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Hidden%20Legends%20Beldum%2029%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6303284",
+      "product_name": "Beldum [Gym Challenge] #29",
+      "console_name": "Pokemon Hidden Legends",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Gym Challenge"
+      }
+    },
+    {
+      "query": "Pokemon Hidden Legends Beldum 29 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Hidden%20Legends%20Beldum%2029%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "849801",
+      "product_name": "Beldum #28",
+      "console_name": "Pokemon Hidden Legends",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:28"
+      }
+    },
+    {
+      "query": "Pokemon Hidden Legends Beldum 29 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Hidden%20Legends%20Beldum%2029%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "849827",
+      "product_name": "Beldum #54",
+      "console_name": "Pokemon Hidden Legends",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:54"
+      }
+    },
+    {
+      "query": "Pokemon Hidden Legends Beldum 29 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Hidden%20Legends%20Beldum%2029%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "849903",
+      "product_name": "Beldum [Reverse Holo] #28",
+      "console_name": "Pokemon Hidden Legends",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:28"
+      }
+    },
+    {
+      "query": "Pokemon Hidden Legends Beldum 29 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Hidden%20Legends%20Beldum%2029%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "849929",
+      "product_name": "Beldum [Reverse Holo] #54",
+      "console_name": "Pokemon Hidden Legends",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:54"
+      }
+    },
+    {
+      "query": "Pokemon Hidden Legends Beldum 29 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Hidden%20Legends%20Beldum%2029%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "964113",
+      "product_name": "Beldum #SV30",
+      "console_name": "Pokemon Hidden Fates",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:SV30"
+      }
+    },
+    {
+      "query": "Pokemon Hidden Legends Beldum 29 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Hidden%20Legends%20Beldum%2029%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "925015",
+      "product_name": "Beldum #84",
+      "console_name": "Pokemon Legends Awakened",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:84"
+      }
+    },
+    {
+      "query": "Pokemon Hidden Legends Beldum 29 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Hidden%20Legends%20Beldum%2029%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "925014",
+      "product_name": "Beldum #83",
+      "console_name": "Pokemon Legends Awakened",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:83"
+      }
+    },
+    {
+      "query": "Pokemon Hidden Legends Beldum 29 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Hidden%20Legends%20Beldum%2029%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "925159",
+      "product_name": "Beldum [Reverse Holo] #83",
+      "console_name": "Pokemon Legends Awakened",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:83"
+      }
+    },
+    {
+      "query": "Pokemon Hidden Legends Beldum 29 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Hidden%20Legends%20Beldum%2029%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "925160",
+      "product_name": "Beldum [Reverse Holo] #84",
+      "console_name": "Pokemon Legends Awakened",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:84"
+      }
+    },
+    {
+      "query": "Pokemon Hidden Legends Beldum 29 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Hidden%20Legends%20Beldum%2029%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3460134",
+      "product_name": "Beldum #51",
+      "console_name": "Pokemon Japanese Reviving Legends",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:51"
+      }
+    },
+    {
+      "query": "Pokemon Hidden Legends Beldum 29 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Hidden%20Legends%20Beldum%2029%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8454136",
+      "product_name": "Beldum [1st Edition] #51",
+      "console_name": "Pokemon Japanese Reviving Legends",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:51"
+      }
+    },
+    {
+      "query": "Pokemon Hidden Legends Beldum 29 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Hidden%20Legends%20Beldum%2029%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "964049",
+      "product_name": "Weezing #29",
+      "console_name": "Pokemon Hidden Fates",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Weezing"
+      }
+    },
+    {
+      "query": "Pokemon Hidden Legends Beldum 29 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Hidden%20Legends%20Beldum%2029%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "849808",
+      "product_name": "Gloom #35",
+      "console_name": "Pokemon Hidden Legends",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:35"
+      }
+    },
+    {
+      "query": "Pokemon Hidden Legends Beldum 29 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Hidden%20Legends%20Beldum%2029%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "849833",
+      "product_name": "Doduo #60",
+      "console_name": "Pokemon Hidden Legends",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:60"
+      }
+    },
+    {
+      "query": "Pokemon Hidden Legends Beldum 29 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Hidden%20Legends%20Beldum%2029%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "849840",
+      "product_name": "Minun #67",
+      "console_name": "Pokemon Hidden Legends",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:67"
+      }
+    },
+    {
+      "query": "Pokemon Hidden Legends Beldum 29 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Hidden%20Legends%20Beldum%2029%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "849856",
+      "product_name": "Zubat #83",
+      "console_name": "Pokemon Hidden Legends",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:83"
+      }
+    },
+    {
+      "query": "Pokemon Hidden Legends Beldum 29 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Hidden%20Legends%20Beldum%2029%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "849794",
+      "product_name": "Metang #21",
+      "console_name": "Pokemon Hidden Legends",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:21"
+      }
+    },
+    {
+      "query": "Pokemon Hidden Legends Beldum 29 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Hidden%20Legends%20Beldum%2029%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "849802",
+      "product_name": "Beldum #29",
+      "console_name": "Pokemon Hidden Legends",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon Hidden Legends Beldum 29 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Hidden%20Legends%20Beldum%2029%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "849904",
+      "product_name": "Beldum [Reverse Holo] #29",
+      "console_name": "Pokemon Hidden Legends",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Reverse Holo"
+      }
+    },
+    {
+      "query": "Pokemon Hidden Legends Beldum 29 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Hidden%20Legends%20Beldum%2029%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6303284",
+      "product_name": "Beldum [Gym Challenge] #29",
+      "console_name": "Pokemon Hidden Legends",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Gym Challenge"
+      }
+    },
+    {
+      "query": "Pokemon Hidden Legends Beldum 29 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Hidden%20Legends%20Beldum%2029%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "849801",
+      "product_name": "Beldum #28",
+      "console_name": "Pokemon Hidden Legends",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:28"
+      }
+    },
+    {
+      "query": "Pokemon Hidden Legends Beldum 29 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Hidden%20Legends%20Beldum%2029%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "849827",
+      "product_name": "Beldum #54",
+      "console_name": "Pokemon Hidden Legends",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:54"
+      }
+    },
+    {
+      "query": "Pokemon Hidden Legends Beldum 29 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Hidden%20Legends%20Beldum%2029%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "849903",
+      "product_name": "Beldum [Reverse Holo] #28",
+      "console_name": "Pokemon Hidden Legends",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:28"
+      }
+    },
+    {
+      "query": "Pokemon Hidden Legends Beldum 29 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Hidden%20Legends%20Beldum%2029%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "849929",
+      "product_name": "Beldum [Reverse Holo] #54",
+      "console_name": "Pokemon Hidden Legends",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:54"
+      }
+    },
+    {
+      "query": "Pokemon Hidden Legends Beldum 29 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Hidden%20Legends%20Beldum%2029%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "964113",
+      "product_name": "Beldum #SV30",
+      "console_name": "Pokemon Hidden Fates",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:SV30"
+      }
+    },
+    {
+      "query": "Pokemon Hidden Legends Beldum 29 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Hidden%20Legends%20Beldum%2029%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "925015",
+      "product_name": "Beldum #84",
+      "console_name": "Pokemon Legends Awakened",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:84"
+      }
+    },
+    {
+      "query": "Pokemon Hidden Legends Beldum 29 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Hidden%20Legends%20Beldum%2029%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "925014",
+      "product_name": "Beldum #83",
+      "console_name": "Pokemon Legends Awakened",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:83"
+      }
+    },
+    {
+      "query": "Pokemon Hidden Legends Beldum 29 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Hidden%20Legends%20Beldum%2029%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "925159",
+      "product_name": "Beldum [Reverse Holo] #83",
+      "console_name": "Pokemon Legends Awakened",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:83"
+      }
+    },
+    {
+      "query": "Pokemon Hidden Legends Beldum 29 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Hidden%20Legends%20Beldum%2029%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "925160",
+      "product_name": "Beldum [Reverse Holo] #84",
+      "console_name": "Pokemon Legends Awakened",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:84"
+      }
+    },
+    {
+      "query": "Pokemon Hidden Legends Beldum 29 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Hidden%20Legends%20Beldum%2029%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3460134",
+      "product_name": "Beldum #51",
+      "console_name": "Pokemon Japanese Reviving Legends",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:51"
+      }
+    },
+    {
+      "query": "Pokemon Hidden Legends Beldum 29 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Hidden%20Legends%20Beldum%2029%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8454136",
+      "product_name": "Beldum [1st Edition] #51",
+      "console_name": "Pokemon Japanese Reviving Legends",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:51"
+      }
+    },
+    {
+      "query": "Pokemon Hidden Legends Beldum 29 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Hidden%20Legends%20Beldum%2029%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "964049",
+      "product_name": "Weezing #29",
+      "console_name": "Pokemon Hidden Fates",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Weezing"
+      }
+    },
+    {
+      "query": "Pokemon Hidden Legends Beldum 29 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Hidden%20Legends%20Beldum%2029%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "849808",
+      "product_name": "Gloom #35",
+      "console_name": "Pokemon Hidden Legends",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:35"
+      }
+    },
+    {
+      "query": "Pokemon Hidden Legends Beldum 29 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Hidden%20Legends%20Beldum%2029%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "849833",
+      "product_name": "Doduo #60",
+      "console_name": "Pokemon Hidden Legends",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:60"
+      }
+    },
+    {
+      "query": "Pokemon Hidden Legends Beldum 29 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Hidden%20Legends%20Beldum%2029%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "849840",
+      "product_name": "Minun #67",
+      "console_name": "Pokemon Hidden Legends",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:67"
+      }
+    },
+    {
+      "query": "Pokemon Hidden Legends Beldum 29 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Hidden%20Legends%20Beldum%2029%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "849856",
+      "product_name": "Zubat #83",
+      "console_name": "Pokemon Hidden Legends",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:83"
+      }
+    },
+    {
+      "query": "Pokemon Hidden Legends Beldum 29 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Hidden%20Legends%20Beldum%2029%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "849794",
+      "product_name": "Metang #21",
+      "console_name": "Pokemon Hidden Legends",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:21"
+      }
+    }
+  ],
+  "source_lane": "pricecharting_api"
+}

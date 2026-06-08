@@ -1,0 +1,31 @@
+{
+  "fixture_version": "VERIFIED_MASTER_SET_INDEX_V1_HUMAN_SOURCE_FIXTURE_GENERATED",
+  "source_key": "tcgcsv_identity_neo4",
+  "source_kind": "marketplace_checklist",
+  "source_url": "https://tcgcsv.com/docs",
+  "source_status": "available_generated",
+  "set_key": "neo4",
+  "set_name": "Neo Destiny",
+  "retrieved_at": "2026-05-26T10:53:37.077Z",
+  "raw_snapshot_ref": "generated_fixture:tcgcsv_identity:neo4:2026-05-26T10:53:37.077Z",
+  "generation_note": "Generated from TCGCSV TCGplayer catalog product rows. Card identity only; no finish evidence is emitted.",
+  "records": [
+    {
+      "source_key": "tcgcsv_tcgplayer_catalog_identity",
+      "source_kind": "marketplace_checklist",
+      "source_url": "https://www.tcgplayer.com/product/89898/pokemon-neo-destiny-thought-wave-machine-rockets-secret-machine",
+      "set_key": "neo4",
+      "set_name": "Neo Destiny",
+      "card_number": "96",
+      "card_name": "Thought Wave Machine (Rocket's Secret Machine)",
+      "finish_key": null,
+      "rarity": "Rare",
+      "evidence_type": "card_identity",
+      "evidence_label": "TCGCSV/TCGplayer product 89898 Thought Wave Machine (Rocket's Secret Machine)",
+      "language": "en",
+      "retrieved_at": "2026-05-26T10:53:37.077Z",
+      "raw_snapshot_ref": "tcgcsv_identity:1444:89898",
+      "notes": "Generated from TCGCSV TCGplayer product catalog. Exact set, number, and name match only; no finish truth is emitted."
+    }
+  ]
+}

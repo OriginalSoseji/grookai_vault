@@ -1,0 +1,549 @@
+{
+  "status": "api_no_validated_match",
+  "fact": {
+    "gap_type": "finish_second_source_needed",
+    "fact_type": "printing_finish",
+    "set_key": "ex9",
+    "set_name": "Emerald",
+    "card_number": "29",
+    "card_name": "Grumpig",
+    "finish_key": "stamped",
+    "status": "human_source_verified",
+    "sources": [
+      "thepricedex_price_list"
+    ],
+    "source_authorities": [
+      "thepricedex.com"
+    ],
+    "source_kinds": [
+      "marketplace_checklist"
+    ],
+    "evidence_urls": [
+      "https://www.thepricedex.com/set/ex9/emerald/price-list"
+    ],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "attempts": [
+    {
+      "query": "Pokemon Emerald Grumpig 29 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Emerald%20Grumpig%2029%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "888254",
+      "product_name": "Grumpig #29",
+      "console_name": "Pokemon Emerald",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon Emerald Grumpig 29 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Emerald%20Grumpig%2029%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7978832",
+      "product_name": "Grumpig [Prerelease] #29",
+      "console_name": "Pokemon Emerald",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Prerelease"
+      }
+    },
+    {
+      "query": "Pokemon Emerald Grumpig 29 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Emerald%20Grumpig%2029%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "888361",
+      "product_name": "Grumpig [Reverse Holo] #29",
+      "console_name": "Pokemon Emerald",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Reverse Holo"
+      }
+    },
+    {
+      "query": "Pokemon Emerald Grumpig 29 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Emerald%20Grumpig%2029%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "888255",
+      "product_name": "Grumpig #30",
+      "console_name": "Pokemon Emerald",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:30"
+      }
+    },
+    {
+      "query": "Pokemon Emerald Grumpig 29 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Emerald%20Grumpig%2029%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "888362",
+      "product_name": "Grumpig [Reverse Holo] #30",
+      "console_name": "Pokemon Emerald",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:30"
+      }
+    },
+    {
+      "query": "Pokemon Emerald Grumpig 29 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Emerald%20Grumpig%2029%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3462616",
+      "product_name": "Grumpig #29",
+      "console_name": "Pokemon Japanese Awakening Psychic King",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon Japanese Awakening Psychic King"
+      }
+    },
+    {
+      "query": "Pokemon Emerald Grumpig 29 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Emerald%20Grumpig%2029%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10801084",
+      "product_name": "Grumpig [1st Edition] #29",
+      "console_name": "Pokemon Japanese Awakening Psychic King",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon Japanese Awakening Psychic King"
+      }
+    },
+    {
+      "query": "Pokemon Emerald Grumpig 29 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Emerald%20Grumpig%2029%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4802196",
+      "product_name": "Pokemon Adventures Vol. 29: Emerald (2015)",
+      "console_name": "Comic Books Pokemon Adventures",
+      "validation": {
+        "ok": false,
+        "reason": "api_product_name_pattern_not_supported"
+      }
+    },
+    {
+      "query": "Pokemon Emerald Grumpig 29 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Emerald%20Grumpig%2029%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "2514239",
+      "product_name": "Groudon [Stamped] #14",
+      "console_name": "Pokemon Emerald",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:14"
+      }
+    },
+    {
+      "query": "Pokemon Emerald Grumpig 29 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Emerald%20Grumpig%2029%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3462202",
+      "product_name": "Deoxys #29",
+      "console_name": "Pokemon Japanese Emerald Break",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Deoxys"
+      }
+    },
+    {
+      "query": "Pokemon Emerald Grumpig 29 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Emerald%20Grumpig%2029%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4894836",
+      "product_name": "Electabuzz [Stamped] #29",
+      "console_name": "Pokemon Dragon Frontiers",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Electabuzz"
+      }
+    },
+    {
+      "query": "Pokemon Emerald Grumpig 29 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Emerald%20Grumpig%2029%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5769601",
+      "product_name": "Grumpig [Foil] #38",
+      "console_name": "Pokemon 2003 Topps Advanced",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:38"
+      }
+    },
+    {
+      "query": "Pokemon Emerald Grumpig 29 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Emerald%20Grumpig%2029%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8453619",
+      "product_name": "Deoxys [1st Edition] #29",
+      "console_name": "Pokemon Japanese Emerald Break",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Deoxys"
+      }
+    },
+    {
+      "query": "Pokemon Emerald Grumpig 29 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Emerald%20Grumpig%2029%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "926183",
+      "product_name": "Grumpig [Reverse Holo] #23",
+      "console_name": "Pokemon Triumphant",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:23"
+      }
+    },
+    {
+      "query": "Pokemon Emerald Grumpig 29 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Emerald%20Grumpig%2029%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "806672",
+      "product_name": "Grumpig [Reverse Holo] #50",
+      "console_name": "Pokemon XY",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:50"
+      }
+    },
+    {
+      "query": "Pokemon Emerald Grumpig 29 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Emerald%20Grumpig%2029%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "849485",
+      "product_name": "Grumpig [Reverse Holo] #6",
+      "console_name": "Pokemon Dragon",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:6"
+      }
+    },
+    {
+      "query": "Pokemon Emerald Grumpig 29 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Emerald%20Grumpig%2029%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "888160",
+      "product_name": "Grumpig [Reverse Holo] #32",
+      "console_name": "Pokemon Deoxys",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:32"
+      }
+    },
+    {
+      "query": "Pokemon Emerald Grumpig 29 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Emerald%20Grumpig%2029%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5605840",
+      "product_name": "Grumpig [Reverse Holo] #91",
+      "console_name": "Pokemon Obsidian Flames",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:91"
+      }
+    },
+    {
+      "query": "Pokemon Emerald Grumpig 29 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Emerald%20Grumpig%2029%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "889407",
+      "product_name": "Grumpig [Reverse Holo] #20",
+      "console_name": "Pokemon Crystal Guardians",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:20"
+      }
+    },
+    {
+      "query": "Pokemon Emerald Grumpig 29 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Emerald%20Grumpig%2029%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "956725",
+      "product_name": "Grumpig [Reverse Holo] #60",
+      "console_name": "Pokemon Boundaries Crossed",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:60"
+      }
+    },
+    {
+      "query": "Pokemon Emerald Grumpig 29 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Emerald%20Grumpig%2029%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "888254",
+      "product_name": "Grumpig #29",
+      "console_name": "Pokemon Emerald",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon Emerald Grumpig 29 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Emerald%20Grumpig%2029%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7978832",
+      "product_name": "Grumpig [Prerelease] #29",
+      "console_name": "Pokemon Emerald",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Prerelease"
+      }
+    },
+    {
+      "query": "Pokemon Emerald Grumpig 29 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Emerald%20Grumpig%2029%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "888361",
+      "product_name": "Grumpig [Reverse Holo] #29",
+      "console_name": "Pokemon Emerald",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Reverse Holo"
+      }
+    },
+    {
+      "query": "Pokemon Emerald Grumpig 29 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Emerald%20Grumpig%2029%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "888255",
+      "product_name": "Grumpig #30",
+      "console_name": "Pokemon Emerald",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:30"
+      }
+    },
+    {
+      "query": "Pokemon Emerald Grumpig 29 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Emerald%20Grumpig%2029%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "888362",
+      "product_name": "Grumpig [Reverse Holo] #30",
+      "console_name": "Pokemon Emerald",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:30"
+      }
+    },
+    {
+      "query": "Pokemon Emerald Grumpig 29 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Emerald%20Grumpig%2029%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3462616",
+      "product_name": "Grumpig #29",
+      "console_name": "Pokemon Japanese Awakening Psychic King",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon Japanese Awakening Psychic King"
+      }
+    },
+    {
+      "query": "Pokemon Emerald Grumpig 29 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Emerald%20Grumpig%2029%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10801084",
+      "product_name": "Grumpig [1st Edition] #29",
+      "console_name": "Pokemon Japanese Awakening Psychic King",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon Japanese Awakening Psychic King"
+      }
+    },
+    {
+      "query": "Pokemon Emerald Grumpig 29 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Emerald%20Grumpig%2029%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4802196",
+      "product_name": "Pokemon Adventures Vol. 29: Emerald (2015)",
+      "console_name": "Comic Books Pokemon Adventures",
+      "validation": {
+        "ok": false,
+        "reason": "api_product_name_pattern_not_supported"
+      }
+    },
+    {
+      "query": "Pokemon Emerald Grumpig 29 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Emerald%20Grumpig%2029%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "2514239",
+      "product_name": "Groudon [Stamped] #14",
+      "console_name": "Pokemon Emerald",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:14"
+      }
+    },
+    {
+      "query": "Pokemon Emerald Grumpig 29 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Emerald%20Grumpig%2029%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3462202",
+      "product_name": "Deoxys #29",
+      "console_name": "Pokemon Japanese Emerald Break",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Deoxys"
+      }
+    },
+    {
+      "query": "Pokemon Emerald Grumpig 29 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Emerald%20Grumpig%2029%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4894836",
+      "product_name": "Electabuzz [Stamped] #29",
+      "console_name": "Pokemon Dragon Frontiers",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Electabuzz"
+      }
+    },
+    {
+      "query": "Pokemon Emerald Grumpig 29 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Emerald%20Grumpig%2029%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5769601",
+      "product_name": "Grumpig [Foil] #38",
+      "console_name": "Pokemon 2003 Topps Advanced",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:38"
+      }
+    },
+    {
+      "query": "Pokemon Emerald Grumpig 29 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Emerald%20Grumpig%2029%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8453619",
+      "product_name": "Deoxys [1st Edition] #29",
+      "console_name": "Pokemon Japanese Emerald Break",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Deoxys"
+      }
+    },
+    {
+      "query": "Pokemon Emerald Grumpig 29 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Emerald%20Grumpig%2029%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "926183",
+      "product_name": "Grumpig [Reverse Holo] #23",
+      "console_name": "Pokemon Triumphant",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:23"
+      }
+    },
+    {
+      "query": "Pokemon Emerald Grumpig 29 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Emerald%20Grumpig%2029%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "806672",
+      "product_name": "Grumpig [Reverse Holo] #50",
+      "console_name": "Pokemon XY",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:50"
+      }
+    },
+    {
+      "query": "Pokemon Emerald Grumpig 29 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Emerald%20Grumpig%2029%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "849485",
+      "product_name": "Grumpig [Reverse Holo] #6",
+      "console_name": "Pokemon Dragon",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:6"
+      }
+    },
+    {
+      "query": "Pokemon Emerald Grumpig 29 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Emerald%20Grumpig%2029%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "888160",
+      "product_name": "Grumpig [Reverse Holo] #32",
+      "console_name": "Pokemon Deoxys",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:32"
+      }
+    },
+    {
+      "query": "Pokemon Emerald Grumpig 29 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Emerald%20Grumpig%2029%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5605840",
+      "product_name": "Grumpig [Reverse Holo] #91",
+      "console_name": "Pokemon Obsidian Flames",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:91"
+      }
+    },
+    {
+      "query": "Pokemon Emerald Grumpig 29 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Emerald%20Grumpig%2029%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "889407",
+      "product_name": "Grumpig [Reverse Holo] #20",
+      "console_name": "Pokemon Crystal Guardians",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:20"
+      }
+    },
+    {
+      "query": "Pokemon Emerald Grumpig 29 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Emerald%20Grumpig%2029%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "956725",
+      "product_name": "Grumpig [Reverse Holo] #60",
+      "console_name": "Pokemon Boundaries Crossed",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:60"
+      }
+    }
+  ],
+  "source_lane": "pricecharting_api"
+}

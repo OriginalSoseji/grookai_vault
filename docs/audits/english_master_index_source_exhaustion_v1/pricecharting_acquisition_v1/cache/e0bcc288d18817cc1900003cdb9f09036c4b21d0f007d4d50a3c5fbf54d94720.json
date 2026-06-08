@@ -1,0 +1,549 @@
+{
+  "status": "api_no_validated_match",
+  "fact": {
+    "gap_type": "finish_second_source_needed",
+    "fact_type": "printing_finish",
+    "set_key": "sm7.5",
+    "set_name": "Dragon Majesty",
+    "card_number": "55",
+    "card_name": "Kangaskhan",
+    "finish_key": "stamped",
+    "status": "human_source_verified",
+    "sources": [
+      "thepricedex_price_list"
+    ],
+    "source_authorities": [
+      "thepricedex.com"
+    ],
+    "source_kinds": [
+      "marketplace_checklist"
+    ],
+    "evidence_urls": [
+      "https://www.thepricedex.com/set/sm75/dragon-majesty/price-list"
+    ],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "attempts": [
+    {
+      "query": "Pokemon Dragon Majesty Kangaskhan 55 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Majesty%20Kangaskhan%2055%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "962289",
+      "product_name": "Kangaskhan #55",
+      "console_name": "Pokemon Dragon Majesty",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Majesty Kangaskhan 55 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Majesty%20Kangaskhan%2055%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "962360",
+      "product_name": "Kangaskhan [Reverse Holo] #55",
+      "console_name": "Pokemon Dragon Majesty",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Reverse Holo"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Majesty Kangaskhan 55 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Majesty%20Kangaskhan%2055%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4166491",
+      "product_name": "Dratini [Stamped] #35",
+      "console_name": "Pokemon Dragon Majesty",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:35"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Majesty Kangaskhan 55 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Majesty%20Kangaskhan%2055%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12590279",
+      "product_name": "Kangaskhan [CoroCoro Ichiban Stamp] #172/SV-P",
+      "console_name": "Pokemon Japanese Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:172/SV-P"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Majesty Kangaskhan 55 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Majesty%20Kangaskhan%2055%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12416304",
+      "product_name": "Kangaskhan [Charizard 53] #55",
+      "console_name": "Pokemon 2020 Battle Academy",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon 2020 Battle Academy"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Majesty Kangaskhan 55 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Majesty%20Kangaskhan%2055%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5862196",
+      "product_name": "Kangaskhan ex #55",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Kangaskhan ex"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Majesty Kangaskhan 55 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Majesty%20Kangaskhan%2055%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "962276",
+      "product_name": "Bagon #42",
+      "console_name": "Pokemon Dragon Majesty",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:42"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Majesty Kangaskhan 55 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Majesty%20Kangaskhan%2055%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "962246",
+      "product_name": "Litten #12",
+      "console_name": "Pokemon Dragon Majesty",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:12"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Majesty Kangaskhan 55 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Majesty%20Kangaskhan%2055%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "962273",
+      "product_name": "Flygon #39",
+      "console_name": "Pokemon Dragon Majesty",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:39"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Majesty Kangaskhan 55 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Majesty%20Kangaskhan%2055%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "962280",
+      "product_name": "Zekrom #46",
+      "console_name": "Pokemon Dragon Majesty",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:46"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Majesty Kangaskhan 55 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Majesty%20Kangaskhan%2055%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "962281",
+      "product_name": "Kyurem #47",
+      "console_name": "Pokemon Dragon Majesty",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:47"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Majesty Kangaskhan 55 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Majesty%20Kangaskhan%2055%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "962298",
+      "product_name": "Zinnia #64",
+      "console_name": "Pokemon Dragon Majesty",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:64"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Majesty Kangaskhan 55 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Majesty%20Kangaskhan%2055%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "962251",
+      "product_name": "Seadra #17",
+      "console_name": "Pokemon Dragon Majesty",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:17"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Majesty Kangaskhan 55 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Majesty%20Kangaskhan%2055%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "962249",
+      "product_name": "Horsea #15",
+      "console_name": "Pokemon Dragon Majesty",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:15"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Majesty Kangaskhan 55 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Majesty%20Kangaskhan%2055%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "962250",
+      "product_name": "Horsea #16",
+      "console_name": "Pokemon Dragon Majesty",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:16"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Majesty Kangaskhan 55 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Majesty%20Kangaskhan%2055%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "962259",
+      "product_name": "Wooper #25",
+      "console_name": "Pokemon Dragon Majesty",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:25"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Majesty Kangaskhan 55 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Majesty%20Kangaskhan%2055%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "962264",
+      "product_name": "Phione #30",
+      "console_name": "Pokemon Dragon Majesty",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:30"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Majesty Kangaskhan 55 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Majesty%20Kangaskhan%2055%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "962285",
+      "product_name": "Drampa #51",
+      "console_name": "Pokemon Dragon Majesty",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:51"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Majesty Kangaskhan 55 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Majesty%20Kangaskhan%2055%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "962291",
+      "product_name": "Swablu #57",
+      "console_name": "Pokemon Dragon Majesty",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:57"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Majesty Kangaskhan 55 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Majesty%20Kangaskhan%2055%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "962290",
+      "product_name": "Swablu #56",
+      "console_name": "Pokemon Dragon Majesty",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:56"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Majesty Kangaskhan 55 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Majesty%20Kangaskhan%2055%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "962289",
+      "product_name": "Kangaskhan #55",
+      "console_name": "Pokemon Dragon Majesty",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Majesty Kangaskhan 55 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Majesty%20Kangaskhan%2055%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "962360",
+      "product_name": "Kangaskhan [Reverse Holo] #55",
+      "console_name": "Pokemon Dragon Majesty",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Reverse Holo"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Majesty Kangaskhan 55 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Majesty%20Kangaskhan%2055%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4166491",
+      "product_name": "Dratini [Stamped] #35",
+      "console_name": "Pokemon Dragon Majesty",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:35"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Majesty Kangaskhan 55 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Majesty%20Kangaskhan%2055%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12590279",
+      "product_name": "Kangaskhan [CoroCoro Ichiban Stamp] #172/SV-P",
+      "console_name": "Pokemon Japanese Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:172/SV-P"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Majesty Kangaskhan 55 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Majesty%20Kangaskhan%2055%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12416304",
+      "product_name": "Kangaskhan [Charizard 53] #55",
+      "console_name": "Pokemon 2020 Battle Academy",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon 2020 Battle Academy"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Majesty Kangaskhan 55 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Majesty%20Kangaskhan%2055%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5862196",
+      "product_name": "Kangaskhan ex #55",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Kangaskhan ex"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Majesty Kangaskhan 55 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Majesty%20Kangaskhan%2055%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "962276",
+      "product_name": "Bagon #42",
+      "console_name": "Pokemon Dragon Majesty",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:42"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Majesty Kangaskhan 55 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Majesty%20Kangaskhan%2055%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "962246",
+      "product_name": "Litten #12",
+      "console_name": "Pokemon Dragon Majesty",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:12"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Majesty Kangaskhan 55 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Majesty%20Kangaskhan%2055%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "962273",
+      "product_name": "Flygon #39",
+      "console_name": "Pokemon Dragon Majesty",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:39"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Majesty Kangaskhan 55 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Majesty%20Kangaskhan%2055%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "962280",
+      "product_name": "Zekrom #46",
+      "console_name": "Pokemon Dragon Majesty",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:46"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Majesty Kangaskhan 55 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Majesty%20Kangaskhan%2055%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "962281",
+      "product_name": "Kyurem #47",
+      "console_name": "Pokemon Dragon Majesty",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:47"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Majesty Kangaskhan 55 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Majesty%20Kangaskhan%2055%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "962298",
+      "product_name": "Zinnia #64",
+      "console_name": "Pokemon Dragon Majesty",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:64"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Majesty Kangaskhan 55 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Majesty%20Kangaskhan%2055%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "962251",
+      "product_name": "Seadra #17",
+      "console_name": "Pokemon Dragon Majesty",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:17"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Majesty Kangaskhan 55 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Majesty%20Kangaskhan%2055%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "962249",
+      "product_name": "Horsea #15",
+      "console_name": "Pokemon Dragon Majesty",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:15"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Majesty Kangaskhan 55 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Majesty%20Kangaskhan%2055%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "962250",
+      "product_name": "Horsea #16",
+      "console_name": "Pokemon Dragon Majesty",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:16"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Majesty Kangaskhan 55 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Majesty%20Kangaskhan%2055%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "962259",
+      "product_name": "Wooper #25",
+      "console_name": "Pokemon Dragon Majesty",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:25"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Majesty Kangaskhan 55 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Majesty%20Kangaskhan%2055%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "962264",
+      "product_name": "Phione #30",
+      "console_name": "Pokemon Dragon Majesty",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:30"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Majesty Kangaskhan 55 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Majesty%20Kangaskhan%2055%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "962285",
+      "product_name": "Drampa #51",
+      "console_name": "Pokemon Dragon Majesty",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:51"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Majesty Kangaskhan 55 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Majesty%20Kangaskhan%2055%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "962291",
+      "product_name": "Swablu #57",
+      "console_name": "Pokemon Dragon Majesty",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:57"
+      }
+    },
+    {
+      "query": "Pokemon Dragon Majesty Kangaskhan 55 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Dragon%20Majesty%20Kangaskhan%2055%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "962290",
+      "product_name": "Swablu #56",
+      "console_name": "Pokemon Dragon Majesty",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:56"
+      }
+    }
+  ],
+  "source_lane": "pricecharting_api"
+}

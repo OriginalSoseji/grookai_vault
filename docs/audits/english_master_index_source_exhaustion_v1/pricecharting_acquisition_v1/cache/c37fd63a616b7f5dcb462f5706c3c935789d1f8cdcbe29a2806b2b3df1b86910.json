@@ -1,0 +1,549 @@
+{
+  "status": "api_no_validated_match",
+  "fact": {
+    "gap_type": "finish_second_source_needed",
+    "fact_type": "printing_finish",
+    "set_key": "bw9",
+    "set_name": "Plasma Freeze",
+    "card_number": "106",
+    "card_name": "Plasma Energy",
+    "finish_key": "stamped",
+    "status": "human_source_verified",
+    "sources": [
+      "thepricedex_price_list"
+    ],
+    "source_authorities": [
+      "thepricedex.com"
+    ],
+    "source_kinds": [
+      "marketplace_checklist"
+    ],
+    "evidence_urls": [
+      "https://www.thepricedex.com/set/bw9/plasma-freeze/price-list"
+    ],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "attempts": [
+    {
+      "query": "Pokemon Plasma Freeze Plasma Energy 106 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Plasma%20Freeze%20Plasma%20Energy%20106%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "957160",
+      "product_name": "Plasma Energy #106",
+      "console_name": "Pokemon Plasma Freeze",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon Plasma Freeze Plasma Energy 106 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Plasma%20Freeze%20Plasma%20Energy%20106%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "957275",
+      "product_name": "Plasma Energy [Reverse Holo] #106",
+      "console_name": "Pokemon Plasma Freeze",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Reverse Holo"
+      }
+    },
+    {
+      "query": "Pokemon Plasma Freeze Plasma Energy 106 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Plasma%20Freeze%20Plasma%20Energy%20106%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "957157",
+      "product_name": "Superior Energy Retrieval #103",
+      "console_name": "Pokemon Plasma Freeze",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:103"
+      }
+    },
+    {
+      "query": "Pokemon Plasma Freeze Plasma Energy 106 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Plasma%20Freeze%20Plasma%20Energy%20106%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "957101",
+      "product_name": "Muk #46",
+      "console_name": "Pokemon Plasma Freeze",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:46"
+      }
+    },
+    {
+      "query": "Pokemon Plasma Freeze Plasma Energy 106 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Plasma%20Freeze%20Plasma%20Energy%20106%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "957115",
+      "product_name": "Onix #61",
+      "console_name": "Pokemon Plasma Freeze",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:61"
+      }
+    },
+    {
+      "query": "Pokemon Plasma Freeze Plasma Energy 106 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Plasma%20Freeze%20Plasma%20Energy%20106%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "957272",
+      "product_name": "Superior Energy Retrieval [Reverse Holo] #103",
+      "console_name": "Pokemon Plasma Freeze",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:103"
+      }
+    },
+    {
+      "query": "Pokemon Plasma Freeze Plasma Energy 106 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Plasma%20Freeze%20Plasma%20Energy%20106%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11998116",
+      "product_name": "Absol #67",
+      "console_name": "Pokemon Plasma Freeze",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:67"
+      }
+    },
+    {
+      "query": "Pokemon Plasma Freeze Plasma Energy 106 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Plasma%20Freeze%20Plasma%20Energy%20106%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "957129",
+      "product_name": "Deino #75",
+      "console_name": "Pokemon Plasma Freeze",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:75"
+      }
+    },
+    {
+      "query": "Pokemon Plasma Freeze Plasma Energy 106 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Plasma%20Freeze%20Plasma%20Energy%20106%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "957130",
+      "product_name": "Deino #76",
+      "console_name": "Pokemon Plasma Freeze",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:76"
+      }
+    },
+    {
+      "query": "Pokemon Plasma Freeze Plasma Energy 106 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Plasma%20Freeze%20Plasma%20Energy%20106%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "957144",
+      "product_name": "Eevee #90",
+      "console_name": "Pokemon Plasma Freeze",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:90"
+      }
+    },
+    {
+      "query": "Pokemon Plasma Freeze Plasma Energy 106 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Plasma%20Freeze%20Plasma%20Energy%20106%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "957143",
+      "product_name": "Eevee #89",
+      "console_name": "Pokemon Plasma Freeze",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:89"
+      }
+    },
+    {
+      "query": "Pokemon Plasma Freeze Plasma Energy 106 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Plasma%20Freeze%20Plasma%20Energy%20106%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "957276",
+      "product_name": "Beldum #50",
+      "console_name": "Pokemon Plasma Freeze",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:50"
+      }
+    },
+    {
+      "query": "Pokemon Plasma Freeze Plasma Energy 106 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Plasma%20Freeze%20Plasma%20Energy%20106%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "957057",
+      "product_name": "Kakuna #2",
+      "console_name": "Pokemon Plasma Freeze",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:2"
+      }
+    },
+    {
+      "query": "Pokemon Plasma Freeze Plasma Energy 106 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Plasma%20Freeze%20Plasma%20Energy%20106%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "957056",
+      "product_name": "Weedle #1",
+      "console_name": "Pokemon Plasma Freeze",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:1"
+      }
+    },
+    {
+      "query": "Pokemon Plasma Freeze Plasma Energy 106 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Plasma%20Freeze%20Plasma%20Energy%20106%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "957064",
+      "product_name": "Cacnea #9",
+      "console_name": "Pokemon Plasma Freeze",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:9"
+      }
+    },
+    {
+      "query": "Pokemon Plasma Freeze Plasma Energy 106 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Plasma%20Freeze%20Plasma%20Energy%20106%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "957073",
+      "product_name": "Horsea #18",
+      "console_name": "Pokemon Plasma Freeze",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:18"
+      }
+    },
+    {
+      "query": "Pokemon Plasma Freeze Plasma Energy 106 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Plasma%20Freeze%20Plasma%20Energy%20106%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "957074",
+      "product_name": "Seadra #19",
+      "console_name": "Pokemon Plasma Freeze",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:19"
+      }
+    },
+    {
+      "query": "Pokemon Plasma Freeze Plasma Energy 106 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Plasma%20Freeze%20Plasma%20Energy%20106%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "957076",
+      "product_name": "Wooper #21",
+      "console_name": "Pokemon Plasma Freeze",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:21"
+      }
+    },
+    {
+      "query": "Pokemon Plasma Freeze Plasma Energy 106 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Plasma%20Freeze%20Plasma%20Energy%20106%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "957086",
+      "product_name": "Kyurem #31",
+      "console_name": "Pokemon Plasma Freeze",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:31"
+      }
+    },
+    {
+      "query": "Pokemon Plasma Freeze Plasma Energy 106 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Plasma%20Freeze%20Plasma%20Energy%20106%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "957094",
+      "product_name": "Zekrom #39",
+      "console_name": "Pokemon Plasma Freeze",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:39"
+      }
+    },
+    {
+      "query": "Pokemon Plasma Freeze Plasma Energy 106 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Plasma%20Freeze%20Plasma%20Energy%20106%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "957160",
+      "product_name": "Plasma Energy #106",
+      "console_name": "Pokemon Plasma Freeze",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon Plasma Freeze Plasma Energy 106 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Plasma%20Freeze%20Plasma%20Energy%20106%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "957275",
+      "product_name": "Plasma Energy [Reverse Holo] #106",
+      "console_name": "Pokemon Plasma Freeze",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Reverse Holo"
+      }
+    },
+    {
+      "query": "Pokemon Plasma Freeze Plasma Energy 106 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Plasma%20Freeze%20Plasma%20Energy%20106%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "957157",
+      "product_name": "Superior Energy Retrieval #103",
+      "console_name": "Pokemon Plasma Freeze",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:103"
+      }
+    },
+    {
+      "query": "Pokemon Plasma Freeze Plasma Energy 106 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Plasma%20Freeze%20Plasma%20Energy%20106%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "957101",
+      "product_name": "Muk #46",
+      "console_name": "Pokemon Plasma Freeze",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:46"
+      }
+    },
+    {
+      "query": "Pokemon Plasma Freeze Plasma Energy 106 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Plasma%20Freeze%20Plasma%20Energy%20106%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "957115",
+      "product_name": "Onix #61",
+      "console_name": "Pokemon Plasma Freeze",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:61"
+      }
+    },
+    {
+      "query": "Pokemon Plasma Freeze Plasma Energy 106 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Plasma%20Freeze%20Plasma%20Energy%20106%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "957272",
+      "product_name": "Superior Energy Retrieval [Reverse Holo] #103",
+      "console_name": "Pokemon Plasma Freeze",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:103"
+      }
+    },
+    {
+      "query": "Pokemon Plasma Freeze Plasma Energy 106 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Plasma%20Freeze%20Plasma%20Energy%20106%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11998116",
+      "product_name": "Absol #67",
+      "console_name": "Pokemon Plasma Freeze",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:67"
+      }
+    },
+    {
+      "query": "Pokemon Plasma Freeze Plasma Energy 106 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Plasma%20Freeze%20Plasma%20Energy%20106%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "957129",
+      "product_name": "Deino #75",
+      "console_name": "Pokemon Plasma Freeze",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:75"
+      }
+    },
+    {
+      "query": "Pokemon Plasma Freeze Plasma Energy 106 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Plasma%20Freeze%20Plasma%20Energy%20106%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "957130",
+      "product_name": "Deino #76",
+      "console_name": "Pokemon Plasma Freeze",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:76"
+      }
+    },
+    {
+      "query": "Pokemon Plasma Freeze Plasma Energy 106 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Plasma%20Freeze%20Plasma%20Energy%20106%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "957144",
+      "product_name": "Eevee #90",
+      "console_name": "Pokemon Plasma Freeze",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:90"
+      }
+    },
+    {
+      "query": "Pokemon Plasma Freeze Plasma Energy 106 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Plasma%20Freeze%20Plasma%20Energy%20106%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "957143",
+      "product_name": "Eevee #89",
+      "console_name": "Pokemon Plasma Freeze",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:89"
+      }
+    },
+    {
+      "query": "Pokemon Plasma Freeze Plasma Energy 106 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Plasma%20Freeze%20Plasma%20Energy%20106%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "957276",
+      "product_name": "Beldum #50",
+      "console_name": "Pokemon Plasma Freeze",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:50"
+      }
+    },
+    {
+      "query": "Pokemon Plasma Freeze Plasma Energy 106 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Plasma%20Freeze%20Plasma%20Energy%20106%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "957057",
+      "product_name": "Kakuna #2",
+      "console_name": "Pokemon Plasma Freeze",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:2"
+      }
+    },
+    {
+      "query": "Pokemon Plasma Freeze Plasma Energy 106 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Plasma%20Freeze%20Plasma%20Energy%20106%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "957056",
+      "product_name": "Weedle #1",
+      "console_name": "Pokemon Plasma Freeze",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:1"
+      }
+    },
+    {
+      "query": "Pokemon Plasma Freeze Plasma Energy 106 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Plasma%20Freeze%20Plasma%20Energy%20106%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "957064",
+      "product_name": "Cacnea #9",
+      "console_name": "Pokemon Plasma Freeze",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:9"
+      }
+    },
+    {
+      "query": "Pokemon Plasma Freeze Plasma Energy 106 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Plasma%20Freeze%20Plasma%20Energy%20106%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "957073",
+      "product_name": "Horsea #18",
+      "console_name": "Pokemon Plasma Freeze",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:18"
+      }
+    },
+    {
+      "query": "Pokemon Plasma Freeze Plasma Energy 106 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Plasma%20Freeze%20Plasma%20Energy%20106%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "957074",
+      "product_name": "Seadra #19",
+      "console_name": "Pokemon Plasma Freeze",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:19"
+      }
+    },
+    {
+      "query": "Pokemon Plasma Freeze Plasma Energy 106 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Plasma%20Freeze%20Plasma%20Energy%20106%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "957076",
+      "product_name": "Wooper #21",
+      "console_name": "Pokemon Plasma Freeze",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:21"
+      }
+    },
+    {
+      "query": "Pokemon Plasma Freeze Plasma Energy 106 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Plasma%20Freeze%20Plasma%20Energy%20106%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "957086",
+      "product_name": "Kyurem #31",
+      "console_name": "Pokemon Plasma Freeze",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:31"
+      }
+    },
+    {
+      "query": "Pokemon Plasma Freeze Plasma Energy 106 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Plasma%20Freeze%20Plasma%20Energy%20106%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "957094",
+      "product_name": "Zekrom #39",
+      "console_name": "Pokemon Plasma Freeze",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:39"
+      }
+    }
+  ],
+  "source_lane": "pricecharting_api"
+}

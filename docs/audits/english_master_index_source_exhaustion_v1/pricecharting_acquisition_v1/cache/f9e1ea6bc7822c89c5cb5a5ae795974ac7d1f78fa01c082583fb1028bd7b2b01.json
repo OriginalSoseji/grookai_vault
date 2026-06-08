@@ -1,0 +1,549 @@
+{
+  "status": "api_no_validated_match",
+  "fact": {
+    "gap_type": "finish_second_source_needed",
+    "fact_type": "printing_finish",
+    "set_key": "pl1",
+    "set_name": "Platinum",
+    "card_number": "91",
+    "card_name": "Riolu",
+    "finish_key": "stamped",
+    "status": "human_source_verified",
+    "sources": [
+      "thepricedex_price_list"
+    ],
+    "source_authorities": [
+      "thepricedex.com"
+    ],
+    "source_kinds": [
+      "marketplace_checklist"
+    ],
+    "evidence_urls": [
+      "https://www.thepricedex.com/set/pl1/platinum/price-list"
+    ],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "attempts": [
+    {
+      "query": "Pokemon Platinum Riolu 91 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Platinum%20Riolu%2091%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4913632",
+      "product_name": "Riolu [Staff] #91",
+      "console_name": "Pokemon Platinum",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Staff"
+      }
+    },
+    {
+      "query": "Pokemon Platinum Riolu 91 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Platinum%20Riolu%2091%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "806060",
+      "product_name": "Riolu #91",
+      "console_name": "Pokemon Platinum",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon Platinum Riolu 91 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Platinum%20Riolu%2091%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "806061",
+      "product_name": "Riolu [Reverse Holo] #91",
+      "console_name": "Pokemon Platinum",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Reverse Holo"
+      }
+    },
+    {
+      "query": "Pokemon Platinum Riolu 91 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Platinum%20Riolu%2091%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5324860",
+      "product_name": "Riolu [San Diego Comic Con] #91",
+      "console_name": "Pokemon Platinum",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:San Diego Comic Con"
+      }
+    },
+    {
+      "query": "Pokemon Platinum Riolu 91 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Platinum%20Riolu%2091%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11451946",
+      "product_name": "Riolu [Snowflake Stamp] #61",
+      "console_name": "Pokemon Diamond & Pearl",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:61"
+      }
+    },
+    {
+      "query": "Pokemon Platinum Riolu 91 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Platinum%20Riolu%2091%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11326010",
+      "product_name": "Riolu [Ball] #91",
+      "console_name": "Pokemon Japanese Mega Dream ex",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon Japanese Mega Dream ex"
+      }
+    },
+    {
+      "query": "Pokemon Platinum Riolu 91 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Platinum%20Riolu%2091%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "13015138",
+      "product_name": "Riolu [Ball] #91",
+      "console_name": "Pokemon Korean Mega Dream ex",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon Korean Mega Dream ex"
+      }
+    },
+    {
+      "query": "Pokemon Platinum Riolu 91 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Platinum%20Riolu%2091%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11325987",
+      "product_name": "Riolu [Energy] #91",
+      "console_name": "Pokemon Japanese Mega Dream ex",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon Japanese Mega Dream ex"
+      }
+    },
+    {
+      "query": "Pokemon Platinum Riolu 91 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Platinum%20Riolu%2091%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "13015137",
+      "product_name": "Riolu [Energy] #91",
+      "console_name": "Pokemon Korean Mega Dream ex",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon Korean Mega Dream ex"
+      }
+    },
+    {
+      "query": "Pokemon Platinum Riolu 91 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Platinum%20Riolu%2091%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11302456",
+      "product_name": "Riolu #91",
+      "console_name": "Pokemon Japanese Mega Dream ex",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon Japanese Mega Dream ex"
+      }
+    },
+    {
+      "query": "Pokemon Platinum Riolu 91 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Platinum%20Riolu%2091%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "13015132",
+      "product_name": "Riolu #91",
+      "console_name": "Pokemon Korean Mega Dream ex",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon Korean Mega Dream ex"
+      }
+    },
+    {
+      "query": "Pokemon Platinum Riolu 91 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Platinum%20Riolu%2091%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6021832",
+      "product_name": "Dragapult [Cosmos Holo Stamped] #91",
+      "console_name": "Pokemon Rebel Clash",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Dragapult"
+      }
+    },
+    {
+      "query": "Pokemon Platinum Riolu 91 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Platinum%20Riolu%2091%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7671877",
+      "product_name": "Meowth [Platinum Stamped] #106",
+      "console_name": "Pokemon Legends Awakened",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:106"
+      }
+    },
+    {
+      "query": "Pokemon Platinum Riolu 91 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Platinum%20Riolu%2091%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10714957",
+      "product_name": "Riolu [Pokemon Center] #10",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:10"
+      }
+    },
+    {
+      "query": "Pokemon Platinum Riolu 91 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Platinum%20Riolu%2091%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8243908",
+      "product_name": "Glaceon [Platinum Stamped] #20",
+      "console_name": "Pokemon Majestic Dawn",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:20"
+      }
+    },
+    {
+      "query": "Pokemon Platinum Riolu 91 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Platinum%20Riolu%2091%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11816297",
+      "product_name": "Riolu [Ball] #112",
+      "console_name": "Pokemon Ascended Heroes",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:112"
+      }
+    },
+    {
+      "query": "Pokemon Platinum Riolu 91 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Platinum%20Riolu%2091%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "762802",
+      "product_name": "Riolu [Holo] #8",
+      "console_name": "Pokemon POP Series 6",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:8"
+      }
+    },
+    {
+      "query": "Pokemon Platinum Riolu 91 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Platinum%20Riolu%2091%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "762858",
+      "product_name": "Riolu [Holo] #16",
+      "console_name": "Pokemon POP Series 8",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:16"
+      }
+    },
+    {
+      "query": "Pokemon Platinum Riolu 91 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Platinum%20Riolu%2091%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11870479",
+      "product_name": "Riolu [Energy] #112",
+      "console_name": "Pokemon Ascended Heroes",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:112"
+      }
+    },
+    {
+      "query": "Pokemon Platinum Riolu 91 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Platinum%20Riolu%2091%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11364309",
+      "product_name": "Riolu [Cosmos Holo] #76",
+      "console_name": "Pokemon Mega Evolution",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:76"
+      }
+    },
+    {
+      "query": "Pokemon Platinum Riolu 91 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Platinum%20Riolu%2091%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4913632",
+      "product_name": "Riolu [Staff] #91",
+      "console_name": "Pokemon Platinum",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Staff"
+      }
+    },
+    {
+      "query": "Pokemon Platinum Riolu 91 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Platinum%20Riolu%2091%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "806060",
+      "product_name": "Riolu #91",
+      "console_name": "Pokemon Platinum",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon Platinum Riolu 91 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Platinum%20Riolu%2091%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "806061",
+      "product_name": "Riolu [Reverse Holo] #91",
+      "console_name": "Pokemon Platinum",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Reverse Holo"
+      }
+    },
+    {
+      "query": "Pokemon Platinum Riolu 91 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Platinum%20Riolu%2091%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5324860",
+      "product_name": "Riolu [San Diego Comic Con] #91",
+      "console_name": "Pokemon Platinum",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:San Diego Comic Con"
+      }
+    },
+    {
+      "query": "Pokemon Platinum Riolu 91 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Platinum%20Riolu%2091%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11451946",
+      "product_name": "Riolu [Snowflake Stamp] #61",
+      "console_name": "Pokemon Diamond & Pearl",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:61"
+      }
+    },
+    {
+      "query": "Pokemon Platinum Riolu 91 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Platinum%20Riolu%2091%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11326010",
+      "product_name": "Riolu [Ball] #91",
+      "console_name": "Pokemon Japanese Mega Dream ex",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon Japanese Mega Dream ex"
+      }
+    },
+    {
+      "query": "Pokemon Platinum Riolu 91 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Platinum%20Riolu%2091%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "13015138",
+      "product_name": "Riolu [Ball] #91",
+      "console_name": "Pokemon Korean Mega Dream ex",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon Korean Mega Dream ex"
+      }
+    },
+    {
+      "query": "Pokemon Platinum Riolu 91 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Platinum%20Riolu%2091%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11325987",
+      "product_name": "Riolu [Energy] #91",
+      "console_name": "Pokemon Japanese Mega Dream ex",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon Japanese Mega Dream ex"
+      }
+    },
+    {
+      "query": "Pokemon Platinum Riolu 91 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Platinum%20Riolu%2091%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "13015137",
+      "product_name": "Riolu [Energy] #91",
+      "console_name": "Pokemon Korean Mega Dream ex",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon Korean Mega Dream ex"
+      }
+    },
+    {
+      "query": "Pokemon Platinum Riolu 91 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Platinum%20Riolu%2091%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11302456",
+      "product_name": "Riolu #91",
+      "console_name": "Pokemon Japanese Mega Dream ex",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon Japanese Mega Dream ex"
+      }
+    },
+    {
+      "query": "Pokemon Platinum Riolu 91 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Platinum%20Riolu%2091%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "13015132",
+      "product_name": "Riolu #91",
+      "console_name": "Pokemon Korean Mega Dream ex",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon Korean Mega Dream ex"
+      }
+    },
+    {
+      "query": "Pokemon Platinum Riolu 91 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Platinum%20Riolu%2091%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6021832",
+      "product_name": "Dragapult [Cosmos Holo Stamped] #91",
+      "console_name": "Pokemon Rebel Clash",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Dragapult"
+      }
+    },
+    {
+      "query": "Pokemon Platinum Riolu 91 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Platinum%20Riolu%2091%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7671877",
+      "product_name": "Meowth [Platinum Stamped] #106",
+      "console_name": "Pokemon Legends Awakened",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:106"
+      }
+    },
+    {
+      "query": "Pokemon Platinum Riolu 91 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Platinum%20Riolu%2091%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10714957",
+      "product_name": "Riolu [Pokemon Center] #10",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:10"
+      }
+    },
+    {
+      "query": "Pokemon Platinum Riolu 91 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Platinum%20Riolu%2091%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8243908",
+      "product_name": "Glaceon [Platinum Stamped] #20",
+      "console_name": "Pokemon Majestic Dawn",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:20"
+      }
+    },
+    {
+      "query": "Pokemon Platinum Riolu 91 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Platinum%20Riolu%2091%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11816297",
+      "product_name": "Riolu [Ball] #112",
+      "console_name": "Pokemon Ascended Heroes",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:112"
+      }
+    },
+    {
+      "query": "Pokemon Platinum Riolu 91 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Platinum%20Riolu%2091%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "762802",
+      "product_name": "Riolu [Holo] #8",
+      "console_name": "Pokemon POP Series 6",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:8"
+      }
+    },
+    {
+      "query": "Pokemon Platinum Riolu 91 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Platinum%20Riolu%2091%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "762858",
+      "product_name": "Riolu [Holo] #16",
+      "console_name": "Pokemon POP Series 8",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:16"
+      }
+    },
+    {
+      "query": "Pokemon Platinum Riolu 91 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Platinum%20Riolu%2091%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11870479",
+      "product_name": "Riolu [Energy] #112",
+      "console_name": "Pokemon Ascended Heroes",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:112"
+      }
+    },
+    {
+      "query": "Pokemon Platinum Riolu 91 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Platinum%20Riolu%2091%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11364309",
+      "product_name": "Riolu [Cosmos Holo] #76",
+      "console_name": "Pokemon Mega Evolution",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:76"
+      }
+    }
+  ],
+  "source_lane": "pricecharting_api"
+}

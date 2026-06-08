@@ -1,0 +1,549 @@
+{
+  "status": "api_no_validated_match",
+  "fact": {
+    "gap_type": "finish_second_source_needed",
+    "fact_type": "printing_finish",
+    "set_key": "pl3",
+    "set_name": "Supreme Victors",
+    "card_number": "106",
+    "card_name": "Gible",
+    "finish_key": "stamped",
+    "status": "human_source_verified",
+    "sources": [
+      "thepricedex_price_list"
+    ],
+    "source_authorities": [
+      "thepricedex.com"
+    ],
+    "source_kinds": [
+      "marketplace_checklist"
+    ],
+    "evidence_urls": [
+      "https://www.thepricedex.com/set/pl3/supreme-victors/price-list"
+    ],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "attempts": [
+    {
+      "query": "Pokemon Supreme Victors Gible 106 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Supreme%20Victors%20Gible%20106%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "1287153",
+      "product_name": "Gible #106",
+      "console_name": "Pokemon Supreme Victors",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon Supreme Victors Gible 106 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Supreme%20Victors%20Gible%20106%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "1287307",
+      "product_name": "Gible [Reverse Holo] #106",
+      "console_name": "Pokemon Supreme Victors",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Reverse Holo"
+      }
+    },
+    {
+      "query": "Pokemon Supreme Victors Gible 106 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Supreme%20Victors%20Gible%20106%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8464162",
+      "product_name": "Gible [Crosshatch Holo League] #106",
+      "console_name": "Pokemon Supreme Victors",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Crosshatch Holo League"
+      }
+    },
+    {
+      "query": "Pokemon Supreme Victors Gible 106 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Supreme%20Victors%20Gible%20106%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4357855",
+      "product_name": "Gible [Staff] #106",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon Promo"
+      }
+    },
+    {
+      "query": "Pokemon Supreme Victors Gible 106 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Supreme%20Victors%20Gible%20106%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "1287172",
+      "product_name": "Seel #125",
+      "console_name": "Pokemon Supreme Victors",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:125"
+      }
+    },
+    {
+      "query": "Pokemon Supreme Victors Gible 106 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Supreme%20Victors%20Gible%20106%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "1287149",
+      "product_name": "Doduo #102",
+      "console_name": "Pokemon Supreme Victors",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:102"
+      }
+    },
+    {
+      "query": "Pokemon Supreme Victors Gible 106 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Supreme%20Victors%20Gible%20106%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "1287181",
+      "product_name": "Zubat #133",
+      "console_name": "Pokemon Supreme Victors",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:133"
+      }
+    },
+    {
+      "query": "Pokemon Supreme Victors Gible 106 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Supreme%20Victors%20Gible%20106%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "1287174",
+      "product_name": "Shinx #126",
+      "console_name": "Pokemon Supreme Victors",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:126"
+      }
+    },
+    {
+      "query": "Pokemon Supreme Victors Gible 106 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Supreme%20Victors%20Gible%20106%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "1287201",
+      "product_name": "Yanma #SH9",
+      "console_name": "Pokemon Supreme Victors",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:SH9"
+      }
+    },
+    {
+      "query": "Pokemon Supreme Victors Gible 106 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Supreme%20Victors%20Gible%20106%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "1287118",
+      "product_name": "Minun #71",
+      "console_name": "Pokemon Supreme Victors",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:71"
+      }
+    },
+    {
+      "query": "Pokemon Supreme Victors Gible 106 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Supreme%20Victors%20Gible%20106%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "1287121",
+      "product_name": "Numel #74",
+      "console_name": "Pokemon Supreme Victors",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:74"
+      }
+    },
+    {
+      "query": "Pokemon Supreme Victors Gible 106 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Supreme%20Victors%20Gible%20106%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "1287129",
+      "product_name": "Rotom #82",
+      "console_name": "Pokemon Supreme Victors",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:82"
+      }
+    },
+    {
+      "query": "Pokemon Supreme Victors Gible 106 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Supreme%20Victors%20Gible%20106%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "1287135",
+      "product_name": "Yanma #88",
+      "console_name": "Pokemon Supreme Victors",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:88"
+      }
+    },
+    {
+      "query": "Pokemon Supreme Victors Gible 106 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Supreme%20Victors%20Gible%20106%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "1287166",
+      "product_name": "Paras #119",
+      "console_name": "Pokemon Supreme Victors",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:119"
+      }
+    },
+    {
+      "query": "Pokemon Supreme Victors Gible 106 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Supreme%20Victors%20Gible%20106%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "1287137",
+      "product_name": "Beldum #90",
+      "console_name": "Pokemon Supreme Victors",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:90"
+      }
+    },
+    {
+      "query": "Pokemon Supreme Victors Gible 106 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Supreme%20Victors%20Gible%20106%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "1287139",
+      "product_name": "Buizel #92",
+      "console_name": "Pokemon Supreme Victors",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:92"
+      }
+    },
+    {
+      "query": "Pokemon Supreme Victors Gible 106 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Supreme%20Victors%20Gible%20106%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "1287142",
+      "product_name": "Chatot #95",
+      "console_name": "Pokemon Supreme Victors",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:95"
+      }
+    },
+    {
+      "query": "Pokemon Supreme Victors Gible 106 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Supreme%20Victors%20Gible%20106%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "1287136",
+      "product_name": "Baltoy #89",
+      "console_name": "Pokemon Supreme Victors",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:89"
+      }
+    },
+    {
+      "query": "Pokemon Supreme Victors Gible 106 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Supreme%20Victors%20Gible%20106%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "1287138",
+      "product_name": "Bidoof #91",
+      "console_name": "Pokemon Supreme Victors",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:91"
+      }
+    },
+    {
+      "query": "Pokemon Supreme Victors Gible 106 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Supreme%20Victors%20Gible%20106%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "1287146",
+      "product_name": "Combee #99",
+      "console_name": "Pokemon Supreme Victors",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:99"
+      }
+    },
+    {
+      "query": "Pokemon Supreme Victors Gible 106 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Supreme%20Victors%20Gible%20106%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "1287153",
+      "product_name": "Gible #106",
+      "console_name": "Pokemon Supreme Victors",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon Supreme Victors Gible 106 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Supreme%20Victors%20Gible%20106%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "1287307",
+      "product_name": "Gible [Reverse Holo] #106",
+      "console_name": "Pokemon Supreme Victors",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Reverse Holo"
+      }
+    },
+    {
+      "query": "Pokemon Supreme Victors Gible 106 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Supreme%20Victors%20Gible%20106%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8464162",
+      "product_name": "Gible [Crosshatch Holo League] #106",
+      "console_name": "Pokemon Supreme Victors",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Crosshatch Holo League"
+      }
+    },
+    {
+      "query": "Pokemon Supreme Victors Gible 106 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Supreme%20Victors%20Gible%20106%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4357855",
+      "product_name": "Gible [Staff] #106",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon Promo"
+      }
+    },
+    {
+      "query": "Pokemon Supreme Victors Gible 106 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Supreme%20Victors%20Gible%20106%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "1287172",
+      "product_name": "Seel #125",
+      "console_name": "Pokemon Supreme Victors",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:125"
+      }
+    },
+    {
+      "query": "Pokemon Supreme Victors Gible 106 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Supreme%20Victors%20Gible%20106%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "1287149",
+      "product_name": "Doduo #102",
+      "console_name": "Pokemon Supreme Victors",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:102"
+      }
+    },
+    {
+      "query": "Pokemon Supreme Victors Gible 106 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Supreme%20Victors%20Gible%20106%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "1287181",
+      "product_name": "Zubat #133",
+      "console_name": "Pokemon Supreme Victors",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:133"
+      }
+    },
+    {
+      "query": "Pokemon Supreme Victors Gible 106 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Supreme%20Victors%20Gible%20106%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "1287174",
+      "product_name": "Shinx #126",
+      "console_name": "Pokemon Supreme Victors",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:126"
+      }
+    },
+    {
+      "query": "Pokemon Supreme Victors Gible 106 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Supreme%20Victors%20Gible%20106%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "1287201",
+      "product_name": "Yanma #SH9",
+      "console_name": "Pokemon Supreme Victors",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:SH9"
+      }
+    },
+    {
+      "query": "Pokemon Supreme Victors Gible 106 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Supreme%20Victors%20Gible%20106%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "1287118",
+      "product_name": "Minun #71",
+      "console_name": "Pokemon Supreme Victors",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:71"
+      }
+    },
+    {
+      "query": "Pokemon Supreme Victors Gible 106 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Supreme%20Victors%20Gible%20106%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "1287121",
+      "product_name": "Numel #74",
+      "console_name": "Pokemon Supreme Victors",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:74"
+      }
+    },
+    {
+      "query": "Pokemon Supreme Victors Gible 106 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Supreme%20Victors%20Gible%20106%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "1287129",
+      "product_name": "Rotom #82",
+      "console_name": "Pokemon Supreme Victors",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:82"
+      }
+    },
+    {
+      "query": "Pokemon Supreme Victors Gible 106 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Supreme%20Victors%20Gible%20106%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "1287135",
+      "product_name": "Yanma #88",
+      "console_name": "Pokemon Supreme Victors",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:88"
+      }
+    },
+    {
+      "query": "Pokemon Supreme Victors Gible 106 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Supreme%20Victors%20Gible%20106%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "1287166",
+      "product_name": "Paras #119",
+      "console_name": "Pokemon Supreme Victors",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:119"
+      }
+    },
+    {
+      "query": "Pokemon Supreme Victors Gible 106 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Supreme%20Victors%20Gible%20106%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "1287137",
+      "product_name": "Beldum #90",
+      "console_name": "Pokemon Supreme Victors",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:90"
+      }
+    },
+    {
+      "query": "Pokemon Supreme Victors Gible 106 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Supreme%20Victors%20Gible%20106%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "1287139",
+      "product_name": "Buizel #92",
+      "console_name": "Pokemon Supreme Victors",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:92"
+      }
+    },
+    {
+      "query": "Pokemon Supreme Victors Gible 106 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Supreme%20Victors%20Gible%20106%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "1287142",
+      "product_name": "Chatot #95",
+      "console_name": "Pokemon Supreme Victors",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:95"
+      }
+    },
+    {
+      "query": "Pokemon Supreme Victors Gible 106 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Supreme%20Victors%20Gible%20106%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "1287136",
+      "product_name": "Baltoy #89",
+      "console_name": "Pokemon Supreme Victors",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:89"
+      }
+    },
+    {
+      "query": "Pokemon Supreme Victors Gible 106 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Supreme%20Victors%20Gible%20106%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "1287138",
+      "product_name": "Bidoof #91",
+      "console_name": "Pokemon Supreme Victors",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:91"
+      }
+    },
+    {
+      "query": "Pokemon Supreme Victors Gible 106 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Supreme%20Victors%20Gible%20106%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "1287146",
+      "product_name": "Combee #99",
+      "console_name": "Pokemon Supreme Victors",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:99"
+      }
+    }
+  ],
+  "source_lane": "pricecharting_api"
+}

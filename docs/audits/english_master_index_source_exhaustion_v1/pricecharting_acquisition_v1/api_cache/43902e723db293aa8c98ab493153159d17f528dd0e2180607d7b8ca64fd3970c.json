@@ -1,0 +1,46 @@
+{
+  "products": [
+    {
+      "bgs-10-price": 8000,
+      "box-only-price": 2700,
+      "condition-17-price": 3700,
+      "condition-18-price": 3700,
+      "console-name": "Pokemon Dragons Exalted",
+      "gamestop-price": 0,
+      "gamestop-trade-price": 0,
+      "genre": "Pokemon Card",
+      "graded-price": 2430,
+      "id": "956473",
+      "loose-price": 298,
+      "manual-only-price": 6161,
+      "product-name": "Hydreigon [Reverse Holo] #98",
+      "release-date": "2012-08-15",
+      "retail-loose-sell": 329,
+      "sales-volume": "6",
+      "tcg-id": "86242"
+    },
+    {
+      "console-name": "Pokemon Dragons Exalted",
+      "gamestop-price": 0,
+      "gamestop-trade-price": 0,
+      "genre": "Pokemon Card",
+      "id": "11709174",
+      "loose-price": 244,
+      "product-name": "Hydreigon [Cosmos Holo] #98",
+      "retail-loose-sell": 269,
+      "sales-volume": "16"
+    },
+    {
+      "console-name": "Pokemon Dragons Exalted",
+      "gamestop-price": 0,
+      "gamestop-trade-price": 0,
+      "genre": "Pokemon Card",
+      "id": "4565990",
+      "loose-price": 193,
+      "product-name": "Hydreigon [Cracked Ice Holo] #98",
+      "retail-loose-sell": 209,
+      "sales-volume": "24"
+    }
+  ],
+  "status": "success"
+}

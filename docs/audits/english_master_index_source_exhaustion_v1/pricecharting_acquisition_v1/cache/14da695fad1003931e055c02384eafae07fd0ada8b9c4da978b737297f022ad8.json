@@ -1,0 +1,62 @@
+{
+  "status": "validated",
+  "fact": {
+    "gap_type": "finish_second_source_needed",
+    "fact_type": "printing_finish",
+    "set_key": "sv09",
+    "set_name": "Journey Together",
+    "card_number": "150",
+    "card_name": "Levincia",
+    "finish_key": "stamped",
+    "status": "human_source_verified",
+    "sources": [
+      "thepricedex_price_list"
+    ],
+    "source_authorities": [
+      "thepricedex.com"
+    ],
+    "source_kinds": [
+      "marketplace_checklist"
+    ],
+    "evidence_urls": [
+      "https://www.thepricedex.com/set/sv9/journey-together/price-list"
+    ],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "query": "Pokemon Journey Together Levincia 150 stamped",
+  "search_url": "https://www.pricecharting.com/api/products?q=Pokemon%20Journey%20Together%20Levincia%20150%20stamped",
+  "source_url": "https://www.pricecharting.com/game/pokemon-journey-together/levincia-gym-stamp-150",
+  "title": "Levincia [Gym Stamp] #150 | Pokemon Journey Together",
+  "title_parts": {
+    "card_name": "Levincia",
+    "card_number": "150",
+    "variant_label": "Gym Stamp",
+    "set_name": "Pokemon Journey Together",
+    "pricecharting_product_id": "10025682"
+  },
+  "validation_source": "pricecharting_api_products",
+  "source_lane": "pricecharting_api",
+  "attempts": [
+    {
+      "query": "Pokemon Journey Together Levincia 150 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Journey%20Together%20Levincia%20150%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10025682",
+      "product_name": "Levincia [Gym Stamp] #150",
+      "console_name": "Pokemon Journey Together",
+      "validation": {
+        "ok": true,
+        "titleParts": {
+          "card_name": "Levincia",
+          "card_number": "150",
+          "variant_label": "Gym Stamp",
+          "set_name": "Pokemon Journey Together",
+          "pricecharting_product_id": "10025682"
+        },
+        "source_url": "https://www.pricecharting.com/game/pokemon-journey-together/levincia-gym-stamp-150",
+        "title": "Levincia [Gym Stamp] #150 | Pokemon Journey Together"
+      }
+    }
+  ]
+}

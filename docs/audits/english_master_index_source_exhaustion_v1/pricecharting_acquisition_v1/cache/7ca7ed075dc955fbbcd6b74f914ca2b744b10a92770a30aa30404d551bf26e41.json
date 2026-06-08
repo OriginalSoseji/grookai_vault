@@ -1,0 +1,549 @@
+{
+  "status": "api_no_validated_match",
+  "fact": {
+    "gap_type": "finish_second_source_needed",
+    "fact_type": "printing_finish",
+    "set_key": "smp",
+    "set_name": "SM Black Star Promos",
+    "card_number": "SM198",
+    "card_name": "Bulbasaur",
+    "finish_key": "cosmos",
+    "status": "human_source_verified",
+    "sources": [
+      "thepricedex_price_list"
+    ],
+    "source_authorities": [
+      "thepricedex.com"
+    ],
+    "source_kinds": [
+      "marketplace_checklist"
+    ],
+    "evidence_urls": [
+      "https://www.thepricedex.com/set/smp/sm-black-star-promos/price-list"
+    ],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "attempts": [
+    {
+      "query": "Pokemon SM Black Star Promos Bulbasaur SM198 cosmos holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20SM%20Black%20Star%20Promos%20Bulbasaur%20SM198%20cosmos%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "844887",
+      "product_name": "Bulbasaur #SM198",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon SM Black Star Promos Bulbasaur SM198 cosmos holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20SM%20Black%20Star%20Promos%20Bulbasaur%20SM198%20cosmos%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6266571",
+      "product_name": "Bulbasaur [Stamped] #SM198",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Stamped"
+      }
+    },
+    {
+      "query": "Pokemon SM Black Star Promos Bulbasaur SM198 cosmos holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20SM%20Black%20Star%20Promos%20Bulbasaur%20SM198%20cosmos%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7979089",
+      "product_name": "Bulbasaur [Cosmos Holo] #1",
+      "console_name": "Pokemon Scarlet & Violet 151",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:1"
+      }
+    },
+    {
+      "query": "Pokemon SM Black Star Promos Bulbasaur SM198 cosmos holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20SM%20Black%20Star%20Promos%20Bulbasaur%20SM198%20cosmos%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "1317320",
+      "product_name": "Bulbasaur [Holo] #1",
+      "console_name": "Pokemon McDonalds 2021",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:1"
+      }
+    },
+    {
+      "query": "Pokemon SM Black Star Promos Bulbasaur SM198 cosmos holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20SM%20Black%20Star%20Promos%20Bulbasaur%20SM198%20cosmos%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5917618",
+      "product_name": "Venusaur-Holo #3",
+      "console_name": "Pokemon Japanese Bulbasaur Deck",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:3"
+      }
+    },
+    {
+      "query": "Pokemon SM Black Star Promos Bulbasaur SM198 cosmos holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20SM%20Black%20Star%20Promos%20Bulbasaur%20SM198%20cosmos%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "2266947",
+      "product_name": "Bulbasaur [Reverse Holo] #94",
+      "console_name": "Pokemon Expedition",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:94"
+      }
+    },
+    {
+      "query": "Pokemon SM Black Star Promos Bulbasaur SM198 cosmos holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20SM%20Black%20Star%20Promos%20Bulbasaur%20SM198%20cosmos%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "2266948",
+      "product_name": "Bulbasaur [Reverse Holo] #95",
+      "console_name": "Pokemon Expedition",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:95"
+      }
+    },
+    {
+      "query": "Pokemon SM Black Star Promos Bulbasaur SM198 cosmos holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20SM%20Black%20Star%20Promos%20Bulbasaur%20SM198%20cosmos%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3667053",
+      "product_name": "Bulbasaur [Reverse Holo] #1",
+      "console_name": "Pokemon Go",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:1"
+      }
+    },
+    {
+      "query": "Pokemon SM Black Star Promos Bulbasaur SM198 cosmos holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20SM%20Black%20Star%20Promos%20Bulbasaur%20SM198%20cosmos%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12170769",
+      "product_name": "Bulbasaur [Pokemon Day 2026] #1",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:1"
+      }
+    },
+    {
+      "query": "Pokemon SM Black Star Promos Bulbasaur SM198 cosmos holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20SM%20Black%20Star%20Promos%20Bulbasaur%20SM198%20cosmos%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "13064644",
+      "product_name": "Charmeleon [Chaos Rising Black Star Promo Cosmos Holo] #79",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:79"
+      }
+    },
+    {
+      "query": "Pokemon SM Black Star Promos Bulbasaur SM198 cosmos holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20SM%20Black%20Star%20Promos%20Bulbasaur%20SM198%20cosmos%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "1287294",
+      "product_name": "Bulbasaur [Reverse Holo] #93",
+      "console_name": "Pokemon Supreme Victors",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:93"
+      }
+    },
+    {
+      "query": "Pokemon SM Black Star Promos Bulbasaur SM198 cosmos holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20SM%20Black%20Star%20Promos%20Bulbasaur%20SM198%20cosmos%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "956159",
+      "product_name": "Bulbasaur [Reverse Holo] #1",
+      "console_name": "Pokemon Dark Explorers",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:1"
+      }
+    },
+    {
+      "query": "Pokemon SM Black Star Promos Bulbasaur SM198 cosmos holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20SM%20Black%20Star%20Promos%20Bulbasaur%20SM198%20cosmos%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "889432",
+      "product_name": "Bulbasaur [Reverse Holo] #45",
+      "console_name": "Pokemon Crystal Guardians",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:45"
+      }
+    },
+    {
+      "query": "Pokemon SM Black Star Promos Bulbasaur SM198 cosmos holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20SM%20Black%20Star%20Promos%20Bulbasaur%20SM198%20cosmos%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "889433",
+      "product_name": "Bulbasaur [Reverse Holo] #46",
+      "console_name": "Pokemon Crystal Guardians",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:46"
+      }
+    },
+    {
+      "query": "Pokemon SM Black Star Promos Bulbasaur SM198 cosmos holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20SM%20Black%20Star%20Promos%20Bulbasaur%20SM198%20cosmos%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "921098",
+      "product_name": "Bulbasaur [Reverse Holo] #77",
+      "console_name": "Pokemon Secret Wonders",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:77"
+      }
+    },
+    {
+      "query": "Pokemon SM Black Star Promos Bulbasaur SM198 cosmos holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20SM%20Black%20Star%20Promos%20Bulbasaur%20SM198%20cosmos%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "2253751",
+      "product_name": "Bulbasaur [Reverse Holo] #68",
+      "console_name": "Pokemon Legendary Collection",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:68"
+      }
+    },
+    {
+      "query": "Pokemon SM Black Star Promos Bulbasaur SM198 cosmos holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20SM%20Black%20Star%20Promos%20Bulbasaur%20SM198%20cosmos%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5809592",
+      "product_name": "Bulbasaur [Reverse Holo] #1",
+      "console_name": "Pokemon Scarlet & Violet 151",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:1"
+      }
+    },
+    {
+      "query": "Pokemon SM Black Star Promos Bulbasaur SM198 cosmos holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20SM%20Black%20Star%20Promos%20Bulbasaur%20SM198%20cosmos%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "2978745",
+      "product_name": "Bulbasaur [Reverse Holo] #1",
+      "console_name": "Pokemon Shining Legends",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:1"
+      }
+    },
+    {
+      "query": "Pokemon SM Black Star Promos Bulbasaur SM198 cosmos holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20SM%20Black%20Star%20Promos%20Bulbasaur%20SM198%20cosmos%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10616322",
+      "product_name": "Bulbasaur [Reverse Holo] #1",
+      "console_name": "Pokemon Mega Evolution",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:1"
+      }
+    },
+    {
+      "query": "Pokemon SM Black Star Promos Bulbasaur SM198 cosmos holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20SM%20Black%20Star%20Promos%20Bulbasaur%20SM198%20cosmos%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10610029",
+      "product_name": "Mudkip [Cosmos Holo] #18",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:18"
+      }
+    },
+    {
+      "query": "Pokemon SM Black Star Promos Bulbasaur SM198 cosmos",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20SM%20Black%20Star%20Promos%20Bulbasaur%20SM198%20cosmos",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "844887",
+      "product_name": "Bulbasaur #SM198",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon SM Black Star Promos Bulbasaur SM198 cosmos",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20SM%20Black%20Star%20Promos%20Bulbasaur%20SM198%20cosmos",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6266571",
+      "product_name": "Bulbasaur [Stamped] #SM198",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Stamped"
+      }
+    },
+    {
+      "query": "Pokemon SM Black Star Promos Bulbasaur SM198 cosmos",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20SM%20Black%20Star%20Promos%20Bulbasaur%20SM198%20cosmos",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7979089",
+      "product_name": "Bulbasaur [Cosmos Holo] #1",
+      "console_name": "Pokemon Scarlet & Violet 151",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:1"
+      }
+    },
+    {
+      "query": "Pokemon SM Black Star Promos Bulbasaur SM198 cosmos",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20SM%20Black%20Star%20Promos%20Bulbasaur%20SM198%20cosmos",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12170769",
+      "product_name": "Bulbasaur [Pokemon Day 2026] #1",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:1"
+      }
+    },
+    {
+      "query": "Pokemon SM Black Star Promos Bulbasaur SM198 cosmos",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20SM%20Black%20Star%20Promos%20Bulbasaur%20SM198%20cosmos",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4033611",
+      "product_name": "Bulbasaur #SWSH231",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:SWSH231"
+      }
+    },
+    {
+      "query": "Pokemon SM Black Star Promos Bulbasaur SM198 cosmos",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20SM%20Black%20Star%20Promos%20Bulbasaur%20SM198%20cosmos",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4863573",
+      "product_name": "Bulbasaur #SWSH303",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:SWSH303"
+      }
+    },
+    {
+      "query": "Pokemon SM Black Star Promos Bulbasaur SM198 cosmos",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20SM%20Black%20Star%20Promos%20Bulbasaur%20SM198%20cosmos",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5811030",
+      "product_name": "Bulbasaur #46",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:46"
+      }
+    },
+    {
+      "query": "Pokemon SM Black Star Promos Bulbasaur SM198 cosmos",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20SM%20Black%20Star%20Promos%20Bulbasaur%20SM198%20cosmos",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12351391",
+      "product_name": "Bulbasaur #37",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:37"
+      }
+    },
+    {
+      "query": "Pokemon SM Black Star Promos Bulbasaur SM198 cosmos",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20SM%20Black%20Star%20Promos%20Bulbasaur%20SM198%20cosmos",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9865710",
+      "product_name": "Kanto Friends Mini Tin: Bulbasaur",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "api_product_name_pattern_not_supported"
+      }
+    },
+    {
+      "query": "Pokemon SM Black Star Promos Bulbasaur SM198 cosmos",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20SM%20Black%20Star%20Promos%20Bulbasaur%20SM198%20cosmos",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11035332",
+      "product_name": "Litten #182/SM-P",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:182/SM-P"
+      }
+    },
+    {
+      "query": "Pokemon SM Black Star Promos Bulbasaur SM198 cosmos",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20SM%20Black%20Star%20Promos%20Bulbasaur%20SM198%20cosmos",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10287549",
+      "product_name": "Mewtwo #184/SM-P",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:184/SM-P"
+      }
+    },
+    {
+      "query": "Pokemon SM Black Star Promos Bulbasaur SM198 cosmos",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20SM%20Black%20Star%20Promos%20Bulbasaur%20SM198%20cosmos",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10366600",
+      "product_name": "Charizard #80/SM-P",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:80/SM-P"
+      }
+    },
+    {
+      "query": "Pokemon SM Black Star Promos Bulbasaur SM198 cosmos",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20SM%20Black%20Star%20Promos%20Bulbasaur%20SM198%20cosmos",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9708511",
+      "product_name": "Eevee [KFC] #186/SM-P",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:186/SM-P"
+      }
+    },
+    {
+      "query": "Pokemon SM Black Star Promos Bulbasaur SM198 cosmos",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20SM%20Black%20Star%20Promos%20Bulbasaur%20SM198%20cosmos",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10523466",
+      "product_name": "SM-33  [Black] #99",
+      "console_name": "Star Wars 2025 Topps Chrome",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:99"
+      }
+    },
+    {
+      "query": "Pokemon SM Black Star Promos Bulbasaur SM198 cosmos",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20SM%20Black%20Star%20Promos%20Bulbasaur%20SM198%20cosmos",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5917616",
+      "product_name": "Bulbasaur #1",
+      "console_name": "Pokemon Japanese Bulbasaur Deck",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:1"
+      }
+    },
+    {
+      "query": "Pokemon SM Black Star Promos Bulbasaur SM198 cosmos",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20SM%20Black%20Star%20Promos%20Bulbasaur%20SM198%20cosmos",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5917633",
+      "product_name": "Bulbasaur #18",
+      "console_name": "Pokemon Japanese Bulbasaur Deck",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:18"
+      }
+    },
+    {
+      "query": "Pokemon SM Black Star Promos Bulbasaur SM198 cosmos",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20SM%20Black%20Star%20Promos%20Bulbasaur%20SM198%20cosmos",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5917644",
+      "product_name": "Bulbasaur #29",
+      "console_name": "Pokemon Japanese Bulbasaur Deck",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:29"
+      }
+    },
+    {
+      "query": "Pokemon SM Black Star Promos Bulbasaur SM198 cosmos",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20SM%20Black%20Star%20Promos%20Bulbasaur%20SM198%20cosmos",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5917650",
+      "product_name": "Bulbasaur #35",
+      "console_name": "Pokemon Japanese Bulbasaur Deck",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:35"
+      }
+    },
+    {
+      "query": "Pokemon SM Black Star Promos Bulbasaur SM198 cosmos",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20SM%20Black%20Star%20Promos%20Bulbasaur%20SM198%20cosmos",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10025743",
+      "product_name": "Charizard [KFC] #181/SM-P",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:181/SM-P"
+      }
+    },
+    {
+      "query": "Pokemon SM Black Star Promos Bulbasaur SM198 cosmos",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20SM%20Black%20Star%20Promos%20Bulbasaur%20SM198%20cosmos",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12564569",
+      "product_name": "Bounsweet [KFC] #180/SM-P",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:180/SM-P"
+      }
+    }
+  ],
+  "source_lane": "pricecharting_api"
+}

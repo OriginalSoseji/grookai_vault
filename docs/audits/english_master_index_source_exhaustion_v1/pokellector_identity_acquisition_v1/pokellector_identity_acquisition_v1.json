@@ -1,0 +1,59 @@
+{
+  "version": "POKELLECTOR_IDENTITY_ACQUISITION_V1",
+  "generated_at": "2026-05-30T02:17:27.567Z",
+  "audit_only": true,
+  "db_writes_performed": false,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "dry_run": false,
+  "rule": "Pokellector evidence is used only as collector checklist card identity evidence. It does not create finish or printing truth.",
+  "summary": {
+    "sets_attempted": 3,
+    "records_generated": 2,
+    "fixture_files_written": 1,
+    "by_status": {
+      "no_matching_card_rows": 2,
+      "generated": 1
+    }
+  },
+  "fixture_dir": "docs/audits/verified_master_set_index_v1/source_fixtures/generated_pokellector_identity_v1",
+  "fixture_files": [
+    "docs\\audits\\verified_master_set_index_v1\\source_fixtures\\generated_pokellector_identity_v1\\pl2.json"
+  ],
+  "results": [
+    {
+      "set_key": "cel25",
+      "set_name": "Celebrations",
+      "status": "no_matching_card_rows",
+      "target_facts": 4,
+      "checklist_rows": 50,
+      "records_generated": 0,
+      "source_url": "https://www.pokellector.com/Celebrations-Expansion/",
+      "fixture_file": null,
+      "error": null
+    },
+    {
+      "set_key": "pl2",
+      "set_name": "Rising Rivals",
+      "status": "generated",
+      "target_facts": 3,
+      "checklist_rows": 120,
+      "records_generated": 2,
+      "source_url": "https://www.pokellector.com/Platinum-Rising-Rivals-Expansion/",
+      "fixture_file": "docs\\audits\\verified_master_set_index_v1\\source_fixtures\\generated_pokellector_identity_v1\\pl2.json",
+      "error": null
+    },
+    {
+      "set_key": "exu",
+      "set_name": "Unseen Forces Unown Collection",
+      "status": "no_matching_card_rows",
+      "target_facts": 1,
+      "checklist_rows": 28,
+      "records_generated": 0,
+      "source_url": "https://www.pokellector.com/EX-Unseen-Forces-Unown-Collection-Expansion/",
+      "fixture_file": null,
+      "error": null
+    }
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "source_key": "pricecharting_swsh11",
+  "source_kind": "marketplace_checklist",
+  "source_url": "https://www.pricecharting.com/",
+  "set_key": "swsh11",
+  "set_name": "Lost Origin",
+  "retrieved_at": "2026-05-28T04:20:24.359Z",
+  "raw_snapshot_ref": "pricecharting_acquisition:swsh11:2026-05-28T04:20:24.359Z",
+  "records": [
+    {
+      "source_key": "pricecharting_product_page",
+      "source_kind": "marketplace_checklist",
+      "source_url": "https://www.pricecharting.com/game/pokemon-lost-origin/glastrier-snowflake-stamp-51",
+      "set_name": "Lost Origin",
+      "card_number": "51",
+      "card_name": "Glastrier",
+      "finish_key": "stamped",
+      "evidence_type": "finish_presence",
+      "evidence_label": "PriceCharting product title: Glastrier [Snowflake Stamp] #51 Prices | Pokemon Lost Origin | Pokemon Cards",
+      "notes": "Exact finish evidence accepted only because PriceCharting evidence matched set, card number, card name, and finish label."
+    },
+    {
+      "source_key": "pricecharting_product_page",
+      "source_kind": "marketplace_checklist",
+      "source_url": "https://www.pricecharting.com/game/pokemon-lost-origin/hisuian-zoroark-stamped-76",
+      "set_name": "Lost Origin",
+      "card_number": "76",
+      "card_name": "Hisuian Zoroark",
+      "finish_key": "stamped",
+      "evidence_type": "finish_presence",
+      "evidence_label": "PriceCharting product title: Hisuian Zoroark [Stamped] #76 Prices | Pokemon Lost Origin | Pokemon Cards",
+      "notes": "Exact finish evidence accepted only because PriceCharting evidence matched set, card number, card name, and finish label."
+    }
+  ]
+}

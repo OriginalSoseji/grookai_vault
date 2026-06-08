@@ -1,0 +1,549 @@
+{
+  "status": "api_no_validated_match",
+  "fact": {
+    "gap_type": "finish_human_checklist_evidence_needed",
+    "fact_type": "printing_finish",
+    "set_key": "sv10.5b",
+    "set_name": "Black Bolt",
+    "card_number": "60",
+    "card_name": "Antique Cover Fossil",
+    "finish_key": "reverse",
+    "status": "candidate_unconfirmed",
+    "sources": [
+      "pokemontcg_api"
+    ],
+    "source_authorities": [
+      "api.pokemontcg.io"
+    ],
+    "source_kinds": [
+      "structured_api"
+    ],
+    "evidence_urls": [
+      "https://api.pokemontcg.io/v2/cards/zsv10pt5-80"
+    ],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "attempts": [
+    {
+      "query": "Pokemon Black Bolt Antique Cover Fossil 60 reverse holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20Bolt%20Antique%20Cover%20Fossil%2060%20reverse%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10031578",
+      "product_name": "Antique Cover Fossil [Reverse] #80",
+      "console_name": "Pokemon Black Bolt",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:80"
+      }
+    },
+    {
+      "query": "Pokemon Black Bolt Antique Cover Fossil 60 reverse holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20Bolt%20Antique%20Cover%20Fossil%2060%20reverse%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7418776",
+      "product_name": "Antique Cover Fossil [Reverse Holo] #129",
+      "console_name": "Pokemon Stellar Crown",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:129"
+      }
+    },
+    {
+      "query": "Pokemon Black Bolt Antique Cover Fossil 60 reverse holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20Bolt%20Antique%20Cover%20Fossil%2060%20reverse%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9647527",
+      "product_name": "Antique Cover Fossil [Poke Ball] #80",
+      "console_name": "Pokemon Japanese Black Bolt",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:80"
+      }
+    },
+    {
+      "query": "Pokemon Black Bolt Antique Cover Fossil 60 reverse holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20Bolt%20Antique%20Cover%20Fossil%2060%20reverse%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10031876",
+      "product_name": "Antique Cover Fossil [Poke Ball] #80",
+      "console_name": "Pokemon Black Bolt",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:80"
+      }
+    },
+    {
+      "query": "Pokemon Black Bolt Antique Cover Fossil 60 reverse holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20Bolt%20Antique%20Cover%20Fossil%2060%20reverse%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9861818",
+      "product_name": "Antique Cover Fossil [Master Ball] #80",
+      "console_name": "Pokemon Japanese Black Bolt",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:80"
+      }
+    },
+    {
+      "query": "Pokemon Black Bolt Antique Cover Fossil 60 reverse holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20Bolt%20Antique%20Cover%20Fossil%2060%20reverse%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9647323",
+      "product_name": "Antique Cover Fossil #80",
+      "console_name": "Pokemon Japanese Black Bolt",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:80"
+      }
+    },
+    {
+      "query": "Pokemon Black Bolt Antique Cover Fossil 60 reverse holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20Bolt%20Antique%20Cover%20Fossil%2060%20reverse%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10031682",
+      "product_name": "Antique Cover Fossil #80",
+      "console_name": "Pokemon Black Bolt",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:80"
+      }
+    },
+    {
+      "query": "Pokemon Black Bolt Antique Cover Fossil 60 reverse holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20Bolt%20Antique%20Cover%20Fossil%2060%20reverse%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12368507",
+      "product_name": "Antique Sail Fossil [Reverse Holo] #69",
+      "console_name": "Pokemon Perfect Order",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:69"
+      }
+    },
+    {
+      "query": "Pokemon Black Bolt Antique Cover Fossil 60 reverse holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20Bolt%20Antique%20Cover%20Fossil%2060%20reverse%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12368640",
+      "product_name": "Antique Jaw Fossil [Reverse Holo] #68",
+      "console_name": "Pokemon Perfect Order",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:68"
+      }
+    },
+    {
+      "query": "Pokemon Black Bolt Antique Cover Fossil 60 reverse holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20Bolt%20Antique%20Cover%20Fossil%2060%20reverse%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7418777",
+      "product_name": "Antique Root Fossil [Reverse Holo] #130",
+      "console_name": "Pokemon Stellar Crown",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:130"
+      }
+    },
+    {
+      "query": "Pokemon Black Bolt Antique Cover Fossil 60 reverse holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20Bolt%20Antique%20Cover%20Fossil%2060%20reverse%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5810591",
+      "product_name": "Antique Dome Fossil [Reverse Holo] #152",
+      "console_name": "Pokemon Scarlet & Violet 151",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:152"
+      }
+    },
+    {
+      "query": "Pokemon Black Bolt Antique Cover Fossil 60 reverse holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20Bolt%20Antique%20Cover%20Fossil%2060%20reverse%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5809732",
+      "product_name": "Antique Helix Fossil [Reverse Holo] #153",
+      "console_name": "Pokemon Scarlet & Violet 151",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:153"
+      }
+    },
+    {
+      "query": "Pokemon Black Bolt Antique Cover Fossil 60 reverse holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20Bolt%20Antique%20Cover%20Fossil%2060%20reverse%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "955847",
+      "product_name": "Cover Fossil [Reverse Holo] #90",
+      "console_name": "Pokemon Noble Victories",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:90"
+      }
+    },
+    {
+      "query": "Pokemon Black Bolt Antique Cover Fossil 60 reverse holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20Bolt%20Antique%20Cover%20Fossil%2060%20reverse%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "957480",
+      "product_name": "Cover Fossil [Reverse Holo] #79",
+      "console_name": "Pokemon Plasma Blast",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:79"
+      }
+    },
+    {
+      "query": "Pokemon Black Bolt Antique Cover Fossil 60 reverse holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20Bolt%20Antique%20Cover%20Fossil%2060%20reverse%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10026875",
+      "product_name": "Antique Plume Fossil [Reverse] #79",
+      "console_name": "Pokemon White Flare",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:79"
+      }
+    },
+    {
+      "query": "Pokemon Black Bolt Antique Cover Fossil 60 reverse holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20Bolt%20Antique%20Cover%20Fossil%2060%20reverse%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7418614",
+      "product_name": "Antique Cover Fossil #129",
+      "console_name": "Pokemon Stellar Crown",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:129"
+      }
+    },
+    {
+      "query": "Pokemon Black Bolt Antique Cover Fossil 60 reverse holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20Bolt%20Antique%20Cover%20Fossil%2060%20reverse%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11518964",
+      "product_name": "Antique Plume Fossil [Mirror Holo] #657",
+      "console_name": "Pokemon Japanese Start Deck 100 Battle Collection",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:657"
+      }
+    },
+    {
+      "query": "Pokemon Black Bolt Antique Cover Fossil 60 reverse holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20Bolt%20Antique%20Cover%20Fossil%2060%20reverse%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10031542",
+      "product_name": "Escavalier [Reverse] #60",
+      "console_name": "Pokemon Black Bolt",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Escavalier"
+      }
+    },
+    {
+      "query": "Pokemon Black Bolt Antique Cover Fossil 60 reverse holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20Bolt%20Antique%20Cover%20Fossil%2060%20reverse%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5809733",
+      "product_name": "Antique Old Amber [Reverse Holo] #154",
+      "console_name": "Pokemon Scarlet & Violet 151",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:154"
+      }
+    },
+    {
+      "query": "Pokemon Black Bolt Antique Cover Fossil 60 reverse holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20Bolt%20Antique%20Cover%20Fossil%2060%20reverse%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10026963",
+      "product_name": "Antique Plume Fossil [Poke Ball] #79",
+      "console_name": "Pokemon White Flare",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:79"
+      }
+    },
+    {
+      "query": "Pokemon Black Bolt Antique Cover Fossil 60 reverse holofoil",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20Bolt%20Antique%20Cover%20Fossil%2060%20reverse%20holofoil",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10031578",
+      "product_name": "Antique Cover Fossil [Reverse] #80",
+      "console_name": "Pokemon Black Bolt",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:80"
+      }
+    },
+    {
+      "query": "Pokemon Black Bolt Antique Cover Fossil 60 reverse holofoil",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20Bolt%20Antique%20Cover%20Fossil%2060%20reverse%20holofoil",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7418776",
+      "product_name": "Antique Cover Fossil [Reverse Holo] #129",
+      "console_name": "Pokemon Stellar Crown",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:129"
+      }
+    },
+    {
+      "query": "Pokemon Black Bolt Antique Cover Fossil 60 reverse holofoil",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20Bolt%20Antique%20Cover%20Fossil%2060%20reverse%20holofoil",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9647527",
+      "product_name": "Antique Cover Fossil [Poke Ball] #80",
+      "console_name": "Pokemon Japanese Black Bolt",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:80"
+      }
+    },
+    {
+      "query": "Pokemon Black Bolt Antique Cover Fossil 60 reverse holofoil",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20Bolt%20Antique%20Cover%20Fossil%2060%20reverse%20holofoil",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10031876",
+      "product_name": "Antique Cover Fossil [Poke Ball] #80",
+      "console_name": "Pokemon Black Bolt",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:80"
+      }
+    },
+    {
+      "query": "Pokemon Black Bolt Antique Cover Fossil 60 reverse holofoil",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20Bolt%20Antique%20Cover%20Fossil%2060%20reverse%20holofoil",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9861818",
+      "product_name": "Antique Cover Fossil [Master Ball] #80",
+      "console_name": "Pokemon Japanese Black Bolt",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:80"
+      }
+    },
+    {
+      "query": "Pokemon Black Bolt Antique Cover Fossil 60 reverse holofoil",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20Bolt%20Antique%20Cover%20Fossil%2060%20reverse%20holofoil",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9647323",
+      "product_name": "Antique Cover Fossil #80",
+      "console_name": "Pokemon Japanese Black Bolt",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:80"
+      }
+    },
+    {
+      "query": "Pokemon Black Bolt Antique Cover Fossil 60 reverse holofoil",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20Bolt%20Antique%20Cover%20Fossil%2060%20reverse%20holofoil",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10031682",
+      "product_name": "Antique Cover Fossil #80",
+      "console_name": "Pokemon Black Bolt",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:80"
+      }
+    },
+    {
+      "query": "Pokemon Black Bolt Antique Cover Fossil 60 reverse holofoil",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20Bolt%20Antique%20Cover%20Fossil%2060%20reverse%20holofoil",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12368507",
+      "product_name": "Antique Sail Fossil [Reverse Holo] #69",
+      "console_name": "Pokemon Perfect Order",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:69"
+      }
+    },
+    {
+      "query": "Pokemon Black Bolt Antique Cover Fossil 60 reverse holofoil",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20Bolt%20Antique%20Cover%20Fossil%2060%20reverse%20holofoil",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12368640",
+      "product_name": "Antique Jaw Fossil [Reverse Holo] #68",
+      "console_name": "Pokemon Perfect Order",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:68"
+      }
+    },
+    {
+      "query": "Pokemon Black Bolt Antique Cover Fossil 60 reverse holofoil",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20Bolt%20Antique%20Cover%20Fossil%2060%20reverse%20holofoil",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7418777",
+      "product_name": "Antique Root Fossil [Reverse Holo] #130",
+      "console_name": "Pokemon Stellar Crown",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:130"
+      }
+    },
+    {
+      "query": "Pokemon Black Bolt Antique Cover Fossil 60 reverse holofoil",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20Bolt%20Antique%20Cover%20Fossil%2060%20reverse%20holofoil",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5810591",
+      "product_name": "Antique Dome Fossil [Reverse Holo] #152",
+      "console_name": "Pokemon Scarlet & Violet 151",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:152"
+      }
+    },
+    {
+      "query": "Pokemon Black Bolt Antique Cover Fossil 60 reverse holofoil",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20Bolt%20Antique%20Cover%20Fossil%2060%20reverse%20holofoil",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5809732",
+      "product_name": "Antique Helix Fossil [Reverse Holo] #153",
+      "console_name": "Pokemon Scarlet & Violet 151",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:153"
+      }
+    },
+    {
+      "query": "Pokemon Black Bolt Antique Cover Fossil 60 reverse holofoil",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20Bolt%20Antique%20Cover%20Fossil%2060%20reverse%20holofoil",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "955847",
+      "product_name": "Cover Fossil [Reverse Holo] #90",
+      "console_name": "Pokemon Noble Victories",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:90"
+      }
+    },
+    {
+      "query": "Pokemon Black Bolt Antique Cover Fossil 60 reverse holofoil",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20Bolt%20Antique%20Cover%20Fossil%2060%20reverse%20holofoil",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "957480",
+      "product_name": "Cover Fossil [Reverse Holo] #79",
+      "console_name": "Pokemon Plasma Blast",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:79"
+      }
+    },
+    {
+      "query": "Pokemon Black Bolt Antique Cover Fossil 60 reverse holofoil",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20Bolt%20Antique%20Cover%20Fossil%2060%20reverse%20holofoil",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10026875",
+      "product_name": "Antique Plume Fossil [Reverse] #79",
+      "console_name": "Pokemon White Flare",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:79"
+      }
+    },
+    {
+      "query": "Pokemon Black Bolt Antique Cover Fossil 60 reverse holofoil",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20Bolt%20Antique%20Cover%20Fossil%2060%20reverse%20holofoil",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7418614",
+      "product_name": "Antique Cover Fossil #129",
+      "console_name": "Pokemon Stellar Crown",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:129"
+      }
+    },
+    {
+      "query": "Pokemon Black Bolt Antique Cover Fossil 60 reverse holofoil",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20Bolt%20Antique%20Cover%20Fossil%2060%20reverse%20holofoil",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11518964",
+      "product_name": "Antique Plume Fossil [Mirror Holo] #657",
+      "console_name": "Pokemon Japanese Start Deck 100 Battle Collection",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:657"
+      }
+    },
+    {
+      "query": "Pokemon Black Bolt Antique Cover Fossil 60 reverse holofoil",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20Bolt%20Antique%20Cover%20Fossil%2060%20reverse%20holofoil",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10031542",
+      "product_name": "Escavalier [Reverse] #60",
+      "console_name": "Pokemon Black Bolt",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Escavalier"
+      }
+    },
+    {
+      "query": "Pokemon Black Bolt Antique Cover Fossil 60 reverse holofoil",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20Bolt%20Antique%20Cover%20Fossil%2060%20reverse%20holofoil",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5809733",
+      "product_name": "Antique Old Amber [Reverse Holo] #154",
+      "console_name": "Pokemon Scarlet & Violet 151",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:154"
+      }
+    },
+    {
+      "query": "Pokemon Black Bolt Antique Cover Fossil 60 reverse holofoil",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Black%20Bolt%20Antique%20Cover%20Fossil%2060%20reverse%20holofoil",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10026963",
+      "product_name": "Antique Plume Fossil [Poke Ball] #79",
+      "console_name": "Pokemon White Flare",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:79"
+      }
+    }
+  ],
+  "source_lane": "pricecharting_api"
+}

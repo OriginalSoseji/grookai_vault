@@ -1,0 +1,31 @@
+{
+  "fixture_version": "VERIFIED_MASTER_SET_INDEX_V1_HUMAN_SOURCE_FIXTURE_GENERATED",
+  "source_key": "tcgcollector_variants_neo1",
+  "source_kind": "collector_reference",
+  "source_url": "https://www.tcgcollector.com/sets/118/neo-genesis?setCardCountMode=anyCardVariant",
+  "source_status": "available_generated",
+  "set_key": "neo1",
+  "set_name": "Neo Genesis",
+  "retrieved_at": "2026-05-26T04:41:18.789Z",
+  "raw_snapshot_ref": "generated_fixture:tcgcollector:neo1:2026-05-26T04:41:18.789Z",
+  "generation_note": "Generated from TCGCollector explicit card variant type IDs. No finish is inferred from set era, rarity, or card count.",
+  "records": [
+    {
+      "source_key": "tcgcollector_card_variants",
+      "source_kind": "collector_reference",
+      "source_url": "https://www.tcgcollector.com/cards/245/cleffa-neo-genesis-20-111",
+      "set_key": "neo1",
+      "set_name": "Neo Genesis",
+      "card_number": "20",
+      "card_name": "Cleffa",
+      "finish_key": "first_edition_normal",
+      "rarity": null,
+      "evidence_type": "finish_presence",
+      "evidence_label": "TCGCollector card variant 1st Edition",
+      "language": "en",
+      "retrieved_at": "2026-05-26T04:41:18.789Z",
+      "raw_snapshot_ref": "tcgcollector:245:4",
+      "notes": "Exact card-level finish evidence from TCGCollector card variant type map. Only explicit variant labels are emitted."
+    }
+  ]
+}

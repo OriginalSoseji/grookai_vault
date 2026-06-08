@@ -1,0 +1,549 @@
+{
+  "status": "api_no_validated_match",
+  "fact": {
+    "gap_type": "finish_second_source_needed",
+    "fact_type": "printing_finish",
+    "set_key": "ex12",
+    "set_name": "Legend Maker",
+    "card_number": "5",
+    "card_name": "Gengar",
+    "finish_key": "stamped",
+    "status": "human_source_verified",
+    "sources": [
+      "thepricedex_price_list"
+    ],
+    "source_authorities": [
+      "thepricedex.com"
+    ],
+    "source_kinds": [
+      "marketplace_checklist"
+    ],
+    "evidence_urls": [
+      "https://www.thepricedex.com/set/ex12/legend-maker/price-list"
+    ],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "attempts": [
+    {
+      "query": "Pokemon Legend Maker Gengar 5 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Legend%20Maker%20Gengar%205%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "888888",
+      "product_name": "Gengar #5",
+      "console_name": "Pokemon Legend Maker",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon Legend Maker Gengar 5 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Legend%20Maker%20Gengar%205%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "888980",
+      "product_name": "Gengar [Reverse Holo] #5",
+      "console_name": "Pokemon Legend Maker",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Reverse Holo"
+      }
+    },
+    {
+      "query": "Pokemon Legend Maker Gengar 5 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Legend%20Maker%20Gengar%205%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6331935",
+      "product_name": "Gengar [Gym Challenge] #5",
+      "console_name": "Pokemon Legend Maker",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Gym Challenge"
+      }
+    },
+    {
+      "query": "Pokemon Legend Maker Gengar 5 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Legend%20Maker%20Gengar%205%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4916951",
+      "product_name": "Machop [Stamped] #57",
+      "console_name": "Pokemon Legend Maker",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:57"
+      }
+    },
+    {
+      "query": "Pokemon Legend Maker Gengar 5 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Legend%20Maker%20Gengar%205%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3439614",
+      "product_name": "Gengar #40",
+      "console_name": "Pokemon Japanese Mirage Forest",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:40"
+      }
+    },
+    {
+      "query": "Pokemon Legend Maker Gengar 5 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Legend%20Maker%20Gengar%205%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8453900",
+      "product_name": "Gengar [1st Edition] #40",
+      "console_name": "Pokemon Japanese Mirage Forest",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:40"
+      }
+    },
+    {
+      "query": "Pokemon Legend Maker Gengar 5 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Legend%20Maker%20Gengar%205%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12384636",
+      "product_name": "Gengar [EB Games Stamped] #50",
+      "console_name": "Pokemon Perfect Order",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:50"
+      }
+    },
+    {
+      "query": "Pokemon Legend Maker Gengar 5 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Legend%20Maker%20Gengar%205%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10932145",
+      "product_name": "Gengar [Stamped] #306",
+      "console_name": "Pokemon Chinese Gem Pack 3",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:306"
+      }
+    },
+    {
+      "query": "Pokemon Legend Maker Gengar 5 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Legend%20Maker%20Gengar%205%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12552807",
+      "product_name": "Gengar ex [Stamped] #214/SV-P",
+      "console_name": "Pokemon Chinese Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:214/SV-P"
+      }
+    },
+    {
+      "query": "Pokemon Legend Maker Gengar 5 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Legend%20Maker%20Gengar%205%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "888894",
+      "product_name": "Muk #11",
+      "console_name": "Pokemon Legend Maker",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:11"
+      }
+    },
+    {
+      "query": "Pokemon Legend Maker Gengar 5 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Legend%20Maker%20Gengar%205%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "888893",
+      "product_name": "Mew #10",
+      "console_name": "Pokemon Legend Maker",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:10"
+      }
+    },
+    {
+      "query": "Pokemon Legend Maker Gengar 5 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Legend%20Maker%20Gengar%205%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "888930",
+      "product_name": "Aron #48",
+      "console_name": "Pokemon Legend Maker",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:48"
+      }
+    },
+    {
+      "query": "Pokemon Legend Maker Gengar 5 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Legend%20Maker%20Gengar%205%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "888889",
+      "product_name": "Golem #6",
+      "console_name": "Pokemon Legend Maker",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:6"
+      }
+    },
+    {
+      "query": "Pokemon Legend Maker Gengar 5 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Legend%20Maker%20Gengar%205%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "888940",
+      "product_name": "Magby #58",
+      "console_name": "Pokemon Legend Maker",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:58"
+      }
+    },
+    {
+      "query": "Pokemon Legend Maker Gengar 5 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Legend%20Maker%20Gengar%205%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "888898",
+      "product_name": "Absol #15",
+      "console_name": "Pokemon Legend Maker",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:15"
+      }
+    },
+    {
+      "query": "Pokemon Legend Maker Gengar 5 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Legend%20Maker%20Gengar%205%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "888885",
+      "product_name": "Aggron #2",
+      "console_name": "Pokemon Legend Maker",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:2"
+      }
+    },
+    {
+      "query": "Pokemon Legend Maker Gengar 5 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Legend%20Maker%20Gengar%205%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "888920",
+      "product_name": "Lairon #38",
+      "console_name": "Pokemon Legend Maker",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:38"
+      }
+    },
+    {
+      "query": "Pokemon Legend Maker Gengar 5 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Legend%20Maker%20Gengar%205%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "888925",
+      "product_name": "Sealeo #43",
+      "console_name": "Pokemon Legend Maker",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:43"
+      }
+    },
+    {
+      "query": "Pokemon Legend Maker Gengar 5 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Legend%20Maker%20Gengar%205%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "888918",
+      "product_name": "Kabuto #36",
+      "console_name": "Pokemon Legend Maker",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:36"
+      }
+    },
+    {
+      "query": "Pokemon Legend Maker Gengar 5 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Legend%20Maker%20Gengar%205%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "888915",
+      "product_name": "Furret #33",
+      "console_name": "Pokemon Legend Maker",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:33"
+      }
+    },
+    {
+      "query": "Pokemon Legend Maker Gengar 5 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Legend%20Maker%20Gengar%205%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "888888",
+      "product_name": "Gengar #5",
+      "console_name": "Pokemon Legend Maker",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon Legend Maker Gengar 5 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Legend%20Maker%20Gengar%205%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "888980",
+      "product_name": "Gengar [Reverse Holo] #5",
+      "console_name": "Pokemon Legend Maker",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Reverse Holo"
+      }
+    },
+    {
+      "query": "Pokemon Legend Maker Gengar 5 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Legend%20Maker%20Gengar%205%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6331935",
+      "product_name": "Gengar [Gym Challenge] #5",
+      "console_name": "Pokemon Legend Maker",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Gym Challenge"
+      }
+    },
+    {
+      "query": "Pokemon Legend Maker Gengar 5 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Legend%20Maker%20Gengar%205%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4916951",
+      "product_name": "Machop [Stamped] #57",
+      "console_name": "Pokemon Legend Maker",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:57"
+      }
+    },
+    {
+      "query": "Pokemon Legend Maker Gengar 5 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Legend%20Maker%20Gengar%205%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3439614",
+      "product_name": "Gengar #40",
+      "console_name": "Pokemon Japanese Mirage Forest",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:40"
+      }
+    },
+    {
+      "query": "Pokemon Legend Maker Gengar 5 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Legend%20Maker%20Gengar%205%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8453900",
+      "product_name": "Gengar [1st Edition] #40",
+      "console_name": "Pokemon Japanese Mirage Forest",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:40"
+      }
+    },
+    {
+      "query": "Pokemon Legend Maker Gengar 5 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Legend%20Maker%20Gengar%205%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12384636",
+      "product_name": "Gengar [EB Games Stamped] #50",
+      "console_name": "Pokemon Perfect Order",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:50"
+      }
+    },
+    {
+      "query": "Pokemon Legend Maker Gengar 5 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Legend%20Maker%20Gengar%205%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10932145",
+      "product_name": "Gengar [Stamped] #306",
+      "console_name": "Pokemon Chinese Gem Pack 3",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:306"
+      }
+    },
+    {
+      "query": "Pokemon Legend Maker Gengar 5 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Legend%20Maker%20Gengar%205%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12552807",
+      "product_name": "Gengar ex [Stamped] #214/SV-P",
+      "console_name": "Pokemon Chinese Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:214/SV-P"
+      }
+    },
+    {
+      "query": "Pokemon Legend Maker Gengar 5 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Legend%20Maker%20Gengar%205%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "888894",
+      "product_name": "Muk #11",
+      "console_name": "Pokemon Legend Maker",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:11"
+      }
+    },
+    {
+      "query": "Pokemon Legend Maker Gengar 5 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Legend%20Maker%20Gengar%205%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "888893",
+      "product_name": "Mew #10",
+      "console_name": "Pokemon Legend Maker",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:10"
+      }
+    },
+    {
+      "query": "Pokemon Legend Maker Gengar 5 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Legend%20Maker%20Gengar%205%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "888930",
+      "product_name": "Aron #48",
+      "console_name": "Pokemon Legend Maker",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:48"
+      }
+    },
+    {
+      "query": "Pokemon Legend Maker Gengar 5 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Legend%20Maker%20Gengar%205%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "888889",
+      "product_name": "Golem #6",
+      "console_name": "Pokemon Legend Maker",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:6"
+      }
+    },
+    {
+      "query": "Pokemon Legend Maker Gengar 5 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Legend%20Maker%20Gengar%205%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "888940",
+      "product_name": "Magby #58",
+      "console_name": "Pokemon Legend Maker",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:58"
+      }
+    },
+    {
+      "query": "Pokemon Legend Maker Gengar 5 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Legend%20Maker%20Gengar%205%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "888898",
+      "product_name": "Absol #15",
+      "console_name": "Pokemon Legend Maker",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:15"
+      }
+    },
+    {
+      "query": "Pokemon Legend Maker Gengar 5 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Legend%20Maker%20Gengar%205%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "888885",
+      "product_name": "Aggron #2",
+      "console_name": "Pokemon Legend Maker",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:2"
+      }
+    },
+    {
+      "query": "Pokemon Legend Maker Gengar 5 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Legend%20Maker%20Gengar%205%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "888920",
+      "product_name": "Lairon #38",
+      "console_name": "Pokemon Legend Maker",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:38"
+      }
+    },
+    {
+      "query": "Pokemon Legend Maker Gengar 5 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Legend%20Maker%20Gengar%205%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "888925",
+      "product_name": "Sealeo #43",
+      "console_name": "Pokemon Legend Maker",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:43"
+      }
+    },
+    {
+      "query": "Pokemon Legend Maker Gengar 5 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Legend%20Maker%20Gengar%205%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "888918",
+      "product_name": "Kabuto #36",
+      "console_name": "Pokemon Legend Maker",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:36"
+      }
+    },
+    {
+      "query": "Pokemon Legend Maker Gengar 5 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Legend%20Maker%20Gengar%205%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "888915",
+      "product_name": "Furret #33",
+      "console_name": "Pokemon Legend Maker",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:33"
+      }
+    }
+  ],
+  "source_lane": "pricecharting_api"
+}

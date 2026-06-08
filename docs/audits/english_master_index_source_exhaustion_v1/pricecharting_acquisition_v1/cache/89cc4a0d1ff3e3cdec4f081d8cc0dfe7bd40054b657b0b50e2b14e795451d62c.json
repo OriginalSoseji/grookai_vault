@@ -1,0 +1,43 @@
+{
+  "status": "no_validated_match",
+  "fact": {
+    "gap_type": "finish_second_source_needed",
+    "fact_type": "printing_finish",
+    "set_key": "me1",
+    "set_name": "Mega Evolution",
+    "card_number": "86",
+    "card_name": "Mega Absol ex",
+    "finish_key": "stamped",
+    "status": "human_source_verified",
+    "sources": [
+      "thepricedex_price_list"
+    ],
+    "source_authorities": [
+      "thepricedex.com"
+    ],
+    "source_kinds": [
+      "marketplace_checklist"
+    ],
+    "evidence_urls": [],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "attempts": [
+    {
+      "query": "Pokemon Mega Evolution Mega Absol ex 86 stamped",
+      "url": "https://www.pricecharting.com/search-products?q=Pokemon%20Mega%20Evolution%20Mega%20Absol%20ex%2086%20stamped&type=prices",
+      "error": "Fetch failed 403 Forbidden: https://www.pricecharting.com/search-products?q=Pokemon%20Mega%20Evolution%20Mega%20Absol%20ex%2086%20stamped&type=prices"
+    },
+    {
+      "query": "Pokemon Mega Evolution Mega Absol ex 86 stamp",
+      "url": "https://www.pricecharting.com/search-products?q=Pokemon%20Mega%20Evolution%20Mega%20Absol%20ex%2086%20stamp&type=prices",
+      "parsed": {
+        "title": "Pokemon Mega Evolution Mega Absol Ex 86 Stamp Prices | Pokemon Mega Evolution Mega Absol Ex 86 Stamp List",
+        "source_url": "https://www.pricecharting.com/search-products?q=pokemon+mega+evolution+mega+absol+ex+86+stamp&type=prices"
+      },
+      "validation": {
+        "ok": false,
+        "reason": "title_pattern_not_supported"
+      }
+    }
+  ]
+}

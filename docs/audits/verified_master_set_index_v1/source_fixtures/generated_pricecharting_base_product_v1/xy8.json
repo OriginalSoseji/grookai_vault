@@ -1,0 +1,35 @@
+{
+  "fixture_version": "VERIFIED_MASTER_SET_INDEX_V1_HUMAN_SOURCE_FIXTURE_GENERATED",
+  "source_key": "pricecharting_csv_base_product",
+  "source_kind": "marketplace_checklist",
+  "source_url": "https://www.pricecharting.com/console/pokemon-cards",
+  "source_status": "available_generated_exact_base_product_rows",
+  "set_key": "xy8",
+  "set_name": "BREAKthrough",
+  "retrieved_at": "2026-05-29T22:15:56.609Z",
+  "raw_snapshot_ref": "generated_fixture:pricecharting_csv_base_product:xy8:2026-05-29T22:15:56.609Z",
+  "audit_only": true,
+  "db_writes_performed": false,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "records": [
+    {
+      "source_key": "pricecharting_csv_base_product",
+      "source_kind": "marketplace_checklist",
+      "source_url": "https://www.pricecharting.com/game/pokemon-breakthrough/professors-letter-146a",
+      "set_key": "xy8",
+      "set_name": "BREAKthrough",
+      "card_number": "146a",
+      "card_name": "Professor's Letter",
+      "finish_key": "normal",
+      "rarity": null,
+      "evidence_type": "finish_presence",
+      "evidence_label": "PriceCharting preserved base product row: Professor's Letter #146a",
+      "language": "en",
+      "retrieved_at": "2026-05-29T22:15:56.609Z",
+      "raw_snapshot_ref": "pricecharting_csv_base_product:preserved:https://www.pricecharting.com/game/pokemon-breakthrough/professors-letter-146a",
+      "notes": "Preserved from the current promoted Master Index so regenerating this source lane cannot remove previously accepted exact base-product evidence."
+    }
+  ]
+}

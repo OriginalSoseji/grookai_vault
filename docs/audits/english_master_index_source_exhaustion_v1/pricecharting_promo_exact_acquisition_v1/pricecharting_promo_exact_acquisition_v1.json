@@ -1,0 +1,1359 @@
+{
+  "version": "english_master_index_pricecharting_promo_exact_acquisition_v1",
+  "generated_at": "2026-06-08T12:48:21.202Z",
+  "audit_only": true,
+  "db_writes_performed": false,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "dry_run": true,
+  "rule": "Only exact Pokemon Promo console rows with exact card number/name and explicit non-normal finish labels are accepted. Ambiguous multiple promo rows remain blocked.",
+  "summary": {
+    "target_facts": 5,
+    "records_generated": 0,
+    "fixture_files_written": 0,
+    "by_status": {
+      "no_exact_promo_match": 5
+    },
+    "validated_by_set": {}
+  },
+  "fixture_dir": null,
+  "fixture_files": [],
+  "results": [
+    {
+      "status": "no_exact_promo_match",
+      "fact": {
+        "gap_type": "finish_second_source_needed",
+        "fact_type": "printing_finish",
+        "set_key": "smp",
+        "set_name": "SM Black Star Promos",
+        "card_number": "SM198",
+        "card_name": "Bulbasaur",
+        "finish_key": "cosmos",
+        "status": "human_source_verified",
+        "sources": [
+          "thepricedex_price_list"
+        ],
+        "source_authorities": [
+          "thepricedex.com"
+        ],
+        "source_kinds": [
+          "marketplace_checklist"
+        ],
+        "evidence_urls": [
+          "https://www.thepricedex.com/set/smp/sm-black-star-promos/price-list"
+        ],
+        "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+      },
+      "valid_match_count": 0,
+      "reviewed_candidates": [
+        {
+          "source_url": "https://www.pricecharting.com/game/pokemon-1998-kfc/charizard-6",
+          "product_id": "7569343",
+          "console_name": "Pokemon 1998 KFC",
+          "product_name": "Charizard #6",
+          "variant_labels": [],
+          "validation": {
+            "ok": false,
+            "reason": "not_pricecharting_promo_console"
+          }
+        },
+        {
+          "source_url": "https://www.pricecharting.com/game/pokemon-1998-kfc/dragonite-149",
+          "product_id": "7569401",
+          "console_name": "Pokemon 1998 KFC",
+          "product_name": "Dragonite #149",
+          "variant_labels": [],
+          "validation": {
+            "ok": false,
+            "reason": "not_pricecharting_promo_console"
+          }
+        },
+        {
+          "source_url": "https://www.pricecharting.com/game/pokemon-1998-kfc/ivysaur-2",
+          "product_id": "7569338",
+          "console_name": "Pokemon 1998 KFC",
+          "product_name": "Ivysaur #2",
+          "variant_labels": [],
+          "validation": {
+            "ok": false,
+            "reason": "not_pricecharting_promo_console"
+          }
+        },
+        {
+          "source_url": "https://www.pricecharting.com/game/pokemon-1998-kfc/onix-95",
+          "product_id": "7569353",
+          "console_name": "Pokemon 1998 KFC",
+          "product_name": "Onix #95",
+          "variant_labels": [],
+          "validation": {
+            "ok": false,
+            "reason": "not_pricecharting_promo_console"
+          }
+        },
+        {
+          "source_url": "https://www.pricecharting.com/game/pokemon-1998-kfc/pikachu-25",
+          "product_id": "7569349",
+          "console_name": "Pokemon 1998 KFC",
+          "product_name": "Pikachu #25",
+          "variant_labels": [],
+          "validation": {
+            "ok": false,
+            "reason": "not_pricecharting_promo_console"
+          }
+        },
+        {
+          "source_url": "https://www.pricecharting.com/game/pokemon-1998-kfc/scyther-123",
+          "product_id": "7569358",
+          "console_name": "Pokemon 1998 KFC",
+          "product_name": "Scyther #123",
+          "variant_labels": [],
+          "validation": {
+            "ok": false,
+            "reason": "not_pricecharting_promo_console"
+          }
+        },
+        {
+          "source_url": "https://www.pricecharting.com/game/pokemon-1998-kfc/snorlax-143",
+          "product_id": "7569365",
+          "console_name": "Pokemon 1998 KFC",
+          "product_name": "Snorlax #143",
+          "variant_labels": [],
+          "validation": {
+            "ok": false,
+            "reason": "not_pricecharting_promo_console"
+          }
+        },
+        {
+          "source_url": "https://www.pricecharting.com/game/pokemon-1999-topps-movie/a-call-to-arms-16",
+          "product_id": "3560771",
+          "console_name": "Pokemon 1999 Topps Movie",
+          "product_name": "A Call to Arms #16",
+          "variant_labels": [],
+          "validation": {
+            "ok": false,
+            "reason": "not_pricecharting_promo_console"
+          }
+        },
+        {
+          "source_url": "https://www.pricecharting.com/game/pokemon-1999-topps-movie/a-call-to-arms-foil-16",
+          "product_id": "3560772",
+          "console_name": "Pokemon 1999 Topps Movie",
+          "product_name": "A Call to Arms [Foil] #16",
+          "variant_labels": [
+            "Foil"
+          ],
+          "validation": {
+            "ok": false,
+            "reason": "not_pricecharting_promo_console"
+          }
+        },
+        {
+          "source_url": "https://www.pricecharting.com/game/pokemon-1999-topps-movie/a-call-to-arms-rainbow-foil-16",
+          "product_id": "3560773",
+          "console_name": "Pokemon 1999 Topps Movie",
+          "product_name": "A Call to Arms [Rainbow Foil] #16",
+          "variant_labels": [
+            "Rainbow Foil"
+          ],
+          "validation": {
+            "ok": false,
+            "reason": "not_pricecharting_promo_console"
+          }
+        },
+        {
+          "source_url": "https://www.pricecharting.com/game/pokemon-1999-topps-movie/a-great-day-58",
+          "product_id": "3560910",
+          "console_name": "Pokemon 1999 Topps Movie",
+          "product_name": "A Great Day #58",
+          "variant_labels": [],
+          "validation": {
+            "ok": false,
+            "reason": "not_pricecharting_promo_console"
+          }
+        },
+        {
+          "source_url": "https://www.pricecharting.com/game/pokemon-1999-topps-movie/a-great-day-corrected-58",
+          "product_id": "3560911",
+          "console_name": "Pokemon 1999 Topps Movie",
+          "product_name": "A Great Day [Corrected] #58",
+          "variant_labels": [
+            "Corrected"
+          ],
+          "validation": {
+            "ok": false,
+            "reason": "not_pricecharting_promo_console"
+          }
+        },
+        {
+          "source_url": "https://www.pricecharting.com/game/pokemon-1999-topps-movie/a-great-day-foil-58",
+          "product_id": "3560912",
+          "console_name": "Pokemon 1999 Topps Movie",
+          "product_name": "A Great Day [Foil] #58",
+          "variant_labels": [
+            "Foil"
+          ],
+          "validation": {
+            "ok": false,
+            "reason": "not_pricecharting_promo_console"
+          }
+        },
+        {
+          "source_url": "https://www.pricecharting.com/game/pokemon-1999-topps-movie/a-great-day-rainbow-foil-58",
+          "product_id": "3560913",
+          "console_name": "Pokemon 1999 Topps Movie",
+          "product_name": "A Great Day [Rainbow Foil] #58",
+          "variant_labels": [
+            "Rainbow Foil"
+          ],
+          "validation": {
+            "ok": false,
+            "reason": "not_pricecharting_promo_console"
+          }
+        },
+        {
+          "source_url": "https://www.pricecharting.com/game/pokemon-1999-topps-movie/ash-and-company-9",
+          "product_id": "3560748",
+          "console_name": "Pokemon 1999 Topps Movie",
+          "product_name": "Ash and Company #9",
+          "variant_labels": [],
+          "validation": {
+            "ok": false,
+            "reason": "not_pricecharting_promo_console"
+          }
+        },
+        {
+          "source_url": "https://www.pricecharting.com/game/pokemon-1999-topps-movie/ash-and-company-foil-9",
+          "product_id": "3560749",
+          "console_name": "Pokemon 1999 Topps Movie",
+          "product_name": "Ash and Company [Foil] #9",
+          "variant_labels": [
+            "Foil"
+          ],
+          "validation": {
+            "ok": false,
+            "reason": "not_pricecharting_promo_console"
+          }
+        },
+        {
+          "source_url": "https://www.pricecharting.com/game/pokemon-1999-topps-movie/ash-and-company-rainbow-foil-9",
+          "product_id": "3560750",
+          "console_name": "Pokemon 1999 Topps Movie",
+          "product_name": "Ash and Company [Rainbow Foil] #9",
+          "variant_labels": [
+            "Rainbow Foil"
+          ],
+          "validation": {
+            "ok": false,
+            "reason": "not_pricecharting_promo_console"
+          }
+        },
+        {
+          "source_url": "https://www.pricecharting.com/game/pokemon-1999-topps-movie/ashs-sacrifice-36",
+          "product_id": "3560831",
+          "console_name": "Pokemon 1999 Topps Movie",
+          "product_name": "Ash's Sacrifice #36",
+          "variant_labels": [],
+          "validation": {
+            "ok": false,
+            "reason": "not_pricecharting_promo_console"
+          }
+        },
+        {
+          "source_url": "https://www.pricecharting.com/game/pokemon-1999-topps-movie/ashs-sacrifice-foil-36",
+          "product_id": "3560832",
+          "console_name": "Pokemon 1999 Topps Movie",
+          "product_name": "Ash's Sacrifice [Foil] #36",
+          "variant_labels": [
+            "Foil"
+          ],
+          "validation": {
+            "ok": false,
+            "reason": "not_pricecharting_promo_console"
+          }
+        },
+        {
+          "source_url": "https://www.pricecharting.com/game/pokemon-1999-topps-movie/ashs-sacrifice-rainbow-foil-36",
+          "product_id": "3560833",
+          "console_name": "Pokemon 1999 Topps Movie",
+          "product_name": "Ash's Sacrifice [Rainbow Foil] #36",
+          "variant_labels": [
+            "Rainbow Foil"
+          ],
+          "validation": {
+            "ok": false,
+            "reason": "not_pricecharting_promo_console"
+          }
+        }
+      ]
+    },
+    {
+      "status": "no_exact_promo_match",
+      "fact": {
+        "gap_type": "finish_second_source_needed",
+        "fact_type": "printing_finish",
+        "set_key": "smp",
+        "set_name": "SM Black Star Promos",
+        "card_number": "SM199",
+        "card_name": "Psyduck",
+        "finish_key": "cosmos",
+        "status": "human_source_verified",
+        "sources": [
+          "thepricedex_price_list"
+        ],
+        "source_authorities": [
+          "thepricedex.com"
+        ],
+        "source_kinds": [
+          "marketplace_checklist"
+        ],
+        "evidence_urls": [
+          "https://www.thepricedex.com/set/smp/sm-black-star-promos/price-list"
+        ],
+        "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+      },
+      "valid_match_count": 0,
+      "reviewed_candidates": [
+        {
+          "source_url": "https://www.pricecharting.com/game/pokemon-1998-kfc/charizard-6",
+          "product_id": "7569343",
+          "console_name": "Pokemon 1998 KFC",
+          "product_name": "Charizard #6",
+          "variant_labels": [],
+          "validation": {
+            "ok": false,
+            "reason": "not_pricecharting_promo_console"
+          }
+        },
+        {
+          "source_url": "https://www.pricecharting.com/game/pokemon-1998-kfc/dragonite-149",
+          "product_id": "7569401",
+          "console_name": "Pokemon 1998 KFC",
+          "product_name": "Dragonite #149",
+          "variant_labels": [],
+          "validation": {
+            "ok": false,
+            "reason": "not_pricecharting_promo_console"
+          }
+        },
+        {
+          "source_url": "https://www.pricecharting.com/game/pokemon-1998-kfc/ivysaur-2",
+          "product_id": "7569338",
+          "console_name": "Pokemon 1998 KFC",
+          "product_name": "Ivysaur #2",
+          "variant_labels": [],
+          "validation": {
+            "ok": false,
+            "reason": "not_pricecharting_promo_console"
+          }
+        },
+        {
+          "source_url": "https://www.pricecharting.com/game/pokemon-1998-kfc/onix-95",
+          "product_id": "7569353",
+          "console_name": "Pokemon 1998 KFC",
+          "product_name": "Onix #95",
+          "variant_labels": [],
+          "validation": {
+            "ok": false,
+            "reason": "not_pricecharting_promo_console"
+          }
+        },
+        {
+          "source_url": "https://www.pricecharting.com/game/pokemon-1998-kfc/pikachu-25",
+          "product_id": "7569349",
+          "console_name": "Pokemon 1998 KFC",
+          "product_name": "Pikachu #25",
+          "variant_labels": [],
+          "validation": {
+            "ok": false,
+            "reason": "not_pricecharting_promo_console"
+          }
+        },
+        {
+          "source_url": "https://www.pricecharting.com/game/pokemon-1998-kfc/scyther-123",
+          "product_id": "7569358",
+          "console_name": "Pokemon 1998 KFC",
+          "product_name": "Scyther #123",
+          "variant_labels": [],
+          "validation": {
+            "ok": false,
+            "reason": "not_pricecharting_promo_console"
+          }
+        },
+        {
+          "source_url": "https://www.pricecharting.com/game/pokemon-1998-kfc/snorlax-143",
+          "product_id": "7569365",
+          "console_name": "Pokemon 1998 KFC",
+          "product_name": "Snorlax #143",
+          "variant_labels": [],
+          "validation": {
+            "ok": false,
+            "reason": "not_pricecharting_promo_console"
+          }
+        },
+        {
+          "source_url": "https://www.pricecharting.com/game/pokemon-1999-topps-movie/a-call-to-arms-16",
+          "product_id": "3560771",
+          "console_name": "Pokemon 1999 Topps Movie",
+          "product_name": "A Call to Arms #16",
+          "variant_labels": [],
+          "validation": {
+            "ok": false,
+            "reason": "not_pricecharting_promo_console"
+          }
+        },
+        {
+          "source_url": "https://www.pricecharting.com/game/pokemon-1999-topps-movie/a-call-to-arms-foil-16",
+          "product_id": "3560772",
+          "console_name": "Pokemon 1999 Topps Movie",
+          "product_name": "A Call to Arms [Foil] #16",
+          "variant_labels": [
+            "Foil"
+          ],
+          "validation": {
+            "ok": false,
+            "reason": "not_pricecharting_promo_console"
+          }
+        },
+        {
+          "source_url": "https://www.pricecharting.com/game/pokemon-1999-topps-movie/a-call-to-arms-rainbow-foil-16",
+          "product_id": "3560773",
+          "console_name": "Pokemon 1999 Topps Movie",
+          "product_name": "A Call to Arms [Rainbow Foil] #16",
+          "variant_labels": [
+            "Rainbow Foil"
+          ],
+          "validation": {
+            "ok": false,
+            "reason": "not_pricecharting_promo_console"
+          }
+        },
+        {
+          "source_url": "https://www.pricecharting.com/game/pokemon-1999-topps-movie/a-great-day-58",
+          "product_id": "3560910",
+          "console_name": "Pokemon 1999 Topps Movie",
+          "product_name": "A Great Day #58",
+          "variant_labels": [],
+          "validation": {
+            "ok": false,
+            "reason": "not_pricecharting_promo_console"
+          }
+        },
+        {
+          "source_url": "https://www.pricecharting.com/game/pokemon-1999-topps-movie/a-great-day-corrected-58",
+          "product_id": "3560911",
+          "console_name": "Pokemon 1999 Topps Movie",
+          "product_name": "A Great Day [Corrected] #58",
+          "variant_labels": [
+            "Corrected"
+          ],
+          "validation": {
+            "ok": false,
+            "reason": "not_pricecharting_promo_console"
+          }
+        },
+        {
+          "source_url": "https://www.pricecharting.com/game/pokemon-1999-topps-movie/a-great-day-foil-58",
+          "product_id": "3560912",
+          "console_name": "Pokemon 1999 Topps Movie",
+          "product_name": "A Great Day [Foil] #58",
+          "variant_labels": [
+            "Foil"
+          ],
+          "validation": {
+            "ok": false,
+            "reason": "not_pricecharting_promo_console"
+          }
+        },
+        {
+          "source_url": "https://www.pricecharting.com/game/pokemon-1999-topps-movie/a-great-day-rainbow-foil-58",
+          "product_id": "3560913",
+          "console_name": "Pokemon 1999 Topps Movie",
+          "product_name": "A Great Day [Rainbow Foil] #58",
+          "variant_labels": [
+            "Rainbow Foil"
+          ],
+          "validation": {
+            "ok": false,
+            "reason": "not_pricecharting_promo_console"
+          }
+        },
+        {
+          "source_url": "https://www.pricecharting.com/game/pokemon-1999-topps-movie/ash-and-company-9",
+          "product_id": "3560748",
+          "console_name": "Pokemon 1999 Topps Movie",
+          "product_name": "Ash and Company #9",
+          "variant_labels": [],
+          "validation": {
+            "ok": false,
+            "reason": "not_pricecharting_promo_console"
+          }
+        },
+        {
+          "source_url": "https://www.pricecharting.com/game/pokemon-1999-topps-movie/ash-and-company-foil-9",
+          "product_id": "3560749",
+          "console_name": "Pokemon 1999 Topps Movie",
+          "product_name": "Ash and Company [Foil] #9",
+          "variant_labels": [
+            "Foil"
+          ],
+          "validation": {
+            "ok": false,
+            "reason": "not_pricecharting_promo_console"
+          }
+        },
+        {
+          "source_url": "https://www.pricecharting.com/game/pokemon-1999-topps-movie/ash-and-company-rainbow-foil-9",
+          "product_id": "3560750",
+          "console_name": "Pokemon 1999 Topps Movie",
+          "product_name": "Ash and Company [Rainbow Foil] #9",
+          "variant_labels": [
+            "Rainbow Foil"
+          ],
+          "validation": {
+            "ok": false,
+            "reason": "not_pricecharting_promo_console"
+          }
+        },
+        {
+          "source_url": "https://www.pricecharting.com/game/pokemon-1999-topps-movie/ashs-sacrifice-36",
+          "product_id": "3560831",
+          "console_name": "Pokemon 1999 Topps Movie",
+          "product_name": "Ash's Sacrifice #36",
+          "variant_labels": [],
+          "validation": {
+            "ok": false,
+            "reason": "not_pricecharting_promo_console"
+          }
+        },
+        {
+          "source_url": "https://www.pricecharting.com/game/pokemon-1999-topps-movie/ashs-sacrifice-foil-36",
+          "product_id": "3560832",
+          "console_name": "Pokemon 1999 Topps Movie",
+          "product_name": "Ash's Sacrifice [Foil] #36",
+          "variant_labels": [
+            "Foil"
+          ],
+          "validation": {
+            "ok": false,
+            "reason": "not_pricecharting_promo_console"
+          }
+        },
+        {
+          "source_url": "https://www.pricecharting.com/game/pokemon-1999-topps-movie/ashs-sacrifice-rainbow-foil-36",
+          "product_id": "3560833",
+          "console_name": "Pokemon 1999 Topps Movie",
+          "product_name": "Ash's Sacrifice [Rainbow Foil] #36",
+          "variant_labels": [
+            "Rainbow Foil"
+          ],
+          "validation": {
+            "ok": false,
+            "reason": "not_pricecharting_promo_console"
+          }
+        }
+      ]
+    },
+    {
+      "status": "no_exact_promo_match",
+      "fact": {
+        "gap_type": "finish_second_source_needed",
+        "fact_type": "printing_finish",
+        "set_key": "smp",
+        "set_name": "SM Black Star Promos",
+        "card_number": "SM200",
+        "card_name": "Snubbull",
+        "finish_key": "cosmos",
+        "status": "human_source_verified",
+        "sources": [
+          "thepricedex_price_list"
+        ],
+        "source_authorities": [
+          "thepricedex.com"
+        ],
+        "source_kinds": [
+          "marketplace_checklist"
+        ],
+        "evidence_urls": [
+          "https://www.thepricedex.com/set/smp/sm-black-star-promos/price-list"
+        ],
+        "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+      },
+      "valid_match_count": 0,
+      "reviewed_candidates": [
+        {
+          "source_url": "https://www.pricecharting.com/game/pokemon-1998-kfc/charizard-6",
+          "product_id": "7569343",
+          "console_name": "Pokemon 1998 KFC",
+          "product_name": "Charizard #6",
+          "variant_labels": [],
+          "validation": {
+            "ok": false,
+            "reason": "not_pricecharting_promo_console"
+          }
+        },
+        {
+          "source_url": "https://www.pricecharting.com/game/pokemon-1998-kfc/dragonite-149",
+          "product_id": "7569401",
+          "console_name": "Pokemon 1998 KFC",
+          "product_name": "Dragonite #149",
+          "variant_labels": [],
+          "validation": {
+            "ok": false,
+            "reason": "not_pricecharting_promo_console"
+          }
+        },
+        {
+          "source_url": "https://www.pricecharting.com/game/pokemon-1998-kfc/ivysaur-2",
+          "product_id": "7569338",
+          "console_name": "Pokemon 1998 KFC",
+          "product_name": "Ivysaur #2",
+          "variant_labels": [],
+          "validation": {
+            "ok": false,
+            "reason": "not_pricecharting_promo_console"
+          }
+        },
+        {
+          "source_url": "https://www.pricecharting.com/game/pokemon-1998-kfc/onix-95",
+          "product_id": "7569353",
+          "console_name": "Pokemon 1998 KFC",
+          "product_name": "Onix #95",
+          "variant_labels": [],
+          "validation": {
+            "ok": false,
+            "reason": "not_pricecharting_promo_console"
+          }
+        },
+        {
+          "source_url": "https://www.pricecharting.com/game/pokemon-1998-kfc/pikachu-25",
+          "product_id": "7569349",
+          "console_name": "Pokemon 1998 KFC",
+          "product_name": "Pikachu #25",
+          "variant_labels": [],
+          "validation": {
+            "ok": false,
+            "reason": "not_pricecharting_promo_console"
+          }
+        },
+        {
+          "source_url": "https://www.pricecharting.com/game/pokemon-1998-kfc/scyther-123",
+          "product_id": "7569358",
+          "console_name": "Pokemon 1998 KFC",
+          "product_name": "Scyther #123",
+          "variant_labels": [],
+          "validation": {
+            "ok": false,
+            "reason": "not_pricecharting_promo_console"
+          }
+        },
+        {
+          "source_url": "https://www.pricecharting.com/game/pokemon-1998-kfc/snorlax-143",
+          "product_id": "7569365",
+          "console_name": "Pokemon 1998 KFC",
+          "product_name": "Snorlax #143",
+          "variant_labels": [],
+          "validation": {
+            "ok": false,
+            "reason": "not_pricecharting_promo_console"
+          }
+        },
+        {
+          "source_url": "https://www.pricecharting.com/game/pokemon-1999-topps-movie/a-call-to-arms-16",
+          "product_id": "3560771",
+          "console_name": "Pokemon 1999 Topps Movie",
+          "product_name": "A Call to Arms #16",
+          "variant_labels": [],
+          "validation": {
+            "ok": false,
+            "reason": "not_pricecharting_promo_console"
+          }
+        },
+        {
+          "source_url": "https://www.pricecharting.com/game/pokemon-1999-topps-movie/a-call-to-arms-foil-16",
+          "product_id": "3560772",
+          "console_name": "Pokemon 1999 Topps Movie",
+          "product_name": "A Call to Arms [Foil] #16",
+          "variant_labels": [
+            "Foil"
+          ],
+          "validation": {
+            "ok": false,
+            "reason": "not_pricecharting_promo_console"
+          }
+        },
+        {
+          "source_url": "https://www.pricecharting.com/game/pokemon-1999-topps-movie/a-call-to-arms-rainbow-foil-16",
+          "product_id": "3560773",
+          "console_name": "Pokemon 1999 Topps Movie",
+          "product_name": "A Call to Arms [Rainbow Foil] #16",
+          "variant_labels": [
+            "Rainbow Foil"
+          ],
+          "validation": {
+            "ok": false,
+            "reason": "not_pricecharting_promo_console"
+          }
+        },
+        {
+          "source_url": "https://www.pricecharting.com/game/pokemon-1999-topps-movie/a-great-day-58",
+          "product_id": "3560910",
+          "console_name": "Pokemon 1999 Topps Movie",
+          "product_name": "A Great Day #58",
+          "variant_labels": [],
+          "validation": {
+            "ok": false,
+            "reason": "not_pricecharting_promo_console"
+          }
+        },
+        {
+          "source_url": "https://www.pricecharting.com/game/pokemon-1999-topps-movie/a-great-day-corrected-58",
+          "product_id": "3560911",
+          "console_name": "Pokemon 1999 Topps Movie",
+          "product_name": "A Great Day [Corrected] #58",
+          "variant_labels": [
+            "Corrected"
+          ],
+          "validation": {
+            "ok": false,
+            "reason": "not_pricecharting_promo_console"
+          }
+        },
+        {
+          "source_url": "https://www.pricecharting.com/game/pokemon-1999-topps-movie/a-great-day-foil-58",
+          "product_id": "3560912",
+          "console_name": "Pokemon 1999 Topps Movie",
+          "product_name": "A Great Day [Foil] #58",
+          "variant_labels": [
+            "Foil"
+          ],
+          "validation": {
+            "ok": false,
+            "reason": "not_pricecharting_promo_console"
+          }
+        },
+        {
+          "source_url": "https://www.pricecharting.com/game/pokemon-1999-topps-movie/a-great-day-rainbow-foil-58",
+          "product_id": "3560913",
+          "console_name": "Pokemon 1999 Topps Movie",
+          "product_name": "A Great Day [Rainbow Foil] #58",
+          "variant_labels": [
+            "Rainbow Foil"
+          ],
+          "validation": {
+            "ok": false,
+            "reason": "not_pricecharting_promo_console"
+          }
+        },
+        {
+          "source_url": "https://www.pricecharting.com/game/pokemon-1999-topps-movie/ash-and-company-9",
+          "product_id": "3560748",
+          "console_name": "Pokemon 1999 Topps Movie",
+          "product_name": "Ash and Company #9",
+          "variant_labels": [],
+          "validation": {
+            "ok": false,
+            "reason": "not_pricecharting_promo_console"
+          }
+        },
+        {
+          "source_url": "https://www.pricecharting.com/game/pokemon-1999-topps-movie/ash-and-company-foil-9",
+          "product_id": "3560749",
+          "console_name": "Pokemon 1999 Topps Movie",
+          "product_name": "Ash and Company [Foil] #9",
+          "variant_labels": [
+            "Foil"
+          ],
+          "validation": {
+            "ok": false,
+            "reason": "not_pricecharting_promo_console"
+          }
+        },
+        {
+          "source_url": "https://www.pricecharting.com/game/pokemon-1999-topps-movie/ash-and-company-rainbow-foil-9",
+          "product_id": "3560750",
+          "console_name": "Pokemon 1999 Topps Movie",
+          "product_name": "Ash and Company [Rainbow Foil] #9",
+          "variant_labels": [
+            "Rainbow Foil"
+          ],
+          "validation": {
+            "ok": false,
+            "reason": "not_pricecharting_promo_console"
+          }
+        },
+        {
+          "source_url": "https://www.pricecharting.com/game/pokemon-1999-topps-movie/ashs-sacrifice-36",
+          "product_id": "3560831",
+          "console_name": "Pokemon 1999 Topps Movie",
+          "product_name": "Ash's Sacrifice #36",
+          "variant_labels": [],
+          "validation": {
+            "ok": false,
+            "reason": "not_pricecharting_promo_console"
+          }
+        },
+        {
+          "source_url": "https://www.pricecharting.com/game/pokemon-1999-topps-movie/ashs-sacrifice-foil-36",
+          "product_id": "3560832",
+          "console_name": "Pokemon 1999 Topps Movie",
+          "product_name": "Ash's Sacrifice [Foil] #36",
+          "variant_labels": [
+            "Foil"
+          ],
+          "validation": {
+            "ok": false,
+            "reason": "not_pricecharting_promo_console"
+          }
+        },
+        {
+          "source_url": "https://www.pricecharting.com/game/pokemon-1999-topps-movie/ashs-sacrifice-rainbow-foil-36",
+          "product_id": "3560833",
+          "console_name": "Pokemon 1999 Topps Movie",
+          "product_name": "Ash's Sacrifice [Rainbow Foil] #36",
+          "variant_labels": [
+            "Rainbow Foil"
+          ],
+          "validation": {
+            "ok": false,
+            "reason": "not_pricecharting_promo_console"
+          }
+        }
+      ]
+    },
+    {
+      "status": "no_exact_promo_match",
+      "fact": {
+        "gap_type": "finish_second_source_needed",
+        "fact_type": "printing_finish",
+        "set_key": "xyp",
+        "set_name": "XY Black Star Promos",
+        "card_number": "XY176",
+        "card_name": "Champions Festival",
+        "finish_key": "normal",
+        "status": "human_source_verified",
+        "sources": [
+          "thepricedex_price_list"
+        ],
+        "source_authorities": [
+          "thepricedex.com"
+        ],
+        "source_kinds": [
+          "marketplace_checklist"
+        ],
+        "evidence_urls": [
+          "https://www.thepricedex.com/set/xyp/xy-black-star-promos/price-list"
+        ],
+        "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+      },
+      "valid_match_count": 0,
+      "reviewed_candidates": [
+        {
+          "source_url": "https://www.pricecharting.com/game/pokemon-1998-kfc/charizard-6",
+          "product_id": "7569343",
+          "console_name": "Pokemon 1998 KFC",
+          "product_name": "Charizard #6",
+          "variant_labels": [],
+          "validation": {
+            "ok": false,
+            "reason": "not_pricecharting_promo_console"
+          }
+        },
+        {
+          "source_url": "https://www.pricecharting.com/game/pokemon-1998-kfc/dragonite-149",
+          "product_id": "7569401",
+          "console_name": "Pokemon 1998 KFC",
+          "product_name": "Dragonite #149",
+          "variant_labels": [],
+          "validation": {
+            "ok": false,
+            "reason": "not_pricecharting_promo_console"
+          }
+        },
+        {
+          "source_url": "https://www.pricecharting.com/game/pokemon-1998-kfc/ivysaur-2",
+          "product_id": "7569338",
+          "console_name": "Pokemon 1998 KFC",
+          "product_name": "Ivysaur #2",
+          "variant_labels": [],
+          "validation": {
+            "ok": false,
+            "reason": "not_pricecharting_promo_console"
+          }
+        },
+        {
+          "source_url": "https://www.pricecharting.com/game/pokemon-1998-kfc/onix-95",
+          "product_id": "7569353",
+          "console_name": "Pokemon 1998 KFC",
+          "product_name": "Onix #95",
+          "variant_labels": [],
+          "validation": {
+            "ok": false,
+            "reason": "not_pricecharting_promo_console"
+          }
+        },
+        {
+          "source_url": "https://www.pricecharting.com/game/pokemon-1998-kfc/pikachu-25",
+          "product_id": "7569349",
+          "console_name": "Pokemon 1998 KFC",
+          "product_name": "Pikachu #25",
+          "variant_labels": [],
+          "validation": {
+            "ok": false,
+            "reason": "not_pricecharting_promo_console"
+          }
+        },
+        {
+          "source_url": "https://www.pricecharting.com/game/pokemon-1998-kfc/scyther-123",
+          "product_id": "7569358",
+          "console_name": "Pokemon 1998 KFC",
+          "product_name": "Scyther #123",
+          "variant_labels": [],
+          "validation": {
+            "ok": false,
+            "reason": "not_pricecharting_promo_console"
+          }
+        },
+        {
+          "source_url": "https://www.pricecharting.com/game/pokemon-1998-kfc/snorlax-143",
+          "product_id": "7569365",
+          "console_name": "Pokemon 1998 KFC",
+          "product_name": "Snorlax #143",
+          "variant_labels": [],
+          "validation": {
+            "ok": false,
+            "reason": "not_pricecharting_promo_console"
+          }
+        },
+        {
+          "source_url": "https://www.pricecharting.com/game/pokemon-1999-topps-movie/a-call-to-arms-16",
+          "product_id": "3560771",
+          "console_name": "Pokemon 1999 Topps Movie",
+          "product_name": "A Call to Arms #16",
+          "variant_labels": [],
+          "validation": {
+            "ok": false,
+            "reason": "not_pricecharting_promo_console"
+          }
+        },
+        {
+          "source_url": "https://www.pricecharting.com/game/pokemon-1999-topps-movie/a-call-to-arms-foil-16",
+          "product_id": "3560772",
+          "console_name": "Pokemon 1999 Topps Movie",
+          "product_name": "A Call to Arms [Foil] #16",
+          "variant_labels": [
+            "Foil"
+          ],
+          "validation": {
+            "ok": false,
+            "reason": "not_pricecharting_promo_console"
+          }
+        },
+        {
+          "source_url": "https://www.pricecharting.com/game/pokemon-1999-topps-movie/a-call-to-arms-rainbow-foil-16",
+          "product_id": "3560773",
+          "console_name": "Pokemon 1999 Topps Movie",
+          "product_name": "A Call to Arms [Rainbow Foil] #16",
+          "variant_labels": [
+            "Rainbow Foil"
+          ],
+          "validation": {
+            "ok": false,
+            "reason": "not_pricecharting_promo_console"
+          }
+        },
+        {
+          "source_url": "https://www.pricecharting.com/game/pokemon-1999-topps-movie/a-great-day-58",
+          "product_id": "3560910",
+          "console_name": "Pokemon 1999 Topps Movie",
+          "product_name": "A Great Day #58",
+          "variant_labels": [],
+          "validation": {
+            "ok": false,
+            "reason": "not_pricecharting_promo_console"
+          }
+        },
+        {
+          "source_url": "https://www.pricecharting.com/game/pokemon-1999-topps-movie/a-great-day-corrected-58",
+          "product_id": "3560911",
+          "console_name": "Pokemon 1999 Topps Movie",
+          "product_name": "A Great Day [Corrected] #58",
+          "variant_labels": [
+            "Corrected"
+          ],
+          "validation": {
+            "ok": false,
+            "reason": "not_pricecharting_promo_console"
+          }
+        },
+        {
+          "source_url": "https://www.pricecharting.com/game/pokemon-1999-topps-movie/a-great-day-foil-58",
+          "product_id": "3560912",
+          "console_name": "Pokemon 1999 Topps Movie",
+          "product_name": "A Great Day [Foil] #58",
+          "variant_labels": [
+            "Foil"
+          ],
+          "validation": {
+            "ok": false,
+            "reason": "not_pricecharting_promo_console"
+          }
+        },
+        {
+          "source_url": "https://www.pricecharting.com/game/pokemon-1999-topps-movie/a-great-day-rainbow-foil-58",
+          "product_id": "3560913",
+          "console_name": "Pokemon 1999 Topps Movie",
+          "product_name": "A Great Day [Rainbow Foil] #58",
+          "variant_labels": [
+            "Rainbow Foil"
+          ],
+          "validation": {
+            "ok": false,
+            "reason": "not_pricecharting_promo_console"
+          }
+        },
+        {
+          "source_url": "https://www.pricecharting.com/game/pokemon-1999-topps-movie/ash-and-company-9",
+          "product_id": "3560748",
+          "console_name": "Pokemon 1999 Topps Movie",
+          "product_name": "Ash and Company #9",
+          "variant_labels": [],
+          "validation": {
+            "ok": false,
+            "reason": "not_pricecharting_promo_console"
+          }
+        },
+        {
+          "source_url": "https://www.pricecharting.com/game/pokemon-1999-topps-movie/ash-and-company-foil-9",
+          "product_id": "3560749",
+          "console_name": "Pokemon 1999 Topps Movie",
+          "product_name": "Ash and Company [Foil] #9",
+          "variant_labels": [
+            "Foil"
+          ],
+          "validation": {
+            "ok": false,
+            "reason": "not_pricecharting_promo_console"
+          }
+        },
+        {
+          "source_url": "https://www.pricecharting.com/game/pokemon-1999-topps-movie/ash-and-company-rainbow-foil-9",
+          "product_id": "3560750",
+          "console_name": "Pokemon 1999 Topps Movie",
+          "product_name": "Ash and Company [Rainbow Foil] #9",
+          "variant_labels": [
+            "Rainbow Foil"
+          ],
+          "validation": {
+            "ok": false,
+            "reason": "not_pricecharting_promo_console"
+          }
+        },
+        {
+          "source_url": "https://www.pricecharting.com/game/pokemon-1999-topps-movie/ashs-sacrifice-36",
+          "product_id": "3560831",
+          "console_name": "Pokemon 1999 Topps Movie",
+          "product_name": "Ash's Sacrifice #36",
+          "variant_labels": [],
+          "validation": {
+            "ok": false,
+            "reason": "not_pricecharting_promo_console"
+          }
+        },
+        {
+          "source_url": "https://www.pricecharting.com/game/pokemon-1999-topps-movie/ashs-sacrifice-foil-36",
+          "product_id": "3560832",
+          "console_name": "Pokemon 1999 Topps Movie",
+          "product_name": "Ash's Sacrifice [Foil] #36",
+          "variant_labels": [
+            "Foil"
+          ],
+          "validation": {
+            "ok": false,
+            "reason": "not_pricecharting_promo_console"
+          }
+        },
+        {
+          "source_url": "https://www.pricecharting.com/game/pokemon-1999-topps-movie/ashs-sacrifice-rainbow-foil-36",
+          "product_id": "3560833",
+          "console_name": "Pokemon 1999 Topps Movie",
+          "product_name": "Ash's Sacrifice [Rainbow Foil] #36",
+          "variant_labels": [
+            "Rainbow Foil"
+          ],
+          "validation": {
+            "ok": false,
+            "reason": "not_pricecharting_promo_console"
+          }
+        }
+      ]
+    },
+    {
+      "status": "no_exact_promo_match",
+      "fact": {
+        "gap_type": "finish_second_source_needed",
+        "fact_type": "printing_finish",
+        "set_key": "xyp",
+        "set_name": "XY Black Star Promos",
+        "card_number": "XY202",
+        "card_name": "Pikachu",
+        "finish_key": "holo",
+        "status": "human_source_verified",
+        "sources": [
+          "thepricedex_price_list"
+        ],
+        "source_authorities": [
+          "thepricedex.com"
+        ],
+        "source_kinds": [
+          "marketplace_checklist"
+        ],
+        "evidence_urls": [
+          "https://www.thepricedex.com/set/xyp/xy-black-star-promos/price-list"
+        ],
+        "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+      },
+      "valid_match_count": 0,
+      "reviewed_candidates": [
+        {
+          "source_url": "https://www.pricecharting.com/game/pokemon-1998-kfc/charizard-6",
+          "product_id": "7569343",
+          "console_name": "Pokemon 1998 KFC",
+          "product_name": "Charizard #6",
+          "variant_labels": [],
+          "validation": {
+            "ok": false,
+            "reason": "not_pricecharting_promo_console"
+          }
+        },
+        {
+          "source_url": "https://www.pricecharting.com/game/pokemon-1998-kfc/dragonite-149",
+          "product_id": "7569401",
+          "console_name": "Pokemon 1998 KFC",
+          "product_name": "Dragonite #149",
+          "variant_labels": [],
+          "validation": {
+            "ok": false,
+            "reason": "not_pricecharting_promo_console"
+          }
+        },
+        {
+          "source_url": "https://www.pricecharting.com/game/pokemon-1998-kfc/ivysaur-2",
+          "product_id": "7569338",
+          "console_name": "Pokemon 1998 KFC",
+          "product_name": "Ivysaur #2",
+          "variant_labels": [],
+          "validation": {
+            "ok": false,
+            "reason": "not_pricecharting_promo_console"
+          }
+        },
+        {
+          "source_url": "https://www.pricecharting.com/game/pokemon-1998-kfc/onix-95",
+          "product_id": "7569353",
+          "console_name": "Pokemon 1998 KFC",
+          "product_name": "Onix #95",
+          "variant_labels": [],
+          "validation": {
+            "ok": false,
+            "reason": "not_pricecharting_promo_console"
+          }
+        },
+        {
+          "source_url": "https://www.pricecharting.com/game/pokemon-1998-kfc/pikachu-25",
+          "product_id": "7569349",
+          "console_name": "Pokemon 1998 KFC",
+          "product_name": "Pikachu #25",
+          "variant_labels": [],
+          "validation": {
+            "ok": false,
+            "reason": "not_pricecharting_promo_console"
+          }
+        },
+        {
+          "source_url": "https://www.pricecharting.com/game/pokemon-1998-kfc/scyther-123",
+          "product_id": "7569358",
+          "console_name": "Pokemon 1998 KFC",
+          "product_name": "Scyther #123",
+          "variant_labels": [],
+          "validation": {
+            "ok": false,
+            "reason": "not_pricecharting_promo_console"
+          }
+        },
+        {
+          "source_url": "https://www.pricecharting.com/game/pokemon-1998-kfc/snorlax-143",
+          "product_id": "7569365",
+          "console_name": "Pokemon 1998 KFC",
+          "product_name": "Snorlax #143",
+          "variant_labels": [],
+          "validation": {
+            "ok": false,
+            "reason": "not_pricecharting_promo_console"
+          }
+        },
+        {
+          "source_url": "https://www.pricecharting.com/game/pokemon-1999-topps-movie/a-call-to-arms-16",
+          "product_id": "3560771",
+          "console_name": "Pokemon 1999 Topps Movie",
+          "product_name": "A Call to Arms #16",
+          "variant_labels": [],
+          "validation": {
+            "ok": false,
+            "reason": "not_pricecharting_promo_console"
+          }
+        },
+        {
+          "source_url": "https://www.pricecharting.com/game/pokemon-1999-topps-movie/a-call-to-arms-foil-16",
+          "product_id": "3560772",
+          "console_name": "Pokemon 1999 Topps Movie",
+          "product_name": "A Call to Arms [Foil] #16",
+          "variant_labels": [
+            "Foil"
+          ],
+          "validation": {
+            "ok": false,
+            "reason": "not_pricecharting_promo_console"
+          }
+        },
+        {
+          "source_url": "https://www.pricecharting.com/game/pokemon-1999-topps-movie/a-call-to-arms-rainbow-foil-16",
+          "product_id": "3560773",
+          "console_name": "Pokemon 1999 Topps Movie",
+          "product_name": "A Call to Arms [Rainbow Foil] #16",
+          "variant_labels": [
+            "Rainbow Foil"
+          ],
+          "validation": {
+            "ok": false,
+            "reason": "not_pricecharting_promo_console"
+          }
+        },
+        {
+          "source_url": "https://www.pricecharting.com/game/pokemon-1999-topps-movie/a-great-day-58",
+          "product_id": "3560910",
+          "console_name": "Pokemon 1999 Topps Movie",
+          "product_name": "A Great Day #58",
+          "variant_labels": [],
+          "validation": {
+            "ok": false,
+            "reason": "not_pricecharting_promo_console"
+          }
+        },
+        {
+          "source_url": "https://www.pricecharting.com/game/pokemon-1999-topps-movie/a-great-day-corrected-58",
+          "product_id": "3560911",
+          "console_name": "Pokemon 1999 Topps Movie",
+          "product_name": "A Great Day [Corrected] #58",
+          "variant_labels": [
+            "Corrected"
+          ],
+          "validation": {
+            "ok": false,
+            "reason": "not_pricecharting_promo_console"
+          }
+        },
+        {
+          "source_url": "https://www.pricecharting.com/game/pokemon-1999-topps-movie/a-great-day-foil-58",
+          "product_id": "3560912",
+          "console_name": "Pokemon 1999 Topps Movie",
+          "product_name": "A Great Day [Foil] #58",
+          "variant_labels": [
+            "Foil"
+          ],
+          "validation": {
+            "ok": false,
+            "reason": "not_pricecharting_promo_console"
+          }
+        },
+        {
+          "source_url": "https://www.pricecharting.com/game/pokemon-1999-topps-movie/a-great-day-rainbow-foil-58",
+          "product_id": "3560913",
+          "console_name": "Pokemon 1999 Topps Movie",
+          "product_name": "A Great Day [Rainbow Foil] #58",
+          "variant_labels": [
+            "Rainbow Foil"
+          ],
+          "validation": {
+            "ok": false,
+            "reason": "not_pricecharting_promo_console"
+          }
+        },
+        {
+          "source_url": "https://www.pricecharting.com/game/pokemon-1999-topps-movie/ash-and-company-9",
+          "product_id": "3560748",
+          "console_name": "Pokemon 1999 Topps Movie",
+          "product_name": "Ash and Company #9",
+          "variant_labels": [],
+          "validation": {
+            "ok": false,
+            "reason": "not_pricecharting_promo_console"
+          }
+        },
+        {
+          "source_url": "https://www.pricecharting.com/game/pokemon-1999-topps-movie/ash-and-company-foil-9",
+          "product_id": "3560749",
+          "console_name": "Pokemon 1999 Topps Movie",
+          "product_name": "Ash and Company [Foil] #9",
+          "variant_labels": [
+            "Foil"
+          ],
+          "validation": {
+            "ok": false,
+            "reason": "not_pricecharting_promo_console"
+          }
+        },
+        {
+          "source_url": "https://www.pricecharting.com/game/pokemon-1999-topps-movie/ash-and-company-rainbow-foil-9",
+          "product_id": "3560750",
+          "console_name": "Pokemon 1999 Topps Movie",
+          "product_name": "Ash and Company [Rainbow Foil] #9",
+          "variant_labels": [
+            "Rainbow Foil"
+          ],
+          "validation": {
+            "ok": false,
+            "reason": "not_pricecharting_promo_console"
+          }
+        },
+        {
+          "source_url": "https://www.pricecharting.com/game/pokemon-1999-topps-movie/ashs-sacrifice-36",
+          "product_id": "3560831",
+          "console_name": "Pokemon 1999 Topps Movie",
+          "product_name": "Ash's Sacrifice #36",
+          "variant_labels": [],
+          "validation": {
+            "ok": false,
+            "reason": "not_pricecharting_promo_console"
+          }
+        },
+        {
+          "source_url": "https://www.pricecharting.com/game/pokemon-1999-topps-movie/ashs-sacrifice-foil-36",
+          "product_id": "3560832",
+          "console_name": "Pokemon 1999 Topps Movie",
+          "product_name": "Ash's Sacrifice [Foil] #36",
+          "variant_labels": [
+            "Foil"
+          ],
+          "validation": {
+            "ok": false,
+            "reason": "not_pricecharting_promo_console"
+          }
+        },
+        {
+          "source_url": "https://www.pricecharting.com/game/pokemon-1999-topps-movie/ashs-sacrifice-rainbow-foil-36",
+          "product_id": "3560833",
+          "console_name": "Pokemon 1999 Topps Movie",
+          "product_name": "Ash's Sacrifice [Rainbow Foil] #36",
+          "variant_labels": [
+            "Rainbow Foil"
+          ],
+          "validation": {
+            "ok": false,
+            "reason": "not_pricecharting_promo_console"
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "status": "no_validated_match",
+  "fact": {
+    "gap_type": "finish_second_source_needed",
+    "fact_type": "printing_finish",
+    "set_key": "me2",
+    "set_name": "Phantasmal Flames",
+    "card_number": "3",
+    "card_name": "Vileplume",
+    "finish_key": "cosmos",
+    "status": "human_source_verified",
+    "sources": [
+      "thepricedex_price_list"
+    ],
+    "source_authorities": [
+      "thepricedex.com"
+    ],
+    "source_kinds": [
+      "marketplace_checklist"
+    ],
+    "evidence_urls": [],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "attempts": [
+    {
+      "query": "Pokemon Phantasmal Flames Vileplume 3 cosmos holo",
+      "url": "https://www.pricecharting.com/search-products?q=Pokemon%20Phantasmal%20Flames%20Vileplume%203%20cosmos%20holo&type=prices",
+      "error": "Fetch failed 403 Forbidden: https://www.pricecharting.com/search-products?q=Pokemon%20Phantasmal%20Flames%20Vileplume%203%20cosmos%20holo&type=prices"
+    },
+    {
+      "query": "Pokemon Phantasmal Flames Vileplume 3 cosmos",
+      "url": "https://www.pricecharting.com/search-products?q=Pokemon%20Phantasmal%20Flames%20Vileplume%203%20cosmos&type=prices",
+      "error": "Fetch failed 403 Forbidden: https://www.pricecharting.com/search-products?q=Pokemon%20Phantasmal%20Flames%20Vileplume%203%20cosmos&type=prices"
+    }
+  ]
+}

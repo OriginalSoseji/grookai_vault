@@ -1,0 +1,58 @@
+{
+  "status": "validated",
+  "fact": {
+    "gap_type": "finish_second_source_needed",
+    "fact_type": "printing_finish",
+    "set_key": "swsh10",
+    "set_name": "Astral Radiance",
+    "card_number": "138",
+    "card_name": "Cyllene",
+    "finish_key": "stamped",
+    "status": "human_source_verified",
+    "sources": [
+      "thepricedex_price_list"
+    ],
+    "source_authorities": [
+      "thepricedex.com"
+    ],
+    "source_kinds": [
+      "marketplace_checklist"
+    ],
+    "evidence_urls": [],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "query": "Pokemon Astral Radiance Cyllene 138 stamp",
+  "search_url": "https://www.pricecharting.com/search-products?q=Pokemon%20Astral%20Radiance%20Cyllene%20138%20stamp&type=prices",
+  "source_url": "https://www.pricecharting.com/game/pokemon-astral-radiance/cyllene-league-stamp-138",
+  "title": "Cyllene [League Stamp] #138 Prices | Pokemon Astral Radiance | Pokemon Cards",
+  "title_parts": {
+    "card_name": "Cyllene",
+    "variant_label": "League Stamp",
+    "card_number": "138",
+    "set_name": "Astral Radiance"
+  },
+  "attempts": [
+    {
+      "query": "Pokemon Astral Radiance Cyllene 138 stamped",
+      "url": "https://www.pricecharting.com/search-products?q=Pokemon%20Astral%20Radiance%20Cyllene%20138%20stamped&type=prices",
+      "error": "Fetch failed 403 Forbidden: https://www.pricecharting.com/search-products?q=Pokemon%20Astral%20Radiance%20Cyllene%20138%20stamped&type=prices"
+    },
+    {
+      "query": "Pokemon Astral Radiance Cyllene 138 stamp",
+      "url": "https://www.pricecharting.com/search-products?q=Pokemon%20Astral%20Radiance%20Cyllene%20138%20stamp&type=prices",
+      "parsed": {
+        "title": "Cyllene [League Stamp] #138 Prices | Pokemon Astral Radiance | Pokemon Cards",
+        "source_url": "https://www.pricecharting.com/game/pokemon-astral-radiance/cyllene-league-stamp-138"
+      },
+      "validation": {
+        "ok": true,
+        "titleParts": {
+          "card_name": "Cyllene",
+          "variant_label": "League Stamp",
+          "card_number": "138",
+          "set_name": "Astral Radiance"
+        }
+      }
+    }
+  ]
+}

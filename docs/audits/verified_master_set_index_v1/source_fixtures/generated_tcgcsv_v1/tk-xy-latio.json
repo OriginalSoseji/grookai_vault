@@ -1,0 +1,31 @@
+{
+  "fixture_version": "VERIFIED_MASTER_SET_INDEX_V1_HUMAN_SOURCE_FIXTURE_GENERATED",
+  "source_key": "tcgcsv_finish_tk-xy-latio",
+  "source_kind": "marketplace_checklist",
+  "source_url": "https://tcgcsv.com/docs",
+  "source_status": "available_generated",
+  "set_key": "tk-xy-latio",
+  "set_name": "XY trainer Kit (Latios)",
+  "retrieved_at": "2026-06-08T03:01:25.402Z",
+  "raw_snapshot_ref": "generated_fixture:tcgcsv:tk-xy-latio:2026-06-08T03:01:25.402Z",
+  "generation_note": "Generated from TCGCSV TCGplayer catalog product and price subtype data. Exact finish evidence only.",
+  "records": [
+    {
+      "source_key": "tcgcsv_tcgplayer_catalog",
+      "source_kind": "marketplace_checklist",
+      "source_url": "https://www.tcgplayer.com/product/98368/pokemon-xy-trainer-kit-latias-and-latios-latios-30-holo",
+      "set_key": "tk-xy-latio",
+      "set_name": "XY trainer Kit (Latios)",
+      "card_number": "30",
+      "card_name": "Latios",
+      "finish_key": "holo",
+      "rarity": "Common",
+      "evidence_type": "finish_presence",
+      "evidence_label": "TCGCSV/TCGplayer product 98368 price subtype Holofoil",
+      "language": "en",
+      "retrieved_at": "2026-06-08T03:01:25.402Z",
+      "raw_snapshot_ref": "tcgcsv:1536:98368:Holofoil",
+      "notes": "Generated from TCGCSV TCGplayer products joined to price subTypeName. Exact set, number, name, and finish match only."
+    }
+  ]
+}

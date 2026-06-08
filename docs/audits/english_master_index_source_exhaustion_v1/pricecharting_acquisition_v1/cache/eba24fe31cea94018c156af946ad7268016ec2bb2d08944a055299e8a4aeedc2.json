@@ -1,0 +1,43 @@
+{
+  "status": "no_validated_match",
+  "fact": {
+    "gap_type": "finish_second_source_needed",
+    "fact_type": "printing_finish",
+    "set_key": "basep",
+    "set_name": "Wizards Black Star Promos",
+    "card_number": "1",
+    "card_name": "Pikachu",
+    "finish_key": "first_edition_normal",
+    "status": "human_source_verified",
+    "sources": [
+      "thepricedex_price_list"
+    ],
+    "source_authorities": [
+      "thepricedex.com"
+    ],
+    "source_kinds": [
+      "marketplace_checklist"
+    ],
+    "evidence_urls": [],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "attempts": [
+    {
+      "query": "Pokemon Wizards Black Star Promos Pikachu 1 1st edition",
+      "url": "https://www.pricecharting.com/search-products?q=Pokemon%20Wizards%20Black%20Star%20Promos%20Pikachu%201%201st%20edition&type=prices",
+      "error": "Fetch failed 403 Forbidden: https://www.pricecharting.com/search-products?q=Pokemon%20Wizards%20Black%20Star%20Promos%20Pikachu%201%201st%20edition&type=prices"
+    },
+    {
+      "query": "Pokemon Wizards Black Star Promos Pikachu 1 first edition",
+      "url": "https://www.pricecharting.com/search-products?q=Pokemon%20Wizards%20Black%20Star%20Promos%20Pikachu%201%20first%20edition&type=prices",
+      "parsed": {
+        "title": "Pokemon Wizards Black Star Promos Pikachu 1 First Edition Prices | Pokemon Wizards Black Star Promos Pikachu 1 First Edition List",
+        "source_url": "https://www.pricecharting.com/search-products?q=pokemon+wizards+black+star+promos+pikachu+1+first+edition&type=prices"
+      },
+      "validation": {
+        "ok": false,
+        "reason": "title_pattern_not_supported"
+      }
+    }
+  ]
+}

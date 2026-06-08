@@ -1,0 +1,549 @@
+{
+  "status": "api_no_validated_match",
+  "fact": {
+    "gap_type": "finish_second_source_needed",
+    "fact_type": "printing_finish",
+    "set_key": "smp",
+    "set_name": "SM Black Star Promos",
+    "card_number": "SM199",
+    "card_name": "Psyduck",
+    "finish_key": "cosmos",
+    "status": "human_source_verified",
+    "sources": [
+      "thepricedex_price_list"
+    ],
+    "source_authorities": [
+      "thepricedex.com"
+    ],
+    "source_kinds": [
+      "marketplace_checklist"
+    ],
+    "evidence_urls": [
+      "https://www.thepricedex.com/set/smp/sm-black-star-promos/price-list"
+    ],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "attempts": [
+    {
+      "query": "Pokemon SM Black Star Promos Psyduck SM199 cosmos holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20SM%20Black%20Star%20Promos%20Psyduck%20SM199%20cosmos%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "844888",
+      "product_name": "Psyduck #SM199",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon SM Black Star Promos Psyduck SM199 cosmos holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20SM%20Black%20Star%20Promos%20Psyduck%20SM199%20cosmos%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5923782",
+      "product_name": "Psyduck [Stamped] #SM199",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Stamped"
+      }
+    },
+    {
+      "query": "Pokemon SM Black Star Promos Psyduck SM199 cosmos holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20SM%20Black%20Star%20Promos%20Psyduck%20SM199%20cosmos%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10710671",
+      "product_name": "Psyduck [Cosmos Holo] #7",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:7"
+      }
+    },
+    {
+      "query": "Pokemon SM Black Star Promos Psyduck SM199 cosmos holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20SM%20Black%20Star%20Promos%20Psyduck%20SM199%20cosmos%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5067571",
+      "product_name": "Psyduck #286/SM-P",
+      "console_name": "Pokemon Japanese Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:286/SM-P"
+      }
+    },
+    {
+      "query": "Pokemon SM Black Star Promos Psyduck SM199 cosmos holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20SM%20Black%20Star%20Promos%20Psyduck%20SM199%20cosmos%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "926234",
+      "product_name": "Psyduck [Reverse Holo] #74",
+      "console_name": "Pokemon Triumphant",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:74"
+      }
+    },
+    {
+      "query": "Pokemon SM Black Star Promos Psyduck SM199 cosmos holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20SM%20Black%20Star%20Promos%20Psyduck%20SM199%20cosmos%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "806049",
+      "product_name": "Psyduck [Reverse Holo] #87",
+      "console_name": "Pokemon Platinum",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:87"
+      }
+    },
+    {
+      "query": "Pokemon SM Black Star Promos Psyduck SM199 cosmos holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20SM%20Black%20Star%20Promos%20Psyduck%20SM199%20cosmos%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "2293995",
+      "product_name": "Psyduck [Reverse Holo] #104",
+      "console_name": "Pokemon Aquapolis",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:104"
+      }
+    },
+    {
+      "query": "Pokemon SM Black Star Promos Psyduck SM199 cosmos holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20SM%20Black%20Star%20Promos%20Psyduck%20SM199%20cosmos%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "849361",
+      "product_name": "Psyduck [Reverse Holo] #73",
+      "console_name": "Pokemon Sandstorm",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:73"
+      }
+    },
+    {
+      "query": "Pokemon SM Black Star Promos Psyduck SM199 cosmos holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20SM%20Black%20Star%20Promos%20Psyduck%20SM199%20cosmos%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "959629",
+      "product_name": "Psyduck [Reverse Holo] #16",
+      "console_name": "Pokemon BREAKpoint",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:16"
+      }
+    },
+    {
+      "query": "Pokemon SM Black Star Promos Psyduck SM199 cosmos holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20SM%20Black%20Star%20Promos%20Psyduck%20SM199%20cosmos%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9432991",
+      "product_name": "Misty's Psyduck [Reverse Holo] #45",
+      "console_name": "Pokemon Destined Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:45"
+      }
+    },
+    {
+      "query": "Pokemon SM Black Star Promos Psyduck SM199 cosmos holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20SM%20Black%20Star%20Promos%20Psyduck%20SM199%20cosmos%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "889270",
+      "product_name": "Psyduck [Reverse Holo] #81",
+      "console_name": "Pokemon Holon Phantoms",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:81"
+      }
+    },
+    {
+      "query": "Pokemon SM Black Star Promos Psyduck SM199 cosmos holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20SM%20Black%20Star%20Promos%20Psyduck%20SM199%20cosmos%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "956699",
+      "product_name": "Psyduck [Reverse Holo] #33",
+      "console_name": "Pokemon Boundaries Crossed",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:33"
+      }
+    },
+    {
+      "query": "Pokemon SM Black Star Promos Psyduck SM199 cosmos holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20SM%20Black%20Star%20Promos%20Psyduck%20SM199%20cosmos%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "956698",
+      "product_name": "Psyduck [Reverse Holo] #32",
+      "console_name": "Pokemon Boundaries Crossed",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:32"
+      }
+    },
+    {
+      "query": "Pokemon SM Black Star Promos Psyduck SM199 cosmos holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20SM%20Black%20Star%20Promos%20Psyduck%20SM199%20cosmos%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "921121",
+      "product_name": "Psyduck [Reverse Holo] #100",
+      "console_name": "Pokemon Secret Wonders",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:100"
+      }
+    },
+    {
+      "query": "Pokemon SM Black Star Promos Psyduck SM199 cosmos holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20SM%20Black%20Star%20Promos%20Psyduck%20SM199%20cosmos%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "806909",
+      "product_name": "Psyduck [Reverse Holo] #28",
+      "console_name": "Pokemon Sun & Moon",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:28"
+      }
+    },
+    {
+      "query": "Pokemon SM Black Star Promos Psyduck SM199 cosmos holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20SM%20Black%20Star%20Promos%20Psyduck%20SM199%20cosmos%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "2253768",
+      "product_name": "Psyduck [Reverse Holo] #88",
+      "console_name": "Pokemon Legendary Collection",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:88"
+      }
+    },
+    {
+      "query": "Pokemon SM Black Star Promos Psyduck SM199 cosmos holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20SM%20Black%20Star%20Promos%20Psyduck%20SM199%20cosmos%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "964192",
+      "product_name": "Psyduck [Reverse Holo] #11",
+      "console_name": "Pokemon Hidden Fates",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:11"
+      }
+    },
+    {
+      "query": "Pokemon SM Black Star Promos Psyduck SM199 cosmos holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20SM%20Black%20Star%20Promos%20Psyduck%20SM199%20cosmos%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "964544",
+      "product_name": "Psyduck [Reverse Holo] #40",
+      "console_name": "Pokemon Cosmic Eclipse",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:40"
+      }
+    },
+    {
+      "query": "Pokemon SM Black Star Promos Psyduck SM199 cosmos holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20SM%20Black%20Star%20Promos%20Psyduck%20SM199%20cosmos%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "963018",
+      "product_name": "Psyduck [Reverse Holo] #26",
+      "console_name": "Pokemon Team Up",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:26"
+      }
+    },
+    {
+      "query": "Pokemon SM Black Star Promos Psyduck SM199 cosmos holo",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20SM%20Black%20Star%20Promos%20Psyduck%20SM199%20cosmos%20holo",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5809639",
+      "product_name": "Psyduck [Reverse Holo] #54",
+      "console_name": "Pokemon Scarlet & Violet 151",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:54"
+      }
+    },
+    {
+      "query": "Pokemon SM Black Star Promos Psyduck SM199 cosmos",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20SM%20Black%20Star%20Promos%20Psyduck%20SM199%20cosmos",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "844888",
+      "product_name": "Psyduck #SM199",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon SM Black Star Promos Psyduck SM199 cosmos",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20SM%20Black%20Star%20Promos%20Psyduck%20SM199%20cosmos",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5923782",
+      "product_name": "Psyduck [Stamped] #SM199",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Stamped"
+      }
+    },
+    {
+      "query": "Pokemon SM Black Star Promos Psyduck SM199 cosmos",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20SM%20Black%20Star%20Promos%20Psyduck%20SM199%20cosmos",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10710671",
+      "product_name": "Psyduck [Cosmos Holo] #7",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:7"
+      }
+    },
+    {
+      "query": "Pokemon SM Black Star Promos Psyduck SM199 cosmos",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20SM%20Black%20Star%20Promos%20Psyduck%20SM199%20cosmos",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5067571",
+      "product_name": "Psyduck #286/SM-P",
+      "console_name": "Pokemon Japanese Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:286/SM-P"
+      }
+    },
+    {
+      "query": "Pokemon SM Black Star Promos Psyduck SM199 cosmos",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20SM%20Black%20Star%20Promos%20Psyduck%20SM199%20cosmos",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "643540",
+      "product_name": "Psyduck #20",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:20"
+      }
+    },
+    {
+      "query": "Pokemon SM Black Star Promos Psyduck SM199 cosmos",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20SM%20Black%20Star%20Promos%20Psyduck%20SM199%20cosmos",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10694670",
+      "product_name": "Psyduck #7",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:7"
+      }
+    },
+    {
+      "query": "Pokemon SM Black Star Promos Psyduck SM199 cosmos",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20SM%20Black%20Star%20Promos%20Psyduck%20SM199%20cosmos",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3472550",
+      "product_name": "Psyduck #9",
+      "console_name": "Pokemon Japanese Jet-Black Spirit",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:9"
+      }
+    },
+    {
+      "query": "Pokemon SM Black Star Promos Psyduck SM199 cosmos",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20SM%20Black%20Star%20Promos%20Psyduck%20SM199%20cosmos",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12645339",
+      "product_name": "Psyduck #9",
+      "console_name": "Pokemon Korean Jet Black Geist",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:9"
+      }
+    },
+    {
+      "query": "Pokemon SM Black Star Promos Psyduck SM199 cosmos",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20SM%20Black%20Star%20Promos%20Psyduck%20SM199%20cosmos",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11035332",
+      "product_name": "Litten #182/SM-P",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:182/SM-P"
+      }
+    },
+    {
+      "query": "Pokemon SM Black Star Promos Psyduck SM199 cosmos",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20SM%20Black%20Star%20Promos%20Psyduck%20SM199%20cosmos",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10287549",
+      "product_name": "Mewtwo #184/SM-P",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:184/SM-P"
+      }
+    },
+    {
+      "query": "Pokemon SM Black Star Promos Psyduck SM199 cosmos",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20SM%20Black%20Star%20Promos%20Psyduck%20SM199%20cosmos",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10366600",
+      "product_name": "Charizard #80/SM-P",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:80/SM-P"
+      }
+    },
+    {
+      "query": "Pokemon SM Black Star Promos Psyduck SM199 cosmos",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20SM%20Black%20Star%20Promos%20Psyduck%20SM199%20cosmos",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6985432",
+      "product_name": "Psyduck [1999-2000] #53",
+      "console_name": "Pokemon Fossil",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:53"
+      }
+    },
+    {
+      "query": "Pokemon SM Black Star Promos Psyduck SM199 cosmos",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20SM%20Black%20Star%20Promos%20Psyduck%20SM199%20cosmos",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9708511",
+      "product_name": "Eevee [KFC] #186/SM-P",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:186/SM-P"
+      }
+    },
+    {
+      "query": "Pokemon SM Black Star Promos Psyduck SM199 cosmos",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20SM%20Black%20Star%20Promos%20Psyduck%20SM199%20cosmos",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10523466",
+      "product_name": "SM-33  [Black] #99",
+      "console_name": "Star Wars 2025 Topps Chrome",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:99"
+      }
+    },
+    {
+      "query": "Pokemon SM Black Star Promos Psyduck SM199 cosmos",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20SM%20Black%20Star%20Promos%20Psyduck%20SM199%20cosmos",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10025743",
+      "product_name": "Charizard [KFC] #181/SM-P",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:181/SM-P"
+      }
+    },
+    {
+      "query": "Pokemon SM Black Star Promos Psyduck SM199 cosmos",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20SM%20Black%20Star%20Promos%20Psyduck%20SM199%20cosmos",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12564569",
+      "product_name": "Bounsweet [KFC] #180/SM-P",
+      "console_name": "Pokemon Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:180/SM-P"
+      }
+    },
+    {
+      "query": "Pokemon SM Black Star Promos Psyduck SM199 cosmos",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20SM%20Black%20Star%20Promos%20Psyduck%20SM199%20cosmos",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6055391",
+      "product_name": "Misty's Psyduck [Lv 18] #54",
+      "console_name": "Pokemon Japanese Leaders' Stadium",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:54"
+      }
+    },
+    {
+      "query": "Pokemon SM Black Star Promos Psyduck SM199 cosmos",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20SM%20Black%20Star%20Promos%20Psyduck%20SM199%20cosmos",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9432753",
+      "product_name": "Misty's Psyduck #45",
+      "console_name": "Pokemon Destined Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:45"
+      }
+    },
+    {
+      "query": "Pokemon SM Black Star Promos Psyduck SM199 cosmos",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20SM%20Black%20Star%20Promos%20Psyduck%20SM199%20cosmos",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9432900",
+      "product_name": "Misty's Psyduck #193",
+      "console_name": "Pokemon Destined Rivals",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:193"
+      }
+    },
+    {
+      "query": "Pokemon SM Black Star Promos Psyduck SM199 cosmos",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20SM%20Black%20Star%20Promos%20Psyduck%20SM199%20cosmos",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12310105",
+      "product_name": "SM-33 #CB-48",
+      "console_name": "Star Wars 2025 Topps Smugglers Outpost Chrome Black",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:CB-48"
+      }
+    }
+  ],
+  "source_lane": "pricecharting_api"
+}

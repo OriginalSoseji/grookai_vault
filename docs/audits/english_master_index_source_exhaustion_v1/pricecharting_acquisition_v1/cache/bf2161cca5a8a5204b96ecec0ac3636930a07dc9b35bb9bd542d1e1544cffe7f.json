@@ -1,0 +1,549 @@
+{
+  "status": "api_no_validated_match",
+  "fact": {
+    "gap_type": "finish_second_source_needed",
+    "fact_type": "printing_finish",
+    "set_key": "sm4",
+    "set_name": "Crimson Invasion",
+    "card_number": "95",
+    "card_name": "Gladion",
+    "finish_key": "stamped",
+    "status": "human_source_verified",
+    "sources": [
+      "thepricedex_price_list"
+    ],
+    "source_authorities": [
+      "thepricedex.com"
+    ],
+    "source_kinds": [
+      "marketplace_checklist"
+    ],
+    "evidence_urls": [
+      "https://www.thepricedex.com/set/sm4/crimson-invasion/price-list"
+    ],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "attempts": [
+    {
+      "query": "Pokemon Crimson Invasion Gladion 95 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Crimson%20Invasion%20Gladion%2095%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "961241",
+      "product_name": "Gladion #95",
+      "console_name": "Pokemon Crimson Invasion",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon Crimson Invasion Gladion 95 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Crimson%20Invasion%20Gladion%2095%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "961357",
+      "product_name": "Gladion [Reverse Holo] #95",
+      "console_name": "Pokemon Crimson Invasion",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Reverse Holo"
+      }
+    },
+    {
+      "query": "Pokemon Crimson Invasion Gladion 95 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Crimson%20Invasion%20Gladion%2095%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5790883",
+      "product_name": "Gladion [Regional Championships] #95",
+      "console_name": "Pokemon Crimson Invasion",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Regional Championships"
+      }
+    },
+    {
+      "query": "Pokemon Crimson Invasion Gladion 95 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Crimson%20Invasion%20Gladion%2095%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "961255",
+      "product_name": "Gladion #109",
+      "console_name": "Pokemon Crimson Invasion",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:109"
+      }
+    },
+    {
+      "query": "Pokemon Crimson Invasion Gladion 95 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Crimson%20Invasion%20Gladion%2095%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "961212",
+      "product_name": "Aron #65",
+      "console_name": "Pokemon Crimson Invasion",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:65"
+      }
+    },
+    {
+      "query": "Pokemon Crimson Invasion Gladion 95 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Crimson%20Invasion%20Gladion%2095%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "961160",
+      "product_name": "Numel #13",
+      "console_name": "Pokemon Crimson Invasion",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:13"
+      }
+    },
+    {
+      "query": "Pokemon Crimson Invasion Gladion 95 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Crimson%20Invasion%20Gladion%2095%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "961207",
+      "product_name": "Deino #60",
+      "console_name": "Pokemon Crimson Invasion",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:60"
+      }
+    },
+    {
+      "query": "Pokemon Crimson Invasion Gladion 95 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Crimson%20Invasion%20Gladion%2095%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6870164",
+      "product_name": "Gengar #38",
+      "console_name": "Pokemon Crimson Invasion",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:38"
+      }
+    },
+    {
+      "query": "Pokemon Crimson Invasion Gladion 95 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Crimson%20Invasion%20Gladion%2095%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5691819",
+      "product_name": "Bewear #56",
+      "console_name": "Pokemon Crimson Invasion",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:56"
+      }
+    },
+    {
+      "query": "Pokemon Crimson Invasion Gladion 95 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Crimson%20Invasion%20Gladion%2095%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "961149",
+      "product_name": "Kakuna #2",
+      "console_name": "Pokemon Crimson Invasion",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:2"
+      }
+    },
+    {
+      "query": "Pokemon Crimson Invasion Gladion 95 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Crimson%20Invasion%20Gladion%2095%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "961152",
+      "product_name": "Cacnea #5",
+      "console_name": "Pokemon Crimson Invasion",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:5"
+      }
+    },
+    {
+      "query": "Pokemon Crimson Invasion Gladion 95 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Crimson%20Invasion%20Gladion%2095%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "961148",
+      "product_name": "Weedle #1",
+      "console_name": "Pokemon Crimson Invasion",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:1"
+      }
+    },
+    {
+      "query": "Pokemon Crimson Invasion Gladion 95 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Crimson%20Invasion%20Gladion%2095%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "961158",
+      "product_name": "Gogoat #11",
+      "console_name": "Pokemon Crimson Invasion",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:11"
+      }
+    },
+    {
+      "query": "Pokemon Crimson Invasion Gladion 95 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Crimson%20Invasion%20Gladion%2095%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "961157",
+      "product_name": "Skiddo #10",
+      "console_name": "Pokemon Crimson Invasion",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:10"
+      }
+    },
+    {
+      "query": "Pokemon Crimson Invasion Gladion 95 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Crimson%20Invasion%20Gladion%2095%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "961166",
+      "product_name": "Swinub #19",
+      "console_name": "Pokemon Crimson Invasion",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:19"
+      }
+    },
+    {
+      "query": "Pokemon Crimson Invasion Gladion 95 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Crimson%20Invasion%20Gladion%2095%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "961162",
+      "product_name": "Staryu #15",
+      "console_name": "Pokemon Crimson Invasion",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:15"
+      }
+    },
+    {
+      "query": "Pokemon Crimson Invasion Gladion 95 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Crimson%20Invasion%20Gladion%2095%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "961175",
+      "product_name": "Regice #28",
+      "console_name": "Pokemon Crimson Invasion",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:28"
+      }
+    },
+    {
+      "query": "Pokemon Crimson Invasion Gladion 95 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Crimson%20Invasion%20Gladion%2095%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "961182",
+      "product_name": "Emolga #35",
+      "console_name": "Pokemon Crimson Invasion",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:35"
+      }
+    },
+    {
+      "query": "Pokemon Crimson Invasion Gladion 95 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Crimson%20Invasion%20Gladion%2095%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "961188",
+      "product_name": "Spoink #41",
+      "console_name": "Pokemon Crimson Invasion",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:41"
+      }
+    },
+    {
+      "query": "Pokemon Crimson Invasion Gladion 95 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Crimson%20Invasion%20Gladion%2095%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "961183",
+      "product_name": "Gastly #36",
+      "console_name": "Pokemon Crimson Invasion",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:36"
+      }
+    },
+    {
+      "query": "Pokemon Crimson Invasion Gladion 95 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Crimson%20Invasion%20Gladion%2095%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "961241",
+      "product_name": "Gladion #95",
+      "console_name": "Pokemon Crimson Invasion",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon Crimson Invasion Gladion 95 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Crimson%20Invasion%20Gladion%2095%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "961357",
+      "product_name": "Gladion [Reverse Holo] #95",
+      "console_name": "Pokemon Crimson Invasion",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Reverse Holo"
+      }
+    },
+    {
+      "query": "Pokemon Crimson Invasion Gladion 95 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Crimson%20Invasion%20Gladion%2095%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5790883",
+      "product_name": "Gladion [Regional Championships] #95",
+      "console_name": "Pokemon Crimson Invasion",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Regional Championships"
+      }
+    },
+    {
+      "query": "Pokemon Crimson Invasion Gladion 95 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Crimson%20Invasion%20Gladion%2095%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "961255",
+      "product_name": "Gladion #109",
+      "console_name": "Pokemon Crimson Invasion",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:109"
+      }
+    },
+    {
+      "query": "Pokemon Crimson Invasion Gladion 95 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Crimson%20Invasion%20Gladion%2095%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "961212",
+      "product_name": "Aron #65",
+      "console_name": "Pokemon Crimson Invasion",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:65"
+      }
+    },
+    {
+      "query": "Pokemon Crimson Invasion Gladion 95 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Crimson%20Invasion%20Gladion%2095%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "961160",
+      "product_name": "Numel #13",
+      "console_name": "Pokemon Crimson Invasion",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:13"
+      }
+    },
+    {
+      "query": "Pokemon Crimson Invasion Gladion 95 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Crimson%20Invasion%20Gladion%2095%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "961207",
+      "product_name": "Deino #60",
+      "console_name": "Pokemon Crimson Invasion",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:60"
+      }
+    },
+    {
+      "query": "Pokemon Crimson Invasion Gladion 95 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Crimson%20Invasion%20Gladion%2095%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6870164",
+      "product_name": "Gengar #38",
+      "console_name": "Pokemon Crimson Invasion",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:38"
+      }
+    },
+    {
+      "query": "Pokemon Crimson Invasion Gladion 95 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Crimson%20Invasion%20Gladion%2095%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5691819",
+      "product_name": "Bewear #56",
+      "console_name": "Pokemon Crimson Invasion",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:56"
+      }
+    },
+    {
+      "query": "Pokemon Crimson Invasion Gladion 95 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Crimson%20Invasion%20Gladion%2095%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "961149",
+      "product_name": "Kakuna #2",
+      "console_name": "Pokemon Crimson Invasion",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:2"
+      }
+    },
+    {
+      "query": "Pokemon Crimson Invasion Gladion 95 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Crimson%20Invasion%20Gladion%2095%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "961152",
+      "product_name": "Cacnea #5",
+      "console_name": "Pokemon Crimson Invasion",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:5"
+      }
+    },
+    {
+      "query": "Pokemon Crimson Invasion Gladion 95 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Crimson%20Invasion%20Gladion%2095%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "961148",
+      "product_name": "Weedle #1",
+      "console_name": "Pokemon Crimson Invasion",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:1"
+      }
+    },
+    {
+      "query": "Pokemon Crimson Invasion Gladion 95 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Crimson%20Invasion%20Gladion%2095%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "961158",
+      "product_name": "Gogoat #11",
+      "console_name": "Pokemon Crimson Invasion",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:11"
+      }
+    },
+    {
+      "query": "Pokemon Crimson Invasion Gladion 95 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Crimson%20Invasion%20Gladion%2095%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "961157",
+      "product_name": "Skiddo #10",
+      "console_name": "Pokemon Crimson Invasion",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:10"
+      }
+    },
+    {
+      "query": "Pokemon Crimson Invasion Gladion 95 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Crimson%20Invasion%20Gladion%2095%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "961166",
+      "product_name": "Swinub #19",
+      "console_name": "Pokemon Crimson Invasion",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:19"
+      }
+    },
+    {
+      "query": "Pokemon Crimson Invasion Gladion 95 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Crimson%20Invasion%20Gladion%2095%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "961162",
+      "product_name": "Staryu #15",
+      "console_name": "Pokemon Crimson Invasion",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:15"
+      }
+    },
+    {
+      "query": "Pokemon Crimson Invasion Gladion 95 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Crimson%20Invasion%20Gladion%2095%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "961175",
+      "product_name": "Regice #28",
+      "console_name": "Pokemon Crimson Invasion",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:28"
+      }
+    },
+    {
+      "query": "Pokemon Crimson Invasion Gladion 95 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Crimson%20Invasion%20Gladion%2095%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "961182",
+      "product_name": "Emolga #35",
+      "console_name": "Pokemon Crimson Invasion",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:35"
+      }
+    },
+    {
+      "query": "Pokemon Crimson Invasion Gladion 95 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Crimson%20Invasion%20Gladion%2095%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "961188",
+      "product_name": "Spoink #41",
+      "console_name": "Pokemon Crimson Invasion",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:41"
+      }
+    },
+    {
+      "query": "Pokemon Crimson Invasion Gladion 95 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Crimson%20Invasion%20Gladion%2095%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "961183",
+      "product_name": "Gastly #36",
+      "console_name": "Pokemon Crimson Invasion",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:36"
+      }
+    }
+  ],
+  "source_lane": "pricecharting_api"
+}

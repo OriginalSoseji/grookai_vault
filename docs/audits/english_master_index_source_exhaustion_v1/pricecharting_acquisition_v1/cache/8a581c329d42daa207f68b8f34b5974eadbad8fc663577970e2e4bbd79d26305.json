@@ -1,0 +1,549 @@
+{
+  "status": "api_no_validated_match",
+  "fact": {
+    "gap_type": "finish_second_source_needed",
+    "fact_type": "printing_finish",
+    "set_key": "bw8",
+    "set_name": "Plasma Storm",
+    "card_number": "123",
+    "card_name": "Hypnotoxic Laser",
+    "finish_key": "stamped",
+    "status": "human_source_verified",
+    "sources": [
+      "thepricedex_price_list"
+    ],
+    "source_authorities": [
+      "thepricedex.com"
+    ],
+    "source_kinds": [
+      "marketplace_checklist"
+    ],
+    "evidence_urls": [
+      "https://www.thepricedex.com/set/bw8/plasma-storm/price-list"
+    ],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "attempts": [
+    {
+      "query": "Pokemon Plasma Storm Hypnotoxic Laser 123 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Plasma%20Storm%20Hypnotoxic%20Laser%20123%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "956920",
+      "product_name": "Hypnotoxic Laser #123",
+      "console_name": "Pokemon Plasma Storm",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon Plasma Storm Hypnotoxic Laser 123 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Plasma%20Storm%20Hypnotoxic%20Laser%20123%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6604663",
+      "product_name": "Hypnotoxic Laser [League Promo] #123",
+      "console_name": "Pokemon Plasma Storm",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:League Promo"
+      }
+    },
+    {
+      "query": "Pokemon Plasma Storm Hypnotoxic Laser 123 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Plasma%20Storm%20Hypnotoxic%20Laser%20123%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "957050",
+      "product_name": "Hypnotoxic Laser [Reverse Holo] #123",
+      "console_name": "Pokemon Plasma Storm",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Reverse Holo"
+      }
+    },
+    {
+      "query": "Pokemon Plasma Storm Hypnotoxic Laser 123 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Plasma%20Storm%20Hypnotoxic%20Laser%20123%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8454062",
+      "product_name": "Hypnotoxic Laser [1st Edition] #63",
+      "console_name": "Pokemon Japanese Plasma Gale",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:63"
+      }
+    },
+    {
+      "query": "Pokemon Plasma Storm Hypnotoxic Laser 123 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Plasma%20Storm%20Hypnotoxic%20Laser%20123%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3461328",
+      "product_name": "Hypnotoxic Laser #63",
+      "console_name": "Pokemon Japanese Plasma Gale",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:63"
+      }
+    },
+    {
+      "query": "Pokemon Plasma Storm Hypnotoxic Laser 123 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Plasma%20Storm%20Hypnotoxic%20Laser%20123%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9255253",
+      "product_name": "Hypnotoxic Laser #10",
+      "console_name": "Pokemon Japanese Team Plasma Battle Gift Set",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:10"
+      }
+    },
+    {
+      "query": "Pokemon Plasma Storm Hypnotoxic Laser 123 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Plasma%20Storm%20Hypnotoxic%20Laser%20123%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12086975",
+      "product_name": "Hypnotoxic Laser [Haruto Kobayashi] #123",
+      "console_name": "Pokemon World Championships 2014",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon World Championships 2014"
+      }
+    },
+    {
+      "query": "Pokemon Plasma Storm Hypnotoxic Laser 123 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Plasma%20Storm%20Hypnotoxic%20Laser%20123%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12764571",
+      "product_name": "Hypnotoxic Laser [Patrick Martinez] #123",
+      "console_name": "Pokemon World Championships 2015",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon World Championships 2015"
+      }
+    },
+    {
+      "query": "Pokemon Plasma Storm Hypnotoxic Laser 123 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Plasma%20Storm%20Hypnotoxic%20Laser%20123%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "956827",
+      "product_name": "Lotad #29",
+      "console_name": "Pokemon Plasma Storm",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:29"
+      }
+    },
+    {
+      "query": "Pokemon Plasma Storm Hypnotoxic Laser 123 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Plasma%20Storm%20Hypnotoxic%20Laser%20123%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "956847",
+      "product_name": "Rotom #49",
+      "console_name": "Pokemon Plasma Storm",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:49"
+      }
+    },
+    {
+      "query": "Pokemon Plasma Storm Hypnotoxic Laser 123 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Plasma%20Storm%20Hypnotoxic%20Laser%20123%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "956851",
+      "product_name": "Zubat #53",
+      "console_name": "Pokemon Plasma Storm",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:53"
+      }
+    },
+    {
+      "query": "Pokemon Plasma Storm Hypnotoxic Laser 123 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Plasma%20Storm%20Hypnotoxic%20Laser%20123%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "956850",
+      "product_name": "Zubat #52",
+      "console_name": "Pokemon Plasma Storm",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:52"
+      }
+    },
+    {
+      "query": "Pokemon Plasma Storm Hypnotoxic Laser 123 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Plasma%20Storm%20Hypnotoxic%20Laser%20123%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "956872",
+      "product_name": "Riolu #75",
+      "console_name": "Pokemon Plasma Storm",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:75"
+      }
+    },
+    {
+      "query": "Pokemon Plasma Storm Hypnotoxic Laser 123 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Plasma%20Storm%20Hypnotoxic%20Laser%20123%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "956873",
+      "product_name": "Riolu #76",
+      "console_name": "Pokemon Plasma Storm",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:76"
+      }
+    },
+    {
+      "query": "Pokemon Plasma Storm Hypnotoxic Laser 123 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Plasma%20Storm%20Hypnotoxic%20Laser%20123%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "956885",
+      "product_name": "Klink #88",
+      "console_name": "Pokemon Plasma Storm",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:88"
+      }
+    },
+    {
+      "query": "Pokemon Plasma Storm Hypnotoxic Laser 123 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Plasma%20Storm%20Hypnotoxic%20Laser%20123%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "956886",
+      "product_name": "Klang #89",
+      "console_name": "Pokemon Plasma Storm",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:89"
+      }
+    },
+    {
+      "query": "Pokemon Plasma Storm Hypnotoxic Laser 123 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Plasma%20Storm%20Hypnotoxic%20Laser%20123%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "956896",
+      "product_name": "Doduo #99",
+      "console_name": "Pokemon Plasma Storm",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:99"
+      }
+    },
+    {
+      "query": "Pokemon Plasma Storm Hypnotoxic Laser 123 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Plasma%20Storm%20Hypnotoxic%20Laser%20123%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "956918",
+      "product_name": "Ether #121",
+      "console_name": "Pokemon Plasma Storm",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:121"
+      }
+    },
+    {
+      "query": "Pokemon Plasma Storm Hypnotoxic Laser 123 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Plasma%20Storm%20Hypnotoxic%20Laser%20123%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "956857",
+      "product_name": "Ralts #59",
+      "console_name": "Pokemon Plasma Storm",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:59"
+      }
+    },
+    {
+      "query": "Pokemon Plasma Storm Hypnotoxic Laser 123 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Plasma%20Storm%20Hypnotoxic%20Laser%20123%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "956924",
+      "product_name": "Plasma Energy #127",
+      "console_name": "Pokemon Plasma Storm",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:127"
+      }
+    },
+    {
+      "query": "Pokemon Plasma Storm Hypnotoxic Laser 123 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Plasma%20Storm%20Hypnotoxic%20Laser%20123%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "956920",
+      "product_name": "Hypnotoxic Laser #123",
+      "console_name": "Pokemon Plasma Storm",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon Plasma Storm Hypnotoxic Laser 123 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Plasma%20Storm%20Hypnotoxic%20Laser%20123%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6604663",
+      "product_name": "Hypnotoxic Laser [League Promo] #123",
+      "console_name": "Pokemon Plasma Storm",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:League Promo"
+      }
+    },
+    {
+      "query": "Pokemon Plasma Storm Hypnotoxic Laser 123 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Plasma%20Storm%20Hypnotoxic%20Laser%20123%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "957050",
+      "product_name": "Hypnotoxic Laser [Reverse Holo] #123",
+      "console_name": "Pokemon Plasma Storm",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Reverse Holo"
+      }
+    },
+    {
+      "query": "Pokemon Plasma Storm Hypnotoxic Laser 123 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Plasma%20Storm%20Hypnotoxic%20Laser%20123%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8454062",
+      "product_name": "Hypnotoxic Laser [1st Edition] #63",
+      "console_name": "Pokemon Japanese Plasma Gale",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:63"
+      }
+    },
+    {
+      "query": "Pokemon Plasma Storm Hypnotoxic Laser 123 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Plasma%20Storm%20Hypnotoxic%20Laser%20123%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3461328",
+      "product_name": "Hypnotoxic Laser #63",
+      "console_name": "Pokemon Japanese Plasma Gale",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:63"
+      }
+    },
+    {
+      "query": "Pokemon Plasma Storm Hypnotoxic Laser 123 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Plasma%20Storm%20Hypnotoxic%20Laser%20123%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9255253",
+      "product_name": "Hypnotoxic Laser #10",
+      "console_name": "Pokemon Japanese Team Plasma Battle Gift Set",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:10"
+      }
+    },
+    {
+      "query": "Pokemon Plasma Storm Hypnotoxic Laser 123 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Plasma%20Storm%20Hypnotoxic%20Laser%20123%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12086975",
+      "product_name": "Hypnotoxic Laser [Haruto Kobayashi] #123",
+      "console_name": "Pokemon World Championships 2014",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon World Championships 2014"
+      }
+    },
+    {
+      "query": "Pokemon Plasma Storm Hypnotoxic Laser 123 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Plasma%20Storm%20Hypnotoxic%20Laser%20123%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "12764571",
+      "product_name": "Hypnotoxic Laser [Patrick Martinez] #123",
+      "console_name": "Pokemon World Championships 2015",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon World Championships 2015"
+      }
+    },
+    {
+      "query": "Pokemon Plasma Storm Hypnotoxic Laser 123 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Plasma%20Storm%20Hypnotoxic%20Laser%20123%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "956827",
+      "product_name": "Lotad #29",
+      "console_name": "Pokemon Plasma Storm",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:29"
+      }
+    },
+    {
+      "query": "Pokemon Plasma Storm Hypnotoxic Laser 123 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Plasma%20Storm%20Hypnotoxic%20Laser%20123%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "956847",
+      "product_name": "Rotom #49",
+      "console_name": "Pokemon Plasma Storm",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:49"
+      }
+    },
+    {
+      "query": "Pokemon Plasma Storm Hypnotoxic Laser 123 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Plasma%20Storm%20Hypnotoxic%20Laser%20123%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "956851",
+      "product_name": "Zubat #53",
+      "console_name": "Pokemon Plasma Storm",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:53"
+      }
+    },
+    {
+      "query": "Pokemon Plasma Storm Hypnotoxic Laser 123 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Plasma%20Storm%20Hypnotoxic%20Laser%20123%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "956850",
+      "product_name": "Zubat #52",
+      "console_name": "Pokemon Plasma Storm",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:52"
+      }
+    },
+    {
+      "query": "Pokemon Plasma Storm Hypnotoxic Laser 123 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Plasma%20Storm%20Hypnotoxic%20Laser%20123%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "956872",
+      "product_name": "Riolu #75",
+      "console_name": "Pokemon Plasma Storm",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:75"
+      }
+    },
+    {
+      "query": "Pokemon Plasma Storm Hypnotoxic Laser 123 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Plasma%20Storm%20Hypnotoxic%20Laser%20123%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "956873",
+      "product_name": "Riolu #76",
+      "console_name": "Pokemon Plasma Storm",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:76"
+      }
+    },
+    {
+      "query": "Pokemon Plasma Storm Hypnotoxic Laser 123 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Plasma%20Storm%20Hypnotoxic%20Laser%20123%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "956885",
+      "product_name": "Klink #88",
+      "console_name": "Pokemon Plasma Storm",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:88"
+      }
+    },
+    {
+      "query": "Pokemon Plasma Storm Hypnotoxic Laser 123 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Plasma%20Storm%20Hypnotoxic%20Laser%20123%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "956886",
+      "product_name": "Klang #89",
+      "console_name": "Pokemon Plasma Storm",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:89"
+      }
+    },
+    {
+      "query": "Pokemon Plasma Storm Hypnotoxic Laser 123 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Plasma%20Storm%20Hypnotoxic%20Laser%20123%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "956896",
+      "product_name": "Doduo #99",
+      "console_name": "Pokemon Plasma Storm",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:99"
+      }
+    },
+    {
+      "query": "Pokemon Plasma Storm Hypnotoxic Laser 123 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Plasma%20Storm%20Hypnotoxic%20Laser%20123%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "956918",
+      "product_name": "Ether #121",
+      "console_name": "Pokemon Plasma Storm",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:121"
+      }
+    },
+    {
+      "query": "Pokemon Plasma Storm Hypnotoxic Laser 123 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Plasma%20Storm%20Hypnotoxic%20Laser%20123%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "956857",
+      "product_name": "Ralts #59",
+      "console_name": "Pokemon Plasma Storm",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:59"
+      }
+    },
+    {
+      "query": "Pokemon Plasma Storm Hypnotoxic Laser 123 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Plasma%20Storm%20Hypnotoxic%20Laser%20123%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "956924",
+      "product_name": "Plasma Energy #127",
+      "console_name": "Pokemon Plasma Storm",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:127"
+      }
+    }
+  ],
+  "source_lane": "pricecharting_api"
+}

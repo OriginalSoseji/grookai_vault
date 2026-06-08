@@ -1,0 +1,549 @@
+{
+  "status": "api_no_validated_match",
+  "fact": {
+    "gap_type": "finish_second_source_needed",
+    "fact_type": "printing_finish",
+    "set_key": "hgss2",
+    "set_name": "HS—Unleashed",
+    "card_number": "83",
+    "card_name": "Super Scoop Up",
+    "finish_key": "stamped",
+    "status": "human_source_verified",
+    "sources": [
+      "thepricedex_price_list"
+    ],
+    "source_authorities": [
+      "thepricedex.com"
+    ],
+    "source_kinds": [
+      "marketplace_checklist"
+    ],
+    "evidence_urls": [
+      "https://www.thepricedex.com/set/hgss2/hs-unleashed/price-list"
+    ],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "attempts": [
+    {
+      "query": "Pokemon HS—Unleashed Super Scoop Up 83 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Super%20Scoop%20Up%2083%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "1287425",
+      "product_name": "Super Scoop Up #83",
+      "console_name": "Pokemon Unleashed",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Super Scoop Up 83 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Super%20Scoop%20Up%2083%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "1287521",
+      "product_name": "Super Scoop Up [Reverse Holo] #83",
+      "console_name": "Pokemon Unleashed",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Reverse Holo"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Super Scoop Up 83 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Super%20Scoop%20Up%2083%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4835858",
+      "product_name": "Super Scoop Up #34",
+      "console_name": "Pokemon Japanese Beginning Set HS",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:34"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Super Scoop Up 83 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Super%20Scoop%20Up%2083%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "888876",
+      "product_name": "Super Scoop Up [Reverse Holo] #100",
+      "console_name": "Pokemon Delta Species",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:100"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Super Scoop Up 83 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Super%20Scoop%20Up%2083%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "806496",
+      "product_name": "Super Scoop Up [Reverse Holo] #103",
+      "console_name": "Pokemon Black & White",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:103"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Super Scoop Up 83 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Super%20Scoop%20Up%2083%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "921549",
+      "product_name": "Super Scoop Up [Reverse Holo] #87",
+      "console_name": "Pokemon Majestic Dawn",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:87"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Super Scoop Up 83 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Super%20Scoop%20Up%2083%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "958189",
+      "product_name": "Super Scoop Up [Reverse Holo] #100",
+      "console_name": "Pokemon Furious Fists",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:100"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Super Scoop Up 83 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Super%20Scoop%20Up%2083%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "2267004",
+      "product_name": "Super Scoop Up [Reverse Holo] #151",
+      "console_name": "Pokemon Expedition",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:151"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Super Scoop Up 83 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Super%20Scoop%20Up%2083%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "763273",
+      "product_name": "Super Scoop Up [Reverse Holo] #115",
+      "console_name": "Pokemon Diamond & Pearl",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:115"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Super Scoop Up 83 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Super%20Scoop%20Up%2083%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "2324931",
+      "product_name": "Super Scoop Up [1st Edition] #98",
+      "console_name": "Pokemon Neo Genesis",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:98"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Super Scoop Up 83 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Super%20Scoop%20Up%2083%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8454311",
+      "product_name": "Super Scoop Up [1st Edition]",
+      "console_name": "Pokemon Japanese Space-Time",
+      "validation": {
+        "ok": false,
+        "reason": "api_product_name_pattern_not_supported"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Super Scoop Up 83 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Super%20Scoop%20Up%2083%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "961065",
+      "product_name": "Super Scoop Up [Reverse Holo] #124",
+      "console_name": "Pokemon Burning Shadows",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:124"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Super Scoop Up 83 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Super%20Scoop%20Up%2083%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "2978787",
+      "product_name": "Super Scoop Up [Reverse Holo] #66",
+      "console_name": "Pokemon Shining Legends",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:66"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Super Scoop Up 83 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Super%20Scoop%20Up%2083%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "962227",
+      "product_name": "Super Scoop Up [Reverse Holo] #146",
+      "console_name": "Pokemon Celestial Storm",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:146"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Super Scoop Up 83 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Super%20Scoop%20Up%2083%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "850181",
+      "product_name": "Super Scoop Up [Reverse Holo] #99",
+      "console_name": "Pokemon Fire Red & Leaf Green",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:99"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Super Scoop Up 83 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Super%20Scoop%20Up%2083%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3438328",
+      "product_name": "Super Scoop Up [1st Edition] #55",
+      "console_name": "Pokemon Japanese Expedition Expansion Pack",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:55"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Super Scoop Up 83 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Super%20Scoop%20Up%2083%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3458376",
+      "product_name": "Super Scoop Up",
+      "console_name": "Pokemon Japanese Space-Time",
+      "validation": {
+        "ok": false,
+        "reason": "api_product_name_pattern_not_supported"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Super Scoop Up 83 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Super%20Scoop%20Up%2083%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "842523",
+      "product_name": "Super Scoop Up #151",
+      "console_name": "Pokemon Expedition",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:151"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Super Scoop Up 83 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Super%20Scoop%20Up%2083%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8685360",
+      "product_name": "Super Scoop Up #18",
+      "console_name": "Pokemon Japanese Classic: Charizard",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:18"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Super Scoop Up 83 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Super%20Scoop%20Up%2083%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3445454",
+      "product_name": "Super Scoop Up #62",
+      "console_name": "Pokemon Japanese Shining Legends",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:62"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Super Scoop Up 83 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Super%20Scoop%20Up%2083%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "1287425",
+      "product_name": "Super Scoop Up #83",
+      "console_name": "Pokemon Unleashed",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Super Scoop Up 83 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Super%20Scoop%20Up%2083%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "1287521",
+      "product_name": "Super Scoop Up [Reverse Holo] #83",
+      "console_name": "Pokemon Unleashed",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Reverse Holo"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Super Scoop Up 83 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Super%20Scoop%20Up%2083%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4835858",
+      "product_name": "Super Scoop Up #34",
+      "console_name": "Pokemon Japanese Beginning Set HS",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:34"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Super Scoop Up 83 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Super%20Scoop%20Up%2083%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "888876",
+      "product_name": "Super Scoop Up [Reverse Holo] #100",
+      "console_name": "Pokemon Delta Species",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:100"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Super Scoop Up 83 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Super%20Scoop%20Up%2083%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "806496",
+      "product_name": "Super Scoop Up [Reverse Holo] #103",
+      "console_name": "Pokemon Black & White",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:103"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Super Scoop Up 83 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Super%20Scoop%20Up%2083%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "921549",
+      "product_name": "Super Scoop Up [Reverse Holo] #87",
+      "console_name": "Pokemon Majestic Dawn",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:87"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Super Scoop Up 83 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Super%20Scoop%20Up%2083%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "958189",
+      "product_name": "Super Scoop Up [Reverse Holo] #100",
+      "console_name": "Pokemon Furious Fists",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:100"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Super Scoop Up 83 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Super%20Scoop%20Up%2083%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "2267004",
+      "product_name": "Super Scoop Up [Reverse Holo] #151",
+      "console_name": "Pokemon Expedition",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:151"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Super Scoop Up 83 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Super%20Scoop%20Up%2083%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "763273",
+      "product_name": "Super Scoop Up [Reverse Holo] #115",
+      "console_name": "Pokemon Diamond & Pearl",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:115"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Super Scoop Up 83 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Super%20Scoop%20Up%2083%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "2324931",
+      "product_name": "Super Scoop Up [1st Edition] #98",
+      "console_name": "Pokemon Neo Genesis",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:98"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Super Scoop Up 83 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Super%20Scoop%20Up%2083%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8454311",
+      "product_name": "Super Scoop Up [1st Edition]",
+      "console_name": "Pokemon Japanese Space-Time",
+      "validation": {
+        "ok": false,
+        "reason": "api_product_name_pattern_not_supported"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Super Scoop Up 83 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Super%20Scoop%20Up%2083%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "961065",
+      "product_name": "Super Scoop Up [Reverse Holo] #124",
+      "console_name": "Pokemon Burning Shadows",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:124"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Super Scoop Up 83 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Super%20Scoop%20Up%2083%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "2978787",
+      "product_name": "Super Scoop Up [Reverse Holo] #66",
+      "console_name": "Pokemon Shining Legends",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:66"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Super Scoop Up 83 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Super%20Scoop%20Up%2083%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "962227",
+      "product_name": "Super Scoop Up [Reverse Holo] #146",
+      "console_name": "Pokemon Celestial Storm",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:146"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Super Scoop Up 83 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Super%20Scoop%20Up%2083%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "850181",
+      "product_name": "Super Scoop Up [Reverse Holo] #99",
+      "console_name": "Pokemon Fire Red & Leaf Green",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:99"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Super Scoop Up 83 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Super%20Scoop%20Up%2083%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3438328",
+      "product_name": "Super Scoop Up [1st Edition] #55",
+      "console_name": "Pokemon Japanese Expedition Expansion Pack",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:55"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Super Scoop Up 83 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Super%20Scoop%20Up%2083%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3458376",
+      "product_name": "Super Scoop Up",
+      "console_name": "Pokemon Japanese Space-Time",
+      "validation": {
+        "ok": false,
+        "reason": "api_product_name_pattern_not_supported"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Super Scoop Up 83 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Super%20Scoop%20Up%2083%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "842523",
+      "product_name": "Super Scoop Up #151",
+      "console_name": "Pokemon Expedition",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:151"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Super Scoop Up 83 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Super%20Scoop%20Up%2083%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "8685360",
+      "product_name": "Super Scoop Up #18",
+      "console_name": "Pokemon Japanese Classic: Charizard",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:18"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Super Scoop Up 83 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Super%20Scoop%20Up%2083%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3445454",
+      "product_name": "Super Scoop Up #62",
+      "console_name": "Pokemon Japanese Shining Legends",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:62"
+      }
+    }
+  ],
+  "source_lane": "pricecharting_api"
+}

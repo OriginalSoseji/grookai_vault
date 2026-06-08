@@ -1,0 +1,549 @@
+{
+  "status": "api_no_validated_match",
+  "fact": {
+    "gap_type": "finish_second_source_needed",
+    "fact_type": "printing_finish",
+    "set_key": "hgss2",
+    "set_name": "HS—Unleashed",
+    "card_number": "13",
+    "card_name": "Blastoise",
+    "finish_key": "stamped",
+    "status": "human_source_verified",
+    "sources": [
+      "thepricedex_price_list"
+    ],
+    "source_authorities": [
+      "thepricedex.com"
+    ],
+    "source_kinds": [
+      "marketplace_checklist"
+    ],
+    "evidence_urls": [
+      "https://www.thepricedex.com/set/hgss2/hs-unleashed/price-list"
+    ],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "attempts": [
+    {
+      "query": "Pokemon HS—Unleashed Blastoise 13 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Blastoise%2013%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "1287355",
+      "product_name": "Blastoise #13",
+      "console_name": "Pokemon Unleashed",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Blastoise 13 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Blastoise%2013%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3923236",
+      "product_name": "Blastoise [Pre-Release] #13",
+      "console_name": "Pokemon Unleashed",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Pre-Release"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Blastoise 13 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Blastoise%2013%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "1287451",
+      "product_name": "Blastoise [Reverse Holo] #13",
+      "console_name": "Pokemon Unleashed",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Reverse Holo"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Blastoise 13 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Blastoise%2013%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6206434",
+      "product_name": "Blastoise [Cracked Ice] #13",
+      "console_name": "Pokemon Unleashed",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Cracked Ice"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Blastoise 13 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Blastoise%2013%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5700097",
+      "product_name": "Blastoise [Prerelease Staff] #13",
+      "console_name": "Pokemon Unleashed",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Prerelease Staff"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Blastoise 13 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Blastoise%2013%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10212998",
+      "product_name": "Blastoise Ex [Stamped] #30",
+      "console_name": "Pokemon Stellar Crown",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:30"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Blastoise 13 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Blastoise%2013%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11703205",
+      "product_name": "Blastoise Ex [FamilyMart Stamped] #235/SV-P",
+      "console_name": "Pokemon Chinese Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:235/SV-P"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Blastoise 13 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Blastoise%2013%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6206631",
+      "product_name": "Mr. Mime #13",
+      "console_name": "Pokemon Japanese Classic: Blastoise",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Mr. Mime"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Blastoise 13 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Blastoise%2013%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7979085",
+      "product_name": "Blastoise #13/P",
+      "console_name": "Pokemon Japanese Promo",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon Japanese Promo"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Blastoise 13 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Blastoise%2013%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4835879",
+      "product_name": "Samurott #13",
+      "console_name": "Pokemon Japanese Beginning Set HS",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Samurott"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Blastoise 13 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Blastoise%2013%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6142548",
+      "product_name": "Mr. Mime #13",
+      "console_name": "Pokemon TCG Classic: Blastoise Deck",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Mr. Mime"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Blastoise 13 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Blastoise%2013%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "13067663",
+      "product_name": "Delphox [Stamped] #13",
+      "console_name": "Pokemon Chaos Rising",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Delphox"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Blastoise 13 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Blastoise%2013%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5172319",
+      "product_name": "Wigglytuff [Stamped] #13",
+      "console_name": "Pokemon Crystal Guardians",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Wigglytuff"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Blastoise 13 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Blastoise%2013%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7913692",
+      "product_name": "Android 13, Unleashed Power EX24-16",
+      "console_name": "Dragon Ball Super Premium Anniversary Box 2024",
+      "validation": {
+        "ok": false,
+        "reason": "api_product_name_pattern_not_supported"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Blastoise 13 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Blastoise%2013%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9771441",
+      "product_name": "Wolverine Unleashed #13 (1997)",
+      "console_name": "Comic Books Wolverine Unleashed",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Wolverine Unleashed"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Blastoise 13 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Blastoise%2013%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5390467",
+      "product_name": "Blastoise V #1",
+      "console_name": "Pokemon Japanese Blastoise VMAX Starter Set",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:1"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Blastoise 13 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Blastoise%2013%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5095689",
+      "product_name": "Falcon #VS-13",
+      "console_name": "Marvel 2022 Ultra Avengers Value Stamp Relics",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:VS-13"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Blastoise 13 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Blastoise%2013%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7249889",
+      "product_name": "Blastoise [1999-2000] #2",
+      "console_name": "Pokemon Base Set",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:2"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Blastoise 13 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Blastoise%2013%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6206601",
+      "product_name": "Blastoise #3",
+      "console_name": "Pokemon Japanese Classic: Blastoise",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:3"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Blastoise 13 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Blastoise%2013%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6142538",
+      "product_name": "Blastoise #3",
+      "console_name": "Pokemon TCG Classic: Blastoise Deck",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:3"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Blastoise 13 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Blastoise%2013%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "1287355",
+      "product_name": "Blastoise #13",
+      "console_name": "Pokemon Unleashed",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Blastoise 13 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Blastoise%2013%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3923236",
+      "product_name": "Blastoise [Pre-Release] #13",
+      "console_name": "Pokemon Unleashed",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Pre-Release"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Blastoise 13 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Blastoise%2013%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "1287451",
+      "product_name": "Blastoise [Reverse Holo] #13",
+      "console_name": "Pokemon Unleashed",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Reverse Holo"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Blastoise 13 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Blastoise%2013%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6206434",
+      "product_name": "Blastoise [Cracked Ice] #13",
+      "console_name": "Pokemon Unleashed",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Cracked Ice"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Blastoise 13 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Blastoise%2013%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5700097",
+      "product_name": "Blastoise [Prerelease Staff] #13",
+      "console_name": "Pokemon Unleashed",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Prerelease Staff"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Blastoise 13 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Blastoise%2013%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "10212998",
+      "product_name": "Blastoise Ex [Stamped] #30",
+      "console_name": "Pokemon Stellar Crown",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:30"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Blastoise 13 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Blastoise%2013%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "11703205",
+      "product_name": "Blastoise Ex [FamilyMart Stamped] #235/SV-P",
+      "console_name": "Pokemon Chinese Promo",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:235/SV-P"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Blastoise 13 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Blastoise%2013%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6206631",
+      "product_name": "Mr. Mime #13",
+      "console_name": "Pokemon Japanese Classic: Blastoise",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Mr. Mime"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Blastoise 13 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Blastoise%2013%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7979085",
+      "product_name": "Blastoise #13/P",
+      "console_name": "Pokemon Japanese Promo",
+      "validation": {
+        "ok": false,
+        "reason": "set_mismatch:Pokemon Japanese Promo"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Blastoise 13 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Blastoise%2013%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4835879",
+      "product_name": "Samurott #13",
+      "console_name": "Pokemon Japanese Beginning Set HS",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Samurott"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Blastoise 13 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Blastoise%2013%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6142548",
+      "product_name": "Mr. Mime #13",
+      "console_name": "Pokemon TCG Classic: Blastoise Deck",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Mr. Mime"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Blastoise 13 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Blastoise%2013%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "13067663",
+      "product_name": "Delphox [Stamped] #13",
+      "console_name": "Pokemon Chaos Rising",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Delphox"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Blastoise 13 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Blastoise%2013%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5172319",
+      "product_name": "Wigglytuff [Stamped] #13",
+      "console_name": "Pokemon Crystal Guardians",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Wigglytuff"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Blastoise 13 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Blastoise%2013%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7913692",
+      "product_name": "Android 13, Unleashed Power EX24-16",
+      "console_name": "Dragon Ball Super Premium Anniversary Box 2024",
+      "validation": {
+        "ok": false,
+        "reason": "api_product_name_pattern_not_supported"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Blastoise 13 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Blastoise%2013%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9771441",
+      "product_name": "Wolverine Unleashed #13 (1997)",
+      "console_name": "Comic Books Wolverine Unleashed",
+      "validation": {
+        "ok": false,
+        "reason": "name_mismatch:Wolverine Unleashed"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Blastoise 13 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Blastoise%2013%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5390467",
+      "product_name": "Blastoise V #1",
+      "console_name": "Pokemon Japanese Blastoise VMAX Starter Set",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:1"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Blastoise 13 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Blastoise%2013%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "5095689",
+      "product_name": "Falcon #VS-13",
+      "console_name": "Marvel 2022 Ultra Avengers Value Stamp Relics",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:VS-13"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Blastoise 13 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Blastoise%2013%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7249889",
+      "product_name": "Blastoise [1999-2000] #2",
+      "console_name": "Pokemon Base Set",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:2"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Blastoise 13 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Blastoise%2013%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6206601",
+      "product_name": "Blastoise #3",
+      "console_name": "Pokemon Japanese Classic: Blastoise",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:3"
+      }
+    },
+    {
+      "query": "Pokemon HS—Unleashed Blastoise 13 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20HS%E2%80%94Unleashed%20Blastoise%2013%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6142538",
+      "product_name": "Blastoise #3",
+      "console_name": "Pokemon TCG Classic: Blastoise Deck",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:3"
+      }
+    }
+  ],
+  "source_lane": "pricecharting_api"
+}

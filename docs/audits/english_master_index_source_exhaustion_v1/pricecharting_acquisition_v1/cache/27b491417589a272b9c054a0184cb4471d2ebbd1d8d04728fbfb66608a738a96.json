@@ -1,0 +1,43 @@
+{
+  "status": "no_validated_match",
+  "fact": {
+    "gap_type": "finish_second_source_needed",
+    "fact_type": "printing_finish",
+    "set_key": "swsh45",
+    "set_name": "Shining Fates",
+    "card_number": "SV052",
+    "card_name": "Sinistea",
+    "finish_key": "holo",
+    "status": "human_source_verified",
+    "sources": [
+      "thepricedex_price_list"
+    ],
+    "source_authorities": [
+      "thepricedex.com"
+    ],
+    "source_kinds": [
+      "marketplace_checklist"
+    ],
+    "evidence_urls": [],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "attempts": [
+    {
+      "query": "Pokemon Shining Fates Sinistea SV052 holo",
+      "url": "https://www.pricecharting.com/search-products?q=Pokemon%20Shining%20Fates%20Sinistea%20SV052%20holo&type=prices",
+      "error": "Fetch failed 403 Forbidden: https://www.pricecharting.com/search-products?q=Pokemon%20Shining%20Fates%20Sinistea%20SV052%20holo&type=prices"
+    },
+    {
+      "query": "Pokemon Shining Fates Sinistea SV052 holofoil",
+      "url": "https://www.pricecharting.com/search-products?q=Pokemon%20Shining%20Fates%20Sinistea%20SV052%20holofoil&type=prices",
+      "parsed": {
+        "title": "Pokemon Shining Fates Sinistea SV052 Holofoil Prices | Pokemon Shining Fates Sinistea SV052 Holofoil List",
+        "source_url": "https://www.pricecharting.com/search-products?q=pokemon+shining+fates+sinistea+sv052+holofoil&type=prices"
+      },
+      "validation": {
+        "ok": false,
+        "reason": "title_pattern_not_supported"
+      }
+    }
+  ]
+}

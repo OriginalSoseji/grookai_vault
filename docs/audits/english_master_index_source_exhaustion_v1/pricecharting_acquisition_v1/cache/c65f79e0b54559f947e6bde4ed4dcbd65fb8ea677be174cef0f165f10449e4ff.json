@@ -1,0 +1,43 @@
+{
+  "status": "no_validated_match",
+  "fact": {
+    "gap_type": "finish_second_source_needed",
+    "fact_type": "printing_finish",
+    "set_key": "dp3",
+    "set_name": "Secret Wonders",
+    "card_number": "78",
+    "card_name": "Burmy Plant Cloak",
+    "finish_key": "stamped",
+    "status": "human_source_verified",
+    "sources": [
+      "thepricedex_price_list"
+    ],
+    "source_authorities": [
+      "thepricedex.com"
+    ],
+    "source_kinds": [
+      "marketplace_checklist"
+    ],
+    "evidence_urls": [],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "attempts": [
+    {
+      "query": "Pokemon Secret Wonders Burmy Plant Cloak 78 stamped",
+      "url": "https://www.pricecharting.com/search-products?q=Pokemon%20Secret%20Wonders%20Burmy%20Plant%20Cloak%2078%20stamped&type=prices",
+      "error": "Fetch failed 403 Forbidden: https://www.pricecharting.com/search-products?q=Pokemon%20Secret%20Wonders%20Burmy%20Plant%20Cloak%2078%20stamped&type=prices"
+    },
+    {
+      "query": "Pokemon Secret Wonders Burmy Plant Cloak 78 stamp",
+      "url": "https://www.pricecharting.com/search-products?q=Pokemon%20Secret%20Wonders%20Burmy%20Plant%20Cloak%2078%20stamp&type=prices",
+      "parsed": {
+        "title": "Pokemon Secret Wonders Burmy Plant Cloak 78 Stamp Prices | Pokemon Secret Wonders Burmy Plant Cloak 78 Stamp List",
+        "source_url": "https://www.pricecharting.com/search-products?q=pokemon+secret+wonders+burmy+plant+cloak+78+stamp&type=prices"
+      },
+      "validation": {
+        "ok": false,
+        "reason": "title_pattern_not_supported"
+      }
+    }
+  ]
+}

@@ -1,0 +1,847 @@
+{
+  "version": "english_master_index_tcgplayer_pricedex_link_acquisition_v1",
+  "generated_at": "2026-05-27T00:59:10.791Z",
+  "audit_only": true,
+  "db_writes_performed": false,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "dry_run": true,
+  "rule": "TCGplayer product evidence is generated only for existing ThePriceDex exact variant facts with linked TCGplayer product IDs. It does not create new finish facts.",
+  "summary": {
+    "sets_attempted": 103,
+    "records_generated": 0,
+    "fixture_files_written": 0,
+    "by_status": {
+      "source_unavailable": 103
+    }
+  },
+  "fixture_dir": null,
+  "fixture_files": [],
+  "results": [
+    {
+      "set_key": "swsh8",
+      "set_name": "Fusion Strike",
+      "status": "source_unavailable",
+      "target_facts": 43,
+      "records_generated": 0,
+      "error": "fetch failed"
+    },
+    {
+      "set_key": "swsh9",
+      "set_name": "Brilliant Stars",
+      "status": "source_unavailable",
+      "target_facts": 39,
+      "records_generated": 0,
+      "error": "fetch failed"
+    },
+    {
+      "set_key": "swsh1",
+      "set_name": "Sword & Shield",
+      "status": "source_unavailable",
+      "target_facts": 36,
+      "records_generated": 0,
+      "error": "fetch failed"
+    },
+    {
+      "set_key": "swsh6",
+      "set_name": "Chilling Reign",
+      "status": "source_unavailable",
+      "target_facts": 35,
+      "records_generated": 0,
+      "error": "fetch failed"
+    },
+    {
+      "set_key": "swsh7",
+      "set_name": "Evolving Skies",
+      "status": "source_unavailable",
+      "target_facts": 35,
+      "records_generated": 0,
+      "error": "fetch failed"
+    },
+    {
+      "set_key": "sve",
+      "set_name": "Scarlet & Violet Energies",
+      "status": "source_unavailable",
+      "target_facts": 32,
+      "records_generated": 0,
+      "error": "fetch failed"
+    },
+    {
+      "set_key": "swsh5",
+      "set_name": "Battle Styles",
+      "status": "source_unavailable",
+      "target_facts": 32,
+      "records_generated": 0,
+      "error": "fetch failed"
+    },
+    {
+      "set_key": "sv02",
+      "set_name": "Paldea Evolved",
+      "status": "source_unavailable",
+      "target_facts": 31,
+      "records_generated": 0,
+      "error": "fetch failed"
+    },
+    {
+      "set_key": "swsh10",
+      "set_name": "Astral Radiance",
+      "status": "source_unavailable",
+      "target_facts": 30,
+      "records_generated": 0,
+      "error": "fetch failed"
+    },
+    {
+      "set_key": "swsh11",
+      "set_name": "Lost Origin",
+      "status": "source_unavailable",
+      "target_facts": 29,
+      "records_generated": 0,
+      "error": "fetch failed"
+    },
+    {
+      "set_key": "sv05",
+      "set_name": "Temporal Forces",
+      "status": "source_unavailable",
+      "target_facts": 28,
+      "records_generated": 0,
+      "error": "fetch failed"
+    },
+    {
+      "set_key": "me01",
+      "set_name": "Mega Evolution",
+      "status": "source_unavailable",
+      "target_facts": 27,
+      "records_generated": 0,
+      "error": "fetch failed"
+    },
+    {
+      "set_key": "svp",
+      "set_name": "Scarlet & Violet Black Star Promos",
+      "status": "source_unavailable",
+      "target_facts": 25,
+      "records_generated": 0,
+      "error": "fetch failed"
+    },
+    {
+      "set_key": "sv10",
+      "set_name": "Destined Rivals",
+      "status": "source_unavailable",
+      "target_facts": 21,
+      "records_generated": 0,
+      "error": "fetch failed"
+    },
+    {
+      "set_key": "swsh12",
+      "set_name": "Silver Tempest",
+      "status": "source_unavailable",
+      "target_facts": 21,
+      "records_generated": 0,
+      "error": "fetch failed"
+    },
+    {
+      "set_key": "bw1",
+      "set_name": "Black & White",
+      "status": "source_unavailable",
+      "target_facts": 17,
+      "records_generated": 0,
+      "error": "fetch failed"
+    },
+    {
+      "set_key": "sv09",
+      "set_name": "Journey Together",
+      "status": "source_unavailable",
+      "target_facts": 16,
+      "records_generated": 0,
+      "error": "fetch failed"
+    },
+    {
+      "set_key": "sv03.5",
+      "set_name": "151",
+      "status": "source_unavailable",
+      "target_facts": 15,
+      "records_generated": 0,
+      "error": "fetch failed"
+    },
+    {
+      "set_key": "swsh2",
+      "set_name": "Rebel Clash",
+      "status": "source_unavailable",
+      "target_facts": 14,
+      "records_generated": 0,
+      "error": "fetch failed"
+    },
+    {
+      "set_key": "swsh12.5",
+      "set_name": "Crown Zenith",
+      "status": "source_unavailable",
+      "target_facts": 13,
+      "records_generated": 0,
+      "error": "fetch failed"
+    },
+    {
+      "set_key": "swsh4",
+      "set_name": "Vivid Voltage",
+      "status": "source_unavailable",
+      "target_facts": 13,
+      "records_generated": 0,
+      "error": "fetch failed"
+    },
+    {
+      "set_key": "sm1",
+      "set_name": "Sun & Moon",
+      "status": "source_unavailable",
+      "target_facts": 12,
+      "records_generated": 0,
+      "error": "fetch failed"
+    },
+    {
+      "set_key": "sv06.5",
+      "set_name": "Shrouded Fable",
+      "status": "source_unavailable",
+      "target_facts": 12,
+      "records_generated": 0,
+      "error": "fetch failed"
+    },
+    {
+      "set_key": "smp",
+      "set_name": "SM Black Star Promos",
+      "status": "source_unavailable",
+      "target_facts": 11,
+      "records_generated": 0,
+      "error": "fetch failed"
+    },
+    {
+      "set_key": "sm8",
+      "set_name": "Lost Thunder",
+      "status": "source_unavailable",
+      "target_facts": 10,
+      "records_generated": 0,
+      "error": "fetch failed"
+    },
+    {
+      "set_key": "sv07",
+      "set_name": "Stellar Crown",
+      "status": "source_unavailable",
+      "target_facts": 10,
+      "records_generated": 0,
+      "error": "fetch failed"
+    },
+    {
+      "set_key": "sv08.5",
+      "set_name": "Prismatic Evolutions",
+      "status": "source_unavailable",
+      "target_facts": 10,
+      "records_generated": 0,
+      "error": "fetch failed"
+    },
+    {
+      "set_key": "sm115",
+      "set_name": "Hidden Fates",
+      "status": "source_unavailable",
+      "target_facts": 9,
+      "records_generated": 0,
+      "error": "fetch failed"
+    },
+    {
+      "set_key": "swsh3",
+      "set_name": "Darkness Ablaze",
+      "status": "source_unavailable",
+      "target_facts": 9,
+      "records_generated": 0,
+      "error": "fetch failed"
+    },
+    {
+      "set_key": "bw5",
+      "set_name": "Dark Explorers",
+      "status": "source_unavailable",
+      "target_facts": 8,
+      "records_generated": 0,
+      "error": "fetch failed"
+    },
+    {
+      "set_key": "bwp",
+      "set_name": "BW Black Star Promos",
+      "status": "source_unavailable",
+      "target_facts": 8,
+      "records_generated": 0,
+      "error": "fetch failed"
+    },
+    {
+      "set_key": "col1",
+      "set_name": "Call of Legends",
+      "status": "source_unavailable",
+      "target_facts": 8,
+      "records_generated": 0,
+      "error": "fetch failed"
+    },
+    {
+      "set_key": "dp5",
+      "set_name": "Majestic Dawn",
+      "status": "source_unavailable",
+      "target_facts": 8,
+      "records_generated": 0,
+      "error": "fetch failed"
+    },
+    {
+      "set_key": "hgss1",
+      "set_name": "HeartGold & SoulSilver",
+      "status": "source_unavailable",
+      "target_facts": 8,
+      "records_generated": 0,
+      "error": "fetch failed"
+    },
+    {
+      "set_key": "pl2",
+      "set_name": "Rising Rivals",
+      "status": "source_unavailable",
+      "target_facts": 8,
+      "records_generated": 0,
+      "error": "fetch failed"
+    },
+    {
+      "set_key": "pl3",
+      "set_name": "Supreme Victors",
+      "status": "source_unavailable",
+      "target_facts": 8,
+      "records_generated": 0,
+      "error": "fetch failed"
+    },
+    {
+      "set_key": "swshp",
+      "set_name": "SWSH Black Star Promos",
+      "status": "source_unavailable",
+      "target_facts": 8,
+      "records_generated": 0,
+      "error": "fetch failed"
+    },
+    {
+      "set_key": "xy1",
+      "set_name": "XY",
+      "status": "source_unavailable",
+      "target_facts": 8,
+      "records_generated": 0,
+      "error": "fetch failed"
+    },
+    {
+      "set_key": "dp1",
+      "set_name": "Diamond & Pearl",
+      "status": "source_unavailable",
+      "target_facts": 7,
+      "records_generated": 0,
+      "error": "fetch failed"
+    },
+    {
+      "set_key": "ex1",
+      "set_name": "Ruby & Sapphire",
+      "status": "source_unavailable",
+      "target_facts": 7,
+      "records_generated": 0,
+      "error": "fetch failed"
+    },
+    {
+      "set_key": "ex3",
+      "set_name": "Dragon",
+      "status": "source_unavailable",
+      "target_facts": 7,
+      "records_generated": 0,
+      "error": "fetch failed"
+    },
+    {
+      "set_key": "hgss2",
+      "set_name": "HS—Unleashed",
+      "status": "source_unavailable",
+      "target_facts": 7,
+      "records_generated": 0,
+      "error": "fetch failed"
+    },
+    {
+      "set_key": "sm3",
+      "set_name": "Burning Shadows",
+      "status": "source_unavailable",
+      "target_facts": 7,
+      "records_generated": 0,
+      "error": "fetch failed"
+    },
+    {
+      "set_key": "sm5",
+      "set_name": "Ultra Prism",
+      "status": "source_unavailable",
+      "target_facts": 7,
+      "records_generated": 0,
+      "error": "fetch failed"
+    },
+    {
+      "set_key": "swsh3.5",
+      "set_name": "Champion's Path",
+      "status": "source_unavailable",
+      "target_facts": 7,
+      "records_generated": 0,
+      "error": "fetch failed"
+    },
+    {
+      "set_key": "dp6",
+      "set_name": "Legends Awakened",
+      "status": "source_unavailable",
+      "target_facts": 6,
+      "records_generated": 0,
+      "error": "fetch failed"
+    },
+    {
+      "set_key": "ex9",
+      "set_name": "Emerald",
+      "status": "source_unavailable",
+      "target_facts": 6,
+      "records_generated": 0,
+      "error": "fetch failed"
+    },
+    {
+      "set_key": "sm11",
+      "set_name": "Unified Minds",
+      "status": "source_unavailable",
+      "target_facts": 6,
+      "records_generated": 0,
+      "error": "fetch failed"
+    },
+    {
+      "set_key": "sm6",
+      "set_name": "Forbidden Light",
+      "status": "source_unavailable",
+      "target_facts": 6,
+      "records_generated": 0,
+      "error": "fetch failed"
+    },
+    {
+      "set_key": "xy8",
+      "set_name": "BREAKthrough",
+      "status": "source_unavailable",
+      "target_facts": 6,
+      "records_generated": 0,
+      "error": "fetch failed"
+    },
+    {
+      "set_key": "sm7",
+      "set_name": "Celestial Storm",
+      "status": "source_unavailable",
+      "target_facts": 5,
+      "records_generated": 0,
+      "error": "fetch failed"
+    },
+    {
+      "set_key": "swsh4.5",
+      "set_name": "Shining Fates",
+      "status": "source_unavailable",
+      "target_facts": 5,
+      "records_generated": 0,
+      "error": "fetch failed"
+    },
+    {
+      "set_key": "xy11",
+      "set_name": "Steam Siege",
+      "status": "source_unavailable",
+      "target_facts": 5,
+      "records_generated": 0,
+      "error": "fetch failed"
+    },
+    {
+      "set_key": "xy2",
+      "set_name": "Flashfire",
+      "status": "source_unavailable",
+      "target_facts": 5,
+      "records_generated": 0,
+      "error": "fetch failed"
+    },
+    {
+      "set_key": "xyp",
+      "set_name": "XY Black Star Promos",
+      "status": "source_unavailable",
+      "target_facts": 5,
+      "records_generated": 0,
+      "error": "fetch failed"
+    },
+    {
+      "set_key": "bw3",
+      "set_name": "Noble Victories",
+      "status": "source_unavailable",
+      "target_facts": 4,
+      "records_generated": 0,
+      "error": "fetch failed"
+    },
+    {
+      "set_key": "bw8",
+      "set_name": "Plasma Storm",
+      "status": "source_unavailable",
+      "target_facts": 4,
+      "records_generated": 0,
+      "error": "fetch failed"
+    },
+    {
+      "set_key": "dp3",
+      "set_name": "Secret Wonders",
+      "status": "source_unavailable",
+      "target_facts": 4,
+      "records_generated": 0,
+      "error": "fetch failed"
+    },
+    {
+      "set_key": "ex10",
+      "set_name": "Unseen Forces",
+      "status": "source_unavailable",
+      "target_facts": 4,
+      "records_generated": 0,
+      "error": "fetch failed"
+    },
+    {
+      "set_key": "ex11",
+      "set_name": "Delta Species",
+      "status": "source_unavailable",
+      "target_facts": 4,
+      "records_generated": 0,
+      "error": "fetch failed"
+    },
+    {
+      "set_key": "ex14",
+      "set_name": "Crystal Guardians",
+      "status": "source_unavailable",
+      "target_facts": 4,
+      "records_generated": 0,
+      "error": "fetch failed"
+    },
+    {
+      "set_key": "ex5",
+      "set_name": "Hidden Legends",
+      "status": "source_unavailable",
+      "target_facts": 4,
+      "records_generated": 0,
+      "error": "fetch failed"
+    },
+    {
+      "set_key": "hgss4",
+      "set_name": "HS—Triumphant",
+      "status": "source_unavailable",
+      "target_facts": 4,
+      "records_generated": 0,
+      "error": "fetch failed"
+    },
+    {
+      "set_key": "sm10",
+      "set_name": "Unbroken Bonds",
+      "status": "source_unavailable",
+      "target_facts": 4,
+      "records_generated": 0,
+      "error": "fetch failed"
+    },
+    {
+      "set_key": "sm2",
+      "set_name": "Guardians Rising",
+      "status": "source_unavailable",
+      "target_facts": 4,
+      "records_generated": 0,
+      "error": "fetch failed"
+    },
+    {
+      "set_key": "xy9",
+      "set_name": "BREAKpoint",
+      "status": "source_unavailable",
+      "target_facts": 4,
+      "records_generated": 0,
+      "error": "fetch failed"
+    },
+    {
+      "set_key": "bw2",
+      "set_name": "Emerging Powers",
+      "status": "source_unavailable",
+      "target_facts": 3,
+      "records_generated": 0,
+      "error": "fetch failed"
+    },
+    {
+      "set_key": "bw6",
+      "set_name": "Dragons Exalted",
+      "status": "source_unavailable",
+      "target_facts": 3,
+      "records_generated": 0,
+      "error": "fetch failed"
+    },
+    {
+      "set_key": "dpp",
+      "set_name": "DP Black Star Promos",
+      "status": "source_unavailable",
+      "target_facts": 3,
+      "records_generated": 0,
+      "error": "fetch failed"
+    },
+    {
+      "set_key": "ex8",
+      "set_name": "Deoxys",
+      "status": "source_unavailable",
+      "target_facts": 3,
+      "records_generated": 0,
+      "error": "fetch failed"
+    },
+    {
+      "set_key": "g1",
+      "set_name": "Generations",
+      "status": "source_unavailable",
+      "target_facts": 3,
+      "records_generated": 0,
+      "error": "fetch failed"
+    },
+    {
+      "set_key": "hgss3",
+      "set_name": "HS—Undaunted",
+      "status": "source_unavailable",
+      "target_facts": 3,
+      "records_generated": 0,
+      "error": "fetch failed"
+    },
+    {
+      "set_key": "pl1",
+      "set_name": "Platinum",
+      "status": "source_unavailable",
+      "target_facts": 3,
+      "records_generated": 0,
+      "error": "fetch failed"
+    },
+    {
+      "set_key": "sm12",
+      "set_name": "Cosmic Eclipse",
+      "status": "source_unavailable",
+      "target_facts": 3,
+      "records_generated": 0,
+      "error": "fetch failed"
+    },
+    {
+      "set_key": "sm4",
+      "set_name": "Crimson Invasion",
+      "status": "source_unavailable",
+      "target_facts": 3,
+      "records_generated": 0,
+      "error": "fetch failed"
+    },
+    {
+      "set_key": "xy12",
+      "set_name": "Evolutions",
+      "status": "source_unavailable",
+      "target_facts": 3,
+      "records_generated": 0,
+      "error": "fetch failed"
+    },
+    {
+      "set_key": "xy3",
+      "set_name": "Furious Fists",
+      "status": "source_unavailable",
+      "target_facts": 3,
+      "records_generated": 0,
+      "error": "fetch failed"
+    },
+    {
+      "set_key": "basep",
+      "set_name": "Wizards Black Star Promos",
+      "status": "source_unavailable",
+      "target_facts": 2,
+      "records_generated": 0,
+      "error": "fetch failed"
+    },
+    {
+      "set_key": "bw11",
+      "set_name": "Legendary Treasures",
+      "status": "source_unavailable",
+      "target_facts": 2,
+      "records_generated": 0,
+      "error": "fetch failed"
+    },
+    {
+      "set_key": "bw7",
+      "set_name": "Boundaries Crossed",
+      "status": "source_unavailable",
+      "target_facts": 2,
+      "records_generated": 0,
+      "error": "fetch failed"
+    },
+    {
+      "set_key": "bw9",
+      "set_name": "Plasma Freeze",
+      "status": "source_unavailable",
+      "target_facts": 2,
+      "records_generated": 0,
+      "error": "fetch failed"
+    },
+    {
+      "set_key": "dp4",
+      "set_name": "Great Encounters",
+      "status": "source_unavailable",
+      "target_facts": 2,
+      "records_generated": 0,
+      "error": "fetch failed"
+    },
+    {
+      "set_key": "ecard2",
+      "set_name": "Aquapolis",
+      "status": "source_unavailable",
+      "target_facts": 2,
+      "records_generated": 0,
+      "error": "fetch failed"
+    },
+    {
+      "set_key": "ex12",
+      "set_name": "Legend Maker",
+      "status": "source_unavailable",
+      "target_facts": 2,
+      "records_generated": 0,
+      "error": "fetch failed"
+    },
+    {
+      "set_key": "ex2",
+      "set_name": "Sandstorm",
+      "status": "source_unavailable",
+      "target_facts": 2,
+      "records_generated": 0,
+      "error": "fetch failed"
+    },
+    {
+      "set_key": "ex6",
+      "set_name": "FireRed & LeafGreen",
+      "status": "source_unavailable",
+      "target_facts": 2,
+      "records_generated": 0,
+      "error": "fetch failed"
+    },
+    {
+      "set_key": "ex7",
+      "set_name": "Team Rocket Returns",
+      "status": "source_unavailable",
+      "target_facts": 2,
+      "records_generated": 0,
+      "error": "fetch failed"
+    },
+    {
+      "set_key": "pl4",
+      "set_name": "Arceus",
+      "status": "source_unavailable",
+      "target_facts": 2,
+      "records_generated": 0,
+      "error": "fetch failed"
+    },
+    {
+      "set_key": "sm7.5",
+      "set_name": "Dragon Majesty",
+      "status": "source_unavailable",
+      "target_facts": 2,
+      "records_generated": 0,
+      "error": "fetch failed"
+    },
+    {
+      "set_key": "swsh10.5",
+      "set_name": "Pokémon GO",
+      "status": "source_unavailable",
+      "target_facts": 2,
+      "records_generated": 0,
+      "error": "fetch failed"
+    },
+    {
+      "set_key": "xy10",
+      "set_name": "Fates Collide",
+      "status": "source_unavailable",
+      "target_facts": 2,
+      "records_generated": 0,
+      "error": "fetch failed"
+    },
+    {
+      "set_key": "xy4",
+      "set_name": "Phantom Forces",
+      "status": "source_unavailable",
+      "target_facts": 2,
+      "records_generated": 0,
+      "error": "fetch failed"
+    },
+    {
+      "set_key": "cel25",
+      "set_name": "Celebrations",
+      "status": "source_unavailable",
+      "target_facts": 1,
+      "records_generated": 0,
+      "error": "fetch failed"
+    },
+    {
+      "set_key": "dp7",
+      "set_name": "Stormfront",
+      "status": "source_unavailable",
+      "target_facts": 1,
+      "records_generated": 0,
+      "error": "fetch failed"
+    },
+    {
+      "set_key": "ex13",
+      "set_name": "Holon Phantoms",
+      "status": "source_unavailable",
+      "target_facts": 1,
+      "records_generated": 0,
+      "error": "fetch failed"
+    },
+    {
+      "set_key": "ex15",
+      "set_name": "Dragon Frontiers",
+      "status": "source_unavailable",
+      "target_facts": 1,
+      "records_generated": 0,
+      "error": "fetch failed"
+    },
+    {
+      "set_key": "ex4",
+      "set_name": "Team Magma vs Team Aqua",
+      "status": "source_unavailable",
+      "target_facts": 1,
+      "records_generated": 0,
+      "error": "fetch failed"
+    },
+    {
+      "set_key": "me02",
+      "set_name": "Phantasmal Flames",
+      "status": "source_unavailable",
+      "target_facts": 1,
+      "records_generated": 0,
+      "error": "fetch failed"
+    },
+    {
+      "set_key": "me03",
+      "set_name": "Perfect Order",
+      "status": "source_unavailable",
+      "target_facts": 1,
+      "records_generated": 0,
+      "error": "fetch failed"
+    },
+    {
+      "set_key": "neo1",
+      "set_name": "Neo Genesis",
+      "status": "source_unavailable",
+      "target_facts": 1,
+      "records_generated": 0,
+      "error": "fetch failed"
+    },
+    {
+      "set_key": "sm9",
+      "set_name": "Team Up",
+      "status": "source_unavailable",
+      "target_facts": 1,
+      "records_generated": 0,
+      "error": "fetch failed"
+    },
+    {
+      "set_key": "sv10.5b",
+      "set_name": "Black Bolt",
+      "status": "source_unavailable",
+      "target_facts": 1,
+      "records_generated": 0,
+      "error": "fetch failed"
+    },
+    {
+      "set_key": "xy7",
+      "set_name": "Ancient Origins",
+      "status": "source_unavailable",
+      "target_facts": 1,
+      "records_generated": 0,
+      "error": "fetch failed"
+    }
+  ]
+}

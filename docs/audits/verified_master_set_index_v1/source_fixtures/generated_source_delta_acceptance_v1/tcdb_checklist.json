@@ -1,0 +1,36 @@
+{
+  "fixture_version": "VERIFIED_MASTER_SET_INDEX_V1_HUMAN_SOURCE_FIXTURE_GENERATED",
+  "source_key": "tcdb_checklist_accepted_delta_v1",
+  "source_kind": "collector_reference",
+  "source_url": "https://www.tcdb.com/ViewCard.cfm/sid/83740/cid/15275797/2003-Pokemon-EX-Ruby-%26-Sapphire-93/109-Darkness-Energy",
+  "source_status": "available_generated_accepted_delta",
+  "set_key": "accepted_delta",
+  "set_name": "tcdb_checklist accepted delta",
+  "retrieved_at": "2026-06-08T16:25:13.401Z",
+  "raw_snapshot_ref": "generated_fixture:accepted_delta:tcdb_checklist:2026-06-08T16:25:13.401Z",
+  "audit_only": true,
+  "db_writes_performed": false,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "generation_note": "Generated from source delta audit useful matches only. Existing accepted delta rows are preserved to avoid source-reset evidence loss.",
+  "records": [
+    {
+      "source_key": "tcdb_checklist",
+      "source_kind": "collector_reference",
+      "source_url": "https://www.tcdb.com/ViewCard.cfm/sid/83740/cid/15275797/2003-Pokemon-EX-Ruby-%26-Sapphire-93/109-Darkness-Energy",
+      "set_key": "ex1",
+      "set_name": "Ruby & Sapphire",
+      "card_number": "93",
+      "card_name": "Darkness Energy",
+      "finish_key": "cosmos",
+      "rarity": null,
+      "evidence_type": "finish_presence",
+      "evidence_label": "TCDB: 2003 Pokemon EX Ruby & Sapphire #93/109 Darkness Energy lists Cosmos Holo, Winner, e-League December 2003",
+      "language": "en",
+      "retrieved_at": "2026-06-08T16:25:13.401Z",
+      "raw_snapshot_ref": "accepted_delta:manual_web_exact_finish_mixed_batch_2_20260608_source_delta_audit_v1.json:tcdb_checklist:ex1:93:cosmos",
+      "notes": "Accepted from source delta audit with status candidate_second_finish_source. This is exact gap-matched evidence only; broad source fixture rows remain excluded from direct promotion."
+    }
+  ]
+}

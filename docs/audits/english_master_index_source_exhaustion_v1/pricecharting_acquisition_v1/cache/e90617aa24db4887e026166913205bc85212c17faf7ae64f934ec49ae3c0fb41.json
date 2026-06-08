@@ -1,0 +1,549 @@
+{
+  "status": "api_no_validated_match",
+  "fact": {
+    "gap_type": "finish_second_source_needed",
+    "fact_type": "printing_finish",
+    "set_key": "sm8",
+    "set_name": "Lost Thunder",
+    "card_number": "188",
+    "card_name": "Professor Elm's Lecture",
+    "finish_key": "stamped",
+    "status": "human_source_verified",
+    "sources": [
+      "thepricedex_price_list"
+    ],
+    "source_authorities": [
+      "thepricedex.com"
+    ],
+    "source_kinds": [
+      "marketplace_checklist"
+    ],
+    "evidence_urls": [
+      "https://www.thepricedex.com/set/sm8/lost-thunder/price-list"
+    ],
+    "required_next_evidence": "Exact card-level finish evidence from a human-readable, official, collector, or marketplace checklist plus independent agreement."
+  },
+  "attempts": [
+    {
+      "query": "Pokemon Lost Thunder Professor Elm's Lecture 188 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Lost%20Thunder%20Professor%20Elm's%20Lecture%20188%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "962576",
+      "product_name": "Professor Elm's Lecture #188",
+      "console_name": "Pokemon Lost Thunder",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon Lost Thunder Professor Elm's Lecture 188 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Lost%20Thunder%20Professor%20Elm's%20Lecture%20188%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "962792",
+      "product_name": "Professor Elm's Lecture [Reverse Holo] #188",
+      "console_name": "Pokemon Lost Thunder",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Reverse Holo"
+      }
+    },
+    {
+      "query": "Pokemon Lost Thunder Professor Elm's Lecture 188 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Lost%20Thunder%20Professor%20Elm's%20Lecture%20188%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "962601",
+      "product_name": "Professor Elm's Lecture #213",
+      "console_name": "Pokemon Lost Thunder",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:213"
+      }
+    },
+    {
+      "query": "Pokemon Lost Thunder Professor Elm's Lecture 188 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Lost%20Thunder%20Professor%20Elm's%20Lecture%20188%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7557545",
+      "product_name": "Professor Elm's Lecture [League Challenge 2nd Place] #188A",
+      "console_name": "Pokemon Lost Thunder",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:188A"
+      }
+    },
+    {
+      "query": "Pokemon Lost Thunder Professor Elm's Lecture 188 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Lost%20Thunder%20Professor%20Elm's%20Lecture%20188%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7557544",
+      "product_name": "Professor Elm's Lecture [League Challenge 1st Place] #188A",
+      "console_name": "Pokemon Lost Thunder",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:188A"
+      }
+    },
+    {
+      "query": "Pokemon Lost Thunder Professor Elm's Lecture 188 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Lost%20Thunder%20Professor%20Elm's%20Lecture%20188%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7557546",
+      "product_name": "Professor Elm's Lecture [League Challenge 3rd Place] #188A",
+      "console_name": "Pokemon Lost Thunder",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:188A"
+      }
+    },
+    {
+      "query": "Pokemon Lost Thunder Professor Elm's Lecture 188 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Lost%20Thunder%20Professor%20Elm's%20Lecture%20188%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7557547",
+      "product_name": "Professor Elm's Lecture [League Challenge 4th Place] #188A",
+      "console_name": "Pokemon Lost Thunder",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:188A"
+      }
+    },
+    {
+      "query": "Pokemon Lost Thunder Professor Elm's Lecture 188 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Lost%20Thunder%20Professor%20Elm's%20Lecture%20188%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3470330",
+      "product_name": "Professor Elm's Lecture #95",
+      "console_name": "Pokemon Japanese Alter Genesis",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:95"
+      }
+    },
+    {
+      "query": "Pokemon Lost Thunder Professor Elm's Lecture 188 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Lost%20Thunder%20Professor%20Elm's%20Lecture%20188%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3468659",
+      "product_name": "Professor Elm's Lecture #88",
+      "console_name": "Pokemon Japanese Super-Burst Impact",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:88"
+      }
+    },
+    {
+      "query": "Pokemon Lost Thunder Professor Elm's Lecture 188 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Lost%20Thunder%20Professor%20Elm's%20Lecture%20188%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3468673",
+      "product_name": "Professor Elm's Lecture #102",
+      "console_name": "Pokemon Japanese Super-Burst Impact",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:102"
+      }
+    },
+    {
+      "query": "Pokemon Lost Thunder Professor Elm's Lecture 188 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Lost%20Thunder%20Professor%20Elm's%20Lecture%20188%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4118611",
+      "product_name": "Professor Elm's Lecture #145",
+      "console_name": "Pokemon Japanese Tag All Stars",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:145"
+      }
+    },
+    {
+      "query": "Pokemon Lost Thunder Professor Elm's Lecture 188 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Lost%20Thunder%20Professor%20Elm's%20Lecture%20188%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9176322",
+      "product_name": "Professor Elm's Lecture [Reverse Holo] #145",
+      "console_name": "Pokemon Japanese Tag All Stars",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:145"
+      }
+    },
+    {
+      "query": "Pokemon Lost Thunder Professor Elm's Lecture 188 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Lost%20Thunder%20Professor%20Elm's%20Lecture%20188%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4166493",
+      "product_name": "Mareep [Stamped] #75",
+      "console_name": "Pokemon Lost Thunder",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:75"
+      }
+    },
+    {
+      "query": "Pokemon Lost Thunder Professor Elm's Lecture 188 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Lost%20Thunder%20Professor%20Elm's%20Lecture%20188%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6883922",
+      "product_name": "Suicune [Stamped] #59",
+      "console_name": "Pokemon Lost Thunder",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:59"
+      }
+    },
+    {
+      "query": "Pokemon Lost Thunder Professor Elm's Lecture 188 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Lost%20Thunder%20Professor%20Elm's%20Lecture%20188%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "806211",
+      "product_name": "Professor Elm's Training Method #100",
+      "console_name": "Pokemon HeartGold & SoulSilver",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:100"
+      }
+    },
+    {
+      "query": "Pokemon Lost Thunder Professor Elm's Lecture 188 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Lost%20Thunder%20Professor%20Elm's%20Lecture%20188%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "842520",
+      "product_name": "Professor Elm's Training Method #148",
+      "console_name": "Pokemon Expedition",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:148"
+      }
+    },
+    {
+      "query": "Pokemon Lost Thunder Professor Elm's Lecture 188 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Lost%20Thunder%20Professor%20Elm's%20Lecture%20188%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "889553",
+      "product_name": "Professor Elm's Training Method #79",
+      "console_name": "Pokemon Dragon Frontiers",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:79"
+      }
+    },
+    {
+      "query": "Pokemon Lost Thunder Professor Elm's Lecture 188 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Lost%20Thunder%20Professor%20Elm's%20Lecture%20188%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "925854",
+      "product_name": "Professor Elm's Training Method #25",
+      "console_name": "Pokemon Gyarados & Raichu",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:25"
+      }
+    },
+    {
+      "query": "Pokemon Lost Thunder Professor Elm's Lecture 188 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Lost%20Thunder%20Professor%20Elm's%20Lecture%20188%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "926333",
+      "product_name": "Professor Elm's Training Method #82",
+      "console_name": "Pokemon Call of Legends",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:82"
+      }
+    },
+    {
+      "query": "Pokemon Lost Thunder Professor Elm's Lecture 188 stamped",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Lost%20Thunder%20Professor%20Elm's%20Lecture%20188%20stamped",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "888509",
+      "product_name": "Professor Elm's Training Method #89",
+      "console_name": "Pokemon Unseen Forces",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:89"
+      }
+    },
+    {
+      "query": "Pokemon Lost Thunder Professor Elm's Lecture 188 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Lost%20Thunder%20Professor%20Elm's%20Lecture%20188%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "962576",
+      "product_name": "Professor Elm's Lecture #188",
+      "console_name": "Pokemon Lost Thunder",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:none"
+      }
+    },
+    {
+      "query": "Pokemon Lost Thunder Professor Elm's Lecture 188 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Lost%20Thunder%20Professor%20Elm's%20Lecture%20188%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "962792",
+      "product_name": "Professor Elm's Lecture [Reverse Holo] #188",
+      "console_name": "Pokemon Lost Thunder",
+      "validation": {
+        "ok": false,
+        "reason": "finish_not_exact:Reverse Holo"
+      }
+    },
+    {
+      "query": "Pokemon Lost Thunder Professor Elm's Lecture 188 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Lost%20Thunder%20Professor%20Elm's%20Lecture%20188%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "962601",
+      "product_name": "Professor Elm's Lecture #213",
+      "console_name": "Pokemon Lost Thunder",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:213"
+      }
+    },
+    {
+      "query": "Pokemon Lost Thunder Professor Elm's Lecture 188 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Lost%20Thunder%20Professor%20Elm's%20Lecture%20188%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7557545",
+      "product_name": "Professor Elm's Lecture [League Challenge 2nd Place] #188A",
+      "console_name": "Pokemon Lost Thunder",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:188A"
+      }
+    },
+    {
+      "query": "Pokemon Lost Thunder Professor Elm's Lecture 188 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Lost%20Thunder%20Professor%20Elm's%20Lecture%20188%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7557544",
+      "product_name": "Professor Elm's Lecture [League Challenge 1st Place] #188A",
+      "console_name": "Pokemon Lost Thunder",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:188A"
+      }
+    },
+    {
+      "query": "Pokemon Lost Thunder Professor Elm's Lecture 188 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Lost%20Thunder%20Professor%20Elm's%20Lecture%20188%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7557546",
+      "product_name": "Professor Elm's Lecture [League Challenge 3rd Place] #188A",
+      "console_name": "Pokemon Lost Thunder",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:188A"
+      }
+    },
+    {
+      "query": "Pokemon Lost Thunder Professor Elm's Lecture 188 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Lost%20Thunder%20Professor%20Elm's%20Lecture%20188%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "7557547",
+      "product_name": "Professor Elm's Lecture [League Challenge 4th Place] #188A",
+      "console_name": "Pokemon Lost Thunder",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:188A"
+      }
+    },
+    {
+      "query": "Pokemon Lost Thunder Professor Elm's Lecture 188 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Lost%20Thunder%20Professor%20Elm's%20Lecture%20188%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3470330",
+      "product_name": "Professor Elm's Lecture #95",
+      "console_name": "Pokemon Japanese Alter Genesis",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:95"
+      }
+    },
+    {
+      "query": "Pokemon Lost Thunder Professor Elm's Lecture 188 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Lost%20Thunder%20Professor%20Elm's%20Lecture%20188%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3468659",
+      "product_name": "Professor Elm's Lecture #88",
+      "console_name": "Pokemon Japanese Super-Burst Impact",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:88"
+      }
+    },
+    {
+      "query": "Pokemon Lost Thunder Professor Elm's Lecture 188 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Lost%20Thunder%20Professor%20Elm's%20Lecture%20188%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "3468673",
+      "product_name": "Professor Elm's Lecture #102",
+      "console_name": "Pokemon Japanese Super-Burst Impact",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:102"
+      }
+    },
+    {
+      "query": "Pokemon Lost Thunder Professor Elm's Lecture 188 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Lost%20Thunder%20Professor%20Elm's%20Lecture%20188%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4118611",
+      "product_name": "Professor Elm's Lecture #145",
+      "console_name": "Pokemon Japanese Tag All Stars",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:145"
+      }
+    },
+    {
+      "query": "Pokemon Lost Thunder Professor Elm's Lecture 188 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Lost%20Thunder%20Professor%20Elm's%20Lecture%20188%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "9176322",
+      "product_name": "Professor Elm's Lecture [Reverse Holo] #145",
+      "console_name": "Pokemon Japanese Tag All Stars",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:145"
+      }
+    },
+    {
+      "query": "Pokemon Lost Thunder Professor Elm's Lecture 188 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Lost%20Thunder%20Professor%20Elm's%20Lecture%20188%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "4166493",
+      "product_name": "Mareep [Stamped] #75",
+      "console_name": "Pokemon Lost Thunder",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:75"
+      }
+    },
+    {
+      "query": "Pokemon Lost Thunder Professor Elm's Lecture 188 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Lost%20Thunder%20Professor%20Elm's%20Lecture%20188%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "6883922",
+      "product_name": "Suicune [Stamped] #59",
+      "console_name": "Pokemon Lost Thunder",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:59"
+      }
+    },
+    {
+      "query": "Pokemon Lost Thunder Professor Elm's Lecture 188 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Lost%20Thunder%20Professor%20Elm's%20Lecture%20188%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "806211",
+      "product_name": "Professor Elm's Training Method #100",
+      "console_name": "Pokemon HeartGold & SoulSilver",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:100"
+      }
+    },
+    {
+      "query": "Pokemon Lost Thunder Professor Elm's Lecture 188 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Lost%20Thunder%20Professor%20Elm's%20Lecture%20188%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "842520",
+      "product_name": "Professor Elm's Training Method #148",
+      "console_name": "Pokemon Expedition",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:148"
+      }
+    },
+    {
+      "query": "Pokemon Lost Thunder Professor Elm's Lecture 188 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Lost%20Thunder%20Professor%20Elm's%20Lecture%20188%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "889553",
+      "product_name": "Professor Elm's Training Method #79",
+      "console_name": "Pokemon Dragon Frontiers",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:79"
+      }
+    },
+    {
+      "query": "Pokemon Lost Thunder Professor Elm's Lecture 188 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Lost%20Thunder%20Professor%20Elm's%20Lecture%20188%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "925854",
+      "product_name": "Professor Elm's Training Method #25",
+      "console_name": "Pokemon Gyarados & Raichu",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:25"
+      }
+    },
+    {
+      "query": "Pokemon Lost Thunder Professor Elm's Lecture 188 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Lost%20Thunder%20Professor%20Elm's%20Lecture%20188%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "926333",
+      "product_name": "Professor Elm's Training Method #82",
+      "console_name": "Pokemon Call of Legends",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:82"
+      }
+    },
+    {
+      "query": "Pokemon Lost Thunder Professor Elm's Lecture 188 stamp",
+      "url": "https://www.pricecharting.com/api/products?q=Pokemon%20Lost%20Thunder%20Professor%20Elm's%20Lecture%20188%20stamp",
+      "source_lane": "pricecharting_api",
+      "cache_status": "miss",
+      "product_id": "888509",
+      "product_name": "Professor Elm's Training Method #89",
+      "console_name": "Pokemon Unseen Forces",
+      "validation": {
+        "ok": false,
+        "reason": "number_mismatch:89"
+      }
+    }
+  ],
+  "source_lane": "pricecharting_api"
+}

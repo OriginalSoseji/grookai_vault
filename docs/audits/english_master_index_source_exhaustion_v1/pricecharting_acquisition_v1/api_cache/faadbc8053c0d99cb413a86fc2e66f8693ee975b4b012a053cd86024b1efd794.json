@@ -1,0 +1,42 @@
+{
+  "products": [
+    {
+      "bgs-10-price": 16900,
+      "box-only-price": 2100,
+      "condition-17-price": 950,
+      "condition-18-price": 7800,
+      "console-name": "Pokemon Scarlet & Violet 151",
+      "epid": "9072200978",
+      "gamestop-price": 0,
+      "gamestop-trade-price": 0,
+      "genre": "Pokemon Card",
+      "graded-price": 1900,
+      "id": "7566539",
+      "loose-price": 216,
+      "manual-only-price": 12999,
+      "new-price": 1700,
+      "product-name": "Charmander [Cosmos Holo] #4",
+      "retail-loose-sell": 239,
+      "retail-new-buy": 480,
+      "retail-new-sell": 1899,
+      "sales-volume": "154",
+      "tcg-id": "586830"
+    },
+    {
+      "bgs-10-price": 6400,
+      "condition-17-price": 1774,
+      "condition-18-price": 3000,
+      "console-name": "Pokemon Scarlet & Violet 151",
+      "gamestop-price": 0,
+      "gamestop-trade-price": 0,
+      "genre": "Pokemon Card",
+      "id": "8682565",
+      "loose-price": 231,
+      "manual-only-price": 4940,
+      "product-name": "Charmander [Reverse Holo Cosmos] #4",
+      "retail-loose-sell": 249,
+      "sales-volume": "29"
+    }
+  ],
+  "status": "success"
+}
