@@ -1,0 +1,48 @@
+{
+  "generated_at": "2026-06-08T21:33:50.524Z",
+  "version": "english_master_index_operator_approval_template_guard_v1",
+  "audit_only": true,
+  "db_writes_performed": false,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "apply_paths_executed": false,
+  "write_ready_now": 0,
+  "approval_recorded": false,
+  "guard_status": "pass_blank_template_verified_no_write",
+  "purpose": "Validate that the operator approval record template still matches the source approval packet and remains blank/non-authorizing.",
+  "source_artifacts": {
+    "approval_packet": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_operator_approval_packet_v1.json",
+    "approval_record_template": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_operator_approval_record_template_v1.json"
+  },
+  "summary": {
+    "approval_packet_rows": 106,
+    "approval_template_rows": 106,
+    "expected_package_fingerprint_sha256": "34cc9acbb81bfadbe2115528a1339cb82afa71fa01fd0d52b62b83834a990b79",
+    "actual_package_fingerprint_sha256": "34cc9acbb81bfadbe2115528a1339cb82afa71fa01fd0d52b62b83834a990b79",
+    "row_fingerprints_expected": 106,
+    "row_fingerprints_actual": 106,
+    "unique_row_fingerprints_actual": 106,
+    "blank_entries": 106,
+    "row_guard_findings": 0,
+    "stop_findings": 0,
+    "write_ready_now": 0,
+    "approval_recorded": false
+  },
+  "guard_rules": [
+    "The approval template must remain blank until human approval is explicitly recorded in a separate step.",
+    "The package fingerprint must match the source approval packet.",
+    "Every row fingerprint must match the source approval packet.",
+    "No row with vault references may pass this guard.",
+    "Passing this guard does not authorize DB writes."
+  ],
+  "row_findings": [],
+  "explicit_non_authorizations": [
+    "This guard is not approval.",
+    "This guard is not an execution artifact.",
+    "This guard is not SQL.",
+    "This guard does not allow DB writes, migrations, cleanup, quarantine, insertion, deletion, or hiding."
+  ],
+  "stop_findings": [],
+  "pass": true
+}
