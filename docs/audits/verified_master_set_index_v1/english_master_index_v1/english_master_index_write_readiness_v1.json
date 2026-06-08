@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-08T19:45:00.563Z",
+  "generated_at": "2026-06-08T20:12:56.827Z",
   "version": "english_master_index_write_readiness_v1",
   "audit_only": true,
   "db_writes_performed": false,
@@ -9,14 +9,40 @@
   "apply_paths_executed": false,
   "privileged_writes_used": false,
   "rule": "This report determines whether Grookai is ready to write. It does not execute writes.",
-  "conclusion": "No additional catalog writes are authorized yet. The audit is ready for evidence acquisition and future set-specific proof-loop planning.",
+  "conclusion": "No catalog writes are authorized yet. The Master Index is complete, and the next safe step is row-level dry-run write package design for eligible master-verified subsets.",
   "summary": {
     "write_ready_now": 0,
     "db_writes_allowed_from_this_plan": false,
-    "planning_ready_but_write_blocked": 36939,
+    "master_index_completion": {
+      "sets_in_registry": 201,
+      "complete_master_index_sets": 199,
+      "incomplete_sets": 2,
+      "working_card_identity_facts": 21520,
+      "master_admissible_card_identity_facts": 21520,
+      "printing_derived_card_identity_facts": 0,
+      "working_printing_facts": 38841,
+      "master_admissible_printing_facts": 38841,
+      "finish_absence_facts": 22,
+      "finish_blocker_boundary_facts": 0,
+      "adjudicated_excluded_printing_facts": 5,
+      "by_completion_status": {
+        "complete_master_index_set": 199,
+        "non_standard_single_source_reference": 2
+      },
+      "by_card_fact_status": {
+        "master_verified": 21511,
+        "api_agreed": 9
+      },
+      "by_printing_fact_status": {
+        "master_verified": 38841
+      },
+      "source_gap_queue_items": 0,
+      "grookai_reconciliation_performed": false
+    },
+    "planning_ready_but_write_blocked": 75619,
     "blocked_rows_counted": 30607,
     "grookai_printing_rows": 55266,
-    "index_printing_rows": 38846,
+    "index_printing_rows": 38841,
     "global_status_counts": {
       "human_source_verified_by_index": 1,
       "master_verified_by_index": 31975,
@@ -90,6 +116,11 @@
       }
     },
     "source_acquisition_queue": {
+      "total_queue_items": 0,
+      "by_lane": {},
+      "top_sets": {}
+    },
+    "historical_source_acquisition_queue": {
       "total_queue_items": 161,
       "by_lane": {
         "reverse_holo": 1253,
@@ -133,7 +164,9 @@
         "sv03.5|151": 1,
         "swsh3.5|Champion's Path": 1
       },
-      "write_ready_now": 0
+      "write_ready_now": 0,
+      "completion_finish_blocker_boundary_facts": 0,
+      "adjudicated_excluded_printing_facts": 5
     },
     "truth_readiness": {
       "proof_ready": 8,
@@ -154,6 +187,19 @@
     }
   },
   "global_buckets": [
+    {
+      "bucket": "completed_master_index",
+      "row_count": 38841,
+      "status": "complete_master_index_reference",
+      "mutation_ready": false,
+      "reason": "The English Master Index is complete as reference truth, but reference completion is not DB write authority.",
+      "next_action": "Use this as the target for row-level dry-run write packages only.",
+      "detail": {
+        "complete_master_index_sets": 199,
+        "source_gap_queue_items": 0,
+        "adjudicated_excluded_printing_facts": 5
+      }
+    },
     {
       "bucket": "master_verified_monitor_only",
       "row_count": 31975,
@@ -214,10 +260,17 @@
       "bucket": "missing_set_code_physical_candidates",
       "row_count": 807,
       "printing_rows": 1685,
-      "status": "identity_matched_finish_blocked",
+      "status": "partially_ready_for_dry_run_design",
       "mutation_ready": false,
-      "reason": "All physical candidates matched card identity, but finish truth is not master_verified.",
-      "next_action": "Acquire human/checklist finish evidence, then rerun exact-match feasibility."
+      "reason": "A master-verified subset exists, but the overall physical recovery lane still contains identity and finish-blocked rows.",
+      "next_action": "Design a dry-run package for the master-verified subset only; keep blocked remainder out.",
+      "detail": {
+        "all_finishes_master_verified_by_index": 106,
+        "master_verified_printing_rows": 143,
+        "blocked_until_card_identity_match": 488,
+        "partial_finishes_supported_by_index": 210,
+        "no_finishes_supported_by_index": 3
+      }
     },
     {
       "bucket": "missing_set_code_pocket_scope_candidates",
@@ -245,8 +298,8 @@
     },
     {
       "bucket": "source_acquisition_queue",
-      "row_count": 161,
-      "weighted_rows": {
+      "row_count": 0,
+      "historical_weighted_rows": {
         "reverse_holo": 1253,
         "holo": 4274,
         "parallel": 694,
@@ -255,21 +308,49 @@
         "legacy": 0,
         "alias_resolution": 6851
       },
-      "status": "evidence_work_required",
+      "status": "closed_by_completion_report",
       "mutation_ready": false,
-      "reason": "The source acquisition queue is still the main blocker to safe writes.",
-      "next_action": "Prioritize human checklist evidence for high-volume physical recovery sets."
+      "reason": "The completion report has no remaining Master Index source-gap queue items. Historical source-acquisition queues remain planning context only.",
+      "next_action": "Proceed to row-level dry-run package design for eligible subsets; do not run writes."
     },
     {
       "bucket": "finish_blocker_boundary",
-      "row_count": 5,
-      "status": "manual_adjudication_required",
+      "row_count": 0,
+      "status": "closed_by_adjudication",
       "mutation_ready": false,
-      "reason": "Remaining finish-second-source rows have exact finish-label or card-number conflicts and are not promotion safe.",
-      "next_action": "Resolve manually as finish-label/number adjudication before any future write package.",
+      "reason": "Former finish blockers were adjudicated out of working truth and are no longer completion blockers.",
+      "next_action": "Keep adjudicated exclusions preserved as audit evidence; do not use them for writes.",
       "detail": {
         "closure_status": "closed_to_blocker_boundary",
         "promotion_safe_now": 0,
+        "by_blocker_type": {
+          "finish_label_conflict": 4,
+          "card_number_conflict": 1
+        },
+        "adjudicated_excluded_printing_facts": 5
+      }
+    },
+    {
+      "bucket": "adjudicated_excluded_printings",
+      "row_count": 5,
+      "status": "excluded_from_working_truth",
+      "mutation_ready": false,
+      "reason": "These facts are preserved as reviewed exclusions, not deletion, insertion, or cleanup authority.",
+      "next_action": "Keep excluded unless new exact evidence reopens adjudication.",
+      "detail": {
+        "excluded_printing_facts": 5,
+        "by_set": {
+          "bw8": 1,
+          "sm8": 1,
+          "swsh3.5": 1,
+          "sv03.5": 1,
+          "ex9": 1
+        },
+        "by_finish": {
+          "holo": 1,
+          "stamped": 1,
+          "normal": 3
+        },
         "by_blocker_type": {
           "finish_label_conflict": 4,
           "card_number_conflict": 1
@@ -323,29 +404,200 @@
     },
     {
       "package_id": "PKG-01",
-      "name": "Physical missing-set recovery",
-      "current_state": "identity_matched_finish_blocked",
+      "name": "Physical missing-set recovery - master-verified subset",
+      "current_state": "row_level_dry_run_package_required",
       "future_write_allowed_after_approval": false,
-      "candidate_card_prints": 807,
-      "candidate_printing_rows": 1685,
+      "evidence_ready_for_dry_run_design": true,
+      "candidate_card_prints": 106,
+      "candidate_printing_rows": 143,
+      "candidate_sets": [
+        {
+          "set_key": "ecard2",
+          "set_name": "Aquapolis",
+          "candidate_card_prints": 13,
+          "candidate_printing_rows": 26,
+          "sample_card_print_ids": [
+            "5155d8da-c49b-43cf-8173-1e4ceca853d2",
+            "49008b62-21be-48b8-a561-9dc0bea390e1",
+            "0f752ca1-5458-4241-af37-4a7b48b85013",
+            "bf8fa8c4-a04d-44f8-ae9e-50a6a6784d88",
+            "d5e3ba78-7a85-49d2-8ab0-295521652f55"
+          ]
+        },
+        {
+          "set_key": "pl2",
+          "set_name": "Rising Rivals",
+          "candidate_card_prints": 17,
+          "candidate_printing_rows": 24,
+          "sample_card_print_ids": [
+            "2ebe059c-614e-4dd6-812f-ebf268459ce5",
+            "9d6eb3c7-dc61-4543-b436-a67fd23ba16c",
+            "1970689f-8f93-4148-96b2-0ed8ed149568",
+            "8c817161-627f-4ff5-aa27-127757b88213",
+            "bc120b0e-4aad-47c1-989b-a733435a2000"
+          ]
+        },
+        {
+          "set_key": "pl4",
+          "set_name": "Arceus",
+          "candidate_card_prints": 18,
+          "candidate_printing_rows": 23,
+          "sample_card_print_ids": [
+            "a02f871c-fe3e-432b-944d-6decea0eecdf",
+            "71779a8b-ee22-4892-9425-8e3da51f179a",
+            "3059259e-c28b-49d6-9f31-64e178e87f28",
+            "8716f287-3497-49b2-a499-9c1e026a6a94",
+            "460e6437-4bc8-4a1c-90fc-546481f225e2"
+          ]
+        },
+        {
+          "set_key": "ecard3",
+          "set_name": "Skyridge",
+          "candidate_card_prints": 15,
+          "candidate_printing_rows": 19,
+          "sample_card_print_ids": [
+            "d0270c83-13c1-4d2b-ae50-19830be9d134",
+            "36a0af86-f863-4ff0-967c-285a67272dcb",
+            "6406220f-4684-4f26-a52d-310db5eb5700",
+            "982bd726-548f-4e0c-9a93-c1301af1342f",
+            "d139fca7-558c-4dad-9a46-f94e4d45ab6b"
+          ]
+        },
+        {
+          "set_key": "dp7",
+          "set_name": "Stormfront",
+          "candidate_card_prints": 8,
+          "candidate_printing_rows": 10,
+          "sample_card_print_ids": [
+            "62f77935-5749-4d26-87e6-06bbca565b22",
+            "665ee2b0-4a22-43d5-bf8e-8ff22a990384",
+            "d45018d3-c2a6-4d82-b3ed-d0ac6ce6e0ff",
+            "7c211bf2-ab9e-489d-842f-65c896270783",
+            "6f49c231-0a53-4c0c-9db1-6d4c36aa460e"
+          ]
+        },
+        {
+          "set_key": "mep",
+          "set_name": "MEP Black Star Promos",
+          "candidate_card_prints": 10,
+          "candidate_printing_rows": 10,
+          "sample_card_print_ids": [
+            "6419894a-137f-4fc7-8db1-fa853872b190",
+            "b75d4730-3c1a-42ca-9d18-e8ca736ae41f",
+            "aa9f207d-c9ea-4607-bbc5-448648bca47f",
+            "bf523703-271c-49fe-b8aa-c31c57cb9b32",
+            "04e533ae-dd17-478c-ab46-220859079b2c"
+          ]
+        },
+        {
+          "set_key": "pl1",
+          "set_name": "Platinum",
+          "candidate_card_prints": 9,
+          "candidate_printing_rows": 10,
+          "sample_card_print_ids": [
+            "cfbaec4b-bc98-4f6f-8b06-a30dbe29af30",
+            "9d20653b-49ea-4a30-8e18-629267d7397b",
+            "1cc5b95e-c5b7-477c-a3c1-1d4c26e10875",
+            "9deb3714-1f02-4eb2-a249-6b3b42a106cb",
+            "182aab06-7802-4dea-90cb-32dfc7cefaab"
+          ]
+        },
+        {
+          "set_key": "pl3",
+          "set_name": "Supreme Victors",
+          "candidate_card_prints": 9,
+          "candidate_printing_rows": 9,
+          "sample_card_print_ids": [
+            "8cd92a82-149d-43b4-a7d3-d65782536182",
+            "79097350-eb58-44e8-bd39-3ec5f417f02b",
+            "880dc8c7-6959-4fda-b79a-32e48c684267",
+            "29a4bca4-6264-45f6-bc24-1d5ded5520cd",
+            "2c1b3125-dd67-4522-b3e0-5621c05f7a9a"
+          ]
+        },
+        {
+          "set_key": "col1",
+          "set_name": "Call of Legends",
+          "candidate_card_prints": 2,
+          "candidate_printing_rows": 6,
+          "sample_card_print_ids": [
+            "2180d1db-0948-4cfc-9a98-da7629c2811a",
+            "922f2b4f-eb6f-492c-89a7-8b4f313509e2"
+          ]
+        },
+        {
+          "set_key": "ex10",
+          "set_name": "Unseen Forces",
+          "candidate_card_prints": 3,
+          "candidate_printing_rows": 3,
+          "sample_card_print_ids": [
+            "2fdd39c8-7afa-4031-be84-649ac28a7b72",
+            "043dbc47-0815-4ef4-b31d-2027f70f2338",
+            "584c31ad-d7ac-4356-b9cc-4de3152511b2"
+          ]
+        },
+        {
+          "set_key": "swsh2",
+          "set_name": "Rebel Clash",
+          "candidate_card_prints": 1,
+          "candidate_printing_rows": 2,
+          "sample_card_print_ids": [
+            "9cf48b11-bf42-4aa3-861b-c2ca5543877e"
+          ]
+        },
+        {
+          "set_key": "fut2020",
+          "set_name": "Pokémon Futsal 2020",
+          "candidate_card_prints": 1,
+          "candidate_printing_rows": 1,
+          "sample_card_print_ids": [
+            "a676888d-19e0-4064-89aa-e67019af5b95"
+          ]
+        }
+      ],
       "evidence_shape": {
         "exact_card_identity_match": 319,
-        "all_finishes_supported_but_not_master_verified": 0,
+        "all_finishes_master_verified_by_index": 106
+      },
+      "blockers": [
+        "No row-level write package has been generated.",
+        "No before/after DB snapshot or rollback artifact exists for these rows.",
+        "No post-apply verification query set has been approved.",
+        "Operator approval is still required before any DB write."
+      ],
+      "required_before_write": [
+        "Generate a set-specific dry-run write package for the eligible master-verified subset.",
+        "List exact source card_print IDs and intended set/printing changes.",
+        "Capture before-state snapshots and rollback SQL/script.",
+        "Run identity, ownership, vault, and provenance impact checks.",
+        "Founder/operator approval of exact row IDs and intended mutations."
+      ],
+      "rollback_requirement": "Per-row before/after snapshot and reversible update plan required."
+    },
+    {
+      "package_id": "PKG-01B",
+      "name": "Physical missing-set recovery - blocked remainder",
+      "current_state": "blocked_until_identity_or_finish_safe",
+      "future_write_allowed_after_approval": false,
+      "candidate_card_prints": 701,
+      "candidate_printing_rows": 1542,
+      "evidence_shape": {
+        "number_missing_from_index": 488,
+        "blocked_until_card_identity_match": 488,
         "partial_finishes_supported_by_index": 210,
         "no_finishes_supported_by_index": 3
       },
       "blockers": [
-        "No candidate finish is currently master_verified.",
-        "Partial finish support must be split into supported-only and unsupported lanes.",
-        "Human-readable/checklist finish evidence is required before any write."
+        "Some rows still lack exact card identity or exact supported finish coverage.",
+        "Unsupported finishes must not be recovered.",
+        "Partial finish support must be split into supported-only and unsupported lanes."
       ],
       "required_before_write": [
-        "Acquire human/checklist evidence per set and finish.",
-        "Rerun exact-match feasibility and require master_verified finish rows.",
-        "Generate a set-specific dry-run write plan with rollback artifacts.",
-        "Founder/operator approval of exact row IDs and intended mutations."
+        "Resolve card-number gaps or exclude them from the package.",
+        "Split supported finish rows from unsupported finish rows.",
+        "Generate a separate dry-run package only for rows that become master_verified."
       ],
-      "rollback_requirement": "Per-row before/after snapshot and reversible update plan required."
+      "rollback_requirement": "No write package may include blocked remainder rows."
     },
     {
       "package_id": "PKG-02",

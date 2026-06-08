@@ -7,6 +7,7 @@ import {
 } from './verified_master_set_index_v1/shared.mjs';
 
 const OUTPUT_DIR = path.join(DEFAULT_OUTPUT_DIR, 'english_master_index_v1');
+const COMPLETION_DIR = path.join('docs', 'audits', 'english_master_index_completion_v1');
 const GENERATED_FILES = [
   'english_master_index_write_readiness_v1.json',
   'english_master_index_write_readiness_v1.md',
@@ -40,6 +41,10 @@ async function readJson(fileName) {
   return JSON.parse(await fs.readFile(path.join(OUTPUT_DIR, fileName), 'utf8'));
 }
 
+async function readCompletionJson(fileName) {
+  return JSON.parse(await fs.readFile(path.join(COMPLETION_DIR, fileName), 'utf8'));
+}
+
 async function readOptionalJson(fileName, fallback) {
   try {
     return await readJson(fileName);
@@ -69,9 +74,25 @@ function safetyBlock() {
   };
 }
 
-function buildGlobalBuckets({ grookaiAudit, setUnmapped, provenance, recoveryLanes, exactMatch, sourceAcquisition, readiness, repairPriority, finishBlockerClosure }) {
+function buildGlobalBuckets({ completion, completionSourceGap, adjudicatedExcluded, grookaiAudit, setUnmapped, provenance, recoveryLanes, exactMatch, sourceAcquisition, readiness, repairPriority, finishBlockerClosure }) {
   const statusCounts = grookaiAudit.summary?.by_status ?? {};
+  const completionGapCount = completion.summary?.source_gap_queue_items ?? completionSourceGap.summary?.total_queue_items ?? 0;
+  const completionFinishBlockers = completion.summary?.finish_blocker_boundary_facts ?? 0;
+  const adjudicatedExcludedCount = completion.summary?.adjudicated_excluded_printing_facts ?? adjudicatedExcluded.summary?.excluded_printing_facts ?? 0;
   return [
+    {
+      bucket: 'completed_master_index',
+      row_count: completion.summary?.master_admissible_printing_facts ?? 0,
+      status: completionGapCount === 0 ? 'complete_master_index_reference' : 'completion_gap_remaining',
+      mutation_ready: false,
+      reason: 'The English Master Index is complete as reference truth, but reference completion is not DB write authority.',
+      next_action: 'Use this as the target for row-level dry-run write packages only.',
+      detail: {
+        complete_master_index_sets: completion.summary?.complete_master_index_sets ?? null,
+        source_gap_queue_items: completionGapCount,
+        adjudicated_excluded_printing_facts: adjudicatedExcludedCount,
+      },
+    },
     {
       bucket: 'master_verified_monitor_only',
       row_count: statusCounts.master_verified_by_index ?? 0,
@@ -132,10 +153,17 @@ function buildGlobalBuckets({ grookaiAudit, setUnmapped, provenance, recoveryLan
       bucket: 'missing_set_code_physical_candidates',
       row_count: recoveryLanes.summary?.by_lane?.physical_tcg_alias_recovery_candidate ?? 0,
       printing_rows: exactMatch.summary?.candidate_printing_rows ?? null,
-      status: 'identity_matched_finish_blocked',
+      status: 'partially_ready_for_dry_run_design',
       mutation_ready: false,
-      reason: 'All physical candidates matched card identity, but finish truth is not master_verified.',
-      next_action: 'Acquire human/checklist finish evidence, then rerun exact-match feasibility.',
+      reason: 'A master-verified subset exists, but the overall physical recovery lane still contains identity and finish-blocked rows.',
+      next_action: 'Design a dry-run package for the master-verified subset only; keep blocked remainder out.',
+      detail: {
+        all_finishes_master_verified_by_index: exactMatch.summary?.by_finish_match_status?.all_finishes_master_verified_by_index ?? 0,
+        master_verified_printing_rows: exactMatch.summary?.printing_rows_by_finish_status?.all_finishes_master_verified_by_index ?? 0,
+        blocked_until_card_identity_match: exactMatch.summary?.by_finish_match_status?.blocked_until_card_identity_match ?? 0,
+        partial_finishes_supported_by_index: exactMatch.summary?.by_finish_match_status?.partial_finishes_supported_by_index ?? 0,
+        no_finishes_supported_by_index: exactMatch.summary?.by_finish_match_status?.no_finishes_supported_by_index ?? 0,
+      },
     },
     {
       bucket: 'missing_set_code_pocket_scope_candidates',
@@ -163,25 +191,43 @@ function buildGlobalBuckets({ grookaiAudit, setUnmapped, provenance, recoveryLan
     },
     {
       bucket: 'source_acquisition_queue',
-      row_count: valueAt(sourceAcquisition, ['summary', 'queue_summary', 'total_queue_items'], 0),
-      weighted_rows: valueAt(sourceAcquisition, ['summary', 'queue_summary', 'by_lane'], {}),
-      status: 'evidence_work_required',
+      row_count: completionGapCount,
+      historical_weighted_rows: valueAt(sourceAcquisition, ['summary', 'queue_summary', 'by_lane'], {}),
+      status: completionGapCount === 0 ? 'closed_by_completion_report' : 'evidence_work_required',
       mutation_ready: false,
-      reason: 'The source acquisition queue is still the main blocker to safe writes.',
-      next_action: 'Prioritize human checklist evidence for high-volume physical recovery sets.',
+      reason: completionGapCount === 0
+        ? 'The completion report has no remaining Master Index source-gap queue items. Historical source-acquisition queues remain planning context only.'
+        : 'The source acquisition queue is still the main blocker to safe writes.',
+      next_action: completionGapCount === 0
+        ? 'Proceed to row-level dry-run package design for eligible subsets; do not run writes.'
+        : 'Prioritize human checklist evidence for high-volume physical recovery sets.',
     },
     {
       bucket: 'finish_blocker_boundary',
-      row_count: finishBlockerClosure.summary?.blocker_mapped_rows ?? 0,
-      status: 'manual_adjudication_required',
+      row_count: completionFinishBlockers,
+      status: completionFinishBlockers === 0 ? 'closed_by_adjudication' : 'manual_adjudication_required',
       mutation_ready: false,
-      reason: 'Remaining finish-second-source rows have exact finish-label or card-number conflicts and are not promotion safe.',
-      next_action: 'Resolve manually as finish-label/number adjudication before any future write package.',
+      reason: completionFinishBlockers === 0
+        ? 'Former finish blockers were adjudicated out of working truth and are no longer completion blockers.'
+        : 'Remaining finish-second-source rows have exact finish-label or card-number conflicts and are not promotion safe.',
+      next_action: completionFinishBlockers === 0
+        ? 'Keep adjudicated exclusions preserved as audit evidence; do not use them for writes.'
+        : 'Resolve manually as finish-label/number adjudication before any future write package.',
       detail: {
         closure_status: finishBlockerClosure.summary?.closure_status ?? 'not_available',
         promotion_safe_now: finishBlockerClosure.summary?.promotion_safe_now ?? 0,
         by_blocker_type: finishBlockerClosure.summary?.by_blocker_type ?? {},
+        adjudicated_excluded_printing_facts: adjudicatedExcludedCount,
       },
+    },
+    {
+      bucket: 'adjudicated_excluded_printings',
+      row_count: adjudicatedExcludedCount,
+      status: 'excluded_from_working_truth',
+      mutation_ready: false,
+      reason: 'These facts are preserved as reviewed exclusions, not deletion, insertion, or cleanup authority.',
+      next_action: 'Keep excluded unless new exact evidence reopens adjudication.',
+      detail: adjudicatedExcluded.summary ?? {},
     },
     {
       bucket: 'truth_readiness_sets',
@@ -212,9 +258,35 @@ function buildGlobalBuckets({ grookaiAudit, setUnmapped, provenance, recoveryLan
   ];
 }
 
-function buildWritePackages({ exactMatch, recoveryLanes, sourceAcquisition, grookaiAudit }) {
+function summarizeDryRunCandidateSets(exactMatch) {
+  const rows = (exactMatch.rows ?? [])
+    .filter((row) => row.card_match_status === 'exact_card_identity_match' && row.finish_match_status === 'all_finishes_master_verified_by_index');
+  const bySet = new Map();
+  for (const row of rows) {
+    const key = row.set_key ?? 'unknown';
+    const existing = bySet.get(key) ?? {
+      set_key: key,
+      set_name: row.set_name ?? '',
+      candidate_card_prints: 0,
+      candidate_printing_rows: 0,
+      sample_card_print_ids: [],
+    };
+    existing.candidate_card_prints += 1;
+    existing.candidate_printing_rows += Number(row.printing_count ?? 0);
+    if (existing.sample_card_print_ids.length < 5 && row.card_print_id) existing.sample_card_print_ids.push(row.card_print_id);
+    bySet.set(key, existing);
+  }
+  return [...bySet.values()]
+    .sort((left, right) => right.candidate_printing_rows - left.candidate_printing_rows || left.set_key.localeCompare(right.set_key));
+}
+
+function buildWritePackages({ completion, exactMatch, recoveryLanes, sourceAcquisition, grookaiAudit }) {
   const physicalByFinishStatus = exactMatch.summary?.by_finish_match_status ?? {};
+  const physicalPrintingByFinishStatus = exactMatch.summary?.printing_rows_by_finish_status ?? {};
   const statusCounts = grookaiAudit.summary?.by_status ?? {};
+  const dryRunCandidateSets = summarizeDryRunCandidateSets(exactMatch);
+  const dryRunCandidateCards = physicalByFinishStatus.all_finishes_master_verified_by_index ?? 0;
+  const dryRunCandidatePrintings = physicalPrintingByFinishStatus.all_finishes_master_verified_by_index ?? 0;
   return [
     {
       package_id: 'PKG-00',
@@ -228,29 +300,56 @@ function buildWritePackages({ exactMatch, recoveryLanes, sourceAcquisition, groo
     },
     {
       package_id: 'PKG-01',
-      name: 'Physical missing-set recovery',
-      current_state: 'identity_matched_finish_blocked',
+      name: 'Physical missing-set recovery - master-verified subset',
+      current_state: dryRunCandidateCards > 0 ? 'row_level_dry_run_package_required' : 'no_master_verified_subset',
       future_write_allowed_after_approval: false,
-      candidate_card_prints: exactMatch.summary?.candidate_card_prints ?? 0,
-      candidate_printing_rows: exactMatch.summary?.candidate_printing_rows ?? 0,
+      evidence_ready_for_dry_run_design: dryRunCandidateCards > 0,
+      candidate_card_prints: dryRunCandidateCards,
+      candidate_printing_rows: dryRunCandidatePrintings,
+      candidate_sets: dryRunCandidateSets,
       evidence_shape: {
         exact_card_identity_match: exactMatch.summary?.by_card_match_status?.exact_card_identity_match ?? 0,
-        all_finishes_supported_but_not_master_verified: physicalByFinishStatus.all_finishes_supported_but_not_master_verified ?? 0,
+        all_finishes_master_verified_by_index: dryRunCandidateCards,
+      },
+      blockers: [
+        'No row-level write package has been generated.',
+        'No before/after DB snapshot or rollback artifact exists for these rows.',
+        'No post-apply verification query set has been approved.',
+        'Operator approval is still required before any DB write.',
+      ],
+      required_before_write: [
+        'Generate a set-specific dry-run write package for the eligible master-verified subset.',
+        'List exact source card_print IDs and intended set/printing changes.',
+        'Capture before-state snapshots and rollback SQL/script.',
+        'Run identity, ownership, vault, and provenance impact checks.',
+        'Founder/operator approval of exact row IDs and intended mutations.',
+      ],
+      rollback_requirement: 'Per-row before/after snapshot and reversible update plan required.',
+    },
+    {
+      package_id: 'PKG-01B',
+      name: 'Physical missing-set recovery - blocked remainder',
+      current_state: 'blocked_until_identity_or_finish_safe',
+      future_write_allowed_after_approval: false,
+      candidate_card_prints: (exactMatch.summary?.candidate_card_prints ?? 0) - dryRunCandidateCards,
+      candidate_printing_rows: (exactMatch.summary?.candidate_printing_rows ?? 0) - dryRunCandidatePrintings,
+      evidence_shape: {
+        number_missing_from_index: exactMatch.summary?.by_card_match_status?.number_missing_from_index ?? 0,
+        blocked_until_card_identity_match: physicalByFinishStatus.blocked_until_card_identity_match ?? 0,
         partial_finishes_supported_by_index: physicalByFinishStatus.partial_finishes_supported_by_index ?? 0,
         no_finishes_supported_by_index: physicalByFinishStatus.no_finishes_supported_by_index ?? 0,
       },
       blockers: [
-        'No candidate finish is currently master_verified.',
+        'Some rows still lack exact card identity or exact supported finish coverage.',
+        'Unsupported finishes must not be recovered.',
         'Partial finish support must be split into supported-only and unsupported lanes.',
-        'Human-readable/checklist finish evidence is required before any write.',
       ],
       required_before_write: [
-        'Acquire human/checklist evidence per set and finish.',
-        'Rerun exact-match feasibility and require master_verified finish rows.',
-        'Generate a set-specific dry-run write plan with rollback artifacts.',
-        'Founder/operator approval of exact row IDs and intended mutations.',
+        'Resolve card-number gaps or exclude them from the package.',
+        'Split supported finish rows from unsupported finish rows.',
+        'Generate a separate dry-run package only for rows that become master_verified.',
       ],
-      rollback_requirement: 'Per-row before/after snapshot and reversible update plan required.',
+      rollback_requirement: 'No write package may include blocked remainder rows.',
     },
     {
       package_id: 'PKG-02',
@@ -324,6 +423,7 @@ function buildWritePackages({ exactMatch, recoveryLanes, sourceAcquisition, groo
 }
 
 function buildEvidencePlan({ physicalPriority, exactMatch, sourceAcquisition }) {
+  const dryRunCandidateSets = summarizeDryRunCandidateSets(exactMatch).slice(0, 12);
   const topSets = (physicalPriority.ranked_sets ?? []).slice(0, 12).map((set) => ({
     set_key: set.set_key,
     set_name: set.set_name,
@@ -346,6 +446,7 @@ function buildEvidencePlan({ physicalPriority, exactMatch, sourceAcquisition }) 
   return {
     source_acquisition_queue_total: valueAt(sourceAcquisition, ['summary', 'queue_summary', 'total_queue_items'], 0),
     physical_exact_match_status: exactMatch.summary?.by_finish_match_status ?? {},
+    dry_run_candidate_sets: dryRunCandidateSets,
     priority_sets: topSets,
     evidence_rules: [
       'API agreement is not master truth.',
@@ -372,15 +473,21 @@ function buildArtifacts(inputs) {
   const summary = {
     write_ready_now: writeReadyNow,
     db_writes_allowed_from_this_plan: false,
+    master_index_completion: inputs.completion.summary ?? {},
     planning_ready_but_write_blocked: planningReadyButWriteBlocked,
     blocked_rows_counted: blockedRows,
     grookai_printing_rows: inputs.grookaiAudit.summary?.grookai_printing_rows ?? null,
-    index_printing_rows: inputs.grookaiAudit.summary?.index_printing_rows ?? null,
+    index_printing_rows: inputs.completion.summary?.master_admissible_printing_facts ?? inputs.grookaiAudit.summary?.index_printing_rows ?? null,
     global_status_counts: inputs.grookaiAudit.summary?.by_status ?? {},
     set_unmapped_categories: inputs.setUnmapped.summary?.by_category ?? {},
     physical_recovery_exact_match: inputs.exactMatch.summary ?? {},
-    source_acquisition_queue: valueAt(inputs.sourceAcquisition, ['summary', 'queue_summary'], {}),
-    finish_blocker_closure: inputs.finishBlockerClosure.summary ?? {},
+    source_acquisition_queue: inputs.completionSourceGap.summary ?? valueAt(inputs.sourceAcquisition, ['summary', 'queue_summary'], {}),
+    historical_source_acquisition_queue: valueAt(inputs.sourceAcquisition, ['summary', 'queue_summary'], {}),
+    finish_blocker_closure: {
+      ...(inputs.finishBlockerClosure.summary ?? {}),
+      completion_finish_blocker_boundary_facts: inputs.completion.summary?.finish_blocker_boundary_facts ?? null,
+      adjudicated_excluded_printing_facts: inputs.completion.summary?.adjudicated_excluded_printing_facts ?? null,
+    },
     truth_readiness: inputs.readiness.summary ?? {},
     repair_priority: inputs.repairPriority.summary ?? {},
   };
@@ -390,7 +497,7 @@ function buildArtifacts(inputs) {
     version: 'english_master_index_write_readiness_v1',
     ...safety,
     rule: 'This report determines whether Grookai is ready to write. It does not execute writes.',
-    conclusion: 'No additional catalog writes are authorized yet. The audit is ready for evidence acquisition and future set-specific proof-loop planning.',
+    conclusion: 'No catalog writes are authorized yet. The Master Index is complete, and the next safe step is row-level dry-run write package design for eligible master-verified subsets.',
     summary,
     global_buckets: globalBuckets,
     write_packages: writePackages,
@@ -412,15 +519,15 @@ function buildArtifacts(inputs) {
       },
       {
         phase: 'Phase 1',
-        name: 'Acquire missing human/checklist evidence',
-        status: 'next_required',
+        name: 'Acquire missing human/checklist evidence for Master Index completion',
+        status: valueAt(inputs.completionSourceGap, ['summary', 'total_queue_items'], 0) === 0 ? 'closed_for_master_index_completion' : 'next_required',
         allowed_actions: ['source research', 'manual evidence fixtures', 'report regeneration'],
-        source_targets: evidencePlan.priority_sets,
+        source_targets: valueAt(inputs.completionSourceGap, ['summary', 'total_queue_items'], 0) === 0 ? [] : evidencePlan.priority_sets,
       },
       {
         phase: 'Phase 2',
         name: 'Rerun master index and exact-match audits',
-        status: 'blocked_until_phase_1',
+        status: 'complete_for_current_master_index',
         required_outputs: [
           'updated master index facts',
           'updated exact finish matrix',
@@ -431,7 +538,7 @@ function buildArtifacts(inputs) {
       {
         phase: 'Phase 3',
         name: 'Generate set-specific dry-run write packages',
-        status: 'blocked_until_master_verified',
+        status: 'next_required_no_write',
         required_outputs: [
           'exact row IDs',
           'before/after snapshots',
@@ -455,20 +562,21 @@ function buildArtifacts(inputs) {
     generated_at: new Date().toISOString(),
     version: 'english_master_index_audit_closure_v1',
     ...safety,
-    audit_status: 'complete_to_write_readiness_boundary',
+    audit_status: 'complete_to_dry_run_package_boundary',
     conclusion: {
       entire_audit_completed_to_current_evidence_boundary: true,
+      master_index_complete: (inputs.completion.summary?.source_gap_queue_items ?? 1) === 0,
       ready_for_db_writes: false,
-      reason: 'The audit has enough structure to plan writes, but not enough master_verified finish evidence to execute them safely.',
-      strongest_positive_finding: '807 physical missing-set candidates have exact Master Index card identity matches.',
-      main_blocker: 'Finish truth still requires human-readable/checklist evidence and master_verified promotion.',
-      finish_blocker_boundary: 'The final finish-second-source rows are classified as blocker-boundary adjudication items, not broad source-acquisition gaps.',
+      reason: 'The completed Master Index can now drive dry-run package design, but writes still need exact row IDs, rollback artifacts, impact checks, and approval.',
+      strongest_positive_finding: '106 physical missing-set recovery card candidates / 143 printing rows have exact card identity and all finishes master_verified by the index.',
+      main_blocker: 'No row-level dry-run write package, rollback artifact, or post-apply verification query plan exists yet.',
+      finish_blocker_boundary: 'Former finish blockers are adjudicated exclusions outside working truth, not open completion gaps.',
     },
     summary,
     immediate_next_non_write_work: [
-      'Acquire human/checklist finish evidence for top physical recovery sets.',
-      'Rerun exact-match audit after evidence fixtures are added.',
-      'Only then generate set-specific dry-run write packages.',
+      'Generate the first set-specific dry-run write package from the 106-card / 143-printing master-verified physical recovery subset.',
+      'Capture exact row IDs, before-state snapshots, rollback plan, and post-apply verification queries.',
+      'Keep blocked remainder rows out of the package.',
     ],
     stop_rules_before_any_future_write: [
       'Stop if a fact is API-only.',
@@ -522,9 +630,13 @@ ${artifact.conclusion}
 - Grookai printing rows: ${artifact.summary.grookai_printing_rows}
 - Index printing rows: ${artifact.summary.index_printing_rows}
 - master_verified_by_index: ${artifact.summary.global_status_counts.master_verified_by_index ?? 0}
-- finish_blocker_boundary_rows: ${artifact.summary.finish_blocker_closure.blocker_mapped_rows ?? 0}
+- completed Master Index printings: ${artifact.summary.master_index_completion.master_admissible_printing_facts ?? 0}
+- source_gap_queue_items: ${artifact.summary.master_index_completion.source_gap_queue_items ?? 0}
+- finish_blocker_boundary_rows: ${artifact.summary.finish_blocker_closure.completion_finish_blocker_boundary_facts ?? 0}
+- adjudicated_excluded_printing_facts: ${artifact.summary.finish_blocker_closure.adjudicated_excluded_printing_facts ?? 0}
 - physical exact card matches: ${artifact.summary.physical_recovery_exact_match.by_card_match_status?.exact_card_identity_match ?? 0}
-- physical finish blocked: ${(artifact.summary.physical_recovery_exact_match.by_finish_match_status?.all_finishes_supported_but_not_master_verified ?? 0) + (artifact.summary.physical_recovery_exact_match.by_finish_match_status?.partial_finishes_supported_by_index ?? 0) + (artifact.summary.physical_recovery_exact_match.by_finish_match_status?.no_finishes_supported_by_index ?? 0)}
+- physical all-finish master-verified dry-run candidates: ${artifact.summary.physical_recovery_exact_match.by_finish_match_status?.all_finishes_master_verified_by_index ?? 0}
+- physical finish blocked: ${(artifact.summary.physical_recovery_exact_match.by_finish_match_status?.partial_finishes_supported_by_index ?? 0) + (artifact.summary.physical_recovery_exact_match.by_finish_match_status?.no_finishes_supported_by_index ?? 0)}
 
 ## Global Buckets
 
@@ -551,6 +663,13 @@ function buildNoWriteExecutionPlanMarkdown(artifact) {
     set.source_aliases.join(', '),
     set.required_evidence.join('; '),
   ]);
+  const dryRunRows = artifact.evidence_plan.dry_run_candidate_sets.map((set) => [
+    set.set_key,
+    set.set_name,
+    set.candidate_card_prints,
+    set.candidate_printing_rows,
+    (set.sample_card_print_ids ?? []).join(', '),
+  ]);
 
   return `# English Master Index No-Write Execution Plan V1
 
@@ -569,7 +688,11 @@ This is the complete no-write execution plan required before any future write pr
 
 ${markdownTable(['phase', 'name', 'status', 'outputs/actions'], phaseRows)}
 
-## Priority Source Targets
+## Priority Dry-Run Package Targets
+
+${markdownTable(['set_key', 'set_name', 'card_prints', 'printing_rows', 'sample_card_print_ids'], dryRunRows)}
+
+## Historical Source Targets
 
 ${markdownTable(['set_key', 'set_name', 'card_prints', 'printing_rows', 'source_aliases', 'required_evidence'], sourceRows)}
 
@@ -592,6 +715,7 @@ function buildAuditClosureMarkdown(artifact) {
 ## Conclusion
 
 - entire_audit_completed_to_current_evidence_boundary: ${artifact.conclusion.entire_audit_completed_to_current_evidence_boundary}
+- master_index_complete: ${artifact.conclusion.master_index_complete}
 - ready_for_db_writes: ${artifact.conclusion.ready_for_db_writes}
 - reason: ${artifact.conclusion.reason}
 - strongest_positive_finding: ${artifact.conclusion.strongest_positive_finding}
@@ -623,6 +747,9 @@ ${markdownTable(['package', 'name', 'state', 'required_before_write'], packageRo
 async function main() {
   const inputs = {
     masterIndex: await readJson('english_master_index_v1.json'),
+    completion: await readCompletionJson('english_master_index_completion_v1.json'),
+    completionSourceGap: await readCompletionJson('english_master_index_source_gap_queue_v1.json'),
+    adjudicatedExcluded: await readCompletionJson('english_master_index_adjudicated_excluded_printings_v1.json'),
     grookaiAudit: await readJson('english_master_index_grookai_audit_v1.json'),
     actionPlan: await readJson('english_master_index_action_plan_v1.json'),
     setUnmapped: await readJson('english_master_index_set_unmapped_triage_v1.json'),

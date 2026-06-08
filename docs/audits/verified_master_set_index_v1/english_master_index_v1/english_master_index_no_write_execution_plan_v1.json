@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-08T19:45:00.564Z",
+  "generated_at": "2026-06-08T20:12:56.828Z",
   "version": "english_master_index_no_write_execution_plan_v1",
   "audit_only": true,
   "db_writes_performed": false,
@@ -30,260 +30,19 @@
     },
     {
       "phase": "Phase 1",
-      "name": "Acquire missing human/checklist evidence",
-      "status": "next_required",
+      "name": "Acquire missing human/checklist evidence for Master Index completion",
+      "status": "closed_for_master_index_completion",
       "allowed_actions": [
         "source research",
         "manual evidence fixtures",
         "report regeneration"
       ],
-      "source_targets": [
-        {
-          "set_key": "sv4pt5",
-          "set_name": "Paldean Fates",
-          "candidate_card_prints": 108,
-          "printing_rows": 148,
-          "source_aliases": [
-            "sv04.5"
-          ],
-          "readiness_lane": "proof_loop_candidate_after_card_match",
-          "required_evidence": [
-            "human-readable/checklist card identity evidence",
-            "exact card-number finish matrix evidence",
-            "second-source confirmation for each finish fact"
-          ],
-          "stop_if": [
-            "source only gives general finish rule",
-            "card-level coverage is ambiguous",
-            "finish is unsupported or conflicts with index"
-          ]
-        },
-        {
-          "set_key": "sv6pt5",
-          "set_name": "Shrouded Fable",
-          "candidate_card_prints": 52,
-          "printing_rows": 69,
-          "source_aliases": [
-            "sv06.5"
-          ],
-          "readiness_lane": "proof_loop_candidate_after_card_match",
-          "required_evidence": [
-            "human-readable/checklist card identity evidence",
-            "exact card-number finish matrix evidence",
-            "second-source confirmation for each finish fact"
-          ],
-          "stop_if": [
-            "source only gives general finish rule",
-            "card-level coverage is ambiguous",
-            "finish is unsupported or conflicts with index"
-          ]
-        },
-        {
-          "set_key": "mcd21",
-          "set_name": "McDonald's Collection 2021",
-          "candidate_card_prints": 25,
-          "printing_rows": 50,
-          "source_aliases": [
-            "2021swsh"
-          ],
-          "readiness_lane": "proof_loop_candidate_after_card_match",
-          "required_evidence": [
-            "human-readable/checklist card identity evidence",
-            "exact card-number finish matrix evidence",
-            "second-source confirmation for each finish fact"
-          ],
-          "stop_if": [
-            "source only gives general finish rule",
-            "card-level coverage is ambiguous",
-            "finish is unsupported or conflicts with index"
-          ]
-        },
-        {
-          "set_key": "sv8pt5",
-          "set_name": "Prismatic Evolutions",
-          "candidate_card_prints": 180,
-          "printing_rows": 440,
-          "source_aliases": [
-            "sv08.5"
-          ],
-          "readiness_lane": "high_volume_recovery_candidate",
-          "required_evidence": [
-            "human-readable/checklist card identity evidence",
-            "exact card-number finish matrix evidence",
-            "second-source confirmation for each finish fact"
-          ],
-          "stop_if": [
-            "source only gives general finish rule",
-            "card-level coverage is ambiguous",
-            "finish is unsupported or conflicts with index"
-          ]
-        },
-        {
-          "set_key": "pgo",
-          "set_name": "Pokémon GO",
-          "candidate_card_prints": 34,
-          "printing_rows": 42,
-          "source_aliases": [
-            "swsh10.5"
-          ],
-          "readiness_lane": "proof_loop_candidate_after_card_match",
-          "required_evidence": [
-            "human-readable/checklist card identity evidence",
-            "exact card-number finish matrix evidence",
-            "second-source confirmation for each finish fact"
-          ],
-          "stop_if": [
-            "source only gives general finish rule",
-            "card-level coverage is ambiguous",
-            "finish is unsupported or conflicts with index"
-          ]
-        },
-        {
-          "set_key": "swsh2",
-          "set_name": "Rebel Clash",
-          "candidate_card_prints": 1,
-          "printing_rows": 2,
-          "source_aliases": [
-            "swsh2"
-          ],
-          "readiness_lane": "proof_loop_candidate_after_card_match",
-          "required_evidence": [
-            "human-readable/checklist card identity evidence",
-            "exact card-number finish matrix evidence",
-            "second-source confirmation for each finish fact"
-          ],
-          "stop_if": [
-            "source only gives general finish rule",
-            "card-level coverage is ambiguous",
-            "finish is unsupported or conflicts with index"
-          ]
-        },
-        {
-          "set_key": "ecard3",
-          "set_name": "Skyridge",
-          "candidate_card_prints": 15,
-          "printing_rows": 19,
-          "source_aliases": [
-            "ecard3"
-          ],
-          "readiness_lane": "proof_loop_candidate_after_card_match",
-          "required_evidence": [
-            "human-readable/checklist card identity evidence",
-            "exact card-number finish matrix evidence",
-            "second-source confirmation for each finish fact"
-          ],
-          "stop_if": [
-            "source only gives general finish rule",
-            "card-level coverage is ambiguous",
-            "finish is unsupported or conflicts with index"
-          ]
-        },
-        {
-          "set_key": "ecard2",
-          "set_name": "Aquapolis",
-          "candidate_card_prints": 13,
-          "printing_rows": 26,
-          "source_aliases": [
-            "ecard2"
-          ],
-          "readiness_lane": "proof_loop_candidate_after_card_match",
-          "required_evidence": [
-            "human-readable/checklist card identity evidence",
-            "exact card-number finish matrix evidence",
-            "second-source confirmation for each finish fact"
-          ],
-          "stop_if": [
-            "source only gives general finish rule",
-            "card-level coverage is ambiguous",
-            "finish is unsupported or conflicts with index"
-          ]
-        },
-        {
-          "set_key": "dp7",
-          "set_name": "Stormfront",
-          "candidate_card_prints": 8,
-          "printing_rows": 10,
-          "source_aliases": [
-            "dp7"
-          ],
-          "readiness_lane": "proof_loop_candidate_after_card_match",
-          "required_evidence": [
-            "human-readable/checklist card identity evidence",
-            "exact card-number finish matrix evidence",
-            "second-source confirmation for each finish fact"
-          ],
-          "stop_if": [
-            "source only gives general finish rule",
-            "card-level coverage is ambiguous",
-            "finish is unsupported or conflicts with index"
-          ]
-        },
-        {
-          "set_key": "pl1",
-          "set_name": "Platinum",
-          "candidate_card_prints": 9,
-          "printing_rows": 10,
-          "source_aliases": [
-            "pl1"
-          ],
-          "readiness_lane": "proof_loop_candidate_after_card_match",
-          "required_evidence": [
-            "human-readable/checklist card identity evidence",
-            "exact card-number finish matrix evidence",
-            "second-source confirmation for each finish fact"
-          ],
-          "stop_if": [
-            "source only gives general finish rule",
-            "card-level coverage is ambiguous",
-            "finish is unsupported or conflicts with index"
-          ]
-        },
-        {
-          "set_key": "svp",
-          "set_name": "Scarlet & Violet Black Star Promos",
-          "candidate_card_prints": 73,
-          "printing_rows": 219,
-          "source_aliases": [
-            "svp"
-          ],
-          "readiness_lane": "promo_family_caution_review",
-          "required_evidence": [
-            "human-readable/checklist card identity evidence",
-            "exact card-number finish matrix evidence",
-            "second-source confirmation for each finish fact"
-          ],
-          "stop_if": [
-            "source only gives general finish rule",
-            "card-level coverage is ambiguous",
-            "finish is unsupported or conflicts with index"
-          ]
-        },
-        {
-          "set_key": "pl2",
-          "set_name": "Rising Rivals",
-          "candidate_card_prints": 37,
-          "printing_rows": 64,
-          "source_aliases": [
-            "pl2"
-          ],
-          "readiness_lane": "legacy_caution_review",
-          "required_evidence": [
-            "human-readable/checklist card identity evidence",
-            "exact card-number finish matrix evidence",
-            "second-source confirmation for each finish fact"
-          ],
-          "stop_if": [
-            "source only gives general finish rule",
-            "card-level coverage is ambiguous",
-            "finish is unsupported or conflicts with index"
-          ]
-        }
-      ]
+      "source_targets": []
     },
     {
       "phase": "Phase 2",
       "name": "Rerun master index and exact-match audits",
-      "status": "blocked_until_phase_1",
+      "status": "complete_for_current_master_index",
       "required_outputs": [
         "updated master index facts",
         "updated exact finish matrix",
@@ -294,7 +53,7 @@
     {
       "phase": "Phase 3",
       "name": "Generate set-specific dry-run write packages",
-      "status": "blocked_until_master_verified",
+      "status": "next_required_no_write",
       "required_outputs": [
         "exact row IDs",
         "before/after snapshots",
@@ -318,6 +77,151 @@
       "all_finishes_master_verified_by_index": 106,
       "no_finishes_supported_by_index": 3
     },
+    "dry_run_candidate_sets": [
+      {
+        "set_key": "ecard2",
+        "set_name": "Aquapolis",
+        "candidate_card_prints": 13,
+        "candidate_printing_rows": 26,
+        "sample_card_print_ids": [
+          "5155d8da-c49b-43cf-8173-1e4ceca853d2",
+          "49008b62-21be-48b8-a561-9dc0bea390e1",
+          "0f752ca1-5458-4241-af37-4a7b48b85013",
+          "bf8fa8c4-a04d-44f8-ae9e-50a6a6784d88",
+          "d5e3ba78-7a85-49d2-8ab0-295521652f55"
+        ]
+      },
+      {
+        "set_key": "pl2",
+        "set_name": "Rising Rivals",
+        "candidate_card_prints": 17,
+        "candidate_printing_rows": 24,
+        "sample_card_print_ids": [
+          "2ebe059c-614e-4dd6-812f-ebf268459ce5",
+          "9d6eb3c7-dc61-4543-b436-a67fd23ba16c",
+          "1970689f-8f93-4148-96b2-0ed8ed149568",
+          "8c817161-627f-4ff5-aa27-127757b88213",
+          "bc120b0e-4aad-47c1-989b-a733435a2000"
+        ]
+      },
+      {
+        "set_key": "pl4",
+        "set_name": "Arceus",
+        "candidate_card_prints": 18,
+        "candidate_printing_rows": 23,
+        "sample_card_print_ids": [
+          "a02f871c-fe3e-432b-944d-6decea0eecdf",
+          "71779a8b-ee22-4892-9425-8e3da51f179a",
+          "3059259e-c28b-49d6-9f31-64e178e87f28",
+          "8716f287-3497-49b2-a499-9c1e026a6a94",
+          "460e6437-4bc8-4a1c-90fc-546481f225e2"
+        ]
+      },
+      {
+        "set_key": "ecard3",
+        "set_name": "Skyridge",
+        "candidate_card_prints": 15,
+        "candidate_printing_rows": 19,
+        "sample_card_print_ids": [
+          "d0270c83-13c1-4d2b-ae50-19830be9d134",
+          "36a0af86-f863-4ff0-967c-285a67272dcb",
+          "6406220f-4684-4f26-a52d-310db5eb5700",
+          "982bd726-548f-4e0c-9a93-c1301af1342f",
+          "d139fca7-558c-4dad-9a46-f94e4d45ab6b"
+        ]
+      },
+      {
+        "set_key": "dp7",
+        "set_name": "Stormfront",
+        "candidate_card_prints": 8,
+        "candidate_printing_rows": 10,
+        "sample_card_print_ids": [
+          "62f77935-5749-4d26-87e6-06bbca565b22",
+          "665ee2b0-4a22-43d5-bf8e-8ff22a990384",
+          "d45018d3-c2a6-4d82-b3ed-d0ac6ce6e0ff",
+          "7c211bf2-ab9e-489d-842f-65c896270783",
+          "6f49c231-0a53-4c0c-9db1-6d4c36aa460e"
+        ]
+      },
+      {
+        "set_key": "mep",
+        "set_name": "MEP Black Star Promos",
+        "candidate_card_prints": 10,
+        "candidate_printing_rows": 10,
+        "sample_card_print_ids": [
+          "6419894a-137f-4fc7-8db1-fa853872b190",
+          "b75d4730-3c1a-42ca-9d18-e8ca736ae41f",
+          "aa9f207d-c9ea-4607-bbc5-448648bca47f",
+          "bf523703-271c-49fe-b8aa-c31c57cb9b32",
+          "04e533ae-dd17-478c-ab46-220859079b2c"
+        ]
+      },
+      {
+        "set_key": "pl1",
+        "set_name": "Platinum",
+        "candidate_card_prints": 9,
+        "candidate_printing_rows": 10,
+        "sample_card_print_ids": [
+          "cfbaec4b-bc98-4f6f-8b06-a30dbe29af30",
+          "9d20653b-49ea-4a30-8e18-629267d7397b",
+          "1cc5b95e-c5b7-477c-a3c1-1d4c26e10875",
+          "9deb3714-1f02-4eb2-a249-6b3b42a106cb",
+          "182aab06-7802-4dea-90cb-32dfc7cefaab"
+        ]
+      },
+      {
+        "set_key": "pl3",
+        "set_name": "Supreme Victors",
+        "candidate_card_prints": 9,
+        "candidate_printing_rows": 9,
+        "sample_card_print_ids": [
+          "8cd92a82-149d-43b4-a7d3-d65782536182",
+          "79097350-eb58-44e8-bd39-3ec5f417f02b",
+          "880dc8c7-6959-4fda-b79a-32e48c684267",
+          "29a4bca4-6264-45f6-bc24-1d5ded5520cd",
+          "2c1b3125-dd67-4522-b3e0-5621c05f7a9a"
+        ]
+      },
+      {
+        "set_key": "col1",
+        "set_name": "Call of Legends",
+        "candidate_card_prints": 2,
+        "candidate_printing_rows": 6,
+        "sample_card_print_ids": [
+          "2180d1db-0948-4cfc-9a98-da7629c2811a",
+          "922f2b4f-eb6f-492c-89a7-8b4f313509e2"
+        ]
+      },
+      {
+        "set_key": "ex10",
+        "set_name": "Unseen Forces",
+        "candidate_card_prints": 3,
+        "candidate_printing_rows": 3,
+        "sample_card_print_ids": [
+          "2fdd39c8-7afa-4031-be84-649ac28a7b72",
+          "043dbc47-0815-4ef4-b31d-2027f70f2338",
+          "584c31ad-d7ac-4356-b9cc-4de3152511b2"
+        ]
+      },
+      {
+        "set_key": "swsh2",
+        "set_name": "Rebel Clash",
+        "candidate_card_prints": 1,
+        "candidate_printing_rows": 2,
+        "sample_card_print_ids": [
+          "9cf48b11-bf42-4aa3-861b-c2ca5543877e"
+        ]
+      },
+      {
+        "set_key": "fut2020",
+        "set_name": "Pokémon Futsal 2020",
+        "candidate_card_prints": 1,
+        "candidate_printing_rows": 1,
+        "sample_card_print_ids": [
+          "a676888d-19e0-4064-89aa-e67019af5b95"
+        ]
+      }
+    ],
     "priority_sets": [
       {
         "set_key": "sv4pt5",
@@ -582,29 +486,200 @@
     },
     {
       "package_id": "PKG-01",
-      "name": "Physical missing-set recovery",
-      "current_state": "identity_matched_finish_blocked",
+      "name": "Physical missing-set recovery - master-verified subset",
+      "current_state": "row_level_dry_run_package_required",
       "future_write_allowed_after_approval": false,
-      "candidate_card_prints": 807,
-      "candidate_printing_rows": 1685,
+      "evidence_ready_for_dry_run_design": true,
+      "candidate_card_prints": 106,
+      "candidate_printing_rows": 143,
+      "candidate_sets": [
+        {
+          "set_key": "ecard2",
+          "set_name": "Aquapolis",
+          "candidate_card_prints": 13,
+          "candidate_printing_rows": 26,
+          "sample_card_print_ids": [
+            "5155d8da-c49b-43cf-8173-1e4ceca853d2",
+            "49008b62-21be-48b8-a561-9dc0bea390e1",
+            "0f752ca1-5458-4241-af37-4a7b48b85013",
+            "bf8fa8c4-a04d-44f8-ae9e-50a6a6784d88",
+            "d5e3ba78-7a85-49d2-8ab0-295521652f55"
+          ]
+        },
+        {
+          "set_key": "pl2",
+          "set_name": "Rising Rivals",
+          "candidate_card_prints": 17,
+          "candidate_printing_rows": 24,
+          "sample_card_print_ids": [
+            "2ebe059c-614e-4dd6-812f-ebf268459ce5",
+            "9d6eb3c7-dc61-4543-b436-a67fd23ba16c",
+            "1970689f-8f93-4148-96b2-0ed8ed149568",
+            "8c817161-627f-4ff5-aa27-127757b88213",
+            "bc120b0e-4aad-47c1-989b-a733435a2000"
+          ]
+        },
+        {
+          "set_key": "pl4",
+          "set_name": "Arceus",
+          "candidate_card_prints": 18,
+          "candidate_printing_rows": 23,
+          "sample_card_print_ids": [
+            "a02f871c-fe3e-432b-944d-6decea0eecdf",
+            "71779a8b-ee22-4892-9425-8e3da51f179a",
+            "3059259e-c28b-49d6-9f31-64e178e87f28",
+            "8716f287-3497-49b2-a499-9c1e026a6a94",
+            "460e6437-4bc8-4a1c-90fc-546481f225e2"
+          ]
+        },
+        {
+          "set_key": "ecard3",
+          "set_name": "Skyridge",
+          "candidate_card_prints": 15,
+          "candidate_printing_rows": 19,
+          "sample_card_print_ids": [
+            "d0270c83-13c1-4d2b-ae50-19830be9d134",
+            "36a0af86-f863-4ff0-967c-285a67272dcb",
+            "6406220f-4684-4f26-a52d-310db5eb5700",
+            "982bd726-548f-4e0c-9a93-c1301af1342f",
+            "d139fca7-558c-4dad-9a46-f94e4d45ab6b"
+          ]
+        },
+        {
+          "set_key": "dp7",
+          "set_name": "Stormfront",
+          "candidate_card_prints": 8,
+          "candidate_printing_rows": 10,
+          "sample_card_print_ids": [
+            "62f77935-5749-4d26-87e6-06bbca565b22",
+            "665ee2b0-4a22-43d5-bf8e-8ff22a990384",
+            "d45018d3-c2a6-4d82-b3ed-d0ac6ce6e0ff",
+            "7c211bf2-ab9e-489d-842f-65c896270783",
+            "6f49c231-0a53-4c0c-9db1-6d4c36aa460e"
+          ]
+        },
+        {
+          "set_key": "mep",
+          "set_name": "MEP Black Star Promos",
+          "candidate_card_prints": 10,
+          "candidate_printing_rows": 10,
+          "sample_card_print_ids": [
+            "6419894a-137f-4fc7-8db1-fa853872b190",
+            "b75d4730-3c1a-42ca-9d18-e8ca736ae41f",
+            "aa9f207d-c9ea-4607-bbc5-448648bca47f",
+            "bf523703-271c-49fe-b8aa-c31c57cb9b32",
+            "04e533ae-dd17-478c-ab46-220859079b2c"
+          ]
+        },
+        {
+          "set_key": "pl1",
+          "set_name": "Platinum",
+          "candidate_card_prints": 9,
+          "candidate_printing_rows": 10,
+          "sample_card_print_ids": [
+            "cfbaec4b-bc98-4f6f-8b06-a30dbe29af30",
+            "9d20653b-49ea-4a30-8e18-629267d7397b",
+            "1cc5b95e-c5b7-477c-a3c1-1d4c26e10875",
+            "9deb3714-1f02-4eb2-a249-6b3b42a106cb",
+            "182aab06-7802-4dea-90cb-32dfc7cefaab"
+          ]
+        },
+        {
+          "set_key": "pl3",
+          "set_name": "Supreme Victors",
+          "candidate_card_prints": 9,
+          "candidate_printing_rows": 9,
+          "sample_card_print_ids": [
+            "8cd92a82-149d-43b4-a7d3-d65782536182",
+            "79097350-eb58-44e8-bd39-3ec5f417f02b",
+            "880dc8c7-6959-4fda-b79a-32e48c684267",
+            "29a4bca4-6264-45f6-bc24-1d5ded5520cd",
+            "2c1b3125-dd67-4522-b3e0-5621c05f7a9a"
+          ]
+        },
+        {
+          "set_key": "col1",
+          "set_name": "Call of Legends",
+          "candidate_card_prints": 2,
+          "candidate_printing_rows": 6,
+          "sample_card_print_ids": [
+            "2180d1db-0948-4cfc-9a98-da7629c2811a",
+            "922f2b4f-eb6f-492c-89a7-8b4f313509e2"
+          ]
+        },
+        {
+          "set_key": "ex10",
+          "set_name": "Unseen Forces",
+          "candidate_card_prints": 3,
+          "candidate_printing_rows": 3,
+          "sample_card_print_ids": [
+            "2fdd39c8-7afa-4031-be84-649ac28a7b72",
+            "043dbc47-0815-4ef4-b31d-2027f70f2338",
+            "584c31ad-d7ac-4356-b9cc-4de3152511b2"
+          ]
+        },
+        {
+          "set_key": "swsh2",
+          "set_name": "Rebel Clash",
+          "candidate_card_prints": 1,
+          "candidate_printing_rows": 2,
+          "sample_card_print_ids": [
+            "9cf48b11-bf42-4aa3-861b-c2ca5543877e"
+          ]
+        },
+        {
+          "set_key": "fut2020",
+          "set_name": "Pokémon Futsal 2020",
+          "candidate_card_prints": 1,
+          "candidate_printing_rows": 1,
+          "sample_card_print_ids": [
+            "a676888d-19e0-4064-89aa-e67019af5b95"
+          ]
+        }
+      ],
       "evidence_shape": {
         "exact_card_identity_match": 319,
-        "all_finishes_supported_but_not_master_verified": 0,
+        "all_finishes_master_verified_by_index": 106
+      },
+      "blockers": [
+        "No row-level write package has been generated.",
+        "No before/after DB snapshot or rollback artifact exists for these rows.",
+        "No post-apply verification query set has been approved.",
+        "Operator approval is still required before any DB write."
+      ],
+      "required_before_write": [
+        "Generate a set-specific dry-run write package for the eligible master-verified subset.",
+        "List exact source card_print IDs and intended set/printing changes.",
+        "Capture before-state snapshots and rollback SQL/script.",
+        "Run identity, ownership, vault, and provenance impact checks.",
+        "Founder/operator approval of exact row IDs and intended mutations."
+      ],
+      "rollback_requirement": "Per-row before/after snapshot and reversible update plan required."
+    },
+    {
+      "package_id": "PKG-01B",
+      "name": "Physical missing-set recovery - blocked remainder",
+      "current_state": "blocked_until_identity_or_finish_safe",
+      "future_write_allowed_after_approval": false,
+      "candidate_card_prints": 701,
+      "candidate_printing_rows": 1542,
+      "evidence_shape": {
+        "number_missing_from_index": 488,
+        "blocked_until_card_identity_match": 488,
         "partial_finishes_supported_by_index": 210,
         "no_finishes_supported_by_index": 3
       },
       "blockers": [
-        "No candidate finish is currently master_verified.",
-        "Partial finish support must be split into supported-only and unsupported lanes.",
-        "Human-readable/checklist finish evidence is required before any write."
+        "Some rows still lack exact card identity or exact supported finish coverage.",
+        "Unsupported finishes must not be recovered.",
+        "Partial finish support must be split into supported-only and unsupported lanes."
       ],
       "required_before_write": [
-        "Acquire human/checklist evidence per set and finish.",
-        "Rerun exact-match feasibility and require master_verified finish rows.",
-        "Generate a set-specific dry-run write plan with rollback artifacts.",
-        "Founder/operator approval of exact row IDs and intended mutations."
+        "Resolve card-number gaps or exclude them from the package.",
+        "Split supported finish rows from unsupported finish rows.",
+        "Generate a separate dry-run package only for rows that become master_verified."
       ],
-      "rollback_requirement": "Per-row before/after snapshot and reversible update plan required."
+      "rollback_requirement": "No write package may include blocked remainder rows."
     },
     {
       "package_id": "PKG-02",
