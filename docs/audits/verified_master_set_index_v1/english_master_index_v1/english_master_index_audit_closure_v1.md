@@ -7,7 +7,7 @@
 - ready_for_db_writes: false
 - reason: The completed Master Index can now drive dry-run package design, but writes still need exact row IDs, rollback artifacts, impact checks, and approval.
 - strongest_positive_finding: 106 physical missing-set recovery card candidates / 143 printing rows have exact card identity and all finishes master_verified by the index.
-- main_blocker: No row-level dry-run write package, rollback artifact, or post-apply verification query plan exists yet.
+- main_blocker: Generated dry-run packages still need review, approval, and conversion into a separate apply package.
 
 ## Safety
 
@@ -20,7 +20,7 @@
 
 ## Immediate Next Non-Write Work
 
-- Generate the first set-specific dry-run write package from the 106-card / 143-printing master-verified physical recovery subset.
+- Review generated dry-run package snapshots, rollback requirements, and post-apply verification queries.
 - Capture exact row IDs, before-state snapshots, rollback plan, and post-apply verification queries.
 - Keep blocked remainder rows out of the package.
 
@@ -37,7 +37,7 @@
 | package | name | state | required_before_write |
 | --- | --- | --- | --- |
 | PKG-00 | Ascended Heroes monitor-only proof baseline | complete | No write required unless future drift appears. |
-| PKG-01 | Physical missing-set recovery - master-verified subset | row_level_dry_run_package_required | Generate a set-specific dry-run write package for the eligible master-verified subset.; List exact source card_print IDs and intended set/printing changes.; Capture before-state snapshots and rollback SQL/script.; Run identity, ownership, vault, and provenance impact checks.; Founder/operator approval of exact row IDs and intended mutations. |
+| PKG-01 | Physical missing-set recovery - master-verified subset | dry_run_package_ready_for_review_partial | Review generated set-specific dry-run package rows and DB snapshots.; List exact source card_print IDs and intended set/printing changes.; Capture before-state snapshots and rollback SQL/script.; Run identity, ownership, vault, and provenance impact checks.; Founder/operator approval of exact row IDs and intended mutations. |
 | PKG-01B | Physical missing-set recovery - blocked remainder | blocked_until_identity_or_finish_safe | Resolve card-number gaps or exclude them from the package.; Split supported finish rows from unsupported finish rows.; Generate a separate dry-run package only for rows that become master_verified. |
 | PKG-02 | Pocket/digital scope isolation | scope_decision_required | Decide whether Grookai stores Pocket/digital rows in a separate domain.; Design non-destructive isolation/quarantine strategy.; Verify ownership/vault/provenance impacts before any hide or move. |
 | PKG-03 | Unsupported printings cleanup | blocked_by_index_maturity | Run set-level proof loops until relevant facts are master_verified.; Produce proof-based unsupported row report with exact evidence URLs.; Generate rollback-safe cleanup plan. |

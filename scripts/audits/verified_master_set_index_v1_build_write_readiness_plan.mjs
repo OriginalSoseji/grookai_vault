@@ -8,6 +8,7 @@ import {
 
 const OUTPUT_DIR = path.join(DEFAULT_OUTPUT_DIR, 'english_master_index_v1');
 const COMPLETION_DIR = path.join('docs', 'audits', 'english_master_index_completion_v1');
+const DRY_RUN_PACKAGE_DIR = path.join(OUTPUT_DIR, 'dry_run_packages');
 const GENERATED_FILES = [
   'english_master_index_write_readiness_v1.json',
   'english_master_index_write_readiness_v1.md',
@@ -50,6 +51,34 @@ async function readOptionalJson(fileName, fallback) {
     return await readJson(fileName);
   } catch (error) {
     if (error?.code === 'ENOENT') return fallback;
+    throw error;
+  }
+}
+
+async function readDryRunPackages() {
+  try {
+    const files = await fs.readdir(DRY_RUN_PACKAGE_DIR);
+    const packages = [];
+    for (const file of files.filter((name) => name.endsWith('.json')).sort()) {
+      const artifact = JSON.parse(await fs.readFile(path.join(DRY_RUN_PACKAGE_DIR, file), 'utf8'));
+      packages.push({
+        file,
+        version: artifact.version,
+        target_set_key: artifact.target_set_key,
+        target_set_name: artifact.target_set_name,
+        dry_run_package_status: artifact.dry_run_package_status,
+        candidate_card_prints: artifact.summary?.candidate_card_prints ?? 0,
+        candidate_printing_rows: artifact.summary?.candidate_printing_rows ?? 0,
+        db_snapshot_available: artifact.summary?.db_snapshot_available ?? false,
+        db_card_prints_found: artifact.summary?.db_card_prints_found ?? null,
+        db_card_printings_found: artifact.summary?.db_card_printings_found ?? null,
+        vault_items_referencing_targets: artifact.summary?.vault_items_referencing_targets ?? null,
+        write_ready_now: artifact.write_ready_now ?? 0,
+      });
+    }
+    return packages;
+  } catch (error) {
+    if (error?.code === 'ENOENT') return [];
     throw error;
   }
 }
@@ -280,13 +309,24 @@ function summarizeDryRunCandidateSets(exactMatch) {
     .sort((left, right) => right.candidate_printing_rows - left.candidate_printing_rows || left.set_key.localeCompare(right.set_key));
 }
 
-function buildWritePackages({ completion, exactMatch, recoveryLanes, sourceAcquisition, grookaiAudit }) {
+function summarizeGeneratedDryRunPackages(dryRunPackages) {
+  return {
+    package_count: dryRunPackages.length,
+    candidate_card_prints: dryRunPackages.reduce((total, row) => total + Number(row.candidate_card_prints ?? 0), 0),
+    candidate_printing_rows: dryRunPackages.reduce((total, row) => total + Number(row.candidate_printing_rows ?? 0), 0),
+    packages: dryRunPackages,
+  };
+}
+
+function buildWritePackages({ completion, exactMatch, recoveryLanes, sourceAcquisition, grookaiAudit, dryRunPackages }) {
   const physicalByFinishStatus = exactMatch.summary?.by_finish_match_status ?? {};
   const physicalPrintingByFinishStatus = exactMatch.summary?.printing_rows_by_finish_status ?? {};
   const statusCounts = grookaiAudit.summary?.by_status ?? {};
   const dryRunCandidateSets = summarizeDryRunCandidateSets(exactMatch);
   const dryRunCandidateCards = physicalByFinishStatus.all_finishes_master_verified_by_index ?? 0;
   const dryRunCandidatePrintings = physicalPrintingByFinishStatus.all_finishes_master_verified_by_index ?? 0;
+  const generatedDryRuns = summarizeGeneratedDryRunPackages(dryRunPackages ?? []);
+  const dryRunPackageExists = generatedDryRuns.package_count > 0;
   return [
     {
       package_id: 'PKG-00',
@@ -301,9 +341,10 @@ function buildWritePackages({ completion, exactMatch, recoveryLanes, sourceAcqui
     {
       package_id: 'PKG-01',
       name: 'Physical missing-set recovery - master-verified subset',
-      current_state: dryRunCandidateCards > 0 ? 'row_level_dry_run_package_required' : 'no_master_verified_subset',
+      current_state: dryRunPackageExists ? 'dry_run_package_ready_for_review_partial' : (dryRunCandidateCards > 0 ? 'row_level_dry_run_package_required' : 'no_master_verified_subset'),
       future_write_allowed_after_approval: false,
       evidence_ready_for_dry_run_design: dryRunCandidateCards > 0,
+      generated_dry_run_packages: generatedDryRuns,
       candidate_card_prints: dryRunCandidateCards,
       candidate_printing_rows: dryRunCandidatePrintings,
       candidate_sets: dryRunCandidateSets,
@@ -311,14 +352,23 @@ function buildWritePackages({ completion, exactMatch, recoveryLanes, sourceAcqui
         exact_card_identity_match: exactMatch.summary?.by_card_match_status?.exact_card_identity_match ?? 0,
         all_finishes_master_verified_by_index: dryRunCandidateCards,
       },
-      blockers: [
-        'No row-level write package has been generated.',
-        'No before/after DB snapshot or rollback artifact exists for these rows.',
-        'No post-apply verification query set has been approved.',
-        'Operator approval is still required before any DB write.',
-      ],
+      blockers: dryRunPackageExists
+        ? [
+          'Generated dry-run packages are review artifacts only.',
+          'No apply package has been approved.',
+          'Rollback and post-apply verification must be reviewed against exact rows before any write.',
+          'Operator approval is still required before any DB write.',
+        ]
+        : [
+          'No row-level write package has been generated.',
+          'No before/after DB snapshot or rollback artifact exists for these rows.',
+          'No post-apply verification query set has been approved.',
+          'Operator approval is still required before any DB write.',
+        ],
       required_before_write: [
-        'Generate a set-specific dry-run write package for the eligible master-verified subset.',
+        dryRunPackageExists
+          ? 'Review generated set-specific dry-run package rows and DB snapshots.'
+          : 'Generate a set-specific dry-run write package for the eligible master-verified subset.',
         'List exact source card_print IDs and intended set/printing changes.',
         'Capture before-state snapshots and rollback SQL/script.',
         'Run identity, ownership, vault, and provenance impact checks.',
@@ -481,6 +531,7 @@ function buildArtifacts(inputs) {
     global_status_counts: inputs.grookaiAudit.summary?.by_status ?? {},
     set_unmapped_categories: inputs.setUnmapped.summary?.by_category ?? {},
     physical_recovery_exact_match: inputs.exactMatch.summary ?? {},
+    generated_dry_run_packages: summarizeGeneratedDryRunPackages(inputs.dryRunPackages ?? []),
     source_acquisition_queue: inputs.completionSourceGap.summary ?? valueAt(inputs.sourceAcquisition, ['summary', 'queue_summary'], {}),
     historical_source_acquisition_queue: valueAt(inputs.sourceAcquisition, ['summary', 'queue_summary'], {}),
     finish_blocker_closure: {
@@ -569,12 +620,16 @@ function buildArtifacts(inputs) {
       ready_for_db_writes: false,
       reason: 'The completed Master Index can now drive dry-run package design, but writes still need exact row IDs, rollback artifacts, impact checks, and approval.',
       strongest_positive_finding: '106 physical missing-set recovery card candidates / 143 printing rows have exact card identity and all finishes master_verified by the index.',
-      main_blocker: 'No row-level dry-run write package, rollback artifact, or post-apply verification query plan exists yet.',
+      main_blocker: (inputs.dryRunPackages?.length ?? 0) > 0
+        ? 'Generated dry-run packages still need review, approval, and conversion into a separate apply package.'
+        : 'No row-level dry-run write package, rollback artifact, or post-apply verification query plan exists yet.',
       finish_blocker_boundary: 'Former finish blockers are adjudicated exclusions outside working truth, not open completion gaps.',
     },
     summary,
     immediate_next_non_write_work: [
-      'Generate the first set-specific dry-run write package from the 106-card / 143-printing master-verified physical recovery subset.',
+      (inputs.dryRunPackages?.length ?? 0) > 0
+        ? 'Review generated dry-run package snapshots, rollback requirements, and post-apply verification queries.'
+        : 'Generate the first set-specific dry-run write package from the 106-card / 143-printing master-verified physical recovery subset.',
       'Capture exact row IDs, before-state snapshots, rollback plan, and post-apply verification queries.',
       'Keep blocked remainder rows out of the package.',
     ],
@@ -637,6 +692,9 @@ ${artifact.conclusion}
 - physical exact card matches: ${artifact.summary.physical_recovery_exact_match.by_card_match_status?.exact_card_identity_match ?? 0}
 - physical all-finish master-verified dry-run candidates: ${artifact.summary.physical_recovery_exact_match.by_finish_match_status?.all_finishes_master_verified_by_index ?? 0}
 - physical finish blocked: ${(artifact.summary.physical_recovery_exact_match.by_finish_match_status?.partial_finishes_supported_by_index ?? 0) + (artifact.summary.physical_recovery_exact_match.by_finish_match_status?.no_finishes_supported_by_index ?? 0)}
+- generated dry-run packages: ${artifact.summary.generated_dry_run_packages.package_count ?? 0}
+- generated dry-run package card prints: ${artifact.summary.generated_dry_run_packages.candidate_card_prints ?? 0}
+- generated dry-run package printing rows: ${artifact.summary.generated_dry_run_packages.candidate_printing_rows ?? 0}
 
 ## Global Buckets
 
@@ -747,6 +805,7 @@ ${markdownTable(['package', 'name', 'state', 'required_before_write'], packageRo
 async function main() {
   const inputs = {
     masterIndex: await readJson('english_master_index_v1.json'),
+    dryRunPackages: await readDryRunPackages(),
     completion: await readCompletionJson('english_master_index_completion_v1.json'),
     completionSourceGap: await readCompletionJson('english_master_index_source_gap_queue_v1.json'),
     adjudicatedExcluded: await readCompletionJson('english_master_index_adjudicated_excluded_printings_v1.json'),

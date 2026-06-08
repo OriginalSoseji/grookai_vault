@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-08T20:12:56.828Z",
+  "generated_at": "2026-06-08T20:24:50.053Z",
   "version": "english_master_index_audit_closure_v1",
   "audit_only": true,
   "db_writes_performed": false,
@@ -15,7 +15,7 @@
     "ready_for_db_writes": false,
     "reason": "The completed Master Index can now drive dry-run package design, but writes still need exact row IDs, rollback artifacts, impact checks, and approval.",
     "strongest_positive_finding": "106 physical missing-set recovery card candidates / 143 printing rows have exact card identity and all finishes master_verified by the index.",
-    "main_blocker": "No row-level dry-run write package, rollback artifact, or post-apply verification query plan exists yet.",
+    "main_blocker": "Generated dry-run packages still need review, approval, and conversion into a separate apply package.",
     "finish_blocker_boundary": "Former finish blockers are adjudicated exclusions outside working truth, not open completion gaps."
   },
   "summary": {
@@ -123,6 +123,27 @@
         "no_finishes_supported_by_index": 9
       }
     },
+    "generated_dry_run_packages": {
+      "package_count": 1,
+      "candidate_card_prints": 13,
+      "candidate_printing_rows": 26,
+      "packages": [
+        {
+          "file": "ecard2_physical_recovery_dry_run_v1.json",
+          "version": "ecard2_physical_recovery_dry_run_v1",
+          "target_set_key": "ecard2",
+          "target_set_name": "Aquapolis",
+          "dry_run_package_status": "ready_for_review_no_write",
+          "candidate_card_prints": 13,
+          "candidate_printing_rows": 26,
+          "db_snapshot_available": true,
+          "db_card_prints_found": 13,
+          "db_card_printings_found": 26,
+          "vault_items_referencing_targets": 0,
+          "write_ready_now": 0
+        }
+      ]
+    },
     "source_acquisition_queue": {
       "total_queue_items": 0,
       "by_lane": {},
@@ -195,7 +216,7 @@
     }
   },
   "immediate_next_non_write_work": [
-    "Generate the first set-specific dry-run write package from the 106-card / 143-printing master-verified physical recovery subset.",
+    "Review generated dry-run package snapshots, rollback requirements, and post-apply verification queries.",
     "Capture exact row IDs, before-state snapshots, rollback plan, and post-apply verification queries.",
     "Keep blocked remainder rows out of the package."
   ],
@@ -425,9 +446,30 @@
     {
       "package_id": "PKG-01",
       "name": "Physical missing-set recovery - master-verified subset",
-      "current_state": "row_level_dry_run_package_required",
+      "current_state": "dry_run_package_ready_for_review_partial",
       "future_write_allowed_after_approval": false,
       "evidence_ready_for_dry_run_design": true,
+      "generated_dry_run_packages": {
+        "package_count": 1,
+        "candidate_card_prints": 13,
+        "candidate_printing_rows": 26,
+        "packages": [
+          {
+            "file": "ecard2_physical_recovery_dry_run_v1.json",
+            "version": "ecard2_physical_recovery_dry_run_v1",
+            "target_set_key": "ecard2",
+            "target_set_name": "Aquapolis",
+            "dry_run_package_status": "ready_for_review_no_write",
+            "candidate_card_prints": 13,
+            "candidate_printing_rows": 26,
+            "db_snapshot_available": true,
+            "db_card_prints_found": 13,
+            "db_card_printings_found": 26,
+            "vault_items_referencing_targets": 0,
+            "write_ready_now": 0
+          }
+        ]
+      },
       "candidate_card_prints": 106,
       "candidate_printing_rows": 143,
       "candidate_sets": [
@@ -580,13 +622,13 @@
         "all_finishes_master_verified_by_index": 106
       },
       "blockers": [
-        "No row-level write package has been generated.",
-        "No before/after DB snapshot or rollback artifact exists for these rows.",
-        "No post-apply verification query set has been approved.",
+        "Generated dry-run packages are review artifacts only.",
+        "No apply package has been approved.",
+        "Rollback and post-apply verification must be reviewed against exact rows before any write.",
         "Operator approval is still required before any DB write."
       ],
       "required_before_write": [
-        "Generate a set-specific dry-run write package for the eligible master-verified subset.",
+        "Review generated set-specific dry-run package rows and DB snapshots.",
         "List exact source card_print IDs and intended set/printing changes.",
         "Capture before-state snapshots and rollback SQL/script.",
         "Run identity, ownership, vault, and provenance impact checks.",

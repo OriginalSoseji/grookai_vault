@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-08T20:12:56.828Z",
+  "generated_at": "2026-06-08T20:24:50.053Z",
   "version": "english_master_index_no_write_execution_plan_v1",
   "audit_only": true,
   "db_writes_performed": false,
@@ -487,9 +487,30 @@
     {
       "package_id": "PKG-01",
       "name": "Physical missing-set recovery - master-verified subset",
-      "current_state": "row_level_dry_run_package_required",
+      "current_state": "dry_run_package_ready_for_review_partial",
       "future_write_allowed_after_approval": false,
       "evidence_ready_for_dry_run_design": true,
+      "generated_dry_run_packages": {
+        "package_count": 1,
+        "candidate_card_prints": 13,
+        "candidate_printing_rows": 26,
+        "packages": [
+          {
+            "file": "ecard2_physical_recovery_dry_run_v1.json",
+            "version": "ecard2_physical_recovery_dry_run_v1",
+            "target_set_key": "ecard2",
+            "target_set_name": "Aquapolis",
+            "dry_run_package_status": "ready_for_review_no_write",
+            "candidate_card_prints": 13,
+            "candidate_printing_rows": 26,
+            "db_snapshot_available": true,
+            "db_card_prints_found": 13,
+            "db_card_printings_found": 26,
+            "vault_items_referencing_targets": 0,
+            "write_ready_now": 0
+          }
+        ]
+      },
       "candidate_card_prints": 106,
       "candidate_printing_rows": 143,
       "candidate_sets": [
@@ -642,13 +663,13 @@
         "all_finishes_master_verified_by_index": 106
       },
       "blockers": [
-        "No row-level write package has been generated.",
-        "No before/after DB snapshot or rollback artifact exists for these rows.",
-        "No post-apply verification query set has been approved.",
+        "Generated dry-run packages are review artifacts only.",
+        "No apply package has been approved.",
+        "Rollback and post-apply verification must be reviewed against exact rows before any write.",
         "Operator approval is still required before any DB write."
       ],
       "required_before_write": [
-        "Generate a set-specific dry-run write package for the eligible master-verified subset.",
+        "Review generated set-specific dry-run package rows and DB snapshots.",
         "List exact source card_print IDs and intended set/printing changes.",
         "Capture before-state snapshots and rollback SQL/script.",
         "Run identity, ownership, vault, and provenance impact checks.",

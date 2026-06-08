@@ -25,6 +25,9 @@ No catalog writes are authorized yet. The Master Index is complete, and the next
 - physical exact card matches: 319
 - physical all-finish master-verified dry-run candidates: 106
 - physical finish blocked: 213
+- generated dry-run packages: 1
+- generated dry-run package card prints: 13
+- generated dry-run package printing rows: 26
 
 ## Global Buckets
 
@@ -54,7 +57,7 @@ No catalog writes are authorized yet. The Master Index is complete, and the next
 | package | name | state | write_allowed_now | rows | blockers |
 | --- | --- | --- | --- | --- | --- |
 | PKG-00 | Ascended Heroes monitor-only proof baseline | complete | false | 31975 |  |
-| PKG-01 | Physical missing-set recovery - master-verified subset | row_level_dry_run_package_required | false | 106 | No row-level write package has been generated.; No before/after DB snapshot or rollback artifact exists for these rows.; No post-apply verification query set has been approved.; Operator approval is still required before any DB write. |
+| PKG-01 | Physical missing-set recovery - master-verified subset | dry_run_package_ready_for_review_partial | false | 106 | Generated dry-run packages are review artifacts only.; No apply package has been approved.; Rollback and post-apply verification must be reviewed against exact rows before any write.; Operator approval is still required before any DB write. |
 | PKG-01B | Physical missing-set recovery - blocked remainder | blocked_until_identity_or_finish_safe | false | 701 | Some rows still lack exact card identity or exact supported finish coverage.; Unsupported finishes must not be recovered.; Partial finish support must be split into supported-only and unsupported lanes. |
 | PKG-02 | Pocket/digital scope isolation | scope_decision_required | false | 1341 | Pocket/digital scope is outside English physical TCG but needs product decision.; Scope exclusion is not automatic deletion authority. |
 | PKG-03 | Unsupported printings cleanup | blocked_by_index_maturity | false | 11975 | Unsupported by current index is not deletion authority.; Many sets are API-only or source-limited. |
