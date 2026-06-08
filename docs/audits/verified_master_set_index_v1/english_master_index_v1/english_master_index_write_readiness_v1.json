@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-08T22:14:02.830Z",
+  "generated_at": "2026-06-08T22:37:45.917Z",
   "version": "english_master_index_write_readiness_v1",
   "audit_only": true,
   "db_writes_performed": false,
@@ -9,7 +9,7 @@
   "apply_paths_executed": false,
   "privileged_writes_used": false,
   "rule": "This report determines whether Grookai is ready to write. It does not execute writes.",
-  "conclusion": "No catalog writes are authorized yet. The Master Index is complete, PKG-01 dry-run packages, apply design, DB impact translation, operator approval packet, blank fingerprinted approval record template, approval template guard, pre-write snapshot specification, and future execution artifact specification are prepared for review, but approval is not recorded and write_ready_now remains 0.",
+  "conclusion": "No catalog writes are authorized yet. The Master Index is complete, PKG-01 dry-run packages, apply design, DB impact translation, operator approval packet, blank fingerprinted approval record template, approval template guard, pre-write snapshot specification, future execution artifact specification, and consolidated reconcile dry-run preview are prepared for review, but approval is not recorded and write_ready_now remains 0.",
   "summary": {
     "write_ready_now": 0,
     "db_writes_allowed_from_this_plan": false,
@@ -408,6 +408,24 @@
       "pass": true,
       "write_ready_now": 0
     },
+    "physical_recovery_pkg01_reconcile_dry_run_preview": {
+      "exists": true,
+      "file": "english_master_index_pkg01_reconcile_dry_run_preview_v1.json",
+      "preview_status": "dry_run_reconcile_preview_complete_apply_blocked_no_approval",
+      "approval_recorded": false,
+      "package_fingerprint_sha256": "34cc9acbb81bfadbe2115528a1339cb82afa71fa01fd0d52b62b83834a990b79",
+      "card_print_rows": 106,
+      "child_printing_rows_verified": 143,
+      "affected_sets": 12,
+      "mutation_matrix_rows": 106,
+      "rollback_matrix_rows": 106,
+      "db_reads_performed": true,
+      "db_writes_performed": false,
+      "apply_allowed": false,
+      "stop_findings": 0,
+      "pass_for_preview": true,
+      "write_ready_now": 0
+    },
     "source_acquisition_queue": {
       "total_queue_items": 0,
       "by_lane": {},
@@ -698,7 +716,7 @@
     {
       "package_id": "PKG-01",
       "name": "Physical missing-set recovery - master-verified subset",
-      "current_state": "future_execution_artifact_spec_complete_approval_required_no_write",
+      "current_state": "pkg01_reconcile_dry_run_preview_complete_apply_blocked_no_write",
       "future_write_allowed_after_approval": false,
       "evidence_ready_for_dry_run_design": true,
       "generated_dry_run_packages": {
@@ -992,6 +1010,24 @@
         "db_reads_performed": false,
         "stop_findings": 0,
         "pass": true,
+        "write_ready_now": 0
+      },
+      "physical_recovery_pkg01_reconcile_dry_run_preview": {
+        "exists": true,
+        "file": "english_master_index_pkg01_reconcile_dry_run_preview_v1.json",
+        "preview_status": "dry_run_reconcile_preview_complete_apply_blocked_no_approval",
+        "approval_recorded": false,
+        "package_fingerprint_sha256": "34cc9acbb81bfadbe2115528a1339cb82afa71fa01fd0d52b62b83834a990b79",
+        "card_print_rows": 106,
+        "child_printing_rows_verified": 143,
+        "affected_sets": 12,
+        "mutation_matrix_rows": 106,
+        "rollback_matrix_rows": 106,
+        "db_reads_performed": true,
+        "db_writes_performed": false,
+        "apply_allowed": false,
+        "stop_findings": 0,
+        "pass_for_preview": true,
         "write_ready_now": 0
       },
       "candidate_card_prints": 106,
