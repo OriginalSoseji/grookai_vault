@@ -1,0 +1,1260 @@
+{
+  "generated_at": "2026-06-08T20:31:39.498Z",
+  "version": "dp7_physical_recovery_dry_run_v1",
+  "audit_only": true,
+  "db_writes_performed": false,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "apply_paths_executed": false,
+  "target_set_key": "dp7",
+  "target_set_name": "Stormfront",
+  "dry_run_package_status": "ready_for_review_no_write",
+  "write_ready_now": 0,
+  "write_allowed_from_this_package": false,
+  "summary": {
+    "candidate_card_prints": 8,
+    "candidate_printing_rows": 10,
+    "by_supported_finish": {
+      "holo": 8,
+      "reverse": 2
+    },
+    "blocked_rows": 0,
+    "db_snapshot_available": true,
+    "db_card_prints_found": 8,
+    "db_card_printings_found": 10,
+    "external_mappings_referencing_targets": 8,
+    "identity_rows_referencing_targets": 8,
+    "trait_rows_referencing_targets": 8,
+    "vault_items_referencing_targets": 0
+  },
+  "safety": {
+    "rule": "This artifact is a dry-run package only. It is not an apply package and does not authorize DB writes.",
+    "stop_rules": [
+      "Stop if any target row is missing from the before-state snapshot.",
+      "Stop if child-printing count differs from package expectation.",
+      "Stop if unsupported finishes appear in the target rows.",
+      "Stop if identity, ownership, vault, or provenance impact cannot be explained.",
+      "Stop if rollback artifact is incomplete."
+    ]
+  },
+  "db_snapshot": {
+    "available": true,
+    "reason": null,
+    "target_set": [
+      {
+        "id": "bfe8a89a-951b-4e14-a5d2-450aae4b737c",
+        "code": "dp7",
+        "game": "pokemon",
+        "name": "Stormfront",
+        "source": {
+          "tcgdex": {
+            "id": "dp7",
+            "raw": {
+              "id": "dp7",
+              "logo": "https://assets.tcgdex.net/en/dp/dp7/logo",
+              "name": "Stormfront",
+              "symbol": "https://assets.tcgdex.net/univ/dp/dp7/symbol",
+              "cardCount": {
+                "total": 106,
+                "official": 100
+              }
+            },
+            "name": "Stormfront",
+            "slug": null,
+            "total": null,
+            "series": null,
+            "symbols": null,
+            "releaseDate": null,
+            "printedTotal": null
+          },
+          "pokemonapi": {
+            "id": "dp7",
+            "name": "Stormfront",
+            "total": 106,
+            "images": {
+              "logo": "https://images.pokemontcg.io/dp7/logo.png",
+              "symbol": "https://images.pokemontcg.io/dp7/symbol.png"
+            },
+            "series": "Diamond & Pearl",
+            "ptcgoCode": "SF",
+            "releaseDate": "2008/11/01",
+            "printedTotal": 100
+          }
+        },
+        "logo_url": "https://images.pokemontcg.io/dp7/logo.png",
+        "set_role": null,
+        "created_at": "2025-11-16T06:32:35.437741+00:00",
+        "symbol_url": "https://images.pokemontcg.io/dp7/symbol.png",
+        "updated_at": "2026-03-27T05:51:20.183+00:00",
+        "release_date": "2008-11-01",
+        "printed_total": 100,
+        "hero_image_url": null,
+        "identity_model": "standard",
+        "last_synced_at": null,
+        "hero_image_source": null,
+        "printed_set_abbrev": "SF",
+        "identity_domain_default": "pokemon_eng_standard"
+      }
+    ],
+    "rows": [
+      {
+        "card_print_id": "e8444009-0c47-48a6-af07-f5b450ac0082",
+        "card_print": {
+          "id": "e8444009-0c47-48a6-af07-f5b450ac0082",
+          "name": "Drifloon",
+          "gv_id": null,
+          "artist": null,
+          "number": null,
+          "rarity": "Rare Holo LV.X",
+          "set_id": "bfe8a89a-951b-4e14-a5d2-450aae4b737c",
+          "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+          "set_code": null,
+          "variants": null,
+          "image_res": null,
+          "image_url": "https://assets.tcgdex.net/en/dp/dp7/SH1/high.webp",
+          "created_at": "2026-03-26T23:38:51.213727+00:00",
+          "image_hash": null,
+          "image_note": null,
+          "image_path": null,
+          "updated_at": "2026-03-26T23:38:51.213727+00:00",
+          "ai_metadata": {
+            "tcgdex": {
+              "legalities": {},
+              "flavor_text": null
+            }
+          },
+          "variant_key": "",
+          "external_ids": {
+            "tcgdex": "dp7-SH1"
+          },
+          "image_source": "tcgdex",
+          "image_status": "exact",
+          "number_plain": null,
+          "tcgplayer_id": null,
+          "image_alt_url": "https://assets.tcgdex.net/en/dp/dp7/SH1",
+          "printed_total": null,
+          "last_synced_at": null,
+          "identity_domain": "pokemon_eng_standard",
+          "regulation_mark": null,
+          "data_quality_flags": null,
+          "print_identity_key": null,
+          "printed_set_abbrev": null,
+          "set_identity_model": "standard",
+          "image_last_checked_at": null,
+          "representative_image_url": null,
+          "printed_identity_modifier": null
+        },
+        "card_printings": [
+          {
+            "id": "302115d4-a3c4-421f-95c7-b5fe94d31ee2",
+            "image_url": null,
+            "created_at": "2026-03-26T23:38:51.403984+00:00",
+            "created_by": "printing_ingestion_v2",
+            "finish_key": "holo",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "e8444009-0c47-48a6-af07-f5b450ac0082",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": null,
+            "provenance_ref": "dp7-SH1",
+            "provenance_source": "tcgdex"
+          }
+        ],
+        "dependency_counts": {
+          "external_mappings": 1,
+          "card_print_identity": 1,
+          "card_print_traits": 1,
+          "vault_items": 0
+        }
+      },
+      {
+        "card_print_id": "d45018d3-c2a6-4d82-b3ed-d0ac6ce6e0ff",
+        "card_print": {
+          "id": "d45018d3-c2a6-4d82-b3ed-d0ac6ce6e0ff",
+          "name": "Dusknoir",
+          "gv_id": null,
+          "artist": null,
+          "number": null,
+          "rarity": "Rare Holo LV.X",
+          "set_id": "bfe8a89a-951b-4e14-a5d2-450aae4b737c",
+          "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+          "set_code": null,
+          "variants": null,
+          "image_res": null,
+          "image_url": "https://assets.tcgdex.net/en/dp/dp7/96/high.webp",
+          "created_at": "2026-03-26T23:38:44.075064+00:00",
+          "image_hash": null,
+          "image_note": null,
+          "image_path": null,
+          "updated_at": "2026-03-26T23:38:44.075064+00:00",
+          "ai_metadata": {
+            "tcgdex": {
+              "legalities": {},
+              "flavor_text": null
+            }
+          },
+          "variant_key": "",
+          "external_ids": {
+            "tcgdex": "dp7-96"
+          },
+          "image_source": "tcgdex",
+          "image_status": "exact",
+          "number_plain": null,
+          "tcgplayer_id": null,
+          "image_alt_url": "https://assets.tcgdex.net/en/dp/dp7/96",
+          "printed_total": null,
+          "last_synced_at": null,
+          "identity_domain": "pokemon_eng_standard",
+          "regulation_mark": null,
+          "data_quality_flags": null,
+          "print_identity_key": null,
+          "printed_set_abbrev": null,
+          "set_identity_model": "standard",
+          "image_last_checked_at": null,
+          "representative_image_url": null,
+          "printed_identity_modifier": null
+        },
+        "card_printings": [
+          {
+            "id": "fd0b5e6d-2511-4106-93fc-0bb398993cbb",
+            "image_url": null,
+            "created_at": "2026-03-26T23:38:44.267427+00:00",
+            "created_by": "printing_ingestion_v2",
+            "finish_key": "holo",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "d45018d3-c2a6-4d82-b3ed-d0ac6ce6e0ff",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": null,
+            "provenance_ref": "dp7-96",
+            "provenance_source": "tcgdex"
+          }
+        ],
+        "dependency_counts": {
+          "external_mappings": 1,
+          "card_print_identity": 1,
+          "card_print_traits": 1,
+          "vault_items": 0
+        }
+      },
+      {
+        "card_print_id": "62f77935-5749-4d26-87e6-06bbca565b22",
+        "card_print": {
+          "id": "62f77935-5749-4d26-87e6-06bbca565b22",
+          "name": "Empoleon",
+          "gv_id": null,
+          "artist": null,
+          "number": null,
+          "rarity": "Rare Holo",
+          "set_id": "bfe8a89a-951b-4e14-a5d2-450aae4b737c",
+          "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+          "set_code": null,
+          "variants": null,
+          "image_res": null,
+          "image_url": "https://assets.tcgdex.net/en/dp/dp7/2/high.webp",
+          "created_at": "2026-03-26T23:37:10.09738+00:00",
+          "image_hash": null,
+          "image_note": null,
+          "image_path": null,
+          "updated_at": "2026-03-26T23:37:10.09738+00:00",
+          "ai_metadata": {
+            "tcgdex": {
+              "legalities": {},
+              "flavor_text": null
+            }
+          },
+          "variant_key": "",
+          "external_ids": {
+            "tcgdex": "dp7-2"
+          },
+          "image_source": "tcgdex",
+          "image_status": "exact",
+          "number_plain": null,
+          "tcgplayer_id": null,
+          "image_alt_url": "https://assets.tcgdex.net/en/dp/dp7/2",
+          "printed_total": null,
+          "last_synced_at": null,
+          "identity_domain": "pokemon_eng_standard",
+          "regulation_mark": null,
+          "data_quality_flags": null,
+          "print_identity_key": null,
+          "printed_set_abbrev": null,
+          "set_identity_model": "standard",
+          "image_last_checked_at": null,
+          "representative_image_url": null,
+          "printed_identity_modifier": null
+        },
+        "card_printings": [
+          {
+            "id": "9127aaf4-5948-492b-82e8-e4041d4608f9",
+            "image_url": null,
+            "created_at": "2026-03-26T23:37:10.281044+00:00",
+            "created_by": "printing_ingestion_v2",
+            "finish_key": "holo",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "62f77935-5749-4d26-87e6-06bbca565b22",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": null,
+            "provenance_ref": "dp7-2",
+            "provenance_source": "tcgdex"
+          },
+          {
+            "id": "6aaf2235-c3ea-453f-a2e2-1e845dbc75a8",
+            "image_url": null,
+            "created_at": "2026-03-26T23:37:10.376196+00:00",
+            "created_by": "printing_ingestion_v2",
+            "finish_key": "reverse",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "62f77935-5749-4d26-87e6-06bbca565b22",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": null,
+            "provenance_ref": "dp7-2",
+            "provenance_source": "tcgdex"
+          }
+        ],
+        "dependency_counts": {
+          "external_mappings": 1,
+          "card_print_identity": 1,
+          "card_print_traits": 1,
+          "vault_items": 0
+        }
+      },
+      {
+        "card_print_id": "7c211bf2-ab9e-489d-842f-65c896270783",
+        "card_print": {
+          "id": "7c211bf2-ab9e-489d-842f-65c896270783",
+          "name": "Heatran",
+          "gv_id": null,
+          "artist": null,
+          "number": null,
+          "rarity": "Rare Holo LV.X",
+          "set_id": "bfe8a89a-951b-4e14-a5d2-450aae4b737c",
+          "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+          "set_code": null,
+          "variants": null,
+          "image_res": null,
+          "image_url": "https://assets.tcgdex.net/en/dp/dp7/97/high.webp",
+          "created_at": "2026-03-26T23:38:44.897059+00:00",
+          "image_hash": null,
+          "image_note": null,
+          "image_path": null,
+          "updated_at": "2026-03-26T23:38:44.897059+00:00",
+          "ai_metadata": {
+            "tcgdex": {
+              "legalities": {},
+              "flavor_text": null
+            }
+          },
+          "variant_key": "",
+          "external_ids": {
+            "tcgdex": "dp7-97"
+          },
+          "image_source": "tcgdex",
+          "image_status": "exact",
+          "number_plain": null,
+          "tcgplayer_id": null,
+          "image_alt_url": "https://assets.tcgdex.net/en/dp/dp7/97",
+          "printed_total": null,
+          "last_synced_at": null,
+          "identity_domain": "pokemon_eng_standard",
+          "regulation_mark": null,
+          "data_quality_flags": null,
+          "print_identity_key": null,
+          "printed_set_abbrev": null,
+          "set_identity_model": "standard",
+          "image_last_checked_at": null,
+          "representative_image_url": null,
+          "printed_identity_modifier": null
+        },
+        "card_printings": [
+          {
+            "id": "f6bca011-2a61-47d5-bd1c-d240e7797f4c",
+            "image_url": null,
+            "created_at": "2026-03-26T23:38:45.071565+00:00",
+            "created_by": "printing_ingestion_v2",
+            "finish_key": "holo",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "7c211bf2-ab9e-489d-842f-65c896270783",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": null,
+            "provenance_ref": "dp7-97",
+            "provenance_source": "tcgdex"
+          }
+        ],
+        "dependency_counts": {
+          "external_mappings": 1,
+          "card_print_identity": 1,
+          "card_print_traits": 1,
+          "vault_items": 0
+        }
+      },
+      {
+        "card_print_id": "665ee2b0-4a22-43d5-bf8e-8ff22a990384",
+        "card_print": {
+          "id": "665ee2b0-4a22-43d5-bf8e-8ff22a990384",
+          "name": "Infernape",
+          "gv_id": null,
+          "artist": null,
+          "number": null,
+          "rarity": "Rare Holo",
+          "set_id": "bfe8a89a-951b-4e14-a5d2-450aae4b737c",
+          "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+          "set_code": null,
+          "variants": null,
+          "image_res": null,
+          "image_url": "https://assets.tcgdex.net/en/dp/dp7/3/high.webp",
+          "created_at": "2026-03-26T23:37:11.004047+00:00",
+          "image_hash": null,
+          "image_note": null,
+          "image_path": null,
+          "updated_at": "2026-03-26T23:37:11.004047+00:00",
+          "ai_metadata": {
+            "tcgdex": {
+              "legalities": {},
+              "flavor_text": null
+            }
+          },
+          "variant_key": "",
+          "external_ids": {
+            "tcgdex": "dp7-3"
+          },
+          "image_source": "tcgdex",
+          "image_status": "exact",
+          "number_plain": null,
+          "tcgplayer_id": null,
+          "image_alt_url": "https://assets.tcgdex.net/en/dp/dp7/3",
+          "printed_total": null,
+          "last_synced_at": null,
+          "identity_domain": "pokemon_eng_standard",
+          "regulation_mark": null,
+          "data_quality_flags": null,
+          "print_identity_key": null,
+          "printed_set_abbrev": null,
+          "set_identity_model": "standard",
+          "image_last_checked_at": null,
+          "representative_image_url": null,
+          "printed_identity_modifier": null
+        },
+        "card_printings": [
+          {
+            "id": "c5c511f6-013e-4ed3-bf1e-997dcb9fb2d3",
+            "image_url": null,
+            "created_at": "2026-03-26T23:37:11.191291+00:00",
+            "created_by": "printing_ingestion_v2",
+            "finish_key": "holo",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "665ee2b0-4a22-43d5-bf8e-8ff22a990384",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": null,
+            "provenance_ref": "dp7-3",
+            "provenance_source": "tcgdex"
+          },
+          {
+            "id": "3df4be59-4f7e-4074-b3ce-9974e88c58f4",
+            "image_url": null,
+            "created_at": "2026-03-26T23:37:11.290481+00:00",
+            "created_by": "printing_ingestion_v2",
+            "finish_key": "reverse",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "665ee2b0-4a22-43d5-bf8e-8ff22a990384",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": null,
+            "provenance_ref": "dp7-3",
+            "provenance_source": "tcgdex"
+          }
+        ],
+        "dependency_counts": {
+          "external_mappings": 1,
+          "card_print_identity": 1,
+          "card_print_traits": 1,
+          "vault_items": 0
+        }
+      },
+      {
+        "card_print_id": "6f49c231-0a53-4c0c-9db1-6d4c36aa460e",
+        "card_print": {
+          "id": "6f49c231-0a53-4c0c-9db1-6d4c36aa460e",
+          "name": "Machamp",
+          "gv_id": null,
+          "artist": null,
+          "number": null,
+          "rarity": "Rare Holo LV.X",
+          "set_id": "bfe8a89a-951b-4e14-a5d2-450aae4b737c",
+          "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+          "set_code": null,
+          "variants": null,
+          "image_res": null,
+          "image_url": "https://assets.tcgdex.net/en/dp/dp7/98/high.webp",
+          "created_at": "2026-03-26T23:38:45.741975+00:00",
+          "image_hash": null,
+          "image_note": null,
+          "image_path": null,
+          "updated_at": "2026-03-26T23:38:45.741975+00:00",
+          "ai_metadata": {
+            "tcgdex": {
+              "legalities": {},
+              "flavor_text": null
+            }
+          },
+          "variant_key": "",
+          "external_ids": {
+            "tcgdex": "dp7-98"
+          },
+          "image_source": "tcgdex",
+          "image_status": "exact",
+          "number_plain": null,
+          "tcgplayer_id": null,
+          "image_alt_url": "https://assets.tcgdex.net/en/dp/dp7/98",
+          "printed_total": null,
+          "last_synced_at": null,
+          "identity_domain": "pokemon_eng_standard",
+          "regulation_mark": null,
+          "data_quality_flags": null,
+          "print_identity_key": null,
+          "printed_set_abbrev": null,
+          "set_identity_model": "standard",
+          "image_last_checked_at": null,
+          "representative_image_url": null,
+          "printed_identity_modifier": null
+        },
+        "card_printings": [
+          {
+            "id": "f23bb2ff-a49f-4b5d-9912-b0b00b256006",
+            "image_url": null,
+            "created_at": "2026-03-26T23:38:45.922805+00:00",
+            "created_by": "printing_ingestion_v2",
+            "finish_key": "holo",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "6f49c231-0a53-4c0c-9db1-6d4c36aa460e",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": null,
+            "provenance_ref": "dp7-98",
+            "provenance_source": "tcgdex"
+          }
+        ],
+        "dependency_counts": {
+          "external_mappings": 1,
+          "card_print_identity": 1,
+          "card_print_traits": 1,
+          "vault_items": 0
+        }
+      },
+      {
+        "card_print_id": "7a0dbe87-8ffb-4939-a5c0-371a0a21b302",
+        "card_print": {
+          "id": "7a0dbe87-8ffb-4939-a5c0-371a0a21b302",
+          "name": "Raichu",
+          "gv_id": null,
+          "artist": null,
+          "number": null,
+          "rarity": "Rare Holo LV.X",
+          "set_id": "bfe8a89a-951b-4e14-a5d2-450aae4b737c",
+          "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+          "set_code": null,
+          "variants": null,
+          "image_res": null,
+          "image_url": "https://assets.tcgdex.net/en/dp/dp7/99/high.webp",
+          "created_at": "2026-03-26T23:38:46.769227+00:00",
+          "image_hash": null,
+          "image_note": null,
+          "image_path": null,
+          "updated_at": "2026-03-26T23:38:46.769227+00:00",
+          "ai_metadata": {
+            "tcgdex": {
+              "legalities": {},
+              "flavor_text": null
+            }
+          },
+          "variant_key": "",
+          "external_ids": {
+            "tcgdex": "dp7-99"
+          },
+          "image_source": "tcgdex",
+          "image_status": "exact",
+          "number_plain": null,
+          "tcgplayer_id": null,
+          "image_alt_url": "https://assets.tcgdex.net/en/dp/dp7/99",
+          "printed_total": null,
+          "last_synced_at": null,
+          "identity_domain": "pokemon_eng_standard",
+          "regulation_mark": null,
+          "data_quality_flags": null,
+          "print_identity_key": null,
+          "printed_set_abbrev": null,
+          "set_identity_model": "standard",
+          "image_last_checked_at": null,
+          "representative_image_url": null,
+          "printed_identity_modifier": null
+        },
+        "card_printings": [
+          {
+            "id": "4efcba0d-f0d9-4d21-9482-ad332cdb48f3",
+            "image_url": null,
+            "created_at": "2026-03-26T23:38:46.971603+00:00",
+            "created_by": "printing_ingestion_v2",
+            "finish_key": "holo",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "7a0dbe87-8ffb-4939-a5c0-371a0a21b302",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": null,
+            "provenance_ref": "dp7-99",
+            "provenance_source": "tcgdex"
+          }
+        ],
+        "dependency_counts": {
+          "external_mappings": 1,
+          "card_print_identity": 1,
+          "card_print_traits": 1,
+          "vault_items": 0
+        }
+      },
+      {
+        "card_print_id": "687811f7-e3d2-41bb-b37d-1e73882551d2",
+        "card_print": {
+          "id": "687811f7-e3d2-41bb-b37d-1e73882551d2",
+          "name": "Regigigas",
+          "gv_id": null,
+          "artist": null,
+          "number": null,
+          "rarity": "Rare Holo LV.X",
+          "set_id": "bfe8a89a-951b-4e14-a5d2-450aae4b737c",
+          "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+          "set_code": null,
+          "variants": null,
+          "image_res": null,
+          "image_url": "https://assets.tcgdex.net/en/dp/dp7/100/high.webp",
+          "created_at": "2026-03-26T23:38:47.632941+00:00",
+          "image_hash": null,
+          "image_note": null,
+          "image_path": null,
+          "updated_at": "2026-03-26T23:38:47.632941+00:00",
+          "ai_metadata": {
+            "tcgdex": {
+              "legalities": {},
+              "flavor_text": null
+            }
+          },
+          "variant_key": "",
+          "external_ids": {
+            "tcgdex": "dp7-100"
+          },
+          "image_source": "tcgdex",
+          "image_status": "exact",
+          "number_plain": null,
+          "tcgplayer_id": null,
+          "image_alt_url": "https://assets.tcgdex.net/en/dp/dp7/100",
+          "printed_total": null,
+          "last_synced_at": null,
+          "identity_domain": "pokemon_eng_standard",
+          "regulation_mark": null,
+          "data_quality_flags": null,
+          "print_identity_key": null,
+          "printed_set_abbrev": null,
+          "set_identity_model": "standard",
+          "image_last_checked_at": null,
+          "representative_image_url": null,
+          "printed_identity_modifier": null
+        },
+        "card_printings": [
+          {
+            "id": "7c0cc204-33bc-4277-96dc-6dda382db8d8",
+            "image_url": null,
+            "created_at": "2026-03-26T23:38:47.817593+00:00",
+            "created_by": "printing_ingestion_v2",
+            "finish_key": "holo",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "687811f7-e3d2-41bb-b37d-1e73882551d2",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": null,
+            "provenance_ref": "dp7-100",
+            "provenance_source": "tcgdex"
+          }
+        ],
+        "dependency_counts": {
+          "external_mappings": 1,
+          "card_print_identity": 1,
+          "card_print_traits": 1,
+          "vault_items": 0
+        }
+      }
+    ],
+    "impact_counts": {
+      "card_prints_found": 8,
+      "card_printings_found": 10,
+      "external_mappings_found": 8,
+      "identity_rows_found": 8,
+      "trait_rows_found": 8,
+      "vault_items_found": 0
+    }
+  },
+  "package_rows": [
+    {
+      "card_print_id": "62f77935-5749-4d26-87e6-06bbca565b22",
+      "current_grookai_name": "Empoleon",
+      "target_set_key": "dp7",
+      "target_set_name": "Stormfront",
+      "target_card_number": "2",
+      "target_card_name": "Empoleon",
+      "source_external_id": "dp7-2",
+      "source_card_url": "https://api.tcgdex.net/v2/en/cards/dp7-2",
+      "target_parent_fields": {
+        "set_code": "dp7",
+        "number": "2",
+        "number_plain": "2",
+        "name": "Empoleon"
+      },
+      "target_printings": [
+        {
+          "finish_key": "holo",
+          "index_status": "master_verified",
+          "source_count": 5,
+          "sources": [
+            "pokemontcg_api",
+            "reverseholo_set_checklist",
+            "tcgdex",
+            "tcgplayer_price_guide",
+            "thepricedex_price_list"
+          ],
+          "source_kinds": [
+            "collector_reference",
+            "marketplace_checklist",
+            "structured_api"
+          ],
+          "evidence_urls": [
+            "https://api.pokemontcg.io/v2/cards/dp7-2",
+            "https://api.tcgdex.net/v2/en/cards/dp7-2",
+            "https://prices.pokemontcg.io/tcgplayer/dp7-2",
+            "https://reverseholo.app/sets/dp7",
+            "https://www.thepricedex.com/set/dp7/stormfront/price-list"
+          ]
+        },
+        {
+          "finish_key": "reverse",
+          "index_status": "master_verified",
+          "source_count": 5,
+          "sources": [
+            "pokemontcg_api",
+            "reverseholo_set_checklist",
+            "tcgdex",
+            "tcgplayer_price_guide",
+            "thepricedex_price_list"
+          ],
+          "source_kinds": [
+            "collector_reference",
+            "marketplace_checklist",
+            "structured_api"
+          ],
+          "evidence_urls": [
+            "https://api.pokemontcg.io/v2/cards/dp7-2",
+            "https://api.tcgdex.net/v2/en/cards/dp7-2",
+            "https://prices.pokemontcg.io/tcgplayer/dp7-2",
+            "https://reverseholo.app/sets/dp7",
+            "https://www.thepricedex.com/set/dp7/stormfront/price-list"
+          ]
+        }
+      ],
+      "supported_finishes": [
+        "holo",
+        "reverse"
+      ],
+      "unsupported_finishes": [],
+      "evidence_summary": {
+        "card_identity_status": "master_verified",
+        "finish_match_status": "all_finishes_master_verified_by_index",
+        "supported_sources": [
+          "pokemontcg_api",
+          "reverseholo_set_checklist",
+          "tcgdex",
+          "tcgplayer_price_guide",
+          "thepricedex_price_list"
+        ],
+        "supported_source_kinds": [
+          "collector_reference",
+          "marketplace_checklist",
+          "structured_api"
+        ],
+        "all_target_printings_master_verified": true
+      },
+      "dry_run_status": "eligible_for_row_level_dry_run",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "card_print_id": "665ee2b0-4a22-43d5-bf8e-8ff22a990384",
+      "current_grookai_name": "Infernape",
+      "target_set_key": "dp7",
+      "target_set_name": "Stormfront",
+      "target_card_number": "3",
+      "target_card_name": "Infernape",
+      "source_external_id": "dp7-3",
+      "source_card_url": "https://api.tcgdex.net/v2/en/cards/dp7-3",
+      "target_parent_fields": {
+        "set_code": "dp7",
+        "number": "3",
+        "number_plain": "3",
+        "name": "Infernape"
+      },
+      "target_printings": [
+        {
+          "finish_key": "holo",
+          "index_status": "master_verified",
+          "source_count": 5,
+          "sources": [
+            "pokemontcg_api",
+            "reverseholo_set_checklist",
+            "tcgdex",
+            "tcgplayer_price_guide",
+            "thepricedex_price_list"
+          ],
+          "source_kinds": [
+            "collector_reference",
+            "marketplace_checklist",
+            "structured_api"
+          ],
+          "evidence_urls": [
+            "https://api.pokemontcg.io/v2/cards/dp7-3",
+            "https://api.tcgdex.net/v2/en/cards/dp7-3",
+            "https://prices.pokemontcg.io/tcgplayer/dp7-3",
+            "https://reverseholo.app/sets/dp7",
+            "https://www.thepricedex.com/set/dp7/stormfront/price-list"
+          ]
+        },
+        {
+          "finish_key": "reverse",
+          "index_status": "master_verified",
+          "source_count": 5,
+          "sources": [
+            "pokemontcg_api",
+            "reverseholo_set_checklist",
+            "tcgdex",
+            "tcgplayer_price_guide",
+            "thepricedex_price_list"
+          ],
+          "source_kinds": [
+            "collector_reference",
+            "marketplace_checklist",
+            "structured_api"
+          ],
+          "evidence_urls": [
+            "https://api.pokemontcg.io/v2/cards/dp7-3",
+            "https://api.tcgdex.net/v2/en/cards/dp7-3",
+            "https://prices.pokemontcg.io/tcgplayer/dp7-3",
+            "https://reverseholo.app/sets/dp7",
+            "https://www.thepricedex.com/set/dp7/stormfront/price-list"
+          ]
+        }
+      ],
+      "supported_finishes": [
+        "holo",
+        "reverse"
+      ],
+      "unsupported_finishes": [],
+      "evidence_summary": {
+        "card_identity_status": "master_verified",
+        "finish_match_status": "all_finishes_master_verified_by_index",
+        "supported_sources": [
+          "pokemontcg_api",
+          "reverseholo_set_checklist",
+          "tcgdex",
+          "tcgplayer_price_guide",
+          "thepricedex_price_list"
+        ],
+        "supported_source_kinds": [
+          "collector_reference",
+          "marketplace_checklist",
+          "structured_api"
+        ],
+        "all_target_printings_master_verified": true
+      },
+      "dry_run_status": "eligible_for_row_level_dry_run",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "card_print_id": "d45018d3-c2a6-4d82-b3ed-d0ac6ce6e0ff",
+      "current_grookai_name": "Dusknoir",
+      "target_set_key": "dp7",
+      "target_set_name": "Stormfront",
+      "target_card_number": "96",
+      "target_card_name": "Dusknoir",
+      "source_external_id": "dp7-96",
+      "source_card_url": "https://api.tcgdex.net/v2/en/cards/dp7-96",
+      "target_parent_fields": {
+        "set_code": "dp7",
+        "number": "96",
+        "number_plain": "96",
+        "name": "Dusknoir"
+      },
+      "target_printings": [
+        {
+          "finish_key": "holo",
+          "index_status": "master_verified",
+          "source_count": 2,
+          "sources": [
+            "reverseholo_set_checklist",
+            "tcgdex"
+          ],
+          "source_kinds": [
+            "collector_reference",
+            "structured_api"
+          ],
+          "evidence_urls": [
+            "https://api.tcgdex.net/v2/en/cards/dp7-96",
+            "https://reverseholo.app/sets/dp7"
+          ]
+        }
+      ],
+      "supported_finishes": [
+        "holo"
+      ],
+      "unsupported_finishes": [],
+      "evidence_summary": {
+        "card_identity_status": "master_verified",
+        "finish_match_status": "all_finishes_master_verified_by_index",
+        "supported_sources": [
+          "reverseholo_set_checklist",
+          "tcgdex"
+        ],
+        "supported_source_kinds": [
+          "collector_reference",
+          "structured_api"
+        ],
+        "all_target_printings_master_verified": true
+      },
+      "dry_run_status": "eligible_for_row_level_dry_run",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "card_print_id": "7c211bf2-ab9e-489d-842f-65c896270783",
+      "current_grookai_name": "Heatran",
+      "target_set_key": "dp7",
+      "target_set_name": "Stormfront",
+      "target_card_number": "97",
+      "target_card_name": "Heatran",
+      "source_external_id": "dp7-97",
+      "source_card_url": "https://api.tcgdex.net/v2/en/cards/dp7-97",
+      "target_parent_fields": {
+        "set_code": "dp7",
+        "number": "97",
+        "number_plain": "97",
+        "name": "Heatran"
+      },
+      "target_printings": [
+        {
+          "finish_key": "holo",
+          "index_status": "master_verified",
+          "source_count": 2,
+          "sources": [
+            "reverseholo_set_checklist",
+            "tcgdex"
+          ],
+          "source_kinds": [
+            "collector_reference",
+            "structured_api"
+          ],
+          "evidence_urls": [
+            "https://api.tcgdex.net/v2/en/cards/dp7-97",
+            "https://reverseholo.app/sets/dp7"
+          ]
+        }
+      ],
+      "supported_finishes": [
+        "holo"
+      ],
+      "unsupported_finishes": [],
+      "evidence_summary": {
+        "card_identity_status": "master_verified",
+        "finish_match_status": "all_finishes_master_verified_by_index",
+        "supported_sources": [
+          "reverseholo_set_checklist",
+          "tcgdex"
+        ],
+        "supported_source_kinds": [
+          "collector_reference",
+          "structured_api"
+        ],
+        "all_target_printings_master_verified": true
+      },
+      "dry_run_status": "eligible_for_row_level_dry_run",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "card_print_id": "6f49c231-0a53-4c0c-9db1-6d4c36aa460e",
+      "current_grookai_name": "Machamp",
+      "target_set_key": "dp7",
+      "target_set_name": "Stormfront",
+      "target_card_number": "98",
+      "target_card_name": "Machamp",
+      "source_external_id": "dp7-98",
+      "source_card_url": "https://api.tcgdex.net/v2/en/cards/dp7-98",
+      "target_parent_fields": {
+        "set_code": "dp7",
+        "number": "98",
+        "number_plain": "98",
+        "name": "Machamp"
+      },
+      "target_printings": [
+        {
+          "finish_key": "holo",
+          "index_status": "master_verified",
+          "source_count": 2,
+          "sources": [
+            "reverseholo_set_checklist",
+            "tcgdex"
+          ],
+          "source_kinds": [
+            "collector_reference",
+            "structured_api"
+          ],
+          "evidence_urls": [
+            "https://api.tcgdex.net/v2/en/cards/dp7-98",
+            "https://reverseholo.app/sets/dp7"
+          ]
+        }
+      ],
+      "supported_finishes": [
+        "holo"
+      ],
+      "unsupported_finishes": [],
+      "evidence_summary": {
+        "card_identity_status": "master_verified",
+        "finish_match_status": "all_finishes_master_verified_by_index",
+        "supported_sources": [
+          "reverseholo_set_checklist",
+          "tcgdex"
+        ],
+        "supported_source_kinds": [
+          "collector_reference",
+          "structured_api"
+        ],
+        "all_target_printings_master_verified": true
+      },
+      "dry_run_status": "eligible_for_row_level_dry_run",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "card_print_id": "7a0dbe87-8ffb-4939-a5c0-371a0a21b302",
+      "current_grookai_name": "Raichu",
+      "target_set_key": "dp7",
+      "target_set_name": "Stormfront",
+      "target_card_number": "99",
+      "target_card_name": "Raichu",
+      "source_external_id": "dp7-99",
+      "source_card_url": "https://api.tcgdex.net/v2/en/cards/dp7-99",
+      "target_parent_fields": {
+        "set_code": "dp7",
+        "number": "99",
+        "number_plain": "99",
+        "name": "Raichu"
+      },
+      "target_printings": [
+        {
+          "finish_key": "holo",
+          "index_status": "master_verified",
+          "source_count": 2,
+          "sources": [
+            "reverseholo_set_checklist",
+            "tcgdex"
+          ],
+          "source_kinds": [
+            "collector_reference",
+            "structured_api"
+          ],
+          "evidence_urls": [
+            "https://api.tcgdex.net/v2/en/cards/dp7-99",
+            "https://reverseholo.app/sets/dp7"
+          ]
+        }
+      ],
+      "supported_finishes": [
+        "holo"
+      ],
+      "unsupported_finishes": [],
+      "evidence_summary": {
+        "card_identity_status": "master_verified",
+        "finish_match_status": "all_finishes_master_verified_by_index",
+        "supported_sources": [
+          "reverseholo_set_checklist",
+          "tcgdex"
+        ],
+        "supported_source_kinds": [
+          "collector_reference",
+          "structured_api"
+        ],
+        "all_target_printings_master_verified": true
+      },
+      "dry_run_status": "eligible_for_row_level_dry_run",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "card_print_id": "687811f7-e3d2-41bb-b37d-1e73882551d2",
+      "current_grookai_name": "Regigigas",
+      "target_set_key": "dp7",
+      "target_set_name": "Stormfront",
+      "target_card_number": "100",
+      "target_card_name": "Regigigas",
+      "source_external_id": "dp7-100",
+      "source_card_url": "https://api.tcgdex.net/v2/en/cards/dp7-100",
+      "target_parent_fields": {
+        "set_code": "dp7",
+        "number": "100",
+        "number_plain": "100",
+        "name": "Regigigas"
+      },
+      "target_printings": [
+        {
+          "finish_key": "holo",
+          "index_status": "master_verified",
+          "source_count": 2,
+          "sources": [
+            "reverseholo_set_checklist",
+            "tcgdex"
+          ],
+          "source_kinds": [
+            "collector_reference",
+            "structured_api"
+          ],
+          "evidence_urls": [
+            "https://api.tcgdex.net/v2/en/cards/dp7-100",
+            "https://reverseholo.app/sets/dp7"
+          ]
+        }
+      ],
+      "supported_finishes": [
+        "holo"
+      ],
+      "unsupported_finishes": [],
+      "evidence_summary": {
+        "card_identity_status": "master_verified",
+        "finish_match_status": "all_finishes_master_verified_by_index",
+        "supported_sources": [
+          "reverseholo_set_checklist",
+          "tcgdex"
+        ],
+        "supported_source_kinds": [
+          "collector_reference",
+          "structured_api"
+        ],
+        "all_target_printings_master_verified": true
+      },
+      "dry_run_status": "eligible_for_row_level_dry_run",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "card_print_id": "e8444009-0c47-48a6-af07-f5b450ac0082",
+      "current_grookai_name": "Drifloon",
+      "target_set_key": "dp7",
+      "target_set_name": "Stormfront",
+      "target_card_number": "SH1",
+      "target_card_name": "Drifloon",
+      "source_external_id": "dp7-SH1",
+      "source_card_url": "https://api.tcgdex.net/v2/en/cards/dp7-SH1",
+      "target_parent_fields": {
+        "set_code": "dp7",
+        "number": "SH1",
+        "number_plain": "SH1",
+        "name": "Drifloon"
+      },
+      "target_printings": [
+        {
+          "finish_key": "holo",
+          "index_status": "master_verified",
+          "source_count": 2,
+          "sources": [
+            "reverseholo_set_checklist",
+            "tcgdex"
+          ],
+          "source_kinds": [
+            "collector_reference",
+            "structured_api"
+          ],
+          "evidence_urls": [
+            "https://api.tcgdex.net/v2/en/cards/dp7-SH1",
+            "https://reverseholo.app/sets/dp7"
+          ]
+        }
+      ],
+      "supported_finishes": [
+        "holo"
+      ],
+      "unsupported_finishes": [],
+      "evidence_summary": {
+        "card_identity_status": "master_verified",
+        "finish_match_status": "all_finishes_master_verified_by_index",
+        "supported_sources": [
+          "reverseholo_set_checklist",
+          "tcgdex"
+        ],
+        "supported_source_kinds": [
+          "collector_reference",
+          "structured_api"
+        ],
+        "all_target_printings_master_verified": true
+      },
+      "dry_run_status": "eligible_for_row_level_dry_run",
+      "mutation_authority": "not mutation authority"
+    }
+  ],
+  "planned_sql_preview": "-- DRY-RUN PREVIEW ONLY. Do not execute until a separate approved apply package exists.\n-- Parent recovery shape under review:\nwith approved(card_print_id, set_code, number, number_plain, name) as (\n  values\n    ('62f77935-5749-4d26-87e6-06bbca565b22'::uuid, 'dp7', '2', '2', 'Empoleon'),\n    ('665ee2b0-4a22-43d5-bf8e-8ff22a990384'::uuid, 'dp7', '3', '3', 'Infernape'),\n    ('d45018d3-c2a6-4d82-b3ed-d0ac6ce6e0ff'::uuid, 'dp7', '96', '96', 'Dusknoir'),\n    ('7c211bf2-ab9e-489d-842f-65c896270783'::uuid, 'dp7', '97', '97', 'Heatran'),\n    ('6f49c231-0a53-4c0c-9db1-6d4c36aa460e'::uuid, 'dp7', '98', '98', 'Machamp'),\n    ('7a0dbe87-8ffb-4939-a5c0-371a0a21b302'::uuid, 'dp7', '99', '99', 'Raichu'),\n    ('687811f7-e3d2-41bb-b37d-1e73882551d2'::uuid, 'dp7', '100', '100', 'Regigigas'),\n    ('e8444009-0c47-48a6-af07-f5b450ac0082'::uuid, 'dp7', 'SH1', 'SH1', 'Drifloon')\n)\nselect cp.id, cp.set_code as before_set_code, approved.set_code as after_set_code,\n       cp.number as before_number, approved.number as after_number,\n       cp.name as before_name, approved.name as after_name\nfrom public.card_prints cp\njoin approved on approved.card_print_id = cp.id;",
+  "rollback_requirements": [
+    "Capture full before-state snapshot for every target card_print row before any apply.",
+    "Capture child card_printings for every target card_print row before any apply.",
+    "Rollback must restore only approved target row IDs and must not touch blocked remainder rows.",
+    "Rollback must preserve vault ownership and provenance references.",
+    "Rollback must be reviewed before any write path is executed."
+  ],
+  "post_apply_verification_queries": [
+    {
+      "name": "target_parent_rows_resolved_to_set",
+      "sql": "select count(*)::int as matching_rows\nfrom public.card_prints\nwhere id = any(array['62f77935-5749-4d26-87e6-06bbca565b22'::uuid, '665ee2b0-4a22-43d5-bf8e-8ff22a990384'::uuid, 'd45018d3-c2a6-4d82-b3ed-d0ac6ce6e0ff'::uuid, '7c211bf2-ab9e-489d-842f-65c896270783'::uuid, '6f49c231-0a53-4c0c-9db1-6d4c36aa460e'::uuid, '7a0dbe87-8ffb-4939-a5c0-371a0a21b302'::uuid, '687811f7-e3d2-41bb-b37d-1e73882551d2'::uuid, 'e8444009-0c47-48a6-af07-f5b450ac0082'::uuid])\n  and lower(coalesce(set_code, '')) = 'dp7';",
+      "expected": 8
+    },
+    {
+      "name": "target_child_printing_count_unchanged",
+      "sql": "select count(*)::int as child_printings\nfrom public.card_printings\nwhere card_print_id = any(array['62f77935-5749-4d26-87e6-06bbca565b22'::uuid, '665ee2b0-4a22-43d5-bf8e-8ff22a990384'::uuid, 'd45018d3-c2a6-4d82-b3ed-d0ac6ce6e0ff'::uuid, '7c211bf2-ab9e-489d-842f-65c896270783'::uuid, '6f49c231-0a53-4c0c-9db1-6d4c36aa460e'::uuid, '7a0dbe87-8ffb-4939-a5c0-371a0a21b302'::uuid, '687811f7-e3d2-41bb-b37d-1e73882551d2'::uuid, 'e8444009-0c47-48a6-af07-f5b450ac0082'::uuid]);",
+      "expected": 10
+    },
+    {
+      "name": "unsupported_finish_rows_absent_from_package",
+      "sql": "select cp.id, cpr.finish_key\nfrom public.card_prints cp\njoin public.card_printings cpr on cpr.card_print_id = cp.id\nwhere cp.id = any(array['62f77935-5749-4d26-87e6-06bbca565b22'::uuid, '665ee2b0-4a22-43d5-bf8e-8ff22a990384'::uuid, 'd45018d3-c2a6-4d82-b3ed-d0ac6ce6e0ff'::uuid, '7c211bf2-ab9e-489d-842f-65c896270783'::uuid, '6f49c231-0a53-4c0c-9db1-6d4c36aa460e'::uuid, '7a0dbe87-8ffb-4939-a5c0-371a0a21b302'::uuid, '687811f7-e3d2-41bb-b37d-1e73882551d2'::uuid, 'e8444009-0c47-48a6-af07-f5b450ac0082'::uuid])\n  and cpr.finish_key not in ('normal', 'reverse');",
+      "expected": "0 rows"
+    }
+  ]
+}

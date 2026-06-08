@@ -1,0 +1,2808 @@
+{
+  "generated_at": "2026-06-08T20:31:36.717Z",
+  "version": "pl4_physical_recovery_dry_run_v1",
+  "audit_only": true,
+  "db_writes_performed": false,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "apply_paths_executed": false,
+  "target_set_key": "pl4",
+  "target_set_name": "Arceus",
+  "dry_run_package_status": "ready_for_review_no_write",
+  "write_ready_now": 0,
+  "write_allowed_from_this_package": false,
+  "summary": {
+    "candidate_card_prints": 18,
+    "candidate_printing_rows": 23,
+    "by_supported_finish": {
+      "holo": 16,
+      "reverse": 6,
+      "normal": 1
+    },
+    "blocked_rows": 0,
+    "db_snapshot_available": true,
+    "db_card_prints_found": 18,
+    "db_card_printings_found": 23,
+    "external_mappings_referencing_targets": 18,
+    "identity_rows_referencing_targets": 18,
+    "trait_rows_referencing_targets": 18,
+    "vault_items_referencing_targets": 0
+  },
+  "safety": {
+    "rule": "This artifact is a dry-run package only. It is not an apply package and does not authorize DB writes.",
+    "stop_rules": [
+      "Stop if any target row is missing from the before-state snapshot.",
+      "Stop if child-printing count differs from package expectation.",
+      "Stop if unsupported finishes appear in the target rows.",
+      "Stop if identity, ownership, vault, or provenance impact cannot be explained.",
+      "Stop if rollback artifact is incomplete."
+    ]
+  },
+  "db_snapshot": {
+    "available": true,
+    "reason": null,
+    "target_set": [
+      {
+        "id": "f4b3f0be-5d7b-445f-bbe4-bb136699d5fe",
+        "code": "pl4",
+        "game": "pokemon",
+        "name": "Arceus",
+        "source": {
+          "tcgdex": {
+            "id": "pl4",
+            "raw": {
+              "id": "pl4",
+              "logo": "https://assets.tcgdex.net/en/pl/pl4/logo",
+              "name": "Arceus",
+              "symbol": "https://assets.tcgdex.net/univ/pl/pl4/symbol",
+              "cardCount": {
+                "total": 111,
+                "official": 99
+              }
+            },
+            "name": "Arceus",
+            "slug": null,
+            "total": null,
+            "series": null,
+            "symbols": null,
+            "releaseDate": null,
+            "printedTotal": null
+          },
+          "pokemonapi": {
+            "id": "pl4",
+            "name": "Arceus",
+            "total": 111,
+            "images": {
+              "logo": "https://images.pokemontcg.io/pl4/logo.png",
+              "symbol": "https://images.pokemontcg.io/pl4/symbol.png"
+            },
+            "series": "Platinum",
+            "ptcgoCode": "AR",
+            "releaseDate": "2009/11/04",
+            "printedTotal": 99
+          }
+        },
+        "logo_url": "https://images.pokemontcg.io/pl4/logo.png",
+        "set_role": null,
+        "created_at": "2025-11-16T06:32:35.437741+00:00",
+        "symbol_url": "https://images.pokemontcg.io/pl4/symbol.png",
+        "updated_at": "2026-03-27T05:51:22.094+00:00",
+        "release_date": "2009-11-04",
+        "printed_total": 99,
+        "hero_image_url": null,
+        "identity_model": "standard",
+        "last_synced_at": null,
+        "hero_image_source": null,
+        "printed_set_abbrev": "AR",
+        "identity_domain_default": "pokemon_eng_standard"
+      }
+    ],
+    "rows": [
+      {
+        "card_print_id": "0db1b355-bb14-4042-8597-4afd1d9a2b77",
+        "card_print": {
+          "id": "0db1b355-bb14-4042-8597-4afd1d9a2b77",
+          "name": "Arceus",
+          "gv_id": null,
+          "artist": null,
+          "number": null,
+          "rarity": "Rare",
+          "set_id": "f4b3f0be-5d7b-445f-bbe4-bb136699d5fe",
+          "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+          "set_code": null,
+          "variants": null,
+          "image_res": null,
+          "image_url": "https://assets.tcgdex.net/en/pl/pl4/AR8/high.webp",
+          "created_at": "2026-03-26T23:47:50.858038+00:00",
+          "image_hash": null,
+          "image_note": null,
+          "image_path": null,
+          "updated_at": "2026-03-26T23:47:50.858038+00:00",
+          "ai_metadata": {
+            "tcgdex": {
+              "legalities": {},
+              "flavor_text": null
+            }
+          },
+          "variant_key": "",
+          "external_ids": {
+            "tcgdex": "pl4-AR8"
+          },
+          "image_source": "tcgdex",
+          "image_status": "exact",
+          "number_plain": null,
+          "tcgplayer_id": null,
+          "image_alt_url": "https://assets.tcgdex.net/en/pl/pl4/AR8",
+          "printed_total": null,
+          "last_synced_at": null,
+          "identity_domain": "pokemon_eng_standard",
+          "regulation_mark": null,
+          "data_quality_flags": null,
+          "print_identity_key": null,
+          "printed_set_abbrev": null,
+          "set_identity_model": "standard",
+          "image_last_checked_at": null,
+          "representative_image_url": null,
+          "printed_identity_modifier": null
+        },
+        "card_printings": [
+          {
+            "id": "c5e19005-e2e8-4ade-9a84-694bbda5c940",
+            "image_url": null,
+            "created_at": "2026-03-26T23:47:51.035236+00:00",
+            "created_by": "printing_ingestion_v2",
+            "finish_key": "holo",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "0db1b355-bb14-4042-8597-4afd1d9a2b77",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": null,
+            "provenance_ref": "pl4-AR8",
+            "provenance_source": "tcgdex"
+          }
+        ],
+        "dependency_counts": {
+          "external_mappings": 1,
+          "card_print_identity": 1,
+          "card_print_traits": 1,
+          "vault_items": 0
+        }
+      },
+      {
+        "card_print_id": "61cd00a6-3418-4980-ade8-b26c8d0b4d5c",
+        "card_print": {
+          "id": "61cd00a6-3418-4980-ade8-b26c8d0b4d5c",
+          "name": "Arceus",
+          "gv_id": null,
+          "artist": null,
+          "number": null,
+          "rarity": "Rare",
+          "set_id": "f4b3f0be-5d7b-445f-bbe4-bb136699d5fe",
+          "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+          "set_code": null,
+          "variants": null,
+          "image_res": null,
+          "image_url": "https://assets.tcgdex.net/en/pl/pl4/AR4/high.webp",
+          "created_at": "2026-03-26T23:47:47.559139+00:00",
+          "image_hash": null,
+          "image_note": null,
+          "image_path": null,
+          "updated_at": "2026-03-26T23:47:47.559139+00:00",
+          "ai_metadata": {
+            "tcgdex": {
+              "legalities": {},
+              "flavor_text": null
+            }
+          },
+          "variant_key": "",
+          "external_ids": {
+            "tcgdex": "pl4-AR4"
+          },
+          "image_source": "tcgdex",
+          "image_status": "exact",
+          "number_plain": null,
+          "tcgplayer_id": null,
+          "image_alt_url": "https://assets.tcgdex.net/en/pl/pl4/AR4",
+          "printed_total": null,
+          "last_synced_at": null,
+          "identity_domain": "pokemon_eng_standard",
+          "regulation_mark": null,
+          "data_quality_flags": null,
+          "print_identity_key": null,
+          "printed_set_abbrev": null,
+          "set_identity_model": "standard",
+          "image_last_checked_at": null,
+          "representative_image_url": null,
+          "printed_identity_modifier": null
+        },
+        "card_printings": [
+          {
+            "id": "0170ae9a-6b1e-4b31-8521-7cc22fe5db46",
+            "image_url": null,
+            "created_at": "2026-03-26T23:47:47.739031+00:00",
+            "created_by": "printing_ingestion_v2",
+            "finish_key": "holo",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "61cd00a6-3418-4980-ade8-b26c8d0b4d5c",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": null,
+            "provenance_ref": "pl4-AR4",
+            "provenance_source": "tcgdex"
+          }
+        ],
+        "dependency_counts": {
+          "external_mappings": 1,
+          "card_print_identity": 1,
+          "card_print_traits": 1,
+          "vault_items": 0
+        }
+      },
+      {
+        "card_print_id": "63a0a7b8-bdfa-4a08-ad30-680bcc45802e",
+        "card_print": {
+          "id": "63a0a7b8-bdfa-4a08-ad30-680bcc45802e",
+          "name": "Arceus",
+          "gv_id": null,
+          "artist": null,
+          "number": null,
+          "rarity": "Rare",
+          "set_id": "f4b3f0be-5d7b-445f-bbe4-bb136699d5fe",
+          "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+          "set_code": null,
+          "variants": null,
+          "image_res": null,
+          "image_url": "https://assets.tcgdex.net/en/pl/pl4/AR5/high.webp",
+          "created_at": "2026-03-26T23:47:48.397608+00:00",
+          "image_hash": null,
+          "image_note": null,
+          "image_path": null,
+          "updated_at": "2026-03-26T23:47:48.397608+00:00",
+          "ai_metadata": {
+            "tcgdex": {
+              "legalities": {},
+              "flavor_text": null
+            }
+          },
+          "variant_key": "",
+          "external_ids": {
+            "tcgdex": "pl4-AR5"
+          },
+          "image_source": "tcgdex",
+          "image_status": "exact",
+          "number_plain": null,
+          "tcgplayer_id": null,
+          "image_alt_url": "https://assets.tcgdex.net/en/pl/pl4/AR5",
+          "printed_total": null,
+          "last_synced_at": null,
+          "identity_domain": "pokemon_eng_standard",
+          "regulation_mark": null,
+          "data_quality_flags": null,
+          "print_identity_key": null,
+          "printed_set_abbrev": null,
+          "set_identity_model": "standard",
+          "image_last_checked_at": null,
+          "representative_image_url": null,
+          "printed_identity_modifier": null
+        },
+        "card_printings": [
+          {
+            "id": "ab00337a-3619-4d92-87db-319223f88438",
+            "image_url": null,
+            "created_at": "2026-03-26T23:47:48.580093+00:00",
+            "created_by": "printing_ingestion_v2",
+            "finish_key": "holo",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "63a0a7b8-bdfa-4a08-ad30-680bcc45802e",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": null,
+            "provenance_ref": "pl4-AR5",
+            "provenance_source": "tcgdex"
+          }
+        ],
+        "dependency_counts": {
+          "external_mappings": 1,
+          "card_print_identity": 1,
+          "card_print_traits": 1,
+          "vault_items": 0
+        }
+      },
+      {
+        "card_print_id": "67e47461-e03c-4da3-8557-d3df639dbb98",
+        "card_print": {
+          "id": "67e47461-e03c-4da3-8557-d3df639dbb98",
+          "name": "Arceus",
+          "gv_id": null,
+          "artist": null,
+          "number": null,
+          "rarity": "Rare",
+          "set_id": "f4b3f0be-5d7b-445f-bbe4-bb136699d5fe",
+          "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+          "set_code": null,
+          "variants": null,
+          "image_res": null,
+          "image_url": "https://assets.tcgdex.net/en/pl/pl4/AR7/high.webp",
+          "created_at": "2026-03-26T23:47:50.036166+00:00",
+          "image_hash": null,
+          "image_note": null,
+          "image_path": null,
+          "updated_at": "2026-03-26T23:47:50.036166+00:00",
+          "ai_metadata": {
+            "tcgdex": {
+              "legalities": {},
+              "flavor_text": null
+            }
+          },
+          "variant_key": "",
+          "external_ids": {
+            "tcgdex": "pl4-AR7"
+          },
+          "image_source": "tcgdex",
+          "image_status": "exact",
+          "number_plain": null,
+          "tcgplayer_id": null,
+          "image_alt_url": "https://assets.tcgdex.net/en/pl/pl4/AR7",
+          "printed_total": null,
+          "last_synced_at": null,
+          "identity_domain": "pokemon_eng_standard",
+          "regulation_mark": null,
+          "data_quality_flags": null,
+          "print_identity_key": null,
+          "printed_set_abbrev": null,
+          "set_identity_model": "standard",
+          "image_last_checked_at": null,
+          "representative_image_url": null,
+          "printed_identity_modifier": null
+        },
+        "card_printings": [
+          {
+            "id": "2be55cc4-2bc8-4b3d-8975-ceb883ec858f",
+            "image_url": null,
+            "created_at": "2026-03-26T23:47:50.223602+00:00",
+            "created_by": "printing_ingestion_v2",
+            "finish_key": "holo",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "67e47461-e03c-4da3-8557-d3df639dbb98",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": null,
+            "provenance_ref": "pl4-AR7",
+            "provenance_source": "tcgdex"
+          }
+        ],
+        "dependency_counts": {
+          "external_mappings": 1,
+          "card_print_identity": 1,
+          "card_print_traits": 1,
+          "vault_items": 0
+        }
+      },
+      {
+        "card_print_id": "8b2c91cf-bd7c-4564-84ca-5863e1414257",
+        "card_print": {
+          "id": "8b2c91cf-bd7c-4564-84ca-5863e1414257",
+          "name": "Arceus",
+          "gv_id": null,
+          "artist": null,
+          "number": null,
+          "rarity": "Rare",
+          "set_id": "f4b3f0be-5d7b-445f-bbe4-bb136699d5fe",
+          "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+          "set_code": null,
+          "variants": null,
+          "image_res": null,
+          "image_url": "https://assets.tcgdex.net/en/pl/pl4/AR3/high.webp",
+          "created_at": "2026-03-26T23:47:46.740101+00:00",
+          "image_hash": null,
+          "image_note": null,
+          "image_path": null,
+          "updated_at": "2026-03-26T23:47:46.740101+00:00",
+          "ai_metadata": {
+            "tcgdex": {
+              "legalities": {},
+              "flavor_text": null
+            }
+          },
+          "variant_key": "",
+          "external_ids": {
+            "tcgdex": "pl4-AR3"
+          },
+          "image_source": "tcgdex",
+          "image_status": "exact",
+          "number_plain": null,
+          "tcgplayer_id": null,
+          "image_alt_url": "https://assets.tcgdex.net/en/pl/pl4/AR3",
+          "printed_total": null,
+          "last_synced_at": null,
+          "identity_domain": "pokemon_eng_standard",
+          "regulation_mark": null,
+          "data_quality_flags": null,
+          "print_identity_key": null,
+          "printed_set_abbrev": null,
+          "set_identity_model": "standard",
+          "image_last_checked_at": null,
+          "representative_image_url": null,
+          "printed_identity_modifier": null
+        },
+        "card_printings": [
+          {
+            "id": "a0978db5-ede7-4b88-8423-b026bddc90c4",
+            "image_url": null,
+            "created_at": "2026-03-26T23:47:46.920901+00:00",
+            "created_by": "printing_ingestion_v2",
+            "finish_key": "holo",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "8b2c91cf-bd7c-4564-84ca-5863e1414257",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": null,
+            "provenance_ref": "pl4-AR3",
+            "provenance_source": "tcgdex"
+          }
+        ],
+        "dependency_counts": {
+          "external_mappings": 1,
+          "card_print_identity": 1,
+          "card_print_traits": 1,
+          "vault_items": 0
+        }
+      },
+      {
+        "card_print_id": "cf859f9b-f1d6-41ec-9e38-c7fd27743777",
+        "card_print": {
+          "id": "cf859f9b-f1d6-41ec-9e38-c7fd27743777",
+          "name": "Arceus",
+          "gv_id": null,
+          "artist": null,
+          "number": null,
+          "rarity": "Rare",
+          "set_id": "f4b3f0be-5d7b-445f-bbe4-bb136699d5fe",
+          "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+          "set_code": null,
+          "variants": null,
+          "image_res": null,
+          "image_url": "https://assets.tcgdex.net/en/pl/pl4/AR2/high.webp",
+          "created_at": "2026-03-26T23:47:45.926986+00:00",
+          "image_hash": null,
+          "image_note": null,
+          "image_path": null,
+          "updated_at": "2026-03-26T23:47:45.926986+00:00",
+          "ai_metadata": {
+            "tcgdex": {
+              "legalities": {},
+              "flavor_text": null
+            }
+          },
+          "variant_key": "",
+          "external_ids": {
+            "tcgdex": "pl4-AR2"
+          },
+          "image_source": "tcgdex",
+          "image_status": "exact",
+          "number_plain": null,
+          "tcgplayer_id": null,
+          "image_alt_url": "https://assets.tcgdex.net/en/pl/pl4/AR2",
+          "printed_total": null,
+          "last_synced_at": null,
+          "identity_domain": "pokemon_eng_standard",
+          "regulation_mark": null,
+          "data_quality_flags": null,
+          "print_identity_key": null,
+          "printed_set_abbrev": null,
+          "set_identity_model": "standard",
+          "image_last_checked_at": null,
+          "representative_image_url": null,
+          "printed_identity_modifier": null
+        },
+        "card_printings": [
+          {
+            "id": "5b7df3d4-3d2b-4f0d-91f4-28b7e98feea7",
+            "image_url": null,
+            "created_at": "2026-03-26T23:47:46.107555+00:00",
+            "created_by": "printing_ingestion_v2",
+            "finish_key": "holo",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "cf859f9b-f1d6-41ec-9e38-c7fd27743777",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": null,
+            "provenance_ref": "pl4-AR2",
+            "provenance_source": "tcgdex"
+          }
+        ],
+        "dependency_counts": {
+          "external_mappings": 1,
+          "card_print_identity": 1,
+          "card_print_traits": 1,
+          "vault_items": 0
+        }
+      },
+      {
+        "card_print_id": "460e6437-4bc8-4a1c-90fc-546481f225e2",
+        "card_print": {
+          "id": "460e6437-4bc8-4a1c-90fc-546481f225e2",
+          "name": "Arceus LV. X",
+          "gv_id": null,
+          "artist": null,
+          "number": null,
+          "rarity": "Rare Holo LV.X",
+          "set_id": "f4b3f0be-5d7b-445f-bbe4-bb136699d5fe",
+          "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+          "set_code": null,
+          "variants": null,
+          "image_res": null,
+          "image_url": "https://assets.tcgdex.net/en/pl/pl4/94/high.webp",
+          "created_at": "2026-03-26T23:47:40.092251+00:00",
+          "image_hash": null,
+          "image_note": null,
+          "image_path": null,
+          "updated_at": "2026-03-26T23:47:40.092251+00:00",
+          "ai_metadata": {
+            "tcgdex": {
+              "legalities": {},
+              "flavor_text": null
+            }
+          },
+          "variant_key": "",
+          "external_ids": {
+            "tcgdex": "pl4-94"
+          },
+          "image_source": "tcgdex",
+          "image_status": "exact",
+          "number_plain": null,
+          "tcgplayer_id": null,
+          "image_alt_url": "https://assets.tcgdex.net/en/pl/pl4/94",
+          "printed_total": null,
+          "last_synced_at": null,
+          "identity_domain": "pokemon_eng_standard",
+          "regulation_mark": null,
+          "data_quality_flags": null,
+          "print_identity_key": null,
+          "printed_set_abbrev": null,
+          "set_identity_model": "standard",
+          "image_last_checked_at": null,
+          "representative_image_url": null,
+          "printed_identity_modifier": null
+        },
+        "card_printings": [
+          {
+            "id": "99c5947d-6376-4954-98cc-2534b0e1eb4d",
+            "image_url": null,
+            "created_at": "2026-03-26T23:47:40.277031+00:00",
+            "created_by": "printing_ingestion_v2",
+            "finish_key": "holo",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "460e6437-4bc8-4a1c-90fc-546481f225e2",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": null,
+            "provenance_ref": "pl4-94",
+            "provenance_source": "tcgdex"
+          }
+        ],
+        "dependency_counts": {
+          "external_mappings": 1,
+          "card_print_identity": 1,
+          "card_print_traits": 1,
+          "vault_items": 0
+        }
+      },
+      {
+        "card_print_id": "ad751d34-d43b-4644-ae2e-622725f781cd",
+        "card_print": {
+          "id": "ad751d34-d43b-4644-ae2e-622725f781cd",
+          "name": "Arceus LV. X",
+          "gv_id": null,
+          "artist": null,
+          "number": null,
+          "rarity": "Rare Holo LV.X",
+          "set_id": "f4b3f0be-5d7b-445f-bbe4-bb136699d5fe",
+          "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+          "set_code": null,
+          "variants": null,
+          "image_res": null,
+          "image_url": "https://assets.tcgdex.net/en/pl/pl4/96/high.webp",
+          "created_at": "2026-03-26T23:47:41.728021+00:00",
+          "image_hash": null,
+          "image_note": null,
+          "image_path": null,
+          "updated_at": "2026-03-26T23:47:41.728021+00:00",
+          "ai_metadata": {
+            "tcgdex": {
+              "legalities": {},
+              "flavor_text": null
+            }
+          },
+          "variant_key": "",
+          "external_ids": {
+            "tcgdex": "pl4-96"
+          },
+          "image_source": "tcgdex",
+          "image_status": "exact",
+          "number_plain": null,
+          "tcgplayer_id": null,
+          "image_alt_url": "https://assets.tcgdex.net/en/pl/pl4/96",
+          "printed_total": null,
+          "last_synced_at": null,
+          "identity_domain": "pokemon_eng_standard",
+          "regulation_mark": null,
+          "data_quality_flags": null,
+          "print_identity_key": null,
+          "printed_set_abbrev": null,
+          "set_identity_model": "standard",
+          "image_last_checked_at": null,
+          "representative_image_url": null,
+          "printed_identity_modifier": null
+        },
+        "card_printings": [
+          {
+            "id": "e06a2a7a-b1e6-49a1-9fcf-105732fa7230",
+            "image_url": null,
+            "created_at": "2026-03-26T23:47:41.928163+00:00",
+            "created_by": "printing_ingestion_v2",
+            "finish_key": "holo",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "ad751d34-d43b-4644-ae2e-622725f781cd",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": null,
+            "provenance_ref": "pl4-96",
+            "provenance_source": "tcgdex"
+          }
+        ],
+        "dependency_counts": {
+          "external_mappings": 1,
+          "card_print_identity": 1,
+          "card_print_traits": 1,
+          "vault_items": 0
+        }
+      },
+      {
+        "card_print_id": "c5125a59-32a9-4a0f-98af-4cf4ad5d6d64",
+        "card_print": {
+          "id": "c5125a59-32a9-4a0f-98af-4cf4ad5d6d64",
+          "name": "Arceus LV. X",
+          "gv_id": null,
+          "artist": null,
+          "number": null,
+          "rarity": "Rare Holo LV.X",
+          "set_id": "f4b3f0be-5d7b-445f-bbe4-bb136699d5fe",
+          "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+          "set_code": null,
+          "variants": null,
+          "image_res": null,
+          "image_url": "https://assets.tcgdex.net/en/pl/pl4/95/high.webp",
+          "created_at": "2026-03-26T23:47:40.90583+00:00",
+          "image_hash": null,
+          "image_note": null,
+          "image_path": null,
+          "updated_at": "2026-03-26T23:47:40.90583+00:00",
+          "ai_metadata": {
+            "tcgdex": {
+              "legalities": {},
+              "flavor_text": null
+            }
+          },
+          "variant_key": "",
+          "external_ids": {
+            "tcgdex": "pl4-95"
+          },
+          "image_source": "tcgdex",
+          "image_status": "exact",
+          "number_plain": null,
+          "tcgplayer_id": null,
+          "image_alt_url": "https://assets.tcgdex.net/en/pl/pl4/95",
+          "printed_total": null,
+          "last_synced_at": null,
+          "identity_domain": "pokemon_eng_standard",
+          "regulation_mark": null,
+          "data_quality_flags": null,
+          "print_identity_key": null,
+          "printed_set_abbrev": null,
+          "set_identity_model": "standard",
+          "image_last_checked_at": null,
+          "representative_image_url": null,
+          "printed_identity_modifier": null
+        },
+        "card_printings": [
+          {
+            "id": "e4a86716-ad79-4747-a09d-b7bd7b0b4f71",
+            "image_url": null,
+            "created_at": "2026-03-26T23:47:41.089716+00:00",
+            "created_by": "printing_ingestion_v2",
+            "finish_key": "holo",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "c5125a59-32a9-4a0f-98af-4cf4ad5d6d64",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": null,
+            "provenance_ref": "pl4-95",
+            "provenance_source": "tcgdex"
+          }
+        ],
+        "dependency_counts": {
+          "external_mappings": 1,
+          "card_print_identity": 1,
+          "card_print_traits": 1,
+          "vault_items": 0
+        }
+      },
+      {
+        "card_print_id": "502ee1d6-d7c2-40d7-8bfa-5e94ff5c3bda",
+        "card_print": {
+          "id": "502ee1d6-d7c2-40d7-8bfa-5e94ff5c3bda",
+          "name": "Bagon",
+          "gv_id": null,
+          "artist": null,
+          "number": null,
+          "rarity": "Rare",
+          "set_id": "f4b3f0be-5d7b-445f-bbe4-bb136699d5fe",
+          "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+          "set_code": null,
+          "variants": null,
+          "image_res": null,
+          "image_url": "https://assets.tcgdex.net/en/pl/pl4/SH10/high.webp",
+          "created_at": "2026-03-26T23:47:52.482495+00:00",
+          "image_hash": null,
+          "image_note": null,
+          "image_path": null,
+          "updated_at": "2026-03-26T23:47:52.482495+00:00",
+          "ai_metadata": {
+            "tcgdex": {
+              "legalities": {},
+              "flavor_text": null
+            }
+          },
+          "variant_key": "",
+          "external_ids": {
+            "tcgdex": "pl4-SH10"
+          },
+          "image_source": "tcgdex",
+          "image_status": "exact",
+          "number_plain": null,
+          "tcgplayer_id": null,
+          "image_alt_url": "https://assets.tcgdex.net/en/pl/pl4/SH10",
+          "printed_total": null,
+          "last_synced_at": null,
+          "identity_domain": "pokemon_eng_standard",
+          "regulation_mark": null,
+          "data_quality_flags": null,
+          "print_identity_key": null,
+          "printed_set_abbrev": null,
+          "set_identity_model": "standard",
+          "image_last_checked_at": null,
+          "representative_image_url": null,
+          "printed_identity_modifier": null
+        },
+        "card_printings": [
+          {
+            "id": "8564fd60-b2c4-4558-b7e5-3a2edc593043",
+            "image_url": null,
+            "created_at": "2026-03-26T23:47:52.651919+00:00",
+            "created_by": "printing_ingestion_v2",
+            "finish_key": "reverse",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "502ee1d6-d7c2-40d7-8bfa-5e94ff5c3bda",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": null,
+            "provenance_ref": "pl4-SH10",
+            "provenance_source": "tcgdex"
+          }
+        ],
+        "dependency_counts": {
+          "external_mappings": 1,
+          "card_print_identity": 1,
+          "card_print_traits": 1,
+          "vault_items": 0
+        }
+      },
+      {
+        "card_print_id": "a02f871c-fe3e-432b-944d-6decea0eecdf",
+        "card_print": {
+          "id": "a02f871c-fe3e-432b-944d-6decea0eecdf",
+          "name": "Charizard",
+          "gv_id": null,
+          "artist": null,
+          "number": null,
+          "rarity": "Rare Holo",
+          "set_id": "f4b3f0be-5d7b-445f-bbe4-bb136699d5fe",
+          "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+          "set_code": null,
+          "variants": null,
+          "image_res": null,
+          "image_url": "https://assets.tcgdex.net/en/pl/pl4/1/high.webp",
+          "created_at": "2026-03-26T23:46:05.343911+00:00",
+          "image_hash": null,
+          "image_note": null,
+          "image_path": null,
+          "updated_at": "2026-03-26T23:46:05.343911+00:00",
+          "ai_metadata": {
+            "tcgdex": {
+              "legalities": {},
+              "flavor_text": null
+            }
+          },
+          "variant_key": "",
+          "external_ids": {
+            "tcgdex": "pl4-1"
+          },
+          "image_source": "tcgdex",
+          "image_status": "exact",
+          "number_plain": null,
+          "tcgplayer_id": null,
+          "image_alt_url": "https://assets.tcgdex.net/en/pl/pl4/1",
+          "printed_total": null,
+          "last_synced_at": null,
+          "identity_domain": "pokemon_eng_standard",
+          "regulation_mark": null,
+          "data_quality_flags": null,
+          "print_identity_key": null,
+          "printed_set_abbrev": null,
+          "set_identity_model": "standard",
+          "image_last_checked_at": null,
+          "representative_image_url": null,
+          "printed_identity_modifier": null
+        },
+        "card_printings": [
+          {
+            "id": "81924ee3-9c88-4e1b-acaa-7f612bb82f9c",
+            "image_url": null,
+            "created_at": "2026-03-26T23:46:05.532378+00:00",
+            "created_by": "printing_ingestion_v2",
+            "finish_key": "holo",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "a02f871c-fe3e-432b-944d-6decea0eecdf",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": null,
+            "provenance_ref": "pl4-1",
+            "provenance_source": "tcgdex"
+          },
+          {
+            "id": "8aac81d1-ad9e-49b8-ba94-9d0bf503ed8f",
+            "image_url": null,
+            "created_at": "2026-03-26T23:46:05.64962+00:00",
+            "created_by": "printing_ingestion_v2",
+            "finish_key": "reverse",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "a02f871c-fe3e-432b-944d-6decea0eecdf",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": null,
+            "provenance_ref": "pl4-1",
+            "provenance_source": "tcgdex"
+          }
+        ],
+        "dependency_counts": {
+          "external_mappings": 1,
+          "card_print_identity": 1,
+          "card_print_traits": 1,
+          "vault_items": 0
+        }
+      },
+      {
+        "card_print_id": "1352eb03-1519-4e31-b7ad-a2d4af24ef65",
+        "card_print": {
+          "id": "1352eb03-1519-4e31-b7ad-a2d4af24ef65",
+          "name": "Gengar LV. X",
+          "gv_id": null,
+          "artist": null,
+          "number": null,
+          "rarity": "Rare Holo LV.X",
+          "set_id": "f4b3f0be-5d7b-445f-bbe4-bb136699d5fe",
+          "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+          "set_code": null,
+          "variants": null,
+          "image_res": null,
+          "image_url": "https://assets.tcgdex.net/en/pl/pl4/97/high.webp",
+          "created_at": "2026-03-26T23:47:42.57652+00:00",
+          "image_hash": null,
+          "image_note": null,
+          "image_path": null,
+          "updated_at": "2026-03-26T23:47:42.57652+00:00",
+          "ai_metadata": {
+            "tcgdex": {
+              "legalities": {},
+              "flavor_text": null
+            }
+          },
+          "variant_key": "",
+          "external_ids": {
+            "tcgdex": "pl4-97"
+          },
+          "image_source": "tcgdex",
+          "image_status": "exact",
+          "number_plain": null,
+          "tcgplayer_id": null,
+          "image_alt_url": "https://assets.tcgdex.net/en/pl/pl4/97",
+          "printed_total": null,
+          "last_synced_at": null,
+          "identity_domain": "pokemon_eng_standard",
+          "regulation_mark": null,
+          "data_quality_flags": null,
+          "print_identity_key": null,
+          "printed_set_abbrev": null,
+          "set_identity_model": "standard",
+          "image_last_checked_at": null,
+          "representative_image_url": null,
+          "printed_identity_modifier": null
+        },
+        "card_printings": [
+          {
+            "id": "53bc5d29-3a55-4797-93dd-819ca5cbc923",
+            "image_url": null,
+            "created_at": "2026-03-26T23:47:42.805788+00:00",
+            "created_by": "printing_ingestion_v2",
+            "finish_key": "holo",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "1352eb03-1519-4e31-b7ad-a2d4af24ef65",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": null,
+            "provenance_ref": "pl4-97",
+            "provenance_source": "tcgdex"
+          }
+        ],
+        "dependency_counts": {
+          "external_mappings": 1,
+          "card_print_identity": 1,
+          "card_print_traits": 1,
+          "vault_items": 0
+        }
+      },
+      {
+        "card_print_id": "71779a8b-ee22-4892-9425-8e3da51f179a",
+        "card_print": {
+          "id": "71779a8b-ee22-4892-9425-8e3da51f179a",
+          "name": "Mothim",
+          "gv_id": null,
+          "artist": null,
+          "number": null,
+          "rarity": "Rare Holo",
+          "set_id": "f4b3f0be-5d7b-445f-bbe4-bb136699d5fe",
+          "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+          "set_code": null,
+          "variants": null,
+          "image_res": null,
+          "image_url": "https://assets.tcgdex.net/en/pl/pl4/6/high.webp",
+          "created_at": "2026-03-26T23:46:10.167116+00:00",
+          "image_hash": null,
+          "image_note": null,
+          "image_path": null,
+          "updated_at": "2026-03-26T23:46:10.167116+00:00",
+          "ai_metadata": {
+            "tcgdex": {
+              "legalities": {},
+              "flavor_text": null
+            }
+          },
+          "variant_key": "",
+          "external_ids": {
+            "tcgdex": "pl4-6"
+          },
+          "image_source": "tcgdex",
+          "image_status": "exact",
+          "number_plain": null,
+          "tcgplayer_id": null,
+          "image_alt_url": "https://assets.tcgdex.net/en/pl/pl4/6",
+          "printed_total": null,
+          "last_synced_at": null,
+          "identity_domain": "pokemon_eng_standard",
+          "regulation_mark": null,
+          "data_quality_flags": null,
+          "print_identity_key": null,
+          "printed_set_abbrev": null,
+          "set_identity_model": "standard",
+          "image_last_checked_at": null,
+          "representative_image_url": null,
+          "printed_identity_modifier": null
+        },
+        "card_printings": [
+          {
+            "id": "5f68bf94-8783-432a-a518-3345f24a1bb2",
+            "image_url": null,
+            "created_at": "2026-03-26T23:46:10.356786+00:00",
+            "created_by": "printing_ingestion_v2",
+            "finish_key": "holo",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "71779a8b-ee22-4892-9425-8e3da51f179a",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": null,
+            "provenance_ref": "pl4-6",
+            "provenance_source": "tcgdex"
+          },
+          {
+            "id": "f9524231-f088-4da7-96f3-4c15c0fafb0c",
+            "image_url": null,
+            "created_at": "2026-03-26T23:46:10.457267+00:00",
+            "created_by": "printing_ingestion_v2",
+            "finish_key": "reverse",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "71779a8b-ee22-4892-9425-8e3da51f179a",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": null,
+            "provenance_ref": "pl4-6",
+            "provenance_source": "tcgdex"
+          }
+        ],
+        "dependency_counts": {
+          "external_mappings": 1,
+          "card_print_identity": 1,
+          "card_print_traits": 1,
+          "vault_items": 0
+        }
+      },
+      {
+        "card_print_id": "22a0396f-a0fe-4680-8568-71246489db3c",
+        "card_print": {
+          "id": "22a0396f-a0fe-4680-8568-71246489db3c",
+          "name": "Ponyta",
+          "gv_id": null,
+          "artist": null,
+          "number": null,
+          "rarity": "Rare",
+          "set_id": "f4b3f0be-5d7b-445f-bbe4-bb136699d5fe",
+          "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+          "set_code": null,
+          "variants": null,
+          "image_res": null,
+          "image_url": "https://assets.tcgdex.net/en/pl/pl4/SH11/high.webp",
+          "created_at": "2026-03-26T23:47:53.291825+00:00",
+          "image_hash": null,
+          "image_note": null,
+          "image_path": null,
+          "updated_at": "2026-03-26T23:47:53.291825+00:00",
+          "ai_metadata": {
+            "tcgdex": {
+              "legalities": {},
+              "flavor_text": null
+            }
+          },
+          "variant_key": "",
+          "external_ids": {
+            "tcgdex": "pl4-SH11"
+          },
+          "image_source": "tcgdex",
+          "image_status": "exact",
+          "number_plain": null,
+          "tcgplayer_id": null,
+          "image_alt_url": "https://assets.tcgdex.net/en/pl/pl4/SH11",
+          "printed_total": null,
+          "last_synced_at": null,
+          "identity_domain": "pokemon_eng_standard",
+          "regulation_mark": null,
+          "data_quality_flags": null,
+          "print_identity_key": null,
+          "printed_set_abbrev": null,
+          "set_identity_model": "standard",
+          "image_last_checked_at": null,
+          "representative_image_url": null,
+          "printed_identity_modifier": null
+        },
+        "card_printings": [
+          {
+            "id": "8cc9d89f-db3f-4e66-893b-7ed12fe88a6a",
+            "image_url": null,
+            "created_at": "2026-03-26T23:47:53.483361+00:00",
+            "created_by": "printing_ingestion_v2",
+            "finish_key": "reverse",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "22a0396f-a0fe-4680-8568-71246489db3c",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": null,
+            "provenance_ref": "pl4-SH11",
+            "provenance_source": "tcgdex"
+          }
+        ],
+        "dependency_counts": {
+          "external_mappings": 1,
+          "card_print_identity": 1,
+          "card_print_traits": 1,
+          "vault_items": 0
+        }
+      },
+      {
+        "card_print_id": "2fb3462d-4a19-4412-b8cd-848a669549a0",
+        "card_print": {
+          "id": "2fb3462d-4a19-4412-b8cd-848a669549a0",
+          "name": "Salamence LV. X",
+          "gv_id": null,
+          "artist": null,
+          "number": null,
+          "rarity": "Rare Holo LV.X",
+          "set_id": "f4b3f0be-5d7b-445f-bbe4-bb136699d5fe",
+          "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+          "set_code": null,
+          "variants": null,
+          "image_res": null,
+          "image_url": "https://assets.tcgdex.net/en/pl/pl4/98/high.webp",
+          "created_at": "2026-03-26T23:47:43.442472+00:00",
+          "image_hash": null,
+          "image_note": null,
+          "image_path": null,
+          "updated_at": "2026-03-26T23:47:43.442472+00:00",
+          "ai_metadata": {
+            "tcgdex": {
+              "legalities": {},
+              "flavor_text": null
+            }
+          },
+          "variant_key": "",
+          "external_ids": {
+            "tcgdex": "pl4-98"
+          },
+          "image_source": "tcgdex",
+          "image_status": "exact",
+          "number_plain": null,
+          "tcgplayer_id": null,
+          "image_alt_url": "https://assets.tcgdex.net/en/pl/pl4/98",
+          "printed_total": null,
+          "last_synced_at": null,
+          "identity_domain": "pokemon_eng_standard",
+          "regulation_mark": null,
+          "data_quality_flags": null,
+          "print_identity_key": null,
+          "printed_set_abbrev": null,
+          "set_identity_model": "standard",
+          "image_last_checked_at": null,
+          "representative_image_url": null,
+          "printed_identity_modifier": null
+        },
+        "card_printings": [
+          {
+            "id": "e66af8cf-cc16-4ff8-93eb-c5c4f13bb75b",
+            "image_url": null,
+            "created_at": "2026-03-26T23:47:43.619732+00:00",
+            "created_by": "printing_ingestion_v2",
+            "finish_key": "holo",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "2fb3462d-4a19-4412-b8cd-848a669549a0",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": null,
+            "provenance_ref": "pl4-98",
+            "provenance_source": "tcgdex"
+          }
+        ],
+        "dependency_counts": {
+          "external_mappings": 1,
+          "card_print_identity": 1,
+          "card_print_traits": 1,
+          "vault_items": 0
+        }
+      },
+      {
+        "card_print_id": "3059259e-c28b-49d6-9f31-64e178e87f28",
+        "card_print": {
+          "id": "3059259e-c28b-49d6-9f31-64e178e87f28",
+          "name": "Swalot",
+          "gv_id": null,
+          "artist": null,
+          "number": null,
+          "rarity": "Rare Holo",
+          "set_id": "f4b3f0be-5d7b-445f-bbe4-bb136699d5fe",
+          "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+          "set_code": null,
+          "variants": null,
+          "image_res": null,
+          "image_url": "https://assets.tcgdex.net/en/pl/pl4/9/high.webp",
+          "created_at": "2026-03-26T23:46:12.993487+00:00",
+          "image_hash": null,
+          "image_note": null,
+          "image_path": null,
+          "updated_at": "2026-03-26T23:46:12.993487+00:00",
+          "ai_metadata": {
+            "tcgdex": {
+              "legalities": {},
+              "flavor_text": null
+            }
+          },
+          "variant_key": "",
+          "external_ids": {
+            "tcgdex": "pl4-9"
+          },
+          "image_source": "tcgdex",
+          "image_status": "exact",
+          "number_plain": null,
+          "tcgplayer_id": null,
+          "image_alt_url": "https://assets.tcgdex.net/en/pl/pl4/9",
+          "printed_total": null,
+          "last_synced_at": null,
+          "identity_domain": "pokemon_eng_standard",
+          "regulation_mark": null,
+          "data_quality_flags": null,
+          "print_identity_key": null,
+          "printed_set_abbrev": null,
+          "set_identity_model": "standard",
+          "image_last_checked_at": null,
+          "representative_image_url": null,
+          "printed_identity_modifier": null
+        },
+        "card_printings": [
+          {
+            "id": "9e6832da-d862-48f7-bbb6-b3c4ed3b6173",
+            "image_url": null,
+            "created_at": "2026-03-26T23:46:13.281996+00:00",
+            "created_by": "printing_ingestion_v2",
+            "finish_key": "holo",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "3059259e-c28b-49d6-9f31-64e178e87f28",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": null,
+            "provenance_ref": "pl4-9",
+            "provenance_source": "tcgdex"
+          },
+          {
+            "id": "cccdc54a-2dca-4590-8d2b-3d810193025d",
+            "image_url": null,
+            "created_at": "2026-03-26T23:46:13.182578+00:00",
+            "created_by": "printing_ingestion_v2",
+            "finish_key": "normal",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "3059259e-c28b-49d6-9f31-64e178e87f28",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": null,
+            "provenance_ref": "pl4-9",
+            "provenance_source": "tcgdex"
+          },
+          {
+            "id": "e8a673ac-b3eb-4528-a1ad-c9bc14376c56",
+            "image_url": null,
+            "created_at": "2026-03-26T23:46:13.377567+00:00",
+            "created_by": "printing_ingestion_v2",
+            "finish_key": "reverse",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "3059259e-c28b-49d6-9f31-64e178e87f28",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": null,
+            "provenance_ref": "pl4-9",
+            "provenance_source": "tcgdex"
+          }
+        ],
+        "dependency_counts": {
+          "external_mappings": 1,
+          "card_print_identity": 1,
+          "card_print_traits": 1,
+          "vault_items": 0
+        }
+      },
+      {
+        "card_print_id": "b319332c-aea7-4f3c-ad4c-02f0874b2d60",
+        "card_print": {
+          "id": "b319332c-aea7-4f3c-ad4c-02f0874b2d60",
+          "name": "Tangrowth LV. X",
+          "gv_id": null,
+          "artist": null,
+          "number": null,
+          "rarity": "Rare Holo LV.X",
+          "set_id": "f4b3f0be-5d7b-445f-bbe4-bb136699d5fe",
+          "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+          "set_code": null,
+          "variants": null,
+          "image_res": null,
+          "image_url": "https://assets.tcgdex.net/en/pl/pl4/99/high.webp",
+          "created_at": "2026-03-26T23:47:44.277178+00:00",
+          "image_hash": null,
+          "image_note": null,
+          "image_path": null,
+          "updated_at": "2026-03-26T23:47:44.277178+00:00",
+          "ai_metadata": {
+            "tcgdex": {
+              "legalities": {},
+              "flavor_text": null
+            }
+          },
+          "variant_key": "",
+          "external_ids": {
+            "tcgdex": "pl4-99"
+          },
+          "image_source": "tcgdex",
+          "image_status": "exact",
+          "number_plain": null,
+          "tcgplayer_id": null,
+          "image_alt_url": "https://assets.tcgdex.net/en/pl/pl4/99",
+          "printed_total": null,
+          "last_synced_at": null,
+          "identity_domain": "pokemon_eng_standard",
+          "regulation_mark": null,
+          "data_quality_flags": null,
+          "print_identity_key": null,
+          "printed_set_abbrev": null,
+          "set_identity_model": "standard",
+          "image_last_checked_at": null,
+          "representative_image_url": null,
+          "printed_identity_modifier": null
+        },
+        "card_printings": [
+          {
+            "id": "aefe2eb1-ad38-418a-b814-320048008924",
+            "image_url": null,
+            "created_at": "2026-03-26T23:47:44.464125+00:00",
+            "created_by": "printing_ingestion_v2",
+            "finish_key": "holo",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "b319332c-aea7-4f3c-ad4c-02f0874b2d60",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": null,
+            "provenance_ref": "pl4-99",
+            "provenance_source": "tcgdex"
+          }
+        ],
+        "dependency_counts": {
+          "external_mappings": 1,
+          "card_print_identity": 1,
+          "card_print_traits": 1,
+          "vault_items": 0
+        }
+      },
+      {
+        "card_print_id": "8716f287-3497-49b2-a499-9c1e026a6a94",
+        "card_print": {
+          "id": "8716f287-3497-49b2-a499-9c1e026a6a94",
+          "name": "Zapdos",
+          "gv_id": null,
+          "artist": null,
+          "number": null,
+          "rarity": "Rare Holo",
+          "set_id": "f4b3f0be-5d7b-445f-bbe4-bb136699d5fe",
+          "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+          "set_code": null,
+          "variants": null,
+          "image_res": null,
+          "image_url": "https://assets.tcgdex.net/en/pl/pl4/12/high.webp",
+          "created_at": "2026-03-26T23:46:16.099103+00:00",
+          "image_hash": null,
+          "image_note": null,
+          "image_path": null,
+          "updated_at": "2026-03-26T23:46:16.099103+00:00",
+          "ai_metadata": {
+            "tcgdex": {
+              "legalities": {},
+              "flavor_text": null
+            }
+          },
+          "variant_key": "",
+          "external_ids": {
+            "tcgdex": "pl4-12"
+          },
+          "image_source": "tcgdex",
+          "image_status": "exact",
+          "number_plain": null,
+          "tcgplayer_id": null,
+          "image_alt_url": "https://assets.tcgdex.net/en/pl/pl4/12",
+          "printed_total": null,
+          "last_synced_at": null,
+          "identity_domain": "pokemon_eng_standard",
+          "regulation_mark": null,
+          "data_quality_flags": null,
+          "print_identity_key": null,
+          "printed_set_abbrev": null,
+          "set_identity_model": "standard",
+          "image_last_checked_at": null,
+          "representative_image_url": null,
+          "printed_identity_modifier": null
+        },
+        "card_printings": [
+          {
+            "id": "b2c62598-ed2b-4154-94a5-fef88d6a2cf8",
+            "image_url": null,
+            "created_at": "2026-03-26T23:46:16.289968+00:00",
+            "created_by": "printing_ingestion_v2",
+            "finish_key": "holo",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "8716f287-3497-49b2-a499-9c1e026a6a94",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": null,
+            "provenance_ref": "pl4-12",
+            "provenance_source": "tcgdex"
+          },
+          {
+            "id": "55b71337-65a0-4943-9b33-d5e4a955f315",
+            "image_url": null,
+            "created_at": "2026-03-26T23:46:16.390964+00:00",
+            "created_by": "printing_ingestion_v2",
+            "finish_key": "reverse",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "8716f287-3497-49b2-a499-9c1e026a6a94",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": null,
+            "provenance_ref": "pl4-12",
+            "provenance_source": "tcgdex"
+          }
+        ],
+        "dependency_counts": {
+          "external_mappings": 1,
+          "card_print_identity": 1,
+          "card_print_traits": 1,
+          "vault_items": 0
+        }
+      }
+    ],
+    "impact_counts": {
+      "card_prints_found": 18,
+      "card_printings_found": 23,
+      "external_mappings_found": 18,
+      "identity_rows_found": 18,
+      "trait_rows_found": 18,
+      "vault_items_found": 0
+    }
+  },
+  "package_rows": [
+    {
+      "card_print_id": "a02f871c-fe3e-432b-944d-6decea0eecdf",
+      "current_grookai_name": "Charizard",
+      "target_set_key": "pl4",
+      "target_set_name": "Arceus",
+      "target_card_number": "1",
+      "target_card_name": "Charizard",
+      "source_external_id": "pl4-1",
+      "source_card_url": "https://api.tcgdex.net/v2/en/cards/pl4-1",
+      "target_parent_fields": {
+        "set_code": "pl4",
+        "number": "1",
+        "number_plain": "1",
+        "name": "Charizard"
+      },
+      "target_printings": [
+        {
+          "finish_key": "holo",
+          "index_status": "master_verified",
+          "source_count": 5,
+          "sources": [
+            "pokemontcg_api",
+            "reverseholo_set_checklist",
+            "tcgdex",
+            "tcgplayer_price_guide",
+            "thepricedex_price_list"
+          ],
+          "source_kinds": [
+            "collector_reference",
+            "marketplace_checklist",
+            "structured_api"
+          ],
+          "evidence_urls": [
+            "https://api.pokemontcg.io/v2/cards/pl4-1",
+            "https://api.tcgdex.net/v2/en/cards/pl4-1",
+            "https://prices.pokemontcg.io/tcgplayer/pl4-1",
+            "https://reverseholo.app/sets/pl4",
+            "https://www.thepricedex.com/set/pl4/arceus/price-list"
+          ]
+        },
+        {
+          "finish_key": "reverse",
+          "index_status": "master_verified",
+          "source_count": 5,
+          "sources": [
+            "pokemontcg_api",
+            "reverseholo_set_checklist",
+            "tcgdex",
+            "tcgplayer_price_guide",
+            "thepricedex_price_list"
+          ],
+          "source_kinds": [
+            "collector_reference",
+            "marketplace_checklist",
+            "structured_api"
+          ],
+          "evidence_urls": [
+            "https://api.pokemontcg.io/v2/cards/pl4-1",
+            "https://api.tcgdex.net/v2/en/cards/pl4-1",
+            "https://prices.pokemontcg.io/tcgplayer/pl4-1",
+            "https://reverseholo.app/sets/pl4",
+            "https://www.thepricedex.com/set/pl4/arceus/price-list"
+          ]
+        }
+      ],
+      "supported_finishes": [
+        "holo",
+        "reverse"
+      ],
+      "unsupported_finishes": [],
+      "evidence_summary": {
+        "card_identity_status": "master_verified",
+        "finish_match_status": "all_finishes_master_verified_by_index",
+        "supported_sources": [
+          "pokemontcg_api",
+          "reverseholo_set_checklist",
+          "tcgdex",
+          "tcgplayer_price_guide",
+          "thepricedex_price_list"
+        ],
+        "supported_source_kinds": [
+          "collector_reference",
+          "marketplace_checklist",
+          "structured_api"
+        ],
+        "all_target_printings_master_verified": true
+      },
+      "dry_run_status": "eligible_for_row_level_dry_run",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "card_print_id": "71779a8b-ee22-4892-9425-8e3da51f179a",
+      "current_grookai_name": "Mothim",
+      "target_set_key": "pl4",
+      "target_set_name": "Arceus",
+      "target_card_number": "6",
+      "target_card_name": "Mothim",
+      "source_external_id": "pl4-6",
+      "source_card_url": "https://api.tcgdex.net/v2/en/cards/pl4-6",
+      "target_parent_fields": {
+        "set_code": "pl4",
+        "number": "6",
+        "number_plain": "6",
+        "name": "Mothim"
+      },
+      "target_printings": [
+        {
+          "finish_key": "holo",
+          "index_status": "master_verified",
+          "source_count": 5,
+          "sources": [
+            "pokemontcg_api",
+            "reverseholo_set_checklist",
+            "tcgdex",
+            "tcgplayer_price_guide",
+            "thepricedex_price_list"
+          ],
+          "source_kinds": [
+            "collector_reference",
+            "marketplace_checklist",
+            "structured_api"
+          ],
+          "evidence_urls": [
+            "https://api.pokemontcg.io/v2/cards/pl4-6",
+            "https://api.tcgdex.net/v2/en/cards/pl4-6",
+            "https://prices.pokemontcg.io/tcgplayer/pl4-6",
+            "https://reverseholo.app/sets/pl4",
+            "https://www.thepricedex.com/set/pl4/arceus/price-list"
+          ]
+        },
+        {
+          "finish_key": "reverse",
+          "index_status": "master_verified",
+          "source_count": 5,
+          "sources": [
+            "pokemontcg_api",
+            "reverseholo_set_checklist",
+            "tcgdex",
+            "tcgplayer_price_guide",
+            "thepricedex_price_list"
+          ],
+          "source_kinds": [
+            "collector_reference",
+            "marketplace_checklist",
+            "structured_api"
+          ],
+          "evidence_urls": [
+            "https://api.pokemontcg.io/v2/cards/pl4-6",
+            "https://api.tcgdex.net/v2/en/cards/pl4-6",
+            "https://prices.pokemontcg.io/tcgplayer/pl4-6",
+            "https://reverseholo.app/sets/pl4",
+            "https://www.thepricedex.com/set/pl4/arceus/price-list"
+          ]
+        }
+      ],
+      "supported_finishes": [
+        "holo",
+        "reverse"
+      ],
+      "unsupported_finishes": [],
+      "evidence_summary": {
+        "card_identity_status": "master_verified",
+        "finish_match_status": "all_finishes_master_verified_by_index",
+        "supported_sources": [
+          "pokemontcg_api",
+          "reverseholo_set_checklist",
+          "tcgdex",
+          "tcgplayer_price_guide",
+          "thepricedex_price_list"
+        ],
+        "supported_source_kinds": [
+          "collector_reference",
+          "marketplace_checklist",
+          "structured_api"
+        ],
+        "all_target_printings_master_verified": true
+      },
+      "dry_run_status": "eligible_for_row_level_dry_run",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "card_print_id": "3059259e-c28b-49d6-9f31-64e178e87f28",
+      "current_grookai_name": "Swalot",
+      "target_set_key": "pl4",
+      "target_set_name": "Arceus",
+      "target_card_number": "9",
+      "target_card_name": "Swalot",
+      "source_external_id": "pl4-9",
+      "source_card_url": "https://api.tcgdex.net/v2/en/cards/pl4-9",
+      "target_parent_fields": {
+        "set_code": "pl4",
+        "number": "9",
+        "number_plain": "9",
+        "name": "Swalot"
+      },
+      "target_printings": [
+        {
+          "finish_key": "holo",
+          "index_status": "master_verified",
+          "source_count": 5,
+          "sources": [
+            "pokemontcg_api",
+            "reverseholo_set_checklist",
+            "tcgdex",
+            "tcgplayer_price_guide",
+            "thepricedex_price_list"
+          ],
+          "source_kinds": [
+            "collector_reference",
+            "marketplace_checklist",
+            "structured_api"
+          ],
+          "evidence_urls": [
+            "https://api.pokemontcg.io/v2/cards/pl4-9",
+            "https://api.tcgdex.net/v2/en/cards/pl4-9",
+            "https://prices.pokemontcg.io/tcgplayer/pl4-9",
+            "https://reverseholo.app/sets/pl4",
+            "https://www.thepricedex.com/set/pl4/arceus/price-list"
+          ]
+        },
+        {
+          "finish_key": "normal",
+          "index_status": "master_verified",
+          "source_count": 2,
+          "sources": [
+            "tcgdex",
+            "thepricedex_price_list"
+          ],
+          "source_kinds": [
+            "marketplace_checklist",
+            "structured_api"
+          ],
+          "evidence_urls": [
+            "https://api.tcgdex.net/v2/en/cards/pl4-9",
+            "https://www.thepricedex.com/set/pl4/arceus/price-list"
+          ]
+        },
+        {
+          "finish_key": "reverse",
+          "index_status": "master_verified",
+          "source_count": 5,
+          "sources": [
+            "pokemontcg_api",
+            "reverseholo_set_checklist",
+            "tcgdex",
+            "tcgplayer_price_guide",
+            "thepricedex_price_list"
+          ],
+          "source_kinds": [
+            "collector_reference",
+            "marketplace_checklist",
+            "structured_api"
+          ],
+          "evidence_urls": [
+            "https://api.pokemontcg.io/v2/cards/pl4-9",
+            "https://api.tcgdex.net/v2/en/cards/pl4-9",
+            "https://prices.pokemontcg.io/tcgplayer/pl4-9",
+            "https://reverseholo.app/sets/pl4",
+            "https://www.thepricedex.com/set/pl4/arceus/price-list"
+          ]
+        }
+      ],
+      "supported_finishes": [
+        "holo",
+        "normal",
+        "reverse"
+      ],
+      "unsupported_finishes": [],
+      "evidence_summary": {
+        "card_identity_status": "master_verified",
+        "finish_match_status": "all_finishes_master_verified_by_index",
+        "supported_sources": [
+          "pokemontcg_api",
+          "reverseholo_set_checklist",
+          "tcgdex",
+          "tcgplayer_price_guide",
+          "thepricedex_price_list"
+        ],
+        "supported_source_kinds": [
+          "collector_reference",
+          "marketplace_checklist",
+          "structured_api"
+        ],
+        "all_target_printings_master_verified": true
+      },
+      "dry_run_status": "eligible_for_row_level_dry_run",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "card_print_id": "8716f287-3497-49b2-a499-9c1e026a6a94",
+      "current_grookai_name": "Zapdos",
+      "target_set_key": "pl4",
+      "target_set_name": "Arceus",
+      "target_card_number": "12",
+      "target_card_name": "Zapdos",
+      "source_external_id": "pl4-12",
+      "source_card_url": "https://api.tcgdex.net/v2/en/cards/pl4-12",
+      "target_parent_fields": {
+        "set_code": "pl4",
+        "number": "12",
+        "number_plain": "12",
+        "name": "Zapdos"
+      },
+      "target_printings": [
+        {
+          "finish_key": "holo",
+          "index_status": "master_verified",
+          "source_count": 2,
+          "sources": [
+            "reverseholo_set_checklist",
+            "tcgdex"
+          ],
+          "source_kinds": [
+            "collector_reference",
+            "structured_api"
+          ],
+          "evidence_urls": [
+            "https://api.tcgdex.net/v2/en/cards/pl4-12",
+            "https://reverseholo.app/sets/pl4"
+          ]
+        },
+        {
+          "finish_key": "reverse",
+          "index_status": "master_verified",
+          "source_count": 2,
+          "sources": [
+            "reverseholo_set_checklist",
+            "tcgdex"
+          ],
+          "source_kinds": [
+            "collector_reference",
+            "structured_api"
+          ],
+          "evidence_urls": [
+            "https://api.tcgdex.net/v2/en/cards/pl4-12",
+            "https://reverseholo.app/sets/pl4"
+          ]
+        }
+      ],
+      "supported_finishes": [
+        "holo",
+        "reverse"
+      ],
+      "unsupported_finishes": [],
+      "evidence_summary": {
+        "card_identity_status": "master_verified",
+        "finish_match_status": "all_finishes_master_verified_by_index",
+        "supported_sources": [
+          "reverseholo_set_checklist",
+          "tcgdex"
+        ],
+        "supported_source_kinds": [
+          "collector_reference",
+          "structured_api"
+        ],
+        "all_target_printings_master_verified": true
+      },
+      "dry_run_status": "eligible_for_row_level_dry_run",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "card_print_id": "460e6437-4bc8-4a1c-90fc-546481f225e2",
+      "current_grookai_name": "Arceus LV. X",
+      "target_set_key": "pl4",
+      "target_set_name": "Arceus",
+      "target_card_number": "94",
+      "target_card_name": "Arceus LV.X",
+      "source_external_id": "pl4-94",
+      "source_card_url": "https://api.tcgdex.net/v2/en/cards/pl4-94",
+      "target_parent_fields": {
+        "set_code": "pl4",
+        "number": "94",
+        "number_plain": "94",
+        "name": "Arceus LV.X"
+      },
+      "target_printings": [
+        {
+          "finish_key": "holo",
+          "index_status": "master_verified",
+          "source_count": 5,
+          "sources": [
+            "pokemontcg_api",
+            "reverseholo_set_checklist",
+            "tcgdex",
+            "tcgplayer_price_guide",
+            "thepricedex_price_list"
+          ],
+          "source_kinds": [
+            "collector_reference",
+            "marketplace_checklist",
+            "structured_api"
+          ],
+          "evidence_urls": [
+            "https://api.pokemontcg.io/v2/cards/pl4-94",
+            "https://api.tcgdex.net/v2/en/cards/pl4-94",
+            "https://prices.pokemontcg.io/tcgplayer/pl4-94",
+            "https://reverseholo.app/sets/pl4",
+            "https://www.thepricedex.com/set/pl4/arceus/price-list"
+          ]
+        }
+      ],
+      "supported_finishes": [
+        "holo"
+      ],
+      "unsupported_finishes": [],
+      "evidence_summary": {
+        "card_identity_status": "master_verified",
+        "finish_match_status": "all_finishes_master_verified_by_index",
+        "supported_sources": [
+          "pokemontcg_api",
+          "reverseholo_set_checklist",
+          "tcgdex",
+          "tcgplayer_price_guide",
+          "thepricedex_price_list"
+        ],
+        "supported_source_kinds": [
+          "collector_reference",
+          "marketplace_checklist",
+          "structured_api"
+        ],
+        "all_target_printings_master_verified": true
+      },
+      "dry_run_status": "eligible_for_row_level_dry_run",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "card_print_id": "c5125a59-32a9-4a0f-98af-4cf4ad5d6d64",
+      "current_grookai_name": "Arceus LV. X",
+      "target_set_key": "pl4",
+      "target_set_name": "Arceus",
+      "target_card_number": "95",
+      "target_card_name": "Arceus LV.X",
+      "source_external_id": "pl4-95",
+      "source_card_url": "https://api.tcgdex.net/v2/en/cards/pl4-95",
+      "target_parent_fields": {
+        "set_code": "pl4",
+        "number": "95",
+        "number_plain": "95",
+        "name": "Arceus LV.X"
+      },
+      "target_printings": [
+        {
+          "finish_key": "holo",
+          "index_status": "master_verified",
+          "source_count": 5,
+          "sources": [
+            "pokemontcg_api",
+            "reverseholo_set_checklist",
+            "tcgdex",
+            "tcgplayer_price_guide",
+            "thepricedex_price_list"
+          ],
+          "source_kinds": [
+            "collector_reference",
+            "marketplace_checklist",
+            "structured_api"
+          ],
+          "evidence_urls": [
+            "https://api.pokemontcg.io/v2/cards/pl4-95",
+            "https://api.tcgdex.net/v2/en/cards/pl4-95",
+            "https://prices.pokemontcg.io/tcgplayer/pl4-95",
+            "https://reverseholo.app/sets/pl4",
+            "https://www.thepricedex.com/set/pl4/arceus/price-list"
+          ]
+        }
+      ],
+      "supported_finishes": [
+        "holo"
+      ],
+      "unsupported_finishes": [],
+      "evidence_summary": {
+        "card_identity_status": "master_verified",
+        "finish_match_status": "all_finishes_master_verified_by_index",
+        "supported_sources": [
+          "pokemontcg_api",
+          "reverseholo_set_checklist",
+          "tcgdex",
+          "tcgplayer_price_guide",
+          "thepricedex_price_list"
+        ],
+        "supported_source_kinds": [
+          "collector_reference",
+          "marketplace_checklist",
+          "structured_api"
+        ],
+        "all_target_printings_master_verified": true
+      },
+      "dry_run_status": "eligible_for_row_level_dry_run",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "card_print_id": "ad751d34-d43b-4644-ae2e-622725f781cd",
+      "current_grookai_name": "Arceus LV. X",
+      "target_set_key": "pl4",
+      "target_set_name": "Arceus",
+      "target_card_number": "96",
+      "target_card_name": "Arceus LV.X",
+      "source_external_id": "pl4-96",
+      "source_card_url": "https://api.tcgdex.net/v2/en/cards/pl4-96",
+      "target_parent_fields": {
+        "set_code": "pl4",
+        "number": "96",
+        "number_plain": "96",
+        "name": "Arceus LV.X"
+      },
+      "target_printings": [
+        {
+          "finish_key": "holo",
+          "index_status": "master_verified",
+          "source_count": 5,
+          "sources": [
+            "pokemontcg_api",
+            "reverseholo_set_checklist",
+            "tcgdex",
+            "tcgplayer_price_guide",
+            "thepricedex_price_list"
+          ],
+          "source_kinds": [
+            "collector_reference",
+            "marketplace_checklist",
+            "structured_api"
+          ],
+          "evidence_urls": [
+            "https://api.pokemontcg.io/v2/cards/pl4-96",
+            "https://api.tcgdex.net/v2/en/cards/pl4-96",
+            "https://prices.pokemontcg.io/tcgplayer/pl4-96",
+            "https://reverseholo.app/sets/pl4",
+            "https://www.thepricedex.com/set/pl4/arceus/price-list"
+          ]
+        }
+      ],
+      "supported_finishes": [
+        "holo"
+      ],
+      "unsupported_finishes": [],
+      "evidence_summary": {
+        "card_identity_status": "master_verified",
+        "finish_match_status": "all_finishes_master_verified_by_index",
+        "supported_sources": [
+          "pokemontcg_api",
+          "reverseholo_set_checklist",
+          "tcgdex",
+          "tcgplayer_price_guide",
+          "thepricedex_price_list"
+        ],
+        "supported_source_kinds": [
+          "collector_reference",
+          "marketplace_checklist",
+          "structured_api"
+        ],
+        "all_target_printings_master_verified": true
+      },
+      "dry_run_status": "eligible_for_row_level_dry_run",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "card_print_id": "1352eb03-1519-4e31-b7ad-a2d4af24ef65",
+      "current_grookai_name": "Gengar LV. X",
+      "target_set_key": "pl4",
+      "target_set_name": "Arceus",
+      "target_card_number": "97",
+      "target_card_name": "Gengar LV.X",
+      "source_external_id": "pl4-97",
+      "source_card_url": "https://api.tcgdex.net/v2/en/cards/pl4-97",
+      "target_parent_fields": {
+        "set_code": "pl4",
+        "number": "97",
+        "number_plain": "97",
+        "name": "Gengar LV.X"
+      },
+      "target_printings": [
+        {
+          "finish_key": "holo",
+          "index_status": "master_verified",
+          "source_count": 5,
+          "sources": [
+            "pokemontcg_api",
+            "reverseholo_set_checklist",
+            "tcgdex",
+            "tcgplayer_price_guide",
+            "thepricedex_price_list"
+          ],
+          "source_kinds": [
+            "collector_reference",
+            "marketplace_checklist",
+            "structured_api"
+          ],
+          "evidence_urls": [
+            "https://api.pokemontcg.io/v2/cards/pl4-97",
+            "https://api.tcgdex.net/v2/en/cards/pl4-97",
+            "https://prices.pokemontcg.io/tcgplayer/pl4-97",
+            "https://reverseholo.app/sets/pl4",
+            "https://www.thepricedex.com/set/pl4/arceus/price-list"
+          ]
+        }
+      ],
+      "supported_finishes": [
+        "holo"
+      ],
+      "unsupported_finishes": [],
+      "evidence_summary": {
+        "card_identity_status": "master_verified",
+        "finish_match_status": "all_finishes_master_verified_by_index",
+        "supported_sources": [
+          "pokemontcg_api",
+          "reverseholo_set_checklist",
+          "tcgdex",
+          "tcgplayer_price_guide",
+          "thepricedex_price_list"
+        ],
+        "supported_source_kinds": [
+          "collector_reference",
+          "marketplace_checklist",
+          "structured_api"
+        ],
+        "all_target_printings_master_verified": true
+      },
+      "dry_run_status": "eligible_for_row_level_dry_run",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "card_print_id": "2fb3462d-4a19-4412-b8cd-848a669549a0",
+      "current_grookai_name": "Salamence LV. X",
+      "target_set_key": "pl4",
+      "target_set_name": "Arceus",
+      "target_card_number": "98",
+      "target_card_name": "Salamence LV.X",
+      "source_external_id": "pl4-98",
+      "source_card_url": "https://api.tcgdex.net/v2/en/cards/pl4-98",
+      "target_parent_fields": {
+        "set_code": "pl4",
+        "number": "98",
+        "number_plain": "98",
+        "name": "Salamence LV.X"
+      },
+      "target_printings": [
+        {
+          "finish_key": "holo",
+          "index_status": "master_verified",
+          "source_count": 5,
+          "sources": [
+            "pokemontcg_api",
+            "reverseholo_set_checklist",
+            "tcgdex",
+            "tcgplayer_price_guide",
+            "thepricedex_price_list"
+          ],
+          "source_kinds": [
+            "collector_reference",
+            "marketplace_checklist",
+            "structured_api"
+          ],
+          "evidence_urls": [
+            "https://api.pokemontcg.io/v2/cards/pl4-98",
+            "https://api.tcgdex.net/v2/en/cards/pl4-98",
+            "https://prices.pokemontcg.io/tcgplayer/pl4-98",
+            "https://reverseholo.app/sets/pl4",
+            "https://www.thepricedex.com/set/pl4/arceus/price-list"
+          ]
+        }
+      ],
+      "supported_finishes": [
+        "holo"
+      ],
+      "unsupported_finishes": [],
+      "evidence_summary": {
+        "card_identity_status": "master_verified",
+        "finish_match_status": "all_finishes_master_verified_by_index",
+        "supported_sources": [
+          "pokemontcg_api",
+          "reverseholo_set_checklist",
+          "tcgdex",
+          "tcgplayer_price_guide",
+          "thepricedex_price_list"
+        ],
+        "supported_source_kinds": [
+          "collector_reference",
+          "marketplace_checklist",
+          "structured_api"
+        ],
+        "all_target_printings_master_verified": true
+      },
+      "dry_run_status": "eligible_for_row_level_dry_run",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "card_print_id": "b319332c-aea7-4f3c-ad4c-02f0874b2d60",
+      "current_grookai_name": "Tangrowth LV. X",
+      "target_set_key": "pl4",
+      "target_set_name": "Arceus",
+      "target_card_number": "99",
+      "target_card_name": "Tangrowth LV.X",
+      "source_external_id": "pl4-99",
+      "source_card_url": "https://api.tcgdex.net/v2/en/cards/pl4-99",
+      "target_parent_fields": {
+        "set_code": "pl4",
+        "number": "99",
+        "number_plain": "99",
+        "name": "Tangrowth LV.X"
+      },
+      "target_printings": [
+        {
+          "finish_key": "holo",
+          "index_status": "master_verified",
+          "source_count": 5,
+          "sources": [
+            "pokemontcg_api",
+            "reverseholo_set_checklist",
+            "tcgdex",
+            "tcgplayer_price_guide",
+            "thepricedex_price_list"
+          ],
+          "source_kinds": [
+            "collector_reference",
+            "marketplace_checklist",
+            "structured_api"
+          ],
+          "evidence_urls": [
+            "https://api.pokemontcg.io/v2/cards/pl4-99",
+            "https://api.tcgdex.net/v2/en/cards/pl4-99",
+            "https://prices.pokemontcg.io/tcgplayer/pl4-99",
+            "https://reverseholo.app/sets/pl4",
+            "https://www.thepricedex.com/set/pl4/arceus/price-list"
+          ]
+        }
+      ],
+      "supported_finishes": [
+        "holo"
+      ],
+      "unsupported_finishes": [],
+      "evidence_summary": {
+        "card_identity_status": "master_verified",
+        "finish_match_status": "all_finishes_master_verified_by_index",
+        "supported_sources": [
+          "pokemontcg_api",
+          "reverseholo_set_checklist",
+          "tcgdex",
+          "tcgplayer_price_guide",
+          "thepricedex_price_list"
+        ],
+        "supported_source_kinds": [
+          "collector_reference",
+          "marketplace_checklist",
+          "structured_api"
+        ],
+        "all_target_printings_master_verified": true
+      },
+      "dry_run_status": "eligible_for_row_level_dry_run",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "card_print_id": "cf859f9b-f1d6-41ec-9e38-c7fd27743777",
+      "current_grookai_name": "Arceus",
+      "target_set_key": "pl4",
+      "target_set_name": "Arceus",
+      "target_card_number": "AR2",
+      "target_card_name": "Arceus",
+      "source_external_id": "pl4-AR2",
+      "source_card_url": "https://api.tcgdex.net/v2/en/cards/pl4-AR2",
+      "target_parent_fields": {
+        "set_code": "pl4",
+        "number": "AR2",
+        "number_plain": "AR2",
+        "name": "Arceus"
+      },
+      "target_printings": [
+        {
+          "finish_key": "holo",
+          "index_status": "master_verified",
+          "source_count": 5,
+          "sources": [
+            "pokemontcg_api",
+            "reverseholo_set_checklist",
+            "tcgdex",
+            "tcgplayer_price_guide",
+            "thepricedex_price_list"
+          ],
+          "source_kinds": [
+            "collector_reference",
+            "marketplace_checklist",
+            "structured_api"
+          ],
+          "evidence_urls": [
+            "https://api.pokemontcg.io/v2/cards/pl4-AR2",
+            "https://api.tcgdex.net/v2/en/cards/pl4-AR2",
+            "https://prices.pokemontcg.io/tcgplayer/pl4-AR2",
+            "https://reverseholo.app/sets/pl4",
+            "https://www.thepricedex.com/set/pl4/arceus/price-list"
+          ]
+        }
+      ],
+      "supported_finishes": [
+        "holo"
+      ],
+      "unsupported_finishes": [],
+      "evidence_summary": {
+        "card_identity_status": "master_verified",
+        "finish_match_status": "all_finishes_master_verified_by_index",
+        "supported_sources": [
+          "pokemontcg_api",
+          "reverseholo_set_checklist",
+          "tcgdex",
+          "tcgplayer_price_guide",
+          "thepricedex_price_list"
+        ],
+        "supported_source_kinds": [
+          "collector_reference",
+          "marketplace_checklist",
+          "structured_api"
+        ],
+        "all_target_printings_master_verified": true
+      },
+      "dry_run_status": "eligible_for_row_level_dry_run",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "card_print_id": "8b2c91cf-bd7c-4564-84ca-5863e1414257",
+      "current_grookai_name": "Arceus",
+      "target_set_key": "pl4",
+      "target_set_name": "Arceus",
+      "target_card_number": "AR3",
+      "target_card_name": "Arceus",
+      "source_external_id": "pl4-AR3",
+      "source_card_url": "https://api.tcgdex.net/v2/en/cards/pl4-AR3",
+      "target_parent_fields": {
+        "set_code": "pl4",
+        "number": "AR3",
+        "number_plain": "AR3",
+        "name": "Arceus"
+      },
+      "target_printings": [
+        {
+          "finish_key": "holo",
+          "index_status": "master_verified",
+          "source_count": 5,
+          "sources": [
+            "pokemontcg_api",
+            "reverseholo_set_checklist",
+            "tcgdex",
+            "tcgplayer_price_guide",
+            "thepricedex_price_list"
+          ],
+          "source_kinds": [
+            "collector_reference",
+            "marketplace_checklist",
+            "structured_api"
+          ],
+          "evidence_urls": [
+            "https://api.pokemontcg.io/v2/cards/pl4-AR3",
+            "https://api.tcgdex.net/v2/en/cards/pl4-AR3",
+            "https://prices.pokemontcg.io/tcgplayer/pl4-AR3",
+            "https://reverseholo.app/sets/pl4",
+            "https://www.thepricedex.com/set/pl4/arceus/price-list"
+          ]
+        }
+      ],
+      "supported_finishes": [
+        "holo"
+      ],
+      "unsupported_finishes": [],
+      "evidence_summary": {
+        "card_identity_status": "master_verified",
+        "finish_match_status": "all_finishes_master_verified_by_index",
+        "supported_sources": [
+          "pokemontcg_api",
+          "reverseholo_set_checklist",
+          "tcgdex",
+          "tcgplayer_price_guide",
+          "thepricedex_price_list"
+        ],
+        "supported_source_kinds": [
+          "collector_reference",
+          "marketplace_checklist",
+          "structured_api"
+        ],
+        "all_target_printings_master_verified": true
+      },
+      "dry_run_status": "eligible_for_row_level_dry_run",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "card_print_id": "61cd00a6-3418-4980-ade8-b26c8d0b4d5c",
+      "current_grookai_name": "Arceus",
+      "target_set_key": "pl4",
+      "target_set_name": "Arceus",
+      "target_card_number": "AR4",
+      "target_card_name": "Arceus",
+      "source_external_id": "pl4-AR4",
+      "source_card_url": "https://api.tcgdex.net/v2/en/cards/pl4-AR4",
+      "target_parent_fields": {
+        "set_code": "pl4",
+        "number": "AR4",
+        "number_plain": "AR4",
+        "name": "Arceus"
+      },
+      "target_printings": [
+        {
+          "finish_key": "holo",
+          "index_status": "master_verified",
+          "source_count": 5,
+          "sources": [
+            "pokemontcg_api",
+            "reverseholo_set_checklist",
+            "tcgdex",
+            "tcgplayer_price_guide",
+            "thepricedex_price_list"
+          ],
+          "source_kinds": [
+            "collector_reference",
+            "marketplace_checklist",
+            "structured_api"
+          ],
+          "evidence_urls": [
+            "https://api.pokemontcg.io/v2/cards/pl4-AR4",
+            "https://api.tcgdex.net/v2/en/cards/pl4-AR4",
+            "https://prices.pokemontcg.io/tcgplayer/pl4-AR4",
+            "https://reverseholo.app/sets/pl4",
+            "https://www.thepricedex.com/set/pl4/arceus/price-list"
+          ]
+        }
+      ],
+      "supported_finishes": [
+        "holo"
+      ],
+      "unsupported_finishes": [],
+      "evidence_summary": {
+        "card_identity_status": "master_verified",
+        "finish_match_status": "all_finishes_master_verified_by_index",
+        "supported_sources": [
+          "pokemontcg_api",
+          "reverseholo_set_checklist",
+          "tcgdex",
+          "tcgplayer_price_guide",
+          "thepricedex_price_list"
+        ],
+        "supported_source_kinds": [
+          "collector_reference",
+          "marketplace_checklist",
+          "structured_api"
+        ],
+        "all_target_printings_master_verified": true
+      },
+      "dry_run_status": "eligible_for_row_level_dry_run",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "card_print_id": "63a0a7b8-bdfa-4a08-ad30-680bcc45802e",
+      "current_grookai_name": "Arceus",
+      "target_set_key": "pl4",
+      "target_set_name": "Arceus",
+      "target_card_number": "AR5",
+      "target_card_name": "Arceus",
+      "source_external_id": "pl4-AR5",
+      "source_card_url": "https://api.tcgdex.net/v2/en/cards/pl4-AR5",
+      "target_parent_fields": {
+        "set_code": "pl4",
+        "number": "AR5",
+        "number_plain": "AR5",
+        "name": "Arceus"
+      },
+      "target_printings": [
+        {
+          "finish_key": "holo",
+          "index_status": "master_verified",
+          "source_count": 5,
+          "sources": [
+            "pokemontcg_api",
+            "reverseholo_set_checklist",
+            "tcgdex",
+            "tcgplayer_price_guide",
+            "thepricedex_price_list"
+          ],
+          "source_kinds": [
+            "collector_reference",
+            "marketplace_checklist",
+            "structured_api"
+          ],
+          "evidence_urls": [
+            "https://api.pokemontcg.io/v2/cards/pl4-AR5",
+            "https://api.tcgdex.net/v2/en/cards/pl4-AR5",
+            "https://prices.pokemontcg.io/tcgplayer/pl4-AR5",
+            "https://reverseholo.app/sets/pl4",
+            "https://www.thepricedex.com/set/pl4/arceus/price-list"
+          ]
+        }
+      ],
+      "supported_finishes": [
+        "holo"
+      ],
+      "unsupported_finishes": [],
+      "evidence_summary": {
+        "card_identity_status": "master_verified",
+        "finish_match_status": "all_finishes_master_verified_by_index",
+        "supported_sources": [
+          "pokemontcg_api",
+          "reverseholo_set_checklist",
+          "tcgdex",
+          "tcgplayer_price_guide",
+          "thepricedex_price_list"
+        ],
+        "supported_source_kinds": [
+          "collector_reference",
+          "marketplace_checklist",
+          "structured_api"
+        ],
+        "all_target_printings_master_verified": true
+      },
+      "dry_run_status": "eligible_for_row_level_dry_run",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "card_print_id": "67e47461-e03c-4da3-8557-d3df639dbb98",
+      "current_grookai_name": "Arceus",
+      "target_set_key": "pl4",
+      "target_set_name": "Arceus",
+      "target_card_number": "AR7",
+      "target_card_name": "Arceus",
+      "source_external_id": "pl4-AR7",
+      "source_card_url": "https://api.tcgdex.net/v2/en/cards/pl4-AR7",
+      "target_parent_fields": {
+        "set_code": "pl4",
+        "number": "AR7",
+        "number_plain": "AR7",
+        "name": "Arceus"
+      },
+      "target_printings": [
+        {
+          "finish_key": "holo",
+          "index_status": "master_verified",
+          "source_count": 5,
+          "sources": [
+            "pokemontcg_api",
+            "reverseholo_set_checklist",
+            "tcgdex",
+            "tcgplayer_price_guide",
+            "thepricedex_price_list"
+          ],
+          "source_kinds": [
+            "collector_reference",
+            "marketplace_checklist",
+            "structured_api"
+          ],
+          "evidence_urls": [
+            "https://api.pokemontcg.io/v2/cards/pl4-AR7",
+            "https://api.tcgdex.net/v2/en/cards/pl4-AR7",
+            "https://prices.pokemontcg.io/tcgplayer/pl4-AR7",
+            "https://reverseholo.app/sets/pl4",
+            "https://www.thepricedex.com/set/pl4/arceus/price-list"
+          ]
+        }
+      ],
+      "supported_finishes": [
+        "holo"
+      ],
+      "unsupported_finishes": [],
+      "evidence_summary": {
+        "card_identity_status": "master_verified",
+        "finish_match_status": "all_finishes_master_verified_by_index",
+        "supported_sources": [
+          "pokemontcg_api",
+          "reverseholo_set_checklist",
+          "tcgdex",
+          "tcgplayer_price_guide",
+          "thepricedex_price_list"
+        ],
+        "supported_source_kinds": [
+          "collector_reference",
+          "marketplace_checklist",
+          "structured_api"
+        ],
+        "all_target_printings_master_verified": true
+      },
+      "dry_run_status": "eligible_for_row_level_dry_run",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "card_print_id": "0db1b355-bb14-4042-8597-4afd1d9a2b77",
+      "current_grookai_name": "Arceus",
+      "target_set_key": "pl4",
+      "target_set_name": "Arceus",
+      "target_card_number": "AR8",
+      "target_card_name": "Arceus",
+      "source_external_id": "pl4-AR8",
+      "source_card_url": "https://api.tcgdex.net/v2/en/cards/pl4-AR8",
+      "target_parent_fields": {
+        "set_code": "pl4",
+        "number": "AR8",
+        "number_plain": "AR8",
+        "name": "Arceus"
+      },
+      "target_printings": [
+        {
+          "finish_key": "holo",
+          "index_status": "master_verified",
+          "source_count": 5,
+          "sources": [
+            "pokemontcg_api",
+            "reverseholo_set_checklist",
+            "tcgdex",
+            "tcgplayer_price_guide",
+            "thepricedex_price_list"
+          ],
+          "source_kinds": [
+            "collector_reference",
+            "marketplace_checklist",
+            "structured_api"
+          ],
+          "evidence_urls": [
+            "https://api.pokemontcg.io/v2/cards/pl4-AR8",
+            "https://api.tcgdex.net/v2/en/cards/pl4-AR8",
+            "https://prices.pokemontcg.io/tcgplayer/pl4-AR8",
+            "https://reverseholo.app/sets/pl4",
+            "https://www.thepricedex.com/set/pl4/arceus/price-list"
+          ]
+        }
+      ],
+      "supported_finishes": [
+        "holo"
+      ],
+      "unsupported_finishes": [],
+      "evidence_summary": {
+        "card_identity_status": "master_verified",
+        "finish_match_status": "all_finishes_master_verified_by_index",
+        "supported_sources": [
+          "pokemontcg_api",
+          "reverseholo_set_checklist",
+          "tcgdex",
+          "tcgplayer_price_guide",
+          "thepricedex_price_list"
+        ],
+        "supported_source_kinds": [
+          "collector_reference",
+          "marketplace_checklist",
+          "structured_api"
+        ],
+        "all_target_printings_master_verified": true
+      },
+      "dry_run_status": "eligible_for_row_level_dry_run",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "card_print_id": "502ee1d6-d7c2-40d7-8bfa-5e94ff5c3bda",
+      "current_grookai_name": "Bagon",
+      "target_set_key": "pl4",
+      "target_set_name": "Arceus",
+      "target_card_number": "SH10",
+      "target_card_name": "Bagon",
+      "source_external_id": "pl4-SH10",
+      "source_card_url": "https://api.tcgdex.net/v2/en/cards/pl4-SH10",
+      "target_parent_fields": {
+        "set_code": "pl4",
+        "number": "SH10",
+        "number_plain": "SH10",
+        "name": "Bagon"
+      },
+      "target_printings": [
+        {
+          "finish_key": "reverse",
+          "index_status": "master_verified",
+          "source_count": 5,
+          "sources": [
+            "pokemontcg_api",
+            "reverseholo_set_checklist",
+            "tcgdex",
+            "tcgplayer_price_guide",
+            "thepricedex_price_list"
+          ],
+          "source_kinds": [
+            "collector_reference",
+            "marketplace_checklist",
+            "structured_api"
+          ],
+          "evidence_urls": [
+            "https://api.pokemontcg.io/v2/cards/pl4-SH10",
+            "https://api.tcgdex.net/v2/en/cards/pl4-SH10",
+            "https://prices.pokemontcg.io/tcgplayer/pl4-SH10",
+            "https://reverseholo.app/sets/pl4",
+            "https://www.thepricedex.com/set/pl4/arceus/price-list"
+          ]
+        }
+      ],
+      "supported_finishes": [
+        "reverse"
+      ],
+      "unsupported_finishes": [],
+      "evidence_summary": {
+        "card_identity_status": "master_verified",
+        "finish_match_status": "all_finishes_master_verified_by_index",
+        "supported_sources": [
+          "pokemontcg_api",
+          "reverseholo_set_checklist",
+          "tcgdex",
+          "tcgplayer_price_guide",
+          "thepricedex_price_list"
+        ],
+        "supported_source_kinds": [
+          "collector_reference",
+          "marketplace_checklist",
+          "structured_api"
+        ],
+        "all_target_printings_master_verified": true
+      },
+      "dry_run_status": "eligible_for_row_level_dry_run",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "card_print_id": "22a0396f-a0fe-4680-8568-71246489db3c",
+      "current_grookai_name": "Ponyta",
+      "target_set_key": "pl4",
+      "target_set_name": "Arceus",
+      "target_card_number": "SH11",
+      "target_card_name": "Ponyta",
+      "source_external_id": "pl4-SH11",
+      "source_card_url": "https://api.tcgdex.net/v2/en/cards/pl4-SH11",
+      "target_parent_fields": {
+        "set_code": "pl4",
+        "number": "SH11",
+        "number_plain": "SH11",
+        "name": "Ponyta"
+      },
+      "target_printings": [
+        {
+          "finish_key": "reverse",
+          "index_status": "master_verified",
+          "source_count": 5,
+          "sources": [
+            "pokemontcg_api",
+            "reverseholo_set_checklist",
+            "tcgdex",
+            "tcgplayer_price_guide",
+            "thepricedex_price_list"
+          ],
+          "source_kinds": [
+            "collector_reference",
+            "marketplace_checklist",
+            "structured_api"
+          ],
+          "evidence_urls": [
+            "https://api.pokemontcg.io/v2/cards/pl4-SH11",
+            "https://api.tcgdex.net/v2/en/cards/pl4-SH11",
+            "https://prices.pokemontcg.io/tcgplayer/pl4-SH11",
+            "https://reverseholo.app/sets/pl4",
+            "https://www.thepricedex.com/set/pl4/arceus/price-list"
+          ]
+        }
+      ],
+      "supported_finishes": [
+        "reverse"
+      ],
+      "unsupported_finishes": [],
+      "evidence_summary": {
+        "card_identity_status": "master_verified",
+        "finish_match_status": "all_finishes_master_verified_by_index",
+        "supported_sources": [
+          "pokemontcg_api",
+          "reverseholo_set_checklist",
+          "tcgdex",
+          "tcgplayer_price_guide",
+          "thepricedex_price_list"
+        ],
+        "supported_source_kinds": [
+          "collector_reference",
+          "marketplace_checklist",
+          "structured_api"
+        ],
+        "all_target_printings_master_verified": true
+      },
+      "dry_run_status": "eligible_for_row_level_dry_run",
+      "mutation_authority": "not mutation authority"
+    }
+  ],
+  "planned_sql_preview": "-- DRY-RUN PREVIEW ONLY. Do not execute until a separate approved apply package exists.\n-- Parent recovery shape under review:\nwith approved(card_print_id, set_code, number, number_plain, name) as (\n  values\n    ('a02f871c-fe3e-432b-944d-6decea0eecdf'::uuid, 'pl4', '1', '1', 'Charizard'),\n    ('71779a8b-ee22-4892-9425-8e3da51f179a'::uuid, 'pl4', '6', '6', 'Mothim'),\n    ('3059259e-c28b-49d6-9f31-64e178e87f28'::uuid, 'pl4', '9', '9', 'Swalot'),\n    ('8716f287-3497-49b2-a499-9c1e026a6a94'::uuid, 'pl4', '12', '12', 'Zapdos'),\n    ('460e6437-4bc8-4a1c-90fc-546481f225e2'::uuid, 'pl4', '94', '94', 'Arceus LV.X'),\n    ('c5125a59-32a9-4a0f-98af-4cf4ad5d6d64'::uuid, 'pl4', '95', '95', 'Arceus LV.X'),\n    ('ad751d34-d43b-4644-ae2e-622725f781cd'::uuid, 'pl4', '96', '96', 'Arceus LV.X'),\n    ('1352eb03-1519-4e31-b7ad-a2d4af24ef65'::uuid, 'pl4', '97', '97', 'Gengar LV.X'),\n    ('2fb3462d-4a19-4412-b8cd-848a669549a0'::uuid, 'pl4', '98', '98', 'Salamence LV.X'),\n    ('b319332c-aea7-4f3c-ad4c-02f0874b2d60'::uuid, 'pl4', '99', '99', 'Tangrowth LV.X'),\n    ('cf859f9b-f1d6-41ec-9e38-c7fd27743777'::uuid, 'pl4', 'AR2', 'AR2', 'Arceus'),\n    ('8b2c91cf-bd7c-4564-84ca-5863e1414257'::uuid, 'pl4', 'AR3', 'AR3', 'Arceus'),\n    ('61cd00a6-3418-4980-ade8-b26c8d0b4d5c'::uuid, 'pl4', 'AR4', 'AR4', 'Arceus'),\n    ('63a0a7b8-bdfa-4a08-ad30-680bcc45802e'::uuid, 'pl4', 'AR5', 'AR5', 'Arceus'),\n    ('67e47461-e03c-4da3-8557-d3df639dbb98'::uuid, 'pl4', 'AR7', 'AR7', 'Arceus'),\n    ('0db1b355-bb14-4042-8597-4afd1d9a2b77'::uuid, 'pl4', 'AR8', 'AR8', 'Arceus'),\n    ('502ee1d6-d7c2-40d7-8bfa-5e94ff5c3bda'::uuid, 'pl4', 'SH10', 'SH10', 'Bagon'),\n    ('22a0396f-a0fe-4680-8568-71246489db3c'::uuid, 'pl4', 'SH11', 'SH11', 'Ponyta')\n)\nselect cp.id, cp.set_code as before_set_code, approved.set_code as after_set_code,\n       cp.number as before_number, approved.number as after_number,\n       cp.name as before_name, approved.name as after_name\nfrom public.card_prints cp\njoin approved on approved.card_print_id = cp.id;",
+  "rollback_requirements": [
+    "Capture full before-state snapshot for every target card_print row before any apply.",
+    "Capture child card_printings for every target card_print row before any apply.",
+    "Rollback must restore only approved target row IDs and must not touch blocked remainder rows.",
+    "Rollback must preserve vault ownership and provenance references.",
+    "Rollback must be reviewed before any write path is executed."
+  ],
+  "post_apply_verification_queries": [
+    {
+      "name": "target_parent_rows_resolved_to_set",
+      "sql": "select count(*)::int as matching_rows\nfrom public.card_prints\nwhere id = any(array['a02f871c-fe3e-432b-944d-6decea0eecdf'::uuid, '71779a8b-ee22-4892-9425-8e3da51f179a'::uuid, '3059259e-c28b-49d6-9f31-64e178e87f28'::uuid, '8716f287-3497-49b2-a499-9c1e026a6a94'::uuid, '460e6437-4bc8-4a1c-90fc-546481f225e2'::uuid, 'c5125a59-32a9-4a0f-98af-4cf4ad5d6d64'::uuid, 'ad751d34-d43b-4644-ae2e-622725f781cd'::uuid, '1352eb03-1519-4e31-b7ad-a2d4af24ef65'::uuid, '2fb3462d-4a19-4412-b8cd-848a669549a0'::uuid, 'b319332c-aea7-4f3c-ad4c-02f0874b2d60'::uuid, 'cf859f9b-f1d6-41ec-9e38-c7fd27743777'::uuid, '8b2c91cf-bd7c-4564-84ca-5863e1414257'::uuid, '61cd00a6-3418-4980-ade8-b26c8d0b4d5c'::uuid, '63a0a7b8-bdfa-4a08-ad30-680bcc45802e'::uuid, '67e47461-e03c-4da3-8557-d3df639dbb98'::uuid, '0db1b355-bb14-4042-8597-4afd1d9a2b77'::uuid, '502ee1d6-d7c2-40d7-8bfa-5e94ff5c3bda'::uuid, '22a0396f-a0fe-4680-8568-71246489db3c'::uuid])\n  and lower(coalesce(set_code, '')) = 'pl4';",
+      "expected": 18
+    },
+    {
+      "name": "target_child_printing_count_unchanged",
+      "sql": "select count(*)::int as child_printings\nfrom public.card_printings\nwhere card_print_id = any(array['a02f871c-fe3e-432b-944d-6decea0eecdf'::uuid, '71779a8b-ee22-4892-9425-8e3da51f179a'::uuid, '3059259e-c28b-49d6-9f31-64e178e87f28'::uuid, '8716f287-3497-49b2-a499-9c1e026a6a94'::uuid, '460e6437-4bc8-4a1c-90fc-546481f225e2'::uuid, 'c5125a59-32a9-4a0f-98af-4cf4ad5d6d64'::uuid, 'ad751d34-d43b-4644-ae2e-622725f781cd'::uuid, '1352eb03-1519-4e31-b7ad-a2d4af24ef65'::uuid, '2fb3462d-4a19-4412-b8cd-848a669549a0'::uuid, 'b319332c-aea7-4f3c-ad4c-02f0874b2d60'::uuid, 'cf859f9b-f1d6-41ec-9e38-c7fd27743777'::uuid, '8b2c91cf-bd7c-4564-84ca-5863e1414257'::uuid, '61cd00a6-3418-4980-ade8-b26c8d0b4d5c'::uuid, '63a0a7b8-bdfa-4a08-ad30-680bcc45802e'::uuid, '67e47461-e03c-4da3-8557-d3df639dbb98'::uuid, '0db1b355-bb14-4042-8597-4afd1d9a2b77'::uuid, '502ee1d6-d7c2-40d7-8bfa-5e94ff5c3bda'::uuid, '22a0396f-a0fe-4680-8568-71246489db3c'::uuid]);",
+      "expected": 23
+    },
+    {
+      "name": "unsupported_finish_rows_absent_from_package",
+      "sql": "select cp.id, cpr.finish_key\nfrom public.card_prints cp\njoin public.card_printings cpr on cpr.card_print_id = cp.id\nwhere cp.id = any(array['a02f871c-fe3e-432b-944d-6decea0eecdf'::uuid, '71779a8b-ee22-4892-9425-8e3da51f179a'::uuid, '3059259e-c28b-49d6-9f31-64e178e87f28'::uuid, '8716f287-3497-49b2-a499-9c1e026a6a94'::uuid, '460e6437-4bc8-4a1c-90fc-546481f225e2'::uuid, 'c5125a59-32a9-4a0f-98af-4cf4ad5d6d64'::uuid, 'ad751d34-d43b-4644-ae2e-622725f781cd'::uuid, '1352eb03-1519-4e31-b7ad-a2d4af24ef65'::uuid, '2fb3462d-4a19-4412-b8cd-848a669549a0'::uuid, 'b319332c-aea7-4f3c-ad4c-02f0874b2d60'::uuid, 'cf859f9b-f1d6-41ec-9e38-c7fd27743777'::uuid, '8b2c91cf-bd7c-4564-84ca-5863e1414257'::uuid, '61cd00a6-3418-4980-ade8-b26c8d0b4d5c'::uuid, '63a0a7b8-bdfa-4a08-ad30-680bcc45802e'::uuid, '67e47461-e03c-4da3-8557-d3df639dbb98'::uuid, '0db1b355-bb14-4042-8597-4afd1d9a2b77'::uuid, '502ee1d6-d7c2-40d7-8bfa-5e94ff5c3bda'::uuid, '22a0396f-a0fe-4680-8568-71246489db3c'::uuid])\n  and cpr.finish_key not in ('normal', 'reverse');",
+      "expected": "0 rows"
+    }
+  ]
+}

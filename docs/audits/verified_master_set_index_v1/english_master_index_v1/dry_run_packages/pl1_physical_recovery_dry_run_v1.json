@@ -1,0 +1,1356 @@
+{
+  "generated_at": "2026-06-08T20:31:42.305Z",
+  "version": "pl1_physical_recovery_dry_run_v1",
+  "audit_only": true,
+  "db_writes_performed": false,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "apply_paths_executed": false,
+  "target_set_key": "pl1",
+  "target_set_name": "Platinum",
+  "dry_run_package_status": "ready_for_review_no_write",
+  "write_ready_now": 0,
+  "write_allowed_from_this_package": false,
+  "summary": {
+    "candidate_card_prints": 9,
+    "candidate_printing_rows": 10,
+    "by_supported_finish": {
+      "holo": 7,
+      "reverse": 3
+    },
+    "blocked_rows": 0,
+    "db_snapshot_available": true,
+    "db_card_prints_found": 9,
+    "db_card_printings_found": 10,
+    "external_mappings_referencing_targets": 9,
+    "identity_rows_referencing_targets": 9,
+    "trait_rows_referencing_targets": 9,
+    "vault_items_referencing_targets": 0
+  },
+  "safety": {
+    "rule": "This artifact is a dry-run package only. It is not an apply package and does not authorize DB writes.",
+    "stop_rules": [
+      "Stop if any target row is missing from the before-state snapshot.",
+      "Stop if child-printing count differs from package expectation.",
+      "Stop if unsupported finishes appear in the target rows.",
+      "Stop if identity, ownership, vault, or provenance impact cannot be explained.",
+      "Stop if rollback artifact is incomplete."
+    ]
+  },
+  "db_snapshot": {
+    "available": true,
+    "reason": null,
+    "target_set": [
+      {
+        "id": "527ab611-6142-40e4-844b-0eb395007e7b",
+        "code": "pl1",
+        "game": "pokemon",
+        "name": "Platinum",
+        "source": {
+          "tcgdex": {
+            "id": "pl1",
+            "raw": {
+              "id": "pl1",
+              "logo": "https://assets.tcgdex.net/en/pl/pl1/logo",
+              "name": "Platinum",
+              "symbol": "https://assets.tcgdex.net/univ/pl/pl1/symbol",
+              "cardCount": {
+                "total": 133,
+                "official": 127
+              }
+            },
+            "name": "Platinum",
+            "slug": null,
+            "total": null,
+            "series": null,
+            "symbols": null,
+            "releaseDate": null,
+            "printedTotal": null
+          },
+          "pokemonapi": {
+            "id": "pl1",
+            "name": "Platinum",
+            "total": 133,
+            "images": {
+              "logo": "https://images.pokemontcg.io/pl1/logo.png",
+              "symbol": "https://images.pokemontcg.io/pl1/symbol.png"
+            },
+            "series": "Platinum",
+            "ptcgoCode": "PL",
+            "releaseDate": "2009/02/11",
+            "printedTotal": 127
+          }
+        },
+        "logo_url": "https://images.pokemontcg.io/pl1/logo.png",
+        "set_role": null,
+        "created_at": "2025-11-16T06:32:35.437741+00:00",
+        "symbol_url": "https://images.pokemontcg.io/pl1/symbol.png",
+        "updated_at": "2026-03-27T05:51:20.556+00:00",
+        "release_date": "2009-02-11",
+        "printed_total": 127,
+        "hero_image_url": null,
+        "identity_model": "standard",
+        "last_synced_at": null,
+        "hero_image_source": null,
+        "printed_set_abbrev": "PL",
+        "identity_domain_default": "pokemon_eng_standard"
+      }
+    ],
+    "rows": [
+      {
+        "card_print_id": "cfbaec4b-bc98-4f6f-8b06-a30dbe29af30",
+        "card_print": {
+          "id": "cfbaec4b-bc98-4f6f-8b06-a30dbe29af30",
+          "name": "Dialga",
+          "gv_id": null,
+          "artist": null,
+          "number": null,
+          "rarity": "Rare Holo",
+          "set_id": "527ab611-6142-40e4-844b-0eb395007e7b",
+          "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+          "set_code": null,
+          "variants": null,
+          "image_res": null,
+          "image_url": "https://assets.tcgdex.net/en/pl/pl1/6/high.webp",
+          "created_at": "2026-03-26T23:38:58.969463+00:00",
+          "image_hash": null,
+          "image_note": null,
+          "image_path": null,
+          "updated_at": "2026-03-26T23:38:58.969463+00:00",
+          "ai_metadata": {
+            "tcgdex": {
+              "legalities": {},
+              "flavor_text": null
+            }
+          },
+          "variant_key": "",
+          "external_ids": {
+            "tcgdex": "pl1-6"
+          },
+          "image_source": "tcgdex",
+          "image_status": "exact",
+          "number_plain": null,
+          "tcgplayer_id": null,
+          "image_alt_url": "https://assets.tcgdex.net/en/pl/pl1/6",
+          "printed_total": null,
+          "last_synced_at": null,
+          "identity_domain": "pokemon_eng_standard",
+          "regulation_mark": null,
+          "data_quality_flags": null,
+          "print_identity_key": null,
+          "printed_set_abbrev": null,
+          "set_identity_model": "standard",
+          "image_last_checked_at": null,
+          "representative_image_url": null,
+          "printed_identity_modifier": null
+        },
+        "card_printings": [
+          {
+            "id": "f1661b2c-0847-497b-87a8-d2bc9c0800e8",
+            "image_url": null,
+            "created_at": "2026-03-26T23:38:59.201442+00:00",
+            "created_by": "printing_ingestion_v2",
+            "finish_key": "holo",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "cfbaec4b-bc98-4f6f-8b06-a30dbe29af30",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": null,
+            "provenance_ref": "pl1-6",
+            "provenance_source": "tcgdex"
+          },
+          {
+            "id": "0fbb0e10-839e-4b1d-b459-162392298c00",
+            "image_url": null,
+            "created_at": "2026-03-26T23:38:59.315749+00:00",
+            "created_by": "printing_ingestion_v2",
+            "finish_key": "reverse",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "cfbaec4b-bc98-4f6f-8b06-a30dbe29af30",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": null,
+            "provenance_ref": "pl1-6",
+            "provenance_source": "tcgdex"
+          }
+        ],
+        "dependency_counts": {
+          "external_mappings": 1,
+          "card_print_identity": 1,
+          "card_print_traits": 1,
+          "vault_items": 0
+        }
+      },
+      {
+        "card_print_id": "9d20653b-49ea-4a30-8e18-629267d7397b",
+        "card_print": {
+          "id": "9d20653b-49ea-4a30-8e18-629267d7397b",
+          "name": "Dialga G",
+          "gv_id": null,
+          "artist": null,
+          "number": null,
+          "rarity": "Rare Holo LV.X",
+          "set_id": "527ab611-6142-40e4-844b-0eb395007e7b",
+          "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+          "set_code": null,
+          "variants": null,
+          "image_res": null,
+          "image_url": "https://assets.tcgdex.net/en/pl/pl1/122/high.webp",
+          "created_at": "2026-03-26T23:40:55.562946+00:00",
+          "image_hash": null,
+          "image_note": null,
+          "image_path": null,
+          "updated_at": "2026-03-26T23:40:55.562946+00:00",
+          "ai_metadata": {
+            "tcgdex": {
+              "legalities": {},
+              "flavor_text": null
+            }
+          },
+          "variant_key": "",
+          "external_ids": {
+            "tcgdex": "pl1-122"
+          },
+          "image_source": "tcgdex",
+          "image_status": "exact",
+          "number_plain": null,
+          "tcgplayer_id": null,
+          "image_alt_url": "https://assets.tcgdex.net/en/pl/pl1/122",
+          "printed_total": null,
+          "last_synced_at": null,
+          "identity_domain": "pokemon_eng_standard",
+          "regulation_mark": null,
+          "data_quality_flags": null,
+          "print_identity_key": null,
+          "printed_set_abbrev": null,
+          "set_identity_model": "standard",
+          "image_last_checked_at": null,
+          "representative_image_url": null,
+          "printed_identity_modifier": null
+        },
+        "card_printings": [
+          {
+            "id": "03c3313c-3abd-4ea5-91d6-ee4513031d68",
+            "image_url": null,
+            "created_at": "2026-03-26T23:40:55.759621+00:00",
+            "created_by": "printing_ingestion_v2",
+            "finish_key": "holo",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "9d20653b-49ea-4a30-8e18-629267d7397b",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": null,
+            "provenance_ref": "pl1-122",
+            "provenance_source": "tcgdex"
+          }
+        ],
+        "dependency_counts": {
+          "external_mappings": 1,
+          "card_print_identity": 1,
+          "card_print_traits": 1,
+          "vault_items": 0
+        }
+      },
+      {
+        "card_print_id": "1cc5b95e-c5b7-477c-a3c1-1d4c26e10875",
+        "card_print": {
+          "id": "1cc5b95e-c5b7-477c-a3c1-1d4c26e10875",
+          "name": "Drapion",
+          "gv_id": null,
+          "artist": null,
+          "number": null,
+          "rarity": "Rare Holo LV.X",
+          "set_id": "527ab611-6142-40e4-844b-0eb395007e7b",
+          "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+          "set_code": null,
+          "variants": null,
+          "image_res": null,
+          "image_url": "https://assets.tcgdex.net/en/pl/pl1/123/high.webp",
+          "created_at": "2026-03-26T23:40:56.408863+00:00",
+          "image_hash": null,
+          "image_note": null,
+          "image_path": null,
+          "updated_at": "2026-03-26T23:40:56.408863+00:00",
+          "ai_metadata": {
+            "tcgdex": {
+              "legalities": {},
+              "flavor_text": null
+            }
+          },
+          "variant_key": "",
+          "external_ids": {
+            "tcgdex": "pl1-123"
+          },
+          "image_source": "tcgdex",
+          "image_status": "exact",
+          "number_plain": null,
+          "tcgplayer_id": null,
+          "image_alt_url": "https://assets.tcgdex.net/en/pl/pl1/123",
+          "printed_total": null,
+          "last_synced_at": null,
+          "identity_domain": "pokemon_eng_standard",
+          "regulation_mark": null,
+          "data_quality_flags": null,
+          "print_identity_key": null,
+          "printed_set_abbrev": null,
+          "set_identity_model": "standard",
+          "image_last_checked_at": null,
+          "representative_image_url": null,
+          "printed_identity_modifier": null
+        },
+        "card_printings": [
+          {
+            "id": "3241f70c-75aa-4935-bc37-1d73ae8c76fc",
+            "image_url": null,
+            "created_at": "2026-03-26T23:40:56.661897+00:00",
+            "created_by": "printing_ingestion_v2",
+            "finish_key": "holo",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "1cc5b95e-c5b7-477c-a3c1-1d4c26e10875",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": null,
+            "provenance_ref": "pl1-123",
+            "provenance_source": "tcgdex"
+          }
+        ],
+        "dependency_counts": {
+          "external_mappings": 1,
+          "card_print_identity": 1,
+          "card_print_traits": 1,
+          "vault_items": 0
+        }
+      },
+      {
+        "card_print_id": "9deb3714-1f02-4eb2-a249-6b3b42a106cb",
+        "card_print": {
+          "id": "9deb3714-1f02-4eb2-a249-6b3b42a106cb",
+          "name": "Giratina",
+          "gv_id": null,
+          "artist": null,
+          "number": null,
+          "rarity": "Rare Holo LV.X",
+          "set_id": "527ab611-6142-40e4-844b-0eb395007e7b",
+          "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+          "set_code": null,
+          "variants": null,
+          "image_res": null,
+          "image_url": "https://assets.tcgdex.net/en/pl/pl1/124/high.webp",
+          "created_at": "2026-03-26T23:40:57.397925+00:00",
+          "image_hash": null,
+          "image_note": null,
+          "image_path": null,
+          "updated_at": "2026-03-26T23:40:57.397925+00:00",
+          "ai_metadata": {
+            "tcgdex": {
+              "legalities": {},
+              "flavor_text": null
+            }
+          },
+          "variant_key": "",
+          "external_ids": {
+            "tcgdex": "pl1-124"
+          },
+          "image_source": "tcgdex",
+          "image_status": "exact",
+          "number_plain": null,
+          "tcgplayer_id": null,
+          "image_alt_url": "https://assets.tcgdex.net/en/pl/pl1/124",
+          "printed_total": null,
+          "last_synced_at": null,
+          "identity_domain": "pokemon_eng_standard",
+          "regulation_mark": null,
+          "data_quality_flags": null,
+          "print_identity_key": null,
+          "printed_set_abbrev": null,
+          "set_identity_model": "standard",
+          "image_last_checked_at": null,
+          "representative_image_url": null,
+          "printed_identity_modifier": null
+        },
+        "card_printings": [
+          {
+            "id": "e97f9421-dfc9-4f57-9f02-458e923f1168",
+            "image_url": null,
+            "created_at": "2026-03-26T23:40:57.58794+00:00",
+            "created_by": "printing_ingestion_v2",
+            "finish_key": "holo",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "9deb3714-1f02-4eb2-a249-6b3b42a106cb",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": null,
+            "provenance_ref": "pl1-124",
+            "provenance_source": "tcgdex"
+          }
+        ],
+        "dependency_counts": {
+          "external_mappings": 1,
+          "card_print_identity": 1,
+          "card_print_traits": 1,
+          "vault_items": 0
+        }
+      },
+      {
+        "card_print_id": "74b9d351-aecc-4ff9-8ed2-958311074af7",
+        "card_print": {
+          "id": "74b9d351-aecc-4ff9-8ed2-958311074af7",
+          "name": "Lotad",
+          "gv_id": null,
+          "artist": null,
+          "number": null,
+          "rarity": "Rare",
+          "set_id": "527ab611-6142-40e4-844b-0eb395007e7b",
+          "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+          "set_code": null,
+          "variants": null,
+          "image_res": null,
+          "image_url": "https://assets.tcgdex.net/en/pl/pl1/SH4/high.webp",
+          "created_at": "2026-03-26T23:41:03.65449+00:00",
+          "image_hash": null,
+          "image_note": null,
+          "image_path": null,
+          "updated_at": "2026-03-26T23:41:03.65449+00:00",
+          "ai_metadata": {
+            "tcgdex": {
+              "legalities": {},
+              "flavor_text": null
+            }
+          },
+          "variant_key": "",
+          "external_ids": {
+            "tcgdex": "pl1-SH4"
+          },
+          "image_source": "tcgdex",
+          "image_status": "exact",
+          "number_plain": null,
+          "tcgplayer_id": null,
+          "image_alt_url": "https://assets.tcgdex.net/en/pl/pl1/SH4",
+          "printed_total": null,
+          "last_synced_at": null,
+          "identity_domain": "pokemon_eng_standard",
+          "regulation_mark": null,
+          "data_quality_flags": null,
+          "print_identity_key": null,
+          "printed_set_abbrev": null,
+          "set_identity_model": "standard",
+          "image_last_checked_at": null,
+          "representative_image_url": null,
+          "printed_identity_modifier": null
+        },
+        "card_printings": [
+          {
+            "id": "efee83d4-3ea0-45a7-9d89-263879dbba81",
+            "image_url": null,
+            "created_at": "2026-03-26T23:41:03.839798+00:00",
+            "created_by": "printing_ingestion_v2",
+            "finish_key": "reverse",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "74b9d351-aecc-4ff9-8ed2-958311074af7",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": null,
+            "provenance_ref": "pl1-SH4",
+            "provenance_source": "tcgdex"
+          }
+        ],
+        "dependency_counts": {
+          "external_mappings": 1,
+          "card_print_identity": 1,
+          "card_print_traits": 1,
+          "vault_items": 0
+        }
+      },
+      {
+        "card_print_id": "182aab06-7802-4dea-90cb-32dfc7cefaab",
+        "card_print": {
+          "id": "182aab06-7802-4dea-90cb-32dfc7cefaab",
+          "name": "Palkia G",
+          "gv_id": null,
+          "artist": null,
+          "number": null,
+          "rarity": "Rare Holo LV.X",
+          "set_id": "527ab611-6142-40e4-844b-0eb395007e7b",
+          "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+          "set_code": null,
+          "variants": null,
+          "image_res": null,
+          "image_url": "https://assets.tcgdex.net/en/pl/pl1/125/high.webp",
+          "created_at": "2026-03-26T23:40:58.254492+00:00",
+          "image_hash": null,
+          "image_note": null,
+          "image_path": null,
+          "updated_at": "2026-03-26T23:40:58.254492+00:00",
+          "ai_metadata": {
+            "tcgdex": {
+              "legalities": {},
+              "flavor_text": null
+            }
+          },
+          "variant_key": "",
+          "external_ids": {
+            "tcgdex": "pl1-125"
+          },
+          "image_source": "tcgdex",
+          "image_status": "exact",
+          "number_plain": null,
+          "tcgplayer_id": null,
+          "image_alt_url": "https://assets.tcgdex.net/en/pl/pl1/125",
+          "printed_total": null,
+          "last_synced_at": null,
+          "identity_domain": "pokemon_eng_standard",
+          "regulation_mark": null,
+          "data_quality_flags": null,
+          "print_identity_key": null,
+          "printed_set_abbrev": null,
+          "set_identity_model": "standard",
+          "image_last_checked_at": null,
+          "representative_image_url": null,
+          "printed_identity_modifier": null
+        },
+        "card_printings": [
+          {
+            "id": "bfa40e84-9149-4100-b6ac-359a690bde6b",
+            "image_url": null,
+            "created_at": "2026-03-26T23:40:58.442871+00:00",
+            "created_by": "printing_ingestion_v2",
+            "finish_key": "holo",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "182aab06-7802-4dea-90cb-32dfc7cefaab",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": null,
+            "provenance_ref": "pl1-125",
+            "provenance_source": "tcgdex"
+          }
+        ],
+        "dependency_counts": {
+          "external_mappings": 1,
+          "card_print_identity": 1,
+          "card_print_traits": 1,
+          "vault_items": 0
+        }
+      },
+      {
+        "card_print_id": "1f03518a-bed9-4c04-ad0c-3a5cf3008248",
+        "card_print": {
+          "id": "1f03518a-bed9-4c04-ad0c-3a5cf3008248",
+          "name": "Shaymin",
+          "gv_id": null,
+          "artist": null,
+          "number": null,
+          "rarity": "Rare Holo LV.X",
+          "set_id": "527ab611-6142-40e4-844b-0eb395007e7b",
+          "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+          "set_code": null,
+          "variants": null,
+          "image_res": null,
+          "image_url": "https://assets.tcgdex.net/en/pl/pl1/127/high.webp",
+          "created_at": "2026-03-26T23:40:59.978862+00:00",
+          "image_hash": null,
+          "image_note": null,
+          "image_path": null,
+          "updated_at": "2026-03-26T23:40:59.978862+00:00",
+          "ai_metadata": {
+            "tcgdex": {
+              "legalities": {},
+              "flavor_text": null
+            }
+          },
+          "variant_key": "",
+          "external_ids": {
+            "tcgdex": "pl1-127"
+          },
+          "image_source": "tcgdex",
+          "image_status": "exact",
+          "number_plain": null,
+          "tcgplayer_id": null,
+          "image_alt_url": "https://assets.tcgdex.net/en/pl/pl1/127",
+          "printed_total": null,
+          "last_synced_at": null,
+          "identity_domain": "pokemon_eng_standard",
+          "regulation_mark": null,
+          "data_quality_flags": null,
+          "print_identity_key": null,
+          "printed_set_abbrev": null,
+          "set_identity_model": "standard",
+          "image_last_checked_at": null,
+          "representative_image_url": null,
+          "printed_identity_modifier": null
+        },
+        "card_printings": [
+          {
+            "id": "d6714ece-8710-4647-8f6c-621eb00a8b11",
+            "image_url": null,
+            "created_at": "2026-03-26T23:41:00.179976+00:00",
+            "created_by": "printing_ingestion_v2",
+            "finish_key": "holo",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "1f03518a-bed9-4c04-ad0c-3a5cf3008248",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": null,
+            "provenance_ref": "pl1-127",
+            "provenance_source": "tcgdex"
+          }
+        ],
+        "dependency_counts": {
+          "external_mappings": 1,
+          "card_print_identity": 1,
+          "card_print_traits": 1,
+          "vault_items": 0
+        }
+      },
+      {
+        "card_print_id": "24bd8689-4031-40d0-8948-1d08e652ef34",
+        "card_print": {
+          "id": "24bd8689-4031-40d0-8948-1d08e652ef34",
+          "name": "Shaymin",
+          "gv_id": null,
+          "artist": null,
+          "number": null,
+          "rarity": "Rare Holo LV.X",
+          "set_id": "527ab611-6142-40e4-844b-0eb395007e7b",
+          "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+          "set_code": null,
+          "variants": null,
+          "image_res": null,
+          "image_url": "https://assets.tcgdex.net/en/pl/pl1/126/high.webp",
+          "created_at": "2026-03-26T23:40:59.119034+00:00",
+          "image_hash": null,
+          "image_note": null,
+          "image_path": null,
+          "updated_at": "2026-03-26T23:40:59.119034+00:00",
+          "ai_metadata": {
+            "tcgdex": {
+              "legalities": {},
+              "flavor_text": null
+            }
+          },
+          "variant_key": "",
+          "external_ids": {
+            "tcgdex": "pl1-126"
+          },
+          "image_source": "tcgdex",
+          "image_status": "exact",
+          "number_plain": null,
+          "tcgplayer_id": null,
+          "image_alt_url": "https://assets.tcgdex.net/en/pl/pl1/126",
+          "printed_total": null,
+          "last_synced_at": null,
+          "identity_domain": "pokemon_eng_standard",
+          "regulation_mark": null,
+          "data_quality_flags": null,
+          "print_identity_key": null,
+          "printed_set_abbrev": null,
+          "set_identity_model": "standard",
+          "image_last_checked_at": null,
+          "representative_image_url": null,
+          "printed_identity_modifier": null
+        },
+        "card_printings": [
+          {
+            "id": "a286d93c-46e1-44bf-b466-6cfea97f70dc",
+            "image_url": null,
+            "created_at": "2026-03-26T23:40:59.311316+00:00",
+            "created_by": "printing_ingestion_v2",
+            "finish_key": "holo",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "24bd8689-4031-40d0-8948-1d08e652ef34",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": null,
+            "provenance_ref": "pl1-126",
+            "provenance_source": "tcgdex"
+          }
+        ],
+        "dependency_counts": {
+          "external_mappings": 1,
+          "card_print_identity": 1,
+          "card_print_traits": 1,
+          "vault_items": 0
+        }
+      },
+      {
+        "card_print_id": "e48e17b9-b693-4882-9e9f-d177dbce37c8",
+        "card_print": {
+          "id": "e48e17b9-b693-4882-9e9f-d177dbce37c8",
+          "name": "Swablu",
+          "gv_id": null,
+          "artist": null,
+          "number": null,
+          "rarity": "Rare",
+          "set_id": "527ab611-6142-40e4-844b-0eb395007e7b",
+          "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+          "set_code": null,
+          "variants": null,
+          "image_res": null,
+          "image_url": "https://assets.tcgdex.net/en/pl/pl1/SH5/high.webp",
+          "created_at": "2026-03-26T23:41:04.530739+00:00",
+          "image_hash": null,
+          "image_note": null,
+          "image_path": null,
+          "updated_at": "2026-03-26T23:41:04.530739+00:00",
+          "ai_metadata": {
+            "tcgdex": {
+              "legalities": {},
+              "flavor_text": null
+            }
+          },
+          "variant_key": "",
+          "external_ids": {
+            "tcgdex": "pl1-SH5"
+          },
+          "image_source": "tcgdex",
+          "image_status": "exact",
+          "number_plain": null,
+          "tcgplayer_id": null,
+          "image_alt_url": "https://assets.tcgdex.net/en/pl/pl1/SH5",
+          "printed_total": null,
+          "last_synced_at": null,
+          "identity_domain": "pokemon_eng_standard",
+          "regulation_mark": null,
+          "data_quality_flags": null,
+          "print_identity_key": null,
+          "printed_set_abbrev": null,
+          "set_identity_model": "standard",
+          "image_last_checked_at": null,
+          "representative_image_url": null,
+          "printed_identity_modifier": null
+        },
+        "card_printings": [
+          {
+            "id": "1b8e0bd2-d44c-41df-8d4a-4e68f89eabd8",
+            "image_url": null,
+            "created_at": "2026-03-26T23:41:04.765859+00:00",
+            "created_by": "printing_ingestion_v2",
+            "finish_key": "reverse",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "e48e17b9-b693-4882-9e9f-d177dbce37c8",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": null,
+            "provenance_ref": "pl1-SH5",
+            "provenance_source": "tcgdex"
+          }
+        ],
+        "dependency_counts": {
+          "external_mappings": 1,
+          "card_print_identity": 1,
+          "card_print_traits": 1,
+          "vault_items": 0
+        }
+      }
+    ],
+    "impact_counts": {
+      "card_prints_found": 9,
+      "card_printings_found": 10,
+      "external_mappings_found": 9,
+      "identity_rows_found": 9,
+      "trait_rows_found": 9,
+      "vault_items_found": 0
+    }
+  },
+  "package_rows": [
+    {
+      "card_print_id": "cfbaec4b-bc98-4f6f-8b06-a30dbe29af30",
+      "current_grookai_name": "Dialga",
+      "target_set_key": "pl1",
+      "target_set_name": "Platinum",
+      "target_card_number": "6",
+      "target_card_name": "Dialga",
+      "source_external_id": "pl1-6",
+      "source_card_url": "https://api.tcgdex.net/v2/en/cards/pl1-6",
+      "target_parent_fields": {
+        "set_code": "pl1",
+        "number": "6",
+        "number_plain": "6",
+        "name": "Dialga"
+      },
+      "target_printings": [
+        {
+          "finish_key": "holo",
+          "index_status": "master_verified",
+          "source_count": 5,
+          "sources": [
+            "pokemontcg_api",
+            "reverseholo_set_checklist",
+            "tcgdex",
+            "tcgplayer_price_guide",
+            "thepricedex_price_list"
+          ],
+          "source_kinds": [
+            "collector_reference",
+            "marketplace_checklist",
+            "structured_api"
+          ],
+          "evidence_urls": [
+            "https://api.pokemontcg.io/v2/cards/pl1-6",
+            "https://api.tcgdex.net/v2/en/cards/pl1-6",
+            "https://prices.pokemontcg.io/tcgplayer/pl1-6",
+            "https://reverseholo.app/sets/pl1",
+            "https://www.thepricedex.com/set/pl1/platinum/price-list"
+          ]
+        },
+        {
+          "finish_key": "reverse",
+          "index_status": "master_verified",
+          "source_count": 5,
+          "sources": [
+            "pokemontcg_api",
+            "reverseholo_set_checklist",
+            "tcgdex",
+            "tcgplayer_price_guide",
+            "thepricedex_price_list"
+          ],
+          "source_kinds": [
+            "collector_reference",
+            "marketplace_checklist",
+            "structured_api"
+          ],
+          "evidence_urls": [
+            "https://api.pokemontcg.io/v2/cards/pl1-6",
+            "https://api.tcgdex.net/v2/en/cards/pl1-6",
+            "https://prices.pokemontcg.io/tcgplayer/pl1-6",
+            "https://reverseholo.app/sets/pl1",
+            "https://www.thepricedex.com/set/pl1/platinum/price-list"
+          ]
+        }
+      ],
+      "supported_finishes": [
+        "holo",
+        "reverse"
+      ],
+      "unsupported_finishes": [],
+      "evidence_summary": {
+        "card_identity_status": "master_verified",
+        "finish_match_status": "all_finishes_master_verified_by_index",
+        "supported_sources": [
+          "pokemontcg_api",
+          "reverseholo_set_checklist",
+          "tcgdex",
+          "tcgplayer_price_guide",
+          "thepricedex_price_list"
+        ],
+        "supported_source_kinds": [
+          "collector_reference",
+          "marketplace_checklist",
+          "structured_api"
+        ],
+        "all_target_printings_master_verified": true
+      },
+      "dry_run_status": "eligible_for_row_level_dry_run",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "card_print_id": "9d20653b-49ea-4a30-8e18-629267d7397b",
+      "current_grookai_name": "Dialga G",
+      "target_set_key": "pl1",
+      "target_set_name": "Platinum",
+      "target_card_number": "122",
+      "target_card_name": "Dialga G",
+      "source_external_id": "pl1-122",
+      "source_card_url": "https://api.tcgdex.net/v2/en/cards/pl1-122",
+      "target_parent_fields": {
+        "set_code": "pl1",
+        "number": "122",
+        "number_plain": "122",
+        "name": "Dialga G"
+      },
+      "target_printings": [
+        {
+          "finish_key": "holo",
+          "index_status": "master_verified",
+          "source_count": 2,
+          "sources": [
+            "reverseholo_set_checklist",
+            "tcgdex"
+          ],
+          "source_kinds": [
+            "collector_reference",
+            "structured_api"
+          ],
+          "evidence_urls": [
+            "https://api.tcgdex.net/v2/en/cards/pl1-122",
+            "https://reverseholo.app/sets/pl1"
+          ]
+        }
+      ],
+      "supported_finishes": [
+        "holo"
+      ],
+      "unsupported_finishes": [],
+      "evidence_summary": {
+        "card_identity_status": "master_verified",
+        "finish_match_status": "all_finishes_master_verified_by_index",
+        "supported_sources": [
+          "reverseholo_set_checklist",
+          "tcgdex"
+        ],
+        "supported_source_kinds": [
+          "collector_reference",
+          "structured_api"
+        ],
+        "all_target_printings_master_verified": true
+      },
+      "dry_run_status": "eligible_for_row_level_dry_run",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "card_print_id": "1cc5b95e-c5b7-477c-a3c1-1d4c26e10875",
+      "current_grookai_name": "Drapion",
+      "target_set_key": "pl1",
+      "target_set_name": "Platinum",
+      "target_card_number": "123",
+      "target_card_name": "Drapion",
+      "source_external_id": "pl1-123",
+      "source_card_url": "https://api.tcgdex.net/v2/en/cards/pl1-123",
+      "target_parent_fields": {
+        "set_code": "pl1",
+        "number": "123",
+        "number_plain": "123",
+        "name": "Drapion"
+      },
+      "target_printings": [
+        {
+          "finish_key": "holo",
+          "index_status": "master_verified",
+          "source_count": 2,
+          "sources": [
+            "reverseholo_set_checklist",
+            "tcgdex"
+          ],
+          "source_kinds": [
+            "collector_reference",
+            "structured_api"
+          ],
+          "evidence_urls": [
+            "https://api.tcgdex.net/v2/en/cards/pl1-123",
+            "https://reverseholo.app/sets/pl1"
+          ]
+        }
+      ],
+      "supported_finishes": [
+        "holo"
+      ],
+      "unsupported_finishes": [],
+      "evidence_summary": {
+        "card_identity_status": "master_verified",
+        "finish_match_status": "all_finishes_master_verified_by_index",
+        "supported_sources": [
+          "reverseholo_set_checklist",
+          "tcgdex"
+        ],
+        "supported_source_kinds": [
+          "collector_reference",
+          "structured_api"
+        ],
+        "all_target_printings_master_verified": true
+      },
+      "dry_run_status": "eligible_for_row_level_dry_run",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "card_print_id": "9deb3714-1f02-4eb2-a249-6b3b42a106cb",
+      "current_grookai_name": "Giratina",
+      "target_set_key": "pl1",
+      "target_set_name": "Platinum",
+      "target_card_number": "124",
+      "target_card_name": "Giratina",
+      "source_external_id": "pl1-124",
+      "source_card_url": "https://api.tcgdex.net/v2/en/cards/pl1-124",
+      "target_parent_fields": {
+        "set_code": "pl1",
+        "number": "124",
+        "number_plain": "124",
+        "name": "Giratina"
+      },
+      "target_printings": [
+        {
+          "finish_key": "holo",
+          "index_status": "master_verified",
+          "source_count": 2,
+          "sources": [
+            "reverseholo_set_checklist",
+            "tcgdex"
+          ],
+          "source_kinds": [
+            "collector_reference",
+            "structured_api"
+          ],
+          "evidence_urls": [
+            "https://api.tcgdex.net/v2/en/cards/pl1-124",
+            "https://reverseholo.app/sets/pl1"
+          ]
+        }
+      ],
+      "supported_finishes": [
+        "holo"
+      ],
+      "unsupported_finishes": [],
+      "evidence_summary": {
+        "card_identity_status": "master_verified",
+        "finish_match_status": "all_finishes_master_verified_by_index",
+        "supported_sources": [
+          "reverseholo_set_checklist",
+          "tcgdex"
+        ],
+        "supported_source_kinds": [
+          "collector_reference",
+          "structured_api"
+        ],
+        "all_target_printings_master_verified": true
+      },
+      "dry_run_status": "eligible_for_row_level_dry_run",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "card_print_id": "182aab06-7802-4dea-90cb-32dfc7cefaab",
+      "current_grookai_name": "Palkia G",
+      "target_set_key": "pl1",
+      "target_set_name": "Platinum",
+      "target_card_number": "125",
+      "target_card_name": "Palkia G",
+      "source_external_id": "pl1-125",
+      "source_card_url": "https://api.tcgdex.net/v2/en/cards/pl1-125",
+      "target_parent_fields": {
+        "set_code": "pl1",
+        "number": "125",
+        "number_plain": "125",
+        "name": "Palkia G"
+      },
+      "target_printings": [
+        {
+          "finish_key": "holo",
+          "index_status": "master_verified",
+          "source_count": 2,
+          "sources": [
+            "reverseholo_set_checklist",
+            "tcgdex"
+          ],
+          "source_kinds": [
+            "collector_reference",
+            "structured_api"
+          ],
+          "evidence_urls": [
+            "https://api.tcgdex.net/v2/en/cards/pl1-125",
+            "https://reverseholo.app/sets/pl1"
+          ]
+        }
+      ],
+      "supported_finishes": [
+        "holo"
+      ],
+      "unsupported_finishes": [],
+      "evidence_summary": {
+        "card_identity_status": "master_verified",
+        "finish_match_status": "all_finishes_master_verified_by_index",
+        "supported_sources": [
+          "reverseholo_set_checklist",
+          "tcgdex"
+        ],
+        "supported_source_kinds": [
+          "collector_reference",
+          "structured_api"
+        ],
+        "all_target_printings_master_verified": true
+      },
+      "dry_run_status": "eligible_for_row_level_dry_run",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "card_print_id": "24bd8689-4031-40d0-8948-1d08e652ef34",
+      "current_grookai_name": "Shaymin",
+      "target_set_key": "pl1",
+      "target_set_name": "Platinum",
+      "target_card_number": "126",
+      "target_card_name": "Shaymin",
+      "source_external_id": "pl1-126",
+      "source_card_url": "https://api.tcgdex.net/v2/en/cards/pl1-126",
+      "target_parent_fields": {
+        "set_code": "pl1",
+        "number": "126",
+        "number_plain": "126",
+        "name": "Shaymin"
+      },
+      "target_printings": [
+        {
+          "finish_key": "holo",
+          "index_status": "master_verified",
+          "source_count": 2,
+          "sources": [
+            "reverseholo_set_checklist",
+            "tcgdex"
+          ],
+          "source_kinds": [
+            "collector_reference",
+            "structured_api"
+          ],
+          "evidence_urls": [
+            "https://api.tcgdex.net/v2/en/cards/pl1-126",
+            "https://reverseholo.app/sets/pl1"
+          ]
+        }
+      ],
+      "supported_finishes": [
+        "holo"
+      ],
+      "unsupported_finishes": [],
+      "evidence_summary": {
+        "card_identity_status": "master_verified",
+        "finish_match_status": "all_finishes_master_verified_by_index",
+        "supported_sources": [
+          "reverseholo_set_checklist",
+          "tcgdex"
+        ],
+        "supported_source_kinds": [
+          "collector_reference",
+          "structured_api"
+        ],
+        "all_target_printings_master_verified": true
+      },
+      "dry_run_status": "eligible_for_row_level_dry_run",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "card_print_id": "1f03518a-bed9-4c04-ad0c-3a5cf3008248",
+      "current_grookai_name": "Shaymin",
+      "target_set_key": "pl1",
+      "target_set_name": "Platinum",
+      "target_card_number": "127",
+      "target_card_name": "Shaymin",
+      "source_external_id": "pl1-127",
+      "source_card_url": "https://api.tcgdex.net/v2/en/cards/pl1-127",
+      "target_parent_fields": {
+        "set_code": "pl1",
+        "number": "127",
+        "number_plain": "127",
+        "name": "Shaymin"
+      },
+      "target_printings": [
+        {
+          "finish_key": "holo",
+          "index_status": "master_verified",
+          "source_count": 2,
+          "sources": [
+            "reverseholo_set_checklist",
+            "tcgdex"
+          ],
+          "source_kinds": [
+            "collector_reference",
+            "structured_api"
+          ],
+          "evidence_urls": [
+            "https://api.tcgdex.net/v2/en/cards/pl1-127",
+            "https://reverseholo.app/sets/pl1"
+          ]
+        }
+      ],
+      "supported_finishes": [
+        "holo"
+      ],
+      "unsupported_finishes": [],
+      "evidence_summary": {
+        "card_identity_status": "master_verified",
+        "finish_match_status": "all_finishes_master_verified_by_index",
+        "supported_sources": [
+          "reverseholo_set_checklist",
+          "tcgdex"
+        ],
+        "supported_source_kinds": [
+          "collector_reference",
+          "structured_api"
+        ],
+        "all_target_printings_master_verified": true
+      },
+      "dry_run_status": "eligible_for_row_level_dry_run",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "card_print_id": "74b9d351-aecc-4ff9-8ed2-958311074af7",
+      "current_grookai_name": "Lotad",
+      "target_set_key": "pl1",
+      "target_set_name": "Platinum",
+      "target_card_number": "SH4",
+      "target_card_name": "Lotad",
+      "source_external_id": "pl1-SH4",
+      "source_card_url": "https://api.tcgdex.net/v2/en/cards/pl1-SH4",
+      "target_parent_fields": {
+        "set_code": "pl1",
+        "number": "SH4",
+        "number_plain": "SH4",
+        "name": "Lotad"
+      },
+      "target_printings": [
+        {
+          "finish_key": "reverse",
+          "index_status": "master_verified",
+          "source_count": 5,
+          "sources": [
+            "pokemontcg_api",
+            "reverseholo_set_checklist",
+            "tcgdex",
+            "tcgplayer_price_guide",
+            "thepricedex_price_list"
+          ],
+          "source_kinds": [
+            "collector_reference",
+            "marketplace_checklist",
+            "structured_api"
+          ],
+          "evidence_urls": [
+            "https://api.pokemontcg.io/v2/cards/pl1-SH4",
+            "https://api.tcgdex.net/v2/en/cards/pl1-SH4",
+            "https://prices.pokemontcg.io/tcgplayer/pl1-SH4",
+            "https://reverseholo.app/sets/pl1",
+            "https://www.thepricedex.com/set/pl1/platinum/price-list"
+          ]
+        }
+      ],
+      "supported_finishes": [
+        "reverse"
+      ],
+      "unsupported_finishes": [],
+      "evidence_summary": {
+        "card_identity_status": "master_verified",
+        "finish_match_status": "all_finishes_master_verified_by_index",
+        "supported_sources": [
+          "pokemontcg_api",
+          "reverseholo_set_checklist",
+          "tcgdex",
+          "tcgplayer_price_guide",
+          "thepricedex_price_list"
+        ],
+        "supported_source_kinds": [
+          "collector_reference",
+          "marketplace_checklist",
+          "structured_api"
+        ],
+        "all_target_printings_master_verified": true
+      },
+      "dry_run_status": "eligible_for_row_level_dry_run",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "card_print_id": "e48e17b9-b693-4882-9e9f-d177dbce37c8",
+      "current_grookai_name": "Swablu",
+      "target_set_key": "pl1",
+      "target_set_name": "Platinum",
+      "target_card_number": "SH5",
+      "target_card_name": "Swablu",
+      "source_external_id": "pl1-SH5",
+      "source_card_url": "https://api.tcgdex.net/v2/en/cards/pl1-SH5",
+      "target_parent_fields": {
+        "set_code": "pl1",
+        "number": "SH5",
+        "number_plain": "SH5",
+        "name": "Swablu"
+      },
+      "target_printings": [
+        {
+          "finish_key": "reverse",
+          "index_status": "master_verified",
+          "source_count": 5,
+          "sources": [
+            "pokemontcg_api",
+            "reverseholo_set_checklist",
+            "tcgdex",
+            "tcgplayer_price_guide",
+            "thepricedex_price_list"
+          ],
+          "source_kinds": [
+            "collector_reference",
+            "marketplace_checklist",
+            "structured_api"
+          ],
+          "evidence_urls": [
+            "https://api.pokemontcg.io/v2/cards/pl1-SH5",
+            "https://api.tcgdex.net/v2/en/cards/pl1-SH5",
+            "https://prices.pokemontcg.io/tcgplayer/pl1-SH5",
+            "https://reverseholo.app/sets/pl1",
+            "https://www.thepricedex.com/set/pl1/platinum/price-list"
+          ]
+        }
+      ],
+      "supported_finishes": [
+        "reverse"
+      ],
+      "unsupported_finishes": [],
+      "evidence_summary": {
+        "card_identity_status": "master_verified",
+        "finish_match_status": "all_finishes_master_verified_by_index",
+        "supported_sources": [
+          "pokemontcg_api",
+          "reverseholo_set_checklist",
+          "tcgdex",
+          "tcgplayer_price_guide",
+          "thepricedex_price_list"
+        ],
+        "supported_source_kinds": [
+          "collector_reference",
+          "marketplace_checklist",
+          "structured_api"
+        ],
+        "all_target_printings_master_verified": true
+      },
+      "dry_run_status": "eligible_for_row_level_dry_run",
+      "mutation_authority": "not mutation authority"
+    }
+  ],
+  "planned_sql_preview": "-- DRY-RUN PREVIEW ONLY. Do not execute until a separate approved apply package exists.\n-- Parent recovery shape under review:\nwith approved(card_print_id, set_code, number, number_plain, name) as (\n  values\n    ('cfbaec4b-bc98-4f6f-8b06-a30dbe29af30'::uuid, 'pl1', '6', '6', 'Dialga'),\n    ('9d20653b-49ea-4a30-8e18-629267d7397b'::uuid, 'pl1', '122', '122', 'Dialga G'),\n    ('1cc5b95e-c5b7-477c-a3c1-1d4c26e10875'::uuid, 'pl1', '123', '123', 'Drapion'),\n    ('9deb3714-1f02-4eb2-a249-6b3b42a106cb'::uuid, 'pl1', '124', '124', 'Giratina'),\n    ('182aab06-7802-4dea-90cb-32dfc7cefaab'::uuid, 'pl1', '125', '125', 'Palkia G'),\n    ('24bd8689-4031-40d0-8948-1d08e652ef34'::uuid, 'pl1', '126', '126', 'Shaymin'),\n    ('1f03518a-bed9-4c04-ad0c-3a5cf3008248'::uuid, 'pl1', '127', '127', 'Shaymin'),\n    ('74b9d351-aecc-4ff9-8ed2-958311074af7'::uuid, 'pl1', 'SH4', 'SH4', 'Lotad'),\n    ('e48e17b9-b693-4882-9e9f-d177dbce37c8'::uuid, 'pl1', 'SH5', 'SH5', 'Swablu')\n)\nselect cp.id, cp.set_code as before_set_code, approved.set_code as after_set_code,\n       cp.number as before_number, approved.number as after_number,\n       cp.name as before_name, approved.name as after_name\nfrom public.card_prints cp\njoin approved on approved.card_print_id = cp.id;",
+  "rollback_requirements": [
+    "Capture full before-state snapshot for every target card_print row before any apply.",
+    "Capture child card_printings for every target card_print row before any apply.",
+    "Rollback must restore only approved target row IDs and must not touch blocked remainder rows.",
+    "Rollback must preserve vault ownership and provenance references.",
+    "Rollback must be reviewed before any write path is executed."
+  ],
+  "post_apply_verification_queries": [
+    {
+      "name": "target_parent_rows_resolved_to_set",
+      "sql": "select count(*)::int as matching_rows\nfrom public.card_prints\nwhere id = any(array['cfbaec4b-bc98-4f6f-8b06-a30dbe29af30'::uuid, '9d20653b-49ea-4a30-8e18-629267d7397b'::uuid, '1cc5b95e-c5b7-477c-a3c1-1d4c26e10875'::uuid, '9deb3714-1f02-4eb2-a249-6b3b42a106cb'::uuid, '182aab06-7802-4dea-90cb-32dfc7cefaab'::uuid, '24bd8689-4031-40d0-8948-1d08e652ef34'::uuid, '1f03518a-bed9-4c04-ad0c-3a5cf3008248'::uuid, '74b9d351-aecc-4ff9-8ed2-958311074af7'::uuid, 'e48e17b9-b693-4882-9e9f-d177dbce37c8'::uuid])\n  and lower(coalesce(set_code, '')) = 'pl1';",
+      "expected": 9
+    },
+    {
+      "name": "target_child_printing_count_unchanged",
+      "sql": "select count(*)::int as child_printings\nfrom public.card_printings\nwhere card_print_id = any(array['cfbaec4b-bc98-4f6f-8b06-a30dbe29af30'::uuid, '9d20653b-49ea-4a30-8e18-629267d7397b'::uuid, '1cc5b95e-c5b7-477c-a3c1-1d4c26e10875'::uuid, '9deb3714-1f02-4eb2-a249-6b3b42a106cb'::uuid, '182aab06-7802-4dea-90cb-32dfc7cefaab'::uuid, '24bd8689-4031-40d0-8948-1d08e652ef34'::uuid, '1f03518a-bed9-4c04-ad0c-3a5cf3008248'::uuid, '74b9d351-aecc-4ff9-8ed2-958311074af7'::uuid, 'e48e17b9-b693-4882-9e9f-d177dbce37c8'::uuid]);",
+      "expected": 10
+    },
+    {
+      "name": "unsupported_finish_rows_absent_from_package",
+      "sql": "select cp.id, cpr.finish_key\nfrom public.card_prints cp\njoin public.card_printings cpr on cpr.card_print_id = cp.id\nwhere cp.id = any(array['cfbaec4b-bc98-4f6f-8b06-a30dbe29af30'::uuid, '9d20653b-49ea-4a30-8e18-629267d7397b'::uuid, '1cc5b95e-c5b7-477c-a3c1-1d4c26e10875'::uuid, '9deb3714-1f02-4eb2-a249-6b3b42a106cb'::uuid, '182aab06-7802-4dea-90cb-32dfc7cefaab'::uuid, '24bd8689-4031-40d0-8948-1d08e652ef34'::uuid, '1f03518a-bed9-4c04-ad0c-3a5cf3008248'::uuid, '74b9d351-aecc-4ff9-8ed2-958311074af7'::uuid, 'e48e17b9-b693-4882-9e9f-d177dbce37c8'::uuid])\n  and cpr.finish_key not in ('normal', 'reverse');",
+      "expected": "0 rows"
+    }
+  ]
+}

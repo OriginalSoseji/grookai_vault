@@ -25,9 +25,9 @@ No catalog writes are authorized yet. The Master Index is complete, and the next
 - physical exact card matches: 319
 - physical all-finish master-verified dry-run candidates: 106
 - physical finish blocked: 213
-- generated dry-run packages: 1
-- generated dry-run package card prints: 13
-- generated dry-run package printing rows: 26
+- generated dry-run packages: 12
+- generated dry-run package card prints: 106
+- generated dry-run package printing rows: 143
 
 ## Global Buckets
 
