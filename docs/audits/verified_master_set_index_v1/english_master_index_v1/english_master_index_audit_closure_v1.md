@@ -2,13 +2,13 @@
 
 ## Conclusion
 
-- audit_status: complete_to_validated_approval_template_boundary_no_write
+- audit_status: complete_to_prewrite_snapshot_spec_boundary_no_write
 - entire_audit_completed_to_current_evidence_boundary: true
 - master_index_complete: true
 - ready_for_db_writes: false
-- reason: The completed Master Index now has PKG-01 dry-run packages, a consolidated apply design, DB impact translation, an operator approval packet, a blank fingerprinted approval record template, and a passing approval template guard, but writes still need recorded approval, a fresh production snapshot, a guarded execution artifact, and transactional verification.
+- reason: The completed Master Index now has PKG-01 dry-run packages, a consolidated apply design, DB impact translation, an operator approval packet, a blank fingerprinted approval record template, a passing approval template guard, and a pre-write snapshot specification, but writes still need recorded approval, a fresh production snapshot, a guarded execution artifact, and transactional verification.
 - strongest_positive_finding: 106 physical missing-set recovery card candidates / 143 printing rows have exact card identity and all finishes master_verified by the index.
-- main_blocker: Approval template guard passes, but approval is not recorded and no fresh snapshot or separate guarded execution artifact exists.
+- main_blocker: Pre-write snapshot specification exists, but approval is not recorded, no fresh snapshot has been captured, and no separate guarded execution artifact exists.
 
 ## Safety
 
@@ -21,7 +21,7 @@
 
 ## Immediate Next Non-Write Work
 
-- Human-review the guarded blank approval record template, preserve the package fingerprint, and leave write_ready_now at 0 until approval is explicitly recorded.
+- Human-review the guarded blank approval record template and pre-write snapshot specification; leave write_ready_now at 0 until approval is explicitly recorded.
 - Capture a fresh before-state snapshot immediately before any future write design is converted into execution.
 - Prepare a separate guarded execution artifact only after explicit approval.
 - Keep blocked remainder rows out of any future execution package.
@@ -39,7 +39,7 @@
 | package | name | state | required_before_write |
 | --- | --- | --- | --- |
 | PKG-00 | Ascended Heroes monitor-only proof baseline | complete | No write required unless future drift appears. |
-| PKG-01 | Physical missing-set recovery - master-verified subset | approval_template_guard_passed_approval_not_recorded_no_write | Record explicit founder/operator approval only after reviewing every row in the approval packet.; Record founder/operator approval of exact row IDs and intended mutations.; Capture a fresh production before-state snapshot immediately before any future execution.; Regenerate rollback values from that fresh snapshot.; Generate a separate transactional execution artifact; do not use this report as execution.; Run identity, ownership, vault, provenance, and post-apply checks inside the future transaction before commit. |
+| PKG-01 | Physical missing-set recovery - master-verified subset | prewrite_snapshot_spec_complete_approval_required_no_write | Record explicit founder/operator approval only after reviewing every row in the approval packet.; Record founder/operator approval of exact row IDs and intended mutations.; Capture a fresh production before-state snapshot immediately before any future execution.; Regenerate rollback values from that fresh snapshot.; Generate a separate transactional execution artifact; do not use this report as execution.; Run identity, ownership, vault, provenance, and post-apply checks inside the future transaction before commit. |
 | PKG-01B | Physical missing-set recovery - blocked remainder | blocked_until_identity_or_finish_safe | Resolve card-number gaps or exclude them from the package.; Split supported finish rows from unsupported finish rows.; Generate a separate dry-run package only for rows that become master_verified. |
 | PKG-02 | Pocket/digital scope isolation | scope_decision_required | Decide whether Grookai stores Pocket/digital rows in a separate domain.; Design non-destructive isolation/quarantine strategy.; Verify ownership/vault/provenance impacts before any hide or move. |
 | PKG-03 | Unsupported printings cleanup | blocked_by_index_maturity | Run set-level proof loops until relevant facts are master_verified.; Produce proof-based unsupported row report with exact evidence URLs.; Generate rollback-safe cleanup plan. |

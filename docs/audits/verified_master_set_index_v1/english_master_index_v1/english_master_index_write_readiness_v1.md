@@ -1,6 +1,6 @@
 # English Master Index Write Readiness V1
 
-No catalog writes are authorized yet. The Master Index is complete, PKG-01 dry-run packages, apply design, DB impact translation, operator approval packet, blank fingerprinted approval record template, and approval template guard are prepared for review, but approval is not recorded and write_ready_now remains 0.
+No catalog writes are authorized yet. The Master Index is complete, PKG-01 dry-run packages, apply design, DB impact translation, operator approval packet, blank fingerprinted approval record template, approval template guard, and pre-write snapshot specification are prepared for review, but approval is not recorded and write_ready_now remains 0.
 
 ## Safety
 
@@ -41,6 +41,10 @@ No catalog writes are authorized yet. The Master Index is complete, PKG-01 dry-r
 - physical recovery approval template guard: pass_blank_template_verified_no_write
 - physical recovery approval template guard findings: 0
 - physical recovery approval template guard write_ready_now: 0
+- physical recovery prewrite snapshot spec: prewrite_snapshot_spec_complete_approval_required_no_write
+- physical recovery prewrite snapshot spec target rows: 106
+- physical recovery prewrite snapshot spec db_reads_performed: false
+- physical recovery prewrite snapshot spec write_ready_now: 0
 
 ## Global Buckets
 
@@ -70,7 +74,7 @@ No catalog writes are authorized yet. The Master Index is complete, PKG-01 dry-r
 | package | name | state | write_allowed_now | rows | blockers |
 | --- | --- | --- | --- | --- | --- |
 | PKG-00 | Ascended Heroes monitor-only proof baseline | complete | false | 31975 |  |
-| PKG-01 | Physical missing-set recovery - master-verified subset | approval_template_guard_passed_approval_not_recorded_no_write | false | 106 | Operator approval packet is a review artifact only and is not approval.; Approval checkboxes remain false and approval_recorded is false.; Approval record template is blank and records no approval.; Approval template guard passed, but it is still not approval.; No fresh pre-write production snapshot has been captured.; No transactional execution artifact has been generated or approved.; write_ready_now remains 0. |
+| PKG-01 | Physical missing-set recovery - master-verified subset | prewrite_snapshot_spec_complete_approval_required_no_write | false | 106 | Operator approval packet is a review artifact only and is not approval.; Approval checkboxes remain false and approval_recorded is false.; Approval record template is blank and records no approval.; Approval template guard passed, but it is still not approval.; Prewrite snapshot spec exists, but no fresh snapshot has been captured.; No fresh pre-write production snapshot has been captured.; No transactional execution artifact has been generated or approved.; write_ready_now remains 0. |
 | PKG-01B | Physical missing-set recovery - blocked remainder | blocked_until_identity_or_finish_safe | false | 701 | Some rows still lack exact card identity or exact supported finish coverage.; Unsupported finishes must not be recovered.; Partial finish support must be split into supported-only and unsupported lanes. |
 | PKG-02 | Pocket/digital scope isolation | scope_decision_required | false | 1341 | Pocket/digital scope is outside English physical TCG but needs product decision.; Scope exclusion is not automatic deletion authority. |
 | PKG-03 | Unsupported printings cleanup | blocked_by_index_maturity | false | 11975 | Unsupported by current index is not deletion authority.; Many sets are API-only or source-limited. |

@@ -15,6 +15,7 @@ const DB_IMPACT_FILE = 'english_master_index_db_impact_translation_v1.json';
 const OPERATOR_APPROVAL_FILE = 'english_master_index_operator_approval_packet_v1.json';
 const OPERATOR_APPROVAL_RECORD_TEMPLATE_FILE = 'english_master_index_operator_approval_record_template_v1.json';
 const OPERATOR_APPROVAL_TEMPLATE_GUARD_FILE = 'english_master_index_operator_approval_template_guard_v1.json';
+const PREWRITE_SNAPSHOT_SPEC_FILE = 'english_master_index_prewrite_snapshot_spec_v1.json';
 const GENERATED_FILES = [
   'english_master_index_write_readiness_v1.json',
   'english_master_index_write_readiness_v1.md',
@@ -474,7 +475,34 @@ function summarizeOperatorApprovalTemplateGuard(approvalTemplateGuard) {
   };
 }
 
-function physicalRecoveryDesignState({ dryRunPackages, physicalRecoveryReviewGate, physicalRecoveryApplyDesign, physicalRecoveryDbImpact, physicalRecoveryOperatorApproval, physicalRecoveryApprovalRecordTemplate, physicalRecoveryApprovalTemplateGuard }) {
+function summarizePrewriteSnapshotSpec(prewriteSnapshotSpec) {
+  if (!prewriteSnapshotSpec) {
+    return {
+      exists: false,
+      spec_status: 'not_generated',
+      approval_recorded: false,
+      write_ready_now: 0,
+    };
+  }
+  return {
+    exists: true,
+    file: PREWRITE_SNAPSHOT_SPEC_FILE,
+    spec_status: prewriteSnapshotSpec.spec_status,
+    approval_recorded: prewriteSnapshotSpec.approval_recorded === true,
+    package_fingerprint_sha256: prewriteSnapshotSpec.package_scope?.package_fingerprint_sha256 ?? null,
+    card_print_rows: prewriteSnapshotSpec.package_scope?.card_print_rows ?? 0,
+    child_printing_rows_verified: prewriteSnapshotSpec.package_scope?.child_printing_rows_verified ?? 0,
+    affected_sets: prewriteSnapshotSpec.package_scope?.affected_sets ?? 0,
+    required_snapshot_sections: prewriteSnapshotSpec.required_snapshot_rows?.length ?? 0,
+    snapshot_target_rows: prewriteSnapshotSpec.snapshot_targets?.length ?? 0,
+    db_reads_performed: prewriteSnapshotSpec.db_reads_performed === true,
+    stop_findings: prewriteSnapshotSpec.stop_findings?.length ?? 0,
+    pass: prewriteSnapshotSpec.pass === true,
+    write_ready_now: prewriteSnapshotSpec.write_ready_now ?? 0,
+  };
+}
+
+function physicalRecoveryDesignState({ dryRunPackages, physicalRecoveryReviewGate, physicalRecoveryApplyDesign, physicalRecoveryDbImpact, physicalRecoveryOperatorApproval, physicalRecoveryApprovalRecordTemplate, physicalRecoveryApprovalTemplateGuard, physicalRecoveryPrewriteSnapshotSpec }) {
   const generatedDryRuns = summarizeGeneratedDryRunPackages(dryRunPackages ?? []);
   const reviewGate = summarizeReviewGate(physicalRecoveryReviewGate);
   const applyDesign = summarizeApplyDesign(physicalRecoveryApplyDesign);
@@ -482,6 +510,7 @@ function physicalRecoveryDesignState({ dryRunPackages, physicalRecoveryReviewGat
   const operatorApproval = summarizeOperatorApproval(physicalRecoveryOperatorApproval);
   const approvalRecordTemplate = summarizeOperatorApprovalRecordTemplate(physicalRecoveryApprovalRecordTemplate);
   const approvalTemplateGuard = summarizeOperatorApprovalTemplateGuard(physicalRecoveryApprovalTemplateGuard);
+  const prewriteSnapshotSpec = summarizePrewriteSnapshotSpec(physicalRecoveryPrewriteSnapshotSpec);
   const dryRunPackageExists = generatedDryRuns.package_count > 0;
   const reviewGateComplete = reviewGate.review_gate_status === 'dry_run_packages_complete_review_required_no_write'
     && Number(reviewGate.package_stop_findings ?? 1) === 0
@@ -503,8 +532,14 @@ function physicalRecoveryDesignState({ dryRunPackages, physicalRecoveryReviewGat
     && approvalTemplateGuard.approval_recorded === false
     && Number(approvalTemplateGuard.stop_findings ?? 1) === 0
     && Number(approvalTemplateGuard.row_guard_findings ?? 1) === 0;
+  const prewriteSnapshotSpecComplete = prewriteSnapshotSpec.exists === true
+    && prewriteSnapshotSpec.spec_status === 'prewrite_snapshot_spec_complete_approval_required_no_write'
+    && prewriteSnapshotSpec.approval_recorded === false
+    && prewriteSnapshotSpec.db_reads_performed === false
+    && Number(prewriteSnapshotSpec.stop_findings ?? 1) === 0;
   let state = 'row_level_dry_run_package_required';
-  if (approvalTemplateGuardPassed) state = 'approval_template_guard_passed_approval_not_recorded_no_write';
+  if (prewriteSnapshotSpecComplete) state = 'prewrite_snapshot_spec_complete_approval_required_no_write';
+  else if (approvalTemplateGuardPassed) state = 'approval_template_guard_passed_approval_not_recorded_no_write';
   else if (approvalRecordTemplateComplete) state = 'approval_record_template_complete_approval_not_recorded_no_write';
   else if (operatorApprovalPacketComplete) state = 'operator_approval_packet_complete_approval_not_recorded_no_write';
   else if (dbImpactComplete) state = 'db_impact_translation_complete_approval_packet_required_no_write';
@@ -520,6 +555,7 @@ function physicalRecoveryDesignState({ dryRunPackages, physicalRecoveryReviewGat
     operatorApproval,
     approvalRecordTemplate,
     approvalTemplateGuard,
+    prewriteSnapshotSpec,
     dryRunPackageExists,
     reviewGateComplete,
     applyDesignComplete,
@@ -527,17 +563,18 @@ function physicalRecoveryDesignState({ dryRunPackages, physicalRecoveryReviewGat
     operatorApprovalPacketComplete,
     approvalRecordTemplateComplete,
     approvalTemplateGuardPassed,
+    prewriteSnapshotSpecComplete,
   };
 }
 
-function buildWritePackages({ completion, exactMatch, recoveryLanes, sourceAcquisition, grookaiAudit, dryRunPackages, physicalRecoveryReviewGate, physicalRecoveryApplyDesign, physicalRecoveryDbImpact, physicalRecoveryOperatorApproval, physicalRecoveryApprovalRecordTemplate, physicalRecoveryApprovalTemplateGuard }) {
+function buildWritePackages({ completion, exactMatch, recoveryLanes, sourceAcquisition, grookaiAudit, dryRunPackages, physicalRecoveryReviewGate, physicalRecoveryApplyDesign, physicalRecoveryDbImpact, physicalRecoveryOperatorApproval, physicalRecoveryApprovalRecordTemplate, physicalRecoveryApprovalTemplateGuard, physicalRecoveryPrewriteSnapshotSpec }) {
   const physicalByFinishStatus = exactMatch.summary?.by_finish_match_status ?? {};
   const physicalPrintingByFinishStatus = exactMatch.summary?.printing_rows_by_finish_status ?? {};
   const statusCounts = grookaiAudit.summary?.by_status ?? {};
   const dryRunCandidateSets = summarizeDryRunCandidateSets(exactMatch);
   const dryRunCandidateCards = physicalByFinishStatus.all_finishes_master_verified_by_index ?? 0;
   const dryRunCandidatePrintings = physicalPrintingByFinishStatus.all_finishes_master_verified_by_index ?? 0;
-  const designState = physicalRecoveryDesignState({ dryRunPackages, physicalRecoveryReviewGate, physicalRecoveryApplyDesign, physicalRecoveryDbImpact, physicalRecoveryOperatorApproval, physicalRecoveryApprovalRecordTemplate, physicalRecoveryApprovalTemplateGuard });
+  const designState = physicalRecoveryDesignState({ dryRunPackages, physicalRecoveryReviewGate, physicalRecoveryApplyDesign, physicalRecoveryDbImpact, physicalRecoveryOperatorApproval, physicalRecoveryApprovalRecordTemplate, physicalRecoveryApprovalTemplateGuard, physicalRecoveryPrewriteSnapshotSpec });
   const generatedDryRuns = designState.generatedDryRuns;
   const dryRunPackageExists = designState.dryRunPackageExists;
   return [
@@ -564,6 +601,7 @@ function buildWritePackages({ completion, exactMatch, recoveryLanes, sourceAcqui
       physical_recovery_operator_approval_packet: designState.operatorApproval,
       physical_recovery_operator_approval_record_template: designState.approvalRecordTemplate,
       physical_recovery_operator_approval_template_guard: designState.approvalTemplateGuard,
+      physical_recovery_prewrite_snapshot_spec: designState.prewriteSnapshotSpec,
       candidate_card_prints: dryRunCandidateCards,
       candidate_printing_rows: dryRunCandidatePrintings,
       candidate_sets: dryRunCandidateSets,
@@ -577,6 +615,7 @@ function buildWritePackages({ completion, exactMatch, recoveryLanes, sourceAcqui
           'Approval checkboxes remain false and approval_recorded is false.',
           'Approval record template is blank and records no approval.',
           'Approval template guard passed, but it is still not approval.',
+          'Prewrite snapshot spec exists, but no fresh snapshot has been captured.',
           'No fresh pre-write production snapshot has been captured.',
           'No transactional execution artifact has been generated or approved.',
           'write_ready_now remains 0.',
@@ -791,6 +830,7 @@ function buildArtifacts(inputs) {
     physical_recovery_operator_approval_packet: summarizeOperatorApproval(inputs.physicalRecoveryOperatorApproval),
     physical_recovery_operator_approval_record_template: summarizeOperatorApprovalRecordTemplate(inputs.physicalRecoveryApprovalRecordTemplate),
     physical_recovery_operator_approval_template_guard: summarizeOperatorApprovalTemplateGuard(inputs.physicalRecoveryApprovalTemplateGuard),
+    physical_recovery_prewrite_snapshot_spec: summarizePrewriteSnapshotSpec(inputs.physicalRecoveryPrewriteSnapshotSpec),
     source_acquisition_queue: inputs.completionSourceGap.summary ?? valueAt(inputs.sourceAcquisition, ['summary', 'queue_summary'], {}),
     historical_source_acquisition_queue: valueAt(inputs.sourceAcquisition, ['summary', 'queue_summary'], {}),
     finish_blocker_closure: {
@@ -807,7 +847,7 @@ function buildArtifacts(inputs) {
     version: 'english_master_index_write_readiness_v1',
     ...safety,
     rule: 'This report determines whether Grookai is ready to write. It does not execute writes.',
-    conclusion: 'No catalog writes are authorized yet. The Master Index is complete, PKG-01 dry-run packages, apply design, DB impact translation, operator approval packet, blank fingerprinted approval record template, and approval template guard are prepared for review, but approval is not recorded and write_ready_now remains 0.',
+    conclusion: 'No catalog writes are authorized yet. The Master Index is complete, PKG-01 dry-run packages, apply design, DB impact translation, operator approval packet, blank fingerprinted approval record template, approval template guard, and pre-write snapshot specification are prepared for review, but approval is not recorded and write_ready_now remains 0.',
     summary,
     global_buckets: globalBuckets,
     write_packages: writePackages,
@@ -887,8 +927,10 @@ function buildArtifacts(inputs) {
       {
         phase: 'Phase 6',
         name: 'Fresh snapshot and guarded execution artifact',
-        status: 'not_started',
-        required_approval: 'Only after explicit approval: capture fresh snapshot and create a separate dry-run-default transactional execution artifact.',
+        status: inputs.physicalRecoveryPrewriteSnapshotSpec?.spec_status === 'prewrite_snapshot_spec_complete_approval_required_no_write'
+          ? 'prewrite_snapshot_spec_complete_snapshot_not_captured_no_write'
+          : 'not_started',
+        required_approval: 'Only after explicit approval: capture fresh snapshot using the pre-write snapshot specification, then create a separate dry-run-default transactional execution artifact.',
       },
     ],
     evidence_plan: evidencePlan,
@@ -899,8 +941,10 @@ function buildArtifacts(inputs) {
     generated_at: new Date().toISOString(),
     version: 'english_master_index_audit_closure_v1',
     ...safety,
-    audit_status: inputs.physicalRecoveryApprovalTemplateGuard?.guard_status === 'pass_blank_template_verified_no_write'
-      ? 'complete_to_validated_approval_template_boundary_no_write'
+    audit_status: inputs.physicalRecoveryPrewriteSnapshotSpec?.spec_status === 'prewrite_snapshot_spec_complete_approval_required_no_write'
+      ? 'complete_to_prewrite_snapshot_spec_boundary_no_write'
+      : inputs.physicalRecoveryApprovalTemplateGuard?.guard_status === 'pass_blank_template_verified_no_write'
+        ? 'complete_to_validated_approval_template_boundary_no_write'
       : inputs.physicalRecoveryApprovalRecordTemplate?.approval_recorded === false
         ? 'complete_to_fingerprinted_approval_template_boundary_no_write'
       : inputs.physicalRecoveryOperatorApproval?.approval_recorded === false
@@ -912,10 +956,12 @@ function buildArtifacts(inputs) {
       entire_audit_completed_to_current_evidence_boundary: true,
       master_index_complete: (inputs.completion.summary?.source_gap_queue_items ?? 1) === 0,
       ready_for_db_writes: false,
-      reason: 'The completed Master Index now has PKG-01 dry-run packages, a consolidated apply design, DB impact translation, an operator approval packet, a blank fingerprinted approval record template, and a passing approval template guard, but writes still need recorded approval, a fresh production snapshot, a guarded execution artifact, and transactional verification.',
+      reason: 'The completed Master Index now has PKG-01 dry-run packages, a consolidated apply design, DB impact translation, an operator approval packet, a blank fingerprinted approval record template, a passing approval template guard, and a pre-write snapshot specification, but writes still need recorded approval, a fresh production snapshot, a guarded execution artifact, and transactional verification.',
       strongest_positive_finding: '106 physical missing-set recovery card candidates / 143 printing rows have exact card identity and all finishes master_verified by the index.',
-      main_blocker: inputs.physicalRecoveryApprovalTemplateGuard?.guard_status === 'pass_blank_template_verified_no_write'
-        ? 'Approval template guard passes, but approval is not recorded and no fresh snapshot or separate guarded execution artifact exists.'
+      main_blocker: inputs.physicalRecoveryPrewriteSnapshotSpec?.spec_status === 'prewrite_snapshot_spec_complete_approval_required_no_write'
+        ? 'Pre-write snapshot specification exists, but approval is not recorded, no fresh snapshot has been captured, and no separate guarded execution artifact exists.'
+        : inputs.physicalRecoveryApprovalTemplateGuard?.guard_status === 'pass_blank_template_verified_no_write'
+          ? 'Approval template guard passes, but approval is not recorded and no fresh snapshot or separate guarded execution artifact exists.'
         : inputs.physicalRecoveryApprovalRecordTemplate?.approval_recorded === false
           ? 'Blank fingerprinted approval record template exists, but approval is not recorded and no fresh snapshot or separate guarded execution artifact exists.'
         : inputs.physicalRecoveryOperatorApproval?.approval_recorded === false
@@ -929,8 +975,10 @@ function buildArtifacts(inputs) {
     },
     summary,
     immediate_next_non_write_work: [
-      inputs.physicalRecoveryApprovalTemplateGuard?.guard_status === 'pass_blank_template_verified_no_write'
-        ? 'Human-review the guarded blank approval record template, preserve the package fingerprint, and leave write_ready_now at 0 until approval is explicitly recorded.'
+      inputs.physicalRecoveryPrewriteSnapshotSpec?.spec_status === 'prewrite_snapshot_spec_complete_approval_required_no_write'
+        ? 'Human-review the guarded blank approval record template and pre-write snapshot specification; leave write_ready_now at 0 until approval is explicitly recorded.'
+        : inputs.physicalRecoveryApprovalTemplateGuard?.guard_status === 'pass_blank_template_verified_no_write'
+          ? 'Human-review the guarded blank approval record template, preserve the package fingerprint, and leave write_ready_now at 0 until approval is explicitly recorded.'
         : inputs.physicalRecoveryApprovalRecordTemplate?.approval_recorded === false
           ? 'Human-review the blank fingerprinted approval record template, preserve the package fingerprint, and leave write_ready_now at 0 until approval is explicitly recorded.'
         : inputs.physicalRecoveryOperatorApproval?.approval_recorded === false
@@ -1019,6 +1067,10 @@ ${artifact.conclusion}
 - physical recovery approval template guard: ${artifact.summary.physical_recovery_operator_approval_template_guard.guard_status}
 - physical recovery approval template guard findings: ${artifact.summary.physical_recovery_operator_approval_template_guard.row_guard_findings ?? 0}
 - physical recovery approval template guard write_ready_now: ${artifact.summary.physical_recovery_operator_approval_template_guard.write_ready_now}
+- physical recovery prewrite snapshot spec: ${artifact.summary.physical_recovery_prewrite_snapshot_spec.spec_status}
+- physical recovery prewrite snapshot spec target rows: ${artifact.summary.physical_recovery_prewrite_snapshot_spec.snapshot_target_rows ?? 0}
+- physical recovery prewrite snapshot spec db_reads_performed: ${artifact.summary.physical_recovery_prewrite_snapshot_spec.db_reads_performed}
+- physical recovery prewrite snapshot spec write_ready_now: ${artifact.summary.physical_recovery_prewrite_snapshot_spec.write_ready_now}
 
 ## Global Buckets
 
@@ -1151,6 +1203,7 @@ async function main() {
     physicalRecoveryOperatorApproval: await readOptionalJson(OPERATOR_APPROVAL_FILE, null),
     physicalRecoveryApprovalRecordTemplate: await readOptionalJson(OPERATOR_APPROVAL_RECORD_TEMPLATE_FILE, null),
     physicalRecoveryApprovalTemplateGuard: await readOptionalJson(OPERATOR_APPROVAL_TEMPLATE_GUARD_FILE, null),
+    physicalRecoveryPrewriteSnapshotSpec: await readOptionalJson(PREWRITE_SNAPSHOT_SPEC_FILE, null),
   };
   const artifacts = buildArtifacts(inputs);
 

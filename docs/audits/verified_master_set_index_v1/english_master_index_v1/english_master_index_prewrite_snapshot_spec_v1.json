@@ -1,0 +1,3414 @@
+{
+  "generated_at": "2026-06-08T21:39:48.577Z",
+  "version": "english_master_index_prewrite_snapshot_spec_v1",
+  "audit_only": true,
+  "db_writes_performed": false,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "apply_paths_executed": false,
+  "db_reads_performed": false,
+  "write_ready_now": 0,
+  "approval_recorded": false,
+  "spec_status": "prewrite_snapshot_spec_complete_approval_required_no_write",
+  "purpose": "Define the exact fresh before-state snapshot requirements for PKG-01 after future approval, without taking the snapshot or creating an execution artifact.",
+  "source_artifacts": {
+    "approval_record_template": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_operator_approval_record_template_v1.json",
+    "approval_template_guard": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_operator_approval_template_guard_v1.json"
+  },
+  "package_scope": {
+    "package_id": "PKG-01",
+    "package_fingerprint_sha256": "34cc9acbb81bfadbe2115528a1339cb82afa71fa01fd0d52b62b83834a990b79",
+    "approval_guard_status": "pass_blank_template_verified_no_write",
+    "card_print_rows": 106,
+    "child_printing_rows_verified": 143,
+    "affected_sets": 12,
+    "by_set": {
+      "col1": 2,
+      "dp7": 8,
+      "ecard2": 13,
+      "ecard3": 15,
+      "ex10": 3,
+      "fut2020": 1,
+      "mep": 10,
+      "pl1": 9,
+      "pl2": 17,
+      "pl3": 9,
+      "pl4": 18,
+      "swsh2": 1
+    },
+    "by_review_priority": {
+      "standard": 68,
+      "medium": 27,
+      "high": 11
+    },
+    "by_changed_field": {
+      "set_code": 106,
+      "number": 88,
+      "name": 11
+    },
+    "by_source_strength": {
+      "api_plus_checklist_or_market_reference": 106
+    }
+  },
+  "required_snapshot_rows": [
+    {
+      "table": "card_prints",
+      "key": "id",
+      "expected_min_rows": 106,
+      "purpose": "Capture before-state parent identity/display fields for every approved card_print_id.",
+      "required_columns": [
+        "id",
+        "set_id",
+        "set_code",
+        "number",
+        "number_plain",
+        "name",
+        "updated_at"
+      ]
+    },
+    {
+      "table": "card_printings",
+      "key": "card_print_id",
+      "expected_min_rows": 143,
+      "purpose": "Verify child printing rows still match the reviewed master-verified finish scope.",
+      "required_columns": [
+        "id",
+        "card_print_id",
+        "finish",
+        "variant",
+        "printing_key",
+        "updated_at"
+      ]
+    },
+    {
+      "table": "external_mappings",
+      "key": "card_print_id",
+      "expected_min_rows": 0,
+      "purpose": "Detect source ownership drift before future mutation.",
+      "required_columns": [
+        "id",
+        "card_print_id",
+        "source",
+        "external_id",
+        "is_active",
+        "updated_at"
+      ]
+    },
+    {
+      "table": "card_print_identity",
+      "key": "card_print_id",
+      "expected_min_rows": 0,
+      "purpose": "Detect active identity/domain-hash drift before future mutation.",
+      "required_columns": [
+        "id",
+        "card_print_id",
+        "domain_hash",
+        "is_active",
+        "updated_at"
+      ]
+    },
+    {
+      "table": "card_print_traits",
+      "key": "card_print_id",
+      "expected_min_rows": 0,
+      "purpose": "Detect trait drift before future mutation.",
+      "required_columns": [
+        "id",
+        "card_print_id",
+        "updated_at"
+      ]
+    },
+    {
+      "table": "vault_items",
+      "key": "card_print_id",
+      "expected_exact_rows": 0,
+      "purpose": "Stop if any target row has gained vault ownership references.",
+      "required_columns": [
+        "id",
+        "card_print_id",
+        "owner_id",
+        "updated_at"
+      ]
+    }
+  ],
+  "snapshot_targets": [
+    {
+      "card_print_id": "2180d1db-0948-4cfc-9a98-da7629c2811a",
+      "row_fingerprint_sha256": "608ad0fdb308153bdbc2941d3a273123e93e265c957a947e00eefbd26519ec43",
+      "set_key": "col1",
+      "set_name": "Call of Legends",
+      "review_priority": "standard",
+      "current_fields_from_review_snapshot": {
+        "set_code": null,
+        "number": null,
+        "name": "Groudon",
+        "number_plain": null,
+        "set_id": "82a8d330-f85f-4a8e-8482-4d4a2bc2469d"
+      },
+      "proposed_fields_under_review": {
+        "set_code": "col1",
+        "number": "6",
+        "name": "Groudon"
+      },
+      "direct_field_changes_under_review": {
+        "set_code": {
+          "before": null,
+          "after": "col1"
+        },
+        "number": {
+          "before": null,
+          "after": "6"
+        }
+      },
+      "child_printing_rows_verified": 3,
+      "vault_items_referencing_target_at_review_time": 0
+    },
+    {
+      "card_print_id": "922f2b4f-eb6f-492c-89a7-8b4f313509e2",
+      "row_fingerprint_sha256": "490beb722d9a82feafe87a5f15725ec5d403b82175e243d8a77cc8ae0babc830",
+      "set_key": "col1",
+      "set_name": "Call of Legends",
+      "review_priority": "standard",
+      "current_fields_from_review_snapshot": {
+        "set_code": null,
+        "number": null,
+        "name": "Hitmontop",
+        "number_plain": null,
+        "set_id": "82a8d330-f85f-4a8e-8482-4d4a2bc2469d"
+      },
+      "proposed_fields_under_review": {
+        "set_code": "col1",
+        "number": "8",
+        "name": "Hitmontop"
+      },
+      "direct_field_changes_under_review": {
+        "set_code": {
+          "before": null,
+          "after": "col1"
+        },
+        "number": {
+          "before": null,
+          "after": "8"
+        }
+      },
+      "child_printing_rows_verified": 3,
+      "vault_items_referencing_target_at_review_time": 0
+    },
+    {
+      "card_print_id": "62f77935-5749-4d26-87e6-06bbca565b22",
+      "row_fingerprint_sha256": "a9528b55f5fb167231a7fcde73f4ed17c87034af0742fb2a0f492c5dd16c42c1",
+      "set_key": "dp7",
+      "set_name": "Stormfront",
+      "review_priority": "standard",
+      "current_fields_from_review_snapshot": {
+        "set_code": null,
+        "number": null,
+        "name": "Empoleon",
+        "number_plain": null,
+        "set_id": "bfe8a89a-951b-4e14-a5d2-450aae4b737c"
+      },
+      "proposed_fields_under_review": {
+        "set_code": "dp7",
+        "number": "2",
+        "name": "Empoleon"
+      },
+      "direct_field_changes_under_review": {
+        "set_code": {
+          "before": null,
+          "after": "dp7"
+        },
+        "number": {
+          "before": null,
+          "after": "2"
+        }
+      },
+      "child_printing_rows_verified": 2,
+      "vault_items_referencing_target_at_review_time": 0
+    },
+    {
+      "card_print_id": "665ee2b0-4a22-43d5-bf8e-8ff22a990384",
+      "row_fingerprint_sha256": "42521ea18796ffb9854e5360e0ac610b6501fba78dba92c2dadff695dda53fad",
+      "set_key": "dp7",
+      "set_name": "Stormfront",
+      "review_priority": "standard",
+      "current_fields_from_review_snapshot": {
+        "set_code": null,
+        "number": null,
+        "name": "Infernape",
+        "number_plain": null,
+        "set_id": "bfe8a89a-951b-4e14-a5d2-450aae4b737c"
+      },
+      "proposed_fields_under_review": {
+        "set_code": "dp7",
+        "number": "3",
+        "name": "Infernape"
+      },
+      "direct_field_changes_under_review": {
+        "set_code": {
+          "before": null,
+          "after": "dp7"
+        },
+        "number": {
+          "before": null,
+          "after": "3"
+        }
+      },
+      "child_printing_rows_verified": 2,
+      "vault_items_referencing_target_at_review_time": 0
+    },
+    {
+      "card_print_id": "d45018d3-c2a6-4d82-b3ed-d0ac6ce6e0ff",
+      "row_fingerprint_sha256": "1edb5b9bfda1ebd5500ca92bfc7226243bf05638c680dd77596e0dc7feb7bae9",
+      "set_key": "dp7",
+      "set_name": "Stormfront",
+      "review_priority": "standard",
+      "current_fields_from_review_snapshot": {
+        "set_code": null,
+        "number": null,
+        "name": "Dusknoir",
+        "number_plain": null,
+        "set_id": "bfe8a89a-951b-4e14-a5d2-450aae4b737c"
+      },
+      "proposed_fields_under_review": {
+        "set_code": "dp7",
+        "number": "96",
+        "name": "Dusknoir"
+      },
+      "direct_field_changes_under_review": {
+        "set_code": {
+          "before": null,
+          "after": "dp7"
+        },
+        "number": {
+          "before": null,
+          "after": "96"
+        }
+      },
+      "child_printing_rows_verified": 1,
+      "vault_items_referencing_target_at_review_time": 0
+    },
+    {
+      "card_print_id": "7c211bf2-ab9e-489d-842f-65c896270783",
+      "row_fingerprint_sha256": "070c603a96afe75b9ecca9f26f392d5601804aa0bb20a587f36cbcc167be696f",
+      "set_key": "dp7",
+      "set_name": "Stormfront",
+      "review_priority": "standard",
+      "current_fields_from_review_snapshot": {
+        "set_code": null,
+        "number": null,
+        "name": "Heatran",
+        "number_plain": null,
+        "set_id": "bfe8a89a-951b-4e14-a5d2-450aae4b737c"
+      },
+      "proposed_fields_under_review": {
+        "set_code": "dp7",
+        "number": "97",
+        "name": "Heatran"
+      },
+      "direct_field_changes_under_review": {
+        "set_code": {
+          "before": null,
+          "after": "dp7"
+        },
+        "number": {
+          "before": null,
+          "after": "97"
+        }
+      },
+      "child_printing_rows_verified": 1,
+      "vault_items_referencing_target_at_review_time": 0
+    },
+    {
+      "card_print_id": "6f49c231-0a53-4c0c-9db1-6d4c36aa460e",
+      "row_fingerprint_sha256": "42d795170cc0b49286d6fde6e4da319707623784c3d2643f7665452b03cb4373",
+      "set_key": "dp7",
+      "set_name": "Stormfront",
+      "review_priority": "standard",
+      "current_fields_from_review_snapshot": {
+        "set_code": null,
+        "number": null,
+        "name": "Machamp",
+        "number_plain": null,
+        "set_id": "bfe8a89a-951b-4e14-a5d2-450aae4b737c"
+      },
+      "proposed_fields_under_review": {
+        "set_code": "dp7",
+        "number": "98",
+        "name": "Machamp"
+      },
+      "direct_field_changes_under_review": {
+        "set_code": {
+          "before": null,
+          "after": "dp7"
+        },
+        "number": {
+          "before": null,
+          "after": "98"
+        }
+      },
+      "child_printing_rows_verified": 1,
+      "vault_items_referencing_target_at_review_time": 0
+    },
+    {
+      "card_print_id": "7a0dbe87-8ffb-4939-a5c0-371a0a21b302",
+      "row_fingerprint_sha256": "bff7e82e9aa5460258eb7b9c819b31a696d7073dbf5f09cb4e57af3dad3cd1ca",
+      "set_key": "dp7",
+      "set_name": "Stormfront",
+      "review_priority": "standard",
+      "current_fields_from_review_snapshot": {
+        "set_code": null,
+        "number": null,
+        "name": "Raichu",
+        "number_plain": null,
+        "set_id": "bfe8a89a-951b-4e14-a5d2-450aae4b737c"
+      },
+      "proposed_fields_under_review": {
+        "set_code": "dp7",
+        "number": "99",
+        "name": "Raichu"
+      },
+      "direct_field_changes_under_review": {
+        "set_code": {
+          "before": null,
+          "after": "dp7"
+        },
+        "number": {
+          "before": null,
+          "after": "99"
+        }
+      },
+      "child_printing_rows_verified": 1,
+      "vault_items_referencing_target_at_review_time": 0
+    },
+    {
+      "card_print_id": "687811f7-e3d2-41bb-b37d-1e73882551d2",
+      "row_fingerprint_sha256": "ef5b3adc09e8add9cfb1c181316031f4133ae2647b6201c215e2930475f60c75",
+      "set_key": "dp7",
+      "set_name": "Stormfront",
+      "review_priority": "standard",
+      "current_fields_from_review_snapshot": {
+        "set_code": null,
+        "number": null,
+        "name": "Regigigas",
+        "number_plain": null,
+        "set_id": "bfe8a89a-951b-4e14-a5d2-450aae4b737c"
+      },
+      "proposed_fields_under_review": {
+        "set_code": "dp7",
+        "number": "100",
+        "name": "Regigigas"
+      },
+      "direct_field_changes_under_review": {
+        "set_code": {
+          "before": null,
+          "after": "dp7"
+        },
+        "number": {
+          "before": null,
+          "after": "100"
+        }
+      },
+      "child_printing_rows_verified": 1,
+      "vault_items_referencing_target_at_review_time": 0
+    },
+    {
+      "card_print_id": "e8444009-0c47-48a6-af07-f5b450ac0082",
+      "row_fingerprint_sha256": "86b4291ed99afea66dfbff834b4716c2149b018409989f20ba156a279f43caee",
+      "set_key": "dp7",
+      "set_name": "Stormfront",
+      "review_priority": "medium",
+      "current_fields_from_review_snapshot": {
+        "set_code": null,
+        "number": null,
+        "name": "Drifloon",
+        "number_plain": null,
+        "set_id": "bfe8a89a-951b-4e14-a5d2-450aae4b737c"
+      },
+      "proposed_fields_under_review": {
+        "set_code": "dp7",
+        "number": "SH1",
+        "name": "Drifloon"
+      },
+      "direct_field_changes_under_review": {
+        "set_code": {
+          "before": null,
+          "after": "dp7"
+        },
+        "number": {
+          "before": null,
+          "after": "SH1"
+        }
+      },
+      "child_printing_rows_verified": 1,
+      "vault_items_referencing_target_at_review_time": 0
+    },
+    {
+      "card_print_id": "5155d8da-c49b-43cf-8173-1e4ceca853d2",
+      "row_fingerprint_sha256": "79edbacfa7e3ce5da20d660b3e44d3660613d2258ae6fee919da57ba916fddf2",
+      "set_key": "ecard2",
+      "set_name": "Aquapolis",
+      "review_priority": "standard",
+      "current_fields_from_review_snapshot": {
+        "set_code": null,
+        "number": "11",
+        "name": "Espeon",
+        "number_plain": "11",
+        "set_id": "7f616ea0-8f96-4250-bee3-c4293c629552"
+      },
+      "proposed_fields_under_review": {
+        "set_code": "ecard2",
+        "number": "11",
+        "name": "Espeon"
+      },
+      "direct_field_changes_under_review": {
+        "set_code": {
+          "before": null,
+          "after": "ecard2"
+        }
+      },
+      "child_printing_rows_verified": 2,
+      "vault_items_referencing_target_at_review_time": 0
+    },
+    {
+      "card_print_id": "49008b62-21be-48b8-a561-9dc0bea390e1",
+      "row_fingerprint_sha256": "5e55836d735f84795d68e4224dc5ae20bf3c4a45c97e9fbf3133c8ae465744d2",
+      "set_key": "ecard2",
+      "set_name": "Aquapolis",
+      "review_priority": "standard",
+      "current_fields_from_review_snapshot": {
+        "set_code": null,
+        "number": "12",
+        "name": "Exeggutor",
+        "number_plain": "12",
+        "set_id": "7f616ea0-8f96-4250-bee3-c4293c629552"
+      },
+      "proposed_fields_under_review": {
+        "set_code": "ecard2",
+        "number": "12",
+        "name": "Exeggutor"
+      },
+      "direct_field_changes_under_review": {
+        "set_code": {
+          "before": null,
+          "after": "ecard2"
+        }
+      },
+      "child_printing_rows_verified": 2,
+      "vault_items_referencing_target_at_review_time": 0
+    },
+    {
+      "card_print_id": "0f752ca1-5458-4241-af37-4a7b48b85013",
+      "row_fingerprint_sha256": "dc82d0b04c94fec92cb6368667a66a95a379191751edf41f7e80d81d1e73cbf0",
+      "set_key": "ecard2",
+      "set_name": "Aquapolis",
+      "review_priority": "standard",
+      "current_fields_from_review_snapshot": {
+        "set_code": null,
+        "number": "13",
+        "name": "Exeggutor",
+        "number_plain": "13",
+        "set_id": "7f616ea0-8f96-4250-bee3-c4293c629552"
+      },
+      "proposed_fields_under_review": {
+        "set_code": "ecard2",
+        "number": "13",
+        "name": "Exeggutor"
+      },
+      "direct_field_changes_under_review": {
+        "set_code": {
+          "before": null,
+          "after": "ecard2"
+        }
+      },
+      "child_printing_rows_verified": 2,
+      "vault_items_referencing_target_at_review_time": 0
+    },
+    {
+      "card_print_id": "bf8fa8c4-a04d-44f8-ae9e-50a6a6784d88",
+      "row_fingerprint_sha256": "f7504a690a1759566df19f7f63e79184d9ca5519eb02462be3dd921a220474f7",
+      "set_key": "ecard2",
+      "set_name": "Aquapolis",
+      "review_priority": "standard",
+      "current_fields_from_review_snapshot": {
+        "set_code": null,
+        "number": "15",
+        "name": "Houndoom",
+        "number_plain": "15",
+        "set_id": "7f616ea0-8f96-4250-bee3-c4293c629552"
+      },
+      "proposed_fields_under_review": {
+        "set_code": "ecard2",
+        "number": "15",
+        "name": "Houndoom"
+      },
+      "direct_field_changes_under_review": {
+        "set_code": {
+          "before": null,
+          "after": "ecard2"
+        }
+      },
+      "child_printing_rows_verified": 2,
+      "vault_items_referencing_target_at_review_time": 0
+    },
+    {
+      "card_print_id": "d5e3ba78-7a85-49d2-8ab0-295521652f55",
+      "row_fingerprint_sha256": "f148bd08aa13ad8d10be2b46305f3f47381a1700b765aa98949e6acf81508bd0",
+      "set_key": "ecard2",
+      "set_name": "Aquapolis",
+      "review_priority": "standard",
+      "current_fields_from_review_snapshot": {
+        "set_code": null,
+        "number": "16",
+        "name": "Hypno",
+        "number_plain": "16",
+        "set_id": "7f616ea0-8f96-4250-bee3-c4293c629552"
+      },
+      "proposed_fields_under_review": {
+        "set_code": "ecard2",
+        "number": "16",
+        "name": "Hypno"
+      },
+      "direct_field_changes_under_review": {
+        "set_code": {
+          "before": null,
+          "after": "ecard2"
+        }
+      },
+      "child_printing_rows_verified": 2,
+      "vault_items_referencing_target_at_review_time": 0
+    },
+    {
+      "card_print_id": "11591d3d-6574-487e-9958-f0d94bba5af4",
+      "row_fingerprint_sha256": "0ac19239a7c5d3116612b67e01974aff7c895227a3056e5f6ac27eec148bed42",
+      "set_key": "ecard2",
+      "set_name": "Aquapolis",
+      "review_priority": "standard",
+      "current_fields_from_review_snapshot": {
+        "set_code": null,
+        "number": "17",
+        "name": "Jumpluff",
+        "number_plain": "17",
+        "set_id": "7f616ea0-8f96-4250-bee3-c4293c629552"
+      },
+      "proposed_fields_under_review": {
+        "set_code": "ecard2",
+        "number": "17",
+        "name": "Jumpluff"
+      },
+      "direct_field_changes_under_review": {
+        "set_code": {
+          "before": null,
+          "after": "ecard2"
+        }
+      },
+      "child_printing_rows_verified": 2,
+      "vault_items_referencing_target_at_review_time": 0
+    },
+    {
+      "card_print_id": "72b1ec6b-fe84-4190-a0d3-d95155296261",
+      "row_fingerprint_sha256": "053812e73e64eece950c524c31bac597e91001ba33184d3ea9cf7104685702ce",
+      "set_key": "ecard2",
+      "set_name": "Aquapolis",
+      "review_priority": "standard",
+      "current_fields_from_review_snapshot": {
+        "set_code": null,
+        "number": "18",
+        "name": "Jynx",
+        "number_plain": "18",
+        "set_id": "7f616ea0-8f96-4250-bee3-c4293c629552"
+      },
+      "proposed_fields_under_review": {
+        "set_code": "ecard2",
+        "number": "18",
+        "name": "Jynx"
+      },
+      "direct_field_changes_under_review": {
+        "set_code": {
+          "before": null,
+          "after": "ecard2"
+        }
+      },
+      "child_printing_rows_verified": 2,
+      "vault_items_referencing_target_at_review_time": 0
+    },
+    {
+      "card_print_id": "b22dc290-dade-45f8-b488-5d3c921a79a1",
+      "row_fingerprint_sha256": "2c1286bfad6c3a938456bd4931cea65e27c30b107d7aac0819d486b372a8502e",
+      "set_key": "ecard2",
+      "set_name": "Aquapolis",
+      "review_priority": "standard",
+      "current_fields_from_review_snapshot": {
+        "set_code": null,
+        "number": "19",
+        "name": "Kingdra",
+        "number_plain": "19",
+        "set_id": "7f616ea0-8f96-4250-bee3-c4293c629552"
+      },
+      "proposed_fields_under_review": {
+        "set_code": "ecard2",
+        "number": "19",
+        "name": "Kingdra"
+      },
+      "direct_field_changes_under_review": {
+        "set_code": {
+          "before": null,
+          "after": "ecard2"
+        }
+      },
+      "child_printing_rows_verified": 2,
+      "vault_items_referencing_target_at_review_time": 0
+    },
+    {
+      "card_print_id": "0e7d501c-b666-43df-9ee6-82443fcae8cb",
+      "row_fingerprint_sha256": "f6bc2480b6e505ebdc12949214de9b4c5599741913fdbdaf060c6921c197cd85",
+      "set_key": "ecard2",
+      "set_name": "Aquapolis",
+      "review_priority": "standard",
+      "current_fields_from_review_snapshot": {
+        "set_code": null,
+        "number": "20",
+        "name": "Lanturn",
+        "number_plain": "20",
+        "set_id": "7f616ea0-8f96-4250-bee3-c4293c629552"
+      },
+      "proposed_fields_under_review": {
+        "set_code": "ecard2",
+        "number": "20",
+        "name": "Lanturn"
+      },
+      "direct_field_changes_under_review": {
+        "set_code": {
+          "before": null,
+          "after": "ecard2"
+        }
+      },
+      "child_printing_rows_verified": 2,
+      "vault_items_referencing_target_at_review_time": 0
+    },
+    {
+      "card_print_id": "a077e73a-275a-405e-85ac-24b28b6ffe3a",
+      "row_fingerprint_sha256": "cd3159736f442326cb89ea9200c036afe770948d778ccdd63406e7fa0c8c2ba9",
+      "set_key": "ecard2",
+      "set_name": "Aquapolis",
+      "review_priority": "standard",
+      "current_fields_from_review_snapshot": {
+        "set_code": null,
+        "number": "25",
+        "name": "Ninetales",
+        "number_plain": "25",
+        "set_id": "7f616ea0-8f96-4250-bee3-c4293c629552"
+      },
+      "proposed_fields_under_review": {
+        "set_code": "ecard2",
+        "number": "25",
+        "name": "Ninetales"
+      },
+      "direct_field_changes_under_review": {
+        "set_code": {
+          "before": null,
+          "after": "ecard2"
+        }
+      },
+      "child_printing_rows_verified": 2,
+      "vault_items_referencing_target_at_review_time": 0
+    },
+    {
+      "card_print_id": "898ad06e-aab1-4c1a-b91b-44fdd6069031",
+      "row_fingerprint_sha256": "924041f303b5d1a7d4377c5f73a55a44242dc4b2c795af972bb7c6d94827c16b",
+      "set_key": "ecard2",
+      "set_name": "Aquapolis",
+      "review_priority": "standard",
+      "current_fields_from_review_snapshot": {
+        "set_code": null,
+        "number": "28",
+        "name": "Porygon2",
+        "number_plain": "28",
+        "set_id": "7f616ea0-8f96-4250-bee3-c4293c629552"
+      },
+      "proposed_fields_under_review": {
+        "set_code": "ecard2",
+        "number": "28",
+        "name": "Porygon2"
+      },
+      "direct_field_changes_under_review": {
+        "set_code": {
+          "before": null,
+          "after": "ecard2"
+        }
+      },
+      "child_printing_rows_verified": 2,
+      "vault_items_referencing_target_at_review_time": 0
+    },
+    {
+      "card_print_id": "507f014e-d43d-4b24-b01f-c9635b6aba81",
+      "row_fingerprint_sha256": "4e0879bc95874aa841bac932767620e1583014d29b5d4e3fa2a012194f020375",
+      "set_key": "ecard2",
+      "set_name": "Aquapolis",
+      "review_priority": "standard",
+      "current_fields_from_review_snapshot": {
+        "set_code": null,
+        "number": "30",
+        "name": "Quagsire",
+        "number_plain": "30",
+        "set_id": "7f616ea0-8f96-4250-bee3-c4293c629552"
+      },
+      "proposed_fields_under_review": {
+        "set_code": "ecard2",
+        "number": "30",
+        "name": "Quagsire"
+      },
+      "direct_field_changes_under_review": {
+        "set_code": {
+          "before": null,
+          "after": "ecard2"
+        }
+      },
+      "child_printing_rows_verified": 2,
+      "vault_items_referencing_target_at_review_time": 0
+    },
+    {
+      "card_print_id": "2233732b-ced1-4f51-b45b-603c1c15a65c",
+      "row_fingerprint_sha256": "ad3dd8745a6efea643f11898a2fee03dcb56e05d0be998097f8743cc8740c74f",
+      "set_key": "ecard2",
+      "set_name": "Aquapolis",
+      "review_priority": "standard",
+      "current_fields_from_review_snapshot": {
+        "set_code": null,
+        "number": "32",
+        "name": "Scizor",
+        "number_plain": "32",
+        "set_id": "7f616ea0-8f96-4250-bee3-c4293c629552"
+      },
+      "proposed_fields_under_review": {
+        "set_code": "ecard2",
+        "number": "32",
+        "name": "Scizor"
+      },
+      "direct_field_changes_under_review": {
+        "set_code": {
+          "before": null,
+          "after": "ecard2"
+        }
+      },
+      "child_printing_rows_verified": 2,
+      "vault_items_referencing_target_at_review_time": 0
+    },
+    {
+      "card_print_id": "d0270c83-13c1-4d2b-ae50-19830be9d134",
+      "row_fingerprint_sha256": "571ebee6cfb09763b18cc9670a8452599eefe0bc40d8a7a03653d1ea33e3d6c2",
+      "set_key": "ecard3",
+      "set_name": "Skyridge",
+      "review_priority": "standard",
+      "current_fields_from_review_snapshot": {
+        "set_code": null,
+        "number": "4",
+        "name": "Articuno",
+        "number_plain": "4",
+        "set_id": "eece39b6-0d1b-48bf-8b41-9b154172a4c5"
+      },
+      "proposed_fields_under_review": {
+        "set_code": "ecard3",
+        "number": "4",
+        "name": "Articuno"
+      },
+      "direct_field_changes_under_review": {
+        "set_code": {
+          "before": null,
+          "after": "ecard3"
+        }
+      },
+      "child_printing_rows_verified": 2,
+      "vault_items_referencing_target_at_review_time": 0
+    },
+    {
+      "card_print_id": "36a0af86-f863-4ff0-967c-285a67272dcb",
+      "row_fingerprint_sha256": "d56a145aeae30ed7feb0cefd4a2e20b03ef360ad70afe01c08cd3e5af2a89c80",
+      "set_key": "ecard3",
+      "set_name": "Skyridge",
+      "review_priority": "standard",
+      "current_fields_from_review_snapshot": {
+        "set_code": null,
+        "number": "6",
+        "name": "Crobat",
+        "number_plain": "6",
+        "set_id": "eece39b6-0d1b-48bf-8b41-9b154172a4c5"
+      },
+      "proposed_fields_under_review": {
+        "set_code": "ecard3",
+        "number": "6",
+        "name": "Crobat"
+      },
+      "direct_field_changes_under_review": {
+        "set_code": {
+          "before": null,
+          "after": "ecard3"
+        }
+      },
+      "child_printing_rows_verified": 2,
+      "vault_items_referencing_target_at_review_time": 0
+    },
+    {
+      "card_print_id": "6406220f-4684-4f26-a52d-310db5eb5700",
+      "row_fingerprint_sha256": "a05b2527098fded6a8491f4fe39406cc0c140f71a40bbad7ccb3f82bab1dcfc2",
+      "set_key": "ecard3",
+      "set_name": "Skyridge",
+      "review_priority": "standard",
+      "current_fields_from_review_snapshot": {
+        "set_code": null,
+        "number": "8",
+        "name": "Flareon",
+        "number_plain": "8",
+        "set_id": "eece39b6-0d1b-48bf-8b41-9b154172a4c5"
+      },
+      "proposed_fields_under_review": {
+        "set_code": "ecard3",
+        "number": "8",
+        "name": "Flareon"
+      },
+      "direct_field_changes_under_review": {
+        "set_code": {
+          "before": null,
+          "after": "ecard3"
+        }
+      },
+      "child_printing_rows_verified": 2,
+      "vault_items_referencing_target_at_review_time": 0
+    },
+    {
+      "card_print_id": "982bd726-548f-4e0c-9a93-c1301af1342f",
+      "row_fingerprint_sha256": "0c41fbbca4871110456baa6c89a64ead623e09c8769e6ed75876c96db18e93dc",
+      "set_key": "ecard3",
+      "set_name": "Skyridge",
+      "review_priority": "standard",
+      "current_fields_from_review_snapshot": {
+        "set_code": null,
+        "number": "9",
+        "name": "Forretress",
+        "number_plain": "9",
+        "set_id": "eece39b6-0d1b-48bf-8b41-9b154172a4c5"
+      },
+      "proposed_fields_under_review": {
+        "set_code": "ecard3",
+        "number": "9",
+        "name": "Forretress"
+      },
+      "direct_field_changes_under_review": {
+        "set_code": {
+          "before": null,
+          "after": "ecard3"
+        }
+      },
+      "child_printing_rows_verified": 2,
+      "vault_items_referencing_target_at_review_time": 0
+    },
+    {
+      "card_print_id": "d139fca7-558c-4dad-9a46-f94e4d45ab6b",
+      "row_fingerprint_sha256": "f60066a3886e12a3341ea88a062b227963a69679c00557c33b69a41da63f8d07",
+      "set_key": "ecard3",
+      "set_name": "Skyridge",
+      "review_priority": "medium",
+      "current_fields_from_review_snapshot": {
+        "set_code": null,
+        "number": null,
+        "name": "Kabutops",
+        "number_plain": null,
+        "set_id": "eece39b6-0d1b-48bf-8b41-9b154172a4c5"
+      },
+      "proposed_fields_under_review": {
+        "set_code": "ecard3",
+        "number": "H13",
+        "name": "Kabutops"
+      },
+      "direct_field_changes_under_review": {
+        "set_code": {
+          "before": null,
+          "after": "ecard3"
+        },
+        "number": {
+          "before": null,
+          "after": "H13"
+        }
+      },
+      "child_printing_rows_verified": 1,
+      "vault_items_referencing_target_at_review_time": 0
+    },
+    {
+      "card_print_id": "8c78b35f-6dd0-4b12-9709-8b4198ad3089",
+      "row_fingerprint_sha256": "4d7670081f827ed0c5bf61f99c2a57457e33a6a1e0a488334d307560a3b64791",
+      "set_key": "ecard3",
+      "set_name": "Skyridge",
+      "review_priority": "medium",
+      "current_fields_from_review_snapshot": {
+        "set_code": null,
+        "number": null,
+        "name": "Ledian",
+        "number_plain": null,
+        "set_id": "eece39b6-0d1b-48bf-8b41-9b154172a4c5"
+      },
+      "proposed_fields_under_review": {
+        "set_code": "ecard3",
+        "number": "H14",
+        "name": "Ledian"
+      },
+      "direct_field_changes_under_review": {
+        "set_code": {
+          "before": null,
+          "after": "ecard3"
+        },
+        "number": {
+          "before": null,
+          "after": "H14"
+        }
+      },
+      "child_printing_rows_verified": 1,
+      "vault_items_referencing_target_at_review_time": 0
+    },
+    {
+      "card_print_id": "02a4156d-5f67-4969-8288-c440938a923c",
+      "row_fingerprint_sha256": "36edbddee39b396321faf2e2d55a20d1a215badfdd4fa454ea8581e6580b7dbc",
+      "set_key": "ecard3",
+      "set_name": "Skyridge",
+      "review_priority": "medium",
+      "current_fields_from_review_snapshot": {
+        "set_code": null,
+        "number": null,
+        "name": "Magcargo",
+        "number_plain": null,
+        "set_id": "eece39b6-0d1b-48bf-8b41-9b154172a4c5"
+      },
+      "proposed_fields_under_review": {
+        "set_code": "ecard3",
+        "number": "H16",
+        "name": "Magcargo"
+      },
+      "direct_field_changes_under_review": {
+        "set_code": {
+          "before": null,
+          "after": "ecard3"
+        },
+        "number": {
+          "before": null,
+          "after": "H16"
+        }
+      },
+      "child_printing_rows_verified": 1,
+      "vault_items_referencing_target_at_review_time": 0
+    },
+    {
+      "card_print_id": "bb73d56c-c46f-4341-b4a1-825a10c2406b",
+      "row_fingerprint_sha256": "c75c1ea53bad6e9e6b5161d779a044d9efbbd2036eb62bdc0cfa239113e80589",
+      "set_key": "ecard3",
+      "set_name": "Skyridge",
+      "review_priority": "medium",
+      "current_fields_from_review_snapshot": {
+        "set_code": null,
+        "number": null,
+        "name": "Magcargo",
+        "number_plain": null,
+        "set_id": "eece39b6-0d1b-48bf-8b41-9b154172a4c5"
+      },
+      "proposed_fields_under_review": {
+        "set_code": "ecard3",
+        "number": "H17",
+        "name": "Magcargo"
+      },
+      "direct_field_changes_under_review": {
+        "set_code": {
+          "before": null,
+          "after": "ecard3"
+        },
+        "number": {
+          "before": null,
+          "after": "H17"
+        }
+      },
+      "child_printing_rows_verified": 1,
+      "vault_items_referencing_target_at_review_time": 0
+    },
+    {
+      "card_print_id": "28d7a9bb-fcff-4e93-861d-d200770984d6",
+      "row_fingerprint_sha256": "5a28693025d9cd034e1e43745625540aaf25069d45781e01a7faa8a83a04b0ce",
+      "set_key": "ecard3",
+      "set_name": "Skyridge",
+      "review_priority": "medium",
+      "current_fields_from_review_snapshot": {
+        "set_code": null,
+        "number": null,
+        "name": "Magneton",
+        "number_plain": null,
+        "set_id": "eece39b6-0d1b-48bf-8b41-9b154172a4c5"
+      },
+      "proposed_fields_under_review": {
+        "set_code": "ecard3",
+        "number": "H18",
+        "name": "Magneton"
+      },
+      "direct_field_changes_under_review": {
+        "set_code": {
+          "before": null,
+          "after": "ecard3"
+        },
+        "number": {
+          "before": null,
+          "after": "H18"
+        }
+      },
+      "child_printing_rows_verified": 1,
+      "vault_items_referencing_target_at_review_time": 0
+    },
+    {
+      "card_print_id": "415065f4-68dd-44a9-a0f0-d6375e203275",
+      "row_fingerprint_sha256": "4e9f5f1925a8d37586af7f0ad101bf45c5d9c7b7b2aa8f4e266a0419d9afcf3d",
+      "set_key": "ecard3",
+      "set_name": "Skyridge",
+      "review_priority": "medium",
+      "current_fields_from_review_snapshot": {
+        "set_code": null,
+        "number": null,
+        "name": "Piloswine",
+        "number_plain": null,
+        "set_id": "eece39b6-0d1b-48bf-8b41-9b154172a4c5"
+      },
+      "proposed_fields_under_review": {
+        "set_code": "ecard3",
+        "number": "H22",
+        "name": "Piloswine"
+      },
+      "direct_field_changes_under_review": {
+        "set_code": {
+          "before": null,
+          "after": "ecard3"
+        },
+        "number": {
+          "before": null,
+          "after": "H22"
+        }
+      },
+      "child_printing_rows_verified": 1,
+      "vault_items_referencing_target_at_review_time": 0
+    },
+    {
+      "card_print_id": "b7c244c2-35bf-4dbd-836c-1341a777d65e",
+      "row_fingerprint_sha256": "fdac16c34ff19174096a80fe73881ee575855eb9abcbc26af6d623bc4e7b1ac6",
+      "set_key": "ecard3",
+      "set_name": "Skyridge",
+      "review_priority": "medium",
+      "current_fields_from_review_snapshot": {
+        "set_code": null,
+        "number": null,
+        "name": "Politoed",
+        "number_plain": null,
+        "set_id": "eece39b6-0d1b-48bf-8b41-9b154172a4c5"
+      },
+      "proposed_fields_under_review": {
+        "set_code": "ecard3",
+        "number": "H23",
+        "name": "Politoed"
+      },
+      "direct_field_changes_under_review": {
+        "set_code": {
+          "before": null,
+          "after": "ecard3"
+        },
+        "number": {
+          "before": null,
+          "after": "H23"
+        }
+      },
+      "child_printing_rows_verified": 1,
+      "vault_items_referencing_target_at_review_time": 0
+    },
+    {
+      "card_print_id": "e99d7d18-af64-4d34-b62c-8a795f6da2c3",
+      "row_fingerprint_sha256": "b3502f99495b237b438cf5f74f1a10825f38ca6d7aa1261821788f33003103bf",
+      "set_key": "ecard3",
+      "set_name": "Skyridge",
+      "review_priority": "medium",
+      "current_fields_from_review_snapshot": {
+        "set_code": null,
+        "number": null,
+        "name": "Poliwrath",
+        "number_plain": null,
+        "set_id": "eece39b6-0d1b-48bf-8b41-9b154172a4c5"
+      },
+      "proposed_fields_under_review": {
+        "set_code": "ecard3",
+        "number": "H24",
+        "name": "Poliwrath"
+      },
+      "direct_field_changes_under_review": {
+        "set_code": {
+          "before": null,
+          "after": "ecard3"
+        },
+        "number": {
+          "before": null,
+          "after": "H24"
+        }
+      },
+      "child_printing_rows_verified": 1,
+      "vault_items_referencing_target_at_review_time": 0
+    },
+    {
+      "card_print_id": "9a1cc452-e8b4-48bf-acc9-e592fe9cc521",
+      "row_fingerprint_sha256": "db2a2ff74c3aff1c65f803f526fa27955d949906ea370ecab5451bfe9dfc4392",
+      "set_key": "ecard3",
+      "set_name": "Skyridge",
+      "review_priority": "medium",
+      "current_fields_from_review_snapshot": {
+        "set_code": null,
+        "number": null,
+        "name": "Rhydon",
+        "number_plain": null,
+        "set_id": "eece39b6-0d1b-48bf-8b41-9b154172a4c5"
+      },
+      "proposed_fields_under_review": {
+        "set_code": "ecard3",
+        "number": "H27",
+        "name": "Rhydon"
+      },
+      "direct_field_changes_under_review": {
+        "set_code": {
+          "before": null,
+          "after": "ecard3"
+        },
+        "number": {
+          "before": null,
+          "after": "H27"
+        }
+      },
+      "child_printing_rows_verified": 1,
+      "vault_items_referencing_target_at_review_time": 0
+    },
+    {
+      "card_print_id": "abcf71f3-edd8-4130-aaa3-b7fecada39e2",
+      "row_fingerprint_sha256": "533cda05d202c1696a45d15642bb9d7db6a33d4da0b7428d02c605fb2f7aae44",
+      "set_key": "ecard3",
+      "set_name": "Skyridge",
+      "review_priority": "medium",
+      "current_fields_from_review_snapshot": {
+        "set_code": null,
+        "number": null,
+        "name": "Umbreon",
+        "number_plain": null,
+        "set_id": "eece39b6-0d1b-48bf-8b41-9b154172a4c5"
+      },
+      "proposed_fields_under_review": {
+        "set_code": "ecard3",
+        "number": "H30",
+        "name": "Umbreon"
+      },
+      "direct_field_changes_under_review": {
+        "set_code": {
+          "before": null,
+          "after": "ecard3"
+        },
+        "number": {
+          "before": null,
+          "after": "H30"
+        }
+      },
+      "child_printing_rows_verified": 1,
+      "vault_items_referencing_target_at_review_time": 0
+    },
+    {
+      "card_print_id": "7cbee94f-9f6a-441d-98e1-6a50da7f72d7",
+      "row_fingerprint_sha256": "d98d080969246baa5f9c94640ac9f84fff8f63be99ca23f093152d8cdc8433ac",
+      "set_key": "ecard3",
+      "set_name": "Skyridge",
+      "review_priority": "medium",
+      "current_fields_from_review_snapshot": {
+        "set_code": null,
+        "number": null,
+        "name": "Vaporeon",
+        "number_plain": null,
+        "set_id": "eece39b6-0d1b-48bf-8b41-9b154172a4c5"
+      },
+      "proposed_fields_under_review": {
+        "set_code": "ecard3",
+        "number": "H31",
+        "name": "Vaporeon"
+      },
+      "direct_field_changes_under_review": {
+        "set_code": {
+          "before": null,
+          "after": "ecard3"
+        },
+        "number": {
+          "before": null,
+          "after": "H31"
+        }
+      },
+      "child_printing_rows_verified": 1,
+      "vault_items_referencing_target_at_review_time": 0
+    },
+    {
+      "card_print_id": "2fdd39c8-7afa-4031-be84-649ac28a7b72",
+      "row_fingerprint_sha256": "77c553d9216784a49a5f547d77b81d965ba6a5d85098f5652c421588d38841b4",
+      "set_key": "ex10",
+      "set_name": "Unseen Forces",
+      "review_priority": "high",
+      "current_fields_from_review_snapshot": {
+        "set_code": null,
+        "number": null,
+        "name": "Entei Star",
+        "number_plain": null,
+        "set_id": "1d91834d-a6b6-4acf-906f-ce5145e5d93f"
+      },
+      "proposed_fields_under_review": {
+        "set_code": "ex10",
+        "number": "113",
+        "name": "Entei ★"
+      },
+      "direct_field_changes_under_review": {
+        "set_code": {
+          "before": null,
+          "after": "ex10"
+        },
+        "number": {
+          "before": null,
+          "after": "113"
+        },
+        "name": {
+          "before": "Entei Star",
+          "after": "Entei ★"
+        }
+      },
+      "child_printing_rows_verified": 1,
+      "vault_items_referencing_target_at_review_time": 0
+    },
+    {
+      "card_print_id": "043dbc47-0815-4ef4-b31d-2027f70f2338",
+      "row_fingerprint_sha256": "cb94b7e9b18440cf81c61d7a23ba5c3005ec355bebb46a3e1efe3ab6d7506389",
+      "set_key": "ex10",
+      "set_name": "Unseen Forces",
+      "review_priority": "high",
+      "current_fields_from_review_snapshot": {
+        "set_code": null,
+        "number": null,
+        "name": "Raikou Star",
+        "number_plain": null,
+        "set_id": "1d91834d-a6b6-4acf-906f-ce5145e5d93f"
+      },
+      "proposed_fields_under_review": {
+        "set_code": "ex10",
+        "number": "114",
+        "name": "Raikou ★"
+      },
+      "direct_field_changes_under_review": {
+        "set_code": {
+          "before": null,
+          "after": "ex10"
+        },
+        "number": {
+          "before": null,
+          "after": "114"
+        },
+        "name": {
+          "before": "Raikou Star",
+          "after": "Raikou ★"
+        }
+      },
+      "child_printing_rows_verified": 1,
+      "vault_items_referencing_target_at_review_time": 0
+    },
+    {
+      "card_print_id": "584c31ad-d7ac-4356-b9cc-4de3152511b2",
+      "row_fingerprint_sha256": "9ad141a712cdab5ab39fd9d1a5e58ae2e7ac4e18eeeac238e9cbaf751615c533",
+      "set_key": "ex10",
+      "set_name": "Unseen Forces",
+      "review_priority": "high",
+      "current_fields_from_review_snapshot": {
+        "set_code": null,
+        "number": null,
+        "name": "Suicune Star",
+        "number_plain": null,
+        "set_id": "1d91834d-a6b6-4acf-906f-ce5145e5d93f"
+      },
+      "proposed_fields_under_review": {
+        "set_code": "ex10",
+        "number": "115",
+        "name": "Suicune ★"
+      },
+      "direct_field_changes_under_review": {
+        "set_code": {
+          "before": null,
+          "after": "ex10"
+        },
+        "number": {
+          "before": null,
+          "after": "115"
+        },
+        "name": {
+          "before": "Suicune Star",
+          "after": "Suicune ★"
+        }
+      },
+      "child_printing_rows_verified": 1,
+      "vault_items_referencing_target_at_review_time": 0
+    },
+    {
+      "card_print_id": "a676888d-19e0-4064-89aa-e67019af5b95",
+      "row_fingerprint_sha256": "6772551718a6b259011f0a12d4f594e7aae3654b687bf29429259d59fc1d42ce",
+      "set_key": "fut2020",
+      "set_name": "Pokémon Futsal 2020",
+      "review_priority": "standard",
+      "current_fields_from_review_snapshot": {
+        "set_code": null,
+        "number": "1",
+        "name": "Pikachu on the Ball",
+        "number_plain": "1",
+        "set_id": "84b23610-ffe4-4bbd-a5b7-51131bb9fee1"
+      },
+      "proposed_fields_under_review": {
+        "set_code": "fut2020",
+        "number": "1",
+        "name": "Pikachu on the Ball"
+      },
+      "direct_field_changes_under_review": {
+        "set_code": {
+          "before": null,
+          "after": "fut2020"
+        }
+      },
+      "child_printing_rows_verified": 1,
+      "vault_items_referencing_target_at_review_time": 0
+    },
+    {
+      "card_print_id": "6419894a-137f-4fc7-8db1-fa853872b190",
+      "row_fingerprint_sha256": "8ec9f147519fba20bdc5df46c4a1f4f30ab731520e9098d275dc95d4d6a5daa3",
+      "set_key": "mep",
+      "set_name": "MEP Black Star Promos",
+      "review_priority": "standard",
+      "current_fields_from_review_snapshot": {
+        "set_code": null,
+        "number": "1",
+        "name": "Meganium",
+        "number_plain": "1",
+        "set_id": "3af96ea1-8897-4bb9-aa7e-cdfb98118bbf"
+      },
+      "proposed_fields_under_review": {
+        "set_code": "mep",
+        "number": "001",
+        "name": "Meganium"
+      },
+      "direct_field_changes_under_review": {
+        "set_code": {
+          "before": null,
+          "after": "mep"
+        },
+        "number": {
+          "before": "1",
+          "after": "001"
+        }
+      },
+      "child_printing_rows_verified": 1,
+      "vault_items_referencing_target_at_review_time": 0
+    },
+    {
+      "card_print_id": "b75d4730-3c1a-42ca-9d18-e8ca736ae41f",
+      "row_fingerprint_sha256": "16d1901603c68616ee94c31f76278aa77b82c569767df902ea500b9ad92fb131",
+      "set_key": "mep",
+      "set_name": "MEP Black Star Promos",
+      "review_priority": "standard",
+      "current_fields_from_review_snapshot": {
+        "set_code": null,
+        "number": "2",
+        "name": "Inteleon",
+        "number_plain": "2",
+        "set_id": "3af96ea1-8897-4bb9-aa7e-cdfb98118bbf"
+      },
+      "proposed_fields_under_review": {
+        "set_code": "mep",
+        "number": "002",
+        "name": "Inteleon"
+      },
+      "direct_field_changes_under_review": {
+        "set_code": {
+          "before": null,
+          "after": "mep"
+        },
+        "number": {
+          "before": "2",
+          "after": "002"
+        }
+      },
+      "child_printing_rows_verified": 1,
+      "vault_items_referencing_target_at_review_time": 0
+    },
+    {
+      "card_print_id": "aa9f207d-c9ea-4607-bbc5-448648bca47f",
+      "row_fingerprint_sha256": "833361c92d41a05556a3f8e7f982ad23ee2dc73742dd13816bf4bd763b71a788",
+      "set_key": "mep",
+      "set_name": "MEP Black Star Promos",
+      "review_priority": "standard",
+      "current_fields_from_review_snapshot": {
+        "set_code": null,
+        "number": "3",
+        "name": "Alakazam",
+        "number_plain": "3",
+        "set_id": "3af96ea1-8897-4bb9-aa7e-cdfb98118bbf"
+      },
+      "proposed_fields_under_review": {
+        "set_code": "mep",
+        "number": "003",
+        "name": "Alakazam"
+      },
+      "direct_field_changes_under_review": {
+        "set_code": {
+          "before": null,
+          "after": "mep"
+        },
+        "number": {
+          "before": "3",
+          "after": "003"
+        }
+      },
+      "child_printing_rows_verified": 1,
+      "vault_items_referencing_target_at_review_time": 0
+    },
+    {
+      "card_print_id": "bf523703-271c-49fe-b8aa-c31c57cb9b32",
+      "row_fingerprint_sha256": "fc27c42b1173b55d8d070e1aec861ee52db4e3b96f7c61c9789942cbf4bb08dc",
+      "set_key": "mep",
+      "set_name": "MEP Black Star Promos",
+      "review_priority": "standard",
+      "current_fields_from_review_snapshot": {
+        "set_code": null,
+        "number": "4",
+        "name": "Lunatone",
+        "number_plain": "4",
+        "set_id": "3af96ea1-8897-4bb9-aa7e-cdfb98118bbf"
+      },
+      "proposed_fields_under_review": {
+        "set_code": "mep",
+        "number": "004",
+        "name": "Lunatone"
+      },
+      "direct_field_changes_under_review": {
+        "set_code": {
+          "before": null,
+          "after": "mep"
+        },
+        "number": {
+          "before": "4",
+          "after": "004"
+        }
+      },
+      "child_printing_rows_verified": 1,
+      "vault_items_referencing_target_at_review_time": 0
+    },
+    {
+      "card_print_id": "04e533ae-dd17-478c-ab46-220859079b2c",
+      "row_fingerprint_sha256": "4c09aaa1ffc72af8d2a9c386f1c46296e9ac95e2519aa62daf0cf6726e4d129d",
+      "set_key": "mep",
+      "set_name": "MEP Black Star Promos",
+      "review_priority": "standard",
+      "current_fields_from_review_snapshot": {
+        "set_code": null,
+        "number": "5",
+        "name": "Drifloon",
+        "number_plain": "5",
+        "set_id": "3af96ea1-8897-4bb9-aa7e-cdfb98118bbf"
+      },
+      "proposed_fields_under_review": {
+        "set_code": "mep",
+        "number": "005",
+        "name": "Drifloon"
+      },
+      "direct_field_changes_under_review": {
+        "set_code": {
+          "before": null,
+          "after": "mep"
+        },
+        "number": {
+          "before": "5",
+          "after": "005"
+        }
+      },
+      "child_printing_rows_verified": 1,
+      "vault_items_referencing_target_at_review_time": 0
+    },
+    {
+      "card_print_id": "ac2b6cf7-6873-44e8-96b9-e03a179fae51",
+      "row_fingerprint_sha256": "9486ee14d054fd051b256a83291a7d3d9ed055e9aa3e9561151108b5bcaeb6ba",
+      "set_key": "mep",
+      "set_name": "MEP Black Star Promos",
+      "review_priority": "standard",
+      "current_fields_from_review_snapshot": {
+        "set_code": null,
+        "number": "6",
+        "name": "Drifblim",
+        "number_plain": "6",
+        "set_id": "3af96ea1-8897-4bb9-aa7e-cdfb98118bbf"
+      },
+      "proposed_fields_under_review": {
+        "set_code": "mep",
+        "number": "006",
+        "name": "Drifblim"
+      },
+      "direct_field_changes_under_review": {
+        "set_code": {
+          "before": null,
+          "after": "mep"
+        },
+        "number": {
+          "before": "6",
+          "after": "006"
+        }
+      },
+      "child_printing_rows_verified": 1,
+      "vault_items_referencing_target_at_review_time": 0
+    },
+    {
+      "card_print_id": "870f45fe-0680-4a92-b77b-dd03a6018bd3",
+      "row_fingerprint_sha256": "10b64dec2521d72560725035964cdad416ff55c51bc9aaf4275339a32d1d4ae0",
+      "set_key": "mep",
+      "set_name": "MEP Black Star Promos",
+      "review_priority": "standard",
+      "current_fields_from_review_snapshot": {
+        "set_code": null,
+        "number": "7",
+        "name": "Psyduck",
+        "number_plain": "7",
+        "set_id": "3af96ea1-8897-4bb9-aa7e-cdfb98118bbf"
+      },
+      "proposed_fields_under_review": {
+        "set_code": "mep",
+        "number": "007",
+        "name": "Psyduck"
+      },
+      "direct_field_changes_under_review": {
+        "set_code": {
+          "before": null,
+          "after": "mep"
+        },
+        "number": {
+          "before": "7",
+          "after": "007"
+        }
+      },
+      "child_printing_rows_verified": 1,
+      "vault_items_referencing_target_at_review_time": 0
+    },
+    {
+      "card_print_id": "47f874b2-ea20-4b89-af44-085905bb1f60",
+      "row_fingerprint_sha256": "a4e615b61e6464e16c4b085f71b8e6ece8547266d3a13e9452d6ac7d6c83bad3",
+      "set_key": "mep",
+      "set_name": "MEP Black Star Promos",
+      "review_priority": "standard",
+      "current_fields_from_review_snapshot": {
+        "set_code": null,
+        "number": "8",
+        "name": "Golduck",
+        "number_plain": "8",
+        "set_id": "3af96ea1-8897-4bb9-aa7e-cdfb98118bbf"
+      },
+      "proposed_fields_under_review": {
+        "set_code": "mep",
+        "number": "008",
+        "name": "Golduck"
+      },
+      "direct_field_changes_under_review": {
+        "set_code": {
+          "before": null,
+          "after": "mep"
+        },
+        "number": {
+          "before": "8",
+          "after": "008"
+        }
+      },
+      "child_printing_rows_verified": 1,
+      "vault_items_referencing_target_at_review_time": 0
+    },
+    {
+      "card_print_id": "a3624761-be25-4841-83e4-c5936ec434fe",
+      "row_fingerprint_sha256": "ef35482ab99d733252e1782bfd63ca571b2b6aaadf203e9bcfa533ed75da9d8c",
+      "set_key": "mep",
+      "set_name": "MEP Black Star Promos",
+      "review_priority": "standard",
+      "current_fields_from_review_snapshot": {
+        "set_code": null,
+        "number": "9",
+        "name": "Alakazam",
+        "number_plain": "9",
+        "set_id": "3af96ea1-8897-4bb9-aa7e-cdfb98118bbf"
+      },
+      "proposed_fields_under_review": {
+        "set_code": "mep",
+        "number": "009",
+        "name": "Alakazam"
+      },
+      "direct_field_changes_under_review": {
+        "set_code": {
+          "before": null,
+          "after": "mep"
+        },
+        "number": {
+          "before": "9",
+          "after": "009"
+        }
+      },
+      "child_printing_rows_verified": 1,
+      "vault_items_referencing_target_at_review_time": 0
+    },
+    {
+      "card_print_id": "242de512-f2fb-4994-9615-6c1e2c55ac02",
+      "row_fingerprint_sha256": "da3e08e47345733e7c38f8e8ff1397118f4088a1da96b204897ab9e51fbe2dd9",
+      "set_key": "mep",
+      "set_name": "MEP Black Star Promos",
+      "review_priority": "standard",
+      "current_fields_from_review_snapshot": {
+        "set_code": null,
+        "number": "10",
+        "name": "Riolu",
+        "number_plain": "10",
+        "set_id": "3af96ea1-8897-4bb9-aa7e-cdfb98118bbf"
+      },
+      "proposed_fields_under_review": {
+        "set_code": "mep",
+        "number": "010",
+        "name": "Riolu"
+      },
+      "direct_field_changes_under_review": {
+        "set_code": {
+          "before": null,
+          "after": "mep"
+        },
+        "number": {
+          "before": "10",
+          "after": "010"
+        }
+      },
+      "child_printing_rows_verified": 1,
+      "vault_items_referencing_target_at_review_time": 0
+    },
+    {
+      "card_print_id": "cfbaec4b-bc98-4f6f-8b06-a30dbe29af30",
+      "row_fingerprint_sha256": "dacfb97069e659f2535003c6ac87501e94469b4647e8c848aecc57ff64960363",
+      "set_key": "pl1",
+      "set_name": "Platinum",
+      "review_priority": "standard",
+      "current_fields_from_review_snapshot": {
+        "set_code": null,
+        "number": null,
+        "name": "Dialga",
+        "number_plain": null,
+        "set_id": "527ab611-6142-40e4-844b-0eb395007e7b"
+      },
+      "proposed_fields_under_review": {
+        "set_code": "pl1",
+        "number": "6",
+        "name": "Dialga"
+      },
+      "direct_field_changes_under_review": {
+        "set_code": {
+          "before": null,
+          "after": "pl1"
+        },
+        "number": {
+          "before": null,
+          "after": "6"
+        }
+      },
+      "child_printing_rows_verified": 2,
+      "vault_items_referencing_target_at_review_time": 0
+    },
+    {
+      "card_print_id": "9d20653b-49ea-4a30-8e18-629267d7397b",
+      "row_fingerprint_sha256": "b1783f03eccd23c19cc1209ceba331d39c37fa2c10abf6c399eb2bf02157a380",
+      "set_key": "pl1",
+      "set_name": "Platinum",
+      "review_priority": "standard",
+      "current_fields_from_review_snapshot": {
+        "set_code": null,
+        "number": null,
+        "name": "Dialga G",
+        "number_plain": null,
+        "set_id": "527ab611-6142-40e4-844b-0eb395007e7b"
+      },
+      "proposed_fields_under_review": {
+        "set_code": "pl1",
+        "number": "122",
+        "name": "Dialga G"
+      },
+      "direct_field_changes_under_review": {
+        "set_code": {
+          "before": null,
+          "after": "pl1"
+        },
+        "number": {
+          "before": null,
+          "after": "122"
+        }
+      },
+      "child_printing_rows_verified": 1,
+      "vault_items_referencing_target_at_review_time": 0
+    },
+    {
+      "card_print_id": "1cc5b95e-c5b7-477c-a3c1-1d4c26e10875",
+      "row_fingerprint_sha256": "f1c0f3d471452ef213515109dbdf847281cf336e3a1acda521e893d856e130ca",
+      "set_key": "pl1",
+      "set_name": "Platinum",
+      "review_priority": "standard",
+      "current_fields_from_review_snapshot": {
+        "set_code": null,
+        "number": null,
+        "name": "Drapion",
+        "number_plain": null,
+        "set_id": "527ab611-6142-40e4-844b-0eb395007e7b"
+      },
+      "proposed_fields_under_review": {
+        "set_code": "pl1",
+        "number": "123",
+        "name": "Drapion"
+      },
+      "direct_field_changes_under_review": {
+        "set_code": {
+          "before": null,
+          "after": "pl1"
+        },
+        "number": {
+          "before": null,
+          "after": "123"
+        }
+      },
+      "child_printing_rows_verified": 1,
+      "vault_items_referencing_target_at_review_time": 0
+    },
+    {
+      "card_print_id": "9deb3714-1f02-4eb2-a249-6b3b42a106cb",
+      "row_fingerprint_sha256": "b23a4b12e3cc9249acdebfdc06bd87ba9c6ea1595da83d0f621bb826a4f1b1bd",
+      "set_key": "pl1",
+      "set_name": "Platinum",
+      "review_priority": "standard",
+      "current_fields_from_review_snapshot": {
+        "set_code": null,
+        "number": null,
+        "name": "Giratina",
+        "number_plain": null,
+        "set_id": "527ab611-6142-40e4-844b-0eb395007e7b"
+      },
+      "proposed_fields_under_review": {
+        "set_code": "pl1",
+        "number": "124",
+        "name": "Giratina"
+      },
+      "direct_field_changes_under_review": {
+        "set_code": {
+          "before": null,
+          "after": "pl1"
+        },
+        "number": {
+          "before": null,
+          "after": "124"
+        }
+      },
+      "child_printing_rows_verified": 1,
+      "vault_items_referencing_target_at_review_time": 0
+    },
+    {
+      "card_print_id": "182aab06-7802-4dea-90cb-32dfc7cefaab",
+      "row_fingerprint_sha256": "12b1eb35331d774f32ce6d5baddd244bdfa32deddb4e99f68b4a6dce7ddb6fad",
+      "set_key": "pl1",
+      "set_name": "Platinum",
+      "review_priority": "standard",
+      "current_fields_from_review_snapshot": {
+        "set_code": null,
+        "number": null,
+        "name": "Palkia G",
+        "number_plain": null,
+        "set_id": "527ab611-6142-40e4-844b-0eb395007e7b"
+      },
+      "proposed_fields_under_review": {
+        "set_code": "pl1",
+        "number": "125",
+        "name": "Palkia G"
+      },
+      "direct_field_changes_under_review": {
+        "set_code": {
+          "before": null,
+          "after": "pl1"
+        },
+        "number": {
+          "before": null,
+          "after": "125"
+        }
+      },
+      "child_printing_rows_verified": 1,
+      "vault_items_referencing_target_at_review_time": 0
+    },
+    {
+      "card_print_id": "24bd8689-4031-40d0-8948-1d08e652ef34",
+      "row_fingerprint_sha256": "f738af5659f82ce9ffb92f9e9ed8cccaf9d1eaa0fead050b11d678c091f265f9",
+      "set_key": "pl1",
+      "set_name": "Platinum",
+      "review_priority": "standard",
+      "current_fields_from_review_snapshot": {
+        "set_code": null,
+        "number": null,
+        "name": "Shaymin",
+        "number_plain": null,
+        "set_id": "527ab611-6142-40e4-844b-0eb395007e7b"
+      },
+      "proposed_fields_under_review": {
+        "set_code": "pl1",
+        "number": "126",
+        "name": "Shaymin"
+      },
+      "direct_field_changes_under_review": {
+        "set_code": {
+          "before": null,
+          "after": "pl1"
+        },
+        "number": {
+          "before": null,
+          "after": "126"
+        }
+      },
+      "child_printing_rows_verified": 1,
+      "vault_items_referencing_target_at_review_time": 0
+    },
+    {
+      "card_print_id": "1f03518a-bed9-4c04-ad0c-3a5cf3008248",
+      "row_fingerprint_sha256": "86977fed6cfec64eb95c77fa86fe505b4093769bbc1f8c15a70e2e8ce5241170",
+      "set_key": "pl1",
+      "set_name": "Platinum",
+      "review_priority": "standard",
+      "current_fields_from_review_snapshot": {
+        "set_code": null,
+        "number": null,
+        "name": "Shaymin",
+        "number_plain": null,
+        "set_id": "527ab611-6142-40e4-844b-0eb395007e7b"
+      },
+      "proposed_fields_under_review": {
+        "set_code": "pl1",
+        "number": "127",
+        "name": "Shaymin"
+      },
+      "direct_field_changes_under_review": {
+        "set_code": {
+          "before": null,
+          "after": "pl1"
+        },
+        "number": {
+          "before": null,
+          "after": "127"
+        }
+      },
+      "child_printing_rows_verified": 1,
+      "vault_items_referencing_target_at_review_time": 0
+    },
+    {
+      "card_print_id": "74b9d351-aecc-4ff9-8ed2-958311074af7",
+      "row_fingerprint_sha256": "3ddc72704cfbd59fad5fab34f94928aee2f75c1c104a8e384bf457bc16cae831",
+      "set_key": "pl1",
+      "set_name": "Platinum",
+      "review_priority": "medium",
+      "current_fields_from_review_snapshot": {
+        "set_code": null,
+        "number": null,
+        "name": "Lotad",
+        "number_plain": null,
+        "set_id": "527ab611-6142-40e4-844b-0eb395007e7b"
+      },
+      "proposed_fields_under_review": {
+        "set_code": "pl1",
+        "number": "SH4",
+        "name": "Lotad"
+      },
+      "direct_field_changes_under_review": {
+        "set_code": {
+          "before": null,
+          "after": "pl1"
+        },
+        "number": {
+          "before": null,
+          "after": "SH4"
+        }
+      },
+      "child_printing_rows_verified": 1,
+      "vault_items_referencing_target_at_review_time": 0
+    },
+    {
+      "card_print_id": "e48e17b9-b693-4882-9e9f-d177dbce37c8",
+      "row_fingerprint_sha256": "38c4511974b9d649b3de92aca6effa1bf1b2cf2ad2f63c1d38b89f4fb0d31db6",
+      "set_key": "pl1",
+      "set_name": "Platinum",
+      "review_priority": "medium",
+      "current_fields_from_review_snapshot": {
+        "set_code": null,
+        "number": null,
+        "name": "Swablu",
+        "number_plain": null,
+        "set_id": "527ab611-6142-40e4-844b-0eb395007e7b"
+      },
+      "proposed_fields_under_review": {
+        "set_code": "pl1",
+        "number": "SH5",
+        "name": "Swablu"
+      },
+      "direct_field_changes_under_review": {
+        "set_code": {
+          "before": null,
+          "after": "pl1"
+        },
+        "number": {
+          "before": null,
+          "after": "SH5"
+        }
+      },
+      "child_printing_rows_verified": 1,
+      "vault_items_referencing_target_at_review_time": 0
+    },
+    {
+      "card_print_id": "2ebe059c-614e-4dd6-812f-ebf268459ce5",
+      "row_fingerprint_sha256": "f36df4f2964ca2200ed3c2a671c1fb4ed81a3eb6b3e609699ca2d96293a90824",
+      "set_key": "pl2",
+      "set_name": "Rising Rivals",
+      "review_priority": "standard",
+      "current_fields_from_review_snapshot": {
+        "set_code": null,
+        "number": null,
+        "name": "Arcanine",
+        "number_plain": null,
+        "set_id": "1b4f553a-f12c-4616-bead-ac5081865492"
+      },
+      "proposed_fields_under_review": {
+        "set_code": "pl2",
+        "number": "1",
+        "name": "Arcanine"
+      },
+      "direct_field_changes_under_review": {
+        "set_code": {
+          "before": null,
+          "after": "pl2"
+        },
+        "number": {
+          "before": null,
+          "after": "1"
+        }
+      },
+      "child_printing_rows_verified": 2,
+      "vault_items_referencing_target_at_review_time": 0
+    },
+    {
+      "card_print_id": "9d6eb3c7-dc61-4543-b436-a67fd23ba16c",
+      "row_fingerprint_sha256": "c5a750fefee040af892fd40c2100626718bd969b2e38a65238e935406e2e8367",
+      "set_key": "pl2",
+      "set_name": "Rising Rivals",
+      "review_priority": "standard",
+      "current_fields_from_review_snapshot": {
+        "set_code": null,
+        "number": null,
+        "name": "Darkrai G",
+        "number_plain": null,
+        "set_id": "1b4f553a-f12c-4616-bead-ac5081865492"
+      },
+      "proposed_fields_under_review": {
+        "set_code": "pl2",
+        "number": "3",
+        "name": "Darkrai G"
+      },
+      "direct_field_changes_under_review": {
+        "set_code": {
+          "before": null,
+          "after": "pl2"
+        },
+        "number": {
+          "before": null,
+          "after": "3"
+        }
+      },
+      "child_printing_rows_verified": 2,
+      "vault_items_referencing_target_at_review_time": 0
+    },
+    {
+      "card_print_id": "1970689f-8f93-4148-96b2-0ed8ed149568",
+      "row_fingerprint_sha256": "a205850698289b8d029d017d1aa44a61e3fc5cdb97931187d0088498e3a6d2eb",
+      "set_key": "pl2",
+      "set_name": "Rising Rivals",
+      "review_priority": "standard",
+      "current_fields_from_review_snapshot": {
+        "set_code": null,
+        "number": null,
+        "name": "Flygon",
+        "number_plain": null,
+        "set_id": "1b4f553a-f12c-4616-bead-ac5081865492"
+      },
+      "proposed_fields_under_review": {
+        "set_code": "pl2",
+        "number": "5",
+        "name": "Flygon"
+      },
+      "direct_field_changes_under_review": {
+        "set_code": {
+          "before": null,
+          "after": "pl2"
+        },
+        "number": {
+          "before": null,
+          "after": "5"
+        }
+      },
+      "child_printing_rows_verified": 3,
+      "vault_items_referencing_target_at_review_time": 0
+    },
+    {
+      "card_print_id": "8c817161-627f-4ff5-aa27-127757b88213",
+      "row_fingerprint_sha256": "7f1d481d17944546e63ae13d3ced2d54752baf73678b98a1a192849f6116e965",
+      "set_key": "pl2",
+      "set_name": "Rising Rivals",
+      "review_priority": "high",
+      "current_fields_from_review_snapshot": {
+        "set_code": null,
+        "number": null,
+        "name": "Nidoran♀",
+        "number_plain": null,
+        "set_id": "1b4f553a-f12c-4616-bead-ac5081865492"
+      },
+      "proposed_fields_under_review": {
+        "set_code": "pl2",
+        "number": "71",
+        "name": "Nidoran ♀"
+      },
+      "direct_field_changes_under_review": {
+        "set_code": {
+          "before": null,
+          "after": "pl2"
+        },
+        "number": {
+          "before": null,
+          "after": "71"
+        },
+        "name": {
+          "before": "Nidoran♀",
+          "after": "Nidoran ♀"
+        }
+      },
+      "child_printing_rows_verified": 2,
+      "vault_items_referencing_target_at_review_time": 0
+    },
+    {
+      "card_print_id": "bc120b0e-4aad-47c1-989b-a733435a2000",
+      "row_fingerprint_sha256": "d0228073a6f089f06c75d40c5effa9c4aa2fc6f234788f365278a825c59a5f0d",
+      "set_key": "pl2",
+      "set_name": "Rising Rivals",
+      "review_priority": "high",
+      "current_fields_from_review_snapshot": {
+        "set_code": null,
+        "number": null,
+        "name": "Nidoran♂",
+        "number_plain": null,
+        "set_id": "1b4f553a-f12c-4616-bead-ac5081865492"
+      },
+      "proposed_fields_under_review": {
+        "set_code": "pl2",
+        "number": "72",
+        "name": "Nidoran ♂"
+      },
+      "direct_field_changes_under_review": {
+        "set_code": {
+          "before": null,
+          "after": "pl2"
+        },
+        "number": {
+          "before": null,
+          "after": "72"
+        },
+        "name": {
+          "before": "Nidoran♂",
+          "after": "Nidoran ♂"
+        }
+      },
+      "child_printing_rows_verified": 2,
+      "vault_items_referencing_target_at_review_time": 0
+    },
+    {
+      "card_print_id": "f619ad6c-007c-4e4d-bea0-a4a517cffa50",
+      "row_fingerprint_sha256": "79cdcff682e9e65ea2c1704319b21358f8c6d7263137c0b98047f5a62c14913e",
+      "set_key": "pl2",
+      "set_name": "Rising Rivals",
+      "review_priority": "standard",
+      "current_fields_from_review_snapshot": {
+        "set_code": null,
+        "number": null,
+        "name": "Team Galactic's Invention G-107 Technical Machine",
+        "number_plain": null,
+        "set_id": "1b4f553a-f12c-4616-bead-ac5081865492"
+      },
+      "proposed_fields_under_review": {
+        "set_code": "pl2",
+        "number": "95",
+        "name": "Team Galactic's Invention G-107 Technical Machine"
+      },
+      "direct_field_changes_under_review": {
+        "set_code": {
+          "before": null,
+          "after": "pl2"
+        },
+        "number": {
+          "before": null,
+          "after": "95"
+        }
+      },
+      "child_printing_rows_verified": 2,
+      "vault_items_referencing_target_at_review_time": 0
+    },
+    {
+      "card_print_id": "a1b66404-67e9-4586-8ac9-873c421da31e",
+      "row_fingerprint_sha256": "e5b28df6e0b1f58a71b1af65cd9b4095545685647cf73534c323b14a833e2c57",
+      "set_key": "pl2",
+      "set_name": "Rising Rivals",
+      "review_priority": "standard",
+      "current_fields_from_review_snapshot": {
+        "set_code": null,
+        "number": null,
+        "name": "Alakazam 4",
+        "number_plain": null,
+        "set_id": "1b4f553a-f12c-4616-bead-ac5081865492"
+      },
+      "proposed_fields_under_review": {
+        "set_code": "pl2",
+        "number": "103",
+        "name": "Alakazam 4"
+      },
+      "direct_field_changes_under_review": {
+        "set_code": {
+          "before": null,
+          "after": "pl2"
+        },
+        "number": {
+          "before": null,
+          "after": "103"
+        }
+      },
+      "child_printing_rows_verified": 1,
+      "vault_items_referencing_target_at_review_time": 0
+    },
+    {
+      "card_print_id": "5fd2b141-a2af-4c2c-bb33-df2c2af58c02",
+      "row_fingerprint_sha256": "e66cb2de667c6807aef9e867675eecd87468b2752e544544f9afddc40ceeb927",
+      "set_key": "pl2",
+      "set_name": "Rising Rivals",
+      "review_priority": "standard",
+      "current_fields_from_review_snapshot": {
+        "set_code": null,
+        "number": null,
+        "name": "Floatzel GL",
+        "number_plain": null,
+        "set_id": "1b4f553a-f12c-4616-bead-ac5081865492"
+      },
+      "proposed_fields_under_review": {
+        "set_code": "pl2",
+        "number": "104",
+        "name": "Floatzel GL"
+      },
+      "direct_field_changes_under_review": {
+        "set_code": {
+          "before": null,
+          "after": "pl2"
+        },
+        "number": {
+          "before": null,
+          "after": "104"
+        }
+      },
+      "child_printing_rows_verified": 1,
+      "vault_items_referencing_target_at_review_time": 0
+    },
+    {
+      "card_print_id": "7d47083d-43a4-4868-9bac-eb1deb237136",
+      "row_fingerprint_sha256": "2d9b7ac2a7a10222dfddce65122813b5e10ca13277382de0f2880b1084b1b29c",
+      "set_key": "pl2",
+      "set_name": "Rising Rivals",
+      "review_priority": "standard",
+      "current_fields_from_review_snapshot": {
+        "set_code": null,
+        "number": null,
+        "name": "Flygon",
+        "number_plain": null,
+        "set_id": "1b4f553a-f12c-4616-bead-ac5081865492"
+      },
+      "proposed_fields_under_review": {
+        "set_code": "pl2",
+        "number": "105",
+        "name": "Flygon"
+      },
+      "direct_field_changes_under_review": {
+        "set_code": {
+          "before": null,
+          "after": "pl2"
+        },
+        "number": {
+          "before": null,
+          "after": "105"
+        }
+      },
+      "child_printing_rows_verified": 1,
+      "vault_items_referencing_target_at_review_time": 0
+    },
+    {
+      "card_print_id": "60789fd6-a0bb-49cd-848f-1ba462f4e965",
+      "row_fingerprint_sha256": "82ddfa69f41bc21180b01564a309dc1c1b687aa2d7077576cb9819e811965375",
+      "set_key": "pl2",
+      "set_name": "Rising Rivals",
+      "review_priority": "standard",
+      "current_fields_from_review_snapshot": {
+        "set_code": null,
+        "number": null,
+        "name": "Gallade 4",
+        "number_plain": null,
+        "set_id": "1b4f553a-f12c-4616-bead-ac5081865492"
+      },
+      "proposed_fields_under_review": {
+        "set_code": "pl2",
+        "number": "106",
+        "name": "Gallade 4"
+      },
+      "direct_field_changes_under_review": {
+        "set_code": {
+          "before": null,
+          "after": "pl2"
+        },
+        "number": {
+          "before": null,
+          "after": "106"
+        }
+      },
+      "child_printing_rows_verified": 1,
+      "vault_items_referencing_target_at_review_time": 0
+    },
+    {
+      "card_print_id": "2ef89f59-3bd7-430f-9e71-42fea8cdd8ae",
+      "row_fingerprint_sha256": "1ebe42be716fb61fb53cc4af867b4d14686ae88fb3f12ad53a729716f1031c49",
+      "set_key": "pl2",
+      "set_name": "Rising Rivals",
+      "review_priority": "standard",
+      "current_fields_from_review_snapshot": {
+        "set_code": null,
+        "number": null,
+        "name": "Hippowdon",
+        "number_plain": null,
+        "set_id": "1b4f553a-f12c-4616-bead-ac5081865492"
+      },
+      "proposed_fields_under_review": {
+        "set_code": "pl2",
+        "number": "107",
+        "name": "Hippowdon"
+      },
+      "direct_field_changes_under_review": {
+        "set_code": {
+          "before": null,
+          "after": "pl2"
+        },
+        "number": {
+          "before": null,
+          "after": "107"
+        }
+      },
+      "child_printing_rows_verified": 1,
+      "vault_items_referencing_target_at_review_time": 0
+    },
+    {
+      "card_print_id": "a719dd63-f527-4edf-8c8e-e77bac65a715",
+      "row_fingerprint_sha256": "66afe7e7c62a71d793aba186c7666f5c6115694ee8100275272eb87a8bcb799e",
+      "set_key": "pl2",
+      "set_name": "Rising Rivals",
+      "review_priority": "standard",
+      "current_fields_from_review_snapshot": {
+        "set_code": null,
+        "number": null,
+        "name": "Infernape 4",
+        "number_plain": null,
+        "set_id": "1b4f553a-f12c-4616-bead-ac5081865492"
+      },
+      "proposed_fields_under_review": {
+        "set_code": "pl2",
+        "number": "108",
+        "name": "Infernape 4"
+      },
+      "direct_field_changes_under_review": {
+        "set_code": {
+          "before": null,
+          "after": "pl2"
+        },
+        "number": {
+          "before": null,
+          "after": "108"
+        }
+      },
+      "child_printing_rows_verified": 1,
+      "vault_items_referencing_target_at_review_time": 0
+    },
+    {
+      "card_print_id": "26d6335d-9483-4de2-8b1b-771c43ab31cb",
+      "row_fingerprint_sha256": "a4b9b10adbbfab21c9aa8427777babb07a70da5b5ad107795729bd345650bea2",
+      "set_key": "pl2",
+      "set_name": "Rising Rivals",
+      "review_priority": "standard",
+      "current_fields_from_review_snapshot": {
+        "set_code": null,
+        "number": null,
+        "name": "Mismagius GL",
+        "number_plain": null,
+        "set_id": "1b4f553a-f12c-4616-bead-ac5081865492"
+      },
+      "proposed_fields_under_review": {
+        "set_code": "pl2",
+        "number": "110",
+        "name": "Mismagius GL"
+      },
+      "direct_field_changes_under_review": {
+        "set_code": {
+          "before": null,
+          "after": "pl2"
+        },
+        "number": {
+          "before": null,
+          "after": "110"
+        }
+      },
+      "child_printing_rows_verified": 1,
+      "vault_items_referencing_target_at_review_time": 0
+    },
+    {
+      "card_print_id": "25c91739-b09a-4360-94e5-9a8b1ed43755",
+      "row_fingerprint_sha256": "8212c8e484678b615a5098789b0a58c8b81795633edc35089acd65cff0b390f2",
+      "set_key": "pl2",
+      "set_name": "Rising Rivals",
+      "review_priority": "standard",
+      "current_fields_from_review_snapshot": {
+        "set_code": null,
+        "number": null,
+        "name": "Snorlax",
+        "number_plain": null,
+        "set_id": "1b4f553a-f12c-4616-bead-ac5081865492"
+      },
+      "proposed_fields_under_review": {
+        "set_code": "pl2",
+        "number": "111",
+        "name": "Snorlax"
+      },
+      "direct_field_changes_under_review": {
+        "set_code": {
+          "before": null,
+          "after": "pl2"
+        },
+        "number": {
+          "before": null,
+          "after": "111"
+        }
+      },
+      "child_printing_rows_verified": 1,
+      "vault_items_referencing_target_at_review_time": 0
+    },
+    {
+      "card_print_id": "f5ada689-45c1-4b23-ac62-6a9f0bc11c97",
+      "row_fingerprint_sha256": "9b4aabb03c9f876fd4780d2afa028dba2b4bc3dae783e0fa0b536ed4027f32c2",
+      "set_key": "pl2",
+      "set_name": "Rising Rivals",
+      "review_priority": "medium",
+      "current_fields_from_review_snapshot": {
+        "set_code": null,
+        "number": null,
+        "name": "Frost Rotom",
+        "number_plain": null,
+        "set_id": "1b4f553a-f12c-4616-bead-ac5081865492"
+      },
+      "proposed_fields_under_review": {
+        "set_code": "pl2",
+        "number": "RT2",
+        "name": "Frost Rotom"
+      },
+      "direct_field_changes_under_review": {
+        "set_code": {
+          "before": null,
+          "after": "pl2"
+        },
+        "number": {
+          "before": null,
+          "after": "RT2"
+        }
+      },
+      "child_printing_rows_verified": 1,
+      "vault_items_referencing_target_at_review_time": 0
+    },
+    {
+      "card_print_id": "949f5c1d-6d29-41cd-91c9-0be81e5360c5",
+      "row_fingerprint_sha256": "e5d829c7efd58889386e925a9e80ecf01f8baef33533330c217106fd580e2b24",
+      "set_key": "pl2",
+      "set_name": "Rising Rivals",
+      "review_priority": "medium",
+      "current_fields_from_review_snapshot": {
+        "set_code": null,
+        "number": null,
+        "name": "Mow Rotom",
+        "number_plain": null,
+        "set_id": "1b4f553a-f12c-4616-bead-ac5081865492"
+      },
+      "proposed_fields_under_review": {
+        "set_code": "pl2",
+        "number": "RT4",
+        "name": "Mow Rotom"
+      },
+      "direct_field_changes_under_review": {
+        "set_code": {
+          "before": null,
+          "after": "pl2"
+        },
+        "number": {
+          "before": null,
+          "after": "RT4"
+        }
+      },
+      "child_printing_rows_verified": 1,
+      "vault_items_referencing_target_at_review_time": 0
+    },
+    {
+      "card_print_id": "0a14f347-5dd0-425a-9c9c-ffd134a9de4f",
+      "row_fingerprint_sha256": "cf238581b537a1a756867c5629faf70f932894f0a5538d4a6b86a899042a5695",
+      "set_key": "pl2",
+      "set_name": "Rising Rivals",
+      "review_priority": "medium",
+      "current_fields_from_review_snapshot": {
+        "set_code": null,
+        "number": null,
+        "name": "Charon's Choice",
+        "number_plain": null,
+        "set_id": "1b4f553a-f12c-4616-bead-ac5081865492"
+      },
+      "proposed_fields_under_review": {
+        "set_code": "pl2",
+        "number": "RT6",
+        "name": "Charon's Choice"
+      },
+      "direct_field_changes_under_review": {
+        "set_code": {
+          "before": null,
+          "after": "pl2"
+        },
+        "number": {
+          "before": null,
+          "after": "RT6"
+        }
+      },
+      "child_printing_rows_verified": 1,
+      "vault_items_referencing_target_at_review_time": 0
+    },
+    {
+      "card_print_id": "8cd92a82-149d-43b4-a7d3-d65782536182",
+      "row_fingerprint_sha256": "796ffb0e234cee2d777b027ebb2c0e819eb321c2990f2425ad75fc88d649a5c8",
+      "set_key": "pl3",
+      "set_name": "Supreme Victors",
+      "review_priority": "standard",
+      "current_fields_from_review_snapshot": {
+        "set_code": null,
+        "number": null,
+        "name": "Absol G",
+        "number_plain": null,
+        "set_id": "77b0bdbe-6bf1-422d-b3d0-3c403e4c8e8d"
+      },
+      "proposed_fields_under_review": {
+        "set_code": "pl3",
+        "number": "141",
+        "name": "Absol G"
+      },
+      "direct_field_changes_under_review": {
+        "set_code": {
+          "before": null,
+          "after": "pl3"
+        },
+        "number": {
+          "before": null,
+          "after": "141"
+        }
+      },
+      "child_printing_rows_verified": 1,
+      "vault_items_referencing_target_at_review_time": 0
+    },
+    {
+      "card_print_id": "79097350-eb58-44e8-bd39-3ec5f417f02b",
+      "row_fingerprint_sha256": "7971cbd05d3e7459f0debe50ccd774a3ceed0ff3be28521831a53a4ebdcab730",
+      "set_key": "pl3",
+      "set_name": "Supreme Victors",
+      "review_priority": "standard",
+      "current_fields_from_review_snapshot": {
+        "set_code": null,
+        "number": null,
+        "name": "Blaziken FB",
+        "number_plain": null,
+        "set_id": "77b0bdbe-6bf1-422d-b3d0-3c403e4c8e8d"
+      },
+      "proposed_fields_under_review": {
+        "set_code": "pl3",
+        "number": "142",
+        "name": "Blaziken FB"
+      },
+      "direct_field_changes_under_review": {
+        "set_code": {
+          "before": null,
+          "after": "pl3"
+        },
+        "number": {
+          "before": null,
+          "after": "142"
+        }
+      },
+      "child_printing_rows_verified": 1,
+      "vault_items_referencing_target_at_review_time": 0
+    },
+    {
+      "card_print_id": "880dc8c7-6959-4fda-b79a-32e48c684267",
+      "row_fingerprint_sha256": "34042a45f336827255f0c1db5dc0aab8497bc6ca69d224926f4e09e1ab96f668",
+      "set_key": "pl3",
+      "set_name": "Supreme Victors",
+      "review_priority": "standard",
+      "current_fields_from_review_snapshot": {
+        "set_code": null,
+        "number": null,
+        "name": "Charizard G",
+        "number_plain": null,
+        "set_id": "77b0bdbe-6bf1-422d-b3d0-3c403e4c8e8d"
+      },
+      "proposed_fields_under_review": {
+        "set_code": "pl3",
+        "number": "143",
+        "name": "Charizard G"
+      },
+      "direct_field_changes_under_review": {
+        "set_code": {
+          "before": null,
+          "after": "pl3"
+        },
+        "number": {
+          "before": null,
+          "after": "143"
+        }
+      },
+      "child_printing_rows_verified": 1,
+      "vault_items_referencing_target_at_review_time": 0
+    },
+    {
+      "card_print_id": "29a4bca4-6264-45f6-bc24-1d5ded5520cd",
+      "row_fingerprint_sha256": "78eca7bdb78f683efe1f2b7de89a8c5266e4a3799110c7cde8793a9b57d3669e",
+      "set_key": "pl3",
+      "set_name": "Supreme Victors",
+      "review_priority": "standard",
+      "current_fields_from_review_snapshot": {
+        "set_code": null,
+        "number": null,
+        "name": "Electivire FB",
+        "number_plain": null,
+        "set_id": "77b0bdbe-6bf1-422d-b3d0-3c403e4c8e8d"
+      },
+      "proposed_fields_under_review": {
+        "set_code": "pl3",
+        "number": "144",
+        "name": "Electivire FB"
+      },
+      "direct_field_changes_under_review": {
+        "set_code": {
+          "before": null,
+          "after": "pl3"
+        },
+        "number": {
+          "before": null,
+          "after": "144"
+        }
+      },
+      "child_printing_rows_verified": 1,
+      "vault_items_referencing_target_at_review_time": 0
+    },
+    {
+      "card_print_id": "2c1b3125-dd67-4522-b3e0-5621c05f7a9a",
+      "row_fingerprint_sha256": "f634ae857203c47609f3d0b62903a3751fcfa63b84287b70120ee0ec88094c85",
+      "set_key": "pl3",
+      "set_name": "Supreme Victors",
+      "review_priority": "standard",
+      "current_fields_from_review_snapshot": {
+        "set_code": null,
+        "number": null,
+        "name": "Garchomp C",
+        "number_plain": null,
+        "set_id": "77b0bdbe-6bf1-422d-b3d0-3c403e4c8e8d"
+      },
+      "proposed_fields_under_review": {
+        "set_code": "pl3",
+        "number": "145",
+        "name": "Garchomp C"
+      },
+      "direct_field_changes_under_review": {
+        "set_code": {
+          "before": null,
+          "after": "pl3"
+        },
+        "number": {
+          "before": null,
+          "after": "145"
+        }
+      },
+      "child_printing_rows_verified": 1,
+      "vault_items_referencing_target_at_review_time": 0
+    },
+    {
+      "card_print_id": "89f61622-12a4-4861-abb3-ef3dbcaf2a86",
+      "row_fingerprint_sha256": "40e8dd3335775e47d4c582febdbab8ae60fc304bf044bab52d6897e45a79c21a",
+      "set_key": "pl3",
+      "set_name": "Supreme Victors",
+      "review_priority": "standard",
+      "current_fields_from_review_snapshot": {
+        "set_code": null,
+        "number": null,
+        "name": "Rayquaza C",
+        "number_plain": null,
+        "set_id": "77b0bdbe-6bf1-422d-b3d0-3c403e4c8e8d"
+      },
+      "proposed_fields_under_review": {
+        "set_code": "pl3",
+        "number": "146",
+        "name": "Rayquaza C"
+      },
+      "direct_field_changes_under_review": {
+        "set_code": {
+          "before": null,
+          "after": "pl3"
+        },
+        "number": {
+          "before": null,
+          "after": "146"
+        }
+      },
+      "child_printing_rows_verified": 1,
+      "vault_items_referencing_target_at_review_time": 0
+    },
+    {
+      "card_print_id": "fa6310ae-be43-4309-af1d-a5033daff2f0",
+      "row_fingerprint_sha256": "fe34769a187d2abdc2662f3ac59c197239b71dbdc8bc763774e4678ed9809537",
+      "set_key": "pl3",
+      "set_name": "Supreme Victors",
+      "review_priority": "standard",
+      "current_fields_from_review_snapshot": {
+        "set_code": null,
+        "number": null,
+        "name": "Staraptor FB",
+        "number_plain": null,
+        "set_id": "77b0bdbe-6bf1-422d-b3d0-3c403e4c8e8d"
+      },
+      "proposed_fields_under_review": {
+        "set_code": "pl3",
+        "number": "147",
+        "name": "Staraptor FB"
+      },
+      "direct_field_changes_under_review": {
+        "set_code": {
+          "before": null,
+          "after": "pl3"
+        },
+        "number": {
+          "before": null,
+          "after": "147"
+        }
+      },
+      "child_printing_rows_verified": 1,
+      "vault_items_referencing_target_at_review_time": 0
+    },
+    {
+      "card_print_id": "9089264b-fd13-4261-94ac-b252ab89f6c7",
+      "row_fingerprint_sha256": "14ec4dfffafb993479e83457e0da87da6b6e64665de0d8382c620c4d10dc2363",
+      "set_key": "pl3",
+      "set_name": "Supreme Victors",
+      "review_priority": "medium",
+      "current_fields_from_review_snapshot": {
+        "set_code": null,
+        "number": null,
+        "name": "Relicanth",
+        "number_plain": null,
+        "set_id": "77b0bdbe-6bf1-422d-b3d0-3c403e4c8e8d"
+      },
+      "proposed_fields_under_review": {
+        "set_code": "pl3",
+        "number": "SH8",
+        "name": "Relicanth"
+      },
+      "direct_field_changes_under_review": {
+        "set_code": {
+          "before": null,
+          "after": "pl3"
+        },
+        "number": {
+          "before": null,
+          "after": "SH8"
+        }
+      },
+      "child_printing_rows_verified": 1,
+      "vault_items_referencing_target_at_review_time": 0
+    },
+    {
+      "card_print_id": "e8a8c0b0-2213-4701-89a9-8926cc0d5669",
+      "row_fingerprint_sha256": "75a76b453baede1a0e145dee06d4aaf520baef5c4c673740fc6210be347f21a0",
+      "set_key": "pl3",
+      "set_name": "Supreme Victors",
+      "review_priority": "medium",
+      "current_fields_from_review_snapshot": {
+        "set_code": null,
+        "number": null,
+        "name": "Yanma",
+        "number_plain": null,
+        "set_id": "77b0bdbe-6bf1-422d-b3d0-3c403e4c8e8d"
+      },
+      "proposed_fields_under_review": {
+        "set_code": "pl3",
+        "number": "SH9",
+        "name": "Yanma"
+      },
+      "direct_field_changes_under_review": {
+        "set_code": {
+          "before": null,
+          "after": "pl3"
+        },
+        "number": {
+          "before": null,
+          "after": "SH9"
+        }
+      },
+      "child_printing_rows_verified": 1,
+      "vault_items_referencing_target_at_review_time": 0
+    },
+    {
+      "card_print_id": "a02f871c-fe3e-432b-944d-6decea0eecdf",
+      "row_fingerprint_sha256": "ce17a59b335ef6d269b1e018c9c40040a9e6b7e53f03d657a57ac8acbd4a1ada",
+      "set_key": "pl4",
+      "set_name": "Arceus",
+      "review_priority": "standard",
+      "current_fields_from_review_snapshot": {
+        "set_code": null,
+        "number": null,
+        "name": "Charizard",
+        "number_plain": null,
+        "set_id": "f4b3f0be-5d7b-445f-bbe4-bb136699d5fe"
+      },
+      "proposed_fields_under_review": {
+        "set_code": "pl4",
+        "number": "1",
+        "name": "Charizard"
+      },
+      "direct_field_changes_under_review": {
+        "set_code": {
+          "before": null,
+          "after": "pl4"
+        },
+        "number": {
+          "before": null,
+          "after": "1"
+        }
+      },
+      "child_printing_rows_verified": 2,
+      "vault_items_referencing_target_at_review_time": 0
+    },
+    {
+      "card_print_id": "71779a8b-ee22-4892-9425-8e3da51f179a",
+      "row_fingerprint_sha256": "a6715a1a918e7975b4a1767b27a1e7c6136088e3dda24fa7c11841a424bc914c",
+      "set_key": "pl4",
+      "set_name": "Arceus",
+      "review_priority": "standard",
+      "current_fields_from_review_snapshot": {
+        "set_code": null,
+        "number": null,
+        "name": "Mothim",
+        "number_plain": null,
+        "set_id": "f4b3f0be-5d7b-445f-bbe4-bb136699d5fe"
+      },
+      "proposed_fields_under_review": {
+        "set_code": "pl4",
+        "number": "6",
+        "name": "Mothim"
+      },
+      "direct_field_changes_under_review": {
+        "set_code": {
+          "before": null,
+          "after": "pl4"
+        },
+        "number": {
+          "before": null,
+          "after": "6"
+        }
+      },
+      "child_printing_rows_verified": 2,
+      "vault_items_referencing_target_at_review_time": 0
+    },
+    {
+      "card_print_id": "3059259e-c28b-49d6-9f31-64e178e87f28",
+      "row_fingerprint_sha256": "d47f344b7ca78b832fe9c4152cf40e615ce6de25c80aba1016284a8dabda89a1",
+      "set_key": "pl4",
+      "set_name": "Arceus",
+      "review_priority": "standard",
+      "current_fields_from_review_snapshot": {
+        "set_code": null,
+        "number": null,
+        "name": "Swalot",
+        "number_plain": null,
+        "set_id": "f4b3f0be-5d7b-445f-bbe4-bb136699d5fe"
+      },
+      "proposed_fields_under_review": {
+        "set_code": "pl4",
+        "number": "9",
+        "name": "Swalot"
+      },
+      "direct_field_changes_under_review": {
+        "set_code": {
+          "before": null,
+          "after": "pl4"
+        },
+        "number": {
+          "before": null,
+          "after": "9"
+        }
+      },
+      "child_printing_rows_verified": 3,
+      "vault_items_referencing_target_at_review_time": 0
+    },
+    {
+      "card_print_id": "8716f287-3497-49b2-a499-9c1e026a6a94",
+      "row_fingerprint_sha256": "76b7d722f72df63704993ebf0af09ce34d1d7a75e7b58bcbbb26c3c54169cffb",
+      "set_key": "pl4",
+      "set_name": "Arceus",
+      "review_priority": "standard",
+      "current_fields_from_review_snapshot": {
+        "set_code": null,
+        "number": null,
+        "name": "Zapdos",
+        "number_plain": null,
+        "set_id": "f4b3f0be-5d7b-445f-bbe4-bb136699d5fe"
+      },
+      "proposed_fields_under_review": {
+        "set_code": "pl4",
+        "number": "12",
+        "name": "Zapdos"
+      },
+      "direct_field_changes_under_review": {
+        "set_code": {
+          "before": null,
+          "after": "pl4"
+        },
+        "number": {
+          "before": null,
+          "after": "12"
+        }
+      },
+      "child_printing_rows_verified": 2,
+      "vault_items_referencing_target_at_review_time": 0
+    },
+    {
+      "card_print_id": "460e6437-4bc8-4a1c-90fc-546481f225e2",
+      "row_fingerprint_sha256": "41fce0e72695aaf405295fa22a61e1765d6a51d5056d60e968cfe73e30379c1c",
+      "set_key": "pl4",
+      "set_name": "Arceus",
+      "review_priority": "high",
+      "current_fields_from_review_snapshot": {
+        "set_code": null,
+        "number": null,
+        "name": "Arceus LV. X",
+        "number_plain": null,
+        "set_id": "f4b3f0be-5d7b-445f-bbe4-bb136699d5fe"
+      },
+      "proposed_fields_under_review": {
+        "set_code": "pl4",
+        "number": "94",
+        "name": "Arceus LV.X"
+      },
+      "direct_field_changes_under_review": {
+        "set_code": {
+          "before": null,
+          "after": "pl4"
+        },
+        "number": {
+          "before": null,
+          "after": "94"
+        },
+        "name": {
+          "before": "Arceus LV. X",
+          "after": "Arceus LV.X"
+        }
+      },
+      "child_printing_rows_verified": 1,
+      "vault_items_referencing_target_at_review_time": 0
+    },
+    {
+      "card_print_id": "c5125a59-32a9-4a0f-98af-4cf4ad5d6d64",
+      "row_fingerprint_sha256": "1dff70d93b0a9d23a1578253ba1c8add2fdc9d4ee4c0e1399e42f348baea8433",
+      "set_key": "pl4",
+      "set_name": "Arceus",
+      "review_priority": "high",
+      "current_fields_from_review_snapshot": {
+        "set_code": null,
+        "number": null,
+        "name": "Arceus LV. X",
+        "number_plain": null,
+        "set_id": "f4b3f0be-5d7b-445f-bbe4-bb136699d5fe"
+      },
+      "proposed_fields_under_review": {
+        "set_code": "pl4",
+        "number": "95",
+        "name": "Arceus LV.X"
+      },
+      "direct_field_changes_under_review": {
+        "set_code": {
+          "before": null,
+          "after": "pl4"
+        },
+        "number": {
+          "before": null,
+          "after": "95"
+        },
+        "name": {
+          "before": "Arceus LV. X",
+          "after": "Arceus LV.X"
+        }
+      },
+      "child_printing_rows_verified": 1,
+      "vault_items_referencing_target_at_review_time": 0
+    },
+    {
+      "card_print_id": "ad751d34-d43b-4644-ae2e-622725f781cd",
+      "row_fingerprint_sha256": "8637d346bb3b65b815a4fbbf5378efc2b4581c0816bc2b7771238ea60539133a",
+      "set_key": "pl4",
+      "set_name": "Arceus",
+      "review_priority": "high",
+      "current_fields_from_review_snapshot": {
+        "set_code": null,
+        "number": null,
+        "name": "Arceus LV. X",
+        "number_plain": null,
+        "set_id": "f4b3f0be-5d7b-445f-bbe4-bb136699d5fe"
+      },
+      "proposed_fields_under_review": {
+        "set_code": "pl4",
+        "number": "96",
+        "name": "Arceus LV.X"
+      },
+      "direct_field_changes_under_review": {
+        "set_code": {
+          "before": null,
+          "after": "pl4"
+        },
+        "number": {
+          "before": null,
+          "after": "96"
+        },
+        "name": {
+          "before": "Arceus LV. X",
+          "after": "Arceus LV.X"
+        }
+      },
+      "child_printing_rows_verified": 1,
+      "vault_items_referencing_target_at_review_time": 0
+    },
+    {
+      "card_print_id": "1352eb03-1519-4e31-b7ad-a2d4af24ef65",
+      "row_fingerprint_sha256": "29ae8418bd8cda03d261738f5fcf719a94bcc8855f84bb42bbd68e007ec7c370",
+      "set_key": "pl4",
+      "set_name": "Arceus",
+      "review_priority": "high",
+      "current_fields_from_review_snapshot": {
+        "set_code": null,
+        "number": null,
+        "name": "Gengar LV. X",
+        "number_plain": null,
+        "set_id": "f4b3f0be-5d7b-445f-bbe4-bb136699d5fe"
+      },
+      "proposed_fields_under_review": {
+        "set_code": "pl4",
+        "number": "97",
+        "name": "Gengar LV.X"
+      },
+      "direct_field_changes_under_review": {
+        "set_code": {
+          "before": null,
+          "after": "pl4"
+        },
+        "number": {
+          "before": null,
+          "after": "97"
+        },
+        "name": {
+          "before": "Gengar LV. X",
+          "after": "Gengar LV.X"
+        }
+      },
+      "child_printing_rows_verified": 1,
+      "vault_items_referencing_target_at_review_time": 0
+    },
+    {
+      "card_print_id": "2fb3462d-4a19-4412-b8cd-848a669549a0",
+      "row_fingerprint_sha256": "edb1be493ad949d755538bae8ff235f3970e668cec178c65f07ef798b87285a4",
+      "set_key": "pl4",
+      "set_name": "Arceus",
+      "review_priority": "high",
+      "current_fields_from_review_snapshot": {
+        "set_code": null,
+        "number": null,
+        "name": "Salamence LV. X",
+        "number_plain": null,
+        "set_id": "f4b3f0be-5d7b-445f-bbe4-bb136699d5fe"
+      },
+      "proposed_fields_under_review": {
+        "set_code": "pl4",
+        "number": "98",
+        "name": "Salamence LV.X"
+      },
+      "direct_field_changes_under_review": {
+        "set_code": {
+          "before": null,
+          "after": "pl4"
+        },
+        "number": {
+          "before": null,
+          "after": "98"
+        },
+        "name": {
+          "before": "Salamence LV. X",
+          "after": "Salamence LV.X"
+        }
+      },
+      "child_printing_rows_verified": 1,
+      "vault_items_referencing_target_at_review_time": 0
+    },
+    {
+      "card_print_id": "b319332c-aea7-4f3c-ad4c-02f0874b2d60",
+      "row_fingerprint_sha256": "fed3be2e0b1e0de523b0efec0183fde0934b1a648cb63f1cc6f8da67dcec840b",
+      "set_key": "pl4",
+      "set_name": "Arceus",
+      "review_priority": "high",
+      "current_fields_from_review_snapshot": {
+        "set_code": null,
+        "number": null,
+        "name": "Tangrowth LV. X",
+        "number_plain": null,
+        "set_id": "f4b3f0be-5d7b-445f-bbe4-bb136699d5fe"
+      },
+      "proposed_fields_under_review": {
+        "set_code": "pl4",
+        "number": "99",
+        "name": "Tangrowth LV.X"
+      },
+      "direct_field_changes_under_review": {
+        "set_code": {
+          "before": null,
+          "after": "pl4"
+        },
+        "number": {
+          "before": null,
+          "after": "99"
+        },
+        "name": {
+          "before": "Tangrowth LV. X",
+          "after": "Tangrowth LV.X"
+        }
+      },
+      "child_printing_rows_verified": 1,
+      "vault_items_referencing_target_at_review_time": 0
+    },
+    {
+      "card_print_id": "cf859f9b-f1d6-41ec-9e38-c7fd27743777",
+      "row_fingerprint_sha256": "1e49f624d7b4c21ee033f58784b410746856f8e6a5449bea074d5b0f09752039",
+      "set_key": "pl4",
+      "set_name": "Arceus",
+      "review_priority": "medium",
+      "current_fields_from_review_snapshot": {
+        "set_code": null,
+        "number": null,
+        "name": "Arceus",
+        "number_plain": null,
+        "set_id": "f4b3f0be-5d7b-445f-bbe4-bb136699d5fe"
+      },
+      "proposed_fields_under_review": {
+        "set_code": "pl4",
+        "number": "AR2",
+        "name": "Arceus"
+      },
+      "direct_field_changes_under_review": {
+        "set_code": {
+          "before": null,
+          "after": "pl4"
+        },
+        "number": {
+          "before": null,
+          "after": "AR2"
+        }
+      },
+      "child_printing_rows_verified": 1,
+      "vault_items_referencing_target_at_review_time": 0
+    },
+    {
+      "card_print_id": "8b2c91cf-bd7c-4564-84ca-5863e1414257",
+      "row_fingerprint_sha256": "d02fb7953167f59a3c52409072afd8b8ef92fc76726558379aac9ed600df1350",
+      "set_key": "pl4",
+      "set_name": "Arceus",
+      "review_priority": "medium",
+      "current_fields_from_review_snapshot": {
+        "set_code": null,
+        "number": null,
+        "name": "Arceus",
+        "number_plain": null,
+        "set_id": "f4b3f0be-5d7b-445f-bbe4-bb136699d5fe"
+      },
+      "proposed_fields_under_review": {
+        "set_code": "pl4",
+        "number": "AR3",
+        "name": "Arceus"
+      },
+      "direct_field_changes_under_review": {
+        "set_code": {
+          "before": null,
+          "after": "pl4"
+        },
+        "number": {
+          "before": null,
+          "after": "AR3"
+        }
+      },
+      "child_printing_rows_verified": 1,
+      "vault_items_referencing_target_at_review_time": 0
+    },
+    {
+      "card_print_id": "61cd00a6-3418-4980-ade8-b26c8d0b4d5c",
+      "row_fingerprint_sha256": "e2f71286f1afa0fa847aa535cf40cb748cbdcfbac2f7c4fb2cb59457be33a437",
+      "set_key": "pl4",
+      "set_name": "Arceus",
+      "review_priority": "medium",
+      "current_fields_from_review_snapshot": {
+        "set_code": null,
+        "number": null,
+        "name": "Arceus",
+        "number_plain": null,
+        "set_id": "f4b3f0be-5d7b-445f-bbe4-bb136699d5fe"
+      },
+      "proposed_fields_under_review": {
+        "set_code": "pl4",
+        "number": "AR4",
+        "name": "Arceus"
+      },
+      "direct_field_changes_under_review": {
+        "set_code": {
+          "before": null,
+          "after": "pl4"
+        },
+        "number": {
+          "before": null,
+          "after": "AR4"
+        }
+      },
+      "child_printing_rows_verified": 1,
+      "vault_items_referencing_target_at_review_time": 0
+    },
+    {
+      "card_print_id": "63a0a7b8-bdfa-4a08-ad30-680bcc45802e",
+      "row_fingerprint_sha256": "039d49517f32f4a339ede8e96cebdf6faf57cd140f455664e9b67bf93b738a5c",
+      "set_key": "pl4",
+      "set_name": "Arceus",
+      "review_priority": "medium",
+      "current_fields_from_review_snapshot": {
+        "set_code": null,
+        "number": null,
+        "name": "Arceus",
+        "number_plain": null,
+        "set_id": "f4b3f0be-5d7b-445f-bbe4-bb136699d5fe"
+      },
+      "proposed_fields_under_review": {
+        "set_code": "pl4",
+        "number": "AR5",
+        "name": "Arceus"
+      },
+      "direct_field_changes_under_review": {
+        "set_code": {
+          "before": null,
+          "after": "pl4"
+        },
+        "number": {
+          "before": null,
+          "after": "AR5"
+        }
+      },
+      "child_printing_rows_verified": 1,
+      "vault_items_referencing_target_at_review_time": 0
+    },
+    {
+      "card_print_id": "67e47461-e03c-4da3-8557-d3df639dbb98",
+      "row_fingerprint_sha256": "f53b9639dd0a3cfc720ed981ccabf8f5e8535b1c8a5df81857c48b359ca27599",
+      "set_key": "pl4",
+      "set_name": "Arceus",
+      "review_priority": "medium",
+      "current_fields_from_review_snapshot": {
+        "set_code": null,
+        "number": null,
+        "name": "Arceus",
+        "number_plain": null,
+        "set_id": "f4b3f0be-5d7b-445f-bbe4-bb136699d5fe"
+      },
+      "proposed_fields_under_review": {
+        "set_code": "pl4",
+        "number": "AR7",
+        "name": "Arceus"
+      },
+      "direct_field_changes_under_review": {
+        "set_code": {
+          "before": null,
+          "after": "pl4"
+        },
+        "number": {
+          "before": null,
+          "after": "AR7"
+        }
+      },
+      "child_printing_rows_verified": 1,
+      "vault_items_referencing_target_at_review_time": 0
+    },
+    {
+      "card_print_id": "0db1b355-bb14-4042-8597-4afd1d9a2b77",
+      "row_fingerprint_sha256": "166ed4ecac695e9cfa166f2ac6c3a43418a617297df047f5aca57c88da4898f7",
+      "set_key": "pl4",
+      "set_name": "Arceus",
+      "review_priority": "medium",
+      "current_fields_from_review_snapshot": {
+        "set_code": null,
+        "number": null,
+        "name": "Arceus",
+        "number_plain": null,
+        "set_id": "f4b3f0be-5d7b-445f-bbe4-bb136699d5fe"
+      },
+      "proposed_fields_under_review": {
+        "set_code": "pl4",
+        "number": "AR8",
+        "name": "Arceus"
+      },
+      "direct_field_changes_under_review": {
+        "set_code": {
+          "before": null,
+          "after": "pl4"
+        },
+        "number": {
+          "before": null,
+          "after": "AR8"
+        }
+      },
+      "child_printing_rows_verified": 1,
+      "vault_items_referencing_target_at_review_time": 0
+    },
+    {
+      "card_print_id": "502ee1d6-d7c2-40d7-8bfa-5e94ff5c3bda",
+      "row_fingerprint_sha256": "5d3d4b06926f16457de308d8fa18cfb97783e6b5a771365d39566527e8f19d88",
+      "set_key": "pl4",
+      "set_name": "Arceus",
+      "review_priority": "medium",
+      "current_fields_from_review_snapshot": {
+        "set_code": null,
+        "number": null,
+        "name": "Bagon",
+        "number_plain": null,
+        "set_id": "f4b3f0be-5d7b-445f-bbe4-bb136699d5fe"
+      },
+      "proposed_fields_under_review": {
+        "set_code": "pl4",
+        "number": "SH10",
+        "name": "Bagon"
+      },
+      "direct_field_changes_under_review": {
+        "set_code": {
+          "before": null,
+          "after": "pl4"
+        },
+        "number": {
+          "before": null,
+          "after": "SH10"
+        }
+      },
+      "child_printing_rows_verified": 1,
+      "vault_items_referencing_target_at_review_time": 0
+    },
+    {
+      "card_print_id": "22a0396f-a0fe-4680-8568-71246489db3c",
+      "row_fingerprint_sha256": "c29396e2972a9a589a5eb2bff7a5e46106a3487f24aec89673f3f3850450509f",
+      "set_key": "pl4",
+      "set_name": "Arceus",
+      "review_priority": "medium",
+      "current_fields_from_review_snapshot": {
+        "set_code": null,
+        "number": null,
+        "name": "Ponyta",
+        "number_plain": null,
+        "set_id": "f4b3f0be-5d7b-445f-bbe4-bb136699d5fe"
+      },
+      "proposed_fields_under_review": {
+        "set_code": "pl4",
+        "number": "SH11",
+        "name": "Ponyta"
+      },
+      "direct_field_changes_under_review": {
+        "set_code": {
+          "before": null,
+          "after": "pl4"
+        },
+        "number": {
+          "before": null,
+          "after": "SH11"
+        }
+      },
+      "child_printing_rows_verified": 1,
+      "vault_items_referencing_target_at_review_time": 0
+    },
+    {
+      "card_print_id": "9cf48b11-bf42-4aa3-861b-c2ca5543877e",
+      "row_fingerprint_sha256": "66ef55ec0d72166c0fa892508bad5687030377ac05054d686517bbb246f2015f",
+      "set_key": "swsh2",
+      "set_name": "Rebel Clash",
+      "review_priority": "standard",
+      "current_fields_from_review_snapshot": {
+        "set_code": null,
+        "number": null,
+        "name": "Boss's Orders (Giovanni)",
+        "number_plain": null,
+        "set_id": "71ebdec9-9eeb-4adc-b8ef-1e6e23e6c5ec"
+      },
+      "proposed_fields_under_review": {
+        "set_code": "swsh2",
+        "number": "154",
+        "name": "Boss's Orders (Giovanni)"
+      },
+      "direct_field_changes_under_review": {
+        "set_code": {
+          "before": null,
+          "after": "swsh2"
+        },
+        "number": {
+          "before": null,
+          "after": "154"
+        }
+      },
+      "child_printing_rows_verified": 2,
+      "vault_items_referencing_target_at_review_time": 0
+    }
+  ],
+  "future_snapshot_stop_rules": [
+    "Stop if approval has not been explicitly recorded before snapshot capture.",
+    "Stop if package_fingerprint_sha256 differs from the guarded approval template.",
+    "Stop if any target card_print_id is missing from the fresh snapshot.",
+    "Stop if any target has gained vault_items references.",
+    "Stop if child printing row counts differ from reviewed master-verified counts without documented explanation.",
+    "Stop if active external mappings or identity rows indicate ownership drift.",
+    "Stop if the future snapshot is older than the future execution artifact."
+  ],
+  "explicit_non_authorizations": [
+    "This specification is not approval.",
+    "This specification does not capture a DB snapshot.",
+    "This specification is not SQL.",
+    "This specification is not a migration.",
+    "This specification is not an execution artifact.",
+    "This specification does not allow DB writes, cleanup, quarantine, insertion, deletion, or hiding."
+  ],
+  "stop_findings": [],
+  "pass": true
+}

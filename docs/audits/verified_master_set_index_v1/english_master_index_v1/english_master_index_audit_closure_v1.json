@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-08T21:35:04.828Z",
+  "generated_at": "2026-06-08T21:41:03.641Z",
   "version": "english_master_index_audit_closure_v1",
   "audit_only": true,
   "db_writes_performed": false,
@@ -8,14 +8,14 @@
   "quarantine_performed": false,
   "apply_paths_executed": false,
   "privileged_writes_used": false,
-  "audit_status": "complete_to_validated_approval_template_boundary_no_write",
+  "audit_status": "complete_to_prewrite_snapshot_spec_boundary_no_write",
   "conclusion": {
     "entire_audit_completed_to_current_evidence_boundary": true,
     "master_index_complete": true,
     "ready_for_db_writes": false,
-    "reason": "The completed Master Index now has PKG-01 dry-run packages, a consolidated apply design, DB impact translation, an operator approval packet, a blank fingerprinted approval record template, and a passing approval template guard, but writes still need recorded approval, a fresh production snapshot, a guarded execution artifact, and transactional verification.",
+    "reason": "The completed Master Index now has PKG-01 dry-run packages, a consolidated apply design, DB impact translation, an operator approval packet, a blank fingerprinted approval record template, a passing approval template guard, and a pre-write snapshot specification, but writes still need recorded approval, a fresh production snapshot, a guarded execution artifact, and transactional verification.",
     "strongest_positive_finding": "106 physical missing-set recovery card candidates / 143 printing rows have exact card identity and all finishes master_verified by the index.",
-    "main_blocker": "Approval template guard passes, but approval is not recorded and no fresh snapshot or separate guarded execution artifact exists.",
+    "main_blocker": "Pre-write snapshot specification exists, but approval is not recorded, no fresh snapshot has been captured, and no separate guarded execution artifact exists.",
     "finish_blocker_boundary": "Former finish blockers are adjudicated exclusions outside working truth, not open completion gaps."
   },
   "summary": {
@@ -384,6 +384,22 @@
       "pass": true,
       "write_ready_now": 0
     },
+    "physical_recovery_prewrite_snapshot_spec": {
+      "exists": true,
+      "file": "english_master_index_prewrite_snapshot_spec_v1.json",
+      "spec_status": "prewrite_snapshot_spec_complete_approval_required_no_write",
+      "approval_recorded": false,
+      "package_fingerprint_sha256": "34cc9acbb81bfadbe2115528a1339cb82afa71fa01fd0d52b62b83834a990b79",
+      "card_print_rows": 106,
+      "child_printing_rows_verified": 143,
+      "affected_sets": 12,
+      "required_snapshot_sections": 6,
+      "snapshot_target_rows": 106,
+      "db_reads_performed": false,
+      "stop_findings": 0,
+      "pass": true,
+      "write_ready_now": 0
+    },
     "source_acquisition_queue": {
       "total_queue_items": 0,
       "by_lane": {},
@@ -456,7 +472,7 @@
     }
   },
   "immediate_next_non_write_work": [
-    "Human-review the guarded blank approval record template, preserve the package fingerprint, and leave write_ready_now at 0 until approval is explicitly recorded.",
+    "Human-review the guarded blank approval record template and pre-write snapshot specification; leave write_ready_now at 0 until approval is explicitly recorded.",
     "Capture a fresh before-state snapshot immediately before any future write design is converted into execution.",
     "Prepare a separate guarded execution artifact only after explicit approval.",
     "Keep blocked remainder rows out of any future execution package."
@@ -687,7 +703,7 @@
     {
       "package_id": "PKG-01",
       "name": "Physical missing-set recovery - master-verified subset",
-      "current_state": "approval_template_guard_passed_approval_not_recorded_no_write",
+      "current_state": "prewrite_snapshot_spec_complete_approval_required_no_write",
       "future_write_allowed_after_approval": false,
       "evidence_ready_for_dry_run_design": true,
       "generated_dry_run_packages": {
@@ -951,6 +967,22 @@
         "pass": true,
         "write_ready_now": 0
       },
+      "physical_recovery_prewrite_snapshot_spec": {
+        "exists": true,
+        "file": "english_master_index_prewrite_snapshot_spec_v1.json",
+        "spec_status": "prewrite_snapshot_spec_complete_approval_required_no_write",
+        "approval_recorded": false,
+        "package_fingerprint_sha256": "34cc9acbb81bfadbe2115528a1339cb82afa71fa01fd0d52b62b83834a990b79",
+        "card_print_rows": 106,
+        "child_printing_rows_verified": 143,
+        "affected_sets": 12,
+        "required_snapshot_sections": 6,
+        "snapshot_target_rows": 106,
+        "db_reads_performed": false,
+        "stop_findings": 0,
+        "pass": true,
+        "write_ready_now": 0
+      },
       "candidate_card_prints": 106,
       "candidate_printing_rows": 143,
       "candidate_sets": [
@@ -1107,6 +1139,7 @@
         "Approval checkboxes remain false and approval_recorded is false.",
         "Approval record template is blank and records no approval.",
         "Approval template guard passed, but it is still not approval.",
+        "Prewrite snapshot spec exists, but no fresh snapshot has been captured.",
         "No fresh pre-write production snapshot has been captured.",
         "No transactional execution artifact has been generated or approved.",
         "write_ready_now remains 0."
