@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-08T20:31:54.102Z",
+  "generated_at": "2026-06-08T20:50:03.801Z",
   "version": "english_master_index_audit_closure_v1",
   "audit_only": true,
   "db_writes_performed": false,
@@ -8,14 +8,14 @@
   "quarantine_performed": false,
   "apply_paths_executed": false,
   "privileged_writes_used": false,
-  "audit_status": "complete_to_dry_run_package_boundary",
+  "audit_status": "complete_to_apply_design_boundary_no_write",
   "conclusion": {
     "entire_audit_completed_to_current_evidence_boundary": true,
     "master_index_complete": true,
     "ready_for_db_writes": false,
-    "reason": "The completed Master Index can now drive dry-run package design, but writes still need exact row IDs, rollback artifacts, impact checks, and approval.",
+    "reason": "The completed Master Index now has PKG-01 dry-run packages and a consolidated apply design, but writes still need operator approval, a fresh production snapshot, a guarded execution artifact, and transactional verification.",
     "strongest_positive_finding": "106 physical missing-set recovery card candidates / 143 printing rows have exact card identity and all finishes master_verified by the index.",
-    "main_blocker": "Generated dry-run packages still need review, approval, and conversion into a separate apply package.",
+    "main_blocker": "Apply design exists, but no operator approval or separate guarded execution artifact exists.",
     "finish_blocker_boundary": "Former finish blockers are adjudicated exclusions outside working truth, not open completion gaps."
   },
   "summary": {
@@ -298,6 +298,36 @@
         }
       ]
     },
+    "physical_recovery_review_gate": {
+      "exists": true,
+      "file": "english_master_index_physical_recovery_review_gate_v1.json",
+      "review_gate_status": "dry_run_packages_complete_review_required_no_write",
+      "package_count": 12,
+      "candidate_card_prints": 106,
+      "candidate_printing_rows": 143,
+      "package_stop_findings": 0,
+      "duplicate_card_print_ids": 0,
+      "vault_items_referencing_targets": 0,
+      "write_ready_now": 0
+    },
+    "physical_recovery_apply_design": {
+      "exists": true,
+      "file": "english_master_index_physical_recovery_apply_design_v1.json",
+      "apply_design_status": "apply_design_complete_approval_required_no_write",
+      "approval_status": "operator_approval_required_before_any_write",
+      "package_count": 12,
+      "candidate_card_prints": 106,
+      "candidate_printing_rows": 143,
+      "before_child_printing_rows": 143,
+      "changed_fields": {
+        "set_code": 106,
+        "number": 88,
+        "name": 11
+      },
+      "stop_findings": 0,
+      "vault_items_referencing_targets": 0,
+      "write_ready_now": 0
+    },
     "source_acquisition_queue": {
       "total_queue_items": 0,
       "by_lane": {},
@@ -370,9 +400,10 @@
     }
   },
   "immediate_next_non_write_work": [
-    "Review generated dry-run package snapshots, rollback requirements, and post-apply verification queries.",
-    "Capture exact row IDs, before-state snapshots, rollback plan, and post-apply verification queries.",
-    "Keep blocked remainder rows out of the package."
+    "Human-review the consolidated apply design matrix and exact row IDs.",
+    "Capture a fresh before-state snapshot immediately before any future write design is converted into execution.",
+    "Prepare a separate guarded execution artifact only after explicit approval.",
+    "Keep blocked remainder rows out of any future execution package."
   ],
   "stop_rules_before_any_future_write": [
     "Stop if a fact is API-only.",
@@ -600,7 +631,7 @@
     {
       "package_id": "PKG-01",
       "name": "Physical missing-set recovery - master-verified subset",
-      "current_state": "dry_run_package_ready_for_review_partial",
+      "current_state": "apply_design_complete_approval_required_no_write",
       "future_write_allowed_after_approval": false,
       "evidence_ready_for_dry_run_design": true,
       "generated_dry_run_packages": {
@@ -778,6 +809,36 @@
           }
         ]
       },
+      "physical_recovery_review_gate": {
+        "exists": true,
+        "file": "english_master_index_physical_recovery_review_gate_v1.json",
+        "review_gate_status": "dry_run_packages_complete_review_required_no_write",
+        "package_count": 12,
+        "candidate_card_prints": 106,
+        "candidate_printing_rows": 143,
+        "package_stop_findings": 0,
+        "duplicate_card_print_ids": 0,
+        "vault_items_referencing_targets": 0,
+        "write_ready_now": 0
+      },
+      "physical_recovery_apply_design": {
+        "exists": true,
+        "file": "english_master_index_physical_recovery_apply_design_v1.json",
+        "apply_design_status": "apply_design_complete_approval_required_no_write",
+        "approval_status": "operator_approval_required_before_any_write",
+        "package_count": 12,
+        "candidate_card_prints": 106,
+        "candidate_printing_rows": 143,
+        "before_child_printing_rows": 143,
+        "changed_fields": {
+          "set_code": 106,
+          "number": 88,
+          "name": 11
+        },
+        "stop_findings": 0,
+        "vault_items_referencing_targets": 0,
+        "write_ready_now": 0
+      },
       "candidate_card_prints": 106,
       "candidate_printing_rows": 143,
       "candidate_sets": [
@@ -930,17 +991,19 @@
         "all_finishes_master_verified_by_index": 106
       },
       "blockers": [
-        "Generated dry-run packages are review artifacts only.",
-        "No apply package has been approved.",
-        "Rollback and post-apply verification must be reviewed against exact rows before any write.",
-        "Operator approval is still required before any DB write."
+        "Apply design is a review artifact only and is not executable.",
+        "No operator approval has been recorded.",
+        "No fresh pre-write production snapshot has been captured.",
+        "No transactional execution artifact has been generated or approved.",
+        "write_ready_now remains 0."
       ],
       "required_before_write": [
-        "Review generated set-specific dry-run package rows and DB snapshots.",
-        "List exact source card_print IDs and intended set/printing changes.",
-        "Capture before-state snapshots and rollback SQL/script.",
-        "Run identity, ownership, vault, and provenance impact checks.",
-        "Founder/operator approval of exact row IDs and intended mutations."
+        "Human-review the consolidated apply design matrix.",
+        "Record founder/operator approval of exact row IDs and intended mutations.",
+        "Capture a fresh production before-state snapshot immediately before any future execution.",
+        "Regenerate rollback values from that fresh snapshot.",
+        "Generate a separate transactional execution artifact; do not use this report as execution.",
+        "Run identity, ownership, vault, provenance, and post-apply checks inside the future transaction before commit."
       ],
       "rollback_requirement": "Per-row before/after snapshot and reversible update plan required."
     },

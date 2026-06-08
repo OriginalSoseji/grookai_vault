@@ -1,6 +1,6 @@
 # English Master Index Write Readiness V1
 
-No catalog writes are authorized yet. The Master Index is complete, and the next safe step is row-level dry-run write package design for eligible master-verified subsets.
+No catalog writes are authorized yet. The Master Index is complete, PKG-01 dry-run packages and apply design are prepared for review, and the next safe step is human approval plus a separate guarded execution artifact.
 
 ## Safety
 
@@ -28,6 +28,9 @@ No catalog writes are authorized yet. The Master Index is complete, and the next
 - generated dry-run packages: 12
 - generated dry-run package card prints: 106
 - generated dry-run package printing rows: 143
+- physical recovery review gate: dry_run_packages_complete_review_required_no_write
+- physical recovery apply design: apply_design_complete_approval_required_no_write
+- physical recovery apply design approval: operator_approval_required_before_any_write
 
 ## Global Buckets
 
@@ -57,7 +60,7 @@ No catalog writes are authorized yet. The Master Index is complete, and the next
 | package | name | state | write_allowed_now | rows | blockers |
 | --- | --- | --- | --- | --- | --- |
 | PKG-00 | Ascended Heroes monitor-only proof baseline | complete | false | 31975 |  |
-| PKG-01 | Physical missing-set recovery - master-verified subset | dry_run_package_ready_for_review_partial | false | 106 | Generated dry-run packages are review artifacts only.; No apply package has been approved.; Rollback and post-apply verification must be reviewed against exact rows before any write.; Operator approval is still required before any DB write. |
+| PKG-01 | Physical missing-set recovery - master-verified subset | apply_design_complete_approval_required_no_write | false | 106 | Apply design is a review artifact only and is not executable.; No operator approval has been recorded.; No fresh pre-write production snapshot has been captured.; No transactional execution artifact has been generated or approved.; write_ready_now remains 0. |
 | PKG-01B | Physical missing-set recovery - blocked remainder | blocked_until_identity_or_finish_safe | false | 701 | Some rows still lack exact card identity or exact supported finish coverage.; Unsupported finishes must not be recovered.; Partial finish support must be split into supported-only and unsupported lanes. |
 | PKG-02 | Pocket/digital scope isolation | scope_decision_required | false | 1341 | Pocket/digital scope is outside English physical TCG but needs product decision.; Scope exclusion is not automatic deletion authority. |
 | PKG-03 | Unsupported printings cleanup | blocked_by_index_maturity | false | 11975 | Unsupported by current index is not deletion authority.; Many sets are API-only or source-limited. |

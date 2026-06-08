@@ -18,8 +18,9 @@ This is the complete no-write execution plan required before any future write pr
 | Phase 0 | Freeze writes and preserve audit baseline | complete_for_audit | read-only reports; source acquisition; manual evidence fixtures |
 | Phase 1 | Acquire missing human/checklist evidence for Master Index completion | closed_for_master_index_completion | source research; manual evidence fixtures; report regeneration |
 | Phase 2 | Rerun master index and exact-match audits | complete_for_current_master_index | updated master index facts; updated exact finish matrix; row-level master_verified status; conflict and manual review reports |
-| Phase 3 | Generate set-specific dry-run write packages | next_required_no_write | exact row IDs; before/after snapshots; rollback artifact; post-apply verification query plan; operator approval checklist |
-| Phase 4 | Write approval gate | not_started |  |
+| Phase 3 | Generate set-specific dry-run write packages | complete_no_write | exact row IDs; before/after snapshots; rollback artifact; post-apply verification query plan; operator approval checklist |
+| Phase 4 | Build consolidated apply design | complete_no_write_approval_required | consolidated mutation matrix; rollback design; post-apply verification plan; explicit non-executable status |
+| Phase 5 | Write approval gate | not_started | Founder/operator approval after reviewing exact dry-run package. |
 
 ## Priority Dry-Run Package Targets
 

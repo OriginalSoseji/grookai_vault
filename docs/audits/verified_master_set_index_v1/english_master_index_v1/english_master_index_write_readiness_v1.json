@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-08T20:31:54.102Z",
+  "generated_at": "2026-06-08T20:50:03.801Z",
   "version": "english_master_index_write_readiness_v1",
   "audit_only": true,
   "db_writes_performed": false,
@@ -9,7 +9,7 @@
   "apply_paths_executed": false,
   "privileged_writes_used": false,
   "rule": "This report determines whether Grookai is ready to write. It does not execute writes.",
-  "conclusion": "No catalog writes are authorized yet. The Master Index is complete, and the next safe step is row-level dry-run write package design for eligible master-verified subsets.",
+  "conclusion": "No catalog writes are authorized yet. The Master Index is complete, PKG-01 dry-run packages and apply design are prepared for review, and the next safe step is human approval plus a separate guarded execution artifact.",
   "summary": {
     "write_ready_now": 0,
     "db_writes_allowed_from_this_plan": false,
@@ -289,6 +289,36 @@
           "write_ready_now": 0
         }
       ]
+    },
+    "physical_recovery_review_gate": {
+      "exists": true,
+      "file": "english_master_index_physical_recovery_review_gate_v1.json",
+      "review_gate_status": "dry_run_packages_complete_review_required_no_write",
+      "package_count": 12,
+      "candidate_card_prints": 106,
+      "candidate_printing_rows": 143,
+      "package_stop_findings": 0,
+      "duplicate_card_print_ids": 0,
+      "vault_items_referencing_targets": 0,
+      "write_ready_now": 0
+    },
+    "physical_recovery_apply_design": {
+      "exists": true,
+      "file": "english_master_index_physical_recovery_apply_design_v1.json",
+      "apply_design_status": "apply_design_complete_approval_required_no_write",
+      "approval_status": "operator_approval_required_before_any_write",
+      "package_count": 12,
+      "candidate_card_prints": 106,
+      "candidate_printing_rows": 143,
+      "before_child_printing_rows": 143,
+      "changed_fields": {
+        "set_code": 106,
+        "number": 88,
+        "name": 11
+      },
+      "stop_findings": 0,
+      "vault_items_referencing_targets": 0,
+      "write_ready_now": 0
     },
     "source_acquisition_queue": {
       "total_queue_items": 0,
@@ -580,7 +610,7 @@
     {
       "package_id": "PKG-01",
       "name": "Physical missing-set recovery - master-verified subset",
-      "current_state": "dry_run_package_ready_for_review_partial",
+      "current_state": "apply_design_complete_approval_required_no_write",
       "future_write_allowed_after_approval": false,
       "evidence_ready_for_dry_run_design": true,
       "generated_dry_run_packages": {
@@ -758,6 +788,36 @@
           }
         ]
       },
+      "physical_recovery_review_gate": {
+        "exists": true,
+        "file": "english_master_index_physical_recovery_review_gate_v1.json",
+        "review_gate_status": "dry_run_packages_complete_review_required_no_write",
+        "package_count": 12,
+        "candidate_card_prints": 106,
+        "candidate_printing_rows": 143,
+        "package_stop_findings": 0,
+        "duplicate_card_print_ids": 0,
+        "vault_items_referencing_targets": 0,
+        "write_ready_now": 0
+      },
+      "physical_recovery_apply_design": {
+        "exists": true,
+        "file": "english_master_index_physical_recovery_apply_design_v1.json",
+        "apply_design_status": "apply_design_complete_approval_required_no_write",
+        "approval_status": "operator_approval_required_before_any_write",
+        "package_count": 12,
+        "candidate_card_prints": 106,
+        "candidate_printing_rows": 143,
+        "before_child_printing_rows": 143,
+        "changed_fields": {
+          "set_code": 106,
+          "number": 88,
+          "name": 11
+        },
+        "stop_findings": 0,
+        "vault_items_referencing_targets": 0,
+        "write_ready_now": 0
+      },
       "candidate_card_prints": 106,
       "candidate_printing_rows": 143,
       "candidate_sets": [
@@ -910,17 +970,19 @@
         "all_finishes_master_verified_by_index": 106
       },
       "blockers": [
-        "Generated dry-run packages are review artifacts only.",
-        "No apply package has been approved.",
-        "Rollback and post-apply verification must be reviewed against exact rows before any write.",
-        "Operator approval is still required before any DB write."
+        "Apply design is a review artifact only and is not executable.",
+        "No operator approval has been recorded.",
+        "No fresh pre-write production snapshot has been captured.",
+        "No transactional execution artifact has been generated or approved.",
+        "write_ready_now remains 0."
       ],
       "required_before_write": [
-        "Review generated set-specific dry-run package rows and DB snapshots.",
-        "List exact source card_print IDs and intended set/printing changes.",
-        "Capture before-state snapshots and rollback SQL/script.",
-        "Run identity, ownership, vault, and provenance impact checks.",
-        "Founder/operator approval of exact row IDs and intended mutations."
+        "Human-review the consolidated apply design matrix.",
+        "Record founder/operator approval of exact row IDs and intended mutations.",
+        "Capture a fresh production before-state snapshot immediately before any future execution.",
+        "Regenerate rollback values from that fresh snapshot.",
+        "Generate a separate transactional execution artifact; do not use this report as execution.",
+        "Run identity, ownership, vault, provenance, and post-apply checks inside the future transaction before commit."
       ],
       "rollback_requirement": "Per-row before/after snapshot and reversible update plan required."
     },

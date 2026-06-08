@@ -9,6 +9,8 @@ import {
 const OUTPUT_DIR = path.join(DEFAULT_OUTPUT_DIR, 'english_master_index_v1');
 const COMPLETION_DIR = path.join('docs', 'audits', 'english_master_index_completion_v1');
 const DRY_RUN_PACKAGE_DIR = path.join(OUTPUT_DIR, 'dry_run_packages');
+const REVIEW_GATE_FILE = 'english_master_index_physical_recovery_review_gate_v1.json';
+const APPLY_DESIGN_FILE = 'english_master_index_physical_recovery_apply_design_v1.json';
 const GENERATED_FILES = [
   'english_master_index_write_readiness_v1.json',
   'english_master_index_write_readiness_v1.md',
@@ -318,15 +320,90 @@ function summarizeGeneratedDryRunPackages(dryRunPackages) {
   };
 }
 
-function buildWritePackages({ completion, exactMatch, recoveryLanes, sourceAcquisition, grookaiAudit, dryRunPackages }) {
+function summarizeReviewGate(reviewGate) {
+  if (!reviewGate) {
+    return {
+      exists: false,
+      review_gate_status: 'not_generated',
+      package_stop_findings: null,
+      duplicate_card_print_ids: null,
+      write_ready_now: 0,
+    };
+  }
+  return {
+    exists: true,
+    file: REVIEW_GATE_FILE,
+    review_gate_status: reviewGate.review_gate_status,
+    package_count: reviewGate.summary?.package_count ?? 0,
+    candidate_card_prints: reviewGate.summary?.candidate_card_prints ?? 0,
+    candidate_printing_rows: reviewGate.summary?.candidate_printing_rows ?? 0,
+    package_stop_findings: reviewGate.summary?.package_stop_findings ?? null,
+    duplicate_card_print_ids: reviewGate.summary?.duplicate_card_print_ids ?? null,
+    vault_items_referencing_targets: reviewGate.summary?.vault_items_referencing_targets ?? null,
+    write_ready_now: reviewGate.write_ready_now ?? 0,
+  };
+}
+
+function summarizeApplyDesign(applyDesign) {
+  if (!applyDesign) {
+    return {
+      exists: false,
+      apply_design_status: 'not_generated',
+      approval_status: 'not_started',
+      write_ready_now: 0,
+    };
+  }
+  return {
+    exists: true,
+    file: APPLY_DESIGN_FILE,
+    apply_design_status: applyDesign.apply_design_status,
+    approval_status: applyDesign.approval_status,
+    package_count: applyDesign.summary?.package_count ?? 0,
+    candidate_card_prints: applyDesign.summary?.candidate_card_prints ?? 0,
+    candidate_printing_rows: applyDesign.summary?.candidate_printing_rows ?? 0,
+    before_child_printing_rows: applyDesign.summary?.before_child_printing_rows ?? 0,
+    changed_fields: applyDesign.summary?.changed_fields ?? {},
+    stop_findings: applyDesign.summary?.stop_findings ?? null,
+    vault_items_referencing_targets: applyDesign.summary?.vault_items_referencing_targets ?? null,
+    write_ready_now: applyDesign.write_ready_now ?? 0,
+  };
+}
+
+function physicalRecoveryDesignState({ dryRunPackages, physicalRecoveryReviewGate, physicalRecoveryApplyDesign }) {
+  const generatedDryRuns = summarizeGeneratedDryRunPackages(dryRunPackages ?? []);
+  const reviewGate = summarizeReviewGate(physicalRecoveryReviewGate);
+  const applyDesign = summarizeApplyDesign(physicalRecoveryApplyDesign);
+  const dryRunPackageExists = generatedDryRuns.package_count > 0;
+  const reviewGateComplete = reviewGate.review_gate_status === 'dry_run_packages_complete_review_required_no_write'
+    && Number(reviewGate.package_stop_findings ?? 1) === 0
+    && Number(reviewGate.duplicate_card_print_ids ?? 1) === 0;
+  const applyDesignComplete = applyDesign.apply_design_status === 'apply_design_complete_approval_required_no_write'
+    && Number(applyDesign.stop_findings ?? 1) === 0;
+  let state = 'row_level_dry_run_package_required';
+  if (applyDesignComplete) state = 'apply_design_complete_approval_required_no_write';
+  else if (reviewGateComplete) state = 'dry_run_review_gate_complete_apply_design_required';
+  else if (dryRunPackageExists) state = 'dry_run_packages_generated_review_required';
+  return {
+    state,
+    generatedDryRuns,
+    reviewGate,
+    applyDesign,
+    dryRunPackageExists,
+    reviewGateComplete,
+    applyDesignComplete,
+  };
+}
+
+function buildWritePackages({ completion, exactMatch, recoveryLanes, sourceAcquisition, grookaiAudit, dryRunPackages, physicalRecoveryReviewGate, physicalRecoveryApplyDesign }) {
   const physicalByFinishStatus = exactMatch.summary?.by_finish_match_status ?? {};
   const physicalPrintingByFinishStatus = exactMatch.summary?.printing_rows_by_finish_status ?? {};
   const statusCounts = grookaiAudit.summary?.by_status ?? {};
   const dryRunCandidateSets = summarizeDryRunCandidateSets(exactMatch);
   const dryRunCandidateCards = physicalByFinishStatus.all_finishes_master_verified_by_index ?? 0;
   const dryRunCandidatePrintings = physicalPrintingByFinishStatus.all_finishes_master_verified_by_index ?? 0;
-  const generatedDryRuns = summarizeGeneratedDryRunPackages(dryRunPackages ?? []);
-  const dryRunPackageExists = generatedDryRuns.package_count > 0;
+  const designState = physicalRecoveryDesignState({ dryRunPackages, physicalRecoveryReviewGate, physicalRecoveryApplyDesign });
+  const generatedDryRuns = designState.generatedDryRuns;
+  const dryRunPackageExists = designState.dryRunPackageExists;
   return [
     {
       package_id: 'PKG-00',
@@ -341,10 +418,12 @@ function buildWritePackages({ completion, exactMatch, recoveryLanes, sourceAcqui
     {
       package_id: 'PKG-01',
       name: 'Physical missing-set recovery - master-verified subset',
-      current_state: dryRunPackageExists ? 'dry_run_package_ready_for_review_partial' : (dryRunCandidateCards > 0 ? 'row_level_dry_run_package_required' : 'no_master_verified_subset'),
+      current_state: dryRunCandidateCards > 0 ? designState.state : 'no_master_verified_subset',
       future_write_allowed_after_approval: false,
       evidence_ready_for_dry_run_design: dryRunCandidateCards > 0,
       generated_dry_run_packages: generatedDryRuns,
+      physical_recovery_review_gate: designState.reviewGate,
+      physical_recovery_apply_design: designState.applyDesign,
       candidate_card_prints: dryRunCandidateCards,
       candidate_printing_rows: dryRunCandidatePrintings,
       candidate_sets: dryRunCandidateSets,
@@ -352,10 +431,18 @@ function buildWritePackages({ completion, exactMatch, recoveryLanes, sourceAcqui
         exact_card_identity_match: exactMatch.summary?.by_card_match_status?.exact_card_identity_match ?? 0,
         all_finishes_master_verified_by_index: dryRunCandidateCards,
       },
-      blockers: dryRunPackageExists
+      blockers: designState.applyDesignComplete
+        ? [
+          'Apply design is a review artifact only and is not executable.',
+          'No operator approval has been recorded.',
+          'No fresh pre-write production snapshot has been captured.',
+          'No transactional execution artifact has been generated or approved.',
+          'write_ready_now remains 0.',
+        ]
+        : dryRunPackageExists
         ? [
           'Generated dry-run packages are review artifacts only.',
-          'No apply package has been approved.',
+          designState.reviewGateComplete ? 'Review gate is complete, but apply design is not complete.' : 'Dry-run review gate has not been completed.',
           'Rollback and post-apply verification must be reviewed against exact rows before any write.',
           'Operator approval is still required before any DB write.',
         ]
@@ -366,13 +453,16 @@ function buildWritePackages({ completion, exactMatch, recoveryLanes, sourceAcqui
           'Operator approval is still required before any DB write.',
         ],
       required_before_write: [
-        dryRunPackageExists
-          ? 'Review generated set-specific dry-run package rows and DB snapshots.'
-          : 'Generate a set-specific dry-run write package for the eligible master-verified subset.',
-        'List exact source card_print IDs and intended set/printing changes.',
-        'Capture before-state snapshots and rollback SQL/script.',
-        'Run identity, ownership, vault, and provenance impact checks.',
-        'Founder/operator approval of exact row IDs and intended mutations.',
+        designState.applyDesignComplete
+          ? 'Human-review the consolidated apply design matrix.'
+          : dryRunPackageExists
+            ? 'Review generated set-specific dry-run package rows and DB snapshots.'
+            : 'Generate a set-specific dry-run write package for the eligible master-verified subset.',
+        'Record founder/operator approval of exact row IDs and intended mutations.',
+        'Capture a fresh production before-state snapshot immediately before any future execution.',
+        'Regenerate rollback values from that fresh snapshot.',
+        'Generate a separate transactional execution artifact; do not use this report as execution.',
+        'Run identity, ownership, vault, provenance, and post-apply checks inside the future transaction before commit.',
       ],
       rollback_requirement: 'Per-row before/after snapshot and reversible update plan required.',
     },
@@ -532,6 +622,8 @@ function buildArtifacts(inputs) {
     set_unmapped_categories: inputs.setUnmapped.summary?.by_category ?? {},
     physical_recovery_exact_match: inputs.exactMatch.summary ?? {},
     generated_dry_run_packages: summarizeGeneratedDryRunPackages(inputs.dryRunPackages ?? []),
+    physical_recovery_review_gate: summarizeReviewGate(inputs.physicalRecoveryReviewGate),
+    physical_recovery_apply_design: summarizeApplyDesign(inputs.physicalRecoveryApplyDesign),
     source_acquisition_queue: inputs.completionSourceGap.summary ?? valueAt(inputs.sourceAcquisition, ['summary', 'queue_summary'], {}),
     historical_source_acquisition_queue: valueAt(inputs.sourceAcquisition, ['summary', 'queue_summary'], {}),
     finish_blocker_closure: {
@@ -548,7 +640,7 @@ function buildArtifacts(inputs) {
     version: 'english_master_index_write_readiness_v1',
     ...safety,
     rule: 'This report determines whether Grookai is ready to write. It does not execute writes.',
-    conclusion: 'No catalog writes are authorized yet. The Master Index is complete, and the next safe step is row-level dry-run write package design for eligible master-verified subsets.',
+    conclusion: 'No catalog writes are authorized yet. The Master Index is complete, PKG-01 dry-run packages and apply design are prepared for review, and the next safe step is human approval plus a separate guarded execution artifact.',
     summary,
     global_buckets: globalBuckets,
     write_packages: writePackages,
@@ -589,7 +681,9 @@ function buildArtifacts(inputs) {
       {
         phase: 'Phase 3',
         name: 'Generate set-specific dry-run write packages',
-        status: 'next_required_no_write',
+        status: inputs.physicalRecoveryReviewGate?.review_gate_status === 'dry_run_packages_complete_review_required_no_write'
+          ? 'complete_no_write'
+          : 'next_required_no_write',
         required_outputs: [
           'exact row IDs',
           'before/after snapshots',
@@ -600,6 +694,19 @@ function buildArtifacts(inputs) {
       },
       {
         phase: 'Phase 4',
+        name: 'Build consolidated apply design',
+        status: inputs.physicalRecoveryApplyDesign?.apply_design_status === 'apply_design_complete_approval_required_no_write'
+          ? 'complete_no_write_approval_required'
+          : 'not_started',
+        required_outputs: [
+          'consolidated mutation matrix',
+          'rollback design',
+          'post-apply verification plan',
+          'explicit non-executable status',
+        ],
+      },
+      {
+        phase: 'Phase 5',
         name: 'Write approval gate',
         status: 'not_started',
         required_approval: 'Founder/operator approval after reviewing exact dry-run package.',
@@ -613,25 +720,32 @@ function buildArtifacts(inputs) {
     generated_at: new Date().toISOString(),
     version: 'english_master_index_audit_closure_v1',
     ...safety,
-    audit_status: 'complete_to_dry_run_package_boundary',
+    audit_status: inputs.physicalRecoveryApplyDesign?.apply_design_status === 'apply_design_complete_approval_required_no_write'
+      ? 'complete_to_apply_design_boundary_no_write'
+      : 'complete_to_dry_run_package_boundary',
     conclusion: {
       entire_audit_completed_to_current_evidence_boundary: true,
       master_index_complete: (inputs.completion.summary?.source_gap_queue_items ?? 1) === 0,
       ready_for_db_writes: false,
-      reason: 'The completed Master Index can now drive dry-run package design, but writes still need exact row IDs, rollback artifacts, impact checks, and approval.',
+      reason: 'The completed Master Index now has PKG-01 dry-run packages and a consolidated apply design, but writes still need operator approval, a fresh production snapshot, a guarded execution artifact, and transactional verification.',
       strongest_positive_finding: '106 physical missing-set recovery card candidates / 143 printing rows have exact card identity and all finishes master_verified by the index.',
-      main_blocker: (inputs.dryRunPackages?.length ?? 0) > 0
-        ? 'Generated dry-run packages still need review, approval, and conversion into a separate apply package.'
-        : 'No row-level dry-run write package, rollback artifact, or post-apply verification query plan exists yet.',
+      main_blocker: inputs.physicalRecoveryApplyDesign?.apply_design_status === 'apply_design_complete_approval_required_no_write'
+        ? 'Apply design exists, but no operator approval or separate guarded execution artifact exists.'
+        : (inputs.dryRunPackages?.length ?? 0) > 0
+          ? 'Generated dry-run packages still need review, approval, and conversion into a separate apply design.'
+          : 'No row-level dry-run write package, rollback artifact, or post-apply verification query plan exists yet.',
       finish_blocker_boundary: 'Former finish blockers are adjudicated exclusions outside working truth, not open completion gaps.',
     },
     summary,
     immediate_next_non_write_work: [
-      (inputs.dryRunPackages?.length ?? 0) > 0
-        ? 'Review generated dry-run package snapshots, rollback requirements, and post-apply verification queries.'
-        : 'Generate the first set-specific dry-run write package from the 106-card / 143-printing master-verified physical recovery subset.',
-      'Capture exact row IDs, before-state snapshots, rollback plan, and post-apply verification queries.',
-      'Keep blocked remainder rows out of the package.',
+      inputs.physicalRecoveryApplyDesign?.apply_design_status === 'apply_design_complete_approval_required_no_write'
+        ? 'Human-review the consolidated apply design matrix and exact row IDs.'
+        : (inputs.dryRunPackages?.length ?? 0) > 0
+          ? 'Review generated dry-run package snapshots, rollback requirements, and post-apply verification queries.'
+          : 'Generate the first set-specific dry-run write package from the 106-card / 143-printing master-verified physical recovery subset.',
+      'Capture a fresh before-state snapshot immediately before any future write design is converted into execution.',
+      'Prepare a separate guarded execution artifact only after explicit approval.',
+      'Keep blocked remainder rows out of any future execution package.',
     ],
     stop_rules_before_any_future_write: [
       'Stop if a fact is API-only.',
@@ -695,6 +809,9 @@ ${artifact.conclusion}
 - generated dry-run packages: ${artifact.summary.generated_dry_run_packages.package_count ?? 0}
 - generated dry-run package card prints: ${artifact.summary.generated_dry_run_packages.candidate_card_prints ?? 0}
 - generated dry-run package printing rows: ${artifact.summary.generated_dry_run_packages.candidate_printing_rows ?? 0}
+- physical recovery review gate: ${artifact.summary.physical_recovery_review_gate.review_gate_status}
+- physical recovery apply design: ${artifact.summary.physical_recovery_apply_design.apply_design_status}
+- physical recovery apply design approval: ${artifact.summary.physical_recovery_apply_design.approval_status}
 
 ## Global Buckets
 
@@ -711,7 +828,7 @@ function buildNoWriteExecutionPlanMarkdown(artifact) {
     phase.phase,
     phase.name,
     phase.status,
-    (phase.allowed_actions ?? phase.required_outputs ?? []).join('; '),
+    (phase.allowed_actions ?? phase.required_outputs ?? (phase.required_approval ? [phase.required_approval] : [])).join('; '),
   ]);
   const sourceRows = artifact.evidence_plan.priority_sets.map((set) => [
     set.set_key,
@@ -772,6 +889,7 @@ function buildAuditClosureMarkdown(artifact) {
 
 ## Conclusion
 
+- audit_status: ${artifact.audit_status}
 - entire_audit_completed_to_current_evidence_boundary: ${artifact.conclusion.entire_audit_completed_to_current_evidence_boundary}
 - master_index_complete: ${artifact.conclusion.master_index_complete}
 - ready_for_db_writes: ${artifact.conclusion.ready_for_db_writes}
@@ -820,6 +938,8 @@ async function main() {
     readiness: await readJson('english_master_index_truth_readiness_v1.json'),
     repairPriority: await readJson('english_master_index_repair_priority_v1.json'),
     finishBlockerClosure: await readOptionalJson('english_master_index_finish_blocker_closure_v1.json', { mapped_blockers: [], summary: {} }),
+    physicalRecoveryReviewGate: await readOptionalJson(REVIEW_GATE_FILE, null),
+    physicalRecoveryApplyDesign: await readOptionalJson(APPLY_DESIGN_FILE, null),
   };
   const artifacts = buildArtifacts(inputs);
 
