@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-08T20:50:03.801Z",
+  "generated_at": "2026-06-08T21:08:21.970Z",
   "version": "english_master_index_audit_closure_v1",
   "audit_only": true,
   "db_writes_performed": false,
@@ -8,14 +8,14 @@
   "quarantine_performed": false,
   "apply_paths_executed": false,
   "privileged_writes_used": false,
-  "audit_status": "complete_to_apply_design_boundary_no_write",
+  "audit_status": "complete_to_operator_approval_packet_boundary_no_write",
   "conclusion": {
     "entire_audit_completed_to_current_evidence_boundary": true,
     "master_index_complete": true,
     "ready_for_db_writes": false,
-    "reason": "The completed Master Index now has PKG-01 dry-run packages and a consolidated apply design, but writes still need operator approval, a fresh production snapshot, a guarded execution artifact, and transactional verification.",
+    "reason": "The completed Master Index now has PKG-01 dry-run packages, a consolidated apply design, DB impact translation, and an operator approval packet, but writes still need recorded approval, a fresh production snapshot, a guarded execution artifact, and transactional verification.",
     "strongest_positive_finding": "106 physical missing-set recovery card candidates / 143 printing rows have exact card identity and all finishes master_verified by the index.",
-    "main_blocker": "Apply design exists, but no operator approval or separate guarded execution artifact exists.",
+    "main_blocker": "Operator approval packet exists, but approval is not recorded and no fresh snapshot or separate guarded execution artifact exists.",
     "finish_blocker_boundary": "Former finish blockers are adjudicated exclusions outside working truth, not open completion gaps."
   },
   "summary": {
@@ -328,6 +328,32 @@
       "vault_items_referencing_targets": 0,
       "write_ready_now": 0
     },
+    "physical_recovery_db_impact_translation": {
+      "exists": true,
+      "file": "english_master_index_db_impact_translation_v1.json",
+      "current_db_changed": false,
+      "future_card_print_updates_if_approved": 106,
+      "future_child_printings_verified": 143,
+      "affected_set_count": 12,
+      "authorization_status": "not_authorized",
+      "stop_findings": 0,
+      "pass": true,
+      "write_ready_now": 0
+    },
+    "physical_recovery_operator_approval_packet": {
+      "exists": true,
+      "file": "english_master_index_operator_approval_packet_v1.json",
+      "approval_status": "operator_approval_not_recorded",
+      "approval_recorded": false,
+      "card_print_rows_requiring_approval": 106,
+      "child_printing_rows_verified": 143,
+      "affected_set_count": 12,
+      "required_signoff_items": 6,
+      "checked_signoff_items": 0,
+      "stop_findings": 0,
+      "pass": true,
+      "write_ready_now": 0
+    },
     "source_acquisition_queue": {
       "total_queue_items": 0,
       "by_lane": {},
@@ -400,7 +426,7 @@
     }
   },
   "immediate_next_non_write_work": [
-    "Human-review the consolidated apply design matrix and exact row IDs.",
+    "Human-review the operator approval packet row matrix and leave write_ready_now at 0 until approval is explicitly recorded.",
     "Capture a fresh before-state snapshot immediately before any future write design is converted into execution.",
     "Prepare a separate guarded execution artifact only after explicit approval.",
     "Keep blocked remainder rows out of any future execution package."
@@ -631,7 +657,7 @@
     {
       "package_id": "PKG-01",
       "name": "Physical missing-set recovery - master-verified subset",
-      "current_state": "apply_design_complete_approval_required_no_write",
+      "current_state": "operator_approval_packet_complete_approval_not_recorded_no_write",
       "future_write_allowed_after_approval": false,
       "evidence_ready_for_dry_run_design": true,
       "generated_dry_run_packages": {
@@ -839,6 +865,32 @@
         "vault_items_referencing_targets": 0,
         "write_ready_now": 0
       },
+      "physical_recovery_db_impact_translation": {
+        "exists": true,
+        "file": "english_master_index_db_impact_translation_v1.json",
+        "current_db_changed": false,
+        "future_card_print_updates_if_approved": 106,
+        "future_child_printings_verified": 143,
+        "affected_set_count": 12,
+        "authorization_status": "not_authorized",
+        "stop_findings": 0,
+        "pass": true,
+        "write_ready_now": 0
+      },
+      "physical_recovery_operator_approval_packet": {
+        "exists": true,
+        "file": "english_master_index_operator_approval_packet_v1.json",
+        "approval_status": "operator_approval_not_recorded",
+        "approval_recorded": false,
+        "card_print_rows_requiring_approval": 106,
+        "child_printing_rows_verified": 143,
+        "affected_set_count": 12,
+        "required_signoff_items": 6,
+        "checked_signoff_items": 0,
+        "stop_findings": 0,
+        "pass": true,
+        "write_ready_now": 0
+      },
       "candidate_card_prints": 106,
       "candidate_printing_rows": 143,
       "candidate_sets": [
@@ -991,14 +1043,14 @@
         "all_finishes_master_verified_by_index": 106
       },
       "blockers": [
-        "Apply design is a review artifact only and is not executable.",
-        "No operator approval has been recorded.",
+        "Operator approval packet is a review artifact only and is not approval.",
+        "Approval checkboxes remain false and approval_recorded is false.",
         "No fresh pre-write production snapshot has been captured.",
         "No transactional execution artifact has been generated or approved.",
         "write_ready_now remains 0."
       ],
       "required_before_write": [
-        "Human-review the consolidated apply design matrix.",
+        "Record explicit founder/operator approval only after reviewing every row in the approval packet.",
         "Record founder/operator approval of exact row IDs and intended mutations.",
         "Capture a fresh production before-state snapshot immediately before any future execution.",
         "Regenerate rollback values from that fresh snapshot.",

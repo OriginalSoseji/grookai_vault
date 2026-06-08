@@ -11,6 +11,8 @@ const COMPLETION_DIR = path.join('docs', 'audits', 'english_master_index_complet
 const DRY_RUN_PACKAGE_DIR = path.join(OUTPUT_DIR, 'dry_run_packages');
 const REVIEW_GATE_FILE = 'english_master_index_physical_recovery_review_gate_v1.json';
 const APPLY_DESIGN_FILE = 'english_master_index_physical_recovery_apply_design_v1.json';
+const DB_IMPACT_FILE = 'english_master_index_db_impact_translation_v1.json';
+const OPERATOR_APPROVAL_FILE = 'english_master_index_operator_approval_packet_v1.json';
 const GENERATED_FILES = [
   'english_master_index_write_readiness_v1.json',
   'english_master_index_write_readiness_v1.md',
@@ -369,18 +371,77 @@ function summarizeApplyDesign(applyDesign) {
   };
 }
 
-function physicalRecoveryDesignState({ dryRunPackages, physicalRecoveryReviewGate, physicalRecoveryApplyDesign }) {
+function summarizeDbImpact(dbImpact) {
+  if (!dbImpact) {
+    return {
+      exists: false,
+      current_db_changed: null,
+      future_card_print_updates_if_approved: 0,
+      future_child_printings_verified: 0,
+      write_ready_now: 0,
+    };
+  }
+  return {
+    exists: true,
+    file: DB_IMPACT_FILE,
+    current_db_changed: dbImpact.current_db_effect?.database_changed_by_this_work ?? null,
+    future_card_print_updates_if_approved: dbImpact.future_db_effect_if_separately_approved_later?.card_print_rows_that_would_be_updated ?? 0,
+    future_child_printings_verified: dbImpact.future_db_effect_if_separately_approved_later?.card_printing_rows_verified_but_not_directly_changed_by_current_design ?? 0,
+    affected_set_count: dbImpact.future_db_effect_if_separately_approved_later?.affected_set_count ?? 0,
+    authorization_status: dbImpact.future_db_effect_if_separately_approved_later?.authorization_status ?? 'unknown',
+    stop_findings: dbImpact.stop_findings?.length ?? 0,
+    pass: dbImpact.pass === true,
+    write_ready_now: dbImpact.future_db_effect_if_separately_approved_later?.write_ready_now ?? 0,
+  };
+}
+
+function summarizeOperatorApproval(operatorApproval) {
+  if (!operatorApproval) {
+    return {
+      exists: false,
+      approval_status: 'not_generated',
+      approval_recorded: false,
+      write_ready_now: 0,
+    };
+  }
+  return {
+    exists: true,
+    file: OPERATOR_APPROVAL_FILE,
+    approval_status: operatorApproval.approval_status,
+    approval_recorded: operatorApproval.approval_recorded === true,
+    card_print_rows_requiring_approval: operatorApproval.package_scope?.card_print_rows_requiring_approval ?? 0,
+    child_printing_rows_verified: operatorApproval.package_scope?.child_printing_rows_verified ?? 0,
+    affected_set_count: operatorApproval.package_scope?.affected_set_count ?? 0,
+    required_signoff_items: operatorApproval.required_signoff_checklist?.length ?? 0,
+    checked_signoff_items: (operatorApproval.required_signoff_checklist ?? []).filter((item) => item.checked === true).length,
+    stop_findings: operatorApproval.stop_findings?.length ?? 0,
+    pass: operatorApproval.pass === true,
+    write_ready_now: operatorApproval.write_ready_now ?? 0,
+  };
+}
+
+function physicalRecoveryDesignState({ dryRunPackages, physicalRecoveryReviewGate, physicalRecoveryApplyDesign, physicalRecoveryDbImpact, physicalRecoveryOperatorApproval }) {
   const generatedDryRuns = summarizeGeneratedDryRunPackages(dryRunPackages ?? []);
   const reviewGate = summarizeReviewGate(physicalRecoveryReviewGate);
   const applyDesign = summarizeApplyDesign(physicalRecoveryApplyDesign);
+  const dbImpact = summarizeDbImpact(physicalRecoveryDbImpact);
+  const operatorApproval = summarizeOperatorApproval(physicalRecoveryOperatorApproval);
   const dryRunPackageExists = generatedDryRuns.package_count > 0;
   const reviewGateComplete = reviewGate.review_gate_status === 'dry_run_packages_complete_review_required_no_write'
     && Number(reviewGate.package_stop_findings ?? 1) === 0
     && Number(reviewGate.duplicate_card_print_ids ?? 1) === 0;
   const applyDesignComplete = applyDesign.apply_design_status === 'apply_design_complete_approval_required_no_write'
     && Number(applyDesign.stop_findings ?? 1) === 0;
+  const dbImpactComplete = dbImpact.exists === true
+    && dbImpact.current_db_changed === false
+    && Number(dbImpact.stop_findings ?? 1) === 0;
+  const operatorApprovalPacketComplete = operatorApproval.exists === true
+    && operatorApproval.approval_recorded === false
+    && Number(operatorApproval.stop_findings ?? 1) === 0;
   let state = 'row_level_dry_run_package_required';
-  if (applyDesignComplete) state = 'apply_design_complete_approval_required_no_write';
+  if (operatorApprovalPacketComplete) state = 'operator_approval_packet_complete_approval_not_recorded_no_write';
+  else if (dbImpactComplete) state = 'db_impact_translation_complete_approval_packet_required_no_write';
+  else if (applyDesignComplete) state = 'apply_design_complete_approval_required_no_write';
   else if (reviewGateComplete) state = 'dry_run_review_gate_complete_apply_design_required';
   else if (dryRunPackageExists) state = 'dry_run_packages_generated_review_required';
   return {
@@ -388,20 +449,24 @@ function physicalRecoveryDesignState({ dryRunPackages, physicalRecoveryReviewGat
     generatedDryRuns,
     reviewGate,
     applyDesign,
+    dbImpact,
+    operatorApproval,
     dryRunPackageExists,
     reviewGateComplete,
     applyDesignComplete,
+    dbImpactComplete,
+    operatorApprovalPacketComplete,
   };
 }
 
-function buildWritePackages({ completion, exactMatch, recoveryLanes, sourceAcquisition, grookaiAudit, dryRunPackages, physicalRecoveryReviewGate, physicalRecoveryApplyDesign }) {
+function buildWritePackages({ completion, exactMatch, recoveryLanes, sourceAcquisition, grookaiAudit, dryRunPackages, physicalRecoveryReviewGate, physicalRecoveryApplyDesign, physicalRecoveryDbImpact, physicalRecoveryOperatorApproval }) {
   const physicalByFinishStatus = exactMatch.summary?.by_finish_match_status ?? {};
   const physicalPrintingByFinishStatus = exactMatch.summary?.printing_rows_by_finish_status ?? {};
   const statusCounts = grookaiAudit.summary?.by_status ?? {};
   const dryRunCandidateSets = summarizeDryRunCandidateSets(exactMatch);
   const dryRunCandidateCards = physicalByFinishStatus.all_finishes_master_verified_by_index ?? 0;
   const dryRunCandidatePrintings = physicalPrintingByFinishStatus.all_finishes_master_verified_by_index ?? 0;
-  const designState = physicalRecoveryDesignState({ dryRunPackages, physicalRecoveryReviewGate, physicalRecoveryApplyDesign });
+  const designState = physicalRecoveryDesignState({ dryRunPackages, physicalRecoveryReviewGate, physicalRecoveryApplyDesign, physicalRecoveryDbImpact, physicalRecoveryOperatorApproval });
   const generatedDryRuns = designState.generatedDryRuns;
   const dryRunPackageExists = designState.dryRunPackageExists;
   return [
@@ -424,6 +489,8 @@ function buildWritePackages({ completion, exactMatch, recoveryLanes, sourceAcqui
       generated_dry_run_packages: generatedDryRuns,
       physical_recovery_review_gate: designState.reviewGate,
       physical_recovery_apply_design: designState.applyDesign,
+      physical_recovery_db_impact_translation: designState.dbImpact,
+      physical_recovery_operator_approval_packet: designState.operatorApproval,
       candidate_card_prints: dryRunCandidateCards,
       candidate_printing_rows: dryRunCandidatePrintings,
       candidate_sets: dryRunCandidateSets,
@@ -431,9 +498,26 @@ function buildWritePackages({ completion, exactMatch, recoveryLanes, sourceAcqui
         exact_card_identity_match: exactMatch.summary?.by_card_match_status?.exact_card_identity_match ?? 0,
         all_finishes_master_verified_by_index: dryRunCandidateCards,
       },
-      blockers: designState.applyDesignComplete
+      blockers: designState.operatorApprovalPacketComplete
+        ? [
+          'Operator approval packet is a review artifact only and is not approval.',
+          'Approval checkboxes remain false and approval_recorded is false.',
+          'No fresh pre-write production snapshot has been captured.',
+          'No transactional execution artifact has been generated or approved.',
+          'write_ready_now remains 0.',
+        ]
+        : designState.dbImpactComplete
+        ? [
+          'DB impact translation is complete but operator approval packet is not complete.',
+          'No operator approval has been recorded.',
+          'No fresh pre-write production snapshot has been captured.',
+          'No transactional execution artifact has been generated or approved.',
+          'write_ready_now remains 0.',
+        ]
+        : designState.applyDesignComplete
         ? [
           'Apply design is a review artifact only and is not executable.',
+          'No operator approval packet has been completed.',
           'No operator approval has been recorded.',
           'No fresh pre-write production snapshot has been captured.',
           'No transactional execution artifact has been generated or approved.',
@@ -453,7 +537,11 @@ function buildWritePackages({ completion, exactMatch, recoveryLanes, sourceAcqui
           'Operator approval is still required before any DB write.',
         ],
       required_before_write: [
-        designState.applyDesignComplete
+        designState.operatorApprovalPacketComplete
+          ? 'Record explicit founder/operator approval only after reviewing every row in the approval packet.'
+          : designState.dbImpactComplete
+            ? 'Generate and review an operator approval packet from the DB impact translation.'
+            : designState.applyDesignComplete
           ? 'Human-review the consolidated apply design matrix.'
           : dryRunPackageExists
             ? 'Review generated set-specific dry-run package rows and DB snapshots.'
@@ -624,6 +712,8 @@ function buildArtifacts(inputs) {
     generated_dry_run_packages: summarizeGeneratedDryRunPackages(inputs.dryRunPackages ?? []),
     physical_recovery_review_gate: summarizeReviewGate(inputs.physicalRecoveryReviewGate),
     physical_recovery_apply_design: summarizeApplyDesign(inputs.physicalRecoveryApplyDesign),
+    physical_recovery_db_impact_translation: summarizeDbImpact(inputs.physicalRecoveryDbImpact),
+    physical_recovery_operator_approval_packet: summarizeOperatorApproval(inputs.physicalRecoveryOperatorApproval),
     source_acquisition_queue: inputs.completionSourceGap.summary ?? valueAt(inputs.sourceAcquisition, ['summary', 'queue_summary'], {}),
     historical_source_acquisition_queue: valueAt(inputs.sourceAcquisition, ['summary', 'queue_summary'], {}),
     finish_blocker_closure: {
@@ -640,7 +730,7 @@ function buildArtifacts(inputs) {
     version: 'english_master_index_write_readiness_v1',
     ...safety,
     rule: 'This report determines whether Grookai is ready to write. It does not execute writes.',
-    conclusion: 'No catalog writes are authorized yet. The Master Index is complete, PKG-01 dry-run packages and apply design are prepared for review, and the next safe step is human approval plus a separate guarded execution artifact.',
+    conclusion: 'No catalog writes are authorized yet. The Master Index is complete, PKG-01 dry-run packages, apply design, DB impact translation, and operator approval packet are prepared for review, but approval is not recorded and write_ready_now remains 0.',
     summary,
     global_buckets: globalBuckets,
     write_packages: writePackages,
@@ -708,8 +798,16 @@ function buildArtifacts(inputs) {
       {
         phase: 'Phase 5',
         name: 'Write approval gate',
+        status: inputs.physicalRecoveryOperatorApproval?.approval_recorded === false
+          ? 'approval_packet_complete_approval_not_recorded_no_write'
+          : 'not_started',
+        required_approval: 'Founder/operator approval after reviewing exact approval packet rows.',
+      },
+      {
+        phase: 'Phase 6',
+        name: 'Fresh snapshot and guarded execution artifact',
         status: 'not_started',
-        required_approval: 'Founder/operator approval after reviewing exact dry-run package.',
+        required_approval: 'Only after explicit approval: capture fresh snapshot and create a separate dry-run-default transactional execution artifact.',
       },
     ],
     evidence_plan: evidencePlan,
@@ -720,17 +818,21 @@ function buildArtifacts(inputs) {
     generated_at: new Date().toISOString(),
     version: 'english_master_index_audit_closure_v1',
     ...safety,
-    audit_status: inputs.physicalRecoveryApplyDesign?.apply_design_status === 'apply_design_complete_approval_required_no_write'
-      ? 'complete_to_apply_design_boundary_no_write'
+    audit_status: inputs.physicalRecoveryOperatorApproval?.approval_recorded === false
+      ? 'complete_to_operator_approval_packet_boundary_no_write'
+      : inputs.physicalRecoveryApplyDesign?.apply_design_status === 'apply_design_complete_approval_required_no_write'
+        ? 'complete_to_apply_design_boundary_no_write'
       : 'complete_to_dry_run_package_boundary',
     conclusion: {
       entire_audit_completed_to_current_evidence_boundary: true,
       master_index_complete: (inputs.completion.summary?.source_gap_queue_items ?? 1) === 0,
       ready_for_db_writes: false,
-      reason: 'The completed Master Index now has PKG-01 dry-run packages and a consolidated apply design, but writes still need operator approval, a fresh production snapshot, a guarded execution artifact, and transactional verification.',
+      reason: 'The completed Master Index now has PKG-01 dry-run packages, a consolidated apply design, DB impact translation, and an operator approval packet, but writes still need recorded approval, a fresh production snapshot, a guarded execution artifact, and transactional verification.',
       strongest_positive_finding: '106 physical missing-set recovery card candidates / 143 printing rows have exact card identity and all finishes master_verified by the index.',
-      main_blocker: inputs.physicalRecoveryApplyDesign?.apply_design_status === 'apply_design_complete_approval_required_no_write'
-        ? 'Apply design exists, but no operator approval or separate guarded execution artifact exists.'
+      main_blocker: inputs.physicalRecoveryOperatorApproval?.approval_recorded === false
+        ? 'Operator approval packet exists, but approval is not recorded and no fresh snapshot or separate guarded execution artifact exists.'
+        : inputs.physicalRecoveryApplyDesign?.apply_design_status === 'apply_design_complete_approval_required_no_write'
+          ? 'Apply design exists, but no operator approval or separate guarded execution artifact exists.'
         : (inputs.dryRunPackages?.length ?? 0) > 0
           ? 'Generated dry-run packages still need review, approval, and conversion into a separate apply design.'
           : 'No row-level dry-run write package, rollback artifact, or post-apply verification query plan exists yet.',
@@ -738,8 +840,10 @@ function buildArtifacts(inputs) {
     },
     summary,
     immediate_next_non_write_work: [
-      inputs.physicalRecoveryApplyDesign?.apply_design_status === 'apply_design_complete_approval_required_no_write'
-        ? 'Human-review the consolidated apply design matrix and exact row IDs.'
+      inputs.physicalRecoveryOperatorApproval?.approval_recorded === false
+        ? 'Human-review the operator approval packet row matrix and leave write_ready_now at 0 until approval is explicitly recorded.'
+        : inputs.physicalRecoveryApplyDesign?.apply_design_status === 'apply_design_complete_approval_required_no_write'
+          ? 'Human-review the consolidated apply design matrix and exact row IDs.'
         : (inputs.dryRunPackages?.length ?? 0) > 0
           ? 'Review generated dry-run package snapshots, rollback requirements, and post-apply verification queries.'
           : 'Generate the first set-specific dry-run write package from the 106-card / 143-printing master-verified physical recovery subset.',
@@ -812,6 +916,10 @@ ${artifact.conclusion}
 - physical recovery review gate: ${artifact.summary.physical_recovery_review_gate.review_gate_status}
 - physical recovery apply design: ${artifact.summary.physical_recovery_apply_design.apply_design_status}
 - physical recovery apply design approval: ${artifact.summary.physical_recovery_apply_design.approval_status}
+- physical recovery DB impact translation: ${artifact.summary.physical_recovery_db_impact_translation.exists ? 'complete_no_write' : 'not_generated'}
+- physical recovery current DB changed: ${artifact.summary.physical_recovery_db_impact_translation.current_db_changed}
+- physical recovery operator approval packet: ${artifact.summary.physical_recovery_operator_approval_packet.approval_status}
+- physical recovery approval recorded: ${artifact.summary.physical_recovery_operator_approval_packet.approval_recorded}
 
 ## Global Buckets
 
@@ -940,6 +1048,8 @@ async function main() {
     finishBlockerClosure: await readOptionalJson('english_master_index_finish_blocker_closure_v1.json', { mapped_blockers: [], summary: {} }),
     physicalRecoveryReviewGate: await readOptionalJson(REVIEW_GATE_FILE, null),
     physicalRecoveryApplyDesign: await readOptionalJson(APPLY_DESIGN_FILE, null),
+    physicalRecoveryDbImpact: await readOptionalJson(DB_IMPACT_FILE, null),
+    physicalRecoveryOperatorApproval: await readOptionalJson(OPERATOR_APPROVAL_FILE, null),
   };
   const artifacts = buildArtifacts(inputs);
 

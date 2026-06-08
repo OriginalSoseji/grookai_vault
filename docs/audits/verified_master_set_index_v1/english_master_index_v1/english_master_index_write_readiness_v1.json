@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-08T20:50:03.801Z",
+  "generated_at": "2026-06-08T21:08:21.970Z",
   "version": "english_master_index_write_readiness_v1",
   "audit_only": true,
   "db_writes_performed": false,
@@ -9,7 +9,7 @@
   "apply_paths_executed": false,
   "privileged_writes_used": false,
   "rule": "This report determines whether Grookai is ready to write. It does not execute writes.",
-  "conclusion": "No catalog writes are authorized yet. The Master Index is complete, PKG-01 dry-run packages and apply design are prepared for review, and the next safe step is human approval plus a separate guarded execution artifact.",
+  "conclusion": "No catalog writes are authorized yet. The Master Index is complete, PKG-01 dry-run packages, apply design, DB impact translation, and operator approval packet are prepared for review, but approval is not recorded and write_ready_now remains 0.",
   "summary": {
     "write_ready_now": 0,
     "db_writes_allowed_from_this_plan": false,
@@ -320,6 +320,32 @@
       "vault_items_referencing_targets": 0,
       "write_ready_now": 0
     },
+    "physical_recovery_db_impact_translation": {
+      "exists": true,
+      "file": "english_master_index_db_impact_translation_v1.json",
+      "current_db_changed": false,
+      "future_card_print_updates_if_approved": 106,
+      "future_child_printings_verified": 143,
+      "affected_set_count": 12,
+      "authorization_status": "not_authorized",
+      "stop_findings": 0,
+      "pass": true,
+      "write_ready_now": 0
+    },
+    "physical_recovery_operator_approval_packet": {
+      "exists": true,
+      "file": "english_master_index_operator_approval_packet_v1.json",
+      "approval_status": "operator_approval_not_recorded",
+      "approval_recorded": false,
+      "card_print_rows_requiring_approval": 106,
+      "child_printing_rows_verified": 143,
+      "affected_set_count": 12,
+      "required_signoff_items": 6,
+      "checked_signoff_items": 0,
+      "stop_findings": 0,
+      "pass": true,
+      "write_ready_now": 0
+    },
     "source_acquisition_queue": {
       "total_queue_items": 0,
       "by_lane": {},
@@ -610,7 +636,7 @@
     {
       "package_id": "PKG-01",
       "name": "Physical missing-set recovery - master-verified subset",
-      "current_state": "apply_design_complete_approval_required_no_write",
+      "current_state": "operator_approval_packet_complete_approval_not_recorded_no_write",
       "future_write_allowed_after_approval": false,
       "evidence_ready_for_dry_run_design": true,
       "generated_dry_run_packages": {
@@ -818,6 +844,32 @@
         "vault_items_referencing_targets": 0,
         "write_ready_now": 0
       },
+      "physical_recovery_db_impact_translation": {
+        "exists": true,
+        "file": "english_master_index_db_impact_translation_v1.json",
+        "current_db_changed": false,
+        "future_card_print_updates_if_approved": 106,
+        "future_child_printings_verified": 143,
+        "affected_set_count": 12,
+        "authorization_status": "not_authorized",
+        "stop_findings": 0,
+        "pass": true,
+        "write_ready_now": 0
+      },
+      "physical_recovery_operator_approval_packet": {
+        "exists": true,
+        "file": "english_master_index_operator_approval_packet_v1.json",
+        "approval_status": "operator_approval_not_recorded",
+        "approval_recorded": false,
+        "card_print_rows_requiring_approval": 106,
+        "child_printing_rows_verified": 143,
+        "affected_set_count": 12,
+        "required_signoff_items": 6,
+        "checked_signoff_items": 0,
+        "stop_findings": 0,
+        "pass": true,
+        "write_ready_now": 0
+      },
       "candidate_card_prints": 106,
       "candidate_printing_rows": 143,
       "candidate_sets": [
@@ -970,14 +1022,14 @@
         "all_finishes_master_verified_by_index": 106
       },
       "blockers": [
-        "Apply design is a review artifact only and is not executable.",
-        "No operator approval has been recorded.",
+        "Operator approval packet is a review artifact only and is not approval.",
+        "Approval checkboxes remain false and approval_recorded is false.",
         "No fresh pre-write production snapshot has been captured.",
         "No transactional execution artifact has been generated or approved.",
         "write_ready_now remains 0."
       ],
       "required_before_write": [
-        "Human-review the consolidated apply design matrix.",
+        "Record explicit founder/operator approval only after reviewing every row in the approval packet.",
         "Record founder/operator approval of exact row IDs and intended mutations.",
         "Capture a fresh production before-state snapshot immediately before any future execution.",
         "Regenerate rollback values from that fresh snapshot.",
