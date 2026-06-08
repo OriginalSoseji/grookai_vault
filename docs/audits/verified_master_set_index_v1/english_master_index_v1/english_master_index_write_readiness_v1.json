@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-08T21:41:03.640Z",
+  "generated_at": "2026-06-08T22:14:02.830Z",
   "version": "english_master_index_write_readiness_v1",
   "audit_only": true,
   "db_writes_performed": false,
@@ -9,7 +9,7 @@
   "apply_paths_executed": false,
   "privileged_writes_used": false,
   "rule": "This report determines whether Grookai is ready to write. It does not execute writes.",
-  "conclusion": "No catalog writes are authorized yet. The Master Index is complete, PKG-01 dry-run packages, apply design, DB impact translation, operator approval packet, blank fingerprinted approval record template, approval template guard, and pre-write snapshot specification are prepared for review, but approval is not recorded and write_ready_now remains 0.",
+  "conclusion": "No catalog writes are authorized yet. The Master Index is complete, PKG-01 dry-run packages, apply design, DB impact translation, operator approval packet, blank fingerprinted approval record template, approval template guard, pre-write snapshot specification, and future execution artifact specification are prepared for review, but approval is not recorded and write_ready_now remains 0.",
   "summary": {
     "write_ready_now": 0,
     "db_writes_allowed_from_this_plan": false,
@@ -392,6 +392,22 @@
       "pass": true,
       "write_ready_now": 0
     },
+    "physical_recovery_future_execution_artifact_spec": {
+      "exists": true,
+      "file": "english_master_index_future_execution_artifact_spec_v1.json",
+      "spec_status": "future_execution_artifact_spec_complete_approval_required_no_write",
+      "approval_recorded": false,
+      "package_fingerprint_sha256": "34cc9acbb81bfadbe2115528a1339cb82afa71fa01fd0d52b62b83834a990b79",
+      "card_print_rows": 106,
+      "child_printing_rows_verified": 143,
+      "affected_sets": 12,
+      "required_artifact_sections": 10,
+      "future_execution_targets": 106,
+      "db_reads_performed": false,
+      "stop_findings": 0,
+      "pass": true,
+      "write_ready_now": 0
+    },
     "source_acquisition_queue": {
       "total_queue_items": 0,
       "by_lane": {},
@@ -682,7 +698,7 @@
     {
       "package_id": "PKG-01",
       "name": "Physical missing-set recovery - master-verified subset",
-      "current_state": "prewrite_snapshot_spec_complete_approval_required_no_write",
+      "current_state": "future_execution_artifact_spec_complete_approval_required_no_write",
       "future_write_allowed_after_approval": false,
       "evidence_ready_for_dry_run_design": true,
       "generated_dry_run_packages": {
@@ -957,6 +973,22 @@
         "affected_sets": 12,
         "required_snapshot_sections": 6,
         "snapshot_target_rows": 106,
+        "db_reads_performed": false,
+        "stop_findings": 0,
+        "pass": true,
+        "write_ready_now": 0
+      },
+      "physical_recovery_future_execution_artifact_spec": {
+        "exists": true,
+        "file": "english_master_index_future_execution_artifact_spec_v1.json",
+        "spec_status": "future_execution_artifact_spec_complete_approval_required_no_write",
+        "approval_recorded": false,
+        "package_fingerprint_sha256": "34cc9acbb81bfadbe2115528a1339cb82afa71fa01fd0d52b62b83834a990b79",
+        "card_print_rows": 106,
+        "child_printing_rows_verified": 143,
+        "affected_sets": 12,
+        "required_artifact_sections": 10,
+        "future_execution_targets": 106,
         "db_reads_performed": false,
         "stop_findings": 0,
         "pass": true,

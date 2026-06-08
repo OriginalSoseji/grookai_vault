@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-08T21:41:03.641Z",
+  "generated_at": "2026-06-08T22:14:02.831Z",
   "version": "english_master_index_audit_closure_v1",
   "audit_only": true,
   "db_writes_performed": false,
@@ -8,14 +8,14 @@
   "quarantine_performed": false,
   "apply_paths_executed": false,
   "privileged_writes_used": false,
-  "audit_status": "complete_to_prewrite_snapshot_spec_boundary_no_write",
+  "audit_status": "complete_to_future_execution_artifact_spec_boundary_no_write",
   "conclusion": {
     "entire_audit_completed_to_current_evidence_boundary": true,
     "master_index_complete": true,
     "ready_for_db_writes": false,
-    "reason": "The completed Master Index now has PKG-01 dry-run packages, a consolidated apply design, DB impact translation, an operator approval packet, a blank fingerprinted approval record template, a passing approval template guard, and a pre-write snapshot specification, but writes still need recorded approval, a fresh production snapshot, a guarded execution artifact, and transactional verification.",
+    "reason": "The completed Master Index now has PKG-01 dry-run packages, a consolidated apply design, DB impact translation, an operator approval packet, a blank fingerprinted approval record template, a passing approval template guard, a pre-write snapshot specification, and a future execution artifact specification, but writes still need recorded approval, a fresh production snapshot, an actual guarded execution artifact, and transactional verification.",
     "strongest_positive_finding": "106 physical missing-set recovery card candidates / 143 printing rows have exact card identity and all finishes master_verified by the index.",
-    "main_blocker": "Pre-write snapshot specification exists, but approval is not recorded, no fresh snapshot has been captured, and no separate guarded execution artifact exists.",
+    "main_blocker": "Future execution artifact specification exists, but approval is not recorded, no fresh snapshot has been captured, and no actual guarded execution artifact exists.",
     "finish_blocker_boundary": "Former finish blockers are adjudicated exclusions outside working truth, not open completion gaps."
   },
   "summary": {
@@ -400,6 +400,22 @@
       "pass": true,
       "write_ready_now": 0
     },
+    "physical_recovery_future_execution_artifact_spec": {
+      "exists": true,
+      "file": "english_master_index_future_execution_artifact_spec_v1.json",
+      "spec_status": "future_execution_artifact_spec_complete_approval_required_no_write",
+      "approval_recorded": false,
+      "package_fingerprint_sha256": "34cc9acbb81bfadbe2115528a1339cb82afa71fa01fd0d52b62b83834a990b79",
+      "card_print_rows": 106,
+      "child_printing_rows_verified": 143,
+      "affected_sets": 12,
+      "required_artifact_sections": 10,
+      "future_execution_targets": 106,
+      "db_reads_performed": false,
+      "stop_findings": 0,
+      "pass": true,
+      "write_ready_now": 0
+    },
     "source_acquisition_queue": {
       "total_queue_items": 0,
       "by_lane": {},
@@ -472,9 +488,9 @@
     }
   },
   "immediate_next_non_write_work": [
-    "Human-review the guarded blank approval record template and pre-write snapshot specification; leave write_ready_now at 0 until approval is explicitly recorded.",
+    "Human-review the guarded blank approval record template, pre-write snapshot specification, and future execution artifact specification; leave write_ready_now at 0 until approval is explicitly recorded.",
     "Capture a fresh before-state snapshot immediately before any future write design is converted into execution.",
-    "Prepare a separate guarded execution artifact only after explicit approval.",
+    "Create the actual guarded execution artifact only after explicit approval and a fresh snapshot.",
     "Keep blocked remainder rows out of any future execution package."
   ],
   "stop_rules_before_any_future_write": [
@@ -703,7 +719,7 @@
     {
       "package_id": "PKG-01",
       "name": "Physical missing-set recovery - master-verified subset",
-      "current_state": "prewrite_snapshot_spec_complete_approval_required_no_write",
+      "current_state": "future_execution_artifact_spec_complete_approval_required_no_write",
       "future_write_allowed_after_approval": false,
       "evidence_ready_for_dry_run_design": true,
       "generated_dry_run_packages": {
@@ -978,6 +994,22 @@
         "affected_sets": 12,
         "required_snapshot_sections": 6,
         "snapshot_target_rows": 106,
+        "db_reads_performed": false,
+        "stop_findings": 0,
+        "pass": true,
+        "write_ready_now": 0
+      },
+      "physical_recovery_future_execution_artifact_spec": {
+        "exists": true,
+        "file": "english_master_index_future_execution_artifact_spec_v1.json",
+        "spec_status": "future_execution_artifact_spec_complete_approval_required_no_write",
+        "approval_recorded": false,
+        "package_fingerprint_sha256": "34cc9acbb81bfadbe2115528a1339cb82afa71fa01fd0d52b62b83834a990b79",
+        "card_print_rows": 106,
+        "child_printing_rows_verified": 143,
+        "affected_sets": 12,
+        "required_artifact_sections": 10,
+        "future_execution_targets": 106,
         "db_reads_performed": false,
         "stop_findings": 0,
         "pass": true,

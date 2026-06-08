@@ -21,7 +21,7 @@ This is the complete no-write execution plan required before any future write pr
 | Phase 3 | Generate set-specific dry-run write packages | complete_no_write | exact row IDs; before/after snapshots; rollback artifact; post-apply verification query plan; operator approval checklist |
 | Phase 4 | Build consolidated apply design | complete_no_write_approval_required | consolidated mutation matrix; rollback design; post-apply verification plan; explicit non-executable status |
 | Phase 5 | Write approval gate | approval_template_guard_passed_approval_not_recorded_no_write | Founder/operator approval after reviewing exact approval packet rows and preserving the approval template package fingerprint. |
-| Phase 6 | Fresh snapshot and guarded execution artifact | prewrite_snapshot_spec_complete_snapshot_not_captured_no_write | Only after explicit approval: capture fresh snapshot using the pre-write snapshot specification, then create a separate dry-run-default transactional execution artifact. |
+| Phase 6 | Fresh snapshot and guarded execution artifact | future_execution_artifact_spec_complete_execution_not_created_no_write | Only after explicit approval: capture a fresh snapshot, then create a separate dry-run-default transactional execution artifact from the execution artifact specification. |
 
 ## Priority Dry-Run Package Targets
 
