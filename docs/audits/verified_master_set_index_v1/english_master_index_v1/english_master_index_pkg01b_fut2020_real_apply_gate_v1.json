@@ -1,0 +1,94 @@
+{
+  "generated_at": "2026-06-09T05:38:00.620Z",
+  "version": "english_master_index_pkg01b_fut2020_real_apply_gate_v1",
+  "audit_only": true,
+  "approval_gate_only": true,
+  "real_apply_gate_only": true,
+  "db_reads_performed": false,
+  "db_writes_performed": false,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "apply_paths_executed": false,
+  "approval_recorded": false,
+  "apply_allowed": false,
+  "write_ready_now": 0,
+  "approval_gate_status": "ready_for_real_apply_operator_decision_apply_blocked_no_write",
+  "package_scope": {
+    "package_id": "PKG-01B-FUT2020",
+    "package_fingerprint_sha256": "c9539d98a7f883ce9b66ed12c57416ed68f0e9d1cad08b654f1470cb40baee63",
+    "set_key": "fut2020",
+    "set_name": "Pokémon Futsal 2020",
+    "target_numbers": [
+      "2",
+      "3",
+      "4",
+      "5"
+    ],
+    "parent_set_code_updates": 4,
+    "child_delete_candidates": 8,
+    "child_keep_rows": 4,
+    "parent_table": "public.card_prints",
+    "child_table": "public.card_printings",
+    "allowed_parent_field_changes": [
+      "set_code"
+    ],
+    "allowed_child_delete_finish_keys": [
+      "holo",
+      "reverse"
+    ]
+  },
+  "dry_run_proof": {
+    "dry_run_execution_status": "pkg01b_fut2020_guarded_dry_run_passed_rolled_back_no_durable_change",
+    "sql_artifact_ref": "docs/sql/english_master_index_pkg01b_fut2020_guarded_dry_run_transaction_v1.sql",
+    "sql_artifact_hash_sha256": "9378ebfa9505bc992e4de2822bbaac7d64900970e011fc4be825b8ca131f5ab0",
+    "contains_commit_statement": false,
+    "contains_rollback_statement": true,
+    "before_hash_sha256": "9129574db351ca002e3e5b0a0122ebd375d31d8725945bb419d61d120339db22",
+    "after_hash_sha256": "9129574db351ca002e3e5b0a0122ebd375d31d8725945bb419d61d120339db22",
+    "durable_after_snapshot_matches_before_snapshot": true,
+    "stop_findings": []
+  },
+  "rollback_proof": {
+    "rollback_matrix_available": true,
+    "rollback_parent_rows": 4,
+    "rollback_child_reinsert_snapshots": 8,
+    "source_artifact_snapshot_hash_sha256": "8749ef8504f894159f15cdb01f7d3c8ec2709d3caa41631f7c1480ca3ebcbe41",
+    "source_artifact_ref": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_pkg01b_fut2020_final_snapshot_transaction_artifact_v1.json"
+  },
+  "required_operator_decision": {
+    "decision_needed": true,
+    "exact_approval_phrase_required": "Approve real PKG-01B-FUT2020 apply only. Fingerprint: c9539d98a7f883ce9b66ed12c57416ed68f0e9d1cad08b654f1470cb40baee63. Parent scope: 4 set_code updates. Child scope: 8 unsupported holo/reverse deletes. Dry-run proof: 9129574db351ca002e3e5b0a0122ebd375d31d8725945bb419d61d120339db22 == 9129574db351ca002e3e5b0a0122ebd375d31d8725945bb419d61d120339db22. No global apply. No migrations.",
+    "approval_effect": "This would authorize preparing and running the durable PKG-01B apply path only, still scoped to the same four parent rows and eight child delete candidates. It does not authorize global apply.",
+    "approval_must_reference": {
+      "package_id": "PKG-01B-FUT2020",
+      "package_fingerprint_sha256": "c9539d98a7f883ce9b66ed12c57416ed68f0e9d1cad08b654f1470cb40baee63",
+      "parent_set_code_updates": 4,
+      "child_delete_candidates": 8,
+      "dry_run_before_hash_sha256": "9129574db351ca002e3e5b0a0122ebd375d31d8725945bb419d61d120339db22",
+      "dry_run_after_hash_sha256": "9129574db351ca002e3e5b0a0122ebd375d31d8725945bb419d61d120339db22"
+    }
+  },
+  "next_step_if_approved_later": [
+    "Capture one more final fresh DB snapshot immediately before durable apply.",
+    "Verify the same four parent rows, eight child delete candidates, four keep rows, zero vault refs, and zero child dependency refs.",
+    "Execute a durable transaction with COMMIT only after this exact real-apply approval is present.",
+    "Capture post-apply readback and compare Grookai to the Master Index for fut2020 cards #2-#5.",
+    "Write a post-apply checkpoint with rollback instructions and no global scope creep."
+  ],
+  "explicit_non_authorizations": [
+    "This gate is not a real apply.",
+    "This gate does not record approval.",
+    "This gate does not run SQL.",
+    "This gate does not write to the database.",
+    "This gate does not create a migration.",
+    "This gate does not authorize global apply.",
+    "This gate does not authorize cleanup or quarantine outside PKG-01B-FUT2020."
+  ],
+  "source_artifacts": {
+    "guarded_dry_run_execution": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_pkg01b_fut2020_guarded_dry_run_execution_v1.json",
+    "final_snapshot_transaction_artifact": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_pkg01b_fut2020_final_snapshot_transaction_artifact_v1.json"
+  },
+  "stop_findings": [],
+  "pass": true
+}
