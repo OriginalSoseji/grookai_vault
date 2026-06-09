@@ -1,0 +1,268 @@
+{
+  "generated_at": "2026-06-09T03:56:08.487Z",
+  "version": "english_master_index_pkg01a_final_fresh_snapshot_transaction_artifact_v1",
+  "audit_only": true,
+  "dry_run_artifact_preparation_only": true,
+  "db_reads_performed": true,
+  "db_writes_performed": false,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "apply_paths_executed": false,
+  "transaction_artifact_executed": false,
+  "approval_scope": {
+    "approved_by_user_instruction": true,
+    "approval_text": "Approve PKG-01A / fut2020 one-set pilot for final fresh snapshot and guarded dry-run transaction artifact preparation only.",
+    "approved_for_package_id": "PKG-01A",
+    "approved_for_set_key": "fut2020",
+    "approved_for_final_fresh_snapshot": true,
+    "approved_for_guarded_dry_run_transaction_artifact_preparation": true,
+    "approved_for_db_write": false,
+    "approved_for_apply": false,
+    "approved_for_pkg01b": false
+  },
+  "write_ready_now": 0,
+  "apply_allowed": false,
+  "artifact_status": "pkg01a_final_snapshot_and_dry_run_artifact_prepared_apply_blocked_no_write",
+  "source_artifacts": {
+    "split_one_set_pilot": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_pkg01_split_one_set_pilot_v1.json"
+  },
+  "package_scope": {
+    "source_package_id": "PKG-01",
+    "pilot_package_id": "PKG-01A",
+    "pilot_package_fingerprint_sha256": "72fade7655349f73019df4449a269cb4c46bbca000d0f24203fdcbfa498ee1f8",
+    "remainder_package_id": "PKG-01B",
+    "remainder_status": "blocked_until_pkg01a_pilot_verified_no_write",
+    "set_key": "fut2020",
+    "set_name": "Pokémon Futsal 2020",
+    "card_print_rows": 1,
+    "child_printing_rows_verified": 1,
+    "allowed_changed_fields": [
+      "set_code"
+    ]
+  },
+  "fresh_snapshot": {
+    "available": true,
+    "reason": null,
+    "captured_at": "2026-06-09T03:56:08.404Z",
+    "snapshot_hash_sha256": "1ef9660b69e6464625f93879986516fa5da4281f109c002ecba6837a2ee90c31",
+    "impact_counts": {
+      "card_prints_found": 1,
+      "card_printings_found": 1,
+      "external_mappings_found": 1,
+      "identity_rows_found": 1,
+      "trait_rows_found": 1,
+      "vault_items_found": 0
+    },
+    "rows": [
+      {
+        "card_print_id": "a676888d-19e0-4064-89aa-e67019af5b95",
+        "card_print": {
+          "id": "a676888d-19e0-4064-89aa-e67019af5b95",
+          "name": "Pikachu on the Ball",
+          "gv_id": null,
+          "artist": null,
+          "number": "1",
+          "rarity": "None",
+          "set_id": "84b23610-ffe4-4bbd-a5b7-51131bb9fee1",
+          "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+          "set_code": null,
+          "variants": null,
+          "image_res": null,
+          "image_url": "https://assets.tcgdex.net/en/swsh/fut2020/1/high.webp",
+          "created_at": "2026-03-27T02:54:46.916141+00:00",
+          "image_hash": null,
+          "image_note": null,
+          "image_path": null,
+          "updated_at": "2026-03-27T02:54:46.916141+00:00",
+          "ai_metadata": {
+            "tcgdex": {
+              "legalities": {},
+              "flavor_text": "Pikachu that can generate powerful electricity have cheek sacs that are extra soft and super stretchy."
+            }
+          },
+          "variant_key": "",
+          "external_ids": {
+            "tcgdex": "fut2020-1"
+          },
+          "image_source": "tcgdex",
+          "image_status": "exact",
+          "number_plain": "1",
+          "tcgplayer_id": null,
+          "image_alt_url": "https://assets.tcgdex.net/en/swsh/fut2020/1",
+          "printed_total": null,
+          "last_synced_at": null,
+          "identity_domain": "pokemon_eng_standard",
+          "regulation_mark": "D",
+          "data_quality_flags": null,
+          "print_identity_key": null,
+          "printed_set_abbrev": null,
+          "set_identity_model": "standard",
+          "image_last_checked_at": null,
+          "representative_image_url": null,
+          "printed_identity_modifier": null
+        },
+        "card_printings": [
+          {
+            "id": "aa586d57-a279-4cce-ba8c-e78ec7088bea",
+            "image_url": null,
+            "created_at": "2026-03-27T02:54:47.111116+00:00",
+            "created_by": "printing_ingestion_v2",
+            "finish_key": "holo",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "a676888d-19e0-4064-89aa-e67019af5b95",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": null,
+            "provenance_ref": "fut2020-1",
+            "provenance_source": "tcgdex"
+          }
+        ],
+        "external_mappings": [
+          {
+            "id": 61715,
+            "meta": null,
+            "active": true,
+            "source": "tcgdex",
+            "synced_at": "2026-02-25T04:23:05.364675+00:00",
+            "external_id": "fut2020-1",
+            "card_print_id": "a676888d-19e0-4064-89aa-e67019af5b95"
+          }
+        ],
+        "card_print_identity": [
+          {
+            "id": "270285d8-f18a-4b6d-8f71-f10fb60e7dbd",
+            "is_active": true,
+            "created_at": "2026-04-03T18:02:50.808535+00:00",
+            "updated_at": "2026-04-03T18:02:50.808535+00:00",
+            "card_print_id": "a676888d-19e0-4064-89aa-e67019af5b95",
+            "printed_number": "1",
+            "identity_domain": "pokemon_eng_standard",
+            "source_name_raw": null,
+            "identity_payload": {
+              "printed_total": 5
+            },
+            "identity_key_hash": "9258080b87ea1f545e090403b73698bb958dde0bf0ec06c35fa67e6c4ddbbd11",
+            "set_code_identity": "fut2020",
+            "identity_key_version": "pokemon_eng_standard:v1",
+            "normalized_printed_name": "pikachu on the ball"
+          }
+        ],
+        "card_print_traits": [
+          {
+            "hp": null,
+            "id": 46112,
+            "types": null,
+            "rarity": "None",
+            "source": "tcgdex",
+            "supertype": "Pokemon",
+            "confidence": null,
+            "created_at": "2026-03-27T02:54:47.305804+00:00",
+            "trait_type": "pokemon:stats",
+            "trait_value": "tcgdex",
+            "national_dex": 25,
+            "card_category": "Basic",
+            "card_print_id": "a676888d-19e0-4064-89aa-e67019af5b95",
+            "legacy_rarity": null
+          }
+        ],
+        "vault_items": [],
+        "dependency_counts": {
+          "external_mappings": 1,
+          "card_print_identity": 1,
+          "card_print_traits": 1,
+          "vault_items": 0
+        }
+      }
+    ]
+  },
+  "mutation_matrix": [
+    {
+      "card_print_id": "a676888d-19e0-4064-89aa-e67019af5b95",
+      "row_fingerprint_sha256": "6772551718a6b259011f0a12d4f594e7aae3654b687bf29429259d59fc1d42ce",
+      "set_key": "fut2020",
+      "set_name": "Pokémon Futsal 2020",
+      "source_external_id": "fut2020-1",
+      "source_card_url": "https://api.tcgdex.net/v2/en/cards/fut2020-1",
+      "allowed_changed_fields": [
+        "set_code"
+      ],
+      "before_values_from_fresh_snapshot": {
+        "set_code": null,
+        "number": "1",
+        "name": "Pikachu on the Ball",
+        "number_plain": "1",
+        "set_id": "84b23610-ffe4-4bbd-a5b7-51131bb9fee1"
+      },
+      "approved_after_values": {
+        "set_code": "fut2020",
+        "number": "1",
+        "name": "Pikachu on the Ball"
+      },
+      "child_printing_rows_expected": 1,
+      "child_printing_rows_current": 1,
+      "target_finish_keys": [
+        "holo"
+      ],
+      "dependency_counts": {
+        "external_mappings": 1,
+        "card_print_identity": 1,
+        "card_print_traits": 1,
+        "vault_items": 0
+      },
+      "evidence_sources": [
+        "reverseholo_set_checklist",
+        "tcgdex"
+      ]
+    }
+  ],
+  "rollback_proof": {
+    "rollback_available": true,
+    "rollback_scope": "PKG-01A/fut2020 one card_print row only",
+    "rollback_sql_preview": "update public.card_prints\nset set_code = null\nwhere id = 'a676888d-19e0-4064-89aa-e67019af5b95'::uuid\n  and set_code = 'fut2020';",
+    "rollback_expected_rows": 1,
+    "rollback_non_authorizations": [
+      "Rollback must not touch PKG-01B.",
+      "Rollback must not touch card_printings.",
+      "Rollback must not touch vault, ownership, provenance, pricing, scanner, or marketplace tables."
+    ]
+  },
+  "guarded_dry_run_transaction_artifact": {
+    "artifact_ref": "docs/sql/english_master_index_pkg01a_fut2020_guarded_dry_run_transaction_v1.sql",
+    "artifact_hash_sha256": "fcca8c68b8bb730d45f8a6ba9eb623b05af78749e87d771e09e0d1b557ed3e3c",
+    "executed": false,
+    "contains_commit_statement": false,
+    "contains_rollback_statement": true,
+    "dry_run_default": true,
+    "allowed_target_table": "public.card_prints",
+    "allowed_target_ids": [
+      "a676888d-19e0-4064-89aa-e67019af5b95"
+    ],
+    "allowed_field_changes": [
+      "set_code"
+    ],
+    "expected_dry_run_updated_rows": 1,
+    "pkg01b_included": false
+  },
+  "verification_gates_required_before_any_db_write": [
+    "Review the fresh snapshot hash and target row contents.",
+    "Review the guarded dry-run transaction SQL artifact.",
+    "Review rollback proof and ensure it scopes only PKG-01A.",
+    "Run the transaction artifact only as a dry-run in a separate approved step.",
+    "Verify the dry-run returns expected row counts and rolls back.",
+    "Only then request separate explicit DB write/apply approval."
+  ],
+  "explicit_non_authorizations": [
+    "This artifact is not DB write approval.",
+    "This artifact is not apply approval.",
+    "This artifact does not authorize PKG-01B.",
+    "This artifact was not executed.",
+    "This artifact created no migration.",
+    "This artifact performed no cleanup, quarantine, insertion, deletion, hiding, or normalization."
+  ],
+  "stop_findings": [],
+  "pass": true
+}
