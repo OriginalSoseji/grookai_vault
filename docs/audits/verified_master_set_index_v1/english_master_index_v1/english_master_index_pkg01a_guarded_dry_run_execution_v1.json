@@ -1,0 +1,123 @@
+{
+  "generated_at": "2026-06-09T04:02:25.163Z",
+  "version": "english_master_index_pkg01a_guarded_dry_run_execution_v1",
+  "audit_only": true,
+  "dry_run_only": true,
+  "transaction_artifact_executed": true,
+  "dry_run_update_executed_inside_rolled_back_transaction": true,
+  "durable_db_writes_performed": false,
+  "db_write_committed": false,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "apply_paths_executed": false,
+  "apply_allowed": false,
+  "write_ready_now": 0,
+  "dry_run_execution_status": "pkg01a_guarded_dry_run_passed_rolled_back_no_durable_change",
+  "package_scope": {
+    "pilot_package_id": "PKG-01A",
+    "set_key": "fut2020",
+    "card_print_rows": 1,
+    "child_printing_rows_verified": 1,
+    "allowed_changed_fields": [
+      "set_code"
+    ],
+    "pkg01b_included": false
+  },
+  "sql_artifact": {
+    "artifact_ref": "docs/sql/english_master_index_pkg01a_fut2020_guarded_dry_run_transaction_v1.sql",
+    "artifact_hash_sha256": "fcca8c68b8bb730d45f8a6ba9eb623b05af78749e87d771e09e0d1b557ed3e3c",
+    "expected_artifact_hash_sha256": "fcca8c68b8bb730d45f8a6ba9eb623b05af78749e87d771e09e0d1b557ed3e3c",
+    "contains_commit_statement": false,
+    "contains_rollback_statement": true
+  },
+  "execution_result": {
+    "connected": true,
+    "execution_status": "guarded_dry_run_transaction_completed_and_rolled_back",
+    "error_message": null
+  },
+  "before_snapshot": {
+    "captured_at": "2026-06-09T04:02:24.734Z",
+    "rows": [
+      {
+        "card_print_id": "a676888d-19e0-4064-89aa-e67019af5b95",
+        "set_code": null,
+        "number": "1",
+        "number_plain": "1",
+        "name": "Pikachu on the Ball",
+        "set_id": "84b23610-ffe4-4bbd-a5b7-51131bb9fee1",
+        "updated_at": "2026-03-27T02:54:46.916Z",
+        "card_printings": [
+          {
+            "id": "aa586d57-a279-4cce-ba8c-e78ec7088bea",
+            "finish_key": "holo",
+            "provenance_ref": "fut2020-1",
+            "provenance_source": "tcgdex"
+          }
+        ],
+        "dependency_counts": {
+          "external_mappings": 1,
+          "card_print_identity": 1,
+          "card_print_traits": 1,
+          "vault_items": 0
+        }
+      }
+    ],
+    "hash_sha256": "cddc8bf8863e93ab941cf7a22c90cf26e98170f815256cbd6048d49394f76cd9",
+    "counts": {
+      "card_prints_found": 1,
+      "card_printings_found": 1,
+      "vault_items_found": 0
+    }
+  },
+  "after_snapshot": {
+    "captured_at": "2026-06-09T04:02:25.084Z",
+    "rows": [
+      {
+        "card_print_id": "a676888d-19e0-4064-89aa-e67019af5b95",
+        "set_code": null,
+        "number": "1",
+        "number_plain": "1",
+        "name": "Pikachu on the Ball",
+        "set_id": "84b23610-ffe4-4bbd-a5b7-51131bb9fee1",
+        "updated_at": "2026-03-27T02:54:46.916Z",
+        "card_printings": [
+          {
+            "id": "aa586d57-a279-4cce-ba8c-e78ec7088bea",
+            "finish_key": "holo",
+            "provenance_ref": "fut2020-1",
+            "provenance_source": "tcgdex"
+          }
+        ],
+        "dependency_counts": {
+          "external_mappings": 1,
+          "card_print_identity": 1,
+          "card_print_traits": 1,
+          "vault_items": 0
+        }
+      }
+    ],
+    "hash_sha256": "cddc8bf8863e93ab941cf7a22c90cf26e98170f815256cbd6048d49394f76cd9",
+    "counts": {
+      "card_prints_found": 1,
+      "card_printings_found": 1,
+      "vault_items_found": 0
+    }
+  },
+  "durable_after_snapshot_matches_before_snapshot": true,
+  "verification_summary": {
+    "before_hash_sha256": "cddc8bf8863e93ab941cf7a22c90cf26e98170f815256cbd6048d49394f76cd9",
+    "after_hash_sha256": "cddc8bf8863e93ab941cf7a22c90cf26e98170f815256cbd6048d49394f76cd9",
+    "durable_state_unchanged": true,
+    "expected_transient_update_rolled_back": true
+  },
+  "explicit_non_authorizations": [
+    "This dry-run execution is not DB write/apply approval.",
+    "No COMMIT statement was allowed.",
+    "No migration was created.",
+    "PKG-01B remains blocked.",
+    "No cleanup, quarantine, insertion, deletion, hiding, or normalization was authorized."
+  ],
+  "stop_findings": [],
+  "pass": true
+}
