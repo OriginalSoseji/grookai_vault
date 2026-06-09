@@ -1,0 +1,128 @@
+{
+  "generated_at": "2026-06-09T05:07:43.818Z",
+  "version": "english_master_index_pkg01b_fut2020_operator_approval_gate_v1",
+  "audit_only": true,
+  "approval_gate_only": true,
+  "db_reads_performed": false,
+  "db_writes_performed": false,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "apply_paths_executed": false,
+  "approval_recorded": false,
+  "write_ready_now": 0,
+  "apply_allowed": false,
+  "approval_gate_status": "ready_for_operator_decision_apply_blocked_no_write",
+  "package_scope": {
+    "package_id": "PKG-01B-FUT2020",
+    "package_fingerprint_sha256": "c9539d98a7f883ce9b66ed12c57416ed68f0e9d1cad08b654f1470cb40baee63",
+    "set_key": "fut2020",
+    "set_name": "Pokémon Futsal 2020",
+    "target_numbers": [
+      "2",
+      "3",
+      "4",
+      "5"
+    ],
+    "parent_card_print_rows": 4,
+    "parent_set_code_updates": 4,
+    "child_printing_rows_current": 12,
+    "child_printing_rows_to_keep": 4,
+    "child_delete_candidates": 8,
+    "expected_master_printings": 4,
+    "parent_vault_items_found": 0,
+    "child_dependency_refs_found": 0
+  },
+  "approval_scopes": {
+    "parent_scope": {
+      "approval_required": true,
+      "operation_class": "parent_set_code_update",
+      "table": "public.card_prints",
+      "field_changes": [
+        "set_code"
+      ],
+      "row_count": 4,
+      "allowed_before_set_code": null,
+      "approved_after_set_code": "fut2020",
+      "target_card_print_ids": [
+        "2f2942c8-6019-4446-806c-593dd351af98",
+        "5029b53f-a1dd-4fe0-ae0c-b38021dd52c2",
+        "53919228-7560-480c-9bdb-da99ad67250a",
+        "82ebefc5-51bc-4dbd-ba14-a9a60186aa61"
+      ]
+    },
+    "child_scope": {
+      "approval_required": true,
+      "operation_class": "child_printing_delete_candidates",
+      "table": "public.card_printings",
+      "delete_candidate_count": 8,
+      "allowed_finish_keys": [
+        "holo",
+        "reverse"
+      ],
+      "required_dependency_refs": 0,
+      "target_card_printing_ids": [
+        "f7011904-be70-4a4f-9704-6d0396359493",
+        "3270eb0d-e4c8-43e8-9139-2b7d1f6440e7",
+        "3a7e1fc6-d717-4299-8f60-e14c8b15fd20",
+        "b3ed0e51-8a8b-4a12-8fbf-04b6c6bc21f6",
+        "ad2cc347-5873-4af7-8022-ed619176e708",
+        "6b846e08-a26b-45fc-8f68-628a80ef0d02",
+        "b4568669-93a5-412e-aa5f-704c75fe8518",
+        "26d97bc4-f156-4a3d-8735-0120be57572f"
+      ]
+    },
+    "keep_scope": {
+      "operation_class": "child_printing_keep_verified",
+      "table": "public.card_printings",
+      "keep_count": 4,
+      "required_finish_key": "normal",
+      "target_card_printing_ids": [
+        "218f3d4f-35a3-47f9-abb8-df28252e55d9",
+        "7a0707e1-2755-4a88-b90b-2f95ab2584d2",
+        "f3455573-4d20-4621-a206-ef88d8c726de",
+        "ac1fe5dc-a0f5-4d67-9cf7-d6e4b3fe865d"
+      ]
+    }
+  },
+  "required_operator_decision": {
+    "decision_needed": true,
+    "acceptable_decisions": [
+      "approve_pkg01b_fut2020_for_final_snapshot_and_guarded_dry_run_transaction_artifact",
+      "reject_pkg01b_fut2020",
+      "request_pkg01b_fut2020_changes"
+    ],
+    "exact_approval_phrase_required": "Approve PKG-01B-FUT2020 for final fresh snapshot and guarded dry-run transaction artifact preparation only. Fingerprint: c9539d98a7f883ce9b66ed12c57416ed68f0e9d1cad08b654f1470cb40baee63. Parent scope: 4 set_code updates. Child scope: 8 unsupported holo/reverse delete candidates. No real apply.",
+    "approval_must_reference": {
+      "package_id": "PKG-01B-FUT2020",
+      "package_fingerprint_sha256": "c9539d98a7f883ce9b66ed12c57416ed68f0e9d1cad08b654f1470cb40baee63",
+      "parent_set_code_updates": 4,
+      "child_delete_candidates": 8,
+      "child_keep_rows": 4
+    },
+    "approval_effect": "Approval would only allow final fresh snapshot capture and a guarded dry-run transaction artifact. It would not authorize real apply."
+  },
+  "next_step_if_approved_later": [
+    "Capture a final fresh DB snapshot for only the four fut2020 parent rows and twelve child printing rows.",
+    "Verify the package fingerprint and target IDs still match this approval gate.",
+    "Prepare a guarded transaction artifact that defaults to rollback and has no COMMIT statement.",
+    "Include parent rollback values and exact child reinsert snapshots for every delete candidate.",
+    "Run the guarded transaction artifact in dry-run only.",
+    "Stop for separate real-apply approval after dry-run proof."
+  ],
+  "explicit_non_authorizations": [
+    "This gate is not approval.",
+    "This gate is not an approval record.",
+    "This gate is not SQL.",
+    "This gate is not a migration.",
+    "This gate does not create an apply runner.",
+    "This gate does not write to the DB.",
+    "This gate does not delete child printings.",
+    "This gate does not authorize real apply."
+  ],
+  "source_artifacts": {
+    "dry_run_preview": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_pkg01b_fut2020_dry_run_preview_v1.json"
+  },
+  "stop_findings": [],
+  "pass": true
+}
