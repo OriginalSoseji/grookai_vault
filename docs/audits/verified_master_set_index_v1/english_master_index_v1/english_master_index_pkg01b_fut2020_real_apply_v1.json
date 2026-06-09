@@ -1,0 +1,746 @@
+{
+  "generated_at": "2026-06-09T05:45:01.260Z",
+  "version": "english_master_index_pkg01b_fut2020_real_apply_v1",
+  "audit_only": false,
+  "apply_only": true,
+  "approval_scope": {
+    "apply_approved_by_user": true,
+    "approval_text": "Approve real PKG-01B-FUT2020 apply only. Fingerprint: c9539d98a7f883ce9b66ed12c57416ed68f0e9d1cad08b654f1470cb40baee63. Parent scope: 4 set_code updates. Child scope: 8 unsupported holo/reverse deletes. Dry-run proof: 9129574db351ca002e3e5b0a0122ebd375d31d8725945bb419d61d120339db22 == 9129574db351ca002e3e5b0a0122ebd375d31d8725945bb419d61d120339db22. No global apply. No migrations.",
+    "approved_for_package_id": "PKG-01B-FUT2020",
+    "approved_for_fingerprint_sha256": "c9539d98a7f883ce9b66ed12c57416ed68f0e9d1cad08b654f1470cb40baee63",
+    "approved_for_set_key": "fut2020",
+    "approved_parent_scope": "4 set_code updates",
+    "approved_child_scope": "8 unsupported holo/reverse deletes",
+    "approved_for_global_apply": false,
+    "approved_for_migrations": false
+  },
+  "apply_status": "pkg01b_fut2020_real_apply_committed_and_verified",
+  "db_reads_performed": true,
+  "durable_db_writes_performed": true,
+  "db_write_committed": true,
+  "updated_rows": 4,
+  "deleted_rows": 8,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "apply_paths_executed": true,
+  "package_scope": {
+    "package_id": "PKG-01B-FUT2020",
+    "package_fingerprint_sha256": "c9539d98a7f883ce9b66ed12c57416ed68f0e9d1cad08b654f1470cb40baee63",
+    "set_key": "fut2020",
+    "target_numbers": [
+      "2",
+      "3",
+      "4",
+      "5"
+    ],
+    "parent_card_print_rows": 4,
+    "child_printing_rows_before": 12,
+    "child_printing_rows_after": 4,
+    "allowed_parent_field_changes": [
+      "set_code"
+    ],
+    "allowed_child_delete_finish_keys": [
+      "holo",
+      "reverse"
+    ],
+    "global_apply_included": false
+  },
+  "source_artifacts": {
+    "real_apply_gate": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_pkg01b_fut2020_real_apply_gate_v1.json",
+    "dry_run_proof": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_pkg01b_fut2020_guarded_dry_run_execution_v1.json",
+    "transaction_artifact_preparation": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_pkg01b_fut2020_final_snapshot_transaction_artifact_v1.json"
+  },
+  "execution_result": {
+    "connected": true,
+    "apply_status": "pkg01b_fut2020_real_apply_committed",
+    "error_message": null,
+    "committed": true
+  },
+  "before_snapshot": {
+    "captured_at": "2026-06-09T05:44:59.037Z",
+    "rows": [
+      {
+        "card_print_id": "2f2942c8-6019-4446-806c-593dd351af98",
+        "set_code": null,
+        "number": "2",
+        "number_plain": "2",
+        "name": "Eevee on the Ball",
+        "set_id": "84b23610-ffe4-4bbd-a5b7-51131bb9fee1",
+        "updated_at": "2026-03-27T02:54:47.779Z",
+        "card_printings": [
+          {
+            "id": "f7011904-be70-4a4f-9704-6d0396359493",
+            "finish_key": "holo",
+            "provenance_ref": "fut2020-2",
+            "provenance_source": "tcgdex"
+          },
+          {
+            "id": "218f3d4f-35a3-47f9-abb8-df28252e55d9",
+            "finish_key": "normal",
+            "provenance_ref": "fut2020-2",
+            "provenance_source": "tcgdex"
+          },
+          {
+            "id": "3270eb0d-e4c8-43e8-9139-2b7d1f6440e7",
+            "finish_key": "reverse",
+            "provenance_ref": "fut2020-2",
+            "provenance_source": "tcgdex"
+          }
+        ],
+        "dependency_counts": {
+          "external_mappings": 1,
+          "card_print_identity": 1,
+          "card_print_traits": 1,
+          "vault_items": 0
+        }
+      },
+      {
+        "card_print_id": "5029b53f-a1dd-4fe0-ae0c-b38021dd52c2",
+        "set_code": null,
+        "number": "3",
+        "number_plain": "3",
+        "name": "Grookey on the Ball",
+        "set_id": "84b23610-ffe4-4bbd-a5b7-51131bb9fee1",
+        "updated_at": "2026-03-27T02:54:49.027Z",
+        "card_printings": [
+          {
+            "id": "3a7e1fc6-d717-4299-8f60-e14c8b15fd20",
+            "finish_key": "holo",
+            "provenance_ref": "fut2020-3",
+            "provenance_source": "tcgdex"
+          },
+          {
+            "id": "7a0707e1-2755-4a88-b90b-2f95ab2584d2",
+            "finish_key": "normal",
+            "provenance_ref": "fut2020-3",
+            "provenance_source": "tcgdex"
+          },
+          {
+            "id": "b3ed0e51-8a8b-4a12-8fbf-04b6c6bc21f6",
+            "finish_key": "reverse",
+            "provenance_ref": "fut2020-3",
+            "provenance_source": "tcgdex"
+          }
+        ],
+        "dependency_counts": {
+          "external_mappings": 1,
+          "card_print_identity": 1,
+          "card_print_traits": 1,
+          "vault_items": 0
+        }
+      },
+      {
+        "card_print_id": "53919228-7560-480c-9bdb-da99ad67250a",
+        "set_code": null,
+        "number": "4",
+        "number_plain": "4",
+        "name": "Scorbunny on the Ball",
+        "set_id": "84b23610-ffe4-4bbd-a5b7-51131bb9fee1",
+        "updated_at": "2026-03-27T02:54:50.028Z",
+        "card_printings": [
+          {
+            "id": "ad2cc347-5873-4af7-8022-ed619176e708",
+            "finish_key": "holo",
+            "provenance_ref": "fut2020-4",
+            "provenance_source": "tcgdex"
+          },
+          {
+            "id": "f3455573-4d20-4621-a206-ef88d8c726de",
+            "finish_key": "normal",
+            "provenance_ref": "fut2020-4",
+            "provenance_source": "tcgdex"
+          },
+          {
+            "id": "6b846e08-a26b-45fc-8f68-628a80ef0d02",
+            "finish_key": "reverse",
+            "provenance_ref": "fut2020-4",
+            "provenance_source": "tcgdex"
+          }
+        ],
+        "dependency_counts": {
+          "external_mappings": 1,
+          "card_print_identity": 1,
+          "card_print_traits": 1,
+          "vault_items": 0
+        }
+      },
+      {
+        "card_print_id": "82ebefc5-51bc-4dbd-ba14-a9a60186aa61",
+        "set_code": null,
+        "number": "5",
+        "number_plain": "5",
+        "name": "Sobble on the Ball",
+        "set_id": "84b23610-ffe4-4bbd-a5b7-51131bb9fee1",
+        "updated_at": "2026-03-27T02:54:51.078Z",
+        "card_printings": [
+          {
+            "id": "b4568669-93a5-412e-aa5f-704c75fe8518",
+            "finish_key": "holo",
+            "provenance_ref": "fut2020-5",
+            "provenance_source": "tcgdex"
+          },
+          {
+            "id": "ac1fe5dc-a0f5-4d67-9cf7-d6e4b3fe865d",
+            "finish_key": "normal",
+            "provenance_ref": "fut2020-5",
+            "provenance_source": "tcgdex"
+          },
+          {
+            "id": "26d97bc4-f156-4a3d-8735-0120be57572f",
+            "finish_key": "reverse",
+            "provenance_ref": "fut2020-5",
+            "provenance_source": "tcgdex"
+          }
+        ],
+        "dependency_counts": {
+          "external_mappings": 1,
+          "card_print_identity": 1,
+          "card_print_traits": 1,
+          "vault_items": 0
+        }
+      }
+    ],
+    "hash_sha256": "9129574db351ca002e3e5b0a0122ebd375d31d8725945bb419d61d120339db22",
+    "child_dependency_summary": {
+      "vault_item_instances": {
+        "table": "vault_item_instances",
+        "column": "card_printing_id",
+        "available": true,
+        "total_refs": 0,
+        "by_card_printing_id": {}
+      },
+      "external_printing_mappings": {
+        "table": "external_printing_mappings",
+        "column": "card_printing_id",
+        "available": true,
+        "total_refs": 0,
+        "by_card_printing_id": {}
+      },
+      "canon_warehouse_candidates": {
+        "table": "canon_warehouse_candidates",
+        "column": "promoted_card_printing_id",
+        "available": true,
+        "total_refs": 0,
+        "by_card_printing_id": {}
+      },
+      "card_printing_truth_reviews": {
+        "table": "card_printing_truth_reviews",
+        "column": "card_printing_id",
+        "available": false,
+        "total_refs": null,
+        "by_card_printing_id": {}
+      },
+      "justtcg_grookai_mappings": {
+        "table": "justtcg_grookai_mappings",
+        "column": "card_printing_id",
+        "available": false,
+        "total_refs": null,
+        "by_card_printing_id": {}
+      }
+    },
+    "counts": {
+      "card_prints_found": 4,
+      "card_printings_found": 12,
+      "parent_vault_items_found": 0,
+      "child_dependency_refs_found": 0,
+      "normal_printings_found": 4,
+      "holo_printings_found": 4,
+      "reverse_printings_found": 4
+    }
+  },
+  "after_snapshot": {
+    "captured_at": "2026-06-09T05:45:01.179Z",
+    "rows": [
+      {
+        "card_print_id": "2f2942c8-6019-4446-806c-593dd351af98",
+        "set_code": "fut2020",
+        "number": "2",
+        "number_plain": "2",
+        "name": "Eevee on the Ball",
+        "set_id": "84b23610-ffe4-4bbd-a5b7-51131bb9fee1",
+        "updated_at": "2026-03-27T02:54:47.779Z",
+        "card_printings": [
+          {
+            "id": "218f3d4f-35a3-47f9-abb8-df28252e55d9",
+            "finish_key": "normal",
+            "provenance_ref": "fut2020-2",
+            "provenance_source": "tcgdex"
+          }
+        ],
+        "dependency_counts": {
+          "external_mappings": 1,
+          "card_print_identity": 1,
+          "card_print_traits": 1,
+          "vault_items": 0
+        }
+      },
+      {
+        "card_print_id": "5029b53f-a1dd-4fe0-ae0c-b38021dd52c2",
+        "set_code": "fut2020",
+        "number": "3",
+        "number_plain": "3",
+        "name": "Grookey on the Ball",
+        "set_id": "84b23610-ffe4-4bbd-a5b7-51131bb9fee1",
+        "updated_at": "2026-03-27T02:54:49.027Z",
+        "card_printings": [
+          {
+            "id": "7a0707e1-2755-4a88-b90b-2f95ab2584d2",
+            "finish_key": "normal",
+            "provenance_ref": "fut2020-3",
+            "provenance_source": "tcgdex"
+          }
+        ],
+        "dependency_counts": {
+          "external_mappings": 1,
+          "card_print_identity": 1,
+          "card_print_traits": 1,
+          "vault_items": 0
+        }
+      },
+      {
+        "card_print_id": "53919228-7560-480c-9bdb-da99ad67250a",
+        "set_code": "fut2020",
+        "number": "4",
+        "number_plain": "4",
+        "name": "Scorbunny on the Ball",
+        "set_id": "84b23610-ffe4-4bbd-a5b7-51131bb9fee1",
+        "updated_at": "2026-03-27T02:54:50.028Z",
+        "card_printings": [
+          {
+            "id": "f3455573-4d20-4621-a206-ef88d8c726de",
+            "finish_key": "normal",
+            "provenance_ref": "fut2020-4",
+            "provenance_source": "tcgdex"
+          }
+        ],
+        "dependency_counts": {
+          "external_mappings": 1,
+          "card_print_identity": 1,
+          "card_print_traits": 1,
+          "vault_items": 0
+        }
+      },
+      {
+        "card_print_id": "82ebefc5-51bc-4dbd-ba14-a9a60186aa61",
+        "set_code": "fut2020",
+        "number": "5",
+        "number_plain": "5",
+        "name": "Sobble on the Ball",
+        "set_id": "84b23610-ffe4-4bbd-a5b7-51131bb9fee1",
+        "updated_at": "2026-03-27T02:54:51.078Z",
+        "card_printings": [
+          {
+            "id": "ac1fe5dc-a0f5-4d67-9cf7-d6e4b3fe865d",
+            "finish_key": "normal",
+            "provenance_ref": "fut2020-5",
+            "provenance_source": "tcgdex"
+          }
+        ],
+        "dependency_counts": {
+          "external_mappings": 1,
+          "card_print_identity": 1,
+          "card_print_traits": 1,
+          "vault_items": 0
+        }
+      }
+    ],
+    "hash_sha256": "9e6dd84f16ec95d3e301722c011ca0626224c9b37d70bdcdf9492cdc0603b38e",
+    "child_dependency_summary": {
+      "vault_item_instances": {
+        "table": "vault_item_instances",
+        "column": "card_printing_id",
+        "available": true,
+        "total_refs": 0,
+        "by_card_printing_id": {}
+      },
+      "external_printing_mappings": {
+        "table": "external_printing_mappings",
+        "column": "card_printing_id",
+        "available": true,
+        "total_refs": 0,
+        "by_card_printing_id": {}
+      },
+      "canon_warehouse_candidates": {
+        "table": "canon_warehouse_candidates",
+        "column": "promoted_card_printing_id",
+        "available": true,
+        "total_refs": 0,
+        "by_card_printing_id": {}
+      },
+      "card_printing_truth_reviews": {
+        "table": "card_printing_truth_reviews",
+        "column": "card_printing_id",
+        "available": false,
+        "total_refs": null,
+        "by_card_printing_id": {}
+      },
+      "justtcg_grookai_mappings": {
+        "table": "justtcg_grookai_mappings",
+        "column": "card_printing_id",
+        "available": false,
+        "total_refs": null,
+        "by_card_printing_id": {}
+      }
+    },
+    "counts": {
+      "card_prints_found": 4,
+      "card_printings_found": 4,
+      "parent_vault_items_found": 0,
+      "child_dependency_refs_found": 0,
+      "normal_printings_found": 4,
+      "holo_printings_found": 0,
+      "reverse_printings_found": 0
+    }
+  },
+  "rollback_proof": {
+    "rollback_matrix": [
+      {
+        "card_print_id": "2f2942c8-6019-4446-806c-593dd351af98",
+        "parent_rollback_values_from_fresh_snapshot": {
+          "set_code": null,
+          "number": "2",
+          "number_plain": "2",
+          "name": "Eevee on the Ball"
+        },
+        "child_printing_reinsert_snapshot_for_delete_candidates": [
+          {
+            "id": "f7011904-be70-4a4f-9704-6d0396359493",
+            "image_url": null,
+            "created_at": "2026-03-27T02:54:48.245929+00:00",
+            "created_by": "printing_ingestion_v2",
+            "finish_key": "holo",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "2f2942c8-6019-4446-806c-593dd351af98",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": null,
+            "provenance_ref": "fut2020-2",
+            "provenance_source": "tcgdex"
+          },
+          {
+            "id": "3270eb0d-e4c8-43e8-9139-2b7d1f6440e7",
+            "image_url": null,
+            "created_at": "2026-03-27T02:54:48.338423+00:00",
+            "created_by": "printing_ingestion_v2",
+            "finish_key": "reverse",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "2f2942c8-6019-4446-806c-593dd351af98",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": null,
+            "provenance_ref": "fut2020-2",
+            "provenance_source": "tcgdex"
+          }
+        ],
+        "rollback_available": true,
+        "rollback_note": "Future real apply rollback must restore parent set_code and reinsert these exact child rows if a durable delete is ever separately approved."
+      },
+      {
+        "card_print_id": "5029b53f-a1dd-4fe0-ae0c-b38021dd52c2",
+        "parent_rollback_values_from_fresh_snapshot": {
+          "set_code": null,
+          "number": "3",
+          "number_plain": "3",
+          "name": "Grookey on the Ball"
+        },
+        "child_printing_reinsert_snapshot_for_delete_candidates": [
+          {
+            "id": "3a7e1fc6-d717-4299-8f60-e14c8b15fd20",
+            "image_url": null,
+            "created_at": "2026-03-27T02:54:49.301809+00:00",
+            "created_by": "printing_ingestion_v2",
+            "finish_key": "holo",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "5029b53f-a1dd-4fe0-ae0c-b38021dd52c2",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": null,
+            "provenance_ref": "fut2020-3",
+            "provenance_source": "tcgdex"
+          },
+          {
+            "id": "b3ed0e51-8a8b-4a12-8fbf-04b6c6bc21f6",
+            "image_url": null,
+            "created_at": "2026-03-27T02:54:49.394401+00:00",
+            "created_by": "printing_ingestion_v2",
+            "finish_key": "reverse",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "5029b53f-a1dd-4fe0-ae0c-b38021dd52c2",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": null,
+            "provenance_ref": "fut2020-3",
+            "provenance_source": "tcgdex"
+          }
+        ],
+        "rollback_available": true,
+        "rollback_note": "Future real apply rollback must restore parent set_code and reinsert these exact child rows if a durable delete is ever separately approved."
+      },
+      {
+        "card_print_id": "53919228-7560-480c-9bdb-da99ad67250a",
+        "parent_rollback_values_from_fresh_snapshot": {
+          "set_code": null,
+          "number": "4",
+          "number_plain": "4",
+          "name": "Scorbunny on the Ball"
+        },
+        "child_printing_reinsert_snapshot_for_delete_candidates": [
+          {
+            "id": "ad2cc347-5873-4af7-8022-ed619176e708",
+            "image_url": null,
+            "created_at": "2026-03-27T02:54:50.324649+00:00",
+            "created_by": "printing_ingestion_v2",
+            "finish_key": "holo",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "53919228-7560-480c-9bdb-da99ad67250a",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": null,
+            "provenance_ref": "fut2020-4",
+            "provenance_source": "tcgdex"
+          },
+          {
+            "id": "6b846e08-a26b-45fc-8f68-628a80ef0d02",
+            "image_url": null,
+            "created_at": "2026-03-27T02:54:50.414536+00:00",
+            "created_by": "printing_ingestion_v2",
+            "finish_key": "reverse",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "53919228-7560-480c-9bdb-da99ad67250a",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": null,
+            "provenance_ref": "fut2020-4",
+            "provenance_source": "tcgdex"
+          }
+        ],
+        "rollback_available": true,
+        "rollback_note": "Future real apply rollback must restore parent set_code and reinsert these exact child rows if a durable delete is ever separately approved."
+      },
+      {
+        "card_print_id": "82ebefc5-51bc-4dbd-ba14-a9a60186aa61",
+        "parent_rollback_values_from_fresh_snapshot": {
+          "set_code": null,
+          "number": "5",
+          "number_plain": "5",
+          "name": "Sobble on the Ball"
+        },
+        "child_printing_reinsert_snapshot_for_delete_candidates": [
+          {
+            "id": "b4568669-93a5-412e-aa5f-704c75fe8518",
+            "image_url": null,
+            "created_at": "2026-03-27T02:54:51.352631+00:00",
+            "created_by": "printing_ingestion_v2",
+            "finish_key": "holo",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "82ebefc5-51bc-4dbd-ba14-a9a60186aa61",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": null,
+            "provenance_ref": "fut2020-5",
+            "provenance_source": "tcgdex"
+          },
+          {
+            "id": "26d97bc4-f156-4a3d-8735-0120be57572f",
+            "image_url": null,
+            "created_at": "2026-03-27T02:54:51.441904+00:00",
+            "created_by": "printing_ingestion_v2",
+            "finish_key": "reverse",
+            "image_note": null,
+            "image_path": null,
+            "image_source": null,
+            "image_status": null,
+            "card_print_id": "82ebefc5-51bc-4dbd-ba14-a9a60186aa61",
+            "image_alt_url": null,
+            "is_provisional": false,
+            "printing_gv_id": null,
+            "provenance_ref": "fut2020-5",
+            "provenance_source": "tcgdex"
+          }
+        ],
+        "rollback_available": true,
+        "rollback_note": "Future real apply rollback must restore parent set_code and reinsert these exact child rows if a durable delete is ever separately approved."
+      }
+    ],
+    "rollback_sql_preview": "update public.card_prints set set_code = null where id = '2f2942c8-6019-4446-806c-593dd351af98'::uuid and set_code = 'fut2020';\nupdate public.card_prints set set_code = null where id = '5029b53f-a1dd-4fe0-ae0c-b38021dd52c2'::uuid and set_code = 'fut2020';\nupdate public.card_prints set set_code = null where id = '53919228-7560-480c-9bdb-da99ad67250a'::uuid and set_code = 'fut2020';\nupdate public.card_prints set set_code = null where id = '82ebefc5-51bc-4dbd-ba14-a9a60186aa61'::uuid and set_code = 'fut2020';\n-- reinsert card_printings snapshot id=f7011904-be70-4a4f-9704-6d0396359493 card_print_id=2f2942c8-6019-4446-806c-593dd351af98 finish_key=holo\n-- reinsert card_printings snapshot id=3270eb0d-e4c8-43e8-9139-2b7d1f6440e7 card_print_id=2f2942c8-6019-4446-806c-593dd351af98 finish_key=reverse\n-- reinsert card_printings snapshot id=3a7e1fc6-d717-4299-8f60-e14c8b15fd20 card_print_id=5029b53f-a1dd-4fe0-ae0c-b38021dd52c2 finish_key=holo\n-- reinsert card_printings snapshot id=b3ed0e51-8a8b-4a12-8fbf-04b6c6bc21f6 card_print_id=5029b53f-a1dd-4fe0-ae0c-b38021dd52c2 finish_key=reverse\n-- reinsert card_printings snapshot id=ad2cc347-5873-4af7-8022-ed619176e708 card_print_id=53919228-7560-480c-9bdb-da99ad67250a finish_key=holo\n-- reinsert card_printings snapshot id=6b846e08-a26b-45fc-8f68-628a80ef0d02 card_print_id=53919228-7560-480c-9bdb-da99ad67250a finish_key=reverse\n-- reinsert card_printings snapshot id=b4568669-93a5-412e-aa5f-704c75fe8518 card_print_id=82ebefc5-51bc-4dbd-ba14-a9a60186aa61 finish_key=holo\n-- reinsert card_printings snapshot id=26d97bc4-f156-4a3d-8735-0120be57572f card_print_id=82ebefc5-51bc-4dbd-ba14-a9a60186aa61 finish_key=reverse",
+    "child_reinsert_snapshots": [
+      {
+        "id": "f7011904-be70-4a4f-9704-6d0396359493",
+        "image_url": null,
+        "created_at": "2026-03-27T02:54:48.245929+00:00",
+        "created_by": "printing_ingestion_v2",
+        "finish_key": "holo",
+        "image_note": null,
+        "image_path": null,
+        "image_source": null,
+        "image_status": null,
+        "card_print_id": "2f2942c8-6019-4446-806c-593dd351af98",
+        "image_alt_url": null,
+        "is_provisional": false,
+        "printing_gv_id": null,
+        "provenance_ref": "fut2020-2",
+        "provenance_source": "tcgdex"
+      },
+      {
+        "id": "3270eb0d-e4c8-43e8-9139-2b7d1f6440e7",
+        "image_url": null,
+        "created_at": "2026-03-27T02:54:48.338423+00:00",
+        "created_by": "printing_ingestion_v2",
+        "finish_key": "reverse",
+        "image_note": null,
+        "image_path": null,
+        "image_source": null,
+        "image_status": null,
+        "card_print_id": "2f2942c8-6019-4446-806c-593dd351af98",
+        "image_alt_url": null,
+        "is_provisional": false,
+        "printing_gv_id": null,
+        "provenance_ref": "fut2020-2",
+        "provenance_source": "tcgdex"
+      },
+      {
+        "id": "3a7e1fc6-d717-4299-8f60-e14c8b15fd20",
+        "image_url": null,
+        "created_at": "2026-03-27T02:54:49.301809+00:00",
+        "created_by": "printing_ingestion_v2",
+        "finish_key": "holo",
+        "image_note": null,
+        "image_path": null,
+        "image_source": null,
+        "image_status": null,
+        "card_print_id": "5029b53f-a1dd-4fe0-ae0c-b38021dd52c2",
+        "image_alt_url": null,
+        "is_provisional": false,
+        "printing_gv_id": null,
+        "provenance_ref": "fut2020-3",
+        "provenance_source": "tcgdex"
+      },
+      {
+        "id": "b3ed0e51-8a8b-4a12-8fbf-04b6c6bc21f6",
+        "image_url": null,
+        "created_at": "2026-03-27T02:54:49.394401+00:00",
+        "created_by": "printing_ingestion_v2",
+        "finish_key": "reverse",
+        "image_note": null,
+        "image_path": null,
+        "image_source": null,
+        "image_status": null,
+        "card_print_id": "5029b53f-a1dd-4fe0-ae0c-b38021dd52c2",
+        "image_alt_url": null,
+        "is_provisional": false,
+        "printing_gv_id": null,
+        "provenance_ref": "fut2020-3",
+        "provenance_source": "tcgdex"
+      },
+      {
+        "id": "ad2cc347-5873-4af7-8022-ed619176e708",
+        "image_url": null,
+        "created_at": "2026-03-27T02:54:50.324649+00:00",
+        "created_by": "printing_ingestion_v2",
+        "finish_key": "holo",
+        "image_note": null,
+        "image_path": null,
+        "image_source": null,
+        "image_status": null,
+        "card_print_id": "53919228-7560-480c-9bdb-da99ad67250a",
+        "image_alt_url": null,
+        "is_provisional": false,
+        "printing_gv_id": null,
+        "provenance_ref": "fut2020-4",
+        "provenance_source": "tcgdex"
+      },
+      {
+        "id": "6b846e08-a26b-45fc-8f68-628a80ef0d02",
+        "image_url": null,
+        "created_at": "2026-03-27T02:54:50.414536+00:00",
+        "created_by": "printing_ingestion_v2",
+        "finish_key": "reverse",
+        "image_note": null,
+        "image_path": null,
+        "image_source": null,
+        "image_status": null,
+        "card_print_id": "53919228-7560-480c-9bdb-da99ad67250a",
+        "image_alt_url": null,
+        "is_provisional": false,
+        "printing_gv_id": null,
+        "provenance_ref": "fut2020-4",
+        "provenance_source": "tcgdex"
+      },
+      {
+        "id": "b4568669-93a5-412e-aa5f-704c75fe8518",
+        "image_url": null,
+        "created_at": "2026-03-27T02:54:51.352631+00:00",
+        "created_by": "printing_ingestion_v2",
+        "finish_key": "holo",
+        "image_note": null,
+        "image_path": null,
+        "image_source": null,
+        "image_status": null,
+        "card_print_id": "82ebefc5-51bc-4dbd-ba14-a9a60186aa61",
+        "image_alt_url": null,
+        "is_provisional": false,
+        "printing_gv_id": null,
+        "provenance_ref": "fut2020-5",
+        "provenance_source": "tcgdex"
+      },
+      {
+        "id": "26d97bc4-f156-4a3d-8735-0120be57572f",
+        "image_url": null,
+        "created_at": "2026-03-27T02:54:51.441904+00:00",
+        "created_by": "printing_ingestion_v2",
+        "finish_key": "reverse",
+        "image_note": null,
+        "image_path": null,
+        "image_source": null,
+        "image_status": null,
+        "card_print_id": "82ebefc5-51bc-4dbd-ba14-a9a60186aa61",
+        "image_alt_url": null,
+        "is_provisional": false,
+        "printing_gv_id": null,
+        "provenance_ref": "fut2020-5",
+        "provenance_source": "tcgdex"
+      }
+    ]
+  },
+  "verification_summary": {
+    "before_hash_sha256": "9129574db351ca002e3e5b0a0122ebd375d31d8725945bb419d61d120339db22",
+    "after_hash_sha256": "9e6dd84f16ec95d3e301722c011ca0626224c9b37d70bdcdf9492cdc0603b38e",
+    "parent_set_code_resolved": true,
+    "child_printing_count_reduced_to_index": true,
+    "normal_printings_remaining": true,
+    "unsupported_holo_reverse_removed": true,
+    "vault_items_still_zero": true,
+    "child_dependency_refs_still_zero": true,
+    "master_index_comparison_status": "pkg01b_fut2020_verified_by_index_after_apply"
+  },
+  "explicit_non_authorizations": [
+    "No global apply was authorized.",
+    "No migrations were authorized or created.",
+    "No cleanup or quarantine outside the eight approved child delete candidates was authorized.",
+    "No vault, ownership, pricing, scanner, marketplace, or UI rows were changed."
+  ],
+  "stop_findings": [],
+  "pass": true
+}
