@@ -2,13 +2,13 @@
 
 ## Conclusion
 
-- audit_status: complete_to_pkg01_reconcile_dry_run_preview_boundary_no_write
+- audit_status: complete_to_pkg01_operator_approval_gate_boundary_no_write
 - entire_audit_completed_to_current_evidence_boundary: true
 - master_index_complete: true
 - ready_for_db_writes: false
-- reason: The completed Master Index now has PKG-01 dry-run packages, a consolidated apply design, DB impact translation, an operator approval packet, a blank fingerprinted approval record template, a passing approval template guard, a pre-write snapshot specification, a future execution artifact specification, and a consolidated reconcile dry-run preview, but writes still need recorded approval, a final fresh snapshot, an actual guarded execution artifact, and transactional verification.
+- reason: The completed Master Index now has PKG-01 dry-run packages, a consolidated apply design, DB impact translation, an operator approval packet, a blank fingerprinted approval record template, a passing approval template guard, a pre-write snapshot specification, a future execution artifact specification, a consolidated reconcile dry-run preview, and an operator approval gate, but writes still need recorded approval, a final fresh snapshot, an actual guarded execution artifact, and transactional verification.
 - strongest_positive_finding: 106 physical missing-set recovery card candidates / 143 printing rows have exact card identity and all finishes master_verified by the index.
-- main_blocker: PKG-01 reconcile dry-run preview exists and passed preview guards, but approval is not recorded and no executable guarded transaction artifact exists.
+- main_blocker: PKG-01 is ready for explicit operator decision, but approval is not recorded and no executable guarded transaction artifact exists.
 
 ## Safety
 
@@ -21,7 +21,7 @@
 
 ## Immediate Next Non-Write Work
 
-- Human-review the consolidated PKG-01 reconcile dry-run preview, mutation matrix, rollback matrix, approval template, and package fingerprint; leave write_ready_now at 0 until approval is explicitly recorded.
+- Operator decision is the next boundary: approve PKG-01 for final snapshot/execution-artifact preparation, reject PKG-01, or request changes. No write is authorized until approval is explicitly recorded.
 - Capture a final fresh before-state snapshot immediately before any future execution artifact is created.
 - Create the actual guarded execution artifact only after explicit approval and a fresh snapshot.
 - Keep blocked remainder rows out of any future execution package.
@@ -39,7 +39,7 @@
 | package | name | state | required_before_write |
 | --- | --- | --- | --- |
 | PKG-00 | Ascended Heroes monitor-only proof baseline | complete | No write required unless future drift appears. |
-| PKG-01 | Physical missing-set recovery - master-verified subset | pkg01_reconcile_dry_run_preview_complete_apply_blocked_no_write | Record explicit founder/operator approval only after reviewing every row in the approval packet.; Record founder/operator approval of exact row IDs and intended mutations.; Capture a fresh production before-state snapshot immediately before any future execution.; Regenerate rollback values from that fresh snapshot.; Generate a separate transactional execution artifact; do not use this report as execution.; Run identity, ownership, vault, provenance, and post-apply checks inside the future transaction before commit. |
+| PKG-01 | Physical missing-set recovery - master-verified subset | pkg01_operator_approval_gate_ready_apply_blocked_no_write | Record explicit founder/operator approval only after reviewing every row in the approval packet.; Record founder/operator approval of exact row IDs and intended mutations.; Capture a fresh production before-state snapshot immediately before any future execution.; Regenerate rollback values from that fresh snapshot.; Generate a separate transactional execution artifact; do not use this report as execution.; Run identity, ownership, vault, provenance, and post-apply checks inside the future transaction before commit. |
 | PKG-01B | Physical missing-set recovery - blocked remainder | blocked_until_identity_or_finish_safe | Resolve card-number gaps or exclude them from the package.; Split supported finish rows from unsupported finish rows.; Generate a separate dry-run package only for rows that become master_verified. |
 | PKG-02 | Pocket/digital scope isolation | scope_decision_required | Decide whether Grookai stores Pocket/digital rows in a separate domain.; Design non-destructive isolation/quarantine strategy.; Verify ownership/vault/provenance impacts before any hide or move. |
 | PKG-03 | Unsupported printings cleanup | blocked_by_index_maturity | Run set-level proof loops until relevant facts are master_verified.; Produce proof-based unsupported row report with exact evidence URLs.; Generate rollback-safe cleanup plan. |

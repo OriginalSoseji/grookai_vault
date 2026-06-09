@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-08T22:37:45.918Z",
+  "generated_at": "2026-06-09T03:18:21.476Z",
   "version": "english_master_index_audit_closure_v1",
   "audit_only": true,
   "db_writes_performed": false,
@@ -8,14 +8,14 @@
   "quarantine_performed": false,
   "apply_paths_executed": false,
   "privileged_writes_used": false,
-  "audit_status": "complete_to_pkg01_reconcile_dry_run_preview_boundary_no_write",
+  "audit_status": "complete_to_pkg01_operator_approval_gate_boundary_no_write",
   "conclusion": {
     "entire_audit_completed_to_current_evidence_boundary": true,
     "master_index_complete": true,
     "ready_for_db_writes": false,
-    "reason": "The completed Master Index now has PKG-01 dry-run packages, a consolidated apply design, DB impact translation, an operator approval packet, a blank fingerprinted approval record template, a passing approval template guard, a pre-write snapshot specification, a future execution artifact specification, and a consolidated reconcile dry-run preview, but writes still need recorded approval, a final fresh snapshot, an actual guarded execution artifact, and transactional verification.",
+    "reason": "The completed Master Index now has PKG-01 dry-run packages, a consolidated apply design, DB impact translation, an operator approval packet, a blank fingerprinted approval record template, a passing approval template guard, a pre-write snapshot specification, a future execution artifact specification, a consolidated reconcile dry-run preview, and an operator approval gate, but writes still need recorded approval, a final fresh snapshot, an actual guarded execution artifact, and transactional verification.",
     "strongest_positive_finding": "106 physical missing-set recovery card candidates / 143 printing rows have exact card identity and all finishes master_verified by the index.",
-    "main_blocker": "PKG-01 reconcile dry-run preview exists and passed preview guards, but approval is not recorded and no executable guarded transaction artifact exists.",
+    "main_blocker": "PKG-01 is ready for explicit operator decision, but approval is not recorded and no executable guarded transaction artifact exists.",
     "finish_blocker_boundary": "Former finish blockers are adjudicated exclusions outside working truth, not open completion gaps."
   },
   "summary": {
@@ -434,6 +434,21 @@
       "pass_for_preview": true,
       "write_ready_now": 0
     },
+    "physical_recovery_pkg01_operator_approval_gate": {
+      "exists": true,
+      "file": "english_master_index_pkg01_operator_approval_gate_v1.json",
+      "approval_gate_status": "ready_for_operator_decision_apply_blocked_no_write",
+      "approval_recorded": false,
+      "package_fingerprint_sha256": "34cc9acbb81bfadbe2115528a1339cb82afa71fa01fd0d52b62b83834a990b79",
+      "card_print_rows": 106,
+      "child_printing_rows_verified": 143,
+      "mutation_matrix_rows": 106,
+      "rollback_matrix_rows": 106,
+      "apply_allowed": false,
+      "stop_findings": 0,
+      "pass": true,
+      "write_ready_now": 0
+    },
     "source_acquisition_queue": {
       "total_queue_items": 0,
       "by_lane": {},
@@ -506,7 +521,7 @@
     }
   },
   "immediate_next_non_write_work": [
-    "Human-review the consolidated PKG-01 reconcile dry-run preview, mutation matrix, rollback matrix, approval template, and package fingerprint; leave write_ready_now at 0 until approval is explicitly recorded.",
+    "Operator decision is the next boundary: approve PKG-01 for final snapshot/execution-artifact preparation, reject PKG-01, or request changes. No write is authorized until approval is explicitly recorded.",
     "Capture a final fresh before-state snapshot immediately before any future execution artifact is created.",
     "Create the actual guarded execution artifact only after explicit approval and a fresh snapshot.",
     "Keep blocked remainder rows out of any future execution package."
@@ -737,7 +752,7 @@
     {
       "package_id": "PKG-01",
       "name": "Physical missing-set recovery - master-verified subset",
-      "current_state": "pkg01_reconcile_dry_run_preview_complete_apply_blocked_no_write",
+      "current_state": "pkg01_operator_approval_gate_ready_apply_blocked_no_write",
       "future_write_allowed_after_approval": false,
       "evidence_ready_for_dry_run_design": true,
       "generated_dry_run_packages": {
@@ -1049,6 +1064,21 @@
         "apply_allowed": false,
         "stop_findings": 0,
         "pass_for_preview": true,
+        "write_ready_now": 0
+      },
+      "physical_recovery_pkg01_operator_approval_gate": {
+        "exists": true,
+        "file": "english_master_index_pkg01_operator_approval_gate_v1.json",
+        "approval_gate_status": "ready_for_operator_decision_apply_blocked_no_write",
+        "approval_recorded": false,
+        "package_fingerprint_sha256": "34cc9acbb81bfadbe2115528a1339cb82afa71fa01fd0d52b62b83834a990b79",
+        "card_print_rows": 106,
+        "child_printing_rows_verified": 143,
+        "mutation_matrix_rows": 106,
+        "rollback_matrix_rows": 106,
+        "apply_allowed": false,
+        "stop_findings": 0,
+        "pass": true,
         "write_ready_now": 0
       },
       "candidate_card_prints": 106,

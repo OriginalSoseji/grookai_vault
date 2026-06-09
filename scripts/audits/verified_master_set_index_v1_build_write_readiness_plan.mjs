@@ -18,6 +18,7 @@ const OPERATOR_APPROVAL_TEMPLATE_GUARD_FILE = 'english_master_index_operator_app
 const PREWRITE_SNAPSHOT_SPEC_FILE = 'english_master_index_prewrite_snapshot_spec_v1.json';
 const FUTURE_EXECUTION_ARTIFACT_SPEC_FILE = 'english_master_index_future_execution_artifact_spec_v1.json';
 const PKG01_RECONCILE_DRY_RUN_PREVIEW_FILE = 'english_master_index_pkg01_reconcile_dry_run_preview_v1.json';
+const PKG01_OPERATOR_APPROVAL_GATE_FILE = 'english_master_index_pkg01_operator_approval_gate_v1.json';
 const GENERATED_FILES = [
   'english_master_index_write_readiness_v1.json',
   'english_master_index_write_readiness_v1.md',
@@ -560,7 +561,33 @@ function summarizePkg01ReconcileDryRunPreview(pkg01ReconcileDryRunPreview) {
   };
 }
 
-function physicalRecoveryDesignState({ dryRunPackages, physicalRecoveryReviewGate, physicalRecoveryApplyDesign, physicalRecoveryDbImpact, physicalRecoveryOperatorApproval, physicalRecoveryApprovalRecordTemplate, physicalRecoveryApprovalTemplateGuard, physicalRecoveryPrewriteSnapshotSpec, physicalRecoveryFutureExecutionArtifactSpec, physicalRecoveryPkg01ReconcileDryRunPreview }) {
+function summarizePkg01OperatorApprovalGate(pkg01OperatorApprovalGate) {
+  if (!pkg01OperatorApprovalGate) {
+    return {
+      exists: false,
+      approval_gate_status: 'not_generated',
+      approval_recorded: false,
+      write_ready_now: 0,
+    };
+  }
+  return {
+    exists: true,
+    file: PKG01_OPERATOR_APPROVAL_GATE_FILE,
+    approval_gate_status: pkg01OperatorApprovalGate.approval_gate_status,
+    approval_recorded: pkg01OperatorApprovalGate.approval_recorded === true,
+    package_fingerprint_sha256: pkg01OperatorApprovalGate.package_scope?.package_fingerprint_sha256 ?? null,
+    card_print_rows: pkg01OperatorApprovalGate.package_scope?.card_print_rows ?? 0,
+    child_printing_rows_verified: pkg01OperatorApprovalGate.package_scope?.child_printing_rows_verified ?? 0,
+    mutation_matrix_rows: pkg01OperatorApprovalGate.package_scope?.mutation_matrix_rows ?? 0,
+    rollback_matrix_rows: pkg01OperatorApprovalGate.package_scope?.rollback_matrix_rows ?? 0,
+    apply_allowed: pkg01OperatorApprovalGate.apply_allowed === true,
+    stop_findings: pkg01OperatorApprovalGate.stop_findings?.length ?? 0,
+    pass: pkg01OperatorApprovalGate.pass === true,
+    write_ready_now: pkg01OperatorApprovalGate.write_ready_now ?? 0,
+  };
+}
+
+function physicalRecoveryDesignState({ dryRunPackages, physicalRecoveryReviewGate, physicalRecoveryApplyDesign, physicalRecoveryDbImpact, physicalRecoveryOperatorApproval, physicalRecoveryApprovalRecordTemplate, physicalRecoveryApprovalTemplateGuard, physicalRecoveryPrewriteSnapshotSpec, physicalRecoveryFutureExecutionArtifactSpec, physicalRecoveryPkg01ReconcileDryRunPreview, physicalRecoveryPkg01OperatorApprovalGate }) {
   const generatedDryRuns = summarizeGeneratedDryRunPackages(dryRunPackages ?? []);
   const reviewGate = summarizeReviewGate(physicalRecoveryReviewGate);
   const applyDesign = summarizeApplyDesign(physicalRecoveryApplyDesign);
@@ -571,6 +598,7 @@ function physicalRecoveryDesignState({ dryRunPackages, physicalRecoveryReviewGat
   const prewriteSnapshotSpec = summarizePrewriteSnapshotSpec(physicalRecoveryPrewriteSnapshotSpec);
   const futureExecutionArtifactSpec = summarizeFutureExecutionArtifactSpec(physicalRecoveryFutureExecutionArtifactSpec);
   const pkg01ReconcileDryRunPreview = summarizePkg01ReconcileDryRunPreview(physicalRecoveryPkg01ReconcileDryRunPreview);
+  const pkg01OperatorApprovalGate = summarizePkg01OperatorApprovalGate(physicalRecoveryPkg01OperatorApprovalGate);
   const dryRunPackageExists = generatedDryRuns.package_count > 0;
   const reviewGateComplete = reviewGate.review_gate_status === 'dry_run_packages_complete_review_required_no_write'
     && Number(reviewGate.package_stop_findings ?? 1) === 0
@@ -609,8 +637,14 @@ function physicalRecoveryDesignState({ dryRunPackages, physicalRecoveryReviewGat
     && pkg01ReconcileDryRunPreview.db_writes_performed === false
     && pkg01ReconcileDryRunPreview.apply_allowed === false
     && Number(pkg01ReconcileDryRunPreview.stop_findings ?? 1) === 0;
+  const pkg01OperatorApprovalGateReady = pkg01OperatorApprovalGate.exists === true
+    && pkg01OperatorApprovalGate.approval_gate_status === 'ready_for_operator_decision_apply_blocked_no_write'
+    && pkg01OperatorApprovalGate.approval_recorded === false
+    && pkg01OperatorApprovalGate.apply_allowed === false
+    && Number(pkg01OperatorApprovalGate.stop_findings ?? 1) === 0;
   let state = 'row_level_dry_run_package_required';
-  if (pkg01ReconcileDryRunPreviewComplete) state = 'pkg01_reconcile_dry_run_preview_complete_apply_blocked_no_write';
+  if (pkg01OperatorApprovalGateReady) state = 'pkg01_operator_approval_gate_ready_apply_blocked_no_write';
+  else if (pkg01ReconcileDryRunPreviewComplete) state = 'pkg01_reconcile_dry_run_preview_complete_apply_blocked_no_write';
   else if (futureExecutionArtifactSpecComplete) state = 'future_execution_artifact_spec_complete_approval_required_no_write';
   else if (prewriteSnapshotSpecComplete) state = 'prewrite_snapshot_spec_complete_approval_required_no_write';
   else if (approvalTemplateGuardPassed) state = 'approval_template_guard_passed_approval_not_recorded_no_write';
@@ -632,6 +666,7 @@ function physicalRecoveryDesignState({ dryRunPackages, physicalRecoveryReviewGat
     prewriteSnapshotSpec,
     futureExecutionArtifactSpec,
     pkg01ReconcileDryRunPreview,
+    pkg01OperatorApprovalGate,
     dryRunPackageExists,
     reviewGateComplete,
     applyDesignComplete,
@@ -642,17 +677,18 @@ function physicalRecoveryDesignState({ dryRunPackages, physicalRecoveryReviewGat
     prewriteSnapshotSpecComplete,
     futureExecutionArtifactSpecComplete,
     pkg01ReconcileDryRunPreviewComplete,
+    pkg01OperatorApprovalGateReady,
   };
 }
 
-function buildWritePackages({ completion, exactMatch, recoveryLanes, sourceAcquisition, grookaiAudit, dryRunPackages, physicalRecoveryReviewGate, physicalRecoveryApplyDesign, physicalRecoveryDbImpact, physicalRecoveryOperatorApproval, physicalRecoveryApprovalRecordTemplate, physicalRecoveryApprovalTemplateGuard, physicalRecoveryPrewriteSnapshotSpec, physicalRecoveryFutureExecutionArtifactSpec, physicalRecoveryPkg01ReconcileDryRunPreview }) {
+function buildWritePackages({ completion, exactMatch, recoveryLanes, sourceAcquisition, grookaiAudit, dryRunPackages, physicalRecoveryReviewGate, physicalRecoveryApplyDesign, physicalRecoveryDbImpact, physicalRecoveryOperatorApproval, physicalRecoveryApprovalRecordTemplate, physicalRecoveryApprovalTemplateGuard, physicalRecoveryPrewriteSnapshotSpec, physicalRecoveryFutureExecutionArtifactSpec, physicalRecoveryPkg01ReconcileDryRunPreview, physicalRecoveryPkg01OperatorApprovalGate }) {
   const physicalByFinishStatus = exactMatch.summary?.by_finish_match_status ?? {};
   const physicalPrintingByFinishStatus = exactMatch.summary?.printing_rows_by_finish_status ?? {};
   const statusCounts = grookaiAudit.summary?.by_status ?? {};
   const dryRunCandidateSets = summarizeDryRunCandidateSets(exactMatch);
   const dryRunCandidateCards = physicalByFinishStatus.all_finishes_master_verified_by_index ?? 0;
   const dryRunCandidatePrintings = physicalPrintingByFinishStatus.all_finishes_master_verified_by_index ?? 0;
-  const designState = physicalRecoveryDesignState({ dryRunPackages, physicalRecoveryReviewGate, physicalRecoveryApplyDesign, physicalRecoveryDbImpact, physicalRecoveryOperatorApproval, physicalRecoveryApprovalRecordTemplate, physicalRecoveryApprovalTemplateGuard, physicalRecoveryPrewriteSnapshotSpec, physicalRecoveryFutureExecutionArtifactSpec, physicalRecoveryPkg01ReconcileDryRunPreview });
+  const designState = physicalRecoveryDesignState({ dryRunPackages, physicalRecoveryReviewGate, physicalRecoveryApplyDesign, physicalRecoveryDbImpact, physicalRecoveryOperatorApproval, physicalRecoveryApprovalRecordTemplate, physicalRecoveryApprovalTemplateGuard, physicalRecoveryPrewriteSnapshotSpec, physicalRecoveryFutureExecutionArtifactSpec, physicalRecoveryPkg01ReconcileDryRunPreview, physicalRecoveryPkg01OperatorApprovalGate });
   const generatedDryRuns = designState.generatedDryRuns;
   const dryRunPackageExists = designState.dryRunPackageExists;
   return [
@@ -682,6 +718,7 @@ function buildWritePackages({ completion, exactMatch, recoveryLanes, sourceAcqui
       physical_recovery_prewrite_snapshot_spec: designState.prewriteSnapshotSpec,
       physical_recovery_future_execution_artifact_spec: designState.futureExecutionArtifactSpec,
       physical_recovery_pkg01_reconcile_dry_run_preview: designState.pkg01ReconcileDryRunPreview,
+      physical_recovery_pkg01_operator_approval_gate: designState.pkg01OperatorApprovalGate,
       candidate_card_prints: dryRunCandidateCards,
       candidate_printing_rows: dryRunCandidatePrintings,
       candidate_sets: dryRunCandidateSets,
@@ -913,6 +950,7 @@ function buildArtifacts(inputs) {
     physical_recovery_prewrite_snapshot_spec: summarizePrewriteSnapshotSpec(inputs.physicalRecoveryPrewriteSnapshotSpec),
     physical_recovery_future_execution_artifact_spec: summarizeFutureExecutionArtifactSpec(inputs.physicalRecoveryFutureExecutionArtifactSpec),
     physical_recovery_pkg01_reconcile_dry_run_preview: summarizePkg01ReconcileDryRunPreview(inputs.physicalRecoveryPkg01ReconcileDryRunPreview),
+    physical_recovery_pkg01_operator_approval_gate: summarizePkg01OperatorApprovalGate(inputs.physicalRecoveryPkg01OperatorApprovalGate),
     source_acquisition_queue: inputs.completionSourceGap.summary ?? valueAt(inputs.sourceAcquisition, ['summary', 'queue_summary'], {}),
     historical_source_acquisition_queue: valueAt(inputs.sourceAcquisition, ['summary', 'queue_summary'], {}),
     finish_blocker_closure: {
@@ -929,7 +967,7 @@ function buildArtifacts(inputs) {
     version: 'english_master_index_write_readiness_v1',
     ...safety,
     rule: 'This report determines whether Grookai is ready to write. It does not execute writes.',
-    conclusion: 'No catalog writes are authorized yet. The Master Index is complete, PKG-01 dry-run packages, apply design, DB impact translation, operator approval packet, blank fingerprinted approval record template, approval template guard, pre-write snapshot specification, future execution artifact specification, and consolidated reconcile dry-run preview are prepared for review, but approval is not recorded and write_ready_now remains 0.',
+    conclusion: 'No catalog writes are authorized yet. The Master Index is complete, PKG-01 dry-run packages, apply design, DB impact translation, operator approval packet, blank fingerprinted approval record template, approval template guard, pre-write snapshot specification, future execution artifact specification, consolidated reconcile dry-run preview, and operator approval gate are prepared for review, but approval is not recorded and write_ready_now remains 0.',
     summary,
     global_buckets: globalBuckets,
     write_packages: writePackages,
@@ -1009,7 +1047,9 @@ function buildArtifacts(inputs) {
       {
         phase: 'Phase 6',
         name: 'Fresh snapshot and guarded execution artifact',
-        status: inputs.physicalRecoveryPkg01ReconcileDryRunPreview?.preview_status === 'dry_run_reconcile_preview_complete_apply_blocked_no_approval'
+        status: inputs.physicalRecoveryPkg01OperatorApprovalGate?.approval_gate_status === 'ready_for_operator_decision_apply_blocked_no_write'
+          ? 'pkg01_operator_approval_gate_ready_apply_blocked_no_write'
+          : inputs.physicalRecoveryPkg01ReconcileDryRunPreview?.preview_status === 'dry_run_reconcile_preview_complete_apply_blocked_no_approval'
           ? 'pkg01_reconcile_dry_run_preview_complete_apply_blocked_no_write'
           : inputs.physicalRecoveryFutureExecutionArtifactSpec?.spec_status === 'future_execution_artifact_spec_complete_approval_required_no_write'
           ? 'future_execution_artifact_spec_complete_execution_not_created_no_write'
@@ -1027,7 +1067,9 @@ function buildArtifacts(inputs) {
     generated_at: new Date().toISOString(),
     version: 'english_master_index_audit_closure_v1',
     ...safety,
-    audit_status: inputs.physicalRecoveryPkg01ReconcileDryRunPreview?.preview_status === 'dry_run_reconcile_preview_complete_apply_blocked_no_approval'
+    audit_status: inputs.physicalRecoveryPkg01OperatorApprovalGate?.approval_gate_status === 'ready_for_operator_decision_apply_blocked_no_write'
+      ? 'complete_to_pkg01_operator_approval_gate_boundary_no_write'
+      : inputs.physicalRecoveryPkg01ReconcileDryRunPreview?.preview_status === 'dry_run_reconcile_preview_complete_apply_blocked_no_approval'
       ? 'complete_to_pkg01_reconcile_dry_run_preview_boundary_no_write'
       : inputs.physicalRecoveryFutureExecutionArtifactSpec?.spec_status === 'future_execution_artifact_spec_complete_approval_required_no_write'
       ? 'complete_to_future_execution_artifact_spec_boundary_no_write'
@@ -1046,9 +1088,11 @@ function buildArtifacts(inputs) {
       entire_audit_completed_to_current_evidence_boundary: true,
       master_index_complete: (inputs.completion.summary?.source_gap_queue_items ?? 1) === 0,
       ready_for_db_writes: false,
-      reason: 'The completed Master Index now has PKG-01 dry-run packages, a consolidated apply design, DB impact translation, an operator approval packet, a blank fingerprinted approval record template, a passing approval template guard, a pre-write snapshot specification, a future execution artifact specification, and a consolidated reconcile dry-run preview, but writes still need recorded approval, a final fresh snapshot, an actual guarded execution artifact, and transactional verification.',
+      reason: 'The completed Master Index now has PKG-01 dry-run packages, a consolidated apply design, DB impact translation, an operator approval packet, a blank fingerprinted approval record template, a passing approval template guard, a pre-write snapshot specification, a future execution artifact specification, a consolidated reconcile dry-run preview, and an operator approval gate, but writes still need recorded approval, a final fresh snapshot, an actual guarded execution artifact, and transactional verification.',
       strongest_positive_finding: '106 physical missing-set recovery card candidates / 143 printing rows have exact card identity and all finishes master_verified by the index.',
-      main_blocker: inputs.physicalRecoveryPkg01ReconcileDryRunPreview?.preview_status === 'dry_run_reconcile_preview_complete_apply_blocked_no_approval'
+      main_blocker: inputs.physicalRecoveryPkg01OperatorApprovalGate?.approval_gate_status === 'ready_for_operator_decision_apply_blocked_no_write'
+        ? 'PKG-01 is ready for explicit operator decision, but approval is not recorded and no executable guarded transaction artifact exists.'
+        : inputs.physicalRecoveryPkg01ReconcileDryRunPreview?.preview_status === 'dry_run_reconcile_preview_complete_apply_blocked_no_approval'
         ? 'PKG-01 reconcile dry-run preview exists and passed preview guards, but approval is not recorded and no executable guarded transaction artifact exists.'
         : inputs.physicalRecoveryFutureExecutionArtifactSpec?.spec_status === 'future_execution_artifact_spec_complete_approval_required_no_write'
         ? 'Future execution artifact specification exists, but approval is not recorded, no fresh snapshot has been captured, and no actual guarded execution artifact exists.'
@@ -1069,7 +1113,9 @@ function buildArtifacts(inputs) {
     },
     summary,
     immediate_next_non_write_work: [
-      inputs.physicalRecoveryPkg01ReconcileDryRunPreview?.preview_status === 'dry_run_reconcile_preview_complete_apply_blocked_no_approval'
+      inputs.physicalRecoveryPkg01OperatorApprovalGate?.approval_gate_status === 'ready_for_operator_decision_apply_blocked_no_write'
+        ? 'Operator decision is the next boundary: approve PKG-01 for final snapshot/execution-artifact preparation, reject PKG-01, or request changes. No write is authorized until approval is explicitly recorded.'
+        : inputs.physicalRecoveryPkg01ReconcileDryRunPreview?.preview_status === 'dry_run_reconcile_preview_complete_apply_blocked_no_approval'
         ? 'Human-review the consolidated PKG-01 reconcile dry-run preview, mutation matrix, rollback matrix, approval template, and package fingerprint; leave write_ready_now at 0 until approval is explicitly recorded.'
         : inputs.physicalRecoveryFutureExecutionArtifactSpec?.spec_status === 'future_execution_artifact_spec_complete_approval_required_no_write'
         ? 'Human-review the guarded blank approval record template, pre-write snapshot specification, and future execution artifact specification; leave write_ready_now at 0 until approval is explicitly recorded.'
@@ -1180,6 +1226,10 @@ ${artifact.conclusion}
 - physical recovery PKG-01 reconcile dry-run db_reads_performed: ${artifact.summary.physical_recovery_pkg01_reconcile_dry_run_preview.db_reads_performed}
 - physical recovery PKG-01 reconcile dry-run db_writes_performed: ${artifact.summary.physical_recovery_pkg01_reconcile_dry_run_preview.db_writes_performed}
 - physical recovery PKG-01 reconcile dry-run write_ready_now: ${artifact.summary.physical_recovery_pkg01_reconcile_dry_run_preview.write_ready_now}
+- physical recovery PKG-01 operator approval gate: ${artifact.summary.physical_recovery_pkg01_operator_approval_gate.approval_gate_status}
+- physical recovery PKG-01 operator approval gate mutation rows: ${artifact.summary.physical_recovery_pkg01_operator_approval_gate.mutation_matrix_rows ?? 0}
+- physical recovery PKG-01 operator approval gate rollback rows: ${artifact.summary.physical_recovery_pkg01_operator_approval_gate.rollback_matrix_rows ?? 0}
+- physical recovery PKG-01 operator approval gate write_ready_now: ${artifact.summary.physical_recovery_pkg01_operator_approval_gate.write_ready_now}
 
 ## Global Buckets
 
@@ -1315,6 +1365,7 @@ async function main() {
     physicalRecoveryPrewriteSnapshotSpec: await readOptionalJson(PREWRITE_SNAPSHOT_SPEC_FILE, null),
     physicalRecoveryFutureExecutionArtifactSpec: await readOptionalJson(FUTURE_EXECUTION_ARTIFACT_SPEC_FILE, null),
     physicalRecoveryPkg01ReconcileDryRunPreview: await readOptionalJson(PKG01_RECONCILE_DRY_RUN_PREVIEW_FILE, null),
+    physicalRecoveryPkg01OperatorApprovalGate: await readOptionalJson(PKG01_OPERATOR_APPROVAL_GATE_FILE, null),
   };
   const artifacts = buildArtifacts(inputs);
 

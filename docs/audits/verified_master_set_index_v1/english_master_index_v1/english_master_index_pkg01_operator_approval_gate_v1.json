@@ -1,0 +1,74 @@
+{
+  "generated_at": "2026-06-09T03:17:02.208Z",
+  "version": "english_master_index_pkg01_operator_approval_gate_v1",
+  "audit_only": true,
+  "db_reads_performed": false,
+  "db_writes_performed": false,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "apply_paths_executed": false,
+  "approval_recorded": false,
+  "write_ready_now": 0,
+  "apply_allowed": false,
+  "approval_gate_status": "ready_for_operator_decision_apply_blocked_no_write",
+  "purpose": "State whether PKG-01 is ready for explicit operator approval review while keeping execution blocked.",
+  "package_scope": {
+    "package_id": "PKG-01",
+    "package_fingerprint_sha256": "34cc9acbb81bfadbe2115528a1339cb82afa71fa01fd0d52b62b83834a990b79",
+    "card_print_rows": 106,
+    "child_printing_rows_verified": 143,
+    "affected_sets": 12,
+    "mutation_matrix_rows": 106,
+    "rollback_matrix_rows": 106,
+    "current_db_card_prints_found": 106,
+    "current_db_card_printings_found": 143,
+    "current_db_vault_items_found": 0,
+    "current_db_snapshot_hash_sha256": "faa3a50cbda19df2a050a05c558cfdde0734579fd976f5209a4611319fe53e27"
+  },
+  "source_statuses": {
+    "approval_template_status": "blank_template_no_approval_recorded",
+    "approval_template_blank_entries": 106,
+    "approval_template_rows": 106,
+    "approval_guard_status": "pass_blank_template_verified_no_write",
+    "reconcile_preview_status": "dry_run_reconcile_preview_complete_apply_blocked_no_approval",
+    "reconcile_preview_stop_findings": 0
+  },
+  "required_operator_decision": {
+    "decision_needed": true,
+    "acceptable_decisions": [
+      "approve_pkg01_for_final_snapshot_and_execution_artifact",
+      "reject_pkg01",
+      "request_pkg01_changes"
+    ],
+    "approval_must_reference": {
+      "package_id": "PKG-01",
+      "package_fingerprint_sha256": "34cc9acbb81bfadbe2115528a1339cb82afa71fa01fd0d52b62b83834a990b79",
+      "card_print_rows": 106,
+      "child_printing_rows_verified": 143
+    },
+    "approval_effect": "Approval would only allow the next no-write-to-write-adjacent step: capture a final fresh snapshot and create a dry-run-default guarded execution artifact. It would not itself write to the DB."
+  },
+  "next_step_if_approved_later": [
+    "Record explicit approval in a separate approval record artifact.",
+    "Capture a final fresh DB snapshot immediately after approval.",
+    "Compare the final snapshot against this reconcile preview.",
+    "Create a separate guarded transaction artifact that defaults to dry-run.",
+    "Run that artifact in dry-run before any apply execution is considered."
+  ],
+  "explicit_non_authorizations": [
+    "This approval gate is not approval.",
+    "This approval gate is not an approval record.",
+    "This approval gate is not SQL.",
+    "This approval gate is not a migration.",
+    "This approval gate does not create an apply runner.",
+    "This approval gate does not allow DB writes, cleanup, quarantine, insertion, deletion, hiding, or normalization."
+  ],
+  "source_artifacts": {
+    "approval_record_template": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_operator_approval_record_template_v1.json",
+    "approval_template_guard": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_operator_approval_template_guard_v1.json",
+    "reconcile_dry_run_preview": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_pkg01_reconcile_dry_run_preview_v1.json"
+  },
+  "stop_findings": [],
+  "pass": true
+}
