@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-09T03:18:21.476Z",
+  "generated_at": "2026-06-09T03:46:37.268Z",
   "version": "english_master_index_no_write_execution_plan_v1",
   "audit_only": true,
   "db_writes_performed": false,
@@ -82,8 +82,8 @@
     {
       "phase": "Phase 6",
       "name": "Fresh snapshot and guarded execution artifact",
-      "status": "pkg01_operator_approval_gate_ready_apply_blocked_no_write",
-      "required_approval": "Only after explicit approval: refresh the snapshot, verify this dry-run preview still matches, then create an executable dry-run-default transaction artifact."
+      "status": "pkg01_split_one_set_pilot_ready_apply_blocked_no_write",
+      "required_approval": "Only after explicit approval for PKG-01A: capture a final fresh snapshot for the one-set pilot, then create a dry-run-default transaction artifact for PKG-01A only."
     }
   ],
   "evidence_plan": {
@@ -504,7 +504,7 @@
     {
       "package_id": "PKG-01",
       "name": "Physical missing-set recovery - master-verified subset",
-      "current_state": "pkg01_operator_approval_gate_ready_apply_blocked_no_write",
+      "current_state": "pkg01_split_one_set_pilot_ready_apply_blocked_no_write",
       "future_write_allowed_after_approval": false,
       "evidence_ready_for_dry_run_design": true,
       "generated_dry_run_packages": {
@@ -828,6 +828,27 @@
         "child_printing_rows_verified": 143,
         "mutation_matrix_rows": 106,
         "rollback_matrix_rows": 106,
+        "apply_allowed": false,
+        "stop_findings": 0,
+        "pass": true,
+        "write_ready_now": 0
+      },
+      "physical_recovery_pkg01_split_one_set_pilot": {
+        "exists": true,
+        "file": "english_master_index_pkg01_split_one_set_pilot_v1.json",
+        "split_status": "pkg01_split_into_one_set_pilot_apply_blocked_no_write",
+        "approval_recorded": false,
+        "source_package_fingerprint_sha256": "34cc9acbb81bfadbe2115528a1339cb82afa71fa01fd0d52b62b83834a990b79",
+        "pilot_package_id": "PKG-01A",
+        "pilot_package_fingerprint_sha256": "72fade7655349f73019df4449a269cb4c46bbca000d0f24203fdcbfa498ee1f8",
+        "pilot_set_key": "fut2020",
+        "pilot_set_name": "Pokémon Futsal 2020",
+        "pilot_card_print_rows": 1,
+        "pilot_child_printing_rows_verified": 1,
+        "pilot_vault_items_referencing_targets": 0,
+        "remainder_package_id": "PKG-01B",
+        "remainder_card_print_rows": 105,
+        "remainder_child_printing_rows_verified": 142,
         "apply_allowed": false,
         "stop_findings": 0,
         "pass": true,

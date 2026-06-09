@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-09T03:18:21.476Z",
+  "generated_at": "2026-06-09T03:46:37.268Z",
   "version": "english_master_index_audit_closure_v1",
   "audit_only": true,
   "db_writes_performed": false,
@@ -8,14 +8,14 @@
   "quarantine_performed": false,
   "apply_paths_executed": false,
   "privileged_writes_used": false,
-  "audit_status": "complete_to_pkg01_operator_approval_gate_boundary_no_write",
+  "audit_status": "complete_to_pkg01_split_one_set_pilot_boundary_no_write",
   "conclusion": {
     "entire_audit_completed_to_current_evidence_boundary": true,
     "master_index_complete": true,
     "ready_for_db_writes": false,
-    "reason": "The completed Master Index now has PKG-01 dry-run packages, a consolidated apply design, DB impact translation, an operator approval packet, a blank fingerprinted approval record template, a passing approval template guard, a pre-write snapshot specification, a future execution artifact specification, a consolidated reconcile dry-run preview, and an operator approval gate, but writes still need recorded approval, a final fresh snapshot, an actual guarded execution artifact, and transactional verification.",
-    "strongest_positive_finding": "106 physical missing-set recovery card candidates / 143 printing rows have exact card identity and all finishes master_verified by the index.",
-    "main_blocker": "PKG-01 is ready for explicit operator decision, but approval is not recorded and no executable guarded transaction artifact exists.",
+    "reason": "The completed Master Index now has PKG-01 split into one-set pilot PKG-01A and blocked remainder PKG-01B. The pilot package is ready for explicit operator decision, but writes still need recorded pilot approval, a final fresh snapshot, an actual guarded execution artifact, and transactional verification.",
+    "strongest_positive_finding": "PKG-01A isolates one low-blast-radius fut2020 row / one child printing from the 106-row PKG-01 package; PKG-01B keeps the remaining 105 rows blocked until pilot verification.",
+    "main_blocker": "PKG-01A is ready for explicit operator decision, but approval is not recorded and no executable guarded transaction artifact exists for the one-set pilot.",
     "finish_blocker_boundary": "Former finish blockers are adjudicated exclusions outside working truth, not open completion gaps."
   },
   "summary": {
@@ -449,6 +449,27 @@
       "pass": true,
       "write_ready_now": 0
     },
+    "physical_recovery_pkg01_split_one_set_pilot": {
+      "exists": true,
+      "file": "english_master_index_pkg01_split_one_set_pilot_v1.json",
+      "split_status": "pkg01_split_into_one_set_pilot_apply_blocked_no_write",
+      "approval_recorded": false,
+      "source_package_fingerprint_sha256": "34cc9acbb81bfadbe2115528a1339cb82afa71fa01fd0d52b62b83834a990b79",
+      "pilot_package_id": "PKG-01A",
+      "pilot_package_fingerprint_sha256": "72fade7655349f73019df4449a269cb4c46bbca000d0f24203fdcbfa498ee1f8",
+      "pilot_set_key": "fut2020",
+      "pilot_set_name": "Pokémon Futsal 2020",
+      "pilot_card_print_rows": 1,
+      "pilot_child_printing_rows_verified": 1,
+      "pilot_vault_items_referencing_targets": 0,
+      "remainder_package_id": "PKG-01B",
+      "remainder_card_print_rows": 105,
+      "remainder_child_printing_rows_verified": 142,
+      "apply_allowed": false,
+      "stop_findings": 0,
+      "pass": true,
+      "write_ready_now": 0
+    },
     "source_acquisition_queue": {
       "total_queue_items": 0,
       "by_lane": {},
@@ -521,9 +542,9 @@
     }
   },
   "immediate_next_non_write_work": [
-    "Operator decision is the next boundary: approve PKG-01 for final snapshot/execution-artifact preparation, reject PKG-01, or request changes. No write is authorized until approval is explicitly recorded.",
-    "Capture a final fresh before-state snapshot immediately before any future execution artifact is created.",
-    "Create the actual guarded execution artifact only after explicit approval and a fresh snapshot.",
+    "Operator decision is now scoped to PKG-01A only: approve the fut2020 one-set pilot for final snapshot/execution-artifact preparation, reject it, or request changes. PKG-01B remains blocked.",
+    "Capture a final fresh before-state snapshot for the pilot rows immediately before any future execution artifact is created.",
+    "Create the actual guarded execution artifact only for explicitly approved pilot rows after approval and a fresh snapshot.",
     "Keep blocked remainder rows out of any future execution package."
   ],
   "stop_rules_before_any_future_write": [
@@ -752,7 +773,7 @@
     {
       "package_id": "PKG-01",
       "name": "Physical missing-set recovery - master-verified subset",
-      "current_state": "pkg01_operator_approval_gate_ready_apply_blocked_no_write",
+      "current_state": "pkg01_split_one_set_pilot_ready_apply_blocked_no_write",
       "future_write_allowed_after_approval": false,
       "evidence_ready_for_dry_run_design": true,
       "generated_dry_run_packages": {
@@ -1076,6 +1097,27 @@
         "child_printing_rows_verified": 143,
         "mutation_matrix_rows": 106,
         "rollback_matrix_rows": 106,
+        "apply_allowed": false,
+        "stop_findings": 0,
+        "pass": true,
+        "write_ready_now": 0
+      },
+      "physical_recovery_pkg01_split_one_set_pilot": {
+        "exists": true,
+        "file": "english_master_index_pkg01_split_one_set_pilot_v1.json",
+        "split_status": "pkg01_split_into_one_set_pilot_apply_blocked_no_write",
+        "approval_recorded": false,
+        "source_package_fingerprint_sha256": "34cc9acbb81bfadbe2115528a1339cb82afa71fa01fd0d52b62b83834a990b79",
+        "pilot_package_id": "PKG-01A",
+        "pilot_package_fingerprint_sha256": "72fade7655349f73019df4449a269cb4c46bbca000d0f24203fdcbfa498ee1f8",
+        "pilot_set_key": "fut2020",
+        "pilot_set_name": "Pokémon Futsal 2020",
+        "pilot_card_print_rows": 1,
+        "pilot_child_printing_rows_verified": 1,
+        "pilot_vault_items_referencing_targets": 0,
+        "remainder_package_id": "PKG-01B",
+        "remainder_card_print_rows": 105,
+        "remainder_child_printing_rows_verified": 142,
         "apply_allowed": false,
         "stop_findings": 0,
         "pass": true,
