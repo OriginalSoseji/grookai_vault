@@ -1,0 +1,146 @@
+{
+  "generated_at": "2026-06-09T04:12:59.415Z",
+  "version": "english_master_index_pkg01a_real_apply_v1",
+  "audit_only": false,
+  "apply_only": true,
+  "approval_scope": {
+    "apply_approved_by_user": true,
+    "approval_text": "Approve real one-row PKG-01A apply only.",
+    "approved_for_package_id": "PKG-01A",
+    "approved_for_set_key": "fut2020",
+    "approved_for_card_print_id": "a676888d-19e0-4064-89aa-e67019af5b95",
+    "approved_for_field_changes": [
+      "set_code"
+    ],
+    "approved_for_pkg01b": false,
+    "approved_for_migrations": false,
+    "approved_for_cleanup": false,
+    "approved_for_quarantine": false
+  },
+  "apply_status": "pkg01a_real_apply_committed_and_verified",
+  "db_reads_performed": true,
+  "durable_db_writes_performed": true,
+  "db_write_committed": true,
+  "updated_rows": 1,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "apply_paths_executed": true,
+  "package_scope": {
+    "pilot_package_id": "PKG-01A",
+    "set_key": "fut2020",
+    "card_print_rows": 1,
+    "child_printing_rows_verified": 1,
+    "allowed_changed_fields": [
+      "set_code"
+    ],
+    "pkg01b_included": false
+  },
+  "source_artifacts": {
+    "dry_run_proof": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_pkg01a_guarded_dry_run_execution_v1.json",
+    "transaction_artifact_preparation": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_pkg01a_final_fresh_snapshot_transaction_artifact_v1.json"
+  },
+  "execution_result": {
+    "connected": true,
+    "apply_status": "pkg01a_real_apply_committed",
+    "error_message": null,
+    "committed": true
+  },
+  "before_snapshot": {
+    "captured_at": "2026-06-09T04:12:58.634Z",
+    "rows": [
+      {
+        "card_print_id": "a676888d-19e0-4064-89aa-e67019af5b95",
+        "set_code": null,
+        "number": "1",
+        "number_plain": "1",
+        "name": "Pikachu on the Ball",
+        "set_id": "84b23610-ffe4-4bbd-a5b7-51131bb9fee1",
+        "updated_at": "2026-03-27T02:54:46.916Z",
+        "card_printings": [
+          {
+            "id": "aa586d57-a279-4cce-ba8c-e78ec7088bea",
+            "finish_key": "holo",
+            "provenance_ref": "fut2020-1",
+            "provenance_source": "tcgdex"
+          }
+        ],
+        "dependency_counts": {
+          "external_mappings": 1,
+          "card_print_identity": 1,
+          "card_print_traits": 1,
+          "vault_items": 0
+        }
+      }
+    ],
+    "hash_sha256": "cddc8bf8863e93ab941cf7a22c90cf26e98170f815256cbd6048d49394f76cd9",
+    "counts": {
+      "card_prints_found": 1,
+      "card_printings_found": 1,
+      "vault_items_found": 0
+    }
+  },
+  "after_snapshot": {
+    "captured_at": "2026-06-09T04:12:59.335Z",
+    "rows": [
+      {
+        "card_print_id": "a676888d-19e0-4064-89aa-e67019af5b95",
+        "set_code": "fut2020",
+        "number": "1",
+        "number_plain": "1",
+        "name": "Pikachu on the Ball",
+        "set_id": "84b23610-ffe4-4bbd-a5b7-51131bb9fee1",
+        "updated_at": "2026-03-27T02:54:46.916Z",
+        "card_printings": [
+          {
+            "id": "aa586d57-a279-4cce-ba8c-e78ec7088bea",
+            "finish_key": "holo",
+            "provenance_ref": "fut2020-1",
+            "provenance_source": "tcgdex"
+          }
+        ],
+        "dependency_counts": {
+          "external_mappings": 1,
+          "card_print_identity": 1,
+          "card_print_traits": 1,
+          "vault_items": 0
+        }
+      }
+    ],
+    "hash_sha256": "4fa8b17f27c696704af2f570b015ac015d4ea2f9bae0202293ae2a85f89a7c84",
+    "counts": {
+      "card_prints_found": 1,
+      "card_printings_found": 1,
+      "vault_items_found": 0
+    }
+  },
+  "rollback_proof": {
+    "rollback_available": true,
+    "rollback_scope": "PKG-01A/fut2020 one card_print row only",
+    "rollback_sql_preview": "update public.card_prints\nset set_code = null\nwhere id = 'a676888d-19e0-4064-89aa-e67019af5b95'::uuid\n  and set_code = 'fut2020';",
+    "rollback_expected_rows": 1,
+    "rollback_non_authorizations": [
+      "Rollback must not touch PKG-01B.",
+      "Rollback must not touch card_printings.",
+      "Rollback must not touch vault, ownership, provenance, pricing, scanner, or marketplace tables."
+    ]
+  },
+  "verification_summary": {
+    "before_hash_sha256": "cddc8bf8863e93ab941cf7a22c90cf26e98170f815256cbd6048d49394f76cd9",
+    "after_hash_sha256": "4fa8b17f27c696704af2f570b015ac015d4ea2f9bae0202293ae2a85f89a7c84",
+    "parent_set_code_resolved": true,
+    "child_printing_count_unchanged": true,
+    "finish_scope_unchanged": true,
+    "vault_items_still_zero": true,
+    "master_index_comparison_status": "pkg01a_parent_set_code_resolved_and_child_finish_unchanged"
+  },
+  "explicit_non_authorizations": [
+    "PKG-01B remains blocked.",
+    "No migrations were authorized or created.",
+    "No cleanup, quarantine, insertion, deletion, hiding, or normalization was authorized.",
+    "No child printing rows were changed.",
+    "No vault, ownership, provenance, pricing, scanner, or marketplace rows were changed."
+  ],
+  "stop_findings": [],
+  "pass": true
+}
