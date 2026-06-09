@@ -1,0 +1,369 @@
+{
+  "generated_at": "2026-06-09T05:27:29.317Z",
+  "version": "english_master_index_pkg01b_fut2020_guarded_dry_run_execution_v1",
+  "audit_only": true,
+  "dry_run_only": true,
+  "transaction_artifact_executed": true,
+  "dry_run_update_delete_executed_inside_rolled_back_transaction": true,
+  "durable_db_writes_performed": false,
+  "db_write_committed": false,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "apply_paths_executed": false,
+  "apply_allowed": false,
+  "write_ready_now": 0,
+  "dry_run_execution_status": "pkg01b_fut2020_guarded_dry_run_passed_rolled_back_no_durable_change",
+  "package_scope": {
+    "package_id": "PKG-01B-FUT2020",
+    "package_fingerprint_sha256": "c9539d98a7f883ce9b66ed12c57416ed68f0e9d1cad08b654f1470cb40baee63",
+    "set_key": "fut2020",
+    "parent_card_print_rows": 4,
+    "transient_parent_set_code_updates": 4,
+    "transient_child_delete_candidates": 8,
+    "child_keep_rows": 4,
+    "allowed_parent_field_changes": [
+      "set_code"
+    ],
+    "allowed_child_delete_finish_keys": [
+      "holo",
+      "reverse"
+    ]
+  },
+  "sql_artifact": {
+    "artifact_ref": "docs/sql/english_master_index_pkg01b_fut2020_guarded_dry_run_transaction_v1.sql",
+    "artifact_hash_sha256": "9378ebfa9505bc992e4de2822bbaac7d64900970e011fc4be825b8ca131f5ab0",
+    "expected_artifact_hash_sha256": "9378ebfa9505bc992e4de2822bbaac7d64900970e011fc4be825b8ca131f5ab0",
+    "contains_commit_statement": false,
+    "contains_rollback_statement": true
+  },
+  "execution_result": {
+    "connected": true,
+    "execution_status": "guarded_dry_run_transaction_completed_and_rolled_back",
+    "error_message": null
+  },
+  "before_snapshot": {
+    "captured_at": "2026-06-09T05:27:28.903Z",
+    "rows": [
+      {
+        "card_print_id": "2f2942c8-6019-4446-806c-593dd351af98",
+        "set_code": null,
+        "number": "2",
+        "number_plain": "2",
+        "name": "Eevee on the Ball",
+        "set_id": "84b23610-ffe4-4bbd-a5b7-51131bb9fee1",
+        "updated_at": "2026-03-27T02:54:47.779Z",
+        "card_printings": [
+          {
+            "id": "f7011904-be70-4a4f-9704-6d0396359493",
+            "finish_key": "holo",
+            "provenance_ref": "fut2020-2",
+            "provenance_source": "tcgdex"
+          },
+          {
+            "id": "218f3d4f-35a3-47f9-abb8-df28252e55d9",
+            "finish_key": "normal",
+            "provenance_ref": "fut2020-2",
+            "provenance_source": "tcgdex"
+          },
+          {
+            "id": "3270eb0d-e4c8-43e8-9139-2b7d1f6440e7",
+            "finish_key": "reverse",
+            "provenance_ref": "fut2020-2",
+            "provenance_source": "tcgdex"
+          }
+        ],
+        "dependency_counts": {
+          "external_mappings": 1,
+          "card_print_identity": 1,
+          "card_print_traits": 1,
+          "vault_items": 0
+        }
+      },
+      {
+        "card_print_id": "5029b53f-a1dd-4fe0-ae0c-b38021dd52c2",
+        "set_code": null,
+        "number": "3",
+        "number_plain": "3",
+        "name": "Grookey on the Ball",
+        "set_id": "84b23610-ffe4-4bbd-a5b7-51131bb9fee1",
+        "updated_at": "2026-03-27T02:54:49.027Z",
+        "card_printings": [
+          {
+            "id": "3a7e1fc6-d717-4299-8f60-e14c8b15fd20",
+            "finish_key": "holo",
+            "provenance_ref": "fut2020-3",
+            "provenance_source": "tcgdex"
+          },
+          {
+            "id": "7a0707e1-2755-4a88-b90b-2f95ab2584d2",
+            "finish_key": "normal",
+            "provenance_ref": "fut2020-3",
+            "provenance_source": "tcgdex"
+          },
+          {
+            "id": "b3ed0e51-8a8b-4a12-8fbf-04b6c6bc21f6",
+            "finish_key": "reverse",
+            "provenance_ref": "fut2020-3",
+            "provenance_source": "tcgdex"
+          }
+        ],
+        "dependency_counts": {
+          "external_mappings": 1,
+          "card_print_identity": 1,
+          "card_print_traits": 1,
+          "vault_items": 0
+        }
+      },
+      {
+        "card_print_id": "53919228-7560-480c-9bdb-da99ad67250a",
+        "set_code": null,
+        "number": "4",
+        "number_plain": "4",
+        "name": "Scorbunny on the Ball",
+        "set_id": "84b23610-ffe4-4bbd-a5b7-51131bb9fee1",
+        "updated_at": "2026-03-27T02:54:50.028Z",
+        "card_printings": [
+          {
+            "id": "ad2cc347-5873-4af7-8022-ed619176e708",
+            "finish_key": "holo",
+            "provenance_ref": "fut2020-4",
+            "provenance_source": "tcgdex"
+          },
+          {
+            "id": "f3455573-4d20-4621-a206-ef88d8c726de",
+            "finish_key": "normal",
+            "provenance_ref": "fut2020-4",
+            "provenance_source": "tcgdex"
+          },
+          {
+            "id": "6b846e08-a26b-45fc-8f68-628a80ef0d02",
+            "finish_key": "reverse",
+            "provenance_ref": "fut2020-4",
+            "provenance_source": "tcgdex"
+          }
+        ],
+        "dependency_counts": {
+          "external_mappings": 1,
+          "card_print_identity": 1,
+          "card_print_traits": 1,
+          "vault_items": 0
+        }
+      },
+      {
+        "card_print_id": "82ebefc5-51bc-4dbd-ba14-a9a60186aa61",
+        "set_code": null,
+        "number": "5",
+        "number_plain": "5",
+        "name": "Sobble on the Ball",
+        "set_id": "84b23610-ffe4-4bbd-a5b7-51131bb9fee1",
+        "updated_at": "2026-03-27T02:54:51.078Z",
+        "card_printings": [
+          {
+            "id": "b4568669-93a5-412e-aa5f-704c75fe8518",
+            "finish_key": "holo",
+            "provenance_ref": "fut2020-5",
+            "provenance_source": "tcgdex"
+          },
+          {
+            "id": "ac1fe5dc-a0f5-4d67-9cf7-d6e4b3fe865d",
+            "finish_key": "normal",
+            "provenance_ref": "fut2020-5",
+            "provenance_source": "tcgdex"
+          },
+          {
+            "id": "26d97bc4-f156-4a3d-8735-0120be57572f",
+            "finish_key": "reverse",
+            "provenance_ref": "fut2020-5",
+            "provenance_source": "tcgdex"
+          }
+        ],
+        "dependency_counts": {
+          "external_mappings": 1,
+          "card_print_identity": 1,
+          "card_print_traits": 1,
+          "vault_items": 0
+        }
+      }
+    ],
+    "hash_sha256": "9129574db351ca002e3e5b0a0122ebd375d31d8725945bb419d61d120339db22",
+    "counts": {
+      "card_prints_found": 4,
+      "card_printings_found": 12,
+      "parent_vault_items_found": 0,
+      "normal_printings_found": 4,
+      "holo_printings_found": 4,
+      "reverse_printings_found": 4
+    }
+  },
+  "after_snapshot": {
+    "captured_at": "2026-06-09T05:27:29.236Z",
+    "rows": [
+      {
+        "card_print_id": "2f2942c8-6019-4446-806c-593dd351af98",
+        "set_code": null,
+        "number": "2",
+        "number_plain": "2",
+        "name": "Eevee on the Ball",
+        "set_id": "84b23610-ffe4-4bbd-a5b7-51131bb9fee1",
+        "updated_at": "2026-03-27T02:54:47.779Z",
+        "card_printings": [
+          {
+            "id": "f7011904-be70-4a4f-9704-6d0396359493",
+            "finish_key": "holo",
+            "provenance_ref": "fut2020-2",
+            "provenance_source": "tcgdex"
+          },
+          {
+            "id": "218f3d4f-35a3-47f9-abb8-df28252e55d9",
+            "finish_key": "normal",
+            "provenance_ref": "fut2020-2",
+            "provenance_source": "tcgdex"
+          },
+          {
+            "id": "3270eb0d-e4c8-43e8-9139-2b7d1f6440e7",
+            "finish_key": "reverse",
+            "provenance_ref": "fut2020-2",
+            "provenance_source": "tcgdex"
+          }
+        ],
+        "dependency_counts": {
+          "external_mappings": 1,
+          "card_print_identity": 1,
+          "card_print_traits": 1,
+          "vault_items": 0
+        }
+      },
+      {
+        "card_print_id": "5029b53f-a1dd-4fe0-ae0c-b38021dd52c2",
+        "set_code": null,
+        "number": "3",
+        "number_plain": "3",
+        "name": "Grookey on the Ball",
+        "set_id": "84b23610-ffe4-4bbd-a5b7-51131bb9fee1",
+        "updated_at": "2026-03-27T02:54:49.027Z",
+        "card_printings": [
+          {
+            "id": "3a7e1fc6-d717-4299-8f60-e14c8b15fd20",
+            "finish_key": "holo",
+            "provenance_ref": "fut2020-3",
+            "provenance_source": "tcgdex"
+          },
+          {
+            "id": "7a0707e1-2755-4a88-b90b-2f95ab2584d2",
+            "finish_key": "normal",
+            "provenance_ref": "fut2020-3",
+            "provenance_source": "tcgdex"
+          },
+          {
+            "id": "b3ed0e51-8a8b-4a12-8fbf-04b6c6bc21f6",
+            "finish_key": "reverse",
+            "provenance_ref": "fut2020-3",
+            "provenance_source": "tcgdex"
+          }
+        ],
+        "dependency_counts": {
+          "external_mappings": 1,
+          "card_print_identity": 1,
+          "card_print_traits": 1,
+          "vault_items": 0
+        }
+      },
+      {
+        "card_print_id": "53919228-7560-480c-9bdb-da99ad67250a",
+        "set_code": null,
+        "number": "4",
+        "number_plain": "4",
+        "name": "Scorbunny on the Ball",
+        "set_id": "84b23610-ffe4-4bbd-a5b7-51131bb9fee1",
+        "updated_at": "2026-03-27T02:54:50.028Z",
+        "card_printings": [
+          {
+            "id": "ad2cc347-5873-4af7-8022-ed619176e708",
+            "finish_key": "holo",
+            "provenance_ref": "fut2020-4",
+            "provenance_source": "tcgdex"
+          },
+          {
+            "id": "f3455573-4d20-4621-a206-ef88d8c726de",
+            "finish_key": "normal",
+            "provenance_ref": "fut2020-4",
+            "provenance_source": "tcgdex"
+          },
+          {
+            "id": "6b846e08-a26b-45fc-8f68-628a80ef0d02",
+            "finish_key": "reverse",
+            "provenance_ref": "fut2020-4",
+            "provenance_source": "tcgdex"
+          }
+        ],
+        "dependency_counts": {
+          "external_mappings": 1,
+          "card_print_identity": 1,
+          "card_print_traits": 1,
+          "vault_items": 0
+        }
+      },
+      {
+        "card_print_id": "82ebefc5-51bc-4dbd-ba14-a9a60186aa61",
+        "set_code": null,
+        "number": "5",
+        "number_plain": "5",
+        "name": "Sobble on the Ball",
+        "set_id": "84b23610-ffe4-4bbd-a5b7-51131bb9fee1",
+        "updated_at": "2026-03-27T02:54:51.078Z",
+        "card_printings": [
+          {
+            "id": "b4568669-93a5-412e-aa5f-704c75fe8518",
+            "finish_key": "holo",
+            "provenance_ref": "fut2020-5",
+            "provenance_source": "tcgdex"
+          },
+          {
+            "id": "ac1fe5dc-a0f5-4d67-9cf7-d6e4b3fe865d",
+            "finish_key": "normal",
+            "provenance_ref": "fut2020-5",
+            "provenance_source": "tcgdex"
+          },
+          {
+            "id": "26d97bc4-f156-4a3d-8735-0120be57572f",
+            "finish_key": "reverse",
+            "provenance_ref": "fut2020-5",
+            "provenance_source": "tcgdex"
+          }
+        ],
+        "dependency_counts": {
+          "external_mappings": 1,
+          "card_print_identity": 1,
+          "card_print_traits": 1,
+          "vault_items": 0
+        }
+      }
+    ],
+    "hash_sha256": "9129574db351ca002e3e5b0a0122ebd375d31d8725945bb419d61d120339db22",
+    "counts": {
+      "card_prints_found": 4,
+      "card_printings_found": 12,
+      "parent_vault_items_found": 0,
+      "normal_printings_found": 4,
+      "holo_printings_found": 4,
+      "reverse_printings_found": 4
+    }
+  },
+  "durable_after_snapshot_matches_before_snapshot": true,
+  "verification_summary": {
+    "before_hash_sha256": "9129574db351ca002e3e5b0a0122ebd375d31d8725945bb419d61d120339db22",
+    "after_hash_sha256": "9129574db351ca002e3e5b0a0122ebd375d31d8725945bb419d61d120339db22",
+    "durable_state_unchanged": true,
+    "expected_transient_update_delete_rolled_back": true
+  },
+  "explicit_non_authorizations": [
+    "This dry-run execution is not real DB write/apply approval.",
+    "No COMMIT statement was allowed.",
+    "No migration was created.",
+    "No cleanup, quarantine, insertion, hiding, scanner, pricing, vault, or marketplace behavior was authorized.",
+    "A separate explicit approval is still required before any durable PKG-01B apply."
+  ],
+  "stop_findings": [],
+  "pass": true
+}
